@@ -6,7 +6,7 @@
 @stop
 
 @section('content')
-    <example-component></example-component>
+    <users-component></users-component>
 @stop
 
 @section('css')

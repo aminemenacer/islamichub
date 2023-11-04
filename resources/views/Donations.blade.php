@@ -3,10 +3,12 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
+    <h1>Donations</h1>
 @stop
 
 @section('content')
-    <example-component></example-component>
+    <donations-component></donations-component>
+    <p>Welcome to user panel.</p>
 @stop
 
 @section('css')
