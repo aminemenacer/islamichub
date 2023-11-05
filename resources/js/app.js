@@ -1,6 +1,9 @@
 // Vue libraries
 require("./bootstrap");
 import { createApp } from "vue";
+import { Form } from "vform";
+import $ from "jquery";
+
 window.Vue = require("vue").default;
 
 import PrimeVue from 'primevue/config';
@@ -23,8 +26,9 @@ import DonationComponent from "./components/DonationComponent.vue";
 import ProfileComponent from "./components/ProfileComponent.vue";
 
 const app = createApp({});
-
+window.Form = Form;
 app.use(PrimeVue);
+
 
 app.component("Column", Column);
 app.component("DataTable", DataTable);

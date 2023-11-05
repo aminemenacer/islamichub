@@ -16,6 +16,7 @@ class UserController extends Controller
     public function getUsers()
     {
         $user = User::where('subscribe', '1')->orderBy('id', 'desc')->get();
+        dd($user);
         return $user;
     }
 

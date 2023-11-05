@@ -95,7 +95,6 @@ export default {
           sortable: true,
         }
       ],
-
       sortDesc: false,
     }
   },
@@ -105,7 +104,7 @@ export default {
     },
     loadUsers() {
       axios.get("api/fetch-users").then((data) => {
-        this.users = data.data;
+        this.users = data;
       });
     },
   }

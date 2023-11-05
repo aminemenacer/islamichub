@@ -1,5 +1,79 @@
 <template>
 <div>
+
+  <!-- view new Modal -->
+  <div class="modal fade" id="editNewDonation" tabindex="-1" aria-labelledby="editNew" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-dark" id="addNew">
+            View message
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mr-2" style="display: flex">
+              <label class="mt-2 mr-2 col-sm-3">Name:</label>
+              <p class="mt-2 text-dark">
+                {{ form.firstname }}
+              </p>
+            </div>
+
+            <div class="mr-2" style="display: flex">
+              <label class="mt-2 mr-2 col-sm-3">Lastname:</label>
+              <p class="mt-2 text-dark">
+                {{ form.lastname }}
+              </p>
+            </div>
+
+            <div class="mr-2" style="display: flex">
+              <label class="mt-2 mr-2 col-sm-3">Amount:</label>
+              <p class="mt-2 text-dark">
+                {{ form.amount }}
+              </p>
+            </div>
+
+            <div class="mr-2" style="display: flex">
+              <label class="mt-2 mr-2 col-sm-3">Currency:</label>
+              <p class="mt-2 text-dark">
+                {{ form.currency }}
+              </p>
+            </div>
+
+            <div class="mr-2" style="display: flex">
+              <label class="mt-2 mr-2 col-sm-3">Email:</label>
+              <p class="mt-2 text-dark">
+                {{ form.email }}
+              </p>
+            </div>
+
+            <div class="mr-2" style="display: flex">
+              <label class="mt-2 mr-2 col-sm-3">Country:</label>
+              <p class="mt-2 text-dark">
+                {{ form.country }}
+              </p>
+            </div>
+
+            <div class="mr-2" style="display: flex">
+              <label class="mt-2 mr-2 col-sm-3">Payment Status:</label>
+              <p class="mt-2 text-dark">
+                {{ form.payment_status }}
+              </p>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                Close
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- donation datatable -->
   <DataTable v-model:filters="filters" showGridlines stripedRows sortable filterDisplay="row" :value="donations" paginator :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]" removableSort width="100%" tableStyle="max-width:100%">
     <template #header>
       <div class="flex justify-content-start" style="display: flex;">
@@ -20,7 +94,7 @@
     <Column :exportable="true" style="min-width: 8rem">
       <template #body="slotProps">
         <div class="wrapper text-center" style="display:flex">
-          <Button data-bs-toggle="modal" data-bs-target="#editNew1" type="button" class="btn user-btn text-white text-center mr-2 " style="background-color: #1e88e5; display:flex" @click="editModal(slotProps.data)">
+          <Button data-bs-toggle="modal" data-bs-target="#editNewDonation" type="button" class="btn user-btn text-white text-center mr-2 " style="background-color: #1e88e5; display:flex" @click="editModal(slotProps.data)">
             <i class="pi pi-eye mr-2"></i>
             View
           </Button>
@@ -45,8 +119,8 @@ export default {
     this.loadDonations();
     ProductService.getProductsMini().then((data) => (this.donations = data));
   },
-  data(){
-    return{
+  data() {
+    return {
       filters: {
         global: {
           value: null,
@@ -86,9 +160,20 @@ export default {
         }
       ],
 
-      users: [],
+      donations: null,
       sortDesc: false,
-    }
+
+      form: new Form({
+        id: "",
+        firstname: "",
+        lastname: "",
+        amount: "",
+        currency: "",
+        country: "",
+        email: "",
+        payment_status: ""
+      }),
+    };
   },
   methods: {
     exportCSV() {
@@ -98,6 +183,15 @@ export default {
       axios.get("api/fetch-donations").then((data) => {
         this.donations = data.data;
       });
+    },
+    //edit donation modal
+    editModal(donation) {
+      this.editmode = true;
+      this.form.fill(donation);
+    },
+    viewModal(donation) {
+      $("#view").modal("show");
+      this.form.fill(donation);
     },
   },
 }
