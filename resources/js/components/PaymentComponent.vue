@@ -1,5 +1,79 @@
 <template>
 <div>
+
+  <!-- view new Modal -->
+  <div class="modal fade" id="editNewPayment" tabindex="-1" aria-labelledby="editNew" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-dark" id="addNew">
+            View message
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mr-2" style="display: flex">
+              <label class="mt-2 mr-2 col-sm-3">Name:</label>
+              <p class="mt-2 text-dark">
+                {{ form.name }}
+              </p>
+            </div>
+
+            <div class="mr-2" style="display: flex">
+              <label class="mt-2 mr-2 col-sm-3">Amount:</label>
+              <p class="mt-2 text-dark">
+                {{ form.amount }}
+              </p>
+            </div>
+
+            <div class="mr-2" style="display: flex">
+              <label class="mt-2 mr-2 col-sm-3">Description:</label>
+              <p class="mt-2 text-dark">
+                {{ form.description }}
+              </p>
+            </div>
+
+            <div class="mr-2" style="display: flex">
+              <label class="mt-2 mr-2 col-sm-3">Payment method:</label>
+              <p class="mt-2 text-dark">
+                {{ form.payment_method }}
+              </p>
+            </div>
+
+            <div class="mr-2" style="display: flex">
+              <label class="mt-2 mr-2 col-sm-3">Currency:</label>
+              <p class="mt-2 text-dark">
+                {{ form.currency }}
+              </p>
+            </div>
+
+            <div class="mr-2" style="display: flex">
+              <label class="mt-2 mr-2 col-sm-3">Status:</label>
+              <p class="mt-2 text-dark">
+                {{ form.status }}
+              </p>
+            </div>
+
+            <div class="mr-2" style="display: flex">
+              <label class="mt-2 mr-2 col-sm-3">Date:</label>
+              <p class="mt-2 text-dark">
+                {{ form.date }}
+              </p>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                Close
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- payment datatable -->
   <DataTable v-model:filters="filters" showGridlines stripedRows sortable filterDisplay="row" :value="payments" paginator :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]" removableSort width="100%" tableStyle="max-width:100%">
     <template #header>
       <div class="flex justify-content-start" style="display: flex;">
@@ -20,15 +94,10 @@
     <Column :exportable="true" style="min-width: 8rem">
       <template #body="slotProps">
         <div class="wrapper text-center" style="display:flex">
-          <Button data-bs-toggle="modal" data-bs-target="#editNew1" type="button" class="btn user-btn text-white text-center mr-2 " style="background-color: #1e88e5; display:flex" @click="editModal(slotProps.data)">
+          <Button data-bs-toggle="modal" data-bs-target="#editNewPayment" type="button" class="btn user-btn text-white text-center mr-2 " style="background-color: #1e88e5; display:flex" @click="editModal(slotProps.data)">
             <i class="pi pi-eye mr-2"></i>
             View
           </Button>
-
-          <button class="btn text-white user-btn" style="background-color: #b71c1c" >
-            <i class="pi pi-trash"></i>
-            Delete
-          </button>
         </div>
       </template>
     </Column>
@@ -107,6 +176,17 @@ export default {
 
       ],
       payments: null,
+
+      form: new Form({
+        id: "",
+        name: "",
+        amount: "",
+        description: "",
+        payment_method: "",
+        currency: "",
+        status: "",
+        date: ""
+      }),
     }
   },
   methods: {
@@ -117,6 +197,16 @@ export default {
       axios.get("api/fetch-payments").then((data) => {
         this.payments = data.data;
       });
+    },
+
+    //edit donation modal
+    editModal(payment) {
+      this.editmode = true;
+      this.form.fill(payment);
+    },
+    viewModal(payment) {
+      $("#view").modal("show");
+      this.form.fill(payment);
     },
   }
 }
