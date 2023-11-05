@@ -7,9 +7,9 @@
           <img src="/images/women_avatar.jpg" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
           <h5 class="my-3">{{ user.name }} {{ user.lastname }}</h5>
           <p class="text-muted mb-1">{{ user.email }}</p>
-          <p class="text-muted mb-4">{{ user.phone }}</p>
           <div class="d-flex justify-content-center mb-2">
-            <button type="button" class="btn btn-outline-success text-white ms-1"><a href="/conversations">Edit Profile</a></button>
+            <button type="button" class="btn text-white ms-1"><a href="/conversations">Edit Profile</a></button>
+            <button type="button" class="btn text-white ms-1"><a href="/conversations">Homepage</a></button>
           </div>
         </div>
       </div>
@@ -77,9 +77,7 @@
 <script>
 import axios from "axios";
 export default {
-  mounted() {
-    this.loadUsers();
-  },
+
   props: ["user"],
   data() {
     return {

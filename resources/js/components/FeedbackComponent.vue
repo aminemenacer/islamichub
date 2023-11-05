@@ -1,5 +1,70 @@
 <template>
 <div>
+  <!-- view new Modal -->
+  <div class="modal fade" id="editNewFeedback" tabindex="-1" aria-labelledby="editNew" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-dark" id="addNew">
+            View message
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mr-2" style="display: flex">
+              <label class="mt-2 mr-2 col-sm-3">Firstname:</label>
+              <p class="mt-2 text-dark">
+                {{ form.firstname }}
+              </p>
+            </div>
+
+            <div class="mr-2" style="display: flex">
+              <label class="mt-2 mr-2 col-sm-3">Lastname:</label>
+              <p class="mt-2 text-dark">
+                {{ form.lastname }}
+              </p>
+            </div>
+
+            <div class="mr-2" style="display: flex">
+              <label class="mt-2 mr-2 col-sm-3">email:</label>
+              <p class="mt-2 text-dark">
+                {{ form.email }}
+              </p>
+            </div>
+
+            <div class="mr-2" style="display: flex">
+              <label class="mt-2 mr-2 col-sm-3">Phone:</label>
+              <p class="mt-2 text-dark">
+                {{ form.mobile }}
+              </p>
+            </div>
+
+            <div class="mr-2" style="display: flex">
+              <label class="mt-2 mr-2 col-sm-3">subject:</label>
+              <p class="mt-2 text-dark">
+                {{ form.subject }}
+              </p>
+            </div>
+
+            <div class="mr-2" style="display: flex">
+              <label class="mt-2 mr-2 col-sm-3">Message:</label>
+              <p class="mt-2 text-dark">
+                {{ form.message }}
+              </p>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                Close
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <DataTable v-model:filters="filters" showGridlines stripedRows sortable filterDisplay="row" :value="feedbacks" removableSort width="100%" paginator :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]" tableStyle="min-width: 50rem">
     <template #header>
       <div class="flex justify-content-start" style="display: flex;">
@@ -19,7 +84,7 @@
     <Column :exportable="true" style="min-width: 8rem">
       <template #body="slotProps">
         <div class="wrapper text-center" style="display:flex">
-          <Button data-bs-toggle="modal" data-bs-target="#editNew1" type="button" class="btn user-btn text-white text-center mr-2 action btn1" style="background-color: #1e88e5; display:flex" @click="editModal(slotProps.data)">
+          <Button data-bs-toggle="modal" data-bs-target="#editNewFeedback" type="button" class="btn user-btn text-white text-center mr-2 action btn1" style="background-color: #1e88e5; display:flex" @click="editModal(slotProps.data)">
             <i class="pi pi-eye mr-2"></i>
             View
           </Button>
@@ -51,8 +116,8 @@ export default {
     this.loadFeedbacks();
     ProductService.getProductsMini().then((data) => (this.feedbacks = data));
   },
-  data(){
-    return{
+  data() {
+    return {
       filters: {
         global: {
           value: null,
@@ -79,7 +144,6 @@ export default {
           header: "Email",
           sortable: true,
         },
-
         {
           field: "subject",
           header: "Subject",
@@ -88,6 +152,16 @@ export default {
 
       ],
       feedbacks: null,
+
+      form: new Form({
+        id: "",
+        firstname: "",
+        lastname: "",
+        email: "",
+        mobile: "",
+        subject: "",
+        message: "",
+      }),
     }
   },
   methods: {
@@ -99,6 +173,15 @@ export default {
         console.log(data);
         this.feedbacks = data.data;
       });
+    },
+    //edit feedback modal
+    editModal(feedback) {
+      this.editmode = true;
+      this.form.fill(feedback);
+    },
+    viewModal(feedback) {
+      $("#view").modal("show");
+      this.form.fill(feedback);
     },
   },
 }
