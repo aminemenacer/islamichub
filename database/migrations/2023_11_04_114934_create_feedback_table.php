@@ -15,6 +15,13 @@ return new class extends Migration
     {
         Schema::create('feedback', function (Blueprint $table) {
             $table->id();
+            $table->string('firstname');
+            $table->string('lastname');
+            $table->string('email');
+            $table->string('mobile');
+            $table->string('subject');
+            $table->string('message');
+            $table->boolean('subscribe')->default(1);
             $table->timestamps();
         });
     }

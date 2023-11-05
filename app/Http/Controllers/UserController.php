@@ -12,4 +12,15 @@ class UserController extends Controller
     {
         return view('users');
     }
+
+    public function getUsers()
+    {
+        $user = User::where('subscribe', '1')->orderBy('id', 'desc')->get();
+        return $user;
+    }
+
+    public function getProfile()
+    {
+        return view('profile');
+    }
 }

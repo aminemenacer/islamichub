@@ -3,12 +3,12 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Donations</h1>
+    <h1>Profile</h1>
 @stop
 
 @section('content')
     <div id="app">
-        <donation-component></donation-component>
+        <profile-component :user="{{ Auth::user() }}"></profile-component>
     </div>
 @stop
 

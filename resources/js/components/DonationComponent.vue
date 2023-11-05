@@ -1,9 +1,10 @@
 <template>
 <div>
-  <DataTable v-model:filters="filters" showGridlines stripedRows sortable filterDisplay="row" :value="feedbacks" removableSort width="100%" paginator :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]" tableStyle="min-width: 50rem">
+  <DataTable v-model:filters="filters" showGridlines stripedRows sortable filterDisplay="row" :value="donations" paginator :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]" removableSort width="100%" tableStyle="max-width:100%">
     <template #header>
       <div class="flex justify-content-start" style="display: flex;">
         <Button type="button" style="border-radius:8%" class="flex flex-column md:flex-row md:justify-content-between row-gap-3 mr-3" severity="help" label="Export" @click="exportCSV($event)" />
+
         <p style="display: flex" class=" ml-auto mr-3 mt-2 text-black">
           Search:
         </p>
@@ -19,37 +20,30 @@
     <Column :exportable="true" style="min-width: 8rem">
       <template #body="slotProps">
         <div class="wrapper text-center" style="display:flex">
-          <Button data-bs-toggle="modal" data-bs-target="#editNew1" type="button" class="btn user-btn text-white text-center mr-2 action btn1" style="background-color: #1e88e5; display:flex" @click="editModal(slotProps.data)">
+          <Button data-bs-toggle="modal" data-bs-target="#editNew1" type="button" class="btn user-btn text-white text-center mr-2 " style="background-color: #1e88e5; display:flex" @click="editModal(slotProps.data)">
             <i class="pi pi-eye mr-2"></i>
             View
           </Button>
-
-          <button data-bs-toggle="modal" data-bs-target="#editNew" type="button" class="btn user-btn text-white text-center mr-2" style="background-color: #d91ab4" @click="editModal(slotProps.data)">
-            <i class="pi pi-send"></i>
-            Reply
-          </button>
         </div>
       </template>
     </Column>
 
-    <template class="text-center" #footer> In total there are {{ feedbacks ? feedbacks.length : 0 }} Messages. </template>
+    <template class="text-center" #footer> In total there are {{ donations ? donations.length : 0 }} donations. </template>
 
   </DataTable>
-
 </div>
 </template>
 
 <script>
 import axios from "axios";
-
 import {
   FilterMatchMode
 } from "primevue/api";
 
 export default {
   mounted() {
-    this.loadFeedbacks();
-    ProductService.getProductsMini().then((data) => (this.feedbacks = data));
+    this.loadDonations();
+    ProductService.getProductsMini().then((data) => (this.donations = data));
   },
   data(){
     return{
@@ -59,10 +53,11 @@ export default {
           matchMode: FilterMatchMode.CONTAINS,
         },
       },
+      searchValue: "",
       columns: [{
-          field: 'id',
-          header: 'ID',
-          sortable: true
+          field: "id",
+          header: "ID",
+          sortable: true,
         },
         {
           field: "firstname",
@@ -75,29 +70,33 @@ export default {
           sortable: true,
         },
         {
-          field: "email",
-          header: "Email",
+          field: "amount",
+          header: "Amount",
           sortable: true,
         },
-
         {
-          field: "subject",
-          header: "Subject",
+          field: "currency",
+          header: "Currency",
           sortable: true,
         },
-
+        {
+          field: "payment_status",
+          header: "Payment Status",
+          sortable: true,
+        }
       ],
-      feedbacks: null,
+
+      users: [],
+      sortDesc: false,
     }
   },
   methods: {
     exportCSV() {
       this.$refs.dt.exportCSV();
     },
-    loadFeedbacks() {
-      axios.get("api/fetch-feedbacks").then((data) => {
-        console.log(data);
-        this.feedbacks = data.data;
+    loadDonations() {
+      axios.get("api/fetch-donations").then((data) => {
+        this.donations = data.data;
       });
     },
   },

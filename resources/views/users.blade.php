@@ -3,10 +3,13 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
+    <h1>Users</h1>
 @stop
 
 @section('content')
-    <users-component></users-component>
+    <div id="app">
+        <users-component></users-component>
+    </div>
 @stop
 
 @section('css')

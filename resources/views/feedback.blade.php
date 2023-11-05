@@ -7,8 +7,9 @@
 @stop
 
 @section('content')
-    <feedback-component></feedback-component>
-    <p>Welcome to user panel.</p>
+    <div id="app">
+        <feedback-component></feedback-component>
+    </div>
 @stop
 
 @section('css')
