@@ -3,7 +3,6 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Feedback</h1>
 @stop
 
 @section('content')

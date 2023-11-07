@@ -1,5 +1,6 @@
 <template>
 <div>
+    <h2 class="text-center mb-2">Donation Management</h2>
 
   <!-- view new Modal -->
   <div class="modal fade" id="editNewDonation" tabindex="-1" aria-labelledby="editNew" aria-hidden="true">
@@ -77,7 +78,6 @@
   <DataTable v-model:filters="filters" showGridlines stripedRows sortable filterDisplay="row" :value="donations" paginator :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]" removableSort width="100%" tableStyle="max-width:100%">
     <template #header>
       <div class="flex justify-content-start" style="display: flex;">
-        <Button type="button" style="border-radius:8%" class="flex flex-column md:flex-row md:justify-content-between row-gap-3 mr-3" severity="help" label="Export" @click="exportCSV($event)" />
 
         <p style="display: flex" class=" ml-auto mr-3 mt-2 text-black">
           Search:
@@ -176,9 +176,7 @@ export default {
     };
   },
   methods: {
-    exportCSV() {
-      this.$refs.dt.exportCSV();
-    },
+    
     loadDonations() {
       axios.get("api/fetch-donations").then((data) => {
         this.donations = data.data;

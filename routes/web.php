@@ -6,21 +6,38 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\DonationController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\TestController;
 
 
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/welcome', function () {
+    return view('welcome');
+});
+// Route::get('{any?}', function(){
+//     return view('welcome');
+// })->where('any', '.*');
+
+//
+Route::get('/json-data', [TestController::class, 'index']);
+
 
 // Auth routes
 Auth::routes();
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 // dashboard
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('api/fetch-dashboard', [DashboardController::class, 'getDashboard'])->name('dashboard');
 
 // users
 Route::get('/users', [UserController::class, 'index']);
 Route::get('api/fetch-users', [UserController::class, 'getUsers']);
+Route::post('api/create-users', [UserController::class, 'createUsers']);
+Route::post('api/update-users/{id}',  [UserController::class, 'updateUsers']);
+Route::delete('api/delete-users/{id}',  [UserController::class, 'deleteUsers']);
 Route::get('/profile', [UserController::class, 'getProfile']);
 
 

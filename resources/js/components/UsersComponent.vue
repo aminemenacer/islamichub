@@ -1,11 +1,130 @@
 <template>
-<div >
+<div id="app">
+    <h2 class="text-center">Users Management</h2>
+
+
+  <!-- view new Modal -->
+  <div class="modal fade" id="editNewUser" tabindex="-1" aria-labelledby="editNew" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-dark" id="addNew">
+            View message
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mr-2" style="display: flex">
+              <label class="mt-2 mr-2 col-sm-3">Firstname:</label>
+              <p class="mt-2 text-dark">
+                {{ form.name }}
+              </p>
+            </div>
+
+            <div class="mr-2" style="display: flex">
+              <label class="mt-2 mr-2 col-sm-3">Lastname:</label>
+              <p class="mt-2 text-dark">
+                {{ form.lastname }}
+              </p>
+            </div>
+
+            <div class="mr-2" style="display: flex">
+              <label class="mt-2 mr-2 col-sm-3">email:</label>
+              <p class="mt-2 text-dark">
+                {{ form.email }}
+              </p>
+            </div>
+
+            <div class="mr-2" style="display: flex">
+              <label class="mt-2 mr-2 col-sm-3">Phone:</label>
+              <p class="mt-2 text-dark">
+                {{ form.phone }}
+              </p>
+            </div>
+
+            <div class="mr-2" style="display: flex">
+              <label class="mt-2 mr-2 col-sm-3">User type:</label>
+              <p class="mt-2 text-dark">
+                {{ form.user_type }}
+              </p>
+            </div>
+
+            <div class="mr-2" style="display: flex">
+              <label class="mt-2 mr-2 col-sm-3">Status:</label>
+              <p class="mt-2 text-dark">
+                {{ form.status }}
+              </p>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                Close
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- add user -->
+  <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="addNew" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title text-dark fs-5" id="exampleModalLabel">Add new user</h3>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form @reset="reset" @submit.prevent="createUser()">
+            <div class="form-group mr-2" style="display: flex">
+              <label class="mt-2 mr-2 col-sm-3">Firstname:</label>
+              <input v-model="form.name" type="text" name="name" placeholder="Enter name" class="form-control" />
+            </div>
+
+            <div class="form-group mr-2" style="display: flex">
+              <label class="mt-2 mr-2 col-sm-3">lastname:</label>
+              <input v-model="form.lastname" type="text" name="lastname" placeholder="Enter lastname" class="form-control" />
+            </div>
+
+            <div class="form-group" style="display: flex">
+              <label class="mt-2 mr-2 col-sm-3">Email:</label>
+              <input v-model="form.email" name="email" id="email" placeholder="Enter email" class="form-control" />
+            </div>
+
+            <div class="form-group mr-2" style="display: flex">
+              <label class="mt-2 mr-2 col-sm-3">Phone number:</label>
+              <input v-model="form.phone" type="text" name="phone" placeholder="Enter phone number" class="form-control" />
+            </div>
+
+            <div class="form-group" style="display: flex">
+              <label class="mt-2 mr-2 col-sm-3">Status:</label>
+              <input v-model="form.status" name="email" id="email" placeholder="Enter status" class="form-control" />
+            </div>
+
+            <div class="form-group mr-2" style="display: flex">
+              <label class="mt-2 mr-2 col-sm-3">User type:</label>
+              <input v-model="form.user_type" type="text" name="user_type" placeholder="Enter user type" class="form-control" />
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+              <button type="reset" class="btn btn-secondary">Reset</button>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
   <DataTable v-model:filters="filters" showGridlines stripedRows sortable filterDisplay="row" :value="users" ref="dt" class="text-center" width="100%" paginator :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]" tableStyle="min-width: 50rem">
-    <template #header >
+    <template #header>
 
       <div class="flex justify-content-start" style="display:flex">
-        <Button type="button" style="border-radius:8%" class="flex flex-column md:flex-row md:justify-content-between row-gap-3 mr-3" severity="help" label="Export" @click="exportCSV($event)" />
-        <Button type="button" class="flex flex-column md:flex-row md:justify-content-between row-gap-3 mr-3" style="background:teal;border-radius:8%" data-bs-toggle="modal"  data-bs-target="#createModal">
+        <Button type="button" class="flex flex-column md:flex-row md:justify-content-between row-gap-3 mr-3" style="background:teal;border-radius:8%" data-bs-toggle="modal" data-bs-target="#createModal">
           Add New User
         </button>
 
@@ -28,10 +147,10 @@
         <div style="display:flex">
 
           <div class="text-center">
-            <button data-bs-toggle="modal" data-bs-target="#editNew1" type="button" class="btn user-btn text-white text-center mr-2" style="background-color: #1e88e5" @click="editModal(slotProps.data)">
-              <i class="pi pi-eye"></i>
+            <Button data-bs-toggle="modal" data-bs-target="#editNewUser" type="button" class="btn user-btn text-white text-center mr-2 action btn1" style="background-color: #1e88e5; display:flex" @click="editModal(slotProps.data)">
+              <i class="pi pi-eye mr-2"></i>
               View
-            </button>
+            </Button>
             <button data-bs-toggle="modal" data-bs-target="#editNew" type="button" class="btn text-white user-btn mr-2" style="background-color: #43a047" @click="editModal(slotProps.data)">
               <i class="pi pi-user-edit"></i>
               Edit
@@ -49,6 +168,12 @@
     <template #footer> In total there are {{ users ? users.length : 0 }} Users. </template>
 
   </DataTable>
+
+  <router-link to="/about">Go to Home</router-link>
+          <router-link to="/">Go to Home</router-link>
+
+            <router-view></router-view>
+
 </div>
 </template>
 
@@ -62,8 +187,8 @@ export default {
     this.loadUsers();
     ProductService.getProductsMini().then((data) => (this.users = data));
   },
-  data(){
-    return{
+  data() {
+    return {
       filters: {
         global: {
           value: null,
@@ -78,7 +203,11 @@ export default {
           header: "ID",
           sortable: true,
         },
-        
+        {
+          field: "name",
+          header: "Firstname",
+          sortable: true,
+        },
         {
           field: "lastname",
           header: "Lastname",
@@ -96,16 +225,131 @@ export default {
         }
       ],
       sortDesc: false,
+      form: new Form({
+        id: "",
+        name: "",
+        lastname: "",
+        email: "",
+        phone: "",
+        status: "",
+        user_type: "",
+      }),
     }
   },
   methods: {
-    exportCSV() {
-      this.$refs.dt.exportCSV();
-    },
+    
     loadUsers() {
       axios.get("api/fetch-users").then((data) => {
         this.users = data;
       });
+    },
+    //create user
+    createUser() {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You want to create a new user !",
+        showCancelButton: true,
+        confirmButtonColor: "green",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Create user!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axios
+            .post("/api/create-users", this.form)
+            .then((res) => {
+              if (!res.data.success) {
+                Swal.fire({
+                  position: "top-end",
+                  icon: "success",
+                  title: "User created successfully ",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+                window.location.reload();
+                this.loadUsers();
+                $("#addNew").hide();
+
+                self.close();
+              } else if (res.data.success) {
+                Swal.fire(
+                  "Error!",
+                  "Unable to create user.",
+                  "error"
+                );
+                this.loadUsers();
+                self.close();
+              }
+            })
+            .catch(function (err) {});
+        }
+      });
+    },
+    updateUser() {
+      Swal.fire({
+          title: "Are you sure you want to update?",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, update user!",
+        },
+        1000
+      ).then((result) => {
+        if (result.isConfirmed) {
+          axios.post(`api/update-users/${this.form.id}`, this.form);
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "User updated successfully ",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+
+          this.loadUsers();
+
+          $("#editNew").modal("hide");
+
+          self.close();
+        }
+      });
+    },
+    deleteUser(id) {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete user!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axios.delete("api/delete-users/" + id);
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "User deleted successfully ",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          this.loadUsers();
+          self.close();
+        }
+      });
+    },
+    // add new modal
+    newModal() {
+      this.form.reset();
+      $("#addNew").modal("show");
+    },
+    //edit user modal
+    editModal(user) {
+      this.editmode = true;
+      this.form.fill(user);
+    },
+    viewModal(user) {
+      $("#view").modal("show");
+      this.form.fill(user);
     },
   }
 

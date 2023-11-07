@@ -1,5 +1,7 @@
 <template>
 <div>
+    <h2 class="text-center mb-2">Feedback Management</h2>
+
   <!-- view new Modal -->
   <div class="modal fade" id="editNewFeedback" tabindex="-1" aria-labelledby="editNew" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -68,7 +70,6 @@
   <DataTable v-model:filters="filters" showGridlines stripedRows sortable filterDisplay="row" :value="feedbacks" removableSort width="100%" paginator :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]" tableStyle="min-width: 50rem">
     <template #header>
       <div class="flex justify-content-start" style="display: flex;">
-        <Button type="button" style="border-radius:8%" class="flex flex-column md:flex-row md:justify-content-between row-gap-3 mr-3" severity="help" label="Export" @click="exportCSV($event)" />
         <p style="display: flex" class=" ml-auto mr-3 mt-2 text-black">
           Search:
         </p>
@@ -165,9 +166,7 @@ export default {
     }
   },
   methods: {
-    exportCSV() {
-      this.$refs.dt.exportCSV();
-    },
+    
     loadFeedbacks() {
       axios.get("api/fetch-feedbacks").then((data) => {
         console.log(data);

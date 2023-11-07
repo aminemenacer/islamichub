@@ -1,5 +1,7 @@
 <template>
 <div id="app">
+    <h2 class="text-center mt-4 mb-4">Profile Page</h2>
+
   <div class="row">
     <div class="col-lg-4">
       <div class="card mb-4">
@@ -9,7 +11,7 @@
           <p class="text-muted mb-1">{{ user.email }}</p>
           <div class="d-flex justify-content-center mb-2">
             <button type="button" class="btn text-white ms-1"><a href="/conversations">Edit Profile</a></button>
-            <button type="button" class="btn text-white ms-1"><a href="/conversations">Homepage</a></button>
+            <button type="button" class="btn text-white ms-1"><a href="/home">Homepage</a></button>
           </div>
         </div>
       </div>
@@ -19,7 +21,7 @@
         <div class="card-body">
           <div class="row">
             <div class="text-center">
-              <h3 class="mb-0"><strong>Personal Information:</strong></h3>
+              <h3 class="mb-3"><strong>Personal Information:</strong></h3>
             </div><br><br>
             <hr>
           </div>

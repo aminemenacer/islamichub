@@ -7,7 +7,7 @@
 
 @section('content')
     <div id="app">
-        <profile-component :user="{{ Auth::user() }}"></profile-component>
+        <json-component></json-component>
     </div>
 @stop
 
