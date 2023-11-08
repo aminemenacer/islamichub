@@ -2,42 +2,42 @@
 <div id="app">
   <h2 class="text-center mt-4 mb-4">Profile Page</h2>
 
-  <!-- edit user -->
+  <!-- edit new Modal -->
   <div class="modal fade" id="editNew" tabindex="-1" aria-labelledby="editNew" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title text-dark" id="addNew">
-            Edit user
-          </h5>
-          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+              Edit user
+            </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
           <form @submit.prevent="updateUser()">
-            <div class="form-group mr-3" style="display: flex">
+            <div class="form-group mr-2" style="display: flex">
               <label class="mt-2 mr-2 col-sm-3">Firstname:</label>
-              <input v-model="form.name" type="text" name="name" placeholder="Enter firstname" class="form-control" />
+              <input v-model="form.name" type="text" name="name" placeholder="Enter name" class="form-control" />
             </div>
 
             <div class="form-group mr-2" style="display: flex">
-              <label class="mt-2 mr-2 col-sm-3">lastname:</label>
+                <label class="mt-2 mr-2 col-sm-3">Lastname:</label>
               <input v-model="form.lastname" type="text" name="lastname" placeholder="Enter lastname" class="form-control" />
             </div>
 
             <div class="form-group" style="display: flex">
               <label class="mt-2 mr-2 col-sm-3">Email:</label>
-              <input v-model="form.email" name="email" id="email" placeholder="Enter email" class="form-control" />
+              <input v-model="form.email" name="email" id="email" placeholder="email" class="form-control" />
             </div>
 
             <div class="form-group mr-2" style="display: flex">
-              <label class="mt-2 mr-2 col-sm-3">Phone number:</label>
-              <input v-model="form.phone" type="text" name="phone" placeholder="Enter phone number" class="form-control" />
+                <label class="mt-2 mr-2 col-sm-3">Phone number:</label>
+              <input v-model="form.phone" type="text" name="phone" placeholder="Enter mobile number" class="form-control" />
             </div>
 
             <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">
                 Close
               </button>
 
@@ -51,6 +51,7 @@
     </div>
   </div>
 
+  <!-- profile section -->
   <div class="row">
     <div class="col-lg-4">
       <div class="card mb-4">
@@ -59,15 +60,15 @@
           <h5 class="my-3">{{ user.name }} {{ user.lastname }}</h5>
           <p class="text-muted mb-1">{{ user.email }}</p>
           <div class="d-flex justify-content-center mb-2">
-            <button data-bs-toggle="modal" data-bs-target="#editNew" type="button" class="btn text-white user-btn mr-2" style="background-color: #43a047" @click="editModal(slotProps.data)">
-              <i class="pi pi-user-edit"></i>
+            <button data-toggle="modal" data-target="#editNew" type="button" class="btn text-white user-btn mr-2" style="background-color: #43a047" @click="editModal(user)">
+              <i class="fas fa-edit"></i>
               Edit Profile
             </button>
-            <button data-bs-toggle="modal" data-bs-target="#editNew" type="button" class="btn text-white user-btn mr-2" style="background-color: purple" >
+            <button data-bs-toggle="modal" data-bs-target="#editNew" type="button" class="btn text-white user-btn mr-2" style="background-color: purple">
               <i class="pi pi-user-edit"></i>
               Homepage
-            </button> 
-            </div>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -106,15 +107,7 @@
               <p class="text-muted mb-0">{{ user.phone }}</p>
             </div>
           </div>
-          <hr>
-          <div class="row">
-            <div class="col-sm-3">
-              <p class="mb-0">User Type:</p>
-            </div>
-            <div class="col-sm-9">
-              <p class="text-muted mb-0">{{ user.user_type }}</p>
-            </div>
-          </div>
+          
           <hr>
           <div class="row">
             <div class="col-sm-3">
@@ -138,29 +131,32 @@ export default {
   props: ["user"],
   data() {
     return {
-      users: [],
+      users: {},
       editmode: false,
       form: new Form({
         id: "",
         name: "",
-        lastname: "",
         email: "",
+        lastname: "",
         phone: "",
-        status: "",
-        user_type: "",
       }),
 
     };
   },
   methods: {
+    loadUsers() {
+      axios.get("api/fetch-users").then((data) => {
+        this.users = data.data;
+      });
+    },
     updateUser() {
       Swal.fire({
-          title: "Are you sure you want to update?",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#3085d6",
-          cancelButtonColor: "#d33",
-          confirmButtonText: "Yes, update user!",
+        title: "Are you sure?",
+        text: "You want to update user !",
+        showCancelButton: true,
+        confirmButtonColor: "green",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Update user!",
         },
         1000
       ).then((result) => {
@@ -169,18 +165,22 @@ export default {
           Swal.fire({
             position: "top-end",
             icon: "success",
-            title: "User updated successfully ",
+            title: "User created successfully ",
             showConfirmButton: false,
             timer: 1500,
           });
-
+          window.location.reload();
           this.loadUsers();
-
           $("#editNew").modal("hide");
-
           self.close();
         }
       });
+    },
+
+    // add new modal
+    newModal(user) {
+      this.form.reset();
+      $("#addNew").modal("show");
     },
     //edit user modal
     editModal(user) {
