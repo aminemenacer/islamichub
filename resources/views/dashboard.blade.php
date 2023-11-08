@@ -1,4 +1,4 @@
-@extends('adminlte::page')
+{{-- @extends('adminlte::page')
 
 @section('title', 'Dashboard')
 
@@ -17,4 +17,4 @@
 
 @section('js')
     <script src="{{ asset('js/app.js') }}"> </script>
-@stop
+@stop --}}

@@ -23,6 +23,7 @@ import ProfileComponent from "./components/ProfileComponent.vue";
 import DashboardComponent from "./components/DashboardComponent.vue";
 import ExampleComponent from './components/ExampleComponent.vue';
 import JsonComponent from './components/JsonComponent.vue';
+import HomepageComponent from './components/HomepageComponent.vue';
 
 
 window.Vue = require('vue');
@@ -47,6 +48,7 @@ app.component("donation-component", DonationComponent);
 app.component("profile-component", ProfileComponent);
 app.component("dashboard-component", DashboardComponent);
 app.component("json-component", JsonComponent);
+app.component("homepage-component", HomepageComponent);
 
 
 app.mount('#app');

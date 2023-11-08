@@ -10,7 +10,7 @@
           <h5 class="modal-title text-dark" id="addNew">
               Edit user
             </h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -37,7 +37,7 @@
             </div>
 
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                 Close
               </button>
 
@@ -58,15 +58,16 @@
         <div class="card-body text-center">
           <img src="/images/women_avatar.jpg" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
           <h5 class="my-3">{{ user.name }} {{ user.lastname }}</h5>
-          <p class="text-muted mb-1">{{ user.email }}</p>
-          <div class="d-flex justify-content-center mb-2">
+          <p class="text-muted mb-3">{{ user.email }}</p>
+          <div class="d-flex justify-content-center mb-2 mt-2">
             <button data-toggle="modal" data-target="#editNew" type="button" class="btn text-white user-btn mr-2" style="background-color: #43a047" @click="editModal(user)">
-              <i class="fas fa-edit"></i>
               Edit Profile
             </button>
-            <button data-bs-toggle="modal" data-bs-target="#editNew" type="button" class="btn text-white user-btn mr-2" style="background-color: purple">
-              <i class="pi pi-user-edit"></i>
-              Homepage
+            <button  type="button" class="btn text-white user-btn mr-2" style="background-color: purple">
+              <a href="/dashboard" style="color:white">Homepage</a>
+            </button>
+            <button  type="button" class="btn text-white user-btn mr-2" style="background-color: darkblue">
+              <a href="/json-data" style="color:white">Content</a>
             </button>
           </div>
         </div>

@@ -1,13 +1,15 @@
 <template>
 <div id="app">
-  <h2 class="text-center mb-3"><b>Dashboard Management</b></h2>
-
+  <div>
+    <h2 class="text-center mb-3 mt-4"><b>Dashboard Management</b></h2>
+  </div>
   <div class="row">
-    <div class="col-md-6"> <canvas id="myChart" width="150px" ></canvas></div>
-    <div class="col-md-6"> <canvas id="myChart1" width="150px" ></canvas></div>
+
+    <div class="col-md-6"> <canvas id="myChart" width="150px"></canvas></div>
+    <div class="col-md-6"> <canvas id="myChart1" width="150px"></canvas></div>
   </div>
 
-    <div class="row">
+  <div class="row">
     <div class="col-md-12"></div>
     <div class="col-md-12"></div>
   </div>
@@ -23,7 +25,6 @@ export default {
 
     const ctx = document.getElementById('myChart');
     const ctx1 = document.getElementById('myChart1');
-
 
     const myChart = new Chart(ctx, {
       type: 'bar',
@@ -96,7 +97,6 @@ export default {
 
     myChart;
     myChart1;
-
 
   },
   default () {

@@ -291,24 +291,21 @@ return [
 
     'menu' => [
         // Navbar items:
-        // [
-        //     'type'         => 'navbar-search',
-        //     'text'         => 'search',
-        //     'topnav_right' => true,
-        // ],
+        [
+            'type'         => 'navbar-search',
+            'text'         => 'search',
+            'topnav_right' => true,
+        ],
         [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true,
         ],
+        
 
         // Sidebar items:
         [
-            'type' => 'sidebar-menu-search',
-            'text' => 'search',
-        ],
-        [
             'text' => 'Dashboard',
-            'url' => 'dashboard',
+            'url' => 'home',
             'icon' => 'fas fa-fw fa-home',
         ],
         [
@@ -342,8 +339,14 @@ return [
             'url'  => 'welcome',
             'icon' => 'fas fa-fw fa-power-off',
         ],
+        [
+            'text' => 'Names of Allah',
+            'url'  => 'json-data',
+            'icon' => 'fas fa-fw fa-clipboard-list',
+        ],
         
-        // [
+        
+    // [
         //     'text'    => 'multilevel',
         //     'icon'    => 'fas fa-fw fa-share',
         //     'submenu' => [
