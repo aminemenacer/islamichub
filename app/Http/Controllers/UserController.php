@@ -15,7 +15,7 @@ class UserController extends Controller
 
     public function getUsers()
     {
-        $user = User::where('subscribe', '1')->orderBy('id', 'desc')->get();
+        $user = User::get();
         return $user;
     }
 
@@ -34,8 +34,9 @@ class UserController extends Controller
             'user_type' => 'required',
             'status' => 'required'
         ]);
-
         $user = new User();
+        
+
         $user->name = $request->name;
         $user->lastname = $request->lastname;
         $user->email = $request->email;

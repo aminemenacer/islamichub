@@ -5,7 +5,6 @@ import { Form } from "vform";
 import swal from "sweetalert2";
 import "sweetalert2/src/sweetalert2.scss";
 
-
 window.Vue = require("vue");
 
 import PrimeVue from "primevue/config";

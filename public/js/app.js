@@ -20815,11 +20815,8 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
-    var _this = this;
     this.loadUsers();
-    ProductService.getProductsMini().then(function (data) {
-      return _this.users = data;
-    });
+    // ProductService.getProductsMini().then((data) => (this.users = data));
   },
   data: function data() {
     return {
@@ -20867,14 +20864,14 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     loadUsers: function loadUsers() {
-      var _this2 = this;
+      var _this = this;
       axios__WEBPACK_IMPORTED_MODULE_1__["default"].get("api/fetch-users").then(function (data) {
-        _this2.users = data;
+        _this.users = data.data;
       });
     },
     //create user
     createUser: function createUser() {
-      var _this3 = this;
+      var _this2 = this;
       Swal.fire({
         title: "Are you sure?",
         text: "You want to create a new user !",
@@ -20884,7 +20881,7 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: "Create user!"
       }).then(function (result) {
         if (result.isConfirmed) {
-          axios__WEBPACK_IMPORTED_MODULE_1__["default"].post("/api/create-users", _this3.form).then(function (res) {
+          axios__WEBPACK_IMPORTED_MODULE_1__["default"].post("/api/create-users", _this2.form).then(function (res) {
             if (!res.data.success) {
               Swal.fire({
                 position: "top-end",
@@ -20894,12 +20891,12 @@ __webpack_require__.r(__webpack_exports__);
                 timer: 1500
               });
               window.location.reload();
-              _this3.loadUsers();
+              _this2.loadUsers();
               $("#addNew").hide();
               self.close();
             } else if (res.data.success) {
               Swal.fire("Error!", "Unable to create user.", "error");
-              _this3.loadUsers();
+              _this2.loadUsers();
               self.close();
             }
           })["catch"](function (err) {});
@@ -20907,7 +20904,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     updateUser: function updateUser() {
-      var _this4 = this;
+      var _this3 = this;
       Swal.fire({
         title: "Are you sure you want to update?",
         icon: "warning",
@@ -20917,7 +20914,7 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: "Yes, update user!"
       }, 1000).then(function (result) {
         if (result.isConfirmed) {
-          axios__WEBPACK_IMPORTED_MODULE_1__["default"].post("api/update-users/".concat(_this4.form.id), _this4.form);
+          axios__WEBPACK_IMPORTED_MODULE_1__["default"].post("api/update-users/".concat(_this3.form.id), _this3.form);
           Swal.fire({
             position: "top-end",
             icon: "success",
@@ -20925,14 +20922,14 @@ __webpack_require__.r(__webpack_exports__);
             showConfirmButton: false,
             timer: 1500
           });
-          _this4.loadUsers();
+          _this3.loadUsers();
           $("#editNew").modal("hide");
           self.close();
         }
       });
     },
     deleteUser: function deleteUser(id) {
-      var _this5 = this;
+      var _this4 = this;
       Swal.fire({
         title: "Are you sure?",
         text: "You won't be able to revert this!",
@@ -20951,7 +20948,7 @@ __webpack_require__.r(__webpack_exports__);
             showConfirmButton: false,
             timer: 1500
           });
-          _this5.loadUsers();
+          _this4.loadUsers();
           self.close();
         }
       });
@@ -21864,7 +21861,7 @@ var _hoisted_8 = {
 var _hoisted_9 = {
   "class": "text-muted mb-1"
 };
-var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"d-flex justify-content-center mb-2\"><button type=\"button\" class=\"btn text-white ms-1\"><a href=\"/conversations\">Edit Profile</a></button><button type=\"button\" class=\"btn text-white ms-1\"><a href=\"/home\">Homepage</a></button></div>", 1);
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"d-flex justify-content-center mb-2\"><button type=\"button\" class=\"btn text-white ms-1\"><a href=\"/conversations\">Edit Profile</a></button><button type=\"button\" class=\"btn text-white ms-1\"><a href=\"/dashboard\">Homepage</a></button></div>", 1);
 var _hoisted_11 = {
   "class": "col-lg-8"
 };
@@ -22199,7 +22196,10 @@ var _hoisted_48 = {
   }
 };
 var _hoisted_49 = {
-  "class": "text-center"
+  "class": "text-center",
+  style: {
+    "display": "inline"
+  }
 };
 var _hoisted_50 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "pi pi-eye mr-2"
@@ -22217,15 +22217,11 @@ var _hoisted_57 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 }, null, -1 /* HOISTED */);
 var _hoisted_58 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Delete ");
 var _hoisted_59 = [_hoisted_57, _hoisted_58];
-var _hoisted_60 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Go to Home");
-var _hoisted_61 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Go to Home");
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Button");
   var _component_InputText = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("InputText");
   var _component_Column = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Column");
   var _component_DataTable = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("DataTable");
-  var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
-  var _component_router_view = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-view");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" view new Modal "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.form.name), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.form.lastname), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.form.email), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.form.phone), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [_hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.form.user_type), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [_hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.form.status), 1 /* TEXT */)]), _hoisted_26])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" add user "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [_hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
     onReset: _cache[6] || (_cache[6] = function () {
       return _ctx.reset && _ctx.reset.apply(_ctx, arguments);
@@ -22353,7 +22349,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             "class": "btn user-btn text-white text-center mr-2 action btn1",
             style: {
               "background-color": "#1e88e5",
-              "display": "flex"
+              "display": "inline"
             },
             onClick: function onClick($event) {
               return $options.editModal(slotProps.data);
@@ -22389,21 +22385,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
 
     _: 1 /* STABLE */
-  }, 8 /* PROPS */, ["filters", "value"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    to: "/about"
-  }, {
-    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_60];
-    }),
-    _: 1 /* STABLE */
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    to: "/"
-  }, {
-    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_61];
-    }),
-    _: 1 /* STABLE */
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_view)]);
+  }, 8 /* PROPS */, ["filters", "value"])]);
 }
 
 /***/ }),

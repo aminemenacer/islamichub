@@ -146,8 +146,8 @@
       <template #body="slotProps">
         <div style="display:flex">
 
-          <div class="text-center">
-            <Button data-bs-toggle="modal" data-bs-target="#editNewUser" type="button" class="btn user-btn text-white text-center mr-2 action btn1" style="background-color: #1e88e5; display:flex" @click="editModal(slotProps.data)">
+          <div class="text-center" style="display:inline">
+            <Button data-bs-toggle="modal" data-bs-target="#editNewUser" type="button" class="btn user-btn text-white text-center mr-2 action btn1" style="background-color: #1e88e5; display:flex;display:inline" @click="editModal(slotProps.data)">
               <i class="pi pi-eye mr-2"></i>
               View
             </Button>
@@ -169,11 +169,6 @@
 
   </DataTable>
 
-  <router-link to="/about">Go to Home</router-link>
-          <router-link to="/">Go to Home</router-link>
-
-            <router-view></router-view>
-
 </div>
 </template>
 
@@ -185,7 +180,7 @@ import {
 export default {
   mounted() {
     this.loadUsers();
-    ProductService.getProductsMini().then((data) => (this.users = data));
+    // ProductService.getProductsMini().then((data) => (this.users = data));
   },
   data() {
     return {
@@ -240,7 +235,7 @@ export default {
     
     loadUsers() {
       axios.get("api/fetch-users").then((data) => {
-        this.users = data;
+        this.users = data.data;
       });
     },
     //create user

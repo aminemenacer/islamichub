@@ -11,7 +11,7 @@
           <p class="text-muted mb-1">{{ user.email }}</p>
           <div class="d-flex justify-content-center mb-2">
             <button type="button" class="btn text-white ms-1"><a href="/conversations">Edit Profile</a></button>
-            <button type="button" class="btn text-white ms-1"><a href="/home">Homepage</a></button>
+            <button type="button" class="btn text-white ms-1"><a href="/dashboard">Homepage</a></button>
           </div>
         </div>
       </div>
