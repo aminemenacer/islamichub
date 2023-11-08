@@ -30,8 +30,8 @@ return [
     |
     */
 
-    'use_ico_only' => false,
-    'use_full_favicon' => false,
+    'use_ico_only' => true,
+    'use_full_favicon' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -131,7 +131,7 @@ return [
 
     'usermenu_enabled' => true,
     'usermenu_header' => false,
-    'usermenu_header_class' => 'bg-success',
+    'usermenu_header_class' => false,
     'usermenu_image' => false,
     'usermenu_desc' => false,
     'usermenu_profile_url' => false,
@@ -192,7 +192,7 @@ return [
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-dark-success elevation-4',
+    'classes_sidebar' => 'sidebar-light-secondary elevation-4',
     'classes_sidebar_nav' => '',
     'classes_topnav' => 'navbar-white navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
@@ -299,14 +299,19 @@ return [
         [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true,
+
         ],
         
 
         // Sidebar items:
         [
+            'header' => 'ADMIN',
+        ],
+        [
             'text' => 'Dashboard',
             'url' => 'home',
             'icon' => 'fas fa-fw fa-home',
+            
         ],
         [
             'text' => 'Users',
@@ -334,10 +339,13 @@ return [
             'url'  => 'profile',
             'icon' => 'fas fa-fw fa-user',
         ],
+        // [
+        //     'text' => 'Logout',
+        //     'url'  => 'register',
+        //     'icon' => 'fas fa-fw fa-power-off',
+        // ],
         [
-            'text' => 'Logout',
-            'url'  => 'welcome',
-            'icon' => 'fas fa-fw fa-power-off',
+            'header' => 'CONTENT',
         ],
         [
             'text' => 'Names of Allah',

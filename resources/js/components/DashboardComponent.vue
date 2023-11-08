@@ -1,8 +1,6 @@
 <template>
 <div id="app">
-  <div>
-    <h2 class="text-center mb-3 mt-4"><b>Dashboard Management</b></h2>
-  </div>
+  
   <div class="row">
 
     <div class="col-md-6"> <canvas id="myChart" width="150px"></canvas></div>

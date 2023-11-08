@@ -1,6 +1,5 @@
 <template>
 <div id="app">
-  <h2 class="text-center mt-4 mb-4">Profile Page</h2>
 
   <!-- edit new Modal -->
   <div class="modal fade" id="editNew" tabindex="-1" aria-labelledby="editNew" aria-hidden="true">
@@ -52,7 +51,7 @@
   </div>
 
   <!-- profile section -->
-  <div class="row">
+  <div class="row mt-4">
     <div class="col-lg-4">
       <div class="card mb-4">
         <div class="card-body text-center">
@@ -64,7 +63,7 @@
               Edit Profile
             </button>
             <button  type="button" class="btn text-white user-btn mr-2" style="background-color: purple">
-              <a href="/dashboard" style="color:white">Homepage</a>
+              <a href="/home" style="color:white">Homepage</a>
             </button>
             <button  type="button" class="btn text-white user-btn mr-2" style="background-color: darkblue">
               <a href="/json-data" style="color:white">Content</a>
