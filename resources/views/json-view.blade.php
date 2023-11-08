@@ -1,15 +1,14 @@
-@extends('adminlte::page')
-
-@section('title', 'Dashboard')
-
-@section('content_header')
-@stop
-
+@extends('layouts.app')
 @section('content')
-    <div id="app">
+
+<p>logged out</p>
+
+@endsection
+
+    {{-- <div id="app">
         <json-component></json-component>
-    </div>
-@stop
+    </div> --}}
+{{-- @stop
 
 @section('css')
     <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css">
@@ -17,4 +16,4 @@
 
 @section('js')
     <script src="{{ asset('js/app.js') }}"> </script>
-@stop
+@stop --}}

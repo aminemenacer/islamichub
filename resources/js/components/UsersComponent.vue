@@ -120,6 +120,57 @@
     </div>
   </div>
 
+  <!-- edit user -->
+    <div class="modal fade" id="editNew" tabindex="-1" aria-labelledby="editNew" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-dark" id="addNew">
+              Edit user
+            </h5>
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form @submit.prevent="updateUser()">
+              <div class="form-group mr-3" style="display: flex">
+                <label class="mt-2 mr-2 col-sm-3">Firstname:</label>
+                <input v-model="form.name" type="text" name="name" placeholder="Enter firstname" class="form-control" />
+              </div>
+
+              <div class="form-group mr-2" style="display: flex">
+                <label class="mt-2 mr-2 col-sm-3">lastname:</label>
+                <input v-model="form.lastname" type="text" name="lastname" placeholder="Enter lastname" class="form-control" />
+              </div>
+
+              <div class="form-group" style="display: flex">
+                <label class="mt-2 mr-2 col-sm-3">Email:</label>
+                <input v-model="form.email" name="email" id="email" placeholder="Enter email" class="form-control" />
+              </div>
+
+              <div class="form-group mr-2" style="display: flex">
+                <label class="mt-2 mr-2 col-sm-3">Phone number:</label>
+                <input v-model="form.phone" type="text" name="phone" placeholder="Enter phone number" class="form-control" />
+              </div>
+
+             
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                  Close
+                </button>
+
+                <button type="submit" class="btn btn-primary">
+                  Update
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
   <DataTable v-model:filters="filters" showGridlines stripedRows sortable filterDisplay="row" :value="users" ref="dt" class="text-center" width="100%" paginator :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]" tableStyle="min-width: 50rem">
     <template #header>
 
@@ -238,6 +289,25 @@ export default {
         this.users = data.data;
       });
     },
+    
+    InitializeForm() {
+      this.form.name = "";
+      this.form.lastname = "";
+      this.form.email = "";
+      this.form.phone = "";
+      this.form.status = "";
+      this.form.user_type = "";
+    },
+    Reset(event) {
+      event.preventDefault();
+      // Reset our form values
+      this.form.name = "";
+      this.form.lastname = "";
+      this.form.user_type = "";
+      this.form.phone = "";
+      this.form.status = "";
+      this.form.user_type = "";
+    },
     //create user
     createUser() {
       Swal.fire({
@@ -340,9 +410,11 @@ export default {
     //edit user modal
     editModal(user) {
       this.editmode = true;
+      this.form.reset();
       this.form.fill(user);
     },
     viewModal(user) {
+      this.form.reset();
       $("#view").modal("show");
       this.form.fill(user);
     },

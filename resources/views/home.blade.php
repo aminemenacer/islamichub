@@ -1,7 +1,20 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
+@section('title', 'Dashboard')
+
+@section('content_header')
+@stop
 
 @section('content')
+    <div id="app">
+        <dashboard-component></dashboard-component>
+    </div>
+@stop
 
-@endsection
+@section('css')
+    <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css">
+@stop
 
+@section('js')
+    <script src="{{ asset('js/app.js') }}"> </script>
+@stop
