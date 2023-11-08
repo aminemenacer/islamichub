@@ -1,7 +1,6 @@
 <template>
 <div id="app">
-    <h2 class="text-center">Users Management</h2>
-
+  <h2 class="text-center">Users Management</h2>
 
   <!-- view new Modal -->
   <div class="modal fade" id="editNewUser" tabindex="-1" aria-labelledby="editNew" aria-hidden="true">
@@ -69,56 +68,64 @@
   </div>
 
   <!-- add user -->
-  <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="addNew" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3 class="modal-title text-dark fs-5" id="exampleModalLabel">Add new user</h3>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="addNew" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-dark fs-5" id="exampleModalLabel"><b>Add new user</b></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form @reset="reset" @submit.prevent="createUser()">
+              <div class="form-group mr-2" style="display: flex">
+                <label class="mt-2 mr-2 col-sm-3">Firstname:</label>
+                <input v-model="form.name" type="text" name="name" placeholder="Enter name" class="form-control" />
+              </div>
+
+              <div class="form-group mr-2" style="display: flex">
+                <label class="mt-2 mr-2 col-sm-3">lastname:</label>
+                <input v-model="form.lastname" type="text" name="lastname" placeholder="Enter lastname" class="form-control" />
+              </div>
+
+              <div class="form-group" style="display: flex">
+                <label class="mt-2 mr-2 col-sm-3">Email:</label>
+                <input v-model="form.email" name="email" id="email" placeholder="Enter email" class="form-control" />
+              </div>
+
+              <div class="form-group mr-2" style="display: flex">
+                <label class="mt-2 mr-2 col-sm-3">Phone number:</label>
+                <input v-model="form.phone" type="text" name="phone" placeholder="Enter mobile number" class="form-control" />
+              </div>
+
+              <div class="form-group mr-2" style="display: flex">
+                <label class="mt-2 mr-2 col-sm-3">Status:</label>
+                <input v-model="form.status" type="text" name="status" placeholder="Enter status" class="form-control" />
+              </div>
+
+              <div class="form-group mr-2" style="display: flex">
+                <label class="mt-2 mr-2 col-sm-3">User Type:</label>
+
+                <select class="form-control" name="user_type" v-model="form.user_type">
+                  <option value="" disabled>Select User Type</option>
+                  <option value="Super Admin">Super Admin</option>
+                  <option value="Admin">Admin</option>
+                  <option value="Client">Client</option>
+                  <option value="Content Creator">Content Creator</option>
+                </select>
+              </div>
+              
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                <button type="reset" class="btn btn-secondary">Reset</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </form>
+          </div>
         </div>
-        <div class="modal-body">
-          <form @reset="reset" @submit.prevent="createUser()">
-            <div class="form-group mr-2" style="display: flex">
-              <label class="mt-2 mr-2 col-sm-3">Firstname:</label>
-              <input v-model="form.name" type="text" name="name" placeholder="Enter name" class="form-control" />
-            </div>
 
-            <div class="form-group mr-2" style="display: flex">
-              <label class="mt-2 mr-2 col-sm-3">lastname:</label>
-              <input v-model="form.lastname" type="text" name="lastname" placeholder="Enter lastname" class="form-control" />
-            </div>
-
-            <div class="form-group" style="display: flex">
-              <label class="mt-2 mr-2 col-sm-3">Email:</label>
-              <input v-model="form.email" name="email" id="email" placeholder="Enter email" class="form-control" />
-            </div>
-
-            <div class="form-group mr-2" style="display: flex">
-              <label class="mt-2 mr-2 col-sm-3">Phone number:</label>
-              <input v-model="form.phone" type="text" name="phone" placeholder="Enter phone number" class="form-control" />
-            </div>
-
-            <div class="form-group" style="display: flex">
-              <label class="mt-2 mr-2 col-sm-3">Status:</label>
-              <input v-model="form.status" name="email" id="email" placeholder="Enter status" class="form-control" />
-            </div>
-
-            <div class="form-group mr-2" style="display: flex">
-              <label class="mt-2 mr-2 col-sm-3">User type:</label>
-              <input v-model="form.user_type" type="text" name="user_type" placeholder="Enter user type" class="form-control" />
-            </div>
-
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-              <button type="reset" class="btn btn-secondary">Reset</button>
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-          </form>
-        </div>
       </div>
-
     </div>
-  </div>
 
   <!-- edit user -->
     <div class="modal fade" id="editNew" tabindex="-1" aria-labelledby="editNew" aria-hidden="true">
@@ -154,7 +161,6 @@
                 <input v-model="form.phone" type="text" name="phone" placeholder="Enter phone number" class="form-control" />
               </div>
 
-             
 
               <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
@@ -175,7 +181,7 @@
     <template #header>
 
       <div class="flex justify-content-start" style="display:flex">
-        <Button type="button" class="flex flex-column md:flex-row md:justify-content-between row-gap-3 mr-3" style="background:teal;border-radius:8%" data-bs-toggle="modal" data-bs-target="#createModal">
+        <Button type="button" class="flex flex-column md:flex-row md:justify-content-between row-gap-3 mr-3" style="background:teal;border-radius:8%" data-bs-toggle="modal" @click="InitializeForm" data-bs-target="#createModal">
           Add New User
         </button>
 
@@ -244,6 +250,7 @@ export default {
       users: [],
       searchValue: "",
       totalUsers: 0,
+
       columns: [{
           field: "id",
           header: "ID",
@@ -283,21 +290,7 @@ export default {
     }
   },
   methods: {
-    
-    loadUsers() {
-      axios.get("api/fetch-users").then((data) => {
-        this.users = data.data;
-      });
-    },
-    
-    InitializeForm() {
-      this.form.name = "";
-      this.form.lastname = "";
-      this.form.email = "";
-      this.form.phone = "";
-      this.form.status = "";
-      this.form.user_type = "";
-    },
+
     Reset(event) {
       event.preventDefault();
       // Reset our form values
@@ -308,6 +301,12 @@ export default {
       this.form.status = "";
       this.form.user_type = "";
     },
+    loadUsers() {
+      axios.get("api/fetch-users").then((data) => {
+        this.users = data.data;
+      });
+    },
+
     //create user
     createUser() {
       Swal.fire({
