@@ -21076,10 +21076,10 @@ __webpack_require__.r(__webpack_exports__);
 var _hoisted_1 = {
   id: "app"
 };
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<h2 class=\"text-center mb-3\"><b>Dashboard Management</b></h2><div class=\"row\"><div class=\"col-md-12\"><canvas id=\"myChart\" width=\"150px\"></canvas></div><div class=\"col-md-12\"><canvas id=\"myChart1\" width=\"150px\"></canvas></div></div>", 2);
-var _hoisted_4 = [_hoisted_2];
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<h2 class=\"text-center mb-3\"><b>Dashboard Management</b></h2><div class=\"row\"><div class=\"col-md-6\"><canvas id=\"myChart\" width=\"150px\"></canvas></div><div class=\"col-md-6\"><canvas id=\"myChart1\" width=\"150px\"></canvas></div></div><div class=\"row\"><div class=\"col-md-12\"></div><div class=\"col-md-12\"></div></div>", 3);
+var _hoisted_5 = [_hoisted_2];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, _hoisted_4);
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, _hoisted_5);
 }
 
 /***/ }),

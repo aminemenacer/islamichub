@@ -3,8 +3,13 @@
   <h2 class="text-center mb-3"><b>Dashboard Management</b></h2>
 
   <div class="row">
-    <div class="col-md-12"> <canvas id="myChart" width="150px" ></canvas></div>
-    <div class="col-md-12"> <canvas id="myChart1" width="150px" ></canvas></div>
+    <div class="col-md-6"> <canvas id="myChart" width="150px" ></canvas></div>
+    <div class="col-md-6"> <canvas id="myChart1" width="150px" ></canvas></div>
+  </div>
+
+    <div class="row">
+    <div class="col-md-12"></div>
+    <div class="col-md-12"></div>
   </div>
 
 </div>
