@@ -14,6 +14,10 @@ import DataTable from "primevue/datatable";
 import Column from "primevue/column";
 import Button from "primevue/button";
 import InputText from "primevue/inputtext";
+import Accordion from 'primevue/accordion';
+import AccordionTab from 'primevue/accordiontab';
+import Card from 'primevue/card';
+
 
 import UsersComponent from "./components/UsersComponent.vue";
 import FeedbackComponent from "./components/FeedbackComponent.vue";
@@ -24,6 +28,7 @@ import DashboardComponent from "./components/DashboardComponent.vue";
 import ExampleComponent from './components/ExampleComponent.vue';
 import JsonComponent from './components/JsonComponent.vue';
 import HomepageComponent from './components/HomepageComponent.vue';
+import PricingComponent from './components/PricingComponent.vue';
 
 
 window.Vue = require('vue');
@@ -39,6 +44,9 @@ app.component("Column", Column);
 app.component("DataTable", DataTable);
 app.component("Button", Button);
 app.component("InputText", InputText);
+app.component("AccordionTab", AccordionTab);
+app.component("Accordion", Accordion);
+app.component("Card", Card);
 
 app.component("example-component", ExampleComponent);
 app.component("users-component", UsersComponent);
@@ -49,6 +57,7 @@ app.component("profile-component", ProfileComponent);
 app.component("dashboard-component", DashboardComponent);
 app.component("json-component", JsonComponent);
 app.component("homepage-component", HomepageComponent);
+app.component("pricing-component", PricingComponent);
 
 
 app.mount('#app');

@@ -66,7 +66,7 @@
     </div>
   </div>
 
-  <DataTable v-model:filters="filters" showGridlines stripedRows sortable filterDisplay="row" :value="feedbacks" removableSort width="100%" paginator :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]" tableStyle="min-width: 50rem">
+  <DataTable class="pt-5" v-model:filters="filters" showGridlines stripedRows sortable filterDisplay="row" :value="feedbacks" removableSort width="100%" paginator :rows="7" :rowsPerPageOptions="[5, 10, 20, 50]" tableStyle="min-width: 50rem">
     <template #header>
       <div class="flex justify-content-start" style="display: flex;">
         <p style="display: flex" class=" ml-auto mr-3 mt-2 text-black">
@@ -124,11 +124,7 @@ export default {
           matchMode: FilterMatchMode.CONTAINS,
         },
       },
-      columns: [{
-          field: 'id',
-          header: 'ID',
-          sortable: true
-        },
+      columns: [
         {
           field: "firstname",
           header: "Firstname",

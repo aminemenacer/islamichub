@@ -6,7 +6,7 @@
 @stop
 
 @section('content')
-    <div id="app">
+    <div id="app" class="pt-5">
         <dashboard-component></dashboard-component>
     </div>
 @stop

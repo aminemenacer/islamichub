@@ -150,8 +150,8 @@ return [
 
     'layout_topnav' => null,
     'layout_boxed' => null,
-    'layout_fixed_sidebar' => null,
-    'layout_fixed_navbar' => null,
+    'layout_fixed_sidebar' => true,
+    'layout_fixed_navbar' => true,
     'layout_fixed_footer' => null,
     'layout_dark_mode' => null,
 
@@ -291,16 +291,42 @@ return [
 
     'menu' => [
         // Navbar items:
-        [
-            'type'         => 'navbar-search',
-            'text'         => 'search',
-            'topnav_right' => true,
-        ],
+        
         [
             'type'         => 'fullscreen-widget',
+            'topnav' => true,
+        ],
+        [
+            'text' => 'Home',
+            'url' => 'json-data',
+            'icon' => 'fas fa-fw fa-home',
+            'topnav_right' => true,
+
+            
+        ],
+        [
+            'text' => 'Pricings',
+            'url' => '/pricing',
+            'icon' => 'fas fa-fw fa-credit-card',
             'topnav_right' => true,
 
         ],
+
+        [
+            'text' => 'Contact',
+            'url' => 'feedback',
+            'icon' => 'fas fa-fw fa-comments',
+            'topnav_right' => true,
+
+        ],
+        [
+            'text' => 'Upgrade',
+            'url' => 'pricing',
+            'icon' => 'fas fa-fw fa-gift',
+            'topnav_right' => true,
+
+        ],
+
         
 
         // Sidebar items:
@@ -351,6 +377,16 @@ return [
             'text' => 'Names of Allah',
             'url'  => 'json-data',
             'icon' => 'fas fa-fw fa-clipboard-list',
+        ],
+        [
+            'text' => 'Reminders',
+            'url'  => 'reminders',
+            'icon' => 'fas fa-fw fa-bell',
+        ],
+        [
+            'text' => 'Collections',
+            'url'  => '',
+            'icon' => 'fas fa-fw fa-comments',
         ],
         
         

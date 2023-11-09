@@ -159,6 +159,11 @@
               <input v-model="form.phone" type="text" name="phone" placeholder="Enter phone number" class="form-control" />
             </div>
 
+            <div class="form-group mr-2" style="display: flex">
+              <label class="mt-2 mr-2 col-sm-3">User type:</label>
+              <input v-model="form.user_type" type="text" name="user_type" placeholder="Enter user type" class="form-control" />
+            </div>
+
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
                 Close
@@ -174,7 +179,7 @@
     </div>
   </div>
 
-  <DataTable v-model:filters="filters" showGridlines stripedRows sortable filterDisplay="row" :value="users" ref="dt" class="text-center" width="100%" paginator :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]" tableStyle="min-width: 50rem">
+  <DataTable v-model:filters="filters" showGridlines stripedRows sortable filterDisplay="row" :value="users" ref="dt" class="text-center pt-5" width="100%" paginator :rows="7" :rowsPerPageOptions="[5, 10, 20, 50]" tableStyle="min-width: 50rem">
     <template #header>
 
       <div class="flex justify-content-start" style="display:flex">
@@ -200,12 +205,12 @@
       <template #body="slotProps">
         <div style="display:flex">
 
-          <div class="text-center" style="display:inline">
-            <Button data-bs-toggle="modal" data-bs-target="#editNewUser" type="button" class="btn user-btn text-white text-center mr-2 action btn1" style="background-color: #1e88e5; display:flex;display:inline" @click="editModal(slotProps.data)">
+          <div class="text-center" >
+            <Button data-bs-toggle="modal" data-bs-target="#editNewUser" type="button" class="btn user-btn text-white text-center mr-2 action btn1" style="background-color: #1e88e5; display:flex;display:inline-block" @click="editModal(slotProps.data)">
               <i class="pi pi-eye mr-2"></i>
               View
             </Button>
-            <button data-bs-toggle="modal" data-bs-target="#editNew" type="button" class="btn text-white user-btn mr-2" style="background-color: #43a047" @click="editModal(slotProps.data)">
+            <button data-bs-toggle="modal" data-bs-target="#editNew" type="button" class="btn text-white user-btn mr-2" style="background-color: #43a047;display:inline" @click="editModal(slotProps.data)">
               <i class="pi pi-user-edit"></i>
               Edit
             </button>
@@ -248,11 +253,7 @@ export default {
       searchValue: "",
       totalUsers: 0,
 
-      columns: [{
-          field: "id",
-          header: "ID",
-          sortable: true,
-        },
+      columns: [
         {
           field: "name",
           header: "Firstname",

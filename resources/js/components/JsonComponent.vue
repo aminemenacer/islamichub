@@ -1,12 +1,23 @@
 <template>
-  <div>
-  <div>
-    <h2 class="text-center mb-3 mt-4">Names of Allah</h2>
+<div>
+
+
+  <div class="row ">
+   
+    <Card class="col-md-4 text-center " style="box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;border-radius:20px; border:1px solid grey" v-for="item in jsonData" :key="item.id" :header="item.name">
+      <template #title class="text-center">{{ item.name }}</template>
+      
+      <template #content class="pt-2 pb-2 pl-2 pr-2">
+        <p class="m-0">
+          {{item.text}}
+        </p>
+      </template>
+      
+    </Card>
+
   </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item" v-for="item in jsonData" :key="item.id"><h3>{{ item.name }}</h3><h5>{{ item.text }}</h5>  </li>
-    </ul>
-  </div>
+
+</div>
 </template>
 
 <script>
@@ -24,6 +35,3 @@ export default {
 <style>
 
 </style>
-
-
-

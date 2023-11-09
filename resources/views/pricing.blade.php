@@ -1,13 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
-
-@section('content_header')
-@stop
 
 @section('content')
-    <div id="app" class="pt-5">
-        <json-component ></json-component>
+    <div id="app">
+        <pricing-component></pricing-component>
     </div>
 @stop
 
