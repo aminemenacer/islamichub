@@ -17,6 +17,8 @@ import InputText from "primevue/inputtext";
 import Accordion from 'primevue/accordion';
 import AccordionTab from 'primevue/accordiontab';
 import Card from 'primevue/card';
+import TabView from 'primevue/tabview';
+import TabPanel from 'primevue/tabpanel';
 
 
 import UsersComponent from "./components/UsersComponent.vue";
@@ -29,7 +31,7 @@ import ExampleComponent from './components/ExampleComponent.vue';
 import JsonComponent from './components/JsonComponent.vue';
 import HomepageComponent from './components/HomepageComponent.vue';
 import PricingComponent from './components/PricingComponent.vue';
-
+// import RemindersComponent from './components/RemindersComponent.vue';
 
 window.Vue = require('vue');
 
@@ -47,6 +49,8 @@ app.component("InputText", InputText);
 app.component("AccordionTab", AccordionTab);
 app.component("Accordion", Accordion);
 app.component("Card", Card);
+app.component("TabView", TabView);
+app.component("TabPanel", TabPanel);
 
 app.component("example-component", ExampleComponent);
 app.component("users-component", UsersComponent);
@@ -58,6 +62,7 @@ app.component("dashboard-component", DashboardComponent);
 app.component("json-component", JsonComponent);
 app.component("homepage-component", HomepageComponent);
 app.component("pricing-component", PricingComponent);
+// app.component("reminders-component", RemindersComponent);
 
 
 app.mount('#app');

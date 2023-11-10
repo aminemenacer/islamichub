@@ -34,7 +34,6 @@
         "primevue": "^3.39.0",
         "sweetalert2": "^11.9.0",
         "vform": "^2.1.2",
-        "vue-chartjs": "^5.2.0",
         "vue-router": "^4.2.5"
     }
 }

@@ -36,7 +36,7 @@
             </div>
 
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">
                 Close
               </button>
 
@@ -59,15 +59,10 @@
           <h5 class="my-3">{{ user.name }} {{ user.lastname }}</h5>
           <p class="text-muted mb-3">{{ user.email }}</p>
           <div class="d-flex justify-content-center mb-2 mt-2">
-            <button data-toggle="modal" data-target="#editNew" type="button" class="btn text-white user-btn mr-2" style="background-color: #43a047" @click="editModal(user)">
+            <button data-toggle="modal" data-target="#editNew" type="button" class="btn text-white user-btn mr-2 bg-secondary"  @click="editModal(user)">
               Edit Profile
             </button>
-            <button  type="button" class="btn text-white user-btn mr-2" style="background-color: purple">
-              <a href="/home" style="color:white">Homepage</a>
-            </button>
-            <button  type="button" class="btn text-white user-btn mr-2" style="background-color: darkblue">
-              <a href="/json-data" style="color:white">Content</a>
-            </button>
+           
           </div>
         </div>
       </div>

@@ -9,6 +9,7 @@ use App\Http\Controllers\DonationController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\PricingController;
+use App\Http\Controllers\ReminderController;
 
 
 Route::get('/', function () {
@@ -19,8 +20,9 @@ Route::get('/welcome', function () {
 });
 
 
-// frontend json file
+// frontend json files
 Route::get('/json-data', [TestController::class, 'index']);
+Route::get('/reminders', [ReminderController::class, 'index']);
 
 
 // pricing

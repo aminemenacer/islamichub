@@ -14,5 +14,6 @@ class TestController extends Controller
         $file_path = '/Users/amine/Desktop/islamichub/storage/test.json';
 
         $jsonData = json_decode(file_get_contents($file_path), true);
-        return view('json-view', compact('jsonData'));}
+        return view('json-view', compact('jsonData'));
+    }
 }

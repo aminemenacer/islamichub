@@ -1,5 +1,5 @@
 <template>
-<div id="app" class="container pt-3">
+<div id="app" class="container-fluid pt-3">
   <p class="text-center container text-left pt-3">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here,</p>
   <table class="table table-hover table-bordered" style="text-align:center; padding-top:100px">
     <thead>
@@ -81,13 +81,13 @@
         <td><i style="color:limegreen" class="fa fa-check fa-lg"></i></td>
       </tr>
       <tr>
-        <td><b>Chat Collect</b></td>
+        <td><b>Chat Collection</b></td>
         <td>-</td>
         <td>-</td>
         <td><i style="color:limegreen" class="fa fa-check fa-lg"></i></td>
       </tr>
       <tr>
-        <td><b>Liked items</b></td>
+        <td><b>Saved items</b></td>
         <td>20</td>
         <td>40</td>
         <td>Unlimited</td>

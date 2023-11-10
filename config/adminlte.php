@@ -320,9 +320,15 @@ return [
 
         ],
         [
-            'text' => 'Upgrade',
-            'url' => 'pricing',
-            'icon' => 'fas fa-fw fa-gift',
+            'text' => 'Donations',
+            'url' => '',
+            'icon' => 'fas fa-fw fa-credit-card',
+            'topnav_right' => true,
+
+        ],[
+            'text' => 'Volunteering',
+            'url' => '',
+            'icon' => 'fas fa-fw fa-heart',
             'topnav_right' => true,
 
         ],
