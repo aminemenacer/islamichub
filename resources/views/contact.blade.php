@@ -1,3 +1,4 @@
+
 @extends('adminlte::page')
 
 @section('title', 'Dashboard')
@@ -6,9 +7,8 @@
 @stop
 
 @section('content')
-    <div id="app" class="pt-5">
-        Reminders
-        <reminders-component></reminders-component>
+    <div id="app">
+        <contact-component></contact-component>
     </div>
 @stop
 
@@ -19,3 +19,4 @@
 @section('js')
     <script src="{{ asset('js/app.js') }}"> </script>
 @stop
+

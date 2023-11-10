@@ -12,7 +12,7 @@ class ReminderController extends Controller
     {
         $file_path = '/Users/amine/Desktop/islamichub/storage/adhkar.json';
 
-        $reminders = json_decode(file_get_contents($file_path), true);
-        return view('reminders', compact('reminders'));
+        $reminder = json_decode(file_get_contents($file_path), true);
+        return view('reminder', compact('reminder'));
     }
 }

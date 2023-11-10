@@ -31,7 +31,7 @@ return [
     */
 
     'use_ico_only' => true,
-    'use_full_favicon' => true,
+    'use_full_favicon' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -109,7 +109,7 @@ return [
     'preloader' => [
         'enabled' => false,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+            'path' => '/images/muslim.png',
             'alt' => 'AdminLTE Preloader Image',
             'effect' => 'animation__shake',
             'width' => 60,
@@ -129,12 +129,12 @@ return [
     |
     */
 
-    'usermenu_enabled' => true,
+    'usermenu_enabled' => false,
     'usermenu_header' => false,
     'usermenu_header_class' => false,
     'usermenu_image' => false,
     'usermenu_desc' => false,
-    'usermenu_profile_url' => false,
+    'usermenu_profile_url' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -218,7 +218,7 @@ return [
     'sidebar_scrollbar_theme' => 'os-theme-light',
     'sidebar_scrollbar_auto_hide' => 'l',
     'sidebar_nav_accordion' => true,
-    'sidebar_nav_animation_speed' => 5000,
+    'sidebar_nav_animation_speed' => 300,
 
     /*
     |--------------------------------------------------------------------------
@@ -314,7 +314,7 @@ return [
 
         [
             'text' => 'Contact',
-            'url' => 'feedback',
+            'url' => 'contact',
             'icon' => 'fas fa-fw fa-comments',
             'topnav_right' => true,
 
@@ -326,7 +326,7 @@ return [
             'topnav_right' => true,
 
         ],[
-            'text' => 'Volunteering',
+            'text' => 'Volunteers',
             'url' => '',
             'icon' => 'fas fa-fw fa-heart',
             'topnav_right' => true,
@@ -371,13 +371,14 @@ return [
             'url'  => 'profile',
             'icon' => 'fas fa-fw fa-user',
         ],
-        // [
-        //     'text' => 'Logout',
-        //     'url'  => 'register',
-        //     'icon' => 'fas fa-fw fa-power-off',
-        // ],
+        
         [
             'header' => 'CONTENT',
+        ],
+        [
+            'text' => 'Quran',
+            'url'  => 'quran',
+            'icon' => 'fas fa-fw fa-quran',
         ],
         [
             'text' => 'Names of Allah',
@@ -390,10 +391,49 @@ return [
             'icon' => 'fas fa-fw fa-bell',
         ],
         [
-            'text' => 'Collections',
-            'url'  => '',
+            'text' => 'Ahadith',
+            'url'  => 'ahadith',
+            'icon' => 'fas fa-fw fa-bell',
+        ],
+        [
+            'text' => 'Tafseer',
+            'url'  => 'tafseer',
+            'icon' => 'fas fa-fw fa-clipboard-list',
+        ],
+        [
+            'text' => 'Islamic education',
+            'url'  => 'education',
             'icon' => 'fas fa-fw fa-comments',
         ],
+        [
+            'header' => 'Multimedia',
+        ],
+        [
+            'text' => 'Islamic Images',
+            'url'  => 'images',
+            'icon' => 'fas fa-fw fa-clipboard-list',
+        ],
+        [
+            'text' => 'Islamic Videos',
+            'url'  => 'videos',
+            'icon' => 'fas fa-fw fa-clipboard-list',
+        ],
+        [
+            'text' => 'Podcasts',
+            'url'  => 'podcasts',
+            'icon' => 'fas fa-fw fa-bell',
+        ],
+        [
+            'text' => 'Quran Audio',
+            'url'  => 'audio',
+            'icon' => 'fas fa-fw fa-comments',
+        ],
+        [
+            'text' => 'Ebooks & documents',
+            'url'  => 'books',
+            'icon' => 'fas fa-fw fa-comments',
+        ],
+        
         
         
     // [

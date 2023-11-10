@@ -92,6 +92,13 @@
         <td>40</td>
         <td>Unlimited</td>
       </tr>
+      <tr>
+
+        <td></td>
+        <td><Button label="Select Package"  style="background:rgba(34,179,127,255)" rounded/></td>
+        <td><Button label="Select Package"  style="background:rgba(34,179,127,255)" rounded raised/></td>
+        <td><Button label="Select Package" style="background:rgba(34,179,127,255)" rounded raised/></td>
+      </tr>
     </tbody>
   </table>
 </div>
@@ -117,5 +124,6 @@ table {
 
 .price {
   font-size: 3em;
+  background: ;
 }
 </style>

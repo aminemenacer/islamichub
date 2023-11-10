@@ -13,15 +13,17 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
+
 
     <!-- Scripts -->
     <link rel="icon" href="{{ URL::asset('favicon.ico') }}" type="image/x-icon" />
+    <script src="{{asset('js/app.js')}}"></script>
 
 
     <!-- Favicon -->
-    <link rel="shortcut icon" type="x-icon" href="favicon.ico">
-    <link rel="icon" href="favicon.ico" type="x-icon">
-    <script src="{{asset('js/app.js')}}"></script>
+       <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
 
 </head>
 

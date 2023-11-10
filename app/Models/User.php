@@ -39,6 +39,13 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function adminlte_profile_url()
+    {
+        // Add your logic here to generate the profile URL
+        // For example, you might use the user's ID:
+        return '/adminlte/profile/' . $this->id;
+    }
+
     /**
      * The attributes that should be cast.
      *

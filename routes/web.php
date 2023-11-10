@@ -10,6 +10,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\PricingController;
 use App\Http\Controllers\ReminderController;
+use App\Http\Controllers\ContactController;
 
 
 Route::get('/', function () {
@@ -19,6 +20,8 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
+// contact
+Route::get('/contact', [ContactController::class, 'index']);
 
 // frontend json files
 Route::get('/json-data', [TestController::class, 'index']);

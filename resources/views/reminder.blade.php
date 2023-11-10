@@ -6,8 +6,8 @@
 @stop
 
 @section('content')
-    <div id="app">
-        <dashboard-component></dashboard-component>
+    <div id="app" class="pt-5">
+        <reminder-component></reminder-component>
     </div>
 @stop
 

@@ -31,7 +31,8 @@ import ExampleComponent from './components/ExampleComponent.vue';
 import JsonComponent from './components/JsonComponent.vue';
 import HomepageComponent from './components/HomepageComponent.vue';
 import PricingComponent from './components/PricingComponent.vue';
-// import RemindersComponent from './components/RemindersComponent.vue';
+import ContactComponent from './components/ContactComponent.vue';
+import ReminderComponent from './components/ReminderComponent.vue';
 
 window.Vue = require('vue');
 
@@ -62,7 +63,8 @@ app.component("dashboard-component", DashboardComponent);
 app.component("json-component", JsonComponent);
 app.component("homepage-component", HomepageComponent);
 app.component("pricing-component", PricingComponent);
-// app.component("reminders-component", RemindersComponent);
+app.component("contact-component", ContactComponent);
+app.component("reminder-component", ReminderComponent);
 
 
 app.mount('#app');
