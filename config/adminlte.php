@@ -321,7 +321,7 @@ return [
         ],
         [
             'text' => 'Donations',
-            'url' => '',
+            'url' => 'charity',
             'icon' => 'fas fa-fw fa-credit-card',
             'topnav_right' => true,
 

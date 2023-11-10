@@ -11,6 +11,7 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\PricingController;
 use App\Http\Controllers\ReminderController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\CharityController;
 
 
 Route::get('/', function () {
@@ -20,16 +21,20 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
-// contact
-Route::get('/contact', [ContactController::class, 'index']);
+
 
 // frontend json files
 Route::get('/json-data', [TestController::class, 'index']);
 Route::get('/reminders', [ReminderController::class, 'index']);
 
+// contact
+Route::get('/contact', [ContactController::class, 'index']);
 
 // pricing
 Route::get('/pricing', [PricingController::class, 'index'])->name('pricing');
+
+// pricing
+Route::get('/charity', [CharityController::class, 'index'])->name('charity');
 
 
 // Auth routes
