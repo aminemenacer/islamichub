@@ -6,7 +6,7 @@
 @stop
 
 @section('content')
-    <div id="app" class="pt-5">
+    <div id="app" >
         <reminder-component></reminder-component>
     </div>
 @stop

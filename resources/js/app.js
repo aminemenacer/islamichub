@@ -36,6 +36,7 @@ import ReminderComponent from './components/ReminderComponent.vue';
 import CharityComponent from './components/CharityComponent.vue';
 import VolunteerComponent from './components/VolunteerComponent.vue';
 
+
 window.Vue = require('vue');
 
 const app = createApp({});
