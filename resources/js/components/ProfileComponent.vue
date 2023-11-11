@@ -35,6 +35,11 @@
               <input v-model="form.phone" type="text" name="phone" placeholder="Enter mobile number" class="form-control" />
             </div>
 
+            <div class="form-group mr-2" style="display: flex">
+                <label class="mt-2 mr-2 col-sm-3">User type:</label>
+              <input v-model="form.user_type" type="text" name="user_type" placeholder="Enter user type" class="form-control" />
+            </div>
+
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">
                 Close
@@ -62,7 +67,6 @@
             <button data-toggle="modal" data-target="#editNew" type="button" class="btn text-white user-btn mr-2 bg-secondary"  @click="editModal(user)">
               Edit Profile
             </button>
-           
           </div>
         </div>
       </div>
@@ -142,6 +146,7 @@ export default {
         email: "",
         lastname: "",
         phone: "",
+        user_type: ""
       }),
 
     };
