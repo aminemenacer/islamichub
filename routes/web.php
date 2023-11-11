@@ -12,6 +12,7 @@ use App\Http\Controllers\PricingController;
 use App\Http\Controllers\ReminderController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CharityController;
+use App\Http\Controllers\VolunteerController;
 
 
 Route::get('/', function () {
@@ -33,9 +34,11 @@ Route::get('/contact', [ContactController::class, 'index']);
 // pricing
 Route::get('/pricing', [PricingController::class, 'index'])->name('pricing');
 
-// pricing
+// charity
 Route::get('/charity', [CharityController::class, 'index'])->name('charity');
 
+// volunteer
+Route::get('/volunteer', [VolunteerController::class, 'index'])->name('volunteer');
 
 // Auth routes
 Auth::routes();

@@ -327,7 +327,7 @@ return [
 
         ],[
             'text' => 'Volunteers',
-            'url' => '',
+            'url' => 'volunteer',
             'icon' => 'fas fa-fw fa-heart',
             'topnav_right' => true,
 

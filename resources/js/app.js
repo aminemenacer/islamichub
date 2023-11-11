@@ -34,6 +34,7 @@ import PricingComponent from './components/PricingComponent.vue';
 import ContactComponent from './components/ContactComponent.vue';
 import ReminderComponent from './components/ReminderComponent.vue';
 import CharityComponent from './components/CharityComponent.vue';
+import VolunteerComponent from './components/VolunteerComponent.vue';
 
 window.Vue = require('vue');
 
@@ -67,6 +68,7 @@ app.component("pricing-component", PricingComponent);
 app.component("contact-component", ContactComponent);
 app.component("reminder-component", ReminderComponent);
 app.component("charity-component", CharityComponent);
+app.component("volunteer-component", VolunteerComponent);
 
 
 app.mount('#app');
