@@ -183,7 +183,7 @@
     <template #header>
 
       <div class="flex justify-content-start" style="display:flex">
-        <Button type="button" class="flex flex-column md:flex-row md:justify-content-between row-gap-3 mr-3" style="background:teal;border-radius:8%" data-bs-toggle="modal" @click="InitializeForm" data-bs-target="#createModal">
+        <Button type="button" class="flex flex-column md:flex-row md:justify-content-between row-gap-3 mr-3" style="background:teal;border-radius:8%" data-bs-toggle="modal"  data-bs-target="#createModal">
           Add New User
         </button>
 

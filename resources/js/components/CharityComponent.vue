@@ -1,13 +1,14 @@
 <template>
-<div id="app">
-  <div class="container-fluid py-5">
-  
+<div id="app" class="pt-3">
+    <h2 class="text-center"><strong>Donation Pyment</strong></h2>
+  <p class="text-center container text-left pt-3 pl-3 pr-3">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+
+  <div class="container-fluid py-3">
+
     <div class="row">
       <div class="col-lg-10 mx-auto">
         <div class="card" style="border-radius:8px">
           <div class="card-header" style="border-radius:8px">
-            <h2 class="text-center"><b>Payment Process</b></h2>
-              <p class="text-center container text-left pt-3 pl-3 pr-3">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
 
             <!-- Credit card form content -->
             <div class="tab-content">
@@ -42,7 +43,7 @@
                 </form>
               </div>
             </div> <!-- End -->
-            
+
           </div>
         </div>
       </div>

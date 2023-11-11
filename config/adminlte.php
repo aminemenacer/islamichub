@@ -393,45 +393,45 @@ return [
         [
             'text' => 'Ahadith',
             'url'  => 'ahadith',
-            'icon' => 'fas fa-fw fa-bell',
+            'icon' => 'fas fa-fw fa-book',
         ],
         [
             'text' => 'Tafseer',
             'url'  => 'tafseer',
-            'icon' => 'fas fa-fw fa-clipboard-list',
+            'icon' => 'fas fa-fw fa-globe',
         ],
         [
             'text' => 'Islamic education',
             'url'  => 'education',
-            'icon' => 'fas fa-fw fa-comments',
+            'icon' => 'fas fa-fw fa-school',
         ],
         [
-            'header' => 'Multimedia',
+            'header' => 'MULTIMEDIA',
         ],
         [
             'text' => 'Islamic Images',
             'url'  => 'images',
-            'icon' => 'fas fa-fw fa-clipboard-list',
+            'icon' => 'fas fa-fw fa-images',
         ],
         [
             'text' => 'Islamic Videos',
             'url'  => 'videos',
-            'icon' => 'fas fa-fw fa-clipboard-list',
+            'icon' => 'fas fa-fw fa-film',
         ],
         [
             'text' => 'Podcasts',
             'url'  => 'podcasts',
-            'icon' => 'fas fa-fw fa-bell',
+            'icon' => 'fas fa-fw fa-headphones',
         ],
         [
             'text' => 'Quran Audio',
             'url'  => 'audio',
-            'icon' => 'fas fa-fw fa-comments',
+            'icon' => 'fas fa-fw fa-file-audio',
         ],
         [
             'text' => 'Ebooks & documents',
             'url'  => 'books',
-            'icon' => 'fas fa-fw fa-comments',
+            'icon' => 'fas fa-fw fa-folder-open',
         ],
         
         
