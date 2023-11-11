@@ -330,6 +330,7 @@ export default {
                 window.location.reload();
                 this.loadUsers();
                 $("#addNew").hide();
+                this.form.reset();
 
                 self.close();
               } else if (res.data.success) {
@@ -340,6 +341,7 @@ export default {
                 );
                 this.loadUsers();
                 self.close();
+                this.form.reset();
               }
             })
             .catch(function (err) {});

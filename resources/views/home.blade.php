@@ -1,13 +1,13 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+{{-- @section('title', 'Dashboard') --}}
 
-@section('content_header')
-@stop
+{{-- @section('content_header')
+@stop --}}
 
 @section('content')
     <div id="app">
-        <dashboard-component></dashboard-component>
+        <json-component></json-component>
     </div>
 @stop
 

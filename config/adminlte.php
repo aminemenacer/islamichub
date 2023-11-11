@@ -325,12 +325,18 @@ return [
             'icon' => 'fas fa-fw fa-credit-card',
             'topnav_right' => true,
 
-        ],[
+        ],
+        [
             'text' => 'Volunteers',
             'url' => 'volunteer',
             'icon' => 'fas fa-fw fa-heart',
             'topnav_right' => true,
-
+        ],
+        [
+            'text' => 'Login',
+            'url' => 'login',
+            'icon' => 'fas fa-fw fa-login',
+            'topnav_right' => true,
         ],
 
         
@@ -371,6 +377,7 @@ return [
             'url'  => 'profile',
             'icon' => 'fas fa-fw fa-user',
         ],
+        
         
         [
             'header' => 'CONTENT',
@@ -414,9 +421,14 @@ return [
             'icon' => 'fas fa-fw fa-images',
         ],
         [
-            'text' => 'Islamic Videos',
+            'text' => 'Long Videos',
             'url'  => 'videos',
             'icon' => 'fas fa-fw fa-film',
+        ],
+        [
+            'text' => 'Short Videos',
+            'url'  => 'videos',
+            'icon' => 'fas fa-fw fa-folder',
         ],
         [
             'text' => 'Podcasts',

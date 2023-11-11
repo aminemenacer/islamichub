@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('feedback', function (Blueprint $table) {
+        Schema::create('contact', function (Blueprint $table) {
             $table->id();
-            $table->string('firstname')->nullable();
-            $table->string('lastname')->nullable();
-            $table->string('email')->unique()->nullable();
-            $table->string('mobile')->nullable();
-            $table->string('subject')->nullable();
-            $table->string('message')->nullable();
+            $table->string('firstname');
+            $table->string('lastname');
+            $table->string('email');
+            $table->string('mobile');
+            $table->string('subject');
+            $table->string('message');
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('feedback');
+        Schema::dropIfExists('contact');
     }
 };

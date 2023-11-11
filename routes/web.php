@@ -60,6 +60,7 @@ Route::get('/profile', [UserController::class, 'getProfile']);
 // feedback
 Route::get('/feedback', [FeedbackController::class, 'index']);
 Route::get('api/fetch-feedbacks', [FeedbackController::class, 'getFeedbacks']);
+Route::post('api/send-message', [FeedbackController::class, 'sendMessage']);
 
 // payment
 Route::get('/payments', [PaymentController::class, 'index']);
