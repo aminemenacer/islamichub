@@ -25,6 +25,11 @@
               <input v-model="form.lastname" type="text" name="lastname" placeholder="Enter lastname" class="form-control" />
             </div>
 
+            <div class="form-group mr-2" style="display: flex">
+                <label class="mt-2 mr-2 col-sm-3">Password:</label>
+                <input v-model="form.password" type="text" name="password" placeholder="Enter password" class="form-control" />
+            </div>
+
             <div class="form-group" style="display: flex">
               <label class="mt-2 mr-2 col-sm-3">Email:</label>
               <input v-model="form.email" name="email" id="email" placeholder="email" class="form-control" />
@@ -146,7 +151,8 @@ export default {
         email: "",
         lastname: "",
         phone: "",
-        user_type: ""
+        user_type: "",
+        password: ""
       }),
 
     };

@@ -42,6 +42,13 @@
             </div>
 
             <div class="mr-2" style="display: flex">
+              <label class="mt-2 mr-2 col-sm-3">Password:</label>
+              <p class="mt-2 text-dark">
+                {{ form.password }}
+              </p>
+            </div>
+
+            <div class="mr-2" style="display: flex">
               <label class="mt-2 mr-2 col-sm-3">User type:</label>
               <p class="mt-2 text-dark">
                 {{ form.user_type }}
@@ -97,6 +104,11 @@
             </div>
 
             <div class="form-group mr-2" style="display: flex">
+              <label class="mt-2 mr-2 col-sm-3">Password:</label>
+              <input v-model="form.password" type="password" name="password" placeholder="Enter password" class="form-control" />
+            </div>
+
+            <div class="form-group mr-2" style="display: flex">
               <label class="mt-2 mr-2 col-sm-3">Status:</label>
               <input v-model="form.status" type="text" name="status" placeholder="Enter status" class="form-control" />
             </div>
@@ -107,11 +119,13 @@
               <select class="form-control" name="user_type" v-model="form.user_type">
                 <option value="" disabled>Select User Type</option>
                 <option value="Super Admin">Super Admin</option>
-                <option value="Admin">Admin</option>
-                <option value="Client">Client</option>
-                <option value="Content Creator">Content Creator</option>
+                <option value="Basic user">Basic user</option>
+                <option value="Standard user">Standard user</option>
+                <option value="Business user">Business user</option>
+                <option value="Volunteer">Volunteer</option>
               </select>
             </div>
+          
 
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
@@ -157,6 +171,11 @@
             <div class="form-group mr-2" style="display: flex">
               <label class="mt-2 mr-2 col-sm-3">Phone number:</label>
               <input v-model="form.phone" type="text" name="phone" placeholder="Enter phone number" class="form-control" />
+            </div>
+
+            <div class="form-group mr-2" style="display: flex">
+              <label class="mt-2 mr-2 col-sm-3">Password:</label>
+              <input v-model="form.password" type="password" name="password" placeholder="Enter password" class="form-control" />
             </div>
 
             <div class="form-group mr-2" style="display: flex">
@@ -283,6 +302,7 @@ export default {
         email: "",
         phone: "",
         status: "",
+        password: "",
         user_type: "",
       }),
     }
@@ -297,6 +317,7 @@ export default {
       this.form.user_type = "";
       this.form.phone = "";
       this.form.status = "";
+      this.form.password = "";
       this.form.user_type = "";
     },
     loadUsers() {

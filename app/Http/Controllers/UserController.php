@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
 
 
 class UserController extends Controller
@@ -32,7 +34,9 @@ class UserController extends Controller
             'email' => 'required',
             'phone' => 'required',
             'user_type' => 'required',
-            'status' => 'required'
+            'status' => 'required',
+            'password' => 'required'
+            
         ]);
         $user = new User();
         
@@ -43,6 +47,7 @@ class UserController extends Controller
         $user->phone = $request->phone;
         $user->user_type = $request->user_type;
         $user->status = $request->status;
+        $user->password = Hash::make($request->password);
         $user->save();
         
     }
@@ -55,7 +60,8 @@ class UserController extends Controller
             'email',
             'phone',
             'user_type',
-            'status'
+            'status',
+            'password'
         ]);
 
         $user = User::find($id);
@@ -64,7 +70,9 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->phone = $request->phone;
         $user->user_type = $request->user_type;
-        $user->status = $request->status;
+        $user->status = $request->status;        
+        $user->password = Hash::make($request->password);
+
         $user->save();
     }
 
