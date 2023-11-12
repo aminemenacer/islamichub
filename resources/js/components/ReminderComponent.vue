@@ -27,6 +27,7 @@
 
               </tbody>
             </table>
+            
           </div>
         </div>
       </div>
@@ -36,6 +37,7 @@
 
 <script>
 import reminder from '/Users/amine/Desktop/islamichub/storage/adhkar.json';
+
 
 export default {
   data() {

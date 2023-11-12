@@ -298,7 +298,7 @@ return [
         ],
         [
             'text' => 'Home',
-            'url' => 'json-data',
+            'url' => '',
             'icon' => 'fas fa-fw fa-home',
             'topnav_right' => true,
 
@@ -332,12 +332,12 @@ return [
             'icon' => 'fas fa-fw fa-heart',
             'topnav_right' => true,
         ],
-        [
-            'text' => 'Login',
-            'url' => 'login',
-            'icon' => 'fas fa-fw fa-login',
-            'topnav_right' => true,
-        ],
+        // [
+        //     'text' => 'Login',
+        //     'url' => 'login',
+        //     'icon' => 'fas fa-fw fa-login',
+        //     'topnav_right' => true,
+        // ],
 
         
 
@@ -347,7 +347,7 @@ return [
         ],
         [
             'text' => 'Dashboard',
-            'url' => 'home',
+            'url' => 'dashboard',
             'icon' => 'fas fa-fw fa-home',
             
         ],
@@ -401,6 +401,20 @@ return [
             'text' => 'Ahadith',
             'url'  => 'ahadith',
             'icon' => 'fas fa-fw fa-book',
+            'submenu' => [
+                [
+                    'text' => 'child 1',
+                    'url'  => 'menu/users',
+                ],
+                [
+                    'text' => 'child 2',
+                    'url'  => 'menu/dashboard',
+                ],
+                [
+                    'text' => 'child 3',
+                    'url'  => 'menu/reminders',
+                ]
+            ],
         ],
         [
             'text' => 'Tafseer',

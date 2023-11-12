@@ -8,7 +8,7 @@
 
 @section('content')
 <div id="app">
-  <json-component></homepage-component>
+  <json-component></json-component>
 </div>
 @stop
 

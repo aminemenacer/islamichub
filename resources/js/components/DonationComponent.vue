@@ -9,7 +9,9 @@
           <h5 class="modal-title text-dark" id="addNew">
             View message
           </h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
         <div class="modal-body">
           <form>
@@ -127,8 +129,7 @@ export default {
         },
       },
       searchValue: "",
-      columns: [
-        {
+      columns: [{
           field: "firstname",
           header: "Firstname",
           sortable: true,
@@ -171,7 +172,7 @@ export default {
     };
   },
   methods: {
-    
+
     loadDonations() {
       axios.get("api/fetch-donations").then((data) => {
         this.donations = data.data;

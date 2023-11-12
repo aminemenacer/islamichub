@@ -9,7 +9,9 @@
           <h5 class="modal-title text-dark" id="addNew">
             View message
           </h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
         <div class="modal-body">
           <form>
@@ -79,7 +81,9 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title text-dark fs-5" id="exampleModalLabel"><b>Add new user</b></h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
         <div class="modal-body">
           <form @reset="reset" @submit.prevent="createUser()">
@@ -125,7 +129,6 @@
                 <option value="Volunteer">Volunteer</option>
               </select>
             </div>
-          
 
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
@@ -202,7 +205,7 @@
     <template #header>
 
       <div class="flex justify-content-start" style="display:flex">
-        <Button type="button" class="flex flex-column md:flex-row md:justify-content-between row-gap-3 mr-3" style="background:teal;border-radius:8%" data-bs-toggle="modal"  data-bs-target="#createModal">
+        <Button type="button" class="flex flex-column md:flex-row md:justify-content-between row-gap-3 mr-3" style="background:teal;border-radius:8%" data-bs-toggle="modal" data-bs-target="#createModal">
           Add New User
         </button>
 
@@ -224,7 +227,7 @@
       <template #body="slotProps">
         <div style="display:flex">
 
-          <div class="text-center" >
+          <div class="text-center">
             <Button data-bs-toggle="modal" data-bs-target="#editNewUser" type="button" class="btn user-btn text-white text-center mr-2 action btn1" style="background-color: #1e88e5; display:flex;display:inline-block" @click="editModal(slotProps.data)">
               <i class="pi pi-eye mr-2"></i>
               View
@@ -272,8 +275,7 @@ export default {
       searchValue: "",
       totalUsers: 0,
 
-      columns: [
-        {
+      columns: [{
           field: "name",
           header: "Firstname",
           sortable: true,
