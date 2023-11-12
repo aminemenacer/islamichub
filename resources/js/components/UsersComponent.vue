@@ -182,8 +182,16 @@
             </div>
 
             <div class="form-group mr-2" style="display: flex">
-              <label class="mt-2 mr-2 col-sm-3">User type:</label>
-              <input v-model="form.user_type" type="text" name="user_type" placeholder="Enter user type" class="form-control" />
+              <label class="mt-2 mr-2 col-sm-3">User Type:</label>
+
+              <select class="form-control" name="user_type" v-model="form.user_type">
+                <option value="" disabled>Select User Type</option>
+                <option value="Super Admin">Super Admin</option>
+                <option value="Basic user">Basic user</option>
+                <option value="Standard user">Standard user</option>
+                <option value="Business user">Business user</option>
+                <option value="Volunteer">Volunteer</option>
+              </select>
             </div>
 
             <div class="modal-footer">
