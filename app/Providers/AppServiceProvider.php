@@ -23,6 +23,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // \Gate::define('ManageProducts', function ($user) {
+        //     if ($user->role_id == '1') {
+        //         return true;
+        //     }
+        //     return false;
+        // });
     }
 }

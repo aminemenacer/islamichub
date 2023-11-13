@@ -6,8 +6,8 @@
 @stop
 
 @section('content')
-    <div id="app">
-        <json-component></json-component>
+    <div id="app" >
+        <cards-component></cards-component>
     </div>
 @stop
 

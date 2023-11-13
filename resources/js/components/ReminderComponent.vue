@@ -17,7 +17,7 @@
                   <th class="col-md-1">Audio</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody style="background:white">
                 <tr class="text-center">
                   <td class="col-md-2">{{ item.category }}</td>
                   <td class="col-md-6">{{ reminders.text }}</td>

@@ -1,11 +1,11 @@
 <template>
 <div id="app" class="container-fluid pt-3">
   <h2 class="text-center"><strong>Pricings</strong></h2>
-  <p class="text-center container text-left pt-3">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here,</p>
-  <table class="table table-hover table-bordered" style="text-align:center; padding-top:100px">
-    <thead>
+  <p class="text-center container  text-left pt-3">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here,</p>
+  <table class="table table-hover mb-5 table-bordered" style="text-align:center; padding-top:100px">
+    <thead style="background:lightgrey">
       <tr class="active">
-        <th style="background:transparent">
+        <th  >
           <center></center>
         </th>
         <th>
@@ -29,9 +29,15 @@
     <tbody>
       <tr>
         <td><b>Price</b></td>
-        <td><p><strong>£0/Month</strong></p></td>
-        <td><p><strong>£5/Month</strong></p></td>
-        <td><p><strong>£15/Month</strong></p></td>
+        <td>
+          <p><strong>£0/Month</strong></p>
+        </td>
+        <td>
+          <p><strong>£5/Month</strong></p>
+        </td>
+        <td>
+          <p><strong>£15/Month</strong></p>
+        </td>
       </tr>
       <tr>
         <td><b>Standard Islamic Content</b></td>
@@ -89,16 +95,16 @@
       </tr>
       <tr>
         <td><b>Saved items</b></td>
-        <td>20</td>
-        <td>40</td>
-        <td>Unlimited</td>
+        <td>-</td>
+        <td><b>40</b></td>
+        <td><b>Unlimited</b></td>
       </tr>
       <tr>
 
         <td></td>
-        <td><Button label="Select Package"  style="background:rgba(34,179,127,255)" rounded/></td>
-        <td><Button label="Select Package"  style="background:rgba(34,179,127,255)" rounded raised/></td>
-        <td><Button label="Select Package" style="background:rgba(34,179,127,255)" rounded raised/></td>
+        <td><Button label="Select Package" style="background:rgba(34,179,127,255)" rounded /></td>
+        <td><Button label="Select Package" style="background:rgba(34,179,127,255)" rounded raised /></td>
+        <td><Button label="Select Package" style="background:rgba(34,179,127,255)" rounded raised /></td>
       </tr>
     </tbody>
   </table>

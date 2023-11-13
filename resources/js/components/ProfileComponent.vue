@@ -7,8 +7,8 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title text-dark" id="addNew">
-              Edit user
-            </h5>
+            Edit user
+          </h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -21,13 +21,8 @@
             </div>
 
             <div class="form-group mr-2" style="display: flex">
-                <label class="mt-2 mr-2 col-sm-3">Lastname:</label>
+              <label class="mt-2 mr-2 col-sm-3">Lastname:</label>
               <input v-model="form.lastname" type="text" name="lastname" placeholder="Enter lastname" class="form-control" />
-            </div>
-
-            <div class="form-group mr-2" style="display: flex">
-                <label class="mt-2 mr-2 col-sm-3">Password:</label>
-                <input v-model="form.password" type="text" name="password" placeholder="Enter password" class="form-control" />
             </div>
 
             <div class="form-group" style="display: flex">
@@ -36,21 +31,14 @@
             </div>
 
             <div class="form-group mr-2" style="display: flex">
-                <label class="mt-2 mr-2 col-sm-3">Phone number:</label>
+              <label class="mt-2 mr-2 col-sm-3">Phone number:</label>
               <input v-model="form.phone" type="text" name="phone" placeholder="Enter mobile number" class="form-control" />
             </div>
-
+            <hr>
+            
             <div class="form-group mr-2" style="display: flex">
-              <label class="mt-2 mr-2 col-sm-3">User Type:</label>
-
-              <select class="form-control" name="user_type" v-model="form.user_type">
-                <option disabled>Select User Type</option>
-                <option value="Super Admin">Super Admin</option>
-                <option value="Admin">Admin</option>
-                <option value="Client">Client</option>
-                <option value="Content Creator">Content Creator</option>
-              </select>
-
+              <label class="mt-2 mr-2 col-sm-3">Password:</label>
+              <input v-model="form.password" id="password" type="text" name="password" placeholder="Enter password" class="form-control" />
             </div>
 
             <div class="modal-footer">
@@ -77,7 +65,7 @@
           <h5 class="my-3">{{ user.name }} {{ user.lastname }}</h5>
           <p class="text-muted mb-3">{{ user.email }}</p>
           <div class="d-flex justify-content-center mb-2 mt-2">
-            <button data-toggle="modal" data-target="#editNew" type="button" class="btn text-white user-btn mr-2 bg-secondary"  @click="editModal(user)">
+            <button data-toggle="modal" data-target="#editNew" type="button" class="btn text-white user-btn mr-2 bg-secondary" @click="editModal(user)">
               Edit Profile
             </button>
           </div>
@@ -122,15 +110,6 @@
           <hr>
           <div class="row">
             <div class="col-sm-3">
-              <p class="mb-0">User Type:</p>
-            </div>
-            <div class="col-sm-9">
-              <p class="text-muted mb-0">{{ user.user_type }}</p>
-            </div>
-          </div>
-          <hr>
-          <div class="row">
-            <div class="col-sm-3">
               <p class="mb-0">Joined in:</p>
             </div>
             <div class="col-sm-9">
@@ -141,6 +120,7 @@
       </div>
     </div>
   </div>
+
 </div>
 </template>
 
@@ -162,7 +142,6 @@ export default {
         user_type: "",
         password: ""
       }),
-
     };
   },
   methods: {
@@ -173,12 +152,12 @@ export default {
     },
     updateUser() {
       Swal.fire({
-        title: "Are you sure?",
-        text: "You want to update user !",
-        showCancelButton: true,
-        confirmButtonColor: "green",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Update user!",
+          title: "Are you sure?",
+          text: "You want to update user !",
+          showCancelButton: true,
+          confirmButtonColor: "green",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Update user!",
         },
         1000
       ).then((result) => {

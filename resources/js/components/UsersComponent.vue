@@ -44,26 +44,19 @@
             </div>
 
             <div class="mr-2" style="display: flex">
-              <label class="mt-2 mr-2 col-sm-3">Password:</label>
-              <p class="mt-2 text-dark">
-                {{ form.password }}
-              </p>
-            </div>
-
-            <div class="mr-2" style="display: flex">
               <label class="mt-2 mr-2 col-sm-3">User type:</label>
               <p class="mt-2 text-dark">
                 {{ form.user_type }}
               </p>
             </div>
-
+          <!--
             <div class="mr-2" style="display: flex">
               <label class="mt-2 mr-2 col-sm-3">Status:</label>
               <p class="mt-2 text-dark">
                 {{ form.status }}
               </p>
             </div>
-
+          -->
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
                 Close
@@ -111,12 +104,12 @@
               <label class="mt-2 mr-2 col-sm-3">Password:</label>
               <input v-model="form.password" type="password" name="password" placeholder="Enter password" class="form-control" />
             </div>
-
+          <!--
             <div class="form-group mr-2" style="display: flex">
               <label class="mt-2 mr-2 col-sm-3">Status:</label>
               <input v-model="form.status" type="text" name="status" placeholder="Enter status" class="form-control" />
             </div>
-
+          -->
             <div class="form-group mr-2" style="display: flex">
               <label class="mt-2 mr-2 col-sm-3">User Type:</label>
 
@@ -176,11 +169,7 @@
               <input v-model="form.phone" type="text" name="phone" placeholder="Enter phone number" class="form-control" />
             </div>
 
-            <div class="form-group mr-2" style="display: flex">
-              <label class="mt-2 mr-2 col-sm-3">Password:</label>
-              <input v-model="form.password" type="password" name="password" placeholder="Enter password" class="form-control" />
-            </div>
-
+          
             <div class="form-group mr-2" style="display: flex">
               <label class="mt-2 mr-2 col-sm-3">User Type:</label>
 
@@ -311,7 +300,7 @@ export default {
         lastname: "",
         email: "",
         phone: "",
-        status: "",
+        // status: "",
         password: "",
         user_type: "",
       }),
@@ -319,14 +308,14 @@ export default {
   },
   methods: {
 
-    Reset(event) {
+    onReset(event) {
       event.preventDefault();
       // Reset our form values
       this.form.name = "";
       this.form.lastname = "";
       this.form.user_type = "";
       this.form.phone = "";
-      this.form.status = "";
+      // this.form.status = "";
       this.form.password = "";
       this.form.user_type = "";
     },
@@ -361,8 +350,6 @@ export default {
                 window.location.reload();
                 this.loadUsers();
                 $("#addNew").hide();
-                this.form.reset();
-
                 self.close();
               } else if (res.data.success) {
                 Swal.fire(
@@ -372,7 +359,6 @@ export default {
                 );
                 this.loadUsers();
                 self.close();
-                this.form.reset();
               }
             })
             .catch(function (err) {});

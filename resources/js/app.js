@@ -14,11 +14,13 @@ import DataTable from "primevue/datatable";
 import Column from "primevue/column";
 import Button from "primevue/button";
 import InputText from "primevue/inputtext";
-import Accordion from 'primevue/accordion';
-import AccordionTab from 'primevue/accordiontab';
 import Card from 'primevue/card';
 import TabView from 'primevue/tabview';
 import TabPanel from 'primevue/tabpanel';
+
+import Accordion from 'primevue/accordion';
+import AccordionTab from 'primevue/accordiontab';
+
 
 
 import UsersComponent from "./components/UsersComponent.vue";
@@ -35,6 +37,7 @@ import ContactComponent from './components/ContactComponent.vue';
 import ReminderComponent from './components/ReminderComponent.vue';
 import CharityComponent from './components/CharityComponent.vue';
 import VolunteerComponent from './components/VolunteerComponent.vue';
+import CardsComponent from './components/CardsComponent.vue';
 
 
 window.Vue = require('vue');
@@ -70,6 +73,7 @@ app.component("contact-component", ContactComponent);
 app.component("reminder-component", ReminderComponent);
 app.component("charity-component", CharityComponent);
 app.component("volunteer-component", VolunteerComponent);
+app.component("cards-component", CardsComponent);
 
 
 app.mount('#app');

@@ -1,5 +1,5 @@
-@if (!auth()->check())
 @extends('adminlte::page')
+@if (!auth()->check())
 
 @section('title', 'Dashboard')
 

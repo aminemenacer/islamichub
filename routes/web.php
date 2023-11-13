@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CardsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
@@ -27,6 +28,7 @@ Route::get('/welcome', function () {
 // frontend json files
 Route::get('/json-data', [TestController::class, 'index']);
 Route::get('/reminders', [ReminderController::class, 'index']);
+Route::get('/cards', [CardsController::class, 'index']);
 
 // contact
 Route::get('/contact', [ContactController::class, 'index']);
@@ -69,3 +71,6 @@ Route::get('api/fetch-payments', [PaymentController::class, 'getPayments']);
 // donations
 Route::get('/donations', [DonationController::class, 'index']);
 Route::get('api/fetch-donations', [DonationController::class, 'getDonations']);
+
+
+// Route::get('ManageProducts', 'ProductController@index')->middleware('auth');

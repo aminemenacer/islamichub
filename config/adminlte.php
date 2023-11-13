@@ -293,7 +293,7 @@ return [
         // Navbar items:
         
         [
-            'type'         => 'fullscreen-widget',
+            'type' => 'fullscreen-widget',
             'topnav' => true,
         ],
         [
@@ -332,12 +332,14 @@ return [
             'icon' => 'fas fa-fw fa-heart',
             'topnav_right' => true,
         ],
-        // [
-        //     'text' => 'Login',
-        //     'url' => 'login',
-        //     'icon' => 'fas fa-fw fa-login',
-        //     'topnav_right' => true,
-        // ],
+        [
+            'text' => 'Login',
+            'url' => 'login',
+            'icon' => 'fas fa-fw fa-login',
+            'topnav_right' => true,
+            'can' => 'access'
+
+        ],
 
         
 
@@ -361,11 +363,16 @@ return [
             'text' => 'Feedback',
             'url' => 'feedback',
             'icon' => 'fas fa-fw fa-comments',
+            'url'  => 'feedback',
+
+            
         ],
         [
             'text' => 'Payments',
             'url' => 'payments',
             'icon' => 'fas fa-fw fa-credit-card',
+            'url'  => 'payments',
+
         ],
         [
             'text' => 'Donations',
@@ -384,7 +391,7 @@ return [
         ],
         [
             'text' => 'Quran',
-            'url'  => 'quran',
+            'url'  => 'cards',
             'icon' => 'fas fa-fw fa-quran',
         ],
         [
