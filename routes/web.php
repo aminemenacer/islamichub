@@ -14,6 +14,7 @@ use App\Http\Controllers\ReminderController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CharityController;
 use App\Http\Controllers\VolunteerController;
+use App\Http\Controllers\AhadithController;
 
 
 Route::get('/', function () {
@@ -29,6 +30,7 @@ Route::get('/welcome', function () {
 Route::get('/json-data', [TestController::class, 'index']);
 Route::get('/reminders', [ReminderController::class, 'index']);
 Route::get('/cards', [CardsController::class, 'index']);
+Route::get('/hadith', [AhadithController::class, 'index']);
 
 // contact
 Route::get('/contact', [ContactController::class, 'index']);

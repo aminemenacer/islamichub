@@ -3,11 +3,11 @@
   <h2 class="pt-3 pb-3 text-center"><strong>Quran Information</strong></h2>
   <p class="container text-center">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
 
-  <div class="row pb-5 text-center">
+  <div class="row pb-5 text-left">
 
-    <Accordion class="col-md-12 pb-3 text-center" style="box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;border-radius:20px;" >
-      <AccordionTab style="background:#8fd19e" v-for="item in cards" :key="item.id" :header="item.surah">
-        <div class="text-center" >
+    <Accordion :multiple="true" class="col-md-12 pb-3 text-left" style="box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;border-radius:20px;" >
+      <AccordionTab  v-for="item in cards" :key="item.id" :header="item.surah">
+        <div class=" text-center " >
           <div class="row">
             <div class="col-6">
               <span class="pb-2 text-left" style="display:flex"><strong>Ayah</strong><br>
@@ -89,13 +89,6 @@ export default {
 </script>
 
 <style scoped>
-.p-accordion-header {
-  color:red
-}
-
-.p-highlight{
-  color: orange;
-}
 
 img {
   width: 100%;

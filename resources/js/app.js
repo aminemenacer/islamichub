@@ -38,6 +38,7 @@ import ReminderComponent from './components/ReminderComponent.vue';
 import CharityComponent from './components/CharityComponent.vue';
 import VolunteerComponent from './components/VolunteerComponent.vue';
 import CardsComponent from './components/CardsComponent.vue';
+import HadithComponent from './components/HadithComponent.vue';
 
 
 window.Vue = require('vue');
@@ -74,6 +75,7 @@ app.component("reminder-component", ReminderComponent);
 app.component("charity-component", CharityComponent);
 app.component("volunteer-component", VolunteerComponent);
 app.component("cards-component", CardsComponent);
+app.component("hadith-component", HadithComponent);
 
 
 app.mount('#app');
