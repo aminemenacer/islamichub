@@ -1,15 +1,15 @@
 <template>
 <div id="app">
-  <h2 class="pt-3 text-center"><strong>Quran Information</strong></h2>
+  <h2 class="pt-3 pb-3 text-center"><strong>Quran Information</strong></h2>
   <p class="container text-center">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
 
-  <div class="row">
+  <div class="row pb-5 text-center">
 
-    <Accordion class="col-md-12 pb-3" style="">
-      <AccordionTab style="background: #8fd19e; " class="font-weight-bold text-center bg-success" v-for="item in cards" :key="item.id" :header="item.surah">
-        <div class=" text-center">
+    <Accordion class="col-md-12 pb-3 text-center" style="box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;border-radius:20px;" >
+      <AccordionTab style="background:#8fd19e" v-for="item in cards" :key="item.id" :header="item.surah">
+        <div class="text-center" >
           <div class="row">
-            <div class="col-4">
+            <div class="col-6">
               <span class="pb-2 text-left" style="display:flex"><strong>Ayah</strong><br>
               </span>
               <p class="m-0 text-left"> {{ item.ayaatiha }}</p>
@@ -33,13 +33,15 @@
               <span class="pb-2 text-left" style="display:flex"><strong>Her Names</strong><br>
               </span>
               <p class="m-0 text-left"> {{ item.asmawuha }}</p>
-            </div>
-            <div class="col-4">
+
+              <hr>
               <span class="pb-2 text-left" style="display:flex"><strong>It's General Purpose</strong><br>
               </span>
               <p class="m-0 text-left"> {{ item.maqsiduha_aleamu }}</p>
 
-              <hr>
+            </div>
+            <div class="col-6">
+
               <span class="pb-2 text-left" style="display:flex"><strong>The Reason for its Descent</strong><br>
               </span>
               <p class="m-0 text-left"> {{ item.sabab_nuzuliha }}</p>
@@ -53,11 +55,18 @@
               <span class="pb-2 text-left" style="display:flex"><strong>It's Occasions</strong><br>
               </span>
               <p class="m-0 text-left"> {{ item.munasabatiha }}</p>
-            </div>
-            <div class="col-4 text-left">
-              <img src="/images/001.jpg" />
+
+              <hr>
+              <span class="pb-2 text-left" style="display:flex"><strong>It's Occasions</strong><br>
+              </span>
+              <p class="m-0 text-left"> {{ item.munasabatiha }}</p>
 
             </div>
+            <!--
+            <div class="col-4 text-left">
+              <img src="/images/001.jpg" />
+            </div>
+            -->
           </div>
         </div>
 
@@ -81,19 +90,11 @@ export default {
 
 <style scoped>
 .p-accordion-header {
-  border: solid 1px red;
+  color:red
 }
 
-.p-accordion-header-variant-b .p-accordion-header-link {
-  border: solid 1px green;
-}
-
-.p-accordion-header-variant-c .p-accordion-header-link {
-  border: solid 1px blue;
-}
-
-.p-accordion-header-link {
-  background: orange;
+.p-highlight{
+  color: orange;
 }
 
 img {
