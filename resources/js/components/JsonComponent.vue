@@ -6,7 +6,7 @@
 
   <div class="row pb-5 text-center container-fluid" >
     
-    <Card class="col-md-2 mb-4 ml-2 mr-2 text-center bg-light" style="box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;border-radius:20px; border:2px dashed #8fd19e" v-for="item in jsonData" :key="item.id" :header="item.name">
+    <Card class="col-md-2 mb-4 mr-2 text-center bg-light" style="box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;border-radius:20px; border:2px dashed #8fd19e" v-for="item in jsonData" :key="item.id" :header="item.name">
       <template #title class="text-center"><b>{{ item.name }}</b></template>
 
       <template #content>

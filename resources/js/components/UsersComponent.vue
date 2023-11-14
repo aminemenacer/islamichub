@@ -1,5 +1,6 @@
 <template>
 <div id="app">
+   <h2 class="pt-3 text-center"><strong>Users Management</strong></h2>
 
   <!-- view new Modal -->
   <div class="modal fade" id="editNewUser" tabindex="-1" aria-labelledby="editNew" aria-hidden="true">

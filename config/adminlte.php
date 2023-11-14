@@ -385,7 +385,7 @@ return [
             'icon' => 'fas fa-fw fa-user',
         ],
         
-        
+    
         [
             'header' => 'CONTENT',
         ],
@@ -407,7 +407,7 @@ return [
         [
             'text' => 'Ahadith',
             'url'  => 'ahadith',
-            'icon' => 'fas fa-fw fa-book',
+            'icon' => 'fas fa-fw fa-folder',
             'submenu' => [
                 [
                     'text' => 'Nawawi',
@@ -424,14 +424,62 @@ return [
             ],
         ],
         [
-            'text' => 'Tafseer',
-            'url'  => 'tafseer',
-            'icon' => 'fas fa-fw fa-globe',
+            'text' => '9 Books of Hadith',
+            'url'  => 'ahadith_books',
+            'icon' => 'fas fa-fw fa-book',
+            'submenu' => [
+                [
+                    'text' => 'Sahih al-Bukhari',
+                    'url'  => 'book_one',
+                ],
+                [
+                    'text' => 'Sahih al-Muslim',
+                    'url'  => 'book_two',
+                ],
+                [
+                    'text' => 'Sunan Abu Dawood',
+                    'url'  => 'book_three',
+                ],
+                [
+                    'text' => 'Sunan al-Tirmidi',
+                    'url'  => 'book_four',
+                ],
+                [
+                    'text' => 'Sunan al-Nasai',
+                    'url'  => 'book_five',
+                ],
+                [
+                    'text' => 'Sunan ibn Majah',
+                    'url'  => 'book_six',
+                ],
+                [
+                    'text' => 'Muwatta Imam Malik',
+                    'url'  => 'book_seven',
+                ],
+                [
+                    'text' => 'Musnad Ahmad',
+                    'url'  => 'book_eight',
+                ],
+                [
+                    'text' => 'Sunan Darimi',
+                    'url'  => 'book_nine',
+                ]
+            ],
+        ],
+        [
+            'text' => 'Books',
+            'url'  => 'books',
+            'icon' => 'fas fa-fw fa-book-open',
         ],
         [
             'text' => 'Islamic education',
             'url'  => 'education',
             'icon' => 'fas fa-fw fa-school',
+        ],
+        [
+            'text' => 'References',
+            'url'  => 'profile',
+            'icon' => 'fas fa-fw fa-file-export',
         ],
         [
             'header' => 'MULTIMEDIA',
@@ -442,14 +490,9 @@ return [
             'icon' => 'fas fa-fw fa-images',
         ],
         [
-            'text' => 'Long Videos',
+            'text' => 'Lectures',
             'url'  => 'videos',
             'icon' => 'fas fa-fw fa-film',
-        ],
-        [
-            'text' => 'Short Videos',
-            'url'  => 'videos',
-            'icon' => 'fas fa-fw fa-folder',
         ],
         [
             'text' => 'Podcasts',

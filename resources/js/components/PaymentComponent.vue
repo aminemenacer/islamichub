@@ -1,5 +1,6 @@
 <template>
 <div>
+   <h2 class="pt-3 text-center"><strong>Payment Management</strong></h2>
 
   <!-- view new Modal -->
   <div class="modal fade" id="editNewPayment" tabindex="-1" aria-labelledby="editNew" aria-hidden="true">

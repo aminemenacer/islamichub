@@ -7,22 +7,22 @@
   <div class="row py-3">
     <div class="col-lg-12 mx-auto">
 
-      <div class="table-responsive " v-for="item in reminder" :key="item.id">
+      <div class="table-responsive container" v-for="item in reminder" :key="item.id">
         <table id="example" style="width:100%" class="table table-striped table-responsive table-bordered custom-class" v-for="reminders in item.view" :key="reminders.id">
           <thead class="table-success">
             <tr class="text-center">
+              <th class="col-md-1">Repitition</th>              
+              <th class="col-md-8">Reminder</th>
               <th class="col-md-2">Category</th>
-              <th class="col-md-6">Reminder</th>
-              <th class="col-md-1">Repitition</th>
-              <th class="col-md-1">Audio</th>
+              <th class="col-md-1">ID</th>
             </tr>
           </thead>
           <tbody style="background:white">
             <tr class="text-center">
-              <td class="col-md-2">{{ item.category }}</td>
-              <td class="col-md-6">{{ reminders.text }}</td>
               <td class="col-md-1">{{ reminders.count }}</td>
-              <td class="col-md-1">{{ reminders.audio }}</td>
+              <td class="col-md-8">{{ reminders.text }}</td>
+              <td class="col-md-2">{{ item.category }}</td>
+              <td class="col-md-1">{{ item.id }}</td>
             </tr>
 
           </tbody>

@@ -1,6 +1,6 @@
 <template>
 <div id="app" class="pt-3">
-    <h2 class="text-center"><strong>Donation Pyment</strong></h2>
+    <h2 class="text-center"><strong>Donations</strong></h2>
   <p class="text-center container text-left pt-3 pl-3 pr-3">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
 
   <div class="container-fluid py-3">

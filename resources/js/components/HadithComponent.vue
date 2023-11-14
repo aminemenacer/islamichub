@@ -1,7 +1,7 @@
 <template>
 <div id="app">
 
- <h2 class="pt-3 text-center"><strong>Hadith Book one</strong></h2>
+  <h2 class="pt-3 text-center"><strong>Ahadith Al-Nawawi</strong></h2>
   <p class="container text-center">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
 
   <div class="row py-3">
@@ -12,9 +12,10 @@
           <thead class="table-success">
             <tr class="text-center">
               <th class="col-md-1">ID</th>
-              <th class="col-md-7">Hadith</th>
-              <th class="col-md-2">Narrator</th>
-              <th class="col-md-6">Hadith</th>
+              <th class="col-md-1">Narrator</th>
+              <th class="col-md-6">Hadith (Arabic)</th>
+              <th class="col-md-6">Hadith (English)</th>
+
               <!--
               <th class="col-md-1">Chapter ID</th>
               <th class="col-md-1">Book ID</th>
@@ -23,10 +24,11 @@
           </thead>
           <tbody style="background:white">
             <tr class="text-center">
-              <td class="col-md-1">{{ item.id }}</td>              
-              <td class="col-md-7">{{ item.arabic }}</td>
-              <td class="col-md-2">{{ hadiths.narrator }}</td>
-              <td class="col-md-6">{{ hadiths.text }}</td>
+              <td class="col-md-1">{{ item.id }}</td>
+              <td class="col-md-1">{{ hadiths.narrator }}</td>
+              <td class="col-md-6">{{ item.arabic }}</td>
+              <td class="col-md-6">{{ item.arabic }}</td>
+
               <!--
               <td class="col-md-1">{{ item.chapterId }}</td>
               <td class="col-md-1">{{ item.bookId }}</td>
@@ -46,8 +48,8 @@
 import hadith from '/Users/amine/Desktop/islamichub/storage/nawawi_book.json';
 
 export default {
-  data(){
-    return{
+  data() {
+    return {
       items: {},
       hadith,
       view: []

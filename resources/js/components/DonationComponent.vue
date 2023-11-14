@@ -1,5 +1,6 @@
 <template>
 <div>
+   <h2 class="pt-3 text-center"><strong>Donation Management</strong></h2>
 
   <!-- view new Modal -->
   <div class="modal fade" id="editNewDonation" tabindex="-1" aria-labelledby="editNew" aria-hidden="true">

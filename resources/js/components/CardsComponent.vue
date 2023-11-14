@@ -5,9 +5,9 @@
 
   <div class="row pb-5 text-left">
 
-    <Accordion :multiple="true" class="col-md-12 pb-3 text-left" style="box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;border-radius:20px;" >
-      <AccordionTab  v-for="item in cards" :key="item.id" :header="item.surah">
-        <div class=" text-center " >
+    <Accordion :multiple="true" class="col-md-12 pb-3 text-left" style="box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;border-radius:20px;">
+      <AccordionTab v-for="item in cards" :key="item.id" :header="item.surah">
+        <div class=" text-center ">
           <div class="row">
             <div class="col-6">
               <span class="pb-2 text-left" style="display:flex"><strong>Ayah</strong><br>
@@ -62,11 +62,9 @@
               <p class="m-0 text-left"> {{ item.munasabatiha }}</p>
 
             </div>
-            <!--
-            <div class="col-4 text-left">
-              <img src="/images/001.jpg" />
-            </div>
-            -->
+
+            
+
           </div>
         </div>
 
@@ -78,18 +76,30 @@
 
 <script>
 import cards from '/Users/amine/Desktop/islamichub/storage/cards.json';
+// const images = [
+//   '/images/001.jpg',
+//   '/images/002.jpg',
+//   '/images/003.jpg'
+// ];
 
+// const container = document.getElementById('image-container');
+
+// for (let i = 0; i < images.length; i++) {
+//   const img = document.createElement('img');
+//   img.src = images[i];
+//   container.appendChild(img);
+// }
 export default {
   data() {
     return {
-      cards
+      cards,
+      item: []
     };
   }
 }
 </script>
 
 <style scoped>
-
 img {
   width: 100%;
 }
