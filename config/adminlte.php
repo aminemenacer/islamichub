@@ -347,26 +347,26 @@ return [
         [
             'header' => 'ADMIN',
         ],
-        [
-            'text' => 'Dashboard',
-            'url' => 'dashboard',
-            'icon' => 'fas fa-fw fa-home',
+        // [
+        //     'text' => 'Dashboard',
+        //     'url' => 'dashboard',
+        //     'icon' => 'fas fa-fw fa-home',
             
-        ],
-        [
-            'text' => 'Users',
-            'url' => 'users',
-            'icon' => 'fas fa-fw fa-users',
-        ],
+        // ],
+        // [
+        //     'text' => 'Users',
+        //     'url' => 'users',
+        //     'icon' => 'fas fa-fw fa-users',
+        // ],
 
-        [
-            'text' => 'Feedback',
-            'url' => 'feedback',
-            'icon' => 'fas fa-fw fa-comments',
-            'url'  => 'feedback',
+        // [
+        //     'text' => 'Feedback',
+        //     'url' => 'feedback',
+        //     'icon' => 'fas fa-fw fa-comments',
+        //     'url'  => 'feedback',
 
             
-        ],
+        // ],
         [
             'text' => 'Payments',
             'url' => 'payments',
@@ -396,7 +396,7 @@ return [
         ],
         [
             'text' => 'Names of Allah',
-            'url'  => 'json-data',
+            'url'  => 'allah_names',
             'icon' => 'fas fa-fw fa-clipboard-list',
         ],
         [
@@ -410,16 +410,16 @@ return [
             'icon' => 'fas fa-fw fa-folder',
             'submenu' => [
                 [
-                    'text' => 'Nawawi',
-                    'url'  => 'hadith',
+                    'text' => 'Al-Nawawi',
+                    'url'  => 'hadith_nawawi',
                 ],
                 [
-                    'text' => 'Qudsi',
-                    'url'  => 'book_two',
+                    'text' => 'Al-Qudsi',
+                    'url'  => 'hadith_qudsi',
                 ],
                 [
-                    'text' => 'Shahwaliullah',
-                    'url'  => 'book_three',
+                    'text' => 'Abu Shahwaliullah',
+                    'url'  => 'hadith_shah',
                 ]
             ],
         ],
@@ -505,8 +505,13 @@ return [
             'icon' => 'fas fa-fw fa-file-audio',
         ],
         [
-            'text' => 'Ebooks & documents',
-            'url'  => 'books',
+            'text' => 'Ebooks',
+            'url'  => 'ebooks',
+            'icon' => 'fas fa-fw fa-rss',
+        ],
+        [
+            'text' => 'PDF & documents',
+            'url'  => 'docs',
             'icon' => 'fas fa-fw fa-folder-open',
         ],
         

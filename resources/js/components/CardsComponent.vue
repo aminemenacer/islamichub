@@ -4,7 +4,7 @@
   <p class="container text-center">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
 
   <div class="row pb-5 text-left">
-
+    <!--
     <Accordion :multiple="true" class="col-md-12 pb-3 text-left" style="box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;border-radius:20px;">
       <AccordionTab v-for="item in cards" :key="item.id" :header="item.surah">
         <div class=" text-center ">
@@ -70,25 +70,30 @@
 
       </AccordionTab>
     </Accordion>
+    -->
+    <div class="container-fluid row" v-for="item in cards" :key="item.id" :header="item.surah">
+      <Panel class="col-md-4" header="Header">
+              <span class="pb-2 text-left" style="display:flex"><strong>Her Grace</strong><br>
+              </span>
+              <p class="m-0 text-left"> {{ item.fadluha }}</p>
+
+              <hr>
+              <span class="pb-2 text-left" style="display:flex"><strong>It's Occasions</strong><br>
+              </span>
+              <p class="m-0 text-left"> {{ item.munasabatiha }}</p>
+      </Panel>
+      
+    </div>
+
+   
+
   </div>
 </div>
 </template>
 
 <script>
 import cards from '/Users/amine/Desktop/islamichub/storage/cards.json';
-// const images = [
-//   '/images/001.jpg',
-//   '/images/002.jpg',
-//   '/images/003.jpg'
-// ];
 
-// const container = document.getElementById('image-container');
-
-// for (let i = 0; i < images.length; i++) {
-//   const img = document.createElement('img');
-//   img.src = images[i];
-//   container.appendChild(img);
-// }
 export default {
   data() {
     return {

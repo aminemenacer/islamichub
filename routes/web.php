@@ -8,13 +8,15 @@ use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\TestController;
+use App\Http\Controllers\AllahNamesController;
 use App\Http\Controllers\PricingController;
 use App\Http\Controllers\ReminderController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CharityController;
 use App\Http\Controllers\VolunteerController;
-use App\Http\Controllers\AhadithController;
+use App\Http\Controllers\HadithNawawiController;
+use App\Http\Controllers\HadithQudsiController;
+use App\Http\Controllers\HadithShahController;
 
 
 Route::get('/', function () {
@@ -27,10 +29,12 @@ Route::get('/welcome', function () {
 
 
 // frontend json files
-Route::get('/json-data', [TestController::class, 'index']);
+Route::get('/allah_names', [AllahNamesController::class, 'index']);
 Route::get('/reminders', [ReminderController::class, 'index']);
 Route::get('/cards', [CardsController::class, 'index']);
-Route::get('/hadith', [AhadithController::class, 'index']);
+Route::get('/hadith_nawawi', [HadithNawawiController::class, 'index']);
+Route::get('/hadith_qudsi', [HadithQudsiController::class, 'index']);
+Route::get('/hadith_shah', [HadithShahController::class, 'index']);
 
 // contact
 Route::get('/contact', [ContactController::class, 'index']);

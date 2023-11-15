@@ -19875,6 +19875,29 @@ const replacer = (_key, val) => {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/AllahNamesComponent.vue?vue&type=script&lang=js":
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/AllahNamesComponent.vue?vue&type=script&lang=js ***!
+  \*************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Users_amine_Desktop_islamichub_storage_allah_names_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./storage/allah_names.json */ "./storage/allah_names.json");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      allahNames: _Users_amine_Desktop_islamichub_storage_allah_names_json__WEBPACK_IMPORTED_MODULE_0__
+    };
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/CardsComponent.vue?vue&type=script&lang=js":
 /*!********************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/CardsComponent.vue?vue&type=script&lang=js ***!
@@ -19888,19 +19911,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _Users_amine_Desktop_islamichub_storage_cards_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./storage/cards.json */ "./storage/cards.json");
 
-// const images = [
-//   '/images/001.jpg',
-//   '/images/002.jpg',
-//   '/images/003.jpg'
-// ];
-
-// const container = document.getElementById('image-container');
-
-// for (let i = 0; i < images.length; i++) {
-//   const img = document.createElement('img');
-//   img.src = images[i];
-//   container.appendChild(img);
-// }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -20242,10 +20252,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/HadithComponent.vue?vue&type=script&lang=js":
-/*!*********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/HadithComponent.vue?vue&type=script&lang=js ***!
-  \*********************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/HadithNawawiComponent.vue?vue&type=script&lang=js":
+/*!***************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/HadithNawawiComponent.vue?vue&type=script&lang=js ***!
+  \***************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -20253,13 +20263,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _Users_amine_Desktop_islamichub_storage_nawawi_book_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./storage/nawawi_book.json */ "./storage/nawawi_book.json");
+/* harmony import */ var _Users_amine_Desktop_islamichub_storage_three_main_nawawi_book_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./storage/three_main/nawawi_book.json */ "./storage/three_main/nawawi_book.json");
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       items: {},
-      hadith: _Users_amine_Desktop_islamichub_storage_nawawi_book_json__WEBPACK_IMPORTED_MODULE_0__,
+      hadith: _Users_amine_Desktop_islamichub_storage_three_main_nawawi_book_json__WEBPACK_IMPORTED_MODULE_0__,
       view: []
     };
   }
@@ -20267,10 +20277,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/JsonComponent.vue?vue&type=script&lang=js":
-/*!*******************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/JsonComponent.vue?vue&type=script&lang=js ***!
-  \*******************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/HadithQudsiComponent.vue?vue&type=script&lang=js":
+/*!**************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/HadithQudsiComponent.vue?vue&type=script&lang=js ***!
+  \**************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -20278,12 +20288,39 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _Users_amine_Desktop_islamichub_storage_test_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./storage/test.json */ "./storage/test.json");
+/* harmony import */ var _Users_amine_Desktop_islamichub_storage_three_main_qudsi_book_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./storage/three_main/qudsi_book.json */ "./storage/three_main/qudsi_book.json");
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      jsonData: _Users_amine_Desktop_islamichub_storage_test_json__WEBPACK_IMPORTED_MODULE_0__
+      items: {},
+      hadiths: "",
+      view: []
+    };
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/HadithShahComponent.vue?vue&type=script&lang=js":
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/HadithShahComponent.vue?vue&type=script&lang=js ***!
+  \*************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Users_amine_Desktop_islamichub_storage_three_main_shah_book_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./storage/three_main/shah_book.json */ "./storage/three_main/shah_book.json");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      items: {},
+      hadith: _Users_amine_Desktop_islamichub_storage_three_main_shah_book_json__WEBPACK_IMPORTED_MODULE_0__,
+      view: []
     };
   }
 });
@@ -20700,6 +20737,64 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/AllahNamesComponent.vue?vue&type=template&id=55b9a4bc":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/AllahNamesComponent.vue?vue&type=template&id=55b9a4bc ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: () => (/* binding */ render)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
+  "class": "pt-3 pb-3 text-center"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, "The 99 Names of Allah (SWT) with meaning")], -1 /* HOISTED */);
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+  "class": "container text-center"
+}, "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.", -1 /* HOISTED */);
+var _hoisted_3 = {
+  "class": "row pb-5 text-center container-fluid"
+};
+var _hoisted_4 = {
+  "class": "m-0"
+};
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", null, null, -1 /* HOISTED */);
+
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _component_Card = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Card");
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [_hoisted_1, _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.allahNames, function (item) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Card, {
+      "class": "col-md-2 mb-4 mr-2 text-center bg-light",
+      style: {
+        "box-shadow": "rgba(0, 0, 0, 0.1) 0px 4px 12px",
+        "border-radius": "20px",
+        "border": "2px dashed #8fd19e"
+      },
+      key: item.id,
+      header: item.name
+    }, {
+      title: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.name), 1 /* TEXT */)];
+      }),
+
+      content: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.text), 1 /* TEXT */)])];
+      }),
+
+      "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+        return [_hoisted_5];
+      }),
+      _: 2 /* DYNAMIC */
+    }, 1032 /* PROPS, DYNAMIC_SLOTS */, ["header"]);
+  }), 128 /* KEYED_FRAGMENT */))])]);
+}
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/CardsComponent.vue?vue&type=template&id=54096305&scoped=true":
 /*!************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/CardsComponent.vue?vue&type=template&id=54096305&scoped=true ***!
@@ -20732,114 +20827,8 @@ var _hoisted_3 = /*#__PURE__*/_withScopeId(function () {
 var _hoisted_4 = {
   "class": "row pb-5 text-left"
 };
-var _hoisted_5 = {
-  "class": "text-center"
-};
-var _hoisted_6 = {
-  "class": "row"
-};
-var _hoisted_7 = {
-  "class": "col-6"
-};
-var _hoisted_8 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    "class": "pb-2 text-left",
-    style: {
-      "display": "flex"
-    }
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, "Ayah"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br")], -1 /* HOISTED */);
-});
-var _hoisted_9 = {
-  "class": "m-0 text-left"
-};
-var _hoisted_10 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", null, null, -1 /* HOISTED */);
-});
-var _hoisted_11 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    "class": "pb-2 text-left",
-    style: {
-      "display": "flex"
-    }
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, "Its Verses"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br")], -1 /* HOISTED */);
-});
-var _hoisted_12 = {
-  "class": "m-0 text-left"
-};
-var _hoisted_13 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", null, null, -1 /* HOISTED */);
-});
-var _hoisted_14 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    "class": "pb-2 text-left",
-    style: {
-      "display": "flex"
-    }
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, "Meaning of the Name"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br")], -1 /* HOISTED */);
-});
-var _hoisted_15 = {
-  "class": "m-0 text-left"
-};
-var _hoisted_16 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", null, null, -1 /* HOISTED */);
-});
-var _hoisted_17 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    "class": "pb-2 text-left",
-    style: {
-      "display": "flex"
-    }
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, "The Meaning of her Name"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br")], -1 /* HOISTED */);
-});
-var _hoisted_18 = {
-  "class": "m-0 text-left"
-};
-var _hoisted_19 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", null, null, -1 /* HOISTED */);
-});
-var _hoisted_20 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    "class": "pb-2 text-left",
-    style: {
-      "display": "flex"
-    }
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, "Her Names"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br")], -1 /* HOISTED */);
-});
-var _hoisted_21 = {
-  "class": "m-0 text-left"
-};
-var _hoisted_22 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", null, null, -1 /* HOISTED */);
-});
-var _hoisted_23 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    "class": "pb-2 text-left",
-    style: {
-      "display": "flex"
-    }
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, "It's General Purpose"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br")], -1 /* HOISTED */);
-});
-var _hoisted_24 = {
-  "class": "m-0 text-left"
-};
-var _hoisted_25 = {
-  "class": "col-6"
-};
-var _hoisted_26 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    "class": "pb-2 text-left",
-    style: {
-      "display": "flex"
-    }
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, "The Reason for its Descent"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br")], -1 /* HOISTED */);
-});
-var _hoisted_27 = {
-  "class": "m-0 text-left"
-};
-var _hoisted_28 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", null, null, -1 /* HOISTED */);
-});
-var _hoisted_29 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_5 = ["header"];
+var _hoisted_6 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
     "class": "pb-2 text-left",
     style: {
@@ -20847,13 +20836,13 @@ var _hoisted_29 = /*#__PURE__*/_withScopeId(function () {
     }
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, "Her Grace"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br")], -1 /* HOISTED */);
 });
-var _hoisted_30 = {
+var _hoisted_7 = {
   "class": "m-0 text-left"
 };
-var _hoisted_31 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_8 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", null, null, -1 /* HOISTED */);
 });
-var _hoisted_32 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_9 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
     "class": "pb-2 text-left",
     style: {
@@ -20861,51 +20850,27 @@ var _hoisted_32 = /*#__PURE__*/_withScopeId(function () {
     }
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, "It's Occasions"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br")], -1 /* HOISTED */);
 });
-var _hoisted_33 = {
-  "class": "m-0 text-left"
-};
-var _hoisted_34 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", null, null, -1 /* HOISTED */);
-});
-var _hoisted_35 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    "class": "pb-2 text-left",
-    style: {
-      "display": "flex"
-    }
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, "It's Occasions"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br")], -1 /* HOISTED */);
-});
-var _hoisted_36 = {
+var _hoisted_10 = {
   "class": "m-0 text-left"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _component_AccordionTab = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("AccordionTab");
-  var _component_Accordion = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Accordion");
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Accordion, {
-    multiple: true,
-    "class": "col-md-12 pb-3 text-left",
-    style: {
-      "box-shadow": "rgba(0, 0, 0, 0.1) 0px 4px 12px",
-      "border-radius": "20px"
-    }
-  }, {
-    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.cards, function (item) {
-        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_AccordionTab, {
-          key: item.id,
-          header: item.surah
-        }, {
-          "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.ayaatiha), 1 /* TEXT */), _hoisted_10, _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.ayaatiha), 1 /* TEXT */), _hoisted_13, _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.maeni_asamuha), 1 /* TEXT */), _hoisted_16, _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.sabab_tasmiatiha), 1 /* TEXT */), _hoisted_19, _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.asmawuha), 1 /* TEXT */), _hoisted_22, _hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.maqsiduha_aleamu), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [_hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_27, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.sabab_nuzuliha), 1 /* TEXT */), _hoisted_28, _hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.fadluha), 1 /* TEXT */), _hoisted_31, _hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.munasabatiha), 1 /* TEXT */), _hoisted_34, _hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_36, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.munasabatiha), 1 /* TEXT */)])])])];
-          }),
+  var _component_Panel = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Panel");
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("\n    <Accordion :multiple=\"true\" class=\"col-md-12 pb-3 text-left\" style=\"box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;border-radius:20px;\">\n      <AccordionTab v-for=\"item in cards\" :key=\"item.id\" :header=\"item.surah\">\n        <div class=\" text-center \">\n          <div class=\"row\">\n            <div class=\"col-6\">\n              <span class=\"pb-2 text-left\" style=\"display:flex\"><strong>Ayah</strong><br>\n              </span>\n              <p class=\"m-0 text-left\"> {{ item.ayaatiha }}</p>\n\n              <hr>\n              <span class=\"pb-2 text-left\" style=\"display:flex\"><strong>Its Verses</strong><br>\n              </span>\n              <p class=\"m-0 text-left\"> {{ item.ayaatiha }}</p>\n\n              <hr>\n              <span class=\"pb-2 text-left\" style=\"display:flex\"><strong>Meaning of the Name</strong><br>\n              </span>\n              <p class=\"m-0 text-left\"> {{ item.maeni_asamuha }}</p>\n\n              <hr>\n              <span class=\"pb-2 text-left\" style=\"display:flex\"><strong>The Meaning of her Name</strong><br>\n              </span>\n              <p class=\"m-0 text-left\"> {{ item.sabab_tasmiatiha }}</p>\n\n              <hr>\n              <span class=\"pb-2 text-left\" style=\"display:flex\"><strong>Her Names</strong><br>\n              </span>\n              <p class=\"m-0 text-left\"> {{ item.asmawuha }}</p>\n\n              <hr>\n              <span class=\"pb-2 text-left\" style=\"display:flex\"><strong>It's General Purpose</strong><br>\n              </span>\n              <p class=\"m-0 text-left\"> {{ item.maqsiduha_aleamu }}</p>\n\n            </div>\n            <div class=\"col-6\">\n\n              <span class=\"pb-2 text-left\" style=\"display:flex\"><strong>The Reason for its Descent</strong><br>\n              </span>\n              <p class=\"m-0 text-left\"> {{ item.sabab_nuzuliha }}</p>\n\n              <hr>\n              <span class=\"pb-2 text-left\" style=\"display:flex\"><strong>Her Grace</strong><br>\n              </span>\n              <p class=\"m-0 text-left\"> {{ item.fadluha }}</p>\n\n              <hr>\n              <span class=\"pb-2 text-left\" style=\"display:flex\"><strong>It's Occasions</strong><br>\n              </span>\n              <p class=\"m-0 text-left\"> {{ item.munasabatiha }}</p>\n\n              <hr>\n              <span class=\"pb-2 text-left\" style=\"display:flex\"><strong>It's Occasions</strong><br>\n              </span>\n              <p class=\"m-0 text-left\"> {{ item.munasabatiha }}</p>\n\n            </div>\n\n            \n\n          </div>\n        </div>\n\n      </AccordionTab>\n    </Accordion>\n    "), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.cards, function (item) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      "class": "container-fluid row",
+      key: item.id,
+      header: item.surah
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Panel, {
+      "class": "col-md-4",
+      header: "Header"
+    }, {
+      "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+        return [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.fadluha), 1 /* TEXT */), _hoisted_8, _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.munasabatiha), 1 /* TEXT */)];
+      }),
 
-          _: 2 /* DYNAMIC */
-        }, 1032 /* PROPS, DYNAMIC_SLOTS */, ["header"]);
-      }), 128 /* KEYED_FRAGMENT */))];
-    }),
-
-    _: 1 /* STABLE */
-  })])]);
+      _: 2 /* DYNAMIC */
+    }, 1024 /* DYNAMIC_SLOTS */)], 8 /* PROPS */, _hoisted_5);
+  }), 128 /* KEYED_FRAGMENT */))])]);
 }
 
 /***/ }),
@@ -21813,10 +21778,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/HadithComponent.vue?vue&type=template&id=64068460":
-/*!*************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/HadithComponent.vue?vue&type=template&id=64068460 ***!
-  \*************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/HadithNawawiComponent.vue?vue&type=template&id=3e3f82fe":
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/HadithNawawiComponent.vue?vue&type=template&id=3e3f82fe ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -21894,10 +21859,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/JsonComponent.vue?vue&type=template&id=444bee1a":
-/*!***********************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/JsonComponent.vue?vue&type=template&id=444bee1a ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/HadithQudsiComponent.vue?vue&type=template&id=197cc078":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/HadithQudsiComponent.vue?vue&type=template&id=197cc078 ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -21907,47 +21872,151 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
-  "class": "pt-3 pb-3 text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, "The 99 Names of Allah (SWT) with meaning")], -1 /* HOISTED */);
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+var _hoisted_1 = {
+  id: "app"
+};
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
+  "class": "pt-3 text-center"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, "Ahadith Al-Qudsi")], -1 /* HOISTED */);
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "container text-center"
 }, "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.", -1 /* HOISTED */);
-var _hoisted_3 = {
-  "class": "row pb-5 text-center container-fluid"
-};
 var _hoisted_4 = {
-  "class": "m-0"
+  "class": "row py-3"
 };
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", null, null, -1 /* HOISTED */);
-
+var _hoisted_5 = {
+  "class": "col-lg-12 mx-auto"
+};
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", {
+  "class": "table-success"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", {
+  "class": "text-center"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+  "class": "col-md-1"
+}, "ID"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+  "class": "col-md-1"
+}, "Narrator"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+  "class": "col-md-6"
+}, "Hadith (Arabic)"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+  "class": "col-md-6"
+}, "Hadith (English)"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("\n              <th class=\"col-md-1\">Chapter ID</th>\n              <th class=\"col-md-1\">Book ID</th>\n              ")])], -1 /* HOISTED */);
+var _hoisted_7 = {
+  style: {
+    "background": "white"
+  }
+};
+var _hoisted_8 = {
+  "class": "text-center"
+};
+var _hoisted_9 = {
+  "class": "col-md-1"
+};
+var _hoisted_10 = {
+  "class": "col-md-1"
+};
+var _hoisted_11 = {
+  "class": "col-md-6"
+};
+var _hoisted_12 = {
+  "class": "col-md-6"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _component_Card = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Card");
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [_hoisted_1, _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.jsonData, function (item) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Card, {
-      "class": "col-md-2 mb-4 mr-2 text-center bg-light",
-      style: {
-        "box-shadow": "rgba(0, 0, 0, 0.1) 0px 4px 12px",
-        "border-radius": "20px",
-        "border": "2px dashed #8fd19e"
-      },
-      key: item.id,
-      header: item.name
-    }, {
-      title: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.name), 1 /* TEXT */)];
-      }),
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.hadiths, function (item) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      "class": "table-responsive container-fluid",
+      key: item.id
+    }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(item.view, function (hadiths) {
+      return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("table", {
+        id: "example",
+        style: {
+          "width": "100%"
+        },
+        "class": "table table-striped table-responsive table-bordered custom-class",
+        key: hadiths.id
+      }, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.id), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(hadiths.narrator), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.arabic), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.arabic), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("\n              <td class=\"col-md-1\">{{ item.chapterId }}</td>\n              <td class=\"col-md-1\">{{ item.bookId }}</td>\n              ")])])]);
+    }), 128 /* KEYED_FRAGMENT */))]);
+  }), 128 /* KEYED_FRAGMENT */))])])]);
+}
 
-      content: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.text), 1 /* TEXT */)])];
-      }),
+/***/ }),
 
-      "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-        return [_hoisted_5];
-      }),
-      _: 2 /* DYNAMIC */
-    }, 1032 /* PROPS, DYNAMIC_SLOTS */, ["header"]);
-  }), 128 /* KEYED_FRAGMENT */))])]);
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/HadithShahComponent.vue?vue&type=template&id=ca89bf18":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/HadithShahComponent.vue?vue&type=template&id=ca89bf18 ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: () => (/* binding */ render)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+var _hoisted_1 = {
+  id: "app"
+};
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
+  "class": "pt-3 text-center"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, "Ahadith Shaikh Shah Waliullah")], -1 /* HOISTED */);
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+  "class": "container text-center"
+}, "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.", -1 /* HOISTED */);
+var _hoisted_4 = {
+  "class": "row py-3"
+};
+var _hoisted_5 = {
+  "class": "col-lg-12 mx-auto"
+};
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", {
+  "class": "table-success"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", {
+  "class": "text-center"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+  "class": "col-md-1"
+}, "ID"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+  "class": "col-md-1"
+}, "Narrator"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+  "class": "col-md-6"
+}, "Hadith (Arabic)"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+  "class": "col-md-6"
+}, "Hadith (English)"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("\n              <th class=\"col-md-1\">Chapter ID</th>\n              <th class=\"col-md-1\">Book ID</th>\n              ")])], -1 /* HOISTED */);
+var _hoisted_7 = {
+  style: {
+    "background": "white"
+  }
+};
+var _hoisted_8 = {
+  "class": "text-center"
+};
+var _hoisted_9 = {
+  "class": "col-md-1"
+};
+var _hoisted_10 = {
+  "class": "col-md-1"
+};
+var _hoisted_11 = {
+  "class": "col-md-6"
+};
+var _hoisted_12 = {
+  "class": "col-md-6"
+};
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.hadith, function (item) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      "class": "table-responsive container-fluid",
+      key: item.id
+    }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(item.view, function (hadiths) {
+      return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("table", {
+        id: "example",
+        style: {
+          "width": "100%"
+        },
+        "class": "table table-striped table-responsive table-bordered custom-class",
+        key: hadiths.id
+      }, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.id), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(hadiths.narrator), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.arabic), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.arabic), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("\n              <td class=\"col-md-1\">{{ item.chapterId }}</td>\n              <td class=\"col-md-1\">{{ item.bookId }}</td>\n              ")])])]);
+    }), 128 /* KEYED_FRAGMENT */))]);
+  }), 128 /* KEYED_FRAGMENT */))])])]);
 }
 
 /***/ }),
@@ -23371,22 +23440,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var primevue_tabpanel__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! primevue/tabpanel */ "./node_modules/primevue/tabpanel/tabpanel.esm.js");
 /* harmony import */ var primevue_accordion__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! primevue/accordion */ "./node_modules/primevue/accordion/accordion.esm.js");
 /* harmony import */ var primevue_accordiontab__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! primevue/accordiontab */ "./node_modules/primevue/accordiontab/accordiontab.esm.js");
-/* harmony import */ var _components_UsersComponent_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/UsersComponent.vue */ "./resources/js/components/UsersComponent.vue");
-/* harmony import */ var _components_FeedbackComponent_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/FeedbackComponent.vue */ "./resources/js/components/FeedbackComponent.vue");
-/* harmony import */ var _components_PaymentComponent_vue__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/PaymentComponent.vue */ "./resources/js/components/PaymentComponent.vue");
-/* harmony import */ var _components_DonationComponent_vue__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/DonationComponent.vue */ "./resources/js/components/DonationComponent.vue");
-/* harmony import */ var _components_ProfileComponent_vue__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/ProfileComponent.vue */ "./resources/js/components/ProfileComponent.vue");
-/* harmony import */ var _components_DashboardComponent_vue__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/DashboardComponent.vue */ "./resources/js/components/DashboardComponent.vue");
-/* harmony import */ var _components_ExampleComponent_vue__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue");
-/* harmony import */ var _components_JsonComponent_vue__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./components/JsonComponent.vue */ "./resources/js/components/JsonComponent.vue");
-/* harmony import */ var _components_HomepageComponent_vue__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./components/HomepageComponent.vue */ "./resources/js/components/HomepageComponent.vue");
-/* harmony import */ var _components_PricingComponent_vue__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./components/PricingComponent.vue */ "./resources/js/components/PricingComponent.vue");
-/* harmony import */ var _components_ContactComponent_vue__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./components/ContactComponent.vue */ "./resources/js/components/ContactComponent.vue");
-/* harmony import */ var _components_ReminderComponent_vue__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./components/ReminderComponent.vue */ "./resources/js/components/ReminderComponent.vue");
-/* harmony import */ var _components_CharityComponent_vue__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./components/CharityComponent.vue */ "./resources/js/components/CharityComponent.vue");
-/* harmony import */ var _components_VolunteerComponent_vue__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./components/VolunteerComponent.vue */ "./resources/js/components/VolunteerComponent.vue");
-/* harmony import */ var _components_CardsComponent_vue__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./components/CardsComponent.vue */ "./resources/js/components/CardsComponent.vue");
-/* harmony import */ var _components_HadithComponent_vue__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./components/HadithComponent.vue */ "./resources/js/components/HadithComponent.vue");
+/* harmony import */ var primevue_listbox__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! primevue/listbox */ "./node_modules/primevue/listbox/listbox.esm.js");
+/* harmony import */ var primevue_fieldset__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! primevue/fieldset */ "./node_modules/primevue/fieldset/fieldset.esm.js");
+/* harmony import */ var primevue_panel__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! primevue/panel */ "./node_modules/primevue/panel/panel.esm.js");
+/* harmony import */ var _components_UsersComponent_vue__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/UsersComponent.vue */ "./resources/js/components/UsersComponent.vue");
+/* harmony import */ var _components_FeedbackComponent_vue__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/FeedbackComponent.vue */ "./resources/js/components/FeedbackComponent.vue");
+/* harmony import */ var _components_PaymentComponent_vue__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/PaymentComponent.vue */ "./resources/js/components/PaymentComponent.vue");
+/* harmony import */ var _components_DonationComponent_vue__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/DonationComponent.vue */ "./resources/js/components/DonationComponent.vue");
+/* harmony import */ var _components_ProfileComponent_vue__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./components/ProfileComponent.vue */ "./resources/js/components/ProfileComponent.vue");
+/* harmony import */ var _components_DashboardComponent_vue__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./components/DashboardComponent.vue */ "./resources/js/components/DashboardComponent.vue");
+/* harmony import */ var _components_ExampleComponent_vue__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue");
+/* harmony import */ var _components_AllahNamesComponent_vue__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./components/AllahNamesComponent.vue */ "./resources/js/components/AllahNamesComponent.vue");
+/* harmony import */ var _components_HomepageComponent_vue__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./components/HomepageComponent.vue */ "./resources/js/components/HomepageComponent.vue");
+/* harmony import */ var _components_PricingComponent_vue__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./components/PricingComponent.vue */ "./resources/js/components/PricingComponent.vue");
+/* harmony import */ var _components_ContactComponent_vue__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./components/ContactComponent.vue */ "./resources/js/components/ContactComponent.vue");
+/* harmony import */ var _components_ReminderComponent_vue__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./components/ReminderComponent.vue */ "./resources/js/components/ReminderComponent.vue");
+/* harmony import */ var _components_CharityComponent_vue__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./components/CharityComponent.vue */ "./resources/js/components/CharityComponent.vue");
+/* harmony import */ var _components_VolunteerComponent_vue__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./components/VolunteerComponent.vue */ "./resources/js/components/VolunteerComponent.vue");
+/* harmony import */ var _components_CardsComponent_vue__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./components/CardsComponent.vue */ "./resources/js/components/CardsComponent.vue");
+/* harmony import */ var _components_HadithNawawiComponent_vue__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./components/HadithNawawiComponent.vue */ "./resources/js/components/HadithNawawiComponent.vue");
+/* harmony import */ var _components_HadithQudsiComponent_vue__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./components/HadithQudsiComponent.vue */ "./resources/js/components/HadithQudsiComponent.vue");
+/* harmony import */ var _components_HadithShahComponent_vue__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./components/HadithShahComponent.vue */ "./resources/js/components/HadithShahComponent.vue");
 // Vue libraries
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
@@ -23397,6 +23471,11 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bun
 
  //theme
  //core css
+
+
+
+
+
 
 
 
@@ -23436,22 +23515,27 @@ app.component("Accordion", primevue_accordion__WEBPACK_IMPORTED_MODULE_14__["def
 app.component("Card", primevue_card__WEBPACK_IMPORTED_MODULE_11__["default"]);
 app.component("TabView", primevue_tabview__WEBPACK_IMPORTED_MODULE_12__["default"]);
 app.component("TabPanel", primevue_tabpanel__WEBPACK_IMPORTED_MODULE_13__["default"]);
-app.component("example-component", _components_ExampleComponent_vue__WEBPACK_IMPORTED_MODULE_22__["default"]);
-app.component("users-component", _components_UsersComponent_vue__WEBPACK_IMPORTED_MODULE_16__["default"]);
-app.component("feedback-component", _components_FeedbackComponent_vue__WEBPACK_IMPORTED_MODULE_17__["default"]);
-app.component("payment-component", _components_PaymentComponent_vue__WEBPACK_IMPORTED_MODULE_18__["default"]);
-app.component("donation-component", _components_DonationComponent_vue__WEBPACK_IMPORTED_MODULE_19__["default"]);
-app.component("profile-component", _components_ProfileComponent_vue__WEBPACK_IMPORTED_MODULE_20__["default"]);
-app.component("dashboard-component", _components_DashboardComponent_vue__WEBPACK_IMPORTED_MODULE_21__["default"]);
-app.component("json-component", _components_JsonComponent_vue__WEBPACK_IMPORTED_MODULE_23__["default"]);
-app.component("homepage-component", _components_HomepageComponent_vue__WEBPACK_IMPORTED_MODULE_24__["default"]);
-app.component("pricing-component", _components_PricingComponent_vue__WEBPACK_IMPORTED_MODULE_25__["default"]);
-app.component("contact-component", _components_ContactComponent_vue__WEBPACK_IMPORTED_MODULE_26__["default"]);
-app.component("reminder-component", _components_ReminderComponent_vue__WEBPACK_IMPORTED_MODULE_27__["default"]);
-app.component("charity-component", _components_CharityComponent_vue__WEBPACK_IMPORTED_MODULE_28__["default"]);
-app.component("volunteer-component", _components_VolunteerComponent_vue__WEBPACK_IMPORTED_MODULE_29__["default"]);
-app.component("cards-component", _components_CardsComponent_vue__WEBPACK_IMPORTED_MODULE_30__["default"]);
-app.component("hadith-component", _components_HadithComponent_vue__WEBPACK_IMPORTED_MODULE_31__["default"]);
+app.component("ListBox", primevue_listbox__WEBPACK_IMPORTED_MODULE_16__["default"]);
+app.component("Fieldset", primevue_fieldset__WEBPACK_IMPORTED_MODULE_17__["default"]);
+app.component("Panel", primevue_panel__WEBPACK_IMPORTED_MODULE_18__["default"]);
+app.component("example-component", _components_ExampleComponent_vue__WEBPACK_IMPORTED_MODULE_25__["default"]);
+app.component("users-component", _components_UsersComponent_vue__WEBPACK_IMPORTED_MODULE_19__["default"]);
+app.component("feedback-component", _components_FeedbackComponent_vue__WEBPACK_IMPORTED_MODULE_20__["default"]);
+app.component("payment-component", _components_PaymentComponent_vue__WEBPACK_IMPORTED_MODULE_21__["default"]);
+app.component("donation-component", _components_DonationComponent_vue__WEBPACK_IMPORTED_MODULE_22__["default"]);
+app.component("profile-component", _components_ProfileComponent_vue__WEBPACK_IMPORTED_MODULE_23__["default"]);
+app.component("dashboard-component", _components_DashboardComponent_vue__WEBPACK_IMPORTED_MODULE_24__["default"]);
+app.component("allah_names-component", _components_AllahNamesComponent_vue__WEBPACK_IMPORTED_MODULE_26__["default"]);
+app.component("homepage-component", _components_HomepageComponent_vue__WEBPACK_IMPORTED_MODULE_27__["default"]);
+app.component("pricing-component", _components_PricingComponent_vue__WEBPACK_IMPORTED_MODULE_28__["default"]);
+app.component("contact-component", _components_ContactComponent_vue__WEBPACK_IMPORTED_MODULE_29__["default"]);
+app.component("reminder-component", _components_ReminderComponent_vue__WEBPACK_IMPORTED_MODULE_30__["default"]);
+app.component("charity-component", _components_CharityComponent_vue__WEBPACK_IMPORTED_MODULE_31__["default"]);
+app.component("volunteer-component", _components_VolunteerComponent_vue__WEBPACK_IMPORTED_MODULE_32__["default"]);
+app.component("cards-component", _components_CardsComponent_vue__WEBPACK_IMPORTED_MODULE_33__["default"]);
+app.component("hadith_nawawi-component", _components_HadithNawawiComponent_vue__WEBPACK_IMPORTED_MODULE_34__["default"]);
+app.component("hadith_qudsi-component", _components_HadithQudsiComponent_vue__WEBPACK_IMPORTED_MODULE_35__["default"]);
+app.component("hadith_shah-component", _components_HadithShahComponent_vue__WEBPACK_IMPORTED_MODULE_36__["default"]);
 app.mount('#app');
 
 /***/ }),
@@ -40644,6 +40728,210 @@ var DropdownStyle = primevue_base_style__WEBPACK_IMPORTED_MODULE_0__["default"].
 
 /***/ }),
 
+/***/ "./node_modules/primevue/fieldset/fieldset.esm.js":
+/*!********************************************************!*\
+  !*** ./node_modules/primevue/fieldset/fieldset.esm.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ script)
+/* harmony export */ });
+/* harmony import */ var primevue_icons_minus__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! primevue/icons/minus */ "./node_modules/primevue/icons/minus/index.esm.js");
+/* harmony import */ var primevue_icons_plus__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! primevue/icons/plus */ "./node_modules/primevue/icons/plus/index.esm.js");
+/* harmony import */ var primevue_ripple__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! primevue/ripple */ "./node_modules/primevue/ripple/ripple.esm.js");
+/* harmony import */ var primevue_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! primevue/utils */ "./node_modules/primevue/utils/utils.esm.js");
+/* harmony import */ var primevue_basecomponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! primevue/basecomponent */ "./node_modules/primevue/basecomponent/basecomponent.esm.js");
+/* harmony import */ var primevue_fieldset_style__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! primevue/fieldset/style */ "./node_modules/primevue/fieldset/style/fieldsetstyle.esm.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+
+
+
+
+
+
+
+var script$1 = {
+  name: 'BaseFieldset',
+  "extends": primevue_basecomponent__WEBPACK_IMPORTED_MODULE_4__["default"],
+  props: {
+    legend: String,
+    toggleable: Boolean,
+    collapsed: Boolean,
+    toggleButtonProps: {
+      type: null,
+      "default": null
+    }
+  },
+  style: primevue_fieldset_style__WEBPACK_IMPORTED_MODULE_5__["default"],
+  provide: function provide() {
+    return {
+      $parentInstance: this
+    };
+  }
+};
+
+var script = {
+  name: 'Fieldset',
+  "extends": script$1,
+  emits: ['update:collapsed', 'toggle'],
+  data: function data() {
+    return {
+      d_collapsed: this.collapsed
+    };
+  },
+  watch: {
+    collapsed: function collapsed(newValue) {
+      this.d_collapsed = newValue;
+    }
+  },
+  methods: {
+    toggle: function toggle(event) {
+      this.d_collapsed = !this.d_collapsed;
+      this.$emit('update:collapsed', this.d_collapsed);
+      this.$emit('toggle', {
+        originalEvent: event,
+        value: this.d_collapsed
+      });
+    },
+    onKeyDown: function onKeyDown(event) {
+      if (event.code === 'Enter' || event.code === 'Space') {
+        this.toggle(event);
+        event.preventDefault();
+      }
+    }
+  },
+  computed: {
+    ariaId: function ariaId() {
+      return (0,primevue_utils__WEBPACK_IMPORTED_MODULE_3__.UniqueComponentId)();
+    },
+    buttonAriaLabel: function buttonAriaLabel() {
+      return this.toggleButtonProps && this.toggleButtonProps['aria-label'] ? this.toggleButtonProps['aria-label'] : this.legend;
+    }
+  },
+  directives: {
+    ripple: primevue_ripple__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
+  components: {
+    PlusIcon: primevue_icons_plus__WEBPACK_IMPORTED_MODULE_1__["default"],
+    MinusIcon: primevue_icons_minus__WEBPACK_IMPORTED_MODULE_0__["default"]
+  }
+};
+
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+var _hoisted_1 = ["id"];
+var _hoisted_2 = ["id", "aria-controls", "aria-expanded", "aria-label"];
+var _hoisted_3 = ["id", "aria-labelledby"];
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _directive_ripple = (0,vue__WEBPACK_IMPORTED_MODULE_6__.resolveDirective)("ripple");
+  return (0,vue__WEBPACK_IMPORTED_MODULE_6__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_6__.createElementBlock)("fieldset", (0,vue__WEBPACK_IMPORTED_MODULE_6__.mergeProps)({
+    "class": _ctx.cx('root')
+  }, _ctx.ptm('root'), {
+    "data-pc-name": "fieldset"
+  }), [(0,vue__WEBPACK_IMPORTED_MODULE_6__.createElementVNode)("legend", (0,vue__WEBPACK_IMPORTED_MODULE_6__.mergeProps)({
+    "class": _ctx.cx('legend')
+  }, _ctx.ptm('legend')), [!_ctx.toggleable ? (0,vue__WEBPACK_IMPORTED_MODULE_6__.renderSlot)(_ctx.$slots, "legend", {
+    key: 0
+  }, function () {
+    return [(0,vue__WEBPACK_IMPORTED_MODULE_6__.createElementVNode)("span", (0,vue__WEBPACK_IMPORTED_MODULE_6__.mergeProps)({
+      id: $options.ariaId + '_header',
+      "class": _ctx.cx('legendtitle')
+    }, _ctx.ptm('legendtitle')), (0,vue__WEBPACK_IMPORTED_MODULE_6__.toDisplayString)(_ctx.legend), 17, _hoisted_1)];
+  }) : (0,vue__WEBPACK_IMPORTED_MODULE_6__.createCommentVNode)("", true), _ctx.toggleable ? (0,vue__WEBPACK_IMPORTED_MODULE_6__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_6__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_6__.createElementBlock)("a", (0,vue__WEBPACK_IMPORTED_MODULE_6__.mergeProps)({
+    key: 1,
+    id: $options.ariaId + '_header',
+    tabindex: "0",
+    role: "button",
+    "aria-controls": $options.ariaId + '_content',
+    "aria-expanded": !$data.d_collapsed,
+    "aria-label": $options.buttonAriaLabel,
+    onClick: _cache[0] || (_cache[0] = function () {
+      return $options.toggle && $options.toggle.apply($options, arguments);
+    }),
+    onKeydown: _cache[1] || (_cache[1] = function () {
+      return $options.onKeyDown && $options.onKeyDown.apply($options, arguments);
+    })
+  }, _objectSpread(_objectSpread({}, _ctx.toggleButtonProps), _ctx.ptm('toggler'))), [(0,vue__WEBPACK_IMPORTED_MODULE_6__.renderSlot)(_ctx.$slots, "togglericon", {
+    collapsed: $data.d_collapsed
+  }, function () {
+    return [((0,vue__WEBPACK_IMPORTED_MODULE_6__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_6__.createBlock)((0,vue__WEBPACK_IMPORTED_MODULE_6__.resolveDynamicComponent)($data.d_collapsed ? 'PlusIcon' : 'MinusIcon'), (0,vue__WEBPACK_IMPORTED_MODULE_6__.mergeProps)({
+      "class": _ctx.cx('togglericon')
+    }, _ctx.ptm('togglericon')), null, 16, ["class"]))];
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_6__.renderSlot)(_ctx.$slots, "legend", {}, function () {
+    return [(0,vue__WEBPACK_IMPORTED_MODULE_6__.createElementVNode)("span", (0,vue__WEBPACK_IMPORTED_MODULE_6__.mergeProps)({
+      "class": _ctx.cx('legendtitle')
+    }, _ctx.ptm('legendtitle')), (0,vue__WEBPACK_IMPORTED_MODULE_6__.toDisplayString)(_ctx.legend), 17)];
+  })], 16, _hoisted_2)), [[_directive_ripple]]) : (0,vue__WEBPACK_IMPORTED_MODULE_6__.createCommentVNode)("", true)], 16), (0,vue__WEBPACK_IMPORTED_MODULE_6__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_6__.Transition, (0,vue__WEBPACK_IMPORTED_MODULE_6__.mergeProps)({
+    name: "p-toggleable-content"
+  }, _ctx.ptm('transition')), {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_6__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_6__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_6__.createElementVNode)("div", (0,vue__WEBPACK_IMPORTED_MODULE_6__.mergeProps)({
+        id: $options.ariaId + '_content',
+        "class": _ctx.cx('toggleablecontent'),
+        role: "region",
+        "aria-labelledby": $options.ariaId + '_header'
+      }, _ctx.ptm('toggleablecontent')), [(0,vue__WEBPACK_IMPORTED_MODULE_6__.createElementVNode)("div", (0,vue__WEBPACK_IMPORTED_MODULE_6__.mergeProps)({
+        "class": _ctx.cx('content')
+      }, _ctx.ptm('content')), [(0,vue__WEBPACK_IMPORTED_MODULE_6__.renderSlot)(_ctx.$slots, "default")], 16)], 16, _hoisted_3), [[vue__WEBPACK_IMPORTED_MODULE_6__.vShow, !$data.d_collapsed]])];
+    }),
+    _: 3
+  }, 16)], 16);
+}
+
+script.render = render;
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/primevue/fieldset/style/fieldsetstyle.esm.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/primevue/fieldset/style/fieldsetstyle.esm.js ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ FieldsetStyle)
+/* harmony export */ });
+/* harmony import */ var primevue_base_style__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! primevue/base/style */ "./node_modules/primevue/base/style/basestyle.esm.js");
+
+
+var css = "\n@layer primevue {\n    .p-fieldset-legend > a,\n    .p-fieldset-legend > span {\n        display: flex;\n        align-items: center;\n        justify-content: center;\n    }\n\n    .p-fieldset-toggleable .p-fieldset-legend a {\n        cursor: pointer;\n        user-select: none;\n        overflow: hidden;\n        position: relative;\n        text-decoration: none;\n    }\n\n    .p-fieldset-legend-text {\n        line-height: 1;\n    }\n}\n";
+var classes = {
+  root: function root(_ref) {
+    var props = _ref.props;
+    return ['p-fieldset p-component', {
+      'p-fieldset-toggleable': props.toggleable
+    }];
+  },
+  legend: 'p-fieldset-legend',
+  legendtitle: 'p-fieldset-legend-text',
+  togglericon: 'p-fieldset-toggler',
+  toggleablecontent: 'p-toggleable-content',
+  content: 'p-fieldset-content'
+};
+var FieldsetStyle = primevue_base_style__WEBPACK_IMPORTED_MODULE_0__["default"].extend({
+  name: 'fieldset',
+  css: css,
+  classes: classes
+});
+
+
+
+
+/***/ }),
+
 /***/ "./node_modules/primevue/focustrap/focustrap.esm.js":
 /*!**********************************************************!*\
   !*** ./node_modules/primevue/focustrap/focustrap.esm.js ***!
@@ -41540,6 +41828,49 @@ script.render = render;
 
 /***/ }),
 
+/***/ "./node_modules/primevue/icons/minus/index.esm.js":
+/*!********************************************************!*\
+  !*** ./node_modules/primevue/icons/minus/index.esm.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ script)
+/* harmony export */ });
+/* harmony import */ var primevue_baseicon__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! primevue/baseicon */ "./node_modules/primevue/baseicon/baseicon.esm.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+
+
+var script = {
+  name: 'MinusIcon',
+  "extends": primevue_baseicon__WEBPACK_IMPORTED_MODULE_0__["default"]
+};
+
+var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementVNode)("path", {
+  d: "M13.2222 7.77778H0.777778C0.571498 7.77778 0.373667 7.69584 0.227806 7.54998C0.0819442 7.40412 0 7.20629 0 7.00001C0 6.79373 0.0819442 6.5959 0.227806 6.45003C0.373667 6.30417 0.571498 6.22223 0.777778 6.22223H13.2222C13.4285 6.22223 13.6263 6.30417 13.7722 6.45003C13.9181 6.5959 14 6.79373 14 7.00001C14 7.20629 13.9181 7.40412 13.7722 7.54998C13.6263 7.69584 13.4285 7.77778 13.2222 7.77778Z",
+  fill: "currentColor"
+}, null, -1);
+var _hoisted_2 = [_hoisted_1];
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_1__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_1__.createElementBlock)("svg", (0,vue__WEBPACK_IMPORTED_MODULE_1__.mergeProps)({
+    width: "14",
+    height: "14",
+    viewBox: "0 0 14 14",
+    fill: "none",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, _ctx.pti()), _hoisted_2, 16);
+}
+
+script.render = render;
+
+
+
+
+/***/ }),
+
 /***/ "./node_modules/primevue/icons/pencil/index.esm.js":
 /*!*********************************************************!*\
   !*** ./node_modules/primevue/icons/pencil/index.esm.js ***!
@@ -41633,6 +41964,70 @@ var script = {
 var _hoisted_1 = ["clipPath"];
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_2__.createElementVNode)("path", {
   d: "M7.67742 6.32258V0.677419C7.67742 0.497757 7.60605 0.325452 7.47901 0.198411C7.35197 0.0713707 7.17966 0 7 0C6.82034 0 6.64803 0.0713707 6.52099 0.198411C6.39395 0.325452 6.32258 0.497757 6.32258 0.677419V6.32258H0.677419C0.497757 6.32258 0.325452 6.39395 0.198411 6.52099C0.0713707 6.64803 0 6.82034 0 7C0 7.17966 0.0713707 7.35197 0.198411 7.47901C0.325452 7.60605 0.497757 7.67742 0.677419 7.67742H6.32258V13.3226C6.32492 13.5015 6.39704 13.6725 6.52358 13.799C6.65012 13.9255 6.82106 13.9977 7 14C7.17966 14 7.35197 13.9286 7.47901 13.8016C7.60605 13.6745 7.67742 13.5022 7.67742 13.3226V7.67742H13.3226C13.5022 7.67742 13.6745 7.60605 13.8016 7.47901C13.9286 7.35197 14 7.17966 14 7C13.9977 6.82106 13.9255 6.65012 13.799 6.52358C13.6725 6.39704 13.5015 6.32492 13.3226 6.32258H7.67742Z",
+  fill: "currentColor"
+}, null, -1);
+var _hoisted_3 = [_hoisted_2];
+var _hoisted_4 = ["id"];
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_2__.createElementVNode)("rect", {
+  width: "14",
+  height: "14",
+  fill: "white"
+}, null, -1);
+var _hoisted_6 = [_hoisted_5];
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_2__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_2__.createElementBlock)("svg", (0,vue__WEBPACK_IMPORTED_MODULE_2__.mergeProps)({
+    width: "14",
+    height: "14",
+    viewBox: "0 0 14 14",
+    fill: "none",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, _ctx.pti()), [(0,vue__WEBPACK_IMPORTED_MODULE_2__.createElementVNode)("g", {
+    clipPath: "url(#".concat($options.pathId, ")")
+  }, _hoisted_3, 8, _hoisted_1), (0,vue__WEBPACK_IMPORTED_MODULE_2__.createElementVNode)("defs", null, [(0,vue__WEBPACK_IMPORTED_MODULE_2__.createElementVNode)("clipPath", {
+    id: "".concat($options.pathId)
+  }, _hoisted_6, 8, _hoisted_4)])], 16);
+}
+
+script.render = render;
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/primevue/icons/search/index.esm.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/primevue/icons/search/index.esm.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ script)
+/* harmony export */ });
+/* harmony import */ var primevue_baseicon__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! primevue/baseicon */ "./node_modules/primevue/baseicon/baseicon.esm.js");
+/* harmony import */ var primevue_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! primevue/utils */ "./node_modules/primevue/utils/utils.esm.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+
+
+
+var script = {
+  name: 'SearchIcon',
+  "extends": primevue_baseicon__WEBPACK_IMPORTED_MODULE_0__["default"],
+  computed: {
+    pathId: function pathId() {
+      return "pv_icon_clip_".concat((0,primevue_utils__WEBPACK_IMPORTED_MODULE_1__.UniqueComponentId)());
+    }
+  }
+};
+
+var _hoisted_1 = ["clipPath"];
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_2__.createElementVNode)("path", {
+  "fill-rule": "evenodd",
+  "clip-rule": "evenodd",
+  d: "M2.67602 11.0265C3.6661 11.688 4.83011 12.0411 6.02086 12.0411C6.81149 12.0411 7.59438 11.8854 8.32483 11.5828C8.87005 11.357 9.37808 11.0526 9.83317 10.6803L12.9769 13.8241C13.0323 13.8801 13.0983 13.9245 13.171 13.9548C13.2438 13.985 13.3219 14.0003 13.4007 14C13.4795 14.0003 13.5575 13.985 13.6303 13.9548C13.7031 13.9245 13.7691 13.8801 13.8244 13.8241C13.9367 13.7116 13.9998 13.5592 13.9998 13.4003C13.9998 13.2414 13.9367 13.089 13.8244 12.9765L10.6807 9.8328C11.053 9.37773 11.3573 8.86972 11.5831 8.32452C11.8857 7.59408 12.0414 6.81119 12.0414 6.02056C12.0414 4.8298 11.6883 3.66579 11.0268 2.67572C10.3652 1.68564 9.42494 0.913972 8.32483 0.45829C7.22472 0.00260857 6.01418 -0.116618 4.84631 0.115686C3.67844 0.34799 2.60568 0.921393 1.76369 1.76338C0.921698 2.60537 0.348296 3.67813 0.115991 4.84601C-0.116313 6.01388 0.00291375 7.22441 0.458595 8.32452C0.914277 9.42464 1.68595 10.3649 2.67602 11.0265ZM3.35565 2.0158C4.14456 1.48867 5.07206 1.20731 6.02086 1.20731C7.29317 1.20731 8.51338 1.71274 9.41304 2.6124C10.3127 3.51206 10.8181 4.73226 10.8181 6.00457C10.8181 6.95337 10.5368 7.88088 10.0096 8.66978C9.48251 9.45868 8.73328 10.0736 7.85669 10.4367C6.98011 10.7997 6.01554 10.8947 5.08496 10.7096C4.15439 10.5245 3.2996 10.0676 2.62869 9.39674C1.95778 8.72583 1.50089 7.87104 1.31579 6.94046C1.13068 6.00989 1.22568 5.04532 1.58878 4.16874C1.95187 3.29215 2.56675 2.54292 3.35565 2.0158Z",
   fill: "currentColor"
 }, null, -1);
 var _hoisted_3 = [_hoisted_2];
@@ -43344,6 +43739,1004 @@ var InputTextStyle = primevue_base_style__WEBPACK_IMPORTED_MODULE_0__["default"]
 
 /***/ }),
 
+/***/ "./node_modules/primevue/listbox/listbox.esm.js":
+/*!******************************************************!*\
+  !*** ./node_modules/primevue/listbox/listbox.esm.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ script)
+/* harmony export */ });
+/* harmony import */ var primevue_api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! primevue/api */ "./node_modules/primevue/api/api.esm.js");
+/* harmony import */ var primevue_icons_search__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! primevue/icons/search */ "./node_modules/primevue/icons/search/index.esm.js");
+/* harmony import */ var primevue_ripple__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! primevue/ripple */ "./node_modules/primevue/ripple/ripple.esm.js");
+/* harmony import */ var primevue_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! primevue/utils */ "./node_modules/primevue/utils/utils.esm.js");
+/* harmony import */ var primevue_virtualscroller__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! primevue/virtualscroller */ "./node_modules/primevue/virtualscroller/virtualscroller.esm.js");
+/* harmony import */ var primevue_basecomponent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! primevue/basecomponent */ "./node_modules/primevue/basecomponent/basecomponent.esm.js");
+/* harmony import */ var primevue_listbox_style__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! primevue/listbox/style */ "./node_modules/primevue/listbox/style/listboxstyle.esm.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+
+
+
+
+
+
+
+
+var script$1 = {
+  name: 'BaseListbox',
+  "extends": primevue_basecomponent__WEBPACK_IMPORTED_MODULE_5__["default"],
+  props: {
+    modelValue: null,
+    options: Array,
+    optionLabel: null,
+    optionValue: null,
+    optionDisabled: null,
+    optionGroupLabel: null,
+    optionGroupChildren: null,
+    listStyle: null,
+    disabled: Boolean,
+    dataKey: null,
+    multiple: Boolean,
+    metaKeySelection: Boolean,
+    filter: Boolean,
+    filterPlaceholder: String,
+    filterLocale: String,
+    filterMatchMode: {
+      type: String,
+      "default": 'contains'
+    },
+    filterFields: {
+      type: Array,
+      "default": null
+    },
+    filterInputProps: null,
+    virtualScrollerOptions: {
+      type: Object,
+      "default": null
+    },
+    autoOptionFocus: {
+      type: Boolean,
+      "default": true
+    },
+    selectOnFocus: {
+      type: Boolean,
+      "default": false
+    },
+    filterMessage: {
+      type: String,
+      "default": null
+    },
+    selectionMessage: {
+      type: String,
+      "default": null
+    },
+    emptySelectionMessage: {
+      type: String,
+      "default": null
+    },
+    emptyFilterMessage: {
+      type: String,
+      "default": null
+    },
+    emptyMessage: {
+      type: String,
+      "default": null
+    },
+    filterIcon: {
+      type: String,
+      "default": undefined
+    },
+    tabindex: {
+      type: Number,
+      "default": 0
+    },
+    'aria-label': {
+      type: String,
+      "default": null
+    },
+    'aria-labelledby': {
+      type: String,
+      "default": null
+    }
+  },
+  style: primevue_listbox_style__WEBPACK_IMPORTED_MODULE_6__["default"],
+  provide: function provide() {
+    return {
+      $parentInstance: this
+    };
+  }
+};
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+var script = {
+  name: 'Listbox',
+  "extends": script$1,
+  emits: ['update:modelValue', 'change', 'focus', 'blur', 'filter'],
+  list: null,
+  virtualScroller: null,
+  optionTouched: false,
+  startRangeIndex: -1,
+  searchTimeout: null,
+  searchValue: '',
+  focusOnHover: false,
+  data: function data() {
+    return {
+      id: this.$attrs.id,
+      filterValue: null,
+      focused: false,
+      focusedOptionIndex: -1
+    };
+  },
+  watch: {
+    '$attrs.id': function $attrsId(newValue) {
+      this.id = newValue || (0,primevue_utils__WEBPACK_IMPORTED_MODULE_3__.UniqueComponentId)();
+    },
+    options: function options() {
+      this.autoUpdateModel();
+    }
+  },
+  mounted: function mounted() {
+    this.id = this.id || (0,primevue_utils__WEBPACK_IMPORTED_MODULE_3__.UniqueComponentId)();
+    this.autoUpdateModel();
+  },
+  methods: {
+    getOptionIndex: function getOptionIndex(index, fn) {
+      return this.virtualScrollerDisabled ? index : fn && fn(index)['index'];
+    },
+    getOptionLabel: function getOptionLabel(option) {
+      return this.optionLabel ? primevue_utils__WEBPACK_IMPORTED_MODULE_3__.ObjectUtils.resolveFieldData(option, this.optionLabel) : option;
+    },
+    getOptionValue: function getOptionValue(option) {
+      return this.optionValue ? primevue_utils__WEBPACK_IMPORTED_MODULE_3__.ObjectUtils.resolveFieldData(option, this.optionValue) : option;
+    },
+    getOptionRenderKey: function getOptionRenderKey(option, index) {
+      return (this.dataKey ? primevue_utils__WEBPACK_IMPORTED_MODULE_3__.ObjectUtils.resolveFieldData(option, this.dataKey) : this.getOptionLabel(option)) + '_' + index;
+    },
+    getPTOptions: function getPTOptions(option, itemOptions, index, key) {
+      return this.ptm(key, {
+        context: {
+          selected: this.isSelected(option),
+          focused: this.focusedOptionIndex === this.getOptionIndex(index, itemOptions),
+          disabled: this.isOptionDisabled(option)
+        }
+      });
+    },
+    isOptionDisabled: function isOptionDisabled(option) {
+      return this.optionDisabled ? primevue_utils__WEBPACK_IMPORTED_MODULE_3__.ObjectUtils.resolveFieldData(option, this.optionDisabled) : false;
+    },
+    isOptionGroup: function isOptionGroup(option) {
+      return this.optionGroupLabel && option.optionGroup && option.group;
+    },
+    getOptionGroupLabel: function getOptionGroupLabel(optionGroup) {
+      return primevue_utils__WEBPACK_IMPORTED_MODULE_3__.ObjectUtils.resolveFieldData(optionGroup, this.optionGroupLabel);
+    },
+    getOptionGroupChildren: function getOptionGroupChildren(optionGroup) {
+      return primevue_utils__WEBPACK_IMPORTED_MODULE_3__.ObjectUtils.resolveFieldData(optionGroup, this.optionGroupChildren);
+    },
+    getAriaPosInset: function getAriaPosInset(index) {
+      var _this = this;
+      return (this.optionGroupLabel ? index - this.visibleOptions.slice(0, index).filter(function (option) {
+        return _this.isOptionGroup(option);
+      }).length : index) + 1;
+    },
+    onFirstHiddenFocus: function onFirstHiddenFocus() {
+      primevue_utils__WEBPACK_IMPORTED_MODULE_3__.DomHandler.focus(this.list);
+      var firstFocusableEl = primevue_utils__WEBPACK_IMPORTED_MODULE_3__.DomHandler.getFirstFocusableElement(this.$el, ':not([data-p-hidden-focusable="true"])');
+      this.$refs.lastHiddenFocusableElement.tabIndex = primevue_utils__WEBPACK_IMPORTED_MODULE_3__.ObjectUtils.isEmpty(firstFocusableEl) ? -1 : undefined;
+      this.$refs.firstHiddenFocusableElement.tabIndex = -1;
+    },
+    onLastHiddenFocus: function onLastHiddenFocus(event) {
+      var relatedTarget = event.relatedTarget;
+      if (relatedTarget === this.list) {
+        var firstFocusableEl = primevue_utils__WEBPACK_IMPORTED_MODULE_3__.DomHandler.getFirstFocusableElement(this.$el, ':not([data-p-hidden-focusable="true"])');
+        primevue_utils__WEBPACK_IMPORTED_MODULE_3__.DomHandler.focus(firstFocusableEl);
+        this.$refs.firstHiddenFocusableElement.tabIndex = undefined;
+      } else {
+        primevue_utils__WEBPACK_IMPORTED_MODULE_3__.DomHandler.focus(this.$refs.firstHiddenFocusableElement);
+      }
+      this.$refs.lastHiddenFocusableElement.tabIndex = -1;
+    },
+    onFocusout: function onFocusout(event) {
+      if (!this.$el.contains(event.relatedTarget) && this.$refs.lastHiddenFocusableElement && this.$refs.firstHiddenFocusableElement) {
+        this.$refs.lastHiddenFocusableElement.tabIndex = this.$refs.firstHiddenFocusableElement.tabIndex = undefined;
+      }
+    },
+    onListFocus: function onListFocus(event) {
+      this.focused = true;
+      this.focusedOptionIndex = this.focusedOptionIndex !== -1 ? this.focusedOptionIndex : this.autoOptionFocus ? this.findFirstFocusedOptionIndex() : -1;
+      this.$emit('focus', event);
+    },
+    onListBlur: function onListBlur(event) {
+      this.focused = false;
+      this.focusedOptionIndex = this.startRangeIndex = -1;
+      this.searchValue = '';
+      this.$emit('blur', event);
+    },
+    onListKeyDown: function onListKeyDown(event) {
+      var _this2 = this;
+      var metaKey = event.metaKey || event.ctrlKey;
+      switch (event.code) {
+        case 'ArrowDown':
+          this.onArrowDownKey(event);
+          break;
+        case 'ArrowUp':
+          this.onArrowUpKey(event);
+          break;
+        case 'Home':
+          this.onHomeKey(event);
+          break;
+        case 'End':
+          this.onEndKey(event);
+          break;
+        case 'PageDown':
+          this.onPageDownKey(event);
+          break;
+        case 'PageUp':
+          this.onPageUpKey(event);
+          break;
+        case 'Enter':
+        case 'Space':
+          this.onSpaceKey(event);
+          break;
+        case 'Tab':
+          //NOOP
+          break;
+        case 'ShiftLeft':
+        case 'ShiftRight':
+          this.onShiftKey(event);
+          break;
+        default:
+          if (this.multiple && event.code === 'KeyA' && metaKey) {
+            var value = this.visibleOptions.filter(function (option) {
+              return _this2.isValidOption(option);
+            }).map(function (option) {
+              return _this2.getOptionValue(option);
+            });
+            this.updateModel(event, value);
+            event.preventDefault();
+            break;
+          }
+          if (!metaKey && primevue_utils__WEBPACK_IMPORTED_MODULE_3__.ObjectUtils.isPrintableCharacter(event.key)) {
+            this.searchOptions(event, event.key);
+            event.preventDefault();
+          }
+          break;
+      }
+    },
+    onOptionSelect: function onOptionSelect(event, option) {
+      var index = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : -1;
+      if (this.disabled || this.isOptionDisabled(option)) {
+        return;
+      }
+      this.multiple ? this.onOptionSelectMultiple(event, option) : this.onOptionSelectSingle(event, option);
+      this.optionTouched = false;
+      index !== -1 && (this.focusedOptionIndex = index);
+    },
+    onOptionMouseDown: function onOptionMouseDown(event, index) {
+      this.changeFocusedOptionIndex(event, index);
+    },
+    onOptionMouseMove: function onOptionMouseMove(event, index) {
+      if (this.focusOnHover) {
+        this.changeFocusedOptionIndex(event, index);
+      }
+    },
+    onOptionTouchEnd: function onOptionTouchEnd() {
+      if (this.disabled) {
+        return;
+      }
+      this.optionTouched = true;
+    },
+    onOptionSelectSingle: function onOptionSelectSingle(event, option) {
+      var selected = this.isSelected(option);
+      var valueChanged = false;
+      var value = null;
+      var metaSelection = this.optionTouched ? false : this.metaKeySelection;
+      if (metaSelection) {
+        var metaKey = event.metaKey || event.ctrlKey;
+        if (selected) {
+          if (metaKey) {
+            value = null;
+            valueChanged = true;
+          }
+        } else {
+          value = this.getOptionValue(option);
+          valueChanged = true;
+        }
+      } else {
+        value = selected ? null : this.getOptionValue(option);
+        valueChanged = true;
+      }
+      if (valueChanged) {
+        this.updateModel(event, value);
+      }
+    },
+    onOptionSelectMultiple: function onOptionSelectMultiple(event, option) {
+      var selected = this.isSelected(option);
+      var value = null;
+      var metaSelection = this.optionTouched ? false : this.metaKeySelection;
+      if (metaSelection) {
+        var metaKey = event.metaKey || event.ctrlKey;
+        if (selected) {
+          value = metaKey ? this.removeOption(option) : [this.getOptionValue(option)];
+        } else {
+          value = metaKey ? this.modelValue || [] : [];
+          value = [].concat(_toConsumableArray(value), [this.getOptionValue(option)]);
+        }
+      } else {
+        value = selected ? this.removeOption(option) : [].concat(_toConsumableArray(this.modelValue || []), [this.getOptionValue(option)]);
+      }
+      this.updateModel(event, value);
+    },
+    onOptionSelectRange: function onOptionSelectRange(event) {
+      var _this3 = this;
+      var start = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : -1;
+      var end = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : -1;
+      start === -1 && (start = this.findNearestSelectedOptionIndex(end, true));
+      end === -1 && (end = this.findNearestSelectedOptionIndex(start));
+      if (start !== -1 && end !== -1) {
+        var rangeStart = Math.min(start, end);
+        var rangeEnd = Math.max(start, end);
+        var value = this.visibleOptions.slice(rangeStart, rangeEnd + 1).filter(function (option) {
+          return _this3.isValidOption(option);
+        }).map(function (option) {
+          return _this3.getOptionValue(option);
+        });
+        this.updateModel(event, value);
+      }
+    },
+    onFilterChange: function onFilterChange(event) {
+      this.$emit('filter', {
+        originalEvent: event,
+        value: event.target.value
+      });
+      this.focusedOptionIndex = this.startRangeIndex = -1;
+    },
+    onFilterBlur: function onFilterBlur() {
+      this.focusedOptionIndex = this.startRangeIndex = -1;
+    },
+    onFilterKeyDown: function onFilterKeyDown(event) {
+      switch (event.code) {
+        case 'ArrowDown':
+          this.onArrowDownKey(event);
+          break;
+        case 'ArrowUp':
+          this.onArrowUpKey(event);
+          break;
+        case 'ArrowLeft':
+        case 'ArrowRight':
+          this.onArrowLeftKey(event, true);
+          break;
+        case 'Home':
+          this.onHomeKey(event, true);
+          break;
+        case 'End':
+          this.onEndKey(event, true);
+          break;
+        case 'Enter':
+          this.onEnterKey(event);
+          break;
+        case 'ShiftLeft':
+        case 'ShiftRight':
+          this.onShiftKey(event);
+          break;
+      }
+    },
+    onArrowDownKey: function onArrowDownKey(event) {
+      var optionIndex = this.focusedOptionIndex !== -1 ? this.findNextOptionIndex(this.focusedOptionIndex) : this.findFirstFocusedOptionIndex();
+      if (this.multiple && event.shiftKey) {
+        this.onOptionSelectRange(event, this.startRangeIndex, optionIndex);
+      }
+      this.changeFocusedOptionIndex(event, optionIndex);
+      event.preventDefault();
+    },
+    onArrowUpKey: function onArrowUpKey(event) {
+      var optionIndex = this.focusedOptionIndex !== -1 ? this.findPrevOptionIndex(this.focusedOptionIndex) : this.findLastFocusedOptionIndex();
+      if (this.multiple && event.shiftKey) {
+        this.onOptionSelectRange(event, optionIndex, this.startRangeIndex);
+      }
+      this.changeFocusedOptionIndex(event, optionIndex);
+      event.preventDefault();
+    },
+    onArrowLeftKey: function onArrowLeftKey(event) {
+      var pressedInInputText = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+      pressedInInputText && (this.focusedOptionIndex = -1);
+    },
+    onHomeKey: function onHomeKey(event) {
+      var pressedInInputText = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+      if (pressedInInputText) {
+        event.currentTarget.setSelectionRange(0, 0);
+        this.focusedOptionIndex = -1;
+      } else {
+        var metaKey = event.metaKey || event.ctrlKey;
+        var optionIndex = this.findFirstOptionIndex();
+        if (this.multiple && event.shiftKey && metaKey) {
+          this.onOptionSelectRange(event, optionIndex, this.startRangeIndex);
+        }
+        this.changeFocusedOptionIndex(event, optionIndex);
+      }
+      event.preventDefault();
+    },
+    onEndKey: function onEndKey(event) {
+      var pressedInInputText = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+      if (pressedInInputText) {
+        var target = event.currentTarget;
+        var len = target.value.length;
+        target.setSelectionRange(len, len);
+        this.focusedOptionIndex = -1;
+      } else {
+        var metaKey = event.metaKey || event.ctrlKey;
+        var optionIndex = this.findLastOptionIndex();
+        if (this.multiple && event.shiftKey && metaKey) {
+          this.onOptionSelectRange(event, this.startRangeIndex, optionIndex);
+        }
+        this.changeFocusedOptionIndex(event, optionIndex);
+      }
+      event.preventDefault();
+    },
+    onPageUpKey: function onPageUpKey(event) {
+      this.scrollInView(0);
+      event.preventDefault();
+    },
+    onPageDownKey: function onPageDownKey(event) {
+      this.scrollInView(this.visibleOptions.length - 1);
+      event.preventDefault();
+    },
+    onEnterKey: function onEnterKey(event) {
+      if (this.focusedOptionIndex !== -1) {
+        if (this.multiple && event.shiftKey) this.onOptionSelectRange(event, this.focusedOptionIndex);else this.onOptionSelect(event, this.visibleOptions[this.focusedOptionIndex]);
+      }
+      event.preventDefault();
+    },
+    onSpaceKey: function onSpaceKey(event) {
+      this.onEnterKey(event);
+    },
+    onShiftKey: function onShiftKey() {
+      this.startRangeIndex = this.focusedOptionIndex;
+    },
+    isOptionMatched: function isOptionMatched(option) {
+      return this.isValidOption(option) && this.getOptionLabel(option).toLocaleLowerCase(this.filterLocale).startsWith(this.searchValue.toLocaleLowerCase(this.filterLocale));
+    },
+    isValidOption: function isValidOption(option) {
+      return primevue_utils__WEBPACK_IMPORTED_MODULE_3__.ObjectUtils.isNotEmpty(option) && !(this.isOptionDisabled(option) || this.isOptionGroup(option));
+    },
+    isValidSelectedOption: function isValidSelectedOption(option) {
+      return this.isValidOption(option) && this.isSelected(option);
+    },
+    isSelected: function isSelected(option) {
+      var _this4 = this;
+      var optionValue = this.getOptionValue(option);
+      if (this.multiple) return (this.modelValue || []).some(function (value) {
+        return primevue_utils__WEBPACK_IMPORTED_MODULE_3__.ObjectUtils.equals(value, optionValue, _this4.equalityKey);
+      });else return primevue_utils__WEBPACK_IMPORTED_MODULE_3__.ObjectUtils.equals(this.modelValue, optionValue, this.equalityKey);
+    },
+    findFirstOptionIndex: function findFirstOptionIndex() {
+      var _this5 = this;
+      return this.visibleOptions.findIndex(function (option) {
+        return _this5.isValidOption(option);
+      });
+    },
+    findLastOptionIndex: function findLastOptionIndex() {
+      var _this6 = this;
+      return primevue_utils__WEBPACK_IMPORTED_MODULE_3__.ObjectUtils.findLastIndex(this.visibleOptions, function (option) {
+        return _this6.isValidOption(option);
+      });
+    },
+    findNextOptionIndex: function findNextOptionIndex(index) {
+      var _this7 = this;
+      var matchedOptionIndex = index < this.visibleOptions.length - 1 ? this.visibleOptions.slice(index + 1).findIndex(function (option) {
+        return _this7.isValidOption(option);
+      }) : -1;
+      return matchedOptionIndex > -1 ? matchedOptionIndex + index + 1 : index;
+    },
+    findPrevOptionIndex: function findPrevOptionIndex(index) {
+      var _this8 = this;
+      var matchedOptionIndex = index > 0 ? primevue_utils__WEBPACK_IMPORTED_MODULE_3__.ObjectUtils.findLastIndex(this.visibleOptions.slice(0, index), function (option) {
+        return _this8.isValidOption(option);
+      }) : -1;
+      return matchedOptionIndex > -1 ? matchedOptionIndex : index;
+    },
+    findFirstSelectedOptionIndex: function findFirstSelectedOptionIndex() {
+      var _this9 = this;
+      return this.hasSelectedOption ? this.visibleOptions.findIndex(function (option) {
+        return _this9.isValidSelectedOption(option);
+      }) : -1;
+    },
+    findLastSelectedOptionIndex: function findLastSelectedOptionIndex() {
+      var _this10 = this;
+      return this.hasSelectedOption ? primevue_utils__WEBPACK_IMPORTED_MODULE_3__.ObjectUtils.findLastIndex(this.visibleOptions, function (option) {
+        return _this10.isValidSelectedOption(option);
+      }) : -1;
+    },
+    findNextSelectedOptionIndex: function findNextSelectedOptionIndex(index) {
+      var _this11 = this;
+      var matchedOptionIndex = this.hasSelectedOption && index < this.visibleOptions.length - 1 ? this.visibleOptions.slice(index + 1).findIndex(function (option) {
+        return _this11.isValidSelectedOption(option);
+      }) : -1;
+      return matchedOptionIndex > -1 ? matchedOptionIndex + index + 1 : -1;
+    },
+    findPrevSelectedOptionIndex: function findPrevSelectedOptionIndex(index) {
+      var _this12 = this;
+      var matchedOptionIndex = this.hasSelectedOption && index > 0 ? primevue_utils__WEBPACK_IMPORTED_MODULE_3__.ObjectUtils.findLastIndex(this.visibleOptions.slice(0, index), function (option) {
+        return _this12.isValidSelectedOption(option);
+      }) : -1;
+      return matchedOptionIndex > -1 ? matchedOptionIndex : -1;
+    },
+    findNearestSelectedOptionIndex: function findNearestSelectedOptionIndex(index) {
+      var firstCheckUp = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+      var matchedOptionIndex = -1;
+      if (this.hasSelectedOption) {
+        if (firstCheckUp) {
+          matchedOptionIndex = this.findPrevSelectedOptionIndex(index);
+          matchedOptionIndex = matchedOptionIndex === -1 ? this.findNextSelectedOptionIndex(index) : matchedOptionIndex;
+        } else {
+          matchedOptionIndex = this.findNextSelectedOptionIndex(index);
+          matchedOptionIndex = matchedOptionIndex === -1 ? this.findPrevSelectedOptionIndex(index) : matchedOptionIndex;
+        }
+      }
+      return matchedOptionIndex > -1 ? matchedOptionIndex : index;
+    },
+    findFirstFocusedOptionIndex: function findFirstFocusedOptionIndex() {
+      var selectedIndex = this.findFirstSelectedOptionIndex();
+      return selectedIndex < 0 ? this.findFirstOptionIndex() : selectedIndex;
+    },
+    findLastFocusedOptionIndex: function findLastFocusedOptionIndex() {
+      var selectedIndex = this.findLastSelectedOptionIndex();
+      return selectedIndex < 0 ? this.findLastOptionIndex() : selectedIndex;
+    },
+    searchOptions: function searchOptions(event, _char) {
+      var _this13 = this;
+      this.searchValue = (this.searchValue || '') + _char;
+      var optionIndex = -1;
+      if (this.focusedOptionIndex !== -1) {
+        optionIndex = this.visibleOptions.slice(this.focusedOptionIndex).findIndex(function (option) {
+          return _this13.isOptionMatched(option);
+        });
+        optionIndex = optionIndex === -1 ? this.visibleOptions.slice(0, this.focusedOptionIndex).findIndex(function (option) {
+          return _this13.isOptionMatched(option);
+        }) : optionIndex + this.focusedOptionIndex;
+      } else {
+        optionIndex = this.visibleOptions.findIndex(function (option) {
+          return _this13.isOptionMatched(option);
+        });
+      }
+      if (optionIndex === -1 && this.focusedOptionIndex === -1) {
+        optionIndex = this.findFirstFocusedOptionIndex();
+      }
+      if (optionIndex !== -1) {
+        this.changeFocusedOptionIndex(event, optionIndex);
+      }
+      if (this.searchTimeout) {
+        clearTimeout(this.searchTimeout);
+      }
+      this.searchTimeout = setTimeout(function () {
+        _this13.searchValue = '';
+        _this13.searchTimeout = null;
+      }, 500);
+    },
+    removeOption: function removeOption(option) {
+      var _this14 = this;
+      return this.modelValue.filter(function (val) {
+        return !primevue_utils__WEBPACK_IMPORTED_MODULE_3__.ObjectUtils.equals(val, _this14.getOptionValue(option), _this14.equalityKey);
+      });
+    },
+    changeFocusedOptionIndex: function changeFocusedOptionIndex(event, index) {
+      if (this.focusedOptionIndex !== index) {
+        this.focusedOptionIndex = index;
+        this.scrollInView();
+        if (this.selectOnFocus && !this.multiple) {
+          this.onOptionSelect(event, this.visibleOptions[index]);
+        }
+      }
+    },
+    scrollInView: function scrollInView() {
+      var index = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : -1;
+      var id = index !== -1 ? "".concat(this.id, "_").concat(index) : this.focusedOptionId;
+      var element = primevue_utils__WEBPACK_IMPORTED_MODULE_3__.DomHandler.findSingle(this.list, "li[id=\"".concat(id, "\"]"));
+      if (element) {
+        element.scrollIntoView && element.scrollIntoView({
+          block: 'nearest',
+          inline: 'nearest'
+        });
+      } else if (!this.virtualScrollerDisabled) {
+        this.virtualScroller && this.virtualScroller.scrollToIndex(index !== -1 ? index : this.focusedOptionIndex);
+      }
+    },
+    autoUpdateModel: function autoUpdateModel() {
+      if (this.selectOnFocus && this.autoOptionFocus && !this.hasSelectedOption && !this.multiple) {
+        this.focusedOptionIndex = this.findFirstFocusedOptionIndex();
+        this.onOptionSelect(null, this.visibleOptions[this.focusedOptionIndex]);
+      }
+    },
+    updateModel: function updateModel(event, value) {
+      this.$emit('update:modelValue', value);
+      this.$emit('change', {
+        originalEvent: event,
+        value: value
+      });
+    },
+    flatOptions: function flatOptions(options) {
+      var _this15 = this;
+      return (options || []).reduce(function (result, option, index) {
+        result.push({
+          optionGroup: option,
+          group: true,
+          index: index
+        });
+        var optionGroupChildren = _this15.getOptionGroupChildren(option);
+        optionGroupChildren && optionGroupChildren.forEach(function (o) {
+          return result.push(o);
+        });
+        return result;
+      }, []);
+    },
+    listRef: function listRef(el, contentRef) {
+      this.list = el;
+      contentRef && contentRef(el); // For VirtualScroller
+    },
+    virtualScrollerRef: function virtualScrollerRef(el) {
+      this.virtualScroller = el;
+    }
+  },
+  computed: {
+    visibleOptions: function visibleOptions() {
+      var options = this.optionGroupLabel ? this.flatOptions(this.options) : this.options || [];
+      return this.filterValue ? primevue_api__WEBPACK_IMPORTED_MODULE_0__.FilterService.filter(options, this.searchFields, this.filterValue, this.filterMatchMode, this.filterLocale) : options;
+    },
+    hasSelectedOption: function hasSelectedOption() {
+      return primevue_utils__WEBPACK_IMPORTED_MODULE_3__.ObjectUtils.isNotEmpty(this.modelValue);
+    },
+    equalityKey: function equalityKey() {
+      return this.optionValue ? null : this.dataKey;
+    },
+    searchFields: function searchFields() {
+      return this.filterFields || [this.optionLabel];
+    },
+    filterResultMessageText: function filterResultMessageText() {
+      return primevue_utils__WEBPACK_IMPORTED_MODULE_3__.ObjectUtils.isNotEmpty(this.visibleOptions) ? this.filterMessageText.replaceAll('{0}', this.visibleOptions.length) : this.emptyFilterMessageText;
+    },
+    filterMessageText: function filterMessageText() {
+      return this.filterMessage || this.$primevue.config.locale.searchMessage || '';
+    },
+    emptyFilterMessageText: function emptyFilterMessageText() {
+      return this.emptyFilterMessage || this.$primevue.config.locale.emptySearchMessage || this.$primevue.config.locale.emptyFilterMessage || '';
+    },
+    emptyMessageText: function emptyMessageText() {
+      return this.emptyMessage || this.$primevue.config.locale.emptyMessage || '';
+    },
+    selectionMessageText: function selectionMessageText() {
+      return this.selectionMessage || this.$primevue.config.locale.selectionMessage || '';
+    },
+    emptySelectionMessageText: function emptySelectionMessageText() {
+      return this.emptySelectionMessage || this.$primevue.config.locale.emptySelectionMessage || '';
+    },
+    selectedMessageText: function selectedMessageText() {
+      return this.hasSelectedOption ? this.selectionMessageText.replaceAll('{0}', this.multiple ? this.modelValue.length : '1') : this.emptySelectionMessageText;
+    },
+    focusedOptionId: function focusedOptionId() {
+      return this.focusedOptionIndex !== -1 ? "".concat(this.id, "_").concat(this.focusedOptionIndex) : null;
+    },
+    ariaSetSize: function ariaSetSize() {
+      var _this16 = this;
+      return this.visibleOptions.filter(function (option) {
+        return !_this16.isOptionGroup(option);
+      }).length;
+    },
+    virtualScrollerDisabled: function virtualScrollerDisabled() {
+      return !this.virtualScrollerOptions;
+    }
+  },
+  directives: {
+    ripple: primevue_ripple__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
+  components: {
+    VirtualScroller: primevue_virtualscroller__WEBPACK_IMPORTED_MODULE_4__["default"],
+    SearchIcon: primevue_icons_search__WEBPACK_IMPORTED_MODULE_1__["default"]
+  }
+};
+
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+var _hoisted_1 = ["id"];
+var _hoisted_2 = ["tabindex"];
+var _hoisted_3 = ["placeholder", "aria-owns", "aria-activedescendant", "tabindex"];
+var _hoisted_4 = ["id", "aria-multiselectable", "aria-label", "aria-labelledby", "aria-activedescendant", "aria-disabled"];
+var _hoisted_5 = ["id"];
+var _hoisted_6 = ["id", "aria-label", "aria-selected", "aria-disabled", "aria-setsize", "aria-posinset", "onClick", "onMousedown", "onMousemove", "data-p-highlight", "data-p-focused", "data-p-disabled"];
+var _hoisted_7 = ["tabindex"];
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _component_VirtualScroller = (0,vue__WEBPACK_IMPORTED_MODULE_7__.resolveComponent)("VirtualScroller");
+  var _directive_ripple = (0,vue__WEBPACK_IMPORTED_MODULE_7__.resolveDirective)("ripple");
+  return (0,vue__WEBPACK_IMPORTED_MODULE_7__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_7__.createElementBlock)("div", (0,vue__WEBPACK_IMPORTED_MODULE_7__.mergeProps)({
+    id: $data.id,
+    "class": _ctx.cx('root'),
+    onFocusout: _cache[10] || (_cache[10] = function () {
+      return $options.onFocusout && $options.onFocusout.apply($options, arguments);
+    })
+  }, _ctx.ptm('root'), {
+    "data-pc-name": "listbox"
+  }), [(0,vue__WEBPACK_IMPORTED_MODULE_7__.createElementVNode)("span", (0,vue__WEBPACK_IMPORTED_MODULE_7__.mergeProps)({
+    ref: "firstHiddenFocusableElement",
+    role: "presentation",
+    "aria-hidden": "true",
+    "class": "p-hidden-accessible p-hidden-focusable",
+    tabindex: !_ctx.disabled ? _ctx.tabindex : -1,
+    onFocus: _cache[0] || (_cache[0] = function () {
+      return $options.onFirstHiddenFocus && $options.onFirstHiddenFocus.apply($options, arguments);
+    })
+  }, _ctx.ptm('hiddenFirstFocusableEl'), {
+    "data-p-hidden-accessible": true,
+    "data-p-hidden-focusable": true
+  }), null, 16, _hoisted_2), (0,vue__WEBPACK_IMPORTED_MODULE_7__.renderSlot)(_ctx.$slots, "header", {
+    value: _ctx.modelValue,
+    options: $options.visibleOptions
+  }), _ctx.filter ? ((0,vue__WEBPACK_IMPORTED_MODULE_7__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_7__.createElementBlock)("div", (0,vue__WEBPACK_IMPORTED_MODULE_7__.mergeProps)({
+    key: 0,
+    "class": _ctx.cx('header')
+  }, _ctx.ptm('header')), [(0,vue__WEBPACK_IMPORTED_MODULE_7__.createElementVNode)("div", (0,vue__WEBPACK_IMPORTED_MODULE_7__.mergeProps)({
+    "class": _ctx.cx('filterContainer')
+  }, _ctx.ptm('filterContainer')), [(0,vue__WEBPACK_IMPORTED_MODULE_7__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_7__.createElementVNode)("input", (0,vue__WEBPACK_IMPORTED_MODULE_7__.mergeProps)({
+    ref: "filterInput",
+    "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+      return $data.filterValue = $event;
+    }),
+    type: "text",
+    "class": _ctx.cx('filterInput'),
+    placeholder: _ctx.filterPlaceholder,
+    role: "searchbox",
+    autocomplete: "off",
+    "aria-owns": $data.id + '_list',
+    "aria-activedescendant": $options.focusedOptionId,
+    tabindex: !_ctx.disabled && !$data.focused ? _ctx.tabindex : -1,
+    onInput: _cache[2] || (_cache[2] = function () {
+      return $options.onFilterChange && $options.onFilterChange.apply($options, arguments);
+    }),
+    onBlur: _cache[3] || (_cache[3] = function () {
+      return $options.onFilterBlur && $options.onFilterBlur.apply($options, arguments);
+    }),
+    onKeydown: _cache[4] || (_cache[4] = function () {
+      return $options.onFilterKeyDown && $options.onFilterKeyDown.apply($options, arguments);
+    })
+  }, _objectSpread(_objectSpread({}, _ctx.filterInputProps), _ctx.ptm('filterInput'))), null, 16, _hoisted_3), [[vue__WEBPACK_IMPORTED_MODULE_7__.vModelText, $data.filterValue]]), (0,vue__WEBPACK_IMPORTED_MODULE_7__.renderSlot)(_ctx.$slots, "filtericon", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_7__.normalizeClass)(_ctx.cx('filterIcon'))
+  }, function () {
+    return [((0,vue__WEBPACK_IMPORTED_MODULE_7__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_7__.createBlock)((0,vue__WEBPACK_IMPORTED_MODULE_7__.resolveDynamicComponent)(_ctx.filterIcon ? 'span' : 'SearchIcon'), (0,vue__WEBPACK_IMPORTED_MODULE_7__.mergeProps)({
+      "class": [_ctx.cx('filterIcon'), _ctx.filterIcon]
+    }, _ctx.ptm('filterIcon')), null, 16, ["class"]))];
+  })], 16), (0,vue__WEBPACK_IMPORTED_MODULE_7__.createElementVNode)("span", (0,vue__WEBPACK_IMPORTED_MODULE_7__.mergeProps)({
+    role: "status",
+    "aria-live": "polite",
+    "class": "p-hidden-accessible"
+  }, _ctx.ptm('hiddenFilterResult'), {
+    "data-p-hidden-accessible": true
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_7__.toDisplayString)($options.filterResultMessageText), 17)], 16)) : (0,vue__WEBPACK_IMPORTED_MODULE_7__.createCommentVNode)("", true), (0,vue__WEBPACK_IMPORTED_MODULE_7__.createElementVNode)("div", (0,vue__WEBPACK_IMPORTED_MODULE_7__.mergeProps)({
+    ref: "listWrapper",
+    "class": _ctx.cx('wrapper'),
+    style: _ctx.listStyle
+  }, _ctx.ptm('wrapper')), [(0,vue__WEBPACK_IMPORTED_MODULE_7__.createVNode)(_component_VirtualScroller, (0,vue__WEBPACK_IMPORTED_MODULE_7__.mergeProps)({
+    ref: $options.virtualScrollerRef
+  }, _ctx.virtualScrollerOptions, {
+    style: _ctx.listStyle,
+    items: $options.visibleOptions,
+    tabindex: -1,
+    disabled: $options.virtualScrollerDisabled,
+    pt: _ctx.ptm('virtualScroller')
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_7__.createSlots)({
+    content: (0,vue__WEBPACK_IMPORTED_MODULE_7__.withCtx)(function (_ref) {
+      var styleClass = _ref.styleClass,
+        contentRef = _ref.contentRef,
+        items = _ref.items,
+        getItemOptions = _ref.getItemOptions,
+        contentStyle = _ref.contentStyle,
+        itemSize = _ref.itemSize;
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_7__.createElementVNode)("ul", (0,vue__WEBPACK_IMPORTED_MODULE_7__.mergeProps)({
+        ref: function ref(el) {
+          return $options.listRef(el, contentRef);
+        },
+        id: $data.id + '_list',
+        "class": [_ctx.cx('list'), styleClass],
+        style: contentStyle,
+        tabindex: -1,
+        role: "listbox",
+        "aria-multiselectable": _ctx.multiple,
+        "aria-label": _ctx.ariaLabel,
+        "aria-labelledby": _ctx.ariaLabelledby,
+        "aria-activedescendant": $data.focused ? $options.focusedOptionId : undefined,
+        "aria-disabled": _ctx.disabled,
+        onFocus: _cache[6] || (_cache[6] = function () {
+          return $options.onListFocus && $options.onListFocus.apply($options, arguments);
+        }),
+        onBlur: _cache[7] || (_cache[7] = function () {
+          return $options.onListBlur && $options.onListBlur.apply($options, arguments);
+        }),
+        onKeydown: _cache[8] || (_cache[8] = function () {
+          return $options.onListKeyDown && $options.onListKeyDown.apply($options, arguments);
+        })
+      }, _ctx.ptm('list')), [((0,vue__WEBPACK_IMPORTED_MODULE_7__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_7__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_7__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_7__.renderList)(items, function (option, i) {
+        return (0,vue__WEBPACK_IMPORTED_MODULE_7__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_7__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
+          key: $options.getOptionRenderKey(option, $options.getOptionIndex(i, getItemOptions))
+        }, [$options.isOptionGroup(option) ? ((0,vue__WEBPACK_IMPORTED_MODULE_7__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_7__.createElementBlock)("li", (0,vue__WEBPACK_IMPORTED_MODULE_7__.mergeProps)({
+          key: 0,
+          id: $data.id + '_' + $options.getOptionIndex(i, getItemOptions),
+          style: {
+            height: itemSize ? itemSize + 'px' : undefined
+          },
+          "class": _ctx.cx('itemGroup'),
+          role: "option"
+        }, _ctx.ptm('itemGroup')), [(0,vue__WEBPACK_IMPORTED_MODULE_7__.renderSlot)(_ctx.$slots, "optiongroup", {
+          option: option.optionGroup,
+          index: $options.getOptionIndex(i, getItemOptions)
+        }, function () {
+          return [(0,vue__WEBPACK_IMPORTED_MODULE_7__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_7__.toDisplayString)($options.getOptionGroupLabel(option.optionGroup)), 1)];
+        })], 16, _hoisted_5)) : (0,vue__WEBPACK_IMPORTED_MODULE_7__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_7__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_7__.createElementBlock)("li", (0,vue__WEBPACK_IMPORTED_MODULE_7__.mergeProps)({
+          key: 1,
+          id: $data.id + '_' + $options.getOptionIndex(i, getItemOptions),
+          style: {
+            height: itemSize ? itemSize + 'px' : undefined
+          },
+          "class": _ctx.cx('item', {
+            option: option,
+            index: i,
+            getItemOptions: getItemOptions
+          }),
+          role: "option",
+          "aria-label": $options.getOptionLabel(option),
+          "aria-selected": $options.isSelected(option),
+          "aria-disabled": $options.isOptionDisabled(option),
+          "aria-setsize": $options.ariaSetSize,
+          "aria-posinset": $options.getAriaPosInset($options.getOptionIndex(i, getItemOptions)),
+          onClick: function onClick($event) {
+            return $options.onOptionSelect($event, option, $options.getOptionIndex(i, getItemOptions));
+          },
+          onMousedown: function onMousedown($event) {
+            return $options.onOptionMouseDown($event, $options.getOptionIndex(i, getItemOptions));
+          },
+          onMousemove: function onMousemove($event) {
+            return $options.onOptionMouseMove($event, $options.getOptionIndex(i, getItemOptions));
+          },
+          onTouchend: _cache[5] || (_cache[5] = function ($event) {
+            return $options.onOptionTouchEnd();
+          })
+        }, $options.getPTOptions(option, getItemOptions, i, 'item'), {
+          "data-p-highlight": $options.isSelected(option),
+          "data-p-focused": $data.focusedOptionIndex === $options.getOptionIndex(i, getItemOptions),
+          "data-p-disabled": $options.isOptionDisabled(option)
+        }), [(0,vue__WEBPACK_IMPORTED_MODULE_7__.renderSlot)(_ctx.$slots, "option", {
+          option: option,
+          index: $options.getOptionIndex(i, getItemOptions)
+        }, function () {
+          return [(0,vue__WEBPACK_IMPORTED_MODULE_7__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_7__.toDisplayString)($options.getOptionLabel(option)), 1)];
+        })], 16, _hoisted_6)), [[_directive_ripple]])], 64);
+      }), 128)), $data.filterValue && (!items || items && items.length === 0) ? ((0,vue__WEBPACK_IMPORTED_MODULE_7__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_7__.createElementBlock)("li", (0,vue__WEBPACK_IMPORTED_MODULE_7__.mergeProps)({
+        key: 0,
+        "class": _ctx.cx('emptyMessage'),
+        role: "option"
+      }, _ctx.ptm('emptyMessage')), [(0,vue__WEBPACK_IMPORTED_MODULE_7__.renderSlot)(_ctx.$slots, "emptyfilter", {}, function () {
+        return [(0,vue__WEBPACK_IMPORTED_MODULE_7__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_7__.toDisplayString)($options.emptyFilterMessageText), 1)];
+      })], 16)) : !_ctx.options || _ctx.options && _ctx.options.length === 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_7__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_7__.createElementBlock)("li", (0,vue__WEBPACK_IMPORTED_MODULE_7__.mergeProps)({
+        key: 1,
+        "class": _ctx.cx('emptyMessage'),
+        role: "option"
+      }, _ctx.ptm('emptyMessage')), [(0,vue__WEBPACK_IMPORTED_MODULE_7__.renderSlot)(_ctx.$slots, "empty", {}, function () {
+        return [(0,vue__WEBPACK_IMPORTED_MODULE_7__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_7__.toDisplayString)($options.emptyMessageText), 1)];
+      })], 16)) : (0,vue__WEBPACK_IMPORTED_MODULE_7__.createCommentVNode)("", true)], 16, _hoisted_4)];
+    }),
+    _: 2
+  }, [_ctx.$slots.loader ? {
+    name: "loader",
+    fn: (0,vue__WEBPACK_IMPORTED_MODULE_7__.withCtx)(function (_ref2) {
+      var options = _ref2.options;
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_7__.renderSlot)(_ctx.$slots, "loader", {
+        options: options
+      })];
+    }),
+    key: "0"
+  } : undefined]), 1040, ["style", "items", "disabled", "pt"])], 16), (0,vue__WEBPACK_IMPORTED_MODULE_7__.renderSlot)(_ctx.$slots, "footer", {
+    value: _ctx.modelValue,
+    options: $options.visibleOptions
+  }), !_ctx.options || _ctx.options && _ctx.options.length === 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_7__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_7__.createElementBlock)("span", (0,vue__WEBPACK_IMPORTED_MODULE_7__.mergeProps)({
+    key: 1,
+    role: "status",
+    "aria-live": "polite",
+    "class": "p-hidden-accessible"
+  }, _ctx.ptm('hiddenEmptyMessage'), {
+    "data-p-hidden-accessible": true
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_7__.toDisplayString)($options.emptyMessageText), 17)) : (0,vue__WEBPACK_IMPORTED_MODULE_7__.createCommentVNode)("", true), (0,vue__WEBPACK_IMPORTED_MODULE_7__.createElementVNode)("span", (0,vue__WEBPACK_IMPORTED_MODULE_7__.mergeProps)({
+    role: "status",
+    "aria-live": "polite",
+    "class": "p-hidden-accessible"
+  }, _ctx.ptm('hiddenSelectedMessage'), {
+    "data-p-hidden-accessible": true
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_7__.toDisplayString)($options.selectedMessageText), 17), (0,vue__WEBPACK_IMPORTED_MODULE_7__.createElementVNode)("span", (0,vue__WEBPACK_IMPORTED_MODULE_7__.mergeProps)({
+    ref: "lastHiddenFocusableElement",
+    role: "presentation",
+    "aria-hidden": "true",
+    "class": "p-hidden-accessible p-hidden-focusable",
+    tabindex: !_ctx.disabled ? _ctx.tabindex : -1,
+    onFocus: _cache[9] || (_cache[9] = function () {
+      return $options.onLastHiddenFocus && $options.onLastHiddenFocus.apply($options, arguments);
+    })
+  }, _ctx.ptm('hiddenLastFocusableEl'), {
+    "data-p-hidden-accessible": true,
+    "data-p-hidden-focusable": true
+  }), null, 16, _hoisted_7)], 16, _hoisted_1);
+}
+
+script.render = render;
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/primevue/listbox/style/listboxstyle.esm.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/primevue/listbox/style/listboxstyle.esm.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ ListboxStyle)
+/* harmony export */ });
+/* harmony import */ var primevue_base_style__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! primevue/base/style */ "./node_modules/primevue/base/style/basestyle.esm.js");
+
+
+var css = "\n@layer primevue {\n    .p-listbox-list-wrapper {\n        overflow: auto;\n    }\n\n    .p-listbox-list {\n        list-style-type: none;\n        margin: 0;\n        padding: 0;\n    }\n\n    .p-listbox-item {\n        cursor: pointer;\n        position: relative;\n        overflow: hidden;\n    }\n\n    .p-listbox-item-group {\n        cursor: auto;\n    }\n\n    .p-listbox-filter-container {\n        position: relative;\n    }\n\n    .p-listbox-filter-icon {\n        position: absolute;\n        top: 50%;\n        margin-top: -0.5rem;\n    }\n\n    .p-listbox-filter {\n        width: 100%;\n    }\n}\n";
+var classes = {
+  root: function root(_ref) {
+    var instance = _ref.instance,
+      props = _ref.props;
+    return ['p-listbox p-component', {
+      'p-focus': instance.focused,
+      'p-disabled': props.disabled
+    }];
+  },
+  header: 'p-listbox-header',
+  filterContainer: 'p-listbox-filter-container',
+  filterInput: 'p-listbox-filter p-inputtext p-component',
+  filterIcon: 'p-listbox-filter-icon',
+  wrapper: 'p-listbox-list-wrapper',
+  list: 'p-listbox-list',
+  itemGroup: 'p-listbox-item-group',
+  item: function item(_ref2) {
+    var instance = _ref2.instance,
+      option = _ref2.option,
+      index = _ref2.index,
+      getItemOptions = _ref2.getItemOptions;
+    return ['p-listbox-item', {
+      'p-highlight': instance.isSelected(option),
+      'p-focus': instance.focusedOptionIndex === instance.getOptionIndex(index, getItemOptions),
+      'p-disabled': instance.isOptionDisabled(option)
+    }];
+  },
+  emptyMessage: 'p-listbox-empty-message'
+};
+var ListboxStyle = primevue_base_style__WEBPACK_IMPORTED_MODULE_0__["default"].extend({
+  name: 'listbox',
+  css: css,
+  classes: classes
+});
+
+
+
+
+/***/ }),
+
 /***/ "./node_modules/primevue/overlayeventbus/overlayeventbus.esm.js":
 /*!**********************************************************************!*\
   !*** ./node_modules/primevue/overlayeventbus/overlayeventbus.esm.js ***!
@@ -44328,6 +45721,214 @@ var classes = {
 };
 var PaginatorStyle = primevue_base_style__WEBPACK_IMPORTED_MODULE_0__["default"].extend({
   name: 'paginator',
+  css: css,
+  classes: classes
+});
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/primevue/panel/panel.esm.js":
+/*!**************************************************!*\
+  !*** ./node_modules/primevue/panel/panel.esm.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ script)
+/* harmony export */ });
+/* harmony import */ var primevue_icons_minus__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! primevue/icons/minus */ "./node_modules/primevue/icons/minus/index.esm.js");
+/* harmony import */ var primevue_icons_plus__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! primevue/icons/plus */ "./node_modules/primevue/icons/plus/index.esm.js");
+/* harmony import */ var primevue_ripple__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! primevue/ripple */ "./node_modules/primevue/ripple/ripple.esm.js");
+/* harmony import */ var primevue_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! primevue/utils */ "./node_modules/primevue/utils/utils.esm.js");
+/* harmony import */ var primevue_basecomponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! primevue/basecomponent */ "./node_modules/primevue/basecomponent/basecomponent.esm.js");
+/* harmony import */ var primevue_panel_style__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! primevue/panel/style */ "./node_modules/primevue/panel/style/panelstyle.esm.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+
+
+
+
+
+
+
+var script$1 = {
+  name: 'BasePanel',
+  "extends": primevue_basecomponent__WEBPACK_IMPORTED_MODULE_4__["default"],
+  props: {
+    header: String,
+    toggleable: Boolean,
+    collapsed: Boolean,
+    toggleButtonProps: {
+      type: null,
+      "default": null
+    }
+  },
+  style: primevue_panel_style__WEBPACK_IMPORTED_MODULE_5__["default"],
+  provide: function provide() {
+    return {
+      $parentInstance: this
+    };
+  }
+};
+
+var script = {
+  name: 'Panel',
+  "extends": script$1,
+  emits: ['update:collapsed', 'toggle'],
+  data: function data() {
+    return {
+      d_collapsed: this.collapsed
+    };
+  },
+  watch: {
+    collapsed: function collapsed(newValue) {
+      this.d_collapsed = newValue;
+    }
+  },
+  methods: {
+    toggle: function toggle(event) {
+      this.d_collapsed = !this.d_collapsed;
+      this.$emit('update:collapsed', this.d_collapsed);
+      this.$emit('toggle', {
+        originalEvent: event,
+        value: this.d_collapsed
+      });
+    },
+    onKeyDown: function onKeyDown(event) {
+      if (event.code === 'Enter' || event.code === 'Space') {
+        this.toggle(event);
+        event.preventDefault();
+      }
+    }
+  },
+  computed: {
+    ariaId: function ariaId() {
+      return (0,primevue_utils__WEBPACK_IMPORTED_MODULE_3__.UniqueComponentId)();
+    },
+    buttonAriaLabel: function buttonAriaLabel() {
+      return this.toggleButtonProps && this.toggleButtonProps['aria-label'] ? this.toggleButtonProps['aria-label'] : this.header;
+    }
+  },
+  components: {
+    PlusIcon: primevue_icons_plus__WEBPACK_IMPORTED_MODULE_1__["default"],
+    MinusIcon: primevue_icons_minus__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  directives: {
+    ripple: primevue_ripple__WEBPACK_IMPORTED_MODULE_2__["default"]
+  }
+};
+
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+var _hoisted_1 = ["id"];
+var _hoisted_2 = ["id", "aria-label", "aria-controls", "aria-expanded"];
+var _hoisted_3 = ["id", "aria-labelledby"];
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _directive_ripple = (0,vue__WEBPACK_IMPORTED_MODULE_6__.resolveDirective)("ripple");
+  return (0,vue__WEBPACK_IMPORTED_MODULE_6__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_6__.createElementBlock)("div", (0,vue__WEBPACK_IMPORTED_MODULE_6__.mergeProps)({
+    "class": _ctx.cx('root')
+  }, _ctx.ptm('root'), {
+    "data-pc-name": "panel"
+  }), [(0,vue__WEBPACK_IMPORTED_MODULE_6__.createElementVNode)("div", (0,vue__WEBPACK_IMPORTED_MODULE_6__.mergeProps)({
+    "class": _ctx.cx('header')
+  }, _ctx.ptm('header')), [(0,vue__WEBPACK_IMPORTED_MODULE_6__.renderSlot)(_ctx.$slots, "header", {
+    id: $options.ariaId + '_header',
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_6__.normalizeClass)(_ctx.cx('title'))
+  }, function () {
+    return [_ctx.header ? ((0,vue__WEBPACK_IMPORTED_MODULE_6__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_6__.createElementBlock)("span", (0,vue__WEBPACK_IMPORTED_MODULE_6__.mergeProps)({
+      key: 0,
+      id: $options.ariaId + '_header',
+      "class": _ctx.cx('title')
+    }, _ctx.ptm('title')), (0,vue__WEBPACK_IMPORTED_MODULE_6__.toDisplayString)(_ctx.header), 17, _hoisted_1)) : (0,vue__WEBPACK_IMPORTED_MODULE_6__.createCommentVNode)("", true)];
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_6__.createElementVNode)("div", (0,vue__WEBPACK_IMPORTED_MODULE_6__.mergeProps)({
+    "class": _ctx.cx('icons')
+  }, _ctx.ptm('icons')), [(0,vue__WEBPACK_IMPORTED_MODULE_6__.renderSlot)(_ctx.$slots, "icons"), _ctx.toggleable ? (0,vue__WEBPACK_IMPORTED_MODULE_6__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_6__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_6__.createElementBlock)("button", (0,vue__WEBPACK_IMPORTED_MODULE_6__.mergeProps)({
+    key: 0,
+    id: $options.ariaId + '_header',
+    type: "button",
+    role: "button",
+    "class": _ctx.cx('toggler'),
+    "aria-label": $options.buttonAriaLabel,
+    "aria-controls": $options.ariaId + '_content',
+    "aria-expanded": !$data.d_collapsed,
+    onClick: _cache[0] || (_cache[0] = function () {
+      return $options.toggle && $options.toggle.apply($options, arguments);
+    }),
+    onKeydown: _cache[1] || (_cache[1] = function () {
+      return $options.onKeyDown && $options.onKeyDown.apply($options, arguments);
+    })
+  }, _objectSpread(_objectSpread({}, _ctx.toggleButtonProps), _ctx.ptm('toggler'))), [(0,vue__WEBPACK_IMPORTED_MODULE_6__.renderSlot)(_ctx.$slots, "togglericon", {
+    collapsed: $data.d_collapsed
+  }, function () {
+    return [((0,vue__WEBPACK_IMPORTED_MODULE_6__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_6__.createBlock)((0,vue__WEBPACK_IMPORTED_MODULE_6__.resolveDynamicComponent)($data.d_collapsed ? 'PlusIcon' : 'MinusIcon'), (0,vue__WEBPACK_IMPORTED_MODULE_6__.normalizeProps)((0,vue__WEBPACK_IMPORTED_MODULE_6__.guardReactiveProps)(_ctx.ptm('togglericon'))), null, 16))];
+  })], 16, _hoisted_2)), [[_directive_ripple]]) : (0,vue__WEBPACK_IMPORTED_MODULE_6__.createCommentVNode)("", true)], 16)], 16), (0,vue__WEBPACK_IMPORTED_MODULE_6__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_6__.Transition, (0,vue__WEBPACK_IMPORTED_MODULE_6__.mergeProps)({
+    name: "p-toggleable-content"
+  }, _ctx.ptm('transition')), {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_6__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_6__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_6__.createElementVNode)("div", (0,vue__WEBPACK_IMPORTED_MODULE_6__.mergeProps)({
+        id: $options.ariaId + '_content',
+        "class": _ctx.cx('toggleablecontent'),
+        role: "region",
+        "aria-labelledby": $options.ariaId + '_header'
+      }, _ctx.ptm('toggleablecontent')), [(0,vue__WEBPACK_IMPORTED_MODULE_6__.createElementVNode)("div", (0,vue__WEBPACK_IMPORTED_MODULE_6__.mergeProps)({
+        "class": _ctx.cx('content')
+      }, _ctx.ptm('content')), [(0,vue__WEBPACK_IMPORTED_MODULE_6__.renderSlot)(_ctx.$slots, "default")], 16), _ctx.$slots.footer ? ((0,vue__WEBPACK_IMPORTED_MODULE_6__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_6__.createElementBlock)("div", (0,vue__WEBPACK_IMPORTED_MODULE_6__.mergeProps)({
+        key: 0,
+        "class": _ctx.cx('footer')
+      }, _ctx.ptm('footer')), [(0,vue__WEBPACK_IMPORTED_MODULE_6__.renderSlot)(_ctx.$slots, "footer")], 16)) : (0,vue__WEBPACK_IMPORTED_MODULE_6__.createCommentVNode)("", true)], 16, _hoisted_3), [[vue__WEBPACK_IMPORTED_MODULE_6__.vShow, !$data.d_collapsed]])];
+    }),
+    _: 3
+  }, 16)], 16);
+}
+
+script.render = render;
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/primevue/panel/style/panelstyle.esm.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/primevue/panel/style/panelstyle.esm.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ PanelStyle)
+/* harmony export */ });
+/* harmony import */ var primevue_base_style__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! primevue/base/style */ "./node_modules/primevue/base/style/basestyle.esm.js");
+
+
+var css = "\n@layer primevue {\n    .p-panel-header {\n        display: flex;\n        justify-content: space-between;\n        align-items: center;\n    }\n\n    .p-panel-title {\n        line-height: 1;\n    }\n\n    .p-panel-header-icon {\n        display: inline-flex;\n        justify-content: center;\n        align-items: center;\n        cursor: pointer;\n        text-decoration: none;\n        overflow: hidden;\n        position: relative;\n    }\n}\n";
+var classes = {
+  root: function root(_ref) {
+    var props = _ref.props;
+    return ['p-panel p-component', {
+      'p-panel-toggleable': props.toggleable
+    }];
+  },
+  header: 'p-panel-header',
+  title: 'p-panel-title',
+  icons: 'p-panel-icons',
+  toggler: 'p-panel-header-icon p-panel-toggler p-link',
+  toggleablecontent: 'p-toggleable-content',
+  content: 'p-panel-content',
+  footer: 'p-panel-footer'
+};
+var PanelStyle = primevue_base_style__WEBPACK_IMPORTED_MODULE_0__["default"].extend({
+  name: 'panel',
   css: css,
   classes: classes
 });
@@ -52207,6 +53808,34 @@ exports["default"] = (sfc, props) => {
 
 /***/ }),
 
+/***/ "./resources/js/components/AllahNamesComponent.vue":
+/*!*********************************************************!*\
+  !*** ./resources/js/components/AllahNamesComponent.vue ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _AllahNamesComponent_vue_vue_type_template_id_55b9a4bc__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AllahNamesComponent.vue?vue&type=template&id=55b9a4bc */ "./resources/js/components/AllahNamesComponent.vue?vue&type=template&id=55b9a4bc");
+/* harmony import */ var _AllahNamesComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AllahNamesComponent.vue?vue&type=script&lang=js */ "./resources/js/components/AllahNamesComponent.vue?vue&type=script&lang=js");
+/* harmony import */ var _node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+
+
+
+
+;
+const __exports__ = /*#__PURE__*/(0,_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_AllahNamesComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_AllahNamesComponent_vue_vue_type_template_id_55b9a4bc__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/AllahNamesComponent.vue"]])
+/* hot reload */
+if (false) {}
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
+
+/***/ }),
+
 /***/ "./resources/js/components/CardsComponent.vue":
 /*!****************************************************!*\
   !*** ./resources/js/components/CardsComponent.vue ***!
@@ -52415,10 +54044,10 @@ if (false) {}
 
 /***/ }),
 
-/***/ "./resources/js/components/HadithComponent.vue":
-/*!*****************************************************!*\
-  !*** ./resources/js/components/HadithComponent.vue ***!
-  \*****************************************************/
+/***/ "./resources/js/components/HadithNawawiComponent.vue":
+/*!***********************************************************!*\
+  !*** ./resources/js/components/HadithNawawiComponent.vue ***!
+  \***********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -52426,15 +54055,71 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _HadithComponent_vue_vue_type_template_id_64068460__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./HadithComponent.vue?vue&type=template&id=64068460 */ "./resources/js/components/HadithComponent.vue?vue&type=template&id=64068460");
-/* harmony import */ var _HadithComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./HadithComponent.vue?vue&type=script&lang=js */ "./resources/js/components/HadithComponent.vue?vue&type=script&lang=js");
+/* harmony import */ var _HadithNawawiComponent_vue_vue_type_template_id_3e3f82fe__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./HadithNawawiComponent.vue?vue&type=template&id=3e3f82fe */ "./resources/js/components/HadithNawawiComponent.vue?vue&type=template&id=3e3f82fe");
+/* harmony import */ var _HadithNawawiComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./HadithNawawiComponent.vue?vue&type=script&lang=js */ "./resources/js/components/HadithNawawiComponent.vue?vue&type=script&lang=js");
 /* harmony import */ var _node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
 
 ;
-const __exports__ = /*#__PURE__*/(0,_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_HadithComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_HadithComponent_vue_vue_type_template_id_64068460__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/HadithComponent.vue"]])
+const __exports__ = /*#__PURE__*/(0,_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_HadithNawawiComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_HadithNawawiComponent_vue_vue_type_template_id_3e3f82fe__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/HadithNawawiComponent.vue"]])
+/* hot reload */
+if (false) {}
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
+
+/***/ }),
+
+/***/ "./resources/js/components/HadithQudsiComponent.vue":
+/*!**********************************************************!*\
+  !*** ./resources/js/components/HadithQudsiComponent.vue ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _HadithQudsiComponent_vue_vue_type_template_id_197cc078__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./HadithQudsiComponent.vue?vue&type=template&id=197cc078 */ "./resources/js/components/HadithQudsiComponent.vue?vue&type=template&id=197cc078");
+/* harmony import */ var _HadithQudsiComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./HadithQudsiComponent.vue?vue&type=script&lang=js */ "./resources/js/components/HadithQudsiComponent.vue?vue&type=script&lang=js");
+/* harmony import */ var _node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+
+
+
+
+;
+const __exports__ = /*#__PURE__*/(0,_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_HadithQudsiComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_HadithQudsiComponent_vue_vue_type_template_id_197cc078__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/HadithQudsiComponent.vue"]])
+/* hot reload */
+if (false) {}
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
+
+/***/ }),
+
+/***/ "./resources/js/components/HadithShahComponent.vue":
+/*!*********************************************************!*\
+  !*** ./resources/js/components/HadithShahComponent.vue ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _HadithShahComponent_vue_vue_type_template_id_ca89bf18__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./HadithShahComponent.vue?vue&type=template&id=ca89bf18 */ "./resources/js/components/HadithShahComponent.vue?vue&type=template&id=ca89bf18");
+/* harmony import */ var _HadithShahComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./HadithShahComponent.vue?vue&type=script&lang=js */ "./resources/js/components/HadithShahComponent.vue?vue&type=script&lang=js");
+/* harmony import */ var _node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+
+
+
+
+;
+const __exports__ = /*#__PURE__*/(0,_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_HadithShahComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_HadithShahComponent_vue_vue_type_template_id_ca89bf18__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/HadithShahComponent.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -52459,34 +54144,6 @@ const script = {}
 
 ;
 const __exports__ = /*#__PURE__*/(0,_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_0__["default"])(script, [['__file',"resources/js/components/HomepageComponent.vue"]])
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
-
-/***/ }),
-
-/***/ "./resources/js/components/JsonComponent.vue":
-/*!***************************************************!*\
-  !*** ./resources/js/components/JsonComponent.vue ***!
-  \***************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _JsonComponent_vue_vue_type_template_id_444bee1a__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./JsonComponent.vue?vue&type=template&id=444bee1a */ "./resources/js/components/JsonComponent.vue?vue&type=template&id=444bee1a");
-/* harmony import */ var _JsonComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./JsonComponent.vue?vue&type=script&lang=js */ "./resources/js/components/JsonComponent.vue?vue&type=script&lang=js");
-/* harmony import */ var _node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
-
-
-
-
-;
-const __exports__ = /*#__PURE__*/(0,_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_JsonComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_JsonComponent_vue_vue_type_template_id_444bee1a__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/JsonComponent.vue"]])
-/* hot reload */
-if (false) {}
-
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
 
@@ -52669,6 +54326,22 @@ if (false) {}
 
 /***/ }),
 
+/***/ "./resources/js/components/AllahNamesComponent.vue?vue&type=script&lang=js":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/AllahNamesComponent.vue?vue&type=script&lang=js ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AllahNamesComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AllahNamesComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./AllahNamesComponent.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/AllahNamesComponent.vue?vue&type=script&lang=js");
+ 
+
+/***/ }),
+
 /***/ "./resources/js/components/CardsComponent.vue?vue&type=script&lang=js":
 /*!****************************************************************************!*\
   !*** ./resources/js/components/CardsComponent.vue?vue&type=script&lang=js ***!
@@ -52785,34 +54458,50 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/HadithComponent.vue?vue&type=script&lang=js":
-/*!*****************************************************************************!*\
-  !*** ./resources/js/components/HadithComponent.vue?vue&type=script&lang=js ***!
-  \*****************************************************************************/
+/***/ "./resources/js/components/HadithNawawiComponent.vue?vue&type=script&lang=js":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/components/HadithNawawiComponent.vue?vue&type=script&lang=js ***!
+  \***********************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_HadithComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_HadithNawawiComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_HadithComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./HadithComponent.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/HadithComponent.vue?vue&type=script&lang=js");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_HadithNawawiComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./HadithNawawiComponent.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/HadithNawawiComponent.vue?vue&type=script&lang=js");
  
 
 /***/ }),
 
-/***/ "./resources/js/components/JsonComponent.vue?vue&type=script&lang=js":
-/*!***************************************************************************!*\
-  !*** ./resources/js/components/JsonComponent.vue?vue&type=script&lang=js ***!
-  \***************************************************************************/
+/***/ "./resources/js/components/HadithQudsiComponent.vue?vue&type=script&lang=js":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/HadithQudsiComponent.vue?vue&type=script&lang=js ***!
+  \**********************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_JsonComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_HadithQudsiComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_JsonComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./JsonComponent.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/JsonComponent.vue?vue&type=script&lang=js");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_HadithQudsiComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./HadithQudsiComponent.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/HadithQudsiComponent.vue?vue&type=script&lang=js");
+ 
+
+/***/ }),
+
+/***/ "./resources/js/components/HadithShahComponent.vue?vue&type=script&lang=js":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/HadithShahComponent.vue?vue&type=script&lang=js ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_HadithShahComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_HadithShahComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./HadithShahComponent.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/HadithShahComponent.vue?vue&type=script&lang=js");
  
 
 /***/ }),
@@ -52910,6 +54599,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_VolunteerComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./VolunteerComponent.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/VolunteerComponent.vue?vue&type=script&lang=js");
  
+
+/***/ }),
+
+/***/ "./resources/js/components/AllahNamesComponent.vue?vue&type=template&id=55b9a4bc":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/AllahNamesComponent.vue?vue&type=template&id=55b9a4bc ***!
+  \***************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AllahNamesComponent_vue_vue_type_template_id_55b9a4bc__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AllahNamesComponent_vue_vue_type_template_id_55b9a4bc__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./AllahNamesComponent.vue?vue&type=template&id=55b9a4bc */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/AllahNamesComponent.vue?vue&type=template&id=55b9a4bc");
+
 
 /***/ }),
 
@@ -53025,34 +54730,50 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/HadithComponent.vue?vue&type=template&id=64068460":
-/*!***********************************************************************************!*\
-  !*** ./resources/js/components/HadithComponent.vue?vue&type=template&id=64068460 ***!
-  \***********************************************************************************/
+/***/ "./resources/js/components/HadithNawawiComponent.vue?vue&type=template&id=3e3f82fe":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/HadithNawawiComponent.vue?vue&type=template&id=3e3f82fe ***!
+  \*****************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   render: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_HadithComponent_vue_vue_type_template_id_64068460__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */   render: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_HadithNawawiComponent_vue_vue_type_template_id_3e3f82fe__WEBPACK_IMPORTED_MODULE_0__.render)
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_HadithComponent_vue_vue_type_template_id_64068460__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./HadithComponent.vue?vue&type=template&id=64068460 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/HadithComponent.vue?vue&type=template&id=64068460");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_HadithNawawiComponent_vue_vue_type_template_id_3e3f82fe__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./HadithNawawiComponent.vue?vue&type=template&id=3e3f82fe */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/HadithNawawiComponent.vue?vue&type=template&id=3e3f82fe");
 
 
 /***/ }),
 
-/***/ "./resources/js/components/JsonComponent.vue?vue&type=template&id=444bee1a":
-/*!*********************************************************************************!*\
-  !*** ./resources/js/components/JsonComponent.vue?vue&type=template&id=444bee1a ***!
-  \*********************************************************************************/
+/***/ "./resources/js/components/HadithQudsiComponent.vue?vue&type=template&id=197cc078":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/HadithQudsiComponent.vue?vue&type=template&id=197cc078 ***!
+  \****************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   render: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_JsonComponent_vue_vue_type_template_id_444bee1a__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */   render: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_HadithQudsiComponent_vue_vue_type_template_id_197cc078__WEBPACK_IMPORTED_MODULE_0__.render)
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_JsonComponent_vue_vue_type_template_id_444bee1a__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./JsonComponent.vue?vue&type=template&id=444bee1a */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/JsonComponent.vue?vue&type=template&id=444bee1a");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_HadithQudsiComponent_vue_vue_type_template_id_197cc078__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./HadithQudsiComponent.vue?vue&type=template&id=197cc078 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/HadithQudsiComponent.vue?vue&type=template&id=197cc078");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/HadithShahComponent.vue?vue&type=template&id=ca89bf18":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/HadithShahComponent.vue?vue&type=template&id=ca89bf18 ***!
+  \***************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_HadithShahComponent_vue_vue_type_template_id_ca89bf18__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_HadithShahComponent_vue_vue_type_template_id_ca89bf18__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./HadithShahComponent.vue?vue&type=template&id=ca89bf18 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/HadithShahComponent.vue?vue&type=template&id=ca89bf18");
 
 
 /***/ }),
@@ -71187,6 +72908,17 @@ module.exports = JSON.parse('[{"id":1,"category":"أذكار الصباح وال
 
 /***/ }),
 
+/***/ "./storage/allah_names.json":
+/*!**********************************!*\
+  !*** ./storage/allah_names.json ***!
+  \**********************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = JSON.parse('[{"id":1,"name":"اللَّهُ","text":"وهو الاسم الأعظم الذي تفرد به الحق سبحانه وخص به نفسه وجعله أول أسمائه، وأضافها كلها إليه فهو علم على ذاته سبحانه"},{"id":2,"name":"الرَّحْمَنُ","text":"كثير الرحمة وهو اسم مقصور على الله عز وجل ولا يجوز أن يقال رحمن لغير الله، وذلك لأن رحمته وسعت كل شيء وهو أرحم الراحمين"},{"id":3,"name":"الرَّحِيم","text":"هو المنعم أبدا، المتفضل دوما، فرحمته لا تنتهي"},{"id":4,"name":"المَلِك","text":"هو الله، ملك الملوك، له الملك، وهو مالك يوم الدين، ومليك الخلق فهو المالك المطلق"},{"id":5,"name":"الْقُدُّوس","text":"هو الطاهر المنزه عن العيوب والنقائص وعن كل ما تحيط به العقول"},{"id":6,"name":"السَّلَام","text":"هو ناشر السلام بين الأنام وهو الذي سلمت ذاته من النقص والعيب والفناء"},{"id":7,"name":"المُؤْمِن","text":"هو الذي سلم أوليائه من عذابه، والذي يصدق عباده ما وعدهم"},{"id":8,"name":"الْمُهَيْمِن","text":"هو الرقيب الحافظ لكل شيء، القائم على خلقه بأعمالهم، وأرزاقهم وآجالهم، والمطلع على خفايا الأمور وخبايا الصدور"},{"id":9,"name":"الْعَزِيز","text":"هو المنفرد بالعزة، الظاهر الذي لا يقهر، القوي الممتنع فلا يغلبه شيء وهو غالب كل شيء"},{"id":10,"name":"الْجَبَّار","text":"هو الذي تنفذ مشيئته، ولا يخرج أحد عن تقديره، وهو القاهر لخلقه على ما أراد"},{"id":11,"name":"الْمُتَكَبِّر","text":"هو المتعالى عن صفات الخلق المنفرد بالعظمة والكبرياء"},{"id":12,"name":"الْخَالِق","text":"هو الفاطر المبدع لكل شيء، والمقدر له والموجد للأشياء من العدم، فهو خالق كل صانع وصنعته"},{"id":13,"name":"الْبَارِئ","text":"هو الذي خلق الخلق بقدرته لا عن مثال سابق، القادر على إبراز ما قدره إلى الوجود"},{"id":14,"name":"الْمُصَوِّر","text":"هو الذي صور جميع الموجودات، ورتبها فأعطى كل شيء منها صورة خاصة، وهيئة منفردة، يتميز بها على اختلافها وكثرتها"},{"id":15,"name":"اَلْغَفَّار","text":"هو وحده الذي يغفر الذنوب ويستر العيوب في الدنيا والآخرة"},{"id":16,"name":"الْقَهَّار","text":"هو الغالب الذي قهر خلقه بسلطانه وقدرته، وخضعت له الرقاب وذلت له الجبابرة، وصرف خلقه على ما أراد طوعا وكرها، وعنت الوجوه له"},{"id":17,"name":"الْوَهَّاب","text":"هو المنعم على العباد، الذي يهب بغير عوض ويعطي الحاجة بغير سؤال، كثير النعم، دائم العطاء"},{"id":18,"name":"الرَّزَّاق","text":"هو الذي خلق الأرزاق وأعطى كل الخلائق أرزاقها، ويمد كل كائن لما يحتاجه، ويحفظ عليه حياته ويصلحه"},{"id":19,"name":"الْفَتَّاح","text":"هو الذي يفتح مغلق الأمور، ويسهل العسير، وبيده مفاتيح السماوات والأرض"},{"id":20,"name":"الْعَلِيم","text":"هو الذي يعلم تفاصيل الأمور، ودقائق الأشياء وخفايا الضمائر، والنفوس، لا يعزب عنه مثقال ذرة، فعلمه يحيط بجميع الأشياء"},{"id":21,"name":"الْقَابِضُ","text":"هو الذي يقبض الرزق عمن يشاء من الخلق بعدله وحكمته، والذي يوسع الرزق لمن يشاء من عباده بجوده ورحمته فهو سبحانه القابض الباسط"},{"id":22,"name":"الْبَاسِطُ","text":"هو الذي يقبض الرزق عمن يشاء من الخلق بعدله وحكمته، والذي يوسع الرزق لمن يشاء من عباده بجوده ورحمته فهو سبحانه القابض الباسط"},{"id":23,"name":"الخافض","text":"هو الذي يخفض الأذلال لكل من طغى وتجبر وخرج على شريعته وتمرد، وهو الذي يرفع عباده المؤمنين بالطاعات ويرفعهم على عدوهم فينصرهم وهو رافع السماوات السبع"},{"id":24,"name":"الرَّافِعُ","text":"هو الذي يخفض الأذلال لكل من طغى وتجبر وخرج على شريعته وتمرد، وهو الذي يرفع عباده المؤمنين بالطاعات ويرفعهم على عدوهم فينصرهم وهو رافع السماوات السبع"},{"id":25,"name":"المعز","text":"هو الذي يهب القوة والغلبة والشدة لمن شاء فيعزه، وينزعها عمن يشاء فيذله"},{"id":26,"name":"المذل","text":"هو الذي يهب القوة والغلبة والشدة لمن شاء فيعزه، وينزعها عمن يشاء فيذله"},{"id":27,"name":"السَّمِيعُ","text":"ومعناه سمعه لجميع الأصوات الظاهرة والباطنة الخفية والجلية، وإحاطته التامة بها، ومعناه أيضًا: سمع الإجابة منه للسائلين والداعين والعابدين فيجيبهم ويثيبهم"},{"id":28,"name":"الْبَصِير","text":"هو الذي يرى الأشياء كلها ظاهرها وباطنها وهو المحيط بكل شيء علماً"},{"id":29,"name":"الْحَكَم","text":"هو الذي يفصل بين مخلوقاته بما شاء ويفصل بين الحق والباطل لا راد لقضائه ولا معقب لحكمه"},{"id":30,"name":"العدل","text":"هو الذي حرم الظلم على نفسه، وجعله على عباده محرما، فهو المنزه عن الظلم والجور في أحكامه وأفعاله الذي يعطي كل ذي حق حقه"},{"id":31,"name":"اللَّطِيفُ","text":"هو البر الرفيق بعباده، يرزق وييسر ويحسن إليهم، ويرفق بهم ويتفضل عليهم"},{"id":32,"name":"الْخَبِيرُ","text":"هو العليم بدقائق الأمور، لا تخفى عليه خافية، ولا يغيب عن علمه شيء فهو العالم بما كان ويكون"},{"id":33,"name":"الْحَلِيمُ","text":"هو الصبور الذي يمهل ولا يهمل، ويستر الذنوب، ويؤخر العقوبة، فيرزق العاصي كما يرزق المطيع"},{"id":34,"name":"الْعَظِيمُ","text":"هو العظيم في كل شئ، عظيم في ذاته وأسمائه وصفاته، عظيم في رحمته، عظيم في قدرته، عظيم في حكمته، عظيم في جبروته وكبريائه، عظيم في هبته وعطائه، عظيم في خبرته ولطفه، عظيم في بره وإحسانه، عظيم في عزته وعدله وحمده، فهو العظيم المطلق، فلا أحد يساويه"},{"id":35,"name":"الْغَفُورُ","text":"هو الساتر لذنوب عباده المتجاوز عن خطاياهم وذنوبهم. الفرق بين هذا الاسم واسم الغفار أن اسم الغفور يكون للدلالة على مغفرة الذنب مهما عظم وأيس صاحبه من المغفرة أما الغفار فتدل على مغفرة الله المستمرة للذنوب المختلفة لأن الإنسان خطاء فالله غفار"},{"id":36,"name":"الشَّكُورُ","text":"هو الذي يزكو عنده القليل من أعمال العباد، فيتقبلها ويضاعف أجرها"},{"id":37,"name":"الْعَلِيُّ","text":"هو الرفيع القدر فلا يحيط به وصف الواصفين المتعالي عن الأنداد والأضداد، فكل معاني العلو ثابتة له ذاتا وقهرا وشأنا"},{"id":38,"name":"الْكَبِيرُ","text":"هو العظيم الجليل ذو الكبرياء في صفاته وأفعاله فلا يحتاج إلى شيء ولا يعجزه شيء (ليس كمثله شيء)"},{"id":39,"name":"الْحَفِيظُ","text":"هو الذي لا يغرب عن حفظه شيء ولو كمثقال الذر فحفظه لا يتبدل ولا يزول ولا يعتريه التبديل"},{"id":40,"name":"المُقِيت","text":"هو المتكفل بإيصال أقوات الخلق إليهم وهو الحفيظ والمقتدر والقدير والمقدر والممدد"},{"id":41,"name":"الْحَسِيبُ","text":"هو الكافي الذي منه كفاية العباد وهو الذي عليه الاعتماد يكفي العباد بفضله"},{"id":42,"name":"الجليل","text":"هو العظيم المطلق المتصف بجميع صفات الكمال والمنعوت بكمالها المنزه عن كل نقص"},{"id":43,"name":"الْكَرِيمُ","text":"هو الكثير الخير الجواد المعطي الذي لا ينفذ عطاؤه وهو الكريم المطلق الجامع لأنواع الخير والشرف والفضائل المحمود بفعاله"},{"id":44,"name":"الرَّقِيبُ","text":"هو الرقيب الذي يراقب أحوال العباد ويعلم أقوالهم ويحصي أعمالهم وهو الحافظ الذي لا يغيب عنه شيء"},{"id":45,"name":"الْمُجِيبُ","text":"هو الذي يجيب دعاء من دعاه، وسؤال من سأله، ويقابله بالعطاء والقبول، ولا يسأل أحد سواه"},{"id":46,"name":"الْوَاسِعُ","text":"هو الذي وسع رزقه جميع خلقه، وسعت رحمته كل شيء المحيط بكل شيء"},{"id":47,"name":"اَلْحَكِيمُ","text":"هو المحق في تدبيره اللطيف في تقديره الخبير بحقائق الأمور العليم بحكمه المقدور فجميع خلقه وقضاه خير وحكمة وعدل"},{"id":48,"name":"الْوَدُودُ","text":"هو المحب لعباده، والمحبوب في قلوب أوليائه"},{"id":49,"name":"الْمَجِيدُ","text":"هو الله تمجَّد بفعاله، ومجَّده خلقه لعظمته، والمجيد هو واسع الكرم، ووصف نفسه بالمجيد وهو متضمن كثرة صفات كماله وسعتها، وعدم إحصاء الخلق لها، وسعة أفعاله وكثرة خيره ودوامه. وتعني أيضاً البالغ النهاية في المجد، الكثير الإحسان الجزيل العطاء العظيم البر. تمجد"},{"id":50,"name":"الباعث","text":"هو باعث الخلق يوم القيامة، وباعث رسله إلى العباد، وباعث المعونة إلى العبد"},{"id":51,"name":"الشَّهِيدُ","text":"هو الحاضر الذي لا يغيب عنه شيء، فهو المطلع على كل شيء مشاهد له عليم بتفاصيله"},{"id":52,"name":"الْحَقُّ","text":"هو الذي يحق الحق بكلماته ويؤيد أولياءه فهو المستحق للعبادة"},{"id":53,"name":"الْوَكِيلُ","text":"هو الكفيل بالخلق القائم بأمورهم فمن توكل عليه تولاه وكفاه، ومن استغنى به أغناه وأرضاه"},{"id":54,"name":"الْقَوِيّ","text":"هو صاحب القدرة التامة البالغة الكمال غالب لا يُغلب فقوته فوق كل قوة، ولايرد قضاءه راد، ينفذ أمره، ويمضي قضاؤه في خلقه، شديد عقابه لمن كفر بآياته وجحد حججه"},{"id":55,"name":"الْمَتِينُ","text":"هو الشديد الذي لا يحتاج في إمضاء حكمه إلى جند أو مدد ولا إلى معين، فهو المتناهي في القوة، التي لاتلحق أفعاله مشقة، ولايمسه فيها لغوب"},{"id":56,"name":"الْوَلِيُّ","text":"هو المحب الناصر لمن أطاعه، ينصر أولياءه، ويقهر أعداءه، والمتولي الأمور الخلائق ويحفظهم"},{"id":57,"name":"الْحَمِيدُ","text":"هو المستحق للحمد والثناء له منتهى الحمد وأطيبه على ذاته وصفاته وعلى نعمه التي لا تحصى"},{"id":58,"name":"الْـمُحصِي","text":"هو الذي أحصى كل شيء بعلمه، فلا يفوته منها دقيق ولا جليل"},{"id":59,"name":"المبدئ","text":"هو الذي أنشأ الأشياء، واخترعها ابتداء من غير سابق مثال"},{"id":60,"name":"المعيد","text":"هو الذي يعيد الخلق بعد الحياة إلى الممات في الدنيا، وبعد الممات إلى الحياة يوم القيامة"},{"id":61,"name":"المُحيي","text":"هو خالق الحياة ومعطيها لمن شاء، يحيي الخلق من العدم ثم يحييهم بعد الموت"},{"id":62,"name":"المميت","text":"هو مقدر الموت على كل من أماته ولا مميت سواه، قهر عباده بالموت متى شاء وكيف شاء"},{"id":63,"name":"الْحَيُّ","text":"هو المتصف بالحياة الأبدية التي لا بداية لها ولا نهاية فهو الباقي أزلا وأبدا وهو الحي الذي لا يموت"},{"id":64,"name":"الْقَيُّومُ","text":"هو القائم بنفسه، الغني عن غيره، وهو القائم بتدبير أمر خلقه في إنشائهم ورزقهم"},{"id":65,"name":"الواجد","text":"هو الذي لا يعوزه شيء ولا يعجزه شيء يجد كل ما يطلبه، ويدرك كل ما يريده"},{"id":66,"name":"الماجد","text":"هو الذي له الكمال المتناهي والعز الباهي، له العز في الأوصاف والأفعال الذي يعامل العباد بالجود والرحمة"},{"id":67,"name":"الْوَاحِدُ","text":"هو الفرد المتفرد في ذاته وصفائه وأفعاله، واحد في ملكه لا ينازعه أحد، لا شريك له سبحانه"},{"id":68,"name":"الصَّمَدُ","text":"هو المطاع الذي لا يقضى دونه أمر، الذي يقصد إليه في الحوائج فهو مقصد عباده في مهمات دينهم ودنياهم"},{"id":69,"name":"الْقَادِرُ","text":"هو الذي يقدر على إيجاد المعدوم وإعدام الموجود على قدر ما تقتضي الحكمة، لا زائدا عليه ولا ناقصا عنه"},{"id":70,"name":"الْمُقْتَدِرُ","text":"هو الذي يقدر على إصلاح الخلائق على وجه لا يقدر عليه غيره"},{"id":71,"name":"الْمُقَدِّمُ","text":"هو الذي يقدم الأشياء ويضعها في مواضعها، فمن استحق التقديم قدمه"},{"id":72,"name":"الْمُؤَخِّرُ","text":"هو الذي يؤخر الأشياء فيضعها في مواضعها المؤخر لمن شاء من الفجار والكفار وكل من يستحق التأخير"},{"id":73,"name":"الْأَوَّلُ","text":"هو الذي لم يسبقه في الوجود شيء فهو أول قبل الوجود"},{"id":74,"name":"الْآخِرُ","text":"هو الباقي بعد فناء خلقه، البقاء الأبدي يفنى الكل وله البقاء وحده، فليس بعده شيء"},{"id":75,"name":"الظَّاهِرُ","text":"هو الذي ظهر فوق كل شيء وعلا عليه، الظاهر وجوده لكثرة دلائله"},{"id":76,"name":"الْبَاطِنُ","text":"هو العالم ببواطن الأمور وخفاياها، وهو أقرب إلينا من حبل الوريد"},{"id":77,"name":"الوالي","text":"هو المالك للأشياء المتصرف فيها بمشيئته وحكمته، ينفذ فيها أمره، ويجري عليها حكمه"},{"id":78,"name":"الْمُتَعَالِ","text":"هو الذي جل عن إفك المفترين، وتنزه عن وساوس المتحيرين"},{"id":79,"name":"الْبَرُّ","text":"هو العطوف على عباده ببره ولطفه، ومن على السائلين بحسن عطائه، وهو الصدق فيما وعد"},{"id":80,"name":"التَّوَّابُ","text":"هو الذي يوفق عباده للتوبة حتى يتوب عليهم ويقبل توبتهم فيقابل الدعاء بالعطاء، والتوبة بغفران الذنوب"},{"id":91,"name":"الْمُنْتَقِمُ","text":"هو الذي يقصم ظهور الطغاة، ويشدد العقوبة على العصاة، وذلك بعد الإعذار والإنذار"},{"id":82,"name":"العَفُو","text":"هو الذي يترك المؤاخدة على الذنوب ولا يذكرك بالعيوب فهو يمحو السيئات ويتجاوز عن المعاصي"},{"id":83,"name":"الرَّؤُوفُ","text":"هو المتعطف على المذنبين بالتوبة، الذي جاد بلطفه ومَنَّ بتعطفه، يستر العيوب ثم يعفو عنها"},{"id":84,"name":"مَالِكُ الْمُلْكِ","text":"هو المتصرف في ملكه كيف يشاء لا راد لحكمه، ولا معقب لأمره"},{"id":85,"name":"ذُو الْجَلَالِ والْإكْرَامِ","text":"هو المنفرد بصفات الجلال والكمال والعظمة، المختص بالإكرام والكرامة وهو أهل لأن يجل"},{"id":86,"name":"المقسط","text":"هو العادل في حكمه، الذي ينتصف للمظلوم من الظالم، ثم يكمل عدله فيرضي الظالم بعد إرضاء المظلوم"},{"id":87,"name":"الْجَامِعُ","text":"هو الذي جمع الكمالات كلها، ذاتا ووصفا وفعلا، الذي يجمع بين الخلائق المتماثلة والمتباينة، والذي يجمع الأولين والآخرين"},{"id":88,"name":"الْغَنِيُّ","text":"هو الذي لا يحتاج إلى شيء، وهو المستغني عن كل ما سواه، المفتقر إليه كل من عاداه"},{"id":89,"name":"المغني","text":"هو معطي الغنى لعباده، يغني من يشاء غناه، وهو الكافي لمن شاء من عباده"},{"id":90,"name":"الْمُعْطِي","text":"هو الذي أعطى كل شيء"},{"id":91,"name":"المانع","text":"يمنع العطاء عن من يشاء ابتلاء أو حماية"},{"id":92,"name":"الضار","text":"هو المقدر للضر على من أراد كيف أراد"},{"id":93,"name":"النافع","text":"مقدر النفع والخير لمن أراد كيف أراد كل ذلك على مقتضى حكمته سبحانه"},{"id":94,"name":"النُّورُ","text":"هو الهادي الرشيد الذي يرشد بهدايته من يشاء فيبين له الحق، ويلهمه اتباعه، الظاهر في ذاته، المظهر لغيره"},{"id":95,"name":"الْهَادِي","text":"هو المبين للخلق طريق الحق بكلامه يهدي القلوب إلى معرفته، والنفوس إلى طاعته"},{"id":96,"name":"الْبَدِيعُ","text":"هو الذي لا يماثله أحد في صفاته ولا في حكم من أحكامه، أو أمر من أموره، فهو المحدث الموجد على غير مثال"},{"id":97,"name":"الباقي","text":"هو وحده له البقاء، الدائم الوجود الموصوف بالبقاء الأزلي، غير قابل للفناء فهو الباقي بلا انتهاء"},{"id":98,"name":"الْوَارِثُ","text":"هو الأبقى الدائم الذي يرث الخلائق بعد فناء الخلق، وهو يرث الأرض ومن عليها"},{"id":99,"name":"الرشيد","text":"هو الذي أسعد من شاء بإرشاده، وأشقى من شاء بإبعاده، عظيم الحكمة بالغ الرشاد"},{"id":100,"name":"الصبور","text":"هو الحليم الذي لا يعاجل العصاة بالنقمة، بل يعفوا ويؤخر، ولا يسرع بالفعل قبل أوانه"}]');
+
+/***/ }),
+
 /***/ "./storage/cards.json":
 /*!****************************!*\
   !*** ./storage/cards.json ***!
@@ -71198,25 +72930,36 @@ module.exports = JSON.parse('[{"id":1,"surah":"الفاتحة","audio":"./mp3/00
 
 /***/ }),
 
-/***/ "./storage/nawawi_book.json":
-/*!**********************************!*\
-  !*** ./storage/nawawi_book.json ***!
-  \**********************************/
+/***/ "./storage/three_main/nawawi_book.json":
+/*!*********************************************!*\
+  !*** ./storage/three_main/nawawi_book.json ***!
+  \*********************************************/
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('[{"id":40944,"arabic":"عَنْ أَمِيرِ الْمُؤْمِنِينَ أَبِي حَفْصٍ عُمَرَ بْنِ الْخَطَّابِ رَضِيَ اللهُ عَنْهُ قَالَ: سَمِعْتُ رَسُولَ اللَّهِ صلى الله عليه وسلم يَقُولُ: \\" إنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى، فَمَنْ كَانَتْ هِجْرَتُهُ إلَى اللَّهِ وَرَسُولِهِ فَهِجْرَتُهُ إلَى اللَّهِ وَرَسُولِهِ، وَمَنْ كَانَتْ هِجْرَتُهُ لِدُنْيَا يُصِيبُهَا أَوْ امْرَأَةٍ يَنْكِحُهَا فَهِجْرَتُهُ إلَى مَا هَاجَرَ إلَيْهِ\\". \\nرَوَاهُ إِمَامَا الْمُحَدِّثِينَ أَبُو عَبْدِ اللهِ مُحَمَّدُ بنُ إِسْمَاعِيل بن إِبْرَاهِيم بن الْمُغِيرَة بن بَرْدِزبَه الْبُخَارِيُّ الْجُعْفِيُّ  رَضِيَ اللهُ عَنْهُمَا فِي \\"صَحِيحَيْهِمَا\\" اللذَينِ هُمَا أَصَحُّ الْكُتُبِ الْمُصَنَّفَةِ.","view":{"narrator":"It is narrated on the authority of Amirul Mu\'minin, Abu Hafs \'Umar bin al-Khattab (ra) who said:","text":"I heard the Messenger of Allah (ﷺ) say: \\"Actions are (judged) by motives (niyyah), so each man will have what he intended. Thus, he whose migration (hijrah) was to Allah and His Messenger, his migration is to Allah and His Messenger; but he whose migration was for some worldly thing he might gain, or for a wife he might marry, his migration is to that for which he migrated.\\"\\n\\n"},"chapterId":1,"bookId":10,"idInBook":1},{"id":40945,"arabic":"عَنْ عُمَرَ رَضِيَ اللهُ عَنْهُ أَيْضًا قَالَ: \\" بَيْنَمَا نَحْنُ جُلُوسٌ عِنْدَ رَسُولِ اللَّهِ صلى الله عليه و سلم ذَاتَ يَوْمٍ، إذْ طَلَعَ عَلَيْنَا رَجُلٌ شَدِيدُ بَيَاضِ الثِّيَابِ، شَدِيدُ سَوَادِ الشَّعْرِ، لَا يُرَى عَلَيْهِ أَثَرُ السَّفَرِ، وَلَا يَعْرِفُهُ مِنَّا أَحَدٌ. حَتَّى جَلَسَ إلَى النَّبِيِّ صلى الله عليه و سلم . فَأَسْنَدَ رُكْبَتَيْهِ إلَى رُكْبَتَيْهِ، وَوَضَعَ كَفَّيْهِ عَلَى فَخِذَيْهِ، \\nوَقَالَ: يَا مُحَمَّدُ أَخْبِرْنِي عَنْ الْإِسْلَامِ. \\nفَقَالَ رَسُولُ اللَّهِ صلى الله عليه و سلم الْإِسْلَامُ أَنْ تَشْهَدَ أَنْ لَا إلَهَ إلَّا اللَّهُ وَأَنَّ مُحَمَّدًا رَسُولُ اللَّهِ، وَتُقِيمَ الصَّلَاةَ، وَتُؤْتِيَ الزَّكَاةَ، وَتَصُومَ رَمَضَانَ، وَتَحُجَّ الْبَيْتَ إنْ اسْتَطَعْت إلَيْهِ سَبِيلًا. \\nقَالَ: صَدَقْت . فَعَجِبْنَا لَهُ يَسْأَلُهُ وَيُصَدِّقُهُ!\\nقَالَ: فَأَخْبِرْنِي عَنْ الْإِيمَانِ. \\nقَالَ: أَنْ تُؤْمِنَ بِاَللَّهِ وَمَلَائِكَتِهِ وَكُتُبِهِ وَرُسُلِهِ وَالْيَوْمِ الْآخِرِ، وَتُؤْمِنَ بِالْقَدَرِ خَيْرِهِ وَشَرِّهِ.\\nقَالَ: صَدَقْت. قَالَ: فَأَخْبِرْنِي عَنْ الْإِحْسَانِ. \\nقَالَ: أَنْ تَعْبُدَ اللَّهَ كَأَنَّك تَرَاهُ، فَإِنْ لَمْ تَكُنْ تَرَاهُ فَإِنَّهُ يَرَاك. \\nقَالَ: فَأَخْبِرْنِي عَنْ السَّاعَةِ. قَالَ: مَا الْمَسْئُولُ عَنْهَا بِأَعْلَمَ مِنْ السَّائِلِ. \\nقَالَ: فَأَخْبِرْنِي عَنْ أَمَارَاتِهَا؟ قَالَ: أَنْ تَلِدَ الْأَمَةُ رَبَّتَهَا، وَأَنْ تَرَى الْحُفَاةَ الْعُرَاةَ الْعَالَةَ رِعَاءَ الشَّاءِ يَتَطَاوَلُونَ فِي الْبُنْيَانِ. ثُمَّ انْطَلَقَ، فَلَبِثْتُ مَلِيًّا، \\nثُمَّ قَالَ: يَا عُمَرُ أَتَدْرِي مَنْ السَّائِلُ؟. \\n‫‬قُلْتُ: اللَّهُ وَرَسُولُهُ أَعْلَمُ. \\nقَالَ: فَإِنَّهُ جِبْرِيلُ أَتَاكُمْ يُعَلِّمُكُمْ دِينَكُمْ \\". \\n.","view":{"narrator":"Also on the authority of `Umar (ra) who said:","text":"While we were one day sitting with the Messenger of Allah (ﷺ) there appeared before us a man dressed in extremely white clothes and with very black hair. No traces of journeying were visible on him, and none of us knew him.\\n\\nHe sat down close by the Prophet (ﷺ) rested his knees against the knees of the Prophet (ﷺ) and placed his palms over his thighs, and said: \\"O Muhammad! Inform me about Islam.\\" The Messenger of Allah (ﷺ) replied: \\"Islam is that you should testify that there is no deity worthy of worship except Allah and that Muhammad is His Messenger (ﷺ), that you should perform salah (ritual prayer), pay the zakah, fast during Ramadan, and perform Hajj (pilgrimage) to the House (the Ka`bah at Makkah), if you can find a way to it (or find the means for making the journey to it).\\" He said: \\"You have spoken the truth.\\"\\n\\nWe were astonished at his thus questioning him (ﷺ) and then telling him that he was right, but he went on to say, \\"Inform me about Iman (faith).\\" He (the Prophet) answered, \\"It is that you believe in Allah and His angels and His Books and His Messengers and in the Last Day, and in fate (qadar), both in its good and in its evil aspects.\\" He said, \\"You have spoken the truth.\\"\\n\\nThen he (the man) said, \\"Inform me about Ihsan.\\" He (the Prophet) answered, \\"It is that you should serve Allah as though you could see Him, for though you cannot see Him yet He sees you.\\"\\n\\nHe said, \\"Inform me about the Hour.\\" He (the Prophet) said, \\"About that the one questioned knows no more than the questioner.\\" So he said, \\"Well, inform me about its signs.\\" He said, \\"They are that the slave-girl will give birth to her mistress and that you will see the barefooted ones, the naked, the destitute, the herdsmen of the sheep (competing with each other) in raising lofty buildings.\\" Thereupon the man went off.\\n\\nI waited a while, and then he (the Prophet) said, \\"O `Umar, do you know who that questioner was?\\" I replied, \\"Allah and His Messenger know better.\\" He said, \\"That was Jibril. He came to teach you your religion.\\"\\n\\n"},"chapterId":1,"bookId":10,"idInBook":2},{"id":40946,"arabic":"عَنْ أَبِي عَبْدِ الرَّحْمَنِ عَبْدِ اللَّهِ بْنِ عُمَرَ بْنِ الْخَطَّابِ رَضِيَ اللَّهُ عَنْهُمَا قَالَ: سَمِعْت رَسُولَ اللَّهِ صلى الله عليه و سلم يَقُولُ: \\" بُنِيَ الْإِسْلَامُ عَلَى خَمْسٍ: شَهَادَةِ أَنْ لَا إلَهَ إلَّا اللَّهُ وَأَنَّ مُحَمَّدًا رَسُولُ اللَّهِ، وَإِقَامِ الصَّلَاةِ، وَإِيتَاءِ الزَّكَاةِ، وَحَجِّ الْبَيْتِ، وَصَوْمِ رَمَضَانَ\\". \\n.","view":{"narrator":"On the authority of Abdullah, the son of Umar ibn al-Khattab (ra), who said:","text":"I heard the Messenger of Allah (ﷺ) say, \\"Islam has been built on five : testifying that there is no deity worthy of worship except Allah and that Muhammad is the Messenger of Allah, establishing the salah (prayer), paying the zakat (obligatory charity), making the hajj (pilgrimage) to the House, and fasting in Ramadhan.\\"\\n\\n"},"chapterId":1,"bookId":10,"idInBook":3},{"id":40947,"arabic":"عَنْ أَبِي عَبْدِ الرَّحْمَنِ عَبْدِ اللَّهِ بْنِ مَسْعُودٍ رَضِيَ اللهُ عَنْهُ قَالَ: حَدَّثَنَا رَسُولُ اللَّهِ صلى الله عليه و سلم -وَهُوَ الصَّادِقُ الْمَصْدُوقُ-: \\"إنَّ أَحَدَكُمْ يُجْمَعُ خَلْقُهُ فِي بَطْنِ أُمِّهِ أَرْبَعِينَ يَوْمًا نُطْفَةً، ثُمَّ يَكُونُ عَلَقَةً مِثْلَ ذَلِكَ، ثُمَّ يَكُونُ مُضْغَةً مِثْلَ ذَلِكَ، ثُمَّ يُرْسَلُ إلَيْهِ الْمَلَكُ فَيَنْفُخُ فِيهِ الرُّوحَ، وَيُؤْمَرُ بِأَرْبَعِ كَلِمَاتٍ: بِكَتْبِ رِزْقِهِ، وَأَجَلِهِ، وَعَمَلِهِ، وَشَقِيٍّ أَمْ سَعِيدٍ؛ فَوَاَللَّهِ الَّذِي لَا إلَهَ غَيْرُهُ إنَّ أَحَدَكُمْ لَيَعْمَلُ بِعَمَلِ أَهْلِ الْجَنَّةِ حَتَّى مَا يَكُونُ بَيْنَهُ وَبَيْنَهَا إلَّا ذِرَاعٌ فَيَسْبِقُ عَلَيْهِ الْكِتَابُ فَيَعْمَلُ بِعَمَلِ أَهْلِ النَّارِ فَيَدْخُلُهَا. وَإِنَّ أَحَدَكُمْ لَيَعْمَلُ بِعَمَلِ أَهْلِ النَّارِ حَتَّى مَا يَكُونُ بَيْنَهُ وَبَيْنَهَا إلَّا ذِرَاعٌ فَيَسْبِقُ عَلَيْهِ الْكِتَابُ فَيَعْمَلُ بِعَمَلِ أَهْلِ الْجَنَّةِ فَيَدْخُلُهَا\\".\\n \\n.","view":{"narrator":"On the authority of Abdullah ibn Masood (ra), who said:","text":"The Messenger of Allah (ﷺ), and he is the truthful, the believed, narrated to us, “Verily the creation of each one of you is brought together in his mother’s womb for forty days in the form of a nutfah (a drop), then he becomes an alaqah (clot of blood) for a like period, then a mudghah (morsel of flesh) for a like period, then there is sent to him the angel who blows his soul into him and who is commanded with four matters: to write down his rizq (sustenance), his life span, his actions, and whether he will be happy or unhappy (i.e., whether or not he will enter Paradise).\\n\\nBy the One, other than Whom there is no deity, verily one of you performs the actions of the people of Paradise until there is but an arms length between him and it, and that which has been written overtakes him, and so he acts with the actions of the people of the Hellfire and thus enters it; and verily one of you performs the actions of the people of the Hellfire, until there is but an arms length between him and it, and that which has been written overtakes him and so he acts with the actions of the people of Paradise and thus he enters it.”\\n\\n"},"chapterId":1,"bookId":10,"idInBook":4},{"id":40948,"arabic":"عَنْ أُمِّ الْمُؤْمِنِينَ أُمِّ عَبْدِ اللَّهِ عَائِشَةَ رَضِيَ اللَّهُ عَنْهَا، قَالَتْ: قَالَ: رَسُولُ اللَّهِ صلى الله عليه و سلم \\"مَنْ أَحْدَثَ فِي أَمْرِنَا هَذَا مَا لَيْسَ مِنْهُ فَهُوَ رَدٌّ\\n \\nوَفِي رِوَايَةٍ لِمُسْلِمٍ: مَنْ عَمِلَ عَمَلًا لَيْسَ عَلَيْهِ أَمْرُنَا فَهُوَ رَدٌّ\\".","view":{"narrator":"On the authority of the mother of the faithful, Aisha (ra), who said:","text":"The Messenger of Allah (ﷺ) said, “He who innovates something in this matter of ours (i.e., Islam) that is not of it will have it rejected (by Allah).”\\n\\n\\nIn another version in Muslim it reads: “He who does an act which we have not commanded, will have it rejected (by Allah).”"},"chapterId":1,"bookId":10,"idInBook":5},{"id":40949,"arabic":"عَنْ أَبِي عَبْدِ اللَّهِ النُّعْمَانِ بْنِ بَشِيرٍ رَضِيَ اللَّهُ عَنْهُمَا، قَالَ: سَمِعْت رَسُولَ اللَّهِ صلى الله عليه و سلم يَقُولُ: \\"إنَّ الْحَلَالَ بَيِّنٌ، وَإِنَّ الْحَرَامَ بَيِّنٌ، وَبَيْنَهُمَا أُمُورٌ مُشْتَبِهَاتٌ لَا يَعْلَمُهُنَّ كَثِيرٌ مِنْ النَّاسِ، فَمَنْ اتَّقَى الشُّبُهَاتِ فَقْد اسْتَبْرَأَ لِدِينِهِ وَعِرْضِهِ، وَمَنْ وَقَعَ فِي الشُّبُهَاتِ وَقَعَ فِي الْحَرَامِ، كَالرَّاعِي يَرْعَى حَوْلَ الْحِمَى يُوشِكُ أَنْ يَرْتَعَ فِيهِ، أَلَا وَإِنَّ لِكُلِّ مَلِكٍ حِمًى، أَلَا وَإِنَّ حِمَى اللَّهِ مَحَارِمُهُ، أَلَا وَإِنَّ فِي الْجَسَدِ مُضْغَةً إذَا صَلَحَتْ صَلَحَ الْجَسَدُ كُلُّهُ، وَإذَا فَسَدَتْ فَسَدَ الْجَسَدُ كُلُّهُ، أَلَا وَهِيَ الْقَلْبُ\\". \\n \\n.","view":{"narrator":"On the authority of an-Nu’man ibn Basheer (ra), who said:","text":"I heard the Messenger of Allah (ﷺ) say, “That which is lawful is clear and that which is unlawful is clear, and between the two of them are doubtful matters about which many people do not know. Thus he who avoids doubtful matters clears himself in regard to his religion and his honor, but he who falls into doubtful matters  is diseased. Truly, it is the heart.”\\n\\n"},"chapterId":1,"bookId":10,"idInBook":6},{"id":40950,"arabic":"عَنْ أَبِي رُقَيَّةَ تَمِيمِ بْنِ أَوْسٍ الدَّارِيِّ رَضِيَ اللهُ عَنْهُ أَنَّ النَّبِيَّ صلى الله عليه وسلم قَالَ: \\"الدِّينُ النَّصِيحَةُ.\\" قُلْنَا: لِمَنْ؟ قَالَ: \\"لِلَّهِ، وَلِكِتَابِهِ، وَلِرَسُولِهِ، وَلِأَئِمَّةِ الْمُسْلِمِينَ وَعَامَّتِهِمْ.\\" \\n  \\n ","view":{"narrator":"On the authority of Tameem ibn Aus ad-Daree (ra):","text":"The Prophet (ﷺ) said, “The deen (religion) is naseehah (advice, sincerity).” We said, “To whom?” He (ﷺ) said, “To Allah, His Book, His Messenger, and to the leaders of the Muslims and their common folk.”\\n\\n"},"chapterId":1,"bookId":10,"idInBook":7},{"id":40951,"arabic":"عَنْ ابْنِ عُمَرَ رَضِيَ اللَّهُ عَنْهُمَا، أَنَّ رَسُولَ اللَّهِ صلى الله عليه و سلم قَالَ: \\"أُمِرْتُ أَنْ أُقَاتِلَ النَّاسَ حَتَّى يَشْهَدُوا أَنْ لَا إلَهَ إلَّا اللَّهُ وَأَنَّ مُحَمَّدًا رَسُولُ اللَّهِ، وَيُقِيمُوا الصَّلَاةَ، وَيُؤْتُوا الزَّكَاةَ؛ فَإِذَا فَعَلُوا ذَلِكَ عَصَمُوا مِنِّي دِمَاءَهُمْ وَأَمْوَالَهُمْ إلَّا بِحَقِّ الْإِسْلَامِ، وَحِسَابُهُمْ عَلَى اللَّهِ تَعَالَى\\" . \\n ","view":{"narrator":"On the authority of Abdullah ibn Umar (ra):","text":"The Messenger of Allah (ﷺ) said, \\"I have been ordered to fight against the people until they testify that there is none worthy of worship except Allah and that Muhammad is the Messenger of Allah, and until they establish the salah and pay the zakat. And if they do that then they will have gained protection from me for their lives and property, unless  in Islam, and their reckoning will be with Allah.\\"\\n\\n"},"chapterId":1,"bookId":10,"idInBook":8},{"id":40952,"arabic":"عَنْ أَبِي هُرَيْرَةَ عَبْدِ الرَّحْمَنِ بْنِ صَخْرٍ رَضِيَ اللهُ عَنْهُ قَالَ: سَمِعْت رَسُولَ اللَّهِ صلى الله عليه و سلم يَقُولُ: \\"مَا نَهَيْتُكُمْ عَنْهُ فَاجْتَنِبُوهُ، وَمَا أَمَرْتُكُمْ بِهِ فَأْتُوا مِنْهُ مَا اسْتَطَعْتُمْ، فَإِنَّمَا أَهْلَكَ الَّذِينَ مِنْ قَبْلِكُمْ كَثْرَةُ مَسَائِلِهِمْ وَاخْتِلَافُهُمْ عَلَى أَنْبِيَائِهِمْ \\". \\n ","view":{"narrator":"On the authority of Abu Hurayrah (ra):","text":"I heard the Messenger of Allah (ﷺ) say, “What I have forbidden for you, avoid. What I have ordered you  who were before you.”\\n\\n"},"chapterId":1,"bookId":10,"idInBook":9},{"id":40953,"arabic":"عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ صلى الله عليه و سلم \\"إنَّ اللَّهَ طَيِّبٌ لَا يَقْبَلُ إلَّا طَيِّبًا، وَإِنَّ اللَّهَ أَمَرَ الْمُؤْمِنِينَ بِمَا أَمَرَ بِهِ الْمُرْسَلِينَ فَقَالَ تَعَالَى: \\"يَا أَيُّهَا الرُّسُلُ كُلُوا مِنْ الطَّيِّبَاتِ وَاعْمَلُوا صَالِحًا\\"، وَقَالَ تَعَالَى: \\"يَا أَيُّهَا الَّذِينَ آمَنُوا كُلُوا مِنْ طَيِّبَاتِ مَا رَزَقْنَاكُمْ\\" ثُمَّ ذَكَرَ الرَّجُلَ يُطِيلُ السَّفَرَ أَشْعَثَ أَغْبَرَ يَمُدُّ يَدَيْهِ إلَى السَّمَاءِ: يَا رَبِّ! يَا رَبِّ! وَمَطْعَمُهُ حَرَامٌ، وَمَشْرَبُهُ حَرَامٌ، وَمَلْبَسُهُ حَرَامٌ، وَغُذِّيَ بِالْحَرَامِ، فَأَنَّى يُسْتَجَابُ لَهُ؟\\". \\n  \\n ","view":{"narrator":"On the authority of Abu Hurayrah (ra):","text":"The Messenger of Allah (ﷺ) said, “Allah the Almighty is Good and accepts only that which is good. And verily Allah has commanded the believers to do that which He has commanded the Messengers.\\n\\nSo the Almighty has said: “O (you) Messengers! Eat of the tayyibat ”\\n\\nThen he (ﷺ) mentioned  be answered?\\n\\n"},"chapterId":1,"bookId":10,"idInBook":10},{"id":40954,"arabic":"عَنْ أَبِي مُحَمَّدٍ الْحَسَنِ بْنِ عَلِيِّ بْنِ أَبِي طَالِبٍ سِبْطِ رَسُولِ اللَّهِ صلى الله عليه و سلم وَرَيْحَانَتِهِ رَضِيَ اللَّهُ عَنْهُمَا، قَالَ: حَفِظْت مِنْ رَسُولِ اللَّهِ صلى الله عليه و سلم \\"دَعْ مَا يُرِيبُك إلَى مَا لَا يُرِيبُك\\". \\nرَوَاهُ التِّرْمِذِيُّ ،\\n \\n وَقَالَ التِّرْمِذِيُّ: حَدِيثٌ حَسَنٌ صَحِيحٌ.","view":{"narrator":"On the authority of Abu Muhammad al-Hasan ibn Ali ibn Abee Talib (may Allah be pleased with him), the grandson of the Messenger of Allah (peace and blessings of Allah be upon him), and the one much loved by him, who said:","text":"I memorised from the Messenger of Allah (peace and blessings of Allah be upon him): “Leave that which makes you doubt for that which does not make you doubt.”\\n\\n\\n\\nAt-Tirmidhi said that it was a good and sound (hasan saheeh) hadeeth."},"chapterId":1,"bookId":10,"idInBook":11},{"id":40955,"arabic":"عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ صلى الله عليه و سلم \\"مِنْ حُسْنِ إسْلَامِ الْمَرْءِ تَرْكُهُ مَا لَا يَعْنِيهِ\\". \\nحَدِيثٌ حَسَنٌ، رَوَاهُ التِّرْمِذِيُّ .","view":{"narrator":"On the authority of Abu Hurayrah (may Allah be pleased with him) who said:","text":"The Messenger of Allah (peace and blessings of Allah be upon him) said, “Part of the perfection of one’s Islam is his leaving that which does not concern him.”\\n\\nA hasan (good) hadeeth which was related by at-Tirmidhi and others in this fashion."},"chapterId":1,"bookId":10,"idInBook":12},{"id":40956,"arabic":"عَنْ أَبِي حَمْزَةَ أَنَسِ بْنِ مَالِكٍ رَضِيَ اللهُ عَنْهُ خَادِمِ رَسُولِ اللَّهِ صلى الله عليه و سلم عَنْ النَّبِيِّ صلى الله عليه و سلم قَالَ: \\"لَا يُؤْمِنُ أَحَدُكُمْ حَتَّى يُحِبَّ لِأَخِيهِ مَا يُحِبُّ لِنَفْسِهِ\\". \\nرَوَاهُ الْبُخَارِيُّ .  \\n \\n، ","view":{"narrator":"On the authority of Abu Hamzah Anas bin Malik (may Allah be pleased with him) — the servant of the Messenger of Allah (peace and blessings of Allah be upon him) — that the Prophet (peace and blessings of Allah be upon him) said:","text":"None of you  believes until he loves for his brother that which he loves for himself. \\n\\n\\n"},"chapterId":1,"bookId":10,"idInBook":13},{"id":40957,"arabic":"عَنْ ابْنِ مَسْعُودٍ رَضِيَ اللهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ صلى الله عليه و سلم \\"لَا يَحِلُّ دَمُ امْرِئٍ مُسْلِمٍ  إلَّا بِإِحْدَى ثَلَاثٍ: الثَّيِّبُ الزَّانِي، وَالنَّفْسُ بِالنَّفْسِ، وَالتَّارِكُ لِدِينِهِ الْمُفَارِقُ لِلْجَمَاعَةِ\\".   \\n \\n، ","view":{"narrator":"On the authority of Ibn Masood (may Allah be pleased with him) who said:","text":"The Messenger of Allah (peace and blessings of Allah be upon him) said, “It is not permissible to spill the blood of a Muslim except in three : the married person who commits adultery, a life for a life, and the one who forsakes his religion and separates from the community.”\\n\\n\\n"},"chapterId":1,"bookId":10,"idInBook":14},{"id":40958,"arabic":"عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللهُ عَنْهُ أَنَّ رَسُولَ اللَّهِ صلى الله عليه و سلم قَالَ: \\"مَنْ كَانَ يُؤْمِنُ بِاَللَّهِ وَالْيَوْمِ الْآخِرِ فَلْيَقُلْ خَيْرًا أَوْ لِيَصْمُتْ، وَمَنْ كَانَ يُؤْمِنُ بِاَللَّهِ وَالْيَوْمِ الْآخِرِ فَلْيُكْرِمْ جَارَهُ، وَمَنْ كَانَ يُؤْمِنُ بِاَللَّهِ وَالْيَوْمِ الْآخِرِ فَلْيُكْرِمْ ضَيْفَهُ\\".   \\n \\n، ","view":{"narrator":"On the authority of Abu Hurayrah (may Allah be pleased with him), that the Messenger of Allah (peace and blessings of Allah be upon him) said:","text":"Let him who believes in Allah and the Last Day speak good, or keep silent; and let him who believes in Allah and the Last Day be generous to his neighbour; and let him who believes in Allah and the Last Day be generous to his guest.\\n\\n\\n"},"chapterId":1,"bookId":10,"idInBook":15},{"id":40959,"arabic":"عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللهُ عَنْهُ أَنَّ رَجُلًا قَالَ لِلنَّبِيِّ صلى الله عليه و سلم أَوْصِنِي. قَالَ: لَا تَغْضَبْ، فَرَدَّدَ مِرَارًا، قَالَ: لَا تَغْضَبْ\\" .   \\n .","view":{"narrator":"On the authority of Abu Hurayrah (may Allah be pleased with him):","text":"A man said to the Prophet (peace and blessings of Allah be upon him), “Counsel me,” so he (peace and blessings of Allah be upon him) said, “Do not become angry.” The man repeated  he (peace and blessings of Allah be upon him) said, “Do not become angry.”\\n\\n"},"chapterId":1,"bookId":10,"idInBook":16},{"id":40960,"arabic":"عَنْ أَبِي يَعْلَى شَدَّادِ بْنِ أَوْسٍ رَضِيَ اللهُ عَنْهُ عَنْ رَسُولِ اللَّهِ صلى الله عليه و سلم قَالَ: \\"إنَّ اللَّهَ كَتَبَ الْإِحْسَانَ عَلَى كُلِّ شَيْءٍ، فَإِذَا قَتَلْتُمْ فَأَحْسِنُوا الْقِتْلَةَ، وَإِذَا ذَبَحْتُمْ فَأَحْسِنُوا الذِّبْحَةَ، وَلْيُحِدَّ أَحَدُكُمْ شَفْرَتَهُ، وَلْيُرِحْ ذَبِيحَتَهُ\\". \\n.","view":{"narrator":"On the authority of Abu Ya’la Shaddad bin Aws (may Allah be pleased with him), that the Messenger of Allah (peace and blessings of Allah be upon him) said:","text":"Verily Allah has prescribed ihsan (proficiency, perfection) in all things. So if you kill then kill well; and if you slaughter, then slaughter well. Let each one of you sharpen his blade and let him spare suffering to the animal he slaughters.”\\n\\n"},"chapterId":1,"bookId":10,"idInBook":17},{"id":40961,"arabic":"عَنْ أَبِي ذَرٍّ جُنْدَبِ بْنِ جُنَادَةَ، وَأَبِي عَبْدِ الرَّحْمَنِ مُعَاذِ بْنِ جَبَلٍ رَضِيَ اللَّهُ عَنْهُمَا، عَنْ رَسُولِ اللَّهِ صلى الله عليه و سلم قَالَ: \\"اتَّقِ اللَّهَ حَيْثُمَا كُنْت، وَأَتْبِعْ السَّيِّئَةَ الْحَسَنَةَ تَمْحُهَا، وَخَالِقْ النَّاسَ بِخُلُقٍ حَسَنٍ\\" . \\nرَوَاهُ التِّرْمِذِيُّ  وَقَالَ: حَدِيثٌ حَسَنٌ، وَفِي بَعْضِ النُّسَخِ: حَسَنٌ صَحِيحٌ.","view":{"narrator":"On the authority of Abu Dharr Jundub ibn Junadah, and Abu Abdur-Rahman Muadh bin Jabal (may Allah be pleased with him), that the Messenger of Allah (peace and blessings of Allah be upon him) said:","text":"Have taqwa (fear) of Allah wherever you may be, and follow up a bad deed with a good deed which will wipe it out, and behave well towards the people.\\n\\nIt was related by at-Tirmidhi, who said it was a hasan (good) hadeeth, and in some copies it is stated to be a hasan saheeh hadeeth."},"chapterId":1,"bookId":10,"idInBook":18},{"id":40962,"arabic":"عَنْ عَبْدِ اللَّهِ بْنِ عَبَّاسٍ رَضِيَ اللَّهُ عَنْهُمَا قَالَ: \\"كُنْت خَلْفَ رَسُولِ اللَّهِ صلى الله عليه و سلم يَوْمًا، فَقَالَ: يَا غُلَامِ! إنِّي أُعَلِّمُك كَلِمَاتٍ: احْفَظْ اللَّهَ يَحْفَظْك، احْفَظْ اللَّهَ تَجِدْهُ تُجَاهَك، إذَا سَأَلْت فَاسْأَلْ اللَّهَ، وَإِذَا اسْتَعَنْت فَاسْتَعِنْ بِاَللَّهِ، وَاعْلَمْ أَنَّ الْأُمَّةَ لَوْ اجْتَمَعَتْ عَلَى أَنْ يَنْفَعُوك بِشَيْءٍ لَمْ يَنْفَعُوك إلَّا بِشَيْءٍ قَدْ كَتَبَهُ اللَّهُ لَك، وَإِنْ اجْتَمَعُوا عَلَى أَنْ يَضُرُّوك بِشَيْءٍ لَمْ يَضُرُّوك إلَّا بِشَيْءٍ قَدْ كَتَبَهُ اللَّهُ عَلَيْك؛ رُفِعَتْ الْأَقْلَامُ، وَجَفَّتْ الصُّحُفُ\\" . رَوَاهُ التِّرْمِذِيُّ  وَقَالَ: حَدِيثٌ حَسَنٌ صَحِيحٌ. \\nوَفِي رِوَايَةِ غَيْرِ التِّرْمِذِيِّ: \\"احْفَظْ اللَّهَ تَجِدْهُ أمامك، تَعَرَّفْ إلَى اللَّهِ فِي الرَّخَاءِ يَعْرِفُك فِي الشِّدَّةِ، وَاعْلَمْ أَنَّ مَا أَخْطَأَك لَمْ يَكُنْ لِيُصِيبَك، وَمَا أَصَابَك لَمْ يَكُنْ لِيُخْطِئَك، وَاعْلَمْ أَنَّ النَّصْرَ مَعَ الصَّبْرِ، وَأَنْ الْفَرَجَ مَعَ الْكَرْبِ، وَأَنَّ مَعَ الْعُسْرِ يُسْرًا\\".","view":{"narrator":"On the authority of Abu Abbas Abdullah bin Abbas (may Allah be pleased with him) who said:","text":"One day I was behind the Prophet (peace and blessings of Allah be upon him) . And know that if the nation were to gather together to benefit you with anything, they would not benefit you except with what Allah had already prescribed for you. And if they were to gather together to harm you with anything, they would not harm you except with what Allah had already prescribed against you. The pens have been lifted and the pages have dried.”\\n\\nIt was related by at-Tirmidhi, who said it was a good and sound hadeeth. Another narration, other than that of Tirmidhi, reads:\\n\\nBe mindful of Allah, and you will find Him in front of you. Recognize and acknowledge Allah in times of ease and prosperity, and He will remember you in times of adversity. And know that what has passed you by  was not going to befall you, and what has befallen you was not going to pass you by. And know that victory comes with patience, relief with affliction, and hardship with ease."},"chapterId":1,"bookId":10,"idInBook":19},{"id":40963,"arabic":"عَنْ أَبِي مَسْعُودٍ عُقْبَةَ بْنِ عَمْرٍو الْأَنْصَارِيِّ الْبَدْرِيِّ رَضِيَ اللهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ صلى الله عليه و سلم \\"إنَّ مِمَّا أَدْرَكَ النَّاسُ مِنْ كَلَامِ النُّبُوَّةِ الْأُولَى: إذَا لَمْ تَسْتَحِ فَاصْنَعْ مَا شِئْت\\" . \\n .","view":{"narrator":"On the authority of Abu Masood Uqbah bin ’Amr al-Ansaree al-Badree (may Allah be pleased with him) who said:","text":"The Messenger of Allah (peace and blessings of Allah be upon him) said, “Verily, from what was learnt by the people from the speech of the earliest prophecy is: If you feel no shame, then do as you wish.”\\n\\n"},"chapterId":1,"bookId":10,"idInBook":20},{"id":40964,"arabic":"عَنْ أَبِي عَمْرٍو وَقِيلَ: أَبِي عَمْرَةَ سُفْيَانَ بْنِ عَبْدِ اللَّهِ رَضِيَ اللهُ عَنْهُ قَالَ: \\"قُلْت: يَا رَسُولَ اللَّهِ! قُلْ لِي فِي الْإِسْلَامِ قَوْلًا لَا أَسْأَلُ عَنْهُ أَحَدًا غَيْرَك؛ قَالَ: قُلْ: آمَنْت بِاَللَّهِ ثُمَّ اسْتَقِمْ\\" . \\n.","view":{"narrator":"On the authority of Abu `Amr — and he is also called Abu `Amrah — Sufyan bin Abdullah ath- Thaqafee (may Allah be pleased with him) who said:","text":"I said, \\"O Messenger of Allah, tell me something about al-Islam which I can ask of no one but you.\\" He (peace and blessings of Allah be upon him) said, \\"Say I believe in Allah — and then be steadfast.\\"\\n\\n"},"chapterId":1,"bookId":10,"idInBook":21},{"id":40965,"arabic":"عَنْ أَبِي عَبْدِ اللَّهِ جَابِرِ بْنِ عَبْدِ اللَّهِ الْأَنْصَارِيِّ رَضِيَ اللَّهُ عَنْهُمَا: \\"أَنَّ رَجُلًا سَأَلَ رَسُولَ اللَّهِ صلى الله عليه و سلم فَقَالَ: أَرَأَيْت إذَا صَلَّيْت الْمَكْتُوبَاتِ، وَصُمْت رَمَضَانَ، وَأَحْلَلْت الْحَلَالَ، وَحَرَّمْت الْحَرَامَ، وَلَمْ أَزِدْ عَلَى ذَلِكَ شَيْئًا؛ أَأَدْخُلُ الْجَنَّةَ؟ قَالَ: نَعَمْ\\". \\n.","view":{"narrator":"On the authority of Abu Abdullah Jabir bin Abdullah al-Ansaree (may Allah be pleased with him) that:","text":"A man questioned the Messenger of Allah (peace and blessings of Allah be upon him) and said, “Do you think that if I perform the obligatory prayers, fast in Ramadhan, treat as lawful that which is halal, and treat as forbidden that which is haram, and do not increase upon that , then I shall enter Paradise?” He (peace and blessings of Allah be upon him) replied, “Yes.”\\n\\n"},"chapterId":1,"bookId":10,"idInBook":22},{"id":40966,"arabic":"عَنْ أَبِي مَالِكٍ الْحَارِثِ بْنِ عَاصِمٍ الْأَشْعَرِيِّ رَضِيَ اللهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ صلى الله عليه و سلم \\"الطَّهُورُ شَطْرُ الْإِيمَانِ، وَالْحَمْدُ لِلَّهِ تَمْلَأُ الْمِيزَانَ، وَسُبْحَانَ اللَّهِ وَالْحَمْدُ لِلَّهِ تَمْلَآنِ -أَوْ: تَمْلَأُ- مَا بَيْنَ السَّمَاءِ وَالْأَرْضِ، وَالصَّلَاةُ نُورٌ، وَالصَّدَقَةُ بُرْهَانٌ، وَالصَّبْرُ ضِيَاءٌ، وَالْقُرْآنُ حُجَّةٌ لَك أَوْ عَلَيْك، كُلُّ النَّاسِ يَغْدُو، فَبَائِعٌ نَفْسَهُ فَمُعْتِقُهَا أَوْ مُوبِقُهَا\\". \\n.","view":{"narrator":"On the authority of Abu Malik al-Harith bin Asim al-Asharee (may Allah be pleased with him) who said:","text":"The Messenger of Allah (peace and blessings of Allah be upon him) said, “Purity is half of iman (faith). ‘Al-hamdu lillah (praise be to Allah)’ fills the scales, and ‘subhan-Allah (how far is Allah from every imperfection) and ‘Al-hamdulillah (praise be to Allah)’ fill that which is between heaven and earth. And the salah (prayer) is a light, and charity is a proof, and patience is illumination, and the Qur’an is a proof either for you or against you. Every person starts his day as a vendor of his soul, either freeing it or causing its ruin.”\\n\\n"},"chapterId":1,"bookId":10,"idInBook":23},{"id":40967,"arabic":"عَنْ أَبِي ذَرٍّ الْغِفَارِيِّ رَضِيَ اللهُ عَنْهُ عَنْ النَّبِيِّ صلى الله عليه و سلم فِيمَا يَرْوِيهِ عَنْ رَبِّهِ تَبَارَكَ وَتَعَالَى، أَنَّهُ قَالَ: \\"يَا عِبَادِي: إنِّي حَرَّمْت الظُّلْمَ عَلَى نَفْسِي، وَجَعَلْته بَيْنَكُمْ مُحَرَّمًا؛ فَلَا تَظَالَمُوا. يَا عِبَادِي! كُلُّكُمْ ضَالٌّ إلَّا مَنْ هَدَيْته، فَاسْتَهْدُونِي أَهْدِكُمْ. يَا عِبَادِي! كُلُّكُمْ جَائِعٌ إلَّا مَنْ أَطْعَمْته، فَاسْتَطْعِمُونِي أُطْعِمْكُمْ. يَا عِبَادِي! كُلُّكُمْ عَارٍ إلَّا مَنْ كَسَوْته، فَاسْتَكْسُونِي أَكْسُكُمْ. يَا عِبَادِي! إنَّكُمْ تُخْطِئُونَ بِاللَّيْلِ وَالنَّهَارِ، وَأَنَا أَغْفِرُ الذُّنُوبَ جَمِيعًا؛ فَاسْتَغْفِرُونِي أَغْفِرْ لَكُمْ. يَا عِبَادِي! إنَّكُمْ لَنْ تَبْلُغُوا ضُرِّي فَتَضُرُّونِي، وَلَنْ تَبْلُغُوا نَفْعِي فَتَنْفَعُونِي. يَا عِبَادِي! لَوْ أَنَّ أَوَّلَكُمْ وَآخِرَكُمْ وَإِنْسَكُمْ وَجِنَّكُمْ كَانُوا عَلَى أَتْقَى قَلْبِ رَجُلٍ وَاحِدٍ مِنْكُمْ، مَا زَادَ ذَلِكَ فِي مُلْكِي شَيْئًا. يَا عِبَادِي! لَوْ أَنَّ أَوَّلَكُمْ وَآخِرَكُمْ وَإِنْسَكُمْ وَجِنَّكُمْ كَانُوا عَلَى أَفْجَرِ قَلْبِ رَجُلٍ وَاحِدٍ مِنْكُمْ، مَا نَقَصَ ذَلِكَ مِنْ مُلْكِي شَيْئًا. يَا عِبَادِي! لَوْ أَنَّ أَوَّلَكُمْ وَآخِرَكُمْ وَإِنْسَكُمْ وَجِنَّكُمْ قَامُوا فِي صَعِيدٍ وَاحِدٍ، فَسَأَلُونِي، فَأَعْطَيْت كُلَّ وَاحِدٍ مَسْأَلَته، مَا نَقَصَ ذَلِكَ مِمَّا عِنْدِي إلَّا كَمَا يَنْقُصُ الْمِخْيَطُ إذَا أُدْخِلَ الْبَحْرَ. يَا عِبَادِي! إنَّمَا هِيَ أَعْمَالُكُمْ أُحْصِيهَا لَكُمْ، ثُمَّ أُوَفِّيكُمْ إيَّاهَا؛ فَمَنْ وَجَدَ خَيْرًا فَلْيَحْمَدْ اللَّهَ، وَمَنْ وَجَدَ غَيْرَ ذَلِكَ فَلَا يَلُومَن إلَّا نَفْسَهُ\\". \\n.","view":{"narrator":"On the authority of Abu Dharr al-Ghifaree (may Allah be pleased with him) from the Prophet (peace and blessings of Allah be upon him) from his Lord, that He said:","text":"O My servants! I have forbidden dhulm (oppression) for Myself, and I have made it forbidden amongst you, so do not oppress one another.\\n\\n\\nO My servants, all of you are astray except those whom I have guided, so seek guidance from Me and I shall guide you.\\n\\n\\nO My servants, all of you are hungry except those whom I have fed, so seek food from Me and I shall feed you.\\n\\n\\nO My servants, all of you are naked except those whom I have clothed, so seek clothing from Me and I shall clothe you.\\n\\n\\nO My servants, you commit sins by day and by night, and I forgive all sins, so seek forgiveness from Me and I shall forgive you.\\n\\n\\nO My servants, you will not attain harming Me so as to harm Me, and you will not attain benefiting Me so as to benefit Me.\\n\\n\\nO My servants, if the first of you and the last of you, and the humans of you and the jinn of you, were all as pious as the most pious heart of any individual amongst you, then this would not increase My Kingdom an iota.\\n\\n\\nO My servants, if the first of you and the last of you, and the humans of you and the jinn of you, were all as wicked as the most wicked heart of any individual amongst you, then this would not decrease My Kingdom an iota.\\n\\n\\nO My servants, if the first of you and the last of you, and the humans of you and the jinn of you, were all to stand together in one place and ask of Me, and I were to give everyone what he requested, then that would not decrease what I Possess, except what is decreased of the ocean when a needle is dipped into it.\\n\\n\\nO My servants, it is but your deeds that I account for you, and then recompense you for. So he who finds good, let him praise Allah, and he who finds other than that, let him blame no one but himself.\\n\\n\\n"},"chapterId":1,"bookId":10,"idInBook":24},{"id":40968,"arabic":"عَنْ أَبِي ذَرٍّ رَضِيَ اللهُ عَنْهُ أَيْضًا، \\"أَنَّ نَاسًا مِنْ أَصْحَابِ رَسُولِ اللَّهِ صلى الله عليه و سلم قَالُوا لِلنَّبِيِّ صلى الله عليه و سلم يَا رَسُولَ اللَّهِ ذَهَبَ أَهْلُ الدُّثُورِ بِالْأُجُورِ؛ يُصَلُّونَ كَمَا نُصَلِّي، وَيَصُومُونَ كَمَا نَصُومُ، وَيَتَصَدَّقُونَ بِفُضُولِ أَمْوَالِهِمْ. قَالَ: أَوَلَيْسَ قَدْ جَعَلَ اللَّهُ لَكُمْ مَا تَصَّدَّقُونَ؟ إنَّ بِكُلِّ تَسْبِيحَةٍ صَدَقَةً، وَكُلِّ تَكْبِيرَةٍ صَدَقَةً، وَكُلِّ تَحْمِيدَةٍ صَدَقَةً، وَكُلِّ تَهْلِيلَةٍ صَدَقَةً، وَأَمْرٌ بِمَعْرُوفٍ صَدَقَةٌ، وَنَهْيٌ عَنْ مُنْكَرٍ صَدَقَةٌ، وَفِي بُضْعِ أَحَدِكُمْ صَدَقَةٌ. قَالُوا: يَا رَسُولَ اللَّهِ أَيَأْتِي أَحَدُنَا شَهْوَتَهُ وَيَكُونُ لَهُ فِيهَا أَجْرٌ؟ قَالَ: أَرَأَيْتُمْ لَوْ وَضَعَهَا فِي حَرَامٍ أَكَانَ عَلَيْهِ وِزْرٌ؟ فَكَذَلِكَ إذَا وَضَعَهَا فِي الْحَلَالِ، كَانَ لَهُ أَجْرٌ\\". \\n.","view":{"narrator":"Also on the authority of Abu Dharr (may Allah be pleased with him):","text":"Some people from amongst the Companions of the Messenger of Allah (peace and blessings of Allah be upon him) said to the Prophet (peace and blessings of Allah be upon him), \\"O Messenger of Allah, the affluent have made off with the rewards; they pray as we pray, they fast as we fast, and they give  of each one of you there is a charity.\\"\\n\\nThey said, \\"O Messenger of Allah, when one of us fulfils his carnal desire will he have some reward for that?\\" He (peace and blessings of Allah be upon him) said, \\"Do you not see that if he were to act upon it  in an unlawful manner then he would be deserving of punishment? Likewise, if he were to act upon it in a lawful manner then he will be deserving of a reward.\\"\\n\\n"},"chapterId":1,"bookId":10,"idInBook":25},{"id":40969,"arabic":"عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ صلى الله عليه و سلم \\"كُلُّ سُلَامَى مِنْ النَّاسِ عَلَيْهِ صَدَقَةٌ، كُلَّ يَوْمٍ تَطْلُعُ فِيهِ الشَّمْسُ تَعْدِلُ بَيْنَ اثْنَيْنِ صَدَقَةٌ، وَتُعِينُ الرَّجُلَ فِي دَابَّتِهِ فَتَحْمِلُهُ عَلَيْهَا أَوْ تَرْفَعُ لَهُ عَلَيْهَا مَتَاعَهُ صَدَقَةٌ، وَالْكَلِمَةُ الطَّيِّبَةُ صَدَقَةٌ، وَبِكُلِّ خُطْوَةٍ تَمْشِيهَا إلَى الصَّلَاةِ صَدَقَةٌ، وَتُمِيطُ الْأَذَى عَنْ الطَّرِيقِ صَدَقَةٌ\\". \\n \\n، .","view":{"narrator":"On the authority of Abu Hurayrah (may Allah be pleased with him) who said:","text":"The Messenger of Allah (peace and blessings of Allah be upon him) said, “Every joint of a person must perform a charity each day that the sun rises: to judge justly between two people is a charity. To help a man with his mount, lifting him onto it or hoisting up his belongings onto it, is a charity. And the good word is a charity. And every step that you take towards the prayer is a charity, and removing a harmful object from the road is a charity.”\\n\\n\\n"},"chapterId":1,"bookId":10,"idInBook":26},{"id":40970,"arabic":"عَنْ النَّوَّاسِ بْنِ سَمْعَانَ رَضِيَ اللهُ عَنْهُ عَنْ النَّبِيِّ صلى الله عليه و سلم قَالَ: \\"الْبِرُّ حُسْنُ الْخُلُقِ، وَالْإِثْمُ مَا حَاكَ فِي صَدْرِك، وَكَرِهْت أَنْ يَطَّلِعَ عَلَيْهِ النَّاسُ\\" رَوَاهُ مُسْلِمٌ . وَعَنْ وَابِصَةَ بْنِ مَعْبَدٍ رَضِيَ اللهُ عَنْهُ قَالَ: أَتَيْت رَسُولَ اللَّهِ صلى الله عليه و سلم فَقَالَ: \\"جِئْتَ تَسْأَلُ عَنْ الْبِرِّ؟ قُلْت: نَعَمْ. فقَالَ: استفت قلبك، الْبِرُّ مَا اطْمَأَنَّتْ إلَيْهِ النَّفْسُ، وَاطْمَأَنَّ إلَيْهِ الْقَلْبُ، وَالْإِثْمُ مَا حَاكَ فِي النَّفْسِ وَتَرَدَّدَ فِي الصَّدْرِ، وَإِنْ أَفْتَاك النَّاسُ وَأَفْتَوْك\\" . \\nحَدِيثٌ حَسَنٌ، رَوَيْنَاهُ في مُسْنَدَي الْإِمَامَيْنِ أَحْمَدَ بْنِ حَنْبَلٍ  بِإِسْنَادٍ حَسَنٍ.","view":{"narrator":"On the authority of an-Nawas bin Sam’an (may Allah be pleased with him), that the Prophet (peace and blessings of Allah be upon him) said:","text":"Righteousness is in good character, and wrongdoing is that which wavers in your soul, and which you dislike people finding out about.\\n\\n\\nAnd on the authority of Wabisah bin Ma’bad (may Allah be pleased with him) who said:\\n\\nI came to the Messenger of Allah (peace and blessings of Allah be upon him) and he (peace and blessings of Allah be upon him) said, “You have come to ask about righteousness.” I said, “Yes.” He (peace and blessings of Allah be upon him) said, “Consult your heart. Righteousness is that about which the soul feels at ease and the heart feels tranquil. And wrongdoing is that which wavers in the soul and causes uneasiness in the breast, even though people have repeatedly given their legal opinion .”\\n\\nA good hadeeth transmitted from the musnads of the two imams, Ahmed bin Hambal and Al- Darimi, with a good chain of authorities."},"chapterId":1,"bookId":10,"idInBook":27},{"id":40971,"arabic":"عَنْ أَبِي نَجِيحٍ الْعِرْبَاضِ بْنِ سَارِيَةَ رَضِيَ اللهُ عَنْهُ قَالَ: \\"وَعَظَنَا رَسُولُ اللَّهِ صلى الله عليه و سلم مَوْعِظَةً وَجِلَتْ مِنْهَا الْقُلُوبُ، وَذَرَفَتْ مِنْهَا الْعُيُونُ، فَقُلْنَا: يَا رَسُولَ اللَّهِ! كَأَنَّهَا مَوْعِظَةُ مُوَدِّعٍ فَأَوْصِنَا، قَالَ: أُوصِيكُمْ بِتَقْوَى اللَّهِ، وَالسَّمْعِ وَالطَّاعَةِ وَإِنْ تَأَمَّرَ عَلَيْكُمْ عَبْدٌ، فَإِنَّهُ مَنْ يَعِشْ مِنْكُمْ فَسَيَرَى اخْتِلَافًا كَثِيرًا، فَعَلَيْكُمْ بِسُنَّتِي وَسُنَّةِ الْخُلَفَاءِ الرَّاشِدِينَ الْمَهْدِيينَ، عَضُّوا عَلَيْهَا بِالنَّوَاجِذِ، وَإِيَّاكُمْ وَمُحْدَثَاتِ الْأُمُورِ؛ فَإِنَّ كُلَّ بِدْعَةٍ ضَلَالَةٌ\\". \\n \\n  وَقَالَ: حَدِيثٌ حَسَنٌ صَحِيحٌ.","view":{"narrator":"On the authority of Abu Najeeh al-’Irbaad ibn Saariyah (may Allah be pleased with him) who said:","text":"The Messenger of Allah (peace and blessings of Allah be upon him) gave us a sermon by which our hearts were filled with fear and tears came to our eyes. So we said, “O Messenger of Allah! It is as though this is a farewell sermon, so counsel us.” He (peace and blessings of Allah be upon him) said, “I counsel you to have taqwa (fear) of Allah, and to listen and obey , for verily every bidah (innovation) is misguidance.”\\n\\nIt was related by at-Tirmidhi, who said that it was a good and sound hadeeth."},"chapterId":1,"bookId":10,"idInBook":28},{"id":40972,"arabic":"عَنْ مُعَاذِ بْنِ جَبَلٍ رَضِيَ اللهُ عَنْهُ قَالَ: قُلْت يَا رَسُولَ اللَّهِ! أَخْبِرْنِي بِعَمَلٍ يُدْخِلُنِي الْجَنَّةَ وَيُبَاعِدْنِي مِنْ النَّارِ، قَالَ: \\"لَقَدْ سَأَلْت عَنْ عَظِيمٍ، وَإِنَّهُ لَيَسِيرٌ عَلَى مَنْ يَسَّرَهُ اللَّهُ عَلَيْهِ: تَعْبُدُ اللَّهَ لَا تُشْرِكْ بِهِ شَيْئًا، وَتُقِيمُ الصَّلَاةَ، وَتُؤْتِي الزَّكَاةَ، وَتَصُومُ رَمَضَانَ، وَتَحُجُّ الْبَيْتَ، ثُمَّ قَالَ: أَلَا أَدُلُّك عَلَى أَبْوَابِ الْخَيْرِ؟ الصَّوْمُ جُنَّةٌ، وَالصَّدَقَةُ تُطْفِئُ الْخَطِيئَةَ كَمَا يُطْفِئُ الْمَاءُ النَّارَ، وَصَلَاةُ الرَّجُلِ فِي جَوْفِ اللَّيْلِ، ثُمَّ تَلَا: \\" تَتَجَافَى جُنُوبُهُمْ عَنِ الْمَضَاجِعِ \\" حَتَّى بَلَغَ \\"يَعْمَلُونَ\\"، ثُمَّ قَالَ: أَلَا أُخْبِرُك بِرَأْسِ الْأَمْرِ وَعَمُودِهِ وَذُرْوَةِ سَنَامِهِ؟ قُلْت: بَلَى يَا رَسُولَ اللَّهِ. قَالَ: رَأْسُ الْأَمْرِ الْإِسْلَامُ، وَعَمُودُهُ الصَّلَاةُ، وَذُرْوَةُ سَنَامِهِ الْجِهَادُ، ثُمَّ قَالَ: أَلَا أُخْبِرُك بِمَلَاكِ ذَلِكَ كُلِّهِ؟ فقُلْت: بَلَى يَا رَسُولَ اللَّهِ ! فَأَخَذَ بِلِسَانِهِ وَقَالَ: كُفَّ عَلَيْك هَذَا. قُلْت: يَا نَبِيَّ اللَّهِ وَإِنَّا لَمُؤَاخَذُونَ بِمَا نَتَكَلَّمُ بِهِ؟ فَقَالَ: ثَكِلَتْك أُمُّك وَهَلْ يَكُبُّ النَّاسَ عَلَى وُجُوهِهِمْ -أَوْ قَالَ عَلَى مَنَاخِرِهِمْ- إلَّا حَصَائِدُ أَلْسِنَتِهِمْ؟!\\" . \\nرَوَاهُ التِّرْمِذِيُّ  وَقَالَ: حَدِيثٌ حَسَنٌ صَحِيحٌ.","view":{"narrator":"On the authority of Muadh bin Jabal (may Allah be pleased with him) who said:","text":"I said, “O Messenger of Allah, tell me of an act which will take me into Paradise and will keep me away from the Hellfire.” He (peace and blessings of Allah be upon him) said, “You have asked me about a great matter, yet it is easy for him for whom Allah makes it easy: worship Allah, without associating any partners with Him; establish the prayer; pay the zakat; fast in Ramadhan; and make the pilgrimage to the House.”\\n\\nThen he (peace and blessings of Allah be upon him) said, “Shall I not guide you towards the means of goodness? Fasting is a shield; charity wipes away sin as water extinguishes fire; and the praying of a man in the depths of the night.” Then he (peace and blessings of Allah be upon him) recited: “\\n\\nThen he (peace and blessings of Allah be upon him) said, “Shall I not inform you of the head of the matter, its pillar and its peak?” I said, “Yes, O Messenger of Allah.” He (peace and blessings of Allah be upon him) said, “The head of the matter is Islam, its pillar is the prayer and its peak is jihad.” Then he (peace and blessings of Allah be upon him) said, “Shall I not tell you of the foundation of all of that?” I said, “Yes, O Messenger of Allah.” So he took hold of his tongue and said, “Restrain this.”\\n\\nI said, “O Prophet of Allah, will we be taken to account for what we say with it?” He (peace and blessings of Allah be upon him) said, “May your mother be bereaved of you, O Muadh! Is there anything that throws people into the Hellfire upon their faces — or: on their noses — except the harvests of their tongues?”\\n\\nIt was related by at-Tirmidhi, who said it was a good and sound hadeeth."},"chapterId":1,"bookId":10,"idInBook":29},{"id":40973,"arabic":"عَنْ أَبِي ثَعْلَبَةَ الْخُشَنِيِّ جُرْثُومِ بن نَاشِر رَضِيَ اللهُ عَنْهُ عَنْ رَسُولِ اللَّهِ صلى الله عليه و سلم قَال: \\"إنَّ اللَّهَ تَعَالَى فَرَضَ فَرَائِضَ فَلَا تُضَيِّعُوهَا، وَحَدَّ حُدُودًا فَلَا تَعْتَدُوهَا، وَحَرَّمَ أَشْيَاءَ فَلَا تَنْتَهِكُوهَا، وَسَكَتَ عَنْ أَشْيَاءَ رَحْمَةً لَكُمْ غَيْرَ نِسْيَانٍ فَلَا تَبْحَثُوا عَنْهَا\\". \\nحَدِيثٌ حَسَنٌ، رَوَاهُ الدَّارَقُطْنِيّ ْ\\"في سننه\\" ، وَغَيْرُهُ.","view":{"narrator":"On the authority of Abu Tha’labah al-Kushanee — Jurthoom bin Nashir (may Allah be pleased with him) — that the Messenger of Allah (peace and blessings of Allah be upon him) said:","text":"Verily Allah ta’ala has laid down religious obligations (fara’id), so do not neglect them; and He has set limits, so do not overstep them; and He has forbidden some things, so do not violate them; and He has remained silent about some things, out of compassion for you, not forgetfulness — so do not seek after them.\\n\\nA hasan hadeeth narrated by ad-Daraqutnee and others."},"chapterId":1,"bookId":10,"idInBook":30},{"id":40974,"arabic":"عَنْ أَبِي الْعَبَّاسِ سَهْلِ بْنِ سَعْدٍ السَّاعِدِيّ رَضِيَ اللهُ عَنْهُ قَالَ: جَاءَ رَجُلٌ إلَى النَّبِيِّ صلى الله عليه و سلم فَقَالَ: يَا رَسُولَ اللهِ! دُلَّنِي عَلَى عَمَلٍ إذَا عَمِلْتُهُ أَحَبَّنِي اللهُ وَأَحَبَّنِي النَّاسُ؛ فَقَالَ: \\"ازْهَدْ فِي الدُّنْيَا يُحِبَّك اللهُ، وَازْهَدْ فِيمَا عِنْدَ النَّاسِ يُحِبَّك النَّاسُ\\" . \\nحديث حسن، رَوَاهُ ابْنُ مَاجَهْ ، وَغَيْرُهُ بِأَسَانِيدَ حَسَنَةٍ.","view":{"narrator":"On the authority of Abu al-’Abbas Sahl bin Sa’ad as-Sa’idee (may Allah be pleased with him) who said:","text":"A man came to the Prophet (peace and blessings of Allah be upon him) and said, “O Messenger of Allah, direct me to an act which, if I do it,  Allah to love me and the people to love me.” So he (peace and blessings of Allah be upon him) said, “Renounce the world and Allah will love you, and renounce what the people possess and the people will love you.”\\n\\nA hasan hadeeth related by Ibn Majah and others with good chains of authorities."},"chapterId":1,"bookId":10,"idInBook":31},{"id":40975,"arabic":"عَنْ أَبِي سَعِيدٍ سَعْدِ بْنِ مَالِكِ بْنِ سِنَانٍ الْخُدْرِيّ رَضِيَ اللهُ عَنْهُ أَنَّ رَسُولَ اللَّهِ صلى الله عليه و سلم قَالَ: \\" لَا ضَرَرَ وَلَا ضِرَارَ\\" . \\nحَدِيثٌ حَسَنٌ، رَوَاهُ ابْنُ مَاجَهْ  فِي \\"الْمُوَطَّإِ\\" عَنْ عَمْرِو بْنِ يَحْيَى عَنْ أَبِيهِ عَنْ النَّبِيِّ صلى الله عليه و سلم مُرْسَلًا، فَأَسْقَطَ أَبَا سَعِيدٍ، وَلَهُ طُرُقٌ يُقَوِّي بَعْضُهَا بَعْضًا.","view":{"narrator":"On the authority of Abu Sa’eed al-Khudree (may Allah be pleased with him), that the Messenger of Allah (peace and blessings of Allah be upon him) said:","text":"There should be neither harming (darar) nor reciprocating harm (dirar).\\n\\nA hasan hadeeth related by Ibn Majah, ad-Daraqutnee and others as a musnad hadeeth. It was also related by Malik in al-Muwatta in mursal form from Amr bin Yahya, from his father from the Prophet (peace and blessings of Allah be upon him), but leaving Abu Sa’eed from the chain. And it has other chains of narrations that strengthen one another."},"chapterId":1,"bookId":10,"idInBook":32},{"id":40976,"arabic":"عَنْ ابْنِ عَبَّاسٍ رَضِيَ اللَّهُ عَنْهُمَا أَنَّ رَسُولَ اللَّهِ صلى الله عليه و سلم قَالَ: \\"لَوْ يُعْطَى النَّاسُ بِدَعْوَاهُمْ لَادَّعَى رِجَالٌ أَمْوَالَ قَوْمٍ وَدِمَاءَهُمْ، لَكِنَّ الْبَيِّنَةَ عَلَى الْمُدَّعِي، وَالْيَمِينَ عَلَى مَنْ أَنْكَرَ\\" . \\nحَدِيثٌ حَسَنٌ، رَوَاهُ الْبَيْهَقِيّ ، وَغَيْرُهُ هَكَذَا، وَبَعْضُهُ فِي \\"الصَّحِيحَيْنِ\\".","view":{"narrator":"On the authority of Ibn Abbas (may Allah be pleased with him), that the Messenger of Allah (peace and blessings of Allah be upon him) said:","text":"Were people to be given everything that they claimed, men would  people. But, the onus of proof is upon the claimant, and the taking of an oath is upon him who denies.\\n\\nA hasan hadeeth narrated by al-Baihaqee and others in this form, and part of it is in the two Saheehs."},"chapterId":1,"bookId":10,"idInBook":33},{"id":40977,"arabic":"عَنْ أَبِي سَعِيدٍ الْخُدْرِيّ رَضِيَ اللهُ عَنْهُ قَالَ سَمِعْت رَسُولَ اللَّهِ صلى الله عليه و سلم يَقُولُ: \\"مَنْ رَأَى مِنْكُمْ مُنْكَرًا فَلْيُغَيِّرْهُ بِيَدِهِ، فَإِنْ لَمْ يَسْتَطِعْ فَبِلِسَانِهِ، فَإِنْ لَمْ يَسْتَطِعْ فَبِقَلْبِهِ، وَذَلِكَ أَضْعَفُ الْإِيمَانِ\\" . \\n.","view":{"narrator":"On the authority of Abu Sa`eed al-Khudree (may Allah be pleased with him) who said:","text":"I heard the Messenger of Allah (ﷺ) say, “Whosoever of you sees an evil, let him change it with his hand; and if he is not able to do so, then  with his tongue; and if he is not able to do so, then with his heart — and that is the weakest of faith.”\\n\\n"},"chapterId":1,"bookId":10,"idInBook":34},{"id":40978,"arabic":"عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ صلى الله عليه و سلم \\" لَا تَحَاسَدُوا، وَلَا تَنَاجَشُوا، وَلَا تَبَاغَضُوا، وَلَا تَدَابَرُوا، وَلَا يَبِعْ بَعْضُكُمْ عَلَى بَيْعِ بَعْضٍ، وَكُونُوا عِبَادَ اللَّهِ إخْوَانًا، الْمُسْلِمُ أَخُو الْمُسْلِمِ، لَا يَظْلِمُهُ، وَلَا يَخْذُلُهُ، وَلَا يَكْذِبُهُ، وَلَا يَحْقِرُهُ، التَّقْوَى هَاهُنَا، وَيُشِيرُ إلَى صَدْرِهِ ثَلَاثَ مَرَّاتٍ، بِحَسْبِ امْرِئٍ مِنْ الشَّرِّ أَنْ يَحْقِرَ أَخَاهُ الْمُسْلِمَ، كُلُّ الْمُسْلِمِ عَلَى الْمُسْلِمِ حَرَامٌ: دَمُهُ وَمَالُهُ وَعِرْضُهُ\\" . \\n.","view":{"narrator":"On the authority of Abu Hurayrah (may Allah be pleased with him) who said:","text":"The Messenger of Allah (peace and blessings of Allah be upon him) said, “Do not envy one another, and do not inflate prices for one another, and do not hate one another, and do not turn away from one another, and do not undercut one another in trade, but . It is evil enough for a man to hold his brother Muslim in contempt. The whole of a Muslim is inviolable for another Muslim: his blood, his property, and his honour.”\\n\\n"},"chapterId":1,"bookId":10,"idInBook":35},{"id":40979,"arabic":"عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللهُ عَنْهُ عَنْ النَّبِيِّ صلى الله عليه و سلم قَالَ: \\"مَنْ نَفَّسَ عَنْ مُؤْمِنٍ كُرْبَةً مِنْ كُرَبِ الدُّنْيَا نَفَّسَ اللَّهُ عَنْهُ كُرْبَةً مِنْ كُرَبِ يَوْمِ الْقِيَامَةِ، وَمَنْ يَسَّرَ عَلَى مُعْسِرٍ، يَسَّرَ اللَّهُ عَلَيْهِ فِي الدُّنْيَا وَالْآخِرَةِ، وَمَنْ سَتَرَ مُسْلِما سَتَرَهُ اللهُ فِي الدُّنْيَا وَالْآخِرَةِ ، وَاَللَّهُ فِي عَوْنِ الْعَبْدِ مَا كَانَ الْعَبْدُ فِي عَوْنِ أَخِيهِ، وَمَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا سَهَّلَ اللَّهُ لَهُ بِهِ طَرِيقًا إلَى الْجَنَّةِ، وَمَا اجْتَمَعَ قَوْمٌ فِي بَيْتٍ مِنْ بُيُوتِ اللَّهِ يَتْلُونَ كِتَابَ اللَّهِ، وَيَتَدَارَسُونَهُ فِيمَا بَيْنَهُمْ؛ إلَّا نَزَلَتْ عَلَيْهِمْ السَّكِينَةُ، وَغَشِيَتْهُمْ الرَّحْمَةُ، وَ حَفَّتهُمُ المَلاَئِكَة، وَذَكَرَهُمْ اللَّهُ فِيمَنْ عِنْدَهُ، وَمَنْ أَبَطْأَ بِهِ عَمَلُهُ لَمْ يُسْرِعْ بِهِ نَسَبُهُ\\". \\n بهذا اللفظ.","view":{"narrator":"On the authority of Abu Hurayrah (may Allah be pleased with him), that the Prophet (peace and blessings of Allah be upon him) said:","text":"Whoever removes a worldly grief from a believer, Allah will remove from him one of the griefs of the Day of Resurrection. And whoever alleviates the need of a needy person, Allah will alleviate his needs in this world and the Hereafter. Whoever shields  a Muslim, Allah will shield him in this world and the Hereafter. And Allah will aid His slave so long as he aids his brother. And whoever follows a path to seek knowledge therein, Allah will make easy for him a path to Paradise. No people gather together in one of the Houses of Allah, reciting the Book of Allah and studying it among themselves, except that sakeenah (tranquility) descends upon them, and mercy envelops them, and the angels surround them, and Allah mentions them amongst those who are with Him. And whoever is slowed down by his actions, will not be hastened forward by his lineage.\\n\\nRelated by  in these words."},"chapterId":1,"bookId":10,"idInBook":36},{"id":40980,"arabic":"عَنْ ابْنِ عَبَّاسٍ رَضِيَ اللَّهُ عَنْهُمَا عَنْ رَسُولِ اللَّهِ صلى الله عليه و سلم فِيمَا يَرْوِيهِ عَنْ رَبِّهِ تَبَارَكَ وَتَعَالَى، قَالَ: \\"إنَّ اللَّهَ كَتَبَ الْحَسَنَاتِ وَالسَّيِّئَاتِ، ثُمَّ بَيَّنَ ذَلِكَ، فَمَنْ هَمَّ بِحَسَنَةٍ فَلَمْ يَعْمَلْهَا كَتَبَهَا اللَّهُ عِنْدَهُ حَسَنَةً كَامِلَةً، وَإِنْ هَمَّ بِهَا فَعَمِلَهَا كَتَبَهَا اللَّهُ عِنْدَهُ عَشْرَ حَسَنَاتٍ إلَى سَبْعِمِائَةِ ضِعْفٍ إلَى أَضْعَافٍ كَثِيرَةٍ، وَإِنْ هَمَّ بِسَيِّئَةٍ فَلَمْ يَعْمَلْهَا كَتَبَهَا اللَّهُ عِنْدَهُ حَسَنَةً كَامِلَةً، وَإِنْ هَمَّ بِهَا فَعَمِلَهَا كَتَبَهَا اللَّهُ سَيِّئَةً وَاحِدَةً\\". \\n \\n، ، في \\"صحيحيهما\\" بهذه الحروف.","view":{"narrator":"On the authority of Ibn Abbas (may Allah be pleased with him), from the Messenger of Allah (peace and blessings of Allah be upon him), from what he has related from his Lord:","text":"Verily Allah ta’ala has written down the good deeds and the evil deeds, and then explained it  and then performed it, then Allah writes it down as one evil deed.”\\n\\n\\n."},"chapterId":1,"bookId":10,"idInBook":37},{"id":40981,"arabic":"عَنْ أَبِي هُرَيْرَة رَضِيَ اللهُ عَنْهُ قَالَ: قَالَ رَسُول اللَّهِ صلى الله عليه و سلم إنَّ اللَّهَ تَعَالَى قَالَ: \\"مَنْ عَادَى لِي وَلِيًّا فَقْد آذَنْتهُ بِالْحَرْبِ، وَمَا تَقَرَّبَ إلَيَّ عَبْدِي بِشَيْءٍ أَحَبَّ إلَيَّ مِمَّا افْتَرَضْتُهُ عَلَيْهِ، وَلَا يَزَالُ عَبْدِي يَتَقَرَّبُ إلَيَّ بِالنَّوَافِلِ حَتَّى أُحِبَّهُ، فَإِذَا أَحْبَبْتُهُ كُنْت سَمْعَهُ الَّذِي يَسْمَعُ بِهِ، وَبَصَرَهُ الَّذِي يُبْصِرُ بِهِ، وَيَدَهُ الَّتِي يَبْطِشُ بِهَا، وَرِجْلَهُ الَّتِي يَمْشِي بِهَا، وَلَئِنْ سَأَلَنِي لَأُعْطِيَنَّهُ، وَلَئِنْ اسْتَعَاذَنِي لَأُعِيذَنَّهُ\\". \\n .","view":{"narrator":"On the authority of Abu Hurayrah (may Allah be pleased with him) who said:","text":"The Messenger of Allah (peace and blessings of Allah be upon him) said, “Verily Allah ta’ala has said: ‘Whosoever shows enmity to a wali (friend) of Mine, then I have declared war against him. And My servant does not draw near to Me with anything more loved to Me than the religious duties I have obligated upon him. And My servant continues to draw near to me with nafil (supererogatory) deeds until I Love him. When I Love him, I am his hearing with which he hears, and his sight with which he sees, and his hand with which he strikes, and his foot with which he walks. Were he to ask  of Me, I would surely give it to him; and were he to seek refuge with Me, I would surely grant him refuge.’ ”\\n\\n"},"chapterId":1,"bookId":10,"idInBook":38},{"id":40982,"arabic":"عَنْ ابْنِ عَبَّاسٍ رَضِيَ اللَّهُ عَنْهُمَا أَنَّ رَسُولَ اللَّهِ صلى الله عليه و سلم قَالَ: \\"إنَّ اللَّهَ تَجَاوَزَ لِي عَنْ أُمَّتِي الْخَطَأَ وَالنِّسْيَانَ وَمَا اسْتُكْرِهُوا عَلَيْهِ\\" . \\nحَدِيثٌ حَسَنٌ، رَوَاهُ ابْنُ مَاجَهْ .","view":{"narrator":"On the authority of Ibn Abbas (may Allah be pleased with him), that the Messenger of Allah (peace and blessings of Allah be upon him) said:","text":"Verily Allah has pardoned  for me my ummah: their mistakes, their forgetfulness, and that which they have been forced to do under duress.\\n\\nA hasan hadeeth related by Ibn Majah, and al-Bayhaqee and others."},"chapterId":1,"bookId":10,"idInBook":39},{"id":40983,"arabic":"عَنْ ابْن عُمَرَ رَضِيَ اللَّهُ عَنْهُمَا قَالَ: أَخَذَ رَسُولُ اللَّهِ صلى الله عليه و سلم بِمَنْكِبِي، وَقَالَ: \\"كُنْ فِي الدُّنْيَا كَأَنَّك غَرِيبٌ أَوْ عَابِرُ سَبِيلٍ\\". وَكَانَ ابْنُ عُمَرَ رَضِيَ اللَّهُ عَنْهُمَا يَقُولُ: إذَا أَمْسَيْتَ فَلَا تَنْتَظِرْ الصَّبَاحَ، وَإِذَا أَصْبَحْتَ فَلَا تَنْتَظِرْ الْمَسَاءَ، وَخُذْ مِنْ صِحَّتِك لِمَرَضِك، وَمِنْ حَيَاتِك لِمَوْتِك. \\n .","view":{"narrator":"On the authority of Abdullah ibn Umar (may Allah be pleased with him), who said:","text":"The Messenger of Allah (peace and blessings of Allah be upon him) took me by the shoulder and said, “Be in this world as though you were a stranger or a wayfarer.”\\n\\nAnd Ibn Umar (may Allah be pleased with him) used to say, “In the evening do not expect  your life before your death.”\\n\\n"},"chapterId":1,"bookId":10,"idInBook":40},{"id":40984,"arabic":"عَنْ أَبِي مُحَمَّدٍ عَبْدِ اللَّهِ بْنِ عَمْرِو بْنِ الْعَاصِ رَضِيَ اللَّهُ عَنْهُمَا، قَالَ: قَالَ رَسُولُ اللَّهِ صلى الله عليه و سلم \\"لَا يُؤْمِنُ أَحَدُكُمْ حَتَّى يَكُونَ هَوَاهُ تَبَعًا لِمَا جِئْتُ بِهِ\\". \\nحَدِيثٌ حَسَنٌ صَحِيحٌ، رَوَيْنَاهُ فِي كِتَابِ \\"الْحُجَّةِ\\" بِإِسْنَادٍ صَحِيحٍ.","view":{"narrator":"On the authority of Abu Muhammad Abdullah bin ’Amr bin al-’Aas (may Allah be pleased with him) who said:","text":"The Messenger of Allah (peace and blessings of Allah be upon him) said, “None of you  believes until his desires are subservient to that which I have brought.”\\n\\n We have related it in Kitab al-Hujjah with a saheeh chain of narrators."},"chapterId":1,"bookId":10,"idInBook":41},{"id":40985,"arabic":"عَنْ أَنَسِ بْنِ مَالِكٍ رَضِيَ اللهُ عَنْهُ قَالَ: سَمِعْت رَسُولَ اللَّهِ صلى الله عليه و سلم يَقُولُ: قَالَ اللَّهُ تَعَالَى: \\"يَا ابْنَ آدَمَ! إِنَّكَ مَا دَعَوْتنِي وَرَجَوْتنِي غَفَرْتُ لَك عَلَى مَا كَانَ مِنْك وَلَا أُبَالِي، يَا ابْنَ آدَمَ! لَوْ بَلَغَتْ ذُنُوبُك عَنَانَ السَّمَاءِ ثُمَّ اسْتَغْفَرْتنِي غَفَرْتُ لَك، يَا ابْنَ آدَمَ! إنَّك لَوْ أتَيْتنِي بِقُرَابِ الْأَرْضِ خَطَايَا ثُمَّ لَقِيتنِي لَا تُشْرِكُ بِي شَيْئًا لَأَتَيْتُك بِقُرَابِهَا مَغْفِرَةً\\" . \\nرَوَاهُ التِّرْمِذِيُّ ، وَقَالَ: حَدِيثٌ حَسَنٌ صَحِيحٌ.","view":{"narrator":"On the authority of Anas (may Allah be pleased with him) who said:","text":"I heard the Messenger of Allah (peace and blessings of Allah be upon him) say, “Allah the Almighty has said: ‘O Son of Adam, as long as you invoke Me and ask of Me, I shall forgive you for what you have done, and I shall not mind. O Son of Adam, were your sins to reach the clouds of the sky and you then asked forgiveness from Me, I would forgive you. O Son of Adam, were you to come to Me with sins nearly as great as the Earth, and were you then to face Me, ascribing no partner to Me, I would bring you forgiveness nearly as great as it .’ ” \\n\\nIt was related by at-Tirmidhi, who said that it was a hasan hadeeth."},"chapterId":1,"bookId":10,"idInBook":42}]');
+module.exports = JSON.parse('{"id":10,"metadata":{"id":10,"length":42,"arabic":{"title":"الأربعون النووية","author":"الإمام يحيى بن شرف النووي","introduction":""},"view":{"title":"The Forty Hadith of Imam Nawawi","author":"Imam Yahya ibn Sharaf al-Nawawi","introduction":""}},"chapters":[{"id":1,"bookId":10,"arabic":"الأربعون النووية","view":"Forty Hadith of an-Nawawi"}],"hadiths":[{"id":40944,"arabic":"عَنْ أَمِيرِ الْمُؤْمِنِينَ أَبِي حَفْصٍ عُمَرَ بْنِ الْخَطَّابِ رَضِيَ اللهُ عَنْهُ قَالَ: سَمِعْتُ رَسُولَ اللَّهِ صلى الله عليه وسلم يَقُولُ: \\" إنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى، فَمَنْ كَانَتْ هِجْرَتُهُ إلَى اللَّهِ وَرَسُولِهِ فَهِجْرَتُهُ إلَى اللَّهِ وَرَسُولِهِ، وَمَنْ كَانَتْ هِجْرَتُهُ لِدُنْيَا يُصِيبُهَا أَوْ امْرَأَةٍ يَنْكِحُهَا فَهِجْرَتُهُ إلَى مَا هَاجَرَ إلَيْهِ\\". \\nرَوَاهُ إِمَامَا الْمُحَدِّثِينَ أَبُو عَبْدِ اللهِ مُحَمَّدُ بنُ إِسْمَاعِيل بن إِبْرَاهِيم بن الْمُغِيرَة بن بَرْدِزبَه الْبُخَارِيُّ الْجُعْفِيُّ  رَضِيَ اللهُ عَنْهُمَا فِي \\"صَحِيحَيْهِمَا\\" اللذَينِ هُمَا أَصَحُّ الْكُتُبِ الْمُصَنَّفَةِ.","view":{"narrator":"It is narrated on the authority of Amirul Mu\'minin, Abu Hafs \'Umar bin al-Khattab (ra) who said:","text":"I heard the Messenger of Allah (ﷺ) say: \\"Actions are (judged) by motives (niyyah), so each man will have what he intended. Thus, he whose migration (hijrah) was to Allah and His Messenger, his migration is to Allah and His Messenger; but he whose migration was for some worldly thing he might gain, or for a wife he might marry, his migration is to that for which he migrated.\\"\\n\\n"},"chapterId":1,"bookId":10,"idInBook":1},{"id":40945,"arabic":"عَنْ عُمَرَ رَضِيَ اللهُ عَنْهُ أَيْضًا قَالَ: \\" بَيْنَمَا نَحْنُ جُلُوسٌ عِنْدَ رَسُولِ اللَّهِ صلى الله عليه و سلم ذَاتَ يَوْمٍ، إذْ طَلَعَ عَلَيْنَا رَجُلٌ شَدِيدُ بَيَاضِ الثِّيَابِ، شَدِيدُ سَوَادِ الشَّعْرِ، لَا يُرَى عَلَيْهِ أَثَرُ السَّفَرِ، وَلَا يَعْرِفُهُ مِنَّا أَحَدٌ. حَتَّى جَلَسَ إلَى النَّبِيِّ صلى الله عليه و سلم . فَأَسْنَدَ رُكْبَتَيْهِ إلَى رُكْبَتَيْهِ، وَوَضَعَ كَفَّيْهِ عَلَى فَخِذَيْهِ، \\nوَقَالَ: يَا مُحَمَّدُ أَخْبِرْنِي عَنْ الْإِسْلَامِ. \\nفَقَالَ رَسُولُ اللَّهِ صلى الله عليه و سلم الْإِسْلَامُ أَنْ تَشْهَدَ أَنْ لَا إلَهَ إلَّا اللَّهُ وَأَنَّ مُحَمَّدًا رَسُولُ اللَّهِ، وَتُقِيمَ الصَّلَاةَ، وَتُؤْتِيَ الزَّكَاةَ، وَتَصُومَ رَمَضَانَ، وَتَحُجَّ الْبَيْتَ إنْ اسْتَطَعْت إلَيْهِ سَبِيلًا. \\nقَالَ: صَدَقْت . فَعَجِبْنَا لَهُ يَسْأَلُهُ وَيُصَدِّقُهُ!\\nقَالَ: فَأَخْبِرْنِي عَنْ الْإِيمَانِ. \\nقَالَ: أَنْ تُؤْمِنَ بِاَللَّهِ وَمَلَائِكَتِهِ وَكُتُبِهِ وَرُسُلِهِ وَالْيَوْمِ الْآخِرِ، وَتُؤْمِنَ بِالْقَدَرِ خَيْرِهِ وَشَرِّهِ.\\nقَالَ: صَدَقْت. قَالَ: فَأَخْبِرْنِي عَنْ الْإِحْسَانِ. \\nقَالَ: أَنْ تَعْبُدَ اللَّهَ كَأَنَّك تَرَاهُ، فَإِنْ لَمْ تَكُنْ تَرَاهُ فَإِنَّهُ يَرَاك. \\nقَالَ: فَأَخْبِرْنِي عَنْ السَّاعَةِ. قَالَ: مَا الْمَسْئُولُ عَنْهَا بِأَعْلَمَ مِنْ السَّائِلِ. \\nقَالَ: فَأَخْبِرْنِي عَنْ أَمَارَاتِهَا؟ قَالَ: أَنْ تَلِدَ الْأَمَةُ رَبَّتَهَا، وَأَنْ تَرَى الْحُفَاةَ الْعُرَاةَ الْعَالَةَ رِعَاءَ الشَّاءِ يَتَطَاوَلُونَ فِي الْبُنْيَانِ. ثُمَّ انْطَلَقَ، فَلَبِثْتُ مَلِيًّا، \\nثُمَّ قَالَ: يَا عُمَرُ أَتَدْرِي مَنْ السَّائِلُ؟. \\n‫‬قُلْتُ: اللَّهُ وَرَسُولُهُ أَعْلَمُ. \\nقَالَ: فَإِنَّهُ جِبْرِيلُ أَتَاكُمْ يُعَلِّمُكُمْ دِينَكُمْ \\". \\n.","view":{"narrator":"Also on the authority of `Umar (ra) who said:","text":"While we were one day sitting with the Messenger of Allah (ﷺ) there appeared before us a man dressed in extremely white clothes and with very black hair. No traces of journeying were visible on him, and none of us knew him.\\n\\nHe sat down close by the Prophet (ﷺ) rested his knees against the knees of the Prophet (ﷺ) and placed his palms over his thighs, and said: \\"O Muhammad! Inform me about Islam.\\" The Messenger of Allah (ﷺ) replied: \\"Islam is that you should testify that there is no deity worthy of worship except Allah and that Muhammad is His Messenger (ﷺ), that you should perform salah (ritual prayer), pay the zakah, fast during Ramadan, and perform Hajj (pilgrimage) to the House (the Ka`bah at Makkah), if you can find a way to it (or find the means for making the journey to it).\\" He said: \\"You have spoken the truth.\\"\\n\\nWe were astonished at his thus questioning him (ﷺ) and then telling him that he was right, but he went on to say, \\"Inform me about Iman (faith).\\" He (the Prophet) answered, \\"It is that you believe in Allah and His angels and His Books and His Messengers and in the Last Day, and in fate (qadar), both in its good and in its evil aspects.\\" He said, \\"You have spoken the truth.\\"\\n\\nThen he (the man) said, \\"Inform me about Ihsan.\\" He (the Prophet) answered, \\"It is that you should serve Allah as though you could see Him, for though you cannot see Him yet He sees you.\\"\\n\\nHe said, \\"Inform me about the Hour.\\" He (the Prophet) said, \\"About that the one questioned knows no more than the questioner.\\" So he said, \\"Well, inform me about its signs.\\" He said, \\"They are that the slave-girl will give birth to her mistress and that you will see the barefooted ones, the naked, the destitute, the herdsmen of the sheep (competing with each other) in raising lofty buildings.\\" Thereupon the man went off.\\n\\nI waited a while, and then he (the Prophet) said, \\"O `Umar, do you know who that questioner was?\\" I replied, \\"Allah and His Messenger know better.\\" He said, \\"That was Jibril. He came to teach you your religion.\\"\\n\\n"},"chapterId":1,"bookId":10,"idInBook":2},{"id":40946,"arabic":"عَنْ أَبِي عَبْدِ الرَّحْمَنِ عَبْدِ اللَّهِ بْنِ عُمَرَ بْنِ الْخَطَّابِ رَضِيَ اللَّهُ عَنْهُمَا قَالَ: سَمِعْت رَسُولَ اللَّهِ صلى الله عليه و سلم يَقُولُ: \\" بُنِيَ الْإِسْلَامُ عَلَى خَمْسٍ: شَهَادَةِ أَنْ لَا إلَهَ إلَّا اللَّهُ وَأَنَّ مُحَمَّدًا رَسُولُ اللَّهِ، وَإِقَامِ الصَّلَاةِ، وَإِيتَاءِ الزَّكَاةِ، وَحَجِّ الْبَيْتِ، وَصَوْمِ رَمَضَانَ\\". \\n.","view":{"narrator":"On the authority of Abdullah, the son of Umar ibn al-Khattab (ra), who said:","text":"I heard the Messenger of Allah (ﷺ) say, \\"Islam has been built on five : testifying that there is no deity worthy of worship except Allah and that Muhammad is the Messenger of Allah, establishing the salah (prayer), paying the zakat (obligatory charity), making the hajj (pilgrimage) to the House, and fasting in Ramadhan.\\"\\n\\n"},"chapterId":1,"bookId":10,"idInBook":3},{"id":40947,"arabic":"عَنْ أَبِي عَبْدِ الرَّحْمَنِ عَبْدِ اللَّهِ بْنِ مَسْعُودٍ رَضِيَ اللهُ عَنْهُ قَالَ: حَدَّثَنَا رَسُولُ اللَّهِ صلى الله عليه و سلم -وَهُوَ الصَّادِقُ الْمَصْدُوقُ-: \\"إنَّ أَحَدَكُمْ يُجْمَعُ خَلْقُهُ فِي بَطْنِ أُمِّهِ أَرْبَعِينَ يَوْمًا نُطْفَةً، ثُمَّ يَكُونُ عَلَقَةً مِثْلَ ذَلِكَ، ثُمَّ يَكُونُ مُضْغَةً مِثْلَ ذَلِكَ، ثُمَّ يُرْسَلُ إلَيْهِ الْمَلَكُ فَيَنْفُخُ فِيهِ الرُّوحَ، وَيُؤْمَرُ بِأَرْبَعِ كَلِمَاتٍ: بِكَتْبِ رِزْقِهِ، وَأَجَلِهِ، وَعَمَلِهِ، وَشَقِيٍّ أَمْ سَعِيدٍ؛ فَوَاَللَّهِ الَّذِي لَا إلَهَ غَيْرُهُ إنَّ أَحَدَكُمْ لَيَعْمَلُ بِعَمَلِ أَهْلِ الْجَنَّةِ حَتَّى مَا يَكُونُ بَيْنَهُ وَبَيْنَهَا إلَّا ذِرَاعٌ فَيَسْبِقُ عَلَيْهِ الْكِتَابُ فَيَعْمَلُ بِعَمَلِ أَهْلِ النَّارِ فَيَدْخُلُهَا. وَإِنَّ أَحَدَكُمْ لَيَعْمَلُ بِعَمَلِ أَهْلِ النَّارِ حَتَّى مَا يَكُونُ بَيْنَهُ وَبَيْنَهَا إلَّا ذِرَاعٌ فَيَسْبِقُ عَلَيْهِ الْكِتَابُ فَيَعْمَلُ بِعَمَلِ أَهْلِ الْجَنَّةِ فَيَدْخُلُهَا\\".\\n \\n.","view":{"narrator":"On the authority of Abdullah ibn Masood (ra), who said:","text":"The Messenger of Allah (ﷺ), and he is the truthful, the believed, narrated to us, “Verily the creation of each one of you is brought together in his mother’s womb for forty days in the form of a nutfah (a drop), then he becomes an alaqah (clot of blood) for a like period, then a mudghah (morsel of flesh) for a like period, then there is sent to him the angel who blows his soul into him and who is commanded with four matters: to write down his rizq (sustenance), his life span, his actions, and whether he will be happy or unhappy (i.e., whether or not he will enter Paradise).\\n\\nBy the One, other than Whom there is no deity, verily one of you performs the actions of the people of Paradise until there is but an arms length between him and it, and that which has been written overtakes him, and so he acts with the actions of the people of the Hellfire and thus enters it; and verily one of you performs the actions of the people of the Hellfire, until there is but an arms length between him and it, and that which has been written overtakes him and so he acts with the actions of the people of Paradise and thus he enters it.”\\n\\n"},"chapterId":1,"bookId":10,"idInBook":4},{"id":40948,"arabic":"عَنْ أُمِّ الْمُؤْمِنِينَ أُمِّ عَبْدِ اللَّهِ عَائِشَةَ رَضِيَ اللَّهُ عَنْهَا، قَالَتْ: قَالَ: رَسُولُ اللَّهِ صلى الله عليه و سلم \\"مَنْ أَحْدَثَ فِي أَمْرِنَا هَذَا مَا لَيْسَ مِنْهُ فَهُوَ رَدٌّ\\n \\nوَفِي رِوَايَةٍ لِمُسْلِمٍ: مَنْ عَمِلَ عَمَلًا لَيْسَ عَلَيْهِ أَمْرُنَا فَهُوَ رَدٌّ\\".","view":{"narrator":"On the authority of the mother of the faithful, Aisha (ra), who said:","text":"The Messenger of Allah (ﷺ) said, “He who innovates something in this matter of ours (i.e., Islam) that is not of it will have it rejected (by Allah).”\\n\\n\\nIn another version in Muslim it reads: “He who does an act which we have not commanded, will have it rejected (by Allah).”"},"chapterId":1,"bookId":10,"idInBook":5},{"id":40949,"arabic":"عَنْ أَبِي عَبْدِ اللَّهِ النُّعْمَانِ بْنِ بَشِيرٍ رَضِيَ اللَّهُ عَنْهُمَا، قَالَ: سَمِعْت رَسُولَ اللَّهِ صلى الله عليه و سلم يَقُولُ: \\"إنَّ الْحَلَالَ بَيِّنٌ، وَإِنَّ الْحَرَامَ بَيِّنٌ، وَبَيْنَهُمَا أُمُورٌ مُشْتَبِهَاتٌ لَا يَعْلَمُهُنَّ كَثِيرٌ مِنْ النَّاسِ، فَمَنْ اتَّقَى الشُّبُهَاتِ فَقْد اسْتَبْرَأَ لِدِينِهِ وَعِرْضِهِ، وَمَنْ وَقَعَ فِي الشُّبُهَاتِ وَقَعَ فِي الْحَرَامِ، كَالرَّاعِي يَرْعَى حَوْلَ الْحِمَى يُوشِكُ أَنْ يَرْتَعَ فِيهِ، أَلَا وَإِنَّ لِكُلِّ مَلِكٍ حِمًى، أَلَا وَإِنَّ حِمَى اللَّهِ مَحَارِمُهُ، أَلَا وَإِنَّ فِي الْجَسَدِ مُضْغَةً إذَا صَلَحَتْ صَلَحَ الْجَسَدُ كُلُّهُ، وَإذَا فَسَدَتْ فَسَدَ الْجَسَدُ كُلُّهُ، أَلَا وَهِيَ الْقَلْبُ\\". \\n \\n.","view":{"narrator":"On the authority of an-Nu’man ibn Basheer (ra), who said:","text":"I heard the Messenger of Allah (ﷺ) say, “That which is lawful is clear and that which is unlawful is clear, and between the two of them are doubtful matters about which many people do not know. Thus he who avoids doubtful matters clears himself in regard to his religion and his honor, but he who falls into doubtful matters  is diseased. Truly, it is the heart.”\\n\\n"},"chapterId":1,"bookId":10,"idInBook":6},{"id":40950,"arabic":"عَنْ أَبِي رُقَيَّةَ تَمِيمِ بْنِ أَوْسٍ الدَّارِيِّ رَضِيَ اللهُ عَنْهُ أَنَّ النَّبِيَّ صلى الله عليه وسلم قَالَ: \\"الدِّينُ النَّصِيحَةُ.\\" قُلْنَا: لِمَنْ؟ قَالَ: \\"لِلَّهِ، وَلِكِتَابِهِ، وَلِرَسُولِهِ، وَلِأَئِمَّةِ الْمُسْلِمِينَ وَعَامَّتِهِمْ.\\" \\n  \\n ","view":{"narrator":"On the authority of Tameem ibn Aus ad-Daree (ra):","text":"The Prophet (ﷺ) said, “The deen (religion) is naseehah (advice, sincerity).” We said, “To whom?” He (ﷺ) said, “To Allah, His Book, His Messenger, and to the leaders of the Muslims and their common folk.”\\n\\n"},"chapterId":1,"bookId":10,"idInBook":7},{"id":40951,"arabic":"عَنْ ابْنِ عُمَرَ رَضِيَ اللَّهُ عَنْهُمَا، أَنَّ رَسُولَ اللَّهِ صلى الله عليه و سلم قَالَ: \\"أُمِرْتُ أَنْ أُقَاتِلَ النَّاسَ حَتَّى يَشْهَدُوا أَنْ لَا إلَهَ إلَّا اللَّهُ وَأَنَّ مُحَمَّدًا رَسُولُ اللَّهِ، وَيُقِيمُوا الصَّلَاةَ، وَيُؤْتُوا الزَّكَاةَ؛ فَإِذَا فَعَلُوا ذَلِكَ عَصَمُوا مِنِّي دِمَاءَهُمْ وَأَمْوَالَهُمْ إلَّا بِحَقِّ الْإِسْلَامِ، وَحِسَابُهُمْ عَلَى اللَّهِ تَعَالَى\\" . \\n ","view":{"narrator":"On the authority of Abdullah ibn Umar (ra):","text":"The Messenger of Allah (ﷺ) said, \\"I have been ordered to fight against the people until they testify that there is none worthy of worship except Allah and that Muhammad is the Messenger of Allah, and until they establish the salah and pay the zakat. And if they do that then they will have gained protection from me for their lives and property, unless  in Islam, and their reckoning will be with Allah.\\"\\n\\n"},"chapterId":1,"bookId":10,"idInBook":8},{"id":40952,"arabic":"عَنْ أَبِي هُرَيْرَةَ عَبْدِ الرَّحْمَنِ بْنِ صَخْرٍ رَضِيَ اللهُ عَنْهُ قَالَ: سَمِعْت رَسُولَ اللَّهِ صلى الله عليه و سلم يَقُولُ: \\"مَا نَهَيْتُكُمْ عَنْهُ فَاجْتَنِبُوهُ، وَمَا أَمَرْتُكُمْ بِهِ فَأْتُوا مِنْهُ مَا اسْتَطَعْتُمْ، فَإِنَّمَا أَهْلَكَ الَّذِينَ مِنْ قَبْلِكُمْ كَثْرَةُ مَسَائِلِهِمْ وَاخْتِلَافُهُمْ عَلَى أَنْبِيَائِهِمْ \\". \\n ","view":{"narrator":"On the authority of Abu Hurayrah (ra):","text":"I heard the Messenger of Allah (ﷺ) say, “What I have forbidden for you, avoid. What I have ordered you  who were before you.”\\n\\n"},"chapterId":1,"bookId":10,"idInBook":9},{"id":40953,"arabic":"عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ صلى الله عليه و سلم \\"إنَّ اللَّهَ طَيِّبٌ لَا يَقْبَلُ إلَّا طَيِّبًا، وَإِنَّ اللَّهَ أَمَرَ الْمُؤْمِنِينَ بِمَا أَمَرَ بِهِ الْمُرْسَلِينَ فَقَالَ تَعَالَى: \\"يَا أَيُّهَا الرُّسُلُ كُلُوا مِنْ الطَّيِّبَاتِ وَاعْمَلُوا صَالِحًا\\"، وَقَالَ تَعَالَى: \\"يَا أَيُّهَا الَّذِينَ آمَنُوا كُلُوا مِنْ طَيِّبَاتِ مَا رَزَقْنَاكُمْ\\" ثُمَّ ذَكَرَ الرَّجُلَ يُطِيلُ السَّفَرَ أَشْعَثَ أَغْبَرَ يَمُدُّ يَدَيْهِ إلَى السَّمَاءِ: يَا رَبِّ! يَا رَبِّ! وَمَطْعَمُهُ حَرَامٌ، وَمَشْرَبُهُ حَرَامٌ، وَمَلْبَسُهُ حَرَامٌ، وَغُذِّيَ بِالْحَرَامِ، فَأَنَّى يُسْتَجَابُ لَهُ؟\\". \\n  \\n ","view":{"narrator":"On the authority of Abu Hurayrah (ra):","text":"The Messenger of Allah (ﷺ) said, “Allah the Almighty is Good and accepts only that which is good. And verily Allah has commanded the believers to do that which He has commanded the Messengers.\\n\\nSo the Almighty has said: “O (you) Messengers! Eat of the tayyibat ”\\n\\nThen he (ﷺ) mentioned  be answered?\\n\\n"},"chapterId":1,"bookId":10,"idInBook":10},{"id":40954,"arabic":"عَنْ أَبِي مُحَمَّدٍ الْحَسَنِ بْنِ عَلِيِّ بْنِ أَبِي طَالِبٍ سِبْطِ رَسُولِ اللَّهِ صلى الله عليه و سلم وَرَيْحَانَتِهِ رَضِيَ اللَّهُ عَنْهُمَا، قَالَ: حَفِظْت مِنْ رَسُولِ اللَّهِ صلى الله عليه و سلم \\"دَعْ مَا يُرِيبُك إلَى مَا لَا يُرِيبُك\\". \\nرَوَاهُ التِّرْمِذِيُّ ،\\n \\n وَقَالَ التِّرْمِذِيُّ: حَدِيثٌ حَسَنٌ صَحِيحٌ.","view":{"narrator":"On the authority of Abu Muhammad al-Hasan ibn Ali ibn Abee Talib (may Allah be pleased with him), the grandson of the Messenger of Allah (peace and blessings of Allah be upon him), and the one much loved by him, who said:","text":"I memorised from the Messenger of Allah (peace and blessings of Allah be upon him): “Leave that which makes you doubt for that which does not make you doubt.”\\n\\n\\n\\nAt-Tirmidhi said that it was a good and sound (hasan saheeh) hadeeth."},"chapterId":1,"bookId":10,"idInBook":11},{"id":40955,"arabic":"عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ صلى الله عليه و سلم \\"مِنْ حُسْنِ إسْلَامِ الْمَرْءِ تَرْكُهُ مَا لَا يَعْنِيهِ\\". \\nحَدِيثٌ حَسَنٌ، رَوَاهُ التِّرْمِذِيُّ .","view":{"narrator":"On the authority of Abu Hurayrah (may Allah be pleased with him) who said:","text":"The Messenger of Allah (peace and blessings of Allah be upon him) said, “Part of the perfection of one’s Islam is his leaving that which does not concern him.”\\n\\nA hasan (good) hadeeth which was related by at-Tirmidhi and others in this fashion."},"chapterId":1,"bookId":10,"idInBook":12},{"id":40956,"arabic":"عَنْ أَبِي حَمْزَةَ أَنَسِ بْنِ مَالِكٍ رَضِيَ اللهُ عَنْهُ خَادِمِ رَسُولِ اللَّهِ صلى الله عليه و سلم عَنْ النَّبِيِّ صلى الله عليه و سلم قَالَ: \\"لَا يُؤْمِنُ أَحَدُكُمْ حَتَّى يُحِبَّ لِأَخِيهِ مَا يُحِبُّ لِنَفْسِهِ\\". \\nرَوَاهُ الْبُخَارِيُّ .  \\n \\n، ","view":{"narrator":"On the authority of Abu Hamzah Anas bin Malik (may Allah be pleased with him) — the servant of the Messenger of Allah (peace and blessings of Allah be upon him) — that the Prophet (peace and blessings of Allah be upon him) said:","text":"None of you  believes until he loves for his brother that which he loves for himself. \\n\\n\\n"},"chapterId":1,"bookId":10,"idInBook":13},{"id":40957,"arabic":"عَنْ ابْنِ مَسْعُودٍ رَضِيَ اللهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ صلى الله عليه و سلم \\"لَا يَحِلُّ دَمُ امْرِئٍ مُسْلِمٍ  إلَّا بِإِحْدَى ثَلَاثٍ: الثَّيِّبُ الزَّانِي، وَالنَّفْسُ بِالنَّفْسِ، وَالتَّارِكُ لِدِينِهِ الْمُفَارِقُ لِلْجَمَاعَةِ\\".   \\n \\n، ","view":{"narrator":"On the authority of Ibn Masood (may Allah be pleased with him) who said:","text":"The Messenger of Allah (peace and blessings of Allah be upon him) said, “It is not permissible to spill the blood of a Muslim except in three : the married person who commits adultery, a life for a life, and the one who forsakes his religion and separates from the community.”\\n\\n\\n"},"chapterId":1,"bookId":10,"idInBook":14},{"id":40958,"arabic":"عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللهُ عَنْهُ أَنَّ رَسُولَ اللَّهِ صلى الله عليه و سلم قَالَ: \\"مَنْ كَانَ يُؤْمِنُ بِاَللَّهِ وَالْيَوْمِ الْآخِرِ فَلْيَقُلْ خَيْرًا أَوْ لِيَصْمُتْ، وَمَنْ كَانَ يُؤْمِنُ بِاَللَّهِ وَالْيَوْمِ الْآخِرِ فَلْيُكْرِمْ جَارَهُ، وَمَنْ كَانَ يُؤْمِنُ بِاَللَّهِ وَالْيَوْمِ الْآخِرِ فَلْيُكْرِمْ ضَيْفَهُ\\".   \\n \\n، ","view":{"narrator":"On the authority of Abu Hurayrah (may Allah be pleased with him), that the Messenger of Allah (peace and blessings of Allah be upon him) said:","text":"Let him who believes in Allah and the Last Day speak good, or keep silent; and let him who believes in Allah and the Last Day be generous to his neighbour; and let him who believes in Allah and the Last Day be generous to his guest.\\n\\n\\n"},"chapterId":1,"bookId":10,"idInBook":15},{"id":40959,"arabic":"عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللهُ عَنْهُ أَنَّ رَجُلًا قَالَ لِلنَّبِيِّ صلى الله عليه و سلم أَوْصِنِي. قَالَ: لَا تَغْضَبْ، فَرَدَّدَ مِرَارًا، قَالَ: لَا تَغْضَبْ\\" .   \\n .","view":{"narrator":"On the authority of Abu Hurayrah (may Allah be pleased with him):","text":"A man said to the Prophet (peace and blessings of Allah be upon him), “Counsel me,” so he (peace and blessings of Allah be upon him) said, “Do not become angry.” The man repeated  he (peace and blessings of Allah be upon him) said, “Do not become angry.”\\n\\n"},"chapterId":1,"bookId":10,"idInBook":16},{"id":40960,"arabic":"عَنْ أَبِي يَعْلَى شَدَّادِ بْنِ أَوْسٍ رَضِيَ اللهُ عَنْهُ عَنْ رَسُولِ اللَّهِ صلى الله عليه و سلم قَالَ: \\"إنَّ اللَّهَ كَتَبَ الْإِحْسَانَ عَلَى كُلِّ شَيْءٍ، فَإِذَا قَتَلْتُمْ فَأَحْسِنُوا الْقِتْلَةَ، وَإِذَا ذَبَحْتُمْ فَأَحْسِنُوا الذِّبْحَةَ، وَلْيُحِدَّ أَحَدُكُمْ شَفْرَتَهُ، وَلْيُرِحْ ذَبِيحَتَهُ\\". \\n.","view":{"narrator":"On the authority of Abu Ya’la Shaddad bin Aws (may Allah be pleased with him), that the Messenger of Allah (peace and blessings of Allah be upon him) said:","text":"Verily Allah has prescribed ihsan (proficiency, perfection) in all things. So if you kill then kill well; and if you slaughter, then slaughter well. Let each one of you sharpen his blade and let him spare suffering to the animal he slaughters.”\\n\\n"},"chapterId":1,"bookId":10,"idInBook":17},{"id":40961,"arabic":"عَنْ أَبِي ذَرٍّ جُنْدَبِ بْنِ جُنَادَةَ، وَأَبِي عَبْدِ الرَّحْمَنِ مُعَاذِ بْنِ جَبَلٍ رَضِيَ اللَّهُ عَنْهُمَا، عَنْ رَسُولِ اللَّهِ صلى الله عليه و سلم قَالَ: \\"اتَّقِ اللَّهَ حَيْثُمَا كُنْت، وَأَتْبِعْ السَّيِّئَةَ الْحَسَنَةَ تَمْحُهَا، وَخَالِقْ النَّاسَ بِخُلُقٍ حَسَنٍ\\" . \\nرَوَاهُ التِّرْمِذِيُّ  وَقَالَ: حَدِيثٌ حَسَنٌ، وَفِي بَعْضِ النُّسَخِ: حَسَنٌ صَحِيحٌ.","view":{"narrator":"On the authority of Abu Dharr Jundub ibn Junadah, and Abu Abdur-Rahman Muadh bin Jabal (may Allah be pleased with him), that the Messenger of Allah (peace and blessings of Allah be upon him) said:","text":"Have taqwa (fear) of Allah wherever you may be, and follow up a bad deed with a good deed which will wipe it out, and behave well towards the people.\\n\\nIt was related by at-Tirmidhi, who said it was a hasan (good) hadeeth, and in some copies it is stated to be a hasan saheeh hadeeth."},"chapterId":1,"bookId":10,"idInBook":18},{"id":40962,"arabic":"عَنْ عَبْدِ اللَّهِ بْنِ عَبَّاسٍ رَضِيَ اللَّهُ عَنْهُمَا قَالَ: \\"كُنْت خَلْفَ رَسُولِ اللَّهِ صلى الله عليه و سلم يَوْمًا، فَقَالَ: يَا غُلَامِ! إنِّي أُعَلِّمُك كَلِمَاتٍ: احْفَظْ اللَّهَ يَحْفَظْك، احْفَظْ اللَّهَ تَجِدْهُ تُجَاهَك، إذَا سَأَلْت فَاسْأَلْ اللَّهَ، وَإِذَا اسْتَعَنْت فَاسْتَعِنْ بِاَللَّهِ، وَاعْلَمْ أَنَّ الْأُمَّةَ لَوْ اجْتَمَعَتْ عَلَى أَنْ يَنْفَعُوك بِشَيْءٍ لَمْ يَنْفَعُوك إلَّا بِشَيْءٍ قَدْ كَتَبَهُ اللَّهُ لَك، وَإِنْ اجْتَمَعُوا عَلَى أَنْ يَضُرُّوك بِشَيْءٍ لَمْ يَضُرُّوك إلَّا بِشَيْءٍ قَدْ كَتَبَهُ اللَّهُ عَلَيْك؛ رُفِعَتْ الْأَقْلَامُ، وَجَفَّتْ الصُّحُفُ\\" . رَوَاهُ التِّرْمِذِيُّ  وَقَالَ: حَدِيثٌ حَسَنٌ صَحِيحٌ. \\nوَفِي رِوَايَةِ غَيْرِ التِّرْمِذِيِّ: \\"احْفَظْ اللَّهَ تَجِدْهُ أمامك، تَعَرَّفْ إلَى اللَّهِ فِي الرَّخَاءِ يَعْرِفُك فِي الشِّدَّةِ، وَاعْلَمْ أَنَّ مَا أَخْطَأَك لَمْ يَكُنْ لِيُصِيبَك، وَمَا أَصَابَك لَمْ يَكُنْ لِيُخْطِئَك، وَاعْلَمْ أَنَّ النَّصْرَ مَعَ الصَّبْرِ، وَأَنْ الْفَرَجَ مَعَ الْكَرْبِ، وَأَنَّ مَعَ الْعُسْرِ يُسْرًا\\".","view":{"narrator":"On the authority of Abu Abbas Abdullah bin Abbas (may Allah be pleased with him) who said:","text":"One day I was behind the Prophet (peace and blessings of Allah be upon him) . And know that if the nation were to gather together to benefit you with anything, they would not benefit you except with what Allah had already prescribed for you. And if they were to gather together to harm you with anything, they would not harm you except with what Allah had already prescribed against you. The pens have been lifted and the pages have dried.”\\n\\nIt was related by at-Tirmidhi, who said it was a good and sound hadeeth. Another narration, other than that of Tirmidhi, reads:\\n\\nBe mindful of Allah, and you will find Him in front of you. Recognize and acknowledge Allah in times of ease and prosperity, and He will remember you in times of adversity. And know that what has passed you by  was not going to befall you, and what has befallen you was not going to pass you by. And know that victory comes with patience, relief with affliction, and hardship with ease."},"chapterId":1,"bookId":10,"idInBook":19},{"id":40963,"arabic":"عَنْ أَبِي مَسْعُودٍ عُقْبَةَ بْنِ عَمْرٍو الْأَنْصَارِيِّ الْبَدْرِيِّ رَضِيَ اللهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ صلى الله عليه و سلم \\"إنَّ مِمَّا أَدْرَكَ النَّاسُ مِنْ كَلَامِ النُّبُوَّةِ الْأُولَى: إذَا لَمْ تَسْتَحِ فَاصْنَعْ مَا شِئْت\\" . \\n .","view":{"narrator":"On the authority of Abu Masood Uqbah bin ’Amr al-Ansaree al-Badree (may Allah be pleased with him) who said:","text":"The Messenger of Allah (peace and blessings of Allah be upon him) said, “Verily, from what was learnt by the people from the speech of the earliest prophecy is: If you feel no shame, then do as you wish.”\\n\\n"},"chapterId":1,"bookId":10,"idInBook":20},{"id":40964,"arabic":"عَنْ أَبِي عَمْرٍو وَقِيلَ: أَبِي عَمْرَةَ سُفْيَانَ بْنِ عَبْدِ اللَّهِ رَضِيَ اللهُ عَنْهُ قَالَ: \\"قُلْت: يَا رَسُولَ اللَّهِ! قُلْ لِي فِي الْإِسْلَامِ قَوْلًا لَا أَسْأَلُ عَنْهُ أَحَدًا غَيْرَك؛ قَالَ: قُلْ: آمَنْت بِاَللَّهِ ثُمَّ اسْتَقِمْ\\" . \\n.","view":{"narrator":"On the authority of Abu `Amr — and he is also called Abu `Amrah — Sufyan bin Abdullah ath- Thaqafee (may Allah be pleased with him) who said:","text":"I said, \\"O Messenger of Allah, tell me something about al-Islam which I can ask of no one but you.\\" He (peace and blessings of Allah be upon him) said, \\"Say I believe in Allah — and then be steadfast.\\"\\n\\n"},"chapterId":1,"bookId":10,"idInBook":21},{"id":40965,"arabic":"عَنْ أَبِي عَبْدِ اللَّهِ جَابِرِ بْنِ عَبْدِ اللَّهِ الْأَنْصَارِيِّ رَضِيَ اللَّهُ عَنْهُمَا: \\"أَنَّ رَجُلًا سَأَلَ رَسُولَ اللَّهِ صلى الله عليه و سلم فَقَالَ: أَرَأَيْت إذَا صَلَّيْت الْمَكْتُوبَاتِ، وَصُمْت رَمَضَانَ، وَأَحْلَلْت الْحَلَالَ، وَحَرَّمْت الْحَرَامَ، وَلَمْ أَزِدْ عَلَى ذَلِكَ شَيْئًا؛ أَأَدْخُلُ الْجَنَّةَ؟ قَالَ: نَعَمْ\\". \\n.","view":{"narrator":"On the authority of Abu Abdullah Jabir bin Abdullah al-Ansaree (may Allah be pleased with him) that:","text":"A man questioned the Messenger of Allah (peace and blessings of Allah be upon him) and said, “Do you think that if I perform the obligatory prayers, fast in Ramadhan, treat as lawful that which is halal, and treat as forbidden that which is haram, and do not increase upon that , then I shall enter Paradise?” He (peace and blessings of Allah be upon him) replied, “Yes.”\\n\\n"},"chapterId":1,"bookId":10,"idInBook":22},{"id":40966,"arabic":"عَنْ أَبِي مَالِكٍ الْحَارِثِ بْنِ عَاصِمٍ الْأَشْعَرِيِّ رَضِيَ اللهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ صلى الله عليه و سلم \\"الطَّهُورُ شَطْرُ الْإِيمَانِ، وَالْحَمْدُ لِلَّهِ تَمْلَأُ الْمِيزَانَ، وَسُبْحَانَ اللَّهِ وَالْحَمْدُ لِلَّهِ تَمْلَآنِ -أَوْ: تَمْلَأُ- مَا بَيْنَ السَّمَاءِ وَالْأَرْضِ، وَالصَّلَاةُ نُورٌ، وَالصَّدَقَةُ بُرْهَانٌ، وَالصَّبْرُ ضِيَاءٌ، وَالْقُرْآنُ حُجَّةٌ لَك أَوْ عَلَيْك، كُلُّ النَّاسِ يَغْدُو، فَبَائِعٌ نَفْسَهُ فَمُعْتِقُهَا أَوْ مُوبِقُهَا\\". \\n.","view":{"narrator":"On the authority of Abu Malik al-Harith bin Asim al-Asharee (may Allah be pleased with him) who said:","text":"The Messenger of Allah (peace and blessings of Allah be upon him) said, “Purity is half of iman (faith). ‘Al-hamdu lillah (praise be to Allah)’ fills the scales, and ‘subhan-Allah (how far is Allah from every imperfection) and ‘Al-hamdulillah (praise be to Allah)’ fill that which is between heaven and earth. And the salah (prayer) is a light, and charity is a proof, and patience is illumination, and the Qur’an is a proof either for you or against you. Every person starts his day as a vendor of his soul, either freeing it or causing its ruin.”\\n\\n"},"chapterId":1,"bookId":10,"idInBook":23},{"id":40967,"arabic":"عَنْ أَبِي ذَرٍّ الْغِفَارِيِّ رَضِيَ اللهُ عَنْهُ عَنْ النَّبِيِّ صلى الله عليه و سلم فِيمَا يَرْوِيهِ عَنْ رَبِّهِ تَبَارَكَ وَتَعَالَى، أَنَّهُ قَالَ: \\"يَا عِبَادِي: إنِّي حَرَّمْت الظُّلْمَ عَلَى نَفْسِي، وَجَعَلْته بَيْنَكُمْ مُحَرَّمًا؛ فَلَا تَظَالَمُوا. يَا عِبَادِي! كُلُّكُمْ ضَالٌّ إلَّا مَنْ هَدَيْته، فَاسْتَهْدُونِي أَهْدِكُمْ. يَا عِبَادِي! كُلُّكُمْ جَائِعٌ إلَّا مَنْ أَطْعَمْته، فَاسْتَطْعِمُونِي أُطْعِمْكُمْ. يَا عِبَادِي! كُلُّكُمْ عَارٍ إلَّا مَنْ كَسَوْته، فَاسْتَكْسُونِي أَكْسُكُمْ. يَا عِبَادِي! إنَّكُمْ تُخْطِئُونَ بِاللَّيْلِ وَالنَّهَارِ، وَأَنَا أَغْفِرُ الذُّنُوبَ جَمِيعًا؛ فَاسْتَغْفِرُونِي أَغْفِرْ لَكُمْ. يَا عِبَادِي! إنَّكُمْ لَنْ تَبْلُغُوا ضُرِّي فَتَضُرُّونِي، وَلَنْ تَبْلُغُوا نَفْعِي فَتَنْفَعُونِي. يَا عِبَادِي! لَوْ أَنَّ أَوَّلَكُمْ وَآخِرَكُمْ وَإِنْسَكُمْ وَجِنَّكُمْ كَانُوا عَلَى أَتْقَى قَلْبِ رَجُلٍ وَاحِدٍ مِنْكُمْ، مَا زَادَ ذَلِكَ فِي مُلْكِي شَيْئًا. يَا عِبَادِي! لَوْ أَنَّ أَوَّلَكُمْ وَآخِرَكُمْ وَإِنْسَكُمْ وَجِنَّكُمْ كَانُوا عَلَى أَفْجَرِ قَلْبِ رَجُلٍ وَاحِدٍ مِنْكُمْ، مَا نَقَصَ ذَلِكَ مِنْ مُلْكِي شَيْئًا. يَا عِبَادِي! لَوْ أَنَّ أَوَّلَكُمْ وَآخِرَكُمْ وَإِنْسَكُمْ وَجِنَّكُمْ قَامُوا فِي صَعِيدٍ وَاحِدٍ، فَسَأَلُونِي، فَأَعْطَيْت كُلَّ وَاحِدٍ مَسْأَلَته، مَا نَقَصَ ذَلِكَ مِمَّا عِنْدِي إلَّا كَمَا يَنْقُصُ الْمِخْيَطُ إذَا أُدْخِلَ الْبَحْرَ. يَا عِبَادِي! إنَّمَا هِيَ أَعْمَالُكُمْ أُحْصِيهَا لَكُمْ، ثُمَّ أُوَفِّيكُمْ إيَّاهَا؛ فَمَنْ وَجَدَ خَيْرًا فَلْيَحْمَدْ اللَّهَ، وَمَنْ وَجَدَ غَيْرَ ذَلِكَ فَلَا يَلُومَن إلَّا نَفْسَهُ\\". \\n.","view":{"narrator":"On the authority of Abu Dharr al-Ghifaree (may Allah be pleased with him) from the Prophet (peace and blessings of Allah be upon him) from his Lord, that He said:","text":"O My servants! I have forbidden dhulm (oppression) for Myself, and I have made it forbidden amongst you, so do not oppress one another.\\n\\n\\nO My servants, all of you are astray except those whom I have guided, so seek guidance from Me and I shall guide you.\\n\\n\\nO My servants, all of you are hungry except those whom I have fed, so seek food from Me and I shall feed you.\\n\\n\\nO My servants, all of you are naked except those whom I have clothed, so seek clothing from Me and I shall clothe you.\\n\\n\\nO My servants, you commit sins by day and by night, and I forgive all sins, so seek forgiveness from Me and I shall forgive you.\\n\\n\\nO My servants, you will not attain harming Me so as to harm Me, and you will not attain benefiting Me so as to benefit Me.\\n\\n\\nO My servants, if the first of you and the last of you, and the humans of you and the jinn of you, were all as pious as the most pious heart of any individual amongst you, then this would not increase My Kingdom an iota.\\n\\n\\nO My servants, if the first of you and the last of you, and the humans of you and the jinn of you, were all as wicked as the most wicked heart of any individual amongst you, then this would not decrease My Kingdom an iota.\\n\\n\\nO My servants, if the first of you and the last of you, and the humans of you and the jinn of you, were all to stand together in one place and ask of Me, and I were to give everyone what he requested, then that would not decrease what I Possess, except what is decreased of the ocean when a needle is dipped into it.\\n\\n\\nO My servants, it is but your deeds that I account for you, and then recompense you for. So he who finds good, let him praise Allah, and he who finds other than that, let him blame no one but himself.\\n\\n\\n"},"chapterId":1,"bookId":10,"idInBook":24},{"id":40968,"arabic":"عَنْ أَبِي ذَرٍّ رَضِيَ اللهُ عَنْهُ أَيْضًا، \\"أَنَّ نَاسًا مِنْ أَصْحَابِ رَسُولِ اللَّهِ صلى الله عليه و سلم قَالُوا لِلنَّبِيِّ صلى الله عليه و سلم يَا رَسُولَ اللَّهِ ذَهَبَ أَهْلُ الدُّثُورِ بِالْأُجُورِ؛ يُصَلُّونَ كَمَا نُصَلِّي، وَيَصُومُونَ كَمَا نَصُومُ، وَيَتَصَدَّقُونَ بِفُضُولِ أَمْوَالِهِمْ. قَالَ: أَوَلَيْسَ قَدْ جَعَلَ اللَّهُ لَكُمْ مَا تَصَّدَّقُونَ؟ إنَّ بِكُلِّ تَسْبِيحَةٍ صَدَقَةً، وَكُلِّ تَكْبِيرَةٍ صَدَقَةً، وَكُلِّ تَحْمِيدَةٍ صَدَقَةً، وَكُلِّ تَهْلِيلَةٍ صَدَقَةً، وَأَمْرٌ بِمَعْرُوفٍ صَدَقَةٌ، وَنَهْيٌ عَنْ مُنْكَرٍ صَدَقَةٌ، وَفِي بُضْعِ أَحَدِكُمْ صَدَقَةٌ. قَالُوا: يَا رَسُولَ اللَّهِ أَيَأْتِي أَحَدُنَا شَهْوَتَهُ وَيَكُونُ لَهُ فِيهَا أَجْرٌ؟ قَالَ: أَرَأَيْتُمْ لَوْ وَضَعَهَا فِي حَرَامٍ أَكَانَ عَلَيْهِ وِزْرٌ؟ فَكَذَلِكَ إذَا وَضَعَهَا فِي الْحَلَالِ، كَانَ لَهُ أَجْرٌ\\". \\n.","view":{"narrator":"Also on the authority of Abu Dharr (may Allah be pleased with him):","text":"Some people from amongst the Companions of the Messenger of Allah (peace and blessings of Allah be upon him) said to the Prophet (peace and blessings of Allah be upon him), \\"O Messenger of Allah, the affluent have made off with the rewards; they pray as we pray, they fast as we fast, and they give  of each one of you there is a charity.\\"\\n\\nThey said, \\"O Messenger of Allah, when one of us fulfils his carnal desire will he have some reward for that?\\" He (peace and blessings of Allah be upon him) said, \\"Do you not see that if he were to act upon it  in an unlawful manner then he would be deserving of punishment? Likewise, if he were to act upon it in a lawful manner then he will be deserving of a reward.\\"\\n\\n"},"chapterId":1,"bookId":10,"idInBook":25},{"id":40969,"arabic":"عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ صلى الله عليه و سلم \\"كُلُّ سُلَامَى مِنْ النَّاسِ عَلَيْهِ صَدَقَةٌ، كُلَّ يَوْمٍ تَطْلُعُ فِيهِ الشَّمْسُ تَعْدِلُ بَيْنَ اثْنَيْنِ صَدَقَةٌ، وَتُعِينُ الرَّجُلَ فِي دَابَّتِهِ فَتَحْمِلُهُ عَلَيْهَا أَوْ تَرْفَعُ لَهُ عَلَيْهَا مَتَاعَهُ صَدَقَةٌ، وَالْكَلِمَةُ الطَّيِّبَةُ صَدَقَةٌ، وَبِكُلِّ خُطْوَةٍ تَمْشِيهَا إلَى الصَّلَاةِ صَدَقَةٌ، وَتُمِيطُ الْأَذَى عَنْ الطَّرِيقِ صَدَقَةٌ\\". \\n \\n، .","view":{"narrator":"On the authority of Abu Hurayrah (may Allah be pleased with him) who said:","text":"The Messenger of Allah (peace and blessings of Allah be upon him) said, “Every joint of a person must perform a charity each day that the sun rises: to judge justly between two people is a charity. To help a man with his mount, lifting him onto it or hoisting up his belongings onto it, is a charity. And the good word is a charity. And every step that you take towards the prayer is a charity, and removing a harmful object from the road is a charity.”\\n\\n\\n"},"chapterId":1,"bookId":10,"idInBook":26},{"id":40970,"arabic":"عَنْ النَّوَّاسِ بْنِ سَمْعَانَ رَضِيَ اللهُ عَنْهُ عَنْ النَّبِيِّ صلى الله عليه و سلم قَالَ: \\"الْبِرُّ حُسْنُ الْخُلُقِ، وَالْإِثْمُ مَا حَاكَ فِي صَدْرِك، وَكَرِهْت أَنْ يَطَّلِعَ عَلَيْهِ النَّاسُ\\" رَوَاهُ مُسْلِمٌ . وَعَنْ وَابِصَةَ بْنِ مَعْبَدٍ رَضِيَ اللهُ عَنْهُ قَالَ: أَتَيْت رَسُولَ اللَّهِ صلى الله عليه و سلم فَقَالَ: \\"جِئْتَ تَسْأَلُ عَنْ الْبِرِّ؟ قُلْت: نَعَمْ. فقَالَ: استفت قلبك، الْبِرُّ مَا اطْمَأَنَّتْ إلَيْهِ النَّفْسُ، وَاطْمَأَنَّ إلَيْهِ الْقَلْبُ، وَالْإِثْمُ مَا حَاكَ فِي النَّفْسِ وَتَرَدَّدَ فِي الصَّدْرِ، وَإِنْ أَفْتَاك النَّاسُ وَأَفْتَوْك\\" . \\nحَدِيثٌ حَسَنٌ، رَوَيْنَاهُ في مُسْنَدَي الْإِمَامَيْنِ أَحْمَدَ بْنِ حَنْبَلٍ  بِإِسْنَادٍ حَسَنٍ.","view":{"narrator":"On the authority of an-Nawas bin Sam’an (may Allah be pleased with him), that the Prophet (peace and blessings of Allah be upon him) said:","text":"Righteousness is in good character, and wrongdoing is that which wavers in your soul, and which you dislike people finding out about.\\n\\n\\nAnd on the authority of Wabisah bin Ma’bad (may Allah be pleased with him) who said:\\n\\nI came to the Messenger of Allah (peace and blessings of Allah be upon him) and he (peace and blessings of Allah be upon him) said, “You have come to ask about righteousness.” I said, “Yes.” He (peace and blessings of Allah be upon him) said, “Consult your heart. Righteousness is that about which the soul feels at ease and the heart feels tranquil. And wrongdoing is that which wavers in the soul and causes uneasiness in the breast, even though people have repeatedly given their legal opinion .”\\n\\nA good hadeeth transmitted from the musnads of the two imams, Ahmed bin Hambal and Al- Darimi, with a good chain of authorities."},"chapterId":1,"bookId":10,"idInBook":27},{"id":40971,"arabic":"عَنْ أَبِي نَجِيحٍ الْعِرْبَاضِ بْنِ سَارِيَةَ رَضِيَ اللهُ عَنْهُ قَالَ: \\"وَعَظَنَا رَسُولُ اللَّهِ صلى الله عليه و سلم مَوْعِظَةً وَجِلَتْ مِنْهَا الْقُلُوبُ، وَذَرَفَتْ مِنْهَا الْعُيُونُ، فَقُلْنَا: يَا رَسُولَ اللَّهِ! كَأَنَّهَا مَوْعِظَةُ مُوَدِّعٍ فَأَوْصِنَا، قَالَ: أُوصِيكُمْ بِتَقْوَى اللَّهِ، وَالسَّمْعِ وَالطَّاعَةِ وَإِنْ تَأَمَّرَ عَلَيْكُمْ عَبْدٌ، فَإِنَّهُ مَنْ يَعِشْ مِنْكُمْ فَسَيَرَى اخْتِلَافًا كَثِيرًا، فَعَلَيْكُمْ بِسُنَّتِي وَسُنَّةِ الْخُلَفَاءِ الرَّاشِدِينَ الْمَهْدِيينَ، عَضُّوا عَلَيْهَا بِالنَّوَاجِذِ، وَإِيَّاكُمْ وَمُحْدَثَاتِ الْأُمُورِ؛ فَإِنَّ كُلَّ بِدْعَةٍ ضَلَالَةٌ\\". \\n \\n  وَقَالَ: حَدِيثٌ حَسَنٌ صَحِيحٌ.","view":{"narrator":"On the authority of Abu Najeeh al-’Irbaad ibn Saariyah (may Allah be pleased with him) who said:","text":"The Messenger of Allah (peace and blessings of Allah be upon him) gave us a sermon by which our hearts were filled with fear and tears came to our eyes. So we said, “O Messenger of Allah! It is as though this is a farewell sermon, so counsel us.” He (peace and blessings of Allah be upon him) said, “I counsel you to have taqwa (fear) of Allah, and to listen and obey , for verily every bidah (innovation) is misguidance.”\\n\\nIt was related by at-Tirmidhi, who said that it was a good and sound hadeeth."},"chapterId":1,"bookId":10,"idInBook":28},{"id":40972,"arabic":"عَنْ مُعَاذِ بْنِ جَبَلٍ رَضِيَ اللهُ عَنْهُ قَالَ: قُلْت يَا رَسُولَ اللَّهِ! أَخْبِرْنِي بِعَمَلٍ يُدْخِلُنِي الْجَنَّةَ وَيُبَاعِدْنِي مِنْ النَّارِ، قَالَ: \\"لَقَدْ سَأَلْت عَنْ عَظِيمٍ، وَإِنَّهُ لَيَسِيرٌ عَلَى مَنْ يَسَّرَهُ اللَّهُ عَلَيْهِ: تَعْبُدُ اللَّهَ لَا تُشْرِكْ بِهِ شَيْئًا، وَتُقِيمُ الصَّلَاةَ، وَتُؤْتِي الزَّكَاةَ، وَتَصُومُ رَمَضَانَ، وَتَحُجُّ الْبَيْتَ، ثُمَّ قَالَ: أَلَا أَدُلُّك عَلَى أَبْوَابِ الْخَيْرِ؟ الصَّوْمُ جُنَّةٌ، وَالصَّدَقَةُ تُطْفِئُ الْخَطِيئَةَ كَمَا يُطْفِئُ الْمَاءُ النَّارَ، وَصَلَاةُ الرَّجُلِ فِي جَوْفِ اللَّيْلِ، ثُمَّ تَلَا: \\" تَتَجَافَى جُنُوبُهُمْ عَنِ الْمَضَاجِعِ \\" حَتَّى بَلَغَ \\"يَعْمَلُونَ\\"، ثُمَّ قَالَ: أَلَا أُخْبِرُك بِرَأْسِ الْأَمْرِ وَعَمُودِهِ وَذُرْوَةِ سَنَامِهِ؟ قُلْت: بَلَى يَا رَسُولَ اللَّهِ. قَالَ: رَأْسُ الْأَمْرِ الْإِسْلَامُ، وَعَمُودُهُ الصَّلَاةُ، وَذُرْوَةُ سَنَامِهِ الْجِهَادُ، ثُمَّ قَالَ: أَلَا أُخْبِرُك بِمَلَاكِ ذَلِكَ كُلِّهِ؟ فقُلْت: بَلَى يَا رَسُولَ اللَّهِ ! فَأَخَذَ بِلِسَانِهِ وَقَالَ: كُفَّ عَلَيْك هَذَا. قُلْت: يَا نَبِيَّ اللَّهِ وَإِنَّا لَمُؤَاخَذُونَ بِمَا نَتَكَلَّمُ بِهِ؟ فَقَالَ: ثَكِلَتْك أُمُّك وَهَلْ يَكُبُّ النَّاسَ عَلَى وُجُوهِهِمْ -أَوْ قَالَ عَلَى مَنَاخِرِهِمْ- إلَّا حَصَائِدُ أَلْسِنَتِهِمْ؟!\\" . \\nرَوَاهُ التِّرْمِذِيُّ  وَقَالَ: حَدِيثٌ حَسَنٌ صَحِيحٌ.","view":{"narrator":"On the authority of Muadh bin Jabal (may Allah be pleased with him) who said:","text":"I said, “O Messenger of Allah, tell me of an act which will take me into Paradise and will keep me away from the Hellfire.” He (peace and blessings of Allah be upon him) said, “You have asked me about a great matter, yet it is easy for him for whom Allah makes it easy: worship Allah, without associating any partners with Him; establish the prayer; pay the zakat; fast in Ramadhan; and make the pilgrimage to the House.”\\n\\nThen he (peace and blessings of Allah be upon him) said, “Shall I not guide you towards the means of goodness? Fasting is a shield; charity wipes away sin as water extinguishes fire; and the praying of a man in the depths of the night.” Then he (peace and blessings of Allah be upon him) recited: “\\n\\nThen he (peace and blessings of Allah be upon him) said, “Shall I not inform you of the head of the matter, its pillar and its peak?” I said, “Yes, O Messenger of Allah.” He (peace and blessings of Allah be upon him) said, “The head of the matter is Islam, its pillar is the prayer and its peak is jihad.” Then he (peace and blessings of Allah be upon him) said, “Shall I not tell you of the foundation of all of that?” I said, “Yes, O Messenger of Allah.” So he took hold of his tongue and said, “Restrain this.”\\n\\nI said, “O Prophet of Allah, will we be taken to account for what we say with it?” He (peace and blessings of Allah be upon him) said, “May your mother be bereaved of you, O Muadh! Is there anything that throws people into the Hellfire upon their faces — or: on their noses — except the harvests of their tongues?”\\n\\nIt was related by at-Tirmidhi, who said it was a good and sound hadeeth."},"chapterId":1,"bookId":10,"idInBook":29},{"id":40973,"arabic":"عَنْ أَبِي ثَعْلَبَةَ الْخُشَنِيِّ جُرْثُومِ بن نَاشِر رَضِيَ اللهُ عَنْهُ عَنْ رَسُولِ اللَّهِ صلى الله عليه و سلم قَال: \\"إنَّ اللَّهَ تَعَالَى فَرَضَ فَرَائِضَ فَلَا تُضَيِّعُوهَا، وَحَدَّ حُدُودًا فَلَا تَعْتَدُوهَا، وَحَرَّمَ أَشْيَاءَ فَلَا تَنْتَهِكُوهَا، وَسَكَتَ عَنْ أَشْيَاءَ رَحْمَةً لَكُمْ غَيْرَ نِسْيَانٍ فَلَا تَبْحَثُوا عَنْهَا\\". \\nحَدِيثٌ حَسَنٌ، رَوَاهُ الدَّارَقُطْنِيّ ْ\\"في سننه\\" ، وَغَيْرُهُ.","view":{"narrator":"On the authority of Abu Tha’labah al-Kushanee — Jurthoom bin Nashir (may Allah be pleased with him) — that the Messenger of Allah (peace and blessings of Allah be upon him) said:","text":"Verily Allah ta’ala has laid down religious obligations (fara’id), so do not neglect them; and He has set limits, so do not overstep them; and He has forbidden some things, so do not violate them; and He has remained silent about some things, out of compassion for you, not forgetfulness — so do not seek after them.\\n\\nA hasan hadeeth narrated by ad-Daraqutnee and others."},"chapterId":1,"bookId":10,"idInBook":30},{"id":40974,"arabic":"عَنْ أَبِي الْعَبَّاسِ سَهْلِ بْنِ سَعْدٍ السَّاعِدِيّ رَضِيَ اللهُ عَنْهُ قَالَ: جَاءَ رَجُلٌ إلَى النَّبِيِّ صلى الله عليه و سلم فَقَالَ: يَا رَسُولَ اللهِ! دُلَّنِي عَلَى عَمَلٍ إذَا عَمِلْتُهُ أَحَبَّنِي اللهُ وَأَحَبَّنِي النَّاسُ؛ فَقَالَ: \\"ازْهَدْ فِي الدُّنْيَا يُحِبَّك اللهُ، وَازْهَدْ فِيمَا عِنْدَ النَّاسِ يُحِبَّك النَّاسُ\\" . \\nحديث حسن، رَوَاهُ ابْنُ مَاجَهْ ، وَغَيْرُهُ بِأَسَانِيدَ حَسَنَةٍ.","view":{"narrator":"On the authority of Abu al-’Abbas Sahl bin Sa’ad as-Sa’idee (may Allah be pleased with him) who said:","text":"A man came to the Prophet (peace and blessings of Allah be upon him) and said, “O Messenger of Allah, direct me to an act which, if I do it,  Allah to love me and the people to love me.” So he (peace and blessings of Allah be upon him) said, “Renounce the world and Allah will love you, and renounce what the people possess and the people will love you.”\\n\\nA hasan hadeeth related by Ibn Majah and others with good chains of authorities."},"chapterId":1,"bookId":10,"idInBook":31},{"id":40975,"arabic":"عَنْ أَبِي سَعِيدٍ سَعْدِ بْنِ مَالِكِ بْنِ سِنَانٍ الْخُدْرِيّ رَضِيَ اللهُ عَنْهُ أَنَّ رَسُولَ اللَّهِ صلى الله عليه و سلم قَالَ: \\" لَا ضَرَرَ وَلَا ضِرَارَ\\" . \\nحَدِيثٌ حَسَنٌ، رَوَاهُ ابْنُ مَاجَهْ  فِي \\"الْمُوَطَّإِ\\" عَنْ عَمْرِو بْنِ يَحْيَى عَنْ أَبِيهِ عَنْ النَّبِيِّ صلى الله عليه و سلم مُرْسَلًا، فَأَسْقَطَ أَبَا سَعِيدٍ، وَلَهُ طُرُقٌ يُقَوِّي بَعْضُهَا بَعْضًا.","view":{"narrator":"On the authority of Abu Sa’eed al-Khudree (may Allah be pleased with him), that the Messenger of Allah (peace and blessings of Allah be upon him) said:","text":"There should be neither harming (darar) nor reciprocating harm (dirar).\\n\\nA hasan hadeeth related by Ibn Majah, ad-Daraqutnee and others as a musnad hadeeth. It was also related by Malik in al-Muwatta in mursal form from Amr bin Yahya, from his father from the Prophet (peace and blessings of Allah be upon him), but leaving Abu Sa’eed from the chain. And it has other chains of narrations that strengthen one another."},"chapterId":1,"bookId":10,"idInBook":32},{"id":40976,"arabic":"عَنْ ابْنِ عَبَّاسٍ رَضِيَ اللَّهُ عَنْهُمَا أَنَّ رَسُولَ اللَّهِ صلى الله عليه و سلم قَالَ: \\"لَوْ يُعْطَى النَّاسُ بِدَعْوَاهُمْ لَادَّعَى رِجَالٌ أَمْوَالَ قَوْمٍ وَدِمَاءَهُمْ، لَكِنَّ الْبَيِّنَةَ عَلَى الْمُدَّعِي، وَالْيَمِينَ عَلَى مَنْ أَنْكَرَ\\" . \\nحَدِيثٌ حَسَنٌ، رَوَاهُ الْبَيْهَقِيّ ، وَغَيْرُهُ هَكَذَا، وَبَعْضُهُ فِي \\"الصَّحِيحَيْنِ\\".","view":{"narrator":"On the authority of Ibn Abbas (may Allah be pleased with him), that the Messenger of Allah (peace and blessings of Allah be upon him) said:","text":"Were people to be given everything that they claimed, men would  people. But, the onus of proof is upon the claimant, and the taking of an oath is upon him who denies.\\n\\nA hasan hadeeth narrated by al-Baihaqee and others in this form, and part of it is in the two Saheehs."},"chapterId":1,"bookId":10,"idInBook":33},{"id":40977,"arabic":"عَنْ أَبِي سَعِيدٍ الْخُدْرِيّ رَضِيَ اللهُ عَنْهُ قَالَ سَمِعْت رَسُولَ اللَّهِ صلى الله عليه و سلم يَقُولُ: \\"مَنْ رَأَى مِنْكُمْ مُنْكَرًا فَلْيُغَيِّرْهُ بِيَدِهِ، فَإِنْ لَمْ يَسْتَطِعْ فَبِلِسَانِهِ، فَإِنْ لَمْ يَسْتَطِعْ فَبِقَلْبِهِ، وَذَلِكَ أَضْعَفُ الْإِيمَانِ\\" . \\n.","view":{"narrator":"On the authority of Abu Sa`eed al-Khudree (may Allah be pleased with him) who said:","text":"I heard the Messenger of Allah (ﷺ) say, “Whosoever of you sees an evil, let him change it with his hand; and if he is not able to do so, then  with his tongue; and if he is not able to do so, then with his heart — and that is the weakest of faith.”\\n\\n"},"chapterId":1,"bookId":10,"idInBook":34},{"id":40978,"arabic":"عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ صلى الله عليه و سلم \\" لَا تَحَاسَدُوا، وَلَا تَنَاجَشُوا، وَلَا تَبَاغَضُوا، وَلَا تَدَابَرُوا، وَلَا يَبِعْ بَعْضُكُمْ عَلَى بَيْعِ بَعْضٍ، وَكُونُوا عِبَادَ اللَّهِ إخْوَانًا، الْمُسْلِمُ أَخُو الْمُسْلِمِ، لَا يَظْلِمُهُ، وَلَا يَخْذُلُهُ، وَلَا يَكْذِبُهُ، وَلَا يَحْقِرُهُ، التَّقْوَى هَاهُنَا، وَيُشِيرُ إلَى صَدْرِهِ ثَلَاثَ مَرَّاتٍ، بِحَسْبِ امْرِئٍ مِنْ الشَّرِّ أَنْ يَحْقِرَ أَخَاهُ الْمُسْلِمَ، كُلُّ الْمُسْلِمِ عَلَى الْمُسْلِمِ حَرَامٌ: دَمُهُ وَمَالُهُ وَعِرْضُهُ\\" . \\n.","view":{"narrator":"On the authority of Abu Hurayrah (may Allah be pleased with him) who said:","text":"The Messenger of Allah (peace and blessings of Allah be upon him) said, “Do not envy one another, and do not inflate prices for one another, and do not hate one another, and do not turn away from one another, and do not undercut one another in trade, but . It is evil enough for a man to hold his brother Muslim in contempt. The whole of a Muslim is inviolable for another Muslim: his blood, his property, and his honour.”\\n\\n"},"chapterId":1,"bookId":10,"idInBook":35},{"id":40979,"arabic":"عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللهُ عَنْهُ عَنْ النَّبِيِّ صلى الله عليه و سلم قَالَ: \\"مَنْ نَفَّسَ عَنْ مُؤْمِنٍ كُرْبَةً مِنْ كُرَبِ الدُّنْيَا نَفَّسَ اللَّهُ عَنْهُ كُرْبَةً مِنْ كُرَبِ يَوْمِ الْقِيَامَةِ، وَمَنْ يَسَّرَ عَلَى مُعْسِرٍ، يَسَّرَ اللَّهُ عَلَيْهِ فِي الدُّنْيَا وَالْآخِرَةِ، وَمَنْ سَتَرَ مُسْلِما سَتَرَهُ اللهُ فِي الدُّنْيَا وَالْآخِرَةِ ، وَاَللَّهُ فِي عَوْنِ الْعَبْدِ مَا كَانَ الْعَبْدُ فِي عَوْنِ أَخِيهِ، وَمَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا سَهَّلَ اللَّهُ لَهُ بِهِ طَرِيقًا إلَى الْجَنَّةِ، وَمَا اجْتَمَعَ قَوْمٌ فِي بَيْتٍ مِنْ بُيُوتِ اللَّهِ يَتْلُونَ كِتَابَ اللَّهِ، وَيَتَدَارَسُونَهُ فِيمَا بَيْنَهُمْ؛ إلَّا نَزَلَتْ عَلَيْهِمْ السَّكِينَةُ، وَغَشِيَتْهُمْ الرَّحْمَةُ، وَ حَفَّتهُمُ المَلاَئِكَة، وَذَكَرَهُمْ اللَّهُ فِيمَنْ عِنْدَهُ، وَمَنْ أَبَطْأَ بِهِ عَمَلُهُ لَمْ يُسْرِعْ بِهِ نَسَبُهُ\\". \\n بهذا اللفظ.","view":{"narrator":"On the authority of Abu Hurayrah (may Allah be pleased with him), that the Prophet (peace and blessings of Allah be upon him) said:","text":"Whoever removes a worldly grief from a believer, Allah will remove from him one of the griefs of the Day of Resurrection. And whoever alleviates the need of a needy person, Allah will alleviate his needs in this world and the Hereafter. Whoever shields  a Muslim, Allah will shield him in this world and the Hereafter. And Allah will aid His slave so long as he aids his brother. And whoever follows a path to seek knowledge therein, Allah will make easy for him a path to Paradise. No people gather together in one of the Houses of Allah, reciting the Book of Allah and studying it among themselves, except that sakeenah (tranquility) descends upon them, and mercy envelops them, and the angels surround them, and Allah mentions them amongst those who are with Him. And whoever is slowed down by his actions, will not be hastened forward by his lineage.\\n\\nRelated by  in these words."},"chapterId":1,"bookId":10,"idInBook":36},{"id":40980,"arabic":"عَنْ ابْنِ عَبَّاسٍ رَضِيَ اللَّهُ عَنْهُمَا عَنْ رَسُولِ اللَّهِ صلى الله عليه و سلم فِيمَا يَرْوِيهِ عَنْ رَبِّهِ تَبَارَكَ وَتَعَالَى، قَالَ: \\"إنَّ اللَّهَ كَتَبَ الْحَسَنَاتِ وَالسَّيِّئَاتِ، ثُمَّ بَيَّنَ ذَلِكَ، فَمَنْ هَمَّ بِحَسَنَةٍ فَلَمْ يَعْمَلْهَا كَتَبَهَا اللَّهُ عِنْدَهُ حَسَنَةً كَامِلَةً، وَإِنْ هَمَّ بِهَا فَعَمِلَهَا كَتَبَهَا اللَّهُ عِنْدَهُ عَشْرَ حَسَنَاتٍ إلَى سَبْعِمِائَةِ ضِعْفٍ إلَى أَضْعَافٍ كَثِيرَةٍ، وَإِنْ هَمَّ بِسَيِّئَةٍ فَلَمْ يَعْمَلْهَا كَتَبَهَا اللَّهُ عِنْدَهُ حَسَنَةً كَامِلَةً، وَإِنْ هَمَّ بِهَا فَعَمِلَهَا كَتَبَهَا اللَّهُ سَيِّئَةً وَاحِدَةً\\". \\n \\n، ، في \\"صحيحيهما\\" بهذه الحروف.","view":{"narrator":"On the authority of Ibn Abbas (may Allah be pleased with him), from the Messenger of Allah (peace and blessings of Allah be upon him), from what he has related from his Lord:","text":"Verily Allah ta’ala has written down the good deeds and the evil deeds, and then explained it  and then performed it, then Allah writes it down as one evil deed.”\\n\\n\\n."},"chapterId":1,"bookId":10,"idInBook":37},{"id":40981,"arabic":"عَنْ أَبِي هُرَيْرَة رَضِيَ اللهُ عَنْهُ قَالَ: قَالَ رَسُول اللَّهِ صلى الله عليه و سلم إنَّ اللَّهَ تَعَالَى قَالَ: \\"مَنْ عَادَى لِي وَلِيًّا فَقْد آذَنْتهُ بِالْحَرْبِ، وَمَا تَقَرَّبَ إلَيَّ عَبْدِي بِشَيْءٍ أَحَبَّ إلَيَّ مِمَّا افْتَرَضْتُهُ عَلَيْهِ، وَلَا يَزَالُ عَبْدِي يَتَقَرَّبُ إلَيَّ بِالنَّوَافِلِ حَتَّى أُحِبَّهُ، فَإِذَا أَحْبَبْتُهُ كُنْت سَمْعَهُ الَّذِي يَسْمَعُ بِهِ، وَبَصَرَهُ الَّذِي يُبْصِرُ بِهِ، وَيَدَهُ الَّتِي يَبْطِشُ بِهَا، وَرِجْلَهُ الَّتِي يَمْشِي بِهَا، وَلَئِنْ سَأَلَنِي لَأُعْطِيَنَّهُ، وَلَئِنْ اسْتَعَاذَنِي لَأُعِيذَنَّهُ\\". \\n .","view":{"narrator":"On the authority of Abu Hurayrah (may Allah be pleased with him) who said:","text":"The Messenger of Allah (peace and blessings of Allah be upon him) said, “Verily Allah ta’ala has said: ‘Whosoever shows enmity to a wali (friend) of Mine, then I have declared war against him. And My servant does not draw near to Me with anything more loved to Me than the religious duties I have obligated upon him. And My servant continues to draw near to me with nafil (supererogatory) deeds until I Love him. When I Love him, I am his hearing with which he hears, and his sight with which he sees, and his hand with which he strikes, and his foot with which he walks. Were he to ask  of Me, I would surely give it to him; and were he to seek refuge with Me, I would surely grant him refuge.’ ”\\n\\n"},"chapterId":1,"bookId":10,"idInBook":38},{"id":40982,"arabic":"عَنْ ابْنِ عَبَّاسٍ رَضِيَ اللَّهُ عَنْهُمَا أَنَّ رَسُولَ اللَّهِ صلى الله عليه و سلم قَالَ: \\"إنَّ اللَّهَ تَجَاوَزَ لِي عَنْ أُمَّتِي الْخَطَأَ وَالنِّسْيَانَ وَمَا اسْتُكْرِهُوا عَلَيْهِ\\" . \\nحَدِيثٌ حَسَنٌ، رَوَاهُ ابْنُ مَاجَهْ .","view":{"narrator":"On the authority of Ibn Abbas (may Allah be pleased with him), that the Messenger of Allah (peace and blessings of Allah be upon him) said:","text":"Verily Allah has pardoned  for me my ummah: their mistakes, their forgetfulness, and that which they have been forced to do under duress.\\n\\nA hasan hadeeth related by Ibn Majah, and al-Bayhaqee and others."},"chapterId":1,"bookId":10,"idInBook":39},{"id":40983,"arabic":"عَنْ ابْن عُمَرَ رَضِيَ اللَّهُ عَنْهُمَا قَالَ: أَخَذَ رَسُولُ اللَّهِ صلى الله عليه و سلم بِمَنْكِبِي، وَقَالَ: \\"كُنْ فِي الدُّنْيَا كَأَنَّك غَرِيبٌ أَوْ عَابِرُ سَبِيلٍ\\". وَكَانَ ابْنُ عُمَرَ رَضِيَ اللَّهُ عَنْهُمَا يَقُولُ: إذَا أَمْسَيْتَ فَلَا تَنْتَظِرْ الصَّبَاحَ، وَإِذَا أَصْبَحْتَ فَلَا تَنْتَظِرْ الْمَسَاءَ، وَخُذْ مِنْ صِحَّتِك لِمَرَضِك، وَمِنْ حَيَاتِك لِمَوْتِك. \\n .","view":{"narrator":"On the authority of Abdullah ibn Umar (may Allah be pleased with him), who said:","text":"The Messenger of Allah (peace and blessings of Allah be upon him) took me by the shoulder and said, “Be in this world as though you were a stranger or a wayfarer.”\\n\\nAnd Ibn Umar (may Allah be pleased with him) used to say, “In the evening do not expect  your life before your death.”\\n\\n"},"chapterId":1,"bookId":10,"idInBook":40},{"id":40984,"arabic":"عَنْ أَبِي مُحَمَّدٍ عَبْدِ اللَّهِ بْنِ عَمْرِو بْنِ الْعَاصِ رَضِيَ اللَّهُ عَنْهُمَا، قَالَ: قَالَ رَسُولُ اللَّهِ صلى الله عليه و سلم \\"لَا يُؤْمِنُ أَحَدُكُمْ حَتَّى يَكُونَ هَوَاهُ تَبَعًا لِمَا جِئْتُ بِهِ\\". \\nحَدِيثٌ حَسَنٌ صَحِيحٌ، رَوَيْنَاهُ فِي كِتَابِ \\"الْحُجَّةِ\\" بِإِسْنَادٍ صَحِيحٍ.","view":{"narrator":"On the authority of Abu Muhammad Abdullah bin ’Amr bin al-’Aas (may Allah be pleased with him) who said:","text":"The Messenger of Allah (peace and blessings of Allah be upon him) said, “None of you  believes until his desires are subservient to that which I have brought.”\\n\\n We have related it in Kitab al-Hujjah with a saheeh chain of narrators."},"chapterId":1,"bookId":10,"idInBook":41},{"id":40985,"arabic":"عَنْ أَنَسِ بْنِ مَالِكٍ رَضِيَ اللهُ عَنْهُ قَالَ: سَمِعْت رَسُولَ اللَّهِ صلى الله عليه و سلم يَقُولُ: قَالَ اللَّهُ تَعَالَى: \\"يَا ابْنَ آدَمَ! إِنَّكَ مَا دَعَوْتنِي وَرَجَوْتنِي غَفَرْتُ لَك عَلَى مَا كَانَ مِنْك وَلَا أُبَالِي، يَا ابْنَ آدَمَ! لَوْ بَلَغَتْ ذُنُوبُك عَنَانَ السَّمَاءِ ثُمَّ اسْتَغْفَرْتنِي غَفَرْتُ لَك، يَا ابْنَ آدَمَ! إنَّك لَوْ أتَيْتنِي بِقُرَابِ الْأَرْضِ خَطَايَا ثُمَّ لَقِيتنِي لَا تُشْرِكُ بِي شَيْئًا لَأَتَيْتُك بِقُرَابِهَا مَغْفِرَةً\\" . \\nرَوَاهُ التِّرْمِذِيُّ ، وَقَالَ: حَدِيثٌ حَسَنٌ صَحِيحٌ.","view":{"narrator":"On the authority of Anas (may Allah be pleased with him) who said:","text":"I heard the Messenger of Allah (peace and blessings of Allah be upon him) say, “Allah the Almighty has said: ‘O Son of Adam, as long as you invoke Me and ask of Me, I shall forgive you for what you have done, and I shall not mind. O Son of Adam, were your sins to reach the clouds of the sky and you then asked forgiveness from Me, I would forgive you. O Son of Adam, were you to come to Me with sins nearly as great as the Earth, and were you then to face Me, ascribing no partner to Me, I would bring you forgiveness nearly as great as it .’ ” \\n\\nIt was related by at-Tirmidhi, who said that it was a hasan hadeeth."},"chapterId":1,"bookId":10,"idInBook":42}]}');
 
 /***/ }),
 
-/***/ "./storage/test.json":
-/*!***************************!*\
-  !*** ./storage/test.json ***!
-  \***************************/
+/***/ "./storage/three_main/qudsi_book.json":
+/*!********************************************!*\
+  !*** ./storage/three_main/qudsi_book.json ***!
+  \********************************************/
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('[{"id":1,"name":"اللَّهُ","text":"وهو الاسم الأعظم الذي تفرد به الحق سبحانه وخص به نفسه وجعله أول أسمائه، وأضافها كلها إليه فهو علم على ذاته سبحانه"},{"id":2,"name":"الرَّحْمَنُ","text":"كثير الرحمة وهو اسم مقصور على الله عز وجل ولا يجوز أن يقال رحمن لغير الله، وذلك لأن رحمته وسعت كل شيء وهو أرحم الراحمين"},{"id":3,"name":"الرَّحِيم","text":"هو المنعم أبدا، المتفضل دوما، فرحمته لا تنتهي"},{"id":4,"name":"المَلِك","text":"هو الله، ملك الملوك، له الملك، وهو مالك يوم الدين، ومليك الخلق فهو المالك المطلق"},{"id":5,"name":"الْقُدُّوس","text":"هو الطاهر المنزه عن العيوب والنقائص وعن كل ما تحيط به العقول"},{"id":6,"name":"السَّلَام","text":"هو ناشر السلام بين الأنام وهو الذي سلمت ذاته من النقص والعيب والفناء"},{"id":7,"name":"المُؤْمِن","text":"هو الذي سلم أوليائه من عذابه، والذي يصدق عباده ما وعدهم"},{"id":8,"name":"الْمُهَيْمِن","text":"هو الرقيب الحافظ لكل شيء، القائم على خلقه بأعمالهم، وأرزاقهم وآجالهم، والمطلع على خفايا الأمور وخبايا الصدور"},{"id":9,"name":"الْعَزِيز","text":"هو المنفرد بالعزة، الظاهر الذي لا يقهر، القوي الممتنع فلا يغلبه شيء وهو غالب كل شيء"},{"id":10,"name":"الْجَبَّار","text":"هو الذي تنفذ مشيئته، ولا يخرج أحد عن تقديره، وهو القاهر لخلقه على ما أراد"},{"id":11,"name":"الْمُتَكَبِّر","text":"هو المتعالى عن صفات الخلق المنفرد بالعظمة والكبرياء"},{"id":12,"name":"الْخَالِق","text":"هو الفاطر المبدع لكل شيء، والمقدر له والموجد للأشياء من العدم، فهو خالق كل صانع وصنعته"},{"id":13,"name":"الْبَارِئ","text":"هو الذي خلق الخلق بقدرته لا عن مثال سابق، القادر على إبراز ما قدره إلى الوجود"},{"id":14,"name":"الْمُصَوِّر","text":"هو الذي صور جميع الموجودات، ورتبها فأعطى كل شيء منها صورة خاصة، وهيئة منفردة، يتميز بها على اختلافها وكثرتها"},{"id":15,"name":"اَلْغَفَّار","text":"هو وحده الذي يغفر الذنوب ويستر العيوب في الدنيا والآخرة"},{"id":16,"name":"الْقَهَّار","text":"هو الغالب الذي قهر خلقه بسلطانه وقدرته، وخضعت له الرقاب وذلت له الجبابرة، وصرف خلقه على ما أراد طوعا وكرها، وعنت الوجوه له"},{"id":17,"name":"الْوَهَّاب","text":"هو المنعم على العباد، الذي يهب بغير عوض ويعطي الحاجة بغير سؤال، كثير النعم، دائم العطاء"},{"id":18,"name":"الرَّزَّاق","text":"هو الذي خلق الأرزاق وأعطى كل الخلائق أرزاقها، ويمد كل كائن لما يحتاجه، ويحفظ عليه حياته ويصلحه"},{"id":19,"name":"الْفَتَّاح","text":"هو الذي يفتح مغلق الأمور، ويسهل العسير، وبيده مفاتيح السماوات والأرض"},{"id":20,"name":"الْعَلِيم","text":"هو الذي يعلم تفاصيل الأمور، ودقائق الأشياء وخفايا الضمائر، والنفوس، لا يعزب عنه مثقال ذرة، فعلمه يحيط بجميع الأشياء"},{"id":21,"name":"الْقَابِضُ","text":"هو الذي يقبض الرزق عمن يشاء من الخلق بعدله وحكمته، والذي يوسع الرزق لمن يشاء من عباده بجوده ورحمته فهو سبحانه القابض الباسط"},{"id":22,"name":"الْبَاسِطُ","text":"هو الذي يقبض الرزق عمن يشاء من الخلق بعدله وحكمته، والذي يوسع الرزق لمن يشاء من عباده بجوده ورحمته فهو سبحانه القابض الباسط"},{"id":23,"name":"الخافض","text":"هو الذي يخفض الأذلال لكل من طغى وتجبر وخرج على شريعته وتمرد، وهو الذي يرفع عباده المؤمنين بالطاعات ويرفعهم على عدوهم فينصرهم وهو رافع السماوات السبع"},{"id":24,"name":"الرَّافِعُ","text":"هو الذي يخفض الأذلال لكل من طغى وتجبر وخرج على شريعته وتمرد، وهو الذي يرفع عباده المؤمنين بالطاعات ويرفعهم على عدوهم فينصرهم وهو رافع السماوات السبع"},{"id":25,"name":"المعز","text":"هو الذي يهب القوة والغلبة والشدة لمن شاء فيعزه، وينزعها عمن يشاء فيذله"},{"id":26,"name":"المذل","text":"هو الذي يهب القوة والغلبة والشدة لمن شاء فيعزه، وينزعها عمن يشاء فيذله"},{"id":27,"name":"السَّمِيعُ","text":"ومعناه سمعه لجميع الأصوات الظاهرة والباطنة الخفية والجلية، وإحاطته التامة بها، ومعناه أيضًا: سمع الإجابة منه للسائلين والداعين والعابدين فيجيبهم ويثيبهم"},{"id":28,"name":"الْبَصِير","text":"هو الذي يرى الأشياء كلها ظاهرها وباطنها وهو المحيط بكل شيء علماً"},{"id":29,"name":"الْحَكَم","text":"هو الذي يفصل بين مخلوقاته بما شاء ويفصل بين الحق والباطل لا راد لقضائه ولا معقب لحكمه"},{"id":30,"name":"العدل","text":"هو الذي حرم الظلم على نفسه، وجعله على عباده محرما، فهو المنزه عن الظلم والجور في أحكامه وأفعاله الذي يعطي كل ذي حق حقه"},{"id":31,"name":"اللَّطِيفُ","text":"هو البر الرفيق بعباده، يرزق وييسر ويحسن إليهم، ويرفق بهم ويتفضل عليهم"},{"id":32,"name":"الْخَبِيرُ","text":"هو العليم بدقائق الأمور، لا تخفى عليه خافية، ولا يغيب عن علمه شيء فهو العالم بما كان ويكون"},{"id":33,"name":"الْحَلِيمُ","text":"هو الصبور الذي يمهل ولا يهمل، ويستر الذنوب، ويؤخر العقوبة، فيرزق العاصي كما يرزق المطيع"},{"id":34,"name":"الْعَظِيمُ","text":"هو العظيم في كل شئ، عظيم في ذاته وأسمائه وصفاته، عظيم في رحمته، عظيم في قدرته، عظيم في حكمته، عظيم في جبروته وكبريائه، عظيم في هبته وعطائه، عظيم في خبرته ولطفه، عظيم في بره وإحسانه، عظيم في عزته وعدله وحمده، فهو العظيم المطلق، فلا أحد يساويه"},{"id":35,"name":"الْغَفُورُ","text":"هو الساتر لذنوب عباده المتجاوز عن خطاياهم وذنوبهم. الفرق بين هذا الاسم واسم الغفار أن اسم الغفور يكون للدلالة على مغفرة الذنب مهما عظم وأيس صاحبه من المغفرة أما الغفار فتدل على مغفرة الله المستمرة للذنوب المختلفة لأن الإنسان خطاء فالله غفار"},{"id":36,"name":"الشَّكُورُ","text":"هو الذي يزكو عنده القليل من أعمال العباد، فيتقبلها ويضاعف أجرها"},{"id":37,"name":"الْعَلِيُّ","text":"هو الرفيع القدر فلا يحيط به وصف الواصفين المتعالي عن الأنداد والأضداد، فكل معاني العلو ثابتة له ذاتا وقهرا وشأنا"},{"id":38,"name":"الْكَبِيرُ","text":"هو العظيم الجليل ذو الكبرياء في صفاته وأفعاله فلا يحتاج إلى شيء ولا يعجزه شيء (ليس كمثله شيء)"},{"id":39,"name":"الْحَفِيظُ","text":"هو الذي لا يغرب عن حفظه شيء ولو كمثقال الذر فحفظه لا يتبدل ولا يزول ولا يعتريه التبديل"},{"id":40,"name":"المُقِيت","text":"هو المتكفل بإيصال أقوات الخلق إليهم وهو الحفيظ والمقتدر والقدير والمقدر والممدد"},{"id":41,"name":"الْحَسِيبُ","text":"هو الكافي الذي منه كفاية العباد وهو الذي عليه الاعتماد يكفي العباد بفضله"},{"id":42,"name":"الجليل","text":"هو العظيم المطلق المتصف بجميع صفات الكمال والمنعوت بكمالها المنزه عن كل نقص"},{"id":43,"name":"الْكَرِيمُ","text":"هو الكثير الخير الجواد المعطي الذي لا ينفذ عطاؤه وهو الكريم المطلق الجامع لأنواع الخير والشرف والفضائل المحمود بفعاله"},{"id":44,"name":"الرَّقِيبُ","text":"هو الرقيب الذي يراقب أحوال العباد ويعلم أقوالهم ويحصي أعمالهم وهو الحافظ الذي لا يغيب عنه شيء"},{"id":45,"name":"الْمُجِيبُ","text":"هو الذي يجيب دعاء من دعاه، وسؤال من سأله، ويقابله بالعطاء والقبول، ولا يسأل أحد سواه"},{"id":46,"name":"الْوَاسِعُ","text":"هو الذي وسع رزقه جميع خلقه، وسعت رحمته كل شيء المحيط بكل شيء"},{"id":47,"name":"اَلْحَكِيمُ","text":"هو المحق في تدبيره اللطيف في تقديره الخبير بحقائق الأمور العليم بحكمه المقدور فجميع خلقه وقضاه خير وحكمة وعدل"},{"id":48,"name":"الْوَدُودُ","text":"هو المحب لعباده، والمحبوب في قلوب أوليائه"},{"id":49,"name":"الْمَجِيدُ","text":"هو الله تمجَّد بفعاله، ومجَّده خلقه لعظمته، والمجيد هو واسع الكرم، ووصف نفسه بالمجيد وهو متضمن كثرة صفات كماله وسعتها، وعدم إحصاء الخلق لها، وسعة أفعاله وكثرة خيره ودوامه. وتعني أيضاً البالغ النهاية في المجد، الكثير الإحسان الجزيل العطاء العظيم البر. تمجد"},{"id":50,"name":"الباعث","text":"هو باعث الخلق يوم القيامة، وباعث رسله إلى العباد، وباعث المعونة إلى العبد"},{"id":51,"name":"الشَّهِيدُ","text":"هو الحاضر الذي لا يغيب عنه شيء، فهو المطلع على كل شيء مشاهد له عليم بتفاصيله"},{"id":52,"name":"الْحَقُّ","text":"هو الذي يحق الحق بكلماته ويؤيد أولياءه فهو المستحق للعبادة"},{"id":53,"name":"الْوَكِيلُ","text":"هو الكفيل بالخلق القائم بأمورهم فمن توكل عليه تولاه وكفاه، ومن استغنى به أغناه وأرضاه"},{"id":54,"name":"الْقَوِيّ","text":"هو صاحب القدرة التامة البالغة الكمال غالب لا يُغلب فقوته فوق كل قوة، ولايرد قضاءه راد، ينفذ أمره، ويمضي قضاؤه في خلقه، شديد عقابه لمن كفر بآياته وجحد حججه"},{"id":55,"name":"الْمَتِينُ","text":"هو الشديد الذي لا يحتاج في إمضاء حكمه إلى جند أو مدد ولا إلى معين، فهو المتناهي في القوة، التي لاتلحق أفعاله مشقة، ولايمسه فيها لغوب"},{"id":56,"name":"الْوَلِيُّ","text":"هو المحب الناصر لمن أطاعه، ينصر أولياءه، ويقهر أعداءه، والمتولي الأمور الخلائق ويحفظهم"},{"id":57,"name":"الْحَمِيدُ","text":"هو المستحق للحمد والثناء له منتهى الحمد وأطيبه على ذاته وصفاته وعلى نعمه التي لا تحصى"},{"id":58,"name":"الْـمُحصِي","text":"هو الذي أحصى كل شيء بعلمه، فلا يفوته منها دقيق ولا جليل"},{"id":59,"name":"المبدئ","text":"هو الذي أنشأ الأشياء، واخترعها ابتداء من غير سابق مثال"},{"id":60,"name":"المعيد","text":"هو الذي يعيد الخلق بعد الحياة إلى الممات في الدنيا، وبعد الممات إلى الحياة يوم القيامة"},{"id":61,"name":"المُحيي","text":"هو خالق الحياة ومعطيها لمن شاء، يحيي الخلق من العدم ثم يحييهم بعد الموت"},{"id":62,"name":"المميت","text":"هو مقدر الموت على كل من أماته ولا مميت سواه، قهر عباده بالموت متى شاء وكيف شاء"},{"id":63,"name":"الْحَيُّ","text":"هو المتصف بالحياة الأبدية التي لا بداية لها ولا نهاية فهو الباقي أزلا وأبدا وهو الحي الذي لا يموت"},{"id":64,"name":"الْقَيُّومُ","text":"هو القائم بنفسه، الغني عن غيره، وهو القائم بتدبير أمر خلقه في إنشائهم ورزقهم"},{"id":65,"name":"الواجد","text":"هو الذي لا يعوزه شيء ولا يعجزه شيء يجد كل ما يطلبه، ويدرك كل ما يريده"},{"id":66,"name":"الماجد","text":"هو الذي له الكمال المتناهي والعز الباهي، له العز في الأوصاف والأفعال الذي يعامل العباد بالجود والرحمة"},{"id":67,"name":"الْوَاحِدُ","text":"هو الفرد المتفرد في ذاته وصفائه وأفعاله، واحد في ملكه لا ينازعه أحد، لا شريك له سبحانه"},{"id":68,"name":"الصَّمَدُ","text":"هو المطاع الذي لا يقضى دونه أمر، الذي يقصد إليه في الحوائج فهو مقصد عباده في مهمات دينهم ودنياهم"},{"id":69,"name":"الْقَادِرُ","text":"هو الذي يقدر على إيجاد المعدوم وإعدام الموجود على قدر ما تقتضي الحكمة، لا زائدا عليه ولا ناقصا عنه"},{"id":70,"name":"الْمُقْتَدِرُ","text":"هو الذي يقدر على إصلاح الخلائق على وجه لا يقدر عليه غيره"},{"id":71,"name":"الْمُقَدِّمُ","text":"هو الذي يقدم الأشياء ويضعها في مواضعها، فمن استحق التقديم قدمه"},{"id":72,"name":"الْمُؤَخِّرُ","text":"هو الذي يؤخر الأشياء فيضعها في مواضعها المؤخر لمن شاء من الفجار والكفار وكل من يستحق التأخير"},{"id":73,"name":"الْأَوَّلُ","text":"هو الذي لم يسبقه في الوجود شيء فهو أول قبل الوجود"},{"id":74,"name":"الْآخِرُ","text":"هو الباقي بعد فناء خلقه، البقاء الأبدي يفنى الكل وله البقاء وحده، فليس بعده شيء"},{"id":75,"name":"الظَّاهِرُ","text":"هو الذي ظهر فوق كل شيء وعلا عليه، الظاهر وجوده لكثرة دلائله"},{"id":76,"name":"الْبَاطِنُ","text":"هو العالم ببواطن الأمور وخفاياها، وهو أقرب إلينا من حبل الوريد"},{"id":77,"name":"الوالي","text":"هو المالك للأشياء المتصرف فيها بمشيئته وحكمته، ينفذ فيها أمره، ويجري عليها حكمه"},{"id":78,"name":"الْمُتَعَالِ","text":"هو الذي جل عن إفك المفترين، وتنزه عن وساوس المتحيرين"},{"id":79,"name":"الْبَرُّ","text":"هو العطوف على عباده ببره ولطفه، ومن على السائلين بحسن عطائه، وهو الصدق فيما وعد"},{"id":80,"name":"التَّوَّابُ","text":"هو الذي يوفق عباده للتوبة حتى يتوب عليهم ويقبل توبتهم فيقابل الدعاء بالعطاء، والتوبة بغفران الذنوب"},{"id":91,"name":"الْمُنْتَقِمُ","text":"هو الذي يقصم ظهور الطغاة، ويشدد العقوبة على العصاة، وذلك بعد الإعذار والإنذار"},{"id":82,"name":"العَفُو","text":"هو الذي يترك المؤاخدة على الذنوب ولا يذكرك بالعيوب فهو يمحو السيئات ويتجاوز عن المعاصي"},{"id":83,"name":"الرَّؤُوفُ","text":"هو المتعطف على المذنبين بالتوبة، الذي جاد بلطفه ومَنَّ بتعطفه، يستر العيوب ثم يعفو عنها"},{"id":84,"name":"مَالِكُ الْمُلْكِ","text":"هو المتصرف في ملكه كيف يشاء لا راد لحكمه، ولا معقب لأمره"},{"id":85,"name":"ذُو الْجَلَالِ والْإكْرَامِ","text":"هو المنفرد بصفات الجلال والكمال والعظمة، المختص بالإكرام والكرامة وهو أهل لأن يجل"},{"id":86,"name":"المقسط","text":"هو العادل في حكمه، الذي ينتصف للمظلوم من الظالم، ثم يكمل عدله فيرضي الظالم بعد إرضاء المظلوم"},{"id":87,"name":"الْجَامِعُ","text":"هو الذي جمع الكمالات كلها، ذاتا ووصفا وفعلا، الذي يجمع بين الخلائق المتماثلة والمتباينة، والذي يجمع الأولين والآخرين"},{"id":88,"name":"الْغَنِيُّ","text":"هو الذي لا يحتاج إلى شيء، وهو المستغني عن كل ما سواه، المفتقر إليه كل من عاداه"},{"id":89,"name":"المغني","text":"هو معطي الغنى لعباده، يغني من يشاء غناه، وهو الكافي لمن شاء من عباده"},{"id":90,"name":"الْمُعْطِي","text":"هو الذي أعطى كل شيء"},{"id":91,"name":"المانع","text":"يمنع العطاء عن من يشاء ابتلاء أو حماية"},{"id":92,"name":"الضار","text":"هو المقدر للضر على من أراد كيف أراد"},{"id":93,"name":"النافع","text":"مقدر النفع والخير لمن أراد كيف أراد كل ذلك على مقتضى حكمته سبحانه"},{"id":94,"name":"النُّورُ","text":"هو الهادي الرشيد الذي يرشد بهدايته من يشاء فيبين له الحق، ويلهمه اتباعه، الظاهر في ذاته، المظهر لغيره"},{"id":95,"name":"الْهَادِي","text":"هو المبين للخلق طريق الحق بكلامه يهدي القلوب إلى معرفته، والنفوس إلى طاعته"},{"id":96,"name":"الْبَدِيعُ","text":"هو الذي لا يماثله أحد في صفاته ولا في حكم من أحكامه، أو أمر من أموره، فهو المحدث الموجد على غير مثال"},{"id":97,"name":"الباقي","text":"هو وحده له البقاء، الدائم الوجود الموصوف بالبقاء الأزلي، غير قابل للفناء فهو الباقي بلا انتهاء"},{"id":98,"name":"الْوَارِثُ","text":"هو الأبقى الدائم الذي يرث الخلائق بعد فناء الخلق، وهو يرث الأرض ومن عليها"},{"id":99,"name":"الرشيد","text":"هو الذي أسعد من شاء بإرشاده، وأشقى من شاء بإبعاده، عظيم الحكمة بالغ الرشاد"},{"id":100,"name":"الصبور","text":"هو الحليم الذي لا يعاجل العصاة بالنقمة، بل يعفوا ويؤخر، ولا يسرع بالفعل قبل أوانه"}]');
+module.exports = JSON.parse('[{"hadiths":[{"id":40986,"arabic":"عَنْ أَبِي هُرَيْرَةَ قَالَ: قَالَ رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ: \\n\\n\\" لَمَّا قَضَى اللَّهُ الْخَلْقَ، كَتَبَ فِي كِتَابِهِ عَلَى نَفْسِهِ، فَهُوَ مَوْضُوعٌ عِنْدَهُ: إِنَّ رَحْمَتِي تَغْلِبُ غَضَبِي\\" \\nرواه مسلم (وكذلك البخاري والنسائي وابن ماجه)","view":{"narrator":"On the authority of Abu Hurayrah (may Allah be pleased with him), who said that the Messenger of Allah (ﷺ) said:","text":"When Allah decreed the Creation He pledged Himself by writing in His book which is laid down with Him: My mercy prevails over my wrath.\\n\\nIt was related by Muslim (also by al-Bukhari, an-Nasa\'i and Ibn Majah)."},"chapterId":1,"bookId":11,"idInBook":1},{"id":40987,"arabic":"عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ، عَنْ النَّبِيِّ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ قَالَ: \\n\\n\\" قَالَ اللَّهُ تَعَالَى: كَذَّبَنِي ابْنُ آدَمَ وَلَمْ يَكُنْ لَهُ ذَلِكَ، وَشَتَمَنِي وَلَمْ يَكُنْ لَهُ ذَلِكَ، فَأَمَّا تَكْذِيبُهُ إِيَّايَ فَقَوْلُهُ: لَنْ يُعِيدَنِي كَمَا بَدَأَنِي، وَلَيْسَ أَوَّلُ الْخَلْقِ بِأَهْوَنَ عَلَيَّ مِنْ إِعَادَتِهِ، وَأَمَّا شَتْمُهُ إِيَّايَ فَقَوْلُهُ: اتَّخَذَ اللَّهُ وَلَدًا، وَأَنَا الْأَحَدُ الصَّمَدُ، لَمْ أَلِدْ وَلَمْ أُولَدْ، وَلَمْ يَكُنْ لِي كُفُوًا أَحَدٌ\\" \\nرواه البخاري (وكذلك النسائي)","view":{"narrator":"On the authority of Abu Hurayrah (may Allah be pleased with him), who said that the Messenger of Allah (ﷺ) said:","text":"Allah Almighty has said:\\nThe son of Adam denied Me and he had no right to do so. And he reviled Me and he had no right to do so. As for his denying Me, it is his saying: He will not remake me as He made me at first (1) - and the initial creation  is no easier for Me than remaking him. As for his reviling Me, it is his saying: Allah has taken to Himself a son, while I am the One, the Everlasting Refuge. I begot not nor was I begotten, and there is none comparable to Me.(1) i.e., bring me back to life after death.\\n\\nIt was related by al-Bukhari (also by an-Nasa\'i)."},"chapterId":1,"bookId":11,"idInBook":2},{"id":40988,"arabic":"عَنْ زَيْدِ بْنِ خَالِدٍ الْجُهَنِيِّ، رَضِيَ اللَّهُ عَنْهُ قَالَ: \\n\\"صَلَّى لَنَا رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ صَلَاةَ الصُّبْحِ بِالْحُدَيْبِيَةِ، عَلَى إِثْرِ سَمَاءٍ (1) كَانَتْ مِنْ اللَّيْلَةِ، فَلَمَّا انْصَرَفَ النَّبِيُّ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ أَقْبَلَ عَلَى النَّاسِ، فَقَالَ لَهُمْ: \\"هَلْ تَدْرُونَ مَاذَا قَالَ رَبُّكُمْ؟ قَالُوا: اللَّهُ وَرَسُولُهُ أَعْلَمُ، قَالَ: أَصْبَحَ مِنْ عِبَادِي مُؤْمِنٌ بِي وَكَافِرٌ، فَأَمَّا مَنْ قَالَ: مُطِرْنَا بِفَضْلِ اللَّهِ وَرَحْمَتِهِ، فَذَلِكَ مُؤْمِنٌ بِي، كَافِرٌ بِالْكَوْكَبِ، وَأَمَّا مَنْ قَالَ: مُطِرْنَا بِنَوْءِ(1) كَذَا وَكَذَا، فَذَلِكَ كَافِرٌ بِي، مُؤْمِنٌ بِالْكَوْكَبِ\\" \\nرواه البخاري (وكذلك مالك والنسائي)","view":{"narrator":"On the authority of Zayd ibn Khalid al-Juhaniyy (may Allah be pleased with him), who said:","text":"The Messenger of Allah (may the blessings and peace of Allah be upon him) led the morning prayer for us at al-Hudaybiyah following rainfall during the night. When the Prophet (may the blessings and peace of Allah be upon him) finished, he faced the people and said to them: Do you know what your Lord has said? They said: Allah and his Messenger know best. He said: This morning one of my servants became a believer in Me and one a disbeliever. As for him who said: We have been given rain by virtue of Allah and His mercy, that one is a believer in Me, a disbeliever in the stars (2); and as for him who said: We have been given rain by such-and-such a star, that one is a disbeliever in Me, a believer in the stars.\\n(2) The pre-Islamic Arabs believed that rain was brought about by the movement of stars. This Hadith draws attention to the fact that whatever be the direct cause of such natural phenomena as rain, it is Allah the Almighty who is the Disposer of all things.\\n\\nIt was related by al-Bukhari (also by Malik and an-Nasa\'i)."},"chapterId":1,"bookId":11,"idInBook":3},{"id":40989,"arabic":"عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ، قَالَ: قَالَ رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ: \\n\\n\\" قَالَ اللَّهُ: يَسُبُّ بَنُو آدَمَ الدَّهْرَ، وَأَنَا الدَّهْرُ، بِيَدِي اللَّيْلُ وَالنَّهَارُ\\" \\nرواه البخاري (وكذلك مسلم)","view":{"narrator":"On the authority of Abu Hurayrah (may Allah be pleased with him), who said that the Messenger of Allah (ﷺ) said:","text":"Allah said:\\nSons of Adam inveigh against  Time, and I am Time, in My hand is the night and the day (1).\\n(1) As the Almighty is the Ordainer of all things, to inveigh against misfortunes that are part of Time is tantamount to inveighing against Him.\\n\\nIt was related by al-Bukhari (also by Muslim)."},"chapterId":1,"bookId":11,"idInBook":4},{"id":40990,"arabic":"عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ، قَالَ: قَالَ رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ: \\n\\n\\" قَالَ اللَّهُ تَبَارَكَ وَتَعَالَى: أَنَا أَغْنَى الشُّرَكَاءِ عَنْ الشِّرْكِ؛ مَنْ عَمِلَ عَمَلًا أَشْرَكَ مَعِي غَيْرِي(1)، تَرَكْتُهُ وَشِرْكَهُ\\". \\nرواه مسلم (وكذلك ابن ماجه)","view":{"narrator":"On the authority of Abu Hurayrah (may Allah be pleased with him), who said that the Messenger of Allah (ﷺ) said:","text":"Allah (glorified and exalted be He) said:\\nI am so self-sufficient that I am in no need of having an associate. Thus he who does an action for someone else\'s sake as well as Mine will have that action renounced by Me to him whom he associated with Me.\\n\\nIt was related by Muslim (also by Ibn Majah)."},"chapterId":1,"bookId":11,"idInBook":5},{"id":40991,"arabic":"عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ، قَالَ: سَمِعْتُ رَسُولَ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ يَقُولُ: \\n\\n\\" إِنَّ أَوَّلَ النَّاسِ يُقْضَى يَوْمَ الْقِيَامَةِ عَلَيْهِ رَجُلٌ اسْتُشْهِدَ، فَأُتِيَ بِهِ فَعَرَّفَهُ نِعَمَهُ فَعَرَفَهَا، قَالَ: فَمَا عَمِلْتَ فِيهَا؟ قَالَ قَاتَلْتُ فِيكَ حَتَّى اسْتُشْهِدْتُ، قَالَ: كَذَبْتَ، وَلَكِنَّكَ قَاتَلْتَ لِأَنْ يُقَالَ: جَرِيءٌ، فَقَدْ قِيلَ، ثُمَّ أُمِرَ بِهِ فَسُحِبَ عَلَى وَجْهِهِ حَتَّى أُلْقِيَ فِي النَّارِ. وَرَجُلٌ تَعَلَّمَ الْعِلْمَ وَعَلَّمَهُ وَقَرَأَ الْقُرْآنَ، فَأُتِيَ بِهِ، فَعَرَّفَهُ نِعَمَهُ فَعَرَفَهَا، قَالَ: فَمَا عَمِلْتَ فِيهَا؟ قَالَ: تَعَلَّمْتُ الْعِلْمَ وَعَلَّمْتُهُ، وَقَرَأْتُ فِيكَ الْقُرْآنَ، قَالَ: كَذَبْتَ، وَلَكِنَّكَ تَعَلَّمْتَ الْعِلْمَ لِيُقَالَ: عَالِمٌ، وَقَرَأْتَ الْقُرْآنَ لِيُقَالَ: هُوَ قَارِئٌ، فَقَدْ قِيلَ، ثُمَّ أُمِرَ بِهِ، فَسُحِبَ عَلَى وَجْهِهِ حَتَّى أُلْقِيَ فِي النَّارِ. وَرَجُلٌ وَسَّعَ اللَّهُ عَلَيْهِ، وَأَعْطَاهُ مِنْ أَصْنَافِ الْمَالِ كُلِّهِ، فَأُتِيَ بِهِ، فَعَرَّفَهُ نِعَمَهُ فَعَرَفَهَا، قَالَ: فَمَا عَمِلْتَ فِيهَا؟ قَالَ: مَا تَرَكْتُ مِنْ سَبِيلٍ تُحِبُّ أَنْ يُنْفَقَ فِيهَا إِلَّا أَنْفَقْتُ فِيهَا لَكَ، قَالَ: كَذَبْتَ، وَلَكِنَّكَ فَعَلْتَ لِيُقَالَ: هُوَ جَوَادٌ، فَقَدْ قِيلَ، ثُمَّ أُمِرَ بِهِ فَسُحِبَ عَلَى وَجْهِهِ، ثُمَّ أُلْقِيَ فِي النَّارِ\\". \\nرواه مسلم (وكذلك الترمذي والنسائي)","view":{"narrator":"On the authority of Abu Hurayrah (may Allah be pleased with him), who said:","text":"I heard the Messenger of Allah (ﷺ) say:\\nThe first of people against whom judgment will be pronounced on the Day of Resurrection will be a man who died a martyr. He will be brought and Allah will make known to him His favours and he will recognize them. : He is open-handed. And so it was said. Then he will be ordered to be dragged along on his face until he is cast into Hell-fire.\\n\\nIt was related by Muslim (also by at-Tirmidhi and an-Nasa\'i)."},"chapterId":1,"bookId":11,"idInBook":6},{"id":40992,"arabic":"عَنْ عُقْبَةَ بْنِ عَامِرٍ، رَضِيَ اللَّهُ عَنْهُ، قَالَ: سَمِعْتُ رَسُولَ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ يَقُولُ: \\n\\n\\" يَعْجَبُ رَبُّكَ مِنْ رَاعِي غَنَمٍ، فِي رَأْسِ شَظِيَّةِ الْجَبَلِ(1)، يُؤَذِّنُ بِالصَّلَاةِ وَيُصَلِّي، فَيَقُولُ اللَّهُ، عَزَّ وَجَلَّ: انْظُرُوا إِلَى عَبْدِي هَذَا، يُؤَذِّنُ وَيُقِيمُ الصَّلَاةَ، يَخَافُ مِنِّي، قَدْ غَفَرْتُ لِعَبْدِي، وَأَدْخَلْتُهُ الْجَنَّةَ\\". \\nرواه النسائي بسند صحيح","view":{"narrator":"On the authority of Uqbah ibn Amir (may Allah be pleased with him), who said:","text":"I heard the messenger of Allah (ﷺ) say:\\nYour Lord delights at a shepherd who, on the peak of a mountain crag, gives the call to prayer and prays. Then Allah (glorified and exalted be He) say: Look at this servant of Mine, he gives the call to prayer and performs the prayers; he is in awe of Me. I have forgiven My servant  and have admitted him to Paradise.\\n\\nIt was related by an-Nasa\'i with a good chain of authorities."},"chapterId":1,"bookId":11,"idInBook":7},{"id":40993,"arabic":"عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ، عَنْ النَّبِيِّ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ قَالَ: \\n\\n\\" مَنْ صَلَّى صَلَاةً لَمْ يَقْرَأْ فِيهَا بِأُمِّ الْقُرْآنِ، فَهِيَ خِدَاجٌ(1) ثَلَاثًا، غَيْرَ تَمَامٍ، فَقِيلَ لِأَبِي هُرَيْرَةَ: إِنَّا نَكُونُ وَرَاءَ الْإِمَامِ، فَقَالَ: اقْرَأْ بِهَا فِي نَفْسِكَ، فَإِنِّي سَمِعْتُ النبي صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ يَقُولُ: قَالَ اللَّهُ عَزَّ وَجَلَّ: قَسَمْتُ الصَّلَاةَ بَيْنِي وَبَيْنَ عَبْدِي نِصْفَيْنِ، وَلِعَبْدِي مَا سَأَلَ، فَإِذَا قَالَ الْعَبْدُ:{ الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ } قَالَ اللَّهُ عَزَّ وَجَلَّ: حَمِدَنِي عَبْدِي، وَإِذَا قَالَ:{ الرَّحْمَنِ الرَّحِيمِ } قَالَ اللَّهُ عَزَّ وَجَلَّ: أَثْنَى عَلَيَّ عَبْدِي، وَإِذَا قَالَ:{ مَالِكِ يَوْمِ الدِّينِ } قَالَ اللَّهُ: مَجَّدَنِي عَبْدِي - وَقَالَ مَرَّةً: فَوَّضَ إِلَيَّ عَبْدِي، فَإِذَا قَالَ:{ إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ } قَالَ: هَذَا بَيْنِي وَبَيْنَ عَبْدِي وَلِعَبْدِي مَا سَأَلَ، فَإِذَا قَالَ:{ اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ } قَالَ: هَذَا لِعَبْدِي وَلِعَبْدِي مَا سَأَلَ\\". \\nرواه مسلم (وكذلك مالك والترمذي وأبو داود والنسائي وابن ماجه)","view":{"narrator":"On the authority of Abu Hurayrah (may Allah be pleased with him) from the Prophet (ﷺ), who said:","text":"A prayer performed by someone who has not recited the Essence of the Quran (1) during it is deficient (and he repeated the word three times), incomplete. Someone said to Abu Hurayrah:  we are behind the imam? (2) He said: Recite it to yourself, for I have heard the Prophet (may the blessings and peace of Allah be up on him) say: Allah (mighty and sublime be He), had said: I have divided prayer between Myself and My servant into two halves, and My servant shall have what he has asked for. When the servant says: Al-hamdu lillahi rabbi l-alamin (3), Allah (mighty and sublime be He) says: My servant has praised Me. And when he says: Ar-rahmani r-rahim (4), Allah (mighty and sublime be He) says: My servant has extolled Me, and when he says: Maliki yawmi d-din (5), Allah says: My servant has glorified Me - and on one occasion He said: My servant has submitted to My power. And when he says: Iyyaka na budu wa iyyaka nasta in (6), He says: This is between Me and My servant, and My servant shall have what he has asked for. And when he says: Ihdina s-sirata l- mustaqim, siratal ladhina an amta alayhim ghayril-maghdubi alayhim wa la d-dallin (7), He says: This is for My servant, and My servant shall have what he has asked for.\\n(1) Surat al-Fatihah, the first surah (chapter) of the Qur\'an.\\n(2) i.e. standing behind the imam (leader) listening to him reciting al-Fatihah.\\n(3) \\"Praise be to Allah, Lord of the Worlds.\\"\\n(4) \\"The Merciful, the Compassionate\\".\\n(5) \\"Master of the Day of Judgement\\".\\n(6) \\"It is You we worship and it is You we ask for help\\".\\n(7) \\"Guide us to the straight path, the path of those upon whom You have bestowed favors, not of those against whom You are angry, nor of those who are astray\\".\\n\\nIt was related by Muslim (also by Malik, at-Tirmidhi, Abu-Dawud, an-Nasa\'i and Ibn Majah)."},"chapterId":1,"bookId":11,"idInBook":8},{"id":40994,"arabic":"عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ: \\n\\n\\"إِنَّ أَوَّلَ مَا يُحَاسَبُ بِهِ الْعَبْدُ يَوْمَ الْقِيَامَةِ مِنْ عَمَلِهِ صَلَاتُهُ. فَإِنْ صَلُحَتْ فَقَدْ أَفْلَحَ وَأَنْجَحَ، وَإِنْ فَسَدَتْ فَقَدْ خَابَ وَخَسِرَ، فَإِنْ انْتَقَصَ مِنْ فَرِيضَتِهِ شَيْءٌ، قَالَ الرَّبُّ عَزَّ وَجَلَّ: انْظُرُوا هَلْ لِعَبْدِي مِنْ تَطَوُّعٍ فَيُكَمَّلَ بِهَا مَا انْتَقَصَ مِنْ الْفَرِيضَةِ، ثُمَّ يَكُونُ سَائِرُ عَمَلِهِ عَلَى ذَلِكَ\\". \\nرواه الترمذي(1) وكذلك أبو داود والنسائي وابن ماجه وأحمد","view":{"narrator":"On the authority of Abu Hurayrah (may Allah be pleased with him) from the Prophet (ﷺ), who said:","text":"Allah (mighty and sublime be He) says:\\nThe first of his actions for which a servant of Allah will be held accountable on the Day of Resurrection will be his prayers. If they are in order, then he will have prospered and succeeded: and if they are wanting, then he will have failed and lost. If there is something defective in his obligatory prayers, the Lord (glorified and exalted be He) will say: See if My servant has any supererogatory prayers with which may be completed that which was defective in his obligatory prayers. Then the rest of his actions will be judged in like fashion.\\n\\nIt was related by at-Tirmidhi (also by Abu Dawud, an-Nasa\'i, Ibn Majah and Ahmad)."},"chapterId":1,"bookId":11,"idInBook":9},{"id":40995,"arabic":"عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ، عَنْ النَّبِيِّ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ قَالَ: \\n\\n\\" يَقُولُ اللَّهُ عَزَّ وَجَلَّ: الصَّوْمُ لِي، وَأَنَا أَجْزِي بِهِ، يَدَعُ شَهْوَتَهُ وَأَكْلَهُ وَشُرْبَهُ مِنْ أَجْلِي، وَالصَّوْمُ جُنَّةٌ(1)، وَلِلصَّائِمِ فَرْحَتَانِ: فَرْحَةٌ حِينَ يُفْطِرُ، وَفَرْحَةٌ حِينَ يَلْقَى رَبَّهُ، وَلَخُلُوفُ(2) فَمِ الصَّائِمِ أَطْيَبُ عِنْدَ اللَّهِ مِنْ رِيحِ الْمِسْكِ\\". \\nرواه البخاري (وكذلك مسلم ومالك والترمذي النسائي وابن ماجه)","view":{"narrator":"On the authority of Abu Hurayrah (may Allah be pleased with him) from the Prophet (ﷺ), who said:","text":"Allah (mighty and sublime be He) says:\\nFasting is Mine and it is I who give reward for it.  gives up his sexual passion, his food and his drink for my sake. Fasting is like a shield, and he who fasts has two joys: a joy when he breaks his fast and a joy when he meets his Lord. The change in the breath of the mouth of him who fasts is better in Allah\'s estimation than the smell of musk.\\n\\nIt was related by al-Bukhari (also by Muslim, Malik, at-Tirmidhi, an-Nasa\'i and Ibn Majah)."},"chapterId":1,"bookId":11,"idInBook":10},{"id":40996,"arabic":"عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ، أَنَّ رَسُولَ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ قَالَ: \\n\\n\\" قَالَ اللَّهُ: أَنْفِقْ يَا ابْنَ آدَمَ، أُنْفِقْ عَلَيْكَ \\".","view":{"narrator":"On the authority of Abu Harayrah (may Allah be pleased with him) from the Prophet (ﷺ), who said:","text":"Allah (mighty and sublime be He) said:\\nSpend (on charity), O son of Adam, and I shall spend on you.\\n\\nIt was related by al-Bukhari (also by Muslim)."},"chapterId":1,"bookId":11,"idInBook":11},{"id":40997,"arabic":"عَنْ أَبِي مَسْعُودٍ الْأَنْصَارِيِّ، رَضِيَ اللَّهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ: \\n\\n\\" حُوسِبَ رَجُلٌ مِمَّنْ كَانَ قَبْلَكُمْ، فَلَمْ يُوجَدْ لَهُ مِنْ الْخَيْرِ شَيْءٌ، إِلَّا أَنَّهُ كَانَ يُخَالِطُ(1) النَّاسَ، وَكَانَ مُوسِرًا، فَكَانَ يَأْمُرُ غِلْمَانَهُ أَنْ يَتَجَاوَزُوا عَنْ الْمُعْسِرِ، قَالَ (2) قَالَ اللَّهُ : نَحْنُ أَحَقُّ بِذَلِكَ مِنْكَ، تَجَاوَزُوا عَنْهُ\\" \\nرواه مسلم (وكذلك البخاري والنسائي)","view":{"narrator":"On the authority of Abu Mas\'ud al-Ansari (may Allah be pleased with him), who said that the Messenger of Allah (may the blessings and peace of Allah be upon him) said:","text":"A man from among those who were before you was called to account. Nothing in the way of good was found for him except that he used to have dealings with people and, being well-to-do, he would order his servants to let off the man in straitened circumstances . He (the Prophet p.b.u.h) said that Allah said: We are worthier than you of that (of being so generous). Let him off.\\n\\nIt was related by Muslim (also by al-Bukhari and an-Nasa\'i)."},"chapterId":1,"bookId":11,"idInBook":12},{"id":40998,"arabic":"عَنْ عَدِيَّ بْنَ حَاتِمٍ رَضِيَ اللَّهُ عَنْهُ يَقُولُ: \\n\\n\\"كُنْتُ عِنْدَ رَسُولِ اللَّهِ، صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ، فَجَاءَهُ رَجُلَانِ: أَحَدُهُمَا يَشْكُو الْعَيْلَةَ(1)، وَالْآخَرُ يَشْكُو قَطْعَ السَّبِيلِ(2)، فَقَالَ رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ: أَمَّا قَطْعُ السَّبِيلِ فَإِنَّهُ لَا يَأْتِي عَلَيْكَ إِلَّا قَلِيلٌ، حَتَّى تَخْرُجَ الْعِيرُ إِلَى مَكَّةَ بِغَيْرِ خَفِيرٍ. وَأَمَّا الْعَيْلَةُ، فَإِنَّ السَّاعَةَ لَا تَقُومُ حَتَّى يَطُوفَ أَحَدُكُمْ بِصَدَقَتِهِ، لَا يَجِدُ مَنْ يَقْبَلُهَا مِنْهُ، ثُمَّ لَيَقِفَنَّ أَحَدُكُمْ بَيْنَ يَدَيْ اللَّهِ، لَيْسَ بَيْنَهُ وَبَيْنَهُ حِجَابٌ وَلَا تَرْجُمَانٌ يُتَرْجِمُ لَهُ، ثُمَّ لَيَقُولَنَّ لَهُ: أَلَمْ أُوتِكَ مَالًا؟ فَلَيَقُولَنَّ: بَلَى، ثُمَّ لَيَقُولَنَّ: أَلَمْ أُرْسِلْ إِلَيْكَ رَسُولًا؟ فَلَيَقُولَنَّ: بَلَى، فَيَنْظُرُ عَنْ يَمِينِهِ، فَلَا يَرَى إِلَّا النَّارَ، ثُمَّ يَنْظُرُ عَنْ شِمَالِهِ، فَلَا يَرَى إِلَّا النَّارَ، فَلْيَتَّقِيَنَّ أَحَدُكُمْ النَّارَ وَلَوْ بِشِقِّ تَمْرَةٍ، فَإِنْ لَمْ يَجِدْ فَبِكَلِمَةٍ طَيِّبَةٍ\\". \\nرواه البخاري","view":{"narrator":"On the authority of Adiyy ibn Hatim (may Allah be pleased with him), who said:","text":"I was with the Messenger of Allah (may the blessings and peace of Allah be upon him) and there came to him two men: one of them was complaining of penury (being very poor), while the other was complaining of brigandry (robbery). The Messenger of Allah (may the blessings and peace of Allah be upon him) said: As for brigandry, it will be but a short time before a caravan will  go out of Mecca without a guard. As for penury, the Hour (Day of Judgement) will not arrive before one of you takes his charity around without finding anyone to accept it from him. Then (1) one of you will surely stand before Allah, there being no screen between Him and him, nor an interpreter to translate for him. Then He will say to him: Did I not bring you wealth? And he will say: Yes. Then He will say: Did I not send to you a messenger? And he will say: Yes. And he will look to his right and will see nothing but Hell-fire, then he will look to his left and will see nothing but Hell-fire, so let each of you protect himself against Hell-fire, be it with even half a date - and if he finds it not, then with a kind word.\\n(1) i.e. at the time of the Hour.\\n\\nIt was related by al-Bukhari."},"chapterId":1,"bookId":11,"idInBook":13},{"id":40999,"arabic":"عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ، عَنْ النَّبِيِّ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ قَالَ: \\n\\n\\" إِنَّ لِلَّهِ تَبَارَكَ وَتَعَالَى مَلَائِكَةً سَيَّارَةً فُضُلًا(1)، يَتَتَبَّعُونَ مَجَالِسَ الذِّكْرِ، فَإِذَا وَجَدُوا مَجْلِسًا فِيهِ ذِكْرٌ، قَعَدُوا مَعَهُمْ، وَحَفَّ بَعْضُهُمْ بَعْضًا بِأَجْنِحَتِهِمْ، حَتَّى يَمْلَأُوا مَا بَيْنَهُمْ وَبَيْنَ السَّمَاءِ الدُّنْيَا، فَإِذَااْنْصَرَفُوا عَرَجُوا وَصَعِدُوا إِلَى السَّمَاءِ، قَالَ (2) : فَيَسْأَلُهُمْ اللَّهُ عَزَّ وَجَلَّ وَهُوَ أَعْلَمُ بِهِمْ: مِنْ أَيْنَ جِئْتُمْ؟ فَيَقُولُونَ: جِئْنَا مِنْ عِنْدِ عِبَادٍ لَكَ فِي الْأَرْضِ، يُسَبِّحُونَكَ وَيُكَبِّرُونَكَ وَيُهَلِّلُونَكَ وَيَحْمَدُونَكَ وَيَسْأَلُونَكَ، قَالَ: وَمَا يَسْأَلُونِي؟ قَالُوا يَسْأَلُونَكَ جَنَّتَكَ، قَالَ: وَهَلْ رَأَوْا جَنَّتِي؟ قَالُوا: لَا أَيْ رَبِّ، قَالَ: فَكَيْفَ لَوْ رَأَوْا جَنَّتِي! قَالُوا: وَيَسْتَجِيرُونَكَ، قَالَ: وَمِمَّ يَسْتَجِيرُونَي؟ قَالُوا: مِنْ نَارِكَ يَا رَبِّ، قَالَ: وَهَلْ رَأَوْا نَارِي؟ قَالُوا: لَا، قَالَ: فَكَيْفَ لَوْ رَأَوْا نَارِي! قَالُوا: وَيَسْتَغْفِرُونَكَ، قَالَ (1) فَيَقُولُ: قَدْ غَفَرْتُ لَهُمْ، وأَعْطَيْتُهُمْ مَا سَأَلُوا، وَأَجَرْتُهُمْ مِمَّا اسْتَجَارُوا، قَالَ(1) يَقُولُونَ: رَبِّ فِيهِمْ فُلَانٌ، عَبْدٌ خَطَّاءٌ إِنَّمَا مَرَّ فَجَلَسَ مَعَهُمْ، قَالَ(1): فَيَقُولُ: وَلَهُ غَفَرْتُ؛ هُمْ الْقَوْمُ، لَا يَشْقَى بِهِمْ جَلِيسُهُمْ\\" \\nرواه مسلم وكذلك البخاري والترمذي والنسائي","view":{"narrator":"On the authority of Abu Hurayrah (may Allah be pleased with him) from the Prophet (ﷺ), who said:","text":"Allah (glorified and exalted be He) has supernumerary angels who rove about seeking out gatherings in which Allah\'s name is being invoked: they sit with them and fold their wings round each other, filling that which is between them and between the lowest heaven. When  I have given forgiveness: he who sits with such people shall not suffer.\\n\\nIt was related by Muslim (also by al-Bukhari, at-Tirmidhi, and an-Nasa\'i)."},"chapterId":1,"bookId":11,"idInBook":14},{"id":41000,"arabic":"عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ قَالَ: قَالَ النَّبِيُّ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ : \\n\\n\\"يَقُولُ اللَّهُ تَعَالَى: أَنَا عِنْدَ ظَنِّ عَبْدِي بِي، وَأَنَا مَعَهُ إِذَا ذَكَرَنِي، فَإِنْ ذَكَرَنِي فِي نَفْسِهِ، ذَكَرْتُهُ فِي نَفْسِي، وَإِنْ ذَكَرَنِي فِي مَلَإٍ، ذَكَرْتُهُ فِي مَلَإٍ خَيْرٍ مِنْهُمْ، وَإِنْ تَقَرَّبَ إِلَيَّ بِشِبْرٍ، تَقَرَّبْتُ إِلَيْهِ ذِرَاعًا، وَإِنْ تَقَرَّبَ إِلَيَّ ذِرَاعًا، تَقَرَّبْتُ إِلَيْهِ بَاعًا(1) وَإِنْ أَتَانِي يَمْشِي، أَتَيْتُهُ هَرْوَلَةً\\" \\nرواه البخاري (وكذلك مسلم والترمذي وابن ماجه)","view":{"narrator":"On the authority of Abu Hurayrah (may Allah be pleased with him), who said that the Prophet (ﷺ) said:","text":"Allah the Almighty said:\\nI am as My servant thinks I am (1). I am with him when he makes mention of Me. If he makes mention of Me to himself, I make mention of him to Myself; and if he makes mention of Me in an assembly, I make mention of him in an assembly better than it. And if he draws near to Me an arm\'s length, I draw near to him a cubit, and if he draws near to Me a cubit, I draw near to him a fathom. And if he comes to Me walking, I go to him at speed.\\n(1) Another possible rendering of the Arabic is: \\"I am as My servant expects Me to be\\". The meaning is that forgiveness and acceptance of repentance by the Almighty is subject to His servant truly believing that He is forgiving and merciful. However, not to accompany such belief with right action would be to mock the Almighty.\\n\\nIt was related by al-Buhkari (also by Muslim, at-Tirmidhi and Ibn-Majah)."},"chapterId":1,"bookId":11,"idInBook":15},{"id":41001,"arabic":"عَنْ ابْنِ عَبَّاسٍ رَضِيَ اللَّهُ عَنْهُمَا، عَنْ النَّبِيِّ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ، فِيمَا يَرْوِي عَنْ رَبِّهِ عَزَّ وَجَلَّ، قَالَ: \\n\\n\\"إِنَّ اللَّهَ كَتَبَ الْحَسَنَاتِ وَالسَّيِّئَاتِ، ثُمَّ بَيَّنَ ذَلِكَ: فَمَنْ هَمَّ بِحَسَنَةٍ فَلَمْ يَعْمَلْهَا، كَتَبَهَا اللَّهُ لَهُ عِنْدَهُ حَسَنَةً كَامِلَةً، فَإِنْ هُوَ هَمَّ بِهَا فَعَمِلَهَا، كَتَبَهَا اللَّهُ لَهُ عِنْدَهُ عَشْرَ حَسَنَاتٍ، إِلَى سَبْعِمِائَةِ ضِعْفٍ، إِلَى أَضْعَافٍ كَثِيرَةٍ، وَمَنْ هَمَّ بِسَيِّئَةٍ فَلَمْ يَعْمَلْهَا، كَتَبَهَا اللَّهُ لَهُ عِنْدَهُ حَسَنَةً كَامِلَةً، فَإِنْ هُوَ هَمَّ بِهَا فَعَمِلَهَا، كَتَبَهَا اللَّهُ سَيِّئَةً وَاحِدَةً\\". \\nرواه البخاري ومسلم","view":{"narrator":"On the authority of son of Abbas (may Allah be pleased with them both), from the Messenger of Allah (ﷺ), among the sayings he related from his Lord (glorified and exalted be He) is that He said:","text":"Allah has written down the good deeds and the bad ones. Then He explained it  he who has intended a good deed and has not done it, Allah writes it down with Himself as a full good deed, but if he has intended it and has done it, Allah writes it down with Himself as from ten good deeds to seven hundred times, or many times over. But if he has intended a bad deed and has not done it, Allah writes it down with Himself as a full good deed, but if he has intended it and has done it, Allah writes it down as one bad deed.\\n\\nIt was related by al-Bukhari and Muslim."},"chapterId":1,"bookId":11,"idInBook":16},{"id":41002,"arabic":"عَنْ أَبِي ذَرٍّ الْغِفَارِيِّ رَضِيَ اللَّهُ عَنْهُ، عَنْ النَّبِيِّ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ فِيمَا يَرْوِيهِ عَنْ رَبِّهِ عَزَّ وَجَلَّ أَنَّهُ قَالَ: \\n\\n\\" يَا عِبَادِي: إِنِّي حَرَّمْتُ الظُّلْمَ عَلَى نَفْسِي وَجَعَلْتُهُ بَيْنَكُمْ مُحَرَّمًا فَلَا تَظَالَمُوا. \\nيَا عِبَادِي: كُلُّكُمْ ضَالٌّ إِلَّا مَنْ هَدَيْتُهُ فَاسْتَهْدُونِي أَهْدِكُمْ، يَا عِبَادِي: كُلُّكُمْ جَائِعٌ إِلَّا مَنْ أَطْعَمْتُهُ فَاسْتَطْعِمُونِي أُطْعِمْكُمْ، يَا عِبَادِي: كُلُّكُمْ عَارٍ إِلَّا مَنْ كَسَوْتُهُ فَاسْتَكْسُونِي أَكْسُكُمْ، يَا عِبَادِي: إِنَّكُمْ تُخْطِئُونَ بِاللَّيْلِ وَالنَّهَارِ، وَأَنَا أَغْفِرُ الذُّنُوبَ جَمِيعًا، فَاسْتَغْفِرُونِي أَغْفِرْ لَكُمْ. \\nيَا عِبَادِي: إِنَّكُمْ لَنْ تَبْلُغُوا ضَرِّي فَتَضُرُّونِي، وَلَنْ تَبْلُغُوا نَفْعِي فَتَنْفَعُونِي، يَا عِبَادِي: لَوْ أَنَّ أَوَّلَكُمْ وَآخِرَكُمْ وَإِنْسَكُمْ وَجِنَّكُمْ كَانُوا عَلَى أَتْقَى قَلْبِ رَجُلٍ وَاحِدٍ مِنْكُمْ مَا زَادَ ذَلِكَ فِي مُلْكِي شَيْئًا، يَا عِبَادِي: لَوْ أَنَّ أَوَّلَكُمْ وَآخِرَكُمْ وَإِنْسَكُمْ وَجِنَّكُمْ كَانُوا عَلَى أَفْجَرِ قَلْبِ رَجُلٍ وَاحِدٍ مِنْكُمْ مَا نَقَصَ ذَلِكَ مِنْ مُلْكِي شَيْئًا، يَا عِبَادِي: لَوْ أَنَّ أَوَّلَكُمْ وَآخِرَكُمْ وَإِنْسَكُمْ وَجِنَّكُمْ قَامُوا فِي صَعِيدٍ وَاحِدٍ فَسَأَلُونِي، فَأَعْطَيْتُ كُلَّ وَاحِدٍ مَسْأَلَتَهُ، مَا نَقَصَ ذَلِكَ مِمَّا عِنْدِي إِلَّا كَمَا يَنْقُصُ الْمِخْيَطُ إِذَا أُدْخِلَ الْبَحْرَ. \\nيَا عِبَادِي: إِنَّمَا هِيَ أَعْمَالُكُمْ أُحْصِيهَا لَكُمْ، ثُمَّ أُوَفِّيكُمْ إِيَّاهَا، فَمَنْ وَجَدَ خَيْرًا فَلْيَحْمَدْ اللَّهَ، وَمَنْ وَجَدَ غَيْرَ ذَلِكَ فَلَا يَلُومَنَّ إِلَّا نَفْسَهُ\\". \\nرواه مسلم (وكذلك الترمذي وابن ماجه)","view":{"narrator":"On the authority of Abu Dharr al-Ghifari (may Allah be pleased with him) from the Prophet (ﷺ) is that among the sayings he relates from his Lord (may He be glorified) is that He said:","text":"O My servants, I have forbidden oppression for Myself and have made it forbidden amongst you, so do not oppress one another. O My servants, all of you are astray except for those I have guided, so seek guidance of Me and I shall guide you, O My servants, all of you are hungry except for those I have fed, so seek food of Me and I shall feed you. O My servants, all of you are naked except for those I have clothed, so seek clothing of Me and I shall clothe you. O My servants, you sin by night and by day, and I forgive all sins, so seek forgiveness of Me and I shall forgive you. O My servants, you will not attain harming Me so as to harm Me, and will not attain benefitting Me so as to benefit Me. O My servants, were the first of you and the last of you, the human of you and the jinn of you to be as pious as the most pious heart of any one man of you, that would not increase My kingdom in anything. O My servants, were the first of you and the last of you, the human of you and the jinn of you to be as wicked as the most wicked heart of any one man of you, that would not decrease My kingdom in anything. O My servants, were the first of you and the last of you, the human of you and the jinn of you to rise up in one place and make a request of Me, and were I to give everyone what he requested, that would not decrease what I have, any more that a needle decreases the sea if put into it. O My servants, it is but your deeds that I reckon up for you and then recompense you for, so let him who finds good, praise Allah, and let him who finds other than that, blame no one but himself.\\n\\nIt was related by Muslim (also by at-Tirmidhi and Ibn Majah)."},"chapterId":1,"bookId":11,"idInBook":17},{"id":41003,"arabic":"عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ: \\n\\n\\" إِنَّ اللَّهَ عَزَّ وَجَلَّ يَقُولُ يَوْمَ الْقِيَامَةِ: يَا ابْنَ آدَمَ، مَرِضْتُ فَلَمْ تَعُدْنِي(1) قَالَ: يَا رَبِّ كَيْفَ أَعُودُكَ وَأَنْتَ رَبُّ الْعَالَمِينَ؟ قَالَ: أَمَا عَلِمْتَ أَنَّ عَبْدِي فُلَانًا مَرِضَ فَلَمْ تَعُدْهُ؟ أَمَا عَلِمْتَ أَنَّكَ لَوْ عُدْتَهُ لَوَجَدْتَنِي عِنْدَهُ. يَا ابْنَ آدَمَ: اسْتَطْعَمْتُكَ فَلَمْ تُطْعِمْنِي، قَالَ: يَا رَبِّ وَكَيْفَ أُطْعِمُكَ وَأَنْتَ رَبُّ الْعَالَمِينَ؟ قَالَ: أَمَا عَلِمْتَ أَنَّهُ اسْتَطْعَمَكَ عَبْدِي فُلَانٌ فَلَمْ تُطْعِمْهُ؟ أَمَا عَلِمْتَ أَنَّكَ لَوْ أَطْعَمْتَهُ لَوَجَدْتَ ذَلِكَ عِنْدِي. يَا ابْنَ آدَمَ: اسْتَسْقَيْتُكَ فَلَمْ تَسْقِنِي، قَالَ: يَا رَبِّ كَيْفَ أَسْقِيكَ وَأَنْتَ رَبُّ الْعَالَمِينَ؟ قَالَ اسْتَسْقَاكَ عَبْدِي فُلَانٌ فَلَمْ تَسْقِهِ، أَمَا إِنَّكَ لَوْ سَقَيْتَهُ لَوَجَدْتَ ذَلِكَ عِنْدِي\\" \\nرواه مسلم","view":{"narrator":"On the authority of Abu Hurayrah (may Allah be pleased with him), who said that the Messenger of Allah (ﷺ) said:","text":"Allah (mighty and sublime be He) will say on the Day of Resurrection:\\nO son of Adam, I fell ill and you visited Me not. He will say: O Lord, and how should I visit You when You are the Lord of the worlds? He will say: Did you not know that My servant So-and-so had fallen ill and you visited him not? Did you not know that had you visited him you would have found Me with him? O son of Adam, I asked you for food and you fed Me not. He will say: O Lord, and how should I feed You when You are the Lord of the worlds? He will say: Did you not know that My servant So-and-so asked you for food and you fed him not? Did you not know that had you fed him you would surely have found that (the reward for doing so) with Me? O son of Adam, I asked you to give Me to drink and you gave Me not to drink. He will say: O Lord, how should I give You to drink when You are the Lord of the worlds? He will say: My servant So-and-so asked you to give him to drink and you gave him not to drink. Had you given him to drink you would have surely found that with Me.\\n\\nIt was related by Muslim."},"chapterId":1,"bookId":11,"idInBook":18},{"id":41004,"arabic":"عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ: \\n\\n\\" قَالَ اللَّهُ عَزَّ وَجَلَّ: الْكِبْرِيَاءُ رِدَائِي، وَالْعَظَمَةُ إِزَارِي، فَمَنْ نَازَعَنِي وَاحِدًا مِنْهُمَا، قَذَفْتُهُ فِي النَّارِ\\". \\nرواه أبو داود(وكذلك ابن ماجه وأحمد) بأسانيد صحيحة.(1)","view":{"narrator":"On the authority of Abu Hurayrah (may Allah be pleased with him), who said that the Messenger of Allah (ﷺ) said:","text":"Allah (mighty and sublime be He) said:\\nPride is my cloak and greatness My robe, and he who competes with Me in respect of either of them I shall cast into Hell-fire.\\n\\nIt was related by Abu Dawud (also by Ibn Majah and Ahmad) with sound chains of authority. This Hadith also appears in Muslim in another version."},"chapterId":1,"bookId":11,"idInBook":19},{"id":41005,"arabic":"عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ ،أَنَّ رَسُولَ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ قَالَ: \\n\\n\\" تُفْتَحُ أَبْوَابُ الْجَنَّةِ يَوْمَ الِاثْنَيْنِ، وَيَوْمَ الْخَمِيسِ، فَيُغْفَرُ لِكُلِّ عَبْدٍ لَا يُشْرِكُ بِاللَّهِ شَيْئًا، إِلَّا رَجُلًا كَانَتْ بَيْنَهُ وَبَيْنَ أَخِيهِ شَحْنَاءُ، فَيُقَالُ: (1) أَنْظِرُوا (2) هَذَيْنِ حَتَّى يَصْطَلِحَا، أَنْظِرُوا هَذَيْنِ حَتَّى يَصْطَلِحَا، أَنْظِرُوا هَذَيْنِ حَتَّى يَصْطَلِحَا\\" \\nرواه مسلم (وكذلك مالك وأبو داود)","view":{"narrator":"On the authority of Abu Hurayrah (may Allah be pleased with him), who said that the Messenger of Allah (ﷺ) said:","text":"The gates of Paradise will be opened on Mondays and on Thursdays, and every servant  it will be said: Delay these two until they are reconciled; delay these two until they are reconciled.\\n\\nIt was related by Muslim (also by Malik and Abu Dawud)."},"chapterId":1,"bookId":11,"idInBook":20},{"id":41006,"arabic":"عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ، عَنْ النَّبِيِّ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ قَالَ: \\n\\n\\" قَالَ اللَّهُ تَعَالَى: ثَلَاثَةٌ أَنَا خَصْمُهُمْ يَوْمَ الْقِيَامَةِ: رَجُلٌ أَعْطَى بِي ثُمَّ غَدَرَ (1)، وَرَجُلٌ بَاعَ حُرًّا فَأَكَلَ ثَمَنَهُ، وَرَجُلٌ اسْتَأْجَرَ أَجِيرًا فَاسْتَوْفَى مِنْهُ وَلَمْ يُعْطِهِ أَجْرَهُ\\" \\nرواه البخاري (وكذلك ابن ماجه وأحمد)","view":{"narrator":"On the authority of Abu Hurayrah (may Allah be pleased with him), who said that the Messenger of Allah (ﷺ) said that Allah the Almighty said:","text":"There are three (1) whose adversary I shall be on the Day of Resurrection: a man who has given his word by Me and has broken it; a man who has sold a free man (2) and has consumed the price; and a man who has hired a workman, has exacted his due in full from him and has not given him his wage.\\n(1) i.e. types of men.\\n(2) i.e. a man who has made a slave of another and has sold him.\\n\\nIt was related by al-Bukhari (also by Ibn Majah and Ahmad ibn Hanbal)."},"chapterId":1,"bookId":11,"idInBook":21},{"id":41007,"arabic":"عَنْ أَبِي سَعِيدٍ رَضِيَ اللَّهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ: \\n\\n\\" لَا يَحْقِرْ أَحَدُكُمْ نَفْسَهُ، قَالُوا: يَا رَسُولَ اللَّهِ كَيْفَ يَحْقِرُ أَحَدُنَا نَفْسَهُ؟ قَالَ: يَرَى أَمْرَ الِلَّهِ عَلَيْهِ فِيهِ مَقَالٌ، ثُمَّ لَا يَقُولُ فِيهِ، فَيَقُولُ اللَّهُ عَزَّ وَجَلَّ لَهُ يَوْمَ الْقِيَامَةِ: مَا مَنَعَكَ أَنْ تَقُولَ فِي كَذَا وَكَذَا؟ فَيَقُولُ: خَشْيَةُ النَّاسِ، فَيَقُولُ: فَإِيَّايَ كُنْتَ أَحَقَّ أَنْ تَخْشَى\\" \\nرواه ابن ماجه بسند صحيح","view":{"narrator":"On the authority of Abu Sa\'id (may Allah be pleased with him), who said that the Messenger of Allah (ﷺ) said:","text":"Let not any one of you belittle himself. They said: O Messenger of Allah, how can any one of us belittle himself? He said: He finds a matter concerning Allah about which he should say something, and he does not say  out of fear of people. Then He says: Rather it is I whom you should more properly fear.\\n\\nIt was related by Ibn Majah with a sound chain of authorities."},"chapterId":1,"bookId":11,"idInBook":22},{"id":41008,"arabic":"عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ : \\n\\n\\"إِنَّ اللَّهَ تَبَارَكَ وَتَعَالَى يَقُولُ يَوْمَ الْقِيَامَةِ: أَيْنَ الْمُتَحَابُّونَ بجَلَالِي؟ الْيَوْمَ أُظِلُّهُمْ فِي ظِلِّي يَوْمَ لَا ظِلَّ إِلَّا ظِلِّي\\" \\nرواه البخاري (وكذلك مالك)","view":{"narrator":"On the authority of Abu Hurayrah (may Allah be pleased with him), who said that the Messenger of Allah (ﷺ) said:","text":"Allah will say on the Day of Resurrection:\\nWhere are those who love one another through My glory? Today I shall give them shade in My shade, it being a day when there is no shade but My shade.\\n\\nIt was related by al-Bukhari (also by Malik)."},"chapterId":1,"bookId":11,"idInBook":23},{"id":41009,"arabic":"عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ: \\n\\n\\" إِنَّ اللَّهَ إِذَا أَحَبَّ عَبْدًا دَعَا جِبْرِيلَ، فَقَالَ: إِنِّي أُحِبُّ فُلَانًا فَأَحِبَّهُ، قَالَ: فَيُحِبُّهُ جِبْرِيلُ، ثُمَّ يُنَادِي فِي السَّمَاءِ فَيَقُولُ: إِنَّ اللَّهَ يُحِبُّ فُلَانًا فَأَحِبُّوهُ، فَيُحِبُّهُ أَهْلُ السَّمَاءِ، قَالَ: ثُمَّ يُوضَعُ لَهُ الْقَبُولُ فِي الْأَرْضِ. وَإِذَا اللَّهُ أَبْغَضَ عَبْدًا، دَعَا جِبْرِيلَ فَيَقُولُ: إِنِّي أُبْغِضُ فُلَانًا فَأَبْغِضْهُ، فَيُبْغِضُهُ جِبْرِيلُ ثُمَّ يُنَادِي فِي أَهْلِ السَّمَاءِ: إِنَّ اللَّهَ يُبْغِضُ فُلَانًا فَأَبْغِضُوهُ، قَالَ: فَيُبْغِضُونَهُ، ثُمَّ تُوضَعُ لَهُ الْبَغْضَاءُ فِي الْأَرْضِ\\". \\nرواه مسلم (وكذلك البخاري ومالك والترمذي)","view":{"narrator":"On the authority of Abu Hurayrah (may Allah be pleased with him), who said that the Messenger of Allah (ﷺ) said:","text":"If Allah has loved a servant , He calls Gabriel and says: I abhor So-and-so, therefore abhor him. So Gabriel abhors him. Then Gabriel calls out to the inhabitants of heaven: Allah abhors So-and-so, therefore abhor him. He (the Prophet pbuh) said: So they abhor him, and abhorrence is established for him on earth.\\n\\nIt was related by Muslim (also by al-Bukhari, Malik, and at-Tirmidhi)."},"chapterId":1,"bookId":11,"idInBook":24},{"id":41010,"arabic":"عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ: \\n\\n\\" إِنَّ اللَّهَ عَزَّ وَجَلَّ قَالَ: مَنْ عَادَى لِي وَلِيًّا، فَقَدْ آذَنْتُهُ بِالْحَرْبِ، وَمَا تَقَرَّبَ إِلَيَّ عَبْدِي بِشَيْءٍ أَحَبَّ إِلَيَّ مِمَّا افْتَرَضْتُ عَلَيْهِ، وَمَا يَزَالُ عَبْدِي يَتَقَرَّبُ إِلَيَّ بِالنَّوَافِلِ حَتَّى أُحِبَّهُ، فَإِذَا أَحْبَبْتُهُ، كُنْتُ سَمْعَهُ الَّذِي يَسْمَعُ بِهِ، وَبَصَرَهُ الَّذِي يُبْصِرُ بِهِ، وَيَدَهُ الَّتِي يَبْطِشُ بِهَا، وَرِجْلَهُ الَّتِي يَمْشِي بِهَا، وَإِنْ سَأَلَنِي لَأُعْطِيَنَّهُ، وَلَئِنْ اسْتَعَاذَنِي لَأُعِيذَنَّهُ، وَمَا تَرَدَّدْتُ عَنْ شَيْءٍ أَنَا فَاعِلُهُ تَرَدُّدِي عَنْ نَفْسِ عَبْدِي الْمُؤْمِنِ، يَكْرَهُ الْمَوْتَ وَأَنَا أَكْرَهُ مَسَاءَتَهُ\\" \\nرواه البخاري","view":{"narrator":"On the authority of Abu Hurayrah (may Allah be pleased with him), who said that the Messenger of Allah (ﷺ) said:","text":"Allah (mighty and sublime be He) said:\\nWhosoever shows enmity to someone devoted to Me, I shall be at war with him. My servant draws not near to Me with anything more loved by Me than the religious duties I have enjoined upon him, and My servant continues to draw near to Me with supererogatory works so that I shall love him. When I love him I am his hearing with which he hears, his seeing with which he sees, his hand with which he strikes and his foot with which he walks. Were he to ask  the soul of My faithful servant: he hates death and I hate hurting him.\\n\\nIt was related by al-Bukhari."},"chapterId":1,"bookId":11,"idInBook":25},{"id":41011,"arabic":"عَنْ أَبي أُمامةَ رَضِيَ اللهُ عَنْهُ عَن النَّبِيّ صَلَّى الله عَلَيْهِ وَ سَلَّمَ قَالَ  \\nقَالَ اللهُ عَزَّ وَجَلَّ :  إِنَّ أَغْبَطَ أَوْلِيَائي عِنْدِي لَمُوْمِنُ خَفِيفُ الخَاذِ ذُو حَظِّ مِنَ الصَّلاةِ أَحْسَنَ عِبَادَتَ رَبِّهِ وَ أَطَاعَهُ فِي السَّرِّ وَ كَانَ غَامِضًا فِي النَّاسِ لا يُشارُ إِلَيْهِ بِالأَصابِعِ وَ كَانَ رِزْقُهُ كفافًا فَصَبَرَ عَلى ذَلِكَ  ثُمَّ نَفَضَ بِيَدِهِ  ثُمَّ قَالَ : عُجِّلَتْ مَنِيَّتُهُ قَلَّتْ بَواكِيهِ قَلَّ تُرَاثُهُ  \\nرواه الترمذي  (وكذالك أحمد و ابن ماجه)  وإسنَاده حسن","view":{"narrator":"On the authority of Abu Umamah (may Allah be pleased with him), who said that the Messenger of Allah (ﷺ) said:","text":"Allah (mighty and sublime be He) said:\\nTruly of those devoted to Me the one I most favor is a believer who is of meager means and much given to prayer, who has been particular in the worship of his Lord and has obeyed Him inwardly1, who was obscure among people and not pointed out, and whose sustenance was just sufficient to provide for him yet he bore this patiently. Then the Prophet (ﷺ) shook his hand and said: Death will have come early to him, his mourners will have been few, his estate scant.\\n\\n1 i.e. he has not been ostentatious in his obedience.\\n\\nIt was related by at-Tirmidhi (also by Ahmad ibn Hanbal and Ibn Majah). Its chain of authorities is sound."},"chapterId":1,"bookId":11,"idInBook":26},{"id":41012,"arabic":"عَنْ مَسْرُوقٍ . قَالَ :  \\n  \\nسَأَلْنَا ـ أَوْ سَأَلْتُ عَبْدَاللهِ (أَيْ ابْنَ مَسْعُودٍ ) عَنْ هَذِهِ الايةِ : \\n: ولَا تَحْسَبَنَّ الَّذِينَ قُتِلُوا في سَبِيلِ اللهِ أَمْواتاً بَلْ أَحْياءُ عِنْدَ رَبِّهِمْ يُرْزَقُونَ )) ـ قَالَ : أَمَا إِنَّا قَدْ سَأَلْنَا عَنْ ذَلِكَ ، فَقَالَ))\\nأَرْواحُهُمْ في جَوْفِ طَيْرٍ خُضْرٍ ، لَهَا قَنَادِيلُ مُعَلَّقَةٌ بِالعَرْشِ ، تَسْرَحُ مِنَ الجَنَّةِ حَيْثُ شَاءَتْ ، ثُمَّ َ تَأْوِي إِلي تِلْكَ القَنَادِيلِ ، فَأَطَّلَعَ إِلَيْهِمْ رَبُّهُمْ اطِّلَاعَةً فَقَالَ : هَلْ تَشْتَهُونَ شَيْئاً ؟ قَالُوا : أَيَّ شَيْءٍ نَشْتَهِي ، وَ نَحْنُ نَسْرَحُ مِنَ الجَنَّةِ حَيْثُ شِئْنا ؟ فَفَعَلَ ذَلِكَ بِهِمْ ثَلَاثََ مَرَّاتٍ ، فَلَمَّا رَأَوْا أَنَّهُمْ لَنْ يُتْرَكُوا مِنْ أَنْ يُسْأَلُوا ، قَالُوا : يَا رَبِّ ، نُرِيْدُ أَنْ تَرُدَّ أَرْوَاحَنَا في أَجْسَادِنَا ؛ حَتَّى نُقْتَلَ في سَبِيلِكَ مَرَّةً أُخْرَي . فَلَمَّا رَأَى أَنْ لَيْسَ لَهُمْ حَاجَةٌ تُرِكُوا . \\n  \\n(رواهُ مسلم (وكذلك الترمذي والنسائي وابن ماجه","view":{"narrator":"On the authority of Masruq, who said:","text":"We asked Abdullah (i.e. Ibn Masud) about this verse: And do not regard those who have been killed in the cause of Allah as dead, rather are they alive with their Lord, being provided for (Quran Chapter 3 Verse 169). He said: We asked about that and the Prophet (pbuh) said: Their souls are in the insides of green birds having lanterns suspended from the Throne, roaming freely in Paradise where they please, then taking shelter in those lanterns. So their Lord cast a glance at them (1) and said: Do you wish for anything? They said: What shall we wish for when we roam freely in Paradise where we please? And thus did He do to them three times. When they say that they would not be spared from being asked , they said: O Lord, we would like for You to put back our souls into our bodies so that we might fight for Your sake once again. And when He saw that they were not in need of anything they were let be.\\n(1) i.e. at those who had been killed in the cause of Allah.\\n\\nIt was related by Muslim (also by at-Tirmidhi, an-Nasa\'i and Ibn Majah)."},"chapterId":1,"bookId":11,"idInBook":27},{"id":41013,"arabic":":عَنْ جُنْدُبٍ بِن عَبْدِاللهِ رَضِيَ اللهُ عَنْهُ قَالَ : رَسُولُ اللهِ  صَلَّى الله عَلَيْهِ وَ سَلَّمَ  \\n \\nكَانَ فِيمَنْ كَانَ قَبْلَكُمْ رَجُلٌ  بِهِ جُرْحٌ  فَجَزِعَ فَأَخَذَ سِكِّينًا فَحَزَّ بِهَا يَدَهُ فَمَا رقَأَ الدَّمُ  حَتَّى ماتَ قَالَ اللهُ تَعَالَى : بَادَرَنِي عَبْدِي بِنَفْسِهِ حَرَّمْتُ عَلَيْهِ الجَنَّةَ \\nرواه البخاري","view":{"narrator":"On the authority of Jundub ibn Abdullah (may Allah be pleased with him), who said that the Messenger of Allah (ﷺ) said:","text":"There was amongst those before you a man who had a wound. He was in  anguish that he took a knife and made with it a cut in his hand, and the blood did not cease to flow till he died. Allah the Almighty said: My servant has himself forestalled Me; I have forbidden him Paradise.\\n\\nIt was related by al-Bukhari."},"chapterId":1,"bookId":11,"idInBook":28},{"id":41014,"arabic":": عَنْ أبي هرَيرَةَ رَضِيَ اللهُ عَنْهُ أَنَّ رَسُولَ اللهِ  صَلَّى الله عَلَيْهِ وَ سَلَّمَ قَالَ \\n \\n يَقُولُ اللهُ تَعَالَى : مَا لِعَبْدِي المُؤْمِنِ عِنْدِي جَزَاءٌ، إِذا قَبَضْتُ صَفِيَّهُ، مِنْ أَهلِ الدُّنْيَا، ثُمَّ احْتَسبَهُ، إِلَّا الجَنَّةَ\\nرواه البخاري","view":{"narrator":"On the authority of Abu Hurayrah (may Allah be pleased with him), who said that the Messenger of Allah (ﷺ) said:","text":"Allah (mighty and sublime be He) says:\\nMy faithful servant\'s reward from Me, if I have taken to Me his best friend from amongst the inhabitants of the world and he has then borne it patiently for My sake, shall be nothing less than Paradise.\\n\\nIt was related by al-Bukhari."},"chapterId":1,"bookId":11,"idInBook":29},{"id":41015,"arabic":":عَنْ أَبي هُرَيْرَةَ ،  رَضِيَ اللهُ عَنْهُ ،  أَنَّ رَسُولَ اللهِ ، صَلَّى الله عَلَيْهِ وَ سَلَّمَ ، قَالَ\\n. قَالَ اللهُ عَزَّ وَجَلَّ : إِذا أَحَبَّ عَبْدِي لِقَائي ،  أَحْبَبْتُ لِقَاءَهُ ، وإِذا كَرِهَ لِقَائي ، كَرِهْتُ لِقَاءَهُ \\n.رواه البخاري و مالك\\nو في رواية مسلم ، توضح معنى الحديث : \\n: عَنْ عَائِشَةَ ، رَضِيَ اللهُ عَنْهَا ، قَالَتْ : قَالَ رَسُولُ اللهِ ، صَلَّى اللهُ عَلَيْهِ وسَلَّمَ\\nمَنْ أَحَبَّ لِقَاءَ اللهِ ، أَحَبَّ اللهُ لِقَاءَهُ ، وَ مَنْ كَرِهَ لِقَاءَ اللهِ ، كَرِهَ اللهُ لِقَاءَهُ . فَقُلْتُ : يَا نَبِيَّ اللهِ ، أَكَراهِيةَ المَوْتِ ؟ فَكُلُّنَا نَكْرَهُ المَوْتَ . قَالَ لَيْسَ كَذَلِكَ ، وَلَكِنَّ المُؤْمِنَ إذا بُشِّرَ  بِرَحْمةِ اللهِ وَ رِضْوَانِهِ وَجَنَّتِهِ ، أَحَبَّ لِقَاءَ اللهِ ، فَأَحَبَّ اللهُ لِقَاءَهُ ، وَإِنَّ الكَافِرَ إِذا بُشِّرَ بِعَذَابِ اللهِ وَسَخَطِهِ ، كَرِهَ لِقَاءَاللهِ ، وَكَرِهَ اللهُ لِقاءَهُ","view":{"narrator":"On the authority of Abu Hurayrah (may Allah be pleased with him), who said that the Messenger of Allah (ﷺ) said:","text":"Allah (mighty and sublime be He) said:\\nIf My servant likes to meet Me, I like to meet him; and if he dislikes to meet Me, I dislike to meet him. Prophetic explanation of this Sacred Hadith: He who likes to meet Allah, Allah likes to meet him; and he who dislikes to meet Allah, Allah dislikes to meet him. Aishah (may Allah be pleased with her) said: O Prophet of Allah, is it because of the dislike of death, for all of us dislike death? The Prophet (pbuh) said: It is not so, but rather it is that when the believer is given news of Allah\'s mercy, His approval and His Paradise, he likes to meet Allah and Allah likes to meet him; but when the unbeliever is given news of Allah\'s punishment and His displeasure, he dislikes to meet Allah and Allah dislikes to meet him.\\n\\nIt was related by al-Bukhari and Malik. The Prophetic version is related by Muslim."},"chapterId":1,"bookId":11,"idInBook":30},{"id":41016,"arabic":"عَنْ جُنْدُبٍ رَضِيَ اللهُ عَنْهُ : أَنَّ رَسُولَ اللهِ  صَلَّى الله عَلَيْهِ وَ سَلَّمَ حَدَّثَ \\n \\n  (أَنْ رجُلاً قال : واللهِ لا يَغْفِرُ اللهُ لِفُلانٍ وإِنَّ اللهَ تَعَالَى قَالَ : مَنْ ذَا الَّذِي يَتَأَلَّى عَلَيَّ أَنْ لا أَغْفِرَ لِفُلان،فَإِنِّي قَدْ غَفَرْتُ لِفُلانٍ، وأَحْبَطْتُ عَمَلَكَ (أَوْ كَمَا قَال \\nرواه مسلم","view":{"narrator":"On the authority of Jundub (may Allah be pleased with him), who said that the Messenger of Allah (ﷺ) related:","text":"A man said: By Allah, Allah will not forgive So-and-so. At this Allah the Almighty said: Who is he who swears by Me that I will not forgive So-and-so? Verily I have forgiven So-and-so and have nullified your ).\\n(1) A similar Hadith, which is given by Abu Dawud, indicates that the person referred to was a goldly man whose previous good deeds were brought to nought through presuming to declare that Allah would not forgive someone\'s bad deeds.\\n\\nIt was related by Muslim."},"chapterId":1,"bookId":11,"idInBook":31},{"id":41017,"arabic":"عَنْ أَبي هُرَيْرَةَ ،  رَضِيَ اللهُ عَنْهُ ،  عَنِ النَّبَيِّ  صَلَّى الله عَلَيْهِ وَ سَلَّمَ ، قَالَ :  \\n  \\nأَسْرَفَ رَجُلٌ عَلي نَفْسِهِ ، فَلَمَّا حَضَرَهُ المَوْتُ أَوْصَى بَنِيه ، فَقَالَ : إِذَا أَنَا مِتُّ فَأَحْرِقُوني ، ثُمَّ اسْحَقُوني ، ثُمَّ أَذْرُوني في البَحْرِ فَوَاللهِ لَئِنْ قَدَرَ عَلَيَّ رَبِّي لَيُعَذَّبَنِّي عَذَاباً ، مَا عَذَّبَهُ أَحَداً ، فَفَعَلُوا ذَلِكَ بِهِ . فَقَالَ لِلْأَرْضِ : أَدِّي مَا أَخَذْتِ ، فَإِذا هُوَ قَائِمٌ ، فَقَالَ لَهُ : مَا حَمَلَكَ عَلَي مَا صَنَعْتَ ؟ قَالَ : خَشْيَتُكَ يَا رَبِّ ، أَوْ مَخَافَتُكَ . فَغَفَرَ لَهُ بِذَلِكَ . \\n  \\nرواهُ مسلم (وكذلك البخاري والنسائي وابن ماجه)","view":{"narrator":"On the authority of Abu Hurayrah (may Allah be pleased with him), who said that the Messenger of Allah (ﷺ) said:","text":"A man sinned greatly against himself, and when death came to him he charged his sons, saying: When I have died, burn me, then crush me and scatter . So they did that to him. Then He said to the earth: Produce what you have taken-and there he was! And He said to him: What induced you to do what you did? He said: Being afraid of You, O my Lord (or he said: Being frightened of You) and because of that He forgave him.\\n\\nIt was related by Muslim (also by al-Bukhari, an-Nasa\'i and Ibn Majah)."},"chapterId":1,"bookId":11,"idInBook":32},{"id":41018,"arabic":"عَنْ أَبي هُرَيْرَةَ ،  رَضِيَ اللهُ عَنْهُ ،  عَنِ النَّبَيِّ  صَلَّى الله عَلَيْهِ وَ سَلَّمَ ، فِيما يَحْكِي عَنْ رَبِّهِ عَزَّ وَجَلَّ ، قَالَ    :  \\n  \\nأَذْنَبَ عَبْدٌ ذَنْبًا ، فَقَالَ : اللَّهُمَّ اغْفِرْ لِي ذَنْبي . فَقَالَ تَبَارَكَ وَتَعَالى : أَذْنَبَ عَبْدِي ذَنْبًا ، فَعَلِمَ أنَّ لَهُ رَبّاً ، يَغْفِرُ الذَّنْبَ ، وَيَأْخُذُ بِهِ . ثُمَّ عَادَ فَأَذْنَبَ ، فَقَالَ : أَيّ رَبِّ ، اغْفِرْ لِي ذَنْبِِي ، فَقَالَ تَبَارَكَ وتَعَالى : عَبْدِي أَذْنَبَ ذَنْباً . فَعَلِمَ أَنَّ لَهُ رَبّاً يَغْفِرُ الذَّنْبَ ، ويَأْخُذُ بِهِ . ثُمَّ عَادَ فَأَذْنَبَ ، فَقَالَ : أَيّ رَبِّ ، اغْفِرْ لِي ذَنْبِي : فَقَالَ تَبَارَكَ وَتَعَالَى : أَذْنَبَ عَبْدِي ذَنْباً ، فَعَلِمَ أَنَّ لَهُ رَبّاً ، يَغْفِرُ الذَّنْبَ ، ويَأْخُذُ بالذَّنْبِ . اعْمَلْ مَا شِئْتَ ، فَقَدْ غَفَرْتُ لَكَ .  \\n  \\nرواهُ مسلم (وكذلك البخاري)","view":{"narrator":"On the authority of Abu Hurayrah (may Allah be pleased with him) that the Prophet (ﷺ), from among the things he reports from his Lord (mighty and sublime be He), is that he said:","text":"A servant  committed a sin and said: O Allah, forgive me my sin. And He (glorified and exalted be He) said: My servant has committed a sin and has known that he has a Lord who forgives sins and punishes for them. Then he sinned again and said: O Lord, forgive me my sin. And He (glorified and exalted be He) said: My servant has committed a sin and has known that he has a Lord who forgives sins and punishes for them. Then he sinned again and said: O Lord, forgive me my sin. And He (glorified and exalted be He) said: My servant has committed a sin and has known that he has a Lord who forgives sins and punishes for sins. Do what you wish, for I have forgiven you.\\n\\nIt was related by Muslim (also by al-Bukhari)."},"chapterId":1,"bookId":11,"idInBook":33},{"id":41019,"arabic":"عَنْ أَنَسٍ رَضِيَ اللهُ عَنْهُ ،  قَالَ : سَمِعْتُ  رَسُولَ اللهِ  صَلَّى الله عَلَيْهِ وَ سَلَّمَ ، يَقُولُ :  \\n  \\nقَالَ اللهُ تَعَالَى : يَا ابْنَ ادَمَ ، إِنَّكَ مَا دَعَوْتََنِي وَرَجَوْتَنِي ، غَفَرْتُ لَكَ عَلَى مَا كَانَ مِنْكَ وَلَا أُبالِي . يا ابْنَ ادَمَ  :لَوْ بَلَغَتْ ذُنُوبُكَ عَنانَ السَّماءِ ثُم َّ اسْتَغْفَرْتَني ، غَفَرْتُ لَكَ . يَا ابْنَ ادَمَ : إِنَّكَ لَوْ أَتَيْتَنِي بِقُرَابِ الأَرْضِ خَطَايا ثُمَّ لَقِيتَني لَا تُشْرِكُ بِي شَيْأً ، لَأَتيْتُكَ بِقُرَابِها مَغْفِرَةً \\n    \\nرواهُ الترمذي (وكذلك أحمد) وسنده حسن","view":{"narrator":"On the authority of Anas (may Allah be pleased with him), who said:","text":"I heard the Messenger of Allah (ﷺ) say: Allah the Almighty said:\\nO son of Adam, so long as you call upon Me and ask of Me, I shall forgive you for what you have done, and I shall not mind. O son of Adam, were your sins to reach the clouds of the sky and were you then to ask forgiveness of Me, I would forgive you. O son of Adam, were you to come to Me with sins nearly as great as the earth and were you then to face Me, ascribing no partner to Me, I would bring you forgiveness nearly as great as it.\\n\\nIt was related by at-Tirmidhi (also by Ahmad ibn Hanbal). Its chain of authorities is sound."},"chapterId":1,"bookId":11,"idInBook":34},{"id":41020,"arabic":"عَنْ أَبي هُرَيْرَةَ رَضِيَ اللهُ عَنْهُ  أَنَّ رَسُولَ اللهِ  صَلَّى الله عَلَيْهِ وَ سَلَّمَ قَالَ \\n   \\nيَتنزَّلُ رَبُّنَا ، تَبَارَكَ وَتَعَالَى ، كُلَّ لَيْلَةٍ إلي سَمَاءِ الدُّنْيا ، حينَ يَبْقَى ثُلُثُ اللَّيْلِ الاخِرُ ، فَيَقُولُ  مَنْ يَدْعُوني فأَسْتَجِيبَ لَه ؟ مَنْ يَسْأَلُني فَأُعْطِيَهُ ؟ مَنْ يَسْتَغْفِرُني فَأَغْفِرَلَهُ ؟ \\n     \\n رواه البخاري (وكذلك مسلم ومالك والترمذي و أبو داود) \\nوفي رواية لمسلم زيادة: \\nفَلا يَزالُ كذَلِك حَتَى يُضِيءَ الفَجْرُ","view":{"narrator":"On the authority of Abu Hurayrah (may Allah be pleased with him), who said that the Messenger of Allah (ﷺ) said:","text":"Our Lord (glorified and exalted be He) descends each night to the earth\'s sky when there remains the final third of the night, and He says: Who is saying a prayer to Me that I may answer it? Who is asking something of Me that I may give it him? Who is asking forgiveness of Me that I may forgive him?\\n\\nIt was related by al-Bukhari (also by Muslim, Malik, at-Tirmidhi and Abu Dawud). In a version by Muslim the Hadith ends with the words: And thus He continues till  dawn shines."},"chapterId":1,"bookId":11,"idInBook":35},{"id":41021,"arabic":"عَنْ أَنَسٍ ،  رَضِيَ اللهُ عَنْهُ ، عَنِ النَّبِيِّ صَلَّى الله عَلَيْهِ وَ سَلَّمَ ، قَالَ \\nيَجْتَمِعُ المُؤْمِنُونَ يَوْمَ القِيَامَةِ فَيَقُولُونَ : لَوِ اسْتَشْفَعْنَا إلى رَبِّنَا ، فَيَأْتُونَ ادَمَ ، فَيَقُولُونَ : أَنْتَ أَبو النَّاسِ ، خَلَقَكَ اللهُ بِيَدِهِ ، وَأَسْجَدَ لَكَ مَلائِكَتَهُ ، وَعَلَّمَكَ أَسْماءَ كُلِّ شَيْءٍ ، فاشْفَعْ لَنا عِنْدَ رَبِّكَ ، حَتَّى يُرِيحَنا مِنْ مَكَانِنا هَذا ، فَيَقُولُ : لَسْتُ هُنَاكُمْ ـ وَيَذْكُرُ ذَنْبَهُ ، فَيَسْتَحْيي ـ ائْتُوا نُوحاً ؛ فَإِنَّهُ أَوَّلُ رَسُولٍ بَعَثَهُ اللهُ إِلي أَهْلِ الأَرْض ، فَيَأْتُونَهُ ، فَيَقُولُ : لَسْتُ هُنَاكُمْ ـ ويَذْكُرُ سُؤالَهُ رَبَّهُ مَا لَيْسَ لَهُ بِهِ عِلْمٌ ، فَيَسْتَحْيي ـ فَيَقُولُ : اؤْتُوا خَلِيلَ الرَّحْمنِ ، فَيَأْتُونَهُ ، فَيَقُولُ : لَسْتُ هُنَاكُم ،   اؤْتُوا موسى ، عَبْداً كَلَّمَهُ اللهُ ، و أَعْطَاهُ التَّوْرَاةَ . فَيَأْتُونَهُ ، فَيَقُولُ : لَسْتُ هُنَاكُمْ ـ وَيَذْكُرُ  قَتْلَ النَّفْسِ بِغَيْرِ نَفْسٍ ، فَيَسْتَحْيي مِنْ رَبِّهِ ـ فَيَقُولُ : اؤْتُوا عِيسَى ، عَبْدَ اللهِ وَرَسُولَهُ ، وَكَلِمَةَ اللهِ وَرُوحَهُ . فَيَأْتُونَهُ ، فَيَقُولُ : لَسْتُ هُنَاكُمْ ، اؤْتُوا مُحَمَّداً ، ـ صَلَّى الله عَلَيْهِ وَ سَلَّمَ ـ عَبْداً غَفَرَ اللهُ لَهُ مَا تَقَدَّمَ مِنْ ذَنْبِهِ وَمَا تَأَخَّرَ ، فَيَأْتُونَنِي ، فَأَنْطَلِقُ حَتَّي أَسْتَأْذِنَ عَلَي رَبِّي فَيُؤْذَنُ . فإذا رَأَيْتُ رَبِّي وَقَعْتُ سَاجداً ، فَيَدَعُني مَا شَاءَ اللهُ ، ثُمَّ يُقَالُ : ارْفَعْ رَأْسَكَ ، وسَلْ تُعْطَهُ ، وَقُلْ يُسْمَعْ ، واشْفَعْ تُشَفَّعْ . فَأَرْفَعُ رَأْسي ، فَأَحْمَدُهُ بِتَحْمِيدٍ يُعَلِّمُنِيهِ ، ثُمَّ أَشْفَعُ ، فَيحُدُّ لي حَدّاً ، فَأُدْخِلُهُمْ الجَنَّةَ . ثُمَّ أَعُودُ إِلَيْهِ ، فإِذا رَأَيْتُ رَبِّي ( فَأَقَعُ ساجداً ) مِثْلَهُ ، ثُمَّ أَشْفَعُ فَيَحُدُّ لِي حَدّاً ، فَأُدْخِلُهُمُ الجَنَّةَ . ثُمَّ أَعُودُ الثالِثةَ ، ثُمَّ أَعُودُ الرَّابعة ، فَأقُولُ : مَا بَقِي في النَّارِ إِلَّا مَنْ حَبَسَهُ القُرْانُ ، ووَجَبَ عَلَيْهِ الخُلُودُ \\nرواه البخاري ( وكذلك مسلم والترمذي وابن ماجه ) و في رواية أخرى للبخاري زيادة هي \\nقَالَ النَّبِيُّ صَلَّى الله عَلَيْهِ وَ سَلَّمَ ، يَخْرُجُ مِنَ النَّارِ مَنْ قَالَ : لَا إِلهَ إِلَّا اللهُ ، وكَانَ فِي قَلْبِهِ مِنَ الخَيْرِ مَا يَزِنُ شَعِيرةً ، ثُمَّ يَخْرُجُ مِنَ النَّارِ مَنْ قَالَ : لَا إِلهَ إِلَّا اللهُ ، وكَانَ فِي قَلْبِهِ مِنَ الخَيْرِ مَا يَزِنُ بُرَّةً ، ثُمَّ يَخْرُجُ مِنَ النَّارِ مَنْ قَالَ : لَا إِلهَ إِلَّا اللهُ ، وكَانَ فِي قَلْبِهِ مَا يَزِنُ مِنَ الخَيْرِ ذَرَّةً","view":{"narrator":"On the authority of Anas (may Allah be pleased with him) from the Prophet (ﷺ), who said:","text":"The believers will gather together on the Day of Resurrection and will say: Should we not ask . So I shall admit them into Paradise. Then I shall return for a third time, then a fourth, and I shall say: There remains in Hell-fire only those whom the Qur\'an has confined and who must be there for eternity. There shall come out of Hell-fire he who has said: There is no god but Allah and who has in his heart goodness weighing a barley-corn; then there shall come out of Hell-fire he who has said: There is no god but Allah and who has in his heart goodness weighing a grain of wheat; then there shall come out of Hell-fire he who has said: There is no god but Allah and who has in his heart goodness weighing an atom.\\n\\nIt was related by al-Bukhari (also by Muslim, at-Tirmidhi, and Ibn Majah)."},"chapterId":1,"bookId":11,"idInBook":36},{"id":41022,"arabic":"عَنْ أَبي هُرَيْرَةَ رَضِيَ اللهُ عَنْهُ قَالَ : قَالَ رَسُولَ اللهِ  صَلَّى الله عَلَيْهِ وَ سَلَّمَ  \\n   \\nقَالَ اللهُ أَعْدَدْتُ لِعِبَادي الصَّالِحِينَ مَا لَا عَيْنٌ رَأَت وَ لَا أُذُنٌ سَمِعَتْ وَلَا خَطَرَ عَلَى قَلْبِ بَشَرٍ  فاقْرأُوا إنْ شِئْتُمْ : فَلَا تَعْلَمُ نَفْسٌ مَّا أُخْفِيَ لَهُمْ مِنْ قُرَّةِ أَعْيُنٍ   \\n     \\nرواه البخاري و مسلم والترمذي وابن ماجه","view":{"narrator":"On the authority of Abu Hurayrah (may Allah be pleased with him), who said that the Messenger of Allah (ﷺ) said:","text":"Allah said:\\nI have prepared for My righteous servants what no eye has seen and no ear has heard, not has it occurred to human heart. Thus recite if you wish (1): And no soul knows what joy for them (the inhabitants of Paradise) has been kept hidden (Quran Chapter 32 Verse 17).\\n(1) The words \\"Thus recite if you wish\\" are those of Abu Harayrah.\\n\\nIt was related by al-Bukhari, Muslim, at-Tirmidhi and Ibn Majah."},"chapterId":1,"bookId":11,"idInBook":37},{"id":41023,"arabic":"عَنْ أَبي هُرَيْرَةَ رَضِيَ اللهُ عَنْهُ  عَنْ رَسُول اللهِ  صَلَّى الله عَلَيْهِ وَ سَلَّمَ قَالَ \\n   \\nلَمَّا خَلَقَ اللهُ الجَنَّةَ وَالنَّارَ  أَرْسَلَ جِبْرِيْلَ إلى الجنَّةِ  فَقَالَ  انْظُرْ إِلَيْهَا وَإلى مَا أَعْدَدْتُ لأهْلِهَا فِيْهَا . قَالَ: فَجَاءَهَا وَنَظَرَ إِلَيْهَا وَ إِلى مَا أَعَدَّاللهُ  لأهْلِهَا فِيْهَا. قَالَ:  فَرَجَعَ إِلَيْهِ  قَالَ:  فَوَعِزَّتِكَ لَا يَسْمَعُ بِهَا أَحَدٌ إِلَّا دَخَلَهَا  فَأَمَرَ بِهَا فَحُفَّتْ بِالمَكَارِهِ  فَقَالَ:  ارْجِعْ إِلَيْهَا ، فَانْظُرْ إِلى مَا أَعْدَدْتُ لأَهْلِهَا فِيْهَا ، قَالَ:  فَرَجَعَ إِلَيْهَا ، فإِذا هِيَ قَدْ حُفَّتْ  بِالمَكَارِهِ ، فَرَجَعَ إِلَيْهِ ، فَقَالَ:  وَعِزَّتِكَ لَقَدْ خِفْتُ أَنْ لَا يَدْخُلَهَا أَحَدٌ قَالَ:  اذْهَبْ إِلى النَّارِ فَانْظُرْ إِليْها ، وإلى مَا أَعْدَدْتُ لأَهْلِها فِيْهَا . فإذا هِي يَرْكَبُ بَعْضُهَا بَعْضًا ، فَرَجَعَ إِلَيْهِ ، فَقَالَ:  وَ عِزَّتِكَ لَا يَسْمَعُ بِهَا أحَدٌ فَيَدْخُلَهَا . فَأَمَر بِها فَحُفَّتْ بِالشَّهَوَاتِ ، فَقَالَ:  ارْجِعْ إِلَيْهَا ، فَرَجَعَ إلَيْهَا ، فَقَالَ:  وَ عِزَّتِكَ لَقَدْ خَشِيتُ أنْ لَا يَنْجُوَ   مِنْهَا أَحَدٌ إِلَّا دَخَلَهَا \\n     \\n رواه الترمذي و قال حديث حسن صحيح و كذلك أبو داود والنسائي","view":{"narrator":"On the authority of Abu Hurayrah (may Allah be pleased with him), who said that the Messenger of Allah (ﷺ) said:","text":"When Allah created Paradise and Hell-fire, He sent Gabriel to Paradise, saying: Look at it and at what I have prepared therein for its inhabitants. The Prophet (pbuh) said: So he came to it and looked at it and at what Allah had prepared therein for its inhabitants. The Prophet (pbuh) said: So he returned to Him and said: By your glory, no one hears of it without entering it. So He ordered that it be encompassed by forms of hardship, and He said: Return to it and look at what I have prepared therein for its inhabitants. The Prophet (pbuh) said: So he returned to it and found that it was encompassed by forms of hardship (1). Then he returned to Him and said: By Your glory, I fear that no one will enter it. He said: Go to Hell-fire and look at it and what I have prepared therein for its inhabitants, and he found that it was in layers, one above the other. Then he returned to Him and said: By Your glory, no one who hears of it will enter it. So He ordered that it be encompassed by lusts. Then He said: Return to it. And he returned to it and said: By Your glory, I am frightened that no one will escape from entering it.\\n(1) The Arabic word used here is \\"makarih\\", the literal meaning of which is \\"things that are disliked\\". In this context it refers to forms of religious discipline that man usually finds onerous.\\n\\nIt was related by Tirmidhi, who said that it was a good and sound Hadith (also by Abu Dawud and an-Nasa\'i)."},"chapterId":1,"bookId":11,"idInBook":38},{"id":41024,"arabic":"عَنْ أَبي سَعيدٍ الْخُدْريّ رَضِيَ اللهُ عَنْهُ عَن النَّبِيّ صَلَّى الله عَلَيْهِ وَ سَلَّمَ قَالَ : احْتَجَّتِ الجَنَّةُ والنَّارُ فَقَالتِ النَّارُ : فِيَّ الجَبَّارونَ والمُتكَبَّرونَ  وَقَالتِ الجَنَّةُ : فِيّ ضُعَفاءُ النَّاسِ ومساكينُهُمْ  فَقَضَى اللهُ بَيْنَهُما : إِنَّكِ الجَنَّةُ رَحْمَتِي أَرْحَمُ بِكِ مَنْ أَشاءُ، وإنكِ النارُ عذابي ، أُعَذِبُ بِكِ من أشاءُ ،  وَلِكلَيْكُما عَلَيَّ مِلْؤُها\\n(رواه مسلم  (وكذلك البخاري والترمذي","view":{"narrator":"On the authority of Abu Sa\'id al-Khudri (may Allah be pleased with him), who said that the Messenger of Allah (ﷺ) said:","text":"Paradise and Hell-fire disputed together, and Hell-fire said: In me are the mighty and the haughty. Paradise said: In me are the weak and the poor. So Allah judged between them, : You are Paradise, My mercy; through you I show mercy to those I wish. And you are Hell-fire, My punishment; through you I punish those I wish, and it is incumbent upon Me that each of you shall have its fill.\\n\\nIt was related by Muslim (also by al-Bukhari and at-Tirmidhi)."},"chapterId":1,"bookId":11,"idInBook":39},{"id":41025,"arabic":"عَنْ أبي سَعِيدٍ الخُدّريّ رَضِيَ اللهُ عَنْهُ قَالَ: قَالَ النَّبِىُّ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ\\n إنَّ اللهَ يَقُولُ لأَهْلِ الجَنَّةِ : يَا أهْلَ الجَنَّةِ . فَيَقُولُون : لَبَّيْكَ رَبَّنا وسَعْدَيْكَ ، والخَيْرُ في يَدَيْكَ. فَيَقُولُ : هَلْ رَضِيتُم ؟  فَيَقُولُونَ : وَما لَنا لَا نَرْضَىى يَا رَبّ ،  وَقَدْ أَعْطَيْتَنا مَا لمْ تُعْطِ أَحَداً مِنْ خَلْقِكَ .  فَيَقُولُ : أَلا أُعْطِيكُمْ أَفْضَلَ مِنْ ذَلِك ؟  فَيَقُولُونَ :  يَا رَبّ وأيُّ شيءٍ أَفْضَلُ مِنْ ذَلِك ؟ فَيَقُولُ : أٌحِلُّ عَلَيْكُمْ رِضْواني ، فَلا أَسْخَطُ عَلَيْكُمْ بَعْدَهُ أَبداً \\nرواه البخاري (وكذلك مسلم والترمذي)","view":{"narrator":"On the authority of Abu Sa\'id al-Khudri (may Allah be pleased with him), who said that the Messenger of Allah (ﷺ) said:","text":"Allah will say to the inhabitants of Paradise: O inhabitants of Paradise! They will say: O our Lord, we present ourselves and are at Your pleasure, and goodness rests in Your hands. Then He will say: Are you contented? And they will say: And how should we not be contented, O Lord, when You have given to us that which You have given to no one else of Your creation? Then He will say: Would you not like Me to give you something better than that? And they will say: O Lord and what thing is better than that? And He will say: I shall cause My favour to descend upon you and thereafter shall never be displeased with you.\\n\\nIt was related by al-Bukhari (also by Muslim and at-Tirmidhi)."},"chapterId":1,"bookId":11,"idInBook":40}]}]');
+
+/***/ }),
+
+/***/ "./storage/three_main/shah_book.json":
+/*!*******************************************!*\
+  !*** ./storage/three_main/shah_book.json ***!
+  \*******************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = JSON.parse('[{"hadiths":[{"id":41026,"arabic":"لَیْسَ الْخَبَرُ کَالْمُعَایَنَةِ","view":{"narrator":"","text":"The report is not like witnessing."},"chapterId":1,"bookId":12,"idInBook":1},{"id":41027,"arabic":"الْحَرْبُ خُدَعَةٌ","view":{"narrator":"","text":"War is deception."},"chapterId":1,"bookId":12,"idInBook":2},{"id":41028,"arabic":"الْمُسْلِمُ مِرْآةُ الْمُسْلِمِ","view":{"narrator":"","text":"A Muslim is a mirror of the Muslim."},"chapterId":1,"bookId":12,"idInBook":3},{"id":41029,"arabic":"الْمُسْتَشَارُ مُؤتَمَنٌ","view":{"narrator":"","text":"Someone whose advice is sought is in a position of trust."},"chapterId":1,"bookId":12,"idInBook":4},{"id":41030,"arabic":"الدَّالُّ عَلَی الْخَیْرِ کَفَاعِلِهِ","view":{"narrator":"","text":"The person guiding (someone) to do a good deed, is like the one performing the good deed."},"chapterId":1,"bookId":12,"idInBook":5},{"id":41031,"arabic":"إِسْتَعِیْنُوْا عَلَی الْحَوَائِجِ بِالْکِتْمَانِ","view":{"narrator":"","text":"Seek help for any needs discreetly."},"chapterId":1,"bookId":12,"idInBook":6},{"id":41032,"arabic":"إِتَّقُوْا النَّارَ وَلَوْ بِشِقِّ تَمْرَةٍ","view":{"narrator":"","text":"Protect yourself from the fire even with a part of a date."},"chapterId":1,"bookId":12,"idInBook":7},{"id":41033,"arabic":"الدُّنْیَا سِجْنُ الْمُؤمِنِ وَ جَنَّةُ الْکَافِرِ","view":{"narrator":"","text":"The world is the believer’s prison and the disbeliever’s paradise."},"chapterId":1,"bookId":12,"idInBook":8},{"id":41034,"arabic":"الْحَیَاءُ خَیْرٌ کُلُّهُ","view":{"narrator":"","text":"Modesty is entirely good."},"chapterId":1,"bookId":12,"idInBook":9},{"id":41035,"arabic":"عِدَةُ الْمُؤمِنِ کَاَخْذِ الْکَفِّ","view":{"narrator":"","text":"The word of the believer is like seizing of the hand."},"chapterId":1,"bookId":12,"idInBook":10},{"id":41036,"arabic":"لَا یَحِلُّ لِمُؤمِنٍ اَنْ یَّجُهْرَ أخَاهُ فَوقَ ثَلَاثَةِ أیَّامٍ","view":{"narrator":"","text":"It is unlawful for a believer to sever relations with his brother for more than three days."},"chapterId":1,"bookId":12,"idInBook":11},{"id":41037,"arabic":"لَیْسَ مِنَّا مَنْ غَشَّنَا","view":{"narrator":"","text":"He is not one of us who cheats us."},"chapterId":1,"bookId":12,"idInBook":12},{"id":41038,"arabic":"مَا قَلَّ وَكَفَى خَيْرٌ مِمَّا كَثُرَ وَأَلْهَى","view":{"narrator":"","text":"A little that suffices is better than an abundance that distracts."},"chapterId":1,"bookId":12,"idInBook":13},{"id":41039,"arabic":"الرَّاجِعُ فِيْ هِبَتِهِ کَالرَّاجِعِ فِيْ قَیْئِهِ","view":{"narrator":"","text":"Someone who takes back his gift is like someone who eats his vomit."},"chapterId":1,"bookId":12,"idInBook":14},{"id":41040,"arabic":"الْبَلَاءُ مُوَکِّلٌ بِالْمَنْطِقِ","view":{"narrator":"","text":"Affliction comes from (loose) talk."},"chapterId":1,"bookId":12,"idInBook":15},{"id":41041,"arabic":"النَّاسُ کَأسْنَانِ الْمُشْطِ","view":{"narrator":"","text":"People are like the teeth of a comb."},"chapterId":1,"bookId":12,"idInBook":16},{"id":41042,"arabic":"الْغِنَى غِنَى النَّفْسِ","view":{"narrator":"","text":"Richness lies in the richness of the soul."},"chapterId":1,"bookId":12,"idInBook":17},{"id":41043,"arabic":"الْسَّعِیْدُ مَنْ وُّعِظَ بِغَیْرِهِ","view":{"narrator":"","text":"The felicitous person takes lessons from (the actions of) others."},"chapterId":1,"bookId":12,"idInBook":18},{"id":41044,"arabic":"وَ إِنَّ مِنَ الشِّعْرِ لَحِکْمَةً وَاِنَّ مِنَ الْبَیَانِ لَسِحْرًا","view":{"narrator":"","text":"Indeed, in poetry there is wisdom and in eloquence there is magic."},"chapterId":1,"bookId":12,"idInBook":19},{"id":41045,"arabic":"عَفْوُ الْمُلُوْكِ إِبْقَاءٌ لِلْمُلْكِ","view":{"narrator":"","text":"The king’s pardon preserves the kingdom."},"chapterId":1,"bookId":12,"idInBook":20},{"id":41046,"arabic":"اَلْمَرْءُ مَعَ مَنْ أَحَبَّ","view":{"narrator":"","text":"A man will be with whom he loves."},"chapterId":1,"bookId":12,"idInBook":21},{"id":41047,"arabic":"مَا هَلَكَ إمْرُؤٌ عَرَفَ قَدْرَهُ","view":{"narrator":"","text":"A man who knows his worth will not be ruined."},"chapterId":1,"bookId":12,"idInBook":22},{"id":41048,"arabic":"اَلْوَلَدُ لِلْفِرَاشِ وَ لِلْعَاهِرِ الْحَجَرُ","view":{"narrator":"","text":"The child belongs to the bed and stoning is for the adulterer."},"chapterId":1,"bookId":12,"idInBook":23},{"id":41049,"arabic":"الْیَدُ الْعُلْیَا خَیْرٌ مِّنَ الْیَدِ السُّفْلَی","view":{"narrator":"","text":"The upper hand is superior to the lower hand."},"chapterId":1,"bookId":12,"idInBook":24},{"id":41050,"arabic":"لَا شَکَرَ اللهَ مَنْ لَّا یَشْکُرُ النَّاسَ","view":{"narrator":"","text":"He does not thank Allah who does not thank people."},"chapterId":1,"bookId":12,"idInBook":25},{"id":41051,"arabic":"حُبُّكَ الشَّيْءَ یُعْمِيْ وَ یُصِمُّ","view":{"narrator":"","text":"Your love of something can blind and deafen (you)."},"chapterId":1,"bookId":12,"idInBook":26},{"id":41052,"arabic":"جُبِلَتِ الْقُلُوبُ عَلی حُبَّ مَنْ اَحْسَنَ اِلَیْهَا وَ بُغْضِ مَنْ اَسَاءَ اِلَیْهَا","view":{"narrator":"","text":"Hearts are predisposed to love someone who does them good and detest someone who does them harm."},"chapterId":1,"bookId":12,"idInBook":27},{"id":41053,"arabic":"الْتَّائِبُ مِنَ الذَّنْبِ کَمَنْ لَا ذَنْبَ لَهُ","view":{"narrator":"","text":"One who repents from sin is like someone without sin."},"chapterId":1,"bookId":12,"idInBook":28},{"id":41054,"arabic":"الشَّاهِدُ یَرَی مَا لَا یَرَاهُ الْغَائِبُ","view":{"narrator":"","text":"The person who actually witnesses an (event) sees that which one who is absent does not."},"chapterId":1,"bookId":12,"idInBook":29},{"id":41055,"arabic":"اِذا جَاءَکُمْ کَرِیْمُ قَوْمٍ فَاَکْرِمُوهُ","view":{"narrator":"","text":"If the nobleman of a people comes to you, honour him."},"chapterId":1,"bookId":12,"idInBook":30},{"id":41056,"arabic":"الْیَمِینُ الْفَاجِرَةُ تَدَعُ الدِّیَارَ الْبَلَاقِعَ","view":{"narrator":"","text":"False oaths lay waste to home (lands)."},"chapterId":1,"bookId":12,"idInBook":31},{"id":41057,"arabic":"مَنْ قُتِلَ دُونَ مَالِهِ فَهُوَ شَهِیْدٌ","view":{"narrator":"","text":"Whoever is killed attempting to save his property is a martyr."},"chapterId":1,"bookId":12,"idInBook":32},{"id":41058,"arabic":"الْاَعْمَالُ بِالنِّیَّةِ","view":{"narrator":"","text":"Actions are through intentions."},"chapterId":1,"bookId":12,"idInBook":33},{"id":41059,"arabic":"سَیِّدُ الْقَوْمِ خَادِمُهُمْ","view":{"narrator":"","text":"The leader of a people is their servant."},"chapterId":1,"bookId":12,"idInBook":34},{"id":41060,"arabic":"خَیْرُ الْأُمُوْرِ أَوْسَطُهَا","view":{"narrator":"","text":"The best of affairs is that which is balanced."},"chapterId":1,"bookId":12,"idInBook":35},{"id":41061,"arabic":"اَللَّهُمَّ بَارِكْ فِیْ أُمَّتِیْ فِی بُکُوْرِهَا یَوْمَ الْخَمِیْسِ","view":{"narrator":"","text":"O Allah, bless my nation in its early rising on Thursdays!"},"chapterId":1,"bookId":12,"idInBook":36},{"id":41062,"arabic":"کَادَ الْفَقْرُ أَنْ یَکُوْنَ کُفْرًا","view":{"narrator":"","text":"Poverty can almost turn into disbelief."},"chapterId":1,"bookId":12,"idInBook":37},{"id":41063,"arabic":"الْسَّفَرُ قِطْعَةٌ مِّنَ الْعَذَابِ","view":{"narrator":"","text":"Travelling is a portion of punishment."},"chapterId":1,"bookId":12,"idInBook":38},{"id":41064,"arabic":"خَیْرُ زَّادِ الْتَّقْوَی","view":{"narrator":"","text":"The best of provision is God-Consciousness (taqwa)."},"chapterId":1,"bookId":12,"idInBook":39},{"id":41065,"arabic":"الْمَجَالِسُ بِالْاَمَانَةِ","view":{"narrator":"","text":"Meetings are under trust."},"chapterId":1,"bookId":12,"idInBook":40}]}]');
 
 /***/ })
 
