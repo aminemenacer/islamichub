@@ -6,33 +6,24 @@
 
   <div class="row py-3">
     <div class="col-lg-12 mx-auto">
-
-      <div class="table-responsive container-fluid" v-for="item in hadith" :key="item.id">
+      <div class="container table-responsive container-fluid" v-for="item in hadith" :key="item.id">
         <table id="example" style="width:100%" class="table table-striped table-responsive table-bordered custom-class" v-for="hadiths in item.view" :key="hadiths.id">
           <thead class="table-success">
             <tr class="text-center">
-              <th class="col-md-1">ID</th>
-              <th class="col-md-1">Narrator</th>
+              
               <th class="col-md-6">Hadith (Arabic)</th>
-              <th class="col-md-6">Hadith (English)</th>
-
-              <!--
-              <th class="col-md-1">Chapter ID</th>
-              <th class="col-md-1">Book ID</th>
-              -->
+              <th class="col-md-6">Hadith (English)</th>                 
+              <th class="col-md-1">Narrator</th>
+              <th class="col-md-1">ID</th>
             </tr>
           </thead>
           <tbody style="background:white">
             <tr class="text-center">
+              <td class="col-md-6">{{ item.arabic }}</td>
+              <td class="col-md-6">{{ item.arabic }}</td>
+              <td class="col-md-1">{{ view.narrator }}</td>
               <td class="col-md-1">{{ item.id }}</td>
-              <td class="col-md-1">{{ hadiths.narrator }}</td>
-              <td class="col-md-6">{{ item.arabic }}</td>
-              <td class="col-md-6">{{ item.arabic }}</td>
 
-              <!--
-              <td class="col-md-1">{{ item.chapterId }}</td>
-              <td class="col-md-1">{{ item.bookId }}</td>
-              -->
             </tr>
 
           </tbody>
@@ -50,11 +41,12 @@ import hadith from '/Users/amine/Desktop/islamichub/storage/three_main/shah_book
 export default {
   data() {
     return {
-      items: {},
+      items: [],
       hadith,
-      view: []
+      view: [],
     }
-  }
+  },
+  
 }
 </script>
 
