@@ -368,10 +368,15 @@ return [
             
         // ],
         [
+            'text' => 'Mailing list',
+            'url' => 'mailing_list',
+            'icon' => 'fas fa-fw fa-envelope',
+
+        ],
+        [
             'text' => 'Payments',
             'url' => 'payments',
             'icon' => 'fas fa-fw fa-credit-card',
-            'url'  => 'payments',
 
         ],
         [
@@ -478,9 +483,10 @@ return [
         ],
         [
             'text' => 'References',
-            'url'  => 'profile',
+            'url'  => 'references',
             'icon' => 'fas fa-fw fa-file-export',
         ],
+        
         [
             'header' => 'MULTIMEDIA',
         ],
@@ -490,7 +496,7 @@ return [
             'icon' => 'fas fa-fw fa-images',
         ],
         [
-            'text' => 'Lectures',
+            'text' => 'Short videos',
             'url'  => 'videos',
             'icon' => 'fas fa-fw fa-film',
         ],
@@ -514,47 +520,7 @@ return [
             'url'  => 'docs',
             'icon' => 'fas fa-fw fa-folder-open',
         ],
-        
-        
-        
-    // [
-        //     'text'    => 'multilevel',
-        //     'icon'    => 'fas fa-fw fa-share',
-        //     'submenu' => [
-        //         [
-        //             'text' => 'level_one',
-        //             'url'  => '#',
-        //         ],
-        //         [
-        //             'text'    => 'level_one',
-        //             'url'     => '#',
-        //             'submenu' => [
-        //                 [
-        //                     'text' => 'level_two',
-        //                     'url'  => '#',
-        //                 ],
-        //                 [
-        //                     'text'    => 'level_two',
-        //                     'url'     => '#',
-        //                     'submenu' => [
-        //                         [
-        //                             'text' => 'level_three',
-        //                             'url'  => '#',
-        //                         ],
-        //                         [
-        //                             'text' => 'level_three',
-        //                             'url'  => '#',
-        //                         ],
-        //                     ],
-        //                 ],
-        //             ],
-        //         ],
-        //         [
-        //             'text' => 'level_one',
-        //             'url'  => '#',
-        //         ],
-        //     ],
-        // ],
+  
         
     ],
 

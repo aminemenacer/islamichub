@@ -7,7 +7,7 @@
 
 @section('content')
     <div id="app">
-        <dashboard-component></dashboard-component>
+        <mailing_list-component></mailing_list-component>
     </div>
 @stop
 

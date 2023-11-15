@@ -105,12 +105,12 @@
               <label class="mt-2 mr-2 col-sm-3">Password:</label>
               <input v-model="form.password" type="password" name="password" placeholder="Enter password" class="form-control" />
             </div>
-          <!--
-            <div class="form-group mr-2" style="display: flex">
-              <label class="mt-2 mr-2 col-sm-3">Status:</label>
-              <input v-model="form.status" type="text" name="status" placeholder="Enter status" class="form-control" />
-            </div>
-          -->
+              <!--
+                <div class="form-group mr-2" style="display: flex">
+                  <label class="mt-2 mr-2 col-sm-3">Status:</label>
+                  <input v-model="form.status" type="text" name="status" placeholder="Enter status" class="form-control" />
+                </div>
+              -->
             <div class="form-group mr-2" style="display: flex">
               <label class="mt-2 mr-2 col-sm-3">User Type:</label>
 

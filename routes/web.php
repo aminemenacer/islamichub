@@ -17,7 +17,7 @@ use App\Http\Controllers\VolunteerController;
 use App\Http\Controllers\HadithNawawiController;
 use App\Http\Controllers\HadithQudsiController;
 use App\Http\Controllers\HadithShahController;
-
+use App\Http\Controllers\MailingListController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -35,6 +35,11 @@ Route::get('/cards', [CardsController::class, 'index']);
 Route::get('/hadith_nawawi', [HadithNawawiController::class, 'index']);
 Route::get('/hadith_qudsi', [HadithQudsiController::class, 'index']);
 Route::get('/hadith_shah', [HadithShahController::class, 'index']);
+
+// mailing list
+Route::get('/mailing_list', [MailingListController::class, 'index'])->name('mailing_list');
+Route::get('api/fetch-mail', [MailingListController::class, 'getMail'])->name('mailing_list');
+Route::post('api/subscribe', [MailingListController::class, 'create']);
 
 // contact
 Route::get('/contact', [ContactController::class, 'index']);

@@ -28,6 +28,7 @@ import Panel from 'primevue/panel';
 
 
 import UsersComponent from "./components/UsersComponent.vue";
+import MailingListComponent from "./components/MailingListComponent.vue";
 import FeedbackComponent from "./components/FeedbackComponent.vue";
 import PaymentComponent from "./components/PaymentComponent.vue";
 import DonationComponent from "./components/DonationComponent.vue";
@@ -72,6 +73,8 @@ app.component("Panel", Panel);
 
 app.component("example-component", ExampleComponent);
 app.component("users-component", UsersComponent);
+app.component("mailing_list-component", MailingListComponent);
+
 app.component("feedback-component", FeedbackComponent);
 app.component("payment-component", PaymentComponent);
 app.component("donation-component", DonationComponent);
