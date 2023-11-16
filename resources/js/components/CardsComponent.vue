@@ -7,7 +7,7 @@
 
     <div class="container text-center">
       <div class="row ">
-        <Accordion class="col-md-4 mb-3" v-for="item in cards" :key="item.id">
+        <Accordion class="col-md-6 mb-3" v-for="item in cards" :key="item.id">
 
           <AccordionTab style="display:flex;" title="Surah" :header="item.surah">
             <div class="row">

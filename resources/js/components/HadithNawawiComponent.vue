@@ -14,9 +14,9 @@
               <th class="col-md-5">Hadith (English)</th>
               <th class="col-md-5">Hadith (Arabic)</th>                      
               <th class="col-md-4">Narrator</th>
-              <th class="col-md-1">Chapter ID</th>
-              <th class="col-md-1">Book ID</th>
-              <th class="col-md-1">ID</th>
+              <th class="col-md-2">Chapter ID</th>
+              <th class="col-md-2">Book ID</th>
+              <th class="col-md-2">ID</th>
             </tr>
           </thead>
           <tbody style="background:white">
@@ -24,9 +24,9 @@
               <td class="col-md-5">{{ item.text }}</td>
               <td class="col-md-5">{{ item.arabic }}</td>
               <td class="col-md-4">{{ item.narrator }}</td>
-              <td class="col-md-1">{{ item.chapterId }}</td>
-              <td class="col-md-1">{{ item.bookId }}</td>              
-              <td class="col-md-1">{{ item.id }}</td>
+              <td class="col-md-3">{{ item.chapterId }}</td>
+              <td class="col-md-3">{{ item.bookId }}</td>              
+              <td class="col-md-2">{{ item.id }}</td>
 
             </tr>
 

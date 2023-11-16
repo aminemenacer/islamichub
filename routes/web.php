@@ -18,6 +18,7 @@ use App\Http\Controllers\HadithNawawiController;
 use App\Http\Controllers\HadithQudsiController;
 use App\Http\Controllers\HadithShahController;
 use App\Http\Controllers\MailingListController;
+use App\Http\Controllers\videoController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -40,6 +41,10 @@ Route::get('/hadith_shah', [HadithShahController::class, 'index']);
 Route::get('/mailing_list', [MailingListController::class, 'index'])->name('mailing_list');
 Route::get('api/fetch-mail', [MailingListController::class, 'getMail'])->name('mailing_list');
 Route::post('api/subscribe', [MailingListController::class, 'create']);
+
+// video
+Route::get('/video', [VideoController::class, 'index'])->name('video');
+
 
 // contact
 Route::get('/contact', [ContactController::class, 'index']);

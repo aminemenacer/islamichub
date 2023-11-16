@@ -312,6 +312,7 @@ return [
 
         ],
 
+        
         [
             'text' => 'Contact',
             'url' => 'contact',
@@ -335,9 +336,8 @@ return [
         [
             'text' => 'Login',
             'url' => 'login',
-            'icon' => 'fas fa-fw fa-login',
+            'icon' => 'fas fa-fw fa-centercode',
             'topnav_right' => true,
-            'can' => 'access'
 
         ],
 
@@ -367,6 +367,7 @@ return [
 
             
         // ],
+       
         [
             'text' => 'Mailing list',
             'url' => 'mailing_list',
@@ -477,14 +478,47 @@ return [
             'icon' => 'fas fa-fw fa-book-open',
         ],
         [
-            'text' => 'Islamic education',
-            'url'  => 'education',
+            'text' => 'Islamic teachings',
+            'url'  => 'teachings',
             'icon' => 'fas fa-fw fa-school',
-        ],
-        [
-            'text' => 'References',
-            'url'  => 'references',
-            'icon' => 'fas fa-fw fa-file-export',
+            'submenu' => [
+                [
+                    'text' => 'Sahih al-Bukhari',
+                    'url'  => 'book_one',
+                ],
+                [
+                    'text' => 'Sahih al-Muslim',
+                    'url'  => 'book_two',
+                ],
+                [
+                    'text' => 'Sunan Abu Dawood',
+                    'url'  => 'book_three',
+                ],
+                [
+                    'text' => 'Sunan al-Tirmidi',
+                    'url'  => 'book_four',
+                ],
+                [
+                    'text' => 'Sunan al-Nasai',
+                    'url'  => 'book_five',
+                ],
+                [
+                    'text' => 'Sunan ibn Majah',
+                    'url'  => 'book_six',
+                ],
+                [
+                    'text' => 'Muwatta Imam Malik',
+                    'url'  => 'book_seven',
+                ],
+                [
+                    'text' => 'Musnad Ahmad',
+                    'url'  => 'book_eight',
+                ],
+                [
+                    'text' => 'Sunan Darimi',
+                    'url'  => 'book_nine',
+                ]
+            ],
         ],
         
         [
@@ -495,9 +529,10 @@ return [
             'url'  => 'images',
             'icon' => 'fas fa-fw fa-images',
         ],
+        
         [
             'text' => 'Short videos',
-            'url'  => 'videos',
+            'url'  => 'video',
             'icon' => 'fas fa-fw fa-film',
         ],
         [

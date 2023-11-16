@@ -46,6 +46,7 @@ import CardsComponent from './components/CardsComponent.vue';
 import HadithNawawiComponent from './components/HadithNawawiComponent.vue';
 import HadithQudsiComponent from './components/HadithQudsiComponent.vue';
 import HadithShahComponent from './components/HadithShahComponent.vue';
+import VideoComponent from './components/VideoComponent.vue';
 
 
 window.Vue = require('vue');
@@ -74,7 +75,6 @@ app.component("Panel", Panel);
 app.component("example-component", ExampleComponent);
 app.component("users-component", UsersComponent);
 app.component("mailing_list-component", MailingListComponent);
-
 app.component("feedback-component", FeedbackComponent);
 app.component("payment-component", PaymentComponent);
 app.component("donation-component", DonationComponent);
@@ -91,6 +91,7 @@ app.component("cards-component", CardsComponent);
 app.component("hadith_nawawi-component", HadithNawawiComponent);
 app.component("hadith_qudsi-component", HadithQudsiComponent);
 app.component("hadith_shah-component", HadithShahComponent);
+app.component("video-component", VideoComponent);
 
 
 app.mount('#app');
