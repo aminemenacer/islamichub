@@ -47,6 +47,7 @@ import HadithNawawiComponent from './components/HadithNawawiComponent.vue';
 import HadithQudsiComponent from './components/HadithQudsiComponent.vue';
 import HadithShahComponent from './components/HadithShahComponent.vue';
 import VideoComponent from './components/VideoComponent.vue';
+import KnowledgeComponent from './components/KnowledgeComponent.vue';
 
 
 window.Vue = require('vue');
@@ -92,6 +93,7 @@ app.component("hadith_nawawi-component", HadithNawawiComponent);
 app.component("hadith_qudsi-component", HadithQudsiComponent);
 app.component("hadith_shah-component", HadithShahComponent);
 app.component("video-component", VideoComponent);
+app.component("knowledge-component", KnowledgeComponent);
 
 
 app.mount('#app');

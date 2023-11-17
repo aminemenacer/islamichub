@@ -396,7 +396,7 @@ return [
             'header' => 'CONTENT',
         ],
         [
-            'text' => 'Quran',
+            'text' => 'Surah Information',
             'url'  => 'cards',
             'icon' => 'fas fa-fw fa-quran',
         ],
@@ -409,6 +409,12 @@ return [
             'text' => 'Reminders',
             'url'  => 'reminders',
             'icon' => 'fas fa-fw fa-bell',
+        ],
+        [
+            'text' => 'Islamic education',
+            'url'  => 'knowledge',
+            'icon' => 'fas fa-fw fa-school',
+            
         ],
         [
             'text' => 'Ahadith',
@@ -477,49 +483,7 @@ return [
             'url'  => 'books',
             'icon' => 'fas fa-fw fa-book-open',
         ],
-        [
-            'text' => 'Islamic teachings',
-            'url'  => 'teachings',
-            'icon' => 'fas fa-fw fa-school',
-            'submenu' => [
-                [
-                    'text' => 'Sahih al-Bukhari',
-                    'url'  => 'book_one',
-                ],
-                [
-                    'text' => 'Sahih al-Muslim',
-                    'url'  => 'book_two',
-                ],
-                [
-                    'text' => 'Sunan Abu Dawood',
-                    'url'  => 'book_three',
-                ],
-                [
-                    'text' => 'Sunan al-Tirmidi',
-                    'url'  => 'book_four',
-                ],
-                [
-                    'text' => 'Sunan al-Nasai',
-                    'url'  => 'book_five',
-                ],
-                [
-                    'text' => 'Sunan ibn Majah',
-                    'url'  => 'book_six',
-                ],
-                [
-                    'text' => 'Muwatta Imam Malik',
-                    'url'  => 'book_seven',
-                ],
-                [
-                    'text' => 'Musnad Ahmad',
-                    'url'  => 'book_eight',
-                ],
-                [
-                    'text' => 'Sunan Darimi',
-                    'url'  => 'book_nine',
-                ]
-            ],
-        ],
+        
         
         [
             'header' => 'MULTIMEDIA',

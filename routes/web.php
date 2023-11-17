@@ -19,6 +19,7 @@ use App\Http\Controllers\HadithQudsiController;
 use App\Http\Controllers\HadithShahController;
 use App\Http\Controllers\MailingListController;
 use App\Http\Controllers\videoController;
+use App\Http\Controllers\KnowledgeController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -42,9 +43,11 @@ Route::get('/mailing_list', [MailingListController::class, 'index'])->name('mail
 Route::get('api/fetch-mail', [MailingListController::class, 'getMail'])->name('mailing_list');
 Route::post('api/subscribe', [MailingListController::class, 'create']);
 
+// knowledge
+Route::get('/knowledge', [knowledgeController::class, 'index'])->name('knowledge');
+
 // video
 Route::get('/video', [VideoController::class, 'index'])->name('video');
-
 
 // contact
 Route::get('/contact', [ContactController::class, 'index']);
