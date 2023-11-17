@@ -489,16 +489,17 @@ return [
             'header' => 'MULTIMEDIA',
         ],
         [
+            'text' => 'Short videos',
+            'url'  => 'video',
+            'icon' => 'fas fa-fw fa-film',
+        ],
+        [
             'text' => 'Islamic Images',
             'url'  => 'images',
             'icon' => 'fas fa-fw fa-images',
         ],
         
-        [
-            'text' => 'Short videos',
-            'url'  => 'video',
-            'icon' => 'fas fa-fw fa-film',
-        ],
+        
         [
             'text' => 'Podcasts',
             'url'  => 'podcasts',

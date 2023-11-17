@@ -9,7 +9,7 @@
       <div class="col">
         <div class="card" style="background:#ECECEC">
 
-          <iframe width="100%" height="250px" src="https://youtube.com/embed/TNryC1PP5tc?si=SgdhUqT6XNJ_cuLycontrols=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          <iframe width="100%" height="250px" src="https://youtube.com/embed/TNryC1PP5tc?si=SgdhUqT6XNJ_cuLy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
           <div class="card-body">
             <h1 class="card-title text-left mb-2"><b>لصاحب الهم</b></h1>
             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
