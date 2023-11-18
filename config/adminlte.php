@@ -291,18 +291,18 @@ return [
 
     'menu' => [
         // Navbar items:
-        
+
         [
             'type' => 'fullscreen-widget',
             'topnav' => true,
         ],
         [
             'text' => 'Home',
-            'url' => '',
+            'url' => 'home',
             'icon' => 'fas fa-fw fa-home',
             'topnav_right' => true,
 
-            
+
         ],
         [
             'text' => 'Pricings',
@@ -312,7 +312,7 @@ return [
 
         ],
 
-        
+
         [
             'text' => 'Contact',
             'url' => 'contact',
@@ -341,59 +341,65 @@ return [
 
         ],
 
-        
+
 
         // Sidebar items:
         [
             'header' => 'ADMIN',
         ],
-        // [
-        //     'text' => 'Dashboard',
-        //     'url' => 'dashboard',
-        //     'icon' => 'fas fa-fw fa-home',
-            
-        // ],
-        // [
-        //     'text' => 'Users',
-        //     'url' => 'users',
-        //     'icon' => 'fas fa-fw fa-users',
-        // ],
+        [
+            'text' => 'Dashboard',
+            'url' => 'dashboard',
+            'icon' => 'fas fa-fw fa-home',
 
-        // [
-        //     'text' => 'Feedback',
-        //     'url' => 'feedback',
-        //     'icon' => 'fas fa-fw fa-comments',
-        //     'url'  => 'feedback',
+        ],
+        [
+            'text' => 'Users',
+            'url' => 'users',
+            'icon' => 'fas fa-fw fa-users',
+        ],
 
-            
-        // ],
-       
+        [
+            'text' => 'Feedback',
+            'url' => 'feedback',
+            'icon' => 'fas fa-fw fa-comments',
+            'url'  => 'feedback',
+
+
+        ],
+
         [
             'text' => 'Mailing list',
             'url' => 'mailing_list',
             'icon' => 'fas fa-fw fa-envelope',
+        ],
 
-        ],
-        [
-            'text' => 'Payments',
-            'url' => 'payments',
-            'icon' => 'fas fa-fw fa-credit-card',
+        // ],
+        // [
+        //     'text' => 'Payments',
+        //     'url' => 'payments',
+        //     'icon' => 'fas fa-fw fa-credit-card',
 
-        ],
-        [
-            'text' => 'Donations',
-            'url' => 'donations',
-            'icon' => 'fas fa-fw fa-gift',
-        ],
-        [
-            'text' => 'profile',
-            'url'  => 'profile',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        
-    
+        // ],
+        // [
+        //     'text' => 'Donations',
+        //     'url' => 'donations',
+        //     'icon' => 'fas fa-fw fa-gift',
+        // ],
+        // [
+        //     'text' => 'profile',
+        //     'url'  => 'profile',
+        //     'icon' => 'fas fa-fw fa-user',
+        // ],
+
+
         [
             'header' => 'CONTENT',
+        ],
+        [
+            'text' => 'Home',
+            'url'  => 'home',
+            'icon' => 'fas fa-fw fa-home',
         ],
         [
             'text' => 'Surah Information',
@@ -414,7 +420,7 @@ return [
             'text' => 'Islamic education',
             'url'  => 'knowledge',
             'icon' => 'fas fa-fw fa-school',
-            
+
         ],
         [
             'text' => 'Ahadith',
@@ -434,6 +440,11 @@ return [
                     'url'  => 'hadith_shah',
                 ]
             ],
+        ],
+        [
+            'text' => 'Books',
+            'url'  => 'books',
+            'icon' => 'fas fa-fw fa-book-open',
         ],
         [
             'text' => '9 Books of Hadith',
@@ -478,13 +489,9 @@ return [
                 ]
             ],
         ],
-        [
-            'text' => 'Books',
-            'url'  => 'books',
-            'icon' => 'fas fa-fw fa-book-open',
-        ],
-        
-        
+
+
+
         [
             'header' => 'MULTIMEDIA',
         ],
@@ -494,19 +501,7 @@ return [
             'icon' => 'fas fa-fw fa-film',
         ],
         [
-            'text' => 'Islamic Images',
-            'url'  => 'images',
-            'icon' => 'fas fa-fw fa-images',
-        ],
-        
-        
-        [
-            'text' => 'Podcasts',
-            'url'  => 'podcasts',
-            'icon' => 'fas fa-fw fa-headphones',
-        ],
-        [
-            'text' => 'Quran Audio',
+            'text' => 'Audio lectures',
             'url'  => 'audio',
             'icon' => 'fas fa-fw fa-file-audio',
         ],
@@ -516,12 +511,24 @@ return [
             'icon' => 'fas fa-fw fa-rss',
         ],
         [
+            'text' => 'Islamic Images',
+            'url'  => 'images',
+            'icon' => 'fas fa-fw fa-images',
+        ],
+
+        [
+            'text' => 'Podcasts',
+            'url'  => 'podcasts',
+            'icon' => 'fas fa-fw fa-headphones',
+        ],
+
+        [
             'text' => 'PDF & documents',
             'url'  => 'docs',
             'icon' => 'fas fa-fw fa-folder-open',
         ],
-  
-        
+
+
     ],
 
     /*

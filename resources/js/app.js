@@ -22,6 +22,9 @@ import AccordionTab from 'primevue/accordiontab';
 import Listbox from 'primevue/listbox';
 import Fieldset from 'primevue/fieldset';
 import Panel from 'primevue/panel';
+import Dialog from 'primevue/dialog';
+import Image from 'primevue/image';
+
 
 
 
@@ -71,6 +74,8 @@ app.component("TabPanel", TabPanel);
 app.component("ListBox", Listbox);
 app.component("Fieldset", Fieldset);
 app.component("Panel", Panel);
+app.component("Dialog", Dialog);
+app.component("Image", Image);
 
 
 app.component("example-component", ExampleComponent);

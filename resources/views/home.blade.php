@@ -7,7 +7,7 @@
 
 @section('content')
     <div id="app">
-        <dashboard-component></dashboard-component>
+        <homepage-component :user="{{ Auth::user() }}"></homepage-component>
     </div>
 @stop
 

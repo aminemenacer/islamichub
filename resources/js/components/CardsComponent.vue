@@ -4,7 +4,6 @@
   <p class="container text-center">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
 
   <div class="row pb-5 text-left">
-
     <div class="container text-center">
       <div class="row ">
         <Accordion class="col-md-6 mb-3" v-for="item in cards" :key="item.id">
@@ -79,7 +78,8 @@ export default {
   data() {
     return {
       cards,
-      item: []
+      item: [],
+      visible: false
     };
   }
 }
@@ -91,7 +91,7 @@ img {
 }
 
 .accordion-button:not(.collapsed) {
-    color: #0c63e4;
-    background-color: #FEB7EE;
+  color: #0c63e4;
+  background-color: #FEB7EE;
 }
 </style>

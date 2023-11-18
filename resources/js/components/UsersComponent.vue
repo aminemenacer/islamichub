@@ -310,7 +310,7 @@ export default {
   methods: {
 
     onReset(event) {
-      event.preventDefault();
+      // event.preventDefault();
       // Reset our form values
       this.form.name = "";
       this.form.lastname = "";

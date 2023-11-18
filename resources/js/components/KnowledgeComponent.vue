@@ -20,7 +20,7 @@
             <button class="nav-link btn btn-light  text-left text-black mb-1" id="v-pills-ethics-tab" data-bs-toggle="pill" data-bs-target="#v-pills-ethics" type="button" role="tab" aria-controls="v-pills-ethics" aria-selected="false"><i class="fas fa-fw fa-folder mr-2"></i>Islamic Ethics and Morality</button>
             <button class="nav-link btn btn-light  text-left text-black mb-1" id="v-pills-history-tab" data-bs-toggle="pill" data-bs-target="#v-pills-history" type="button" role="tab" aria-controls="v-pills-history" aria-selected="false"><i class="fas fa-fw fa-globe mr-2"></i>Islamic History and Civilization</button>
           </div>
-''
+
         </div>
       </div>
       <div class="col-md-9">

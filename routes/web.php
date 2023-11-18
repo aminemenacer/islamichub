@@ -22,10 +22,10 @@ use App\Http\Controllers\videoController;
 use App\Http\Controllers\KnowledgeController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 Route::get('/welcome', function () {
-    return view('welcome');
+    return view('home');
 });
 
 
