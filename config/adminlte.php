@@ -357,6 +357,7 @@ return [
             'text' => 'Users',
             'url' => 'users',
             'icon' => 'fas fa-fw fa-users',
+            
         ],
 
         [
@@ -364,7 +365,6 @@ return [
             'url' => 'feedback',
             'icon' => 'fas fa-fw fa-comments',
             'url'  => 'feedback',
-
 
         ],
 

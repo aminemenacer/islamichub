@@ -20,6 +20,8 @@ use App\Http\Controllers\HadithShahController;
 use App\Http\Controllers\MailingListController;
 use App\Http\Controllers\videoController;
 use App\Http\Controllers\KnowledgeController;
+use App\Http\Controllers\CorrectionController;
+
 
 Route::get('/', function () {
     return view('home');
@@ -42,6 +44,9 @@ Route::get('/hadith_shah', [HadithShahController::class, 'index']);
 Route::get('/mailing_list', [MailingListController::class, 'index'])->name('mailing_list');
 Route::get('api/fetch-mail', [MailingListController::class, 'getMail'])->name('mailing_list');
 Route::post('api/subscribe', [MailingListController::class, 'create']);
+
+// correction
+Route::post('api/submit-correction', [CorrectionController::class, 'submit']);
 
 // knowledge
 Route::get('/knowledge', [knowledgeController::class, 'index'])->name('knowledge');
