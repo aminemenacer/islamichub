@@ -374,23 +374,23 @@ return [
             'icon' => 'fas fa-fw fa-envelope',
         ],
 
-        // ],
-        // [
-        //     'text' => 'Payments',
-        //     'url' => 'payments',
-        //     'icon' => 'fas fa-fw fa-credit-card',
+        
+        [
+            'text' => 'Payments',
+            'url' => 'payments',
+            'icon' => 'fas fa-fw fa-credit-card',
 
-        // ],
-        // [
-        //     'text' => 'Donations',
-        //     'url' => 'donations',
-        //     'icon' => 'fas fa-fw fa-gift',
-        // ],
-        // [
-        //     'text' => 'profile',
-        //     'url'  => 'profile',
-        //     'icon' => 'fas fa-fw fa-user',
-        // ],
+        ],
+        [
+            'text' => 'Donations',
+            'url' => 'donations',
+            'icon' => 'fas fa-fw fa-gift',
+        ],
+        [
+            'text' => 'profile',
+            'url'  => 'profile',
+            'icon' => 'fas fa-fw fa-user',
+        ],
 
 
         [
@@ -423,9 +423,9 @@ return [
 
         ],
         [
-            'text' => 'Ahadith',
+            'text' => 'Forty Hadith books',
             'url'  => 'ahadith',
-            'icon' => 'fas fa-fw fa-folder',
+            'icon' => 'fas fa-fw fa-book',
             'submenu' => [
                 [
                     'text' => 'Al-Nawawi',
@@ -442,14 +442,9 @@ return [
             ],
         ],
         [
-            'text' => 'Books',
-            'url'  => 'books',
-            'icon' => 'fas fa-fw fa-book-open',
-        ],
-        [
-            'text' => '9 Books of Hadith',
+            'text' => 'Nine Books of Hadith',
             'url'  => 'ahadith_books',
-            'icon' => 'fas fa-fw fa-book',
+            'icon' => 'fas fa-fw fa-folder',
             'submenu' => [
                 [
                     'text' => 'Sahih al-Bukhari',

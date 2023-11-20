@@ -259,7 +259,9 @@ import {
 export default {
   mounted() {
     this.loadUsers();
-    // ProductService.getProductsMini().then((data) => (this.users = data));
+    this.InitializeForm();
+
+// ProductService.getProductsMini().then((data) => (this.users = data));
   },
   data() {
     return {
@@ -309,16 +311,21 @@ export default {
   },
   methods: {
 
-    onReset(event) {
-      // event.preventDefault();
+    InitializeForm() {
+      this.form.name = "";
+      this.form.lastname = "";
+      this.form.email = "";
+      this.form.phone = "";
+      this.form.user_type = "";
+    },
+    Reset(event) {
+      event.preventDefault();
       // Reset our form values
       this.form.name = "";
       this.form.lastname = "";
       this.form.user_type = "";
       this.form.phone = "";
-      // this.form.status = "";
-      this.form.password = "";
-      this.form.user_type = "";
+      this.form.email = "";
     },
     loadUsers() {
       axios.get("api/fetch-users").then((data) => {
