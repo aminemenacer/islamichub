@@ -20353,6 +20353,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      feedback: {},
+      form: new Form({
+        firstname: "",
+        lastname: "",
+        email: "",
+        subject: "",
+        mobile: "",
+        message: ""
+      }),
       form1: new Form({
         name: "",
         lastname: "",
@@ -20362,8 +20371,39 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    subscribe: function subscribe() {
+    sendMessage: function sendMessage() {
       var _this = this;
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You want to send the message !",
+        showCancelButton: true,
+        confirmButtonColor: "green",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Send message!"
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          axios.post("/api/send-message", _this.form).then(function (res) {
+            if (!res.data.success) {
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Message sent successfully ",
+                showConfirmButton: false,
+                timer: 1500
+              });
+              _this.form.reset();
+              $("#addNew").hide();
+            } else if (res.data.success) {
+              Swal.fire("Error!", "Unable to send message.", "error");
+              _this.form.reset();
+              self.close();
+            }
+          })["catch"](function (err) {});
+        }
+      });
+    },
+    subscribe: function subscribe() {
+      var _this2 = this;
       Swal.fire({
         title: "Are you sure?",
         text: "You want to Subscribe ? !",
@@ -20373,7 +20413,7 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: "Send message!"
       }).then(function (result) {
         if (result.isConfirmed) {
-          axios.post("/api/subscribe", _this.form1).then(function (res) {
+          axios.post("/api/subscribe", _this2.form1).then(function (res) {
             if (!res.data.success) {
               Swal.fire({
                 position: "top-end",
@@ -20383,11 +20423,11 @@ __webpack_require__.r(__webpack_exports__);
                 timer: 1500
               });
               // window.location.reload();
-              _this.form1.reset();
+              _this2.form1.reset();
               $("#addNew").hide();
             } else if (res.data.success) {
               Swal.fire("Error!", "Unable to send message.", "error");
-              _this.form1.reset();
+              _this2.form1.reset();
               self.close();
             }
           })["catch"](function (err) {});
@@ -22275,72 +22315,197 @@ var _hoisted_1 = {
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
   "class": "pt-3 text-center"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, "Homepage")], -1 /* HOISTED */);
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"container mt-5 overflow-hidden\"><div class=\"row\"><div class=\"col-12 col-sm-6 col-xl-4\"><div class=\"card border-0 border-bottom border-primary shadow-sm\"><div class=\"card-body text-center\"><img src=\"/images/next-button.png\" width=\"50%\" style=\"padding:20px;\" class=\"text-center\"><h4 class=\"mb-4\">Islamic Videos</h4><p class=\"mb-4 text-secondary\">Vestibulum bibendum, lorem a blandit lacinia, nisi velit posuere nisl, vel placerat magna mauris mollis maximus est.</p><a href=\"/video\" class=\"fw-bold text-decoration-none link-primary\" style=\"color:green;\"> Learn More <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-arrow-right-short\" viewBox=\"0 0 16 16\"><path fill-rule=\"evenodd\" d=\"M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z\"></path></svg></a></div></div></div><div class=\"col-12 col-sm-6 col-xl-4\"><div class=\"card border-0 border-bottom border-primary shadow-sm\"><div class=\"card-body text-center p-4 p-xxl-5\"><img src=\"/images/volume-up.png\" width=\"50%\" style=\"padding:20px;\" class=\"text-center\"><h4 class=\"mb-4\">Audio Lectures</h4><p class=\"mb-4 text-secondary\">Vestibulum bibendum, lorem a blandit lacinia, nisi velit posuere nisl, vel placerat magna mauris mollis maximus est.</p><a href=\"/audio\" class=\"fw-bold text-decoration-none link-primary\" style=\"color:green;\"> Learn More <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-arrow-right-short\" viewBox=\"0 0 16 16\"><path fill-rule=\"evenodd\" d=\"M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z\"></path></svg></a></div></div></div><div class=\"col-12 col-sm-6 col-xl-4\"><div class=\"card border-0 border-bottom border-primary shadow-sm\"><div class=\"card-body text-center p-4 p-xxl-5\"><img src=\"/images/podcast.png\" width=\"50%\" style=\"padding:20px;color:green;\" class=\"text-center\"><h4 class=\"mb-4\">Podcasts</h4><p class=\"mb-4 text-secondary\">Vestibulum bibendum, lorem a blandit lacinia, nisi velit posuere nisl, vel placerat magna mauris mollis maximus est.</p><a href=\"/podcast\" class=\"fw-bold text-decoration-none link-primary\" style=\"color:green;\"> Learn More <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-arrow-right-short\" viewBox=\"0 0 16 16\"><path fill-rule=\"evenodd\" d=\"M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z\"></path></svg></a></div></div></div></div><div class=\"row\"><div class=\"col-12 col-sm-6 col-xl-4\"><div class=\"card border-0 border-bottom border-primary shadow-sm\"><div class=\"card-body text-center\"><img src=\"/images/check1.png\" width=\"50%\" style=\"padding:20px;\" class=\"text-center\"><h4 class=\"mb-4\">Hadith and Sunnah</h4><p class=\"mb-4 text-secondary\">Vestibulum bibendum, lorem a blandit lacinia, nisi velit posuere nisl, vel placerat magna mauris mollis maximus est.</p><a href=\"/books\" class=\"fw-bold text-decoration-none link-primary\" style=\"color:green;\"> Learn More <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-arrow-right-short\" viewBox=\"0 0 16 16\"><path fill-rule=\"evenodd\" d=\"M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z\"></path></svg></a></div></div></div><div class=\"col-12 col-sm-6 col-xl-4\"><div class=\"card border-0 border-bottom border-primary shadow-sm\"><div class=\"card-body text-center p-4 p-xxl-5\"><img src=\"/images/notification.png\" width=\"50%\" style=\"padding:20px;\" class=\"text-center\"><h4 class=\"mb-4\">Reminders</h4><p class=\"mb-4 text-secondary\">Vestibulum bibendum, lorem a blandit lacinia, nisi velit posuere nisl, vel placerat magna mauris mollis maximus est.</p><a href=\"/reminders\" class=\"fw-bold text-decoration-none link-primary\" style=\"color:green;\"> Learn More <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-arrow-right-short\" viewBox=\"0 0 16 16\"><path fill-rule=\"evenodd\" d=\"M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z\"></path></svg></a></div></div></div><div class=\"col-12 col-sm-6 col-xl-4\"><div class=\"card border-0 border-bottom border-primary shadow-sm\"><div class=\"card-body text-center p-4 p-xxl-5\"><img src=\"/images/education1.png\" width=\"50%\" style=\"padding:20px;\" class=\"text-center\"><h4 class=\"mb-4\">Education</h4><p class=\"mb-4 text-secondary\">Vestibulum bibendum, lorem a blandit lacinia, nisi velit posuere nisl, vel placerat magna mauris mollis maximus est.</p><a href=\"#!\" class=\"fw-bold text-decoration-none link-primary\" style=\"color:green;\"> Learn More <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-arrow-right-short\" viewBox=\"0 0 16 16\"><path fill-rule=\"evenodd\" d=\"M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z\"></path></svg></a></div></div></div></div></div>", 1);
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", null, null, -1 /* HOISTED */);
-var _hoisted_5 = {
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+  "class": "text-center container"
+}, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ", -1 /* HOISTED */);
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"container mt-5 overflow-hidden\"><div class=\"row\"><div class=\"col-12 col-sm-6 col-xl-4\"><div class=\"card border-0 border-bottom border-primary shadow-sm\"><div class=\"card-body text-center\"><img src=\"/images/next-button.png\" width=\"50%\" style=\"padding:20px;\" class=\"text-center\"><h4 class=\"mb-4\">Islamic Videos</h4><p class=\"mb-4 text-secondary\">Vestibulum bibendum, lorem a blandit lacinia, nisi velit posuere nisl, vel placerat magna mauris mollis maximus est.</p><a href=\"/video\" class=\"fw-bold text-decoration-none link-primary\" style=\"color:green;\"> Learn More <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-arrow-right-short\" viewBox=\"0 0 16 16\"><path fill-rule=\"evenodd\" d=\"M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z\"></path></svg></a></div></div></div><div class=\"col-12 col-sm-6 col-xl-4\"><div class=\"card border-0 border-bottom border-primary shadow-sm\"><div class=\"card-body text-center p-4 p-xxl-5\"><img src=\"/images/volume-up.png\" width=\"50%\" style=\"padding:20px;\" class=\"text-center\"><h4 class=\"mb-4\">Audio Lectures</h4><p class=\"mb-4 text-secondary\">Vestibulum bibendum, lorem a blandit lacinia, nisi velit posuere nisl, vel placerat magna mauris mollis maximus est.</p><a href=\"/audio\" class=\"fw-bold text-decoration-none link-primary\" style=\"color:green;\"> Learn More <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-arrow-right-short\" viewBox=\"0 0 16 16\"><path fill-rule=\"evenodd\" d=\"M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z\"></path></svg></a></div></div></div><div class=\"col-12 col-sm-6 col-xl-4\"><div class=\"card border-0 border-bottom border-primary shadow-sm\"><div class=\"card-body text-center p-4 p-xxl-5\"><img src=\"/images/podcast.png\" width=\"50%\" style=\"padding:20px;color:green;\" class=\"text-center\"><h4 class=\"mb-4\">Podcasts</h4><p class=\"mb-4 text-secondary\">Vestibulum bibendum, lorem a blandit lacinia, nisi velit posuere nisl, vel placerat magna mauris mollis maximus est.</p><a href=\"/podcast\" class=\"fw-bold text-decoration-none link-primary\" style=\"color:green;\"> Learn More <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-arrow-right-short\" viewBox=\"0 0 16 16\"><path fill-rule=\"evenodd\" d=\"M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z\"></path></svg></a></div></div></div></div><div class=\"row\"><div class=\"col-12 col-sm-6 col-xl-4\"><div class=\"card border-0 border-bottom border-primary shadow-sm\"><div class=\"card-body text-center\"><img src=\"/images/check1.png\" width=\"50%\" style=\"padding:20px;\" class=\"text-center\"><h4 class=\"mb-4\">Hadith and Sunnah</h4><p class=\"mb-4 text-secondary\">Vestibulum bibendum, lorem a blandit lacinia, nisi velit posuere nisl, vel placerat magna mauris mollis maximus est.</p><a href=\"/books\" class=\"fw-bold text-decoration-none link-primary\" style=\"color:green;\"> Learn More <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-arrow-right-short\" viewBox=\"0 0 16 16\"><path fill-rule=\"evenodd\" d=\"M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z\"></path></svg></a></div></div></div><div class=\"col-12 col-sm-6 col-xl-4\"><div class=\"card border-0 border-bottom border-primary shadow-sm\"><div class=\"card-body text-center p-4 p-xxl-5\"><img src=\"/images/notification.png\" width=\"50%\" style=\"padding:20px;\" class=\"text-center\"><h4 class=\"mb-4\">Reminders</h4><p class=\"mb-4 text-secondary\">Vestibulum bibendum, lorem a blandit lacinia, nisi velit posuere nisl, vel placerat magna mauris mollis maximus est.</p><a href=\"/reminders\" class=\"fw-bold text-decoration-none link-primary\" style=\"color:green;\"> Learn More <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-arrow-right-short\" viewBox=\"0 0 16 16\"><path fill-rule=\"evenodd\" d=\"M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z\"></path></svg></a></div></div></div><div class=\"col-12 col-sm-6 col-xl-4\"><div class=\"card border-0 border-bottom border-primary shadow-sm\"><div class=\"card-body text-center p-4 p-xxl-5\"><img src=\"/images/education1.png\" width=\"50%\" style=\"padding:20px;\" class=\"text-center\"><h4 class=\"mb-4\">Education</h4><p class=\"mb-4 text-secondary\">Vestibulum bibendum, lorem a blandit lacinia, nisi velit posuere nisl, vel placerat magna mauris mollis maximus est.</p><a href=\"#!\" class=\"fw-bold text-decoration-none link-primary\" style=\"color:green;\"> Learn More <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-arrow-right-short\" viewBox=\"0 0 16 16\"><path fill-rule=\"evenodd\" d=\"M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z\"></path></svg></a></div></div></div></div></div>", 1);
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", null, null, -1 /* HOISTED */);
+var _hoisted_6 = {
   "class": "container text-center"
 };
-var _hoisted_6 = {
-  "class": "newsletter-subscribe container",
-  style: {
-    "background": "white"
-  }
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
+  "class": "pt-3 text-center"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, "Subscribe to our Mailing list")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+  "class": "text-center container"
+}, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ")], -1 /* HOISTED */);
+var _hoisted_8 = {
+  "class": "newsletter-subscribe container"
 };
-var _hoisted_7 = {
+var _hoisted_9 = {
   "class": "container"
 };
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "intro"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
-  "class": "text-center newsletter"
-}, "Subscribe to our Mailing list"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-  "class": "text-center"
-}, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ")], -1 /* HOISTED */);
-var _hoisted_9 = {
+var _hoisted_10 = {
   "class": "form-group",
   style: {
     "display": "flex"
   }
 };
-var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "mt-2 col-sm-3"
 }, "Firstname:", -1 /* HOISTED */);
-var _hoisted_11 = {
+var _hoisted_12 = {
   "class": "form-group",
   style: {
     "display": "flex"
   }
 };
-var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "mt-2 col-sm-3"
 }, "Lastname:", -1 /* HOISTED */);
-var _hoisted_13 = {
+var _hoisted_14 = {
   "class": "form-group",
   style: {
     "display": "flex"
   }
 };
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "mt-2 col-sm-3"
 }, "Phone:", -1 /* HOISTED */);
-var _hoisted_15 = {
+var _hoisted_16 = {
   "class": "form-group",
   style: {
     "display": "flex"
   }
 };
-var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "mt-2 col-sm-3"
 }, "Email:", -1 /* HOISTED */);
-var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "form-group"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  "class": "btn btn-primary",
+  "class": "btn text-black",
+  style: {
+    "background": "lightgreen"
+  },
   type: "submit"
-}, "Subscribe ")], -1 /* HOISTED */);
-
+}, "Subscribe")], -1 /* HOISTED */);
+var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", null, null, -1 /* HOISTED */);
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
+  "class": "pt-3 text-center"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, "Frequently asked Questions")], -1 /* HOISTED */);
+var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+  "class": "text-center container"
+}, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ", -1 /* HOISTED */);
+var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+  "class": "m-0"
+}, " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. ", -1 /* HOISTED */);
+var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+  "class": "m-0"
+}, " Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia non numquam eius modi. ", -1 /* HOISTED */);
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+  "class": "m-0"
+}, " At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus. ", -1 /* HOISTED */);
+var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", null, null, -1 /* HOISTED */);
+var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
+  "class": "text-center"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, "Contact Us")], -1 /* HOISTED */);
+var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+  "class": "text-center container text-left pt-3"
+}, "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here,", -1 /* HOISTED */);
+var _hoisted_28 = {
+  "class": "row justify-content-center"
+};
+var _hoisted_29 = {
+  "class": "col-md-12"
+};
+var _hoisted_30 = {
+  "class": "wrapper"
+};
+var _hoisted_31 = {
+  "class": "row no-gutters"
+};
+var _hoisted_32 = {
+  "class": "col-lg-8 col-md-7 order-md-last d-flex align-items-stretch bg-white"
+};
+var _hoisted_33 = {
+  "class": "contact-wrap w-100 p-md-5 p-4"
+};
+var _hoisted_34 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  id: "form-message-warning",
+  "class": "mb-4"
+}, null, -1 /* HOISTED */);
+var _hoisted_35 = {
+  "class": "row"
+};
+var _hoisted_36 = {
+  "class": "col-md-6"
+};
+var _hoisted_37 = {
+  "class": "form-group"
+};
+var _hoisted_38 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "class": "label",
+  "for": "name"
+}, "Firstname:", -1 /* HOISTED */);
+var _hoisted_39 = {
+  "class": "col-md-6"
+};
+var _hoisted_40 = {
+  "class": "form-group"
+};
+var _hoisted_41 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "class": "label",
+  "for": "email"
+}, "Lastname:", -1 /* HOISTED */);
+var _hoisted_42 = {
+  "class": "col-md-6"
+};
+var _hoisted_43 = {
+  "class": "form-group"
+};
+var _hoisted_44 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "class": "label",
+  "for": "email"
+}, "Email Address:", -1 /* HOISTED */);
+var _hoisted_45 = {
+  "class": "col-md-6"
+};
+var _hoisted_46 = {
+  "class": "form-group"
+};
+var _hoisted_47 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "class": "label",
+  "for": "email"
+}, "Phone:", -1 /* HOISTED */);
+var _hoisted_48 = {
+  "class": "col-md-10"
+};
+var _hoisted_49 = {
+  "class": "form-group"
+};
+var _hoisted_50 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "class": "label",
+  "for": "subject"
+}, "Subject:", -1 /* HOISTED */);
+var _hoisted_51 = {
+  "class": "col-md-10"
+};
+var _hoisted_52 = {
+  "class": "form-group"
+};
+var _hoisted_53 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "class": "label",
+  "for": "#"
+}, "Message:", -1 /* HOISTED */);
+var _hoisted_54 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "col-md-12"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "form-group"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  type: "submit",
+  value: "Send Message",
+  "class": "btn text-white",
+  style: {
+    "background": "rgba(34,179,127,255)"
+  }
+}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "submitting"
+})])], -1 /* HOISTED */);
+var _hoisted_55 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"col-lg-4 col-md-5 d-flex align-items-stretch\" style=\"background:rgba(34,179,127,255);\"><div class=\"info-wrap w-100 p-md-5 p-4 text-white\"><h2><strong>Let&#39;s get in touch</strong></h2><p class=\"mb-4\">We&#39;re open for any suggestion or just to have a chat</p><div class=\"dbox w-100 d-flex align-items-start\"><div class=\"icon d-flex align-items-center justify-content-center\"><span class=\"fa fa-map-marker\"></span></div><div class=\"text pl-3\"><p class=\"text-white\"><span>Address:</span> Bilborough Nottingham, United Kingdom</p></div></div><div class=\"dbox w-100 d-flex align-items-center\"><div class=\"icon d-flex align-items-center justify-content-center\"><span class=\"fa fa-phone\"></span></div><div class=\"text pl-3\"><p class=\"text-white\"><span>Phone:</span>(+44) 7871594836</p></div></div><div class=\"dbox w-100 d-flex align-items-center\"><div class=\"icon d-flex align-items-center justify-content-center\"><span class=\"fa fa-paper-plane\"></span></div><div class=\"text pl-3\"><p class=\"text-white\"><span>Email:</span>menacer72@gmail.com</p></div></div><div class=\"dbox w-100 d-flex align-items-center\"><div class=\"icon d-flex align-items-center justify-content-center\"><span class=\"fa fa-globe\"></span></div><div class=\"text pl-3\"><p class=\"text-white\"><span>Website</span>Islamichub.com</p></div></div></div></div>", 1);
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" features "), _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" subscribe "), _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
+  var _component_AccordionTab = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("AccordionTab");
+  var _component_Accordion = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Accordion");
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" features "), _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" subscribe "), _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
     "class": "container",
     onReset: _cache[4] || (_cache[4] = function () {
       return _ctx.reset && _ctx.reset.apply(_ctx, arguments);
@@ -22348,7 +22513,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onSubmit: _cache[5] || (_cache[5] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
       return $options.subscribe();
     }, ["prevent"]))
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
       return $data.form1.name = $event;
     }),
@@ -22356,7 +22521,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     name: "name",
     placeholder: "Enter name",
     "class": "form-control col-sm-6"
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form1.name]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form1.name]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
       return $data.form1.lastname = $event;
     }),
@@ -22364,7 +22529,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     id: "lastname",
     placeholder: "Enter lastname",
     "class": "form-control col-sm-6"
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form1.lastname]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form1.lastname]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
       return $data.form1.phone = $event;
     }),
@@ -22372,7 +22537,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     name: "phone",
     placeholder: "Enter phone",
     "class": "form-control col-sm-6"
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form1.phone]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [_hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form1.phone]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
       return $data.form1.email = $event;
     }),
@@ -22380,7 +22545,96 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     id: "email",
     placeholder: "Enter email",
     "class": "form-control col-sm-6"
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form1.email]])]), _hoisted_17], 32 /* HYDRATE_EVENTS */)])])])]);
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form1.email]])]), _hoisted_18], 32 /* HYDRATE_EVENTS */)])])]), _hoisted_19, _hoisted_20, _hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Accordion, {
+    activeIndex: 0,
+    "class": "pb-5"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_AccordionTab, {
+        header: "Header I"
+      }, {
+        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+          return [_hoisted_22];
+        }),
+        _: 1 /* STABLE */
+      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_AccordionTab, {
+        header: "Header II"
+      }, {
+        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+          return [_hoisted_23];
+        }),
+        _: 1 /* STABLE */
+      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_AccordionTab, {
+        header: "Header III"
+      }, {
+        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+          return [_hoisted_24];
+        }),
+        _: 1 /* STABLE */
+      })];
+    }),
+
+    _: 1 /* STABLE */
+  }), _hoisted_25, _hoisted_26, _hoisted_27, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_33, [_hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
+    onReset: _cache[12] || (_cache[12] = function () {
+      return _ctx.reset && _ctx.reset.apply(_ctx, arguments);
+    }),
+    onSubmit: _cache[13] || (_cache[13] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+      return $options.sendMessage();
+    }, ["prevent"])),
+    id: "contactForm",
+    name: "contactForm",
+    "class": "contactForm pb-5"
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_35, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, [_hoisted_38, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
+      return $data.form.firstname = $event;
+    }),
+    type: "text",
+    name: "firstname",
+    placeholder: "Enter firstname",
+    "class": "form-control"
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.firstname]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_40, [_hoisted_41, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    "onUpdate:modelValue": _cache[7] || (_cache[7] = function ($event) {
+      return $data.form.lastname = $event;
+    }),
+    type: "text",
+    name: "lastname",
+    placeholder: "Enter lastname",
+    "class": "form-control"
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.lastname]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_42, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_43, [_hoisted_44, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    "onUpdate:modelValue": _cache[8] || (_cache[8] = function ($event) {
+      return $data.form.email = $event;
+    }),
+    name: "email",
+    id: "email",
+    placeholder: "Enter email",
+    "class": "form-control"
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.email]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_45, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_46, [_hoisted_47, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    "onUpdate:modelValue": _cache[9] || (_cache[9] = function ($event) {
+      return $data.form.mobile = $event;
+    }),
+    type: "text",
+    name: "mobile",
+    placeholder: "Enter mobile number",
+    "class": "form-control"
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.mobile]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_48, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_49, [_hoisted_50, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    "onUpdate:modelValue": _cache[10] || (_cache[10] = function ($event) {
+      return $data.form.subject = $event;
+    }),
+    type: "text",
+    name: "subject",
+    placeholder: "Enter subject",
+    "class": "form-control"
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.subject]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_51, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_52, [_hoisted_53, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+    "onUpdate:modelValue": _cache[11] || (_cache[11] = function ($event) {
+      return $data.form.message = $event;
+    }),
+    rows: "4",
+    type: "text",
+    name: "message",
+    placeholder: "Enter message",
+    "class": "form-control"
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.message]])])]), _hoisted_54])], 32 /* HYDRATE_EVENTS */)])]), _hoisted_55])])])])]);
 }
 
 /***/ }),
@@ -31274,7 +31528,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.newsletter-subscribe {\n  color: #313437;\n  background-color: #ffffff;\n  padding: 55px 74px;\n}\n.newsletter-subscribe p {\n  color: #7d8285;\n  line-height: 1.5;\n}\n.newsletter-subscribe h2 {\n  font-size: 24px;\n  font-weight: bold;\n  margin-bottom: 25px;\n  line-height: 1.5;\n  padding-top: 0;\n  margin-top: 0;\n  color: inherit;\n}\n.newsletter-subscribe .intro {\n  font-size: 16px;\n  max-width: 500px;\n  margin: 0 auto 25px;\n}\n.newsletter-subscribe .intro p {\n  margin-bottom: 35px;\n}\n.newsletter-subscribe form {\n  justify-content: center;\n}\n.newsletter-subscribe form .form-control {\n  background: #eff1f4;\n  border: none;\n  border-radius: 3px;\n  box-shadow: none;\n  outline: none;\n  color: inherit;\n  text-indent: 9px;\n  height: 45px;\n  margin-right: 10px;\n  min-width: 250px;\n}\n.newsletter-subscribe form .btn {\n  padding: 16px 32px;\n  border: none;\n  background: none;\n  box-shadow: none;\n  text-shadow: none;\n  opacity: 0.9;\n  text-transform: uppercase;\n  font-weight: bold;\n  font-size: 13px;\n  letter-spacing: 0.4px;\n  line-height: 1;\n}\n.newsletter-subscribe form .btn:hover {\n  opacity: 1;\n}\n.newsletter-subscribe form .btn:active {\n  transform: translateY(1px);\n}\n.newsletter-subscribe form .btn-primary {\n  background-color: #055ada !important;\n  color: #fff;\n  outline: none !important;\n}\n\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.newsletter-subscribe {\n  color: #313437;\n  background-color: #ffffff;\n  padding: 55px 74px;\n}\n.newsletter-subscribe p {\n  color: #7d8285;\n  line-height: 1.5;\n}\n.newsletter-subscribe h2 {\n  font-size: 24px;\n  font-weight: bold;\n  margin-bottom: 25px;\n  line-height: 1.5;\n  padding-top: 0;\n  margin-top: 0;\n  color: inherit;\n}\n.newsletter-subscribe .intro {\n  font-size: 16px;\n  max-width: 500px;\n  margin: 0 auto 25px;\n}\n.newsletter-subscribe .intro p {\n  margin-bottom: 35px;\n}\n.newsletter-subscribe form {\n  justify-content: center;\n}\n.newsletter-subscribe form .form-control {\n  background: #eff1f4;\n  border: none;\n  border-radius: 3px;\n  box-shadow: none;\n  outline: none;\n  color: inherit;\n  text-indent: 9px;\n  height: 45px;\n  margin-right: 10px;\n  min-width: 250px;\n}\n.newsletter-subscribe form .btn {\n  padding: 16px 32px;\n  border: none;\n  background: none;\n  box-shadow: none;\n  text-shadow: none;\n  opacity: 0.9;\n  text-transform: uppercase;\n  font-weight: bold;\n  font-size: 13px;\n  letter-spacing: 0.4px;\n  line-height: 1;\n}\n.newsletter-subscribe form .btn:hover {\n  opacity: 1;\n}\n.newsletter-subscribe form .btn:active {\n  transform: translateY(1px);\n}\n.newsletter-subscribe form .btn-primary {\n  background-color: #055ada !important;\n  color: #fff;\n  outline: none !important;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
