@@ -6,9 +6,9 @@
   <div class="row pb-5 text-left">
     <div class="container text-center">
       <div class="row ">
-        <Accordion class="col-md-6 mb-3" v-for="item in cards" :key="item.id">
+        <Accordion class="col-md-6 mb-3 " v-for="item in cards" :key="item.id">
 
-          <AccordionTab style="display:flex;" title="Surah" :header="item.surah">
+          <AccordionTab class="btn btn-primary" style="display:flex;"  title="Surah" :header="item.surah">
             <div class="row">
               <div class="col-12">
                 <span class="pb-2 text-left" style="display:flex"><strong>Ayah</strong><br>

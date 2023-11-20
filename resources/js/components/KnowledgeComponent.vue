@@ -26,7 +26,7 @@
       <div class="col-md-9">
         <div class="tab-content" id="v-pills-tabContent">
 
-          <div class="tab-pane fade show active text-left pl-2" id="v-pills-pillars" role="tabpanel" aria-labelledby="v-pills-pillars-tab" tabindex="0">
+          <div class="tab-pane fade show active text-left pb-5 pl-2" id="v-pills-pillars" role="tabpanel" aria-labelledby="v-pills-pillars-tab" tabindex="0">
             <h3 class="pb-3 text-center"><b>The Five pillar of Islam</b></h3>
             <p>The Five Pillars of Islam represent the core acts of worship and practices that are fundamental to a Muslim's faith and life. They serve as the framework for a Muslim's relationship with God and their community:</p>
             <p>
@@ -45,9 +45,12 @@
               5- <b>Hajj (Pilgrimage to Mecca):</b> It is a pilgrimage that every able-bodied and financially capable Muslim is obligated to undertake at least once in their lifetime, if circumstances allow. It occurs during the Islamic month of Dhu al-Hijjah and involves a series of rituals performed at specific locations in and around Mecca.
             </p>
             <p>These pillars serve as a guide for a Muslim's daily life, fostering a strong connection with God, promoting charity, discipline, community engagement, and spiritual growth. They also reinforce the unity of Muslims worldwide through shared acts of worship and devotion.</p>
+            <div class="row text-center">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/VsxN98URybc?si=dQmiXRX0eFnk50je" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
           </div>
 
-          <div class="tab-pane fade text-left" id="v-pills-quran" role="tabpanel" aria-labelledby="v-pills-quran-tab" tabindex="0">
+          <div class="tab-pane fade text-left pb-5" id="v-pills-quran" role="tabpanel" aria-labelledby="v-pills-quran-tab" tabindex="0">
             <h3 class="pb-3 text-center"><b>The Holy Quran</b></h3>
             <p>The Five Pillars of Islam represent the core acts of worship and practices that are fundamental to a Muslim's faith and life. They serve as the framework for a Muslim's relationship with God and their community:</p>
             <p>
@@ -77,10 +80,13 @@
             <p>
               For Muslims, the Quran is not just a book but the literal word of God, providing guidance, comfort, and a source of inspiration in their daily lives. Its teachings and principles shape their worldview, ethics, and actions, fostering a strong connection with their faith and with God.
             </p>
+            <div class="row text-center">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/JMMILs2q3Ew?si=rDzjoIEjmIRE-TV7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>            
+            </div>
 
           </div>
 
-          <div class="tab-pane fade text-left" id="v-pills-hadith" role="tabpanel" aria-labelledby="v-pills-hadith-tab" tabindex="0">
+          <div class="tab-pane fade text-left pb-5" id="v-pills-hadith" role="tabpanel" aria-labelledby="v-pills-hadith-tab" tabindex="0">
             <h3 class="pb-3 text-center"><b>The Hadith</b></h3>
             <p>Hadith refers to the recorded traditions, sayings, actions, and approvals of Prophet Muhammad (peace be upon him). These traditions serve as a significant source of guidance, supplementing the teachings of the Quran. Understanding Hadith is essential in comprehending the Sunnah and, consequently, Islamic practice. Here are key points about Hadith:</p>
             <p>
@@ -110,10 +116,12 @@
             <p>
               Understanding and studying Hadith enable Muslims to gain insights into the life and teachings of the Prophet Muhammad, offering practical guidance on how to live a life in accordance with Islamic principles and ethics.
             </p>
-
+            <div class="row text-center mb-5">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/spfD8LkA8Kc?si=VXXgki7o_OydgEyV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>            
+            </div>
           </div>
 
-          <div class="tab-pane fade text-left" id="v-pills-sunah" role="tabpanel" aria-labelledby="v-pills-sunah-tab" tabindex="0">
+          <div class="tab-pane fade text-left pb-5" id="v-pills-sunah" role="tabpanel" aria-labelledby="v-pills-sunah-tab" tabindex="0">
             <h3 class="pb-3 text-center"><b>The Sunnah</b></h3>
             <p>In Islam, the Sunnah refers to the teachings, actions, sayings, and approvals of Prophet Muhammad (peace be upon him). The Sunnah complements the Quran and together they form the foundation of Islamic guidance and practice. Here's a deeper look into the relationship between Islam and the Sunnah:</p>
             <p>
@@ -140,10 +148,12 @@
             <p>
               In essence, the Sunnah complements the Quran by providing practical demonstrations and explanations of its teachings. It guides Muslims in their daily lives, fostering a deep connection with their faith and offering a comprehensive framework for ethical, spiritual, and practical conduct in accordance with Islamic principles.
             </p>
-
+            <div class="row text-center">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/pr-5kG1iuSI?si=QxpHYDg0j0zTmroo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>            
+            </div>
           </div>
 
-          <div class="tab-pane fade text-left" id="v-pills-shariah" role="tabpanel" aria-labelledby="v-pills-shariah-tab" tabindex="0">
+          <div class="tab-pane fade text-left pb-5" id="v-pills-shariah" role="tabpanel" aria-labelledby="v-pills-shariah-tab" tabindex="0">
             <h3 class="pb-3 text-center"><b>The Shariah Law</b></h3>
             <p>Sharia, often referred to as Shariah, is the Islamic legal system derived from the Quran, the teachings of Prophet Muhammad (the Sunnah), and scholarly consensus (Ijma) and reasoning (Qiyas). Sharia governs various aspects of a Muslim's life, including personal conduct, family matters, finance, ethics, and governance. Here are key points about Sharia law:</p>
             <p>
@@ -173,10 +183,12 @@
             <p>
               Sharia law remains a significant aspect of Islamic jurisprudence, guiding Muslims in their personal and communal lives while embodying the ethical and moral principles of Islam. Its interpretation and implementation continue to evolve within diverse Muslim communities and legal systems around the world.
             </p>
-
+            <div class="row text-center">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/7e5ScxLUW8o?si=_GTImfKPtHTV0MTv" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
           </div>
 
-          <div class="tab-pane fade text-left" id="v-pills-aquida" role="tabpanel" aria-labelledby="v-pills-aquida-tab" tabindex="0">
+          <div class="tab-pane fade text-left pb-5" id="v-pills-aquida" role="tabpanel" aria-labelledby="v-pills-aquida-tab" tabindex="0">
             <h3 class="pb-3 text-center"><b>Islamic Creed</b></h3>
             <p>The Islamic creed, known as "Aqidah" in Arabic, encompasses the core beliefs and principles that form the foundation of the Islamic faith. These beliefs outline the fundamental tenets that every Muslim adheres to. Here are the essential components of the Islamic creed:</p>
             <p>
@@ -198,10 +210,11 @@
               6- <b>Qadr (Divine Decree):</b> Muslims believe in predestination or divine decree, recognizing that God has knowledge of all things and has decreed everything that happens in the universe. This belief includes the concept of human free will within the framework of God's knowledge and decree.
             </p>
             <p>The Islamic creed serves as the framework of belief that unites Muslims globally. It forms the basis of their faith, guiding their actions, worldview, and relationship with God and the universe. Adherence to these core beliefs is essential in practicing and understanding Islam.</p>
-
+            <div class="row text-center">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/QstytMbwqMI?si=SSlbjAcLvYb_PhZc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>            </div>
           </div>
 
-          <div class="tab-pane fade text-left" id="v-pills-tafseer" role="tabpanel" aria-labelledby="v-pills-tafseer-tab" tabindex="0">
+          <div class="tab-pane fade text-left pb-5" id="v-pills-tafseer" role="tabpanel" aria-labelledby="v-pills-tafseer-tab" tabindex="0">
             <h3 class="pb-3 text-center"><b>Tafseer</b></h3>
             <p>Tafseer refers to the scholarly interpretation and exegesis of the Quran, aiming to elucidate its meanings, context, and significance. It involves a detailed analysis of the Quranic verses, exploring linguistic, historical, and contextual aspects to derive deeper understanding. Here are key points about Tafseer:</p>
             <p>
@@ -232,9 +245,12 @@
               7- <b>Relevance and Application:</b> Tafseer provides guidance for Muslims in understanding the Quran's teachings and applying its lessons to contemporary contexts. It aids in deriving moral, ethical, legal, and spiritual insights for personal and communal development.
             </p>
             <p>Tafseer is an ongoing scholarly endeavor that continues to contribute to a deeper understanding of the Quran's message. It serves as a vital tool for Muslims seeking to comprehend and live by the teachings of their holy scripture.</p>
+            <div class="row text-center">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/X_SNB1-uzCk?si=Uzb8LK4JcRFluGgD" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
           </div>
 
-          <div class="tab-pane fade text-left" id="v-pills-fiqh" role="tabpanel" aria-labelledby="v-pills-fiqh-tab" tabindex="0">
+          <div class="tab-pane fade text-left pb-5" id="v-pills-fiqh" role="tabpanel" aria-labelledby="v-pills-fiqh-tab" tabindex="0">
             <h3 class="pb-3 text-center"><b>Fiqh</b></h3>
             <p>Fiqh refers to Islamic jurisprudence, which encompasses the understanding, interpretation, and application of Islamic law (Shariah) based on the Quran, the Sunnah (teachings and practices of Prophet Muhammad), and scholarly consensus. Here are key points about Fiqh:</p>
             <p>
@@ -271,9 +287,12 @@
               7- <b>Continual Interpretation and Application:</b> Fiqh is not static but evolves with time and context. Scholars continue to engage in ijtihad (independent reasoning) to apply Islamic law to contemporary situations, ensuring its relevance and applicability.
             </p>
             <p>Fiqh plays a significant role in guiding Muslims in their daily lives, providing a framework for ethical behavior, social interactions, worship, and legal matters while reflecting the underlying principles of Islamic teachings.</p>
+            <div class="row text-center">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/BJUskDofYC8?si=Ujdy5W-hETwOvXAi" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
           </div>
 
-          <div class="tab-pane fade text-left" id="v-pills-sufism" role="tabpanel" aria-labelledby="v-pills-sufism-tab" tabindex="0">
+          <div class="tab-pane fade text-left pb-5" id="v-pills-sufism" role="tabpanel" aria-labelledby="v-pills-sufism-tab" tabindex="0">
             <h3 class="pb-3 text-center"><b>Islamic mysticism</b></h3>
             <p>Islamic mysticism, known as Sufism, is a spiritual dimension of Islam that focuses on seeking inner knowledge, spiritual closeness to God (Allah), and attaining a deeper understanding of divine truths. Here are key aspects of Sufism:</p>
             <p>
@@ -303,10 +322,12 @@
             <p>
               Sufism has been a significant aspect of Islamic spirituality, offering a path for individuals seeking a deeper understanding of the inner dimensions of faith and a personal connection with the Divine. It has influenced Islamic thought, art, literature, and culture across various regions throughout history.
             </p>
-
+            <div class="row text-center">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/xoGWSTfAw6k?si=MUoPtiTqve7plIY5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
           </div>
 
-          <div class="tab-pane fade text-left" id="v-pills-ethics" role="tabpanel" aria-labelledby="v-pills-ethics-tab" tabindex="0">
+          <div class="tab-pane fade text-left pb-5" id="v-pills-ethics" role="tabpanel" aria-labelledby="v-pills-ethics-tab" tabindex="0">
             <h3 class="pb-3 text-center"><b>Islamic Ethics and Morality</b></h3>
             <p>Islamic ethics and morality are integral components of the Islamic faith, guiding Muslims in their conduct, interactions, and relationships. These ethical principles are derived from the Quran, the Sunnah (teachings and practices of Prophet Muhammad), and Islamic jurisprudence (Fiqh). Here are key aspects of Islamic ethics:</p>
             <p>
@@ -342,9 +363,12 @@
             <p>
               Islamic ethics serve as a guide for Muslims in their daily lives, influencing their behavior, decisions, and relationships. These principles aim to create a virtuous and righteous society, fostering compassion, justice, and moral excellence.
             </p>
+            <div class="row text-center">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/ivcyzPlwQXI?si=hp_tkKQuTyUoPZIC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
           </div>
 
-          <div class="tab-pane fade text-left" id="v-pills-history" role="tabpanel" aria-labelledby="v-pills-history-tab" tabindex="0">
+          <div class="tab-pane fade text-left pb-5" id="v-pills-history" role="tabpanel" aria-labelledby="v-pills-history-tab" tabindex="0">
             <h3 class="pb-3 text-center"><b>Islamic History and Civilization</b></h3>
             <p>Islamic history and civilization span over fourteen centuries and have significantly impacted various regions, cultures, and societies around the world. Here are key points about Islamic history and civilization:</p>
             <p>
@@ -380,6 +404,9 @@
             <p>
               Islamic history and civilization have left a profound legacy, shaping the development of various fields of knowledge, arts, sciences, governance, and cultural exchange, leaving a lasting impact on global civilization.
             </p>
+            <div class="row text-center">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/bkVsus8Ehxs?si=Jd_Xk7DpCJKQXsIg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
           </div>
         </div>
       </div>
