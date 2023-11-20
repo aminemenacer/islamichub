@@ -7,27 +7,20 @@
   <div class="row py-3">
     <div class="col-lg-12 mx-auto">
       <div class="container-fluid table-responsive container-fluid" v-for="item in hadith" :key="item.id">
-        <table id="example" style="width:100%" class="table table-striped table-responsive table-bordered custom-class">
+        <table id="example" style="width:100%" class="table table-striped table-responsive table-bordered custom-class"><b class="pb-2">Reference: {{ item.reference }}</b>
           <thead class="table-success">
             <tr class="text-center">
               
-              <th class="col-md-5">Hadith (English)</th>
-              <th class="col-md-5">Hadith (Arabic)</th>                      
-              <th class="col-md-4">Narrator</th>
-              <th class="col-md-2">Chapter ID</th>
-              <th class="col-md-2">Book ID</th>
-              <th class="col-md-2">ID</th>
+              <th>Hadith (English)</th>
+              <th>Hadith (Arabic)</th>
+              <th>Narrator</th>
             </tr>
           </thead>
           <tbody style="background:white">
             <tr class="text-center">
-              <td class="col-md-5">{{ item.text }}</td>
-              <td class="col-md-5">{{ item.arabic }}</td>
-              <td class="col-md-4">{{ item.narrator }}</td>
-              <td class="col-md-3">{{ item.chapterId }}</td>
-              <td class="col-md-3">{{ item.bookId }}</td>              
-              <td class="col-md-2">{{ item.id }}</td>
-
+              <td>{{ item.text }}</td>
+              <td>{{ item.arabic }}</td>
+              <td>{{ item.narrator }}</td>
             </tr>
 
           </tbody>

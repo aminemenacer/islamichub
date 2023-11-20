@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'IslamicHub',
+    'title' => 'IslamicZone',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => '<b>IslamicHub</b>',
+    'logo' => '<b>IslamicZone</b>',
     'logo_img' => '/images/muslim.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
