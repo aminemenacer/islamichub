@@ -391,6 +391,12 @@ return [
             'url' => 'correction',
             'icon' => 'fas fa-fw fa-pen',
         ],
+        
+        [
+            'text' => 'Liked',
+            'url' => 'likes',
+            'icon' => 'fas fa-fw fa-heart',
+        ],
         [
             'text' => 'profile',
             'url'  => 'profile',

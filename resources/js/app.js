@@ -52,6 +52,7 @@ import HadithShahComponent from './components/HadithShahComponent.vue';
 import VideoComponent from './components/VideoComponent.vue';
 import KnowledgeComponent from './components/KnowledgeComponent.vue';
 import CorrectionComponent from './components/CorrectionComponent.vue';
+import LikesComponent from './components/LikesComponent.vue';
 
 
 window.Vue = require('vue');
@@ -101,6 +102,7 @@ app.component("hadith_shah-component", HadithShahComponent);
 app.component("video-component", VideoComponent);
 app.component("knowledge-component", KnowledgeComponent);
 app.component("correction-component", CorrectionComponent);
+app.component("likes-component", LikesComponent);
 
 
 app.mount('#app');

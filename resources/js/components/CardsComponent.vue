@@ -3,95 +3,244 @@
   <h2 class="pt-3 pb-3 text-center"><strong>Surah Information</strong></h2>
   <p class="container text-center">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
 
-  <div class="row pb-5 text-left">
-    <div class="container text-center">
-      <div class="row ">
-        <Accordion class="col-md-6 mb-3 " v-for="item in cards" :key="item.id">
 
-          <AccordionTab class="btn btn-primary" style="display:flex;"  title="Surah" :header="item.surah">
-            <div class="row">
-              <div class="col-12">
-                <span class="pb-2 text-left" style="display:flex"><strong>Ayah</strong><br>
-                </span>
-                <p class="m-0 text-left"> {{ item.ayaatiha }}</p>
+      <!-- view new Modal -->
+      <div class="modal fade" id="editNewCard" tabindex="-1" aria-labelledby="editNew" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title text-dark" id="addNew">
+                View message
+              </h5>
+              <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mr-2" style="display: flex">
+                  <label class="mt-2 mr-2 col-sm-3">Surah:</label>
+                  <p class="mt-2 text-dark">
+                    {{ form.surah }}
+                  </p>
+                </div>
 
-                <hr>
-                <span class="pb-2 text-left" style="display:flex"><strong>Its Verses</strong><br>
-                </span>
-                <p class="m-0 text-left"> {{ item.ayaatiha }}</p>
+                <div class="mr-2" style="display: flex">
+                  <label class="mt-2 mr-2 col-sm-3">Lastname:</label>
+                  <p class="mt-2 text-dark">
+                    {{ form.ayaatiha }}
+                  </p>
+                </div>
 
-                <hr>
-                <span class="pb-2 text-left" style="display:flex"><strong>Meaning of the Name</strong><br>
-                </span>
-                <p class="m-0 text-left"> {{ item.maeni_asamuha }}</p>
+                <div class="mr-2" style="display: flex">
+                  <label class="mt-2 mr-2 col-sm-3">email:</label>
+                  <p class="mt-2 text-dark">
+                    {{ form.maeni_asmauha }}
+                  </p>
+                </div>
 
-                <hr>
-                <span class="pb-2 text-left" style="display:flex"><strong>The Meaning of her Name</strong><br>
-                </span>
-                <p class="m-0 text-left"> {{ item.sabab_tasmiatiha }}</p>
+                <div class="mr-2" style="display: flex">
+                  <label class="mt-2 mr-2 col-sm-3">Phone:</label>
+                  <p class="mt-2 text-dark">
+                    {{ form.asmawuha }}
+                  </p>
+                </div>
 
-                <hr>
-                <span class="pb-2 text-left" style="display:flex"><strong>Her Names</strong><br>
-                </span>
-                <p class="m-0 text-left"> {{ item.asmawuha }}</p>
+                <div class="mr-2" style="display: flex">
+                  <label class="mt-2 mr-2 col-sm-3">User type:</label>
+                  <p class="mt-2 text-dark">
+                    {{ form.maqsiduha_aleamu }}
+                  </p>
+                </div>
+                
+                <div class="mr-2" style="display: flex">
+                  <label class="mt-2 mr-2 col-sm-3">Status:</label>
+                  <p class="mt-2 text-dark">
+                    {{ form.sabab_nuzuliha }}
+                  </p>
+                </div>
 
-                <hr>
-                <span class="pb-2 text-left" style="display:flex"><strong>It's General Purpose</strong><br>
-                </span>
-                <p class="m-0 text-left"> {{ item.maqsiduha_aleamu }}</p>
-                <hr>
+                <div class="mr-2" style="display: flex">
+                  <label class="mt-2 mr-2 col-sm-3">User type:</label>
+                  <p class="mt-2 text-dark">
+                    {{ form.fadluha }}
+                  </p>
+                </div>
+                
+                <div class="mr-2" style="display: flex">
+                  <label class="mt-2 mr-2 col-sm-3">Status:</label>
+                  <p class="mt-2 text-dark">
+                    {{ form.munasabatiha }}
+                  </p>
+                </div>
+          
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                    Close
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <DataTable v-model:filters="filters" showGridlines stripedRows sortable filterDisplay="row" :value="cards" ref="dt" class="text-center pt-5" width="100%" paginator :rows="7" :rowsPerPageOptions="[5, 10, 20, 50]" tableStyle="min-width: 50rem">
+        <template #header>
 
-                <span class="pb-2 text-left" style="display:flex"><strong>The Reason for its Descent</strong><br>
-                </span>
-                <p class="m-0 text-left"> {{ item.sabab_nuzuliha }}</p>
+          <div class="flex justify-content-start" style="display:flex">
 
-                <hr>
-                <span class="pb-2 text-left" style="display:flex"><strong>Her Grace</strong><br>
-                </span>
-                <p class="m-0 text-left"> {{ item.fadluha }}</p>
+            <p style="display: flex" class=" ml-auto mr-3 mt-2 text-black">
+              Search:
+            </p>
+            <span>
+              <InputText class="flex justify-content-end ml-2" v-model="filters['global'].value" placeholder="Keyword Search" />
+            </span>
 
-                <hr>
-                <span class="pb-2 text-left" style="display:flex"><strong>It's Occasions</strong><br>
-                </span>
-                <p class="m-0 text-left"> {{ item.munasabatiha }}</p>
+          </div>
 
-                <hr>
-                <span class="pb-2 text-left" style="display:flex"><strong>It's Occasions</strong><br>
-                </span>
-                <p class="m-0 text-left"> {{ item.munasabatiha }}</p>
+        </template>
+
+        <Column v-for="col of columns" :key="col.field" :field="col.field" :header="col.header" sortable style="text-align:center" width>
+        </Column>
+
+        <Column :exportable="true" style="min-width: 8rem">
+          <template #body="slotProps">
+            <div style="display:flex">
+
+              <div class="text-center">
+                <Button data-bs-toggle="modal" data-bs-target="#editNewCard" type="button" class="btn user-btn text-white text-center mr-2 action btn1" style="background-color: #1e88e5; display:flex;display:inline-block" @click="editModal(slotProps.data)">
+                  <i class="pi pi-eye mr-2"></i>
+                  View
+                </Button>
+                <Button  type="submit" class="btn btn-danger user-btn text-white text-center mr-2 action btn1" style=" display:flex;display:inline-block"  @submit.prevent="submitLike()" >
+                  <i class="pi pi-eye mr-2"></i>
+                  Like
+                </Button>
+
               </div>
             </div>
-          </AccordionTab>
-        </Accordion>
+          </template>
+        </Column>
 
-      </div>
+      </DataTable>
+
     </div>
-
-  </div>
-</div>
 </template>
 
 <script>
-import cards from '/Users/amine/Desktop/islamichub/storage/cards.json';
+import axios from "axios";
+import {
+  FilterMatchMode
+} from "primevue/api";
 
 export default {
+  mounted() {
+    this.loadCards();
+  },
   data() {
     return {
-      cards,
-      item: [],
-      visible: false
-    };
+      filters: {
+        global: {
+          value: null,
+          matchMode: FilterMatchMode.CONTAINS,
+        },
+      },
+      searchValue: "",
+      columns: [{
+          field: "surah",
+          header: "Name",
+          sortable: true,
+        },
+        {
+          field: "ayaatiha",
+          header: "Amount",
+          sortable: true,
+        },
+        {
+          field: "asmawuha",
+          header: "Payment Method",
+          sortable: true,
+        },
+        {
+          field: "asmawuha",
+          header: "Currency",
+          sortable: true,
+        },
+        {
+          field: "maqsiduha_aleamu",
+          header: "Status",
+          sortable: true,
+        },
+
+      ],
+      cards: null,
+
+      form: new Form({
+        id: "",
+        surah: "",
+        ayaatiha: "",
+        maeni_tasmiatiha: "",
+        asmawuha: "",
+        maqsiduha_aleamu: "",
+        sabab_nuzuliha: "",
+        fadluha: "",
+        munasabatiha: ""
+      }),
+    }
+  },
+  methods: {
+    loadCards() {
+      axios.get("api/fetch-cards").then((data) => {
+        this.cards = data.data;
+      });
+    },
+    submitLike() {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You want to save item !",
+        showCancelButton: true,
+        confirmButtonColor: "green",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Save item!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axios
+            .post("/api/create-likes", this.form)
+            .then((res) => {
+              if (!res.data.success) {
+                Swal.fire({
+                  position: "top-end",
+                  icon: "success",
+                  title: "Item save successfully ",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+                $("#addNew").hide();
+                self.close();
+              } else if (res.data.success) {
+                Swal.fire(
+                  "Error!",
+                  "Unable to save item.",
+                  "error"
+                );
+                self.close();
+              }
+            })
+            .catch(function (err) {});
+        }
+      });
+    },
+
+    //edit donation modal
+    editModal(card) {
+      this.editmode = true;
+      this.form.fill(card);
+    },
+    viewModal(card) {
+      $("#view").modal("show");
+      this.form.fill(card);
+    },
   }
 }
 </script>
-
-<style scoped>
-img {
-  width: 100%;
-}
-
-.accordion-button:not(.collapsed) {
-  color: #0c63e4;
-  background-color: #FEB7EE;
-}
-</style>

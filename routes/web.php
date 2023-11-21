@@ -21,6 +21,7 @@ use App\Http\Controllers\MailingListController;
 use App\Http\Controllers\videoController;
 use App\Http\Controllers\KnowledgeController;
 use App\Http\Controllers\CorrectionController;
+use App\Http\Controllers\LikedController;
 
 
 Route::get('/', function () {
@@ -31,11 +32,18 @@ Route::get('/welcome', function () {
 });
 
 
+// likes
+Route::get('api/fetch-likes', [LikedController::class, 'getLikes']);
+Route::get('/likes', [LikedController::class, 'index']);
+
+// cards
+Route::get('/cards', [CardsController::class, 'index']);
+Route::post('api/create-items', [CardController::class, 'submitLike']);
+
 
 // frontend json files
 Route::get('/allah_names', [AllahNamesController::class, 'index']);
 Route::get('/reminders', [ReminderController::class, 'index']);
-Route::get('/cards', [CardsController::class, 'index']);
 Route::get('/hadith_nawawi', [HadithNawawiController::class, 'index']);
 Route::get('/hadith_qudsi', [HadithQudsiController::class, 'index']);
 Route::get('/hadith_shah', [HadithShahController::class, 'index']);
@@ -49,6 +57,8 @@ Route::post('api/subscribe', [MailingListController::class, 'create']);
 Route::post('api/submit-correction', [CorrectionController::class, 'submit']);
 Route::get('/correction', [CorrectionController::class, 'index']);
 Route::get('api/fetch-corrections', [CorrectionController::class, 'getCorrections']);
+
+Route::get('api/fetch-cards', [CardsController::class, 'getCards']);
 
 
 // knowledge
