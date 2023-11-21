@@ -6,7 +6,7 @@
 
       <!-- view new Modal -->
       <div class="modal fade" id="editNewCard" tabindex="-1" aria-labelledby="editNew" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-xl">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title text-dark" id="addNew">
@@ -26,49 +26,56 @@
                 </div>
 
                 <div class="mr-2" style="display: flex">
-                  <label class="mt-2 mr-2 col-sm-3">Lastname:</label>
+                  <label class="mt-2 mr-2 col-sm-3">Her verses:</label>
                   <p class="mt-2 text-dark">
                     {{ form.ayaatiha }}
                   </p>
                 </div>
 
                 <div class="mr-2" style="display: flex">
-                  <label class="mt-2 mr-2 col-sm-3">email:</label>
+                  <label class="mt-2 mr-2 col-sm-3">Meanings of their names:</label>
                   <p class="mt-2 text-dark">
-                    {{ form.maeni_asmauha }}
+                    {{ form.maeni_asamuha }}
                   </p>
                 </div>
 
                 <div class="mr-2" style="display: flex">
-                  <label class="mt-2 mr-2 col-sm-3">Phone:</label>
+                  <label class="mt-2 mr-2 col-sm-3">The reason for its name:</label>
+                  <p class="mt-2 text-dark">
+                    {{ form.sabab_tasmiatiha }}
+                  </p>
+                </div>
+
+                <div class="mr-2" style="display: flex">
+                  <label class="mt-2 mr-2 col-sm-3">Their names:</label>
                   <p class="mt-2 text-dark">
                     {{ form.asmawuha }}
                   </p>
                 </div>
-
+                
                 <div class="mr-2" style="display: flex">
-                  <label class="mt-2 mr-2 col-sm-3">User type:</label>
+                  <label class="mt-2 mr-2 col-sm-3">Its general purpose:</label>
                   <p class="mt-2 text-dark">
                     {{ form.maqsiduha_aleamu }}
                   </p>
                 </div>
-                
+
                 <div class="mr-2" style="display: flex">
-                  <label class="mt-2 mr-2 col-sm-3">Status:</label>
+                  <label class="mt-2 mr-2 col-sm-3">The reason for its descent:</label>
                   <p class="mt-2 text-dark">
                     {{ form.sabab_nuzuliha }}
                   </p>
                 </div>
-
+                
                 <div class="mr-2" style="display: flex">
-                  <label class="mt-2 mr-2 col-sm-3">User type:</label>
+                  <label class="mt-2 mr-2 col-sm-3">Her grace:</label>
                   <p class="mt-2 text-dark">
                     {{ form.fadluha }}
                   </p>
                 </div>
-                
+
                 <div class="mr-2" style="display: flex">
-                  <label class="mt-2 mr-2 col-sm-3">Status:</label>
+                  <label class="mt-2 mr-2 col-sm-3">Its occasions:</label>
                   <p class="mt-2 text-dark">
                     {{ form.munasabatiha }}
                   </p>
@@ -111,7 +118,7 @@
               <div class="text-center">
                 <Button data-bs-toggle="modal" data-bs-target="#editNewCard" type="button" class="btn user-btn text-white text-center mr-2 action btn1" style="background-color: #1e88e5; display:flex;display:inline-block" @click="editModal(slotProps.data)">
                   <i class="pi pi-eye mr-2"></i>
-                  View
+                  More info
                 </Button>
                 <Button  type="submit" class="btn btn-danger user-btn text-white text-center mr-2 action btn1" style=" display:flex;display:inline-block"  @submit.prevent="submitLike()" >
                   <i class="pi pi-eye mr-2"></i>
@@ -152,26 +159,46 @@ export default {
           header: "Name",
           sortable: true,
         },
+        // {
+        //   field: "ayaatiha",
+        //   header: "Her verses",
+        //   sortable: true,
+        // },
         {
-          field: "ayaatiha",
-          header: "Amount",
+          field: "asmawuha",
+          header: "Their names",
           sortable: true,
         },
         {
-          field: "asmawuha",
-          header: "Payment Method",
-          sortable: true,
-        },
-        {
-          field: "asmawuha",
-          header: "Currency",
+          field: "sabab_tasmiatiha",
+          header: "The reason for its name",
           sortable: true,
         },
         {
           field: "maqsiduha_aleamu",
-          header: "Status",
+          header: "Its general purpose",
           sortable: true,
         },
+        {
+          field: "sabab_nuzuliha",
+          header: "The reason for its descent",
+          sortable: true,
+        },
+        // {
+        //   field: "fadluha",
+        //   header: "Her grace",
+        //   sortable: true,
+        // },
+        // {
+        //   field: "munasabatiha",
+        //   header: "Its occasions",
+        //   sortable: true,
+        // },
+        // {
+        //   field: "munasabatiha",
+        //   header: "Meanings of their names",
+        //   sortable: true,
+        // },
 
       ],
       cards: null,
@@ -180,11 +207,14 @@ export default {
         id: "",
         surah: "",
         ayaatiha: "",
-        maeni_tasmiatiha: "",
+        maeni_asamuha: "",
         asmawuha: "",
         maqsiduha_aleamu: "",
         sabab_nuzuliha: "",
         fadluha: "",
+        munasabatiha: "",
+        audio: "",
+        image: "",
         munasabatiha: ""
       }),
     }

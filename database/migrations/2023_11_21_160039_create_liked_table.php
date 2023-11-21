@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('audio');
             $table->string('image');
             $table->string('ayaatiha');
-            $table->string('maeni_tasmiatiha');
+            $table->string('maeni_asamuha');
+            $table->string('sabab_tasmiatiha');
             $table->string('asmawuha');
             $table->string('maqsiduha_aleamu');
             $table->string('sabab_nuzuliha');
