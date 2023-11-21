@@ -47,6 +47,9 @@ Route::post('api/subscribe', [MailingListController::class, 'create']);
 
 // correction
 Route::post('api/submit-correction', [CorrectionController::class, 'submit']);
+Route::get('/correction', [CorrectionController::class, 'index']);
+Route::get('api/fetch-corrections', [CorrectionController::class, 'getCorrections']);
+
 
 // knowledge
 Route::get('/knowledge', [knowledgeController::class, 'index'])->name('knowledge');

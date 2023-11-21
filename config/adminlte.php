@@ -387,6 +387,11 @@ return [
             'icon' => 'fas fa-fw fa-gift',
         ],
         [
+            'text' => 'Corrections',
+            'url' => 'correction',
+            'icon' => 'fas fa-fw fa-pen',
+        ],
+        [
             'text' => 'profile',
             'url'  => 'profile',
             'icon' => 'fas fa-fw fa-user',

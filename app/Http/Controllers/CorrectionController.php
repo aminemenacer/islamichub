@@ -7,6 +7,18 @@ use Illuminate\Http\Request;
 
 class CorrectionController extends Controller
 {
+
+    public function index()
+    {
+        return view('correction');
+    }
+
+    public function getCorrections()
+    {
+        $correction = Correction::get();
+        return $correction;
+    }
+
     public function submit(Request $request)
     {
         $this->validate($request, [
