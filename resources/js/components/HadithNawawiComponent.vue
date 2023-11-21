@@ -82,7 +82,7 @@
               </div>
 
             </div>
-            <div class="row pt-3">
+            <div class="row pt-3 pb-5">
               <label for="exampleFormControlTextarea1" name="added_notes mt-3" class="form-label">Additional comments:</label>
               <textarea class="form-control col-md-10" v-model="form.added_notes" id="exampleFormControlTextarea1" rows="5"></textarea>
             </div>
@@ -177,8 +177,10 @@ export default {
                   showConfirmButton: false,
                   timer: 1500,
                 });
+                window.location.reload();
                 $("#addNew").hide();
                 self.close();
+                
               } else if (res.data.success) {
                 Swal.fire(
                   "Error!",

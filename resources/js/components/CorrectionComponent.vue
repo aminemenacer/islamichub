@@ -51,6 +51,27 @@
             </div>
 
             <div class="mr-2" style="display: flex">
+              <label class="mt-2 mr-2 col-sm-3">Narrator:</label>
+              <p class="mt-2 text-dark">
+                {{ form.narrator }}
+              </p>
+            </div>
+
+            <div class="mr-2" style="display: flex">
+              <label class="mt-2 mr-2 col-sm-3">Arabic Hadith:</label>
+              <p class="mt-2 text-dark">
+                {{ form.hadith_arabic }}
+              </p>
+            </div>
+
+            <div class="mr-2" style="display: flex">
+              <label class="mt-2 mr-2 col-sm-3">English Hadith:</label>
+              <p class="mt-2 text-dark">
+                {{ form.hadith_english }}
+              </p>
+            </div>
+
+            <div class="mr-2" style="display: flex">
               <label class="mt-2 mr-2 col-sm-3">Added Notes:</label>
               <p class="mt-2 text-dark">
                 {{ form.added_notes }}
