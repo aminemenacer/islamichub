@@ -203,25 +203,30 @@
 
          <div class="tab-pane fade show text-left pb-5 pl-2" id="v-pills-pillars" role="tabpanel" aria-labelledby="v-pills-pillars-tab" tabindex="0">
             <h3 class="pb-3 text-center"><b>Prophet Muhammad</b></h3>
-            <p>The Five Pillars of Islam represent the core acts of worship and practices that are fundamental to a Muslim's faith and life. They serve as the framework for a Muslim's relationship with God and their community:</p>
+            <p>Prophet Muhammad, born in Mecca in 570 CE, belonged to the Quraysh tribe, part of the Arabian Peninsula. His early life was marked by the loss of his parents, and he was raised by his grandfather and later by his uncle.</p>
             <p>
-              1- <b>Shahada (Declaration of Faith):</b> It is the foundational creed of Islam, declaring belief in the oneness of God (Allah) and the acceptance of Prophet Muhammad as His messenger. The declaration is: "There is no god but Allah, and Muhammad is the messenger of Allah."
+              At the age of 40, Muhammad received his first revelation from the Angel Gabriel while meditating in a cave on Mount Hira. These revelations continued over the next 23 years, forming the Quran, the holy book of Islam, which Muslims believe to be the word of God as conveyed to humanity through Muhammad.
             </p>
             <p>
-              2- <b>Salah (Prayer):</b> Muslims perform five obligatory prayers a day facing the Kaaba in Mecca. These prayers are performed at specific times: Fajr (dawn), Dhuhr (noon), Asr (afternoon), Maghrib (evening), and Isha (night). Prayer involves recitations from the Quran and specific body movements.
+              Initially met with resistance in Mecca, Muhammad's teachings, which emphasized monotheism and social justice, gained traction among a small group of followers known as the early Muslims. The opposition from the ruling elite in Mecca led to persecution of Muhammad and his followers, resulting in their migration to Medina in 622 CE, an event known as the Hijra. This migration marks the beginning of the Islamic calendar.
             </p>
             <p>
-              3- <b>Zakat (Almsgiving):</b> Zakat is an obligation for Muslims who possess wealth above a certain threshold. It involves giving a portion of one's wealth (usually 2.5%) to help the needy and less fortunate in the community.
+              In Medina, Muhammad established a community based on principles of justice, equality, and compassion. He acted as both a religious and political leader, resolving conflicts, establishing treaties, and laying down principles for governance and social conduct.
             </p>
             <p>
-              4- <b>Sawm (Fasting during Ramadan):</b> Muslims fast from dawn to sunset during the month of Ramadan, abstaining from food, drink, smoking, and intimate relations. Fasting is an act of self-discipline, spiritual reflection, and empathy for the less fortunate.
+              The revelations continued throughout his life, addressing various aspects of life and guiding the Muslim community. Muhammad's teachings covered matters of faith, worship, ethics, social interactions, and governance. His actions and sayings, known as the Sunnah, were recorded by his companions and are an essential source of guidance for Muslims.
             </p>
             <p>
-              5- <b>Hajj (Pilgrimage to Mecca):</b> It is a pilgrimage that every able-bodied and financially capable Muslim is obligated to undertake at least once in their lifetime, if circumstances allow. It occurs during the Islamic month of Dhu al-Hijjah and involves a series of rituals performed at specific locations in and around Mecca.
+              Under Muhammad's leadership, Islam gained followers, and the Muslim community expanded. After a series of battles and treaties, Mecca eventually came under Islamic rule in 630 CE. Muhammad forgave his former adversaries, demonstrating forgiveness and reconciliation.
             </p>
-            <p>These pillars serve as a guide for a Muslim's daily life, fostering a strong connection with God, promoting charity, discipline, community engagement, and spiritual growth. They also reinforce the unity of Muslims worldwide through shared acts of worship and devotion.</p>
+            <p>
+              Known for his exemplary character, Muhammad exhibited kindness, compassion, humility, and a commitment to justice. He emphasized the importance of knowledge, education, and care for the marginalized. His teachings and actions serve as a model for Muslims worldwide, guiding their personal and communal lives.            
+            </p>
+            <p>
+              Muhammad passed away in 632 CE in Medina, leaving behind a legacy that continues to influence millions of people globally, shaping their beliefs, practices, and values. He is deeply revered and loved by Muslims as the final prophet and as an embodiment of piety, wisdom, and compassion.    
+            </p>
             <div class="row text-center">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/VsxN98URybc?si=dQmiXRX0eFnk50je" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/WEEORXFj-lo?si=ezHJTznAAL9P_KNH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
           </div>
 
