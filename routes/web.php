@@ -39,13 +39,12 @@ Route::get('/likes', [LikedController::class, 'index']);
 
 // cards
 Route::get('/cards', [CardsController::class, 'index']);
-Route::post('api/create-items', [CardController::class, 'submitLike']);
+Route::post('api/create-likes', [CardController::class, 'submitLike']);
 Route::get('api/fetch-cards', [CardsController::class, 'getCards']);
 
 // frontend json files
 Route::get('/allah_names', [AllahNamesController::class, 'index']);
 Route::get('/reminders', [ReminderController::class, 'index']);
-Route::get('/hadith_nawawi', [HadithNawawiController::class, 'index']);
 Route::get('/hadith_qudsi', [HadithQudsiController::class, 'index']);
 Route::get('/hadith_shah', [HadithShahController::class, 'index']);
 
@@ -59,7 +58,9 @@ Route::post('api/submit-correction', [CorrectionController::class, 'submit']);
 Route::get('/correction', [CorrectionController::class, 'index']);
 Route::get('api/fetch-corrections', [CorrectionController::class, 'getCorrections']);
 
-
+// nawawi
+Route::get('/nawawi', [HadithNawawiController::class, 'index']);
+Route::get('api/fetch-nawawis', [HadithNawawiController::class, 'getNawawis']);
 
 // prophets
 Route::get('/prophets', [ProphetsController::class, 'index'])->name('prophets');

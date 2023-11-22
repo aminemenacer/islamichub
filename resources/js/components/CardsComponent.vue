@@ -120,7 +120,7 @@
                   <i class="pi pi-eye mr-2"></i>
                   More info
                 </Button>
-                <Button  type="submit" class="btn btn-danger user-btn text-white text-center mr-2 action btn1" style=" display:flex;display:inline-block"  @submit.prevent="submitLike()" >
+                <Button  type="submit" class="btn  user-btn text-white text-center mr-2 action btn1" style="background:orange; display:flex;display:inline-block"  @submit.prevent="submitLike()" >
                   <i class="pi pi-eye mr-2"></i>
                   Like
                 </Button>
@@ -202,7 +202,19 @@ export default {
 
       ],
       cards: null,
-
+        id: "",
+        surah: "",
+        ayaatiha: "",
+        maeni_asamuha: "",
+        asmawuha: "",
+        maqsiduha_aleamu: "",
+        sabab_nuzuliha: "",
+        sabab_tasmiatiha: "",
+        fadluha: "",
+        munasabatiha: "",
+        audio: "",
+        image: "",
+        munasabatiha: "",
       form: new Form({
         id: "",
         surah: "",
@@ -237,7 +249,7 @@ export default {
       }).then((result) => {
         if (result.isConfirmed) {
           axios
-            .post("/api/create-likes", this.form)
+            .post("/api/create-likes")
             .then((res) => {
               if (!res.data.success) {
                 Swal.fire({

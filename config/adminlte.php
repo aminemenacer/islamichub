@@ -440,10 +440,6 @@ return [
                     'text' => 'Islamic Prophets',
                     'url'  => 'prophets',
                 ],
-                [
-                    'text' => 'Modern Islam',
-                    'url'  => 'islam',
-                ]
             ],
         ],
         [
@@ -453,7 +449,7 @@ return [
             'submenu' => [
                 [
                     'text' => 'Al-Nawawi',
-                    'url'  => 'hadith_nawawi',
+                    'url'  => 'nawawis',
                 ],
                 [
                     'text' => 'Al-Qudsi',

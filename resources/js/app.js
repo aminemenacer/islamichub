@@ -4,6 +4,8 @@ import { createApp } from "vue";
 import { Form } from "vform";
 import swal from "sweetalert2";
 import "sweetalert2/src/sweetalert2.scss";
+import { Bootstrap5Pagination } from 'laravel-vue-pagination';
+
 
 window.Vue = require("vue");
 
@@ -64,6 +66,8 @@ window.Form = Form;
 window.Swal = swal;
 
 app.use(PrimeVue);
+app.component('pagination', require('laravel-vue-pagination'));
+
 
 app.component("Column", Column);
 app.component("DataTable", DataTable);

@@ -78,7 +78,7 @@
                 </div>
               </div>
               <div class="col-3">
-                
+
               </div>
 
             </div>
@@ -124,7 +124,7 @@
 
           </tbody>
         </table>
-
+        <pagination :data="nawawis" @pagination-change-page="getResults"></pagination>
       </div>
     </div>
   </div>
@@ -134,9 +134,14 @@
 <script>
 import hadith from '/Users/amine/Desktop/islamichub/storage/three_main/nawawi_book.json';
 
+
 export default {
+  mounted() {
+    this.loadNawawis();
+  },
   data() {
     return {
+      nawawis: {},
       items: [],
       hadith,
       view: [],
@@ -156,6 +161,15 @@ export default {
     }
   },
   methods: {
+    getResults(page = 1) {
+			axios.get("api/fetch-nawawis?page=" + page)
+				.then(response => {
+					this.nawawis = response.data;
+				});
+    },
+    loadNawawis() {
+      axios.get("api/fetch-nawawis").then(({ data }) => (this.nawawis = data));
+    },
     submitCorrection() {
       Swal.fire({
         title: "Are you sure?",
@@ -180,7 +194,7 @@ export default {
                 window.location.reload();
                 $("#addNew").hide();
                 self.close();
-                
+
               } else if (res.data.success) {
                 Swal.fire(
                   "Error!",
