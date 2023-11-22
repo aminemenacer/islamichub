@@ -22,6 +22,7 @@ use App\Http\Controllers\videoController;
 use App\Http\Controllers\KnowledgeController;
 use App\Http\Controllers\CorrectionController;
 use App\Http\Controllers\LikedController;
+use App\Http\Controllers\ProphetsController;
 
 
 Route::get('/', function () {
@@ -39,7 +40,7 @@ Route::get('/likes', [LikedController::class, 'index']);
 // cards
 Route::get('/cards', [CardsController::class, 'index']);
 Route::post('api/create-items', [CardController::class, 'submitLike']);
-
+Route::get('api/fetch-cards', [CardsController::class, 'getCards']);
 
 // frontend json files
 Route::get('/allah_names', [AllahNamesController::class, 'index']);
@@ -58,8 +59,10 @@ Route::post('api/submit-correction', [CorrectionController::class, 'submit']);
 Route::get('/correction', [CorrectionController::class, 'index']);
 Route::get('api/fetch-corrections', [CorrectionController::class, 'getCorrections']);
 
-Route::get('api/fetch-cards', [CardsController::class, 'getCards']);
 
+
+// prophets
+Route::get('/prophets', [ProphetsController::class, 'index'])->name('prophets');
 
 // knowledge
 Route::get('/knowledge', [knowledgeController::class, 'index'])->name('knowledge');

@@ -357,7 +357,7 @@ return [
             'text' => 'Users',
             'url' => 'users',
             'icon' => 'fas fa-fw fa-users',
-            
+
         ],
 
         [
@@ -374,7 +374,7 @@ return [
             'icon' => 'fas fa-fw fa-envelope',
         ],
 
-        
+
         [
             'text' => 'Payments',
             'url' => 'payments',
@@ -391,7 +391,7 @@ return [
             'url' => 'correction',
             'icon' => 'fas fa-fw fa-pen',
         ],
-        
+
         [
             'text' => 'Liked',
             'url' => 'likes',
@@ -428,10 +428,23 @@ return [
             'icon' => 'fas fa-fw fa-bell',
         ],
         [
-            'text' => 'Islamic education',
-            'url'  => 'knowledge',
+            'text' => 'Islamic Knowledge',
             'icon' => 'fas fa-fw fa-school',
+            'submenu' => [
+                [
+                    'text' => 'Islamic education',
+                    'url'  => 'knowledge',
 
+                ],
+                [
+                    'text' => 'Islamic Prophets',
+                    'url'  => 'prophets',
+                ],
+                [
+                    'text' => 'Modern Islam',
+                    'url'  => 'islam',
+                ]
+            ],
         ],
         [
             'text' => 'Forty Hadith books',
@@ -452,6 +465,7 @@ return [
                 ]
             ],
         ],
+
         [
             'text' => 'Nine Books of Hadith',
             'url'  => 'ahadith_books',

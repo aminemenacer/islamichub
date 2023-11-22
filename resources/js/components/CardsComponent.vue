@@ -92,7 +92,7 @@
         </div>
       </div>
       
-      <DataTable v-model:filters="filters" showGridlines stripedRows sortable filterDisplay="row" :value="cards" ref="dt" class="text-center pt-5" width="100%" paginator :rows="7" :rowsPerPageOptions="[5, 10, 20, 50]" tableStyle="min-width: 50rem">
+      <DataTable v-model:filters="filters" showGridlines stripedRows sortable filterDisplay="row" :value="cards" ref="dt" class="text-center " width="100%" paginator :rows="7" :rowsPerPageOptions="[5, 10, 20, 50]" tableStyle="min-width: 50rem">
         <template #header>
 
           <div class="flex justify-content-start" style="display:flex">
@@ -211,6 +211,7 @@ export default {
         asmawuha: "",
         maqsiduha_aleamu: "",
         sabab_nuzuliha: "",
+        sabab_tasmiatiha: "",
         fadluha: "",
         munasabatiha: "",
         audio: "",

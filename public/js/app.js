@@ -19983,6 +19983,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
         asmawuha: "",
         maqsiduha_aleamu: "",
         sabab_nuzuliha: "",
+        sabab_tasmiatiha: "",
         fadluha: "",
         munasabatiha: "",
         audio: "",
@@ -21638,7 +21639,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     filterDisplay: "row",
     value: $data.cards,
     ref: "dt",
-    "class": "text-center pt-5",
+    "class": "text-center",
     width: "100%",
     paginator: "",
     rows: 7,
@@ -25485,6 +25486,226 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/ProphetsComponent.vue?vue&type=template&id=4026f3c3":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/ProphetsComponent.vue?vue&type=template&id=4026f3c3 ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: () => (/* binding */ render)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
+  "class": "pt-4 text-center"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, "Islam Teachings, Principles and Practices ")], -1 /* HOISTED */);
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "container-fluid pt-5 text-center"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "row"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "col-md-3"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "d-flex align-items-start"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "nav flex-column nav-pills mt-2",
+  id: "v-pills-tab",
+  role: "tablist",
+  "aria-orientation": "vertical"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  "class": "nav-link btn btn-light text-left text-black active mb-1",
+  id: "v-pills-quran-tab",
+  "data-bs-toggle": "pill",
+  "data-bs-target": "#v-pills-quran",
+  type: "button",
+  role: "tab",
+  "aria-controls": "v-pills-quran",
+  "aria-selected": "true"
+}, "Prophet Adam (Adam)"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  "class": "nav-link btn btn-light text-left text-black mb-1",
+  id: "v-pills-hadith-tab",
+  "data-bs-toggle": "pill",
+  "data-bs-target": "#v-pills-hadith",
+  type: "button",
+  role: "tab",
+  "aria-controls": "v-pills-hadith",
+  "aria-selected": "false"
+}, "Prophet Nuh (Noah)"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  "class": "nav-link btn btn-light text-left text-black mb-1",
+  id: "v-pills-sunah-tab",
+  "data-bs-toggle": "pill",
+  "data-bs-target": "#v-pills-sunah",
+  type: "button",
+  role: "tab",
+  "aria-controls": "v-pills-sunah",
+  "aria-selected": "false"
+}, "Prophet Ibrahim (Abraham)"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  "class": "nav-link btn btn-light text-left text-black mb-1",
+  id: "v-pills-shariah-tab",
+  "data-bs-toggle": "pill",
+  "data-bs-target": "#v-pills-shariah",
+  type: "button",
+  role: "tab",
+  "aria-controls": "v-pills-shariah",
+  "aria-selected": "false"
+}, "Prophet Musa (Moses)"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  "class": "nav-link btn btn-light text-left text-black mb-1",
+  id: "v-pills-aquida-tab",
+  "data-bs-toggle": "pill",
+  "data-bs-target": "#v-pills-aquida",
+  type: "button",
+  role: "tab",
+  "aria-controls": "v-pills-aquida",
+  "aria-selected": "true"
+}, "Prophet Jesus (Isa)"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  "class": "nav-link btn btn-light text-left text-black mb-1",
+  id: "v-pills-pillars-tab",
+  "data-bs-toggle": "pill",
+  "data-bs-target": "#v-pills-pillars",
+  type: "button",
+  role: "tab",
+  "aria-controls": "v-pills-pillars",
+  "aria-selected": "false"
+}, "Prophet Muhammad")])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "col-md-9"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "tab-content",
+  id: "v-pills-tabContent"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "tab-pane fade text-left pb-5 show active",
+  id: "v-pills-quran",
+  role: "tabpanel",
+  "aria-labelledby": "v-pills-quran-tab",
+  tabindex: "0"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
+  "class": "pb-3 text-center"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Prophet Adam (Adam)")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Prophet Adam holds a significant place in Islamic belief as the first human being and the first prophet according to Islamic tradition. His story is detailed in the Quran and Islamic teachings, reflecting on the creation of humanity, the beginning of life on Earth, and the essence of human nature."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", {
+  "class": "pb-3 text-left"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Creation and Status:")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 1- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Creation:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" According to Islamic teachings, Allah created Adam from clay and breathed life into him, making him the first human being. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 2- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Creation of Eve:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Eve (Hawwa or Eve) was created from Adam's rib and became his partner. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", {
+  "class": "pb-3 text-left"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Story of Adam in Islam:")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 1- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Life in Paradise:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Initially, Adam and Eve lived in Paradise (Jannah), enjoying its blessings but were asked not to approach a specific tree. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 2- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Disobedience and Fall: "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" They were tempted by Satan and ate from the forbidden tree, leading to their expulsion from Paradise to Earth. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 3- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Repentance and Forgiveness: "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Adam and Eve repented for their mistake, sought forgiveness, and were forgiven by Allah, who taught them repentance and mercy. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", {
+  "class": "pb-3 text-left"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Adam's Role as a Prophet:")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 1- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Guidance to Offspring:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Adam and Eve became the progenitors of humanity and conveyed guidance to their descendants. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 2- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Teachings:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" As the first prophet, Adam provided guidance to his offspring about faith, worship, and living according to God's commands. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", {
+  "class": "pb-3 text-left"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Lessons from Adam's Story:")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 1- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Human Fallibility: "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Adam's story emphasizes human fallibility and the ability to repent and seek forgiveness. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 2- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Importance of Obedience: "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" It highlights the significance of obeying God's commands and the consequences of disobedience. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " Adam's story is significant in Islamic teachings as it portrays the essence of human nature, the importance of repentance, and the concept of seeking forgiveness from Allah. His story serves as a reminder of human accountability and the mercy of God. "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "row text-center mb-5"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("iframe", {
+  width: "560",
+  height: "315",
+  src: "https://www.youtube.com/embed/mgicz3YJSyg?si=9A6f1GCnS-TR4xLS",
+  title: "YouTube video player",
+  frameborder: "0",
+  allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+  allowfullscreen: ""
+})])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "tab-pane fade text-left pb-5",
+  id: "v-pills-hadith",
+  role: "tabpanel",
+  "aria-labelledby": "v-pills-hadith-tab",
+  tabindex: "0"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
+  "class": "pb-3 text-center"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Prophet Nuh (Noah)")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Prophet Nuh (Noah in English) holds a significant place in Islamic tradition and is considered one of the most important prophets. His story is detailed in the Quran and Hadith, emphasizing his role in delivering God's message to his people and guiding them to righteousness."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", {
+  "class": "pb-3 text-center"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Key Aspects of Prophet Nuh's Story:")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 1- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Mission as a Prophet:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Nuh was sent by Allah to guide his people, who had deviated from the path of monotheism and indulged in idolatry and immoral practices. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 2- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Building the Ark:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Upon receiving Allah's command, Nuh built a massive ark to save believers and pairs of animals from a catastrophic flood sent as a punishment. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 3- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "The Flood:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" According to Islamic tradition, the flood was a means of cleansing the earth from wrongdoing and disbelief. Nuh and those who believed in him were saved by boarding the ark. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 4- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Call to Monotheism:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Nuh preached the message of monotheism (Tawhid), urging his people to abandon their polytheistic beliefs and return to worshipping only Allah. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 5- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Patience and Perseverance:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Despite facing rejection, ridicule, and opposition from his community for centuries, Nuh remained steadfast in his mission and continued to call his people to the truth. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 6- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Salvation:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Only a few people believed in Nuh's message, and they were the ones who were saved from the flood, symbolizing the importance of faith and obedience. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " Prophet Nuh's story serves as a reminder of the challenges faced by prophets in conveying their messages and the significance of patience, perseverance, and unwavering faith in the face of adversity. It also emphasizes the consequences of disbelief and the importance of following the guidance of God's chosen messengers. "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "row text-center mb-5"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("iframe", {
+  width: "560",
+  height: "315",
+  src: "https://www.youtube.com/embed/d2D6WuKlymM?si=491iDfKf_zMvgCRa",
+  title: "YouTube video player",
+  frameborder: "0",
+  allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+  allowfullscreen: ""
+})])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "tab-pane fade text-left pb-5",
+  id: "v-pills-sunah",
+  role: "tabpanel",
+  "aria-labelledby": "v-pills-sunah-tab",
+  tabindex: "0"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
+  "class": "pb-3 text-center"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Prophet Ibrahim (Abraham)")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Prophet Ibrahim (Abraham in English) holds a revered place in Islam, Christianity, and Judaism, regarded as a key figure in monotheistic faiths. In Islamic tradition, Ibrahim is considered a highly esteemed prophet, known for his unwavering faith, dedication to God, and pivotal role in spreading monotheism."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", {
+  "class": "pb-3 text-center"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Key Aspects of Prophet Ibrahim's Story:")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 1- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Monotheism and Iconoclasm:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Ibrahim grew up in a society entrenched in idol worship. However, even as a young man, he rejected the prevalent polytheism and started preaching the worship of the one true God (Allah). ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 2- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Challenges from his Community:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Ibrahim faced opposition, rejection, and persecution from his own people, who remained steadfast in their idolatry despite his efforts to guide them to monotheism. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 3- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "The Fiery Trial:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" One of the notable incidents in Ibrahim's life is the story of him being thrown into a massive fire by his people, known as the \"Fiery Trial.\" According to Islamic tradition, Allah miraculously saved Ibrahim from the flames, turning the fire into a cool, safe place for him. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 4- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Construction of the Kaaba:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Ibrahim, along with his son Ismail (Ishmael), is believed to have been instrumental in the rebuilding and construction of the Kaaba in Mecca, a sacred structure revered by Muslims worldwide. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 5- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Father of Prophets:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Ibrahim is recognized as the patriarch of a line of prophets, including his sons Ismail and Ishaq (Isaac), who were also chosen to convey God's message. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 6- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Willingness to Sacrifice:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" One of the most significant trials Ibrahim faced was the command from Allah to sacrifice his son Ismail. His willingness to obey God's command, even though it was a test and not an actual act, demonstrated his utmost devotion and submission to Allah. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " Prophet Ibrahim's unwavering faith, commitment to monotheism, and his role in establishing the foundations of Islamic belief serve as an inspiration for Muslims, emphasizing the importance of submitting to the will of God and trusting in His guidance. His story is prominently featured in the Quran and continues to hold immense significance in Islamic teachings. "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "row text-center mb-5"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("iframe", {
+  width: "560",
+  height: "315",
+  src: "https://www.youtube.com/embed/lZu173pTldI?si=Jr3RthfRNeirHgIT",
+  title: "YouTube video player",
+  frameborder: "0",
+  allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+  allowfullscreen: ""
+})])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "tab-pane fade text-left pb-5",
+  id: "v-pills-shariah",
+  role: "tabpanel",
+  "aria-labelledby": "v-pills-shariah-tab",
+  tabindex: "0"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
+  "class": "pb-3 text-center"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Prophet Musa (Moses)")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Prophet Musa (Moses in English) is a revered figure in Islam, known for his significant role in delivering God's message, leading the Israelites, and receiving the Torah (Tawrat). His story is detailed in the Quran and Hadith, portraying him as a prominent prophet and messenger of God"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", {
+  "class": "pb-3 text-center"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Key Aspects of Prophet Musa's Story:")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 1- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Birth and Early Life:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Musa was born in Egypt during a time when the Pharaoh oppressed the Israelites. His mother, fearing for his safety, placed him in a basket and set it afloat on the Nile River. He was discovered and raised by the Pharaoh's family. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 2- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Call to Prophethood:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Musa received prophethood and a divine mission from Allah. He was chosen as a messenger to guide the Israelites and confront the oppressive Pharaoh. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 3- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Confrontation with Pharaoh:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Musa demanded freedom for the enslaved Israelites and asked Pharaoh to acknowledge the oneness of God. He performed miracles, including the parting of the Red Sea, to demonstrate divine support. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 4- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Receiving the Torah:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Musa received the Torah, a sacred scripture, from Allah on Mount Sinai. It contains laws and guidance for righteous living. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 5- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Forty Years in the Wilderness:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" After leaving Egypt, Musa and the Israelites wandered in the wilderness for forty years, facing trials and tribulations while adhering to divine guidance. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 6- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Leadership and Guidance:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Musa provided leadership, guidance, and moral teachings to his people, emphasizing monotheism, justice, and ethical conduct. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " Prophet Musa's story in Islam emphasizes themes of faith, resilience, leadership, and the struggle against oppression. His steadfastness in delivering God's message and his pivotal role in the liberation of the Israelites from oppression serve as lessons for believers about standing up for truth and justice. Musa's teachings continue to hold significance in Islamic ethics and principles. "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "row text-center mb-5"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("iframe", {
+  width: "560",
+  height: "315",
+  src: "https://www.youtube.com/embed/ofbxAhMOykQ?si=bMTBVdRjU35lo3Ad",
+  title: "YouTube video player",
+  frameborder: "0",
+  allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+  allowfullscreen: ""
+})])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "tab-pane fade text-left pb-5",
+  id: "v-pills-aquida",
+  role: "tabpanel",
+  "aria-labelledby": "v-pills-aquida-tab",
+  tabindex: "0"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
+  "class": "pb-3 text-center"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Prophet Jesus (Isa)")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "In Islam, Prophet Jesus (Isa in Arabic) holds a special and revered position as one of the prominent prophets. His story is mentioned in the Quran and Hadith, emphasizing his miraculous birth, mission, and significance in Islamic theology."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", {
+  "class": "pb-3 text-center"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Key Aspects of Prophet Jesus's Story:")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 1- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Miraculous Birth:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Jesus was born miraculously to Mary (Maryam), a chaste and pious woman, without a father, as a sign from Allah's power and mercy. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 2- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Prophethood:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Jesus was chosen by Allah as a prophet from a young age, and he began preaching and calling people to the worship of one God (Tawhid). ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 3- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Miracles:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" The Quran mentions several miracles attributed to Jesus, including healing the sick, reviving the dead, and creating birds from clay, all by God's permission. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 4- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Message of Monotheism:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Jesus preached the same core message of monotheism and righteousness as previous prophets, emphasizing devotion to God and ethical conduct. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 5- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Non-divine Status:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" In Islamic belief, Jesus is honored as a prophet, not divine or the son of God. Islam strongly upholds the belief in the oneness of God (Tawhid) and rejects the idea of associating partners with Allah. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 6- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Ascension and Return:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Islamic tradition holds that Jesus was not crucified but was raised to the heavens by Allah. He will return in the future as a just ruler and a sign of the approaching end times, establishing justice and peace. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " Prophet Jesus' story in Islam emphasizes his role as a messenger of God, the miraculous nature of his birth, his mission to call people to righteousness, and his eventual return in the future. He is highly respected by Muslims as a prophet and a model of piety, humility, and devotion to God. His story serves as a testament to the power of God's miracles and the importance of following the guidance of the prophets. "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "row text-center"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("iframe", {
+  width: "560",
+  height: "315",
+  src: "https://www.youtube.com/embed/J-fOJKnU3o8?si=uARAkvpIKhwlTrUz",
+  title: "YouTube video player",
+  frameborder: "0",
+  allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+  allowfullscreen: ""
+})])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "tab-pane fade show text-left pb-5 pl-2",
+  id: "v-pills-pillars",
+  role: "tabpanel",
+  "aria-labelledby": "v-pills-pillars-tab",
+  tabindex: "0"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
+  "class": "pb-3 text-center"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Prophet Muhammad")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "The Five Pillars of Islam represent the core acts of worship and practices that are fundamental to a Muslim's faith and life. They serve as the framework for a Muslim's relationship with God and their community:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 1- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Shahada (Declaration of Faith):"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" It is the foundational creed of Islam, declaring belief in the oneness of God (Allah) and the acceptance of Prophet Muhammad as His messenger. The declaration is: \"There is no god but Allah, and Muhammad is the messenger of Allah.\" ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 2- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Salah (Prayer):"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Muslims perform five obligatory prayers a day facing the Kaaba in Mecca. These prayers are performed at specific times: Fajr (dawn), Dhuhr (noon), Asr (afternoon), Maghrib (evening), and Isha (night). Prayer involves recitations from the Quran and specific body movements. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 3- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Zakat (Almsgiving):"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Zakat is an obligation for Muslims who possess wealth above a certain threshold. It involves giving a portion of one's wealth (usually 2.5%) to help the needy and less fortunate in the community. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 4- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Sawm (Fasting during Ramadan):"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Muslims fast from dawn to sunset during the month of Ramadan, abstaining from food, drink, smoking, and intimate relations. Fasting is an act of self-discipline, spiritual reflection, and empathy for the less fortunate. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 5- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Hajj (Pilgrimage to Mecca):"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" It is a pilgrimage that every able-bodied and financially capable Muslim is obligated to undertake at least once in their lifetime, if circumstances allow. It occurs during the Islamic month of Dhu al-Hijjah and involves a series of rituals performed at specific locations in and around Mecca. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "These pillars serve as a guide for a Muslim's daily life, fostering a strong connection with God, promoting charity, discipline, community engagement, and spiritual growth. They also reinforce the unity of Muslims worldwide through shared acts of worship and devotion."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "row text-center"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("iframe", {
+  width: "560",
+  height: "315",
+  src: "https://www.youtube.com/embed/VsxN98URybc?si=dQmiXRX0eFnk50je",
+  title: "YouTube video player",
+  frameborder: "0",
+  allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+  allowfullscreen: ""
+})])])])])])], -1 /* HOISTED */);
+var _hoisted_3 = [_hoisted_1, _hoisted_2];
+function render(_ctx, _cache) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [].concat(_hoisted_3));
+}
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/ReminderComponent.vue?vue&type=template&id=777f5c50":
 /*!***************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/ReminderComponent.vue?vue&type=template&id=777f5c50 ***!
@@ -26347,6 +26568,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_KnowledgeComponent_vue__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./components/KnowledgeComponent.vue */ "./resources/js/components/KnowledgeComponent.vue");
 /* harmony import */ var _components_CorrectionComponent_vue__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ./components/CorrectionComponent.vue */ "./resources/js/components/CorrectionComponent.vue");
 /* harmony import */ var _components_LikesComponent_vue__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ./components/LikesComponent.vue */ "./resources/js/components/LikesComponent.vue");
+/* harmony import */ var _components_ProphetsComponent_vue__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ./components/ProphetsComponent.vue */ "./resources/js/components/ProphetsComponent.vue");
 // Vue libraries
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
@@ -26357,6 +26579,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bun
 
  //theme
  //core css
+
 
 
 
@@ -26436,6 +26659,7 @@ app.component("video-component", _components_VideoComponent_vue__WEBPACK_IMPORTE
 app.component("knowledge-component", _components_KnowledgeComponent_vue__WEBPACK_IMPORTED_MODULE_41__["default"]);
 app.component("correction-component", _components_CorrectionComponent_vue__WEBPACK_IMPORTED_MODULE_42__["default"]);
 app.component("likes-component", _components_LikesComponent_vue__WEBPACK_IMPORTED_MODULE_43__["default"]);
+app.component("prophets-component", _components_ProphetsComponent_vue__WEBPACK_IMPORTED_MODULE_44__["default"]);
 app.mount('#app');
 
 /***/ }),
@@ -58845,6 +59069,32 @@ if (false) {}
 
 /***/ }),
 
+/***/ "./resources/js/components/ProphetsComponent.vue":
+/*!*******************************************************!*\
+  !*** ./resources/js/components/ProphetsComponent.vue ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _ProphetsComponent_vue_vue_type_template_id_4026f3c3__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ProphetsComponent.vue?vue&type=template&id=4026f3c3 */ "./resources/js/components/ProphetsComponent.vue?vue&type=template&id=4026f3c3");
+/* harmony import */ var _node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+
+const script = {}
+
+;
+const __exports__ = /*#__PURE__*/(0,_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_1__["default"])(script, [['render',_ProphetsComponent_vue_vue_type_template_id_4026f3c3__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/ProphetsComponent.vue"]])
+/* hot reload */
+if (false) {}
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
+
+/***/ }),
+
 /***/ "./resources/js/components/ReminderComponent.vue":
 /*!*******************************************************!*\
   !*** ./resources/js/components/ReminderComponent.vue ***!
@@ -59616,6 +59866,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   render: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ProfileComponent_vue_vue_type_template_id_a8276c82__WEBPACK_IMPORTED_MODULE_0__.render)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ProfileComponent_vue_vue_type_template_id_a8276c82__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./ProfileComponent.vue?vue&type=template&id=a8276c82 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/ProfileComponent.vue?vue&type=template&id=a8276c82");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/ProphetsComponent.vue?vue&type=template&id=4026f3c3":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/ProphetsComponent.vue?vue&type=template&id=4026f3c3 ***!
+  \*************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ProphetsComponent_vue_vue_type_template_id_4026f3c3__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ProphetsComponent_vue_vue_type_template_id_4026f3c3__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./ProphetsComponent.vue?vue&type=template&id=4026f3c3 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/ProphetsComponent.vue?vue&type=template&id=4026f3c3");
 
 
 /***/ }),

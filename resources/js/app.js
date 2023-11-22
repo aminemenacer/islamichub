@@ -53,6 +53,7 @@ import VideoComponent from './components/VideoComponent.vue';
 import KnowledgeComponent from './components/KnowledgeComponent.vue';
 import CorrectionComponent from './components/CorrectionComponent.vue';
 import LikesComponent from './components/LikesComponent.vue';
+import ProphetsComponent from './components/ProphetsComponent.vue';
 
 
 window.Vue = require('vue');
@@ -103,6 +104,7 @@ app.component("video-component", VideoComponent);
 app.component("knowledge-component", KnowledgeComponent);
 app.component("correction-component", CorrectionComponent);
 app.component("likes-component", LikesComponent);
+app.component("prophets-component", ProphetsComponent);
 
 
 app.mount('#app');
