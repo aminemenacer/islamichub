@@ -333,15 +333,6 @@ return [
             'icon' => 'fas fa-fw fa-heart',
             'topnav_right' => true,
         ],
-        [
-            'text' => 'Login',
-            'url' => 'login',
-            'icon' => 'fas fa-fw fa-centercode',
-            'topnav_right' => true,
-
-        ],
-
-
 
         // Sidebar items:
         [
@@ -360,13 +351,13 @@ return [
 
         ],
 
-        [
-            'text' => 'Feedback',
-            'url' => 'feedback',
-            'icon' => 'fas fa-fw fa-comments',
-            'url'  => 'feedback',
+        // [
+        //     'text' => 'Feedback',
+        //     'url' => 'feedback',
+        //     'icon' => 'fas fa-fw fa-comments',
+        //     'url'  => 'feedback',
 
-        ],
+        // ],
 
         [
             'text' => 'Mailing list',
@@ -375,28 +366,24 @@ return [
         ],
 
 
-        [
-            'text' => 'Payments',
-            'url' => 'payments',
-            'icon' => 'fas fa-fw fa-credit-card',
+        // [
+        //     'text' => 'Payments',
+        //     'url' => 'payments',
+        //     'icon' => 'fas fa-fw fa-credit-card',
 
-        ],
+        // ],
         [
             'text' => 'Donations',
             'url' => 'donations',
             'icon' => 'fas fa-fw fa-gift',
         ],
-        [
-            'text' => 'Corrections',
-            'url' => 'correction',
-            'icon' => 'fas fa-fw fa-pen',
-        ],
+        
 
-        [
-            'text' => 'Liked',
-            'url' => 'likes',
-            'icon' => 'fas fa-fw fa-heart',
-        ],
+        // [
+        //     'text' => 'Liked',
+        //     'url' => 'likes',
+        //     'icon' => 'fas fa-fw fa-heart',
+        // ],
         [
             'text' => 'profile',
             'url'  => 'profile',
@@ -413,35 +400,40 @@ return [
             'icon' => 'fas fa-fw fa-home',
         ],
         [
-            'text' => 'Surah Information',
-            'url'  => 'cards',
+            'text' => 'Quran',
+            'url'  => 'quran',
             'icon' => 'fas fa-fw fa-quran',
         ],
         [
-            'text' => 'Names of Allah',
-            'url'  => 'allah_names',
-            'icon' => 'fas fa-fw fa-clipboard-list',
+            'text' => 'Information',
+            'url' => 'cards',
+            'icon' => 'fas fa-fw fa-pen',
         ],
+        // [
+        //     'text' => 'Names of Allah',
+        //     'url'  => 'allah_names',
+        //     'icon' => 'fas fa-fw fa-clipboard-list',
+        // ],
         [
             'text' => 'Reminders',
             'url'  => 'reminders',
             'icon' => 'fas fa-fw fa-bell',
         ],
-        [
-            'text' => 'Islamic Knowledge',
-            'icon' => 'fas fa-fw fa-school',
-            'submenu' => [
-                [
-                    'text' => 'Islamic education',
-                    'url'  => 'knowledge',
+        // [
+        //     'text' => 'Islamic Knowledge',
+        //     'icon' => 'fas fa-fw fa-school',
+        //     'submenu' => [
+        //         [
+        //             'text' => 'Islamic education',
+        //             'url'  => 'knowledge',
 
-                ],
-                [
-                    'text' => 'Islamic Prophets',
-                    'url'  => 'prophets',
-                ],
-            ],
-        ],
+        //         ],
+        //         [
+        //             'text' => 'Islamic Prophets',
+        //             'url'  => 'prophets',
+        //         ],
+        //     ],
+        // ],
         [
             'text' => 'Forty Hadith books',
             'url'  => 'ahadith',
@@ -462,87 +454,87 @@ return [
             ],
         ],
 
-        [
-            'text' => 'Nine Books of Hadith',
-            'url'  => 'ahadith_books',
-            'icon' => 'fas fa-fw fa-folder',
-            'submenu' => [
-                [
-                    'text' => 'Sahih al-Bukhari',
-                    'url'  => 'book_one',
-                ],
-                [
-                    'text' => 'Sahih al-Muslim',
-                    'url'  => 'book_two',
-                ],
-                [
-                    'text' => 'Sunan Abu Dawood',
-                    'url'  => 'book_three',
-                ],
-                [
-                    'text' => 'Sunan al-Tirmidi',
-                    'url'  => 'book_four',
-                ],
-                [
-                    'text' => 'Sunan al-Nasai',
-                    'url'  => 'book_five',
-                ],
-                [
-                    'text' => 'Sunan ibn Majah',
-                    'url'  => 'book_six',
-                ],
-                [
-                    'text' => 'Muwatta Imam Malik',
-                    'url'  => 'book_seven',
-                ],
-                [
-                    'text' => 'Musnad Ahmad',
-                    'url'  => 'book_eight',
-                ],
-                [
-                    'text' => 'Sunan Darimi',
-                    'url'  => 'book_nine',
-                ]
-            ],
-        ],
+        // [
+        //     'text' => 'Nine Books of Hadith',
+        //     'url'  => 'ahadith_books',
+        //     'icon' => 'fas fa-fw fa-folder',
+        //     'submenu' => [
+        //         [
+        //             'text' => 'Sahih al-Bukhari',
+        //             'url'  => 'book_one',
+        //         ],
+        //         [
+        //             'text' => 'Sahih al-Muslim',
+        //             'url'  => 'book_two',
+        //         ],
+        //         [
+        //             'text' => 'Sunan Abu Dawood',
+        //             'url'  => 'book_three',
+        //         ],
+        //         [
+        //             'text' => 'Sunan al-Tirmidi',
+        //             'url'  => 'book_four',
+        //         ],
+        //         [
+        //             'text' => 'Sunan al-Nasai',
+        //             'url'  => 'book_five',
+        //         ],
+        //         [
+        //             'text' => 'Sunan ibn Majah',
+        //             'url'  => 'book_six',
+        //         ],
+        //         [
+        //             'text' => 'Muwatta Imam Malik',
+        //             'url'  => 'book_seven',
+        //         ],
+        //         [
+        //             'text' => 'Musnad Ahmad',
+        //             'url'  => 'book_eight',
+        //         ],
+        //         [
+        //             'text' => 'Sunan Darimi',
+        //             'url'  => 'book_nine',
+        //         ]
+        //     ],
+        // ],
 
 
 
-        [
-            'header' => 'MULTIMEDIA',
-        ],
-        [
-            'text' => 'Short videos',
-            'url'  => 'video',
-            'icon' => 'fas fa-fw fa-film',
-        ],
-        [
-            'text' => 'Audio lectures',
-            'url'  => 'audio',
-            'icon' => 'fas fa-fw fa-file-audio',
-        ],
-        [
-            'text' => 'Ebooks',
-            'url'  => 'ebooks',
-            'icon' => 'fas fa-fw fa-rss',
-        ],
-        [
-            'text' => 'Islamic Images',
-            'url'  => 'images',
-            'icon' => 'fas fa-fw fa-images',
-        ],
+        // [
+        //     'header' => 'MULTIMEDIA',
+        // ],
+        // [
+        //     'text' => 'Short videos',
+        //     'url'  => 'video',
+        //     'icon' => 'fas fa-fw fa-film',
+        // ],
+        // [
+        //     'text' => 'Audio lectures',
+        //     'url'  => 'audio',
+        //     'icon' => 'fas fa-fw fa-file-audio',
+        // ],
+        // [
+        //     'text' => 'Ebooks',
+        //     'url'  => 'ebooks',
+        //     'icon' => 'fas fa-fw fa-rss',
+        // ],
+        // [
+        //     'text' => 'Islamic Images',
+        //     'url'  => 'images',
+        //     'icon' => 'fas fa-fw fa-images',
+        // ],
 
-        [
-            'text' => 'Podcasts',
-            'url'  => 'podcasts',
-            'icon' => 'fas fa-fw fa-headphones',
-        ],
+        // [
+        //     'text' => 'Podcasts',
+        //     'url'  => 'podcasts',
+        //     'icon' => 'fas fa-fw fa-headphones',
+        // ],
 
-        [
-            'text' => 'PDF & documents',
-            'url'  => 'docs',
-            'icon' => 'fas fa-fw fa-folder-open',
-        ],
+        // [
+        //     'text' => 'PDF & documents',
+        //     'url'  => 'docs',
+        //     'icon' => 'fas fa-fw fa-folder-open',
+        // ],
 
 
     ],

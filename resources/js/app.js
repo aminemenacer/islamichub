@@ -29,9 +29,6 @@ import Image from 'primevue/image';
 
 
 
-
-
-
 import UsersComponent from "./components/UsersComponent.vue";
 import MailingListComponent from "./components/MailingListComponent.vue";
 import FeedbackComponent from "./components/FeedbackComponent.vue";
@@ -56,6 +53,7 @@ import KnowledgeComponent from './components/KnowledgeComponent.vue';
 import CorrectionComponent from './components/CorrectionComponent.vue';
 import LikesComponent from './components/LikesComponent.vue';
 import ProphetsComponent from './components/ProphetsComponent.vue';
+import QuranComponent from './components/QuranComponent.vue';
 
 
 window.Vue = require('vue');
@@ -109,6 +107,7 @@ app.component("knowledge-component", KnowledgeComponent);
 app.component("correction-component", CorrectionComponent);
 app.component("likes-component", LikesComponent);
 app.component("prophets-component", ProphetsComponent);
+app.component("quran-component", QuranComponent);
 
 
 app.mount('#app');

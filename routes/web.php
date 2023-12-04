@@ -23,6 +23,7 @@ use App\Http\Controllers\KnowledgeController;
 use App\Http\Controllers\CorrectionController;
 use App\Http\Controllers\LikedController;
 use App\Http\Controllers\ProphetsController;
+use App\Http\Controllers\QuranController;
 
 
 Route::get('/', function () {
@@ -112,6 +113,9 @@ Route::get('api/fetch-payments', [PaymentController::class, 'getPayments']);
 // donations
 Route::get('/donations', [DonationController::class, 'index']);
 Route::get('api/fetch-donations', [DonationController::class, 'getDonations']);
+
+// quran
+Route::get('/quran', [QuranController::class, 'index']);
 
 
 // Route::get('ManageProducts', 'ProductController@index')->middleware('auth');
