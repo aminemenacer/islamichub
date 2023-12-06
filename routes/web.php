@@ -24,6 +24,7 @@ use App\Http\Controllers\CorrectionController;
 use App\Http\Controllers\LikedController;
 use App\Http\Controllers\ProphetsController;
 use App\Http\Controllers\QuranController;
+use App\Http\Controllers\SurahController;
 
 
 Route::get('/', function () {
@@ -32,6 +33,13 @@ Route::get('/', function () {
 Route::get('/welcome', function () {
     return view('home');
 });
+
+
+
+Route::get('/get_surahs', [SurahController::class, 'getSurahs']);
+Route::get('/get_ayahs', [SurahController::class, 'getAyahs']);
+Route::get('/get_pages', [SurahController::class, 'getPages']);
+Route::get('/get_informations', [SurahController::class, 'getInformations']);
 
 
 // likes

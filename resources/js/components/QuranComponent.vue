@@ -1,6 +1,6 @@
 <template>
 <div id="app">
-  <h2 class="pt-3 pb-3 text-center"><strong>The Holy Quran</strong></h2>
+  <h2 class="pt-3 text-center"><strong>The Holy Quran</strong></h2>
 
   <div class="container-fluid text-center">
 
@@ -26,49 +26,56 @@
         </form>
       </div>
     </div>
-    <hr>
+    <hr style="color:black">
 
     <!-- multiple input sections -->
     <div class="container-fluid text-center pb-5">
       <div class="row container-fluid">
-        <div class="col-md-8" style="display:flex">
+        <div class="col-md-7" style="display:flex">
 
           <label class="pt-2 pl-2 pr-2">Surah:</label>
-          <form class="col-md-2">
-            <select class="form-control ">
-              <option>Select</option>
+
+          <form class="col-md-4">
+            <select class="form-control" v-model="surah" @change="getAyahs()">
+              <option value="0">Select Surah</option>
+              <option v-for="surah in surahs" :key="surah.id" :value="surah.id">{{ surah.name }}</option>
             </select>
+
           </form>
 
           <label class="pt-2 pl-4 pr-2">Ayah:</label>
-          <form class="col-md-2">
-            <select class="form-control">
-              <option>Select</option>
+
+          <form class="col-md-4">
+            <select class="form-control" v-model="ayah" @change="getInformations()">
+              <option value="0">Select Ayah</option>
+              <option v-for="ayah in ayahs" :key="ayah.id" :value="ayah.id">{{ ayah.name }}</option>
             </select>
           </form>
-
+<!--
           <label class="pt-2 pl-4 pr-3">Page:</label>
-          <form class="col-md-2">
-            <select class="form-control">
-              <option>Select</option>
+
+          <form class="col-md-3">
+            <select class="form-control " v-model="page">
+              <option value="0">Select Page</option>
+              <option v-for="page in pages" :key="page.id" :value="pages.id">{{ pages.name }}</option>
             </select>
           </form>
 
-          <button class="btn btn-outline-success" type="submit">Search</button>
+           <button class=" btn btn-outline-success" type="submit">Search</button> -->
         </div>
 
-        <div class="col-md-4" style="display:flex">
-          <label class="pt-2 pr-3">Mushaf:</label>
+        <div class="col-md-5 pl-5" style="display:flex">
+          <label class="pt-2 pl-5 pr-3">Mushaf:</label>
           <form class="col-md-4">
             <select class="form-control ">
-              <option>Select</option>
+              <option>Standard</option>
             </select>
           </form>
 
           <label class="pt-2 pl-2 pr-3">Reciter:</label>
           <form class="col-md-4">
             <select class="form-control">
-              <option>Select</option>
+              <option>Yacein</option>
             </select>
           </form>
         </div>
@@ -78,31 +85,28 @@
       <!-- accordion headers-->
       <div class="row container-fluid">
         <div class="col-8 pt-3">
-          <Accordion style="border:2px solid lightgrey" :multiple="true" :activeIndex="[0,1]" >
-            <AccordionTab style="color:black" header="Translation">
+          <Accordion v-for="information in informations" :key="information.id" :value="information.id"  style="border:2px solid lightgrey" :multiple="true" :activeIndex="[0,1,2]">
+            <AccordionTab  style="color:black" header="Translation">
               <div class="m-0 fas fa-fw fa-play text-right"></div>
               <p class="text-left mt-2 m-0">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                {{ information.translation }}
               </p>
             </AccordionTab>
-            <AccordionTab header="Tafseer">
+            <AccordionTab style="color:black" header="Tafseer">
               <div class="m-0 fas fa-fw fa-play text-right"></div>
               <p class="text-left mt-2 m-0">
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim
-                ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia non numquam eius modi.
+                {{ information.tafseer }}
               </p>
             </AccordionTab>
-            <AccordionTab header="Transliteration">
+            <AccordionTab style="color:black" header="Transliteration">
               <div class="m-0 fas fa-fw fa-play text-right"></div>
               <p class="text-left mt-2 m-0">
-                At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui
-                officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.
+                {{ information.transliteration }}
               </p>
             </AccordionTab>
           </Accordion>
         </div>
-        <div class="col-4" >
+        <div class="col-4">
           <div class="row">
             <div class="col-3"></div>
             <div class="col-6">
@@ -112,11 +116,11 @@
             </div>
             <div class="col-3"></div>
           </div>
-          <div class="row mt-3 text-center" >
+          <div class="row mt-3 text-center">
             <div class="col-3">
               <div><b>Surah 1</b></div>
             </div>
-            <div class="col-6 text-center" >
+            <div class="col-6 text-center">
               <div class="m-0 fas fa-fw mt-1 fa-arrow-left"></div>
               472
               <div class="m-0 fas fa-fw mt-1 fa-arrow-right text-right"></div>
@@ -136,7 +140,57 @@
 
 <script>
 export default {
+  mounted() {
+    this.getSurahs();
+  },
+  data() {
+    return {
+      surah: 0,
+      surahs: [],
+      ayah: 0,
+      ayahs: [],
+      page: 0,
+      pages: [],
+      information: 0,
+      informations:[]
+    }
+  },
+  methods: {
 
+    getSurahs: function () {
+      axios.get('/get_surahs')
+        .then(function (response) {
+          this.surahs = response.data;
+        }.bind(this));
+    },
+    getAyahs: function () {
+      axios.get('/get_ayahs', {
+        params: {
+          surah_id: this.surah
+        }
+      }).then(function (response) {
+        this.ayahs = response.data;
+      }.bind(this));
+    },
+    // getPages: function () {
+    //   axios.get('/get_pages', {
+    //     params: {
+    //       ayah_id: this.ayah
+    //     }
+    //   }).then(function (response) {
+    //     this.pages = response.data;
+    //   }.bind(this));
+    // },
+    getInformations: function () {
+      axios.get('/get_informations', {
+        params: {
+          ayah_id: this.ayah
+        }
+      }).then(function (response) {
+        this.informations = response.data;
+      }.bind(this));
+    },
+  },
 }
 </script>
 

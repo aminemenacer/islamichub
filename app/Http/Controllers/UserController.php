@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
-
+use Illuminate\Support\Facades\File;
+use App\MarkdownContent;
+use App\Models\Information;
 
 class UserController extends Controller
 {
@@ -17,6 +19,7 @@ class UserController extends Controller
 
     public function getUsers()
     {
+
         $user = User::orderBy('id', 'desc')->get();
         return $user;
     }
@@ -36,10 +39,10 @@ class UserController extends Controller
             'user_type' => 'required',
             'status' => 'required',
             'password' => 'required'
-            
+
         ]);
         $user = new User();
-        
+
 
         $user->name = $request->name;
         $user->lastname = $request->lastname;
@@ -49,7 +52,6 @@ class UserController extends Controller
         $user->status = $request->status;
         $user->password = Hash::make($request->password);
         $user->save();
-        
     }
 
     public function updateUsers(Request $request, $id)
@@ -70,7 +72,7 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->phone = $request->phone;
         $user->user_type = $request->user_type;
-        $user->status = $request->status;        
+        $user->status = $request->status;
         $user->password = Hash::make($request->password);
 
         $user->save();

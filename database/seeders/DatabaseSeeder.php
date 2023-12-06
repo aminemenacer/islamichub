@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PaymentSeeder::class);
         $this->call(DonationSeeder::class);
         $this->call(MailingSeeder::class);
+        $this->call(QuranInformationSeeder::class);
 
     }
 }
