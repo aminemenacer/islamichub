@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('information', function (Blueprint $table) {
+        Schema::create('ayah', function (Blueprint $table) {
             $table->id();
-            $table->longText('translation', 255)->nullable();            
-            $table->longText('tafseer', 255)->nullable();
-            $table->longText('transliteration', 255)->nullable();
+            $table->string('surah_id');
+            $table->longText('ayah_text');
             $table->string('ayah_id');
             $table->timestamps();
         });
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('information');
+        Schema::dropIfExists('ayah');
     }
 };

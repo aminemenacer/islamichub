@@ -11,45 +11,47 @@ use App\MarkdownContent;
 
 class QuranInformationSeeder extends Seeder
 {
-  public function run()
-  {
-    // Directory where your Markdown files are stored
-    $directory = '././database/data';
+    public function run()
+    {
+        // // Directory where your Markdown files are stored
+        // $directory = '././database/data/dataForInformationModel';
 
-    // Get all Markdown files from the directory
-    $markdownFiles = File::files($directory);
-    $quranInfoArray = [];
+        // // Get all Markdown files from the directory
+        // $markdownFiles = File::files($directory);
+        // $quranInfoArray = [];
 
-    foreach ($markdownFiles as $file) {
-        // Read the file content
-        $fileContents = File::get($file->getPathname());
-        $filename = $file->getFilename();
+        // foreach ($markdownFiles as $file) {
+        //     // Read the file content
+        //     $fileContents = File::get($file->getPathname());
+        //     $filename = $file->getFilename();
 
 
-        // Separate metadata and content
-        list($metadata, $content) = explode('-->', $fileContents, 2);
-        // dd($metadata);
-        // Extract verses (lines starting with '#')
-        preg_match_all('/# (\d+)\s*([\s\S]*?)(?=# \d+|\z)/', $content, $matches, PREG_SET_ORDER);
 
-        foreach ($matches as $match) {
-            $verseNumber = $match[1];
-            $verseContent = trim($match[2]);
+        //     // Separate metadata and content
+        //     list($metadata, $content) = explode('-->', $fileContents, 2);
 
-            if (str_contains($filename, "tafsir")) {
-                $columnName = "tafseer";
-            } elseif (str_contains($filename, "translation")) {
-                $columnName = "translation";
-            } else {
-                $columnName =  "transliteration";
-            };
+        //     // Extract verses (lines starting with '#')
+        //     preg_match_all('/# (\d+)\s*([\s\S]*?)(?=# \d+|\z)/', $content, $matches, PREG_SET_ORDER);
 
-            $quranInfoArray[$verseNumber][$columnName] = $verseContent;
-        }
+        //     foreach ($matches as $match) {
+        //         $verseNumber = $match[1];
+        //         $verseContent = trim($match[2]);
+
+        //         if (str_contains($filename, "tafsir")) {
+        //             $columnName = "tafseer";
+        //         } elseif (str_contains($filename, "translation")) {
+        //             $columnName = "translation";
+        //         } else {
+        //             $columnName =  "transliteration";
+        //         };
+
+        //         $quranInfoArray[$verseNumber][$columnName] = $verseContent;
+        //     }
+        // }
+        // foreach ($quranInfoArray as $ayah => $quranInfo) {
+        //     $quranInfo['ayah_id'] = $ayah;
+
+        //     Information::create($quranInfo); 
+        // }
     }
-    foreach ($quranInfoArray as $ayah => $quranInfo) {
-        $quranInfo['ayah_id'] = $ayah;
-        Information::create($quranInfo);
-    }
-  }
 }

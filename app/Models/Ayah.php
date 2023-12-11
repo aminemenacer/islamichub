@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Ayah extends Model
 {
@@ -12,10 +13,14 @@ class Ayah extends Model
     protected $table = 'ayah';
 
      protected $fillable = [
-        'tafseer',
-        'translation',
-        'transliteration',
-        'ayah_id'
+        'surah_id',
+        'ayah_id',
+        'ayah_text',
     ];
+
+    public function surah()
+    {
+        return $this->BelongsTo(Surah::class,'surah_id','id');
+    }
 
 }
