@@ -1,7 +1,8 @@
 <template>
 <div id="app">
+<!--
   <h2 class="pt-3 text-center"><strong>The Holy Quran</strong></h2>
-
+-->
   <div class="container-fluid text-center">
 
     <!-- main section search-->
@@ -33,7 +34,7 @@
 
     <!-- multiple input sections -->
     <div class="container-fluid text-center">
-      <div class="row container-fluid">
+      <div class="row">
         <div class="col-md-6" style="display:flex">
 
           <label class="pt-2 pl-2 pr-2">Surah:</label>
@@ -174,7 +175,7 @@
           </div>
         </div>
     <!-- right section -->
-    <div class="col-4">
+    <div class="col-4 container-fluid">
       <!--
             <div class="row">
               <div class="col-3"></div>
@@ -200,7 +201,13 @@
               </div>
             </div>
           -->
-      <img src="/images/quran_img.png" style="width:90%; border:4px solid lightgrey">
+
+          <audio controls  autoplay muted class="container-fluid" style="background:grey">
+            <source src="" type="audio/ogg">
+            <source src="" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+      <img src="/images/quran_img.png" style="width:100%; border:4px solid lightgrey">
     </div>
   </div>
 </div>
