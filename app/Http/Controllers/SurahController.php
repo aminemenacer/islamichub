@@ -11,7 +11,7 @@ class SurahController extends Controller
 {
     public function getSurahs()
     {
-        $surah = Surah::get();
+        $surah = Surah::with('')->get();
         return response()->json($surah);
     }
 

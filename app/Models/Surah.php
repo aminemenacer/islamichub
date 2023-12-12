@@ -11,14 +11,13 @@ class Surah extends Model
 
     protected $table = 'surah';
 
-     protected $fillable = [
+    protected $fillable = [
         'name_en',
         'name_ar'
     ];
 
-    public function surah()
+    public function ayat()
     {
         return $this->hasMany(Ayah::class);
     }
-
 }
