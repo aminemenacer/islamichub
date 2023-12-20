@@ -11,25 +11,19 @@ class SurahController extends Controller
 {
     public function getSurahs()
     {
-        $surah = Surah::with('')->get();
-        return response()->json($surah);
+        $data = Surah::get();
+        return response()->json($data);
     }
 
     public function getAyahs(Request $request)
     {
-        $ayah = Ayah::get();
-        return response()->json($ayah);
+        $data = Ayah::where('surah_id', $request->surah_id)->get();
+        return response()->json($data);
     }
-
-    // public function getPages(Request $request)
-    // {
-    //     $pages = Page::where('ayah_id', $request->ayah_id)->get();
-    //     return response()->json($pages);
-    // }
 
     public function getInformations(Request $request)
     {
-        $information = Information::get();
-        return response()->json($information);
+        $data = Information::where('ayah_id', $request->ayah_id)->get();
+        return response()->json($data);
     }
 }

@@ -21168,25 +21168,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
-function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
-    this.getInformations();
+    this.getSurahs();
   },
   data: function data() {
-    var _ref;
-    return _ref = {
-      information: [],
+    return {
+      data: [],
       surah: 0,
       surahs: [],
       ayah: 0,
-      ayahs: [],
-      page: 0,
-      pages: []
-    }, _defineProperty(_ref, "information", 0), _defineProperty(_ref, "informations", []), _ref;
+      ayahs: {},
+      page: '',
+      pages: [],
+      information: 0,
+      informations: []
+    };
   },
   methods: {
     getSurahs: function getSurahs() {
@@ -21197,14 +21194,18 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
     getAyahs: function getAyahs() {
       axios.get('/get_ayahs', {
         params: {
-          surah_num: this.surah
+          surah_id: this.surah
         }
       }).then(function (response) {
         this.ayahs = response.data;
       }.bind(this));
     },
     getInformations: function getInformations() {
-      axios.get('/get_informations', {}).then(function (response) {
+      axios.get('/get_informations', {
+        params: {
+          ayah_id: this.ayah
+        }
+      }).then(function (response) {
         this.informations = response.data;
       }.bind(this));
     }
@@ -25812,128 +25813,92 @@ __webpack_require__.r(__webpack_exports__);
 var _hoisted_1 = {
   id: "app"
 };
-var _hoisted_2 = {
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
+  "class": "pt-3 text-center"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, "The Holy Quran")], -1 /* HOISTED */);
+var _hoisted_3 = {
   "class": "container-fluid text-center pt-3"
 };
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "text-center col-md-12 pt-3",
+var _hoisted_4 = {
+  "class": "row text-center"
+};
+var _hoisted_5 = {
+  "class": "col-md-8 text-center",
   style: {
-    "padding": "15px",
+    "padding-top": "10px",
     "box-shadow": "rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px",
     "border-radius": "10px",
-    "background": "transparent"
+    "background": "transparent",
+    "border": "3px solid #c3e6cb"
   }
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+};
+var _hoisted_6 = {
   "class": "row"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "col-5"
+};
+var _hoisted_7 = {
+  "class": "card-body"
+};
+var _hoisted_8 = {
+  "class": "form-group"
+};
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Select surah:", -1 /* HOISTED */);
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  value: "0"
+}, "Select surah", -1 /* HOISTED */);
+var _hoisted_11 = ["value"];
+var _hoisted_12 = {
+  "class": "form-group"
+};
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Select ayah:", -1 /* HOISTED */);
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  value: "0"
+}, "Select ayah", -1 /* HOISTED */);
+var _hoisted_15 = ["value"];
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "ml-3 col-md-3 card bg-light row",
+  style: {
+    "display": "flex",
+    "border": "3px solid #c3e6cb",
+    "padding": "8px"
+  }
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
-  "class": "d-flex",
-  role: "search"
+  role: "search",
+  "class": "row"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "class": "pr-2 pt-2"
+  "class": "col-md-3 pt-2",
+  style: {
+    "display": "flex"
+  }
 }, "Search:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-  "class": "form-control me-2",
+  "class": "form-control col-md-8 pr-2",
   type: "search",
   placeholder: "Search Keyword",
   "aria-label": "Search"
-})])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "col-7"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
-  style: {
-    "display": "flex"
-  }
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "class": "pt-2 pr-3"
-}, "Results:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
-  "class": "form-control"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", null, "Select"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", null, "Car"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", null, "Bike"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", null, "Scooter"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", null, "Cycle"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", null, "Horse")])])])])], -1 /* HOISTED */);
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", {
-  style: {
-    "color": "black"
-  }
-}, null, -1 /* HOISTED */);
-var _hoisted_5 = {
-  "class": "container-fluid text-center"
-};
-var _hoisted_6 = {
-  "class": "text-center col-md-8",
-  style: {
-    "padding": "15px",
-    "box-shadow": "rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px",
-    "border-radius": "10px",
-    "background": "transparent"
-  }
-};
-var _hoisted_7 = {
-  "class": "row"
-};
-var _hoisted_8 = {
-  "class": "col",
-  style: {
-    "display": "flex"
-  }
-};
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "class": "pt-2 pr-2"
-}, "Surah:", -1 /* HOISTED */);
-var _hoisted_10 = {
-  "class": "col-md-10"
-};
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
-  value: "0"
-}, "Select Surah", -1 /* HOISTED */);
-var _hoisted_12 = ["value"];
-var _hoisted_13 = {
-  "class": "col",
-  style: {
-    "display": "flex"
-  }
-};
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "class": "pt-2 pl-2 pr-2"
-}, "Ayah:", -1 /* HOISTED */);
-var _hoisted_15 = {
-  "class": "col-md-10"
-};
-var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
-  value: "0"
-}, "Select Ayah", -1 /* HOISTED */);
-var _hoisted_17 = ["value"];
-var _hoisted_18 = {
-  "class": "col",
-  style: {
-    "display": "flex"
-  }
-};
-var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "class": "pt-2 pl-2 pr-2"
-}, "Juz:", -1 /* HOISTED */);
-var _hoisted_20 = {
-  "class": "col-md-10"
-};
-var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
-  value: "0"
-}, "Select Juz", -1 /* HOISTED */);
-var _hoisted_22 = ["value"];
-var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+})])], -1 /* HOISTED */);
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "container-fluid mt-4"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "row"
 })], -1 /* HOISTED */);
-var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_18 = {
   "class": "row container-fluid"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+};
+var _hoisted_19 = {
   "class": "col-md-8"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Nav tabs "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+};
+var _hoisted_20 = {
   "class": "card",
   style: {
-    "padding": "10px"
+    "display": "flex",
+    "border": "3px solid lightgrey",
+    "padding": "10px",
+    "border-radius": "10px"
   }
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+};
+var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "card-header"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", {
-  "class": "nav nav-tabs justify-content-center",
+  "class": "nav nav-tabs text-left justify-content-center",
   role: "tablist"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
   "class": "nav-item"
@@ -25971,95 +25936,105 @@ var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   role: "tab"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "now-ui-icons ui-2_settings-90"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Information ")])])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Information ")])])])], -1 /* HOISTED */);
+var _hoisted_22 = {
   "class": "card-body"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Tab panes "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+};
+var _hoisted_23 = {
   "class": "tab-content text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+};
+var _hoisted_24 = {
   "class": "tab-pane active",
   id: "home",
   role: "tabpanel"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-  src: "/images/5.webp",
-  "class": "width:100%"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. So when you get something that has the name Kanye West on it, it’s supposed to be pushing the furthest possibilities. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus.")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+};
+var _hoisted_25 = ["value"];
+var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", {
+  "class": "container"
+}, null, -1 /* HOISTED */);
+var _hoisted_27 = ["value"];
+var _hoisted_28 = {
   "class": "tab-pane",
   id: "profile",
   role: "tabpanel"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-  src: "/images/5.webp",
-  "class": "width:100%"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+};
+var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", {
+  "class": "container"
+}, null, -1 /* HOISTED */);
+var _hoisted_30 = ["value"];
+var _hoisted_31 = {
   "class": "tab-pane",
   id: "messages",
   role: "tabpanel"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-  src: "/images/5.webp",
-  "class": "width:100%"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. So when you get something that has the name Kanye West on it, it’s supposed to be pushing the furthest possibilities. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus.")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+};
+var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", {
+  "class": "container"
+}, null, -1 /* HOISTED */);
+var _hoisted_33 = ["value"];
+var _hoisted_34 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "tab-pane",
   id: "settings",
   role: "tabpanel"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " \"I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at.\" ")])])])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" right section "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+}, null, -1 /* HOISTED */);
+var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "col-4 container-fluid"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("\n            <div class=\"row\">\n              <div class=\"col-3\"></div>\n              <div class=\"col-6\">\n                <div class=\"m-0 mr-3 fas fa-fw fa-play text-right\"></div>\n                <div class=\"m-0 mr-3 fas fa-fw fa-pause text-right\"></div>\n                <div class=\"m-0 fas fa-fw fa-stop text-right\"></div>\n              </div>\n              <div class=\"col-3\"></div>\n            </div>\n          \n            <div class=\"row mt-3 text-center\">\n              <div class=\"col-3\">\n                <div><b>Surah 1</b></div>\n              </div>\n              <div class=\"col-6 text-center\">\n                <div class=\"m-0 fas fa-fw mt-1 fa-arrow-left\"></div>\n                472\n                <div class=\"m-0 fas fa-fw mt-1 fa-arrow-right text-right\"></div>\n              </div>\n              <div class=\"col-3\">\n                <div><b>Surah 2</b></div>\n              </div>\n            </div>\n          "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("audio", {
-  controls: "",
-  autoplay: "",
-  muted: "",
-  "class": "container-fluid",
-  style: {
-    "background": "grey"
-  }
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("source", {
-  src: "",
-  type: "audio/ogg"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("source", {
-  src: "",
-  type: "audio/mpeg"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Your browser does not support the audio element. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-  "class": "enlarge",
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
   src: "/images/quran_img.png",
   style: {
     "width": "100%",
-    "border": "4px solid lightgrey"
+    "border": "4px solid lightgrey",
+    "border-radius": "10px"
   }
-})])], -1 /* HOISTED */);
+})], -1 /* HOISTED */);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("\n  <h2 class=\"pt-3 text-center\"><strong>The Holy Quran</strong></h2>\n"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" main section search"), _hoisted_3, _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" multiple input sections "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
-    "class": "form-control col-12",
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(""), _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" main section search\n        <div class=\" text-center col-md-12 pt-3\" style=\"padding:15px; box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; border-radius:10px; background:transparent;border:3px solid #c3e6cb;\">\n          <div class=\"row \">\n            <div class=\"col-5\">\n              <form class=\"d-flex\" role=\"search\">\n                <label class=\"pr-2 pt-2\">Search:</label>\n                <input class=\"form-control me-2\" type=\"search\" placeholder=\"Search Keyword\" aria-label=\"Search\">\n              </form>\n            </div>\n            <div class=\"col-7\">\n              <form style=\"display:flex\">\n                <label class=\"pt-2 pr-3\">Results:</label>\n                <select class=\"form-control\">\n                  <option>Select</option>\n                  <option>Car</option>\n                  <option>Bike</option>\n                  <option>Scooter</option>\n                  <option>Cycle</option>\n                  <option>Horse</option>\n                </select>\n              </form>\n            </div>\n          </div>\n        </div>\n        <hr style=\"color:black\">\n    "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" multiple input sections "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+    "class": "form-control",
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
       return $data.surah = $event;
     }),
     onChange: _cache[1] || (_cache[1] = function ($event) {
       return $options.getAyahs();
     })
-  }, [_hoisted_11, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.surahs, function (surah) {
+  }, [_hoisted_10, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.surahs, function (data) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
-      key: surah.id,
-      value: surah.id
-    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(surah.name_en), 9 /* TEXT, PROPS */, _hoisted_12);
-  }), 128 /* KEYED_FRAGMENT */))], 544 /* HYDRATE_EVENTS, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.surah]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
-    "class": "form-control col-12",
+      key: data.id,
+      value: data.id
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.name_en), 9 /* TEXT, PROPS */, _hoisted_11);
+  }), 128 /* KEYED_FRAGMENT */))], 544 /* HYDRATE_EVENTS, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.surah]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+    "class": "form-control",
     "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
       return $data.ayah = $event;
+    }),
+    onChange: _cache[3] || (_cache[3] = function ($event) {
+      return $options.getInformations();
     })
-  }, [_hoisted_16, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.ayahs, function (ayah) {
+  }, [_hoisted_14, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.ayahs, function (data) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
-      key: ayah.id,
-      value: ayah.id
-    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(ayah.ayah_id), 9 /* TEXT, PROPS */, _hoisted_17);
-  }), 128 /* KEYED_FRAGMENT */))], 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.ayah]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [_hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
-    "class": "form-control col-12",
-    "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
-      return $data.ayah = $event;
-    })
-  }, [_hoisted_21, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.ayahs, function (ayah) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
-      key: ayah.id,
-      value: ayah.id
-    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(ayah.ayah_id), 9 /* TEXT, PROPS */, _hoisted_22);
-  }), 128 /* KEYED_FRAGMENT */))], 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.ayah]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("\n          <div class=\"col\" style=\"display:flex\">\n            <label class=\"pt-2 pl-2 pr-2\">Mushaf:</label>\n            <form class=\"col-md-8\">\n              <select class=\"form-control col-12\" v-model=\"surah\" @change=\"getAyahs()\">\n                <option value=\"0\">Select Mushaf</option>\n                <option v-for=\"surah in surahs\" :key=\"surah.id\" :value=\"surah.id\">{{ surah.name_en }}</option>\n              </select>\n            </form>\n          </div>\n          <div class=\"col\" style=\"display:flex\">\n            <label class=\"pt-2 pr-2\">Reciter:</label>\n            <form class=\"col-md-8\">\n              <select class=\"form-control col-12\" v-model=\"ayah\">\n                <option value=\"0\">Select Reciter</option>\n                <option v-for=\"ayah in ayahs\" :key=\"ayah.id\" :value=\"ayah.id\">{{ ayah.ayah_id }}</option>\n              </select>\n            </form>\n          </div>\n          ")])])])]), _hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" accordion headers"), _hoisted_24]);
+      key: data.id,
+      value: data.id
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.ayah_id) + ", " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.ayah_text), 9 /* TEXT, PROPS */, _hoisted_15);
+  }), 128 /* KEYED_FRAGMENT */))], 544 /* HYDRATE_EVENTS, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.ayah]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("\n              <div class=\"col-md-6 \" style=\"display:flex;text-align:center\">\n                <label class=\"pt-2 pl-3 pr-2\" style=\"display:flex\">Surah:</label>\n                <form class=\"col-md-6\">\n                  <select class=\"form-control\" v-model=\"surah\">\n                    <option value=\"0\"><span>Select Surah</span></option>\n                    <option v-for=\"surah in surahs\" :key=\"surah.id\" :value=\"surah.id\">{{ surah.name_en }}</option>\n                  </select>\n                </form>\n                <label class=\"pt-2 pl-3 pr-2\">Ayah:</label>\n                <form class=\"col-md-6\">\n                  <select class=\"form-control \" v-model=\"ayah\">\n                    <option value=\"0\">Select Ayah</option>\n                    <option v-for=\"ayah in ayahs\" :key=\"ayah.id\" :value=\"ayah.id\">{{ ayah.ayah_id }}</option>\n                  </select>\n                </form>\n\n                <label class=\"pt-2 pl-3 pr-2\">Juz:</label>\n                <form class=\"col-md-6\">\n                  <select class=\"form-control\" v-model=\"ayah\">\n                    <option value=\"0\">Select Juz</option>\n                    <option v-for=\"ayah in ayahs\" :key=\"ayah.id\" :value=\"ayah.id\">{{ ayah.ayah_id }}</option>\n                  </select>\n                </form>\n              </div>\n            ")])]), _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("\n          <div class=\"col\" style=\"display:flex\">\n            <label class=\"pt-2 pl-2 pr-2\">Mushaf:</label>\n            <form class=\"col-md-8\">\n              <select class=\"form-control col-12\" v-model=\"surah\" @change=\"getAyahs()\">\n                <option value=\"0\">Select Mushaf</option>\n                <option v-for=\"surah in surahs\" :key=\"surah.id\" :value=\"surah.id\">{{ surah.name_en }}</option>\n              </select>\n            </form>\n          </div>\n          <div class=\"col\" style=\"display:flex\">\n            <label class=\"pt-2 pr-2\">Reciter:</label>\n            <form class=\"col-md-8\">\n              <select class=\"form-control col-12\" v-model=\"ayah\">\n                <option value=\"0\">Select Reciter</option>\n                <option v-for=\"ayah in ayahs\" :key=\"ayah.id\" :value=\"ayah.id\">{{ ayah.ayah_id }}</option>\n              </select>\n            </form>\n          </div>\n        ")])]), _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" accordion headers"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Nav tabs "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [_hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Tab panes "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.ayahs, function (data) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      key: data.id,
+      value: data.id
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.ayah_text), 9 /* TEXT, PROPS */, _hoisted_25);
+  }), 128 /* KEYED_FRAGMENT */)), _hoisted_26, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.informations, function (data) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      key: data.id,
+      value: data.id
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.translation), 9 /* TEXT, PROPS */, _hoisted_27);
+  }), 128 /* KEYED_FRAGMENT */))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [_hoisted_29, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.informations, function (data) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      key: data.id,
+      value: data.id
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.tafseer), 9 /* TEXT, PROPS */, _hoisted_30);
+  }), 128 /* KEYED_FRAGMENT */))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [_hoisted_32, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.informations, function (data) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      key: data.id,
+      value: data.id
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.transliteration), 9 /* TEXT, PROPS */, _hoisted_33);
+  }), 128 /* KEYED_FRAGMENT */))]), _hoisted_34])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" right section "), _hoisted_35])]);
 }
 
 /***/ }),
@@ -33718,7 +33693,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.enlarge {\n  transition: transform 0.25s ease;\n  float: right;\n}\n.enlarge:hover {\n  /* or some other value */\n  transform: scale(1.2);\n}\nbutton,\ninput {\n  font-family: \"Montserrat\", \"Helvetica Neue\", Arial, sans-serif;\n}\n.nav-item .nav-link,\n.nav-tabs .nav-link {\n  transition: all 300ms ease 0s;\n}\n.nav-tabs>.nav-item>.nav-link {\n  color: #888888;\n  margin: 0;\n  margin-right: 5px;\n  background-color: transparent;\n  border: 1px solid transparent;\n  font-size: 14px;\n  padding: 11px 23px;\n  line-height: 1.5;\n}\n.nav-tabs>.nav-item>.nav-link:hover {\n  background-color: transparent;\n}\n.nav-tabs>.nav-item>.nav-link.active {\n  background-color: #444;\n  color: #FFFFFF;\n}\n.nav-tabs>.nav-item>.nav-link i.now-ui-icons {\n  font-size: 14px;\n  position: relative;\n  top: 1px;\n  margin-right: 3px;\n}\n.nav-tabs.nav-tabs-neutral>.nav-item>.nav-link {\n  color: #FFFFFF;\n}\n.nav-tabs.nav-tabs-neutral>.nav-item>.nav-link.active {\n  background-color: rgba(255, 255, 255, 0.2);\n  color: #FFFFFF;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.enlarge .ayah {\n  transition: transform 0.50s ease;\n  float: right;\n}\n.enlarge:hover {\n  /* or some other value */\n  transform: scale(1.2);\n}\nbutton,\ninput {\n  font-family: \"Montserrat\", \"Helvetica Neue\", Arial, sans-serif;\n}\n.nav-item .nav-link,\n.nav-tabs .nav-link {\n  transition: all 300ms ease 0s;\n}\n.nav-tabs>.nav-item>.nav-link {\n  color: #888888;\n  margin: 0;\n  margin-right: 5px;\n  background-color: transparent;\n  border: 1px solid transparent;\n  font-size: 14px;\n  padding: 11px 23px;\n  line-height: 1.5;\n}\n.nav-tabs>.nav-item>.nav-link:hover {\n  background-color: transparent;\n}\n.nav-tabs>.nav-item>.nav-link.active {\n  background-color: #444;\n  color: #FFFFFF;\n}\n.nav-tabs>.nav-item>.nav-link i.now-ui-icons {\n  font-size: 14px;\n  position: relative;\n  top: 1px;\n  margin-right: 3px;\n}\n.nav-tabs.nav-tabs-neutral>.nav-item>.nav-link {\n  color: #FFFFFF;\n}\n.nav-tabs.nav-tabs-neutral>.nav-item>.nav-link.active {\n  background-color: rgba(255, 255, 255, 0.2);\n  color: #FFFFFF;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
