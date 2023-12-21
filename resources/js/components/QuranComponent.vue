@@ -5,113 +5,47 @@
 
   <div class="container-fluid text-center pt-3">
 
-    <!-- main section search
-        <div class=" text-center col-md-12 pt-3" style="padding:15px; box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; border-radius:10px; background:transparent;border:3px solid #c3e6cb;">
-          <div class="row ">
-            <div class="col-5">
-              <form class="d-flex" role="search">
-                <label class="pr-2 pt-2">Search:</label>
-                <input class="form-control me-2" type="search" placeholder="Search Keyword" aria-label="Search">
-              </form>
-            </div>
-            <div class="col-7">
-              <form style="display:flex">
-                <label class="pt-2 pr-3">Results:</label>
-                <select class="form-control">
-                  <option>Select</option>
-                  <option>Car</option>
-                  <option>Bike</option>
-                  <option>Scooter</option>
-                  <option>Cycle</option>
-                  <option>Horse</option>
-                </select>
-              </form>
-            </div>
-          </div>
-        </div>
-        <hr style="color:black">
-    -->
-
     <!-- multiple input sections -->
     <div class="row  text-center">
-      <div class="col-md-8 text-center" style="padding-top:10px; box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; border-radius:10px; background:transparent;border:3px solid #c3e6cb;">
+      <div class="col-md-12 text-center" style="padding-top:10px; box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; border-radius:10px; background:transparent;border:3px solid #c3e6cb;">
         <div class="row">
 
-          <div class="card-body">
-            <div class="form-group">
-              <label>Select surah:</label>
-              <select class='form-control' v-model='surah' @change='getAyahs()'>
-                <option value='0'>Select surah</option>
-                <option v-for='data in surahs' :key="data.id" :value='data.id'>{{ data.name_en }}</option>
+          <div class="col-md-6 mb-2" style="display:flex;text-align:center">
+          <label class="pt-2 pl-3 pr-2">Juz:</label>
+            <form class="col-md-5">
+              <select class="form-control" v-model="ayah">
+                <option value="0">Select Juz</option>
+                <option>{{ ayah.ayah_id }}</option>
               </select>
-            </div>
-            <div class="form-group">
-              <label>Select ayah:</label>
+            </form>
+            <label class="pt-2 pl-3 pr-2" style="display:flex">Surah:</label>
+            <form class="col-md-7">
+              <select class="form-control" v-model='surah' @change='getAyahs()'>
+                <option value="0"><span>Select Surah</span></option>
+                <option v-for='data in surahs' :key="data.id" :value='data.id'>{{ data.name_en }}, {{ data.name_ar }}</option>
+              </select>
+            </form>
+            <label class="pt-2 pl-3 pr-2">Ayah:</label>
+            <form class="col-md-8">
               <select class='form-control' v-model='ayah' @change='getInformations()'>
-                <option value='0'>Select ayah</option>
+                <option value="0">Select Ayah</option>
                 <option v-for='data in ayahs' :key="data.id" :value='data.id'>{{ data.ayah_id }}, {{ data.ayah_text }}</option>
               </select>
-            </div>
+            </form>
+
+            
           </div>
-
-          <!--
-              <div class="col-md-6 " style="display:flex;text-align:center">
-                <label class="pt-2 pl-3 pr-2" style="display:flex">Surah:</label>
-                <form class="col-md-6">
-                  <select class="form-control" v-model="surah">
-                    <option value="0"><span>Select Surah</span></option>
-                    <option v-for="surah in surahs" :key="surah.id" :value="surah.id">{{ surah.name_en }}</option>
-                  </select>
-                </form>
-                <label class="pt-2 pl-3 pr-2">Ayah:</label>
-                <form class="col-md-6">
-                  <select class="form-control " v-model="ayah">
-                    <option value="0">Select Ayah</option>
-                    <option v-for="ayah in ayahs" :key="ayah.id" :value="ayah.id">{{ ayah.ayah_id }}</option>
-                  </select>
-                </form>
-
-                <label class="pt-2 pl-3 pr-2">Juz:</label>
-                <form class="col-md-6">
-                  <select class="form-control" v-model="ayah">
-                    <option value="0">Select Juz</option>
-                    <option v-for="ayah in ayahs" :key="ayah.id" :value="ayah.id">{{ ayah.ayah_id }}</option>
-                  </select>
-                </form>
-              </div>
-            -->
 
         </div>
       </div>
-
+      <!--
       <div class="ml-3 col-md-3 card bg-light row" style="display:flex;border:3px solid #c3e6cb;padding:8px">
-
         <form role="search" class="row">
           <label class="col-md-3 pt-2" style="display:flex">Search:</label>
           <input class="form-control col-md-8 pr-2" type="search" placeholder="Search Keyword" aria-label="Search">
         </form>
-
       </div>
-      <!--
-          <div class="col" style="display:flex">
-            <label class="pt-2 pl-2 pr-2">Mushaf:</label>
-            <form class="col-md-8">
-              <select class="form-control col-12" v-model="surah" @change="getAyahs()">
-                <option value="0">Select Mushaf</option>
-                <option v-for="surah in surahs" :key="surah.id" :value="surah.id">{{ surah.name_en }}</option>
-              </select>
-            </form>
-          </div>
-          <div class="col" style="display:flex">
-            <label class="pt-2 pr-2">Reciter:</label>
-            <form class="col-md-8">
-              <select class="form-control col-12" v-model="ayah">
-                <option value="0">Select Reciter</option>
-                <option v-for="ayah in ayahs" :key="ayah.id" :value="ayah.id">{{ ayah.ayah_id }}</option>
-              </select>
-            </form>
-          </div>
-        -->
+      -->
 
     </div>
   </div>
@@ -156,41 +90,80 @@
         <div class="card-body">
           <!-- Tab panes -->
           <div class="tab-content text-center">
-            <div class="tab-pane active" id="home" role="tabpanel">
-              <div v-for='data in ayahs' :key="data.id" :value='data.id'>
-                {{ data.ayah_text }}
+            <div class="tab-pane active " id="home" role="tabpanel">
+
+              <!-- audio player -->
+              <div class="row container-fluid" style="display:flex; border:3px solid #c3e6cb;padding:10px; border-radius:10px">
+                <div class="col-md-6 pt-2" style="display:flex">
+                  <label class="pt-2 pr-2">Reciter:</label>
+                  <form class="col-md-8">
+                    <select class="form-control col-12" v-model="ayah">
+                      <option value="0">Select Reciter</option>
+                      <option v-for="ayah in ayahs" :key="ayah.id" :value="ayah.id">{{ ayah.ayah_id }}</option>
+                    </select>
+                  </form>
+                </div>
+                <div class="col-md-6" style="display:flex">
+                  <audio controls>
+                    <source src="horse.ogg" type="audio/ogg">
+                    <source src="horse.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                  </audio>
+                </div>
               </div>
+
               <hr class="container">
               <div v-for="data in informations" :key="data.id" :value='data.id'>
+                <img src="images/1_5.png" width="100px" />
+
                 {{ data.translation }}
               </div>
             </div>
 
             <div class="tab-pane" id="profile" role="tabpanel">
-
+              <div>
+                <img src="/images/1_5.png" width="100%" />
+              </div>
               <hr class="container">
               <div v-for="data in informations" :key="data.id" :value='data.id'>
                 {{ data.tafseer }}
               </div>
             </div>
             <div class="tab-pane" id="messages" role="tabpanel">
-              
+              <div>
+                <img src="/images/1_5.png" width="100%" />
+              </div>
               <hr class="container">
               <div v-for="data in informations" :key="data.id" :value='data.id'>
                 {{ data.transliteration }}
               </div>
             </div>
             <div class="tab-pane" id="settings" role="tabpanel">
-              
-            </div>
+              <img src="/images/1_6.png" width="100%" />
 
+              <hr class="container">
+              <div v-for="data in informations" :key="data.id" :value='data.id'>
+                {{ data.information }}
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
     <!-- right section -->
 
-    <div class="col-4 container-fluid">
+    <div class="col-4 row">
+      <div class="ml-2 col-md-12 card bg-light row" style="display:flex;border:3px solid #c3e6cb;padding:8px;">
+
+        <form>
+          <select class="form-control col-12" style="display:flex" v-model="ayah">
+            <label class="pt-2 pr-2 col-3">Mushaf:</label>
+            <option value="0">Select Mushaf</option>
+            <option v-for="ayah in ayahs" :key="ayah.id" :value="ayah.id">{{ ayah.ayah_id }}</option>
+          </select>
+        </form>
+
+      </div>
       <img src="/images/quran_img.png" style="width:100%; border:4px solid lightgrey;border-radius:10px">
     </div>
   </div>
@@ -247,6 +220,12 @@ export default {
 </script>
 
 <style>
+.ayah_img:hover {
+  background-color: #c3e6cb;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
 .enlarge .ayah {
   transition: transform 0.50s ease;
   float: right;

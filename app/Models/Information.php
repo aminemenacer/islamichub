@@ -15,6 +15,8 @@ class Information extends Model
         'tafseer',
         'translation',
         'transliteration',
+        'information',
+        'images',
         'ayah_id'
     ];
 

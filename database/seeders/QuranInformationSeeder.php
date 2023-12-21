@@ -41,8 +41,11 @@ class QuranInformationSeeder extends Seeder
                     $columnName = "tafseer";
                 } elseif (str_contains($filename, "translation")) {
                     $columnName = "translation";
-                } else {
-                    $columnName =  "transliteration";
+                } elseif (str_contains($filename, "transliteration")) {
+                    $columnName = "transliteration";
+                }
+                else {
+                    $columnName =  "information";
                 };
 
                 $quranInfoArray[$verseNumber][$columnName] = $verseContent;

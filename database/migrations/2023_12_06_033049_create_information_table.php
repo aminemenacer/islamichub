@@ -18,6 +18,8 @@ return new class extends Migration
             $table->longText('translation', 255)->nullable();            
             $table->longText('tafseer', 255)->nullable();
             $table->longText('transliteration', 255)->nullable();
+            $table->longText('information', 255)->nullable();
+            $table->string('images')->nullable();
             $table->string('ayah_id');
             $table->timestamps();
         });
