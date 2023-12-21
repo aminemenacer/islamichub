@@ -17,6 +17,7 @@ class Information extends Model
         'transliteration',
         'information',
         'images',
+        'audio',
         'ayah_id'
     ];
 

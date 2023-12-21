@@ -114,8 +114,7 @@
 
               <hr class="container">
               <div v-for="data in informations" :key="data.id" :value='data.id'>
-                <img src="images/1_5.png" width="100px" />
-
+                <img src="/images/1_5.png" width="100px" />
                 {{ data.translation }}
               </div>
             </div>
@@ -159,7 +158,7 @@
           <select class="form-control col-12" style="display:flex" v-model="ayah">
             <label class="pt-2 pr-2 col-3">Mushaf:</label>
             <option value="0">Select Mushaf</option>
-            <option v-for="ayah in ayahs" :key="ayah.id" :value="ayah.id">{{ ayah.ayah_id }}</option>
+            <option >{{ ayah.ayah_id }}</option>
           </select>
         </form>
 

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->longText('transliteration', 255)->nullable();
             $table->longText('information', 255)->nullable();
             $table->string('images')->nullable();
+            $table->string('audio')->nullable();
             $table->string('ayah_id');
             $table->timestamps();
         });
