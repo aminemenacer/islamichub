@@ -79,7 +79,7 @@
               </a>
             </li>
             
-            <div data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="fas fa-fw fa-info-circle fa-lg"></div>
+            <div data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="fas fa-fw fa-info-circle fa-lg mt-2 ml-5"></div>
             
           </ul>
         </div>
@@ -96,22 +96,27 @@
               </div>
               <div class="modal-body">
                 <ul class="list-group ">
-                  <li class="list-group-item list-group-item-success mb-2">
+                  <li class="list-group-item list-group-item mb-2" style="border:2px solid #c3e6cb;">
                     <b>1) Select from the Juz dropdown:</b><br>
-                    <img class="mt-2" style="box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; border-radius:10px; background:transparent;border:3px solid #c3e6cb;" src="/images/1.png" width="60%" />
+                      <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p>
+                    <img class="mt-2" style="box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; border-radius:10px; background:transparent;border:3px solid #c3e6cb;" src="/images/1.png" width="50%" />
                   </li>
-                  <li class="list-group-item list-group-item-success mb-2">
-                  <b>2) Select from the Surah dropdown:</b><br>
-                  <img class="mt-2" style="box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; border-radius:10px; background:transparent;border:3px solid #c3e6cb;" src="/images/2.png" width="70%" />
+                  <li class="list-group-item list-group-item mb-2" style="border:2px solid #c3e6cb;">
+                    <b>2) Select from the Surah dropdown:</b><br>
+                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p>
+                    <img class="mt-2" style="box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; border-radius:10px; background:transparent;border:3px solid #c3e6cb;" src="/images/2.png" width="60%" />
                   </li>
-                  <li class="list-group-item list-group-item-success mb-2"><b>3) Select from the Ayah dropdown:</b><br>
-                    <img class="mt-2" style="box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; border-radius:10px; background:transparent;border:3px solid #c3e6cb;" src="/images/3.png" width="70%" />
+                  <li class="list-group-item list-group-item mb-2" style="border:2px solid #c3e6cb;"><b>3) Select from the Ayah dropdown:</b><br>
+                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p>
+                    <img class="mt-2" style="box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; border-radius:10px; background:transparent;border:3px solid #c3e6cb;" src="/images/3.png" width="60%" />
                   </li>
-                  <li class="list-group-item list-group-item-success mb-2"><b>4) Select from different Masahif:</b><br>
-                    <img class="mt-2" style="box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; border-radius:10px; background:transparent;border:3px solid #c3e6cb;" src="/images/5.png" width="70%" />
+                  <li class="list-group-item list-group-item mb-2" style="border:2px solid #c3e6cb;"><b>4) Select from different Masahif:</b><br>
+                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p>
+                    <img class="mt-2" style="box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; border-radius:10px; background:transparent;border:3px solid #c3e6cb;" src="/images/5.png" width="60%" />
                   </li>
-                  <li class="list-group-item list-group-item-success mb-2"><b>5) Switch between tabs below:</b><br>
-                    <img class="mt-2" style="box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; border-radius:10px; background:transparent;border:3px solid #c3e6cb;" src="/images/4.png" width="80%" />
+                  <li class="list-group-item list-group-item mb-2" style="border:2px solid #c3e6cb;"><b>5) Switch between tabs below:</b><br>
+                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p>
+                    <img class="mt-2" style="box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; border-radius:10px; background:transparent;border:3px solid #c3e6cb;" src="/images/4.png" width="70%" />
                   </li>
                   
                 </ul>
