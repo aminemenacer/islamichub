@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Juz;
 use App\Models\Surah;
 use App\Models\Ayah;
 use App\Models\Information;
@@ -9,10 +10,17 @@ use Illuminate\Http\Request;
 
 class SurahController extends Controller
 {
-    public function getSurahs()
-    {
-        $data = Surah::get();
+    public function getJuzs()
+    {       
+        $data = Juz::get();
         return response()->json($data);
+    }
+
+    public function getSurahs(Request $request)
+    {
+        $data = Surah::where('juz_id', $request->juz_id)->get();
+        return response()->json($data);
+
     }
 
     public function getAyahs(Request $request)
@@ -26,4 +34,6 @@ class SurahController extends Controller
         $data = Information::where('ayah_id', $request->ayah_id)->get();
         return response()->json($data);
     }
+
+    
 }

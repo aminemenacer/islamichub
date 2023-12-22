@@ -12,6 +12,7 @@ class Surah extends Model
     protected $table = 'surah';
 
     protected $fillable = [
+        'juz_id',
         'name_en',
         'name_ar'
     ];
@@ -19,5 +20,10 @@ class Surah extends Model
     public function ayat()
     {
         return $this->hasMany(Ayah::class);
+    }
+
+    public function juz()
+    {
+        return $this->BelongsTo(Juz::class,'juz_id','id');
     }
 }

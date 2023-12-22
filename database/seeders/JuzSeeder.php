@@ -2,30 +2,26 @@
 
 namespace Database\Seeders;
 
-use App\models\Surah;
+use App\models\Juz;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use NunoMaduro\Collision\Adapters\Phpunit\State;
 use Illuminate\Support\Facades\DB;
 
 
-class SurahSeeder extends Seeder
+class JuzSeeder extends Seeder
 {
     public function run()
     {
-        Surah::truncate();
+      Juz::truncate();
   
-        $csvFile = fopen(base_path("database/data/csv/surat.csv"), "r");
+        $csvFile = fopen(base_path("database/data/csv/juz.csv"), "r");
   
         $firstline = true;
         while (($data = fgetcsv($csvFile, 2000, ",")) !== FALSE) {
             if (!$firstline) {
-                Surah::create([
-                    "id" => $data['0'],
-                    "name_en" => $data['1'],
-                    "juz_id" => $data['2'],
-                    "name_ar" => $data['3'],
-
+                Juz::create([
+                  "juz_number" => $data['0'],
                 ]);    
             }
             $firstline = false;

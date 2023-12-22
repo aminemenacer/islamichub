@@ -11,11 +11,11 @@
         <div class="row">
 
           <div class="col-md-6 mb-2" style="display:flex;text-align:center">
-          <label class="pt-2 pl-3 pr-2">Juz:</label>
+            <label class="pt-2 pl-3 pr-2">Juz:</label>
             <form class="col-md-5">
-              <select class="form-control" v-model="ayah">
+              <select class="form-control" v-model="juz" @change='getSurahs()'>
                 <option value="0">Select Juz</option>
-                <option>{{ ayah.ayah_id }}</option>
+                <option v-for='data in juzs' :key="data.id" :value='data.id'>{{ data.juz_number }}</option>
               </select>
             </form>
             <label class="pt-2 pl-3 pr-2" style="display:flex">Surah:</label>
@@ -33,18 +33,17 @@
               </select>
             </form>
 
-            
           </div>
 
         </div>
       </div>
       <!--
-      <div class="ml-3 col-md-3 card bg-light row" style="display:flex;border:3px solid #c3e6cb;padding:8px">
-        <form role="search" class="row">
-          <label class="col-md-3 pt-2" style="display:flex">Search:</label>
-          <input class="form-control col-md-8 pr-2" type="search" placeholder="Search Keyword" aria-label="Search">
-        </form>
-      </div>
+        <div class="ml-3 col-md-3 card bg-light row" style="display:flex;border:3px solid #c3e6cb;padding:8px">
+          <form role="search" class="row">
+            <label class="col-md-3 pt-2" style="display:flex">Search:</label>
+            <input class="form-control col-md-8 pr-2" type="search" placeholder="Search Keyword" aria-label="Search">
+          </form>
+        </div>
       -->
 
     </div>
@@ -61,7 +60,7 @@
 
     <div class="col-md-8">
       <!-- Nav tabs -->
-      <div class="card " style="display:flex;border:3px solid lightgrey;padding:10px; border-radius:10px">
+      <div class="card " style="display:flex;border:1px solid lightgrey;padding:10px; border-radius:10px">
         <div class="card-header ">
           <ul class="nav nav-tabs text-left justify-content-center" role="tablist">
             <li class="nav-item">
@@ -79,38 +78,76 @@
                 <i class="now-ui-icons shopping_shop"></i> Transliteration
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#settings" role="tab">
-                <i class="now-ui-icons ui-2_settings-90"></i> Information
-              </a>
-            </li>
-
+            
+            <div data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="fas fa-fw fa-info-circle fa-lg"></div>
+            
           </ul>
         </div>
+
+        <!-- instructions -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content ">
+              <div class="modal-header">
+                <h4 class="modal-title fs-5 text-dark" id="staticBackdropLabel">Information</h4>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <ul class="list-group ">
+                  <li class="list-group-item list-group-item-success mb-2">
+                    <b>1) Select from the Juz dropdown:</b><br>
+                    <img class="mt-2" style="box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; border-radius:10px; background:transparent;border:3px solid #c3e6cb;" src="/images/1.png" width="60%" />
+                  </li>
+                  <li class="list-group-item list-group-item-success mb-2">
+                  <b>2) Select from the Surah dropdown:</b><br>
+                  <img class="mt-2" style="box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; border-radius:10px; background:transparent;border:3px solid #c3e6cb;" src="/images/2.png" width="70%" />
+                  </li>
+                  <li class="list-group-item list-group-item-success mb-2"><b>3) Select from the Ayah dropdown:</b><br>
+                    <img class="mt-2" style="box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; border-radius:10px; background:transparent;border:3px solid #c3e6cb;" src="/images/3.png" width="70%" />
+                  </li>
+                  <li class="list-group-item list-group-item-success mb-2"><b>4) Select from different Masahif:</b><br>
+                    <img class="mt-2" style="box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; border-radius:10px; background:transparent;border:3px solid #c3e6cb;" src="/images/5.png" width="70%" />
+                  </li>
+                  <li class="list-group-item list-group-item-success mb-2"><b>5) Switch between tabs below:</b><br>
+                    <img class="mt-2" style="box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; border-radius:10px; background:transparent;border:3px solid #c3e6cb;" src="/images/4.png" width="80%" />
+                  </li>
+                  
+                </ul>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="card-body">
           <!-- Tab panes -->
           <div class="tab-content text-center">
             <div class="tab-pane active " id="home" role="tabpanel">
 
-              <!-- audio player -->
-              <div class="row container-fluid" style="display:flex; border:3px solid #c3e6cb;padding:10px; border-radius:10px">
-                <div class="col-md-6 pt-2" style="display:flex">
-                  <label class="pt-2 pr-2">Reciter:</label>
-                  <form class="col-md-8">
-                    <select class="form-control col-12" v-model="ayah">
-                      <option value="0">Select Reciter</option>
-                      <option v-for="ayah in ayahs" :key="ayah.id" :value="ayah.id">{{ ayah.ayah_id }}</option>
-                    </select>
-                  </form>
+              <!-- audio player 
+                <div class="row container-fluid" style="display:flex; border-radius:10px">
+                  <div class="col-md-6 " style="display:flex">
+                    <label class="pt-2 pr-2">Reciter:</label>
+                    <form class="col-md-8">
+                      <select class="form-control col-12" v-model="ayah">
+                        <option value="0">Select Reciter</option>
+                        <option v-for="ayah in ayahs" :key="ayah.id" :value="ayah.id">{{ ayah.ayah_id }}</option>
+                      </select>
+                    </form>
+                  </div>
+                  <div class="col-md-6" style="display:flex">
+                    <audio controls>
+                      <source src="horse.ogg" type="audio/ogg">
+                      <source src="horse.mp3" type="audio/mpeg">
+                      Your browser does not support the audio element.
+                    </audio>
+                  </div>
                 </div>
-                <div class="col-md-6" style="display:flex">
-                  <audio controls>
-                    <source src="horse.ogg" type="audio/ogg">
-                    <source src="horse.mp3" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                  </audio>
-                </div>
-              </div>
+              -->
 
               <hr class="container">
               <div v-for="data in informations" :key="data.id" :value='data.id'>
@@ -137,14 +174,7 @@
                 {{ data.transliteration }}
               </div>
             </div>
-            <div class="tab-pane" id="settings" role="tabpanel">
-              <img src="/images/1_6.png" width="100%" />
 
-              <hr class="container">
-              <div v-for="data in informations" :key="data.id" :value='data.id'>
-                {{ data.information }}
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -158,12 +188,12 @@
           <select class="form-control col-12" style="display:flex" v-model="ayah">
             <label class="pt-2 pr-2 col-3">Mushaf:</label>
             <option value="0">Select Mushaf</option>
-            <option >{{ ayah.ayah_id }}</option>
+            <option>{{ ayah.ayah_id }}</option>
           </select>
         </form>
 
       </div>
-      <img src="/images/quran_img.png" style="width:100%; border:4px solid lightgrey;border-radius:10px">
+      <img src="/images/quran_img.png" class="pl-3" style="width:100%;">
     </div>
   </div>
 </div>
@@ -177,6 +207,8 @@ export default {
   data() {
     return {
       data: [],
+      juz: 0,
+      juzs: [],
       surah: 0,
       surahs: [],
       ayah: 0,
@@ -188,13 +220,22 @@ export default {
     }
   },
   methods: {
+    getJuzs: function () {
+
+      axios.get('/get_juzs')
+        .then(function (response) {}.bind(this));
+    },
 
     getSurahs: function () {
-      axios.get('/get_surahs')
-        .then(function (response) {
-          this.surahs = response.data;
-        }.bind(this));
+      axios.get('/get_surahs', {
+        params: {
+          juz_id: this.juz
+        }
+      }).then(function (response) {
+        this.surahs = response.data;
+      }.bind(this));
     },
+
     getAyahs: function () {
       axios.get('/get_ayahs', {
         params: {
