@@ -18,6 +18,7 @@
                 <option v-for='data in juzs' :key="data.id" :value='data.id'>{{ data.juz_number }}</option>
               </select>
             </form>
+
             <label class="pt-2 pl-3 pr-2" style="display:flex">Surah:</label>
             <form class="col-md-7">
               <select class="form-control" v-model='surah' @change='getAyahs()'>
@@ -78,9 +79,9 @@
                 <i class="now-ui-icons shopping_shop"></i> Transliteration
               </a>
             </li>
-            
-            <div data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="fas fa-fw fa-info-circle fa-lg mt-2 ml-5"></div>
-            
+
+            <div data-bs-toggle="modal" style="cursor:pointer" data-bs-target="#staticBackdrop" class="fas fa-fw fa-info-circle fa-lg mt-2 ml-5"></div>
+
           </ul>
         </div>
 
@@ -98,7 +99,7 @@
                 <ul class="list-group ">
                   <li class="list-group-item list-group-item mb-2" style="border:2px solid #c3e6cb;">
                     <b>1) Select from the Juz dropdown:</b><br>
-                      <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p>
+                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p>
                     <img class="mt-2" style="box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; border-radius:10px; background:transparent;border:3px solid #c3e6cb;" src="/images/1.png" width="50%" />
                   </li>
                   <li class="list-group-item list-group-item mb-2" style="border:2px solid #c3e6cb;">
@@ -118,7 +119,7 @@
                     <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p>
                     <img class="mt-2" style="box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; border-radius:10px; background:transparent;border:3px solid #c3e6cb;" src="/images/4.png" width="70%" />
                   </li>
-                  
+
                 </ul>
               </div>
               <div class="modal-footer">
@@ -133,47 +134,36 @@
           <div class="tab-content text-center">
             <div class="tab-pane active " id="home" role="tabpanel">
 
-              <!-- audio player 
-                <div class="row container-fluid" style="display:flex; border-radius:10px">
-                  <div class="col-md-6 " style="display:flex">
-                    <label class="pt-2 pr-2">Reciter:</label>
-                    <form class="col-md-8">
-                      <select class="form-control col-12" v-model="ayah">
-                        <option value="0">Select Reciter</option>
-                        <option v-for="ayah in ayahs" :key="ayah.id" :value="ayah.id">{{ ayah.ayah_id }}</option>
-                      </select>
-                    </form>
-                  </div>
-                  <div class="col-md-6" style="display:flex">
-                    <audio controls>
-                      <source src="horse.ogg" type="audio/ogg">
-                      <source src="horse.mp3" type="audio/mpeg">
-                      Your browser does not support the audio element.
-                    </audio>
+              <div class="row">
+                <div class="col-1">
+                  <div class="list-group mt-3">
+                    <a href="#" class="list-group-item list-group-item-action list-group-item-light text-dark fas fa-fw fa-play fa-lg"></a>
+                    <a href="#" class="list-group-item list-group-item-action list-group-item-light text-dark fas fa-fw fa-user fa-lg"></a>
+                    <a href="#" class="list-group-item list-group-item-action list-group-item-light text-dark fas fa-fw fa-info-circle fa-lg"></a>
+                    <a href="#" class="list-group-item list-group-item-action list-group-item-light text-dark fas fa-fw fa-book fa-lg"></a>
                   </div>
                 </div>
-              -->
+                <div class="col-11">
+                  <img src="/images/2_19.png" class="pl-3" style="width:100%;">
+                  <hr class="container">
+                  <div class="text-left ml-5">
+                    ˹Fast a˺ prescribed number of days.1 But whoever of you is ill or on a journey, then ˹let them fast˺ an equal number of days ˹after Ramaḍân˺. For those who can only fast with extreme difficulty,2 compensation can be made by feeding a needy person ˹for every day not fasted˺.
+                  </div>
+                </div>
 
-              <hr class="container">
-              <div v-for="data in informations" :key="data.id" :value='data.id'>
-                <img src="/images/1_5.png" width="100px" />
-                {{ data.translation }}
               </div>
+
             </div>
 
             <div class="tab-pane" id="profile" role="tabpanel">
-              <div>
-                <img src="/images/1_5.png" width="100%" />
-              </div>
+
               <hr class="container">
               <div v-for="data in informations" :key="data.id" :value='data.id'>
                 {{ data.tafseer }}
               </div>
             </div>
             <div class="tab-pane" id="messages" role="tabpanel">
-              <div>
-                <img src="/images/1_5.png" width="100%" />
-              </div>
+
               <hr class="container">
               <div v-for="data in informations" :key="data.id" :value='data.id'>
                 {{ data.transliteration }}
@@ -225,10 +215,12 @@ export default {
     }
   },
   methods: {
-    getJuzs: function () {
 
+    getJuzs: function () {
       axios.get('/get_juzs')
-        .then(function (response) {}.bind(this));
+        .then(function (response) {
+          this.juzs = response.data;
+        }.bind(this));
     },
 
     getSurahs: function () {
@@ -265,6 +257,11 @@ export default {
 </script>
 
 <style>
+.navbar {
+  position: fixed;
+
+}
+
 .ayah_img:hover {
   background-color: #c3e6cb;
   border-radius: 10px;

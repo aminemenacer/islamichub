@@ -22,9 +22,9 @@ class SurahSeeder extends Seeder
             if (!$firstline) {
                 Surah::create([
                     "id" => $data['0'],
-                    "name_en" => $data['1'],
-                    "juz_id" => $data['2'],
-                    "name_ar" => $data['3'],
+                    "name_en" => $data['1'] ,
+                    "juz_id" => $data['3'],
+                    "name_ar" => $data['2'],
 
                 ]);    
             }
