@@ -18,7 +18,9 @@ class SurahController extends Controller
 
     public function getSurahs(Request $request)
     {
-        $data = Surah::where('juz_id', $request->juz_id)->get();
+        $data = Surah::get();
+
+        // $data = Surah::where('juz_id', $request->juz_id)->get();
         return response()->json($data);
 
     }

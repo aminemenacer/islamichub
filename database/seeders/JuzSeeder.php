@@ -21,7 +21,7 @@ class JuzSeeder extends Seeder
         while (($data = fgetcsv($csvFile, 2000, ",")) !== FALSE) {
             if (!$firstline) {
                 Juz::create([
-                  "juz_number" => $data['0'],
+                  "juz_id" => $data['0'],
                 ]);    
             }
             $firstline = false;

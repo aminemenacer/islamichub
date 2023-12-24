@@ -36,6 +36,9 @@
         "shetabit-laravel-vue-pagination": "^2.3.7",
         "sweetalert2": "^11.9.0",
         "vform": "^2.1.2",
-        "vue-router": "^4.2.5"
+        "vue-highlight-text": "^1.6.2",
+        "vue-highlight-words": "^3.0.1",
+        "vue-router": "^4.2.5",
+        "vue-word-highlighter": "^1.2.3"
     }
 }

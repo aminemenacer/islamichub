@@ -12,8 +12,7 @@ class juz extends Model
     protected $table = 'juz';
 
     protected $fillable = [
-        'juz_number',
-        'name_ar'
+        'juz_id',
     ];
 
     public function surat()

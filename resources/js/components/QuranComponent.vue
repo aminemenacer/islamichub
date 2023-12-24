@@ -11,41 +11,43 @@
         <div class="row">
 
           <div class="col-md-6 mb-2" style="display:flex;text-align:center">
-            <label class="pt-2 pl-3 pr-2">Juz:</label>
-            <form class="col-md-5">
-              <select class="form-control" v-model="juz" @change='getSurahs()'>
-                <option value="0">Select Juz</option>
-                <option v-for='data in juzs' :key="data.id" :value='data.id'>{{ data.juz_number }}</option>
-              </select>
-            </form>
+            <!--
+              <label class="pt-2 pl-3 pr-2">Juz:</label>
+              <form class="col-md-5">
+                <select class="form-control" v-model="juz" >
+                  <option value="0">Select Juz</option>
+                  <option v-for='data in juzs' :key="data.id" :value='data.id'>{{ data.juz_number }}</option>
+                </select>
+              </form>
+            -->
 
             <label class="pt-2 pl-3 pr-2" style="display:flex">Surah:</label>
-            <form class="col-md-7">
+            <form class="col-md-5">
               <select class="form-control" v-model='surah' @change='getAyahs()'>
                 <option value="0"><span>Select Surah</span></option>
                 <option v-for='data in surahs' :key="data.id" :value='data.id'>{{ data.name_en }}, {{ data.name_ar }}</option>
               </select>
             </form>
             <label class="pt-2 pl-3 pr-2">Ayah:</label>
-            <form class="col-md-8">
+            <form class="col-md-6">
               <select class='form-control' v-model='ayah' @change='getInformations()'>
                 <option value="0">Select Ayah</option>
                 <option v-for='data in ayahs' :key="data.id" :value='data.id'>{{ data.ayah_id }}, {{ data.ayah_text }}</option>
               </select>
             </form>
 
+            <form class=" col-md-9 ml-5">
+              <input v-model="information" class="form-control input is-primary" type="text" placeholder="Search keyword"/>
+            </form>
           </div>
-
         </div>
       </div>
-      <!--
-        <div class="ml-3 col-md-3 card bg-light row" style="display:flex;border:3px solid #c3e6cb;padding:8px">
-          <form role="search" class="row">
-            <label class="col-md-3 pt-2" style="display:flex">Search:</label>
-            <input class="form-control col-md-8 pr-2" type="search" placeholder="Search Keyword" aria-label="Search">
-          </form>
-        </div>
-      -->
+      <Highlighter class="my-highlight" :style="{ color: 'yellow' }"
+        highlightClassName="highlight"
+        :searchWords="keywords"
+        :autoEscape="true"
+        :textToHighlight="text"/>
+
 
     </div>
   </div>
@@ -55,6 +57,81 @@
 
     </div>
   </div>
+
+
+    <div class="columns is-variable is-0-mobile">
+      <div class="column is-half">
+        <div class="box height-100">
+          <h1 class="title is-size-4">Input</h1>
+          <div class="field">
+            <label class="label">Search words</label>
+            <div class="control">
+              <input
+                v-model="information"
+                class="input is-primary"
+                type="text"
+                placeholder="words"
+              />
+            </div>
+          </div>
+          <label class="label">Options</label>
+          <div class="field is-grouped is-grouped-multiline">
+            <div class="control">
+              <input
+                id="options-case-sensitive"
+                class="is-checkradio is-primary"
+                type="checkbox"
+                v-model="options.caseSensitive"
+              />
+              <label for="options-case-sensitive">Case sensitive</label>
+            </div>
+            <div class="control">
+              <input
+                id="options-split-by-space"
+                class="is-checkradio is-primary"
+                type="checkbox"
+                v-model="options.splitBySpace"
+              />
+              <label for="options-split-by-space">Split by space</label>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      <div class="column is-half">
+        <div class="box height-100">
+          <h1 class="title is-size-4">Output</h1>
+          <label class="label">Search words</label>
+          <div class="tags">
+            <span
+              v-for="(word, index) in searchWords"
+              :key="index"
+              class="tag is-primary is-medium"
+              >{{ word }}</span
+            >
+          </div>
+          <label class="label">Matched word count</label>
+          <div class="is-size-6 mb-3 has-text-weight-bold">
+            {{ matchedWords.length }}
+          </div>
+
+          <label class="label">Result</label>
+          <div class="result-wrapper has-background-primary-light">
+            <WordHighlighter
+              :information="information"
+              :split-by-space="options.splitBySpace"
+              :case-sensitive="options.caseSensitive"
+              @matches="
+                (e) => {
+                  matchedWords = e;
+                }
+              "
+              >{{ paragraph }}
+            </WordHighlighter>
+          </div>
+        </div>
+      </div>
+    </div>
 
   <!-- accordion headers-->
   <div class="row container-fluid">
@@ -79,6 +156,7 @@
                 <i class="now-ui-icons shopping_shop"></i> Transliteration
               </a>
             </li>
+            
 
             <div data-bs-toggle="modal" style="cursor:pointer" data-bs-target="#staticBackdrop" class="fas fa-fw fa-info-circle fa-lg mt-2 ml-5"></div>
 
@@ -134,9 +212,11 @@
           <div class="tab-content text-center">
             <div class="tab-pane active " id="home" role="tabpanel">
 
+
               <div class="row">
                 <div class="col-1">
-                  <div class="list-group mt-3">
+                  <div class="list-group mt-4">
+                    <!-- surah/ayah info -->
                     <a href="#" class="list-group-item list-group-item-action list-group-item-light text-dark fas fa-fw fa-play fa-lg"></a>
                     <a href="#" class="list-group-item list-group-item-action list-group-item-light text-dark fas fa-fw fa-user fa-lg"></a>
                     <a href="#" class="list-group-item list-group-item-action list-group-item-light text-dark fas fa-fw fa-info-circle fa-lg"></a>
@@ -146,8 +226,8 @@
                 <div class="col-11">
                   <img src="/images/2_19.png" class="pl-3" style="width:100%;">
                   <hr class="container">
-                  <div class="text-left ml-5">
-                    ˹Fast a˺ prescribed number of days.1 But whoever of you is ill or on a journey, then ˹let them fast˺ an equal number of days ˹after Ramaḍân˺. For those who can only fast with extreme difficulty,2 compensation can be made by feeding a needy person ˹for every day not fasted˺.
+                  <div v-for="data in informations" :key="data.id" :value='data.id'>
+                    {{ data.translation }}
                   </div>
                 </div>
 
@@ -156,14 +236,14 @@
             </div>
 
             <div class="tab-pane" id="profile" role="tabpanel">
-
+              <img src="/images/2_19.png" class="pl-3" style="width:100%;">
               <hr class="container">
               <div v-for="data in informations" :key="data.id" :value='data.id'>
                 {{ data.tafseer }}
               </div>
             </div>
             <div class="tab-pane" id="messages" role="tabpanel">
-
+              <img src="/images/2_19.png" class="pl-3" style="width:100%;">
               <hr class="container">
               <div v-for="data in informations" :key="data.id" :value='data.id'>
                 {{ data.transliteration }}
@@ -180,7 +260,7 @@
       <div class="ml-2 col-md-12 card bg-light row" style="display:flex;border:3px solid #c3e6cb;padding:8px;">
 
         <form>
-          <select class="form-control col-12" style="display:flex" v-model="ayah">
+          <select class="form-control col-12" style="display:flex" >
             <label class="pt-2 pr-2 col-3">Mushaf:</label>
             <option value="0">Select Mushaf</option>
             <option>{{ ayah.ayah_id }}</option>
@@ -195,9 +275,42 @@
 </template>
 
 <script>
-export default {
+import WordHighlighter from "vue-word-highlighter";
+import { defineComponent, reactive, ref, computed } from "vue";
+
+const DEFAULT_PARAGRAPH = information;
+export default defineComponent({
+  components: {
+    WordHighlighter,
+  },
   mounted() {
     this.getSurahs();
+  },
+  setup() {
+    const information = ref();
+    const paragraph = ref(information);
+    const options = reactive({
+      caseSensitive: false,
+      splitBySpace: true,
+    });
+    const matchedWords = ref([]);
+    const searchWords = computed(() => {
+      if (!information.value) {
+        return [];
+      }
+      if (!options.splitBySpace) {
+        return [information.value];
+      }
+      return information.value.trim().split(/\s+/);
+    });
+
+    return {
+      information,
+      paragraph,
+      options,
+      searchWords,
+      matchedWords,
+    };
   },
   data() {
     return {
@@ -215,7 +328,6 @@ export default {
     }
   },
   methods: {
-
     getJuzs: function () {
       axios.get('/get_juzs')
         .then(function (response) {
@@ -225,9 +337,9 @@ export default {
 
     getSurahs: function () {
       axios.get('/get_surahs', {
-        params: {
-          juz_id: this.juz
-        }
+        // params: {
+        //   juz_id: this.juz
+        // }
       }).then(function (response) {
         this.surahs = response.data;
       }.bind(this));
@@ -253,7 +365,7 @@ export default {
     }
 
   },
-}
+})
 </script>
 
 <style>
