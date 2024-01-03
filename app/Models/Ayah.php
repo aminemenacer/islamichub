@@ -23,4 +23,9 @@ class Ayah extends Model
         return $this->BelongsTo(Surah::class,'surah_id','id');
     }
 
+    public function ayah()
+    {
+        return $this->BelongsTo(Information::class,'ayah_id','id');
+    }
+
 }

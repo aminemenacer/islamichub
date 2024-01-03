@@ -29,25 +29,20 @@
               </select>
             </form>
             <label class="pt-2 pl-3 pr-2">Ayah:</label>
-            <form class="col-md-6">
+            <form class="col-md-8 ">
               <select class='form-control' v-model='ayah' @change='getInformations()'>
                 <option value="0">Select Ayah</option>
                 <option v-for='data in ayahs' :key="data.id" :value='data.id'>{{ data.ayah_id }}, {{ data.ayah_text }}</option>
               </select>
             </form>
 
-            <form class=" col-md-9 ml-5">
-              <input v-model="information" class="form-control input is-primary" type="text" placeholder="Search keyword"/>
+            <form class="ml-3 col-md-8 ">
+              <input class="form-control input is-primary" type="text" placeholder="Search keyword" />
             </form>
           </div>
         </div>
       </div>
-      <Highlighter class="my-highlight" :style="{ color: 'yellow' }"
-        highlightClassName="highlight"
-        :searchWords="keywords"
-        :autoEscape="true"
-        :textToHighlight="text"/>
-
+      <Highlighter class="my-highlight" :style="{ color: 'yellow' }" highlightClassName="highlight" :searchWords="keywords" :autoEscape="true" :textToHighlight="text" />
 
     </div>
   </div>
@@ -58,80 +53,6 @@
     </div>
   </div>
 
-
-    <div class="columns is-variable is-0-mobile">
-      <div class="column is-half">
-        <div class="box height-100">
-          <h1 class="title is-size-4">Input</h1>
-          <div class="field">
-            <label class="label">Search words</label>
-            <div class="control">
-              <input
-                v-model="information"
-                class="input is-primary"
-                type="text"
-                placeholder="words"
-              />
-            </div>
-          </div>
-          <label class="label">Options</label>
-          <div class="field is-grouped is-grouped-multiline">
-            <div class="control">
-              <input
-                id="options-case-sensitive"
-                class="is-checkradio is-primary"
-                type="checkbox"
-                v-model="options.caseSensitive"
-              />
-              <label for="options-case-sensitive">Case sensitive</label>
-            </div>
-            <div class="control">
-              <input
-                id="options-split-by-space"
-                class="is-checkradio is-primary"
-                type="checkbox"
-                v-model="options.splitBySpace"
-              />
-              <label for="options-split-by-space">Split by space</label>
-            </div>
-          </div>
-          
-        </div>
-      </div>
-      <div class="column is-half">
-        <div class="box height-100">
-          <h1 class="title is-size-4">Output</h1>
-          <label class="label">Search words</label>
-          <div class="tags">
-            <span
-              v-for="(word, index) in searchWords"
-              :key="index"
-              class="tag is-primary is-medium"
-              >{{ word }}</span
-            >
-          </div>
-          <label class="label">Matched word count</label>
-          <div class="is-size-6 mb-3 has-text-weight-bold">
-            {{ matchedWords.length }}
-          </div>
-
-          <label class="label">Result</label>
-          <div class="result-wrapper has-background-primary-light">
-            <WordHighlighter
-              :information="information"
-              :split-by-space="options.splitBySpace"
-              :case-sensitive="options.caseSensitive"
-              @matches="
-                (e) => {
-                  matchedWords = e;
-                }
-              "
-              >{{ paragraph }}
-            </WordHighlighter>
-          </div>
-        </div>
-      </div>
-    </div>
 
   <!-- accordion headers-->
   <div class="row container-fluid">
@@ -156,11 +77,16 @@
                 <i class="now-ui-icons shopping_shop"></i> Transliteration
               </a>
             </li>
-            
-
-            <div data-bs-toggle="modal" style="cursor:pointer" data-bs-target="#staticBackdrop" class="fas fa-fw fa-info-circle fa-lg mt-2 ml-5"></div>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#videos" role="tab">
+                <i class="now-ui-icons shopping_shop"></i> Overview
+              </a>
+            </li>
 
           </ul>
+          <div data-bs-toggle="modal" style="cursor:pointer; float:right" data-bs-target="#staticBackdrop" class="fas fa-fw fa-info-circle fa-lg mt-3 mr-1"></div>
+          <div data-bs-toggle="modal" style="cursor:pointer; float:right" data-bs-target="#staticBackdropbug" class="fas fa-fw fa-bug mt-3 fa-lg mt-2 "></div>
+          <div class="mt-2 font-weight-bold" v-for="data in informations" :key="data.id" :value='data.id'>Ayah: {{data.ayah_id}}</div>
         </div>
 
         <!-- instructions -->
@@ -207,34 +133,107 @@
           </div>
         </div>
 
+        <!-- report a bug -->
+        <div class="modal fade" id="staticBackdropbug" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content ">
+              <div class="modal-header">
+                <h4 class="modal-title fs-5 text-dark" id="staticBackdropLabel">Report an Error</h4>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form @reset="reset" >
+                  <h6 class="modal-title ml-2" id="exampleModalLabel"><b>Type of correction:</b></h6><br>
+
+                  <div class=" ml-2 row">
+                    <div class="col-3">
+                      <div class="form-check">
+                        <input class="form-check-input" name="spelling_mistakes"  type="checkbox" value="" id="flexCheckChecked">
+                        <label class="form-check-label" for="flexCheckChecked">
+                          Spelling mistakes
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-3">
+                      <div class="form-check">
+                        <input class="form-check-input" name="incomplete_text"  type="checkbox" value="" id="flexCheckChecked">
+                        <label class="form-check-label" for="flexCheckChecked">
+                          Incomplete text
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-3">
+                      <div class="form-check">
+                        <input class="form-check-input" name="translation_error"  type="checkbox" value="" id="flexCheckChecked">
+                        <label class="form-check-label" for="flexCheckChecked">
+                          Error in translation
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-3">
+                      <div class="form-check">
+                        <input class="form-check-input" name="reference_error" type="checkbox" value="" id="flexCheckChecked">
+                        <label class="form-check-label" for="flexCheckChecked">
+                          Error in tafseer
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mt-3 mb-3">
+                    <div class="col-3 ml-3">
+                      <div class="form-check">
+                        <input class="form-check-input" name="narrator"  type="checkbox" value="" id="flexCheckChecked">
+                        <label class="form-check-label" for="flexCheckChecked">
+                          Error in transliteration
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-3">
+                      <div class="form-check">
+                        <input class="form-check-input" name="hadith_english"  type="checkbox" value="" id="flexCheckChecked">
+                        <label class="form-check-label" for="flexCheckChecked">
+                          Error in overview
+                        </label>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="row ml-2 pt-3 pb-5">
+                    <label for="exampleFormControlTextarea1" name="added_notes mt-3" class="form-label">Additional comments:</label>
+                    <textarea class="form-control col-md-10 ml-2"  id="exampleFormControlTextarea1" rows="5"></textarea>
+                  </div>
+
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Submit changes</button>
+                  </div>
+
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="card-body">
           <!-- Tab panes -->
           <div class="tab-content text-center">
-            <div class="tab-pane active " id="home" role="tabpanel">
 
-
+            <!-- translation -->
+            <div class="tab-pane active" id="home" role="tabpanel">
               <div class="row">
-                <div class="col-1">
-                  <div class="list-group mt-4">
-                    <!-- surah/ayah info -->
-                    <a href="#" class="list-group-item list-group-item-action list-group-item-light text-dark fas fa-fw fa-play fa-lg"></a>
-                    <a href="#" class="list-group-item list-group-item-action list-group-item-light text-dark fas fa-fw fa-user fa-lg"></a>
-                    <a href="#" class="list-group-item list-group-item-action list-group-item-light text-dark fas fa-fw fa-info-circle fa-lg"></a>
-                    <a href="#" class="list-group-item list-group-item-action list-group-item-light text-dark fas fa-fw fa-book fa-lg"></a>
-                  </div>
-                </div>
-                <div class="col-11">
+                <div class="col-12">
                   <img src="/images/2_19.png" class="pl-3" style="width:100%;">
                   <hr class="container">
                   <div v-for="data in informations" :key="data.id" :value='data.id'>
-                    {{ data.translation }}
+                    <h3 class="container text-left">"{{ data.translation }}"</h3>
                   </div>
                 </div>
-
               </div>
-
             </div>
 
+            <!-- tafseer -->
             <div class="tab-pane" id="profile" role="tabpanel">
               <img src="/images/2_19.png" class="pl-3" style="width:100%;">
               <hr class="container">
@@ -242,11 +241,26 @@
                 {{ data.tafseer }}
               </div>
             </div>
+
+            <!-- transliteration -->
             <div class="tab-pane" id="messages" role="tabpanel">
               <img src="/images/2_19.png" class="pl-3" style="width:100%;">
               <hr class="container">
               <div v-for="data in informations" :key="data.id" :value='data.id'>
-                {{ data.transliteration }}
+                <h3 class="container text-left">{{ data.transliteration }}</h3>
+              </div>
+            </div>
+
+            <!-- video -->
+            <div class="tab-pane" id="videos" role="tabpanel">
+              <div class="row">
+                <div class="col-md-12 text-left">
+                  <h3 class="mb-2 text-center font-weight-bold">Overview</h3>
+                  <p>Surah Al-Fatiha, the opening chapter of the Quran, holds immense spiritual significance in Islam, encapsulating fundamental aspects of faith and worship. It begins with praise and glorification of Allah, acknowledging His mercy and sovereignty over all creation. The chapter then transitions into a supplication for guidance, seeking the straight path of righteousness and truth while recognizing the impending Day of Judgment. Al-Fatiha highlights Allah's attributes and serves as a plea for help in staying on the right path and avoiding deviation. It culminates with a reaffirmation of worship and praise for Allah, solidifying its central role as a comprehensive prayer, recited in every unit of Muslim prayer, reflecting the essence of the entire Quran and guiding believers in their spiritual journey.</p>
+                </div>
+                <div class="col-md-12 text-center">
+                  <iframe width="100%" height="450px" src="https://www.youtube.com/embed/KcJPXUKdKuQ?si=6S30TAR-7Pd346Ed" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
               </div>
             </div>
 
@@ -254,19 +268,17 @@
         </div>
       </div>
     </div>
-    <!-- right section -->
 
+    <!-- right section -->
     <div class="col-4 row">
       <div class="ml-2 col-md-12 card bg-light row" style="display:flex;border:3px solid #c3e6cb;padding:8px;">
-
         <form>
-          <select class="form-control col-12" style="display:flex" >
+          <select class="form-control col-12" style="display:flex">
             <label class="pt-2 pr-2 col-3">Mushaf:</label>
             <option value="0">Select Mushaf</option>
-            <option>{{ ayah.ayah_id }}</option>
+            <option></option>
           </select>
         </form>
-
       </div>
       <img src="/images/quran_img.png" class="pl-3" style="width:100%;">
     </div>
@@ -276,42 +288,19 @@
 
 <script>
 import WordHighlighter from "vue-word-highlighter";
-import { defineComponent, reactive, ref, computed } from "vue";
+import {
+  defineComponent,
+  reactive,
+  ref,
+  computed
+} from "vue";
 
-const DEFAULT_PARAGRAPH = information;
-export default defineComponent({
-  components: {
-    WordHighlighter,
-  },
+export default ({
+
   mounted() {
     this.getSurahs();
   },
-  setup() {
-    const information = ref();
-    const paragraph = ref(information);
-    const options = reactive({
-      caseSensitive: false,
-      splitBySpace: true,
-    });
-    const matchedWords = ref([]);
-    const searchWords = computed(() => {
-      if (!information.value) {
-        return [];
-      }
-      if (!options.splitBySpace) {
-        return [information.value];
-      }
-      return information.value.trim().split(/\s+/);
-    });
 
-    return {
-      information,
-      paragraph,
-      options,
-      searchWords,
-      matchedWords,
-    };
-  },
   data() {
     return {
       data: [],
