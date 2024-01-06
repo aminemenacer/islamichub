@@ -13,12 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('surah', function (Blueprint $table) {
+        Schema::create('tafseer', function (Blueprint $table) {
             $table->id();
-            $table->integer('juz_id');
-            $table->string('name_en');
-            $table->string('name_ar'); 
-            $table->longText('text');                       
+            $table->longText('tafseer');
+            $table->string('ayah_id')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('surah');
+        Schema::dropIfExists('tafseer');
     }
 };

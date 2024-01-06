@@ -40,6 +40,7 @@ Route::get('/get_surahs', [SurahController::class, 'getSurahs']);
 Route::get('/get_ayahs', [SurahController::class, 'getAyahs']);
 Route::get('/get_pages', [SurahController::class, 'getPages']);
 Route::get('/get_informations', [SurahController::class, 'getInformations']);
+Route::get('/tafseer/{id}/fetch', [SurahController::class, 'getTafseer']);
 
 
 // likes

@@ -14,7 +14,8 @@ class Surah extends Model
     protected $fillable = [
         'juz_id',
         'name_en',
-        'name_ar'
+        'name_ar',
+        'text'
     ];
 
     public function ayat()
@@ -22,8 +23,8 @@ class Surah extends Model
         return $this->hasMany(Ayah::class);
     }
 
-    public function juz()
+    public function surah()
     {
-        return $this->BelongsTo(Juz::class,'juz_id','id');
+        return $this->BelongsTo(Surah::class,'surah_id','id');
     }
 }

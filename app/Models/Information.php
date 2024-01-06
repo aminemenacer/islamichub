@@ -11,7 +11,7 @@ class Information extends Model
 
     protected $table = 'information';
 
-     protected $fillable = [
+    protected $fillable = [
         'tafseer',
         'translation',
         'transliteration',
@@ -21,4 +21,10 @@ class Information extends Model
         'ayah_id'
     ];
 
+    // RELATIONSHIPS
+
+    public function ayah()
+    {
+        return $this->BelongsTo(Ayah::class, 'ayah_id', 'id');
+    }
 }

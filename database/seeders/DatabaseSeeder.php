@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(DonationSeeder::class);
         $this->call(MailingSeeder::class);
         $this->call(QuranInformationSeeder::class);
+        $this->call(OverviewTextSeeder::class);
 
     }
 }

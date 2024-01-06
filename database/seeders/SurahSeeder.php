@@ -25,6 +25,7 @@ class SurahSeeder extends Seeder
                     "name_en" => $data['1'] ,
                     "juz_id" => $data['3'],
                     "name_ar" => $data['2'],
+                    "text" => $data['4']
 
                 ]);    
             }

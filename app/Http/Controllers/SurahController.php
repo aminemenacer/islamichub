@@ -6,12 +6,14 @@ use App\Models\Juz;
 use App\Models\Surah;
 use App\Models\Ayah;
 use App\Models\Information;
+use App\Models\OverviewText;
+use App\Models\Tafseer;
 use Illuminate\Http\Request;
 
 class SurahController extends Controller
 {
     public function getJuzs()
-    {       
+    {
         $juz = Juz::get();
         return response()->json($juz);
     }
@@ -22,7 +24,6 @@ class SurahController extends Controller
 
         // $data = Surah::where('juz_id', $request->juz_id)->get();
         return response()->json($surah);
-
     }
 
     public function getAyahs(Request $request)
@@ -33,9 +34,14 @@ class SurahController extends Controller
 
     public function getInformations(Request $request)
     {
-        $information = Information::where('ayah_id', $request->ayah_id)->get();
-        return response()->json($information);
+        $information = Information::with('ayah')->where('ayah_id', $request->ayah_id)->first();
+        return $information;
     }
 
-    
+    public function getTafseer($id)
+    {
+
+        $tafseer = Tafseer::whereId($id)->first();
+        return response()->json($tafseer->tafseer);
+    }
 }

@@ -11,16 +11,7 @@
         <div class="row">
 
           <div class="col-md-6 mb-2" style="display:flex;text-align:center">
-            <!--
-              <label class="pt-2 pl-3 pr-2">Juz:</label>
-              <form class="col-md-5">
-                <select class="form-control" v-model="juz" >
-                  <option value="0">Select Juz</option>
-                  <option v-for='data in juzs' :key="data.id" :value='data.id'>{{ data.juz_number }}</option>
-                </select>
-              </form>
-            -->
-
+            
             <label class="pt-2 pl-3 pr-2" style="display:flex">Surah:</label>
             <form class="col-md-5">
               <select class="form-control" v-model='surah' @change='getAyahs()'>
@@ -29,13 +20,15 @@
               </select>
             </form>
             <label class="pt-2 pl-3 pr-2">Ayah:</label>
-            <form class="col-md-8 ">
-              <select class='form-control' v-model='ayah' @change='getInformations()'>
-                <option value="0">Select Ayah</option>
-                <option v-for='data in ayahs' :key="data.id" :value='data.id'>{{ data.ayah_id }}, {{ data.ayah_text }}</option>
-              </select>
-            </form>
-
+          
+            
+              <form class="col-md-8 ">
+                <select class='form-control' v-model='ayah_id' @change='getTafseers()'>
+                  <option value="0">Select Ayah</option>
+                  <option v-for='data in ayahs' :key="data.id" :value='data.id'>{{ data.ayah_id }}, {{ data.ayah_text }}</option>
+                </select>
+              </form>
+            
             <form class="ml-3 col-md-8 ">
               <input class="form-control input is-primary" type="text" placeholder="Search keyword" />
             </form>
@@ -52,7 +45,6 @@
 
     </div>
   </div>
-
 
   <!-- accordion headers-->
   <div class="row container-fluid">
@@ -86,12 +78,12 @@
           </ul>
           <div data-bs-toggle="modal" style="cursor:pointer; float:right" data-bs-target="#staticBackdrop" class="fas fa-fw fa-info-circle fa-lg mt-3 mr-1"></div>
           <div data-bs-toggle="modal" style="cursor:pointer; float:right" data-bs-target="#staticBackdropbug" class="fas fa-fw fa-bug mt-3 fa-lg mt-2 "></div>
-          <div class="mt-2 font-weight-bold" v-for="data in informations" :key="data.id" :value='data.id'>Ayah: {{data.ayah_id}}</div>
+          <div class="mt-2 font-weight-bold" v-if="information != null"> Ayah: {{information.ayah.ayah_id}}, surah: {{information.ayah.surah_id}} </div>
         </div>
 
         <!-- instructions -->
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-          <div class="modal-dialog modal-lg">
+          <div class="modal-dialog modal-xl">
             <div class="modal-content ">
               <div class="modal-header">
                 <h4 class="modal-title fs-5 text-dark" id="staticBackdropLabel">Information</h4>
@@ -100,31 +92,42 @@
                 </button>
               </div>
               <div class="modal-body">
-                <ul class="list-group ">
-                  <li class="list-group-item list-group-item mb-2" style="border:2px solid #c3e6cb;">
-                    <b>1) Select from the Juz dropdown:</b><br>
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p>
-                    <img class="mt-2" style="box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; border-radius:10px; background:transparent;border:3px solid #c3e6cb;" src="/images/1.png" width="50%" />
-                  </li>
-                  <li class="list-group-item list-group-item mb-2" style="border:2px solid #c3e6cb;">
-                    <b>2) Select from the Surah dropdown:</b><br>
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p>
-                    <img class="mt-2" style="box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; border-radius:10px; background:transparent;border:3px solid #c3e6cb;" src="/images/2.png" width="60%" />
-                  </li>
-                  <li class="list-group-item list-group-item mb-2" style="border:2px solid #c3e6cb;"><b>3) Select from the Ayah dropdown:</b><br>
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p>
-                    <img class="mt-2" style="box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; border-radius:10px; background:transparent;border:3px solid #c3e6cb;" src="/images/3.png" width="60%" />
-                  </li>
-                  <li class="list-group-item list-group-item mb-2" style="border:2px solid #c3e6cb;"><b>4) Select from different Masahif:</b><br>
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p>
-                    <img class="mt-2" style="box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; border-radius:10px; background:transparent;border:3px solid #c3e6cb;" src="/images/5.png" width="60%" />
-                  </li>
-                  <li class="list-group-item list-group-item mb-2" style="border:2px solid #c3e6cb;"><b>5) Switch between tabs below:</b><br>
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p>
-                    <img class="mt-2" style="box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; border-radius:10px; background:transparent;border:3px solid #c3e6cb;" src="/images/4.png" width="70%" />
-                  </li>
 
-                </ul>
+                <div class="row">
+                  <div class="col-md-6">
+                    <li class="list-group-item list-group-item mb-2" style="border:2px solid #c3e6cb;">
+                      <b>1) Select from the Juz dropdown:</b><br>
+                      <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p>
+                      <img class="mt-2" style="box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; border-radius:10px; background:transparent;border:3px solid #c3e6cb;" src="/images/1.png" width="70%" />
+                    </li>
+                  </div>
+                  <div class="col-md-6">
+                    <li class="list-group-item list-group-item mb-2" style="border:2px solid #c3e6cb;">
+                      <b>2) Select from the Surah dropdown:</b><br>
+                      <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p>
+                      <img class="mt-2" style="box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; border-radius:10px; background:transparent;border:3px solid #c3e6cb;" src="/images/2.png" width="90%" />
+                    </li>
+                  </div>
+                  <div class="col-md-6">
+                    <li class="list-group-item list-group-item mb-2" style="border:2px solid #c3e6cb;"><b>3) Select from the Ayah dropdown:</b><br>
+                      <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p>
+                      <img class="mt-2" style="box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; border-radius:10px; background:transparent;border:3px solid #c3e6cb;" src="/images/3.png" width="90%" />
+                    </li>
+                  </div>
+                  <div class="col-md-6">
+                    <li class="list-group-item list-group-item mb-2" style="border:2px solid #c3e6cb;"><b>4) Select from different Masahif:</b><br>
+                      <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p>
+                      <img class="mt-2" style="box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; border-radius:10px; background:transparent;border:3px solid #c3e6cb;" src="/images/5.png" width="90%" />
+                    </li>
+                  </div>
+                  <div class="col-md-12">
+                    <li class="list-group-item list-group-item mb-2" style="border:2px solid #c3e6cb;"><b>5) Switch between tabs below:</b><br>
+                      <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p>
+                      <img class="mt-2" style="box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; border-radius:10px; background:transparent;border:3px solid #c3e6cb;" src="/images/4.png" width="90%" />
+                    </li>
+                  </div>
+                </div>
+
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -144,13 +147,13 @@
                 </button>
               </div>
               <div class="modal-body">
-                <form @reset="reset" >
+                <form @reset="reset">
                   <h6 class="modal-title ml-2" id="exampleModalLabel"><b>Type of correction:</b></h6><br>
 
                   <div class=" ml-2 row">
                     <div class="col-3">
                       <div class="form-check">
-                        <input class="form-check-input" name="spelling_mistakes"  type="checkbox" value="" id="flexCheckChecked">
+                        <input class="form-check-input" name="spelling_mistakes" type="checkbox" value="" id="flexCheckChecked">
                         <label class="form-check-label" for="flexCheckChecked">
                           Spelling mistakes
                         </label>
@@ -158,7 +161,7 @@
                     </div>
                     <div class="col-3">
                       <div class="form-check">
-                        <input class="form-check-input" name="incomplete_text"  type="checkbox" value="" id="flexCheckChecked">
+                        <input class="form-check-input" name="incomplete_text" type="checkbox" value="" id="flexCheckChecked">
                         <label class="form-check-label" for="flexCheckChecked">
                           Incomplete text
                         </label>
@@ -166,7 +169,7 @@
                     </div>
                     <div class="col-3">
                       <div class="form-check">
-                        <input class="form-check-input" name="translation_error"  type="checkbox" value="" id="flexCheckChecked">
+                        <input class="form-check-input" name="translation_error" type="checkbox" value="" id="flexCheckChecked">
                         <label class="form-check-label" for="flexCheckChecked">
                           Error in translation
                         </label>
@@ -184,7 +187,7 @@
                   <div class="row mt-3 mb-3">
                     <div class="col-3 ml-3">
                       <div class="form-check">
-                        <input class="form-check-input" name="narrator"  type="checkbox" value="" id="flexCheckChecked">
+                        <input class="form-check-input" name="narrator" type="checkbox" value="" id="flexCheckChecked">
                         <label class="form-check-label" for="flexCheckChecked">
                           Error in transliteration
                         </label>
@@ -192,7 +195,7 @@
                     </div>
                     <div class="col-3">
                       <div class="form-check">
-                        <input class="form-check-input" name="hadith_english"  type="checkbox" value="" id="flexCheckChecked">
+                        <input class="form-check-input" name="hadith_english" type="checkbox" value="" id="flexCheckChecked">
                         <label class="form-check-label" for="flexCheckChecked">
                           Error in overview
                         </label>
@@ -202,7 +205,7 @@
                   </div>
                   <div class="row ml-2 pt-3 pb-5">
                     <label for="exampleFormControlTextarea1" name="added_notes mt-3" class="form-label">Additional comments:</label>
-                    <textarea class="form-control col-md-10 ml-2"  id="exampleFormControlTextarea1" rows="5"></textarea>
+                    <textarea class="form-control col-md-10 ml-2" id="exampleFormControlTextarea1" rows="5"></textarea>
                   </div>
 
                   <div class="modal-footer">
@@ -237,8 +240,8 @@
             <div class="tab-pane" id="profile" role="tabpanel">
               <img src="/images/2_19.png" class="pl-3" style="width:100%;">
               <hr class="container">
-              <div v-for="data in informations" :key="data.id" :value='data.id'>
-                {{ data.tafseer }}
+              <div>
+                {{ tafseer }}
               </div>
             </div>
 
@@ -251,16 +254,18 @@
               </div>
             </div>
 
-            <!-- video -->
+            <!-- overview -->
             <div class="tab-pane" id="videos" role="tabpanel">
               <div class="row">
                 <div class="col-md-12 text-left">
-                  <h3 class="mb-2 text-center font-weight-bold">Overview</h3>
-                  <p>Surah Al-Fatiha, the opening chapter of the Quran, holds immense spiritual significance in Islam, encapsulating fundamental aspects of faith and worship. It begins with praise and glorification of Allah, acknowledging His mercy and sovereignty over all creation. The chapter then transitions into a supplication for guidance, seeking the straight path of righteousness and truth while recognizing the impending Day of Judgment. Al-Fatiha highlights Allah's attributes and serves as a plea for help in staying on the right path and avoiding deviation. It culminates with a reaffirmation of worship and praise for Allah, solidifying its central role as a comprehensive prayer, recited in every unit of Muslim prayer, reflecting the essence of the entire Quran and guiding believers in their spiritual journey.</p>
+                 
+                  <div v-for="data in surahs" :key="data.id" :value='data.id'>
+                    <h4 class="container text-center mb-3">{{ data.name_en }}</h4>
+                    <p class="container text-left">{{ data.text }}</p>
+                  </div>
+                  
                 </div>
-                <div class="col-md-12 text-center">
-                  <iframe width="100%" height="450px" src="https://www.youtube.com/embed/KcJPXUKdKuQ?si=6S30TAR-7Pd346Ed" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                </div>
+
               </div>
             </div>
 
@@ -272,13 +277,30 @@
     <!-- right section -->
     <div class="col-4 row">
       <div class="ml-2 col-md-12 card bg-light row" style="display:flex;border:3px solid #c3e6cb;padding:8px;">
-        <form>
-          <select class="form-control col-12" style="display:flex">
-            <label class="pt-2 pr-2 col-3">Mushaf:</label>
+        <form style="display:flex">
+
+          <select class="form-control col-5">
+            <label class="pt-2  col-3">Mushaf:</label>
             <option value="0">Select Mushaf</option>
             <option></option>
           </select>
+          <div class="col-1"></div>
+          <select class="form-control col-6">
+            <label class="pt-2 col-3">Reciter:</label>
+            <option value="0">Select Reciter</option>
+            <option></option>
+          </select>
+
         </form>
+      </div>
+      <div class="row">
+        <div class="col-md-12 ml-3">
+          <audio style="border:3px solid lightgrey; border-radius:5%" class="mb-2" controls>
+            <source src="horse.ogg" type="audio/ogg">
+            <source src="horse.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+        </div>
       </div>
       <img src="/images/quran_img.png" class="pl-3" style="width:100%;">
     </div>
@@ -287,13 +309,6 @@
 </template>
 
 <script>
-import WordHighlighter from "vue-word-highlighter";
-import {
-  defineComponent,
-  reactive,
-  ref,
-  computed
-} from "vue";
 
 export default ({
 
@@ -306,29 +321,26 @@ export default ({
       data: [],
       juz: 0,
       juzs: [],
-      surah: 0,
+      surah: 0,      
+      tafseers: [],
+      tafseer:null,
       surahs: [],
-      ayah: 0,
-      ayahs: {},
+      ayah_id: 0,
+      ayahs: [],
       page: '',
       pages: [],
-      information: 0,
-      informations: []
+      information: null,
+      informations: [],
+
     }
   },
   methods: {
-    getJuzs: function () {
-      axios.get('/get_juzs')
-        .then(function (response) {
-          this.juzs = response.data;
-        }.bind(this));
-    },
-
+    
     getSurahs: function () {
       axios.get('/get_surahs', {
-        // params: {
-        //   juz_id: this.juz
-        // }
+        params: {
+          id: this.surah
+        }
       }).then(function (response) {
         this.surahs = response.data;
       }.bind(this));
@@ -343,15 +355,20 @@ export default ({
         this.ayahs = response.data;
       }.bind(this));
     },
-    getInformations: function () {
+
+    getTafseers: function () {
+      axios.get(`/tafseer/${this.ayah_id}/fetch`).then(function (response) {
+        this.tafseer = response.data;
+      }.bind(this));
+      
       axios.get('/get_informations', {
         params: {
-          ayah_id: this.ayah
+          ayah_id: this.ayah_id
         }
       }).then(function (response) {
-        this.informations = response.data;
+        this.information = response.data;
       }.bind(this));
-    }
+    },
 
   },
 })
