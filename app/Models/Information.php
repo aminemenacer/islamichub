@@ -27,4 +27,6 @@ class Information extends Model
     {
         return $this->BelongsTo(Ayah::class, 'ayah_id', 'id');
     }
+
+    
 }

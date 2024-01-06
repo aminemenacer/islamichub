@@ -51,7 +51,7 @@
 
     <div class="col-md-8">
       <!-- Nav tabs -->
-      <div class="card " style="display:flex;border:1px solid lightgrey;padding:10px; border-radius:10px">
+      <div class="card " style="display:flex;border:3px solid #c3e6cb;padding:10px; border-radius:10px">
         <div class="card-header ">
           <ul class="nav nav-tabs text-left justify-content-center" role="tablist">
             <li class="nav-item">
@@ -69,17 +69,20 @@
                 <i class="now-ui-icons shopping_shop"></i> Transliteration
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#videos" role="tab">
-                <i class="now-ui-icons shopping_shop"></i> Overview
-              </a>
-            </li>
+
 
           </ul>
           <div data-bs-toggle="modal" style="cursor:pointer; float:right" data-bs-target="#staticBackdrop" class="fas fa-fw fa-info-circle fa-lg mt-3 mr-1"></div>
           <div data-bs-toggle="modal" style="cursor:pointer; float:right" data-bs-target="#staticBackdropbug" class="fas fa-fw fa-bug mt-3 fa-lg mt-2 "></div>
-          <div class="mt-2 font-weight-bold" v-if="information != null"> Ayah: {{information.ayah.ayah_id}}, surah: {{information.ayah.surah_id}} </div>
+          <div class="mt-2 font-weight-bold" v-if="information != null"> 
+            <ul class="ul-main">
+              <li class="li-main"><span class="span-main">{{information.ayah.surah_id}} </span>Surah</li>
+              <li class="colon"> : </li>
+              <li class="li-main"><span class="span-main">{{information.ayah.ayah_id}}</span>Ayah</li>
+            </ul>
+          </div>
         </div>
+
 
         <!-- instructions -->
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -241,7 +244,7 @@
               <img src="/images/2_19.png" class="pl-3" style="width:100%;">
               <hr class="container">
               <div>
-                {{ tafseer }}
+                <h3 class="container text-left">{{ tafseer }}</h3>
               </div>
             </div>
 
@@ -250,22 +253,7 @@
               <img src="/images/2_19.png" class="pl-3" style="width:100%;">
               <hr class="container">
               <div v-for="data in informations" :key="data.id" :value='data.id'>
-                <h3 class="container text-left">{{ data.transliteration }}</h3>
-              </div>
-            </div>
-
-            <!-- overview -->
-            <div class="tab-pane" id="videos" role="tabpanel">
-              <div class="row">
-                <div class="col-md-12 text-left">
-                 
-                  <div v-for="data in surahs" :key="data.id" :value='data.id'>
-                    <h4 class="container text-center mb-3">{{ data.name_en }}</h4>
-                    <p class="container text-left">{{ data.text }}</p>
-                  </div>
-                  
-                </div>
-
+                <h3 class="container text-left">{{ informations }}</h3>
               </div>
             </div>
 
@@ -293,6 +281,7 @@
 
         </form>
       </div>
+      <!--
       <div class="row">
         <div class="col-md-12 ml-3">
           <audio style="border:3px solid lightgrey; border-radius:5%" class="mb-2" controls>
@@ -302,6 +291,7 @@
           </audio>
         </div>
       </div>
+      -->
       <img src="/images/quran_img.png" class="pl-3" style="width:100%;">
     </div>
   </div>
@@ -375,10 +365,27 @@ export default ({
 </script>
 
 <style>
-.navbar {
-  position: fixed;
 
+.ul-main {
+  list-style: none;  
 }
+
+.ul-main .li-main {
+  display: inline-block;
+  font-size: 12px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.colon {
+  display: inline;
+  vertical-align: top;
+  font-size: 22px;
+}
+.ul-main .li-main .span-main {
+  font-size: 22px;
+  display: block;
+}
+
 
 .ayah_img:hover {
   background-color: #c3e6cb;

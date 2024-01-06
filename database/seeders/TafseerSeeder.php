@@ -20,8 +20,7 @@ class TafseerSeeder extends Seeder
         while (($data = fgetcsv($csvFile, 2000, ",")) !== FALSE) {
             if (!$firstline) {
                 Tafseer::create([
-                    "id" => $data['0'],                    
-                    "tafseer" => $data['1'],
+                    "tafseer" => $data['0'],
                 ]);    
             }
             $firstline = false;

@@ -12,17 +12,10 @@ use Illuminate\Http\Request;
 
 class SurahController extends Controller
 {
-    public function getJuzs()
-    {
-        $juz = Juz::get();
-        return response()->json($juz);
-    }
-
+    
     public function getSurahs(Request $request)
     {
         $surah = Surah::get();
-
-        // $data = Surah::where('juz_id', $request->juz_id)->get();
         return response()->json($surah);
     }
 
@@ -35,12 +28,11 @@ class SurahController extends Controller
     public function getInformations(Request $request)
     {
         $information = Information::with('ayah')->where('ayah_id', $request->ayah_id)->first();
-        return $information;
+        return response()->json($information);
     }
 
     public function getTafseer($id)
     {
-
         $tafseer = Tafseer::whereId($id)->first();
         return response()->json($tafseer->tafseer);
     }

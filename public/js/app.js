@@ -25898,7 +25898,7 @@ var _hoisted_20 = {
   "class": "card",
   style: {
     "display": "flex",
-    "border": "1px solid lightgrey",
+    "border": "3px solid #c3e6cb",
     "padding": "10px",
     "border-radius": "10px"
   }
@@ -25936,16 +25936,7 @@ var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   role: "tab"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "now-ui-icons shopping_shop"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Transliteration ")])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
-  "class": "nav-item"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  "class": "nav-link",
-  "data-toggle": "tab",
-  href: "#videos",
-  role: "tab"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-  "class": "now-ui-icons shopping_shop"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Overview ")])])], -1 /* HOISTED */);
+}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Transliteration ")])])], -1 /* HOISTED */);
 var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "data-bs-toggle": "modal",
   style: {
@@ -25968,8 +25959,26 @@ var _hoisted_25 = {
   key: 0,
   "class": "mt-2 font-weight-bold"
 };
-var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"modal fade\" id=\"staticBackdrop\" data-bs-backdrop=\"static\" data-bs-keyboard=\"false\" tabindex=\"-1\" aria-labelledby=\"staticBackdropLabel\" aria-hidden=\"true\"><div class=\"modal-dialog modal-xl\"><div class=\"modal-content\"><div class=\"modal-header\"><h4 class=\"modal-title fs-5 text-dark\" id=\"staticBackdropLabel\">Information</h4><button type=\"button\" class=\"close\" data-bs-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">×</span></button></div><div class=\"modal-body\"><div class=\"row\"><div class=\"col-md-6\"><li class=\"list-group-item list-group-item mb-2\" style=\"border:2px solid #c3e6cb;\"><b>1) Select from the Juz dropdown:</b><br><p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p><img class=\"mt-2\" style=\"box-shadow:rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;border-radius:10px;background:transparent;border:3px solid #c3e6cb;\" src=\"/images/1.png\" width=\"70%\"></li></div><div class=\"col-md-6\"><li class=\"list-group-item list-group-item mb-2\" style=\"border:2px solid #c3e6cb;\"><b>2) Select from the Surah dropdown:</b><br><p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p><img class=\"mt-2\" style=\"box-shadow:rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;border-radius:10px;background:transparent;border:3px solid #c3e6cb;\" src=\"/images/2.png\" width=\"90%\"></li></div><div class=\"col-md-6\"><li class=\"list-group-item list-group-item mb-2\" style=\"border:2px solid #c3e6cb;\"><b>3) Select from the Ayah dropdown:</b><br><p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p><img class=\"mt-2\" style=\"box-shadow:rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;border-radius:10px;background:transparent;border:3px solid #c3e6cb;\" src=\"/images/3.png\" width=\"90%\"></li></div><div class=\"col-md-6\"><li class=\"list-group-item list-group-item mb-2\" style=\"border:2px solid #c3e6cb;\"><b>4) Select from different Masahif:</b><br><p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p><img class=\"mt-2\" style=\"box-shadow:rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;border-radius:10px;background:transparent;border:3px solid #c3e6cb;\" src=\"/images/5.png\" width=\"90%\"></li></div><div class=\"col-md-12\"><li class=\"list-group-item list-group-item mb-2\" style=\"border:2px solid #c3e6cb;\"><b>5) Switch between tabs below:</b><br><p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p><img class=\"mt-2\" style=\"box-shadow:rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;border-radius:10px;background:transparent;border:3px solid #c3e6cb;\" src=\"/images/4.png\" width=\"90%\"></li></div></div></div><div class=\"modal-footer\"><button type=\"button\" class=\"btn btn-secondary\" data-bs-dismiss=\"modal\">Close</button></div></div></div></div>", 1);
+var _hoisted_26 = {
+  "class": "ul-main"
+};
 var _hoisted_27 = {
+  "class": "li-main"
+};
+var _hoisted_28 = {
+  "class": "span-main"
+};
+var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
+  "class": "colon"
+}, " : ", -1 /* HOISTED */);
+var _hoisted_30 = {
+  "class": "li-main"
+};
+var _hoisted_31 = {
+  "class": "span-main"
+};
+var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"modal fade\" id=\"staticBackdrop\" data-bs-backdrop=\"static\" data-bs-keyboard=\"false\" tabindex=\"-1\" aria-labelledby=\"staticBackdropLabel\" aria-hidden=\"true\"><div class=\"modal-dialog modal-xl\"><div class=\"modal-content\"><div class=\"modal-header\"><h4 class=\"modal-title fs-5 text-dark\" id=\"staticBackdropLabel\">Information</h4><button type=\"button\" class=\"close\" data-bs-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">×</span></button></div><div class=\"modal-body\"><div class=\"row\"><div class=\"col-md-6\"><li class=\"list-group-item list-group-item mb-2\" style=\"border:2px solid #c3e6cb;\"><b>1) Select from the Juz dropdown:</b><br><p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p><img class=\"mt-2\" style=\"box-shadow:rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;border-radius:10px;background:transparent;border:3px solid #c3e6cb;\" src=\"/images/1.png\" width=\"70%\"></li></div><div class=\"col-md-6\"><li class=\"list-group-item list-group-item mb-2\" style=\"border:2px solid #c3e6cb;\"><b>2) Select from the Surah dropdown:</b><br><p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p><img class=\"mt-2\" style=\"box-shadow:rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;border-radius:10px;background:transparent;border:3px solid #c3e6cb;\" src=\"/images/2.png\" width=\"90%\"></li></div><div class=\"col-md-6\"><li class=\"list-group-item list-group-item mb-2\" style=\"border:2px solid #c3e6cb;\"><b>3) Select from the Ayah dropdown:</b><br><p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p><img class=\"mt-2\" style=\"box-shadow:rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;border-radius:10px;background:transparent;border:3px solid #c3e6cb;\" src=\"/images/3.png\" width=\"90%\"></li></div><div class=\"col-md-6\"><li class=\"list-group-item list-group-item mb-2\" style=\"border:2px solid #c3e6cb;\"><b>4) Select from different Masahif:</b><br><p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p><img class=\"mt-2\" style=\"box-shadow:rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;border-radius:10px;background:transparent;border:3px solid #c3e6cb;\" src=\"/images/5.png\" width=\"90%\"></li></div><div class=\"col-md-12\"><li class=\"list-group-item list-group-item mb-2\" style=\"border:2px solid #c3e6cb;\"><b>5) Switch between tabs below:</b><br><p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p><img class=\"mt-2\" style=\"box-shadow:rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;border-radius:10px;background:transparent;border:3px solid #c3e6cb;\" src=\"/images/4.png\" width=\"90%\"></li></div></div></div><div class=\"modal-footer\"><button type=\"button\" class=\"btn btn-secondary\" data-bs-dismiss=\"modal\">Close</button></div></div></div></div>", 1);
+var _hoisted_33 = {
   "class": "modal fade",
   id: "staticBackdropbug",
   "data-bs-backdrop": "static",
@@ -25978,13 +25987,13 @@ var _hoisted_27 = {
   "aria-labelledby": "staticBackdropLabel",
   "aria-hidden": "true"
 };
-var _hoisted_28 = {
+var _hoisted_34 = {
   "class": "modal-dialog modal-lg"
 };
-var _hoisted_29 = {
+var _hoisted_35 = {
   "class": "modal-content"
 };
-var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_36 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "modal-header"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", {
   "class": "modal-title fs-5 text-dark",
@@ -25997,95 +26006,80 @@ var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "aria-hidden": "true"
 }, "×")])], -1 /* HOISTED */);
-var _hoisted_31 = {
+var _hoisted_37 = {
   "class": "modal-body"
 };
-var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<h6 class=\"modal-title ml-2\" id=\"exampleModalLabel\"><b>Type of correction:</b></h6><br><div class=\"ml-2 row\"><div class=\"col-3\"><div class=\"form-check\"><input class=\"form-check-input\" name=\"spelling_mistakes\" type=\"checkbox\" value=\"\" id=\"flexCheckChecked\"><label class=\"form-check-label\" for=\"flexCheckChecked\"> Spelling mistakes </label></div></div><div class=\"col-3\"><div class=\"form-check\"><input class=\"form-check-input\" name=\"incomplete_text\" type=\"checkbox\" value=\"\" id=\"flexCheckChecked\"><label class=\"form-check-label\" for=\"flexCheckChecked\"> Incomplete text </label></div></div><div class=\"col-3\"><div class=\"form-check\"><input class=\"form-check-input\" name=\"translation_error\" type=\"checkbox\" value=\"\" id=\"flexCheckChecked\"><label class=\"form-check-label\" for=\"flexCheckChecked\"> Error in translation </label></div></div><div class=\"col-3\"><div class=\"form-check\"><input class=\"form-check-input\" name=\"reference_error\" type=\"checkbox\" value=\"\" id=\"flexCheckChecked\"><label class=\"form-check-label\" for=\"flexCheckChecked\"> Error in tafseer </label></div></div></div><div class=\"row mt-3 mb-3\"><div class=\"col-3 ml-3\"><div class=\"form-check\"><input class=\"form-check-input\" name=\"narrator\" type=\"checkbox\" value=\"\" id=\"flexCheckChecked\"><label class=\"form-check-label\" for=\"flexCheckChecked\"> Error in transliteration </label></div></div><div class=\"col-3\"><div class=\"form-check\"><input class=\"form-check-input\" name=\"hadith_english\" type=\"checkbox\" value=\"\" id=\"flexCheckChecked\"><label class=\"form-check-label\" for=\"flexCheckChecked\"> Error in overview </label></div></div></div><div class=\"row ml-2 pt-3 pb-5\"><label for=\"exampleFormControlTextarea1\" name=\"added_notes mt-3\" class=\"form-label\">Additional comments:</label><textarea class=\"form-control col-md-10 ml-2\" id=\"exampleFormControlTextarea1\" rows=\"5\"></textarea></div><div class=\"modal-footer\"><button type=\"button\" class=\"btn btn-secondary\" data-bs-dismiss=\"modal\">Close</button><button type=\"submit\" class=\"btn btn-success\">Submit changes</button></div>", 6);
-var _hoisted_38 = [_hoisted_32];
-var _hoisted_39 = {
+var _hoisted_38 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<h6 class=\"modal-title ml-2\" id=\"exampleModalLabel\"><b>Type of correction:</b></h6><br><div class=\"ml-2 row\"><div class=\"col-3\"><div class=\"form-check\"><input class=\"form-check-input\" name=\"spelling_mistakes\" type=\"checkbox\" value=\"\" id=\"flexCheckChecked\"><label class=\"form-check-label\" for=\"flexCheckChecked\"> Spelling mistakes </label></div></div><div class=\"col-3\"><div class=\"form-check\"><input class=\"form-check-input\" name=\"incomplete_text\" type=\"checkbox\" value=\"\" id=\"flexCheckChecked\"><label class=\"form-check-label\" for=\"flexCheckChecked\"> Incomplete text </label></div></div><div class=\"col-3\"><div class=\"form-check\"><input class=\"form-check-input\" name=\"translation_error\" type=\"checkbox\" value=\"\" id=\"flexCheckChecked\"><label class=\"form-check-label\" for=\"flexCheckChecked\"> Error in translation </label></div></div><div class=\"col-3\"><div class=\"form-check\"><input class=\"form-check-input\" name=\"reference_error\" type=\"checkbox\" value=\"\" id=\"flexCheckChecked\"><label class=\"form-check-label\" for=\"flexCheckChecked\"> Error in tafseer </label></div></div></div><div class=\"row mt-3 mb-3\"><div class=\"col-3 ml-3\"><div class=\"form-check\"><input class=\"form-check-input\" name=\"narrator\" type=\"checkbox\" value=\"\" id=\"flexCheckChecked\"><label class=\"form-check-label\" for=\"flexCheckChecked\"> Error in transliteration </label></div></div><div class=\"col-3\"><div class=\"form-check\"><input class=\"form-check-input\" name=\"hadith_english\" type=\"checkbox\" value=\"\" id=\"flexCheckChecked\"><label class=\"form-check-label\" for=\"flexCheckChecked\"> Error in overview </label></div></div></div><div class=\"row ml-2 pt-3 pb-5\"><label for=\"exampleFormControlTextarea1\" name=\"added_notes mt-3\" class=\"form-label\">Additional comments:</label><textarea class=\"form-control col-md-10 ml-2\" id=\"exampleFormControlTextarea1\" rows=\"5\"></textarea></div><div class=\"modal-footer\"><button type=\"button\" class=\"btn btn-secondary\" data-bs-dismiss=\"modal\">Close</button><button type=\"submit\" class=\"btn btn-success\">Submit changes</button></div>", 6);
+var _hoisted_44 = [_hoisted_38];
+var _hoisted_45 = {
   "class": "card-body"
 };
-var _hoisted_40 = {
+var _hoisted_46 = {
   "class": "tab-content text-center"
 };
-var _hoisted_41 = {
+var _hoisted_47 = {
   "class": "tab-pane active",
   id: "home",
   role: "tabpanel"
 };
-var _hoisted_42 = {
+var _hoisted_48 = {
   "class": "row"
 };
-var _hoisted_43 = {
+var _hoisted_49 = {
   "class": "col-12"
 };
-var _hoisted_44 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+var _hoisted_50 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
   src: "/images/2_19.png",
   "class": "pl-3",
   style: {
     "width": "100%"
   }
 }, null, -1 /* HOISTED */);
-var _hoisted_45 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", {
+var _hoisted_51 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", {
   "class": "container"
 }, null, -1 /* HOISTED */);
-var _hoisted_46 = ["value"];
-var _hoisted_47 = {
+var _hoisted_52 = ["value"];
+var _hoisted_53 = {
   "class": "container text-left"
 };
-var _hoisted_48 = {
+var _hoisted_54 = {
   "class": "tab-pane",
   id: "profile",
   role: "tabpanel"
 };
-var _hoisted_49 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+var _hoisted_55 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
   src: "/images/2_19.png",
   "class": "pl-3",
   style: {
     "width": "100%"
   }
 }, null, -1 /* HOISTED */);
-var _hoisted_50 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", {
+var _hoisted_56 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", {
   "class": "container"
 }, null, -1 /* HOISTED */);
-var _hoisted_51 = {
+var _hoisted_57 = {
+  "class": "container text-left"
+};
+var _hoisted_58 = {
   "class": "tab-pane",
   id: "messages",
   role: "tabpanel"
 };
-var _hoisted_52 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+var _hoisted_59 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
   src: "/images/2_19.png",
   "class": "pl-3",
   style: {
     "width": "100%"
   }
 }, null, -1 /* HOISTED */);
-var _hoisted_53 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", {
+var _hoisted_60 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", {
   "class": "container"
 }, null, -1 /* HOISTED */);
-var _hoisted_54 = ["value"];
-var _hoisted_55 = {
+var _hoisted_61 = ["value"];
+var _hoisted_62 = {
   "class": "container text-left"
 };
-var _hoisted_56 = {
-  "class": "tab-pane",
-  id: "videos",
-  role: "tabpanel"
-};
-var _hoisted_57 = {
-  "class": "row"
-};
-var _hoisted_58 = {
-  "class": "col-md-12 text-left"
-};
-var _hoisted_59 = ["value"];
-var _hoisted_60 = {
-  "class": "container text-center mb-3"
-};
-var _hoisted_61 = {
-  "class": "container text-left"
-};
-var _hoisted_62 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"col-4 row\"><div class=\"ml-2 col-md-12 card bg-light row\" style=\"display:flex;border:3px solid #c3e6cb;padding:8px;\"><form style=\"display:flex;\"><select class=\"form-control col-5\"><label class=\"pt-2 col-3\">Mushaf:</label><option value=\"0\">Select Mushaf</option><option></option></select><div class=\"col-1\"></div><select class=\"form-control col-6\"><label class=\"pt-2 col-3\">Reciter:</label><option value=\"0\">Select Reciter</option><option></option></select></form></div><div class=\"row\"><div class=\"col-md-12 ml-3\"><audio style=\"border:3px solid lightgrey;border-radius:5%;\" class=\"mb-2\" controls><source src=\"horse.ogg\" type=\"audio/ogg\"><source src=\"horse.mp3\" type=\"audio/mpeg\"> Your browser does not support the audio element. </audio></div></div><img src=\"/images/quran_img.png\" class=\"pl-3\" style=\"width:100%;\"></div>", 1);
+var _hoisted_63 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"col-4 row\"><div class=\"ml-2 col-md-12 card bg-light row\" style=\"display:flex;border:3px solid #c3e6cb;padding:8px;\"><form style=\"display:flex;\"><select class=\"form-control col-5\"><label class=\"pt-2 col-3\">Mushaf:</label><option value=\"0\">Select Mushaf</option><option></option></select><div class=\"col-1\"></div><select class=\"form-control col-6\"><label class=\"pt-2 col-3\">Reciter:</label><option value=\"0\">Select Reciter</option><option></option></select></form></div><!--\n      &lt;div class=&quot;row&quot;&gt;\n        &lt;div class=&quot;col-md-12 ml-3&quot;&gt;\n          &lt;audio style=&quot;border:3px solid lightgrey; border-radius:5%&quot; class=&quot;mb-2&quot; controls&gt;\n            &lt;source src=&quot;horse.ogg&quot; type=&quot;audio/ogg&quot;&gt;\n            &lt;source src=&quot;horse.mp3&quot; type=&quot;audio/mpeg&quot;&gt;\n            Your browser does not support the audio element.\n          &lt;/audio&gt;\n        &lt;/div&gt;\n      &lt;/div&gt;\n      --><img src=\"/images/quran_img.png\" class=\"pl-3\" style=\"width:100%;\"></div>", 1);
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Highlighter = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Highlighter");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(""), _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" multiple input sections "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
@@ -26123,26 +26117,21 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     searchWords: _ctx.keywords,
     autoEscape: true,
     textToHighlight: _ctx.text
-  }, null, 8 /* PROPS */, ["searchWords", "textToHighlight"])])]), _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" accordion headers"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Nav tabs "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [_hoisted_22, _hoisted_23, _hoisted_24, $data.information != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_25, " Ayah: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.information.ayah.ayah_id) + ", surah: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.information.ayah.surah_id), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" instructions "), _hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" report a bug "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [_hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
+  }, null, 8 /* PROPS */, ["searchWords", "textToHighlight"])])]), _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" accordion headers"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Nav tabs "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [_hoisted_22, _hoisted_23, _hoisted_24, $data.information != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.information.ayah.surah_id), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Surah")]), _hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.information.ayah.ayah_id), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Ayah")])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" instructions "), _hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" report a bug "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_33, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_34, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_35, [_hoisted_36, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
     onReset: _cache[4] || (_cache[4] = function () {
       return _ctx.reset && _ctx.reset.apply(_ctx, arguments);
     })
-  }, [].concat(_hoisted_38), 32 /* HYDRATE_EVENTS */)])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Tab panes "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_40, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" translation "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_41, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_42, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_43, [_hoisted_44, _hoisted_45, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.informations, function (data) {
+  }, [].concat(_hoisted_44), 32 /* HYDRATE_EVENTS */)])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_45, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Tab panes "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_46, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" translation "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_47, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_48, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_49, [_hoisted_50, _hoisted_51, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.informations, function (data) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       key: data.id,
       value: data.id
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_47, "\"" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.translation) + "\"", 1 /* TEXT */)], 8 /* PROPS */, _hoisted_46);
-  }), 128 /* KEYED_FRAGMENT */))])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" tafseer "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_48, [_hoisted_49, _hoisted_50, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.tafseer), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" transliteration "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_51, [_hoisted_52, _hoisted_53, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.informations, function (data) {
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_53, "\"" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.translation) + "\"", 1 /* TEXT */)], 8 /* PROPS */, _hoisted_52);
+  }), 128 /* KEYED_FRAGMENT */))])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" tafseer "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_54, [_hoisted_55, _hoisted_56, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_57, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.tafseer), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" transliteration "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_58, [_hoisted_59, _hoisted_60, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.informations, function (data) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       key: data.id,
       value: data.id
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_55, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.transliteration), 1 /* TEXT */)], 8 /* PROPS */, _hoisted_54);
-  }), 128 /* KEYED_FRAGMENT */))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" overview "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_56, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_57, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_58, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.surahs, function (data) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
-      key: data.id,
-      value: data.id
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", _hoisted_60, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.name_en), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_61, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.text), 1 /* TEXT */)], 8 /* PROPS */, _hoisted_59);
-  }), 128 /* KEYED_FRAGMENT */))])])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" right section "), _hoisted_62])]);
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_62, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.informations), 1 /* TEXT */)], 8 /* PROPS */, _hoisted_61);
+  }), 128 /* KEYED_FRAGMENT */))])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" right section "), _hoisted_63])]);
 }
 
 /***/ }),
@@ -33801,7 +33790,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.navbar {\n  position: fixed;\n}\n.ayah_img:hover {\n  background-color: #c3e6cb;\n  border-radius: 10px;\n  cursor: pointer;\n}\n.enlarge .ayah {\n  transition: transform 0.50s ease;\n  float: right;\n}\n.enlarge:hover {\n  /* or some other value */\n  transform: scale(1.2);\n}\nbutton,\ninput {\n  font-family: \"Montserrat\", \"Helvetica Neue\", Arial, sans-serif;\n}\n.nav-item .nav-link,\n.nav-tabs .nav-link {\n  transition: all 300ms ease 0s;\n}\n.nav-tabs>.nav-item>.nav-link {\n  color: #888888;\n  margin: 0;\n  margin-right: 5px;\n  background-color: transparent;\n  border: 1px solid transparent;\n  font-size: 14px;\n  padding: 11px 23px;\n  line-height: 1.5;\n}\n.nav-tabs>.nav-item>.nav-link:hover {\n  background-color: transparent;\n}\n.nav-tabs>.nav-item>.nav-link.active {\n  background-color: #444;\n  color: #FFFFFF;\n}\n.nav-tabs>.nav-item>.nav-link i.now-ui-icons {\n  font-size: 14px;\n  position: relative;\n  top: 1px;\n  margin-right: 3px;\n}\n.nav-tabs.nav-tabs-neutral>.nav-item>.nav-link {\n  color: #FFFFFF;\n}\n.nav-tabs.nav-tabs-neutral>.nav-item>.nav-link.active {\n  background-color: rgba(255, 255, 255, 0.2);\n  color: #FFFFFF;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.ul-main {\n  list-style: none;\n}\n.ul-main .li-main {\n  display: inline-block;\n  font-size: 12px;\n  text-align: center;\n  text-transform: uppercase;\n}\n.colon {\n  display: inline;\n  vertical-align: top;\n  font-size: 22px;\n}\n.ul-main .li-main .span-main {\n  font-size: 22px;\n  display: block;\n}\n.ayah_img:hover {\n  background-color: #c3e6cb;\n  border-radius: 10px;\n  cursor: pointer;\n}\n.enlarge .ayah {\n  transition: transform 0.50s ease;\n  float: right;\n}\n.enlarge:hover {\n  /* or some other value */\n  transform: scale(1.2);\n}\nbutton,\ninput {\n  font-family: \"Montserrat\", \"Helvetica Neue\", Arial, sans-serif;\n}\n.nav-item .nav-link,\n.nav-tabs .nav-link {\n  transition: all 300ms ease 0s;\n}\n.nav-tabs>.nav-item>.nav-link {\n  color: #888888;\n  margin: 0;\n  margin-right: 5px;\n  background-color: transparent;\n  border: 1px solid transparent;\n  font-size: 14px;\n  padding: 11px 23px;\n  line-height: 1.5;\n}\n.nav-tabs>.nav-item>.nav-link:hover {\n  background-color: transparent;\n}\n.nav-tabs>.nav-item>.nav-link.active {\n  background-color: #444;\n  color: #FFFFFF;\n}\n.nav-tabs>.nav-item>.nav-link i.now-ui-icons {\n  font-size: 14px;\n  position: relative;\n  top: 1px;\n  margin-right: 3px;\n}\n.nav-tabs.nav-tabs-neutral>.nav-item>.nav-link {\n  color: #FFFFFF;\n}\n.nav-tabs.nav-tabs-neutral>.nav-item>.nav-link.active {\n  background-color: rgba(255, 255, 255, 0.2);\n  color: #FFFFFF;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
