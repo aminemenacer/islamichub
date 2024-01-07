@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\CardsController;
+use App\Http\Controllers\AhadithController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
@@ -47,10 +47,9 @@ Route::get('/tafseer/{id}/fetch', [SurahController::class, 'getTafseer']);
 Route::get('api/fetch-likes', [LikedController::class, 'getLikes']);
 Route::get('/likes', [LikedController::class, 'index']);
 
-// cards
-Route::get('/cards', [CardsController::class, 'index']);
-Route::post('api/create-likes', [CardController::class, 'submitLike']);
-Route::get('api/fetch-cards', [CardsController::class, 'getCards']);
+// ahadith
+Route::get('/ahadith', [AhadithController::class, 'index']);
+
 
 // frontend json files
 Route::get('/allah_names', [AllahNamesController::class, 'index']);

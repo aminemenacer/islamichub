@@ -394,31 +394,31 @@ return [
         [
             'header' => 'CONTENT',
         ],
-        [
-            'text' => 'Home',
-            'url'  => 'home',
-            'icon' => 'fas fa-fw fa-home',
-        ],
+        // [
+        //     'text' => 'Home',
+        //     'url'  => 'home',
+        //     'icon' => 'fas fa-fw fa-home',
+        // ],
         [
             'text' => 'Quran',
             'url'  => 'quran',
             'icon' => 'fas fa-fw fa-quran',
         ],
         [
-            'text' => 'Information',
-            'url' => 'cards',
-            'icon' => 'fas fa-fw fa-pen',
+            'text' => 'Ahadith',
+            'url' => 'ahadith',
+            'icon' => 'fas fa-fw fa-book',
         ],
         // [
         //     'text' => 'Names of Allah',
         //     'url'  => 'allah_names',
         //     'icon' => 'fas fa-fw fa-clipboard-list',
         // ],
-        [
-            'text' => 'Reminders',
-            'url'  => 'reminders',
-            'icon' => 'fas fa-fw fa-bell',
-        ],
+        // [
+        //     'text' => 'Reminders',
+        //     'url'  => 'reminders',
+        //     'icon' => 'fas fa-fw fa-bell',
+        // ],
         // [
         //     'text' => 'Islamic Knowledge',
         //     'icon' => 'fas fa-fw fa-school',
@@ -434,25 +434,25 @@ return [
         //         ],
         //     ],
         // ],
-        [
-            'text' => 'Forty Hadith books',
-            'url'  => 'ahadith',
-            'icon' => 'fas fa-fw fa-book',
-            'submenu' => [
-                [
-                    'text' => 'Al-Nawawi',
-                    'url'  => 'nawawis',
-                ],
-                [
-                    'text' => 'Al-Qudsi',
-                    'url'  => 'hadith_qudsi',
-                ],
-                [
-                    'text' => 'Abu Shahwaliullah',
-                    'url'  => 'hadith_shah',
-                ]
-            ],
-        ],
+        // [
+        //     'text' => 'Forty Hadith books',
+        //     'url'  => 'ahadith',
+        //     'icon' => 'fas fa-fw fa-book',
+        //     'submenu' => [
+        //         [
+        //             'text' => 'Al-Nawawi',
+        //             'url'  => 'nawawis',
+        //         ],
+        //         [
+        //             'text' => 'Al-Qudsi',
+        //             'url'  => 'hadith_qudsi',
+        //         ],
+        //         [
+        //             'text' => 'Abu Shahwaliullah',
+        //             'url'  => 'hadith_shah',
+        //         ]
+        //     ],
+        // ],
 
         // [
         //     'text' => 'Nine Books of Hadith',

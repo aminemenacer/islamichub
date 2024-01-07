@@ -7,7 +7,7 @@
 
 @section('content')
     <div id="app" >
-        <cards-component></cards-component>
+        <ahadith-component></ahadith-component>
     </div>
 @stop
 

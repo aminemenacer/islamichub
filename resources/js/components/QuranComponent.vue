@@ -227,13 +227,13 @@
           <div class="tab-content text-center">
 
             <!-- translation -->
-            <div class="tab-pane active" id="home" role="tabpanel">
+            <div class="tab-pane active" id="home" role="tabpanel" v-if="information != null">
               <div class="row">
                 <div class="col-12">
                   <img src="/images/2_19.png" class="pl-3" style="width:100%;">
                   <hr class="container">
-                  <div v-for="data in informations" :key="data.id" :value='data.id'>
-                    <h3 class="container text-left">"{{ data.translation }}"</h3>
+                  <div >
+                    <h3 class="container text-left">"{{ information.translation }}"</h3>
                   </div>
                 </div>
               </div>
@@ -249,11 +249,11 @@
             </div>
 
             <!-- transliteration -->
-            <div class="tab-pane" id="messages" role="tabpanel">
+            <div class="tab-pane" id="messages" role="tabpanel" v-if="information != null">
               <img src="/images/2_19.png" class="pl-3" style="width:100%;">
               <hr class="container">
-              <div v-for="data in informations" :key="data.id" :value='data.id'>
-                <h3 class="container text-left">{{ informations }}</h3>
+              <div >
+                <h3 class="container text-left">{{ information.transliteration }}</h3>
               </div>
             </div>
 
