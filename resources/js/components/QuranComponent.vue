@@ -76,8 +76,7 @@
           <div data-bs-toggle="modal" style="cursor:pointer; float:right" data-bs-target="#staticBackdropbug" class="fas fa-fw fa-bug mt-3 fa-lg mt-2 "></div>
           <div class="mt-2 font-weight-bold" v-if="information != null"> 
             <ul class="ul-main">
-              <li class="li-main"><span class="span-main">{{information.ayah.surah_id}} </span>Surah</li>
-              <li class="colon"> : </li>
+              <li class="li-main mr-3"><span class="span-main">{{information.ayah.surah_id}} </span>Surah</li>
               <li class="li-main"><span class="span-main">{{information.ayah.ayah_id}}</span>Ayah</li>
             </ul>
           </div>
