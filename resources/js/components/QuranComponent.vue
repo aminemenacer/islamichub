@@ -1,8 +1,8 @@
 <template>
 <div id="app">
-  <!---->
-  <h2 class="pt-3 text-center"><strong>The Holy Quran</strong></h2>
-
+  <!--
+    <h2 class="pt-3 text-center"><strong>The Holy Quran</strong></h2>
+  -->
   <div class="container-fluid text-center pt-3">
 
     <!-- multiple input sections -->
@@ -35,7 +35,6 @@
           </div>
         </div>
       </div>
-      <Highlighter class="my-highlight" :style="{ color: 'yellow' }" highlightClassName="highlight" :searchWords="keywords" :autoEscape="true" :textToHighlight="text" />
 
     </div>
   </div>
@@ -51,7 +50,7 @@
 
     <div class="col-md-8">
       <!-- Nav tabs -->
-      <div class="card " style="display:flex;border:3px solid #c3e6cb;padding:10px; border-radius:10px">
+      <div class="card " style="display:flex;border:5px solid #c3e6cb;padding:10px; border-radius:10px;">
         <div class="card-header ">
           <ul class="nav nav-tabs text-left justify-content-center" role="tablist">
             <li class="nav-item">
@@ -72,12 +71,14 @@
 
 
           </ul>
+          
           <div data-bs-toggle="modal" style="cursor:pointer; float:right" data-bs-target="#staticBackdrop" class="fas fa-fw fa-info-circle fa-lg mt-3 mr-1"></div>
           <div data-bs-toggle="modal" style="cursor:pointer; float:right" data-bs-target="#staticBackdropbug" class="fas fa-fw fa-bug mt-3 fa-lg mt-2 "></div>
-          <div class="mt-2 font-weight-bold" v-if="information != null"> 
+         
+          <div class="mt-2 font-weight-bold"  v-if="information != null"> 
             <ul class="ul-main">
-              <li class="li-main mr-3"><span class="span-main">{{information.ayah.surah_id}} </span>Surah</li>
-              <li class="li-main"><span class="span-main">{{information.ayah.ayah_id}}</span>Ayah</li>
+              <img src="/images/art1.png" style="width:30px" class="mb-1 mr-2"/>
+              <li class="li-main mr-3"><span class="span-main">{{information.ayah.surah_id}} : {{information.ayah.ayah_id}}</span></li>
             </ul>
           </div>
         </div>
@@ -229,10 +230,10 @@
             <div class="tab-pane active" id="home" role="tabpanel" v-if="information != null">
               <div class="row">
                 <div class="col-12">
-                  <img src="/images/2_19.png" class="pl-3" style="width:100%;">
+                  <img  src="/images/2_19.png" class="pl-3 btn" style="width:100%;">
                   <hr class="container">
-                  <div >
-                    <h3 class="container text-left">"{{ information.translation }}"</h3>
+                  <div class="btn">
+                    <h3 class="container text-left">{{ information.translation }}"</h3>
                   </div>
                 </div>
               </div>
@@ -242,7 +243,7 @@
             <div class="tab-pane" id="profile" role="tabpanel">
               <img src="/images/2_19.png" class="pl-3" style="width:100%;">
               <hr class="container">
-              <div>
+              <div class="btn">
                 <h3 class="container text-left">{{ tafseer }}</h3>
               </div>
             </div>
@@ -251,7 +252,7 @@
             <div class="tab-pane" id="messages" role="tabpanel" v-if="information != null">
               <img src="/images/2_19.png" class="pl-3" style="width:100%;">
               <hr class="container">
-              <div >
+              <div class="btn">
                 <h3 class="container text-left">{{ information.transliteration }}</h3>
               </div>
             </div>
@@ -280,17 +281,7 @@
 
         </form>
       </div>
-      <!--
-      <div class="row">
-        <div class="col-md-12 ml-3">
-          <audio style="border:3px solid lightgrey; border-radius:5%" class="mb-2" controls>
-            <source src="horse.ogg" type="audio/ogg">
-            <source src="horse.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-          </audio>
-        </div>
-      </div>
-      -->
+      
       <img src="/images/quran_img.png" class="pl-3" style="width:100%;">
     </div>
   </div>
@@ -363,7 +354,15 @@ export default ({
 })
 </script>
 
-<style>
+<style scoped>
+
+p.no-after:after{content:none;}
+
+
+.btn:hover {
+  background-color: #99e0ab81;
+  opacity: 2;
+}
 
 .ul-main {
   list-style: none;  
@@ -373,13 +372,8 @@ export default ({
   display: inline-block;
   font-size: 12px;
   text-align: center;
-  text-transform: uppercase;
 }
-.colon {
-  display: inline;
-  vertical-align: top;
-  font-size: 22px;
-}
+
 .ul-main .li-main .span-main {
   font-size: 22px;
   display: block;
