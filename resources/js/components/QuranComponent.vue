@@ -11,7 +11,7 @@
         <div class="row">
 
           <div class="col-md-6 mb-2" style="display:flex;text-align:center">
-            
+
             <label class="pt-2 pl-3 pr-2" style="display:flex">Surah:</label>
             <form class="col-md-5">
               <select class="form-control" v-model='surah' @change='getAyahs()'>
@@ -20,15 +20,14 @@
               </select>
             </form>
             <label class="pt-2 pl-3 pr-2">Ayah:</label>
-          
-            
-              <form class="col-md-8 ">
-                <select class='form-control' v-model='ayah_id' @change='getTafseers()'>
-                  <option value="0">Select Ayah</option>
-                  <option v-for='data in ayahs' :key="data.id" :value='data.id'>{{ data.ayah_id }}, {{ data.ayah_text }}</option>
-                </select>
-              </form>
-            
+
+            <form class="col-md-8 ">
+              <select class='form-control' v-model='ayah_id' @change='getTafseers()'>
+                <option value="0">Select Ayah</option>
+                <option v-for='data in ayahs' :key="data.id" :value='data.id'>{{ data.ayah_id }}, {{ data.ayah_text }}</option>
+              </select>
+            </form>
+
             <form class="ml-3 col-md-8 ">
               <input class="form-control input is-primary" type="text" placeholder="Search keyword" />
             </form>
@@ -50,9 +49,9 @@
 
     <div class="col-md-8">
       <!-- Nav tabs -->
-      <div class="card " style="display:flex;border:5px solid #c3e6cb;padding:10px; border-radius:10px;">
+      <div class="card" style="display:flex;border:5px solid #c3e6cb;padding:10px; border-radius:10px;">
         <div class="card-header ">
-          <ul class="nav nav-tabs text-left justify-content-center" role="tablist">
+          <ul class="nav nav-tabs text-left justify-content-center" role="tablist" v-if="information != null">
             <li class="nav-item">
               <a class="nav-link active" data-toggle="tab" href="#home" role="tab">
                 <i class="now-ui-icons objects_umbrella-13"></i> Translation
@@ -69,20 +68,18 @@
               </a>
             </li>
 
-
           </ul>
-          
-          <div data-bs-toggle="modal" style="cursor:pointer; float:right" data-bs-target="#staticBackdrop" class="fas fa-fw fa-info-circle fa-lg mt-3 mr-1"></div>
-          <div data-bs-toggle="modal" style="cursor:pointer; float:right" data-bs-target="#staticBackdropbug" class="fas fa-fw fa-bug mt-3 fa-lg mt-2 "></div>
-         
-          <div class="mt-2 font-weight-bold"  v-if="information != null"> 
+
+          <div data-bs-toggle="modal" style="cursor:pointer; float:right" data-bs-target="#staticBackdrop" v-if="information != null" class="fas fa-fw fa-info-circle fa-lg mt-3 mr-1"></div>
+          <div data-bs-toggle="modal" style="cursor:pointer; float:right" data-bs-target="#staticBackdropbug" v-if="information != null" class="fas fa-fw fa-bug mt-3 fa-lg mt-2 "></div>
+
+          <div class="mt-2" v-if="information != null">
             <ul class="ul-main">
-              <img src="/images/art1.png" style="width:30px" class="mb-1 mr-2"/>
+              <img src="/images/art1.png" style="width:27px" class="mb-1 mr-2" />
               <li class="li-main mr-3"><span class="span-main">{{information.ayah.surah_id}} : {{information.ayah.ayah_id}}</span></li>
             </ul>
           </div>
         </div>
-
 
         <!-- instructions -->
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -230,11 +227,21 @@
             <div class="tab-pane active" id="home" role="tabpanel" v-if="information != null">
               <div class="row">
                 <div class="col-12">
-                  <img  src="/images/2_19.png" class="pl-3 btn" style="width:100%;">
+                  <img src="/images/2_19.png" class="pl-3 btn" style="width:100%;">
                   <hr class="container">
                   <div class="btn">
                     <h3 class="container text-left">{{ information.translation }}"</h3>
                   </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tab-pane active" id="home" role="tabpanel" v-if="information == null">
+              <div class="row">
+                <div class="col-12">
+                  <h4 class="font-weight-bold text-center">The Holy Quran</h4>
+                  <img src="/images/quran3.png" class="pl-3 pb-1" style="width:30%;">
+                  <p class="container">The Quran, considered the holy scripture of Islam, is a sacred and comprehensive compilation of revelations believed by Muslims to have been conveyed to the Prophet Muhammad by the archangel Gabriel from around 610 CE to 632 CE. Comprising 114 chapters, or surahs, the Quran is revered as the literal word of God as revealed in Arabic, addressing various aspects of human existence, morality, guidance for personal conduct, and legal principles.</p>
                 </div>
               </div>
             </div>
@@ -259,11 +266,13 @@
 
           </div>
         </div>
+
       </div>
     </div>
 
-    <!-- right section -->
-    <div class="col-4 row">
+    <!-- right section change -->
+
+    <div class="col-4 row" v-if="information != null">
       <div class="ml-2 col-md-12 card bg-light row" style="display:flex;border:3px solid #c3e6cb;padding:8px;">
         <form style="display:flex">
 
@@ -281,29 +290,52 @@
 
         </form>
       </div>
-      
       <img src="/images/quran_img.png" class="pl-3" style="width:100%;">
     </div>
+
+    <div class="col-4 row" v-if="information == null">
+      <div class="ml-2 col-md-12 card bg-light row" style="display:flex;border:3px solid #c3e6cb;padding:8px;">
+        <form style="display:flex">
+
+          <div class="col-12 text-center">
+            <h4 class="font-weight-bold mt-3 text-center">The Holy Quran</h4>
+            <img src="/images/quran3.png" class=" pl-3 pb-1" style="width:40%;">
+            <p class="container">The Quran, considered the holy scripture of Islam, is a sacred and comprehensive compilation of revelations believed by Muslims to have been conveyed to the Prophet Muhammad by the archangel Gabriel from around 610 CE to 632 CE. </p>
+          </div>
+
+        </form>
+      </div>
+    </div>
+
   </div>
 </div>
 </template>
 
 <script>
-
 export default ({
+  components: {
 
+  },
   mounted() {
     this.getSurahs();
+    // this.getAyahs();
+  },
+  computed: {
+    keywords() {
+      return this.words.split(' ')
+    }
   },
 
   data() {
     return {
+      text: 'The dog is chasing the cat. Or perhaps they\'re just playing?',
+      words: 'and or the',
       data: [],
       juz: 0,
       juzs: [],
-      surah: 0,      
+      surah: 0,
       tafseers: [],
-      tafseer:null,
+      tafseer: null,
       surahs: [],
       ayah_id: 0,
       ayahs: [],
@@ -315,7 +347,7 @@ export default ({
     }
   },
   methods: {
-    
+
     getSurahs: function () {
       axios.get('/get_surahs', {
         params: {
@@ -340,7 +372,7 @@ export default ({
       axios.get(`/tafseer/${this.ayah_id}/fetch`).then(function (response) {
         this.tafseer = response.data;
       }.bind(this));
-      
+
       axios.get('/get_informations', {
         params: {
           ayah_id: this.ayah_id
@@ -355,9 +387,9 @@ export default ({
 </script>
 
 <style scoped>
-
-p.no-after:after{content:none;}
-
+p.no-after:after {
+  content: none;
+}
 
 .btn:hover {
   background-color: #99e0ab81;
@@ -365,7 +397,7 @@ p.no-after:after{content:none;}
 }
 
 .ul-main {
-  list-style: none;  
+  list-style: none;
 }
 
 .ul-main .li-main {
@@ -375,10 +407,9 @@ p.no-after:after{content:none;}
 }
 
 .ul-main .li-main .span-main {
-  font-size: 22px;
+  font-size: 20px;
   display: block;
 }
-
 
 .ayah_img:hover {
   background-color: #c3e6cb;

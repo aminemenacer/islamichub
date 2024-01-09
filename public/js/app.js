@@ -21035,11 +21035,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {},
   mounted: function mounted() {
     this.getSurahs();
+    // this.getAyahs();
+  },
+
+  computed: {
+    keywords: function keywords() {
+      return this.words.split(' ');
+    }
   },
   data: function data() {
     return {
+      text: 'The dog is chasing the cat. Or perhaps they\'re just playing?',
+      words: 'and or the',
       data: [],
       juz: 0,
       juzs: [],
@@ -25603,11 +25613,13 @@ var _hoisted_19 = {
 var _hoisted_20 = {
   "class": "card-header"
 };
-var _hoisted_21 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", {
-    "class": "nav nav-tabs text-left justify-content-center",
-    role: "tablist"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
+var _hoisted_21 = {
+  key: 0,
+  "class": "nav nav-tabs text-left justify-content-center",
+  role: "tablist"
+};
+var _hoisted_22 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
     "class": "nav-item"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     "class": "nav-link active",
@@ -25616,7 +25628,10 @@ var _hoisted_21 = /*#__PURE__*/_withScopeId(function () {
     role: "tab"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
     "class": "now-ui-icons objects_umbrella-13"
-  }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Translation ")])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
+  }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Translation ")])], -1 /* HOISTED */);
+});
+var _hoisted_23 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
     "class": "nav-item"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     "class": "nav-link",
@@ -25625,7 +25640,10 @@ var _hoisted_21 = /*#__PURE__*/_withScopeId(function () {
     role: "tab"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
     "class": "now-ui-icons shopping_cart-simple"
-  }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Tafseer ")])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
+  }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Tafseer ")])], -1 /* HOISTED */);
+});
+var _hoisted_24 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
     "class": "nav-item"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     "class": "nav-link",
@@ -25634,54 +25652,53 @@ var _hoisted_21 = /*#__PURE__*/_withScopeId(function () {
     role: "tab"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
     "class": "now-ui-icons shopping_shop"
-  }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Transliteration ")])])], -1 /* HOISTED */);
+  }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Transliteration ")])], -1 /* HOISTED */);
 });
-var _hoisted_22 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "data-bs-toggle": "modal",
-    style: {
-      "cursor": "pointer",
-      "float": "right"
-    },
-    "data-bs-target": "#staticBackdrop",
-    "class": "fas fa-fw fa-info-circle fa-lg mt-3 mr-1"
-  }, null, -1 /* HOISTED */);
-});
-var _hoisted_23 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "data-bs-toggle": "modal",
-    style: {
-      "cursor": "pointer",
-      "float": "right"
-    },
-    "data-bs-target": "#staticBackdropbug",
-    "class": "fas fa-fw fa-bug mt-3 fa-lg mt-2"
-  }, null, -1 /* HOISTED */);
-});
-var _hoisted_24 = {
-  key: 0,
-  "class": "mt-2 font-weight-bold"
+var _hoisted_25 = [_hoisted_22, _hoisted_23, _hoisted_24];
+var _hoisted_26 = {
+  key: 1,
+  "data-bs-toggle": "modal",
+  style: {
+    "cursor": "pointer",
+    "float": "right"
+  },
+  "data-bs-target": "#staticBackdrop",
+  "class": "fas fa-fw fa-info-circle fa-lg mt-3 mr-1"
 };
-var _hoisted_25 = {
+var _hoisted_27 = {
+  key: 2,
+  "data-bs-toggle": "modal",
+  style: {
+    "cursor": "pointer",
+    "float": "right"
+  },
+  "data-bs-target": "#staticBackdropbug",
+  "class": "fas fa-fw fa-bug mt-3 fa-lg mt-2"
+};
+var _hoisted_28 = {
+  key: 3,
+  "class": "mt-2"
+};
+var _hoisted_29 = {
   "class": "ul-main"
 };
-var _hoisted_26 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_30 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
     src: "/images/art1.png",
     style: {
-      "width": "30px"
+      "width": "27px"
     },
     "class": "mb-1 mr-2"
   }, null, -1 /* HOISTED */);
 });
-var _hoisted_27 = {
+var _hoisted_31 = {
   "class": "li-main mr-3"
 };
-var _hoisted_28 = {
+var _hoisted_32 = {
   "class": "span-main"
 };
-var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"modal fade\" id=\"staticBackdrop\" data-bs-backdrop=\"static\" data-bs-keyboard=\"false\" tabindex=\"-1\" aria-labelledby=\"staticBackdropLabel\" aria-hidden=\"true\" data-v-2b3c2c26><div class=\"modal-dialog modal-xl\" data-v-2b3c2c26><div class=\"modal-content\" data-v-2b3c2c26><div class=\"modal-header\" data-v-2b3c2c26><h4 class=\"modal-title fs-5 text-dark\" id=\"staticBackdropLabel\" data-v-2b3c2c26>Information</h4><button type=\"button\" class=\"close\" data-bs-dismiss=\"modal\" aria-label=\"Close\" data-v-2b3c2c26><span aria-hidden=\"true\" data-v-2b3c2c26>×</span></button></div><div class=\"modal-body\" data-v-2b3c2c26><div class=\"row\" data-v-2b3c2c26><div class=\"col-md-6\" data-v-2b3c2c26><li class=\"list-group-item list-group-item mb-2\" style=\"border:2px solid #c3e6cb;\" data-v-2b3c2c26><b data-v-2b3c2c26>1) Select from the Juz dropdown:</b><br data-v-2b3c2c26><p data-v-2b3c2c26>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p><img class=\"mt-2\" style=\"box-shadow:rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;border-radius:10px;background:transparent;border:3px solid #c3e6cb;\" src=\"/images/1.png\" width=\"70%\" data-v-2b3c2c26></li></div><div class=\"col-md-6\" data-v-2b3c2c26><li class=\"list-group-item list-group-item mb-2\" style=\"border:2px solid #c3e6cb;\" data-v-2b3c2c26><b data-v-2b3c2c26>2) Select from the Surah dropdown:</b><br data-v-2b3c2c26><p data-v-2b3c2c26>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p><img class=\"mt-2\" style=\"box-shadow:rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;border-radius:10px;background:transparent;border:3px solid #c3e6cb;\" src=\"/images/2.png\" width=\"90%\" data-v-2b3c2c26></li></div><div class=\"col-md-6\" data-v-2b3c2c26><li class=\"list-group-item list-group-item mb-2\" style=\"border:2px solid #c3e6cb;\" data-v-2b3c2c26><b data-v-2b3c2c26>3) Select from the Ayah dropdown:</b><br data-v-2b3c2c26><p data-v-2b3c2c26>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p><img class=\"mt-2\" style=\"box-shadow:rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;border-radius:10px;background:transparent;border:3px solid #c3e6cb;\" src=\"/images/3.png\" width=\"90%\" data-v-2b3c2c26></li></div><div class=\"col-md-6\" data-v-2b3c2c26><li class=\"list-group-item list-group-item mb-2\" style=\"border:2px solid #c3e6cb;\" data-v-2b3c2c26><b data-v-2b3c2c26>4) Select from different Masahif:</b><br data-v-2b3c2c26><p data-v-2b3c2c26>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p><img class=\"mt-2\" style=\"box-shadow:rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;border-radius:10px;background:transparent;border:3px solid #c3e6cb;\" src=\"/images/5.png\" width=\"90%\" data-v-2b3c2c26></li></div><div class=\"col-md-12\" data-v-2b3c2c26><li class=\"list-group-item list-group-item mb-2\" style=\"border:2px solid #c3e6cb;\" data-v-2b3c2c26><b data-v-2b3c2c26>5) Switch between tabs below:</b><br data-v-2b3c2c26><p data-v-2b3c2c26>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p><img class=\"mt-2\" style=\"box-shadow:rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;border-radius:10px;background:transparent;border:3px solid #c3e6cb;\" src=\"/images/4.png\" width=\"90%\" data-v-2b3c2c26></li></div></div></div><div class=\"modal-footer\" data-v-2b3c2c26><button type=\"button\" class=\"btn btn-secondary\" data-bs-dismiss=\"modal\" data-v-2b3c2c26>Close</button></div></div></div></div>", 1);
-var _hoisted_30 = {
+var _hoisted_33 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"modal fade\" id=\"staticBackdrop\" data-bs-backdrop=\"static\" data-bs-keyboard=\"false\" tabindex=\"-1\" aria-labelledby=\"staticBackdropLabel\" aria-hidden=\"true\" data-v-2b3c2c26><div class=\"modal-dialog modal-xl\" data-v-2b3c2c26><div class=\"modal-content\" data-v-2b3c2c26><div class=\"modal-header\" data-v-2b3c2c26><h4 class=\"modal-title fs-5 text-dark\" id=\"staticBackdropLabel\" data-v-2b3c2c26>Information</h4><button type=\"button\" class=\"close\" data-bs-dismiss=\"modal\" aria-label=\"Close\" data-v-2b3c2c26><span aria-hidden=\"true\" data-v-2b3c2c26>×</span></button></div><div class=\"modal-body\" data-v-2b3c2c26><div class=\"row\" data-v-2b3c2c26><div class=\"col-md-6\" data-v-2b3c2c26><li class=\"list-group-item list-group-item mb-2\" style=\"border:2px solid #c3e6cb;\" data-v-2b3c2c26><b data-v-2b3c2c26>1) Select from the Juz dropdown:</b><br data-v-2b3c2c26><p data-v-2b3c2c26>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p><img class=\"mt-2\" style=\"box-shadow:rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;border-radius:10px;background:transparent;border:3px solid #c3e6cb;\" src=\"/images/1.png\" width=\"70%\" data-v-2b3c2c26></li></div><div class=\"col-md-6\" data-v-2b3c2c26><li class=\"list-group-item list-group-item mb-2\" style=\"border:2px solid #c3e6cb;\" data-v-2b3c2c26><b data-v-2b3c2c26>2) Select from the Surah dropdown:</b><br data-v-2b3c2c26><p data-v-2b3c2c26>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p><img class=\"mt-2\" style=\"box-shadow:rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;border-radius:10px;background:transparent;border:3px solid #c3e6cb;\" src=\"/images/2.png\" width=\"90%\" data-v-2b3c2c26></li></div><div class=\"col-md-6\" data-v-2b3c2c26><li class=\"list-group-item list-group-item mb-2\" style=\"border:2px solid #c3e6cb;\" data-v-2b3c2c26><b data-v-2b3c2c26>3) Select from the Ayah dropdown:</b><br data-v-2b3c2c26><p data-v-2b3c2c26>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p><img class=\"mt-2\" style=\"box-shadow:rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;border-radius:10px;background:transparent;border:3px solid #c3e6cb;\" src=\"/images/3.png\" width=\"90%\" data-v-2b3c2c26></li></div><div class=\"col-md-6\" data-v-2b3c2c26><li class=\"list-group-item list-group-item mb-2\" style=\"border:2px solid #c3e6cb;\" data-v-2b3c2c26><b data-v-2b3c2c26>4) Select from different Masahif:</b><br data-v-2b3c2c26><p data-v-2b3c2c26>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p><img class=\"mt-2\" style=\"box-shadow:rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;border-radius:10px;background:transparent;border:3px solid #c3e6cb;\" src=\"/images/5.png\" width=\"90%\" data-v-2b3c2c26></li></div><div class=\"col-md-12\" data-v-2b3c2c26><li class=\"list-group-item list-group-item mb-2\" style=\"border:2px solid #c3e6cb;\" data-v-2b3c2c26><b data-v-2b3c2c26>5) Switch between tabs below:</b><br data-v-2b3c2c26><p data-v-2b3c2c26>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p><img class=\"mt-2\" style=\"box-shadow:rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;border-radius:10px;background:transparent;border:3px solid #c3e6cb;\" src=\"/images/4.png\" width=\"90%\" data-v-2b3c2c26></li></div></div></div><div class=\"modal-footer\" data-v-2b3c2c26><button type=\"button\" class=\"btn btn-secondary\" data-bs-dismiss=\"modal\" data-v-2b3c2c26>Close</button></div></div></div></div>", 1);
+var _hoisted_34 = {
   "class": "modal fade",
   id: "staticBackdropbug",
   "data-bs-backdrop": "static",
@@ -25690,13 +25707,13 @@ var _hoisted_30 = {
   "aria-labelledby": "staticBackdropLabel",
   "aria-hidden": "true"
 };
-var _hoisted_31 = {
+var _hoisted_35 = {
   "class": "modal-dialog modal-lg"
 };
-var _hoisted_32 = {
+var _hoisted_36 = {
   "class": "modal-content"
 };
-var _hoisted_33 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_37 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "modal-header"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", {
@@ -25711,30 +25728,30 @@ var _hoisted_33 = /*#__PURE__*/_withScopeId(function () {
     "aria-hidden": "true"
   }, "×")])], -1 /* HOISTED */);
 });
-var _hoisted_34 = {
+var _hoisted_38 = {
   "class": "modal-body"
 };
-var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<h6 class=\"modal-title ml-2\" id=\"exampleModalLabel\" data-v-2b3c2c26><b data-v-2b3c2c26>Type of correction:</b></h6><br data-v-2b3c2c26><div class=\"ml-2 row\" data-v-2b3c2c26><div class=\"col-3\" data-v-2b3c2c26><div class=\"form-check\" data-v-2b3c2c26><input class=\"form-check-input\" name=\"spelling_mistakes\" type=\"checkbox\" value=\"\" id=\"flexCheckChecked\" data-v-2b3c2c26><label class=\"form-check-label\" for=\"flexCheckChecked\" data-v-2b3c2c26> Spelling mistakes </label></div></div><div class=\"col-3\" data-v-2b3c2c26><div class=\"form-check\" data-v-2b3c2c26><input class=\"form-check-input\" name=\"incomplete_text\" type=\"checkbox\" value=\"\" id=\"flexCheckChecked\" data-v-2b3c2c26><label class=\"form-check-label\" for=\"flexCheckChecked\" data-v-2b3c2c26> Incomplete text </label></div></div><div class=\"col-3\" data-v-2b3c2c26><div class=\"form-check\" data-v-2b3c2c26><input class=\"form-check-input\" name=\"translation_error\" type=\"checkbox\" value=\"\" id=\"flexCheckChecked\" data-v-2b3c2c26><label class=\"form-check-label\" for=\"flexCheckChecked\" data-v-2b3c2c26> Error in translation </label></div></div><div class=\"col-3\" data-v-2b3c2c26><div class=\"form-check\" data-v-2b3c2c26><input class=\"form-check-input\" name=\"reference_error\" type=\"checkbox\" value=\"\" id=\"flexCheckChecked\" data-v-2b3c2c26><label class=\"form-check-label\" for=\"flexCheckChecked\" data-v-2b3c2c26> Error in tafseer </label></div></div></div><div class=\"row mt-3 mb-3\" data-v-2b3c2c26><div class=\"col-3 ml-3\" data-v-2b3c2c26><div class=\"form-check\" data-v-2b3c2c26><input class=\"form-check-input\" name=\"narrator\" type=\"checkbox\" value=\"\" id=\"flexCheckChecked\" data-v-2b3c2c26><label class=\"form-check-label\" for=\"flexCheckChecked\" data-v-2b3c2c26> Error in transliteration </label></div></div><div class=\"col-3\" data-v-2b3c2c26><div class=\"form-check\" data-v-2b3c2c26><input class=\"form-check-input\" name=\"hadith_english\" type=\"checkbox\" value=\"\" id=\"flexCheckChecked\" data-v-2b3c2c26><label class=\"form-check-label\" for=\"flexCheckChecked\" data-v-2b3c2c26> Error in overview </label></div></div></div><div class=\"row ml-2 pt-3 pb-5\" data-v-2b3c2c26><label for=\"exampleFormControlTextarea1\" name=\"added_notes mt-3\" class=\"form-label\" data-v-2b3c2c26>Additional comments:</label><textarea class=\"form-control col-md-10 ml-2\" id=\"exampleFormControlTextarea1\" rows=\"5\" data-v-2b3c2c26></textarea></div><div class=\"modal-footer\" data-v-2b3c2c26><button type=\"button\" class=\"btn btn-secondary\" data-bs-dismiss=\"modal\" data-v-2b3c2c26>Close</button><button type=\"submit\" class=\"btn btn-success\" data-v-2b3c2c26>Submit changes</button></div>", 6);
-var _hoisted_41 = [_hoisted_35];
-var _hoisted_42 = {
+var _hoisted_39 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<h6 class=\"modal-title ml-2\" id=\"exampleModalLabel\" data-v-2b3c2c26><b data-v-2b3c2c26>Type of correction:</b></h6><br data-v-2b3c2c26><div class=\"ml-2 row\" data-v-2b3c2c26><div class=\"col-3\" data-v-2b3c2c26><div class=\"form-check\" data-v-2b3c2c26><input class=\"form-check-input\" name=\"spelling_mistakes\" type=\"checkbox\" value=\"\" id=\"flexCheckChecked\" data-v-2b3c2c26><label class=\"form-check-label\" for=\"flexCheckChecked\" data-v-2b3c2c26> Spelling mistakes </label></div></div><div class=\"col-3\" data-v-2b3c2c26><div class=\"form-check\" data-v-2b3c2c26><input class=\"form-check-input\" name=\"incomplete_text\" type=\"checkbox\" value=\"\" id=\"flexCheckChecked\" data-v-2b3c2c26><label class=\"form-check-label\" for=\"flexCheckChecked\" data-v-2b3c2c26> Incomplete text </label></div></div><div class=\"col-3\" data-v-2b3c2c26><div class=\"form-check\" data-v-2b3c2c26><input class=\"form-check-input\" name=\"translation_error\" type=\"checkbox\" value=\"\" id=\"flexCheckChecked\" data-v-2b3c2c26><label class=\"form-check-label\" for=\"flexCheckChecked\" data-v-2b3c2c26> Error in translation </label></div></div><div class=\"col-3\" data-v-2b3c2c26><div class=\"form-check\" data-v-2b3c2c26><input class=\"form-check-input\" name=\"reference_error\" type=\"checkbox\" value=\"\" id=\"flexCheckChecked\" data-v-2b3c2c26><label class=\"form-check-label\" for=\"flexCheckChecked\" data-v-2b3c2c26> Error in tafseer </label></div></div></div><div class=\"row mt-3 mb-3\" data-v-2b3c2c26><div class=\"col-3 ml-3\" data-v-2b3c2c26><div class=\"form-check\" data-v-2b3c2c26><input class=\"form-check-input\" name=\"narrator\" type=\"checkbox\" value=\"\" id=\"flexCheckChecked\" data-v-2b3c2c26><label class=\"form-check-label\" for=\"flexCheckChecked\" data-v-2b3c2c26> Error in transliteration </label></div></div><div class=\"col-3\" data-v-2b3c2c26><div class=\"form-check\" data-v-2b3c2c26><input class=\"form-check-input\" name=\"hadith_english\" type=\"checkbox\" value=\"\" id=\"flexCheckChecked\" data-v-2b3c2c26><label class=\"form-check-label\" for=\"flexCheckChecked\" data-v-2b3c2c26> Error in overview </label></div></div></div><div class=\"row ml-2 pt-3 pb-5\" data-v-2b3c2c26><label for=\"exampleFormControlTextarea1\" name=\"added_notes mt-3\" class=\"form-label\" data-v-2b3c2c26>Additional comments:</label><textarea class=\"form-control col-md-10 ml-2\" id=\"exampleFormControlTextarea1\" rows=\"5\" data-v-2b3c2c26></textarea></div><div class=\"modal-footer\" data-v-2b3c2c26><button type=\"button\" class=\"btn btn-secondary\" data-bs-dismiss=\"modal\" data-v-2b3c2c26>Close</button><button type=\"submit\" class=\"btn btn-success\" data-v-2b3c2c26>Submit changes</button></div>", 6);
+var _hoisted_45 = [_hoisted_39];
+var _hoisted_46 = {
   "class": "card-body"
 };
-var _hoisted_43 = {
+var _hoisted_47 = {
   "class": "tab-content text-center"
 };
-var _hoisted_44 = {
+var _hoisted_48 = {
   key: 0,
   "class": "tab-pane active",
   id: "home",
   role: "tabpanel"
 };
-var _hoisted_45 = {
+var _hoisted_49 = {
   "class": "row"
 };
-var _hoisted_46 = {
+var _hoisted_50 = {
   "class": "col-12"
 };
-var _hoisted_47 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_51 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
     src: "/images/2_19.png",
     "class": "pl-3 btn",
@@ -25743,23 +25760,31 @@ var _hoisted_47 = /*#__PURE__*/_withScopeId(function () {
     }
   }, null, -1 /* HOISTED */);
 });
-var _hoisted_48 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_52 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", {
     "class": "container"
   }, null, -1 /* HOISTED */);
 });
-var _hoisted_49 = {
+var _hoisted_53 = {
   "class": "btn"
 };
-var _hoisted_50 = {
+var _hoisted_54 = {
   "class": "container text-left"
 };
-var _hoisted_51 = {
+var _hoisted_55 = {
+  key: 1,
+  "class": "tab-pane active",
+  id: "home",
+  role: "tabpanel"
+};
+var _hoisted_56 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"row\" data-v-2b3c2c26><div class=\"col-12\" data-v-2b3c2c26><h4 class=\"font-weight-bold text-center\" data-v-2b3c2c26>The Holy Quran</h4><img src=\"/images/quran3.png\" class=\"pl-3 pb-1\" style=\"width:30%;\" data-v-2b3c2c26><p class=\"container\" data-v-2b3c2c26>The Quran, considered the holy scripture of Islam, is a sacred and comprehensive compilation of revelations believed by Muslims to have been conveyed to the Prophet Muhammad by the archangel Gabriel from around 610 CE to 632 CE. Comprising 114 chapters, or surahs, the Quran is revered as the literal word of God as revealed in Arabic, addressing various aspects of human existence, morality, guidance for personal conduct, and legal principles.</p></div></div>", 1);
+var _hoisted_57 = [_hoisted_56];
+var _hoisted_58 = {
   "class": "tab-pane",
   id: "profile",
   role: "tabpanel"
 };
-var _hoisted_52 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_59 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
     src: "/images/2_19.png",
     "class": "pl-3",
@@ -25768,24 +25793,24 @@ var _hoisted_52 = /*#__PURE__*/_withScopeId(function () {
     }
   }, null, -1 /* HOISTED */);
 });
-var _hoisted_53 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_60 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", {
     "class": "container"
   }, null, -1 /* HOISTED */);
 });
-var _hoisted_54 = {
+var _hoisted_61 = {
   "class": "btn"
 };
-var _hoisted_55 = {
+var _hoisted_62 = {
   "class": "container text-left"
 };
-var _hoisted_56 = {
-  key: 1,
+var _hoisted_63 = {
+  key: 2,
   "class": "tab-pane",
   id: "messages",
   role: "tabpanel"
 };
-var _hoisted_57 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_64 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
     src: "/images/2_19.png",
     "class": "pl-3",
@@ -25794,18 +25819,29 @@ var _hoisted_57 = /*#__PURE__*/_withScopeId(function () {
     }
   }, null, -1 /* HOISTED */);
 });
-var _hoisted_58 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_65 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", {
     "class": "container"
   }, null, -1 /* HOISTED */);
 });
-var _hoisted_59 = {
+var _hoisted_66 = {
   "class": "btn"
 };
-var _hoisted_60 = {
+var _hoisted_67 = {
   "class": "container text-left"
 };
-var _hoisted_61 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"col-4 row\" data-v-2b3c2c26><div class=\"ml-2 col-md-12 card bg-light row\" style=\"display:flex;border:3px solid #c3e6cb;padding:8px;\" data-v-2b3c2c26><form style=\"display:flex;\" data-v-2b3c2c26><select class=\"form-control col-5\" data-v-2b3c2c26><label class=\"pt-2 col-3\" data-v-2b3c2c26>Mushaf:</label><option value=\"0\" data-v-2b3c2c26>Select Mushaf</option><option data-v-2b3c2c26></option></select><div class=\"col-1\" data-v-2b3c2c26></div><select class=\"form-control col-6\" data-v-2b3c2c26><label class=\"pt-2 col-3\" data-v-2b3c2c26>Reciter:</label><option value=\"0\" data-v-2b3c2c26>Select Reciter</option><option data-v-2b3c2c26></option></select></form></div><img src=\"/images/quran_img.png\" class=\"pl-3\" style=\"width:100%;\" data-v-2b3c2c26></div>", 1);
+var _hoisted_68 = {
+  key: 0,
+  "class": "col-4 row"
+};
+var _hoisted_69 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"ml-2 col-md-12 card bg-light row\" style=\"display:flex;border:3px solid #c3e6cb;padding:8px;\" data-v-2b3c2c26><form style=\"display:flex;\" data-v-2b3c2c26><select class=\"form-control col-5\" data-v-2b3c2c26><label class=\"pt-2 col-3\" data-v-2b3c2c26>Mushaf:</label><option value=\"0\" data-v-2b3c2c26>Select Mushaf</option><option data-v-2b3c2c26></option></select><div class=\"col-1\" data-v-2b3c2c26></div><select class=\"form-control col-6\" data-v-2b3c2c26><label class=\"pt-2 col-3\" data-v-2b3c2c26>Reciter:</label><option value=\"0\" data-v-2b3c2c26>Select Reciter</option><option data-v-2b3c2c26></option></select></form></div><img src=\"/images/quran_img.png\" class=\"pl-3\" style=\"width:100%;\" data-v-2b3c2c26>", 2);
+var _hoisted_71 = [_hoisted_69];
+var _hoisted_72 = {
+  key: 1,
+  "class": "col-4 row"
+};
+var _hoisted_73 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"ml-2 col-md-12 card bg-light row\" style=\"display:flex;border:3px solid #c3e6cb;padding:8px;\" data-v-2b3c2c26><form style=\"display:flex;\" data-v-2b3c2c26><div class=\"col-12 text-center\" data-v-2b3c2c26><h4 class=\"font-weight-bold mt-3 text-center\" data-v-2b3c2c26>The Holy Quran</h4><img src=\"/images/quran3.png\" class=\"pl-3 pb-1\" style=\"width:40%;\" data-v-2b3c2c26><p class=\"container\" data-v-2b3c2c26>The Quran, considered the holy scripture of Islam, is a sacred and comprehensive compilation of revelations believed by Muslims to have been conveyed to the Prophet Muhammad by the archangel Gabriel from around 610 CE to 632 CE. </p></div></form></div>", 1);
+var _hoisted_74 = [_hoisted_73];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("\n    <h2 class=\"pt-3 text-center\"><strong>The Holy Quran</strong></h2>\n  "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" multiple input sections "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     "class": "form-control",
@@ -25833,11 +25869,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       key: data.id,
       value: data.id
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.ayah_id) + ", " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.ayah_text), 9 /* TEXT, PROPS */, _hoisted_14);
-  }), 128 /* KEYED_FRAGMENT */))], 544 /* HYDRATE_EVENTS, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.ayah_id]])]), _hoisted_15])])])])]), _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" accordion headers"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Nav tabs "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [_hoisted_21, _hoisted_22, _hoisted_23, $data.information != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_25, [_hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.information.ayah.surah_id) + " : " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.information.ayah.ayah_id), 1 /* TEXT */)])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" instructions "), _hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" report a bug "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [_hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_34, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
+  }), 128 /* KEYED_FRAGMENT */))], 544 /* HYDRATE_EVENTS, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.ayah_id]])]), _hoisted_15])])])])]), _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" accordion headers"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Nav tabs "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [$data.information != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("ul", _hoisted_21, [].concat(_hoisted_25))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.information != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_26)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.information != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_27)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.information != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_29, [_hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.information.ayah.surah_id) + " : " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.information.ayah.ayah_id), 1 /* TEXT */)])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" instructions "), _hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" report a bug "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_34, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_35, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [_hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
     onReset: _cache[4] || (_cache[4] = function () {
       return _ctx.reset && _ctx.reset.apply(_ctx, arguments);
     })
-  }, [].concat(_hoisted_41), 32 /* HYDRATE_EVENTS */)])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_42, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Tab panes "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_43, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" translation "), $data.information != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_44, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_45, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_46, [_hoisted_47, _hoisted_48, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_49, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_50, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.information.translation) + "\"", 1 /* TEXT */)])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" tafseer "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_51, [_hoisted_52, _hoisted_53, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_54, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_55, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.tafseer), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" transliteration "), $data.information != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_56, [_hoisted_57, _hoisted_58, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_59, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_60, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.information.transliteration), 1 /* TEXT */)])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" right section "), _hoisted_61])]);
+  }, [].concat(_hoisted_45), 32 /* HYDRATE_EVENTS */)])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_46, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Tab panes "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_47, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" translation "), $data.information != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_48, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_49, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_50, [_hoisted_51, _hoisted_52, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_53, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_54, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.information.translation) + "\"", 1 /* TEXT */)])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.information == null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_55, [].concat(_hoisted_57))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" tafseer "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_58, [_hoisted_59, _hoisted_60, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_61, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_62, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.tafseer), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" transliteration "), $data.information != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_63, [_hoisted_64, _hoisted_65, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_66, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_67, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.information.transliteration), 1 /* TEXT */)])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" right section change "), $data.information != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_68, [].concat(_hoisted_71))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.information == null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_72, [].concat(_hoisted_74))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]);
 }
 
 /***/ }),
@@ -33496,7 +33532,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\np.no-after[data-v-2b3c2c26]:after{content:none;}\n.btn[data-v-2b3c2c26]:hover {\n  background-color: #99e0ab81;\n  opacity: 2;\n}\n.ul-main[data-v-2b3c2c26] {\n  list-style: none;\n}\n.ul-main .li-main[data-v-2b3c2c26] {\n  display: inline-block;\n  font-size: 12px;\n  text-align: center;\n}\n.ul-main .li-main .span-main[data-v-2b3c2c26] {\n  font-size: 22px;\n  display: block;\n}\n.ayah_img[data-v-2b3c2c26]:hover {\n  background-color: #c3e6cb;\n  border-radius: 10px;\n  cursor: pointer;\n}\n.enlarge .ayah[data-v-2b3c2c26] {\n  transition: transform 0.50s ease;\n  float: right;\n}\n.enlarge[data-v-2b3c2c26]:hover {\n  /* or some other value */\n  transform: scale(1.2);\n}\nbutton[data-v-2b3c2c26],\ninput[data-v-2b3c2c26] {\n  font-family: \"Montserrat\", \"Helvetica Neue\", Arial, sans-serif;\n}\n.nav-item .nav-link[data-v-2b3c2c26],\n.nav-tabs .nav-link[data-v-2b3c2c26] {\n  transition: all 300ms ease 0s;\n}\n.nav-tabs>.nav-item>.nav-link[data-v-2b3c2c26] {\n  color: #888888;\n  margin: 0;\n  margin-right: 5px;\n  background-color: transparent;\n  border: 1px solid transparent;\n  font-size: 14px;\n  padding: 11px 23px;\n  line-height: 1.5;\n}\n.nav-tabs>.nav-item>.nav-link[data-v-2b3c2c26]:hover {\n  background-color: transparent;\n}\n.nav-tabs>.nav-item>.nav-link.active[data-v-2b3c2c26] {\n  background-color: #444;\n  color: #FFFFFF;\n}\n.nav-tabs>.nav-item>.nav-link i.now-ui-icons[data-v-2b3c2c26] {\n  font-size: 14px;\n  position: relative;\n  top: 1px;\n  margin-right: 3px;\n}\n.nav-tabs.nav-tabs-neutral>.nav-item>.nav-link[data-v-2b3c2c26] {\n  color: #FFFFFF;\n}\n.nav-tabs.nav-tabs-neutral>.nav-item>.nav-link.active[data-v-2b3c2c26] {\n  background-color: rgba(255, 255, 255, 0.2);\n  color: #FFFFFF;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\np.no-after[data-v-2b3c2c26]:after {\n  content: none;\n}\n.btn[data-v-2b3c2c26]:hover {\n  background-color: #99e0ab81;\n  opacity: 2;\n}\n.ul-main[data-v-2b3c2c26] {\n  list-style: none;\n}\n.ul-main .li-main[data-v-2b3c2c26] {\n  display: inline-block;\n  font-size: 12px;\n  text-align: center;\n}\n.ul-main .li-main .span-main[data-v-2b3c2c26] {\n  font-size: 20px;\n  display: block;\n}\n.ayah_img[data-v-2b3c2c26]:hover {\n  background-color: #c3e6cb;\n  border-radius: 10px;\n  cursor: pointer;\n}\n.enlarge .ayah[data-v-2b3c2c26] {\n  transition: transform 0.50s ease;\n  float: right;\n}\n.enlarge[data-v-2b3c2c26]:hover {\n  /* or some other value */\n  transform: scale(1.2);\n}\nbutton[data-v-2b3c2c26],\ninput[data-v-2b3c2c26] {\n  font-family: \"Montserrat\", \"Helvetica Neue\", Arial, sans-serif;\n}\n.nav-item .nav-link[data-v-2b3c2c26],\n.nav-tabs .nav-link[data-v-2b3c2c26] {\n  transition: all 300ms ease 0s;\n}\n.nav-tabs>.nav-item>.nav-link[data-v-2b3c2c26] {\n  color: #888888;\n  margin: 0;\n  margin-right: 5px;\n  background-color: transparent;\n  border: 1px solid transparent;\n  font-size: 14px;\n  padding: 11px 23px;\n  line-height: 1.5;\n}\n.nav-tabs>.nav-item>.nav-link[data-v-2b3c2c26]:hover {\n  background-color: transparent;\n}\n.nav-tabs>.nav-item>.nav-link.active[data-v-2b3c2c26] {\n  background-color: #444;\n  color: #FFFFFF;\n}\n.nav-tabs>.nav-item>.nav-link i.now-ui-icons[data-v-2b3c2c26] {\n  font-size: 14px;\n  position: relative;\n  top: 1px;\n  margin-right: 3px;\n}\n.nav-tabs.nav-tabs-neutral>.nav-item>.nav-link[data-v-2b3c2c26] {\n  color: #FFFFFF;\n}\n.nav-tabs.nav-tabs-neutral>.nav-item>.nav-link.active[data-v-2b3c2c26] {\n  background-color: rgba(255, 255, 255, 0.2);\n  color: #FFFFFF;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
