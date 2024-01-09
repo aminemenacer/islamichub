@@ -242,9 +242,7 @@
             <div class="tab-pane active" id="home" role="tabpanel" v-if="information == null">
               <div class="row">
                 <div class="col-12">
-                  <div class="btn">
-                    <h3 class="container text-right">{{ information.ayah.ayah_text }}</h3>
-                  </div>
+                  <h4 class="font-weight-bold text-center">The Holy Quran</h4>
                   <img src="/images/quran3.png" class="pl-3 pb-1" style="width:30%;">
                   <p class="container">The Quran, considered the holy scripture of Islam, is a sacred and comprehensive compilation of revelations believed by Muslims to have been conveyed to the Prophet Muhammad by the archangel Gabriel from around 610 CE to 632 CE. Comprising 114 chapters, or surahs, the Quran is revered as the literal word of God as revealed in Arabic, addressing various aspects of human existence, morality, guidance for personal conduct, and legal principles.</p>
                 </div>
@@ -252,7 +250,7 @@
             </div>
 
             <!-- tafseer -->
-            <div class="tab-pane" id="profile" role="tabpanel">
+            <div class="tab-pane" id="profile" role="tabpanel" v-if="information != null">
               <div class="btn">
                 <h3 class="container text-right">{{ information.ayah.ayah_text }}</h3>
               </div>
@@ -264,7 +262,9 @@
 
             <!-- transliteration -->
             <div class="tab-pane" id="messages" role="tabpanel" v-if="information != null">
-              <img src="/images/2_19.png" class="pl-3" style="width:100%;">
+              <div class="btn">
+                <h3 class="container text-right">{{ information.ayah.ayah_text }}</h3>
+              </div>
               <hr class="container">
               <div class="btn">
                 <h3 class="container text-left">{{ information.transliteration }}</h3>
