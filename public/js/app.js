@@ -25751,66 +25751,84 @@ var _hoisted_49 = {
 var _hoisted_50 = {
   "class": "col-12"
 };
-var _hoisted_51 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: "/images/2_19.png",
-    "class": "pl-3 btn",
-    style: {
-      "width": "100%"
-    }
-  }, null, -1 /* HOISTED */);
-});
-var _hoisted_52 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_51 = {
+  "class": "btn"
+};
+var _hoisted_52 = {
+  "class": "container text-right"
+};
+var _hoisted_53 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", {
     "class": "container"
   }, null, -1 /* HOISTED */);
 });
-var _hoisted_53 = {
+var _hoisted_54 = {
   "class": "btn"
 };
-var _hoisted_54 = {
+var _hoisted_55 = {
   "class": "container text-left"
 };
-var _hoisted_55 = {
+var _hoisted_56 = {
   key: 1,
   "class": "tab-pane active",
   id: "home",
   role: "tabpanel"
 };
-var _hoisted_56 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"row\" data-v-2b3c2c26><div class=\"col-12\" data-v-2b3c2c26><h4 class=\"font-weight-bold text-center\" data-v-2b3c2c26>The Holy Quran</h4><img src=\"/images/quran3.png\" class=\"pl-3 pb-1\" style=\"width:30%;\" data-v-2b3c2c26><p class=\"container\" data-v-2b3c2c26>The Quran, considered the holy scripture of Islam, is a sacred and comprehensive compilation of revelations believed by Muslims to have been conveyed to the Prophet Muhammad by the archangel Gabriel from around 610 CE to 632 CE. Comprising 114 chapters, or surahs, the Quran is revered as the literal word of God as revealed in Arabic, addressing various aspects of human existence, morality, guidance for personal conduct, and legal principles.</p></div></div>", 1);
-var _hoisted_57 = [_hoisted_56];
+var _hoisted_57 = {
+  "class": "row"
+};
 var _hoisted_58 = {
+  "class": "col-12"
+};
+var _hoisted_59 = {
+  "class": "btn"
+};
+var _hoisted_60 = {
+  "class": "container text-right"
+};
+var _hoisted_61 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    src: "/images/quran3.png",
+    "class": "pl-3 pb-1",
+    style: {
+      "width": "30%"
+    }
+  }, null, -1 /* HOISTED */);
+});
+var _hoisted_62 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+    "class": "container"
+  }, "The Quran, considered the holy scripture of Islam, is a sacred and comprehensive compilation of revelations believed by Muslims to have been conveyed to the Prophet Muhammad by the archangel Gabriel from around 610 CE to 632 CE. Comprising 114 chapters, or surahs, the Quran is revered as the literal word of God as revealed in Arabic, addressing various aspects of human existence, morality, guidance for personal conduct, and legal principles.", -1 /* HOISTED */);
+});
+var _hoisted_63 = {
   "class": "tab-pane",
   id: "profile",
   role: "tabpanel"
 };
-var _hoisted_59 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: "/images/2_19.png",
-    "class": "pl-3",
-    style: {
-      "width": "100%"
-    }
-  }, null, -1 /* HOISTED */);
-});
-var _hoisted_60 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_64 = {
+  "class": "btn"
+};
+var _hoisted_65 = {
+  "class": "container text-right"
+};
+var _hoisted_66 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", {
     "class": "container"
   }, null, -1 /* HOISTED */);
 });
-var _hoisted_61 = {
+var _hoisted_67 = {
   "class": "btn"
 };
-var _hoisted_62 = {
+var _hoisted_68 = {
   "class": "container text-left"
 };
-var _hoisted_63 = {
+var _hoisted_69 = {
   key: 2,
   "class": "tab-pane",
   id: "messages",
   role: "tabpanel"
 };
-var _hoisted_64 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_70 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
     src: "/images/2_19.png",
     "class": "pl-3",
@@ -25819,29 +25837,29 @@ var _hoisted_64 = /*#__PURE__*/_withScopeId(function () {
     }
   }, null, -1 /* HOISTED */);
 });
-var _hoisted_65 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_71 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", {
     "class": "container"
   }, null, -1 /* HOISTED */);
 });
-var _hoisted_66 = {
+var _hoisted_72 = {
   "class": "btn"
 };
-var _hoisted_67 = {
+var _hoisted_73 = {
   "class": "container text-left"
 };
-var _hoisted_68 = {
+var _hoisted_74 = {
   key: 0,
   "class": "col-4 row"
 };
-var _hoisted_69 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"ml-2 col-md-12 card bg-light row\" style=\"display:flex;border:3px solid #c3e6cb;padding:8px;\" data-v-2b3c2c26><form style=\"display:flex;\" data-v-2b3c2c26><select class=\"form-control col-5\" data-v-2b3c2c26><label class=\"pt-2 col-3\" data-v-2b3c2c26>Mushaf:</label><option value=\"0\" data-v-2b3c2c26>Select Mushaf</option><option data-v-2b3c2c26></option></select><div class=\"col-1\" data-v-2b3c2c26></div><select class=\"form-control col-6\" data-v-2b3c2c26><label class=\"pt-2 col-3\" data-v-2b3c2c26>Reciter:</label><option value=\"0\" data-v-2b3c2c26>Select Reciter</option><option data-v-2b3c2c26></option></select></form></div><img src=\"/images/quran_img.png\" class=\"pl-3\" style=\"width:100%;\" data-v-2b3c2c26>", 2);
-var _hoisted_71 = [_hoisted_69];
-var _hoisted_72 = {
+var _hoisted_75 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"ml-2 col-md-12 card bg-light row\" style=\"display:flex;border:3px solid #c3e6cb;padding:8px;\" data-v-2b3c2c26><form style=\"display:flex;\" data-v-2b3c2c26><select class=\"form-control col-5\" data-v-2b3c2c26><label class=\"pt-2 col-3\" data-v-2b3c2c26>Mushaf:</label><option value=\"0\" data-v-2b3c2c26>Select Mushaf</option><option data-v-2b3c2c26></option></select><div class=\"col-1\" data-v-2b3c2c26></div><select class=\"form-control col-6\" data-v-2b3c2c26><label class=\"pt-2 col-3\" data-v-2b3c2c26>Reciter:</label><option value=\"0\" data-v-2b3c2c26>Select Reciter</option><option data-v-2b3c2c26></option></select></form></div><img src=\"/images/quran_img.png\" class=\"pl-3\" style=\"width:100%;\" data-v-2b3c2c26>", 2);
+var _hoisted_77 = [_hoisted_75];
+var _hoisted_78 = {
   key: 1,
   "class": "col-4 row"
 };
-var _hoisted_73 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"ml-2 col-md-12 card bg-light row\" style=\"display:flex;border:3px solid #c3e6cb;padding:8px;\" data-v-2b3c2c26><form style=\"display:flex;\" data-v-2b3c2c26><div class=\"col-12 text-center\" data-v-2b3c2c26><h4 class=\"font-weight-bold mt-3 text-center\" data-v-2b3c2c26>The Holy Quran</h4><img src=\"/images/quran3.png\" class=\"pl-3 pb-1\" style=\"width:40%;\" data-v-2b3c2c26><p class=\"container\" data-v-2b3c2c26>The Quran, considered the holy scripture of Islam, is a sacred and comprehensive compilation of revelations believed by Muslims to have been conveyed to the Prophet Muhammad by the archangel Gabriel from around 610 CE to 632 CE. </p></div></form></div>", 1);
-var _hoisted_74 = [_hoisted_73];
+var _hoisted_79 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"ml-2 col-md-12 card bg-light row\" style=\"display:flex;border:3px solid #c3e6cb;padding:8px;\" data-v-2b3c2c26><form style=\"display:flex;\" data-v-2b3c2c26><div class=\"col-12 text-center\" data-v-2b3c2c26><h4 class=\"font-weight-bold mt-3 text-center\" data-v-2b3c2c26>The Holy Quran</h4><img src=\"/images/quran3.png\" class=\"pl-3 pb-1\" style=\"width:40%;\" data-v-2b3c2c26><p class=\"container\" data-v-2b3c2c26>The Quran, considered the holy scripture of Islam, is a sacred and comprehensive compilation of revelations believed by Muslims to have been conveyed to the Prophet Muhammad by the archangel Gabriel from around 610 CE to 632 CE. </p></div></form></div>", 1);
+var _hoisted_80 = [_hoisted_79];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("\n    <h2 class=\"pt-3 text-center\"><strong>The Holy Quran</strong></h2>\n  "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" multiple input sections "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     "class": "form-control",
@@ -25873,7 +25891,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onReset: _cache[4] || (_cache[4] = function () {
       return _ctx.reset && _ctx.reset.apply(_ctx, arguments);
     })
-  }, [].concat(_hoisted_45), 32 /* HYDRATE_EVENTS */)])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_46, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Tab panes "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_47, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" translation "), $data.information != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_48, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_49, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_50, [_hoisted_51, _hoisted_52, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_53, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_54, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.information.translation) + "\"", 1 /* TEXT */)])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.information == null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_55, [].concat(_hoisted_57))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" tafseer "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_58, [_hoisted_59, _hoisted_60, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_61, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_62, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.tafseer), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" transliteration "), $data.information != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_63, [_hoisted_64, _hoisted_65, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_66, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_67, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.information.transliteration), 1 /* TEXT */)])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" right section change "), $data.information != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_68, [].concat(_hoisted_71))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.information == null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_72, [].concat(_hoisted_74))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]);
+  }, [].concat(_hoisted_45), 32 /* HYDRATE_EVENTS */)])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_46, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Tab panes "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_47, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" translation "), $data.information != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_48, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_49, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_50, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_51, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_52, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.information.ayah.ayah_text), 1 /* TEXT */)]), _hoisted_53, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_54, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_55, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.information.translation) + "\"", 1 /* TEXT */)])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.information == null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_56, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_57, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_58, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_59, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_60, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.information.ayah.ayah_text), 1 /* TEXT */)]), _hoisted_61, _hoisted_62])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" tafseer "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_63, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_64, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_65, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.information.ayah.ayah_text), 1 /* TEXT */)]), _hoisted_66, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_67, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_68, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.tafseer), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" transliteration "), $data.information != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_69, [_hoisted_70, _hoisted_71, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_72, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_73, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.information.transliteration), 1 /* TEXT */)])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" right section change "), $data.information != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_74, [].concat(_hoisted_77))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.information == null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_78, [].concat(_hoisted_80))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]);
 }
 
 /***/ }),
