@@ -223,22 +223,6 @@
           <!-- Tab panes -->
           <div class="tab-content text-center">
 
-            <!-- translation -->
-            <div class="tab-pane active" id="home" role="tabpanel" v-if="information != null">
-              <div class="row">
-                <div class="col-12">
-                  <div class="btn">
-                    <h3 class="container text-right">{{ information.ayah.ayah_text }}</h3>
-                  </div>
-                  <hr class="container">
-                  <div class="btn">
-
-                    <h3 class="container text-left">{{ information.translation }}"</h3>
-                  </div>
-                </div>
-              </div>
-            </div>
-
             <div class="tab-pane active" id="home" role="tabpanel" v-if="information == null">
               <div class="row">
                 <div class="col-12">
@@ -249,25 +233,43 @@
               </div>
             </div>
 
+
+            <!-- translation -->
+            <div class="tab-pane active" id="home" role="tabpanel" v-if="information != null">
+              <div class="row">
+                <div class="col-12">
+                  <div class="btn">
+                    <h3 class="container text-right" style="line-height: 2.0em;">{{ information.ayah.ayah_text }}</h3>
+                  </div>
+                  <hr class="container">
+                  <div class="btn">
+
+                    <h3 class="container text-left" style="line-height: 1.6em;">{{ information.translation }}"</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          
             <!-- tafseer -->
             <div class="tab-pane" id="profile" role="tabpanel" v-if="information != null">
               <div class="btn">
-                <h3 class="container text-right">{{ information.ayah.ayah_text }}</h3>
+                <h3 class="container text-right" style="line-height: 2.0em;">{{ information.ayah.ayah_text }}</h3>
               </div>
               <hr class="container">
               <div class="btn">
-                <h3 class="container text-left">{{ tafseer }}</h3>
+                <h3 class="container text-left" style="line-height: 1.6em;">{{ tafseer }}</h3>
               </div>
             </div>
 
             <!-- transliteration -->
             <div class="tab-pane" id="messages" role="tabpanel" v-if="information != null">
               <div class="btn">
-                <h3 class="container text-right">{{ information.ayah.ayah_text }}</h3>
+                <h3 class="container text-right" style="line-height: 2.0em;">{{ information.ayah.ayah_text }}</h3>
               </div>
               <hr class="container">
               <div class="btn">
-                <h3 class="container text-left">{{ information.transliteration }}</h3>
+                <h3 class="container text-left" style="line-height: 1.6em;">{{ information.transliteration }}</h3>
               </div>
             </div>
 
