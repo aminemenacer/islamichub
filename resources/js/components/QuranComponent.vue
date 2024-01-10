@@ -225,36 +225,37 @@
 
             <div class="tab-pane active" id="home" role="tabpanel" v-if="information == null">
               <div class="row">
-                <div class="col-12">
-                  <h4 class="font-weight-bold text-center">The Holy Quran</h4>
-                  <img src="/images/quran3.png" class="pl-3 pb-1" style="width:30%;">
-                  <p class="container">The Quran, considered the holy scripture of Islam, is a sacred and comprehensive compilation of revelations believed by Muslims to have been conveyed to the Prophet Muhammad by the archangel Gabriel from around 610 CE to 632 CE. Comprising 114 chapters, or surahs, the Quran is revered as the literal word of God as revealed in Arabic, addressing various aspects of human existence, morality, guidance for personal conduct, and legal principles.</p>
+                <div class="col-md-6">
+                  <img src="/images/calligraphy.png" class="pl-3 " style="width:70%;">
+                </div>
+                <div class="col-md-6">
+                  <h2 class="font-weight-bold mb-3 mt-3 text-center">The Holy Quran</h2>
+                  <span class="container text-left mb-3" style="line-height:1.5em">The Quran, considered the holy scripture of Islam, is a sacred and comprehensive compilation of revelations believed by Muslims to have been conveyed to the Prophet Muhammad by the archangel Gabriel from around 610 CE to 632 CE. </span>
+                  <br><a href="#" class="myButton mt-3">Get started</a>
                 </div>
               </div>
             </div>
-
 
             <!-- translation -->
             <div class="tab-pane active" id="home" role="tabpanel" v-if="information != null">
               <div class="row">
                 <div class="col-12">
                   <div class="btn">
-                    <h3 class="container text-right" style="line-height: 2.0em;">{{ information.ayah.ayah_text }}</h3>
+                    <h4 class="container text-right" style="line-height: 2.0em;">{{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})</h4>
                   </div>
                   <hr class="container">
                   <div class="btn">
 
-                    <h3 class="container text-left" style="line-height: 1.6em;">{{ information.translation }}"</h3>
+                    <h4 class="container text-left" style="line-height: 1.6em;">{{ information.translation }}"</h4>
                   </div>
                 </div>
               </div>
             </div>
 
-          
             <!-- tafseer -->
             <div class="tab-pane" id="profile" role="tabpanel" v-if="information != null">
               <div class="btn">
-                <h3 class="container text-right" style="line-height: 2.0em;">{{ information.ayah.ayah_text }}</h3>
+                <h3 class="container text-right" style="line-height: 2.0em;">{{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})</h3>
               </div>
               <hr class="container">
               <div class="btn">
@@ -265,7 +266,7 @@
             <!-- transliteration -->
             <div class="tab-pane" id="messages" role="tabpanel" v-if="information != null">
               <div class="btn">
-                <h3 class="container text-right" style="line-height: 2.0em;">{{ information.ayah.ayah_text }}</h3>
+                <h3 class="container text-right" style="line-height: 2.0em;">{{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})</h3>
               </div>
               <hr class="container">
               <div class="btn">
@@ -281,8 +282,8 @@
 
     <!-- right section change -->
 
-    <div class="col-4 row" v-if="information != null">
-      <div class="ml-2 col-md-12 card bg-light row" style="display:flex;border:3px solid #c3e6cb;padding:8px;">
+    <div class="col-4 row" style="" v-if="information != null">
+      <div class="ml-2 col-md-12 card bg-light row" style="display:flex;border:5px solid #c3e6cb;padding:8px;">
         <form style="display:flex">
 
           <select class="form-control col-5">
@@ -303,12 +304,12 @@
     </div>
 
     <div class="col-4 row" v-if="information == null">
-      <div class="ml-2 col-md-12 card bg-light row" style="display:flex;border:3px solid #c3e6cb;padding:8px;">
+      <div class="ml-2 col-md-12 card bg-light row" style="display:flex;border:5px solid #c3e6cb;padding:8px;">
         <form style="display:flex">
 
           <div class="col-12 text-center">
             <h4 class="font-weight-bold mt-3 text-center">The Holy Quran</h4>
-            <img src="/images/quran3.png" class=" pl-3 pb-1" style="width:40%;">
+            <img src="/images/calligraphy.png" class=" pl-3 pb-1" style="width:40%;">
             <p class="container">The Quran, considered the holy scripture of Islam, is a sacred and comprehensive compilation of revelations believed by Muslims to have been conveyed to the Prophet Muhammad by the archangel Gabriel from around 610 CE to 632 CE. </p>
           </div>
 
@@ -322,9 +323,7 @@
 
 <script>
 export default ({
-  components: {
 
-  },
   mounted() {
     this.getSurahs();
     // this.getAyahs();
@@ -396,6 +395,28 @@ export default ({
 </script>
 
 <style scoped>
+.myButton {
+  background-color: #c3e6cb;
+  border-radius: 8px;
+  display: inline-block;
+  cursor: pointer;
+  color: #000;
+  font-family: Arial;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 13px 32px;
+  text-decoration: none;
+}
+
+
+@media (min-width: 768px) {
+  .button-46 {
+    font-size: 20px;
+    min-width: 200px;
+    padding: 14px 16px;
+  }
+}
+
 p.no-after:after {
   content: none;
 }
