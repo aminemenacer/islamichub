@@ -69,19 +69,20 @@
             </li>
 
           </ul>
-
-          <div data-bs-toggle="modal" style="cursor:pointer; float:right" data-bs-target="#staticBackdrop" v-if="information != null" class="fas fa-fw fa-info-circle fa-lg mt-3 mr-1"></div>
-          <div data-bs-toggle="modal" style="cursor:pointer; float:right" data-bs-target="#staticBackdropbug" v-if="information != null" class="fas fa-fw fa-bug mt-3 fa-lg mt-2 "></div>
+          <!--
+            <div data-bs-toggle="modal" style="cursor:pointer; float:right" data-bs-target="#staticBackdrop" v-if="information != null" class="fas fa-fw fa-info-circle fa-lg mt-3 mr-1"></div>
+            <div data-bs-toggle="modal" style="cursor:pointer; float:right" data-bs-target="#staticBackdropbug" v-if="information != null" class="fas fa-fw fa-bug mt-3 fa-lg mt-2 "></div>
+          -->
 
           <div class="mt-2" v-if="information != null">
             <ul class="ul-main">
               <img src="/images/art1.png" style="width:27px" class="mb-1 mr-2" />
-              <li class="li-main mr-3"><span class="span-main">{{information.ayah.surah_id}} : {{information.ayah.ayah_id}}</span></li>
+              <li class="li-main mr-3"><span class="span-main">{{information.ayah.surah_id}} ; {{information.ayah.ayah_id}}</span></li>
             </ul>
           </div>
         </div>
 
-        <!-- instructions -->
+        <!-- instructions 
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
           <div class="modal-dialog modal-xl">
             <div class="modal-content ">
@@ -135,8 +136,7 @@
             </div>
           </div>
         </div>
-
-        <!-- report a bug -->
+       
         <div class="modal fade" id="staticBackdropbug" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
           <div class="modal-dialog modal-lg">
             <div class="modal-content ">
@@ -218,6 +218,7 @@
             </div>
           </div>
         </div>
+        -->
 
         <div class="card-body">
           <!-- Tab panes -->
@@ -230,8 +231,8 @@
                 </div>
                 <div class="col-md-6">
                   <h2 class="font-weight-bold mb-3 mt-3 text-center">The Holy Quran</h2>
-                  <span class="container text-left mb-3" style="line-height:1.5em">The Quran, considered the holy scripture of Islam, is a sacred and comprehensive compilation of revelations believed by Muslims to have been conveyed to the Prophet Muhammad by the archangel Gabriel from around 610 CE to 632 CE. </span>
-                  <br><a href="#" class="myButton mt-3">Get started</a>
+                  <span class="container text-left mb-4" style="line-height:1.5em">The Quran, considered the holy scripture of Islam, is a sacred and comprehensive compilation of revelations believed by Muslims to have been conveyed to the Prophet Muhammad by the archangel Gabriel from around 610 CE to 632 CE. </span>
+                  <!--<br><a href="#" class="myButton mt-3">Get started</a>-->
                 </div>
               </div>
             </div>
@@ -243,6 +244,7 @@
                   <div class="btn">
                     <h4 class="container text-right" style="line-height: 2.0em;">{{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})</h4>
                   </div>
+                 
                   <hr class="container">
                   <div class="btn">
 
@@ -309,8 +311,8 @@
 
           <div class="col-12 text-center">
             <h4 class="font-weight-bold mt-3 text-center">The Holy Quran</h4>
-            <img src="/images/calligraphy.png" class=" pl-3 pb-1" style="width:40%;">
-            <p class="container">The Quran, considered the holy scripture of Islam, is a sacred and comprehensive compilation of revelations believed by Muslims to have been conveyed to the Prophet Muhammad by the archangel Gabriel from around 610 CE to 632 CE. </p>
+            <img src="/images/calligraphy.png" class=" pl-3 pb-1" style="width:70%;">
+            <!-- <p class="container">The Quran, considered the holy scripture of Islam, is a sacred and comprehensive compilation of revelations believed by Muslims to have been conveyed to the Prophet Muhammad by the archangel Gabriel from around 610 CE to 632 CE. </p> -->
           </div>
 
         </form>
