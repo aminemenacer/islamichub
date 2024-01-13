@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('surah', function (Blueprint $table) {
             $table->id();
-            $table->integer('juz_id');
             $table->string('name_en');
             $table->string('name_ar'); 
             $table->longText('text');                       

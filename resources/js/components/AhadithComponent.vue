@@ -15,20 +15,18 @@
             </select>
           </form>
 
-          <label class="pt-2 pl-3 pr-2">Book:</label>
-          <form class="col-md-3">
-            <select class='form-control' v-model='book' @change='getChapter()'>
-              <option value="0">Select Book</option>
-            </select>
-          </form>
-
-          <label class="pt-2 pl-3 pr-2">Chapter:</label>
+          <label class="pt-2 pl-3 pr-3">Chapter:</label>
           <form class="col-md-3">
             <select class='form-control' v-model='chapter' @change='getHadithNum()'>
               <option value="0">Select Chapter</option>
             </select>
           </form>
 
+          <label class="pt-2 pl-3 pr-3"></label>
+          <form class="d-flex col-md-4 ml-3" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search Keyword" aria-label="Search">
+          </form>
+
         </div>
       </div>
     </div>
@@ -36,109 +34,39 @@
 
   <!-- main section -->
 
-  <div class="card container-fluid mt-3" style="display:flex;border:3px solid #c3e6cb;border-radius:20px">
+  <div class="card container mt-3" style="display:flex;border:3px solid lightgrey;border-radius:10px;">
     <div class="card-body">
-      <div class="row container-fluid ">
-        <div class="col-1">
+      <div class="row">
+        <div class="col-9 mt-1 font-weight-bold">
+          <h3><b>1) Revelation</b></h3>
         </div>
-        <div class="col-5">
-          <h4 class="pb-3"><b>Narrated 'Umar bin Al-Khattab:</b></h4>
-          <h6 class="text-left">I heard Allah's Messenger (ﷺ) saying, "The reward of deeds depends upon the intentions and every person will get the reward according to what he has intended. So whoever emigrated for worldly benefits or for a woman to marry, his emigration was for what he emigrated for."</h6>
-        </div>
-
-        <div class="col-5">
-          <h3 class="pb-3"></h3>
-          <h5 class="text-right">حَدَّثَنَا الْحُمَيْدِيُّ عَبْدُ اللَّهِ بْنُ الزُّبَيْرِ ، قَالَ : حَدَّثَنَا سُفْيَانُ ، قَالَ : حَدَّثَنَا يَحْيَى بْنُ سَعِيدٍ الْأَنْصَارِيُّ ، قَالَ : أَخْبَرَنِي مُحَمَّدُ بْنُ إِبْرَاهِيمَ التَّيْمِيُّ ، أَنَّهُ سَمِعَ عَلْقَمَةَ بْنَ وَقَّاصٍ اللَّيْثِيَّ ، يَقُولُ : سَمِعْتُ عُمَرَ بْنَ الْخَطَّابِ رَضِيَ اللَّهُ عَنْهُ عَلَى الْمِنْبَرِ، قَالَ : سَمِعْتُ رَسُولَ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ، يَقُولُ : " إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى، فَمَنْ كَانَتْ هِجْرَتُهُ إِلَى دُنْيَا يُصِيبُهَا أَوْ إِلَى امْرَأَةٍ </h5>
-        </div>
-        <div class="col-1">
-        </div><hr>
-        <div class="row container-fluid">
-          <div class="col-1"></div>
-          <div class="col-md-4">
-            <h5 class="pt-3"><b>Explenation:</b></h5>
-            <p>The father being mentioned only once does not mean that there is deficiency in his right to good treatment, rather, the point is to show the greatness of the mother’s right. </p>
-          </div>
-          
-          <div class="col-1"></div>
-          <div class="col-4 pt-3">
-            <b>Reference:</b> <span>Sahih al-Bukhari 1</span><br>
-            <b>Book num:</b><span> Book 1, Hadith 1</span><br>
+        <div class="col-3">
+          <div class="alert text-center" style="background:#a3cfbb;color:#343a40;border:3px solid #c3e6cb;" role="alert">
+            <b>Bukhari - Book 1 - Revelation</b>
           </div>
         </div>
-
       </div>
+      <hr class="container">
 
-    </div>
-  </div>
-
-  <!-- main section -->
-
-  <div class="card container-fluid mt-3" style="display:flex;border:3px solid #c3e6cb;border-radius:20px">
-    <div class="card-body">
-      <div class="row container-fluid pb-3">
-        <div class="col-1">
-        </div>
-        <div class="col-5">
-          <h4 class="pb-3"><b>Narrated 'Umar bin Al-Khattab:</b></h4>
+      <div class="row container-fluid">
+        <div class="col-6">
+          <h5 class="pb-4"><b>Narrated 'Umar bin Al-Khattab:</b></h5>
           <h6 class="text-left">I heard Allah's Messenger (ﷺ) saying, "The reward of deeds depends upon the intentions and every person will get the reward according to what he has intended. So whoever emigrated for worldly benefits or for a woman to marry, his emigration was for what he emigrated for."</h6>
         </div>
-
-        <div class="col-5">
-          <h3 class="pb-3"></h3>
+        <div class="col-6">
+          <h4 class="pb-5"></h4>
           <h5 class="text-right">حَدَّثَنَا الْحُمَيْدِيُّ عَبْدُ اللَّهِ بْنُ الزُّبَيْرِ ، قَالَ : حَدَّثَنَا سُفْيَانُ ، قَالَ : حَدَّثَنَا يَحْيَى بْنُ سَعِيدٍ الْأَنْصَارِيُّ ، قَالَ : أَخْبَرَنِي مُحَمَّدُ بْنُ إِبْرَاهِيمَ التَّيْمِيُّ ، أَنَّهُ سَمِعَ عَلْقَمَةَ بْنَ وَقَّاصٍ اللَّيْثِيَّ ، يَقُولُ : سَمِعْتُ عُمَرَ بْنَ الْخَطَّابِ رَضِيَ اللَّهُ عَنْهُ عَلَى الْمِنْبَرِ، قَالَ : سَمِعْتُ رَسُولَ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ، يَقُولُ : " إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى، فَمَنْ كَانَتْ هِجْرَتُهُ إِلَى دُنْيَا يُصِيبُهَا أَوْ إِلَى امْرَأَةٍ </h5>
         </div>
-        <div class="col-1">
-        </div><hr>
-        <div class="row container-fluid">
-          <div class="col-1"></div>
-          <div class="col-md-4">
-            <h5 class="pt-3"><b>Explenation:</b></h5>
-            <p>The father being mentioned only once does not mean that there is deficiency in his right to good treatment, rather, the point is to show the greatness of the mother’s right. </p>
-          </div>
-          
-          <div class="col-1"></div>
-          <div class="col-4 pt-3">
-            <b>Reference:</b> <span>Sahih al-Bukhari 1</span><br>
-            <b>Book num:</b><span> Book 1, Hadith 1</span><br>
-          </div>
-        </div>
-
       </div>
+      <hr class="container">
 
-    </div>
-  </div>
-
-  <!-- main section -->
-  <div class="card container-fluid mt-3" style="display:flex;border:3px solid #c3e6cb;border-radius:20px">
-    <div class="card-body">
-      <div class="row container-fluid pb-3">
-        <div class="col-1">
+      <div class="row container-fluid">
+        <div class="col-4 pt-3" style="background:lighgrey">
+          <b style="background:lighgrey">Narrator:</b> <span style="background:lighgrey">Sahih al-Bukhari</span><br>
+          <b style="background:lighgrey">Reference:</b> <span style="background:lighgrey">Sahih al-Bukhari 1</span><br>
+          <b style="background:lighgrey">In-Book Reference:</b><span style="background:lighgrey"> Book 1, Hadith 1</span><br>
+          <b style="background:lighgrey">Hadith Num:</b> <span style="background:lighgrey">1</span><br>
         </div>
-        <div class="col-5">
-          <h4 class="pb-3"><b>Narrated 'Umar bin Al-Khattab:</b></h4>
-          <h6 class="text-left">I heard Allah's Messenger (ﷺ) saying, "The reward of deeds depends upon the intentions and every person will get the reward according to what he has intended. So whoever emigrated for worldly benefits or for a woman to marry, his emigration was for what he emigrated for."</h6>
-        </div>
-
-        <div class="col-5">
-          <h3 class="pb-3"></h3>
-          <h5 class="text-right">حَدَّثَنَا الْحُمَيْدِيُّ عَبْدُ اللَّهِ بْنُ الزُّبَيْرِ ، قَالَ : حَدَّثَنَا سُفْيَانُ ، قَالَ : حَدَّثَنَا يَحْيَى بْنُ سَعِيدٍ الْأَنْصَارِيُّ ، قَالَ : أَخْبَرَنِي مُحَمَّدُ بْنُ إِبْرَاهِيمَ التَّيْمِيُّ ، أَنَّهُ سَمِعَ عَلْقَمَةَ بْنَ وَقَّاصٍ اللَّيْثِيَّ ، يَقُولُ : سَمِعْتُ عُمَرَ بْنَ الْخَطَّابِ رَضِيَ اللَّهُ عَنْهُ عَلَى الْمِنْبَرِ، قَالَ : سَمِعْتُ رَسُولَ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ، يَقُولُ : " إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى، فَمَنْ كَانَتْ هِجْرَتُهُ إِلَى دُنْيَا يُصِيبُهَا أَوْ إِلَى امْرَأَةٍ </h5>
-        </div>
-        <div class="col-1">
-        </div><hr>
-        <div class="row container-fluid">
-          <div class="col-1"></div>
-          <div class="col-md-4">
-            <h5 class="pt-3"><b>Explenation:</b></h5>
-            <p>The father being mentioned only once does not mean that there is deficiency in his right to good treatment, rather, the point is to show the greatness of the mother’s right. </p>
-          </div>
-          
-          <div class="col-1"></div>
-          <div class="col-4 pt-3">
-            <b>Reference:</b> <span>Sahih al-Bukhari 1</span><br>
-            <b>Book num:</b><span> Book 1, Hadith 1</span><br>
-          </div>
-        </div>
-
       </div>
 
     </div>

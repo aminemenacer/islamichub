@@ -9,4 +9,18 @@ class Ahadith extends Model
 {
     use HasFactory;
 
+    protected $table = 'ahadith';
+
+    protected $fillable = [
+        'hadith_ar',
+        'hadith_en',
+        'chapter_id',
+        'imam_id'       
+    ];
+
+    public function chapter()
+    {
+        return $this->BelongsTo(Chapter::class,'chapter_id','id');
+    }
+
 }

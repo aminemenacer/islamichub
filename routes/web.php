@@ -34,7 +34,7 @@ Route::get('/welcome', function () {
     return view('home');
 });
 
-
+//quran
 Route::get('/get_juzs', [SurahController::class, 'getJuzs']);
 Route::get('/get_surahs', [SurahController::class, 'getSurahs']);
 Route::get('/get_ayahs', [SurahController::class, 'getAyahs']);
