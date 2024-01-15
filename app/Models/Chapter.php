@@ -14,7 +14,8 @@ class Chapter extends Model
 
     protected $fillable = [
         'chapter_id', 
-        'chapter_name',
+        'chapter_text',
+        'imam_id',
               
     ];
 
@@ -23,8 +24,5 @@ class Chapter extends Model
         return $this->hasMany(Chapter::class, 'imam_id', 'id');
     }
 
-    public function chapter()
-    {
-        return $this->BelongsTo(Ahadith::class,'chapter_id','id');
-    }
+    
 }

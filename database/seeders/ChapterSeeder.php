@@ -24,9 +24,9 @@ class ChapterSeeder extends Seeder
         while (($data = fgetcsv($csvFile, 2000, ",")) !== FALSE) {
             if (!$firstline) {
                 Chapter::create([
-                    // "id" => $data['0'],
-                    "chapter_id" => $data['0'],
-                    "chapter_text" => $data['1'],
+                    "chapter_id" => $data['1'],
+                    "imam_id" => $data['0'],
+                    "chapter_text" => $data['2'],
                 ]);
             }
             $firstline = false;

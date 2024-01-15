@@ -24,10 +24,11 @@ class AhadithSeeder extends Seeder
             if (!$firstline) {
                 Ahadith::create([
                     // "id" => $data['0'],
-                    "imam_id" => $data['0'],
-                    "chapter_id" => $data['1'],
-                    "hadith_ar" => $data['2'],
-                    "hadith_en" => $data['3'],
+                    
+                    "imam_id" => trim($data['0']),
+                    "chapter_id" => trim($data['1']),
+                    "hadith_ar" => trim($data['2']),
+                    "hadith_en" => trim($data['3']),
                 ]);
             }
             $firstline = false;

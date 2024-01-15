@@ -13,7 +13,6 @@ class Imam extends Model
 
 
     protected $fillable = [
-        'imam_id',
         'imam_name',       
     ];
 

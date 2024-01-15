@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ahadith;
 use Illuminate\Http\Request;
 use App\Models\Imam;
 use App\Models\Chapter;
@@ -23,9 +24,20 @@ class AhadithController extends Controller
 
     public function getChapters(Request $request)
     {
-        $ayah = Chapter::where('surah_id', $request->surah_id)->get();
-        return response()->json($ayah);
+        $chapter = Chapter::where('imam_id', $request->imam_id)->get();
+        return response()->json($chapter);
     }
 
-    
+    public function getAhadith()
+    {
+        $ahadith = Ahadith::with('chapter')->get();
+
+        return response()->json($ahadith);
+    }
+
+    public function search(Request $request)
+    {
+        $ahadith = Ahadith::with('chapter')->where('hadith_en', 'LIKE', "%{$request->hadith_en}%")->get();
+        return response()->json($ahadith);
+    }
 }

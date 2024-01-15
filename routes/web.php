@@ -34,6 +34,15 @@ Route::get('/welcome', function () {
     return view('home');
 });
 
+//ahadith
+Route::get('/get_imams', [AhadithController::class, 'getImams']);
+Route::get('/get_chapters', [AhadithController::class, 'getChapters']);
+Route::get('/ahadith/{id}/fetch', [AhadithController::class, 'getAhadith']);
+// Route::get('/get_ahadiths', [AhadithController::class, 'getAhadiths']);
+Route::post('/search', [AhadithController::class, 'search'])->name('search');
+
+
+
 //quran
 Route::get('/get_juzs', [SurahController::class, 'getJuzs']);
 Route::get('/get_surahs', [SurahController::class, 'getSurahs']);
