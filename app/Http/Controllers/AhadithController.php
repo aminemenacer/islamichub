@@ -25,6 +25,7 @@ class AhadithController extends Controller
     public function getChapters(Request $request)
     {
         $chapter = Chapter::where('imam_id', $request->imam_id)->get();
+        
         return response()->json($chapter);
     }
 
