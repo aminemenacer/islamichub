@@ -16,13 +16,13 @@ class Imam extends Model
         'imam_name',       
     ];
 
-    public function chapters()
+    public function chapter()
     {
         return $this->hasMany(Chapter::class);
     }
 
     public function imam()
     {
-        return $this->BelongsTo(Imam::class,'chapter_id','id');
+        return $this->BelongsTo(Imam::class,'imam_id','id');
     }
 }

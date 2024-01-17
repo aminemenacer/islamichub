@@ -1,50 +1,7 @@
 <template>
 <div id="app">
   <!-- multiple input sections -->
-  <div class="row text-center pt-3 container-fluid">
-    <div class="col-md-12 text-center" style="
-                    padding-top: 10px;
-                    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px,
-                        rgba(0, 0, 0, 0.24) 0px 1px 2px;
-                    border-radius: 10px;
-                    background: transparent;
-                    border: 3px solid #c3e6cb;
-                " v-if="ahadith != null">
-      <div class="row">
-        <div class="col-md-12 container" style="display: flex; text-align: center">
-          <label class="pt-2 pl-3 pr-2" style="display: flex">Imam:</label>
-          <form class="col-md-3">
-            <select class="form-control" v-model="imam" @change="getChapters()">
-              <option value="0">
-                <span>Select Imam</span>
-              </option>
-              <option v-for="data in imams" :key="data.id" :value="data.id">
-                {{ data.imam_name }}
-              </option>
-            </select>
-          </form>
 
-          <label class="pt-2 pl-3 pr-3">Chapter:</label>
-          <form class="col-md-3">
-            <select class="form-control" v-model="chapter_id" @change="getAhadiths()">
-              <option value="0">
-                <span>Select Chapter</span>
-              </option>
-              <option v-for="data in chapters" :key="data.id" :value="data.id">
-                {{ data.chapter_text }}
-              </option>
-            </select>
-          </form>
-
-          <form class="mb-4 col-md-4" style="display: flex" @submit.prevent="search()">
-            <input style="padding: 12px" class="form-control mr-2 icon col-lg-12" type="search" id="search" name="search" @keyup="search" v-model="searchFilters.hadith_en" placeholder="Search for Keyword" aria-label="Search" />
-          </form>
-
-          <div></div>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <div class="row text-center pt-3 container-fluid">
     <div class="col-md-12 pt-3 text-center" style="
@@ -128,7 +85,7 @@
   <!-- main section -->
   <div class="row">
     <div class="container mt-3 col-md-6" style="display: flex; border-radius: 10px" v-for="data in ahadiths" :key="data.id" :value="data.id">
-      <div class="card-body" style="background: white; border: 3px solid #c3e6cb">
+      <div class="card-body" style="background: white; border-radius:10px;box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;">
         <h3 style="display: flex">
           <img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" />{{ data.chapter.chapter_text }}
         </h3>
@@ -162,7 +119,7 @@ import axios from "axios";
 export default {
   mounted() {
     this.getImams();
-        this.getAhadiths();
+        // this.getAhadiths();
 
   },
   data() {

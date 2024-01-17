@@ -122,7 +122,7 @@
               <div class="row">
                 <div class="col-12">
                   <div class="btn">
-                    <h4 class="container text-right" style="line-height: 2.0em;">{{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})</h4>
+                    <h3 class="container text-right" style="line-height: 2.0em;">{{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})</h3>
                   </div>
 
                   <hr class="container">
