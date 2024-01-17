@@ -46,49 +46,58 @@
     </div>
   </div>
 
-  <div class="card container bg-white mt-3" style="
-                box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px,
-                    rgba(0, 0, 0, 0.24) 0px 1px 2px;
-                border-radius: 10px;
-                background: transparent;
-                border: 5px solid #c3e6cb;
-            " v-if="ahadith == null">
-    <div class="card-header">
-      <h2 class="card-text text-center mt-2 mb-2">
-        <b>Hadith Collection</b>
-      </h2>
-    </div>
-    <div class="card-body container">
-      <h6 class="card-text container" style="line-height: 1.7em; font-weight-bold">
-        Hadiths are the recorded sayings, actions, and approvals of
-        Prophet Muhammad (peace be upon him) in Islam. They serve as
-        an essential source of guidance for Muslims, providing
-        insights into the Prophet's teachings and practices. The
-        collection of Hadiths is a vital component of Islamic
-        tradition, alongside the Quran.
-      </h6>
-      <h6 class="card-text container" style="line-height: 1.7em; font-weight-bold">
-        The process of collecting and preserving Hadiths began
-        shortly after the death of Prophet Muhammad. Scholars
-        recognized the importance of preserving his words and
-        actions to maintain the authenticity of Islamic teachings.
-        The collection of Hadiths underwent a meticulous and
-        rigorous process to ensure accuracy and reliability.
-      </h6>
-    </div>
-    <div>
+  <!--
+    <div class="card container bg-white mt-3" style="
+                  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px,
+                      rgba(0, 0, 0, 0.24) 0px 1px 2px;
+                  border-radius: 10px;
+                  background: transparent;
+                  border: 5px solid #c3e6cb;
+              " v-if="ahadith == null">
+      <div class="card-header">
+        <h2 class="card-text text-center mt-2 mb-2">
+          <b>Hadith Collection</b>
+        </h2>
+      </div>
+      <div class="card-body container">
+        <h6 class="card-text container" style="line-height: 1.7em; font-weight-bold">
+          Hadiths are the recorded sayings, actions, and approvals of
+          Prophet Muhammad (peace be upon him) in Islam. They serve as
+          an essential source of guidance for Muslims, providing
+          insights into the Prophet's teachings and practices. The
+          collection of Hadiths is a vital component of Islamic
+          tradition, alongside the Quran.
+        </h6>
+        <h6 class="card-text container" style="line-height: 1.7em; font-weight-bold">
+          The process of collecting and preserving Hadiths began
+          shortly after the death of Prophet Muhammad. Scholars
+          recognized the importance of preserving his words and
+          actions to maintain the authenticity of Islamic teachings.
+          The collection of Hadiths underwent a meticulous and
+          rigorous process to ensure accuracy and reliability.
+        </h6>
+      </div>
+      <div>
+
+      </div>
 
     </div>
-
-  </div>
+  -->
 
   <!-- main section -->
   <div class="row">
     <div class="container mt-3 col-md-6" style="display: flex; border-radius: 10px" v-for="data in ahadiths" :key="data.id" :value="data.id">
       <div class="card-body" style="background: white; border-radius:10px;box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;">
-        <h3 style="display: flex">
-          <img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" />{{ data.chapter.chapter_text }}
-        </h3>
+        <div class="row">
+          <div class="col-md-11">
+            <h3 style="display: flex">
+              <img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" />{{ data.chapter.chapter_text }}
+            </h3>
+          </div>
+          <div class="col-md-1" style="display:flex">
+            <h2 class="text-center">{{ data.imam_id }}</h2>
+          </div>
+        </div>
         <hr />
         <div class="container-fluid">
           <p class="">{{ data.hadith_ar }}</p>
