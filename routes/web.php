@@ -38,7 +38,7 @@ Route::get('/welcome', function () {
 Route::get('/get_imams', [AhadithController::class, 'getImams']);
 Route::get('/get_chapters', [AhadithController::class, 'getChapters']);
 Route::get('/ahadith/{id}/fetch', [AhadithController::class, 'getAhadith']);
-// Route::get('/get_ahadiths', [AhadithController::class, 'getAhadiths']);
+Route::get('/get_ahadiths', [AhadithController::class, 'getAhadiths']);
 Route::post('/search', [AhadithController::class, 'search'])->name('search');
 
 

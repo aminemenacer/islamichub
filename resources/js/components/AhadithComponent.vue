@@ -95,26 +95,32 @@
             </h3>
           </div>
           <div class="col-md-1" style="display:flex">
-            <h2 class="text-center">{{ data.imam_id }}</h2>
+            <h2 class="text-center" style="color:grey">{{ data.imam_id }}</h2>
           </div>
         </div>
         <hr />
         <div class="container-fluid">
-          <p class="">{{ data.hadith_ar }}</p>
+          <h5 style="line-height:1.6em">{{ data.hadith_ar }}</h5>
           <br />
-          {{ data.hadith_en }}
+          <h5 style="line-height:1.6em">{{ data.hadith_en }}</h5>
         </div>
         <hr />
         <div class="" style="background: lighgrey">
-          <!-- <b style="background:lighgrey">Reference:</b> <span style="background:lighgrey">{{ ahadith.imam.imam_name }} , {{ ahadith.chapter_id }}</span><br> -->
-          <b style="background: lighgrey">In-Book Reference: </b><span style="background: lighgrey">
-            Book {{ data.chapter_id }}</span><br />
-          <b style="background: lighgrey">Hadith Num: </b>
-          <span style="background: lighgrey">{{ data.chapter.imam_id }}</span><br />
+          <h5 style="background: lighgrey"><b class="pr-2">Reference:</b>  Book {{ data.chapter_id }}</h5>
+          <h5 style="background: lighgrey"><b class="pr-2">Hadith Num:</b> {{ data.imam_id }}</h5>
         </div>
       </div>
     </div>
   </div>
+
+  <div >
+  <input type="button" v-for="data in imams" :key="data.id" :value="data.imam_name" @click="getChapters()" />
+  </div>
+
+  <div >
+  <input type="button" v-for="data in chapters" :key="data.id" :value="data.chapter_text" @click="getAhadiths()"/>
+  </div>
+
 </div>
 </template>
 
@@ -138,8 +144,9 @@ export default {
       chapters: [],
       ahadiths: [],
       imam: null,
+      chapter:null,
       chapter_id: 0,
-      imam: 0,
+      imam:0,
       ahadith: null,
 
       searchFilters: new Form({

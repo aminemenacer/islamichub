@@ -32,9 +32,14 @@ class AhadithController extends Controller
     public function getAhadith()
     {
         $ahadith = Ahadith::with('chapter')->get();
-
         return response()->json($ahadith);
     }
+
+    // public function getAhadith($id)
+    // {
+    //     $ahadith = Ahadith::whereId($id)->first();
+    //     return response()->json($ahadith->ahadith);
+    // }
 
     public function search(Request $request)
     {
