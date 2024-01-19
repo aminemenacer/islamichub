@@ -43,7 +43,7 @@ class AhadithController extends Controller
 
     public function search(Request $request)
     {
-        $ahadith = Ahadith::with('chapter')->where('hadith_en', 'LIKE', "%{$request->hadith_en}%")->get();
+        $ahadith = Ahadith::with('chapter')->where('chapter_text', 'LIKE', "%{$request->chapter_text}%")->get();
         return response()->json($ahadith);
     }
 }

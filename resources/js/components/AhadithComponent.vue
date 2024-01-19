@@ -38,7 +38,7 @@
           </form>
 
           <form class="mb-4 col-md-4" style="display: flex" @submit.prevent="search()">
-            <input style="padding: 12px" class="form-control mr-2 icon col-lg-12" type="search" id="search" name="search" @keyup="search" v-model="searchFilters.hadith_en" placeholder="Search for Keyword" aria-label="Search" />
+            <input style="padding: 12px" class="form-control mr-2 icon col-lg-12" type="search" id="search" name="search" @keyup="search" v-model="searchFilters.chapter_text" placeholder="Search for Keyword" aria-label="Search" />
           </form>
           <hr />
         </div>
@@ -113,12 +113,12 @@
     </div>
   </div>
 
-  <div >
-  <input type="button" v-for="data in imams" :key="data.id" :value="data.imam_name" @click="getChapters()" />
+  <div style="display:flex" class="pr-2 pt-3">
+  <input class="button-46"  type="button" v-for="data in imams" :key="data.id" :value="data.imam_name" @click="getChapters()" />
   </div>
 
   <div >
-  <input type="button" v-for="data in chapters" :key="data.id" :value="data.chapter_text" @click="getAhadiths()"/>
+  <input type="button" class="button-14" v-for="data in chapters" :key="data.id" :value="data.chapter_text" @click="getAhadiths()"/>
   </div>
 
 </div>
@@ -152,6 +152,7 @@ export default {
       searchFilters: new Form({
         id: "",
         hadith_en: "",
+        chapter_text:""
       }),
     };
   },
@@ -210,3 +211,96 @@ export default {
   },
 };
 </script>
+
+<style>
+
+/* CSS */
+.button-14 {
+  background-image: linear-gradient(#f7f8fa ,#e7e9ec);
+  border-color: #adb1b8 #a2a6ac #8d9096;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 3px;
+  box-shadow: rgba(255,255,255,.6) 0 1px 0 inset;
+  box-sizing: border-box;
+  color: #0f1111;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Amazon Ember",Arial,sans-serif;
+  font-size: 14px;
+  height: 29px;
+  font-size: 13px;
+  outline: 0;
+  overflow: hidden;
+  padding: 0 11px;
+  text-align: center;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+}
+
+.button-14:active {
+  border-bottom-color: #a2a6ac;
+}
+
+.button-14:active:hover {
+  border-bottom-color: #a2a6ac;
+}
+
+.button-14:hover {
+  border-color: #a2a6ac #979aa1 #82858a;
+}
+
+.button-14:focus {
+  border-color: #e77600;
+  box-shadow: rgba(228, 121, 17, .5) 0 0 3px 2px;
+  outline: 0;
+}
+
+
+/* CSS */
+.button-46 {
+  align-items: center;
+  background-color: rgba(240, 240, 240, 0.26);
+  border: 1px solid #DFDFDF;
+  border-radius: 16px;
+  box-sizing: border-box;
+  color: #000000;
+  cursor: pointer;
+  display: flex;
+  font-family: Inter, sans-serif;
+  font-size: 18px;
+  justify-content: center;
+  line-height: 28px;
+  max-width: 100%;
+  padding: 14px 22px;
+  text-decoration: none;
+  transition: all .2s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 100%;
+}
+
+.button-46:active,
+.button-46:hover {
+  outline: 0;
+}
+
+.button-46:hover {
+  background-color: #FFFFFF;
+  border-color: rgba(0, 0, 0, 0.19);
+}
+
+@media (min-width: 768px) {
+  .button-46 {
+    font-size: 20px;
+    min-width: 200px;
+    padding: 14px 16px;
+  }
+}
+
+</style>

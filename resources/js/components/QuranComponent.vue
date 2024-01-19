@@ -37,6 +37,15 @@
 
   <div class="container-fluid mt-4">
     <div class="row">
+<!--
+     <div >
+  <input type="button" v-for="data in surahs" :key="data.id" :value="data.name_en" @click="getAyahs()" />
+  </div>
+
+  <div >
+  <input type="button" v-for="data in ayahs" :key="data.id" :value="data.ayah_text" @click="getTafseers()"/>
+  </div>
+  -->
 
     </div>
   </div>
