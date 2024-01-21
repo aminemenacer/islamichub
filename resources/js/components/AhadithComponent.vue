@@ -9,7 +9,7 @@
                     border-radius: 10px;
                     background: transparent;
                     border: 3px solid #c3e6cb;
-                " v-if="ahadith == null">
+                " >
       <div class="row">
         <div class="col-md-12 container" style="display: flex; text-align: center">
           <label class="pt-2 pl-3 pr-2" style="display: flex">Imam:</label>
@@ -25,7 +25,7 @@
           </form>
 
           <label class="pt-2 pl-3 pr-3">Chapter:</label>
-          <form class="col-md-3">
+          <form class="col-md-3" >
             <select class="form-control" v-model="chapter_id" @change="getAhadiths()">
               <option value="0">
                 <span>Select Chapter</span>
@@ -45,13 +45,12 @@
     </div>
   </div>
 
-  <div class="card container bg-white mt-3" style=" box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px,rgba(0, 0, 0, 0.24) 0px 1px 2px;border-radius: 10px;background: transparent;border: 5px solid #c3e6cb;" v-if="ahadith == null">
-    <div class="card-header">
+  <div v-if="ahadith != null" class="card container bg-white mt-3" style=" box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px,rgba(0, 0, 0, 0.24) 0px 1px 2px;border-radius: 10px;background: transparent;border: 5px solid #c3e6cb;">
+    <div class="card-header" >
       <h2 class="card-text text-center mt-2 mb-2">
         <b>Hadith Collection</b>
       </h2>
-    </div>
-    <div class="card-body container-fluid">
+    
       <h6 class="card-text container" style="line-height: 1.7em; font-weight-bold">
         Hadiths are the recorded sayings, actions, and approvals of
         Prophet Muhammad (peace be upon him) in Islam. They serve as
@@ -78,7 +77,7 @@
     </div>
     -->
 
-    <div class="container mt-2" >
+    <div class="container mt-2" v-if="ahadith == null">
       <div class="row container">
         <ul class="col-md-2 list-group mb-3" style="display:flex"  v-for="data in imams" :key="data.id" :value="data.imam_name" @click="getChapters()">
           <li class="list-group-item list-group-item-success text-center" id="demo" style="cursor:pointer" onclick="document.getElementById('demo').style['text-decoration']='underline'" >{{ data.imam_name }}</li>
@@ -86,7 +85,7 @@
       </div>
     </div>
 
-    <div class="container mt-2" >
+    <div class="container mt-2" v-if="ahadith == null">
       <div class="row container">
         <ul class="col-md-4 container list-group mb-3" style="display:flex" v-for="data in chapters" :key="data.id" :value="data.chapter_text" @click="getAhadiths()">
           <li class="list-group-item " style="cursor:pointer; border:3px solid #c3e6cb" ><b>{{ data.chapter_id }}) - </b> {{ data.chapter_text }}</li>
@@ -94,15 +93,11 @@
       </div>
     </div>
 
-    
-
-
-
-
+  
   </div>
 
   <!-- main section -->
-  <div class="row" v-if="chapter == null">
+  <div class="row" v-if="ahadith == null">
     <div class="container-fluid mt-3 col-md-6" style="display: flex; border-radius: 10px" v-for="data in ahadiths" :key="data.id" :value="data.id">
       <div class="card-body" style="background: white; border-radius:10px;box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;">
         <div class="row">

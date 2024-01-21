@@ -37,15 +37,7 @@
 
   <div class="container-fluid mt-4">
     <div class="row">
-<!--
-     <div >
-  <input type="button" v-for="data in surahs" :key="data.id" :value="data.name_en" @click="getAyahs()" />
-  </div>
 
-  <div >
-  <input type="button" v-for="data in ayahs" :key="data.id" :value="data.ayah_text" @click="getTafseers()"/>
-  </div>
-  -->
 
     </div>
   </div>
@@ -89,32 +81,7 @@
           <div class="tab-content text-center">
 
             <div class="tab-pane active" id="home" role="tabpanel" v-if="information == null">
-              <!-- <div class="row  text-center">
-                <div class="row">
-
-                  <div class="col-md-10 mb-2" style="display:flex;text-align:center">
-
-                    <label class="pt-2 pl-3 pr-2" style="display:flex">Surah:</label>
-                    <form class="col-md-6">
-                      <select class="form-control" v-model='surah' @change='getAyahs()'>
-                        <option value="0"><span>Select Surah</span></option>
-                        <option v-for='data in surahs' :key="data.id" :value='data.id'>{{ data.name_en }}, {{ data.name_ar }}</option>
-                      </select>
-                    </form>
-                    <label class="pt-2 pl-3 pr-2">Ayah:</label>
-
-                    <form class="col-md-6 ">
-                      <select class='form-control' v-model='ayah_id' @change='getTafseers()'>
-                        <option value="0">Select Ayah</option>
-                        <option v-for='data in ayahs' :key="data.id" :value='data.id'>{{ data.ayah_id }}, {{ data.ayah_text }}</option>
-                      </select>
-                    </form>
-
-                  </div>
-                </div>
-              </div>
-              <hr> -->
-
+            
               <div class="row">
                 <div class="col-md-6">
                   <img src="/images/calligraphy.png" class="pl-3 " style="width:70%;">
