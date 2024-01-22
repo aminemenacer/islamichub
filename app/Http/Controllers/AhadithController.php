@@ -32,6 +32,7 @@ class AhadithController extends Controller
     public function getAhadith()
     {
         $ahadith = Ahadith::with('chapter')->get();
+
         return response()->json($ahadith);
     }
 
