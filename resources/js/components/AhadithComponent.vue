@@ -2,7 +2,7 @@
 <div id="app">
   <!-- multiple input sections -->
 
-  <div class="row text-center pt-3 container-fluid">
+  <div class="row  mt-3 text-center pt-3 container-fluid">
     <div class="col-md-12 pt-3 text-center" style="
                     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px,
                         rgba(0, 0, 0, 0.24) 0px 1px 2px;
@@ -90,9 +90,9 @@
     -->
 
   
-  <div class="">
-    <div class="row">
-      <div class="col-md-8">
+  <div>
+    <div class="row ">
+      <div class="col-md-8 ">
         <!-- left side ahadith list -->
         <div class="row" v-if="ahadith == null">
           <div class="container-fluid mt-3 col-md-12" style="display: flex; border-radius: 10px" v-for="data in ahadiths" :key="data.id" :value="data.id">
@@ -123,15 +123,14 @@
         </div>
       </div>
       <!-- right side chapter list -->
-      <div class="col-md-4 sticky-top">
-      <form v-if="ahadith == null" class="mb-4 sticky-top" style="display: flex" @submit.prevent="search()">
-        <input style="padding: 12px" class="form-control mr-2 mt-2 icon col-lg-12" type="search" id="search" name="search" @keyup="search" v-model="searchFilters.hadith_en" placeholder="Search for Chapter" aria-label="Search" />
-      </form>
+      <div class="col-md-4 stcky-top">
+        <form v-if="Chapter == null" class="mb-4 " style="display: flex;" @submit.prevent="searchChapter()">
+          <input style="padding: 12px" class="form-control mr-2 mt-2 icon col-lg-12" type="search" id="searchChapter" name="searchChapter" @keyup="searchChapter" v-model="searchFilters.chapter_text" placeholder="Search for Chapter" aria-label="Search" />
+        </form>
         <div class="container-fluid mt-2 mr-5 custom-scrollbar" v-if="ahadith == null">
-
           <div class="row container-fluid " style="flex-direction:column">
             
-            <ul class="col-md-4 list-group container-fluid scrollbar" style="max-width:100%" v-for="data in chapters" :key="data.id" :value="data.chapter_text" @click="getAhadiths()">
+            <ul class="col-md-4 list-group container-fluid " style="max-width:100%" v-for="data in chapters" :key="data.id" :value="data.chapter_text" @click="getAhadiths()">
               <li class="list-group-item " style="cursor:pointer; border:2px solid #c3e6cb"><b>{{ data.chapter_id }}) - </b> {{ data.chapter_text }}</li>
             </ul>
           </div>
@@ -153,15 +152,12 @@
   box-shadow: 0 4px 28px rgba(123,151,158,.25);
   border: 1px solid #d6dee1;
   padding: 1rem;
-  overflow: scroll;
   border-radius: 6px;
-  box-shadow: 0 4px 28px rgba(123,151,158,.25);
   border: 1px solid #d6dee1;
   padding: 1rem;
   background-color: transparent;
   outline: 1px solid #c3e6cb;
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-
+  overflow: scroll;
 }
 
 
@@ -192,6 +188,11 @@ export default {
         id: "",
         hadith_en: "",
       }),
+
+      searchChaptersFilters: new Form({
+        id: "",
+        chapter_text: "",
+      }),
     };
   },
   methods: {
@@ -207,6 +208,21 @@ export default {
         })
         .finally((data) => {
           this.ahadiths = filteredHadiths;
+        });
+    },
+
+    searchChapter() {
+      var filteredChapters = [];
+      axios
+        .post("/search_chapter", this.searchChaptersFilters)
+        .then((data) => {
+          filteredChapters = data.data;
+        })
+        .catch(function (err) {
+          console.log(err);
+        })
+        .finally((data) => {
+          this.chapters = filteredChapters;
         });
     },
 
