@@ -123,16 +123,18 @@
         </div>
       </div>
       <!-- right side chapter list -->
-      <div class="col-md-4 stcky-top">
-        <form v-if="Chapter == null" class="mb-4 " style="display: flex;" @submit.prevent="searchChapter()">
-          <input style="padding: 12px" class="form-control mr-2 mt-2 icon col-lg-12" type="search" id="searchChapter" name="searchChapter" @keyup="searchChapter" v-model="searchFilters.chapter_text" placeholder="Search for Chapter" aria-label="Search" />
-        </form>
-        <div class="container-fluid mt-2 mr-5 custom-scrollbar" v-if="ahadith == null">
+      
+      <div class="col-md-4 stcky-top" v-if="chapter == null">
+        <div class="container-fluid  mr-5 " >
           <div class="row container-fluid " style="flex-direction:column">
-            
-            <ul class="col-md-4 list-group container-fluid " style="max-width:100%" v-for="data in chapters" :key="data.id" :value="data.chapter_text" @click="getAhadiths()">
-              <li class="list-group-item " style="cursor:pointer; border:2px solid #c3e6cb"><b>{{ data.chapter_id }}) - </b> {{ data.chapter_text }}</li>
-            </ul>
+            <form  class="mb-4 " style="display: flex;" @submit.prevent="searchChapter()">
+              <input style="padding: 12px" class="form-control mr-2 mt-4 icon col-lg-12" type="search" id="searchChapter" name="searchChapter" @keyup="searchChapter" v-model="searchFilters.chapter_text" placeholder="Search for Chapter" aria-label="Search" />
+            </form>
+            <div class="custom-scrollbar">
+              <ul class="col-md-4 list-group container-fluid "  style="max-width:100%;cursor:pointer" onclick="document.getElementById('demo').style['background']='#c3e6cb'" v-for="data in chapters" :key="data.id" :value="data.chapter_text" @click="getAhadiths()">
+                <li class="list-group-item " id="demo" style="cursor:pointer;background:transparent"><b>{{ data.chapter_id }}) - </b> {{ data.chapter_text }}</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -145,7 +147,7 @@
 <style>
 
 .custom-scrollbar {
-  background-color: #fdfdfd;
+  background-color: transparent;
   height: 1000px;
   width: 100%;
   border-radius: 6px;
@@ -159,7 +161,9 @@
   outline: 1px solid #c3e6cb;
   overflow: scroll;
 }
-
+.active {
+    background: #f00;
+}
 
 </style>
 
@@ -264,6 +268,8 @@ export default {
     },
   },
 };
+
+
 </script>
 
 <style>
