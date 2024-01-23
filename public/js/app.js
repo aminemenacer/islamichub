@@ -19957,7 +19957,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       }.bind(this));
     },
     getAhadiths: function getAhadiths() {
-      axios__WEBPACK_IMPORTED_MODULE_0__["default"].get("/ahadith/".concat(this.chapter_id, "/fetch")).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_0__["default"].get("/ahadith/$ {\n        this.chapter_id}/fetch").then(function (response) {
         this.ahadiths = response.data;
       }.bind(this));
     }
@@ -21429,7 +21429,7 @@ var _hoisted_2 = {
 var _hoisted_3 = {
   "class": "col-md-12 pt-3 text-center",
   style: {
-    "box-shadow": "rgba(0, 0, 0, 0.12) 0px 1px 3px,\n                        rgba(0, 0, 0, 0.24) 0px 1px 2px",
+    "box-shadow": "rgba(0, 0, 0, 0.12) 0px 1px 3px,rgba(0, 0, 0, 0.24) 0px 1px 2px",
     "border-radius": "10px",
     "background": "transparent",
     "border": "3px solid #c3e6cb"
@@ -21562,7 +21562,8 @@ var _hoisted_37 = {
   "class": "col-md-4 stcky-top"
 };
 var _hoisted_38 = {
-  "class": "container-fluid mr-5"
+  "class": "container-fluid mr-5",
+  style: {}
 };
 var _hoisted_39 = {
   "class": "row container-fluid",
@@ -21571,10 +21572,17 @@ var _hoisted_39 = {
   }
 };
 var _hoisted_40 = {
+  "class": "mt-3 mb-2"
+};
+var _hoisted_41 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  value: "0"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Select Imam")], -1 /* HOISTED */);
+var _hoisted_42 = ["value"];
+var _hoisted_43 = {
   "class": "custom-scrollbar"
 };
-var _hoisted_41 = ["value"];
-var _hoisted_42 = {
+var _hoisted_44 = ["value"];
+var _hoisted_45 = {
   "class": "list-group-item",
   id: "demo",
   style: {
@@ -21633,7 +21641,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     placeholder: "Search for Keyword",
     "aria-label": "Search"
-  }, null, 544 /* HYDRATE_EVENTS, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.searchFilters.hadith_en]])], 32 /* HYDRATE_EVENTS */), _hoisted_14])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div v-if=\"ahadith == null\" class=\"card container bg-white mt-3\" style=\" box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px,rgba(0, 0, 0, 0.24) 0px 1px 2px;border-radius: 10px;background: transparent;border: 5px solid #c3e6cb;\">\n   \n   <div class=\"card-header\" >\n      <h2 class=\"card-text text-center mt-2 mb-2\">\n        <b>Hadith Collection</b>\n      </h2>\n    \n      <h6 class=\"card-text container\" style=\"line-height: 1.7em; font-weight-bold\">\n        Hadiths are the recorded sayings, actions, and approvals of\n        Prophet Muhammad (peace be upon him) in Islam. They serve as\n        an essential source of guidance for Muslims, providing\n        insights into the Prophet's teachings and practices. The\n        collection of Hadiths is a vital component of Islamic\n        tradition, alongside the Quran.\n      </h6>\n      <h6 class=\"card-text container\" style=\"line-height: 1.7em; font-weight-bold\">\n        The process of collecting and preserving Hadiths began\n        shortly after the death of Prophet Muhammad. Scholars\n        recognized the importance of preserving his words and\n        actions to maintain the authenticity of Islamic teachings.\n        The collection of Hadiths underwent a meticulous and\n        rigorous process to ensure accuracy and reliability.\n      </h6>   \n    </div>\n    \n    \n    <div class=\"container row\" >\n      <div style=\"padding:10px\" class=\"container col-md-12 pt-4\">\n        <input class=\"container button-33 mr-2\" type=\"button\" v-for=\"data in imams\" :key=\"data.id\" :value=\"data.imam_name\" @click=\"getChapters()\" />\n      </div>\n    </div>\n\n    <div class=\"container mt-2\" v-if=\"ahadith == null\">\n      <div class=\"row container\">\n        <ul class=\"col-md-2 list-group mb-3\" style=\"display:flex\"  v-for=\"data in imams\" :key=\"data.id\" :value=\"data.imam_name\" @click=\"getChapters()\">\n          <li class=\"list-group-item list-group-item-success text-center\" id=\"demo\" style=\"cursor:pointer\" onclick=\"document.getElementById('demo').style['text-decoration']='underline'\" >{{ data.imam_name }}</li>\n        </ul>\n      </div>\n    </div>\n\n  \n    </div>\n    "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" left side ahadith list "), $data.ahadith == null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_17, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.ahadiths, function (data) {
+  }, null, 544 /* HYDRATE_EVENTS, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.searchFilters.hadith_en]])], 32 /* HYDRATE_EVENTS */), _hoisted_14])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div v-if=\"ahadith == null\" class=\"card container bg-white mt-3\" style=\" box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px,rgba(0, 0, 0, 0.24) 0px 1px 2px;border-radius: 10px;background: transparent;border: 5px solid #c3e6cb;\">\n   \n   <div class=\"card-header\" >\n      <h2 class=\"card-text text-center mt-2 mb-2\">\n        <b>Hadith Collection</b>\n      </h2>\n    \n      <h6 class=\"card-text container\" style=\"line-height: 1.7em; font-weight-bold\">\n        Hadiths are the recorded sayings, actions, and approvals of\n        Prophet Muhammad (peace be upon him) in Islam. They serve as\n        an essential source of guidance for Muslims, providing\n        insights into the Prophet's teachings and practices. The\n        collection of Hadiths is a vital component of Islamic\n        tradition, alongside the Quran.\n      </h6>\n      <h6 class=\"card-text container\" style=\"line-height: 1.7em; font-weight-bold\">\n        The process of collecting and preserving Hadiths began\n        shortly after the death of Prophet Muhammad. Scholars\n        recognized the importance of preserving his words and\n        actions to maintain the authenticity of Islamic teachings.\n        The collection of Hadiths underwent a meticulous and\n        rigorous process to ensure accuracy and reliability.\n      </h6>   \n    </div>\n    \n    \n    <div class=\"container row\" >\n      <div style=\"padding:10px\" class=\"container col-md-12 pt-4\">\n        <input class=\"container button-33 mr-2\" type=\"button\" v-for=\"data in imams\" :key=\"data.id\" :value=\"data.imam_name\" @click=\"getChapters()\" />\n      </div>\n    </div>\n\n    <div class=\"container mt-2\" v-if=\"ahadith == null\">\n      <div class=\"row container\">\n        <ul class=\"col-md-2 list-group mb-3\" style=\"display:flex\"  v-for=\"data in imams\" :key=\"data.id\" :value=\"data.imam_name\" @click=\"getChapters()\">\n          <li class=\"list-group-item list-group-item-success text-center\" id=\"demo\" style=\"cursor:pointer\" onclick=\"document.getElementById('demo').style['text-decoration']='underline'\" >{{ data.imam_name }}</li>\n        </ul>\n      </div>\n    </div>\n\n  \n    </div>\n    "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" left side ahadith list "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [$data.ahadith == null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_17, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.ahadiths, function (data) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       "class": "container-fluid mt-3 col-md-12",
       style: {
@@ -21643,31 +21651,20 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       key: data.id,
       value: data.id
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_22, [_hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.chapter.chapter_text), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", _hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.imam_id), 1 /* TEXT */)])]), _hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", _hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.hadith_ar), 1 /* TEXT */), _hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", _hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.hadith_en), 1 /* TEXT */)]), _hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", _hoisted_33, [_hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Book " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.chapter_id), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", _hoisted_35, [_hoisted_36, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.imam_id), 1 /* TEXT */)])])])], 8 /* PROPS */, _hoisted_18);
-  }), 128 /* KEYED_FRAGMENT */))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" right side chapter list "), $data.chapter == null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
-    "class": "mb-4",
-    style: {
-      "display": "flex"
-    },
-    onSubmit: _cache[9] || (_cache[9] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-      return $options.searchChapter();
-    }, ["prevent"]))
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-    style: {
-      "padding": "12px"
-    },
-    "class": "form-control mr-2 mt-4 icon col-lg-12",
-    type: "search",
-    id: "searchChapter",
-    name: "searchChapter",
-    onKeyup: _cache[7] || (_cache[7] = function () {
-      return $options.searchChapter && $options.searchChapter.apply($options, arguments);
+  }), 128 /* KEYED_FRAGMENT */))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" right side chapter list "), $data.chapter == null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_40, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+    "class": "form-control",
+    "onUpdate:modelValue": _cache[7] || (_cache[7] = function ($event) {
+      return $data.imam = $event;
     }),
-    "onUpdate:modelValue": _cache[8] || (_cache[8] = function ($event) {
-      return $data.searchFilters.chapter_text = $event;
-    }),
-    placeholder: "Search for Chapter",
-    "aria-label": "Search"
-  }, null, 544 /* HYDRATE_EVENTS, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.searchFilters.chapter_text]])], 32 /* HYDRATE_EVENTS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_40, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.chapters, function (data) {
+    onChange: _cache[8] || (_cache[8] = function ($event) {
+      return $options.getChapters();
+    })
+  }, [_hoisted_41, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.imams, function (data) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
+      key: data.id,
+      value: data.id
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.imam_name), 9 /* TEXT, PROPS */, _hoisted_42);
+  }), 128 /* KEYED_FRAGMENT */))], 544 /* HYDRATE_EVENTS, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.imam]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("\n            <form class=\"mb-2\" style=\"display: flex;\" @submit.prevent=\"searchChapter()\">\n              <input style=\"padding: 12px\" class=\"form-control mr-2  icon col-lg-12\" type=\"search\" id=\"searchChapter\" name=\"searchChapter\" @keyup=\"searchChapter\" v-model=\"searchFilters.chapter_text\" placeholder=\"Search for Chapter\" aria-label=\"Search\" />\n            </form>\n            "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_43, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.chapters, function (data) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("ul", {
       "class": "col-md-4 list-group container-fluid",
       style: {
@@ -21677,10 +21674,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       onclick: "document.getElementById('demo').style['background']='#c3e6cb'",
       key: data.id,
       value: data.chapter_text,
-      onClick: _cache[10] || (_cache[10] = function ($event) {
+      onClick: _cache[9] || (_cache[9] = function ($event) {
         return $options.getAhadiths();
       })
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_42, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.chapter_id) + ") - ", 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.chapter_text), 1 /* TEXT */)])], 8 /* PROPS */, _hoisted_41);
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_45, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.chapter_id) + ") - ", 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.chapter_text), 1 /* TEXT */)])], 8 /* PROPS */, _hoisted_44);
   }), 128 /* KEYED_FRAGMENT */))])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])]);
 }
 
@@ -33593,7 +33590,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.custom-scrollbar {\n  background-color: transparent;\n  height: 1000px;\n  width: 100%;\n  border-radius: 6px;\n  box-shadow: 0 4px 28px rgba(123,151,158,.25);\n  border: 1px solid #d6dee1;\n  padding: 1rem;\n  border-radius: 6px;\n  border: 1px solid #d6dee1;\n  padding: 1rem;\n  background-color: transparent;\n  outline: 1px solid #c3e6cb;\n  overflow: scroll;\n}\n.active {\n    background: #f00;\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.custom-scrollbar {\n  background-color: transparent;\n  height: 1000px;\n  width: 100%;\n  border-radius: 6px;\n  box-shadow: 0 4px 28px rgba(123, 151, 158, .25);\n  border: 1px solid #d6dee1;\n  padding: 1rem;\n  border-radius: 6px;\n  border: 1px solid #d6dee1;\n  padding: 1rem;\n  background-color: transparent;\n  outline: 1px solid #c3e6cb;\n  overflow: scroll;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

@@ -1,17 +1,12 @@
 <template>
 <div id="app">
-  <!-- multiple input sections -->
 
+  <!-- multiple input sections -->
   <div class="row  mt-3 text-center pt-3 container-fluid">
-    <div class="col-md-12 pt-3 text-center" style="
-                    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px,
-                        rgba(0, 0, 0, 0.24) 0px 1px 2px;
-                    border-radius: 10px;
-                    background: transparent;
-                    border: 3px solid #c3e6cb;
-                ">
+    <div class="col-md-12 pt-3 text-center" style="box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px,rgba(0, 0, 0, 0.24) 0px 1px 2px;border-radius: 10px;background: transparent;border: 3px solid #c3e6cb;">
       <div class="row">
         <div class="col-md-12 container" style="display: flex; text-align: center">
+          
           <label class="pt-2 pl-3 pr-2" style="display: flex">Imam:</label>
           <form class="col-md-3">
             <select class="form-control" v-model="imam" @change="getChapters()">
@@ -43,7 +38,8 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> 
+  
 
   <!-- <div v-if="ahadith == null" class="card container bg-white mt-3" style=" box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px,rgba(0, 0, 0, 0.24) 0px 1px 2px;border-radius: 10px;background: transparent;border: 5px solid #c3e6cb;">
    
@@ -92,8 +88,9 @@
   
   <div>
     <div class="row ">
+
+      <!-- left side ahadith list -->
       <div class="col-md-8 ">
-        <!-- left side ahadith list -->
         <div class="row" v-if="ahadith == null">
           <div class="container-fluid mt-3 col-md-12" style="display: flex; border-radius: 10px" v-for="data in ahadiths" :key="data.id" :value="data.id">
             <div class="card-body" style="background: white; border-radius:10px;box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;">
@@ -122,16 +119,31 @@
           </div>
         </div>
       </div>
+
       <!-- right side chapter list -->
-      
       <div class="col-md-4 stcky-top" v-if="chapter == null">
-        <div class="container-fluid  mr-5 " >
-          <div class="row container-fluid " style="flex-direction:column">
-            <form  class="mb-4 " style="display: flex;" @submit.prevent="searchChapter()">
-              <input style="padding: 12px" class="form-control mr-2 mt-4 icon col-lg-12" type="search" id="searchChapter" name="searchChapter" @keyup="searchChapter" v-model="searchFilters.chapter_text" placeholder="Search for Chapter" aria-label="Search" />
+        <div class="container-fluid  mr-5 " style="">
+        
+          <div class="row container-fluid " style="flex-direction:column;">
+
+            <form class="mt-3 mb-2">
+              <select class="form-control" v-model="imam" @change="getChapters()">
+                <option value="0">
+                  <span>Select Imam</span>
+                </option>
+                <option v-for="data in imams" :key="data.id" :value="data.id">
+                  {{ data.imam_name }}
+                </option>
+              </select>
             </form>
+
+            <!--
+            <form class="mb-2" style="display: flex;" @submit.prevent="searchChapter()">
+              <input style="padding: 12px" class="form-control mr-2  icon col-lg-12" type="search" id="searchChapter" name="searchChapter" @keyup="searchChapter" v-model="searchFilters.chapter_text" placeholder="Search for Chapter" aria-label="Search" />
+            </form>
+            -->
             <div class="custom-scrollbar">
-              <ul class="col-md-4 list-group container-fluid "  style="max-width:100%;cursor:pointer" onclick="document.getElementById('demo').style['background']='#c3e6cb'" v-for="data in chapters" :key="data.id" :value="data.chapter_text" @click="getAhadiths()">
+              <ul class="col-md-4 list-group container-fluid " style="max-width:100%;cursor:pointer" onclick="document.getElementById('demo').style['background']='#c3e6cb'" v-for="data in chapters" :key="data.id" :value="data.chapter_text" @click="getAhadiths()">
                 <li class="list-group-item " id="demo" style="cursor:pointer;background:transparent"><b>{{ data.chapter_id }}) - </b> {{ data.chapter_text }}</li>
               </ul>
             </div>
@@ -145,13 +157,12 @@
 </template>
 
 <style>
-
 .custom-scrollbar {
   background-color: transparent;
   height: 1000px;
   width: 100%;
   border-radius: 6px;
-  box-shadow: 0 4px 28px rgba(123,151,158,.25);
+  box-shadow: 0 4px 28px rgba(123, 151, 158, .25);
   border: 1px solid #d6dee1;
   padding: 1rem;
   border-radius: 6px;
@@ -161,10 +172,6 @@
   outline: 1px solid #c3e6cb;
   overflow: scroll;
 }
-.active {
-    background: #f00;
-}
-
 </style>
 
 <script>
@@ -175,7 +182,6 @@ export default {
     this.getImams();
     // this.getAhadiths();
   },
-
   data() {
     return {
       data: [],
@@ -188,90 +194,72 @@ export default {
       imam: 0,
       ahadith: null,
 
-      searchFilters: new Form({
-        id: "",
-        hadith_en: "",
-      }),
-
-      searchChaptersFilters: new Form({
-        id: "",
-        chapter_text: "",
-      }),
+      searchFilters: new Form( {
+          id: "",
+          hadith_en: "",
+        }
+      ),
+      searchChaptersFilters: new Form( {
+          id: "",
+          chapter_text: "",
+        }
+      ),
     };
   },
   methods: {
     search() {
-      var filteredHadiths = [];
-      axios
-        .post("/search", this.searchFilters)
-        .then((data) => {
-          filteredHadiths = data.data;
-        })
-        .catch(function (err) {
+      var filteredHadiths=[];
+      axios .post("/search", this.searchFilters) .then((data)=> {
+          filteredHadiths=data.data;
+        }
+      ) .catch(function (err) {
           console.log(err);
-        })
-        .finally((data) => {
-          this.ahadiths = filteredHadiths;
-        });
+        }
+      ) .finally((data)=> {
+          this.ahadiths=filteredHadiths;
+        }
+      );
     },
-
     searchChapter() {
-      var filteredChapters = [];
-      axios
-        .post("/search_chapter", this.searchChaptersFilters)
-        .then((data) => {
-          filteredChapters = data.data;
-        })
-        .catch(function (err) {
+      var filteredChapters=[];
+      axios .post("/search_chapter", this.searchChaptersFilters) .then((data)=> {
+          filteredChapters=data.data;
+        }
+      ) .catch(function (err) {
           console.log(err);
-        })
-        .finally((data) => {
-          this.chapters = filteredChapters;
-        });
+        }
+      ) .finally((data)=> {
+          this.chapters=filteredChapters;
+        }
+      );
     },
-
     getImams: function () {
-      axios
-        .get("/get_imams", {
-          params: {
-            id: this.imam,
-          },
-        })
-        .then(
-          function (response) {
-            this.imams = response.data;
-          }.bind(this)
-        );
+      axios .get("/get_imams", {
+        params: {
+          id: this.imam,
+        },
+        }
+      ).then(function (response) {
+        this.imams=response.data;
+      }.bind(this));
     },
 
     getChapters: function () {
-      axios
-        .get("/get_chapters", {
-          params: {
-            imam_id: this.imam,
-          },
-        })
-        .then(
-          function (response) {
-            this.chapters = response.data;
-          }.bind(this)
-        );
+      axios .get("/get_chapters", {
+        params: {
+          imam_id: this.imam,
+        },
+      }
+        ).then(function (response) {
+          this.chapters=response.data;
+        }.bind(this));
     },
-
     getAhadiths: function () {
-      axios.get(`/ahadith/${this.chapter_id}/fetch`).then(
-        function (response) {
-          this.ahadiths = response.data;
-        }.bind(this)
-      );
-
+      axios.get(`/ahadith/$ {
+        this.chapter_id}/fetch`).then(function (response) {
+        this.ahadiths=response.data;
+      }.bind(this));
     },
   },
 };
-
-
 </script>
-
-<style>
-
-</style>
