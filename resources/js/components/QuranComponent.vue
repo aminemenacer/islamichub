@@ -4,7 +4,7 @@
   <div class="container-fluid text-center pt-3">
     <!-- multiple input sections -->
     <div class="row  text-center">
-      <div class="col-md-12 text-center" style="padding-top:10px; box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; border-radius:10px; background:transparent;border:3px solid #c3e6cb;" >
+      <div class="col-md-12 text-center" style="padding-top:10px; box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; border-radius:10px; background:transparent;border:3px solid #c3e6cb;">
         <div class="row">
 
           <div class="col-md-6 mb-2" style="display:flex;text-align:center">
@@ -38,7 +38,6 @@
   <div class="container-fluid mt-4">
     <div class="row">
 
-
     </div>
   </div>
 
@@ -48,6 +47,7 @@
     <div class="col-md-8">
       <!-- Nav tabs -->
       <div class="card" style="display:flex;border:5px solid #c3e6cb;padding:10px; border-radius:10px;">
+
         <div class="card-header ">
           <ul class="nav nav-tabs text-left justify-content-center" role="tablist" v-if="information != null">
             <li class="nav-item">
@@ -69,10 +69,21 @@
           </ul>
 
           <div class="mt-2" v-if="information != null">
-            <ul class="ul-main">
-              <img src="/images/art1.png" style="width:27px" class="mb-1 mr-2" />
-              <li class="li-main mr-3"><span class="span-main">{{information.ayah.surah_id}} ; {{information.ayah.ayah_id}}</span></li>
-            </ul>
+            <div class="row">
+              <div class="col-md-7">
+                <ul class="ul-main">
+                  <img src="/images/art1.png" style="width:27px" class="mb-1 mr-2" />
+                  <li class="li-main mr-3"><span class="span-main">{{information.ayah.surah_id}} ; {{information.ayah.ayah_id}}</span></li>
+                </ul>
+              </div>
+              <div class="col-md-5">
+                <audio controls>
+                  <source src="horse.ogg" type="audio/ogg">
+                  <source src="horse.mp3" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                </audio>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -81,7 +92,7 @@
           <div class="tab-content text-center">
 
             <div class="tab-pane active" id="home" role="tabpanel" v-if="information == null">
-            
+
               <div class="row">
                 <div class="col-md-6">
                   <img src="/images/calligraphy.png" class="pl-3 " style="width:70%;">
@@ -91,6 +102,7 @@
                   <span class="container text-left mb-4" style="line-height:1.5em">The Quran, considered the holy scripture of Islam, is a sacred and comprehensive compilation of revelations believed by Muslims to have been conveyed to the Prophet Muhammad by the archangel Gabriel from around 610 CE to 632 CE. </span>
                 </div>
               </div>
+
             </div>
 
             <!-- translation -->
@@ -138,40 +150,66 @@
       </div>
     </div>
 
-    <!-- right section change -->
+    
 
-    <div class="col-4 row" style="" v-if="information != null">
-      <div class="ml-2 col-md-12 card bg-light row" style="display:flex;border:5px solid #c3e6cb;padding:8px;">
-        <form style="display:flex">
+    <!-- right side chapter list -->
+    <div class="col-md-4 stcky-top" v-if="ayah == null">
 
-          <select class="form-control col-5">
-            <label class="pt-2  col-3">Mushaf:</label>
-            <option value="0">Select Mushaf</option>
-            <option></option>
-          </select>
-          <div class="col-1"></div>
-          <select class="form-control col-6">
-            <label class="pt-2 col-3">Reciter:</label>
-            <option value="0">Select Reciter</option>
-            <option></option>
-          </select>
+      <nav>
+        <div class=" container-fluid nav nav-tabs justify-content-center mb-3" id="nav-tab" role="tablist" style="display:flex;padding:5px; border-radius:5px;">
+          <button class="nav-link active"  id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">List of ayat</button>
+          <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Quran pages</button>
+        </div>
+      </nav>
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+          <div class="row container-fluid " style="flex-direction:column;">
 
-        </form>
-      </div>
-      <img src="/images/quran_img.png" class="pl-3" style="width:100%;">
-    </div>
+            <form class="mb-2">
+              <select class="form-control" v-model="surah" @change="getAyahs()">
+                <option value="0">
+                  <span>Select Surah</span>
+                </option>
+                <option v-for="data in surahs" :key="data.id" :value="data.id">
+                  {{ data.name_en }} - {{ data.name_ar }}
+                </option>
+              </select>
+            </form>
 
-    <div class="col-4 row" v-if="information == null">
-      <div class="ml-2 col-md-12 card bg-light row" style="display:flex;border:5px solid #c3e6cb;padding:8px;">
-        <form style="display:flex">
-
-          <div class="col-12 text-center">
-            <h4 class="font-weight-bold mt-3 text-center">The Holy Quran</h4>
-            <img src="/images/calligraphy.png" class=" pl-3 pb-1" style="width:70%;">
-            <!-- <p class="container">The Quran, considered the holy scripture of Islam, is a sacred and comprehensive compilation of revelations believed by Muslims to have been conveyed to the Prophet Muhammad by the archangel Gabriel from around 610 CE to 632 CE. </p> -->
+            <div class="custom-scrollbar" v-if="ayah == null">
+              <ul class="col-md-4 list-group container-fluid" style="max-width:100%;cursor:pointer" onclick="document.getElementById('demo').style['background']='#c3e6cb'" v-for="data in ayahs" :key="data.id" :value="data.ayah_text" @click='getTafseers()'>
+                <li class="list-group-item " id="demo" style="cursor:pointer;background:transparent"><b>{{ data.ayah_id }}) - </b> {{ data.ayah_text }}</li>
+              </ul>
+            </div>
           </div>
+        </div>
 
-        </form>
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+          <div class="col-12 row" style="" >
+            <div class="ml-2 col-md-12 card bg-light row" style="display:flex;border:5px solid #c3e6cb;padding:8px;">
+              <form style="display:flex">
+
+                <select class="form-control col-5">
+                  <label class="pt-2  col-3">Mushaf:</label>
+                  <option value="0">Select Mushaf</option>
+                  <option></option>
+                </select>
+                <div class="col-1"></div>
+                <select class="form-control col-6">
+                  <label class="pt-2 col-3">Reciter:</label>
+                  <option value="0">Select Reciter</option>
+                  <option></option>
+                </select>
+
+              </form>
+            </div>
+            <img src="/images/quran_img.png" class="pl-3" style="width:100%;">
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid  mr-5 " style="">
+
       </div>
     </div>
 
@@ -188,18 +226,16 @@ export default ({
     return {
 
       data: [],
-      juz: 0,
-      juzs: [],
-      surah: 0,
-      tafseers: [],
-      tafseer: null,
       surahs: [],
-      ayah_id: 0,
       ayahs: [],
-      page: '',
-      pages: [],
-      information: null,
       informations: [],
+      tafseers: [],
+      surah: null,
+
+      tafseer: null,
+      information: null,
+      surah: 0,
+      ayah_id: 0,
 
     }
   },
@@ -244,6 +280,38 @@ export default ({
 </script>
 
 <style scoped>
+.custom-scrollbar {
+  background-color: transparent;
+  height: 700px;
+  width: 100%;
+  border-radius: 6px;
+  box-shadow: 0 4px 28px rgba(123, 151, 158, .25);
+  border: 1px solid #d6dee1;
+  padding: 1rem;
+  border-radius: 6px;
+  border: 1px solid #d6dee1;
+  padding: 1rem;
+  background-color: transparent;
+  outline: 1px solid #c3e6cb;
+  overflow: scroll;
+}
+
+.custom-scrollbar-chapters {
+  background-color: transparent;
+  height: 600px;
+  width: 100%;
+  border-radius: 6px;
+  box-shadow: 0 4px 28px rgba(123, 151, 158, .25);
+  border: 1px solid #d6dee1;
+  padding: 1rem;
+  border-radius: 6px;
+  border: 1px solid #d6dee1;
+  padding: 1rem;
+  background-color: transparent;
+  outline: 1px solid #c3e6cb;
+  overflow: scroll;
+}
+
 .myButton {
   background-color: #c3e6cb;
   border-radius: 8px;

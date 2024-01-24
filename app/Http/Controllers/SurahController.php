@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Juz;
 use App\Models\Surah;
 use App\Models\Ayah;
 use App\Models\Information;
-use App\Models\OverviewText;
 use App\Models\Tafseer;
 use Illuminate\Http\Request;
 
 class SurahController extends Controller
 {
     
-    public function getSurahs(Request $request)
+    public function getSurahs()
     {
         $surah = Surah::get();
         return response()->json($surah);

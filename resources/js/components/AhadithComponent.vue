@@ -91,9 +91,9 @@
 
       <!-- left side ahadith list -->
       <div class="col-md-8 ">
-        <div class="row" v-if="ahadith == null">
-          <div class="container-fluid mt-3 col-md-12" style="display: flex; border-radius: 10px" v-for="data in ahadiths" :key="data.id" :value="data.id">
-            <div class="card-body" style="background: white; border-radius:10px;box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;">
+        <div class="row mt-3 ml-2 custom-scrollbar" v-if="ahadith == null">
+          <div class="container-fluid col-md-12 " style="display: flex; border-radius: 10px" v-for="data in ahadiths" :key="data.id" :value="data.id">
+            <div class="card-body mb-2" style="background: white; border-radius:10px;box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;">
               <div class="row">
                 <div class="col-md-11">
                   <h3 style="display: flex">
@@ -160,6 +160,22 @@
 .custom-scrollbar {
   background-color: transparent;
   height: 1000px;
+  width: 100%;
+  border-radius: 6px;
+  box-shadow: 0 4px 28px rgba(123, 151, 158, .25);
+  border: 1px solid #d6dee1;
+  padding: 1rem;
+  border-radius: 6px;
+  border: 1px solid #d6dee1;
+  padding: 1rem;
+  background-color: transparent;
+  outline: 1px solid #c3e6cb;
+  overflow: scroll;
+}
+
+.custom-scrollbar-chapters {
+  background-color: transparent;
+  height: 600px;
   width: 100%;
   border-radius: 6px;
   box-shadow: 0 4px 28px rgba(123, 151, 158, .25);
