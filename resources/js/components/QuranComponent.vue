@@ -1,41 +1,53 @@
 <template>
 <div id="app">
 
-  <div class="container-fluid text-center pt-3">
-    <!-- multiple input sections -->
+  <div class="container-fluid text-center pt-2">
+
     <div class="row  text-center">
-      <div class="col-md-12 text-center" style="padding-top:10px; box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; border-radius:10px; background:transparent;border:3px solid #c3e6cb;">
-        <div class="row">
+      <div class="col-md-12 text-center">
+        <div class="row ">
+          <div class="col-md-2 pb-2"></div>
+          <div class="col-md-8 pt-2" style="display:flex;text-align:center">
+            <div class="card-header">
+              <h2 class="card-text text-center mt-2 mb-2">
+                <b>The Holy Quran</b>
+              </h2>
 
-          <div class="col-md-6 mb-2" style="display:flex;text-align:center">
+              <h5 class="card-text container" style="line-height: 1.7em; font-weight-bold">
+                The Quran also spelled as Qur'an is the holy book of Islam, considered by Muslims to be the verbatim word of God 
+              </h5>
 
-            <label class="pt-2 pl-3 pr-2" style="display:flex">Surah:</label>
-            <form class="col-md-5">
-              <select class="form-control" v-model='surah' @change='getAyahs()'>
-                <option value="0"><span>Select Surah</span></option>
-                <option v-for='data in surahs' :key="data.id" :value='data.id'>{{ data.name_en }}, {{ data.name_ar }}</option>
-              </select>
-            </form>
-            <label class="pt-2 pl-3 pr-2">Ayah:</label>
+            </div>
+            <!-- multiple input sections 
+              <label class="pt-2 pl-3 pr-2" style="display:flex">Surah:</label>
+              <form class="col-md-5">
+                <select class="form-control" v-model='surah' @change='getAyahs()'>
+                  <option value="0"><span>Select Surah</span></option>
+                  <option v-for='data in surahs' :key="data.id" :value='data.id'>{{ data.name_en }}, {{ data.name_ar }}</option>
+                </select>
+              </form>
+              <label class="pt-2 pl-3 pr-2">Ayah:</label>
 
-            <form class="col-md-8 ">
-              <select class='form-control' v-model='ayah_id' @change='getTafseers()'>
-                <option value="0">Select Ayah</option>
-                <option v-for='data in ayahs' :key="data.id" :value='data.id'>{{ data.ayah_id }}, {{ data.ayah_text }}</option>
-              </select>
-            </form>
+              <form class="col-md-8 ">
+                <select class='form-control' v-model='ayah_id' @change='getTafseers(data.ayah_id)'>
+                  <option value="0">Select Ayah</option>
+                  <option v-for='data in ayahs' :key="data.id" :value='data.id'>{{ data.ayah_id }}, {{ data.ayah_text }}</option>
+                </select>
+              </form>
 
-            <form class="ml-3 col-md-4 ">
-              <input class="form-control input is-primary" type="text" placeholder="Search keyword" />
-            </form>
+              <form class="ml-3 col-md-4 ">
+                <input class="form-control input is-primary" type="text" placeholder="Search keyword" />
+              </form>
+            -->
           </div>
+          <div class="col-md-2"></div>
         </div>
       </div>
 
     </div>
   </div>
 
-  <div class="container-fluid mt-4">
+  <div class="container-fluid mt-2">
     <div class="row">
 
     </div>
@@ -77,11 +89,13 @@
                 </ul>
               </div>
               <div class="col-md-5">
+                <!--
                 <audio controls>
                   <source src="horse.ogg" type="audio/ogg">
                   <source src="horse.mp3" type="audio/mpeg">
                   Your browser does not support the audio element.
                 </audio>
+                -->
               </div>
             </div>
           </div>
@@ -150,42 +164,42 @@
       </div>
     </div>
 
-    
-
     <!-- right side chapter list -->
     <div class="col-md-4 stcky-top" v-if="ayah == null">
 
+      <!--
       <nav>
         <div class=" container-fluid nav nav-tabs justify-content-center mb-3" id="nav-tab" role="tablist" style="display:flex;padding:5px; border-radius:5px;">
           <button class="nav-link active"  id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">List of ayat</button>
           <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Quran pages</button>
         </div>
       </nav>
+      -->
       <div class="tab-content" id="nav-tabContent">
         <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
           <div class="row container-fluid " style="flex-direction:column;">
 
-            <form class="mb-2">
-              <select class="form-control" v-model="surah" @change="getAyahs()">
-                <option value="0">
-                  <span>Select Surah</span>
-                </option>
-                <option v-for="data in surahs" :key="data.id" :value="data.id">
-                  {{ data.name_en }} - {{ data.name_ar }}
-                </option>
-              </select>
-            </form>
+            <div class="custom-scrollbar" style="box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; background:transparent;border:5px solid #c3e6cb;">
 
-            <div class="custom-scrollbar" v-if="ayah == null">
-              <ul class="col-md-4 list-group container-fluid" style="max-width:100%;cursor:pointer" onclick="document.getElementById('demo').style['background']='#c3e6cb'" v-for="data in ayahs" :key="data.id" :value="data.ayah_text" @click='getTafseers()'>
-                <li class="list-group-item " id="demo" style="cursor:pointer;background:transparent"><b>{{ data.ayah_id }}) - </b> {{ data.ayah_text }}</li>
+              <form class="mb-2">
+                <select class="form-control" v-model="surah" @change="getAyahs()">
+                  <option value="0">
+                    <span>Select Surah</span>
+                  </option>
+                  <option v-for="data in surahs" :key="data.id" :value="data.id">
+                    {{ data.name_en }} - {{ data.name_ar }}
+                  </option>
+                </select>
+              </form>
+              <ul class="col-md-4 list-group container-fluid" style="max-width:100%;cursor:pointer" v-for="data in ayahs" :key="data.id" :value="data.ayah_text">
+                <li class="list-group-item " onclick="document.getElementById('demo').style['text-decoration']='underline'" id="demo" style="cursor:pointer;background:transparent" @click='getTafseers(data.ayah_id)'><b>Verse:</b> {{ data.ayah_id }} - <b> Ayah:</b> {{ data.ayah_text }}</li>
               </ul>
             </div>
           </div>
         </div>
 
         <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-          <div class="col-12 row" style="" >
+          <div class="col-12 row" style="">
             <div class="ml-2 col-md-12 card bg-light row" style="display:flex;border:5px solid #c3e6cb;padding:8px;">
               <form style="display:flex">
 
@@ -232,7 +246,7 @@ export default ({
       tafseers: [],
       surah: null,
 
-      tafseer: null,
+      // tafseer: null,
       information: null,
       surah: 0,
       ayah_id: 0,
@@ -261,14 +275,14 @@ export default ({
       }.bind(this));
     },
 
-    getTafseers: function () {
-      axios.get(`/tafseer/${this.ayah_id}/fetch`).then(function (response) {
+    getTafseers: function (ayahId) {
+      axios.get(`/tafseer/${ayahId}/fetch`).then(function (response) {
         this.tafseer = response.data;
       }.bind(this));
 
       axios.get('/get_informations', {
         params: {
-          ayah_id: this.ayah_id
+          ayahId: ayahId
         }
       }).then(function (response) {
         this.information = response.data;
@@ -282,7 +296,7 @@ export default ({
 <style scoped>
 .custom-scrollbar {
   background-color: transparent;
-  height: 700px;
+  height: 800px;
   width: 100%;
   border-radius: 6px;
   box-shadow: 0 4px 28px rgba(123, 151, 158, .25);

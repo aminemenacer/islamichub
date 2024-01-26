@@ -25,7 +25,7 @@ class SurahController extends Controller
 
     public function getInformations(Request $request)
     {
-        $information = Information::with('ayah')->where('ayah_id', $request->ayah_id)->first();
+        $information = Information::with('ayah')->where('ayah_id', $request->ayahId)->first();
         return response()->json($information);
     }
 
