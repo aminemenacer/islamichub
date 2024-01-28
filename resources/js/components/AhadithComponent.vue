@@ -133,12 +133,11 @@
     <div class="row ">
 
       <!-- left side ahadith list -->
-      <div class="col-md-8 ">
-
+      <div class="col-md-8 ">        
         <div class="row mt-3 ml-2 custom-scrollbar" >
-          <div class="container-fluid col-md-12 " style="display: flex; border-radius: 10px" v-for="data in ahadiths" :key="data.id" :value="data.id">
+          <div class="container-fluid col-md-12 " style="display: flex; border-radius: 10px" v-for="data in ahadith" :key="data.id" :value="data.id">
             <div class="card-body mb-2" style="background: white; border-radius:10px;box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;">
-              <div class="row">
+              <div class="row container">
                 <div class="col-md-11">
                   <h3 style="display: flex">
                     <img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" />{{ data.chapter.chapter_text }}
@@ -150,37 +149,9 @@
               </div>
               <hr />
               <div class="container-fluid">
-                <h6 style="line-height:1.6em" class="text-right">{{ data.hadith_ar }}</h6>
+                <h5 style="line-height:1.6em" class="text-right">{{ data.hadith_ar }}</h5>
                 <br />
-                <h6 style="line-height:1.6em">{{ data.hadith_en }}</h6>
-              </div>
-              <hr />
-              <div class="" style="background: lighgrey">
-                <h6 style="background: lighgrey"><b class="pr-2">Reference:</b> Book {{ data.chapter_id }}</h6>
-                <h6 style="background: lighgrey"><b class="pr-2">Hadith Num:</b> {{ data.imam_id }}</h6>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row mt-3 ml-2 custom-scrollbar" >
-          <div class="container-fluid col-md-12 " style="display: flex; border-radius: 10px" v-for="data in ahadiths" :key="data.id" :value="data.id">
-            <div class="card-body mb-2" style="background: white; border-radius:10px;box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;">
-              <div class="row">
-                <div class="col-md-11">
-                  <h3 style="display: flex">
-                    <img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" />{{ data.chapter.chapter_text }}
-                  </h3>
-                </div>
-                <div class="col-md-1" style="display:flex">
-                  <h2 class="text-center" style="color:grey">{{ data.imam_id }}</h2>
-                </div>
-              </div>
-              <hr />
-              <div class="container-fluid">
-                <h6 style="line-height:1.6em" class="text-right">{{ data.hadith_ar }}</h6>
-                <br />
-                <h6 style="line-height:1.6em">{{ data.hadith_en }}</h6>
+                <h5 style="line-height:1.6em">{{ data.hadith_en }}</h5>
               </div>
               <hr />
               <div class="" style="background: lighgrey">
@@ -215,8 +186,9 @@
             </form>
             -->
             <div class="custom-scrollbar">
-              <ul class="col-md-4 list-group container-fluid " style="max-width:100%;cursor:pointer" onclick="document.getElementById('demo').style['background']='#c3e6cb'" v-for="data in chapters" :key="data.id" :value="data.chapter_text" @click="getAhadiths()">
-                <li class="list-group-item " id="demo" style="cursor:pointer;background:transparent"><b>{{ data.chapter_id }}) - </b> {{ data.chapter_text }}</li>
+              <h5 class="text-left"><b>Chapters:</b></h5>
+              <ul class="col-md-4 list-group container-fluid " style="max-width:100%;cursor:pointer" onclick="document.getElementById('demo').style['background']='#c3e6cb'" v-for="data in chapters" :key="data.id" :value="data.chapter_text" @click="getAhadiths(data.chapter_id)">  
+                <li class="list-group-item " id="demo" style="cursor:pointer;background:transparent"><h5>{{ data.chapter_text }}</h5></li>
               </ul>
             </div>
           </div>
@@ -277,10 +249,11 @@ export default {
   },
   data() {
     return {
-      data: [],
+      data: [],      
       imams: [],
       chapters: [],
-      ahadiths: [],
+      ahadiths: [],      
+
       imam: null,
       chapter: null,
       chapter_id: 0,
@@ -320,6 +293,7 @@ export default {
         this.chapters = filteredChapters;
       });
     },
+
     getImams: function () {
       axios.get("/get_imams", {
         params: {
@@ -339,10 +313,15 @@ export default {
         this.chapters = response.data;
       }.bind(this));
     },
-    getAhadiths: function () {
-      axios.get(`/ahadith/$ {
-        this.chapter_id}/fetch`).then(function (response) {
-        this.ahadiths = response.data;
+    
+    getAhadiths: function (chapterId) {
+   
+      axios.get('/get_ahadiths', {
+        params: {
+          chapterId: chapterId
+        }
+      }).then(function (response) {
+        this.ahadith = response.data;
       }.bind(this));
     },
   },

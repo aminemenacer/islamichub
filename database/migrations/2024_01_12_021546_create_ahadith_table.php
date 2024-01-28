@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('ahadith', function (Blueprint $table) {
             $table->id();
-            $table->longText('hadith_ar');            
-            $table->longText('hadith_en');
-            $table->integer('chapter_id');
-            $table->integer('imam_id');
+            $table->longText('hadith_ar')->nullable();            
+            $table->longText('hadith_en')->nullable();        
+            $table->integer('chapter_id')->nullable();        
+            $table->integer('imam_id')->nullable();        
             $table->timestamps();
         });
     }

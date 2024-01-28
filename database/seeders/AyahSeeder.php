@@ -17,6 +17,9 @@ class AyahSeeder extends Seeder
   
         $firstline = true;
 
+
+        
+
         
         while (($data = fgetcsv($csvFile, 2000, ",")) !== FALSE) {
             if (!$firstline) {

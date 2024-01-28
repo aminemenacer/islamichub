@@ -22,17 +22,23 @@ class AhadithSeeder extends Seeder
         $firstline = true;
         while (($data = fgetcsv($csvFile, 2000, ",")) !== FALSE) {
             if (!$firstline) {
-                Ahadith::create([
-                    // "id" => $data['0'],
-                    
-                    "imam_id" => trim($data['0']),
-                    "chapter_id" => trim($data['1']),
-                    "hadith_ar" => trim($data['2']),
-                    "hadith_en" => trim($data['3']),
-                ]);
+                // Check if the necessary keys exist in the array
+                if (isset($data['0']) && isset($data['1']) && isset($data['2']) && isset($data['3'])) {
+                    Ahadith::create([
+                        "imam_id" => $data['0'],
+                        "chapter_id" => $data['1'],
+                        "hadith_ar" => $data['2'],
+                        "hadith_en" => $data['3'],
+                    ]);
+                } else {
+                    // Handle the case where keys are missing (e.g., log an error, skip the row, etc.)
+                    // For example, you might log an error message:
+                    error_log("Missing key in CSV row: " . json_encode($data));
+                }
             }
             $firstline = false;
         }
+        
 
         fclose($csvFile);
     }

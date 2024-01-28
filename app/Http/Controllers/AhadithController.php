@@ -25,14 +25,14 @@ class AhadithController extends Controller
     public function getChapters(Request $request)
     {
         $chapter = Chapter::where('imam_id', $request->imam_id)->get();
-        
+        // dd($chapter);
         return response()->json($chapter);
     }
 
-    public function getAhadith()
+    public function getAhadiths(Request $request)
     {
-        $ahadith = Ahadith::with('chapter')->get();
-
+        $ahadith = Ahadith::with('chapter')->where('chapter_id', $request->chapterId)->get();
+        // dd($ahadith);
         return response()->json($ahadith);
     }
 
@@ -41,6 +41,7 @@ class AhadithController extends Controller
     //     $ahadith = Ahadith::whereId($id)->first();
     //     return response()->json($ahadith->ahadith);
     // }
+
 
     public function search(Request $request)
     {

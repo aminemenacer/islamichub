@@ -175,6 +175,7 @@
         </div>
       </nav>
       -->
+      
       <div class="tab-content" id="nav-tabContent">
         <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
           <div class="row container-fluid " style="flex-direction:column;">
@@ -192,7 +193,7 @@
                 </select>
               </form>
               <ul class="col-md-4 list-group container-fluid" style="max-width:100%;cursor:pointer" v-for="data in ayahs" :key="data.id" :value="data.ayah_text">
-                <li class="list-group-item " onclick="document.getElementById('demo').style['text-decoration']='underline'" id="demo" style="cursor:pointer;background:transparent" @click='getTafseers(data.ayah_id)'><b>Verse:</b> {{ data.ayah_id }} - <b> Ayah:</b> {{ data.ayah_text }}</li>
+                <li class="list-group-item " onclick="document.getElementById('demo').style['text-decoration']='underline'" id="demo" style="cursor:pointer;background:transparent" @click='getTafseers(data.ayah_id)'><b style="display:flex">Verse:</b> <h5>{{ data.ayah_id }}</h5><h5>{{ data.ayah_text }}</h5></li>
               </ul>
             </div>
           </div>

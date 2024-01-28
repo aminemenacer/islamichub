@@ -26,6 +26,6 @@ class Chapter extends Model
 
     public function chapter()
     {
-        return $this->hasMany(Ahadith::class,'chapter_id','id');
+        return $this->BelongsTo(Ahadith::class,'chapter_id','id');
     }
 }

@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('ayah', function (Blueprint $table) {
             $table->id();
-            $table->integer('surah_id');
+            $table->string('surah_id');
             $table->longText('ayah_text')->charset('utf8mb4')->collation('utf8mb4_unicode_ci');
-            $table->integer('ayah_id');
+            $table->string('ayah_id');
             $table->timestamps();
         });
     }

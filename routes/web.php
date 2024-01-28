@@ -39,16 +39,14 @@ Route::get('/get_imams', [AhadithController::class, 'getImams']);
 Route::get('/get_chapters', [AhadithController::class, 'getChapters']);
 Route::get('/ahadith/{id}/fetch', [AhadithController::class, 'getAhadith']);
 Route::get('/get_ahadiths', [AhadithController::class, 'getAhadiths']);
-Route::post('/search', [AhadithController::class, 'search'])->name('search');
 
+Route::post('/search', [AhadithController::class, 'search'])->name('search');
 Route::post('/search_chapter', [AhadithController::class, 'searchChapter'])->name('searchChapter');
 
 
 //quran
-Route::get('/get_juzs', [SurahController::class, 'getJuzs']);
 Route::get('/get_surahs', [SurahController::class, 'getSurahs']);
 Route::get('/get_ayahs', [SurahController::class, 'getAyahs']);
-Route::get('/get_pages', [SurahController::class, 'getPages']);
 Route::get('/get_informations', [SurahController::class, 'getInformations']);
 Route::get('/tafseer/{id}/fetch', [SurahController::class, 'getTafseer']);
 

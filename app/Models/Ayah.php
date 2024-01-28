@@ -16,7 +16,6 @@ class Ayah extends Model
         'surah_id',
         'ayah_id',
         'ayah_text',
-        'text'
     ];
 
     public function surah()
