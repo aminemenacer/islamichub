@@ -40,6 +40,9 @@ Route::get('/get_chapters', [AhadithController::class, 'getChapters']);
 Route::get('/ahadith/{id}/fetch', [AhadithController::class, 'getAhadith']);
 Route::get('/get_ahadiths', [AhadithController::class, 'getAhadiths']);
 
+// Route::get('/hadith/{id}/fetch', [AhadithController::class, 'getAhadiths']);
+
+
 Route::post('/search', [AhadithController::class, 'search'])->name('search');
 Route::post('/search_chapter', [AhadithController::class, 'searchChapter'])->name('searchChapter');
 

@@ -18,14 +18,10 @@ class Correction extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'spelling_mistakes',
-        'incomplete_text',
-        'translation_error',
+        'mistake_type',
+        'name',
+        'email',
         'added_notes',
-        'reference_error',
-        'narrator',
-        'hadith_english',
-        'hadith_arabic',
         'created_at',
        
     ];

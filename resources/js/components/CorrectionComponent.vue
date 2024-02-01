@@ -23,56 +23,28 @@
               </p>
             </div>
             <div class="mr-2" style="display: flex">
-              <label class="mt-2 mr-2 col-sm-3">Spelling mistakes:</label>
+              <label class="mt-2 mr-2 col-sm-3">Name:</label>
               <p class="mt-2 text-dark">
-                {{ form.spelling_mistakes }}
+                {{ form.name }}
               </p>
             </div>
 
             <div class="mr-2" style="display: flex">
-              <label class="mt-2 mr-2 col-sm-3">Incomplete Text:</label>
+              <label class="mt-2 mr-2 col-sm-3">Email:</label>
               <p class="mt-2 text-dark">
-                {{ form.incomplete_text }}
+                {{ form.email }}
               </p>
             </div>
 
             <div class="mr-2" style="display: flex">
-              <label class="mt-2 mr-2 col-sm-3">Translation Error:</label>
+              <label class="mt-2 mr-2 col-sm-3">Mistake type:</label>
               <p class="mt-2 text-dark">
-                {{ form.translation_error }}
+                {{ form.mistake_type }}
               </p>
             </div>
 
             <div class="mr-2" style="display: flex">
-              <label class="mt-2 mr-2 col-sm-3">Reference Error:</label>
-              <p class="mt-2 text-dark">
-                {{ form.reference_error }}
-              </p>
-            </div>
-
-            <div class="mr-2" style="display: flex">
-              <label class="mt-2 mr-2 col-sm-3">Narrator:</label>
-              <p class="mt-2 text-dark">
-                {{ form.narrator }}
-              </p>
-            </div>
-
-            <div class="mr-2" style="display: flex">
-              <label class="mt-2 mr-2 col-sm-3">Arabic Hadith:</label>
-              <p class="mt-2 text-dark">
-                {{ form.hadith_arabic }}
-              </p>
-            </div>
-
-            <div class="mr-2" style="display: flex">
-              <label class="mt-2 mr-2 col-sm-3">English Hadith:</label>
-              <p class="mt-2 text-dark">
-                {{ form.hadith_english }}
-              </p>
-            </div>
-
-            <div class="mr-2" style="display: flex">
-              <label class="mt-2 mr-2 col-sm-3">Added Notes:</label>
+              <label class="mt-2 mr-2 col-sm-3">Additional notes:</label>
               <p class="mt-2 text-dark">
                 {{ form.added_notes }}
               </p>
@@ -145,39 +117,33 @@ export default {
           header: "ID",
           sortable: true,
         }, {
-          field: "spelling_mistakes",
-          header: "Spelling mistakes",
+          field: "name",
+          header: "Firstname",
           sortable: true,
         },
         {
-          field: "incomplete_text",
-          header: "Incomplete text",
+          field: "email",
+          header: "Email Address",
           sortable: true,
         },
         {
-          field: "translation_error",
-          header: "Translation error",
+          field: "mistake_type",
+          header: "Mistake type",
           sortable: true,
         },
         {
-          field: "reference_error",
-          header: "Reference Error",
+          field: "added_notes",
+          header: "Additional notes",
           sortable: true,
         },
-        // {
-        //   field: "added_notes",
-        //   header: "Added notes",
-        //   sortable: true,
-        // },
-
+       
       ],
       sortDesc: false,
       form: new Form({
         id: "",
-        spelling_mistakes: "",
-        incomplete_text: "",
-        translation_error: "",
-        reference_error: "",
+        name: "",
+        email: "",
+        mistake_type: "",
         added_notes: "",
       }),
     }

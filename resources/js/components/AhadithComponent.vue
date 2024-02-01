@@ -1,6 +1,47 @@
 <template>
 <div id="app">
 
+  <!-- modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content form">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"><b>Correction</b></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span class="close-btn" aria-hidden="true">
+        &times;
+    </span></button>
+        </div>
+        <div class="modal-body">
+          <form @submit.prevent="createCorrection()">
+            <div class="row container">
+              <div class="col">
+                <input v-model="form.name" type="text" class="form-control" name="name" placeholder="First name (Optional)" aria-label="First name">
+              </div>
+              <div class="col">
+                <input v-model="form.email" type="text" class="form-control" name="email" placeholder="Email Address (Optional)" aria-label="Email Address">
+              </div>
+            </div>
+            <div class="row mt-3 container">
+              <select class="form-control col-md-8" name="mistake_type" v-model="form.mistake_type">
+                <option value="" disabled>Select User Type</option>
+                <option value="Spelling mistakes">Spelling mistakes</option>
+                <option value="Translation error">Translation error</option>
+                <option value="Reference mismatch">Reference mismatch</option>
+              </select>
+            </div>
+            <div class="row container mt-3">
+              <textarea v-model="form.added_notes" class="form-control container mb-3" name="added_notes" placeholder="Explain to us exactly what the problem is" id="added_comments" rows="5"></textarea>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-success">Save changes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="row  text-center">
     <div class="col-md-12 text-center">
       <div class="row ">
@@ -10,6 +51,10 @@
             <h2 class="card-text text-center mt-2 mb-2">
               <b>Hadith Collection</b>
             </h2>
+
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              correct
+            </button>
 
             <h5 class="card-text container" style="line-height: 1.7em; font-weight-bold">
               Hadiths are the recorded sayings, actions, and approvals of
@@ -33,11 +78,11 @@
                   <option v-for='data in ayahs' :key="data.id" :value='data.id'>{{ data.ayah_id }}, {{ data.ayah_text }}</option>
                 </select>
               </form>
-
+         
               <form class="ml-3 col-md-4 ">
                 <input class="form-control input is-primary" type="text" placeholder="Search keyword" />
               </form>
-            -->
+             -->
         </div>
         <div class="col-md-2"></div>
       </div>
@@ -46,69 +91,70 @@
   </div>
 
   <!-- multiple input sections 
-  <div class="row  mt-3 text-center pt-3 container-fluid">
-    <div class="col-md-12 pt-3 text-center" style="box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px,rgba(0, 0, 0, 0.24) 0px 1px 2px;border-radius: 10px;background: transparent;border: 3px solid #c3e6cb;">
-      <div class="row">
-        <div class="col-md-12 container" style="display: flex; text-align: center">
-          
-          <label class="pt-2 pl-3 pr-2" style="display: flex">Imam:</label>
-          <form class="col-md-3">
-            <select class="form-control" v-model="imam" @change="getChapters()">
-              <option value="0">
-                <span>Select Imam</span>
-              </option>
-              <option v-for="data in imams" :key="data.id" :value="data.id">
-                {{ data.imam_name }}
-              </option>
-            </select>
-          </form>
-
-          <label class="pt-2 pl-3 pr-3">Chapter:</label>
-          <form class="col-md-3">
-            <select class="form-control" v-model="chapter_id" @change="getAhadiths()">
-              <option value="0">
-                <span>Select Chapter</span>
-              </option>
-              <option v-for="data in chapters" :key="data.id" :value="data.id">
-                {{ data.chapter_text }}
-              </option>
-            </select>
-          </form>
-
-          <form class="mb-4 col-md-4" style="display: flex" @submit.prevent="search()">
-            <input style="padding: 12px" class="form-control mr-2 icon col-lg-12" type="search" id="search" name="search" @keyup="search" v-model="searchFilters.hadith_en" placeholder="Search for Keyword" aria-label="Search" />
+    <div class="row  mt-3 text-center pt-3 container-fluid">
+      <div class="col-md-12 pt-3 text-center" style="box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px,rgba(0, 0, 0, 0.24) 0px 1px 2px;border-radius: 10px;background: transparent;border: 3px solid #c3e6cb;">
+        <div class="row">
+          <div class="col-md-12 container" style="display: flex; text-align: center">
             
-          </form>
-          <hr />
+            <label class="pt-2 pl-3 pr-2" style="display: flex">Imam:</label>
+            <form class="col-md-3">
+              <select class="form-control" v-model="imam" @change="getChapters()">
+                <option value="0">
+                  <span>Select Imam</span>
+                </option>
+                <option v-for="data in imams" :key="data.id" :value="data.id">
+                  {{ data.imam_name }}
+                </option>
+              </select>
+            </form>
+
+            <label class="pt-2 pl-3 pr-3">Chapter:</label>
+            <form class="col-md-3">
+              <select class="form-control" v-model="chapter_id" @change="getAhadiths()">
+                <option value="0">
+                  <span>Select Chapter</span>
+                </option>
+                <option v-for="data in chapters" :key="data.id" :value="data.id">
+                  {{ data.chapter_text }}
+                </option>
+              </select>
+            </form>
+
+            <form class="mb-4 col-md-4" style="display: flex" @submit.prevent="search()">
+              <input style="padding: 12px" class="form-control mr-2 icon col-lg-12" type="search" id="search" name="search" @keyup="search" v-model="searchFilters.hadith_en" placeholder="Search for Keyword" aria-label="Search" />
+            </form>
+            <hr />
+          </div>
         </div>
       </div>
-    </div>
-  </div> -->
-
-  <!-- <div v-if="ahadith == null" class="card container bg-white mt-3" style=" box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px,rgba(0, 0, 0, 0.24) 0px 1px 2px;border-radius: 10px;background: transparent;border: 5px solid #c3e6cb;">
-   
-   <div class="card-header" >
-      <h2 class="card-text text-center mt-2 mb-2">
-        <b>Hadith Collection</b>
-      </h2>
+    </div> 
+  
+    <div v-if="ahadith == null" class="card container bg-white mt-3" style=" box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px,rgba(0, 0, 0, 0.24) 0px 1px 2px;border-radius: 10px;background: transparent;border: 5px solid #c3e6cb;">
     
-      <h6 class="card-text container" style="line-height: 1.7em; font-weight-bold">
-        Hadiths are the recorded sayings, actions, and approvals of
-        Prophet Muhammad (peace be upon him) in Islam. They serve as
-        an essential source of guidance for Muslims, providing
-        insights into the Prophet's teachings and practices. The
-        collection of Hadiths is a vital component of Islamic
-        tradition, alongside the Quran.
-      </h6>
-      <h6 class="card-text container" style="line-height: 1.7em; font-weight-bold">
-        The process of collecting and preserving Hadiths began
-        shortly after the death of Prophet Muhammad. Scholars
-        recognized the importance of preserving his words and
-        actions to maintain the authenticity of Islamic teachings.
-        The collection of Hadiths underwent a meticulous and
-        rigorous process to ensure accuracy and reliability.
-      </h6>   
+      <div class="card-header" >
+        <h2 class="card-text text-center mt-2 mb-2">
+          <b>Hadith Collection</b>
+        </h2>
+      
+        <h6 class="card-text container" style="line-height: 1.7em; font-weight-bold">
+          Hadiths are the recorded sayings, actions, and approvals of
+          Prophet Muhammad (peace be upon him) in Islam. They serve as
+          an essential source of guidance for Muslims, providing
+          insights into the Prophet's teachings and practices. The
+          collection of Hadiths is a vital component of Islamic
+          tradition, alongside the Quran.
+        </h6>
+        <h6 class="card-text container" style="line-height: 1.7em; font-weight-bold">
+          The process of collecting and preserving Hadiths began
+          shortly after the death of Prophet Muhammad. Scholars
+          recognized the importance of preserving his words and
+          actions to maintain the authenticity of Islamic teachings.
+          The collection of Hadiths underwent a meticulous and
+          rigorous process to ensure accuracy and reliability.
+        </h6>   
+      </div>
     </div>
+    
     
     
     <div class="container row" >
@@ -120,22 +166,28 @@
     <div class="container mt-2" v-if="ahadith == null">
       <div class="row container">
         <ul class="col-md-2 list-group mb-3" style="display:flex"  v-for="data in imams" :key="data.id" :value="data.imam_name" @click="getChapters()">
-          <li class="list-group-item list-group-item-success text-center" id="demo" style="cursor:pointer" onclick="document.getElementById('demo').style['text-decoration']='underline'" >{{ data.imam_name }}</li>
+          <li class="list-group-item list-group-item-success text-center"  style="cursor:pointer" >{{ data.imam_name }}</li>
         </ul>
       </div>
     </div>
-
+-->
   
-    </div>
-    -->
+    
 
   <div>
     <div class="row ">
 
       <!-- left side ahadith list -->
-      <div class="col-md-8 ">        
+      <div class="col-md-8 "> 
+               
         <div class="row mt-3 ml-2 custom-scrollbar" >
+          <form class="mb-4 col-md-12" style="display: flex" @submit.prevent="search()" >
+            <input style="padding: 12px" class="form-control mr-2 icon col-lg-12" type="search" id="search" name="search" @keyup="search" v-model="searchFilters.hadith_en" placeholder="Search for Keyword" aria-label="Search" />
+          </form>
+
+
           <div class="container-fluid col-md-12 " style="display: flex; border-radius: 10px" v-for="data in ahadith" :key="data.id" :value="data.id">
+    
             <div class="card-body mb-2" style="background: white; border-radius:10px;box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;">
               <div class="row container">
                 <div class="col-md-11">
@@ -154,10 +206,19 @@
                 <h5 style="line-height:1.6em">{{ data.hadith_en }}</h5>
               </div>
               <hr />
-              <div class="" style="background: lighgrey">
-                <h6 style="background: lighgrey"><b class="pr-2">Reference:</b> Book {{ data.chapter_id }}</h6>
-                <h6 style="background: lighgrey"><b class="pr-2">Hadith Num:</b> {{ data.imam_id }}</h6>
+              <div class="row">
+                <div class="col-9" style="background: lighgrey">
+                  <h6 style="background: lighgrey"><b class="pr-2">Reference:</b> Book {{ data.chapter_id }}</h6>
+                  <h6 style="background: lighgrey"><b class="pr-2">Hadith Num:</b> {{ data.imam_id }}</h6>
+                </div>
+                <div class="col-3" style="background: lighgrey">
+                  <h6 style="background: lighgrey;cursor:pointer"><i class="fas fa-fw fa-bookmark mr-2"></i>Bookmark</h6>
+                  <h6 style="background: lighgrey;cursor:pointer"><i class="fas fa-fw fa-edit mr-2"></i>Report Mistake</h6>
+                </div>
+                
               </div>
+
+              
             </div>
           </div>
         </div>
@@ -169,8 +230,8 @@
 
           <div class="row container-fluid " style="flex-direction:column;">
 
-            <form class="mt-3 mb-2">
-              <select class="form-control" v-model="imam" @change="getChapters()">
+            <form class="mt-3 mb-2" style="border:4px solid #c3e6cb;border-radius:8px">
+              <select class="form-control"  v-model="imam" @change="getChapters()">
                 <option value="0">
                   <span>Select Imam</span>
                 </option>
@@ -185,10 +246,11 @@
               <input style="padding: 12px" class="form-control mr-2  icon col-lg-12" type="search" id="searchChapter" name="searchChapter" @keyup="searchChapter" v-model="searchFilters.chapter_text" placeholder="Search for Chapter" aria-label="Search" />
             </form>
             -->
-            <div class="custom-scrollbar">
-              <h5 class="text-left"><b>Chapters:</b></h5>
-              <ul class="col-md-4 list-group container-fluid " style="max-width:100%;cursor:pointer" onclick="document.getElementById('demo').style['background']='#c3e6cb'" v-for="data in chapters" :key="data.id" :value="data.chapter_text" @click="getAhadiths(data.chapter_id)">  
-                <li class="list-group-item " id="demo" style="cursor:pointer;background:transparent"><h5>{{ data.chapter_text }}</h5></li>
+            
+            <div class="custom-scrollbar" style="border:3px solid #c3e6cb;border-radius:8px">
+              <h5 class="text-left"><b>Books:</b></h5>
+              <ul class="col-md-4 list-group container-fluid root"  style="max-width:100%;cursor:pointer" v-for="data in chapters" :key="data.id" :value="data.chapter_text" @click="getAhadiths(data.chapter_id)">  
+                <li class="list-group-item foo" id="toggle" style="cursor:pointer;background:transparent"><h5>{{ data.chapter_text }}</h5></li>
               </ul>
             </div>
           </div>
@@ -237,6 +299,9 @@
   background-color: yellow;
   font-weight: bold;
 }
+
+.red {background: red}
+
 </style>
 
 <script>
@@ -261,6 +326,14 @@ export default {
       ahadith: null,
       hadith_en: '',
 
+      form: new Form({
+        id: "",
+        name: "",
+        email: "",
+        mistake_type: "",
+        added_notes: "",
+      }),
+
       searchFilters: new Form({
         id: "",
         hadith_en: "",
@@ -274,26 +347,57 @@ export default {
   methods: {
     search() {
       var filteredHadiths = [];
-      axios.post("/search", this.searchFilters).then((data) => {
-        filteredHadiths = data.data;
-      }).catch(function (err) {
-        console.log(err);
-      }).finally((data) => {
-        this.ahadiths = filteredHadiths;
-      });
+      axios
+        .post("/search", this.searchFilters)
+        .then((data) => {
+          filteredHadiths = data.data;
+        })
+        .catch(function (err) {
+          console.log(err);
+        })
+        .finally((data) => {
+          this.ahadiths = filteredHadiths;
+        });
     },
 
-    searchChapter() {
-      var filteredChapters = [];
-      axios.post("/search_chapter", this.searchChaptersFilters).then((data) => {
-        filteredChapters = data.data;
-      }).catch(function (err) {
-        console.log(err);
-      }).finally((data) => {
-        this.chapters = filteredChapters;
+    createCorrection() {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You want to create a new Correction !",
+        showCancelButton: true,
+        confirmButtonColor: "green",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Create correction!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axios
+            .post("/api/submit-correction", this.form)
+            .then((res) => {
+              if (!res.data.success) {
+                Swal.fire({
+                  position: "top-end",
+                  icon: "success",
+                  title: "Correction created successfully ",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+                window.location.reload();
+                $("#addNew").hide();
+                self.close();
+              } else if (res.data.success) {
+                Swal.fire(
+                  "Error!",
+                  "Unable to create correction.",
+                  "error"
+                );
+                self.close();
+              }
+            })
+            .catch(function (err) {});
+        }
       });
     },
-
+    
     getImams: function () {
       axios.get("/get_imams", {
         params: {
@@ -315,6 +419,9 @@ export default {
     },
     
     getAhadiths: function (chapterId) {
+      // axios.get(`/hadith/${chapterId}/fetch`).then(function (response) {
+      //   this.tafseer = response.data;
+      // }.bind(this));
    
       axios.get('/get_ahadiths', {
         params: {
@@ -326,4 +433,5 @@ export default {
     },
   },
 };
+
 </script>

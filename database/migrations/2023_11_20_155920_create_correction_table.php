@@ -15,14 +15,10 @@ return new class extends Migration
     {
         Schema::create('correction', function (Blueprint $table) {
             $table->id();
-            $table->string('spelling_mistakes')->nullable();
-            $table->string('incomplete_text')->nullable();
-            $table->string('translation_error')->nullable();
+            $table->string('name')->nullable();
+            $table->string('email')->nullable();
+            $table->string('mistake_type')->nullable();
             $table->string('added_notes')->nullable();
-            $table->string('reference_error')->nullable();
-            $table->string('narrator')->nullable();
-            $table->string('hadith_english')->nullable();
-            $table->string('hadith_arabic')->nullable();
             $table->timestamps();
         });
     }

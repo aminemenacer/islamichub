@@ -50,9 +50,9 @@ class AhadithController extends Controller
         return response()->json($ahadith);
     }
 
-    public function searchChapter(Request $request)
-    {
-        $chapter = Chapter::with('chapter')->where('chapter_text', 'LIKE', "%{$request->chapter_text}%")->get();
-        return response()->json($chapter);
-    }
+    // public function searchChapter(Request $request)
+    // {
+    //     $chapter = Chapter::with('chapter')->where('chapter_text', 'LIKE', "%{$request->chapter_text}%")->get();
+    //     return response()->json($chapter);
+    // }
 }

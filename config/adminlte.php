@@ -296,6 +296,7 @@ return [
             'type' => 'fullscreen-widget',
             'topnav' => true,
         ],
+
         [
             'text' => 'Home',
             'url' => 'home',
@@ -304,13 +305,39 @@ return [
 
 
         ],
+
         [
-            'text' => 'Pricings',
-            'url' => '/pricing',
-            'icon' => 'fas fa-fw fa-credit-card',
+            'text' => 'Quran',
+            'url'  => 'quran',
+            'icon' => 'fas fa-fw fa-quran',
             'topnav_right' => true,
 
         ],
+
+        [
+            'text' => 'Ahadith',
+            'url' => 'ahadith',
+            'icon' => 'fas fa-fw fa-book',
+            'topnav_right' => true,
+
+        ],
+
+        // [
+        //     'text' => 'Home',
+        //     'url' => 'home',
+        //     'icon' => 'fas fa-fw fa-home',
+        //     'topnav_right' => true,
+
+
+        // ],
+
+        // [
+        //     'text' => 'Pricings',
+        //     'url' => '/pricing',
+        //     'icon' => 'fas fa-fw fa-credit-card',
+        //     'topnav_right' => true,
+
+        // ],
 
 
         [
@@ -327,6 +354,7 @@ return [
             'topnav_right' => true,
 
         ],
+
         [
             'text' => 'Volunteers',
             'url' => 'volunteer',
@@ -338,6 +366,7 @@ return [
         [
             'header' => 'ADMIN',
         ],
+
         [
             'text' => 'Dashboard',
             'url' => 'dashboard',
@@ -379,36 +408,41 @@ return [
         ],
         
 
-        // [
-        //     'text' => 'Liked',
-        //     'url' => 'likes',
-        //     'icon' => 'fas fa-fw fa-heart',
-        // ],
+        [
+            'text' => 'Bookmarks',
+            'url' => 'bookmark',
+            'icon' => 'fas fa-fw fa-bookmark',
+        ],
         [
             'text' => 'profile',
             'url'  => 'profile',
             'icon' => 'fas fa-fw fa-user',
         ],
-
-
         [
-            'header' => 'CONTENT',
+            'text' => 'Correction',
+            'url'  => 'correction',
+            'icon' => 'fas fa-fw fa-edit',
         ],
+
+
+        // [
+        //     'header' => 'CONTENT',
+        // ],
         // [
         //     'text' => 'Home',
         //     'url'  => 'home',
         //     'icon' => 'fas fa-fw fa-home',
         // ],
-        [
-            'text' => 'Quran',
-            'url'  => 'quran',
-            'icon' => 'fas fa-fw fa-quran',
-        ],
-        [
-            'text' => 'Ahadith',
-            'url' => 'ahadith',
-            'icon' => 'fas fa-fw fa-book',
-        ],
+        // [
+        //     'text' => 'Quran',
+        //     'url'  => 'quran',
+        //     'icon' => 'fas fa-fw fa-quran',
+        // ],
+        // [
+        //     'text' => 'Ahadith',
+        //     'url' => 'ahadith',
+        //     'icon' => 'fas fa-fw fa-book',
+        // ],
         // [
         //     'text' => 'Names of Allah',
         //     'url'  => 'allah_names',
