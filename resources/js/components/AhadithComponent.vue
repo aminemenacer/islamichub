@@ -7,9 +7,9 @@
       <div class="modal-content form">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel"><b>Report a Mistake</b></h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span class="close-btn" aria-hidden="true">
-            &times;
-          </span></button>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
         </div>
         <div class="modal-body">
           <form @submit.prevent="createCorrection()">
@@ -376,7 +376,7 @@ export default {
                   showConfirmButton: false,
                   timer: 1500,
                 });
-                // window.location.reload();
+                self.close();
                 $("#addNew").hide();
                 self.close();
               } else if (res.data.success) {

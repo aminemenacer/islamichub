@@ -19953,7 +19953,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
                 showConfirmButton: false,
                 timer: 1500
               });
-              // window.location.reload();
+              self.close();
               $("#addNew").hide();
               self.close();
             } else if (res.data.success) {
@@ -21469,13 +21469,12 @@ var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
   id: "exampleModalLabel"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Report a Mistake")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "button",
-  "class": "btn-close",
+  "class": "close",
   "data-bs-dismiss": "modal",
   "aria-label": "Close"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-  "class": "close-btn",
   "aria-hidden": "true"
-}, " × ")])], -1 /* HOISTED */);
+}, "×")])], -1 /* HOISTED */);
 var _hoisted_6 = {
   "class": "modal-body"
 };
