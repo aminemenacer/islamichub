@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->string('email')->nullable();
             $table->string('mistake_type')->nullable();
-            $table->string('added_notes')->nullable();
+            $table->longText('added_notes')->nullable();
             $table->timestamps();
         });
     }

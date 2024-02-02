@@ -15,7 +15,7 @@ class CorrectionController extends Controller
 
     public function getCorrections()
     {
-        $correction = Correction::get();
+        $correction = Correction::orderBy('id', 'desc')->get();
         return $correction;
     }
 

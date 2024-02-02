@@ -6,10 +6,10 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content form">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel"><b>Correction</b></h5>
+          <h5 class="modal-title" id="exampleModalLabel"><b>Report a Mistake</b></h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span class="close-btn" aria-hidden="true">
-        &times;
-    </span></button>
+            &times;
+          </span></button>
         </div>
         <div class="modal-body">
           <form @submit.prevent="createCorrection()">
@@ -23,7 +23,7 @@
             </div>
             <div class="row mt-3 container">
               <select class="form-control col-md-8" name="mistake_type" v-model="form.mistake_type">
-                <option value="" disabled>Select User Type</option>
+                <option value="" disabled>Select Type</option>
                 <option value="Spelling mistakes">Spelling mistakes</option>
                 <option value="Translation error">Translation error</option>
                 <option value="Reference mismatch">Reference mismatch</option>
@@ -52,17 +52,13 @@
               <b>Hadith Collection</b>
             </h2>
 
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-              correct
-            </button>
-
             <h5 class="card-text container" style="line-height: 1.7em; font-weight-bold">
               Hadiths are the recorded sayings, actions, and approvals of
               Prophet Muhammad (peace be upon him) in Islam.
             </h5>
 
           </div>
-          <!-- multiple input sections 
+            <!-- multiple input sections 
               <label class="pt-2 pl-3 pr-2" style="display:flex">Surah:</label>
               <form class="col-md-5">
                 <select class="form-control" v-model='surah' @change='getAyahs()'>
@@ -82,7 +78,7 @@
               <form class="ml-3 col-md-4 ">
                 <input class="form-control input is-primary" type="text" placeholder="Search keyword" />
               </form>
-             -->
+            -->
         </div>
         <div class="col-md-2"></div>
       </div>
@@ -170,7 +166,7 @@
         </ul>
       </div>
     </div>
--->
+  -->
   
     
 
@@ -179,13 +175,12 @@
 
       <!-- left side ahadith list -->
       <div class="col-md-8 "> 
-               
-        <div class="row mt-3 ml-2 custom-scrollbar" >
-          <form class="mb-4 col-md-12" style="display: flex" @submit.prevent="search()" >
-            <input style="padding: 12px" class="form-control mr-2 icon col-lg-12" type="search" id="search" name="search" @keyup="search" v-model="searchFilters.hadith_en" placeholder="Search for Keyword" aria-label="Search" />
-          </form>
+        <form class="mb-3 mt-3 col-md-12" style="display: flex" @submit.prevent="search()" >
+          <input style="padding: 12px" class="form-control mr-2 icon col-lg-12" type="search" id="search" name="search" @keyup="search" v-model="searchFilters.hadith_en" placeholder="Search for Keywords, sentences or paragraphs " aria-label="Search" />
+        </form>
 
-
+        <div class="row  ml-2 custom-scrollbar" >
+          
           <div class="container-fluid col-md-12 " style="display: flex; border-radius: 10px" v-for="data in ahadith" :key="data.id" :value="data.id">
     
             <div class="card-body mb-2" style="background: white; border-radius:10px;box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;">
@@ -212,8 +207,8 @@
                   <h6 style="background: lighgrey"><b class="pr-2">Hadith Num:</b> {{ data.imam_id }}</h6>
                 </div>
                 <div class="col-3" style="background: lighgrey">
-                  <h6 style="background: lighgrey;cursor:pointer"><i class="fas fa-fw fa-bookmark mr-2"></i>Bookmark</h6>
-                  <h6 style="background: lighgrey;cursor:pointer"><i class="fas fa-fw fa-edit mr-2"></i>Report Mistake</h6>
+                 <!-- <h6 style="background: lighgrey;cursor:pointer"><i class="fas fa-fw fa-bookmark mr-2"></i>Bookmark</h6> -->
+                  <h6 style="background: lighgrey;cursor:pointer" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-fw fa-edit mr-2"></i>Report Mistake</h6>
                 </div>
                 
               </div>
@@ -381,7 +376,7 @@ export default {
                   showConfirmButton: false,
                   timer: 1500,
                 });
-                window.location.reload();
+                // window.location.reload();
                 $("#addNew").hide();
                 self.close();
               } else if (res.data.success) {

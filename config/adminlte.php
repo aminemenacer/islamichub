@@ -408,11 +408,12 @@ return [
         ],
         
 
-        [
-            'text' => 'Bookmarks',
-            'url' => 'bookmark',
-            'icon' => 'fas fa-fw fa-bookmark',
-        ],
+        // [
+        //     'text' => 'Bookmarks',
+        //     'url' => 'bookmark',
+        //     'icon' => 'fas fa-fw fa-bookmark',
+        // ],
+        
         [
             'text' => 'profile',
             'url'  => 'profile',
