@@ -23,6 +23,6 @@ class Correction extends Model
         'email',
         'added_notes',
         'created_at',
-       
+        'hadith_num'
     ];
 }

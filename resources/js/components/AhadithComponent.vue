@@ -22,12 +22,21 @@
               </div>
             </div>
             <div class="row mt-3 container">
-              <select class="form-control col-md-8" name="mistake_type" v-model="form.mistake_type">
-                <option value="" disabled>Select Type</option>
-                <option value="Spelling mistakes">Spelling mistakes</option>
-                <option value="Translation error">Translation error</option>
-                <option value="Reference mismatch">Reference mismatch</option>
-              </select>
+
+              <div class="col">
+                <input v-model="form.hadith_num" type="text" class="form-control" name="hadith_num" placeholder="Hadith number" aria-label="Hadith number">
+              </div>
+
+              <div class="col">
+                <select class="form-control" name="mistake_type" v-model="form.mistake_type">
+                  <option value="" disabled>Select Type</option>
+                  <option value="Spelling mistakes">Spelling mistakes</option>
+                  <option value="Translation error">Translation error</option>
+                  <option value="Reference mismatch">Reference mismatch</option>
+                </select>
+              </div>
+
+
             </div>
             <div class="row container mt-3">
               <textarea v-model="form.added_notes" class="form-control container mb-3" name="added_notes" placeholder="Explain to us exactly what the problem is" id="added_comments" rows="5"></textarea>
@@ -124,35 +133,9 @@
         </div>
       </div>
     </div> 
-  
-    <div v-if="ahadith == null" class="card container bg-white mt-3" style=" box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px,rgba(0, 0, 0, 0.24) 0px 1px 2px;border-radius: 10px;background: transparent;border: 5px solid #c3e6cb;">
+  -->
     
-      <div class="card-header" >
-        <h2 class="card-text text-center mt-2 mb-2">
-          <b>Hadith Collection</b>
-        </h2>
-      
-        <h6 class="card-text container" style="line-height: 1.7em; font-weight-bold">
-          Hadiths are the recorded sayings, actions, and approvals of
-          Prophet Muhammad (peace be upon him) in Islam. They serve as
-          an essential source of guidance for Muslims, providing
-          insights into the Prophet's teachings and practices. The
-          collection of Hadiths is a vital component of Islamic
-          tradition, alongside the Quran.
-        </h6>
-        <h6 class="card-text container" style="line-height: 1.7em; font-weight-bold">
-          The process of collecting and preserving Hadiths began
-          shortly after the death of Prophet Muhammad. Scholars
-          recognized the importance of preserving his words and
-          actions to maintain the authenticity of Islamic teachings.
-          The collection of Hadiths underwent a meticulous and
-          rigorous process to ensure accuracy and reliability.
-        </h6>   
-      </div>
-    </div>
-    
-    
-    
+  <!--  
     <div class="container row" >
       <div style="padding:10px" class="container col-md-12 pt-4">
         <input class="container button-33 mr-2" type="button" v-for="data in imams" :key="data.id" :value="data.imam_name" @click="getChapters()" />
@@ -174,14 +157,41 @@
     <div class="row ">
 
       <!-- left side ahadith list -->
-      <div class="col-md-8 "> 
-        <form class="mb-3 mt-3 col-md-12" style="display: flex" @submit.prevent="search()" >
+      <div class="col-md-8 " > 
+        <form class="mb-3 mt-3 col-md-12" style="display: flex" @submit.prevent="search()"  v-if="ahadith != null">
           <input style="padding: 12px" class="form-control mr-2 icon col-lg-12" type="search" id="search" name="search" @keyup="search" v-model="searchFilters.hadith_en" placeholder="Search for Keywords, sentences or paragraphs " aria-label="Search" />
         </form>
 
-        <div class="row  ml-2 custom-scrollbar" >
+        <div class="row  ml-2 custom-scrollbar"  v-if="ahadith != null">
           
-          <div class="container-fluid col-md-12 " style="display: flex; border-radius: 10px" v-for="data in ahadith" :key="data.id" :value="data.id">
+          <div  class="container-fluid col-md-12 " style="display: flex; border-radius: 10px" v-for="data in ahadith" :key="data.id" :value="data.id">
+
+          <!-- intro
+            <div >
+              <div class="card-header" >
+                <h2 class="card-text text-center mt-2 mb-2">
+                  <b>Hadith Collection</b>
+                </h2>
+              
+                <h6 class="card-text container" style="line-height: 1.7em; font-weight-bold">
+                  Hadiths are the recorded sayings, actions, and approvals of
+                  Prophet Muhammad (peace be upon him) in Islam. They serve as
+                  an essential source of guidance for Muslims, providing
+                  insights into the Prophet's teachings and practices. The
+                  collection of Hadiths is a vital component of Islamic
+                  tradition, alongside the Quran.
+                </h6>
+                <h6 class="card-text container" style="line-height: 1.7em; font-weight-bold">
+                  The process of collecting and preserving Hadiths began
+                  shortly after the death of Prophet Muhammad. Scholars
+                  recognized the importance of preserving his words and
+                  actions to maintain the authenticity of Islamic teachings.
+                  The collection of Hadiths underwent a meticulous and
+                  rigorous process to ensure accuracy and reliability.
+                </h6>   
+              </div>
+            </div>
+          -->
     
             <div class="card-body mb-2" style="background: white; border-radius:10px;box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;">
               <div class="row container">
@@ -220,8 +230,8 @@
       </div>
 
       <!-- right side chapter list -->
-      <div class="col-md-4 stcky-top" v-if="chapter == null">
-        <div class="container-fluid  mr-5 " style="">
+      <div class="col-md-4 stcky-top"  >
+        <div class="container-fluid  mr-5 " >
 
           <div class="row container-fluid " style="flex-direction:column;">
 
@@ -327,6 +337,7 @@ export default {
         email: "",
         mistake_type: "",
         added_notes: "",
+        hadith_num: "",
       }),
 
       searchFilters: new Form({
@@ -376,8 +387,7 @@ export default {
                   showConfirmButton: false,
                   timer: 1500,
                 });
-                self.close();
-                $("#addNew").hide();
+                $("#exampleModal").hide();
                 self.close();
               } else if (res.data.success) {
                 Swal.fire(

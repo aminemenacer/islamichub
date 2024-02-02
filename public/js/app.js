@@ -19912,7 +19912,8 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       name: "",
       email: "",
       mistake_type: "",
-      added_notes: ""
+      added_notes: "",
+      hadith_num: ""
     })), _defineProperty(_ref, "searchFilters", new Form({
       id: "",
       hadith_en: ""
@@ -19953,8 +19954,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
                 showConfirmButton: false,
                 timer: 1500
               });
-              self.close();
-              $("#addNew").hide();
+              $("#exampleModal").hide();
               self.close();
             } else if (res.data.success) {
               Swal.fire("Error!", "Unable to create correction.", "error");
@@ -20147,6 +20147,10 @@ __webpack_require__.r(__webpack_exports__);
         header: "Email Address",
         sortable: true
       }, {
+        field: "hadith_num",
+        header: "Hadith Num",
+        sortable: true
+      }, {
         field: "mistake_type",
         header: "Mistake type",
         sortable: true
@@ -20161,6 +20165,7 @@ __webpack_require__.r(__webpack_exports__);
         name: "",
         email: "",
         mistake_type: "",
+        hadith_num: "",
         added_notes: ""
       })
     };
@@ -21490,24 +21495,30 @@ var _hoisted_9 = {
 var _hoisted_10 = {
   "class": "row mt-3 container"
 };
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+var _hoisted_11 = {
+  "class": "col"
+};
+var _hoisted_12 = {
+  "class": "col"
+};
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   value: "",
   disabled: ""
 }, "Select Type", -1 /* HOISTED */);
-var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   value: "Spelling mistakes"
 }, "Spelling mistakes", -1 /* HOISTED */);
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   value: "Translation error"
 }, "Translation error", -1 /* HOISTED */);
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   value: "Reference mismatch"
 }, "Reference mismatch", -1 /* HOISTED */);
-var _hoisted_15 = [_hoisted_11, _hoisted_12, _hoisted_13, _hoisted_14];
-var _hoisted_16 = {
+var _hoisted_17 = [_hoisted_13, _hoisted_14, _hoisted_15, _hoisted_16];
+var _hoisted_18 = {
   "class": "row container mt-3"
 };
-var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "modal-footer"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "button",
@@ -21517,18 +21528,19 @@ var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   type: "submit",
   "class": "btn btn-success"
 }, "Save changes")], -1 /* HOISTED */);
-var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"row text-center\"><div class=\"col-md-12 text-center\"><div class=\"row\"><div class=\"col-md-2 pb-2\"></div><div class=\"col-md-8 pt-2\" style=\"display:flex;text-align:center;\"><div class=\"card-header\"><h2 class=\"card-text text-center mt-2 mb-2\"><b>Hadith Collection</b></h2><h5 class=\"card-text container\" style=\"line-height:1.7em;\"> Hadiths are the recorded sayings, actions, and approvals of Prophet Muhammad (peace be upon him) in Islam. </h5></div><!-- multiple input sections \n              &lt;label class=&quot;pt-2 pl-3 pr-2&quot; style=&quot;display:flex&quot;&gt;Surah:&lt;/label&gt;\n              &lt;form class=&quot;col-md-5&quot;&gt;\n                &lt;select class=&quot;form-control&quot; v-model=&#39;surah&#39; @change=&#39;getAyahs()&#39;&gt;\n                  &lt;option value=&quot;0&quot;&gt;&lt;span&gt;Select Surah&lt;/span&gt;&lt;/option&gt;\n                  &lt;option v-for=&#39;data in surahs&#39; :key=&quot;data.id&quot; :value=&#39;data.id&#39;&gt;{{ data.name_en }}, {{ data.name_ar }}&lt;/option&gt;\n                &lt;/select&gt;\n              &lt;/form&gt;\n              &lt;label class=&quot;pt-2 pl-3 pr-2&quot;&gt;Ayah:&lt;/label&gt;\n\n              &lt;form class=&quot;col-md-8 &quot;&gt;\n                &lt;select class=&#39;form-control&#39; v-model=&#39;ayah_id&#39; @change=&#39;getTafseers(data.ayah_id)&#39;&gt;\n                  &lt;option value=&quot;0&quot;&gt;Select Ayah&lt;/option&gt;\n                  &lt;option v-for=&#39;data in ayahs&#39; :key=&quot;data.id&quot; :value=&#39;data.id&#39;&gt;{{ data.ayah_id }}, {{ data.ayah_text }}&lt;/option&gt;\n                &lt;/select&gt;\n              &lt;/form&gt;\n         \n              &lt;form class=&quot;ml-3 col-md-4 &quot;&gt;\n                &lt;input class=&quot;form-control input is-primary&quot; type=&quot;text&quot; placeholder=&quot;Search keyword&quot; /&gt;\n              &lt;/form&gt;\n            --></div><div class=\"col-md-2\"></div></div></div></div>", 1);
-var _hoisted_19 = {
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"row text-center\"><div class=\"col-md-12 text-center\"><div class=\"row\"><div class=\"col-md-2 pb-2\"></div><div class=\"col-md-8 pt-2\" style=\"display:flex;text-align:center;\"><div class=\"card-header\"><h2 class=\"card-text text-center mt-2 mb-2\"><b>Hadith Collection</b></h2><h5 class=\"card-text container\" style=\"line-height:1.7em;\"> Hadiths are the recorded sayings, actions, and approvals of Prophet Muhammad (peace be upon him) in Islam. </h5></div><!-- multiple input sections \n              &lt;label class=&quot;pt-2 pl-3 pr-2&quot; style=&quot;display:flex&quot;&gt;Surah:&lt;/label&gt;\n              &lt;form class=&quot;col-md-5&quot;&gt;\n                &lt;select class=&quot;form-control&quot; v-model=&#39;surah&#39; @change=&#39;getAyahs()&#39;&gt;\n                  &lt;option value=&quot;0&quot;&gt;&lt;span&gt;Select Surah&lt;/span&gt;&lt;/option&gt;\n                  &lt;option v-for=&#39;data in surahs&#39; :key=&quot;data.id&quot; :value=&#39;data.id&#39;&gt;{{ data.name_en }}, {{ data.name_ar }}&lt;/option&gt;\n                &lt;/select&gt;\n              &lt;/form&gt;\n              &lt;label class=&quot;pt-2 pl-3 pr-2&quot;&gt;Ayah:&lt;/label&gt;\n\n              &lt;form class=&quot;col-md-8 &quot;&gt;\n                &lt;select class=&#39;form-control&#39; v-model=&#39;ayah_id&#39; @change=&#39;getTafseers(data.ayah_id)&#39;&gt;\n                  &lt;option value=&quot;0&quot;&gt;Select Ayah&lt;/option&gt;\n                  &lt;option v-for=&#39;data in ayahs&#39; :key=&quot;data.id&quot; :value=&#39;data.id&#39;&gt;{{ data.ayah_id }}, {{ data.ayah_text }}&lt;/option&gt;\n                &lt;/select&gt;\n              &lt;/form&gt;\n         \n              &lt;form class=&quot;ml-3 col-md-4 &quot;&gt;\n                &lt;input class=&quot;form-control input is-primary&quot; type=&quot;text&quot; placeholder=&quot;Search keyword&quot; /&gt;\n              &lt;/form&gt;\n            --></div><div class=\"col-md-2\"></div></div></div></div>", 1);
+var _hoisted_21 = {
   "class": "row"
 };
-var _hoisted_20 = {
+var _hoisted_22 = {
   "class": "col-md-8"
 };
-var _hoisted_21 = {
+var _hoisted_23 = {
+  key: 1,
   "class": "row ml-2 custom-scrollbar"
 };
-var _hoisted_22 = ["value"];
-var _hoisted_23 = {
+var _hoisted_24 = ["value"];
+var _hoisted_25 = {
   "class": "card-body mb-2",
   style: {
     "background": "white",
@@ -21536,70 +21548,62 @@ var _hoisted_23 = {
     "box-shadow": "rgba(0, 0, 0, 0.16) 0px 1px 4px"
   }
 };
-var _hoisted_24 = {
+var _hoisted_26 = {
   "class": "row container"
 };
-var _hoisted_25 = {
+var _hoisted_27 = {
   "class": "col-md-11"
 };
-var _hoisted_26 = {
+var _hoisted_28 = {
   style: {
     "display": "flex"
   }
 };
-var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
   src: "/images/art1.png",
   style: {
     "width": "27px"
   },
   "class": "mb-1 mr-2"
 }, null, -1 /* HOISTED */);
-var _hoisted_28 = {
+var _hoisted_30 = {
   "class": "col-md-1",
   style: {
     "display": "flex"
   }
 };
-var _hoisted_29 = {
+var _hoisted_31 = {
   "class": "text-center",
   style: {
     "color": "grey"
   }
 };
-var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", null, null, -1 /* HOISTED */);
-var _hoisted_31 = {
+var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", null, null, -1 /* HOISTED */);
+var _hoisted_33 = {
   "class": "container-fluid"
 };
-var _hoisted_32 = {
+var _hoisted_34 = {
   style: {
     "line-height": "1.6em"
   },
   "class": "text-right"
 };
-var _hoisted_33 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
-var _hoisted_34 = {
+var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
+var _hoisted_36 = {
   style: {
     "line-height": "1.6em"
   }
 };
-var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", null, null, -1 /* HOISTED */);
-var _hoisted_36 = {
+var _hoisted_37 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", null, null, -1 /* HOISTED */);
+var _hoisted_38 = {
   "class": "row"
 };
-var _hoisted_37 = {
+var _hoisted_39 = {
   "class": "col-9",
   style: {
     "background": "lighgrey"
   }
 };
-var _hoisted_38 = {
-  style: {
-    "background": "lighgrey"
-  }
-};
-var _hoisted_39 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", {
-  "class": "pr-2"
-}, "Reference:", -1 /* HOISTED */);
 var _hoisted_40 = {
   style: {
     "background": "lighgrey"
@@ -21607,8 +21611,16 @@ var _hoisted_40 = {
 };
 var _hoisted_41 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", {
   "class": "pr-2"
+}, "Reference:", -1 /* HOISTED */);
+var _hoisted_42 = {
+  style: {
+    "background": "lighgrey"
+  }
+};
+var _hoisted_43 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", {
+  "class": "pr-2"
 }, "Hadith Num:", -1 /* HOISTED */);
-var _hoisted_42 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_44 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "col-3",
   style: {
     "background": "lighgrey"
@@ -21623,43 +21635,41 @@ var _hoisted_42 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "fas fa-fw fa-edit mr-2"
 }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Report Mistake")])], -1 /* HOISTED */);
-var _hoisted_43 = {
-  key: 0,
+var _hoisted_45 = {
   "class": "col-md-4 stcky-top"
 };
-var _hoisted_44 = {
-  "class": "container-fluid mr-5",
-  style: {}
+var _hoisted_46 = {
+  "class": "container-fluid mr-5"
 };
-var _hoisted_45 = {
+var _hoisted_47 = {
   "class": "row container-fluid",
   style: {
     "flex-direction": "column"
   }
 };
-var _hoisted_46 = {
+var _hoisted_48 = {
   "class": "mt-3 mb-2",
   style: {
     "border": "4px solid #c3e6cb",
     "border-radius": "8px"
   }
 };
-var _hoisted_47 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+var _hoisted_49 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   value: "0"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Select Imam")], -1 /* HOISTED */);
-var _hoisted_48 = ["value"];
-var _hoisted_49 = {
+var _hoisted_50 = ["value"];
+var _hoisted_51 = {
   "class": "custom-scrollbar",
   style: {
     "border": "3px solid #c3e6cb",
     "border-radius": "8px"
   }
 };
-var _hoisted_50 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", {
+var _hoisted_52 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", {
   "class": "text-left"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Books:")], -1 /* HOISTED */);
-var _hoisted_51 = ["value", "onClick"];
-var _hoisted_52 = {
+var _hoisted_53 = ["value", "onClick"];
+var _hoisted_54 = {
   "class": "list-group-item foo",
   id: "toggle",
   style: {
@@ -21669,7 +21679,7 @@ var _hoisted_52 = {
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" modal "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
-    onSubmit: _cache[4] || (_cache[4] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+    onSubmit: _cache[5] || (_cache[5] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
       return $options.createCorrection();
     }, ["prevent"]))
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
@@ -21690,14 +21700,23 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     name: "email",
     placeholder: "Email Address (Optional)",
     "aria-label": "Email Address"
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.email]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
-    "class": "form-control col-md-8",
-    name: "mistake_type",
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.email]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+      return $data.form.hadith_num = $event;
+    }),
+    type: "text",
+    "class": "form-control",
+    name: "hadith_num",
+    placeholder: "Hadith number",
+    "aria-label": "Hadith number"
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.hadith_num]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+    "class": "form-control",
+    name: "mistake_type",
+    "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
       return $data.form.mistake_type = $event;
     })
-  }, [].concat(_hoisted_15), 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.form.mistake_type]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
-    "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
+  }, [].concat(_hoisted_17), 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.form.mistake_type]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+    "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
       return $data.form.added_notes = $event;
     }),
     "class": "form-control container mb-3",
@@ -21705,12 +21724,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     placeholder: "Explain to us exactly what the problem is",
     id: "added_comments",
     rows: "5"
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.added_notes]])]), _hoisted_17], 32 /* HYDRATE_EVENTS */)])])])]), _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" multiple input sections \n    <div class=\"row  mt-3 text-center pt-3 container-fluid\">\n      <div class=\"col-md-12 pt-3 text-center\" style=\"box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px,rgba(0, 0, 0, 0.24) 0px 1px 2px;border-radius: 10px;background: transparent;border: 3px solid #c3e6cb;\">\n        <div class=\"row\">\n          <div class=\"col-md-12 container\" style=\"display: flex; text-align: center\">\n            \n            <label class=\"pt-2 pl-3 pr-2\" style=\"display: flex\">Imam:</label>\n            <form class=\"col-md-3\">\n              <select class=\"form-control\" v-model=\"imam\" @change=\"getChapters()\">\n                <option value=\"0\">\n                  <span>Select Imam</span>\n                </option>\n                <option v-for=\"data in imams\" :key=\"data.id\" :value=\"data.id\">\n                  {{ data.imam_name }}\n                </option>\n              </select>\n            </form>\n\n            <label class=\"pt-2 pl-3 pr-3\">Chapter:</label>\n            <form class=\"col-md-3\">\n              <select class=\"form-control\" v-model=\"chapter_id\" @change=\"getAhadiths()\">\n                <option value=\"0\">\n                  <span>Select Chapter</span>\n                </option>\n                <option v-for=\"data in chapters\" :key=\"data.id\" :value=\"data.id\">\n                  {{ data.chapter_text }}\n                </option>\n              </select>\n            </form>\n\n            <form class=\"mb-4 col-md-4\" style=\"display: flex\" @submit.prevent=\"search()\">\n              <input style=\"padding: 12px\" class=\"form-control mr-2 icon col-lg-12\" type=\"search\" id=\"search\" name=\"search\" @keyup=\"search\" v-model=\"searchFilters.hadith_en\" placeholder=\"Search for Keyword\" aria-label=\"Search\" />\n            </form>\n            <hr />\n          </div>\n        </div>\n      </div>\n    </div> \n  \n    <div v-if=\"ahadith == null\" class=\"card container bg-white mt-3\" style=\" box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px,rgba(0, 0, 0, 0.24) 0px 1px 2px;border-radius: 10px;background: transparent;border: 5px solid #c3e6cb;\">\n    \n      <div class=\"card-header\" >\n        <h2 class=\"card-text text-center mt-2 mb-2\">\n          <b>Hadith Collection</b>\n        </h2>\n      \n        <h6 class=\"card-text container\" style=\"line-height: 1.7em; font-weight-bold\">\n          Hadiths are the recorded sayings, actions, and approvals of\n          Prophet Muhammad (peace be upon him) in Islam. They serve as\n          an essential source of guidance for Muslims, providing\n          insights into the Prophet's teachings and practices. The\n          collection of Hadiths is a vital component of Islamic\n          tradition, alongside the Quran.\n        </h6>\n        <h6 class=\"card-text container\" style=\"line-height: 1.7em; font-weight-bold\">\n          The process of collecting and preserving Hadiths began\n          shortly after the death of Prophet Muhammad. Scholars\n          recognized the importance of preserving his words and\n          actions to maintain the authenticity of Islamic teachings.\n          The collection of Hadiths underwent a meticulous and\n          rigorous process to ensure accuracy and reliability.\n        </h6>   \n      </div>\n    </div>\n    \n    \n    \n    <div class=\"container row\" >\n      <div style=\"padding:10px\" class=\"container col-md-12 pt-4\">\n        <input class=\"container button-33 mr-2\" type=\"button\" v-for=\"data in imams\" :key=\"data.id\" :value=\"data.imam_name\" @click=\"getChapters()\" />\n      </div>\n    </div>\n\n    <div class=\"container mt-2\" v-if=\"ahadith == null\">\n      <div class=\"row container\">\n        <ul class=\"col-md-2 list-group mb-3\" style=\"display:flex\"  v-for=\"data in imams\" :key=\"data.id\" :value=\"data.imam_name\" @click=\"getChapters()\">\n          <li class=\"list-group-item list-group-item-success text-center\"  style=\"cursor:pointer\" >{{ data.imam_name }}</li>\n        </ul>\n      </div>\n    </div>\n  "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" left side ahadith list "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.added_notes]])]), _hoisted_19], 32 /* HYDRATE_EVENTS */)])])])]), _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" multiple input sections \n    <div class=\"row  mt-3 text-center pt-3 container-fluid\">\n      <div class=\"col-md-12 pt-3 text-center\" style=\"box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px,rgba(0, 0, 0, 0.24) 0px 1px 2px;border-radius: 10px;background: transparent;border: 3px solid #c3e6cb;\">\n        <div class=\"row\">\n          <div class=\"col-md-12 container\" style=\"display: flex; text-align: center\">\n            \n            <label class=\"pt-2 pl-3 pr-2\" style=\"display: flex\">Imam:</label>\n            <form class=\"col-md-3\">\n              <select class=\"form-control\" v-model=\"imam\" @change=\"getChapters()\">\n                <option value=\"0\">\n                  <span>Select Imam</span>\n                </option>\n                <option v-for=\"data in imams\" :key=\"data.id\" :value=\"data.id\">\n                  {{ data.imam_name }}\n                </option>\n              </select>\n            </form>\n\n            <label class=\"pt-2 pl-3 pr-3\">Chapter:</label>\n            <form class=\"col-md-3\">\n              <select class=\"form-control\" v-model=\"chapter_id\" @change=\"getAhadiths()\">\n                <option value=\"0\">\n                  <span>Select Chapter</span>\n                </option>\n                <option v-for=\"data in chapters\" :key=\"data.id\" :value=\"data.id\">\n                  {{ data.chapter_text }}\n                </option>\n              </select>\n            </form>\n\n            <form class=\"mb-4 col-md-4\" style=\"display: flex\" @submit.prevent=\"search()\">\n              <input style=\"padding: 12px\" class=\"form-control mr-2 icon col-lg-12\" type=\"search\" id=\"search\" name=\"search\" @keyup=\"search\" v-model=\"searchFilters.hadith_en\" placeholder=\"Search for Keyword\" aria-label=\"Search\" />\n            </form>\n            <hr />\n          </div>\n        </div>\n      </div>\n    </div> \n  "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("  \n    <div class=\"container row\" >\n      <div style=\"padding:10px\" class=\"container col-md-12 pt-4\">\n        <input class=\"container button-33 mr-2\" type=\"button\" v-for=\"data in imams\" :key=\"data.id\" :value=\"data.imam_name\" @click=\"getChapters()\" />\n      </div>\n    </div>\n\n    <div class=\"container mt-2\" v-if=\"ahadith == null\">\n      <div class=\"row container\">\n        <ul class=\"col-md-2 list-group mb-3\" style=\"display:flex\"  v-for=\"data in imams\" :key=\"data.id\" :value=\"data.imam_name\" @click=\"getChapters()\">\n          <li class=\"list-group-item list-group-item-success text-center\"  style=\"cursor:pointer\" >{{ data.imam_name }}</li>\n        </ul>\n      </div>\n    </div>\n  "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" left side ahadith list "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [$data.ahadith != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("form", {
+    key: 0,
     "class": "mb-3 mt-3 col-md-12",
     style: {
       "display": "flex"
     },
-    onSubmit: _cache[7] || (_cache[7] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+    onSubmit: _cache[8] || (_cache[8] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
       return $options.search();
     }, ["prevent"]))
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
@@ -21721,15 +21741,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     type: "search",
     id: "search",
     name: "search",
-    onKeyup: _cache[5] || (_cache[5] = function () {
+    onKeyup: _cache[6] || (_cache[6] = function () {
       return $options.search && $options.search.apply($options, arguments);
     }),
-    "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
+    "onUpdate:modelValue": _cache[7] || (_cache[7] = function ($event) {
       return $data.searchFilters.hadith_en = $event;
     }),
     placeholder: "Search for Keywords, sentences or paragraphs ",
     "aria-label": "Search"
-  }, null, 544 /* HYDRATE_EVENTS, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.searchFilters.hadith_en]])], 32 /* HYDRATE_EVENTS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.ahadith, function (data) {
+  }, null, 544 /* HYDRATE_EVENTS, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.searchFilters.hadith_en]])], 32 /* HYDRATE_EVENTS */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.ahadith != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_23, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.ahadith, function (data) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       "class": "container-fluid col-md-12",
       style: {
@@ -21738,21 +21758,21 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       },
       key: data.id,
       value: data.id
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_26, [_hoisted_27, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.chapter.chapter_text), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", _hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.imam_id), 1 /* TEXT */)])]), _hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", _hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.hadith_ar), 1 /* TEXT */), _hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", _hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.hadith_en), 1 /* TEXT */)]), _hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", _hoisted_38, [_hoisted_39, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Book " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.chapter_id), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", _hoisted_40, [_hoisted_41, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.imam_id), 1 /* TEXT */)])]), _hoisted_42])])], 8 /* PROPS */, _hoisted_22);
-  }), 128 /* KEYED_FRAGMENT */))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" right side chapter list "), $data.chapter == null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_43, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_44, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_45, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_46, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" intro\n            <div >\n              <div class=\"card-header\" >\n                <h2 class=\"card-text text-center mt-2 mb-2\">\n                  <b>Hadith Collection</b>\n                </h2>\n              \n                <h6 class=\"card-text container\" style=\"line-height: 1.7em; font-weight-bold\">\n                  Hadiths are the recorded sayings, actions, and approvals of\n                  Prophet Muhammad (peace be upon him) in Islam. They serve as\n                  an essential source of guidance for Muslims, providing\n                  insights into the Prophet's teachings and practices. The\n                  collection of Hadiths is a vital component of Islamic\n                  tradition, alongside the Quran.\n                </h6>\n                <h6 class=\"card-text container\" style=\"line-height: 1.7em; font-weight-bold\">\n                  The process of collecting and preserving Hadiths began\n                  shortly after the death of Prophet Muhammad. Scholars\n                  recognized the importance of preserving his words and\n                  actions to maintain the authenticity of Islamic teachings.\n                  The collection of Hadiths underwent a meticulous and\n                  rigorous process to ensure accuracy and reliability.\n                </h6>   \n              </div>\n            </div>\n          "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_28, [_hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.chapter.chapter_text), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", _hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.imam_id), 1 /* TEXT */)])]), _hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_33, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", _hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.hadith_ar), 1 /* TEXT */), _hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", _hoisted_36, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.hadith_en), 1 /* TEXT */)]), _hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", _hoisted_40, [_hoisted_41, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Book " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.chapter_id), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", _hoisted_42, [_hoisted_43, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.imam_id), 1 /* TEXT */)])]), _hoisted_44])])], 8 /* PROPS */, _hoisted_24);
+  }), 128 /* KEYED_FRAGMENT */))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" right side chapter list "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_45, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_46, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_47, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_48, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     "class": "form-control",
-    "onUpdate:modelValue": _cache[8] || (_cache[8] = function ($event) {
+    "onUpdate:modelValue": _cache[9] || (_cache[9] = function ($event) {
       return $data.imam = $event;
     }),
-    onChange: _cache[9] || (_cache[9] = function ($event) {
+    onChange: _cache[10] || (_cache[10] = function ($event) {
       return $options.getChapters();
     })
-  }, [_hoisted_47, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.imams, function (data) {
+  }, [_hoisted_49, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.imams, function (data) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
       key: data.id,
       value: data.id
-    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.imam_name), 9 /* TEXT, PROPS */, _hoisted_48);
-  }), 128 /* KEYED_FRAGMENT */))], 544 /* HYDRATE_EVENTS, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.imam]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("\n            <form class=\"mb-2\" style=\"display: flex;\" @submit.prevent=\"searchChapter()\">\n              <input style=\"padding: 12px\" class=\"form-control mr-2  icon col-lg-12\" type=\"search\" id=\"searchChapter\" name=\"searchChapter\" @keyup=\"searchChapter\" v-model=\"searchFilters.chapter_text\" placeholder=\"Search for Chapter\" aria-label=\"Search\" />\n            </form>\n            "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_49, [_hoisted_50, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.chapters, function (data) {
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.imam_name), 9 /* TEXT, PROPS */, _hoisted_50);
+  }), 128 /* KEYED_FRAGMENT */))], 544 /* HYDRATE_EVENTS, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.imam]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("\n            <form class=\"mb-2\" style=\"display: flex;\" @submit.prevent=\"searchChapter()\">\n              <input style=\"padding: 12px\" class=\"form-control mr-2  icon col-lg-12\" type=\"search\" id=\"searchChapter\" name=\"searchChapter\" @keyup=\"searchChapter\" v-model=\"searchFilters.chapter_text\" placeholder=\"Search for Chapter\" aria-label=\"Search\" />\n            </form>\n            "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_51, [_hoisted_52, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.chapters, function (data) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("ul", {
       "class": "col-md-4 list-group container-fluid root",
       style: {
@@ -21764,8 +21784,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       onClick: function onClick($event) {
         return $options.getAhadiths(data.chapter_id);
       }
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_52, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.chapter_text), 1 /* TEXT */)])], 8 /* PROPS */, _hoisted_51);
-  }), 128 /* KEYED_FRAGMENT */))])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])]);
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_54, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.chapter_text), 1 /* TEXT */)])], 8 /* PROPS */, _hoisted_53);
+  }), 128 /* KEYED_FRAGMENT */))])])])])])])]);
 }
 
 /***/ }),
@@ -22240,7 +22260,7 @@ var _hoisted_16 = {
 };
 var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "mt-2 mr-2 col-sm-3"
-}, "Mistake type:", -1 /* HOISTED */);
+}, "Hadith Number:", -1 /* HOISTED */);
 var _hoisted_18 = {
   "class": "mt-2 text-dark"
 };
@@ -22252,36 +22272,48 @@ var _hoisted_19 = {
 };
 var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "mt-2 mr-2 col-sm-3"
-}, "Additional notes:", -1 /* HOISTED */);
+}, "Mistake type:", -1 /* HOISTED */);
 var _hoisted_21 = {
   "class": "mt-2 text-dark"
 };
-var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_22 = {
+  "class": "mr-2",
+  style: {
+    "display": "flex"
+  }
+};
+var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "class": "mt-2 mr-2 col-sm-3"
+}, "Additional notes:", -1 /* HOISTED */);
+var _hoisted_24 = {
+  "class": "mt-2 text-dark"
+};
+var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "modal-footer"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "button",
   "class": "btn btn-danger",
   "data-bs-dismiss": "modal"
 }, " Close ")], -1 /* HOISTED */);
-var _hoisted_23 = {
+var _hoisted_26 = {
   "class": "flex justify-content-start",
   style: {
     "display": "flex"
   }
 };
-var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   style: {
     "display": "flex"
   },
   "class": "ml-auto mr-3 mt-2 text-black"
 }, " Search: ", -1 /* HOISTED */);
-var _hoisted_25 = {
+var _hoisted_28 = {
   "class": "wrapper text-center",
   style: {
     "display": "flex"
   }
 };
-var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "pi pi-eye mr-2"
 }, null, -1 /* HOISTED */);
 
@@ -22290,7 +22322,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Column = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Column");
   var _component_Button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Button");
   var _component_DataTable = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("DataTable");
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" view new Modal "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.form.id), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.form.name), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.form.email), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.form.mistake_type), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [_hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.form.added_notes), 1 /* TEXT */)]), _hoisted_22])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_DataTable, {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" view new Modal "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.form.id), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.form.name), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.form.email), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.form.hadith_num), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [_hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.form.mistake_type), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [_hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.form.added_notes), 1 /* TEXT */)]), _hoisted_25])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_DataTable, {
     "class": "pt-5",
     filters: $data.filters,
     "onUpdate:filters": _cache[1] || (_cache[1] = function ($event) {
@@ -22309,7 +22341,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     tableStyle: "max-width:100%"
   }, {
     header: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [_hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_InputText, {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [_hoisted_27, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_InputText, {
         modelValue: $data.filters['global'].value,
         "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
           return $data.filters['global'].value = $event;
@@ -22344,7 +22376,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }
       }, {
         body: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function (slotProps) {
-          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Button, {
+          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Button, {
             "data-bs-toggle": "modal",
             "data-bs-target": "#editNewCorrection",
             type: "button",
@@ -22358,7 +22390,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             }
           }, {
             "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-              return [_hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" View ")];
+              return [_hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" View ")];
             }),
             _: 2 /* DYNAMIC */
           }, 1032 /* PROPS, DYNAMIC_SLOTS */, ["onClick"])])];

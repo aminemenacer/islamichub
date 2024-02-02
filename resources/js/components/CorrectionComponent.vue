@@ -37,6 +37,13 @@
             </div>
 
             <div class="mr-2" style="display: flex">
+              <label class="mt-2 mr-2 col-sm-3">Hadith Number:</label>
+              <p class="mt-2 text-dark">
+                {{ form.hadith_num }}
+              </p>
+            </div>
+
+            <div class="mr-2" style="display: flex">
               <label class="mt-2 mr-2 col-sm-3">Mistake type:</label>
               <p class="mt-2 text-dark">
                 {{ form.mistake_type }}
@@ -127,6 +134,11 @@ export default {
           sortable: true,
         },
         {
+          field: "hadith_num",
+          header: "Hadith Num",
+          sortable: true,
+        },
+        {
           field: "mistake_type",
           header: "Mistake type",
           sortable: true,
@@ -144,6 +156,7 @@ export default {
         name: "",
         email: "",
         mistake_type: "",
+        hadith_num: "",
         added_notes: "",
       }),
     }

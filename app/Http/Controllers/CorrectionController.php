@@ -26,6 +26,7 @@ class CorrectionController extends Controller
             'name',
             'email',
             'added_notes',
+            'hadith_num'
         ]);
 
         $correction = new Correction();
@@ -33,6 +34,7 @@ class CorrectionController extends Controller
         $correction->name = $request->name;
         $correction->email = $request->email;
         $correction->added_notes = $request->added_notes;
+        $correction->hadith_num = $request->hadith_num;
         $correction->save();
     }
 }
