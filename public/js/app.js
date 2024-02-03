@@ -19954,11 +19954,9 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
                 showConfirmButton: false,
                 timer: 1500
               });
-              $("#exampleModal").hide();
-              self.close();
+              $('#exampleModal').modal('hide');
             } else if (res.data.success) {
               Swal.fire("Error!", "Unable to create correction.", "error");
-              self.close();
             }
           })["catch"](function (err) {});
         }
@@ -20175,6 +20173,31 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
       axios__WEBPACK_IMPORTED_MODULE_1__["default"].get("api/fetch-corrections").then(function (data) {
         _this.corrections = data.data;
+      });
+    },
+    deleteCorrection: function deleteCorrection(id) {
+      var _this2 = this;
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete correction!"
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          axios__WEBPACK_IMPORTED_MODULE_1__["default"]["delete"]("api/delete-correction/" + id);
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Correction deleted successfully ",
+            showConfirmButton: false,
+            timer: 1500
+          });
+          _this2.loadCorrections();
+          self.close();
+        }
       });
     },
     viewModal: function viewModal(corrections) {
@@ -22316,6 +22339,10 @@ var _hoisted_28 = {
 var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "pi pi-eye mr-2"
 }, null, -1 /* HOISTED */);
+var _hoisted_30 = ["onClick"];
+var _hoisted_31 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+  "class": "pi pi-trash"
+}, null, -1 /* HOISTED */);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_InputText = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("InputText");
@@ -22393,7 +22420,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
               return [_hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" View ")];
             }),
             _: 2 /* DYNAMIC */
-          }, 1032 /* PROPS, DYNAMIC_SLOTS */, ["onClick"])])];
+          }, 1032 /* PROPS, DYNAMIC_SLOTS */, ["onClick"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+            "class": "btn text-white user-btn",
+            style: {
+              "background-color": "#b71c1c"
+            },
+            onClick: function onClick($event) {
+              return $options.deleteCorrection(slotProps.data.id);
+            }
+          }, [_hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Delete ")], 8 /* PROPS */, _hoisted_30)])];
         }),
         _: 1 /* STABLE */
       })];

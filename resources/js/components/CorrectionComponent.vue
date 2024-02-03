@@ -91,6 +91,10 @@
             <i class="pi pi-eye mr-2"></i>
             View
           </Button>
+          <button class="btn text-white user-btn" style="background-color: #b71c1c" @click="deleteCorrection(slotProps.data.id)">
+            <i class="pi pi-trash"></i>
+            Delete
+          </button>
         </div>
       </template>
     </Column>
@@ -165,6 +169,30 @@ export default {
     loadCorrections() {
       axios.get("api/fetch-corrections").then((data) => {
         this.corrections = data.data;
+      });
+    },
+    deleteCorrection(id) {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete correction!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axios.delete("api/delete-correction/" + id);
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Correction deleted successfully ",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          this.loadCorrections();
+          self.close();
+        }
       });
     },
     viewModal(corrections) {

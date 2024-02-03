@@ -77,6 +77,8 @@ Route::post('api/subscribe', [MailingListController::class, 'create']);
 Route::post('api/submit-correction', [CorrectionController::class, 'submit']);
 Route::get('/correction', [CorrectionController::class, 'index']);
 Route::get('api/fetch-corrections', [CorrectionController::class, 'getCorrections']);
+Route::delete('api/delete-correction/{id}',  [CorrectionController::class, 'deleteCorrections']);
+
 
 // nawawi
 Route::get('/nawawi', [HadithNawawiController::class, 'index']);

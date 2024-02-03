@@ -37,4 +37,13 @@ class CorrectionController extends Controller
         $correction->hadith_num = $request->hadith_num;
         $correction->save();
     }
+
+    public function deleteCorrections($id)
+    {
+        $correction = Correction::findOrFail($id);
+        $correction->delete();
+        return response()->json([
+            'message' => 'Correction deleted successfully'
+        ]);
+    }
 }

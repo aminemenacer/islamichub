@@ -387,15 +387,13 @@ export default {
                   showConfirmButton: false,
                   timer: 1500,
                 });
-                $("#exampleModal").hide();
-                self.close();
+                $('#exampleModal').modal('hide');
               } else if (res.data.success) {
                 Swal.fire(
                   "Error!",
                   "Unable to create correction.",
                   "error"
                 );
-                self.close();
               }
             })
             .catch(function (err) {});
