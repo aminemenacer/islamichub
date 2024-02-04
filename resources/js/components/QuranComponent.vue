@@ -192,9 +192,20 @@
                   </option>
                 </select>
               </form>
-              <ul class="col-md-4 list-group container-fluid" style="max-width:100%;cursor:pointer" v-for="data in ayahs" :key="data.id" :value="data.ayah_text">
-                <li class="list-group-item " onclick="document.getElementById('demo').style['text-decoration']='underline'" id="demo" style="cursor:pointer;background:transparent" @click='getTafseers(data.ayah_id)'><b style="display:flex">Verse:</b> <h5>{{ data.ayah_id }}</h5><h5>{{ data.ayah_text }}</h5></li>
+             
+
+
+              <ul class="col-md-4 list-group container-fluid root"  style="max-width:100%;cursor:pointer" 
+                  :class="{ 'selected': selectedIndex === ayahId }"
+                  v-for="(ayah, ayahId) in ayahs" :key="ayahId"
+                  @click="getTafseers(ayahId)">
+                <li class="list-group-item" id="toggle" style="cursor:pointer;background:transparent"><b style="display:flex">Verse:</b> 
+                <h5>{{ ayah.ayah_id }}</h5><h5>{{ ayah.ayah_text }}</h5></li>
               </ul>
+
+
+
+
             </div>
           </div>
         </div>
@@ -239,13 +250,16 @@ export default ({
   },
   data() {
     return {
-
+      selectedIndex: null,
+      ayahId: null,
       data: [],
       surahs: [],
       ayahs: [],
       informations: [],
       tafseers: [],
       surah: null,
+      ayah:null,
+      tafseer:null,
 
       // tafseer: null,
       information: null,
@@ -267,6 +281,7 @@ export default ({
     },
 
     getAyahs: function () {
+      
       axios.get('/get_ayahs', {
         params: {
           surah_id: this.surah
@@ -277,6 +292,9 @@ export default ({
     },
 
     getTafseers: function (ayahId) {
+
+      this.selectedIndex = ayahId;
+
       axios.get(`/tafseer/${ayahId}/fetch`).then(function (response) {
         this.tafseer = response.data;
       }.bind(this));
@@ -295,6 +313,9 @@ export default ({
 </script>
 
 <style scoped>
+.selected {
+  background-color: #c3e6cb; /* Change this to your desired highlight color */
+}
 .custom-scrollbar {
   background-color: transparent;
   height: 800px;

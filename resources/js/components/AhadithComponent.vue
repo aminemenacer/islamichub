@@ -151,11 +151,9 @@
     </div>
   -->
   
-    
-
   <div>
     <div class="row ">
-
+    
       <!-- left side ahadith list -->
       <div class="col-md-8 " > 
         <form class="mb-3 mt-3 col-md-12" style="display: flex" @submit.prevent="search()"  v-if="ahadith != null">
@@ -217,7 +215,6 @@
                   <h6 style="background: lighgrey"><b class="pr-2">Hadith Num:</b> {{ data.imam_id }}</h6>
                 </div>
                 <div class="col-3" style="background: lighgrey">
-                 <!-- <h6 style="background: lighgrey;cursor:pointer"><i class="fas fa-fw fa-bookmark mr-2"></i>Bookmark</h6> -->
                   <h6 style="background: lighgrey;cursor:pointer" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-fw fa-edit mr-2"></i>Report Mistake</h6>
                 </div>
                 
@@ -250,12 +247,42 @@
             <form class="mb-2" style="display: flex;" @submit.prevent="searchChapter()">
               <input style="padding: 12px" class="form-control mr-2  icon col-lg-12" type="search" id="searchChapter" name="searchChapter" @keyup="searchChapter" v-model="searchFilters.chapter_text" placeholder="Search for Chapter" aria-label="Search" />
             </form>
-            -->
             
+
+             <div>
+                <div
+                  v-for="(chapter, index) in chapters"
+                  :key="index"
+                  @click="selectItem(index)"
+                  :class="{ 'selected': selectedIndex === index }"
+                >
+                  {{ chapter.chapter_text }}
+                </div>
+              </div>
+            -->
             <div class="custom-scrollbar" style="border:3px solid #c3e6cb;border-radius:8px">
               <h5 class="text-left"><b>Books:</b></h5>
-              <ul class="col-md-4 list-group container-fluid root"  style="max-width:100%;cursor:pointer" v-for="data in chapters" :key="data.id" :value="data.chapter_text" @click="getAhadiths(data.chapter_id)">  
-                <li class="list-group-item foo" id="toggle" style="cursor:pointer;background:transparent"><h5>{{ data.chapter_text }}</h5></li>
+              <!--
+                <div>
+                  <div
+                    v-for="(chapter, chapterId) in chapters"
+                    :key="chapterId"
+                    @click="getAhadiths(chapterId)"
+                    :class="{ 'selected': selectedIndex === chapterId }"
+                  >
+                    {{ chapter.chapter_text }}
+                  </div>
+                </div>
+              -->
+              
+
+              <ul class="col-md-4 list-group container-fluid root"  style="max-width:100%;cursor:pointer" 
+                  :class="{ 'selected': selectedIndex === chapterId }"
+                  v-for="(chapter, chapterId) in chapters" :key="chapterId"
+                  @click="getAhadiths(chapterId)">
+                <li class="list-group-item" id="toggle" style="cursor:pointer;background:transparent">
+                  <h5>{{ chapter.chapter_text }}</h5>
+                </li>
               </ul>
             </div>
           </div>
@@ -268,6 +295,9 @@
 </template>
 
 <style>
+.selected {
+  background-color: #c3e6cb; /* Change this to your desired highlight color */
+}
 .custom-scrollbar {
   background-color: transparent;
   height: 1000px;
@@ -319,6 +349,10 @@ export default {
   },
   data() {
     return {
+      selectedIndex: null,
+      chapterId: null,
+      selectedHadith: null,
+      
       data: [],      
       imams: [],
       chapters: [],
@@ -351,6 +385,29 @@ export default {
     };
   },
   methods: {
+    selectItem(index) {
+      // Set the selected index
+      // this.selectedIndex = index;
+    },
+    
+    getAhadiths: function (chapterId) {
+      // axios.get(`/hadith/${chapterId}/fetch`).then(function (response) {
+      //   this.tafseer = response.data;
+      // }.bind(this));
+      this.selectedIndex = chapterId;
+
+   
+      axios.get('/get_ahadiths', {
+        params: {
+          chapterId: chapterId
+        }
+      }).then(function (response) {
+              this.selectedHadith = chapterId;
+
+        this.ahadith = response.data;
+      }.bind(this));
+    },
+
     search() {
       var filteredHadiths = [];
       axios
@@ -421,19 +478,7 @@ export default {
       }.bind(this));
     },
     
-    getAhadiths: function (chapterId) {
-      // axios.get(`/hadith/${chapterId}/fetch`).then(function (response) {
-      //   this.tafseer = response.data;
-      // }.bind(this));
-   
-      axios.get('/get_ahadiths', {
-        params: {
-          chapterId: chapterId
-        }
-      }).then(function (response) {
-        this.ahadith = response.data;
-      }.bind(this));
-    },
+    
   },
 };
 
