@@ -36,23 +36,16 @@ import PaymentComponent from "./components/PaymentComponent.vue";
 import DonationComponent from "./components/DonationComponent.vue";
 import ProfileComponent from "./components/ProfileComponent.vue";
 import DashboardComponent from "./components/DashboardComponent.vue";
-import ExampleComponent from './components/ExampleComponent.vue';
-import AllahNamesComponent from './components/AllahNamesComponent.vue';
 import HomepageComponent from './components/HomepageComponent.vue';
 import PricingComponent from './components/PricingComponent.vue';
 import ContactComponent from './components/ContactComponent.vue';
-import ReminderComponent from './components/ReminderComponent.vue';
 import CharityComponent from './components/CharityComponent.vue';
 import VolunteerComponent from './components/VolunteerComponent.vue';
 import AhadithComponent from './components/AhadithComponent.vue';
 import HadithNawawiComponent from './components/HadithNawawiComponent.vue';
 import HadithQudsiComponent from './components/HadithQudsiComponent.vue';
 import HadithShahComponent from './components/HadithShahComponent.vue';
-import VideoComponent from './components/VideoComponent.vue';
-import KnowledgeComponent from './components/KnowledgeComponent.vue';
 import CorrectionComponent from './components/CorrectionComponent.vue';
-import LikesComponent from './components/LikesComponent.vue';
-import ProphetsComponent from './components/ProphetsComponent.vue';
 import QuranComponent from './components/QuranComponent.vue';
 
 
@@ -83,7 +76,6 @@ app.component("Dialog", Dialog);
 app.component("Image", Image);
 
 
-app.component("example-component", ExampleComponent);
 app.component("users-component", UsersComponent);
 app.component("mailing_list-component", MailingListComponent);
 app.component("feedback-component", FeedbackComponent);
@@ -91,22 +83,16 @@ app.component("payment-component", PaymentComponent);
 app.component("donation-component", DonationComponent);
 app.component("profile-component", ProfileComponent);
 app.component("dashboard-component", DashboardComponent);
-app.component("allah_names-component", AllahNamesComponent);
 app.component("homepage-component", HomepageComponent);
 app.component("pricing-component", PricingComponent);
 app.component("contact-component", ContactComponent);
-app.component("reminder-component", ReminderComponent);
 app.component("charity-component", CharityComponent);
 app.component("volunteer-component", VolunteerComponent);
 app.component("ahadith-component", AhadithComponent);
 app.component("hadith_nawawi-component", HadithNawawiComponent);
 app.component("hadith_qudsi-component", HadithQudsiComponent);
 app.component("hadith_shah-component", HadithShahComponent);
-app.component("video-component", VideoComponent);
-app.component("knowledge-component", KnowledgeComponent);
 app.component("correction-component", CorrectionComponent);
-app.component("likes-component", LikesComponent);
-app.component("prophets-component", ProphetsComponent);
 app.component("quran-component", QuranComponent);
 
 

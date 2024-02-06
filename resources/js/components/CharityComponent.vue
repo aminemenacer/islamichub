@@ -1,12 +1,15 @@
 <template>
 <div id="app" class="pt-3">
-    <h2 class="text-center"><strong>Donations</strong></h2>
-  <p class="text-center container text-left pt-3 pl-3 pr-3">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+  <h1 class="text-center mt">Donations</h1>
 
-  <div class="container-fluid py-3">
+  <div class="container py-3">
 
     <div class="row">
-      <div class="col-lg-10 mx-auto">
+      <div class="col-lg-6 text-left">
+        <p class=" text-left pt-3">In Islam, the act of giving and charitable donations hold profound significance, emphasized through the pillar of Zakat. Zakat is a mandatory form of almsgiving, representing a fundamental aspect of Islamic financial and social responsibility. The term itself means "purification," signifying the purification of one's wealth through the act of giving to those in need.</p>
+      <p class="text-left">The call for donations in Islam is rooted in compassion and empathy for the less fortunate. It is a way for individuals to fulfill their duty towards their fellow human beings, fostering a sense of community and solidarity. The Quran encourages believers to share their wealth with those facing hardship, reinforcing the notion that all possessions ultimately belong to God and are to be used for the betterment of society.</p>
+      </div>
+      <div class="col-lg-6 mx-auto">
         <div class="card" style="border-radius:8px">
           <div class="card-header" style="border-radius:8px">
 
@@ -42,7 +45,7 @@
                   <div class="card-footer"> <button type="button" class="subscribe btn btn-secondary btn-block shadow-sm"> Confirm Payment </button></div>
                 </form>
               </div>
-            </div> 
+            </div>
 
           </div>
         </div>

@@ -68,9 +68,9 @@
         <div class="col-md-2 pb-2"></div>
         <div class="col-md-8 pt-2" style="display: flex; text-align: center">
           <div class="card-header">
-            <h2 class="card-text text-center mt-2 mb-2">
-              <b>Hadith Collection</b>
-            </h2>
+            <h1 class="card-text text-center mt-2 mb-2">
+              Hadith Collection
+            </h1>
 
             <h5 class="card-text container" style="line-height: 1.7em; font-weight-bold">
               Hadiths are the recorded sayings, actions, and

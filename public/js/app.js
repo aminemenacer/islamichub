@@ -21401,7 +21401,7 @@ var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   type: "submit",
   "class": "btn btn-success"
 }, " Save changes ")], -1 /* HOISTED */);
-var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"row text-center\"><div class=\"col-md-12 text-center\"><div class=\"row\"><div class=\"col-md-2 pb-2\"></div><div class=\"col-md-8 pt-2\" style=\"display:flex;text-align:center;\"><div class=\"card-header\"><h2 class=\"card-text text-center mt-2 mb-2\"><b>Hadith Collection</b></h2><h5 class=\"card-text container\" style=\"line-height:1.7em;\"> Hadiths are the recorded sayings, actions, and approvals of Prophet Muhammad (peace be upon him) in Islam. </h5></div></div><div class=\"col-md-2\"></div></div></div></div>", 1);
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"row text-center\"><div class=\"col-md-12 text-center\"><div class=\"row\"><div class=\"col-md-2 pb-2\"></div><div class=\"col-md-8 pt-2\" style=\"display:flex;text-align:center;\"><div class=\"card-header\"><h1 class=\"card-text text-center mt-2 mb-2\"> Hadith Collection </h1><h5 class=\"card-text container\" style=\"line-height:1.7em;\"> Hadiths are the recorded sayings, actions, and approvals of Prophet Muhammad (peace be upon him) in Islam. </h5></div></div><div class=\"col-md-2\"></div></div></div></div>", 1);
 var _hoisted_21 = {
   "class": "row"
 };
@@ -21680,18 +21680,21 @@ var _hoisted_1 = {
   id: "app",
   "class": "pt-3"
 };
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
-  "class": "text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, "Donations")], -1 /* HOISTED */);
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-  "class": "text-center container text-left pt-3 pl-3 pr-3"
-}, "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.", -1 /* HOISTED */);
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "container-fluid py-3"
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
+  "class": "text-center mt"
+}, "Donations", -1 /* HOISTED */);
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "container py-3"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "row"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "col-lg-10 mx-auto"
+  "class": "col-lg-6 text-left"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+  "class": "text-left pt-3"
+}, "In Islam, the act of giving and charitable donations hold profound significance, emphasized through the pillar of Zakat. Zakat is a mandatory form of almsgiving, representing a fundamental aspect of Islamic financial and social responsibility. The term itself means \"purification,\" signifying the purification of one's wealth through the act of giving to those in need."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+  "class": "text-left"
+}, "The call for donations in Islam is rooted in compassion and empathy for the less fortunate. It is a way for individuals to fulfill their duty towards their fellow human beings, fostering a sense of community and solidarity. The Quran encourages believers to share their wealth with those facing hardship, reinforcing the notion that all possessions ultimately belong to God and are to be used for the betterment of society.")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "col-lg-6 mx-auto"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "card",
   style: {
@@ -21783,9 +21786,9 @@ var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
   type: "button",
   "class": "subscribe btn btn-secondary btn-block shadow-sm"
 }, " Confirm Payment ")])])])])])])])])], -1 /* HOISTED */);
-var _hoisted_5 = [_hoisted_2, _hoisted_3, _hoisted_4];
+var _hoisted_4 = [_hoisted_2, _hoisted_3];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [].concat(_hoisted_5));
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [].concat(_hoisted_4));
 }
 
 /***/ }),
@@ -21807,11 +21810,11 @@ var _hoisted_1 = {
   "class": "id pt-3"
 };
 var _hoisted_2 = {
-  "class": "ftco-section"
+  "class": "ftco-section mt-3"
 };
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
-  "class": "text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, "Contact Us")], -1 /* HOISTED */);
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
+  "class": "display-4 text-center"
+}, "Contact Us", -1 /* HOISTED */);
 var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "text-center container text-left pt-3"
 }, "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here,", -1 /* HOISTED */);
@@ -21821,7 +21824,7 @@ var _hoisted_5 = {
 var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "row justify-content-center"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "col-md-6 text-center mb-5"
+  "class": "col-md-6 text-center mb-3"
 })], -1 /* HOISTED */);
 var _hoisted_7 = {
   "class": "row justify-content-center"
@@ -24934,7 +24937,7 @@ var _withScopeId = function _withScopeId(n) {
 var _hoisted_1 = {
   id: "app"
 };
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"container-fluid text-center pt-2\" data-v-2b3c2c26><div class=\"row text-center\" data-v-2b3c2c26><div class=\"col-md-12 text-center\" data-v-2b3c2c26><div class=\"row\" data-v-2b3c2c26><div class=\"col-md-2 pb-2\" data-v-2b3c2c26></div><div class=\"col-md-8 pt-2\" style=\"display:flex;text-align:center;\" data-v-2b3c2c26><div class=\"card-header\" data-v-2b3c2c26><h2 class=\"card-text text-center mt-2 mb-2\" data-v-2b3c2c26><b data-v-2b3c2c26>The Holy Quran</b></h2><h5 class=\"card-text container\" style=\"line-height:1.7em;\" data-v-2b3c2c26> The Quran also spelled as Qur&#39;an is the holy book of Islam, considered by Muslims to be the verbatim word of God </h5></div><!-- multiple input sections \n              &lt;label class=&quot;pt-2 pl-3 pr-2&quot; style=&quot;display:flex&quot;&gt;Surah:&lt;/label&gt;\n              &lt;form class=&quot;col-md-5&quot;&gt;\n                &lt;select class=&quot;form-control&quot; v-model=&#39;surah&#39; @change=&#39;getAyahs()&#39;&gt;\n                  &lt;option value=&quot;0&quot;&gt;&lt;span&gt;Select Surah&lt;/span&gt;&lt;/option&gt;\n                  &lt;option v-for=&#39;data in surahs&#39; :key=&quot;data.id&quot; :value=&#39;data.id&#39;&gt;{{ data.name_en }}, {{ data.name_ar }}&lt;/option&gt;\n                &lt;/select&gt;\n              &lt;/form&gt;\n              &lt;label class=&quot;pt-2 pl-3 pr-2&quot;&gt;Ayah:&lt;/label&gt;\n\n              &lt;form class=&quot;col-md-8 &quot;&gt;\n                &lt;select class=&#39;form-control&#39; v-model=&#39;ayah_id&#39; @change=&#39;getTafseers(data.ayah_id)&#39;&gt;\n                  &lt;option value=&quot;0&quot;&gt;Select Ayah&lt;/option&gt;\n                  &lt;option v-for=&#39;data in ayahs&#39; :key=&quot;data.id&quot; :value=&#39;data.id&#39;&gt;{{ data.ayah_id }}, {{ data.ayah_text }}&lt;/option&gt;\n                &lt;/select&gt;\n              &lt;/form&gt;\n\n              &lt;form class=&quot;ml-3 col-md-4 &quot;&gt;\n                &lt;input class=&quot;form-control input is-primary&quot; type=&quot;text&quot; placeholder=&quot;Search keyword&quot; /&gt;\n              &lt;/form&gt;\n            --></div><div class=\"col-md-2\" data-v-2b3c2c26></div></div></div></div></div><div class=\"container-fluid mt-2\" data-v-2b3c2c26><div class=\"row\" data-v-2b3c2c26></div></div>", 2);
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"container-fluid text-center pt-2\" data-v-2b3c2c26><div class=\"row text-center\" data-v-2b3c2c26><div class=\"col-md-12 text-center\" data-v-2b3c2c26><div class=\"row\" data-v-2b3c2c26><div class=\"col-md-2 pb-2\" data-v-2b3c2c26></div><div class=\"col-md-8 pt-2\" style=\"display:flex;text-align:center;\" data-v-2b3c2c26><div class=\"card-header\" data-v-2b3c2c26><h1 class=\"card-text text-center mt-2 mb-2\" data-v-2b3c2c26> The Holy Quran </h1><h5 class=\"card-text container\" style=\"line-height:1.7em;\" data-v-2b3c2c26> The Quran also spelled as Qur&#39;an is the holy book of Islam, considered by Muslims to be the verbatim word of God </h5></div><!-- multiple input sections \n              &lt;label class=&quot;pt-2 pl-3 pr-2&quot; style=&quot;display:flex&quot;&gt;Surah:&lt;/label&gt;\n              &lt;form class=&quot;col-md-5&quot;&gt;\n                &lt;select class=&quot;form-control&quot; v-model=&#39;surah&#39; @change=&#39;getAyahs()&#39;&gt;\n                  &lt;option value=&quot;0&quot;&gt;&lt;span&gt;Select Surah&lt;/span&gt;&lt;/option&gt;\n                  &lt;option v-for=&#39;data in surahs&#39; :key=&quot;data.id&quot; :value=&#39;data.id&#39;&gt;{{ data.name_en }}, {{ data.name_ar }}&lt;/option&gt;\n                &lt;/select&gt;\n              &lt;/form&gt;\n              &lt;label class=&quot;pt-2 pl-3 pr-2&quot;&gt;Ayah:&lt;/label&gt;\n\n              &lt;form class=&quot;col-md-8 &quot;&gt;\n                &lt;select class=&#39;form-control&#39; v-model=&#39;ayah_id&#39; @change=&#39;getTafseers(data.ayah_id)&#39;&gt;\n                  &lt;option value=&quot;0&quot;&gt;Select Ayah&lt;/option&gt;\n                  &lt;option v-for=&#39;data in ayahs&#39; :key=&quot;data.id&quot; :value=&#39;data.id&#39;&gt;{{ data.ayah_id }}, {{ data.ayah_text }}&lt;/option&gt;\n                &lt;/select&gt;\n              &lt;/form&gt;\n\n              &lt;form class=&quot;ml-3 col-md-4 &quot;&gt;\n                &lt;input class=&quot;form-control input is-primary&quot; type=&quot;text&quot; placeholder=&quot;Search keyword&quot; /&gt;\n              &lt;/form&gt;\n            --></div><div class=\"col-md-2\" data-v-2b3c2c26></div></div></div></div></div><div class=\"container-fluid mt-2\" data-v-2b3c2c26><div class=\"row\" data-v-2b3c2c26></div></div>", 2);
 var _hoisted_4 = {
   "class": "row container-fluid"
 };
@@ -25831,10 +25834,9 @@ __webpack_require__.r(__webpack_exports__);
 var _hoisted_1 = {
   id: "app"
 };
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"row\" style=\"padding:50px;\"><div class=\"col-md-6\" style=\"padding:10px;\"><h2 class=\"text-center pb-2\"><strong>Help us grow</strong></h2><p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &#39;Content here, It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p><p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &#39;Content here</p></div><div class=\"col-md-6\"><img src=\"/images/help.png\" width=\"100%\"></div></div>", 1);
-var _hoisted_3 = [_hoisted_2];
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"container py-5\"><div class=\"row h-100 align-items-center py-5\"><div class=\"container col-lg-6\"><h1 class=\"display-4\">Help us grow</h1><p class=\"lead text-muted mb-0\">We are a community-driven business dedicated to making a positive impact through volunteerism. Our organization believes in the power of collective effort to bring about meaningful change. Whether you are a student, professional, retiree, or someone with a passion for giving back, Helping Hands Haven welcomes individuals from all walks of life.</p><button type=\"button btn-xl\" class=\"btn btn-outline-dark mt-3\">Learn more</button></div><div class=\"col-lg-5 d-none d-lg-block\"><img src=\"https://bootstrapious.com/i/snippets/sn-about/illus.png\" alt=\"\" class=\"img-fluid\"></div></div></div>", 1);
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [].concat(_hoisted_3));
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("\n  <div class=\"row\" style=\"padding:50px\">\n    <div class=\"col-md-6\" style=\"padding:10px\">\n      <h2 class=\"text-center pb-2\"><strong>Help us grow</strong></h2>\n      <p >It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>\n      <p >It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here</p>\n    </div>\n    <div class=\"col-md-6\">\n      <img src=\"/images/help.png\" width=\"100%\">\n    </div>\n  </div>\n  "), _hoisted_2]);
 }
 
 /***/ }),
@@ -25877,24 +25879,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_DonationComponent_vue__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./components/DonationComponent.vue */ "./resources/js/components/DonationComponent.vue");
 /* harmony import */ var _components_ProfileComponent_vue__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./components/ProfileComponent.vue */ "./resources/js/components/ProfileComponent.vue");
 /* harmony import */ var _components_DashboardComponent_vue__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./components/DashboardComponent.vue */ "./resources/js/components/DashboardComponent.vue");
-Object(function webpackMissingModule() { var e = new Error("Cannot find module './components/ExampleComponent.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-Object(function webpackMissingModule() { var e = new Error("Cannot find module './components/AllahNamesComponent.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-/* harmony import */ var _components_HomepageComponent_vue__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./components/HomepageComponent.vue */ "./resources/js/components/HomepageComponent.vue");
-/* harmony import */ var _components_PricingComponent_vue__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./components/PricingComponent.vue */ "./resources/js/components/PricingComponent.vue");
-/* harmony import */ var _components_ContactComponent_vue__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./components/ContactComponent.vue */ "./resources/js/components/ContactComponent.vue");
-Object(function webpackMissingModule() { var e = new Error("Cannot find module './components/ReminderComponent.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-/* harmony import */ var _components_CharityComponent_vue__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./components/CharityComponent.vue */ "./resources/js/components/CharityComponent.vue");
-/* harmony import */ var _components_VolunteerComponent_vue__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./components/VolunteerComponent.vue */ "./resources/js/components/VolunteerComponent.vue");
-/* harmony import */ var _components_AhadithComponent_vue__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./components/AhadithComponent.vue */ "./resources/js/components/AhadithComponent.vue");
-/* harmony import */ var _components_HadithNawawiComponent_vue__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./components/HadithNawawiComponent.vue */ "./resources/js/components/HadithNawawiComponent.vue");
-/* harmony import */ var _components_HadithQudsiComponent_vue__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./components/HadithQudsiComponent.vue */ "./resources/js/components/HadithQudsiComponent.vue");
-/* harmony import */ var _components_HadithShahComponent_vue__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./components/HadithShahComponent.vue */ "./resources/js/components/HadithShahComponent.vue");
-Object(function webpackMissingModule() { var e = new Error("Cannot find module './components/VideoComponent.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-Object(function webpackMissingModule() { var e = new Error("Cannot find module './components/KnowledgeComponent.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-/* harmony import */ var _components_CorrectionComponent_vue__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./components/CorrectionComponent.vue */ "./resources/js/components/CorrectionComponent.vue");
-Object(function webpackMissingModule() { var e = new Error("Cannot find module './components/LikesComponent.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-Object(function webpackMissingModule() { var e = new Error("Cannot find module './components/ProphetsComponent.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-/* harmony import */ var _components_QuranComponent_vue__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./components/QuranComponent.vue */ "./resources/js/components/QuranComponent.vue");
+/* harmony import */ var _components_HomepageComponent_vue__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./components/HomepageComponent.vue */ "./resources/js/components/HomepageComponent.vue");
+/* harmony import */ var _components_PricingComponent_vue__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./components/PricingComponent.vue */ "./resources/js/components/PricingComponent.vue");
+/* harmony import */ var _components_ContactComponent_vue__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./components/ContactComponent.vue */ "./resources/js/components/ContactComponent.vue");
+/* harmony import */ var _components_CharityComponent_vue__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./components/CharityComponent.vue */ "./resources/js/components/CharityComponent.vue");
+/* harmony import */ var _components_VolunteerComponent_vue__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./components/VolunteerComponent.vue */ "./resources/js/components/VolunteerComponent.vue");
+/* harmony import */ var _components_AhadithComponent_vue__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./components/AhadithComponent.vue */ "./resources/js/components/AhadithComponent.vue");
+/* harmony import */ var _components_HadithNawawiComponent_vue__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./components/HadithNawawiComponent.vue */ "./resources/js/components/HadithNawawiComponent.vue");
+/* harmony import */ var _components_HadithQudsiComponent_vue__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./components/HadithQudsiComponent.vue */ "./resources/js/components/HadithQudsiComponent.vue");
+/* harmony import */ var _components_HadithShahComponent_vue__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./components/HadithShahComponent.vue */ "./resources/js/components/HadithShahComponent.vue");
+/* harmony import */ var _components_CorrectionComponent_vue__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./components/CorrectionComponent.vue */ "./resources/js/components/CorrectionComponent.vue");
+/* harmony import */ var _components_QuranComponent_vue__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./components/QuranComponent.vue */ "./resources/js/components/QuranComponent.vue");
 // Vue libraries
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
@@ -25906,13 +25901,6 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bun
 
  //theme
  //core css
-
-
-
-
-
-
-
 
 
 
@@ -25965,7 +25953,6 @@ app.component("Fieldset", primevue_fieldset__WEBPACK_IMPORTED_MODULE_18__["defau
 app.component("Panel", primevue_panel__WEBPACK_IMPORTED_MODULE_19__["default"]);
 app.component("Dialog", primevue_dialog__WEBPACK_IMPORTED_MODULE_20__["default"]);
 app.component("Image", primevue_image__WEBPACK_IMPORTED_MODULE_21__["default"]);
-app.component("example-component", Object(function webpackMissingModule() { var e = new Error("Cannot find module './components/ExampleComponent.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 app.component("users-component", _components_UsersComponent_vue__WEBPACK_IMPORTED_MODULE_22__["default"]);
 app.component("mailing_list-component", _components_MailingListComponent_vue__WEBPACK_IMPORTED_MODULE_23__["default"]);
 app.component("feedback-component", _components_FeedbackComponent_vue__WEBPACK_IMPORTED_MODULE_24__["default"]);
@@ -25973,23 +25960,17 @@ app.component("payment-component", _components_PaymentComponent_vue__WEBPACK_IMP
 app.component("donation-component", _components_DonationComponent_vue__WEBPACK_IMPORTED_MODULE_26__["default"]);
 app.component("profile-component", _components_ProfileComponent_vue__WEBPACK_IMPORTED_MODULE_27__["default"]);
 app.component("dashboard-component", _components_DashboardComponent_vue__WEBPACK_IMPORTED_MODULE_28__["default"]);
-app.component("allah_names-component", Object(function webpackMissingModule() { var e = new Error("Cannot find module './components/AllahNamesComponent.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-app.component("homepage-component", _components_HomepageComponent_vue__WEBPACK_IMPORTED_MODULE_30__["default"]);
-app.component("pricing-component", _components_PricingComponent_vue__WEBPACK_IMPORTED_MODULE_31__["default"]);
-app.component("contact-component", _components_ContactComponent_vue__WEBPACK_IMPORTED_MODULE_32__["default"]);
-app.component("reminder-component", Object(function webpackMissingModule() { var e = new Error("Cannot find module './components/ReminderComponent.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-app.component("charity-component", _components_CharityComponent_vue__WEBPACK_IMPORTED_MODULE_33__["default"]);
-app.component("volunteer-component", _components_VolunteerComponent_vue__WEBPACK_IMPORTED_MODULE_34__["default"]);
-app.component("ahadith-component", _components_AhadithComponent_vue__WEBPACK_IMPORTED_MODULE_35__["default"]);
-app.component("hadith_nawawi-component", _components_HadithNawawiComponent_vue__WEBPACK_IMPORTED_MODULE_36__["default"]);
-app.component("hadith_qudsi-component", _components_HadithQudsiComponent_vue__WEBPACK_IMPORTED_MODULE_37__["default"]);
-app.component("hadith_shah-component", _components_HadithShahComponent_vue__WEBPACK_IMPORTED_MODULE_38__["default"]);
-app.component("video-component", Object(function webpackMissingModule() { var e = new Error("Cannot find module './components/VideoComponent.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-app.component("knowledge-component", Object(function webpackMissingModule() { var e = new Error("Cannot find module './components/KnowledgeComponent.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-app.component("correction-component", _components_CorrectionComponent_vue__WEBPACK_IMPORTED_MODULE_39__["default"]);
-app.component("likes-component", Object(function webpackMissingModule() { var e = new Error("Cannot find module './components/LikesComponent.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-app.component("prophets-component", Object(function webpackMissingModule() { var e = new Error("Cannot find module './components/ProphetsComponent.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-app.component("quran-component", _components_QuranComponent_vue__WEBPACK_IMPORTED_MODULE_40__["default"]);
+app.component("homepage-component", _components_HomepageComponent_vue__WEBPACK_IMPORTED_MODULE_29__["default"]);
+app.component("pricing-component", _components_PricingComponent_vue__WEBPACK_IMPORTED_MODULE_30__["default"]);
+app.component("contact-component", _components_ContactComponent_vue__WEBPACK_IMPORTED_MODULE_31__["default"]);
+app.component("charity-component", _components_CharityComponent_vue__WEBPACK_IMPORTED_MODULE_32__["default"]);
+app.component("volunteer-component", _components_VolunteerComponent_vue__WEBPACK_IMPORTED_MODULE_33__["default"]);
+app.component("ahadith-component", _components_AhadithComponent_vue__WEBPACK_IMPORTED_MODULE_34__["default"]);
+app.component("hadith_nawawi-component", _components_HadithNawawiComponent_vue__WEBPACK_IMPORTED_MODULE_35__["default"]);
+app.component("hadith_qudsi-component", _components_HadithQudsiComponent_vue__WEBPACK_IMPORTED_MODULE_36__["default"]);
+app.component("hadith_shah-component", _components_HadithShahComponent_vue__WEBPACK_IMPORTED_MODULE_37__["default"]);
+app.component("correction-component", _components_CorrectionComponent_vue__WEBPACK_IMPORTED_MODULE_38__["default"]);
+app.component("quran-component", _components_QuranComponent_vue__WEBPACK_IMPORTED_MODULE_39__["default"]);
 app.mount('#app');
 
 /***/ }),

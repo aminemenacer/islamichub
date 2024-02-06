@@ -9,9 +9,9 @@
           <div class="col-md-2 pb-2"></div>
           <div class="col-md-8 pt-2" style="display:flex;text-align:center">
             <div class="card-header">
-              <h2 class="card-text text-center mt-2 mb-2">
-                <b>The Holy Quran</b>
-              </h2>
+              <h1 class="card-text text-center mt-2 mb-2">
+                The Holy Quran
+              </h1>
 
               <h5 class="card-text container" style="line-height: 1.7em; font-weight-bold">
                 The Quran also spelled as Qur'an is the holy book of Islam, considered by Muslims to be the verbatim word of God 

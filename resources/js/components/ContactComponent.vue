@@ -1,16 +1,12 @@
 <template>
 <div class="id pt-3">
-  <section class="ftco-section">
-    <h2 class="text-center"><strong>Contact Us</strong></h2>
+  <section class="ftco-section mt-3">
+    <h1 class="display-4 text-center">Contact Us</h1>
     <p class="text-center container text-left pt-3">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here,</p>
-
- 
-
-   
 
     <div class="container">
       <div class="row justify-content-center">
-        <div class="col-md-6 text-center mb-5">
+        <div class="col-md-6 text-center mb-3">
         </div>
       </div>
 
