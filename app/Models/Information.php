@@ -21,7 +21,6 @@ class Information extends Model
         'ayah_id'
     ];
 
-    // RELATIONSHIPS
 
     public function ayah()
     {

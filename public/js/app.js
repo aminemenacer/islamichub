@@ -19902,7 +19902,6 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
     return _ref = {
       selectedIndex: null,
       chapterId: null,
-      selectedHadith: null,
       data: [],
       imams: [],
       chapters: [],
@@ -19910,7 +19909,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       imam: null,
       chapter: null,
       chapter_id: 0
-    }, _defineProperty(_ref, "imam", 0), _defineProperty(_ref, "ahadith", null), _defineProperty(_ref, "hadith_en", ''), _defineProperty(_ref, "form", new Form({
+    }, _defineProperty(_ref, "imam", 0), _defineProperty(_ref, "ahadith", null), _defineProperty(_ref, "hadith_en", ""), _defineProperty(_ref, "form", new Form({
       id: "",
       name: "",
       email: "",
@@ -19926,16 +19925,12 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
     })), _ref;
   },
   methods: {
-    selectItem: function selectItem(index) {
-      // Set the selected index
-      // this.selectedIndex = index;
-    },
     getAhadiths: function getAhadiths(chapterId) {
       // axios.get(`/hadith/${chapterId}/fetch`).then(function (response) {
       //   this.tafseer = response.data;
       // }.bind(this));
       this.selectedIndex = chapterId;
-      axios__WEBPACK_IMPORTED_MODULE_0__["default"].get('/get_ahadiths', {
+      axios__WEBPACK_IMPORTED_MODULE_0__["default"].get("/get_ahadiths", {
         params: {
           chapterId: chapterId
         }
@@ -19975,7 +19970,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
                 showConfirmButton: false,
                 timer: 1500
               });
-              $('#exampleModal').modal('hide');
+              $("#exampleModal").modal("hide");
             } else if (res.data.success) {
               Swal.fire("Error!", "Unable to create correction.", "error");
             }
@@ -20001,29 +19996,6 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
         this.chapters = response.data;
       }.bind(this));
     }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/AllahNamesComponent.vue?vue&type=script&lang=js":
-/*!*************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/AllahNamesComponent.vue?vue&type=script&lang=js ***!
-  \*************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _Users_amine_Desktop_islamichub_storage_allah_names_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./storage/allah_names.json */ "./storage/allah_names.json");
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  data: function data() {
-    return {
-      allahNames: _Users_amine_Desktop_islamichub_storage_allah_names_json__WEBPACK_IMPORTED_MODULE_0__
-    };
   }
 });
 
@@ -20374,25 +20346,6 @@ __webpack_require__.r(__webpack_exports__);
       $("#view").modal("show");
       this.form.fill(donation);
     }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js":
-/*!**********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js ***!
-  \**********************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  mounted: function mounted() {
-    console.log('Component mounted.');
   }
 });
 
@@ -20810,82 +20763,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/LikesComponent.vue?vue&type=script&lang=js":
-/*!********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/LikesComponent.vue?vue&type=script&lang=js ***!
-  \********************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
-/* harmony import */ var primevue_api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! primevue/api */ "./node_modules/primevue/api/api.esm.js");
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  mounted: function mounted() {
-    this.loadLikes();
-    // ProductService.getProductsMini().then((data) => (this.payments = data.data));
-  },
-  data: function data() {
-    return {
-      filters: {
-        global: {
-          value: null,
-          matchMode: primevue_api__WEBPACK_IMPORTED_MODULE_0__.FilterMatchMode.CONTAINS
-        }
-      },
-      searchValue: "",
-      columns: [{
-        field: "surah",
-        header: "Name",
-        sortable: true
-      }, {
-        field: "ayaatiha",
-        header: "Amount",
-        sortable: true
-      }, {
-        field: "asmawuha",
-        header: "Payment Method",
-        sortable: true
-      }, {
-        field: "asmawuha",
-        header: "Currency",
-        sortable: true
-      }, {
-        field: "maqsiduha_aleamu",
-        header: "Status",
-        sortable: true
-      }],
-      likes: null,
-      form: new Form({
-        id: "",
-        surah: "",
-        ayaatiha: "",
-        maeni_tasmiatiha: "",
-        asmawuha: "",
-        maqsiduha_aleamu: "",
-        sabab_nuzuliha: "",
-        fadluha: "",
-        munasabatiha: ""
-      })
-    };
-  },
-  methods: {
-    loadLikes: function loadLikes() {
-      var _this = this;
-      axios__WEBPACK_IMPORTED_MODULE_1__["default"].get("api/fetch-likes").then(function (data) {
-        _this.likes = data.data;
-      });
-    }
-  }
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/MailingListComponent.vue?vue&type=script&lang=js":
 /*!**************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/MailingListComponent.vue?vue&type=script&lang=js ***!
@@ -21228,31 +21105,6 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/ReminderComponent.vue?vue&type=script&lang=js":
-/*!***********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/ReminderComponent.vue?vue&type=script&lang=js ***!
-  \***********************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _Users_amine_Desktop_islamichub_storage_adhkar_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./storage/adhkar.json */ "./storage/adhkar.json");
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  data: function data() {
-    return {
-      items: [],
-      reminder: _Users_amine_Desktop_islamichub_storage_adhkar_json__WEBPACK_IMPORTED_MODULE_0__,
-      view: []
-    };
-  }
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/UsersComponent.vue?vue&type=script&lang=js":
 /*!********************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/UsersComponent.vue?vue&type=script&lang=js ***!
@@ -21444,21 +21296,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/VideoComponent.vue?vue&type=script&lang=js":
-/*!********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/VideoComponent.vue?vue&type=script&lang=js ***!
-  \********************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/VolunteerComponent.vue?vue&type=script&lang=js":
 /*!************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/VolunteerComponent.vue?vue&type=script&lang=js ***!
@@ -21540,16 +21377,16 @@ var _hoisted_12 = {
 var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   value: "",
   disabled: ""
-}, "Select Type", -1 /* HOISTED */);
+}, " Select Type ", -1 /* HOISTED */);
 var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   value: "Spelling mistakes"
-}, "Spelling mistakes", -1 /* HOISTED */);
+}, " Spelling mistakes ", -1 /* HOISTED */);
 var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   value: "Translation error"
-}, "Translation error", -1 /* HOISTED */);
+}, " Translation error ", -1 /* HOISTED */);
 var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   value: "Reference mismatch"
-}, "Reference mismatch", -1 /* HOISTED */);
+}, " Reference mismatch ", -1 /* HOISTED */);
 var _hoisted_17 = [_hoisted_13, _hoisted_14, _hoisted_15, _hoisted_16];
 var _hoisted_18 = {
   "class": "row container mt-3"
@@ -21560,11 +21397,11 @@ var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   type: "button",
   "class": "btn btn-secondary",
   "data-bs-dismiss": "modal"
-}, "Close"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+}, " Close "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "submit",
   "class": "btn btn-success"
-}, "Save changes")], -1 /* HOISTED */);
-var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"row text-center\"><div class=\"col-md-12 text-center\"><div class=\"row\"><div class=\"col-md-2 pb-2\"></div><div class=\"col-md-8 pt-2\" style=\"display:flex;text-align:center;\"><div class=\"card-header\"><h2 class=\"card-text text-center mt-2 mb-2\"><b>Hadith Collection</b></h2><h5 class=\"card-text container\" style=\"line-height:1.7em;\"> Hadiths are the recorded sayings, actions, and approvals of Prophet Muhammad (peace be upon him) in Islam. </h5></div><!-- multiple input sections \n              &lt;label class=&quot;pt-2 pl-3 pr-2&quot; style=&quot;display:flex&quot;&gt;Surah:&lt;/label&gt;\n              &lt;form class=&quot;col-md-5&quot;&gt;\n                &lt;select class=&quot;form-control&quot; v-model=&#39;surah&#39; @change=&#39;getAyahs()&#39;&gt;\n                  &lt;option value=&quot;0&quot;&gt;&lt;span&gt;Select Surah&lt;/span&gt;&lt;/option&gt;\n                  &lt;option v-for=&#39;data in surahs&#39; :key=&quot;data.id&quot; :value=&#39;data.id&#39;&gt;{{ data.name_en }}, {{ data.name_ar }}&lt;/option&gt;\n                &lt;/select&gt;\n              &lt;/form&gt;\n              &lt;label class=&quot;pt-2 pl-3 pr-2&quot;&gt;Ayah:&lt;/label&gt;\n\n              &lt;form class=&quot;col-md-8 &quot;&gt;\n                &lt;select class=&#39;form-control&#39; v-model=&#39;ayah_id&#39; @change=&#39;getTafseers(data.ayah_id)&#39;&gt;\n                  &lt;option value=&quot;0&quot;&gt;Select Ayah&lt;/option&gt;\n                  &lt;option v-for=&#39;data in ayahs&#39; :key=&quot;data.id&quot; :value=&#39;data.id&#39;&gt;{{ data.ayah_id }}, {{ data.ayah_text }}&lt;/option&gt;\n                &lt;/select&gt;\n              &lt;/form&gt;\n         \n              &lt;form class=&quot;ml-3 col-md-4 &quot;&gt;\n                &lt;input class=&quot;form-control input is-primary&quot; type=&quot;text&quot; placeholder=&quot;Search keyword&quot; /&gt;\n              &lt;/form&gt;\n            --></div><div class=\"col-md-2\"></div></div></div></div>", 1);
+}, " Save changes ")], -1 /* HOISTED */);
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"row text-center\"><div class=\"col-md-12 text-center\"><div class=\"row\"><div class=\"col-md-2 pb-2\"></div><div class=\"col-md-8 pt-2\" style=\"display:flex;text-align:center;\"><div class=\"card-header\"><h2 class=\"card-text text-center mt-2 mb-2\"><b>Hadith Collection</b></h2><h5 class=\"card-text container\" style=\"line-height:1.7em;\"> Hadiths are the recorded sayings, actions, and approvals of Prophet Muhammad (peace be upon him) in Islam. </h5></div></div><div class=\"col-md-2\"></div></div></div></div>", 1);
 var _hoisted_21 = {
   "class": "row"
 };
@@ -21670,7 +21507,7 @@ var _hoisted_44 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   "data-bs-target": "#exampleModal"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "fas fa-fw fa-edit mr-2"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Report Mistake")])], -1 /* HOISTED */);
+}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Report Mistake ")])], -1 /* HOISTED */);
 var _hoisted_45 = {
   "class": "col-md-4 stcky-top"
 };
@@ -21705,16 +21542,8 @@ var _hoisted_52 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   "class": "text-left"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Books:")], -1 /* HOISTED */);
 var _hoisted_53 = ["onClick"];
-var _hoisted_54 = {
-  "class": "list-group-item",
-  id: "toggle",
-  style: {
-    "cursor": "pointer",
-    "background": "transparent"
-  }
-};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" modal "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" correction modal "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
     onSubmit: _cache[5] || (_cache[5] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
       return $options.createCorrection();
     }, ["prevent"]))
@@ -21785,16 +21614,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     placeholder: "Search for Keywords, sentences or paragraphs ",
     "aria-label": "Search"
-  }, null, 544 /* HYDRATE_EVENTS, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.searchFilters.hadith_en]])], 32 /* HYDRATE_EVENTS */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.ahadith != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_23, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.ahadith, function (data) {
+  }, null, 544 /* HYDRATE_EVENTS, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.searchFilters.hadith_en]])], 32 /* HYDRATE_EVENTS */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.ahadith != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_23, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.ahadith, function (hadith) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       "class": "container-fluid col-md-12",
       style: {
         "display": "flex",
         "border-radius": "10px"
       },
-      key: data.id,
-      value: data.id
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" intro\n            <div >\n              <div class=\"card-header\" >\n                <h2 class=\"card-text text-center mt-2 mb-2\">\n                  <b>Hadith Collection</b>\n                </h2>\n              \n                <h6 class=\"card-text container\" style=\"line-height: 1.7em; font-weight-bold\">\n                  Hadiths are the recorded sayings, actions, and approvals of\n                  Prophet Muhammad (peace be upon him) in Islam. They serve as\n                  an essential source of guidance for Muslims, providing\n                  insights into the Prophet's teachings and practices. The\n                  collection of Hadiths is a vital component of Islamic\n                  tradition, alongside the Quran.\n                </h6>\n                <h6 class=\"card-text container\" style=\"line-height: 1.7em; font-weight-bold\">\n                  The process of collecting and preserving Hadiths began\n                  shortly after the death of Prophet Muhammad. Scholars\n                  recognized the importance of preserving his words and\n                  actions to maintain the authenticity of Islamic teachings.\n                  The collection of Hadiths underwent a meticulous and\n                  rigorous process to ensure accuracy and reliability.\n                </h6>   \n              </div>\n            </div>\n          "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_28, [_hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.chapter.chapter_text), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", _hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.imam_id), 1 /* TEXT */)])]), _hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_33, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", _hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.hadith_ar), 1 /* TEXT */), _hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", _hoisted_36, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.hadith_en), 1 /* TEXT */)]), _hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", _hoisted_40, [_hoisted_41, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Book " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.chapter_id), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", _hoisted_42, [_hoisted_43, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.imam_id), 1 /* TEXT */)])]), _hoisted_44])])], 8 /* PROPS */, _hoisted_24);
+      key: hadith.id,
+      value: hadith.id
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_28, [_hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(hadith.chapter.chapter_text), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", _hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(hadith.imam_id), 1 /* TEXT */)])]), _hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_33, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", _hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(hadith.hadith_ar), 1 /* TEXT */), _hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", _hoisted_36, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(hadith.hadith_en), 1 /* TEXT */)]), _hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", _hoisted_40, [_hoisted_41, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Book " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(hadith.chapter_id), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", _hoisted_42, [_hoisted_43, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(hadith.imam_id), 1 /* TEXT */)])]), _hoisted_44])])], 8 /* PROPS */, _hoisted_24);
   }), 128 /* KEYED_FRAGMENT */))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" right side chapter list "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_45, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_46, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_47, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_48, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     "class": "form-control",
     "onUpdate:modelValue": _cache[9] || (_cache[9] = function ($event) {
@@ -21808,77 +21637,28 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       key: data.id,
       value: data.id
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.imam_name), 9 /* TEXT, PROPS */, _hoisted_50);
-  }), 128 /* KEYED_FRAGMENT */))], 544 /* HYDRATE_EVENTS, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.imam]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("\n            <form class=\"mb-2\" style=\"display: flex;\" @submit.prevent=\"searchChapter()\">\n              <input style=\"padding: 12px\" class=\"form-control mr-2  icon col-lg-12\" type=\"search\" id=\"searchChapter\" name=\"searchChapter\" @keyup=\"searchChapter\" v-model=\"searchFilters.chapter_text\" placeholder=\"Search for Chapter\" aria-label=\"Search\" />\n            </form>\n            \n\n             <div>\n                <div\n                  v-for=\"(chapter, index) in chapters\"\n                  :key=\"index\"\n                  @click=\"selectItem(index)\"\n                  :class=\"{ 'selected': selectedIndex === index }\"\n                >\n                  {{ chapter.chapter_text }}\n                </div>\n              </div>\n            "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_51, [_hoisted_52, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("\n                <div>\n                  <div\n                    v-for=\"(chapter, chapterId) in chapters\"\n                    :key=\"chapterId\"\n                    @click=\"getAhadiths(chapterId)\"\n                    :class=\"{ 'selected': selectedIndex === chapterId }\"\n                  >\n                    {{ chapter.chapter_text }}\n                  </div>\n                </div>\n              "), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.chapters, function (chapter, chapterId) {
+  }), 128 /* KEYED_FRAGMENT */))], 544 /* HYDRATE_EVENTS, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.imam]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_51, [_hoisted_52, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("\n                <div>\n                  <div\n                    v-for=\"(chapter, chapterId) in chapters\"\n                    :key=\"chapterId\"\n                    @click=\"getAhadiths(chapterId)\"\n                    :class=\"{ 'selected': selectedIndex === chapterId }\"\n                  >\n                    {{ chapter.chapter_text }}\n                  </div>\n                </div>\n              "), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.chapters, function (chapter, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("ul", {
-      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["col-md-4 list-group container-fluid root", {
-        'selected': $data.selectedIndex === chapterId
-      }]),
+      "class": "col-md-4 list-group container-fluid root",
       style: {
         "max-width": "100%",
         "cursor": "pointer"
       },
-      key: chapterId,
+      key: index,
       onClick: function onClick($event) {
-        return $options.getAhadiths(chapterId);
+        return $options.getAhadiths(chapter.id);
       }
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_54, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(chapter.chapter_text), 1 /* TEXT */)])], 10 /* CLASS, PROPS */, _hoisted_53);
-  }), 128 /* KEYED_FRAGMENT */))])])])])])])]);
-}
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/AllahNamesComponent.vue?vue&type=template&id=55b9a4bc":
-/*!*****************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/AllahNamesComponent.vue?vue&type=template&id=55b9a4bc ***!
-  \*****************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   render: () => (/* binding */ render)
-/* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
-  "class": "pt-3 pb-3 text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, "The 99 Names of Allah (SWT) with meaning")], -1 /* HOISTED */);
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-  "class": "container text-center"
-}, "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.", -1 /* HOISTED */);
-var _hoisted_3 = {
-  "class": "container text-center"
-};
-var _hoisted_4 = {
-  "class": "row"
-};
-var _hoisted_5 = ["header"];
-function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _component_Card = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Card");
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [_hoisted_1, _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.allahNames, function (item) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
-      "class": "col-md-4 pb-2",
-      key: item.id,
-      header: item.name
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Card, {
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
+      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["list-group-item", {
+        selected: $data.selectedIndex === index
+      }]),
+      id: "toggle",
       style: {
-        "box-shadow": "rgba(0, 0, 0, 0.1) 0px 4px 12px",
-        "border-radius": "20px",
-        "border": "2px solid #8fd19e",
-        "height": "100% !important"
+        "cursor": "pointer",
+        "background": "transparent"
       }
-    }, {
-      title: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.name), 1 /* TEXT */)];
-      }),
-
-      content: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.text), 1 /* TEXT */)];
-      }),
-
-      _: 2 /* DYNAMIC */
-    }, 1024 /* DYNAMIC_SLOTS */)], 8 /* PROPS */, _hoisted_5);
-  }), 128 /* KEYED_FRAGMENT */))])])]);
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(chapter.chapter_text), 1 /* TEXT */)], 2 /* CLASS */)], 8 /* PROPS */, _hoisted_53);
+  }), 128 /* KEYED_FRAGMENT */))])])])])])])]);
 }
 
 /***/ }),
@@ -22002,7 +21782,7 @@ var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "button",
   "class": "subscribe btn btn-secondary btn-block shadow-sm"
-}, " Confirm Payment ")])])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End ")])])])])], -1 /* HOISTED */);
+}, " Confirm Payment ")])])])])])])])])], -1 /* HOISTED */);
 var _hoisted_5 = [_hoisted_2, _hoisted_3, _hoisted_4];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [].concat(_hoisted_5));
@@ -22720,38 +22500,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
     _: 1 /* STABLE */
   }, 8 /* PROPS */, ["filters", "value"])]);
-}
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e":
-/*!**************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e ***!
-  \**************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   render: () => (/* binding */ render)
-/* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-
-var _hoisted_1 = {
-  "class": "container"
-};
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "row justify-content-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "col-md-8"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "card"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "card-header"
-}, "HOME Component")])])], -1 /* HOISTED */);
-var _hoisted_3 = [_hoisted_2];
-function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [].concat(_hoisted_3));
 }
 
 /***/ }),
@@ -24206,469 +23954,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/KnowledgeComponent.vue?vue&type=template&id=1a7b776c":
-/*!****************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/KnowledgeComponent.vue?vue&type=template&id=1a7b776c ***!
-  \****************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   render: () => (/* binding */ render)
-/* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
-  "class": "pt-4 text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, "Islam Teachings, Principles and Practices ")], -1 /* HOISTED */);
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "container-fluid pt-5 text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "row"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "col-md-3"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "d-flex align-items-start"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "nav flex-column nav-pills mt-2",
-  id: "v-pills-tab",
-  role: "tablist",
-  "aria-orientation": "vertical"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  "class": "nav-link btn btn-light text-left text-black active mb-1",
-  id: "v-pills-pillars-tab",
-  "data-bs-toggle": "pill",
-  "data-bs-target": "#v-pills-pillars",
-  type: "button",
-  role: "tab",
-  "aria-controls": "v-pills-pillars",
-  "aria-selected": "true"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-  "class": "fas fa-fw fa-school mr-2"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" The Five Pillars of Islam")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  "class": "nav-link btn btn-light text-left text-black mb-1",
-  id: "v-pills-quran-tab",
-  "data-bs-toggle": "pill",
-  "data-bs-target": "#v-pills-quran",
-  type: "button",
-  role: "tab",
-  "aria-controls": "v-pills-quran",
-  "aria-selected": "false"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-  "class": "fas fa-fw fa-quran mr-2"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("The Holy Quran")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  "class": "nav-link btn btn-light text-left text-black mb-1",
-  id: "v-pills-hadith-tab",
-  "data-bs-toggle": "pill",
-  "data-bs-target": "#v-pills-hadith",
-  type: "button",
-  role: "tab",
-  "aria-controls": "v-pills-hadith",
-  "aria-selected": "false"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-  "class": "fas fa-fw fa-book-open mr-2"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("The Hadith")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  "class": "nav-link btn btn-light text-left text-black mb-1",
-  id: "v-pills-sunah-tab",
-  "data-bs-toggle": "pill",
-  "data-bs-target": "#v-pills-sunah",
-  type: "button",
-  role: "tab",
-  "aria-controls": "v-pills-sunah",
-  "aria-selected": "false"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-  "class": "fas fa-fw fa-list mr-2"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("The Sunnnah")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  "class": "nav-link btn btn-light text-left text-black mb-1",
-  id: "v-pills-shariah-tab",
-  "data-bs-toggle": "pill",
-  "data-bs-target": "#v-pills-shariah",
-  type: "button",
-  role: "tab",
-  "aria-controls": "v-pills-shariah",
-  "aria-selected": "false"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-  "class": "fas fa-fw fa-book mr-2"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Shariah Law")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  "class": "nav-link btn btn-light text-left text-black mb-1",
-  id: "v-pills-aquida-tab",
-  "data-bs-toggle": "pill",
-  "data-bs-target": "#v-pills-aquida",
-  type: "button",
-  role: "tab",
-  "aria-controls": "v-pills-aquida",
-  "aria-selected": "true"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-  "class": "fas fa-fw fa-book-open mr-2"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Islamic Creed")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  "class": "nav-link btn btn-light text-left text-black mb-1",
-  id: "v-pills-tafseer-tab",
-  "data-bs-toggle": "pill",
-  "data-bs-target": "#v-pills-tafseer",
-  type: "button",
-  role: "tab",
-  "aria-controls": "v-pills-tafseer",
-  "aria-selected": "false"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-  "class": "fas fa-fw fa-language mr-2"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Tafseer")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  "class": "nav-link btn btn-light text-left text-black mb-1",
-  id: "v-pills-fiqh-tab",
-  "data-bs-toggle": "pill",
-  "data-bs-target": "#v-pills-fiqh",
-  type: "button",
-  role: "tab",
-  "aria-controls": "v-pills-fiqh",
-  "aria-selected": "false"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-  "class": "fas fa-fw fa-feather mr-2"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Fiqh")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  "class": "nav-link btn btn-light text-left text-black mb-1",
-  id: "v-pills-sufism-tab",
-  "data-bs-toggle": "pill",
-  "data-bs-target": "#v-pills-sufism",
-  type: "button",
-  role: "tab",
-  "aria-controls": "v-pills-sufism",
-  "aria-selected": "false"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-  "class": "fas fa-fw fa-link mr-2"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Islamic Mysticism")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  "class": "nav-link btn btn-light text-left text-black mb-1",
-  id: "v-pills-ethics-tab",
-  "data-bs-toggle": "pill",
-  "data-bs-target": "#v-pills-ethics",
-  type: "button",
-  role: "tab",
-  "aria-controls": "v-pills-ethics",
-  "aria-selected": "false"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-  "class": "fas fa-fw fa-folder mr-2"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Islamic Ethics and Morality")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  "class": "nav-link btn btn-light text-left text-black mb-1",
-  id: "v-pills-history-tab",
-  "data-bs-toggle": "pill",
-  "data-bs-target": "#v-pills-history",
-  type: "button",
-  role: "tab",
-  "aria-controls": "v-pills-history",
-  "aria-selected": "false"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-  "class": "fas fa-fw fa-globe mr-2"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Islamic History and Civilization")])])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "col-md-9"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "tab-content",
-  id: "v-pills-tabContent"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "tab-pane fade show active text-left pb-5 pl-2",
-  id: "v-pills-pillars",
-  role: "tabpanel",
-  "aria-labelledby": "v-pills-pillars-tab",
-  tabindex: "0"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
-  "class": "pb-3 text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "The Five pillar of Islam")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "The Five Pillars of Islam represent the core acts of worship and practices that are fundamental to a Muslim's faith and life. They serve as the framework for a Muslim's relationship with God and their community:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 1- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Shahada (Declaration of Faith):"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" It is the foundational creed of Islam, declaring belief in the oneness of God (Allah) and the acceptance of Prophet Muhammad as His messenger. The declaration is: \"There is no god but Allah, and Muhammad is the messenger of Allah.\" ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 2- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Salah (Prayer):"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Muslims perform five obligatory prayers a day facing the Kaaba in Mecca. These prayers are performed at specific times: Fajr (dawn), Dhuhr (noon), Asr (afternoon), Maghrib (evening), and Isha (night). Prayer involves recitations from the Quran and specific body movements. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 3- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Zakat (Almsgiving):"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Zakat is an obligation for Muslims who possess wealth above a certain threshold. It involves giving a portion of one's wealth (usually 2.5%) to help the needy and less fortunate in the community. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 4- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Sawm (Fasting during Ramadan):"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Muslims fast from dawn to sunset during the month of Ramadan, abstaining from food, drink, smoking, and intimate relations. Fasting is an act of self-discipline, spiritual reflection, and empathy for the less fortunate. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 5- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Hajj (Pilgrimage to Mecca):"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" It is a pilgrimage that every able-bodied and financially capable Muslim is obligated to undertake at least once in their lifetime, if circumstances allow. It occurs during the Islamic month of Dhu al-Hijjah and involves a series of rituals performed at specific locations in and around Mecca. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "These pillars serve as a guide for a Muslim's daily life, fostering a strong connection with God, promoting charity, discipline, community engagement, and spiritual growth. They also reinforce the unity of Muslims worldwide through shared acts of worship and devotion."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "row text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("iframe", {
-  width: "560",
-  height: "315",
-  src: "https://www.youtube.com/embed/VsxN98URybc?si=dQmiXRX0eFnk50je",
-  title: "YouTube video player",
-  frameborder: "0",
-  allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
-  allowfullscreen: ""
-})])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "tab-pane fade text-left pb-5",
-  id: "v-pills-quran",
-  role: "tabpanel",
-  "aria-labelledby": "v-pills-quran-tab",
-  tabindex: "0"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
-  "class": "pb-3 text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "The Holy Quran")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "The Five Pillars of Islam represent the core acts of worship and practices that are fundamental to a Muslim's faith and life. They serve as the framework for a Muslim's relationship with God and their community:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 1- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Revelation:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Muslims believe the Quran was revealed in its entirety to Prophet Muhammad by the angel Gabriel (Jibril) in Arabic. It's considered the final and complete revelation from God, confirming and preserving previous scriptures (Torah, Psalms, and Gospel). ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 2- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Content:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" The Quran consists of 114 chapters (surahs), varying in length, and is divided into verses (ayahs). It covers diverse topics, including theology, guidance for personal conduct, laws, stories of previous prophets and civilizations, moral teachings, and descriptions of the afterlife. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 3- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Guidance and Law:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" The Quran provides guidance for every aspect of life, including worship, ethics, family matters, commerce, and societal conduct. It serves as the primary source of Islamic law (Shariah), guiding Muslims in their actions and beliefs. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 4- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Language and Style: "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" The Quran's language is considered unparalleled in its eloquence and beauty in classical Arabic literature. Its rhythmic and poetic style has captivated readers for centuries, even those who may not understand Arabic. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 5- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Preservation:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Muslims believe the Quran is perfectly preserved in its original form since its revelation. It has been transmitted orally and in writing, and meticulous measures have been taken to maintain its accuracy and authenticity. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 6- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Recitation and Memorization:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Recitation of the Quran is highly encouraged in Islamic worship. Many Muslims memorize the entire Quran, and the recitation of its verses holds spiritual significance during prayers and various religious occasions. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 7- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Spiritual Significance:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" The Quran is revered as the ultimate source of spiritual guidance and enlightenment for Muslims. Its verses are believed to offer solace, wisdom, and a deeper understanding of God's will. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 8- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Universal Relevance: "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Despite being revealed in a specific historical and cultural context, the Quran's teachings are considered timeless and universally applicable to all societies and eras. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " For Muslims, the Quran is not just a book but the literal word of God, providing guidance, comfort, and a source of inspiration in their daily lives. Its teachings and principles shape their worldview, ethics, and actions, fostering a strong connection with their faith and with God. "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "row text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("iframe", {
-  width: "560",
-  height: "315",
-  src: "https://www.youtube.com/embed/JMMILs2q3Ew?si=rDzjoIEjmIRE-TV7",
-  title: "YouTube video player",
-  frameborder: "0",
-  allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
-  allowfullscreen: ""
-})])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "tab-pane fade text-left pb-5",
-  id: "v-pills-hadith",
-  role: "tabpanel",
-  "aria-labelledby": "v-pills-hadith-tab",
-  tabindex: "0"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
-  "class": "pb-3 text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "The Hadith")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Hadith refers to the recorded traditions, sayings, actions, and approvals of Prophet Muhammad (peace be upon him). These traditions serve as a significant source of guidance, supplementing the teachings of the Quran. Understanding Hadith is essential in comprehending the Sunnah and, consequently, Islamic practice. Here are key points about Hadith:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 1- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Compilation:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" After the death of Prophet Muhammad, his companions began collecting and preserving his sayings and actions. This led to the compilation of Hadith collections by scholars who meticulously verified the authenticity of each narration. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 2- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Classification:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Hadith collections are classified based on their authenticity, with rigorous methods employed to categorize them as authentic (Sahih), good (Hasan), weak (Da'if), or fabricated (Mawdu). ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 3- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Components:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Each Hadith consists of two main components: the matn (text) and the chain of narrators (isnad). The chain of narrators traces the transmission of the Hadith back to the Prophet, ensuring its authenticity. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 4- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Purpose:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Hadith serve various purposes, including providing detailed explanations of Quranic verses, elucidating religious practices (Sunnah), offering legal rulings (Fiqh), moral guidance, and illustrating the Prophet's character. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 5- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Hadith Collections:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Several renowned collections of Hadith exist, with Sahih al-Bukhari and Sahih Muslim being among the most trusted and comprehensive compilations. Other collections, like Sunan Abu Dawood, Sunan al-Tirmidhi, Sunan an-Nasa'i, and Sunan Ibn Majah, are also widely studied. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 6- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Authenticity Criteria::"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Scholars utilized stringent criteria to assess the authenticity of Hadith, evaluating the reliability, integrity, and memory of narrators, as well as the consistency of the narrations with established Islamic teachings. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 7- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Hadith Science:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" The discipline of Hadith science involves a comprehensive study of the chains of narration, the biographies of narrators, the evaluation of Hadith texts, and the understanding of historical context to ascertain the reliability of Hadith. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 8- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Role in Islamic Jurisprudence:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Hadith, along with the Quran, forms the basis of Islamic law (Shariah) and jurisprudence (Fiqh). It helps in deriving legal rulings, providing guidance on various aspects of life, worship, and ethics. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " Understanding and studying Hadith enable Muslims to gain insights into the life and teachings of the Prophet Muhammad, offering practical guidance on how to live a life in accordance with Islamic principles and ethics. "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "row text-center mb-5"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("iframe", {
-  width: "560",
-  height: "315",
-  src: "https://www.youtube.com/embed/spfD8LkA8Kc?si=VXXgki7o_OydgEyV",
-  title: "YouTube video player",
-  frameborder: "0",
-  allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
-  allowfullscreen: ""
-})])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "tab-pane fade text-left pb-5",
-  id: "v-pills-sunah",
-  role: "tabpanel",
-  "aria-labelledby": "v-pills-sunah-tab",
-  tabindex: "0"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
-  "class": "pb-3 text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "The Sunnah")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "In Islam, the Sunnah refers to the teachings, actions, sayings, and approvals of Prophet Muhammad (peace be upon him). The Sunnah complements the Quran and together they form the foundation of Islamic guidance and practice. Here's a deeper look into the relationship between Islam and the Sunnah:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 1- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Complementary Nature:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" The Sunnah is an essential part of Islam, serving as a practical demonstration of the principles laid out in the Quran. It provides practical guidance on how to implement and understand the teachings of the Quran in various aspects of life. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 2- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Source of Guidance:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Alongside the Quran, the Sunnah acts as a primary source of guidance for Muslims. It clarifies ambiguous verses in the Quran and provides specific details on how to perform acts of worship, legal rulings, ethical conduct, and social interactions. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 3- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Recorded Traditions:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" The Sunnah was meticulously recorded by scholars in collections of Hadith, which are the recorded sayings, actions, and approvals of the Prophet. These compilations underwent thorough scrutiny to ensure their authenticity and reliability. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 4- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Role in Islamic Jurisprudence:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" The Sunnah plays a crucial role in deriving Islamic law (Shariah) and forming Islamic jurisprudence (Fiqh). It helps in deducing legal rulings, determining religious practices, and resolving matters not explicitly addressed in the Quran. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 5- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Emulation and Adherence:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Muslims strive to emulate the Prophet's actions and teachings as a form of devotion and obedience to God. Following the Sunnah is considered an act of love and respect for the Prophet, and it is seen as a means to attain closeness to God. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 6- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Cultural and Contextual Adaptation:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" While the core teachings of the Sunnah remain unchanged, its application can adapt to different cultural contexts and time periods. The principles within the Sunnah are believed to be universal and applicable to various societal settings. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 7- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Authenticity and Verification:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Scholars have meticulously scrutinized Hadith to verify their authenticity, employing methods of Hadith criticism to ensure reliability in narrations and chains of transmission. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " In essence, the Sunnah complements the Quran by providing practical demonstrations and explanations of its teachings. It guides Muslims in their daily lives, fostering a deep connection with their faith and offering a comprehensive framework for ethical, spiritual, and practical conduct in accordance with Islamic principles. "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "row text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("iframe", {
-  width: "560",
-  height: "315",
-  src: "https://www.youtube.com/embed/pr-5kG1iuSI?si=QxpHYDg0j0zTmroo",
-  title: "YouTube video player",
-  frameborder: "0",
-  allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
-  allowfullscreen: ""
-})])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "tab-pane fade text-left pb-5",
-  id: "v-pills-shariah",
-  role: "tabpanel",
-  "aria-labelledby": "v-pills-shariah-tab",
-  tabindex: "0"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
-  "class": "pb-3 text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "The Shariah Law")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Sharia, often referred to as Shariah, is the Islamic legal system derived from the Quran, the teachings of Prophet Muhammad (the Sunnah), and scholarly consensus (Ijma) and reasoning (Qiyas). Sharia governs various aspects of a Muslim's life, including personal conduct, family matters, finance, ethics, and governance. Here are key points about Sharia law:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 1- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Derived from Sacred Sources:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Sharia is based on the Quran, which Muslims believe to be the word of God, and the Sunnah, which consists of the practices and teachings of Prophet Muhammad. It is also influenced by consensus among scholars and reasoning based on analogy. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 2- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Comprehensive Guidance:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Sharia provides guidelines on personal ethics, family law, criminal justice, economics, politics, and more. It offers a comprehensive framework that addresses both religious and secular matters. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 3- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Flexibility and Adaptability:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Sharia law is adaptable and flexible, allowing for interpretations and adjustments based on changing circumstances and different cultural contexts. There are various schools of thought within Islamic jurisprudence (Fiqh) that contribute to different interpretations of Sharia. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 4- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Personal and Public Life:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Sharia covers various aspects of personal life, including rituals, prayer, fasting, and charity (Zakat). It also addresses broader societal concerns such as business transactions, inheritance, marriage, and criminal justice. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 5- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Application:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" The application of Sharia law varies across different Muslim-majority countries and communities. Some countries have Sharia as the basis for their legal system, incorporating elements of Islamic law into their civil and criminal codes. Others apply Sharia selectively, particularly in matters of family law. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 6- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Misconceptions and Controversies:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Sharia has often been a topic of misunderstanding and controversy, with misconceptions about its rigidity, particularly in areas like criminal justice. There are debates and differing interpretations among scholars regarding specific laws and their applicability in modern contexts. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 7- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Balancing Justice and Mercy:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Sharia emphasizes justice, fairness, and compassion in legal matters. It aims to balance punitive measures with mercy and encourages resolving conflicts through reconciliation and mediation. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 8- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Continual Interpretation:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Islamic scholars and jurists continue to engage in the interpretation and application of Sharia law, adapting its principles to contemporary issues while upholding its fundamental values. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " Sharia law remains a significant aspect of Islamic jurisprudence, guiding Muslims in their personal and communal lives while embodying the ethical and moral principles of Islam. Its interpretation and implementation continue to evolve within diverse Muslim communities and legal systems around the world. "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "row text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("iframe", {
-  width: "560",
-  height: "315",
-  src: "https://www.youtube.com/embed/7e5ScxLUW8o?si=_GTImfKPtHTV0MTv",
-  title: "YouTube video player",
-  frameborder: "0",
-  allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
-  allowfullscreen: ""
-})])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "tab-pane fade text-left pb-5",
-  id: "v-pills-aquida",
-  role: "tabpanel",
-  "aria-labelledby": "v-pills-aquida-tab",
-  tabindex: "0"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
-  "class": "pb-3 text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Islamic Creed")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "The Islamic creed, known as \"Aqidah\" in Arabic, encompasses the core beliefs and principles that form the foundation of the Islamic faith. These beliefs outline the fundamental tenets that every Muslim adheres to. Here are the essential components of the Islamic creed:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 1- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Tawhid (Oneness of God): "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" The belief in the absolute oneness of God (Allah) is central to Islam. Muslims believe in monotheism, acknowledging that there is no deity worthy of worship except Allah. This belief emphasizes the uniqueness, sovereignty, and transcendence of God. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 2- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Prophethood:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Muslims perform five obligatory prayers a day facing the Kaaba in Mecca. These prayers are performed at specific times: Fajr (dawn), Dhuhr (noon), Asr (afternoon), Maghrib (evening), and Isha (night). Prayer involves recitations from the Quran and specific body movements. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 3- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Revelation:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Muslims accept the divine revelations sent by God to the prophets, including the Quran revealed to Prophet Muhammad and previous scriptures like the Torah, Psalms, and Gospel. The Quran is considered the final and complete revelation, providing guidance for all aspects of life. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 4- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Belief in Angels:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Muslims believe in the existence of angels as spiritual beings created by God to carry out His commands and to serve as intermediaries between God and humans. Angels play various roles in the universe, including delivering messages, recording deeds, and worshiping God. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 5- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Belief in the Day of Judgment:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Muslims believe in life after death and in the Day of Judgment when all individuals will be resurrected and held accountable for their deeds. This belief includes the concept of heaven (Paradise) and hell, where individuals will receive rewards or punishments based on their actions. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 6- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Qadr (Divine Decree):"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Muslims believe in predestination or divine decree, recognizing that God has knowledge of all things and has decreed everything that happens in the universe. This belief includes the concept of human free will within the framework of God's knowledge and decree. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "The Islamic creed serves as the framework of belief that unites Muslims globally. It forms the basis of their faith, guiding their actions, worldview, and relationship with God and the universe. Adherence to these core beliefs is essential in practicing and understanding Islam."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "row text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("iframe", {
-  width: "560",
-  height: "315",
-  src: "https://www.youtube.com/embed/QstytMbwqMI?si=SSlbjAcLvYb_PhZc",
-  title: "YouTube video player",
-  frameborder: "0",
-  allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
-  allowfullscreen: ""
-})])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "tab-pane fade text-left pb-5",
-  id: "v-pills-tafseer",
-  role: "tabpanel",
-  "aria-labelledby": "v-pills-tafseer-tab",
-  tabindex: "0"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
-  "class": "pb-3 text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Tafseer")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Tafseer refers to the scholarly interpretation and exegesis of the Quran, aiming to elucidate its meanings, context, and significance. It involves a detailed analysis of the Quranic verses, exploring linguistic, historical, and contextual aspects to derive deeper understanding. Here are key points about Tafseer:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 1- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Linguistic Analysis:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Tafseer involves analyzing the Arabic language used in the Quran. It delves into the meanings of words, grammar, syntax, and linguistic nuances to grasp the intended message of the verses. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 2- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Contextual Understanding:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Scholars of Tafseer consider the historical, cultural, and social context in which Quranic verses were revealed. Understanding the circumstances surrounding the revelations helps in interpreting the verses accurately. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 3- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Sources of Tafseer:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Scholars draw upon various sources for Tafseer, including the Quran itself (interpreting one verse in light of others), the Hadith (Prophet's explanations or actions relevant to certain verses), linguistic dictionaries, and the understanding of early Islamic scholars. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 4- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Types of Tafseer:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Tafseer can be categorized into several types, such as:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ol", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, "Tafseer Bil-Ma'thur: Interpretation based on narrations from the Prophet Muhammad and his companions."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, "Tafseer Bil-Ra'y: Interpretation using scholarly reasoning, linguistics, and analogical deduction."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, "3Tafseer Bil-Ma'qool: Interpretation based on logical reasoning and intellectual understanding."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, "Tafseer Bil-Ishaara: Interpretation through symbolic or allegorical explanations.")])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 5- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Commentaries and Works:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Throughout history, numerous scholars have produced extensive Tafseer works. Some renowned Tafseer commentaries include those by Ibn Kathir, Al-Tabari, Al-Qurtubi, Al-Jalalayn, and others, each offering unique insights and approaches to understanding the Quran. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 6- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Interpretative Principles:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Scholars use specific methodologies and principles to ensure accuracy and coherence in Tafseer. These principles include considering the Quran as a whole, understanding verses in their context, relying on authentic sources, and avoiding personal biases. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 7- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Relevance and Application:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Tafseer provides guidance for Muslims in understanding the Quran's teachings and applying its lessons to contemporary contexts. It aids in deriving moral, ethical, legal, and spiritual insights for personal and communal development. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Tafseer is an ongoing scholarly endeavor that continues to contribute to a deeper understanding of the Quran's message. It serves as a vital tool for Muslims seeking to comprehend and live by the teachings of their holy scripture."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "row text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("iframe", {
-  width: "560",
-  height: "315",
-  src: "https://www.youtube.com/embed/X_SNB1-uzCk?si=Uzb8LK4JcRFluGgD",
-  title: "YouTube video player",
-  frameborder: "0",
-  allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
-  allowfullscreen: ""
-})])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "tab-pane fade text-left pb-5",
-  id: "v-pills-fiqh",
-  role: "tabpanel",
-  "aria-labelledby": "v-pills-fiqh-tab",
-  tabindex: "0"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
-  "class": "pb-3 text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Fiqh")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Fiqh refers to Islamic jurisprudence, which encompasses the understanding, interpretation, and application of Islamic law (Shariah) based on the Quran, the Sunnah (teachings and practices of Prophet Muhammad), and scholarly consensus. Here are key points about Fiqh:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 1- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Sources of Fiqh:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Fiqh draws primarily from four sources: "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ol", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, "The Quran: Considered the primary source of Islamic law, providing foundational principles and guidance."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, "Sunnah: The practices, sayings, and approvals of Prophet Muhammad, recorded in Hadith collections, serve as a crucial source."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, "Ijma (Consensus): The consensus reached by scholars on certain legal rulings or interpretations."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, "Qiyas (Analogical Reasoning): Applying established principles to derive legal rulings for new issues by analogy.")])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 2- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Development and Schools of Thought:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Over time, scholars developed various schools of thought (Madhhabs) within Fiqh, each with its methodology and interpretations. These include the Hanafi, Maliki, Shafi'i, and Hanbali schools, among others. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 3- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Branches of Fiqh:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Fiqh covers several branches or areas, including: "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ol", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, "Ibadat: Ritual acts of worship such as prayer (Salah), fasting (Sawm), charity (Zakat), and pilgrimage (Hajj)."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, "Mu'amalat: Transactions, contracts, business dealings, family law, and social interactions."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, "Jinayat: Criminal law and legal penalties."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, "Adab: Etiquette, manners, and ethics.")])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 4- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Deriving Legal Rulings:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Fiqh scholars use methodologies like Istihsan (Juristic Preference), Istislah (Consideration of Public Interest), Maslahah Mursalah (Public Interest), and Urf (Custom) alongside the foundational sources to derive legal rulings. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 5- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Flexibility and Adaptability:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Fiqh is adaptable and considers different circumstances and contexts. Scholars use the principle of \"Urf\" (custom) and \"Istihsan\" (Juristic Preference) to address modern issues within the framework of Islamic law. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 6- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Importance in Islamic Practice:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Fiqh provides practical guidelines for Muslims, helping them navigate various aspects of life in accordance with Islamic teachings. It addresses matters of worship, family life, business, ethics, and more. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 7- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Continual Interpretation and Application:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Fiqh is not static but evolves with time and context. Scholars continue to engage in ijtihad (independent reasoning) to apply Islamic law to contemporary situations, ensuring its relevance and applicability. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Fiqh plays a significant role in guiding Muslims in their daily lives, providing a framework for ethical behavior, social interactions, worship, and legal matters while reflecting the underlying principles of Islamic teachings."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "row text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("iframe", {
-  width: "560",
-  height: "315",
-  src: "https://www.youtube.com/embed/BJUskDofYC8?si=Ujdy5W-hETwOvXAi",
-  title: "YouTube video player",
-  frameborder: "0",
-  allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
-  allowfullscreen: ""
-})])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "tab-pane fade text-left pb-5",
-  id: "v-pills-sufism",
-  role: "tabpanel",
-  "aria-labelledby": "v-pills-sufism-tab",
-  tabindex: "0"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
-  "class": "pb-3 text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Islamic mysticism")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Islamic mysticism, known as Sufism, is a spiritual dimension of Islam that focuses on seeking inner knowledge, spiritual closeness to God (Allah), and attaining a deeper understanding of divine truths. Here are key aspects of Sufism:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 1- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Tawhid and Love for God:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Sufism emphasizes the concept of Tawhid (oneness of God) and the idea of experiencing a direct, intimate connection with God through love, devotion, and spiritual practices. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 2- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Spiritual Practices:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Sufis engage in various spiritual practices to purify the heart, increase mindfulness, and draw closer to God. These practices include Dhikr (remembrance of God through repetitive chants or prayers), meditation, recitation of Quranic verses, and contemplation. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 3- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Sufi Orders (Tariqas):"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Sufism has historically been organized into different Sufi orders or brotherhoods, each following a specific spiritual path guided by a master (Sheikh). These orders often have unique practices, rituals, and teachings passed down through lineages. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 4- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Seeking Spiritual Truth:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Sufis aim to transcend the material world and seek spiritual truth and enlightenment. This journey often involves inner purification, detachment from worldly desires, and striving for selflessness and humility. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 5- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Concept of Love (Ishq) and Devotion (Ibadah):"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Sufism often emphasizes the notion of divine love (Ishq) as a powerful force in the spiritual journey, viewing acts of worship (Ibadah) as expressions of love and devotion to God. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 6- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Symbolism and Poetry:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Sufi literature includes mystical poetry and allegorical writings that express profound spiritual truths and experiences. Figures like Rumi, Hafiz, and Attar are renowned for their Sufi poetry. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 7- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Inner Mystical Stations (Maqamat) and States (Ahwal):"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Sufism describes various stages or stations a seeker experiences on the spiritual path, such as repentance, sincerity, gratitude, and finally, divine union or annihilation in God's presence (Fana fi Allah). ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 8- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Universal and Inclusive Approach:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Sufism often embraces an inclusive and universal outlook, emphasizing the unity of all creation and promoting tolerance, compassion, and understanding among different faiths and cultures. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " Sufism has been a significant aspect of Islamic spirituality, offering a path for individuals seeking a deeper understanding of the inner dimensions of faith and a personal connection with the Divine. It has influenced Islamic thought, art, literature, and culture across various regions throughout history. "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "row text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("iframe", {
-  width: "560",
-  height: "315",
-  src: "https://www.youtube.com/embed/xoGWSTfAw6k?si=MUoPtiTqve7plIY5",
-  title: "YouTube video player",
-  frameborder: "0",
-  allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
-  allowfullscreen: ""
-})])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "tab-pane fade text-left pb-5",
-  id: "v-pills-ethics",
-  role: "tabpanel",
-  "aria-labelledby": "v-pills-ethics-tab",
-  tabindex: "0"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
-  "class": "pb-3 text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Islamic Ethics and Morality")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Islamic ethics and morality are integral components of the Islamic faith, guiding Muslims in their conduct, interactions, and relationships. These ethical principles are derived from the Quran, the Sunnah (teachings and practices of Prophet Muhammad), and Islamic jurisprudence (Fiqh). Here are key aspects of Islamic ethics:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 1- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Tawhid (Oneness of God) and Worship:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Islamic ethics are rooted in the belief in the oneness of God. This belief shapes the ethical framework, emphasizing that all actions and behavior should reflect devotion to God. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 2- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Maqasid al-Shariah (Objectives of Shariah):"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Islamic ethics aim to fulfill the higher objectives of Shariah, which include preserving faith, life, intellect, progeny, and property. Ethical conduct ensures the protection and enhancement of these objectives. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 3- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Adherence to Moral Values:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Islamic ethics promote a set of moral values, including honesty, justice, compassion, kindness, humility, patience, gratitude, forgiveness, and respect for others. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 4- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Social Responsibility and Justice:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Islam stresses the importance of social responsibility and upholding justice in all dealings. It encourages fair treatment of others, supporting the needy, and advocating for social equality and equity. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 5- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Family and Community Values:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Islamic ethics emphasize the significance of family bonds, respect for parents, caring for relatives, and fostering strong community ties. Upholding these values contributes to a cohesive and supportive society. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 6- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Ethical Business and Finance:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Islamic ethics guide economic activities, promoting ethical business practices such as fairness, transparency, and prohibition of interest (riba) and unethical transactions. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 7- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Moderation and Balance:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Islam advocates for moderation (I'tidal) in all aspects of life, encouraging a balanced approach to personal conduct, avoiding extremes, and maintaining equilibrium in behavior. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 8- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Accountability and Intentions:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Islamic ethics highlight the importance of intention (niyyah) behind actions. Muslims are accountable not only for their actions but also for their intentions, emphasizing sincerity and purity of heart. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 9- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Continuous Self-Improvement:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Islam encourages continual self-reflection and self-improvement. Individuals are urged to strive for moral excellence and to constantly seek spiritual growth. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 10- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Respect for Diversity:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Islamic ethics promote respect for diverse cultures, beliefs, and opinions, advocating tolerance and understanding among people of different backgrounds. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " Islamic ethics serve as a guide for Muslims in their daily lives, influencing their behavior, decisions, and relationships. These principles aim to create a virtuous and righteous society, fostering compassion, justice, and moral excellence. "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "row text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("iframe", {
-  width: "560",
-  height: "315",
-  src: "https://www.youtube.com/embed/ivcyzPlwQXI?si=hp_tkKQuTyUoPZIC",
-  title: "YouTube video player",
-  frameborder: "0",
-  allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
-  allowfullscreen: ""
-})])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "tab-pane fade text-left pb-5",
-  id: "v-pills-history",
-  role: "tabpanel",
-  "aria-labelledby": "v-pills-history-tab",
-  tabindex: "0"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
-  "class": "pb-3 text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Islamic History and Civilization")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Islamic history and civilization span over fourteen centuries and have significantly impacted various regions, cultures, and societies around the world. Here are key points about Islamic history and civilization:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 1- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Early Islamic Period:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" The history begins in the 7th century with the life of Prophet Muhammad and the establishment of Islam in the Arabian Peninsula. The Rashidun Caliphate followed, marking the period of the four rightly guided caliphs. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 2- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Expansion and Golden Age:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" The history begins in the 7th century with the life of Prophet Muhammad and the establishment of Islam in the Arabian Peninsula. The Rashidun Caliphate followed, marking the period of the four rightly guided caliphs. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 3- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Contributions to Science and Knowledge:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Islamic scholars made significant contributions in various fields, including mathematics, astronomy, medicine, philosophy, architecture, and literature. Figures like Al-Kindi, Al-Khwarizmi, Ibn Sina (Avicenna), Ibn Rushd (Averroes), and Ibn Khaldun made profound advancements. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 4- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Art and Architecture:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Islamic civilization produced stunning architectural marvels such as the mosques of Cordoba, the Alhambra Palace in Spain, the Dome of the Rock in Jerusalem, and the Taj Mahal in India. Islamic art includes intricate calligraphy, geometric patterns, and arabesque designs. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 5- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Islamic Law and Governance:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" The development of Islamic law (Shariah) and governance systems influenced various aspects of society, providing a legal framework for personal, social, and political life. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 6- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Trade and Commerce:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Islamic civilization played a crucial role in facilitating trade and commerce through the establishment of extensive trade routes, fostering cultural exchange, and economic prosperity. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 7- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Cultural and Linguistic Impact:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Arabic, as the language of the Quran, became a major language of learning and culture across Islamic territories. Islamic civilization absorbed and transmitted knowledge from various cultures, preserving and translating ancient texts. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 8- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Diverse Societies and Dynasties:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Islamic civilization comprised diverse societies, cultures, and dynasties, including the Umayyads, Abbasids, Fatimids, Seljuks, Mughals, Ottomans, and Safavids, each contributing to the richness of Islamic heritage. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 9- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Decline and Modern Period:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" The decline of centralized Islamic empires and colonization by European powers led to significant changes in the Islamic world. The 19th and 20th centuries witnessed movements for independence and the formation of modern nation-states. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 10- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Contemporary Islamic World:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Today, the Islamic world comprises diverse nations with unique cultural, political, and social landscapes, facing challenges of development, modernization, and governance while preserving Islamic heritage and values. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " Islamic history and civilization have left a profound legacy, shaping the development of various fields of knowledge, arts, sciences, governance, and cultural exchange, leaving a lasting impact on global civilization. "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "row text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("iframe", {
-  width: "560",
-  height: "315",
-  src: "https://www.youtube.com/embed/bkVsus8Ehxs?si=Jd_Xk7DpCJKQXsIg",
-  title: "YouTube video player",
-  frameborder: "0",
-  allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
-  allowfullscreen: ""
-})])])])])])], -1 /* HOISTED */);
-var _hoisted_3 = [_hoisted_1, _hoisted_2];
-function render(_ctx, _cache) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [].concat(_hoisted_3));
-}
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/LikesComponent.vue?vue&type=template&id=1d50c168&scoped=true":
-/*!************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/LikesComponent.vue?vue&type=template&id=1d50c168&scoped=true ***!
-  \************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   render: () => (/* binding */ render)
-/* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-
-var _withScopeId = function _withScopeId(n) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.pushScopeId)("data-v-1d50c168"), n = n(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)(), n;
-};
-var _hoisted_1 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
-    "class": "pt-3 text-center"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, "Payment Management")], -1 /* HOISTED */);
-});
-var _hoisted_2 = {
-  "class": "flex justify-content-start",
-  style: {
-    "display": "flex"
-  }
-};
-var _hoisted_3 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-    style: {
-      "display": "flex"
-    },
-    "class": "ml-auto mr-3 mt-2 text-black"
-  }, " Search: ", -1 /* HOISTED */);
-});
-
-function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _component_InputText = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("InputText");
-  var _component_Column = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Column");
-  var _component_DataTable = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("DataTable");
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" view new Modal \n  <div class=\"modal fade\" id=\"editNewPayment\" tabindex=\"-1\" aria-labelledby=\"editNew\" aria-hidden=\"true\">\n    <div class=\"modal-dialog modal-lg\">\n      <div class=\"modal-content\">\n        <div class=\"modal-header\">\n          <h5 class=\"modal-title text-dark\" id=\"addNew\">\n            View message\n          </h5>\n          <button type=\"button\" class=\"close\" data-bs-dismiss=\"modal\" aria-label=\"Close\">\n            <span aria-hidden=\"true\">&times;</span>\n          </button>\n        </div>\n        <div class=\"modal-body\">\n          <form>\n            <div class=\"mr-2\" style=\"display: flex\">\n              <label class=\"mt-2 mr-2 col-sm-3\">Name:</label>\n              <p class=\"mt-2 text-dark\">\n                {{ form.name }}\n              </p>\n            </div>\n\n            <div class=\"mr-2\" style=\"display: flex\">\n              <label class=\"mt-2 mr-2 col-sm-3\">Amount:</label>\n              <p class=\"mt-2 text-dark\">\n                {{ form.amount }}\n              </p>\n            </div>\n\n            <div class=\"mr-2\" style=\"display: flex\">\n              <label class=\"mt-2 mr-2 col-sm-3\">Description:</label>\n              <p class=\"mt-2 text-dark\">\n                {{ form.description }}\n              </p>\n            </div>\n\n            <div class=\"mr-2\" style=\"display: flex\">\n              <label class=\"mt-2 mr-2 col-sm-3\">Payment method:</label>\n              <p class=\"mt-2 text-dark\">\n                {{ form.payment_method }}\n              </p>\n            </div>\n\n            <div class=\"mr-2\" style=\"display: flex\">\n              <label class=\"mt-2 mr-2 col-sm-3\">Currency:</label>\n              <p class=\"mt-2 text-dark\">\n                {{ form.currency }}\n              </p>\n            </div>\n\n            <div class=\"mr-2\" style=\"display: flex\">\n              <label class=\"mt-2 mr-2 col-sm-3\">Status:</label>\n              <p class=\"mt-2 text-dark\">\n                {{ form.status }}\n              </p>\n            </div>\n\n            <div class=\"mr-2\" style=\"display: flex\">\n              <label class=\"mt-2 mr-2 col-sm-3\">Date:</label>\n              <p class=\"mt-2 text-dark\">\n                {{ form.date }}\n              </p>\n            </div>\n\n            <div class=\"modal-footer\">\n              <button type=\"button\" class=\"btn btn-danger\" data-bs-dismiss=\"modal\">\n                Close\n              </button>\n            </div>\n          </form>\n        </div>\n      </div>\n    </div>\n  </div>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" payment datatable "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_DataTable, {
-    "class": "pt-5",
-    filters: $data.filters,
-    "onUpdate:filters": _cache[1] || (_cache[1] = function ($event) {
-      return $data.filters = $event;
-    }),
-    showGridlines: "",
-    stripedRows: "",
-    sortable: "",
-    filterDisplay: "row",
-    value: $data.likes,
-    paginator: "",
-    rows: 7,
-    rowsPerPageOptions: [5, 10, 20, 50],
-    removableSort: "",
-    width: "100%",
-    tableStyle: "max-width:100%"
-  }, {
-    header: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_InputText, {
-        modelValue: $data.filters['global'].value,
-        "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
-          return $data.filters['global'].value = $event;
-        }),
-        style: {
-          "float": "left"
-        },
-        placeholder: "Keyword Search"
-      }, null, 8 /* PROPS */, ["modelValue"])])])];
-    }),
-    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.columns, function (col) {
-        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Column, {
-          key: col.field,
-          field: col.field,
-          header: col.header,
-          sortable: "",
-          "class": "text-left",
-          style: {
-            "align-items": "center"
-          },
-          width: ""
-        }, null, 8 /* PROPS */, ["field", "header"]);
-      }), 128 /* KEYED_FRAGMENT */)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Column, {
-        exportable: true,
-        style: {
-          "min-width": "8rem"
-        }
-      }, {
-        body: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function (slotProps) {
-          return [];
-        }),
-        _: 1 /* STABLE */
-      })];
-    }),
-
-    _: 1 /* STABLE */
-  }, 8 /* PROPS */, ["filters", "value"])]);
-}
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/MailingListComponent.vue?vue&type=template&id=cd1e3842":
 /*!******************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/MailingListComponent.vue?vue&type=template&id=cd1e3842 ***!
@@ -25630,226 +24915,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/ProphetsComponent.vue?vue&type=template&id=4026f3c3":
-/*!***************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/ProphetsComponent.vue?vue&type=template&id=4026f3c3 ***!
-  \***************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   render: () => (/* binding */ render)
-/* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
-  "class": "pt-4 text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, "Islam Teachings, Principles and Practices ")], -1 /* HOISTED */);
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "container-fluid pt-5 text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "row"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "col-md-3"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "d-flex align-items-start"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "nav flex-column nav-pills mt-2",
-  id: "v-pills-tab",
-  role: "tablist",
-  "aria-orientation": "vertical"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  "class": "nav-link btn btn-light text-left text-black active mb-1",
-  id: "v-pills-quran-tab",
-  "data-bs-toggle": "pill",
-  "data-bs-target": "#v-pills-quran",
-  type: "button",
-  role: "tab",
-  "aria-controls": "v-pills-quran",
-  "aria-selected": "true"
-}, "Prophet Adam (Adam)"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  "class": "nav-link btn btn-light text-left text-black mb-1",
-  id: "v-pills-hadith-tab",
-  "data-bs-toggle": "pill",
-  "data-bs-target": "#v-pills-hadith",
-  type: "button",
-  role: "tab",
-  "aria-controls": "v-pills-hadith",
-  "aria-selected": "false"
-}, "Prophet Nuh (Noah)"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  "class": "nav-link btn btn-light text-left text-black mb-1",
-  id: "v-pills-sunah-tab",
-  "data-bs-toggle": "pill",
-  "data-bs-target": "#v-pills-sunah",
-  type: "button",
-  role: "tab",
-  "aria-controls": "v-pills-sunah",
-  "aria-selected": "false"
-}, "Prophet Ibrahim (Abraham)"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  "class": "nav-link btn btn-light text-left text-black mb-1",
-  id: "v-pills-shariah-tab",
-  "data-bs-toggle": "pill",
-  "data-bs-target": "#v-pills-shariah",
-  type: "button",
-  role: "tab",
-  "aria-controls": "v-pills-shariah",
-  "aria-selected": "false"
-}, "Prophet Musa (Moses)"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  "class": "nav-link btn btn-light text-left text-black mb-1",
-  id: "v-pills-aquida-tab",
-  "data-bs-toggle": "pill",
-  "data-bs-target": "#v-pills-aquida",
-  type: "button",
-  role: "tab",
-  "aria-controls": "v-pills-aquida",
-  "aria-selected": "true"
-}, "Prophet Jesus (Isa)"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  "class": "nav-link btn btn-light text-left text-black mb-1",
-  id: "v-pills-pillars-tab",
-  "data-bs-toggle": "pill",
-  "data-bs-target": "#v-pills-pillars",
-  type: "button",
-  role: "tab",
-  "aria-controls": "v-pills-pillars",
-  "aria-selected": "false"
-}, "Prophet Muhammad")])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "col-md-9"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "tab-content",
-  id: "v-pills-tabContent"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "tab-pane fade text-left pb-5 show active",
-  id: "v-pills-quran",
-  role: "tabpanel",
-  "aria-labelledby": "v-pills-quran-tab",
-  tabindex: "0"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
-  "class": "pb-3 text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Prophet Adam (Adam)")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Prophet Adam holds a significant place in Islamic belief as the first human being and the first prophet according to Islamic tradition. His story is detailed in the Quran and Islamic teachings, reflecting on the creation of humanity, the beginning of life on Earth, and the essence of human nature."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", {
-  "class": "pb-3 text-left"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Creation and Status:")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 1- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Creation:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" According to Islamic teachings, Allah created Adam from clay and breathed life into him, making him the first human being. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 2- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Creation of Eve:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Eve (Hawwa or Eve) was created from Adam's rib and became his partner. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", {
-  "class": "pb-3 text-left"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Story of Adam in Islam:")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 1- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Life in Paradise:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Initially, Adam and Eve lived in Paradise (Jannah), enjoying its blessings but were asked not to approach a specific tree. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 2- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Disobedience and Fall: "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" They were tempted by Satan and ate from the forbidden tree, leading to their expulsion from Paradise to Earth. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 3- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Repentance and Forgiveness: "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Adam and Eve repented for their mistake, sought forgiveness, and were forgiven by Allah, who taught them repentance and mercy. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", {
-  "class": "pb-3 text-left"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Adam's Role as a Prophet:")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 1- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Guidance to Offspring:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Adam and Eve became the progenitors of humanity and conveyed guidance to their descendants. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 2- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Teachings:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" As the first prophet, Adam provided guidance to his offspring about faith, worship, and living according to God's commands. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", {
-  "class": "pb-3 text-left"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Lessons from Adam's Story:")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 1- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Human Fallibility: "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Adam's story emphasizes human fallibility and the ability to repent and seek forgiveness. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 2- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Importance of Obedience: "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" It highlights the significance of obeying God's commands and the consequences of disobedience. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " Adam's story is significant in Islamic teachings as it portrays the essence of human nature, the importance of repentance, and the concept of seeking forgiveness from Allah. His story serves as a reminder of human accountability and the mercy of God. "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "row text-center mb-5"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("iframe", {
-  width: "560",
-  height: "315",
-  src: "https://www.youtube.com/embed/mgicz3YJSyg?si=9A6f1GCnS-TR4xLS",
-  title: "YouTube video player",
-  frameborder: "0",
-  allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
-  allowfullscreen: ""
-})])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "tab-pane fade text-left pb-5",
-  id: "v-pills-hadith",
-  role: "tabpanel",
-  "aria-labelledby": "v-pills-hadith-tab",
-  tabindex: "0"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
-  "class": "pb-3 text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Prophet Nuh (Noah)")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Prophet Nuh (Noah in English) holds a significant place in Islamic tradition and is considered one of the most important prophets. His story is detailed in the Quran and Hadith, emphasizing his role in delivering God's message to his people and guiding them to righteousness."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", {
-  "class": "pb-3 text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Key Aspects of Prophet Nuh's Story:")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 1- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Mission as a Prophet:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Nuh was sent by Allah to guide his people, who had deviated from the path of monotheism and indulged in idolatry and immoral practices. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 2- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Building the Ark:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Upon receiving Allah's command, Nuh built a massive ark to save believers and pairs of animals from a catastrophic flood sent as a punishment. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 3- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "The Flood:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" According to Islamic tradition, the flood was a means of cleansing the earth from wrongdoing and disbelief. Nuh and those who believed in him were saved by boarding the ark. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 4- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Call to Monotheism:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Nuh preached the message of monotheism (Tawhid), urging his people to abandon their polytheistic beliefs and return to worshipping only Allah. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 5- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Patience and Perseverance:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Despite facing rejection, ridicule, and opposition from his community for centuries, Nuh remained steadfast in his mission and continued to call his people to the truth. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 6- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Salvation:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Only a few people believed in Nuh's message, and they were the ones who were saved from the flood, symbolizing the importance of faith and obedience. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " Prophet Nuh's story serves as a reminder of the challenges faced by prophets in conveying their messages and the significance of patience, perseverance, and unwavering faith in the face of adversity. It also emphasizes the consequences of disbelief and the importance of following the guidance of God's chosen messengers. "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "row text-center mb-5"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("iframe", {
-  width: "560",
-  height: "315",
-  src: "https://www.youtube.com/embed/d2D6WuKlymM?si=491iDfKf_zMvgCRa",
-  title: "YouTube video player",
-  frameborder: "0",
-  allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
-  allowfullscreen: ""
-})])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "tab-pane fade text-left pb-5",
-  id: "v-pills-sunah",
-  role: "tabpanel",
-  "aria-labelledby": "v-pills-sunah-tab",
-  tabindex: "0"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
-  "class": "pb-3 text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Prophet Ibrahim (Abraham)")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Prophet Ibrahim (Abraham in English) holds a revered place in Islam, Christianity, and Judaism, regarded as a key figure in monotheistic faiths. In Islamic tradition, Ibrahim is considered a highly esteemed prophet, known for his unwavering faith, dedication to God, and pivotal role in spreading monotheism."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", {
-  "class": "pb-3 text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Key Aspects of Prophet Ibrahim's Story:")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 1- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Monotheism and Iconoclasm:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Ibrahim grew up in a society entrenched in idol worship. However, even as a young man, he rejected the prevalent polytheism and started preaching the worship of the one true God (Allah). ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 2- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Challenges from his Community:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Ibrahim faced opposition, rejection, and persecution from his own people, who remained steadfast in their idolatry despite his efforts to guide them to monotheism. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 3- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "The Fiery Trial:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" One of the notable incidents in Ibrahim's life is the story of him being thrown into a massive fire by his people, known as the \"Fiery Trial.\" According to Islamic tradition, Allah miraculously saved Ibrahim from the flames, turning the fire into a cool, safe place for him. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 4- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Construction of the Kaaba:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Ibrahim, along with his son Ismail (Ishmael), is believed to have been instrumental in the rebuilding and construction of the Kaaba in Mecca, a sacred structure revered by Muslims worldwide. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 5- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Father of Prophets:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Ibrahim is recognized as the patriarch of a line of prophets, including his sons Ismail and Ishaq (Isaac), who were also chosen to convey God's message. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 6- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Willingness to Sacrifice:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" One of the most significant trials Ibrahim faced was the command from Allah to sacrifice his son Ismail. His willingness to obey God's command, even though it was a test and not an actual act, demonstrated his utmost devotion and submission to Allah. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " Prophet Ibrahim's unwavering faith, commitment to monotheism, and his role in establishing the foundations of Islamic belief serve as an inspiration for Muslims, emphasizing the importance of submitting to the will of God and trusting in His guidance. His story is prominently featured in the Quran and continues to hold immense significance in Islamic teachings. "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "row text-center mb-5"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("iframe", {
-  width: "560",
-  height: "315",
-  src: "https://www.youtube.com/embed/lZu173pTldI?si=Jr3RthfRNeirHgIT",
-  title: "YouTube video player",
-  frameborder: "0",
-  allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
-  allowfullscreen: ""
-})])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "tab-pane fade text-left pb-5",
-  id: "v-pills-shariah",
-  role: "tabpanel",
-  "aria-labelledby": "v-pills-shariah-tab",
-  tabindex: "0"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
-  "class": "pb-3 text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Prophet Musa (Moses)")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Prophet Musa (Moses in English) is a revered figure in Islam, known for his significant role in delivering God's message, leading the Israelites, and receiving the Torah (Tawrat). His story is detailed in the Quran and Hadith, portraying him as a prominent prophet and messenger of God"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", {
-  "class": "pb-3 text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Key Aspects of Prophet Musa's Story:")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 1- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Birth and Early Life:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Musa was born in Egypt during a time when the Pharaoh oppressed the Israelites. His mother, fearing for his safety, placed him in a basket and set it afloat on the Nile River. He was discovered and raised by the Pharaoh's family. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 2- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Call to Prophethood:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Musa received prophethood and a divine mission from Allah. He was chosen as a messenger to guide the Israelites and confront the oppressive Pharaoh. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 3- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Confrontation with Pharaoh:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Musa demanded freedom for the enslaved Israelites and asked Pharaoh to acknowledge the oneness of God. He performed miracles, including the parting of the Red Sea, to demonstrate divine support. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 4- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Receiving the Torah:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Musa received the Torah, a sacred scripture, from Allah on Mount Sinai. It contains laws and guidance for righteous living. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 5- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Forty Years in the Wilderness:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" After leaving Egypt, Musa and the Israelites wandered in the wilderness for forty years, facing trials and tribulations while adhering to divine guidance. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 6- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Leadership and Guidance:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Musa provided leadership, guidance, and moral teachings to his people, emphasizing monotheism, justice, and ethical conduct. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " Prophet Musa's story in Islam emphasizes themes of faith, resilience, leadership, and the struggle against oppression. His steadfastness in delivering God's message and his pivotal role in the liberation of the Israelites from oppression serve as lessons for believers about standing up for truth and justice. Musa's teachings continue to hold significance in Islamic ethics and principles. "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "row text-center mb-5"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("iframe", {
-  width: "560",
-  height: "315",
-  src: "https://www.youtube.com/embed/ofbxAhMOykQ?si=bMTBVdRjU35lo3Ad",
-  title: "YouTube video player",
-  frameborder: "0",
-  allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
-  allowfullscreen: ""
-})])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "tab-pane fade text-left pb-5",
-  id: "v-pills-aquida",
-  role: "tabpanel",
-  "aria-labelledby": "v-pills-aquida-tab",
-  tabindex: "0"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
-  "class": "pb-3 text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Prophet Jesus (Isa)")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "In Islam, Prophet Jesus (Isa in Arabic) holds a special and revered position as one of the prominent prophets. His story is mentioned in the Quran and Hadith, emphasizing his miraculous birth, mission, and significance in Islamic theology."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", {
-  "class": "pb-3 text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Key Aspects of Prophet Jesus's Story:")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 1- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Miraculous Birth:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Jesus was born miraculously to Mary (Maryam), a chaste and pious woman, without a father, as a sign from Allah's power and mercy. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 2- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Prophethood:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Jesus was chosen by Allah as a prophet from a young age, and he began preaching and calling people to the worship of one God (Tawhid). ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 3- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Miracles:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" The Quran mentions several miracles attributed to Jesus, including healing the sick, reviving the dead, and creating birds from clay, all by God's permission. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 4- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Message of Monotheism:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Jesus preached the same core message of monotheism and righteousness as previous prophets, emphasizing devotion to God and ethical conduct. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 5- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Non-divine Status:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" In Islamic belief, Jesus is honored as a prophet, not divine or the son of God. Islam strongly upholds the belief in the oneness of God (Tawhid) and rejects the idea of associating partners with Allah. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 6- "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Ascension and Return:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Islamic tradition holds that Jesus was not crucified but was raised to the heavens by Allah. He will return in the future as a just ruler and a sign of the approaching end times, establishing justice and peace. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " Prophet Jesus' story in Islam emphasizes his role as a messenger of God, the miraculous nature of his birth, his mission to call people to righteousness, and his eventual return in the future. He is highly respected by Muslims as a prophet and a model of piety, humility, and devotion to God. His story serves as a testament to the power of God's miracles and the importance of following the guidance of the prophets. "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "row text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("iframe", {
-  width: "560",
-  height: "315",
-  src: "https://www.youtube.com/embed/J-fOJKnU3o8?si=uARAkvpIKhwlTrUz",
-  title: "YouTube video player",
-  frameborder: "0",
-  allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
-  allowfullscreen: ""
-})])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "tab-pane fade show text-left pb-5 pl-2",
-  id: "v-pills-pillars",
-  role: "tabpanel",
-  "aria-labelledby": "v-pills-pillars-tab",
-  tabindex: "0"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
-  "class": "pb-3 text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Prophet Muhammad")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Prophet Muhammad, born in Mecca in 570 CE, belonged to the Quraysh tribe, part of the Arabian Peninsula. His early life was marked by the loss of his parents, and he was raised by his grandfather and later by his uncle."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " At the age of 40, Muhammad received his first revelation from the Angel Gabriel while meditating in a cave on Mount Hira. These revelations continued over the next 23 years, forming the Quran, the holy book of Islam, which Muslims believe to be the word of God as conveyed to humanity through Muhammad. "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " Initially met with resistance in Mecca, Muhammad's teachings, which emphasized monotheism and social justice, gained traction among a small group of followers known as the early Muslims. The opposition from the ruling elite in Mecca led to persecution of Muhammad and his followers, resulting in their migration to Medina in 622 CE, an event known as the Hijra. This migration marks the beginning of the Islamic calendar. "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " In Medina, Muhammad established a community based on principles of justice, equality, and compassion. He acted as both a religious and political leader, resolving conflicts, establishing treaties, and laying down principles for governance and social conduct. "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " The revelations continued throughout his life, addressing various aspects of life and guiding the Muslim community. Muhammad's teachings covered matters of faith, worship, ethics, social interactions, and governance. His actions and sayings, known as the Sunnah, were recorded by his companions and are an essential source of guidance for Muslims. "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " Under Muhammad's leadership, Islam gained followers, and the Muslim community expanded. After a series of battles and treaties, Mecca eventually came under Islamic rule in 630 CE. Muhammad forgave his former adversaries, demonstrating forgiveness and reconciliation. "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " Known for his exemplary character, Muhammad exhibited kindness, compassion, humility, and a commitment to justice. He emphasized the importance of knowledge, education, and care for the marginalized. His teachings and actions serve as a model for Muslims worldwide, guiding their personal and communal lives. "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " Muhammad passed away in 632 CE in Medina, leaving behind a legacy that continues to influence millions of people globally, shaping their beliefs, practices, and values. He is deeply revered and loved by Muslims as the final prophet and as an embodiment of piety, wisdom, and compassion. "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "row text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("iframe", {
-  width: "560",
-  height: "315",
-  src: "https://www.youtube.com/embed/WEEORXFj-lo?si=ezHJTznAAL9P_KNH",
-  title: "YouTube video player",
-  frameborder: "0",
-  allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
-  allowfullscreen: ""
-})])])])])])], -1 /* HOISTED */);
-var _hoisted_3 = [_hoisted_1, _hoisted_2];
-function render(_ctx, _cache) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [].concat(_hoisted_3));
-}
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/QuranComponent.vue?vue&type=template&id=2b3c2c26&scoped=true":
 /*!************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/QuranComponent.vue?vue&type=template&id=2b3c2c26&scoped=true ***!
@@ -26201,87 +25266,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_55, [_hoisted_56, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(ayah.ayah_id), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(ayah.ayah_text), 1 /* TEXT */)])], 10 /* CLASS, PROPS */, _hoisted_54);
   }), 128 /* KEYED_FRAGMENT */))])])]), _hoisted_57]), _hoisted_58])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]);
-}
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/ReminderComponent.vue?vue&type=template&id=777f5c50":
-/*!***************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/ReminderComponent.vue?vue&type=template&id=777f5c50 ***!
-  \***************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   render: () => (/* binding */ render)
-/* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-
-var _hoisted_1 = {
-  "class": "id"
-};
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
-  "class": "pt-3 text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, "Reminders")], -1 /* HOISTED */);
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-  "class": "container-fluid text-center"
-}, "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.", -1 /* HOISTED */);
-var _hoisted_4 = {
-  "class": "row py-3"
-};
-var _hoisted_5 = {
-  "class": "col-lg-12 mx-auto"
-};
-var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", {
-  "class": "table-success"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", {
-  "class": "text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
-  "class": "col-md-1"
-}, "Repitition"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
-  "class": "col-md-8"
-}, "Reminder"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
-  "class": "col-md-2"
-}, "Category"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
-  "class": "col-md-1"
-}, "ID")])], -1 /* HOISTED */);
-var _hoisted_7 = {
-  style: {
-    "background": "white"
-  }
-};
-var _hoisted_8 = {
-  "class": "text-center"
-};
-var _hoisted_9 = {
-  "class": "col-md-1"
-};
-var _hoisted_10 = {
-  "class": "col-md-8"
-};
-var _hoisted_11 = {
-  "class": "col-md-2"
-};
-var _hoisted_12 = {
-  "class": "col-md-1"
-};
-function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.reminder, function (item) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
-      "class": "table-responsive container",
-      key: item.id
-    }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(item.view, function (reminders) {
-      return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("table", {
-        id: "example",
-        style: {
-          "width": "100%"
-        },
-        "class": "table table-striped table-responsive table-bordered custom-class",
-        key: reminders.id
-      }, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(reminders.count), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(reminders.text), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.category), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.id), 1 /* TEXT */)])])]);
-    }), 128 /* KEYED_FRAGMENT */))]);
-  }), 128 /* KEYED_FRAGMENT */))])])]);
 }
 
 /***/ }),
@@ -26669,7 +25653,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     name: "password",
     placeholder: "Enter password",
     "class": "form-control"
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.password]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("\n                <div class=\"form-group mr-2\" style=\"display: flex\">\n                  <label class=\"mt-2 mr-2 col-sm-3\">Status:</label>\n                  <input v-model=\"form.status\" type=\"text\" name=\"status\" placeholder=\"Enter status\" class=\"form-control\" />\n                </div>\n              "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [_hoisted_40, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.password]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [_hoisted_40, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     "class": "form-control",
     name: "user_type",
     "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
@@ -26831,165 +25815,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/VideoComponent.vue?vue&type=template&id=26d38626":
-/*!************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/VideoComponent.vue?vue&type=template&id=26d38626 ***!
-  \************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   render: () => (/* binding */ render)
-/* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
-  "class": "pt-3 text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, "Short Videos")], -1 /* HOISTED */);
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-  "class": "container text-center pb-3"
-}, "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.", -1 /* HOISTED */);
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "container text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "row"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "col"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "card",
-  style: {
-    "background": "#ECECEC"
-  }
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("iframe", {
-  width: "100%",
-  height: "250px",
-  src: "https://youtube.com/embed/TNryC1PP5tc?si=SgdhUqT6XNJ_cuLy",
-  title: "YouTube video player",
-  frameborder: "0",
-  allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
-  allowfullscreen: ""
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "card-body"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
-  "class": "card-title text-left mb-2"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "لصاحب الهم")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-  "class": "card-text"
-}, "Some quick example text to build on the card title and make up the bulk of the card's content.")])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "col"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "card",
-  style: {
-    "background": "#ECECEC"
-  }
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("iframe", {
-  width: "100%",
-  height: "250px",
-  src: "https://www.youtube.com/embed/4OvZCXgm7A0?si=TuWX40R8OhAUCjw7",
-  title: "YouTube video player",
-  frameborder: "0",
-  allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
-  allowfullscreen: ""
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "card-body"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
-  "class": "card-title text-left mb-2"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "الرحماء يرحمهم الرحمن 🌹")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-  "class": "card-text"
-}, "Some quick example text to build on the card title and make up the bulk of the card's content.")])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "col"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "card",
-  style: {
-    "background": "#ECECEC"
-  }
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("iframe", {
-  width: "100%",
-  height: "250px",
-  src: "https://www.youtube.com/embed/ijE48ghc8NU?si=JV0EDy-57IF3VUSh",
-  title: "YouTube video player",
-  frameborder: "0",
-  allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
-  allowfullscreen: ""
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "card-body"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
-  "class": "card-title text-left mb-2"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "الابتلاء")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-  "class": "card-text"
-}, "Some quick example text to build on the card title and make up the bulk of the card's content.")])])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "row mb-5"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "col"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "card",
-  style: {
-    "background": "#ECECEC"
-  }
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("iframe", {
-  width: "100%",
-  height: "250px",
-  src: "https://www.youtube.com/embed/3onMEn2jq1k",
-  title: "YouTube video player",
-  frameborder: "0",
-  allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
-  allowfullscreen: ""
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "card-body"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
-  "class": "card-title text-left mb-2"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "أيها المتكبر إسمع")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-  "class": "card-text"
-}, "Some quick example text to build on the card title and make up the bulk of the card's content.")])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "col"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "card",
-  style: {
-    "background": "#ECECEC"
-  }
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("iframe", {
-  width: "100%",
-  height: "250px",
-  src: "https://youtube.com/embed/QHIqSk8gK2I",
-  title: "YouTube video player",
-  frameborder: "0",
-  allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
-  allowfullscreen: ""
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "card-body"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
-  "class": "card-title text-left mb-2"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "احد علامات الساعة في زماننا")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-  "class": "card-text"
-}, "Some quick example text to build on the card title and make up the bulk of the card's content.")])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "col"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "card",
-  style: {
-    "background": "#ECECEC"
-  }
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("iframe", {
-  width: "100%",
-  height: "250px",
-  src: "https://www.youtube.com/embed/lbrb7Vwlzxo?si=6K1QTn8MR6hBbubh",
-  title: "YouTube video player",
-  frameborder: "0",
-  allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
-  allowfullscreen: ""
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "card-body"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
-  "class": "card-title text-left mb-2"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "لا تحقرن من المعروف شيئا !!")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-  "class": "card-text"
-}, "Some quick example text to build on the card title and make up the bulk of the card's content.")])])])])], -1 /* HOISTED */);
-var _hoisted_4 = [_hoisted_1, _hoisted_2, _hoisted_3];
-function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [].concat(_hoisted_4));
-}
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/VolunteerComponent.vue?vue&type=template&id=5e1604be":
 /*!****************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/VolunteerComponent.vue?vue&type=template&id=5e1604be ***!
@@ -27052,24 +25877,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_DonationComponent_vue__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./components/DonationComponent.vue */ "./resources/js/components/DonationComponent.vue");
 /* harmony import */ var _components_ProfileComponent_vue__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./components/ProfileComponent.vue */ "./resources/js/components/ProfileComponent.vue");
 /* harmony import */ var _components_DashboardComponent_vue__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./components/DashboardComponent.vue */ "./resources/js/components/DashboardComponent.vue");
-/* harmony import */ var _components_ExampleComponent_vue__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue");
-/* harmony import */ var _components_AllahNamesComponent_vue__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./components/AllahNamesComponent.vue */ "./resources/js/components/AllahNamesComponent.vue");
-/* harmony import */ var _components_HomepageComponent_vue__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./components/HomepageComponent.vue */ "./resources/js/components/HomepageComponent.vue");
-/* harmony import */ var _components_PricingComponent_vue__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./components/PricingComponent.vue */ "./resources/js/components/PricingComponent.vue");
-/* harmony import */ var _components_ContactComponent_vue__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./components/ContactComponent.vue */ "./resources/js/components/ContactComponent.vue");
-/* harmony import */ var _components_ReminderComponent_vue__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./components/ReminderComponent.vue */ "./resources/js/components/ReminderComponent.vue");
-/* harmony import */ var _components_CharityComponent_vue__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./components/CharityComponent.vue */ "./resources/js/components/CharityComponent.vue");
-/* harmony import */ var _components_VolunteerComponent_vue__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./components/VolunteerComponent.vue */ "./resources/js/components/VolunteerComponent.vue");
-/* harmony import */ var _components_AhadithComponent_vue__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./components/AhadithComponent.vue */ "./resources/js/components/AhadithComponent.vue");
-/* harmony import */ var _components_HadithNawawiComponent_vue__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./components/HadithNawawiComponent.vue */ "./resources/js/components/HadithNawawiComponent.vue");
-/* harmony import */ var _components_HadithQudsiComponent_vue__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./components/HadithQudsiComponent.vue */ "./resources/js/components/HadithQudsiComponent.vue");
-/* harmony import */ var _components_HadithShahComponent_vue__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./components/HadithShahComponent.vue */ "./resources/js/components/HadithShahComponent.vue");
-/* harmony import */ var _components_VideoComponent_vue__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./components/VideoComponent.vue */ "./resources/js/components/VideoComponent.vue");
-/* harmony import */ var _components_KnowledgeComponent_vue__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ./components/KnowledgeComponent.vue */ "./resources/js/components/KnowledgeComponent.vue");
-/* harmony import */ var _components_CorrectionComponent_vue__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ./components/CorrectionComponent.vue */ "./resources/js/components/CorrectionComponent.vue");
-/* harmony import */ var _components_LikesComponent_vue__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ./components/LikesComponent.vue */ "./resources/js/components/LikesComponent.vue");
-/* harmony import */ var _components_ProphetsComponent_vue__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! ./components/ProphetsComponent.vue */ "./resources/js/components/ProphetsComponent.vue");
-/* harmony import */ var _components_QuranComponent_vue__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! ./components/QuranComponent.vue */ "./resources/js/components/QuranComponent.vue");
+Object(function webpackMissingModule() { var e = new Error("Cannot find module './components/ExampleComponent.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+Object(function webpackMissingModule() { var e = new Error("Cannot find module './components/AllahNamesComponent.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony import */ var _components_HomepageComponent_vue__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./components/HomepageComponent.vue */ "./resources/js/components/HomepageComponent.vue");
+/* harmony import */ var _components_PricingComponent_vue__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./components/PricingComponent.vue */ "./resources/js/components/PricingComponent.vue");
+/* harmony import */ var _components_ContactComponent_vue__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./components/ContactComponent.vue */ "./resources/js/components/ContactComponent.vue");
+Object(function webpackMissingModule() { var e = new Error("Cannot find module './components/ReminderComponent.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony import */ var _components_CharityComponent_vue__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./components/CharityComponent.vue */ "./resources/js/components/CharityComponent.vue");
+/* harmony import */ var _components_VolunteerComponent_vue__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./components/VolunteerComponent.vue */ "./resources/js/components/VolunteerComponent.vue");
+/* harmony import */ var _components_AhadithComponent_vue__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./components/AhadithComponent.vue */ "./resources/js/components/AhadithComponent.vue");
+/* harmony import */ var _components_HadithNawawiComponent_vue__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./components/HadithNawawiComponent.vue */ "./resources/js/components/HadithNawawiComponent.vue");
+/* harmony import */ var _components_HadithQudsiComponent_vue__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./components/HadithQudsiComponent.vue */ "./resources/js/components/HadithQudsiComponent.vue");
+/* harmony import */ var _components_HadithShahComponent_vue__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./components/HadithShahComponent.vue */ "./resources/js/components/HadithShahComponent.vue");
+Object(function webpackMissingModule() { var e = new Error("Cannot find module './components/VideoComponent.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+Object(function webpackMissingModule() { var e = new Error("Cannot find module './components/KnowledgeComponent.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony import */ var _components_CorrectionComponent_vue__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./components/CorrectionComponent.vue */ "./resources/js/components/CorrectionComponent.vue");
+Object(function webpackMissingModule() { var e = new Error("Cannot find module './components/LikesComponent.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+Object(function webpackMissingModule() { var e = new Error("Cannot find module './components/ProphetsComponent.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony import */ var _components_QuranComponent_vue__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./components/QuranComponent.vue */ "./resources/js/components/QuranComponent.vue");
 // Vue libraries
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
@@ -27140,7 +25965,7 @@ app.component("Fieldset", primevue_fieldset__WEBPACK_IMPORTED_MODULE_18__["defau
 app.component("Panel", primevue_panel__WEBPACK_IMPORTED_MODULE_19__["default"]);
 app.component("Dialog", primevue_dialog__WEBPACK_IMPORTED_MODULE_20__["default"]);
 app.component("Image", primevue_image__WEBPACK_IMPORTED_MODULE_21__["default"]);
-app.component("example-component", _components_ExampleComponent_vue__WEBPACK_IMPORTED_MODULE_29__["default"]);
+app.component("example-component", Object(function webpackMissingModule() { var e = new Error("Cannot find module './components/ExampleComponent.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 app.component("users-component", _components_UsersComponent_vue__WEBPACK_IMPORTED_MODULE_22__["default"]);
 app.component("mailing_list-component", _components_MailingListComponent_vue__WEBPACK_IMPORTED_MODULE_23__["default"]);
 app.component("feedback-component", _components_FeedbackComponent_vue__WEBPACK_IMPORTED_MODULE_24__["default"]);
@@ -27148,23 +25973,23 @@ app.component("payment-component", _components_PaymentComponent_vue__WEBPACK_IMP
 app.component("donation-component", _components_DonationComponent_vue__WEBPACK_IMPORTED_MODULE_26__["default"]);
 app.component("profile-component", _components_ProfileComponent_vue__WEBPACK_IMPORTED_MODULE_27__["default"]);
 app.component("dashboard-component", _components_DashboardComponent_vue__WEBPACK_IMPORTED_MODULE_28__["default"]);
-app.component("allah_names-component", _components_AllahNamesComponent_vue__WEBPACK_IMPORTED_MODULE_30__["default"]);
-app.component("homepage-component", _components_HomepageComponent_vue__WEBPACK_IMPORTED_MODULE_31__["default"]);
-app.component("pricing-component", _components_PricingComponent_vue__WEBPACK_IMPORTED_MODULE_32__["default"]);
-app.component("contact-component", _components_ContactComponent_vue__WEBPACK_IMPORTED_MODULE_33__["default"]);
-app.component("reminder-component", _components_ReminderComponent_vue__WEBPACK_IMPORTED_MODULE_34__["default"]);
-app.component("charity-component", _components_CharityComponent_vue__WEBPACK_IMPORTED_MODULE_35__["default"]);
-app.component("volunteer-component", _components_VolunteerComponent_vue__WEBPACK_IMPORTED_MODULE_36__["default"]);
-app.component("ahadith-component", _components_AhadithComponent_vue__WEBPACK_IMPORTED_MODULE_37__["default"]);
-app.component("hadith_nawawi-component", _components_HadithNawawiComponent_vue__WEBPACK_IMPORTED_MODULE_38__["default"]);
-app.component("hadith_qudsi-component", _components_HadithQudsiComponent_vue__WEBPACK_IMPORTED_MODULE_39__["default"]);
-app.component("hadith_shah-component", _components_HadithShahComponent_vue__WEBPACK_IMPORTED_MODULE_40__["default"]);
-app.component("video-component", _components_VideoComponent_vue__WEBPACK_IMPORTED_MODULE_41__["default"]);
-app.component("knowledge-component", _components_KnowledgeComponent_vue__WEBPACK_IMPORTED_MODULE_42__["default"]);
-app.component("correction-component", _components_CorrectionComponent_vue__WEBPACK_IMPORTED_MODULE_43__["default"]);
-app.component("likes-component", _components_LikesComponent_vue__WEBPACK_IMPORTED_MODULE_44__["default"]);
-app.component("prophets-component", _components_ProphetsComponent_vue__WEBPACK_IMPORTED_MODULE_45__["default"]);
-app.component("quran-component", _components_QuranComponent_vue__WEBPACK_IMPORTED_MODULE_46__["default"]);
+app.component("allah_names-component", Object(function webpackMissingModule() { var e = new Error("Cannot find module './components/AllahNamesComponent.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+app.component("homepage-component", _components_HomepageComponent_vue__WEBPACK_IMPORTED_MODULE_30__["default"]);
+app.component("pricing-component", _components_PricingComponent_vue__WEBPACK_IMPORTED_MODULE_31__["default"]);
+app.component("contact-component", _components_ContactComponent_vue__WEBPACK_IMPORTED_MODULE_32__["default"]);
+app.component("reminder-component", Object(function webpackMissingModule() { var e = new Error("Cannot find module './components/ReminderComponent.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+app.component("charity-component", _components_CharityComponent_vue__WEBPACK_IMPORTED_MODULE_33__["default"]);
+app.component("volunteer-component", _components_VolunteerComponent_vue__WEBPACK_IMPORTED_MODULE_34__["default"]);
+app.component("ahadith-component", _components_AhadithComponent_vue__WEBPACK_IMPORTED_MODULE_35__["default"]);
+app.component("hadith_nawawi-component", _components_HadithNawawiComponent_vue__WEBPACK_IMPORTED_MODULE_36__["default"]);
+app.component("hadith_qudsi-component", _components_HadithQudsiComponent_vue__WEBPACK_IMPORTED_MODULE_37__["default"]);
+app.component("hadith_shah-component", _components_HadithShahComponent_vue__WEBPACK_IMPORTED_MODULE_38__["default"]);
+app.component("video-component", Object(function webpackMissingModule() { var e = new Error("Cannot find module './components/VideoComponent.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+app.component("knowledge-component", Object(function webpackMissingModule() { var e = new Error("Cannot find module './components/KnowledgeComponent.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+app.component("correction-component", _components_CorrectionComponent_vue__WEBPACK_IMPORTED_MODULE_39__["default"]);
+app.component("likes-component", Object(function webpackMissingModule() { var e = new Error("Cannot find module './components/LikesComponent.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+app.component("prophets-component", Object(function webpackMissingModule() { var e = new Error("Cannot find module './components/ProphetsComponent.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+app.component("quran-component", _components_QuranComponent_vue__WEBPACK_IMPORTED_MODULE_40__["default"]);
 app.mount('#app');
 
 /***/ }),
@@ -33739,7 +32564,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.selected {\n  background-color: #c3e6cb; /* Change this to your desired highlight color */\n}\n.custom-scrollbar {\n  background-color: transparent;\n  height: 1000px;\n  width: 100%;\n  border-radius: 6px;\n  box-shadow: 0 4px 28px rgba(123, 151, 158, .25);\n  border: 1px solid #d6dee1;\n  padding: 1rem;\n  border-radius: 6px;\n  border: 1px solid #d6dee1;\n  padding: 1rem;\n  background-color: transparent;\n  outline: 1px solid #c3e6cb;\n  overflow: scroll;\n}\n.custom-scrollbar-chapters {\n  background-color: transparent;\n  height: 600px;\n  width: 100%;\n  border-radius: 6px;\n  box-shadow: 0 4px 28px rgba(123, 151, 158, .25);\n  border: 1px solid #d6dee1;\n  padding: 1rem;\n  border-radius: 6px;\n  border: 1px solid #d6dee1;\n  padding: 1rem;\n  background-color: transparent;\n  outline: 1px solid #c3e6cb;\n  overflow: scroll;\n}\n.highlighted {\n  background-color: yellow;\n  font-weight: bold;\n}\n.red {background: red}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.selected {\n  background-color: #c3e6cb;\n}\n.custom-scrollbar {\n  background-color: transparent;\n  height: 1000px;\n  width: 100%;\n  border-radius: 6px;\n  box-shadow: 0 4px 28px rgba(123, 151, 158, 0.25);\n  border: 1px solid #d6dee1;\n  padding: 1rem;\n  border-radius: 6px;\n  border: 1px solid #d6dee1;\n  padding: 1rem;\n  background-color: transparent;\n  outline: 1px solid #c3e6cb;\n  overflow: scroll;\n}\n.custom-scrollbar-chapters {\n  background-color: transparent;\n  height: 600px;\n  width: 100%;\n  border-radius: 6px;\n  box-shadow: 0 4px 28px rgba(123, 151, 158, 0.25);\n  border: 1px solid #d6dee1;\n  padding: 1rem;\n  border-radius: 6px;\n  border: 1px solid #d6dee1;\n  padding: 1rem;\n  background-color: transparent;\n  outline: 1px solid #c3e6cb;\n  overflow: scroll;\n}\n.highlighted {\n  background-color: yellow;\n  font-weight: bold;\n}\n.red {\n  background: red;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -33788,30 +32613,6 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, "\n.newsletter-subscribe {\n  color: #313437;\n  background-color: #ffffff;\n  padding: 55px 74px;\n}\n.newsletter-subscribe p {\n  color: #7d8285;\n  line-height: 1.5;\n}\n.newsletter-subscribe h2 {\n  font-size: 24px;\n  font-weight: bold;\n  margin-bottom: 25px;\n  line-height: 1.5;\n  padding-top: 0;\n  margin-top: 0;\n  color: inherit;\n}\n.newsletter-subscribe .intro {\n  font-size: 16px;\n  max-width: 500px;\n  margin: 0 auto 25px;\n}\n.newsletter-subscribe .intro p {\n  margin-bottom: 35px;\n}\n.newsletter-subscribe form {\n  justify-content: center;\n}\n.newsletter-subscribe form .form-control {\n  background: #eff1f4;\n  border: none;\n  border-radius: 3px;\n  box-shadow: none;\n  outline: none;\n  color: inherit;\n  text-indent: 9px;\n  height: 45px;\n  margin-right: 10px;\n  min-width: 250px;\n}\n.newsletter-subscribe form .btn {\n  padding: 16px 32px;\n  border: none;\n  background: none;\n  box-shadow: none;\n  text-shadow: none;\n  opacity: 0.9;\n  text-transform: uppercase;\n  font-weight: bold;\n  font-size: 13px;\n  letter-spacing: 0.4px;\n  line-height: 1;\n}\n.newsletter-subscribe form .btn:hover {\n  opacity: 1;\n}\n.newsletter-subscribe form .btn:active {\n  transform: translateY(1px);\n}\n.newsletter-subscribe form .btn-primary {\n  background-color: #055ada !important;\n  color: #fff;\n  outline: none !important;\n}\n", ""]);
-// Exports
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
-
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/LikesComponent.vue?vue&type=style&index=0&id=1d50c168&scoped=true&lang=css":
-/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/LikesComponent.vue?vue&type=style&index=0&id=1d50c168&scoped=true&lang=css ***!
-  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
-// Imports
-
-var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
-// Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.action[data-v-1d50c168] {\n  display: flex;\n  margin: 0 auto;\n  width: auto;\n  display: flex;\n}\n.wrapper[data-v-1d50c168] {\n  float: left;\n  width: 100%;\n  text-align: center;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -33884,30 +32685,6 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, "\n.selected[data-v-2b3c2c26] {\n  background-color: #c3e6cb; /* Change this to your desired highlight color */\n}\n.custom-scrollbar[data-v-2b3c2c26] {\n  background-color: transparent;\n  height: 800px;\n  width: 100%;\n  border-radius: 6px;\n  box-shadow: 0 4px 28px rgba(123, 151, 158, .25);\n  border: 1px solid #d6dee1;\n  padding: 1rem;\n  border-radius: 6px;\n  border: 1px solid #d6dee1;\n  padding: 1rem;\n  background-color: transparent;\n  outline: 1px solid #c3e6cb;\n  overflow: scroll;\n}\n.custom-scrollbar-chapters[data-v-2b3c2c26] {\n  background-color: transparent;\n  height: 600px;\n  width: 100%;\n  border-radius: 6px;\n  box-shadow: 0 4px 28px rgba(123, 151, 158, .25);\n  border: 1px solid #d6dee1;\n  padding: 1rem;\n  border-radius: 6px;\n  border: 1px solid #d6dee1;\n  padding: 1rem;\n  background-color: transparent;\n  outline: 1px solid #c3e6cb;\n  overflow: scroll;\n}\n.myButton[data-v-2b3c2c26] {\n  background-color: #c3e6cb;\n  border-radius: 8px;\n  display: inline-block;\n  cursor: pointer;\n  color: #000;\n  font-family: Arial;\n  font-size: 18px;\n  font-weight: bold;\n  padding: 13px 32px;\n  text-decoration: none;\n}\n@media (min-width: 768px) {\n.button-46[data-v-2b3c2c26] {\n    font-size: 20px;\n    min-width: 200px;\n    padding: 14px 16px;\n}\n}\np.no-after[data-v-2b3c2c26]:after {\n  content: none;\n}\n.btn[data-v-2b3c2c26]:hover {\n  background-color: #99e0ab81;\n  opacity: 2;\n}\n.ul-main[data-v-2b3c2c26] {\n  list-style: none;\n}\n.ul-main .li-main[data-v-2b3c2c26] {\n  display: inline-block;\n  font-size: 12px;\n  text-align: center;\n}\n.ul-main .li-main .span-main[data-v-2b3c2c26] {\n  font-size: 20px;\n  display: block;\n}\n.ayah_img[data-v-2b3c2c26]:hover {\n  background-color: #c3e6cb;\n  border-radius: 10px;\n  cursor: pointer;\n}\n.enlarge .ayah[data-v-2b3c2c26] {\n  transition: transform 0.50s ease;\n  float: right;\n}\n.enlarge[data-v-2b3c2c26]:hover {\n  /* or some other value */\n  transform: scale(1.2);\n}\nbutton[data-v-2b3c2c26],\ninput[data-v-2b3c2c26] {\n  font-family: \"Montserrat\", \"Helvetica Neue\", Arial, sans-serif;\n}\n.nav-item .nav-link[data-v-2b3c2c26],\n.nav-tabs .nav-link[data-v-2b3c2c26] {\n  transition: all 300ms ease 0s;\n}\n.nav-tabs>.nav-item>.nav-link[data-v-2b3c2c26] {\n  color: #888888;\n  margin: 0;\n  margin-right: 5px;\n  background-color: transparent;\n  border: 1px solid transparent;\n  font-size: 14px;\n  padding: 11px 23px;\n  line-height: 1.5;\n}\n.nav-tabs>.nav-item>.nav-link[data-v-2b3c2c26]:hover {\n  background-color: transparent;\n}\n.nav-tabs>.nav-item>.nav-link.active[data-v-2b3c2c26] {\n  background-color: #444;\n  color: #FFFFFF;\n}\n.nav-tabs>.nav-item>.nav-link i.now-ui-icons[data-v-2b3c2c26] {\n  font-size: 14px;\n  position: relative;\n  top: 1px;\n  margin-right: 3px;\n}\n.nav-tabs.nav-tabs-neutral>.nav-item>.nav-link[data-v-2b3c2c26] {\n  color: #FFFFFF;\n}\n.nav-tabs.nav-tabs-neutral>.nav-item>.nav-link.active[data-v-2b3c2c26] {\n  background-color: rgba(255, 255, 255, 0.2);\n  color: #FFFFFF;\n}\n", ""]);
-// Exports
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
-
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/ReminderComponent.vue?vue&type=style&index=0&id=777f5c50&lang=css":
-/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/ReminderComponent.vue?vue&type=style&index=0&id=777f5c50&lang=css ***!
-  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
-// Imports
-
-var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
-// Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.custom-class {\n  table-layout: fixed;\n  width: 100%;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -54840,36 +53617,6 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/LikesComponent.vue?vue&type=style&index=0&id=1d50c168&scoped=true&lang=css":
-/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/LikesComponent.vue?vue&type=style&index=0&id=1d50c168&scoped=true&lang=css ***!
-  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_LikesComponent_vue_vue_type_style_index_0_id_1d50c168_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./LikesComponent.vue?vue&type=style&index=0&id=1d50c168&scoped=true&lang=css */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/LikesComponent.vue?vue&type=style&index=0&id=1d50c168&scoped=true&lang=css");
-
-            
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_LikesComponent_vue_vue_type_style_index_0_id_1d50c168_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
-
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_LikesComponent_vue_vue_type_style_index_0_id_1d50c168_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
-
-/***/ }),
-
 /***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/PaymentComponent.vue?vue&type=style&index=0&id=4f61e082&scoped=true&lang=css":
 /*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/PaymentComponent.vue?vue&type=style&index=0&id=4f61e082&scoped=true&lang=css ***!
@@ -54957,36 +53704,6 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_QuranComponent_vue_vue_type_style_index_0_id_2b3c2c26_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
-
-/***/ }),
-
-/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/ReminderComponent.vue?vue&type=style&index=0&id=777f5c50&lang=css":
-/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/ReminderComponent.vue?vue&type=style&index=0&id=777f5c50&lang=css ***!
-  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ReminderComponent_vue_vue_type_style_index_0_id_777f5c50_lang_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./ReminderComponent.vue?vue&type=style&index=0&id=777f5c50&lang=css */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/ReminderComponent.vue?vue&type=style&index=0&id=777f5c50&lang=css");
-
-            
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ReminderComponent_vue_vue_type_style_index_0_id_777f5c50_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
-
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ReminderComponent_vue_vue_type_style_index_0_id_777f5c50_lang_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
 
 /***/ }),
 
@@ -59652,34 +58369,6 @@ if (false) {}
 
 /***/ }),
 
-/***/ "./resources/js/components/AllahNamesComponent.vue":
-/*!*********************************************************!*\
-  !*** ./resources/js/components/AllahNamesComponent.vue ***!
-  \*********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _AllahNamesComponent_vue_vue_type_template_id_55b9a4bc__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AllahNamesComponent.vue?vue&type=template&id=55b9a4bc */ "./resources/js/components/AllahNamesComponent.vue?vue&type=template&id=55b9a4bc");
-/* harmony import */ var _AllahNamesComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AllahNamesComponent.vue?vue&type=script&lang=js */ "./resources/js/components/AllahNamesComponent.vue?vue&type=script&lang=js");
-/* harmony import */ var _node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
-
-
-
-
-;
-const __exports__ = /*#__PURE__*/(0,_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_AllahNamesComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_AllahNamesComponent_vue_vue_type_template_id_55b9a4bc__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/AllahNamesComponent.vue"]])
-/* hot reload */
-if (false) {}
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
-
-/***/ }),
-
 /***/ "./resources/js/components/CharityComponent.vue":
 /*!******************************************************!*\
   !*** ./resources/js/components/CharityComponent.vue ***!
@@ -59818,34 +58507,6 @@ __webpack_require__.r(__webpack_exports__);
 
 ;
 const __exports__ = /*#__PURE__*/(0,_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_DonationComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_DonationComponent_vue_vue_type_template_id_7901ada0__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/DonationComponent.vue"]])
-/* hot reload */
-if (false) {}
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
-
-/***/ }),
-
-/***/ "./resources/js/components/ExampleComponent.vue":
-/*!******************************************************!*\
-  !*** ./resources/js/components/ExampleComponent.vue ***!
-  \******************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _ExampleComponent_vue_vue_type_template_id_299e239e__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ExampleComponent.vue?vue&type=template&id=299e239e */ "./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e");
-/* harmony import */ var _ExampleComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ExampleComponent.vue?vue&type=script&lang=js */ "./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js");
-/* harmony import */ var _node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
-
-
-
-
-;
-const __exports__ = /*#__PURE__*/(0,_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_ExampleComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_ExampleComponent_vue_vue_type_template_id_299e239e__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/ExampleComponent.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -59997,63 +58658,6 @@ if (false) {}
 
 /***/ }),
 
-/***/ "./resources/js/components/KnowledgeComponent.vue":
-/*!********************************************************!*\
-  !*** ./resources/js/components/KnowledgeComponent.vue ***!
-  \********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _KnowledgeComponent_vue_vue_type_template_id_1a7b776c__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./KnowledgeComponent.vue?vue&type=template&id=1a7b776c */ "./resources/js/components/KnowledgeComponent.vue?vue&type=template&id=1a7b776c");
-/* harmony import */ var _node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
-
-const script = {}
-
-;
-const __exports__ = /*#__PURE__*/(0,_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_1__["default"])(script, [['render',_KnowledgeComponent_vue_vue_type_template_id_1a7b776c__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/KnowledgeComponent.vue"]])
-/* hot reload */
-if (false) {}
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
-
-/***/ }),
-
-/***/ "./resources/js/components/LikesComponent.vue":
-/*!****************************************************!*\
-  !*** ./resources/js/components/LikesComponent.vue ***!
-  \****************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _LikesComponent_vue_vue_type_template_id_1d50c168_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LikesComponent.vue?vue&type=template&id=1d50c168&scoped=true */ "./resources/js/components/LikesComponent.vue?vue&type=template&id=1d50c168&scoped=true");
-/* harmony import */ var _LikesComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LikesComponent.vue?vue&type=script&lang=js */ "./resources/js/components/LikesComponent.vue?vue&type=script&lang=js");
-/* harmony import */ var _LikesComponent_vue_vue_type_style_index_0_id_1d50c168_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./LikesComponent.vue?vue&type=style&index=0&id=1d50c168&scoped=true&lang=css */ "./resources/js/components/LikesComponent.vue?vue&type=style&index=0&id=1d50c168&scoped=true&lang=css");
-/* harmony import */ var _node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
-
-
-
-
-;
-
-
-const __exports__ = /*#__PURE__*/(0,_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_LikesComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_LikesComponent_vue_vue_type_template_id_1d50c168_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render],['__scopeId',"data-v-1d50c168"],['__file',"resources/js/components/LikesComponent.vue"]])
-/* hot reload */
-if (false) {}
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
-
-/***/ }),
-
 /***/ "./resources/js/components/MailingListComponent.vue":
 /*!**********************************************************!*\
   !*** ./resources/js/components/MailingListComponent.vue ***!
@@ -60172,32 +58776,6 @@ if (false) {}
 
 /***/ }),
 
-/***/ "./resources/js/components/ProphetsComponent.vue":
-/*!*******************************************************!*\
-  !*** ./resources/js/components/ProphetsComponent.vue ***!
-  \*******************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _ProphetsComponent_vue_vue_type_template_id_4026f3c3__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ProphetsComponent.vue?vue&type=template&id=4026f3c3 */ "./resources/js/components/ProphetsComponent.vue?vue&type=template&id=4026f3c3");
-/* harmony import */ var _node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
-
-const script = {}
-
-;
-const __exports__ = /*#__PURE__*/(0,_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_1__["default"])(script, [['render',_ProphetsComponent_vue_vue_type_template_id_4026f3c3__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/ProphetsComponent.vue"]])
-/* hot reload */
-if (false) {}
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
-
-/***/ }),
-
 /***/ "./resources/js/components/QuranComponent.vue":
 /*!****************************************************!*\
   !*** ./resources/js/components/QuranComponent.vue ***!
@@ -60229,37 +58807,6 @@ if (false) {}
 
 /***/ }),
 
-/***/ "./resources/js/components/ReminderComponent.vue":
-/*!*******************************************************!*\
-  !*** ./resources/js/components/ReminderComponent.vue ***!
-  \*******************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _ReminderComponent_vue_vue_type_template_id_777f5c50__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ReminderComponent.vue?vue&type=template&id=777f5c50 */ "./resources/js/components/ReminderComponent.vue?vue&type=template&id=777f5c50");
-/* harmony import */ var _ReminderComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ReminderComponent.vue?vue&type=script&lang=js */ "./resources/js/components/ReminderComponent.vue?vue&type=script&lang=js");
-/* harmony import */ var _ReminderComponent_vue_vue_type_style_index_0_id_777f5c50_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ReminderComponent.vue?vue&type=style&index=0&id=777f5c50&lang=css */ "./resources/js/components/ReminderComponent.vue?vue&type=style&index=0&id=777f5c50&lang=css");
-/* harmony import */ var _node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
-
-
-
-
-;
-
-
-const __exports__ = /*#__PURE__*/(0,_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_ReminderComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_ReminderComponent_vue_vue_type_template_id_777f5c50__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/ReminderComponent.vue"]])
-/* hot reload */
-if (false) {}
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
-
-/***/ }),
-
 /***/ "./resources/js/components/UsersComponent.vue":
 /*!****************************************************!*\
   !*** ./resources/js/components/UsersComponent.vue ***!
@@ -60280,34 +58827,6 @@ __webpack_require__.r(__webpack_exports__);
 
 ;
 const __exports__ = /*#__PURE__*/(0,_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_UsersComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_UsersComponent_vue_vue_type_template_id_47d47080__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/UsersComponent.vue"]])
-/* hot reload */
-if (false) {}
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
-
-/***/ }),
-
-/***/ "./resources/js/components/VideoComponent.vue":
-/*!****************************************************!*\
-  !*** ./resources/js/components/VideoComponent.vue ***!
-  \****************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _VideoComponent_vue_vue_type_template_id_26d38626__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VideoComponent.vue?vue&type=template&id=26d38626 */ "./resources/js/components/VideoComponent.vue?vue&type=template&id=26d38626");
-/* harmony import */ var _VideoComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./VideoComponent.vue?vue&type=script&lang=js */ "./resources/js/components/VideoComponent.vue?vue&type=script&lang=js");
-/* harmony import */ var _node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
-
-
-
-
-;
-const __exports__ = /*#__PURE__*/(0,_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_VideoComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_VideoComponent_vue_vue_type_template_id_26d38626__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/VideoComponent.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -60356,22 +58875,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AhadithComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AhadithComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./AhadithComponent.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/AhadithComponent.vue?vue&type=script&lang=js");
- 
-
-/***/ }),
-
-/***/ "./resources/js/components/AllahNamesComponent.vue?vue&type=script&lang=js":
-/*!*********************************************************************************!*\
-  !*** ./resources/js/components/AllahNamesComponent.vue?vue&type=script&lang=js ***!
-  \*********************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AllahNamesComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AllahNamesComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./AllahNamesComponent.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/AllahNamesComponent.vue?vue&type=script&lang=js");
  
 
 /***/ }),
@@ -60460,22 +58963,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js":
-/*!******************************************************************************!*\
-  !*** ./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js ***!
-  \******************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ExampleComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ExampleComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./ExampleComponent.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js");
- 
-
-/***/ }),
-
 /***/ "./resources/js/components/FeedbackComponent.vue?vue&type=script&lang=js":
 /*!*******************************************************************************!*\
   !*** ./resources/js/components/FeedbackComponent.vue?vue&type=script&lang=js ***!
@@ -60552,22 +59039,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_HomepageComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_HomepageComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./HomepageComponent.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/HomepageComponent.vue?vue&type=script&lang=js");
- 
-
-/***/ }),
-
-/***/ "./resources/js/components/LikesComponent.vue?vue&type=script&lang=js":
-/*!****************************************************************************!*\
-  !*** ./resources/js/components/LikesComponent.vue?vue&type=script&lang=js ***!
-  \****************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_LikesComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_LikesComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./LikesComponent.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/LikesComponent.vue?vue&type=script&lang=js");
  
 
 /***/ }),
@@ -60652,22 +59123,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/ReminderComponent.vue?vue&type=script&lang=js":
-/*!*******************************************************************************!*\
-  !*** ./resources/js/components/ReminderComponent.vue?vue&type=script&lang=js ***!
-  \*******************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ReminderComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ReminderComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./ReminderComponent.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/ReminderComponent.vue?vue&type=script&lang=js");
- 
-
-/***/ }),
-
 /***/ "./resources/js/components/UsersComponent.vue?vue&type=script&lang=js":
 /*!****************************************************************************!*\
   !*** ./resources/js/components/UsersComponent.vue?vue&type=script&lang=js ***!
@@ -60680,22 +59135,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_UsersComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_UsersComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./UsersComponent.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/UsersComponent.vue?vue&type=script&lang=js");
- 
-
-/***/ }),
-
-/***/ "./resources/js/components/VideoComponent.vue?vue&type=script&lang=js":
-/*!****************************************************************************!*\
-  !*** ./resources/js/components/VideoComponent.vue?vue&type=script&lang=js ***!
-  \****************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_VideoComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_VideoComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./VideoComponent.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/VideoComponent.vue?vue&type=script&lang=js");
  
 
 /***/ }),
@@ -60728,22 +59167,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   render: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AhadithComponent_vue_vue_type_template_id_23ef7dd5__WEBPACK_IMPORTED_MODULE_0__.render)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AhadithComponent_vue_vue_type_template_id_23ef7dd5__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./AhadithComponent.vue?vue&type=template&id=23ef7dd5 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/AhadithComponent.vue?vue&type=template&id=23ef7dd5");
-
-
-/***/ }),
-
-/***/ "./resources/js/components/AllahNamesComponent.vue?vue&type=template&id=55b9a4bc":
-/*!***************************************************************************************!*\
-  !*** ./resources/js/components/AllahNamesComponent.vue?vue&type=template&id=55b9a4bc ***!
-  \***************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   render: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AllahNamesComponent_vue_vue_type_template_id_55b9a4bc__WEBPACK_IMPORTED_MODULE_0__.render)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AllahNamesComponent_vue_vue_type_template_id_55b9a4bc__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./AllahNamesComponent.vue?vue&type=template&id=55b9a4bc */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/AllahNamesComponent.vue?vue&type=template&id=55b9a4bc");
 
 
 /***/ }),
@@ -60828,22 +59251,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e":
-/*!************************************************************************************!*\
-  !*** ./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e ***!
-  \************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   render: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ExampleComponent_vue_vue_type_template_id_299e239e__WEBPACK_IMPORTED_MODULE_0__.render)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ExampleComponent_vue_vue_type_template_id_299e239e__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./ExampleComponent.vue?vue&type=template&id=299e239e */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e");
-
-
-/***/ }),
-
 /***/ "./resources/js/components/FeedbackComponent.vue?vue&type=template&id=4eb4081d":
 /*!*************************************************************************************!*\
   !*** ./resources/js/components/FeedbackComponent.vue?vue&type=template&id=4eb4081d ***!
@@ -60924,38 +59331,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/KnowledgeComponent.vue?vue&type=template&id=1a7b776c":
-/*!**************************************************************************************!*\
-  !*** ./resources/js/components/KnowledgeComponent.vue?vue&type=template&id=1a7b776c ***!
-  \**************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   render: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_KnowledgeComponent_vue_vue_type_template_id_1a7b776c__WEBPACK_IMPORTED_MODULE_0__.render)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_KnowledgeComponent_vue_vue_type_template_id_1a7b776c__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./KnowledgeComponent.vue?vue&type=template&id=1a7b776c */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/KnowledgeComponent.vue?vue&type=template&id=1a7b776c");
-
-
-/***/ }),
-
-/***/ "./resources/js/components/LikesComponent.vue?vue&type=template&id=1d50c168&scoped=true":
-/*!**********************************************************************************************!*\
-  !*** ./resources/js/components/LikesComponent.vue?vue&type=template&id=1d50c168&scoped=true ***!
-  \**********************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   render: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_LikesComponent_vue_vue_type_template_id_1d50c168_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_LikesComponent_vue_vue_type_template_id_1d50c168_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./LikesComponent.vue?vue&type=template&id=1d50c168&scoped=true */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/LikesComponent.vue?vue&type=template&id=1d50c168&scoped=true");
-
-
-/***/ }),
-
 /***/ "./resources/js/components/MailingListComponent.vue?vue&type=template&id=cd1e3842":
 /*!****************************************************************************************!*\
   !*** ./resources/js/components/MailingListComponent.vue?vue&type=template&id=cd1e3842 ***!
@@ -61020,22 +59395,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/ProphetsComponent.vue?vue&type=template&id=4026f3c3":
-/*!*************************************************************************************!*\
-  !*** ./resources/js/components/ProphetsComponent.vue?vue&type=template&id=4026f3c3 ***!
-  \*************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   render: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ProphetsComponent_vue_vue_type_template_id_4026f3c3__WEBPACK_IMPORTED_MODULE_0__.render)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ProphetsComponent_vue_vue_type_template_id_4026f3c3__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./ProphetsComponent.vue?vue&type=template&id=4026f3c3 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/ProphetsComponent.vue?vue&type=template&id=4026f3c3");
-
-
-/***/ }),
-
 /***/ "./resources/js/components/QuranComponent.vue?vue&type=template&id=2b3c2c26&scoped=true":
 /*!**********************************************************************************************!*\
   !*** ./resources/js/components/QuranComponent.vue?vue&type=template&id=2b3c2c26&scoped=true ***!
@@ -61052,22 +59411,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/ReminderComponent.vue?vue&type=template&id=777f5c50":
-/*!*************************************************************************************!*\
-  !*** ./resources/js/components/ReminderComponent.vue?vue&type=template&id=777f5c50 ***!
-  \*************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   render: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ReminderComponent_vue_vue_type_template_id_777f5c50__WEBPACK_IMPORTED_MODULE_0__.render)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ReminderComponent_vue_vue_type_template_id_777f5c50__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./ReminderComponent.vue?vue&type=template&id=777f5c50 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/ReminderComponent.vue?vue&type=template&id=777f5c50");
-
-
-/***/ }),
-
 /***/ "./resources/js/components/UsersComponent.vue?vue&type=template&id=47d47080":
 /*!**********************************************************************************!*\
   !*** ./resources/js/components/UsersComponent.vue?vue&type=template&id=47d47080 ***!
@@ -61080,22 +59423,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   render: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_UsersComponent_vue_vue_type_template_id_47d47080__WEBPACK_IMPORTED_MODULE_0__.render)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_UsersComponent_vue_vue_type_template_id_47d47080__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./UsersComponent.vue?vue&type=template&id=47d47080 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/UsersComponent.vue?vue&type=template&id=47d47080");
-
-
-/***/ }),
-
-/***/ "./resources/js/components/VideoComponent.vue?vue&type=template&id=26d38626":
-/*!**********************************************************************************!*\
-  !*** ./resources/js/components/VideoComponent.vue?vue&type=template&id=26d38626 ***!
-  \**********************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   render: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_VideoComponent_vue_vue_type_template_id_26d38626__WEBPACK_IMPORTED_MODULE_0__.render)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_VideoComponent_vue_vue_type_template_id_26d38626__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./VideoComponent.vue?vue&type=template&id=26d38626 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/VideoComponent.vue?vue&type=template&id=26d38626");
 
 
 /***/ }),
@@ -61155,19 +59482,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/LikesComponent.vue?vue&type=style&index=0&id=1d50c168&scoped=true&lang=css":
-/*!************************************************************************************************************!*\
-  !*** ./resources/js/components/LikesComponent.vue?vue&type=style&index=0&id=1d50c168&scoped=true&lang=css ***!
-  \************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_LikesComponent_vue_vue_type_style_index_0_id_1d50c168_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./LikesComponent.vue?vue&type=style&index=0&id=1d50c168&scoped=true&lang=css */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/LikesComponent.vue?vue&type=style&index=0&id=1d50c168&scoped=true&lang=css");
-
-
-/***/ }),
-
 /***/ "./resources/js/components/PaymentComponent.vue?vue&type=style&index=0&id=4f61e082&scoped=true&lang=css":
 /*!**************************************************************************************************************!*\
   !*** ./resources/js/components/PaymentComponent.vue?vue&type=style&index=0&id=4f61e082&scoped=true&lang=css ***!
@@ -61203,19 +59517,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_QuranComponent_vue_vue_type_style_index_0_id_2b3c2c26_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./QuranComponent.vue?vue&type=style&index=0&id=2b3c2c26&scoped=true&lang=css */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/QuranComponent.vue?vue&type=style&index=0&id=2b3c2c26&scoped=true&lang=css");
-
-
-/***/ }),
-
-/***/ "./resources/js/components/ReminderComponent.vue?vue&type=style&index=0&id=777f5c50&lang=css":
-/*!***************************************************************************************************!*\
-  !*** ./resources/js/components/ReminderComponent.vue?vue&type=style&index=0&id=777f5c50&lang=css ***!
-  \***************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ReminderComponent_vue_vue_type_style_index_0_id_777f5c50_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./ReminderComponent.vue?vue&type=style&index=0&id=777f5c50&lang=css */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/ReminderComponent.vue?vue&type=style&index=0&id=777f5c50&lang=css");
 
 
 /***/ }),
@@ -79162,28 +77463,6 @@ function styleChanged(style, prevStyle) {
 
 
 
-
-/***/ }),
-
-/***/ "./storage/adhkar.json":
-/*!*****************************!*\
-  !*** ./storage/adhkar.json ***!
-  \*****************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = JSON.parse('[{"id":1,"category":"أذكار الصباح والمساء","audio":"/audio/ar_7esn_AlMoslem_by_Doors_028.mp3","filename":"ar_7esn_AlMoslem_by_Doors_028","view":[{"id":1,"text":"أَعُوذُ بِاللَّهِ مِنَ الشَّيطَانِ الرَّجِيمِ ﴿اللَّهُ لاَ إِلَهَ إِلاَّ هُوَ الْحَيُّ الْقَيُّومُ لاَ تَأْخُذُهُ سِنَةٌ وَلاَ نَوْمٌ لَّهُ مَا فِي السَّمَوَاتِ وَمَا فِي الأَرْضِ مَن ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلاَّ بِإِذْنِهِ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ وَلاَ يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلاَّ بِمَا شَاء وَسِعَ كُرْسِيُّهُ السَّمَوَاتِ وَالْأَرْضَ وَلاَ يَؤُودُهُ حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ﴾.","count":1,"audio":"/audio/75.mp3","filename":"75"},{"id":2,"text":"بسم الله الرحمن الرحيم ﴿قُلْ هُوَ اللَّهُ أَحَدٌ* اللَّهُ الصَّمَدُ* لَمْ يَلِدْ وَلَمْ يُولَدْ* وَلَمْ يَكُن لَّهُ كُفُواً أَحَدٌ﴾.  بسم الله الرحمن الرحيم ﴿قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ* مِن شَرِّ مَا خَلَقَ* وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ* وَمِن شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ* وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ﴾.  بسم الله الرحمن الرحيم ﴿قُلْ أَعُوذُ بِرَبِّ النَّاسِ* مَلِكِ النَّاسِ* إِلَهِ النَّاسِ* مِن شَرِّ الْوَسْوَاسِ الْخَنَّاسِ* الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ* مِنَ الْجِنَّةِ وَ النَّاسِ﴾ (ثلاثَ مرَّاتٍ).","count":3,"audio":"/audio/76.mp3","filename":"76"},{"id":3,"text":"((أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ ، وَالْحَمْدُ لِلَّهِ، لاَ إِلَهَ إلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، رَبِّ أَسْأَلُكَ خَيْرَ مَا فِي هَذَا الْيَوْمِ وَخَيرَ مَا بَعْدَهُ ، وَأَعُوذُ بِكَ مِنْ شَرِّ مَا فِي  هَذَا الْيَوْمِ وَشَرِّ مَا بَعْدَهُ، رَبِّ أَعُوذُ بِكَ مِنَ الْكَسَلِ وَسُوءِ الْكِبَرِ، رَبِّ أَعُوذُ بِكَ مِنْ عَذَابٍ فِي النَّارِ وَعَذَابٍ فِي الْقَبْرِ)). [ وإذا أمسى قال: أمسينا وأمسى الملك للَّه] [وإذا أمسى قال: رب أسألك خير ما في هذه الليلة، وخير ما بعدها، وأعوذ بك من شر ما في هذه الليلة، وشر ما بعدها.]","count":1,"audio":"/audio/77.mp3","filename":"77"},{"id":4,"text":"((اللَّهُمَّ بِكَ أَصْبَحْنَا، وَبِكَ أَمْسَيْنَا ، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ وَإِلَيْكَ النُّشُورُ)). [وإذا أمسى قال: اللَّهم بك أمسينا، وبك أصبحنا، وبك نحيا، وبك نموت، وإليك المصير.]","count":1,"audio":"/audio/78.mp3","filename":"78"},{"id":5,"text":"((اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَهَ إِلاَّ أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوءُ بِذَنْبِي فَاغْفِرْ لِي فَإِنَّهُ لاَ يَغْفِرُ الذُّنوبَ إِلاَّ أَنْتَ)).","count":1,"audio":"/audio/79.mp3","filename":"79"},{"id":6,"text":"((اللَّهُمَّ إِنِّي أَصْبَحْتُ أُشْهِدُكَ، وَأُشْهِدُ حَمَلَةَ عَرْشِكَ، وَمَلاَئِكَتِكَ، وَجَمِيعَ خَلْقِكَ، أَنَّكَ أَنْتَ اللَّهُ لَا إِلَهَ إِلاَّ أَنْتَ وَحْدَكَ لاَ شَرِيكَ لَكَ، وَأَنَّ مُحَمَّداً عَبْدُكَ وَرَسُولُكَ)) (أربعَ مَرَّاتٍ).[ وإذا أمسى قال: اللَّهم إني أمسيت...]","count":4,"audio":"/audio/80.mp3","filename":"80"},{"id":7,"text":"((اللَّهُمَّ مَا أَصْبَحَ بِي مِنْ نِعْمَةٍ أَوْ بِأَحَدٍ مِنْ خَلْقِكَ فَمِنْكَ وَحْدَكَ لاَ شَرِيكَ لَكَ، فَلَكَ الْحَمْدُ وَلَكَ الشُّكْرُ)). [وإذا أمسى قال: اللَّهم ما أمسى بي...]","count":1,"audio":"/audio/81.mp3","filename":"81"},{"id":8,"text":"((اللَّهُمَّ عَافِنِي فِي بَدَنِي، اللَّهُمَّ عَافِنِي فِي سَمْعِي، اللَّهُمَّ عَافِنِي فِي بَصَرِي، لاَ إِلَهَ إِلاَّ أَنْتَ. اللَّهُمَّ  إِنِّي أَعُوذُ بِكَ مِنَ الْكُفْرِ، وَالفَقْرِ، وَأَعُوذُ بِكَ مِنْ عَذَابِ القَبْرِ، لاَ إِلَهَ إِلاَّ أَنْتَ)) (ثلاثَ مرَّاتٍ).","count":3,"audio":"/audio/82.mp3","filename":"82"},{"id":9,"text":"((حَسْبِيَ اللَّهُ لاَ إِلَهَ إِلاَّ هُوَ عَلَيهِ تَوَكَّلتُ وَهُوَ رَبُّ الْعَرْشِ الْعَظِيمِ)) (سَبْعَ مَرّاتٍ).","count":1,"audio":"/audio/83.mp3","filename":"83"},{"id":10,"text":"((اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَفْوَ وَالْعَافِيَةَ فِي الدُّنْيَا وَالآخِرَةِ، اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَفْوَ وَالْعَافِيَةَ: فِي دِينِي وَدُنْيَايَ وَأَهْلِي، وَمَالِي، اللَّهُمَّ اسْتُرْ عَوْرَاتِي، وَآمِنْ رَوْعَاتِي، اللَّهُمَّ احْفَظْنِي مِنْ بَينِ يَدَيَّ، وَمِنْ خَلْفِي، وَعَنْ يَمِينِي، وَعَنْ شِمَالِي، وَمِنْ فَوْقِي، وَأَعُوذُ بِعَظَمَتِكَ أَنْ أُغْتَالَ مِنْ تَحْتِي)).","count":1,"audio":"/audio/84.mp3","filename":"84"},{"id":11,"text":"((اللَّهُمَّ عَالِمَ الغَيْبِ وَالشَّهَادَةِ فَاطِرَ السَّمَوَاتِ وَالْأَرْضِ، رَبَّ كُلِّ شَيْءٍ وَمَلِيكَهُ، أَشْهَدُ أَنْ لاَ إِلَهَ إِلاَّ أَنْتَ، أَعُوذُ بِكَ مِنْ شَرِّ نَفْسِي، وَمِنْ شَرِّ الشَّيْطانِ وَشَرَكِهِ، وَأَنْ أَقْتَرِفَ عَلَى  نَفْسِي سُوءاً، أَوْ أَجُرَّهُ إِلَى مُسْلِمٍ)).","count":1,"audio":"/audio/85.mp3","filename":"85"},{"id":12,"text":"((بِسْمِ اللَّهِ الَّذِي لاَ يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلاَ فِي السّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ)) (ثلاثَ مرَّاتٍ).","count":3,"audio":"/audio/86.mp3","filename":"86"},{"id":13,"text":"((رَضِيتُ بِاللَّهِ رَبَّاً، وَبِالْإِسْلاَمِ دِيناً، وَبِمُحَمَّدٍ صلى الله عليه وسلم نَبِيّاً)) (ثلاثَ مرَّاتٍ).","count":3,"audio":"/audio/87.mp3","filename":"87"},{"id":14,"text":"((يَا حَيُّ يَا قَيُّومُ بِرَحْمَتِكَ أَسْتَغيثُ أَصْلِحْ لِي شَأْنِيَ كُلَّهُ وَلاَ تَكِلْنِي إِلَى نَفْسِي طَرْفَةَ عَيْنٍ)).","count":1,"audio":"/audio/88.mp3","filename":"88"},{"id":15,"text":"((أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ رَبِّ الْعَالَمِينَ، اللَّهُـمَّ إِنِّي أَسْأَلُكَ خَيْرَ هَذَا الْيَوْمِ:فَتْحَهُ، وَنَصْرَهُ، وَنورَهُ، وَبَرَكَتَهُ، وَهُدَاهُ، وَأَعُوذُ بِكَ مِنْ شَرِّ مَا فِيهِ وَشَرِّ مَا بَعْدَهُ)). [وإذا أمسى قال: أمسينا وأمسى الملك للَّه ربّ العالمين اللَّهم إني أسألك خير هذه الليلة: فتحها، ونصرها، ونورها، وبركتها، وهداها، وأعوذ بك من شر ما فيها، وشر ما بعدها.]","count":1,"audio":"/audio/89.mp3","filename":"89"},{"id":16,"text":"((أَصْبَحْنا عَلَى فِطْرَةِ الْإِسْلاَمِ، وَعَلَى كَلِمَةِ الْإِخْلاَصِ، وَعَلَى دِينِ نَبِيِّنَا مُحَمَّدٍ صلى الله عليه وسلم، وَعَلَى مِلَّةِ أَبِينَا إِبْرَاهِيمَ، حَنِيفاً مُسْلِماً وَمَا كَانَ مِنَ الْمُشرِكِينَ)). [وإذا أمسى قال: أمسينا على فطرة الإسلام...]","count":1,"audio":"/audio/90.mp3","filename":"90"},{"id":17,"text":"((سُبْحَانَ اللَّهِ وَبِحَمْدِهِ)) (مائة مرَّةٍ).","count":100,"audio":"/audio/91.mp3","filename":"91"},{"id":18,"text":"((لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ)) (عشرَ مرَّات) ، أَوْ (مرَّةً واحدةً عندَ الكَسَلِ).","count":10,"audio":"/audio/92.mp3","filename":"92"},{"id":19,"text":"((لاَ إِلَهَ إِلاَّ اللَّهُ، وَحْدَهُ لاَ شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ)) (مائةَ مرَّةٍ إذا أصبحَ).","count":100,"audio":"/audio/93.mp3","filename":"93"},{"id":20,"text":"((سُبْحَانَ اللَّهِ وَبِحَمْدِهِ: عَدَدَ خَلْقِهِ، وَرِضَا نَفْسِهِ، وَزِنَةَ عَرْشِهِ، وَمِدَادَ كَلِمَاتِهِ)) (ثلاثَ مرَّاتٍ إذا أصبحَ).","count":3,"audio":"/audio/94.mp3","filename":"94"},{"id":21,"text":"((اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْماً نَافِعاً، وَرِزْقاً طَيِّباً، وَعَمَلاً مُتَقَبَّلاً)) (إذا أصبحَ).","count":1,"audio":"/audio/95.mp3","filename":"95"},{"id":22,"text":"((أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ)) (مِائَةَ مَرَّةٍ فِي الْيَوْمِ).","count":100,"audio":"/audio/96.mp3","filename":"96"},{"id":23,"text":"((أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ)) (ثلاثَ مرَّاتٍ إذا أمسى).","count":3,"audio":"/audio/97.mp3","filename":"97"},{"id":24,"text":"((اللَّهُمَّ صَلِّ وَسَلِّمْ عَلَى نَبَيِّنَا مُحَمَّدٍ)) (عشرَ مرَّاتٍ).","count":10,"audio":"/audio/98.mp3","filename":"98"}]},{"id":2,"category":"أذكار النوم","audio":"/audio/ar_7esn_AlMoslem_by_Doors_029.mp3","filename":"ar_7esn_AlMoslem_by_Doors_029","view":[{"id":1,"text":"((يَجْمَعُ كَفَّيْهِ ثُمَّ يَنْفُثُ فِيهِمَا فَيَقْرَأُ فِيهِمَا:بسم الله الرحمن الرحيم ﴿قُلْ هُوَ اللَّهُ أَحَدٌ * اللَّهُ الصَّمَدُ* لَمْ يَلِدْ وَلَمْ يُولَدْ* وَلَمْ يَكُن لَّهُ كُفُواً أَحَدٌ﴾.  بسم الله الرحمن الرحيم ﴿قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ* مِن شَرِّ مَا خَلَقَ* وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ* وَمِن شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ* وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ﴾.  بسم الله الرحمن الرحيم ﴿قُلْ أَعُوذُ بِرَبِّ النَّاسِ* مَلِكِ النَّاسِ* إِلَهِ النَّاسِ* مِن شَرِّ الْوَسْوَاسِ الْخَنَّاسِ* الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ* مِنَ الْجِنَّةِ وَ النَّاسِ﴾ ثُمَّ يَمْسَحُ بِهِمَا مَا اسْتَطَاعَ مِنْ جَسَدِهِ يَبْدَأُ بِهِمَا عَلَى رَأْسِهِ وَوَجْهِهِ وَمَا أَقبَلَ مِنْ جَسَدِهِ)) (يفعلُ ذلك ثلاثَ مرَّاتٍ).","count":3,"audio":"/audio/99.mp3","filename":"99"},{"id":2,"text":"﴿اللَّهُ لاَ إِلَهَ إِلاَّ هُوَ الْحَيُّ الْقَيُّومُ لاَ تَأْخُذُهُ سِنَةٌ وَلاَ نَوْمٌ لَّهُ مَا فِي السَّمَوَاتِ وَمَا فِي الأَرْضِ مَن ذَا الَّذِي يَشْفَعُ عِنْـــــــــــدَهُ إِلاَّ بِإِذْنِهِ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ وَلاَ يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلاَّ بِمَا شَاء وَسِعَ كُرْسِيُّهُ السَّمَوَاتِ وَالأَرْضَ وَلاَ يَؤُودُهُ حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ﴾.","count":1,"audio":"/audio/100.mp3","filename":"100"},{"id":3,"text":"﴿آمَنَ الرَّسُولُ بِمَا أُنزِلَ إِلَيْهِ مِن رَّبِّهِ وَالْمُؤْمِنُونَ كُلٌّ آمَنَ بِاللَّهِ وَمَلآئِكَتِهِ وَكُتُبِهِ وَرُسُلِهِ لاَ نُفَرِّقُ بَيْنَ أَحَدٍ مِّن رُّسُلِهِ وَقَالُواْ سَمِعْنَا وَأَطَعْنَا غُفْرَانَكَ رَبَّنَا وَإِلَيْكَ الْمَصِيرُ* لاَ يُكَلِّفُ اللَّهُ نَفْساً إِلاَّ وُسْعَهَا لَهَا مَا كَسَبَتْ وَعَلَيْهَا مَا اكْتَسَبَتْ رَبَّنَا لاَ تُؤَاخِذْنَا إِن نَّسِينَا أَوْ أَخْطَأْنَا رَبَّنَا وَلاَ تَحْمِلْ عَلَيْنَا إِصْراً كَمَا حَمَلْتَهُ عَلَى الَّذِينَ مِن قَبْلِنَا رَبَّنَا وَلاَ تُحَمِّلْنَا مَا لاَ طَاقَةَ لَنَا بِهِ وَاعْفُ عَنَّا وَاغْفِرْ لَنَا وَارْحَمْنَآ أَنتَ مَوْلاَنَا فَانصُرْنَا عَلَى الْقَوْمِ الْكَافِرِينَ﴾.","count":1,"audio":"/audio/101.mp3","filename":"101"},{"id":4,"text":"((بِاسْمِكَ رَبِّي وَضَعْتُ جَنْبِي، وَبِكَ أَرْفَعُهُ، فَإِن أَمْسَكْتَ نَفْسِي فارْحَمْهَا، وَإِنْ أَرْسَلْتَهَا فَاحْفَظْهَا، بِمَا تَحْفَظُ بِهِ عِبَادَكَ الصَّالِحِينَ)).","count":1,"audio":"/audio/102.mp3","filename":"102"},{"id":5,"text":"((اللَّهُمَّ إِنَّكَ خَلَقْتَ نَفْسِي وَأَنْتَ تَوَفَّاهَا، لَكَ مَمَاتُهَا وَمَحْياهَا، إِنْ أَحْيَيْتَهَا فَاحْفَظْهَا، وَإِنْ أَمَتَّهَا فَاغْفِرْ لَهَا. اللَّهُمَّ إِنِّي أَسْأَلُكَ العَافِيَةَ)).","count":1,"audio":"/audio/103.mp3","filename":"103"},{"id":6,"text":" ((اللَّهُمَّ قِنِي عَذَابَكَ يَوْمَ تَبْعَثُ عِبَادَكَ)).","count":1,"audio":"/audio/104.mp3","filename":"104"},{"id":7,"text":"((بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا)).","count":1,"audio":"/audio/105.mp3","filename":"105"},{"id":8,"text":"((سُبْحَانَ اللَّهِ (ثلاثاً وثلاثين) وَالْحَمْدُ لِلَّهِ (ثلاثاً وثلاثين) وَاللَّهُ أَكْبَرُ (أربعاً وثلاثينَ))).","count":1,"audio":"/audio/106.mp3","filename":"106"},{"id":9,"text":"((اللَّهُمَّ رَبَّ السَّمَوَاتِ السَّبْعِ وَرَبَّ الأَرْضِ، وَرَبَّ الْعَرْشِ الْعَظِيمِ، رَبَّنَا وَرَبَّ كُلِّ شَيْءٍ، فَالِقَ الْحَبِّ وَالنَّوَى، وَمُنْزِلَ التَّوْرَاةِ وَالْإِنْجِيلِ، وَالْفُرْقَانِ، أَعُوذُ بِكَ مِنْ شَرِّ كُلِّ شَيْءٍ أَنْتَ آخِذٌ بِنَاصِيَتِهِ. اللَّهُمَّ أَنْتَ الأَوَّلُ فَلَيْسَ قَبْلَكَ شَيْءٌ، وَأَنْتَ الآخِرُ فَلَيسَ بَعْدَكَ شَيْءٌ، وَأَنْتَ الظَّاهِرُ فَلَيْسَ فَوْقَكَ شَيْءٌ، وَأَنْتَ الْبَاطِنُ فَلَيْسَ دُونَكَ شَيْءٌ، اقْضِ عَنَّا الدَّيْنَ وَأَغْنِنَا مِنَ الْفَقْرِ)).","count":1,"audio":"/audio/107.mp3","filename":"107"},{"id":10,"text":"((الْحَمْدُ لِلَّهِ الَّذِي أَطْعَمَنَا وَسَقَانَا، وَكَفَانَا، وَآوَانَا، فَكَمْ مِمَّنْ لاَ كَافِيَ لَهُ وَلاَ مُؤْوِيَ)).","count":1,"audio":"/audio/108.mp3","filename":"108"},{"id":11,"text":"((اللَّهُمَّ عَالِمَ الغَيْبِ وَالشَّهَادَةِ فَاطِرَ السَّمَوَاتِ وَالْأَرْضِ، رَبَّ كُلِّ شَيْءٍ وَمَلِيكَهُ، أَشْهَدُ أَنْ لاَ إِلَهَ إِلاَّ أَنْتَ، أَعُوذُ بِكَ مِنْ شَرِّ نَفْسِي، وَمِنْ شَرِّ الشَّيْطانِ وَشِرْكِهِ، وَأَنْ أَقْتَرِفَ عَلَى نَفْسِي سُوءاً، أَوْ أَجُرَّهُ إِلَى مُسْلِمٍ)).","count":1,"audio":"/audio/109.mp3","filename":"109"},{"id":12,"text":"((يَقْرَأُ ﴿الم﴾ تَنْزِيلَ السَّجْدَة ِ،  وَتَبَارَكَ الَّذي بِيَدِهِ الْمُلْكُ)).","count":1,"audio":"/audio/110.mp3","filename":"110"},{"id":13,"text":"((اللَّهُمَّ أَسْلَمْتُ نَفْسِي إِلَيْكَ، وَفَوَّضْتُ أَمْرِي إِلَيْكَ، وَوَجَّهْتُ وَجْهِي إِلَيْكَ، وَأَلْجَأْتُ ظَهْرِي إِلَيْكَ، رَغْبَةً وَرَهْبَةً إِلَيْكَ، لاَ مَلْجَأَ وَلاَ مَنْجَا مِنْكَ إِلاَّ إِلَيْكَ، آمَنْتُ بِكِتَابِكَ الَّذِي أَنْزَلْتَ، وَبِنَبِيِّكَ الَّذِي أَرْسَلْتَ)).","count":1,"audio":"/audio/111.mp3","filename":"111"}]},{"id":3,"category":"أذكار الاستيقاظ من النوم","audio":"/audio/ar_7esn_AlMoslem_by_Doors_002.mp3","filename":"ar_7esn_AlMoslem_by_Doors_002","view":[{"id":1,"text":"( الْحَمْدُ للَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا، وَإِلَيْهِ النُّشُورُ )","count":1,"audio":"/audio/1.mp3","filename":"1"},{"id":2,"text":"( لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَريكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، سُبْحَانَ اللَّهِ، وَالْحَمْدُ للَّهِ، وَلاَ إِلَهَ إِلاَّ اللَّهُ، وَاللَّهُ أَكبَرُ، وَلاَ حَوْلَ وَلاَ قُوَّةَ إِلاَّ بِاللَّهِ الْعَلِيِّ الْعَظِيمِ، رَبِّ اغْفرْ لِي ).","count":1,"audio":"/audio/2.mp3","filename":"2"},{"id":3,"text":"( الْحَمْدُ لِلَّهِ الَّذِي عَافَانِي فِي جَسَدِي، وَرَدَّ عَلَيَّ رُوحِي، وَأَذِنَ لي بِذِكْرِهِ )","count":1,"audio":"/audio/3.mp3","filename":"3"},{"id":4,"text":"﴿ إِنَّ فِي خَلْقِ السَّمَوَاتِ وَالأَرْضِ وَاخْتِلاَفِ اللَّيْلِ وَالنَّهَارِ لَآيَاتٍ لأُوْلِي الألْبَابِ * الَّذِينَ يَذْكُرُونَ اللَّهَ قِيَاماً وَقُعُوداً وَعَلَىَ جُنُوبِهِمْ وَيَتَفَكَّرُونَ فِي خَلْقِ السَّمَوَاتِ وَالأَرْضِ رَبَّنَا مَا خَلَقْتَ هَذا بَاطِلاً سُبْحَانَكَ فَقِنَا عَذَابَ النَّارِ* رَبَّنَا إِنَّكَ مَن تُدْخِلِ النَّارَ فَقَدْ أَخْزَيْتَهُ وَمَا لِلظَّالِمِينَ مِنْ أَنصَارٍ* رَّبَّنَا إِنَّنَا سَمِعْنَا مُنَادِياً يُنَادِي لِلإِيمَانِ أَنْ آمِنُواْ بِرَبِّكُمْ فَآمَنَّا رَبَّنَا فَاغْفِرْ لَنَا ذُنُوبَنَا وَكَفِّرْ عَنَّا سَيِّئَاتِنَا وَتَوَفَّنَا مَعَ الأبْرَارِ* رَبَّنَا وَآتِنَا مَا وَعَدتَّنَا عَلَى رُسُلِكَ وَلاَ تُخْزِنَا يَوْمَ الْقِيَامَةِ إِنَّكَ لاَ تُخْلِفُ الْمِيعَادَ* فَاسْتَجَابَ لَهُمْ رَبُّهُمْ أَنِّي لاَ أُضِيعُ عَمَلَ عَامِلٍ مِّنكُم مِّن ذَكَرٍ أَوْ أُنثَى بَعْضُكُم مِّن بَعْضٍ فَالَّذِينَ هَاجَرُواْ وَأُخْرِجُواْ مِن دِيَارِهِمْ وَأُوذُواْ فِي سَبِيلِي وَقَاتَلُواْ وَقُتِلُواْ لأُكَفِّرَنَّ عَنْهُمْ سَيِّئَاتِهِمْ وَلأُدْخِلَنَّهُمْ جَنَّاتٍ تَجْرِي مِن تَحْتِهَا الأَنْهَارُ ثَوَاباً مِّن عِندِ اللَّهِ وَاللَّهُ عِندَهُ حُسْنُ الثَّوَابِ * لاَ يَغُرَّنَّكَ تَقَلُّبُ الَّذِينَ كَفَرُواْ فِي الْبِلاَدِ * مَتَاعٌ قَلِيلٌ ثُمَّ مَأْوَاهُمْ جَهَنَّمُ وَبِئْسَ الْمِهَادُ * لَكِنِ الَّذِينَ اتَّقَوْاْ رَبَّهُمْ لَهُمْ جَنَّاتٌ تَجْرِي مِنْ تَحْتِهَا الأَنْهَارُ خَالِدِينَ فِيهَا نُزُلاً مِّنْ عِندِ اللَّهِ وَمَا عِندَ اللَّهِ خَيْرٌ لِّلأَبْرَارِ * وَإِنَّ مِنْ أَهْلِ الْكِتَابِ لَمَن يُؤْمِنُ بِاللَّهِ وَمَا أُنزِلَ إِلَيْكُمْ وَمَآ أُنزِلَ إِلَيْهِمْ خَاشِعِينَ لِلَّهِ لاَ يَشْتَرُونَ بِآيَاتِ اللَّهِ ثَمَناً قَلِيلاً أُوْلَئِكَ لَهُمْ أَجْرُهُمْ عِندَ رَبِّهِمْ إِنَّ اللَّهَ سَرِيعُ الْحِسَابِ*يَا أَيُّهَا الَّذِينَ آمَنُواْ اصْبِرُواْ وَصَابِرُواْ وَرَابِطُواْ وَاتَّقُواْ اللَّهَ لَعَلَّكُمْ تُفْلِحُونَ ﴾","count":1,"audio":"/audio/4.mp3","filename":"4"}]},{"id":4,"category":"دعاء دخول الخلاء","audio":"/audio/ar_7esn_AlMoslem_by_Doors_007.mp3","filename":"ar_7esn_AlMoslem_by_Doors_007","view":[{"id":1,"text":"([بِسْمِ اللَّهِ] اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْخُبْثِ وَالْخَبائِث).","count":1,"audio":"/audio/10.mp3","filename":"10"}]},{"id":5,"category":"دعاء الخروج من الخلاء","audio":"/audio/ar_7esn_AlMoslem_by_Doors_008.mp3","filename":"ar_7esn_AlMoslem_by_Doors_008","view":[{"id":1,"text":"(غُفْرَانَكَ).","count":1,"audio":"/audio/11.mp3","filename":"11"}]},{"id":6,"category":"الذكر قبل الوضوء","audio":"/audio/ar_7esn_AlMoslem_by_Doors_009.mp3","filename":"ar_7esn_AlMoslem_by_Doors_009","view":[{"id":1,"text":"(بِسْمِ اللَّهِ).","count":1,"audio":"/audio/12.mp3","filename":"12"}]},{"id":7,"category":"الذكر بعد الفراغ من الوضوء","audio":"/audio/ar_7esn_AlMoslem_by_Doors_010.mp3","filename":"ar_7esn_AlMoslem_by_Doors_010","view":[{"id":1,"text":"(أَشْهَدُ أَنْ لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ وَأَشْهَدُ أَنَّ مُحَمَّداً عَبْدُهُ وَرَسُولُهُ..).","count":1,"audio":"/audio/13.mp3","filename":"13"},{"id":2,"text":"(اللَّهُمَّ اجْعَلْنِي مِنَ التَّوَّابِينَ وَاجْعَلْنِي مِنَ الْمُتَطَهِّرِينَ)","count":1,"audio":"/audio/14.mp3","filename":"14"},{"id":3,"text":"(سُبْحانَكَ اللَّهُمَّ وَبِحَمْدِكَ، أَشْهَدُ أَنْ لاَ إِلَهَ إِلاَّ أَنْتَ، أَسْتَغْفِرُكَ وَأَتوبُ إِلَيْكَ).","count":1,"audio":"/audio/15.mp3","filename":"15"}]},{"id":8,"category":"الذكر عند الخروج من المنزل","audio":"/audio/ar_7esn_AlMoslem_by_Doors_011.mp3","filename":"ar_7esn_AlMoslem_by_Doors_011","view":[{"id":1,"text":"(بِسْمِ اللَّهِ، تَوَكَّلْتُ عَلَى اللَّهِ، وَلَاَ حَوْلَ وَلَا قُوَّةَ إِلاَّ بِاللَّهِ).","count":1,"audio":"/audio/16.mp3","filename":"16"},{"id":2,"text":"(اللَّهُمَّ إِنِّي أَعُوذُ بِكَ أَنْ أَضِلَّ، أَوْ أُضَلَّ، أَوْ أَزِلَّ، أَوْ أُزَلَّ، أَوْ أَظْلِمَ، أَوْ أُظْلَمَ، أَوْ أَجْهَلَ، أَوْ يُجْهَلَ عَلَيَّ).","count":1,"audio":"/audio/17.mp3","filename":"17"}]},{"id":9,"category":"الذكر عند دخول المنزل","audio":"/audio/ar_7esn_AlMoslem_by_Doors_012.mp3","filename":"ar_7esn_AlMoslem_by_Doors_012","view":[{"id":1,"text":"(بِسْمِ اللَّهِ وَلَجْنَا، وَبِسْمِ اللَّهِ خَرَجْنَا، وَعَلَى اللَّهِ رَبِّنَا تَوَكَّلْنَا، ثُمَّ لِيُسَلِّمْ عَلَى أَهْلِهِ).","count":1,"audio":"/audio/18.mp3","filename":"18"}]},{"id":10,"category":"دعاء الذهاب إلى المسجد","audio":"/audio/ar_7esn_AlMoslem_by_Doors_013.mp3","filename":"ar_7esn_AlMoslem_by_Doors_013","view":[{"id":1,"text":"(اللَّهُمَّ اجْعَلْ فِي قَلْبِي نُوراً، وَفِي لِسَانِي نُوراً، وَفِي سَمْعِي نُوراً، وَفِي بَصَرِي نُوراً، وَمِنْ فَوْقِي نُوراً، وَمِنْ تَحْتِي نُوراً، وَعَنْ يَمِينِي نُوراً، وَعَنْ شِمَالِي نُوراً، وَمِنْ أَمَامِي نُوراً، وَمِنْ خَلْفِي نُوراً، وَاجْعَلْ فِي نَفْسِي نُوراً، وَأَعْظِمْ لِي نُوراً، وَعَظِّم لِي نُوراً، وَاجْعَلْ لِي نُوراً، وَاجْعَلْنِي نُوراً، اللَّهُمَّ أَعْطِنِي نُوراً، وَاجْعَلْ فِي عَصَبِي نُوراً، وَفِي لَحْمِي نُوراً، وَفِي دَمِي نُوراً، وَفِي شَعْرِي نُوراً، وَفِي بَشَرِي نُوراً)([اللَّهُمَّ اجْعَلْ لِي نُوراً فِي قَبْرِي... وَنُوراً فِي عِظَامِي])[(وَزِدْنِي نُوراً، وَزِدْنِي نُوراً، وَزِدْنِي نُوراً)][(وَهَبْ لِي نُوراً عَلَى نُورٍ)]","count":1,"audio":"/audio/19.mp3","filename":"19"}]},{"id":11,"category":"دعاء دخول المسجد","audio":"/audio/ar_7esn_AlMoslem_by_Doors_014.mp3","filename":"ar_7esn_AlMoslem_by_Doors_014","view":[{"id":1,"text":"(يَبْدَأُ بِرِجْلِهِ الْيُمْنَى) ، وَيَقُولُ: ((أَعُوذُ بِاللَّهِ العَظِيمِ، وَبِوَجْهِهِ الْكَرِيمِ، وَسُلْطَانِهِ الْقَدِيمِ، مِنَ الشَّيْطَانِ الرَّجِيمِ))  [بِسْمِ اللَّهِ، وَالصَّلَاةُ] [وَالسَّلَامُ عَلَى رَسُولِ اللَّهِ]  ((اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ)).","count":1,"audio":"/audio/20.mp3","filename":"20"}]},{"id":12,"category":"دعاء الخروج من المسجد","audio":"/audio/ar_7esn_AlMoslem_by_Doors_015.mp3","filename":"ar_7esn_AlMoslem_by_Doors_015","view":[{"id":1,"text":"((يَبْدَأُ بِرِجْلِهِ الْيُسْرَى))  وَيَقُولُ: ((بِسْمِ اللَّهِ وَالصّلَاةُ وَالسَّلَامُ عَلَى رَسُولِ اللَّهِ، اللَّهُمَّ إِنِّي أَسْأَلُكَ مِنْ فَضْلِك، اللَّهُمَّ اعْصِمْنِي مِنَ الشَّيْطَانِ الرَّجِيمِ)).","count":1,"audio":"/audio/21.mp3","filename":"21"}]},{"id":13,"category":"أذكار الآذان","audio":"/audio/ar_7esn_AlMoslem_by_Doors_016.mp3","filename":"ar_7esn_AlMoslem_by_Doors_016","view":[{"id":1,"text":" يَقُولُ مِثْلَ مَا يَقُولُ المُؤَذِّنُ إِلاَّ فِي ((حَيَّ عَلَى الصَّلَاةِ وَحَيَّ عَلَى الْفَلَاحِ)) فَيقُولُ: ((لاَ حَوْلَ وَلاَ قُوَّةَ إِلاَّ بِاللَّهِ)).","count":1,"audio":"/audio/22.mp3","filename":"22"},{"id":2,"text":" يَقُولُ: ((وَأَنَا أَشْهَدُ أَنْ لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ وَأَنَّ مُحَمَّداً عَبْدُهُ وَرَسُولُهُ، رَضِيتُ بِاللَّهِ رَبَّاً، وَبِمُحَمَّدٍ رَسُولاً، وَبِالْإِسْلاَمِ دِينَاً)) ((يَقُولُ ذَلِكَ عَقِبَ تَشَهُّدِ الْمُؤَذِّنِ)).","count":1,"audio":"/audio/23.mp3","filename":"23"},{"id":3,"text":" ((يُصَلِّي عَلَى النَّبِيِّ صلى الله عليه وسلم بَعْدَ فَرَاغِهِ مِنْ إِجَابَةِ الْمُؤَذِّنِ)).","count":1,"audio":"/audio/24.mp3","filename":"24"},{"id":4,"text":"يَقُولُ: ((اللَّهُمَّ رَبَّ هَذِهِ الدَّعْوَةِ التَّامَّةِ، وَالصَّلاَةِ الْقَائِمَةِ، آتِ مُحَمَّداً الْوَسِيلَةَ وَالْفَضِيلَةَ، وَابْعَثْهُ مَقَامَاً مَحمُوداً الَّذِي وَعَدْتَهُ، [إِنَّكَ لَا تُخْلِفُ الْمِيعَادَ])).","count":1,"audio":"/audio/25.mp3","filename":"25"},{"id":5,"text":"((يَدْعُو لِنَفسِهِ بَيْنَ الْأَذَانِ وَالْإِقَامَةِ فَإِنَّ الدُّعَاءَ حِينَئِذٍ لاَ يُرَدُّ)).","count":1,"audio":"/audio/26.mp3","filename":"26"}]},{"id":14,"category":"دعاء ُلبْس الثوب","audio":"/audio/ar_7esn_AlMoslem_by_Doors_003.mp3","filename":"ar_7esn_AlMoslem_by_Doors_003","view":[{"id":1,"text":"(الْحَمْدُ للَّهِ الَّذِي كَسَانِي هَذَا (الثَّوْبَ) وَرَزَقَنِيهِ مِنْ غَيْرِ حَوْلٍ مِنِّي وَلاَ قُوَّة...)","count":1,"audio":"/audio/5.mp3","filename":"5"}]},{"id":15,"category":"دعاء ُلبْس الثوب الجديد","audio":"/audio/ar_7esn_AlMoslem_by_Doors_004.mp3","filename":"ar_7esn_AlMoslem_by_Doors_004","view":[{"id":1,"text":"( اللَّهُمَّ لَكَ الْحَمْدُ أَنْتَ كَسَوْتَنِيهِ، أَسْأَلُكَ مِنْ خَيْرِهِ وَخَيْرِ مَا صُنِعَ لَهُ، وَأَعُوذُ بِكَ مِنْ شَرِّهِ وَشَرِّ مَا صُنِعَ لَهُ).","count":1,"audio":"/audio/6.mp3","filename":"6"}]},{"id":16,"category":"الدعاء لمن لبس ثوبا جديدا","audio":"/audio/ar_7esn_AlMoslem_by_Doors_005.mp3","filename":"ar_7esn_AlMoslem_by_Doors_005","view":[{"id":1,"text":"(تُبْلِي وَيُخْلِفُ اللَّهُ تَعَالَى)","count":1,"audio":"/audio/7.mp3","filename":"7"},{"id":2,"text":"(اِلْبَسْ جَدِيداً وَعِشْ حَمِيداً وَمُتْ شَهِيداً).","count":1,"audio":"/audio/8.mp3","filename":"8"}]},{"id":17,"category":"ما يقول إذا وضع ثوبه","audio":"/audio/ar_7esn_AlMoslem_by_Doors_006.mp3","filename":"ar_7esn_AlMoslem_by_Doors_006","view":[{"id":1,"text":"(بِسْمِ اللَّهِ).","count":1,"audio":"/audio/9.mp3","filename":"9"}]},{"id":18,"category":"دعاء الاستفتاح","audio":"/audio/ar_7esn_AlMoslem_by_Doors_017.mp3","filename":"ar_7esn_AlMoslem_by_Doors_017","view":[{"id":1,"text":" ((اللَّهُمَّ بَاعِدْ بَيْنِي وَبَيْنَ خَطَايَايَ كَمَا بَاعَدْتَ بَيْنَ الْمَشْرِقِ وَالْمَغْرِبِ، اللَّهُمَّ نَقِّنِي مِنْ خَطَايَايَ كَمَا يُنَقَّى الثَّوْبُ الْأَبْيَضُ مِنَ الدَّنَسِ، اللَّهُمَّ اغْسِلْني مِنْ خَطَايَايَ، بِالثَّلْجِ وَالْماءِ وَالْبَرَدِ)).","count":1,"audio":"/audio/27.mp3","filename":"27"},{"id":2,"text":"((سُبْحانَكَ اللَّهُمَّ وَبِحَمْدِكَ، وَتَبارَكَ اسْمُكَ، وَتَعَالَى جَدُّكَ، وَلاَ إِلَهَ غَيْرُكَ)).","count":1,"audio":"/audio/28.mp3","filename":"28"},{"id":3,"text":"((وَجَّهْتُ وَجْهِيَ لِلَّذِي فَطَرَ السَّمَوَاتِ وَالأَرْضَ حَنِيفَاً وَمَا أَنَا مِنَ الْمُشْرِكِينَ، إِنَّ صَلاَتِي، وَنُسُكِي، وَمَحْيَايَ، وَمَمَاتِي لِلَّهِ رَبِّ الْعَالَمِينَ، لاَ شَرِيكَ لَهُ وَبِذَلِكَ أُمِرْتُ وَأَنَا مِنَ الْمُسْلِمِينَ. اللَّهُمَّ أَنْتَ المَلِكُ لاَ إِلَهَ إِلاَّ أَنْتَ، أَنْتَ رَبِّي وَأَنَا عَبْدُكَ، ظَلَمْتُ نَفْسِي وَاعْتَرَفْتُ بِذَنْبِي فَاغْفِرْ لِي ذُنُوبي جَمِيعَاً إِنَّهُ لاَ يَغْفِرُ الذُّنوبَ إِلاَّ أَنْتَ. وَاهْدِنِي لِأَحْسَنِ الأَخْلاقِ لاَ يَهْدِي لِأَحْسَنِها إِلاَّ أَنْتَ، وَاصْرِفْ عَنِّي سَيِّئَهَا، لاَ يَصْرِفُ عَنِّي سَيِّئَهَا إِلاَّ أَنْتَ، لَبَّيْكَ وَسَعْدَيْكَ، وَالخَيْرُ كُلُّهُ بِيَـــــــدَيْكَ، وَالشَّـــــرُّ لَيْسَ إِلَيْــــــكَ، أَنَا بِكَ وَإِلَيْكَ، تَبارَكْتَ وَتَعَالَيْتَ، أَسْتَغْفِرُكَ وَأَتوبُ إِلَيْكَ)).","count":1,"audio":"/audio/29.mp3","filename":"29"},{"id":4,"text":"((اللَّهُمَّ رَبَّ جِبْرَائِيلَ، وَمِيْكَائِيلَ، وَإِسْرَافِيلَ، فَاطِرَ السَّمَوَاتِ وَالأَرْضِ، عَالِمَ الغَيْبِ وَالشَّهَادَةِ أَنْتَ تَحْكُمُ بَيْنَ عِبَادِكَ فِيمَا كَانُوا فِيهِ يَخْتَلِفُونَ. اهْدِنِي لِمَا اخْتُلِفَ فِيهِ مِنَ الْحَقِّ بِإِذْنِكَ إِنَّكَ تَهْدِي مَنْ تَشَاءُ إِلَى صِرَاطٍ مُسْتَقيمٍ)).","count":1,"audio":"/audio/30.mp3","filename":"30"},{"id":5,"text":"((اللَّهُ أَكْبَرُ كَبِيرَاً، اللَّهُ أَكْبَرُ كَبِيراً، اللَّهُ أَكْبَرُ كَبِيراً، وَالْحَمْدُ لِلَّهِ كَثيراً، وَالْحَمْدُ لِلَّهِ كَثيراً، وَالْحَمْدُ لِلَّهِ كَثيراً، وَسُبْحَانَ اللَّهِ بُكْرَةً وَأَصِيلاً)) ثَلاثاً ((أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ: مِنْ نَفْخِهِ، وَنَفْثِهِ، وَهَمْزِهِ)).","count":1,"audio":"/audio/31.mp3","filename":"31"},{"id":6,"text":"((اللَّهُمَّ لَكَ الْحَمْدُ، أَنْتَ نُورُ السَّمَوَاتِ وَالأَرْضِ وَمَنْ فِيهِنَّ، وَلَكَ الْحَمْدُ أَنْتَ قَيِّمُ السَّمَوَاتِ وَالأَرْضِ وَمَنْ فِيهِنَّ، [وَلَكَ الْحَمْدُ أَنْتَ رَبُّ السَّمَواتِ وَالأَرْضِ وَمَنْ فِيهِنَّ] [وَلَكَ الْحَمْدُ لَكَ مُلْكُ السَّمَوَاتِ وَالأَرْضِ وَمَنْ فِيهِنَّ] [وَلَكَ الْحَمْدُ أَنْتَ مَلِكُ السَّمَوَاتِ وَالأَرْضِ] [وَلَكَ الْحَمْدُ] [أَنْتَ الْحَقُّ، وَوَعْدُكَ الْحَقُّ، وَقَوْلُكَ الْحَقُّ، وَلِقاؤُكَ الْحَقُّ، وَالْجَنَّةُ حَقٌّ، وَالنَّارُ حَقٌّ، وَالنَّبِيُّونَ حَقٌّ، وَمحَمَّدٌ صلى الله عليه وسلم حَقٌّ، وَالسّاعَةُ حَقٌّ] [اللَّهُمَّ لَكَ أَسْلَمتُ، وَعَلَيْكَ تَوَكَّلْتُ، وَبِكَ آمَنْتُ، وَإِلَيْكَ أَنَبْتُ، وَبِكَ خاصَمْتُ، وَإِلَيْكَ حاكَمْتُ. فَاغْفِرْ لِي مَا قَدَّمْتُ، وَمَا أَخَّرْتُ، وَمَا أَسْرَرْتُ، وَمَا أَعْلَنْتُ] [وَمَا أَنْتَ أَعْلَمُ بِهِ مِنِّي] [أَنْتَ المُقَدِّمُ، وَأَنْتَ المُؤَخِّرُ لاَ إِلَهَ إِلاَّ أَنْتَ] [أَنْتَ إِلَهِي لاَ إِلَهَ إِلاَّ أَنْتَ] [وَلاَ حَوْلَ وَلاَ قُوَّةَ إِلاَّ بِاللَّهِ])).","count":1,"audio":"/audio/32.mp3","filename":"32"}]},{"id":19,"category":"دعاء الركوع","audio":"/audio/ar_7esn_AlMoslem_by_Doors_018.mp3","filename":"ar_7esn_AlMoslem_by_Doors_018","view":[{"id":1,"text":"((سُبْحانَ رَبِّيَ الْعَظِيمِ)). ثلاث مرَّاتٍ.","count":3,"audio":"/audio/33.mp3","filename":"33"},{"id":2,"text":"((سُبْحَانَكَ اللَّهُمَّ رَبَّنَا وَبِحَمْدِكَ، اللَّهُمَّ اغْفِرْ لِي)).","count":1,"audio":"/audio/34.mp3","filename":"34"},{"id":3,"text":"((سُبُّوُحٌ، قُدُّوسٌ، رَبُّ المَلاَئِكَةِ وَالرُّوحِ)).","count":1,"audio":"/audio/35.mp3","filename":"35"},{"id":4,"text":"((اللَّهُمَّ لَكَ رَكَعْتُ، وَبِكَ آمَنْتُ، وَلَكَ أَسْلَمْتُ، خَشَعَ لَكَ سَمْعِي، وَبَصَرِي، وَمُخِّي، وَعَــــظْمِي، وَعَصَبِي، [وَمَا استَقَلَّتْ بِهِ قَدَمِي])).","count":1,"audio":"/audio/36.mp3","filename":"36"},{"id":5,"text":"((سُبْحَانَ ذِي الْجَبَرُوتِ، وَالْمَلَكُوتِ، وَالْكِبْرِيَاءِ، وَالْعَظَمَةِ)).","count":1,"audio":"/audio/37.mp3","filename":"37"}]},{"id":20,"category":"دعاء الرفع من الركوع","audio":"/audio/ar_7esn_AlMoslem_by_Doors_019.mp3","filename":"ar_7esn_AlMoslem_by_Doors_019","view":[{"id":1,"text":"((سَمِعَ اللَّهُ لِمَنْ حَمِدَهُ)).","count":1,"audio":"/audio/38.mp3","filename":"38"},{"id":2,"text":"((رَبَّنَا وَلَكَ الْحَمْدُ، حَمْداً كَثيراً طَيِّباً مُبارَكاً فِيهِ)).","count":1,"audio":"/audio/39.mp3","filename":"39"},{"id":3,"text":"((مِلْءَ السَّمَوَاتِ وَمِلْءَ الأَرْضِ، وَمَا بَيْنَهُمَا، وَمِلْءَ مَا شِئْتَ مِنْ شَيءٍ بَعْدُ. أَهلَ الثَّناءِ وَالْمَجْدِ، أَحَقُّ مَا قَالَ الْعَبْدُ، وَكُلُّنَا لَكَ عَبْدٌ. اللَّهُمَّ لاَ مَانِعَ لِمَا أَعْطَيْتَ، وَلاَ مُعْطِيَ لِمَا مَنَعْتَ، وَلاَ يَنْفَعُ ذَا الجَدِّ مِنْكَ الجَدُّ)).","count":1,"audio":"/audio/40.mp3","filename":"40"}]},{"id":21,"category":"دعاء السجود","audio":"/audio/ar_7esn_AlMoslem_by_Doors_020.mp3","filename":"ar_7esn_AlMoslem_by_Doors_020","view":[{"id":1,"text":"((سُبْحَانَ رَبِّيَ الأَعْلَى)) ثلاث مرَّاتٍ.","count":3,"audio":"/audio/41.mp3","filename":"41"},{"id":2,"text":"((سُبْحَانَكَ اللَّهُمَّ رَبَّنَا وَبِحَمْدِكَ، اللَّهُمَّ اغْفِرْ لِي)).","count":1,"audio":"/audio/42.mp3","filename":"42"},{"id":3,"text":"((سُبوحٌ، قُدُّوسٌ، رَبُّ الْمَلَائِكَةِ وَالرُّوحِ)).","count":1,"audio":"/audio/43.mp3","filename":"43"},{"id":4,"text":"((اللَّهُمَّ لَكَ سَجَدْتُ وَبِكَ آمَنْتُ، وَلَكَ أَسْلَمْتُ، سَجَدَ وَجْهِيَ لِلَّذِي خَلَقَهُ، وَصَوَّرَهُ، وَشَقَّ سَمْعَهُ وَبَصَرَهُ، تَبَارَكَ اللَّهُ أَحْسنُ الْخَالِقينَ)).","count":1,"audio":"/audio/44.mp3","filename":"44"},{"id":5,"text":"((سُبْحَانَ ذِي الْجَبَرُوتِ، وَالْمَلَكُوتِ، وَالْكِبْرِيَاءِ، وَالْعَظَمَةِ)).","count":1,"audio":"/audio/45.mp3","filename":"45"},{"id":6,"text":"((اللَّهُمَّ اغْفِرْ لِي ذَنْبِي كُلَّهُ: دِقَّهُ وَجِلَّهُ، وَأَوَّلَهُ وَآخِرَهُ، وَعَلاَنِيَّتَهُ وَسِرَّهُ)).","count":1,"audio":"/audio/46.mp3","filename":"46"},{"id":7,"text":"((اللَّهُمَّ إِنِّي أَعُوذُ بِرِضَاكَ مِنْ سَخَطِكَ، وَبِمُعَافَاتِكَ مِنْ عُقوبَتِكَ، وَأَعُوذُ بِكَ مِنْكَ، لاَ أُحْصِي ثَنَاءً عَلَيْكَ، أَنْتَ كَمَا أَثْنَيْتَ عَلَى نَفْسِكَ)).","count":1,"audio":"/audio/47.mp3","filename":"47"}]},{"id":22,"category":"دعاء الجلسة بين السجدتين","audio":"/audio/ar_7esn_AlMoslem_by_Doors_021.mp3","filename":"ar_7esn_AlMoslem_by_Doors_021","view":[{"id":1,"text":"((رَبِّ اغْفِرْ لِي، رَبِّ اغْفِرْ لِي)).","count":1,"audio":"/audio/48.mp3","filename":"48"},{"id":2,"text":"((اللَّهُمَّ اغْفِرْ لِي، وَارْحَمْنِي، وَاهْدِنِي، وَاجْبُرْنِي، وَعَافِنِي، وَارْزُقْنِي، وَارْفَعْنِي)).","count":1,"audio":"/audio/49.mp3","filename":"49"}]},{"id":23,"category":"دعاء سجود التلاوة","audio":"/audio/ar_7esn_AlMoslem_by_Doors_022.mp3","filename":"ar_7esn_AlMoslem_by_Doors_022","view":[{"id":1,"text":"((سَجَدَ وَجْهِيَ لِلَّذِي خَلَقَهُ، وَشَقَّ سَمْعَهُ وَبَصَرَهُ بِحَوْلِهِ وَقُوَّتِهِ، ﴿فَتَبارَكَ اللَّهُ أَحْسَنُ الْخَالِقِينَ﴾)).","count":1,"audio":"/audio/50.mp3","filename":"50"},{"id":2,"text":"((اللَّهُمَّ اكْتُبْ لِي بِهَا عِنْدَكَ أَجْراً، وَضَعْ عَنِّي بِهَا وِزْراً، وَاجْعَلْهَا لِي عِنْدَكَ ذُخْراً، وَتَقَبَّلْهَا مِنِّي كَمَا تَقَبَّلْتَهَا مِنْ عَبْدِكَ دَاوُدَ)).","count":1,"audio":"/audio/51.mp3","filename":"51"}]},{"id":24,"category":"التشهد","audio":"/audio/ar_7esn_AlMoslem_by_Doors_023.mp3","filename":"ar_7esn_AlMoslem_by_Doors_023","view":[{"id":1,"text":"((التَّحِيَّاتُ لِلَّهِ، وَالصَّلَواتُ، وَالطَّيِّباتُ، السَّلاَمُ عَلَيْكَ أَيُّهَا النَّبِيُّ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ، السَّلاَمُ عَلَيْنَا وَعَلَى عِبَادِ اللَّهِ الصَّالِحِينَ. أَشْهَدُ أَنْ لاَ إِلَهَ إِلاَّ اللَّهُ وَأَشْهَدُ أَنَّ مُحَمَّداً عَبْدُهُ وَرَسولُهُ)).","count":1,"audio":"/audio/52.mp3","filename":"52"}]},{"id":25,"category":"الصلاة على النبي بعد التشهد","audio":"/audio/ar_7esn_AlMoslem_by_Doors_024.mp3","filename":"ar_7esn_AlMoslem_by_Doors_024","view":[{"id":1,"text":"((اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ، وَعَلَى آلِ مُحَمَّدٍ، كَمَا صَلَّيتَ عَلَى إِبْرَاهِيمَ، وَعَلَى آلِ إِبْرَاهِيمَ، إِنَّكَ حَمِيدٌ مَجِيدٌ، اللَّهُمَّ بَارِكْ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ، كَمَا بَارَكْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ، إِنَّكَ حَمِيدٌ مَجِيدٌ)).","count":1,"audio":"/audio/53.mp3","filename":"53"},{"id":2,"text":"((اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى أَزْوَاجِهِ وَذُرِّيَّتِهِ، كَمَا صَلَّيْتَ عَلَى آلِ إِبْرَاهِيمَ. وَبَارِكْ عَلَى مُحَمَّدٍ وَعَلَى أَزْواجِهِ وَذُرِّيَّتِهِ، كَمَا بَارَكْتَ عَلَى آلِ إِبْرَاهِيمَ. إِنَّكَ حَمِيدٌ مَجِيدٌ)).","count":1,"audio":"/audio/54.mp3","filename":"54"}]},{"id":26,"category":"الدعاء بعد التشهد الأخير قبل السلام","audio":"/audio/ar_7esn_AlMoslem_by_Doors_025.mp3","filename":"ar_7esn_AlMoslem_by_Doors_025","view":[{"id":1,"text":"((اللَّهُــمَّ إِنِّي أَعُوذُ بِكَ مِنْ عَذَابِ الْقَبْرِ، وَمِنْ عَذَابِ جَهَنَّمَ، وَمِنْ فِتْنَةِ الْمَحْيَا وَالْمَمَاتِ، وَمِنْ شَرِّ فِتْنَةِ الْمَسِيحِ الدَّجَّالِ)).","count":1,"audio":"/audio/55.mp3","filename":"55"},{"id":2,"text":"((اللَّهُمَّ إِنِّي أَعوذُ بِكَ مِنْ عَذَابِ الْقَبْرِ، وَأَعوذُ بِكَ مِنْ فِتْنَةِ الْمَسِيحِ الدَّجَّالِ، وَأَعوذُ بِكَ مِنْ فِتْنَةِ الْمَحْيَا وَالْمَمَاتِ. اللَّهُمَّ إِنِّي أَعوذُ بِكَ مِنَ الْمَأْثَمِ وَالْمَغْرَمِ)).","count":1,"audio":"/audio/56.mp3","filename":"56"},{"id":3,"text":"((اللَّهُمَّ إِنِّي ظَلَمْتُ نَفْسِي ظُلْماً كَثِيراً، وَلاَ يَغْفِرُ الذُّنوبَ إِلاَّ أَنْتَ، فَاغْفِرْ لِي مَغْفِرَةً مِنْ عِنْدِكَ وَارْحَمْنِي، إِنَّكَ أَنْتَ الغَفورُ الرَّحيمُ)).","count":1,"audio":"/audio/57.mp3","filename":"57"},{"id":4,"text":"((اللَّهُمَّ اغْفِرْ لِي مَا قَدَّمْتُ، وَمَا أَخَّرْتُ، وَمَا أَسْرَرْتُ، وَمَا أَعْلَنْتُ، وَمَا أَسْرَفْتُ، وَمَا أَنْتَ أَعْلَمُ بِهِ مِنِّي. أَنْتَ الْمُقَدِّمُ، وَأَنْتَ الْمُؤَخِّرُ لاَ إِلَهَ إِلاَّ أَنْتَ)).","count":1,"audio":"/audio/58.mp3","filename":"58"},{"id":5,"text":"((اللَّهُمَّ أَعِنِّي عَلَى ذِكْرِكَ، وَشُكْرِكَ، وَحُسْنِ عِبادَتِكَ)).","count":1,"audio":"/audio/59.mp3","filename":"59"},{"id":6,"text":"((اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْبُخْلِ، وَأَعوذُ بِكَ مِنَ الْجُبْنِ، وَأَعُوذُ بِكَ مِنْ أَنْ أُرَدَّ إِلَى أَرْذَلِ الْعُمُرِ، وَأَعُوذُ بِكَ مِنْ فِتْنَةِ الدُّنْيَا وَعَذَابِ الْقَبْرِ)).","count":1,"audio":"/audio/60.mp3","filename":"60"},{"id":7,"text":"((اللَّهُمَّ إِنِّي أَسْأَلُكَ الْجَنَّةَ وَأَعُوذُ بِكَ مِنَ النَّارِ)).","count":1,"audio":"/audio/61.mp3","filename":"61"},{"id":8,"text":"((اللَّهُمَّ بِعِلْمِكَ الغَيْبَ وَقُدْرَتِكَ عَلَى الْخَلقِ أَحْيِنِي مَا عَلِمْتَ الْحَيَاةَ خَيْراً لِي، وَتَوَفَّنِي إِذَا عَلِمْتَ الْوَفَاةَ خَيْراً لِي، اللَّهُمَّ إِنِّي أَسْأَلُكَ خَشْيَتَكَ فِي الْغَيْبِ وَالشَّهَادَةِ، وَأَسْأَلُكَ كَلِمَةَ الْحَقِّ فِي الرِّضَا وَالْغَضَبِ، وَأَسْأَلُكَ الْقَصْدَ فِي الْغِنَى وَالْفَقْرِ، وَأَسْأَلُكَ نَعِيماً لاَ يَنْفَدُ، وَأَسْأَلُكَ قُرَّةَ عَيْنٍ لاَ تَنْقَطِعُ، وَأَسْأَلُكَ الرِّضَا بَعْدَ الْقَضَاءِ، وَأَسْــــأَلُكَ بَرْدَ الْعَيْشِ بَعْدَ الْمَوْتِ، وَأَسْأَلُكَ لَذَّةَ النَّظَرِ إِلَى وَجْهِكَ، وَالشَّوْقَ إِلَى لِقائِكَ فِي غَيرِ ضَرَّاءَ مُضِرَّةٍ، وَلاَ فِتْنَةٍ مُضِلَّةٍ، اللَّهُمَّ زَيِّنَا بِزِينَةِ الإِيمَانِ، وَاجْعَلْنَا هُدَاةً مُهْتَدِينَ)).","count":1,"audio":"/audio/62.mp3","filename":"62"},{"id":9,"text":"((اللَّهُمَّ إِنِّي أَسْأَلُكَ يَا أَللَّهُ بِأَنَّكَ الْوَاحِدُ الْأَحَدُ الصَّمَدُ الَّذِي لَمْ يَلِدْ وَلَمْ يولَدْ، وَلَمْ يَكنْ لَهُ كُفُواً أَحَدٌ، أَنْ تَغْفِرَ لِي ذُنُوبِي إِنَّكَ أَنْتَ الْغَفُورُ الرَّحِّيمُ)).","count":1,"audio":"/audio/63.mp3","filename":"63"},{"id":10,"text":"((اللَّهُمَّ إِنِّي أَسْأَلُكَ بِأَنَّ لَكَ الْحَمْدَ لَا إِلَهَ إِلاَّ أَنْتَ وَحْدَكَ لاَ شَرِيكَ لَكَ، الْمَنَّانُ، يَا بَدِيعَ السَّمَوَاتِ وَالْأَرْضِ يَا ذَا الْجَلاَلِ وَالْإِكْرَامِ، يَا حَيُّ يَا قَيُّومُ إِنِّي أَسْأَلُكَ الْجَنَّةَ وَأَعُوذُ بِكَ مِنَ النَّارِ)).","count":1,"audio":"/audio/64.mp3","filename":"64"},{"id":11,"text":"((اللَّهُمَّ إِنِّي أَسْأَلُكَ بِأَنَّي أَشْهَدُ أَنَّكَ أَنْتَ اللَّهُ لاَ إِلَهَ إِلاَّ أَنْتَ الْأَحَدُ الصَّمَدُ الَّذِي لَمْ يَلِدْ وَلَمْ يُولَدْ وَلَمْ يَكُنْ لَهُ كُفُواً أَحَدٌ)) .","count":1,"audio":"/audio/65.mp3","filename":"65"}]},{"id":27,"category":"الأذكار بعد السلام من الصلاة","audio":"/audio/ar_7esn_AlMoslem_by_Doors_026.mp3","filename":"ar_7esn_AlMoslem_by_Doors_026","view":[{"id":1,"text":"((أَسْتَغْفِرُ اللَّهَ (ثَلاَثَاً) اللَّهُمَّ أَنْتَ السَّلاَمُ، وَمِنْكَ السَّلاَمُ، تَبَارَكْتَ يَا ذَا الْجَلاَلِ وَالْإِكْرَامِ)).","count":1,"audio":"/audio/66.mp3","filename":"66"},{"id":2,"text":"((لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ [ثلاثاً]، اللَّهُمَّ لاَ مَانِعَ لِمَا أَعْطَيْتَ، وَلاَ مُعْطِيَ لِمَا مَنَعْتَ، وَلاَ يَنْفَعُ ذَا الْجَدِّ مِنْكَ الجَدُّ)).","count":1,"audio":"/audio/67.mp3","filename":"67"},{"id":3,"text":"((لَا إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ، لَهُ الْمُلْكُ، وَلَهُ الْحَمدُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ. لاَ حَوْلَ وَلاَ قُوَّةَ إِلاَّ بِاللَّهِ، لاَ إِلَهَ إِلاَّ اللَّهُ، وَلاَ نَعْبُدُ إِلاَّ إِيَّاهُ, لَهُ النِّعْمَةُ وَلَهُ الْفَضْلُ وَلَهُ الثَّنَاءُ الْحَسَنُ، لَا إِلَهَ إِلاَّ اللَّهُ مُخْلِصِينَ لَهُ الدِّينَ وَلَوْ كَرِهَ الكَافِرُونَ)).","count":1,"audio":"/audio/68.mp3","filename":"68"},{"id":4,"text":"((سُبْحَانَ اللَّهِ، وَالْحَمْدُ لِلَّهِ، وَاللَّهُ أَكْبَرُ (ثلاثاً وثلاثين) لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ)).","count":33,"audio":"/audio/69.mp3","filename":"69"},{"id":5,"text":"بسم الله الرحمن الرحيم ﴿قُلْ هُوَ اللَّهُ أَحَدٌ* اللَّهُ الصَّمَدُ* لَمْ يَلِدْ وَلَمْ يُولَدْ* وَلَمْ يَكُن لَّهُ كُفُواً أَحَدٌ﴾، بسم الله الرحمن الرحيم ﴿قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ* مِن شَرِّ مَا خَلَقَ* وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ* وَمِن شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ* وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ﴾،بسم الله الرحمن الرحيم ﴿قُلْ أَعُوذُ بِرَبِّ النَّاسِ* مَلِكِ النَّاسِ* إِلَهِ النَّاسِ* مِن شَرِّ الْوَسْوَاسِ الْخَنَّاسِ* الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ* مِنَ الْجِنَّةِ وَ النَّاسِ﴾ بَعْدَ كُلِّ صَلاَةٍ.","count":1,"audio":"/audio/70.mp3","filename":"70"},{"id":6,"text":"﴿اللَّهُ لاَ إِلَهَ إِلاَّ هُوَ الْحَيُّ الْقَيُّومُ لاَ تَأْخُذُهُ سِنَةٌ وَلاَ نَوْمٌ لَّهُ مَا فِي السَّمَوَاتِ وَمَا فِي الأَرْضِ مَن ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلاَّ بِإِذْنِهِ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ وَلاَ يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلاَّ بِمَا شَاءَ وَسِعَ كُرْسِيُّهُ السَّمَوَاتِ وَالأَرْضَ وَلاَ يَؤُودُهُ حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ﴾ عَقِبَ كلِّ صَلاَةٍ.","count":1,"audio":"/audio/71.mp3","filename":"71"},{"id":7,"text":"((لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ يُحْيِي وَيُمِيتُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ)) عَشْرَ مَرّاتٍ بَعْدَ صَلاةِ الْمَغْرِبِ وَالصُّبْحِ.","count":10,"audio":"/audio/72.mp3","filename":"72"},{"id":8,"text":"((اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْماً نافِعاً، وَرِزْقاً طَيِّباً، وَعَمَلاً مُتَقَبَّلاً)) بَعْدَ السّلامِ مِنْ صَلاَةِ الفَجْرِ.","count":1,"audio":"/audio/73.mp3","filename":"73"}]},{"id":28,"category":"دعاء صلاة الاستخارة","audio":"/audio/ar_7esn_AlMoslem_by_Doors_027.mp3","filename":"ar_7esn_AlMoslem_by_Doors_027","view":[{"id":1,"text":"قَالَ جَابرُ بْنُ عَبْدِ اللَّهِ رَضِيَ اللَّهُ عَنْهُمَا: كَانَ رسُولُ اللَّهِ صلى الله عليه وسلم يُعَلِّمُنَا الْاسْتِخَارَةَ فِي الْأُمُورِ كُلِّهَا كَمَا يُعَلِّمُنَا السُّورَةَ مِنَ الْقُرْآنِ، يَقُولُ: ((إِذَا هَمَّ أَحَدُكُمْ بِالْأَمْرِ فَلْيَرْكَعْ رَكْعَتَيْنِ مِنْ غَيْرِ الْفَرِيضَةِ، ثُمَّ لْيَقُلْ: اللَّهُمَّ إِنِّي أَسْتَخِيرُكَ بِعِلْمِكَ، وَأَسْتَقْدِرُكَ بِقُدْرَتِكَ، وَأَسْأَلُكَ مِنْ فَضْلِكَ العَظِيمِ؛ فَإِنَّكَ تَقْدِرُ وَلاَ أَقْدِرُ، وَتَعْلَمُ وَلاَ أَعْلَمُ، وَأَنْتَ عَلاَّمُ الغُيُوبِ، اللَّهُمَّ إِنْ كُنْتَ تَعْلَمُ أَنَّ هَذَا الأمْرَ - وَيُسَمِّي حَاجَتَهُ - خَيْرٌ لِي فِي دِينِي وَمَعَاشِي وَعَاقِبَةِ أَمْرِي – أَوْ قَالَ: عَاجِلِهِ وَآجِلِهِ - فَاقْدُرْهُ لِي وَيَسِّرْهُ لِي ثمَّ بَارِكْ لِي فِيهِ، وَإِنْ كُنْتَ تَعْلَمُ أَنَّ هَذَا الْأَمْرَ شَرٌّ لِي فِي دِينِي وَمَعَاشِي وَعَاقِبَةِ أَمْرِي – أَوْ قَالَ: عَاجِلِهِ وَآجِلِهِ – فَاصْرِفْهُ عَنِّي وَاصْرِفْنِي عَنْهُ وَاقْدُرْ لِيَ الْخَيْرَ حَيْثُ كَانَ، ثُمَّ أَرْضِنِي بِهِ)).وَمَا نَدِمَ مَنِ اسْتَخَارَ الْخَالِقَ، وَشَاوَرَ الْمَخْلُوقِينَ الْمُؤْمِنِينَ وَتَثَبَّتَ فِي أَمْرِهِ، فَقَدْ قَالَ اللَّه تعالى: ﴿وَشاوِرْهُمْ فِي الْأَمْرِ فَإِذَا عَزَمْتَ فَتَوَكَّلْ عَلَى اللَّهِ﴾ .","count":1,"audio":"/audio/74.mp3","filename":"74"}]},{"id":29,"category":"الدعاء إذا تقلب ليلا","audio":"/audio/ar_7esn_AlMoslem_by_Doors_030.mp3","filename":"ar_7esn_AlMoslem_by_Doors_030","view":[{"id":1,"text":"((لاَ إِلَهَ إِلاَّ اللَّهُ الْوَاحِدُ الْقَهّارُ، رَبُّ السَّمَوَاتِ وَالْأَرْضِ وَمَا بَيْنَهُمَا الْعَزيزُ الْغَفَّارُ)).","count":1,"audio":"/audio/112.mp3","filename":"112"}]},{"id":30,"category":"دعاء الفزع في النوم و من بُلِيَ بالوحشة","audio":"/audio/ar_7esn_AlMoslem_by_Doors_031.mp3","filename":"ar_7esn_AlMoslem_by_Doors_031","view":[{"id":1,"text":"((أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ غَضَبِهِ وَعِقَابِهِ، وَشَرِّ عِبَادِهِ، وَمِنْ هَمَزَاتِ الشَّياطِينِ وَأَنْ يَحْضُرُونِ)).","count":1,"audio":"/audio/113.mp3","filename":"113"}]},{"id":31,"category":"ما يفعل من رأى الرؤيا أو الحلم","audio":"/audio/ar_7esn_AlMoslem_by_Doors_032.mp3","filename":"ar_7esn_AlMoslem_by_Doors_032","view":[{"id":1,"text":"[ (يَنْفُثُ عَنْ يَسَارِهِ (ثلاثاً)) - (يَسْتَعِيذُ بِاللَّهِ مِنَ الشَّيطَانِ وَمِنْ شَرِّ مَا رَأَى (ثَلاَثَ مَرَّاتٍ)) - ((لاَ يُحَدِّثْ بِهَا أَحَداً)) - ((يَــتَحَوَّلُ عَنْ جَنْبِهِ الَّذِي كَانَ عَلَيْهِ)) ]","count":1,"audio":"/audio/114.mp3","filename":"114"},{"id":2,"text":"((ويَقُومُ يُصَلِّي إِنْ أَرَادَ ذَلِكَ)).","count":1,"audio":"/audio/115.mp3","filename":"115"}]},{"id":32,"category":"دعاء قنوت الوتر","audio":"/audio/ar_7esn_AlMoslem_by_Doors_033.mp3","filename":"ar_7esn_AlMoslem_by_Doors_033","view":[{"id":1,"text":"((اللَّهُمَّ اهْدِنِي فِيمَنْ هَدَيْتَ، وَعَافِنِي فِيمَنْ عَافَيْتَ، وَتَوَلَّنِي فِيمَنْ تَوَلَّيْتَ، وَبَارِكْ لِي فِيمَا أَعْطَيْتَ، وَقِنِي شَرَّ مَا قَضَيْتَ؛ فَإِنَّكَ تَقْضِي وَلاَ يُقْضَى عَلَيْكَ، إِنَّهُ لاَ يَذِلُّ مَنْ وَالَيْتَ، [وَلاَ يَعِزُّ مَنْ عَادَيْتَ]، تَبارَكْتَ رَبَّنا وَتَعَالَيْتَ)).","count":1,"audio":"/audio/116.mp3","filename":"116"},{"id":2,"text":"((اللَّهُمَّ إِنِّي أَعُوذُ بِرِضَاكَ مِنْ سَخَطِكَ، وَبِمُعَافَاتِكَ مِنْ عُقُوبَتِكَ، وَأَعُــــوذُ بِكَ مِنْكَ، لاَ أُحْصِي ثَنَاءً عَلَيْكَ، أَنْتَ كَمَا أَثْنَيْتَ عَلَى نَفْسِكَ)).","count":1,"audio":"/audio/117.mp3","filename":"117"},{"id":3,"text":"((اللَّهُمَّ إِيَّاكَ نعْبُدُ، وَلَكَ نُصَلِّي وَنَسْجُدُ، وَإِلَيْكَ نَسْعَى وَنَحْفِدُ، نَرْجُو رَحْمَتَكَ، وَنَخْشَى عَذَابَكَ، إِنَّ عَذَابَكَ بِالكَافِرِينَ مُلْحَقٌ. اللَّهُمَّ إِنَّا نَسْتَعينُكَ، وَنَسْتَغْفِرُكَ، وَنُثْنِي عَلَيْكَ الْخَيْرَ، وَلاَ نَكْفُرُكَ، وَنُؤْمِنُ بِكَ، وَنَخْضَعُ لَكَ، وَنَخْلَعُ مَنْ يَكْفرُكَ)).","count":1,"audio":"/audio/118.mp3","filename":"118"}]},{"id":33,"category":"الذكر عقب السلام من الوتر","audio":"/audio/ar_7esn_AlMoslem_by_Doors_034.mp3","filename":"ar_7esn_AlMoslem_by_Doors_034","view":[{"id":1,"text":"((سُبْحَانَ المَلِكِ القُدُّوسِ)) ثلاثَ مرَّاتٍ والثَّالِثَةُ يَجْهَرُ بها ويَمُدُّ بها صَوتَهُ يقولُ: [رَبِّ الْمَلاَئِكَةِ وَالرُّوحِ])).","count":1,"audio":"/audio/119.mp3","filename":"119"}]},{"id":34,"category":"دعاء الهم والحزن","audio":"/audio/ar_7esn_AlMoslem_by_Doors_035.mp3","filename":"ar_7esn_AlMoslem_by_Doors_035","view":[{"id":1,"text":"((اللَّهُمَّ إِنِّي عَبْدُكَ، ابْنُ عَبْدِكَ، ابْنُ أَمَتِكَ، نَاصِيَتِي بِيَدِكَ، مَاضٍ فِيَّ حُكْمُكَ، عَدْلٌ فِيَّ قَضَاؤُكَ، أَسْأَلُكَ بِكُــــلِّ اسْمٍ هُوَ لَكَ، سَمَّيْتَ بِهِ نَفْسَكَ، أَوْ أَنْزَلْتَهُ فِي كِتَابِكَ، أَوْ عَلَّمْتَهُ أَحَداً مِنْ خَلْقِكَ، أَوِ اسْتَأْثَرْتَ بِهِ فِي عِلْمِ الغَيْبِ عِنْدَكَ، أَنْ تَجْعَلَ القُرْآنَ رَبِيعَ قَلْبِي، وَنُورَ صَدْرِي، وَجَلاَءَ حُزْنِي، وَذَهَابَ هَمِّي)).","count":1,"audio":"/audio/120.mp3","filename":"120"},{"id":2,"text":"((اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ، وَالْعَجْزِ وَالْكَسَلِ، وَالْبُخْلِ وَالْجُبْنِ، وَضَلَعِ الدَّيْنِ وَغَلَبَةِ الرِّجَالِ)).","count":1,"audio":"/audio/121.mp3","filename":"121"}]},{"id":35,"category":"دعاء الكرب","audio":"/audio/ar_7esn_AlMoslem_by_Doors_036.mp3","filename":"ar_7esn_AlMoslem_by_Doors_036","view":[{"id":1,"text":"((لاَ إِلَهَ إِلاَّ اللَّهُ الْعَظِيمُ الْحَلِيمُ، لاَ إِلَهَ إِلاَّ اللَّهُ رَبُّ الْعَرْشِ الْعَظِيمِ، لاَ إِلَهَ إِلاَّ اللَّهُ رَبُّ السَّمَوَاتِ وَرَبُّ الْأَرْضِ وَرَبُّ الْعَرْشِ الْكَرِيمِ)).","count":1,"audio":"/audio/122.mp3","filename":"122"},{"id":2,"text":"((اللَّهُمَّ رَحْمَتَكَ أَرْجُو، فَلاَ تَكِلْنِي إِلَى نَفْسِي طَرْفَةَ عَيْنٍ، وَأَصْلِحْ لِي شَأْنِي كُلَّهُ، لاَ إِلَهَ إِلاَّ أَنْتَ)).","count":1,"audio":"/audio/123.mp3","filename":"123"},{"id":3,"text":"((لاَ إِلَهَ إِلاَّ أَنْتَ سُبْحَانَكَ إِنِّي كُنْتُ مِنَ الظّالِمِينَ)).","count":1,"audio":"/audio/124.mp3","filename":"124"},{"id":4,"text":"((اللَّهُ اللَّهُ رَبِّي لاَ أُشْرِكُ بِهِ شَيْئاً)).","count":1,"audio":"/audio/125.mp3","filename":"125"}]},{"id":36,"category":"دعاء لقاء العدو و ذي السلطان","audio":"/audio/ar_7esn_AlMoslem_by_Doors_037.mp3","filename":"ar_7esn_AlMoslem_by_Doors_037","view":[{"id":1,"text":"((اللَّهُمَّ إِنَّا نَجْعَلُكَ فِي نُحُورِهِم، وَنَعُوذُ بِكَ مِنْ شُرُورِهِمْ)).","count":1,"audio":"/audio/126.mp3","filename":"126"},{"id":2,"text":"((اللَّهُمَّ أَنْتَ عَضُدِي، وَأَنْتَ نَصِيرِي، بِكَ أَحُولُ وَبِكَ أَصُولُ، وَبِكَ أُقاتِلُ)).","count":1,"audio":"/audio/127.mp3","filename":"127"},{"id":3,"text":"((حَسْبُنا اللَّهُ وَنِعْمَ الْوَكِيلُ)).","count":1,"audio":"/audio/128.mp3","filename":"128"}]},{"id":37,"category":"دعاء من خاف ظلم السلطان","audio":"/audio/ar_7esn_AlMoslem_by_Doors_038.mp3","filename":"ar_7esn_AlMoslem_by_Doors_038","view":[{"id":1,"text":"((اللَّهُمَّ ربَّ السَّمَوَاتِ السَّبْعِ، وَرَبَّ الْعَرْشِ الْعَظِيمِ، كُنْ لِي جَاراً مِنْ فُلاَنِ بْنِ فُلاَنٍ، وَأَحْزَابِهِ مِنْ خَلاَئِقِكَ، أَنْ يَفْرُطَ عَلَيَّ أَحَدٌ مِنْهُمْ أَوْ يَطْغَى، عَزَّ جَارُكَ، وَجَلَّ ثَنَاؤُكَ، وَلاَ إِلَهَ إِلاَّ أَنْتَ)).","count":1,"audio":"/audio/129.mp3","filename":"129"},{"id":2,"text":"((اللَّهُ أَكْبَرُ، اللَّهُ أَعَزُّ مِنْ خَلْقِهِ جَمِيعاً، اللَّهُ أَعَزُّ مِمَّا أَخَافُ وَأَحْذَرُ، أَعُوذُ بِاللَّهِ الَّذِي لاَ إِلَهَ إِلاَّ هُوَ، الْمُمْسِكِ السَّمَوَاتِ السَّبْعِ أَنْ يَقَعْنَ عَلَى الْأَرْضِ إِلاَّ بِإِذْنِهِ، مِنْ شَرِّ عَبْدِكَ فُلاَنٍ، وَجُنُودِهِ وَأَتْبَاعِهِ وَأَشْيَاعِهِ، مِنْ الْجِنِّ وَالإِنْسِ، اللَّهُمَّ كُنْ لِي جَاراً مِنْ شَرِّهِمْ، جَلَّ ثَنَاؤُكَ وَعَزَّ جَارُكَ، وَتَبَارَكَ اسْمُكَ، وَلاَ إِلَهَ غَيْرُكَ)) (ثلاثَ مرَّاتٍ).","count":1,"audio":"/audio/130.mp3","filename":"130"}]},{"id":38,"category":"الدعاء على العدو","audio":"/audio/ar_7esn_AlMoslem_by_Doors_039.mp3","filename":"ar_7esn_AlMoslem_by_Doors_039","view":[{"id":1,"text":"((اللَّهُمَّ مُنْزِلَ الْكِتَابِ، سَرِيعَ الْحِسَابِ، اهْزِمِ الأَحْزَابَ، اللَّهُمَّ اهزِمْهُمْ وَزَلْزِلْهُمْ)).","count":1,"audio":"/audio/131.mp3","filename":"131"}]},{"id":39,"category":"ما يقول من خاف قوما","audio":"/audio/ar_7esn_AlMoslem_by_Doors_040.mp3","filename":"ar_7esn_AlMoslem_by_Doors_040","view":[{"id":1,"text":"((اللَّهُمَّ اكْفِنِيهِمْ بِمَا شِئْتَ)).","count":1,"audio":"/audio/132.mp3","filename":"132"}]},{"id":40,"category":"دعاء من أصابه وسوسة في الإيمان","audio":"/audio/ar_7esn_AlMoslem_by_Doors_041.mp3","filename":"ar_7esn_AlMoslem_by_Doors_041","view":[{"id":1,"text":"((يَسْتَعِيذُ بِاللَّهِ و يَنْتَهِي عَمَّا شك فِيهِ)).","count":1,"audio":"/audio/133.mp3","filename":"133"},{"id":2,"text":"((يَقُولُ: ((آمَنْتُ بِاللَّهِ وَرُسُلِهِ)).","count":1,"audio":"/audio/134.mp3","filename":"134"},{"id":3,"text":"((يَقْرَأُ قَوْلَهُ تَعَالَى: ﴿هُوَ الْأوَّلُ وَالْآخِرُ وَالظّاهِرُ وَالْباطِنُ وَهُوَ بِكُلِّ شَيْءٍ عَلِيمٌ﴾)).","count":1,"audio":"/audio/135.mp3","filename":"135"}]},{"id":41,"category":"دعاء قضاء الدين","audio":"/audio/ar_7esn_AlMoslem_by_Doors_042.mp3","filename":"ar_7esn_AlMoslem_by_Doors_042","view":[{"id":1,"text":"((اللَّهُمَّ اكْفِنِي بِحَلاَلِكَ عَنْ حَرَامِكَ، وَأَغْنِنِي بِفَضْلِكِ عَمَّنْ سِوَاكَ)).","count":1,"audio":"/audio/136.mp3","filename":"136"},{"id":2,"text":"((اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ، وَالْعَجْزِ وَالْكَسَلِ، وَالْبُخْلِ وَالْجُبْنِ، وَضَلَعِ الدَّيْنِ وَغَلَبَةِ الرِّجَالِ)).","count":1,"audio":"/audio/137.mp3","filename":"137"}]},{"id":42,"category":"دعاء الوسوسة في الصلاة و القراءة","audio":"/audio/ar_7esn_AlMoslem_by_Doors_043.mp3","filename":"ar_7esn_AlMoslem_by_Doors_043","view":[{"id":1,"text":"((أَعُوذُ بِاللَّهِ مِنَ الشَّيطَانِ الرَّجِيمِ، وَاتْفُلْ عَلَى يَسَارِكَ (ثلاثاً))).","count":1,"audio":"/audio/138.mp3","filename":"138"}]},{"id":43,"category":"دعاء من استصعب عليه أمر","audio":"/audio/ar_7esn_AlMoslem_by_Doors_044.mp3","filename":"ar_7esn_AlMoslem_by_Doors_044","view":[{"id":1,"text":"((اللَّهُمَّ لاَ سَهْلَ إِلاَّ مَا جَعَلْتَهُ سَهْلاً، وَأَنْتَ تَجْعَلُ الْحَزْنَ إِذَا شِئْتَ سَهْلاً)).","count":1,"audio":"/audio/139.mp3","filename":"139"}]},{"id":44,"category":"ما يقول ويفعل من أذنب ذنبا","audio":"/audio/ar_7esn_AlMoslem_by_Doors_045.mp3","filename":"ar_7esn_AlMoslem_by_Doors_045","view":[{"id":1,"text":"((مَا مِنْ عَبْدٍ يُذنِبُ ذَنْباً فَيُحْسِنُ الطُّهُورَ، ثُمَّ يَقُومُ فَيُصَلِّي رَكْعَتَيْنِ، ثُمَّ يَسْتَغْفِرُ اللَّهَ إِلاَّ غَفَرَ اللَّهُ لَهُ)).","count":1,"audio":"/audio/140.mp3","filename":"140"}]},{"id":45,"category":"دعاء طرد الشيطان و وساوسه","audio":"/audio/ar_7esn_AlMoslem_by_Doors_046.mp3","filename":"ar_7esn_AlMoslem_by_Doors_046","view":[{"id":1,"text":"((الْاسْتِعَاذَةُ بِاللَّهِ مِنْهُ)).","count":1,"audio":"/audio/141.mp3","filename":"141"},{"id":2,"text":"((الْأَذَانُ)).","count":1,"audio":"/audio/142.mp3","filename":"142"},{"id":3,"text":"((الْأَذْكَارُ وَقِرَاءَةُ الْقُرْآنِ)).","count":1,"audio":"/audio/143.mp3","filename":"143"}]},{"id":46,"category":"الدعاء حينما يقع ما لا يرضاه أو ُ غلب على أمره","audio":"/audio/ar_7esn_AlMoslem_by_Doors_047.mp3","filename":"ar_7esn_AlMoslem_by_Doors_047","view":[{"id":1,"text":"((قَدَرُ اللَّهُ وَمَا شَاءَ فَعَلَ)).","count":1,"audio":"/audio/144.mp3","filename":"144"}]},{"id":47,"category":"ﺗﻬنئة المولود له وجوابه","audio":"/audio/ar_7esn_AlMoslem_by_Doors_048.mp3","filename":"ar_7esn_AlMoslem_by_Doors_048","view":[{"id":1,"text":"((بَارَكَ اللَّهُ لَكَ فِي الْمَوْهُوبِ لَكَ، وَشَكَرْتَ الْوَاهِبَ، وَبَلَغَ أَشُدَّهُ، وَرُزِقْتَ بِرَّهُ)). وَيَرُدُّ عَلَيْهِ الْمُهَــــــنَّأُ فَيَقُولُ: ((بَارَكَ اللَّهُ لَكَ وَبَارَكَ عَلَيْكَ، وَجَزَاكَ اللَّهُ خَيْراً، وَرَزَقَكَ اللَّهُ مِثْلَهُ، وَأَجْزَلَ ثَوَابَكَ)).","count":1,"audio":"/audio/145.mp3","filename":"145"}]},{"id":48,"category":"ما يعوذ به الأولاد","audio":"/audio/ar_7esn_AlMoslem_by_Doors_049.mp3","filename":"ar_7esn_AlMoslem_by_Doors_049","view":[{"id":1,"text":" كَانَ رَسُولُ اللَّهِ صلى الله عليه وسلم يُعَوِّذُ الحَسَنَ وَالحُسَينَ رضي الله عنهما ((أُعِيذُكُمَا بِكَلِمَاتِ اللَّهِ التَّامَّةِ مِنْ كُلِّ شَيْطَانٍ وَهَامَّةٍ، وَمِنْ كُلِّ عَيْنٍ لاَمَّةٍ)).","count":1,"audio":"/audio/146.mp3","filename":"146"}]},{"id":49,"category":"الدعاء للمريض في عيادته","audio":"/audio/ar_7esn_AlMoslem_by_Doors_050.mp3","filename":"ar_7esn_AlMoslem_by_Doors_050","view":[{"id":1,"text":"((لاَ بأْسَ طَهُورٌ إِنْ شَاءَ اللَّهُ)).","count":1,"audio":"/audio/147.mp3","filename":"147"},{"id":2,"text":"((أَسْأَلُ اللَّهَ الْعَظيمَ رَبَّ الْعَرْشِ الْعَظِيمِ أَنْ يَشْفيَكَ)) (سبع مرات).","count":1,"audio":"/audio/148.mp3","filename":"148"}]},{"id":50,"category":"فضل عيادة المريض","audio":"/audio/ar_7esn_AlMoslem_by_Doors_051.mp3","filename":"ar_7esn_AlMoslem_by_Doors_051","view":[{"id":1,"text":"قَالَ النَّبِيُّ صلى الله عليه وسلم: ((إِذَا عَادَ الرَّجُلُ أَخَاهُ الْمُسْلِمَ مَشَى فِي خِرَافَةِ الْجَنَّةِ حَتَّى يَجْلِسَ، فَإِذَا جَلَسَ غَمَرَتْهُ الرَّحْمَةُ، فَإِنْ كَانَ غُدْوَةً صَلَّى عَلَيْهِ سَبْعُونَ أَلْفَ مَلَكٍ حَتَّى يُمْسِيَ، وَإِنْ كَانَ مَسَاءً صَلَّى عَلَيْهِ سَبْعُونَ أَلْفَ مَلَكٍ حَتَّى يُصْبِحَ)).","count":1,"audio":"/audio/149.mp3","filename":"149"}]},{"id":51,"category":"دعاء المريض الذي يئس من حياته","audio":"/audio/ar_7esn_AlMoslem_by_Doors_052.mp3","filename":"ar_7esn_AlMoslem_by_Doors_052","view":[{"id":1,"text":"((اللَّهُمَّ اغْفِرْ لِي، وَارْحَمْنِي، وَأَلْحِقْنِي بِالرَّفِيقِ الْأَعْلَى)).","count":1,"audio":"/audio/150.mp3","filename":"150"},{"id":2,"text":"((جَعَلَ النَّبِيُّ صلى الله عليه وسلم عِنْدَ مَوْتِهِ يُدْخِلُ يَدَيْهِ فِي الْمَاءِ فَيَمْسَحُ بِهِمَا وَجْهَهُ، وَيَقُولُ: لاَ إِلَهَ إِلاَّ اللَّهُ إِنَّ لِلْمَوْتِ سَكَرَاتٍ)).","count":1,"audio":"/audio/151.mp3","filename":"151"},{"id":3,"text":"((لاَ إِلَهَ إِلاَّ اللَّهُ وَاللَّهُ أَكْبَرُ، لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ، لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ، لاَ إِلَهَ إِلاَّ اللَّهُ لَهُ المُلْكُ وَلَهُ الْحَمْدُ، لاَ إِلَهَ إِلاَّ اللَّهُ وَلاَ حَوْلَ وَلاَ قُوَّةَ إِلاَّ بِاللَّهِ)).","count":1,"audio":"/audio/152.mp3","filename":"152"}]},{"id":52,"category":"تلقين المحتضر","audio":"/audio/ar_7esn_AlMoslem_by_Doors_053.mp3","filename":"ar_7esn_AlMoslem_by_Doors_053","view":[{"id":1,"text":"((مَنْ كَانَ آخِرُ كَلاَمِهِ لاَ إِلَهَ إِلاَّ اللَّهُ دَخَلَ الْجَنَّةَ)).","count":1,"audio":"/audio/ar_7esn_AlMoslem_by_Doors_053.mp3","filename":"ar_7esn_AlMoslem_by_Doors_053"}]},{"id":53,"category":"دعاء من أصيب بمصيبة","audio":"/audio/ar_7esn_AlMoslem_by_Doors_054.mp3","filename":"ar_7esn_AlMoslem_by_Doors_054","view":[{"id":1,"text":"((إِنَّا لِلَّهِ وَإِنَّا إِلَيْهِ رَاجِعُونَ، اللَّهُمَّ أْجُرْنِي فِي مُصِيبَتِي، وَأَخْلِفْ لِي خَيْرَاً مِنْهَا)).","count":1,"audio":"/audio/154.mp3","filename":"154"}]},{"id":54,"category":"الدعاء عند إغماض الميت","audio":"/audio/ar_7esn_AlMoslem_by_Doors_055.mp3","filename":"ar_7esn_AlMoslem_by_Doors_055","view":[{"id":1,"text":"((اللَّهُمَّ اغْفِرْ لِفُلاَنٍ (بِاسْمِهِ) وَارْفَعْ دَرَجَتَهُ فِي الْمَهْدِيِّينَ، وَاخْلُفْهُ فِي عَقِبِهِ فِي الْغَابِرِينَ، وَاغْفِرْ لَنَا وَلَهُ  يَا رَبَّ الْعَالَمِينَ، وَافْسَحْ لَهُ فِي قَبْرِهِ، وَنَوِّرْ لَهُ فِيهِ)).","count":1,"audio":"/audio/155.mp3","filename":"155"}]},{"id":55,"category":"الدعاء للميت في الصلاة عليه","audio":"/audio/ar_7esn_AlMoslem_by_Doors_056.mp3","filename":"ar_7esn_AlMoslem_by_Doors_056","view":[{"id":1,"text":"((اللَّهُمَّ اغْفِرْ لَهُ وَارْحَمْهُ، وَعَافِهِ، وَاعْفُ عَنْهُ، وَأَكْرِمْ نُزُلَهُ، وَوَسِّعْ مُدْخَلَهُ، وَاغْسِلْهُ بِالْمَاءِ وَالثَّلْجِ وَالْبَرَدِ، وَنَقِّهِ مِنَ الْخَطَايَا كَمَا نَقَّيْتَ الثَّوْبَ الأَبْيَضَ مِنَ الدَّنَسِ، وَأَبْدِلْهُ دَاراً خَيْراً مِنْ دَارِهِ، وَأَهْلاً خَيْراً مِنْ أَهْلِهِ، وَزَوْجَاً خَيْراً مِنْ زَوْجِهِ، وَأَدْخِلْهُ الْجَنَّةَ، وَأَعِذْهُ مِنْ عَذَابِ القَبْرِ [وَعَذَابِ النَّارِ])).","count":1,"audio":"/audio/156.mp3","filename":"156"},{"id":2,"text":"((اللَّهُمَّ اغْفِرْ لِحَيِّنَا وَمَيِّتِنَا، وَشَاهِدِنَا وَغَائِبِنَا، وَصَغِيرِنَا وَكَبيرِنَا، وَذَكَرِنَا وَأُنْثَانَا. اللَّهُمَّ مَنْ أَحْيَيْتَهُ مِنَّا فَأَحْيِهِ عَلَى الْإِسْلاَمِ، وَمَنْ تَوَفَّيْتَهُ مِنَّا فَتَوَفَّهُ عَلَى الإِيمَانِ، اللَّهُمَّ لاَ تَحْرِمْنَا أَجْرَهُ، وَلاَ تُضِلَّنَا بَعْدَهُ)).","count":1,"audio":"/audio/157.mp3","filename":"157"},{"id":3,"text":"((اللَّهُمَّ إِنَّ فُلاَنَ بْنَ فُلاَنٍ فِي ذِمَّتِكَ، وَحَبْلِ جِوَارِكَ، فَقِهِ مِنْ فِتْنَةِ الْقَبْرِ، وَعَذَابِ النَّارِ، وَأَنْتَ أَهْلُ الْوَفَاءِ وَالْحَقِّ، فَاغْفِرْ لَهُ وَارْحَمْهُ إِنَّكَ أَنْتَ الغَفُورُ الرَّحيمُ)).","count":1,"audio":"/audio/158.mp3","filename":"158"},{"id":4,"text":"((اللَّهُمَّ عَبْدُكَ وَابْنُ أَمَتِكَ احْتَاجَ إِلَى رَحْمَتِكَ، وَأَنْتَ غَنِيٌّ عَنْ عَذَابِهِ، إِنْ كَانَ مُحْسِناً فَزِدْ فِي حَسَنَاتِهِ، وَإِنْ كَانَ مُسِيئاً فَتَجَاوَزْ عَنْهُ)).","count":1,"audio":"/audio/159.mp3","filename":"159"}]},{"id":56,"category":"الدعاء للفرط في الصلاة عليه","audio":"/audio/ar_7esn_AlMoslem_by_Doors_057.mp3","filename":"ar_7esn_AlMoslem_by_Doors_057","view":[{"id":1,"text":"((اللَّهُمَّ أَعِذْهُ مِنْ عَذَابِ القَبْرِ)) وإن قال: ((اللَّهُمَّ اجْعَلْهُ فَرَطاً وَذُخْراً لِوَالِدَيْهِ، وَشَفِيعاً مُجَاباً، اللَّهُمَّ ثَقِّلْ بِهِ مَوَازِينَهُمَا، وَأَعْظِمْ بِهِ أُجورَهُمَا، وَأَلْحِقْهُ بِصَالِحِ الْمُؤْمِنِينَ، وَاجْعَلْهُ فِي كَفَالَةِ إِبْرَاهِيمَ، وَقِهِ بِرَحْمَتِكَ عَذَابَ الْجَحِيمِ، وَأَبْدِلْهُ دَاراً خَيْراً مِنْ دَارِهِ، وَأَهْلاً خَيْراً مِنْ أَهْلِهِ، اللَّهُمَّ اغْفِرْ لِأَسْلاَفِنَا، وَأَفْرَاطِنَا، وَمَنْ سَبَقَنَا بِالْإِيمَانِ)) إن قال ذلك فَحَسَنٌ.","count":1,"audio":"/audio/160.mp3","filename":"160"},{"id":2,"text":"((اللَّهُمَّ اجْعَلْهُ لَنَا فَرَطاً، وَسَلَفاً، وَأَجْراً)).","count":1,"audio":"/audio/161.mp3","filename":"161"}]},{"id":57,"category":"دعاء التعزية","audio":"/audio/ar_7esn_AlMoslem_by_Doors_058.mp3","filename":"ar_7esn_AlMoslem_by_Doors_058","view":[{"id":1,"text":"((إِنَّ للَّهِ مَا أَخَذَ، وَلَهُ مَا أَعْطَى، وَكُلُّ شَيْءٍ عِنْدَهُ بِأَجَلٍ مُسَمَّى... فَلْتَصْبِرْ وَلْتَحْتَسِبْ)). وَإِنْ قَالَ: ((أَعْظَمَ اللَّهُ أَجْرَكَ، وَأَحْسَنَ عَزَاءَكَ، وَغَفَرَ لِمَيِّتِكَ)) فَحَسَنٌ.","count":1,"audio":"/audio/162.mp3","filename":"162"}]},{"id":58,"category":"الدعاء عند إدخال الميت القبر","audio":"/audio/ar_7esn_AlMoslem_by_Doors_059.mp3","filename":"ar_7esn_AlMoslem_by_Doors_059","view":[{"id":1,"text":"((بِسْمِ اللَّهِ وَعَلَى سُنَّةِ رَسُولِ اللَّهِ)).","count":1,"audio":"/audio/163.mp3","filename":"163"}]},{"id":59,"category":"الدعاء بعد دفن الميت","audio":"/audio/ar_7esn_AlMoslem_by_Doors_060.mp3","filename":"ar_7esn_AlMoslem_by_Doors_060","view":[{"id":1,"text":"((اللَّهُمَّ اغْفِرْ لَهُ، اللَّهُمَّ ثَبِّتْهُ)).","count":1,"audio":"/audio/164.mp3","filename":"164"}]},{"id":60,"category":"دعاء زيارة القبور","audio":"/audio/ar_7esn_AlMoslem_by_Doors_061.mp3","filename":"ar_7esn_AlMoslem_by_Doors_061","view":[{"id":1,"text":"((السَّلاَمُ عَلَيْكُمْ أَهْلَ الدِّيَارِ، مِنَ الْمُؤْمِنِينَ وَالْمُسْلِمِينَ، وَإِنَّا إِنْ شَاءَ اللَّهُ بِكُمْ لاَحِقُونَ، [وَيَرْحَمُ اللَّهُ الْمُسْتَقدِمِينَ مِنَّا وَالْمُسْتأْخِرِينَ] أَسْاَلُ اللَّهَ لَنَا وَلَكُمُ الْعَافِيَةَ)).","count":1,"audio":"/audio/165.mp3","filename":"165"}]},{"id":61,"category":"دعاء الريح","audio":"/audio/ar_7esn_AlMoslem_by_Doors_062.mp3","filename":"ar_7esn_AlMoslem_by_Doors_062","view":[{"id":1,"text":"((اللَّهُمَّ إِنِّي أَسْــــــأَلُكَ خَيْرَهَا، وَأَعُوذُ بِكَ مِنْ شَرِّهَا)).","count":1,"audio":"/audio/166.mp3","filename":"166"},{"id":2,"text":"((اللَّهُمَّ إِنِّي أَسْأَلُكَ خَيْرَهَا، وَخَيْرَ مَا فِيهَا، وَخَيْرَ مَا أُرْسِلَتْ بِهِ، وَأَعُوذُ بِكَ مِنْ شَرِّهَا، وَشَرِّ مَا فِيهَا، وَشَرِّ مَا أُرْسِلَتْ بِهِ)).","count":1,"audio":"/audio/167.mp3","filename":"167"}]},{"id":62,"category":"دعاء الرعد","audio":"/audio/ar_7esn_AlMoslem_by_Doors_063.mp3","filename":"ar_7esn_AlMoslem_by_Doors_063","view":[{"id":1,"text":"((سُبْحَانَ الَّذِي يُسَبِّحُ الرَّعْدُ بِحَمْدِهِ وَالْمَلاَئِكةُ مِنْ خِيفَتِهِ)).","count":1,"audio":"/audio/168.mp3","filename":"168"}]},{"id":63,"category":"من أدعية الاستسقاء","audio":"/audio/ar_7esn_AlMoslem_by_Doors_064.mp3","filename":"ar_7esn_AlMoslem_by_Doors_064","view":[{"id":1,"text":"((اللَّهُمَّ اسْقِنَا غَيْثاً مُغِيثاً مَرِيئاً مَرِيعاً، نَافِعاً غَيْرَ ضَارٍّ، عَاجِلاً غَيْرَ آجِلٍ)).","count":1,"audio":"/audio/169.mp3","filename":"169"},{"id":2,"text":"((اللَّهُمَّ أَغِثْنَا، اللَّهُمَّ أَغِثْنَا، اللَّهُمَّ أَغِثْنَا)).","count":1,"audio":"/audio/170.mp3","filename":"170"},{"id":3,"text":"((اللَّهُمَّ اسْقِ عِبَادَكَ، وَبَهَائِمَكَ، وَانْشُرْ رَحْمَتَكَ، وَأَحْيِي بَلَدَكَ الْمَيِّتَ)).","count":1,"audio":"/audio/171.mp3","filename":"171"}]},{"id":64,"category":"الدعاء إذا نزل المطر","audio":"/audio/ar_7esn_AlMoslem_by_Doors_065.mp3","filename":"ar_7esn_AlMoslem_by_Doors_065","view":[{"id":1,"text":"((اللَّهُمَّ صَيِّباً نَافِعاً)).","count":1,"audio":"/audio/172.mp3","filename":"172"}]},{"id":65,"category":"الذكر بعد نزول المطر","audio":"/audio/ar_7esn_AlMoslem_by_Doors_066.mp3","filename":"ar_7esn_AlMoslem_by_Doors_066","view":[{"id":1,"text":"((مُطِرْنَا بِفَضْلِ اللَّهِ وَرَحْمَتِهِ)).","count":1,"audio":"/audio/173.mp3","filename":"173"}]},{"id":66,"category":"من أدعية الاستصحاء","audio":"/audio/ar_7esn_AlMoslem_by_Doors_067.mp3","filename":"ar_7esn_AlMoslem_by_Doors_067","view":[{"id":1,"text":"((اللَّهُمَّ حَوَالَيْنَا وَلاَ عَلَيْنَا، اللَّهُمَّ عَلَى الآكَامِ وَالظِّرَابِ، وَبُطُونِ الْأَوْدِيَةِ، وَمَنَابِتِ الشَّجَرِ)).","count":1,"audio":"/audio/174.mp3","filename":"174"}]},{"id":67,"category":"دعاء رؤية الهلال","audio":"/audio/ar_7esn_AlMoslem_by_Doors_068.mp3","filename":"ar_7esn_AlMoslem_by_Doors_068","view":[{"id":1,"text":"((اللَّهُ أَكْبَرُ، اللَّهُمَّ أَهِلَّهُ عَلَيْنَا بِالْأَمْنِ وَالْإِيمَانِ، وَالسَّلاَمَةِ وَالْإِسْلاَمِ، وَالتَّوْفِيقِ لِمَا تُحِبُّ رَبَّنَا وَتَرْضَى، رَبُّنَا وَرَبُّكَ اللَّهُ)).","count":1,"audio":"/audio/175.mp3","filename":"175"}]},{"id":68,"category":"الدعاء عند إفطار الصائم","audio":"/audio/ar_7esn_AlMoslem_by_Doors_069.mp3","filename":"ar_7esn_AlMoslem_by_Doors_069","view":[{"id":1,"text":"((ذَهَبَ الظَّمَأُ وَابْتَلَّتِ العُرُوقُ، وَثَبَتَ الْأَجْرُ إِنْ شَاءَ اللَّهُ)).","count":1,"audio":"/audio/176.mp3","filename":"176"},{"id":2,"text":"((اللَّهُمَّ إِنِّي أَسْأَلُكَ بِرَحْمَتِكَ الَّتِي وَسِعَتْ كُلَّ شَيْءٍ أَنْ تَغْفِرَ لِي)).","count":1,"audio":"/audio/177.mp3","filename":"177"}]},{"id":69,"category":"الدعاء قبل الطعام","audio":"/audio/ar_7esn_AlMoslem_by_Doors_070.mp3","filename":"ar_7esn_AlMoslem_by_Doors_070","view":[{"id":1,"text":"((إِذَا أَكَلَ أَحَدُكُمْ طَعَاماً فَلْيَقُلْ بِسْمِ اللَّهِ، فَإِنْ نَسِيَ فِي أَوَّلِهِ فَلْيَقُلْ بسمِ اللَّهِ فِي أَوَّلِهِ وَآخِرِهِ)).","count":1,"audio":"/audio/178.mp3","filename":"178"},{"id":2,"text":"((مَنْ أَطْعَمَهُ اللَّهُ الطَّعَامَ فَلْيَقُلْ: اللَّهُمَّ بَارِكْ لَنَا فِيهِ وَأَطْعِمْنَا خَيْراً مِنْهُ، وَمَنْ سَقَاهُ اللَّهُ لَبَناً فَلْيَقُلْ اللَّهُمَّ بَارِكْ لَنَا فِيهِ وَزِدْنَا مِنْهُ)).","count":1,"audio":"/audio/179.mp3","filename":"179"}]},{"id":70,"category":"الدعاء عند الفراغ من الطعام","audio":"/audio/ar_7esn_AlMoslem_by_Doors_071.mp3","filename":"ar_7esn_AlMoslem_by_Doors_071","view":[{"id":1,"text":" ((الْحَمْدُ لِلَّهِ الَّذِي أَطْعَمَنِي هَذَا، وَرَزَقَنِيهِ، مِنْ غَيْرِ حَوْلٍ مِنِّي وَلاَ قُوَّةٍ)).","count":1,"audio":"/audio/180.mp3","filename":"180"},{"id":2,"text":"((الْحَمْدُ لِلَّهِ حَمْداً كَثِيراً طَيِّباً مُبَارَكاً فِيهِ، غَيْرَ [مَكْفِيٍّ وَلاَ ] مُوَدَّعٍ، وَلاَ مُسْتَغْنَىً عَنْهُ رَبَّنَا)).","count":1,"audio":"/audio/181.mp3","filename":"181"}]},{"id":71,"category":"دعاء الضيف لصاحب الطعام","audio":"/audio/ar_7esn_AlMoslem_by_Doors_072.mp3","filename":"ar_7esn_AlMoslem_by_Doors_072","view":[{"id":1,"text":" ((اللَّهُمَّ بَارِكْ لَهُمْ فِيمَا رَزَقْتَهُم، وَاغْفِرْ لَهُمْ وَارْحَمْهُمْ)).","count":1,"audio":"/audio/182.mp3","filename":"182"}]},{"id":72,"category":"التعريض بالدعاء لطلب الطعام أو الشراب","audio":"/audio/ar_7esn_AlMoslem_by_Doors_073.mp3","filename":"ar_7esn_AlMoslem_by_Doors_073","view":[{"id":1,"text":"((اللَّهُمَّ أَطْعِمْ مَنْ أَطْعَمَنِي، وَاسْقِ مَنْ سَقَانِي)).","count":1,"audio":"/audio/183.mp3","filename":"183"}]},{"id":73,"category":"الدعاء إذا أفطر عند أهل بيت","audio":"/audio/ar_7esn_AlMoslem_by_Doors_074.mp3","filename":"ar_7esn_AlMoslem_by_Doors_074","view":[{"id":1,"text":" ((أَفْطَرَ عِنْدَكُمُ الصَّائِمُونَ، وَأَكَلَ طَعَامَكُمُ الْأَبْرَارُ، وَصَلَّتْ عَلَيْكُمُ الْمَلاَئِكَةُ)).","count":1,"audio":"/audio/184.mp3","filename":"184"}]},{"id":74,"category":"دعاء الصائم إذا حضر الطعام ولم يفطر","audio":"/audio/ar_7esn_AlMoslem_by_Doors_075.mp3","filename":"ar_7esn_AlMoslem_by_Doors_075","view":[{"id":1,"text":"((إِذَا دُعِيَ أَحَدُكُمْ فَلْيُجِبْ، فَإِنْ كَانَ صَائِماً فَلْيُصَلِّ، وَإِنْ كَانَ مُفْطِراً فَلْيَطْعَمْ)) ، وَمَعْنَى فَلْيُصَلِّ أَيْ فَلْيَدْعُ.","count":1,"audio":"/audio/185.mp3","filename":"185"}]},{"id":75,"category":"ما يقول الصائم إذا سابه أحد","audio":"/audio/ar_7esn_AlMoslem_by_Doors_076.mp3","filename":"ar_7esn_AlMoslem_by_Doors_076","view":[{"id":1,"text":"((إِنِّي صَائِمٌ، إِنِّي صَائِمٌ)).","count":1,"audio":"/audio/186.mp3","filename":"186"}]},{"id":76,"category":"الدعاء عند رؤية باكورة الثمر","audio":"/audio/ar_7esn_AlMoslem_by_Doors_077.mp3","filename":"ar_7esn_AlMoslem_by_Doors_077","view":[{"id":1,"text":"((اللَّهُمَّ بَارِكْ لَنَا فِي ثَمَرِنَا، وَبَارِكْ لَنَا فِي مَدِينَتِنَا، وَبَارِكْ لَنَا فِي صَاعِنَا، وَبَارِكْ لَنَا فِي مُدِّنَا)).","count":1,"audio":"/audio/187.mp3","filename":"187"}]},{"id":77,"category":"دعاء العطاس","audio":"/audio/ar_7esn_AlMoslem_by_Doors_078.mp3","filename":"ar_7esn_AlMoslem_by_Doors_078","view":[{"id":1,"text":"((إِذَا عَطَسَ أَحَدُكُم فَلْيَقُلِ الْحَمْدُ لِلَّهِ، وَلْيَقُلْ لَهُ أَخُوهُ أَوْ صَاحِبُهُ: يَرْحَمُكَ اللَّهُ، فَإِذَا قَالَ لَهُ: يَرحَمُكَ اللَّهُ، فَلْيَقُلْ: يَهْدِيكُمُ اللَّهُ وَيُصْلِحُ بَالَكُمْ)).","count":1,"audio":"/audio/188.mp3","filename":"188"}]},{"id":78,"category":"ما يقال للكافر إذا عطس فحمد الله","audio":"/audio/ar_7esn_AlMoslem_by_Doors_079.mp3","filename":"ar_7esn_AlMoslem_by_Doors_079","view":[{"id":1,"text":"((يَهْدِيكُمُ اللَّهُ وَيُصْلِحُ بَالَكُمْ)).","count":1,"audio":"/audio/189.mp3","filename":"189"}]},{"id":79,"category":"الدعاء للمتزوج","audio":"/audio/ar_7esn_AlMoslem_by_Doors_080.mp3","filename":"ar_7esn_AlMoslem_by_Doors_080","view":[{"id":1,"text":"((بَارَكَ اللَّهُ لَكَ، وَبَارَكَ عَلَيْكَ، وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ)).","count":1,"audio":"/audio/190.mp3","filename":"190"}]},{"id":80,"category":"دعاء المتزوج و شراء الدابة","audio":"/audio/ar_7esn_AlMoslem_by_Doors_081.mp3","filename":"ar_7esn_AlMoslem_by_Doors_081","view":[{"id":1,"text":"إِذَا تَزَوَّجَ أَحَدُكُمُ امْرَأَةً، أَوْ إِذَا اشْتَرَى خَادِماً فَلْيَقُلْ: ((اللَّهُمَّ إِنِّي أَسْأَلُكَ خَيْرَهَا، وَخَيْرَ مَا جَبَلْتَهَا عَلَيْهِ، وَأَعُوذُ بِكَ مِنْ شَرِّهَا، وَشَرِّ مَا جَبَلْتَهَا عَلَيْهِ، وَإِذَا اشْتَرَى بَعِيراً فَلْيَأْخُذْ بِذِرْوَةِ سَنَامِهِ وَلْيَقُلْ مِثْلَ ذَلِكَ)).","count":1,"audio":"/audio/191.mp3","filename":"191"}]},{"id":81,"category":"الدعاء قبل إتيان الزوجة","audio":"/audio/ar_7esn_AlMoslem_by_Doors_082.mp3","filename":"ar_7esn_AlMoslem_by_Doors_082","view":[{"id":1,"text":"((بِسْمِ اللَّهِ، اللَّهُمَّ جَنِّبْنَا الشَّيْطَانَ، وَجَنِّبِ الشَّيْطَانَ مَا رَزَقْتَنَا)).","count":1,"audio":"/audio/192.mp3","filename":"192"}]},{"id":82,"category":"دعاء الغضب","audio":"/audio/ar_7esn_AlMoslem_by_Doors_083.mp3","filename":"ar_7esn_AlMoslem_by_Doors_083","view":[{"id":1,"text":"((أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ)).","count":1,"audio":"/audio/193.mp3","filename":"193"}]},{"id":83,"category":"دعاء من رأى مبتلى","audio":"/audio/ar_7esn_AlMoslem_by_Doors_084.mp3","filename":"ar_7esn_AlMoslem_by_Doors_084","view":[{"id":1,"text":"((الْحَمْدُ لِلَّهِ الَّذِي عَافَانِي مِمَّا ابْتَلاَكَ بِهِ، وَفَضَّلَنِي عَلَى كَثِيرٍ مِمَّنْ خَلَقَ تَفْضِيلاً)).","count":1,"audio":"/audio/194.mp3","filename":"194"}]},{"id":84,"category":"ما يقال في اﻟﻤﺠلس","audio":"/audio/ar_7esn_AlMoslem_by_Doors_085.mp3","filename":"ar_7esn_AlMoslem_by_Doors_085","view":[{"id":1,"text":"((عَنِ ابْنِ عُمَرَ رضي الله عنه قَاَلَ: كَانَ يُعَدُّ لِرَسُولِ اللَّهِ صلى الله عليه وسلم فِي الْمَجْلِسِ الوَاحِدِ مِائَةُ مَرَّةٍ مِنْ قَبْلِ أَنْ يَقُومَ: ((رَبِّ اغْفِرْ لِي، وَتُبْ عَلَيَّ، إِنَّكَ أَنْتَ التَّوَّابُ الغَفُورُ)).","count":1,"audio":"/audio/195.mp3","filename":"195"}]},{"id":85,"category":"كفارة اﻟﻤﺠلس","audio":"/audio/ar_7esn_AlMoslem_by_Doors_086.mp3","filename":"ar_7esn_AlMoslem_by_Doors_086","view":[{"id":1,"text":"((سُبْحَانَكَ اللَّهُمَّ وَبِحَمْدِكَ، أَشْهَدُ أَنْ لاَ إِلَهَ إِلاَّ أَنْتَ، أَسْتَغْفِرُكَ وَأَتُوبُ إِلَيْكَ)).","count":1,"audio":"/audio/196.mp3","filename":"196"}]},{"id":86,"category":"الدعاء لمن قال غفر الله لك","audio":"/audio/ar_7esn_AlMoslem_by_Doors_087.mp3","filename":"ar_7esn_AlMoslem_by_Doors_087","view":[{"id":1,"text":"((وَلَكَ)).","count":1,"audio":"/audio/197.mp3","filename":"197"}]},{"id":87,"category":"الدعاء لمن صنع إليك معروفا","audio":"/audio/ar_7esn_AlMoslem_by_Doors_088.mp3","filename":"ar_7esn_AlMoslem_by_Doors_088","view":[{"id":1,"text":"((جَزَاكَ اللَّهُ خَيْراً)).","count":1,"audio":"/audio/198.mp3","filename":"198"}]},{"id":88,"category":"ما يعصم الله به من الدجال","audio":"/audio/ar_7esn_AlMoslem_by_Doors_089.mp3","filename":"ar_7esn_AlMoslem_by_Doors_089","view":[{"id":1,"text":"((مَنْ حَفِظَ عَشْرَ آيَاتٍ مِنْ أَوَّلِ سُورَةِ الْكَهْفِ عُصِمَ مِنَ الدَّجَّالِ)) ، وَالْاسْتِعَاذَةُ بِاللَّهِ مِنْ فِتْنَتِهِ عَقِبَ التَّشَهُّدِ الْأَخِيرِ مِنْ كُلِّ صَلاَةٍ.","count":1,"audio":"/audio/199.mp3","filename":"199"}]},{"id":89,"category":"الدعاء لمن قال إني أحبك في الله","audio":"/audio/ar_7esn_AlMoslem_by_Doors_090.mp3","filename":"ar_7esn_AlMoslem_by_Doors_090","view":[{"id":1,"text":"((أَحَبَّكَ الَّذِي أَحْبَبْتَنِي لَهُ)).","count":1,"audio":"/audio/200.mp3","filename":"200"}]},{"id":90,"category":"الدعاء لمن عرض عليك ماله","audio":"/audio/ar_7esn_AlMoslem_by_Doors_091.mp3","filename":"ar_7esn_AlMoslem_by_Doors_091","view":[{"id":1,"text":"((بَارَكَ اللَّهُ لَكَ فِي أَهْلِكَ وَمَالِكَ)).","count":1,"audio":"/audio/201.mp3","filename":"201"}]},{"id":91,"category":"الدعاء لمن أقرض عند القضاء","audio":"/audio/ar_7esn_AlMoslem_by_Doors_091.mp3","filename":"ar_7esn_AlMoslem_by_Doors_091","view":[{"id":1,"text":"((بارَكَ اللَّهُ لَكَ فِي أَهْلِكَ وَمَالِكَ، إِنَّمَا جَزَاءُ السَّلَفِ الْحَمْدُ وَالأَدَاءُ)).","count":1,"audio":"/audio/202.mp3","filename":"202"}]},{"id":92,"category":"دعاء الخوف من الشرك","audio":"/audio/ar_7esn_AlMoslem_by_Doors_092.mp3","filename":"ar_7esn_AlMoslem_by_Doors_092","view":[{"id":1,"text":"((اللَّهُمَّ إِنِّي أَعُوذُ بِكَ أَنْ أُشْرِكَ بِكَ وَأَنَا أَعْلَمُ، وَأَسْتَغْفِرُكَ لِمَا لاَ أَعْلَمُ)).","count":1,"audio":"/audio/203.mp3","filename":"203"}]},{"id":93,"category":"الدعاء لمن قال بارك الله فيك","audio":"/audio/ar_7esn_AlMoslem_by_Doors_094.mp3","filename":"ar_7esn_AlMoslem_by_Doors_094","view":[{"id":1,"text":"((وَفِيكَ بَارَكَ اللَّهُ)).","count":1,"audio":"/audio/204.mp3","filename":"204"}]},{"id":94,"category":"دعاء كراهية الطيرة","audio":"/audio/ar_7esn_AlMoslem_by_Doors_095.mp3","filename":"ar_7esn_AlMoslem_by_Doors_095","view":[{"id":1,"text":"((اللَّهُمَّ لاَ طَيْرَ إِلاَّ طَيْرُكَ، وَلاَ خَيْرَ إِلاَّ خَيْرُكَ، وَلاَ إِلَهَ غَيْرُكَ)).","count":1,"audio":"/audio/205.mp3","filename":"205"}]},{"id":95,"category":"دعاء الركوب","audio":"/audio/ar_7esn_AlMoslem_by_Doors_096.mp3","filename":"ar_7esn_AlMoslem_by_Doors_096","view":[{"id":1,"text":"((بِسْمِ اللَّهِ، وَالْحَمْدُ للَّهِ ﴿سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ، وَإِنَّا إِلَى رَبِّنَا لَمُنقَلِبُونَ﴾، ((الْحَمْدُ لِلَّهِ، الْحَمْدُ لِلَّهِ، الْحَمْدُ لِلَّهِ، اللَّهُ أَكْبَرُ، اللَّهُ أَكْبَرُ، اللَّهُ أَكْبَرُ، سُبْحَانَكَ اللَّهُمَّ إِنِّي ظَلَمْتُ نَفْسِي فَاغْفِرْ لِي؛ فَإِنَّهُ لاَ يَغْفِرُ الذُّنُوبَ إِلاَّ أَنْتَ)).","count":1,"audio":"/audio/206.mp3","filename":"206"}]},{"id":96,"category":"دعاء السفر","audio":"/audio/ar_7esn_AlMoslem_by_Doors_097.mp3","filename":"ar_7esn_AlMoslem_by_Doors_097","view":[{"id":1,"text":"اللَّهُ أَكْبَرُ، اللَّهُ أَكْبَرُ، اللَّهُ أَكْبَرُ، ﴿سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ * وَإِنَّا إِلَى رَبِّنَا لَمُنقَلِبُونَ﴾ ((اللَّهُمَّ إِنّا نَسْأَلُكَ فِي سَفَرِنَا هَذَا البِرَّ وَالتَّقْوَى، وَمِنَ الْعَمَلِ مَا تَرْضَى، اللَّهُمَّ هَوِّنْ عَلَيْنَا سَفَرَنَا هَذَا وَاطْوِ عَنَّا بُعْدَهُ، اللَّهُمَّ أَنْتَ الصَّاحِبُ فِي السَّفَرِ، وَالْخَليفَةُ فِي الْأَهْلِ، اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ وَعْثَاءِ السَّفَرِ، وَكَآبَةِ الْمَنْظَرِ، وَسُوءِ الْمُنْقَلَبِ فِي الْمَالِ وَالْأَهْلِ))، وإذا رَجَعَ قَالَهُنَّ وَزَادَ فِيهِنَّ: ((آيِبُونَ، تائِبُونَ، عَابِدُونَ، لِرَبِّنَا حَامِدُونَ)).","count":1,"audio":"/audio/207.mp3","filename":"207"}]},{"id":97,"category":"دعاء دخول القرية أو البلدة","audio":"/audio/ar_7esn_AlMoslem_by_Doors_098.mp3","filename":"ar_7esn_AlMoslem_by_Doors_098","view":[{"id":1,"text":"((اللَّهُمَّ رَبَّ السَّمَوَاتِ السَّبْعِ وَمَا أَظْلَلْنَ، وَرَبَّ الأَرَضِينَ السَّبْعِ وَمَا أَقْلَلْنَ، وَرَبَّ الشَّياطِينِ وَمَا أَضْلَلْنَ، وَرَبَّ الرِّيَاحِ وَمَا ذَرَيْنَ، أَسْأَلُكَ خَيْرَ هَذِهِ الْقَرْيَةِ، وَخَيْرَ أَهْلِهَا، وَخَيْرَ مَا فِيهَا، وَأَعُوذُ بِكَ مِنْ شَرِّهَا، وَشَرِّ أَهْلِهَا، وَشَرِّ مَا فِيهَا)).","count":1,"audio":"/audio/208.mp3","filename":"208"}]},{"id":98,"category":"دعاء دخول السوق","audio":"/audio/ar_7esn_AlMoslem_by_Doors_099.mp3","filename":"ar_7esn_AlMoslem_by_Doors_099","view":[{"id":1,"text":"((لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ، لَهُ الْمُلْكُ، وَلَهُ الْحَمْدُ، يُحْيِي وَيُمِيتُ، وَهُوَ حَيٌّ لاِ يَمُوتُ، بِيَدِهِ الْخَيْرُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ)).","count":1,"audio":"/audio/209.mp3","filename":"209"}]},{"id":99,"category":"الدعاء إذا تعس المركوب","audio":"/audio/ar_7esn_AlMoslem_by_Doors_100.mp3","filename":"ar_7esn_AlMoslem_by_Doors_100","view":[{"id":1,"text":"((بِسْمِ اللَّهِ)).","count":1,"audio":"/audio/210.mp3","filename":"210"}]},{"id":100,"category":"دعاء المسافر للمقيم","audio":"/audio/ar_7esn_AlMoslem_by_Doors_101.mp3","filename":"ar_7esn_AlMoslem_by_Doors_101","view":[{"id":1,"text":"((أَسْتَوْدِعُكُمُ اللَّهَ الَّذِي لاَ تَضِيعُ وَدَائِعُهُ)).","count":1,"audio":"/audio/211.mp3","filename":"211"}]},{"id":101,"category":"دعاء المقيم للمسافر","audio":"/audio/ar_7esn_AlMoslem_by_Doors_102.mp3","filename":"ar_7esn_AlMoslem_by_Doors_102","view":[{"id":1,"text":"(( أَسْتَوْدِعُ اللَّهَ دِينَكَ، وَأَمَانَتَكَ، وَخَوَاتِيمَ عَمَلِكَ)).","count":1,"audio":"/audio/212.mp3","filename":"212"},{"id":2,"text":"((زَوَّدَكَ اللَّهُ التَّقْوَى، وَغَفَرَ ذَنْبَكَ، وَيَسَّرَ لَكَ الخَيْرَ حَيْثُ ما كُنْتَ)).","count":1,"audio":"/audio/213.mp3","filename":"213"}]},{"id":102,"category":"التكبير و التسبيح في سير السفر","audio":"/audio/ar_7esn_AlMoslem_by_Doors_103.mp3","filename":"ar_7esn_AlMoslem_by_Doors_103","view":[{"id":1,"text":"قَالَ جَابِرٌ رضي الله عنه: ((كُنَّا إِذَا صَعَدْنَا كَبَّرْنَا، وَإِذَا نَزَلْنَا سَبَّحْنَا)).","count":1,"audio":"/audio/214.mp3","filename":"214"}]},{"id":103,"category":"دعاء المسافر إذا أسحر","audio":"/audio/ar_7esn_AlMoslem_by_Doors_104.mp3","filename":"ar_7esn_AlMoslem_by_Doors_104","view":[{"id":1,"text":"((سَمَّعَ سَامِعٌ بِحَمْدِ اللَّهِ، وَحُسْنِ بَلاَئِهِ عَلَيْنَا، رَبَّنَا صاحِبْنَا، وَأَفْضِلْ عَلَيْنَا، عَائِذاً بِاللَّهِ مِنَ النَّارِ)).","count":1,"audio":"/audio/215.mp3","filename":"215"}]},{"id":104,"category":"الدعاء إذا نزل مترلا في سفر أو غيره","audio":"/audio/ar_7esn_AlMoslem_by_Doors_105.mp3","filename":"ar_7esn_AlMoslem_by_Doors_105","view":[{"id":1,"text":"((أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ)).","count":1,"audio":"/audio/216.mp3","filename":"216"}]},{"id":105,"category":"ذكر الرجوع من السفر","audio":"/audio/ar_7esn_AlMoslem_by_Doors_106.mp3","filename":"ar_7esn_AlMoslem_by_Doors_106","view":[{"id":1,"text":"((يُكَبِّرُ عَلَى كُلِّ شَرَفٍ ثَلاَثَ تَكْبِيرَاتٍ ثُمَّ يَقُولُ: لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ، لَهُ الْمُلْكُ، وَلَهُ الْحَمْدُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، آيِبُونَ، تَائِبُونَ، عَابِدُونَ، لِرَبِّنا حَامِدُونَ، صَدَقَ اللَّهُ وَعْدَهُ، وَنَصَرَ عَبْدَهُ، وَهَزَمَ الْأَحْزابَ وَحْدَهُ)).","count":1,"audio":"/audio/217.mp3","filename":"217"}]},{"id":106,"category":"ما يقول من أتاه أمر يسره أو يكرهه","audio":"/audio/ar_7esn_AlMoslem_by_Doors_107.mp3","filename":"ar_7esn_AlMoslem_by_Doors_107","view":[{"id":1,"text":"كَانَ النَّبِيُّ صلى الله عليه وسلم إِذَا أَتَاهُ الْأَمْرُ يَسُرُّهُ قَالَ: ((الْحَمْدُ لِلَّهِ الَّذِي بِنِعْمَتِهِ تَتِمُّ الصَّالِحَاتُ)) وَإِذَا أَتَاهُ الْأَمْرُ يَكْرَهُهُ قَالَ: ((الْحَمْدُ لِلَّهِ عَلَى كُلِّ حَالٍ)).","count":1,"audio":"/audio/218.mp3","filename":"218"}]},{"id":107,"category":"فضل الصلاة على النبي صلى الله عليه و سلم","audio":"/audio/ar_7esn_AlMoslem_by_Doors_108.mp3","filename":"ar_7esn_AlMoslem_by_Doors_108","view":[{"id":1,"text":"قَالَ النَّبِيُّ صلى الله عليه وسلم: ((مَنْ صَلَّى عَلَيَّ صَلاَةً صَلَّى اللَّهُ عَلَيْهِ بِهَا عَشْراً)).","count":1,"audio":"/audio/219.mp3","filename":"219"},{"id":2,"text":"وَقَالَ صلى الله عليه وسلم: ((لاَ تَجْعَلُوا قَبْرِي عِيداً وَصَلُّوا عَلَيَّ؛ فَإِنَّ صَلاَتَكُم تَبْلُغُنِي حَيْثُ كُنْتُمْ)).","count":1,"audio":"/audio/220.mp3","filename":"220"},{"id":3,"text":"وَقَالَ صلى الله عليه وسلم: ((الْبَخِيلُ مَنْ ذُكِرْتُ عِنْدَهُ فَلَمْ يُصَلِّ عَلَيَّ)).","count":1,"audio":"/audio/221.mp3","filename":"221"},{"id":4,"text":"وَقَالَ صلى الله عليه وسلم:((إِنَّ لِلَّهِ مَلاَئِكَةً سَيَّاحِينَ فِي الْأَرْضِ يُبَلِّغُونِي مِنْ أُمَّتِي السَّلاَمَ)).","count":1,"audio":"/audio/222.mp3","filename":"222"},{"id":5,"text":"وَقَالَ صلى الله عليه وسلم: ((مَا مِنْ أَحَدٍ يُسَلِّمُ عَلَيَّ إِلاَّ رَدَّ اللَّهُ عَلَيَّ رُوحِيَ حَتَّى أَرُدَّ عَلَيْهِ السَّلاَمَ)).","count":1,"audio":"/audio/223.mp3","filename":"223"}]},{"id":108,"category":"إفشاء السلام","audio":"/audio/ar_7esn_AlMoslem_by_Doors_109.mp3","filename":"ar_7esn_AlMoslem_by_Doors_109","view":[{"id":1,"text":"قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم: ((لاَ تَدْخُلُوا الْجَنَّةَ حَتَّى تُؤْمِنُوا، وَلاَ تُؤْمِنُوا حَتَّى تَحَابُّوا، أَوَلاَ أَدُلُّكُم عَلَى شَيْءٍ إِذَا فَعَلْتُمُوهُ تَحَابَبْتُم، أَفْشُوا السَّلاَمَ بَيْنَكُمْ)).","count":1,"audio":"/audio/224.mp3","filename":"224"},{"id":2,"text":"((ثَلاَثٌ مَنْ جَمَعَهُنَّ فَقَدْ جَمَعَ الْإِيمَانَ: الْإِنْصَافُ مِنْ نَفْسِكَ، وَبَذْلُ السَّلاَمِ لِلْعَالَمِ، وَالْإِنْفَاقُ مِنَ الإِقْتَارِ)).","count":1,"audio":"/audio/225.mp3","filename":"225"},{"id":3,"text":"وَعَنْ عَبْدِ اللَّهِ بْنِ عُمَرَ رَضِيَ اللَّهُ عَنْهُمَا: أنَّ رَجُلاً سَأَلَ النَّبِيَّ صلى الله عليه وسلم أيُّ الْإِسْلاَمِ خَيْرٌ قَالَ: ((تُطْعِمُ الطَّعَامَ، وَتَقْرأُ السَّلاَمَ عَلَى مَنْ عَرَفْتَ وَمَنْ لَمْ تَعْرِفْ)).","count":1,"audio":"/audio/226.mp3","filename":"226"}]},{"id":109,"category":"كيف يرد السلام على الكافر إذا سلم","audio":"/audio/ar_7esn_AlMoslem_by_Doors_110.mp3","filename":"ar_7esn_AlMoslem_by_Doors_110","view":[{"id":1,"text":"((إذَا سَلَّمَ عَلَيْكُمْ أَهْلُ الْكِتَابِ فَقُولُوا: وَعَلَيْكُمْ)).","count":1,"audio":"/audio/227.mp3","filename":"227"}]},{"id":110,"category":"الدُّعاءُ عِنْدَ سَمَاعِ صِياحِ الدِّيكِ ونَهِيقِ الْحِمَارِ","audio":"/audio/ar_7esn_AlMoslem_by_Doors_111.mp3","filename":"ar_7esn_AlMoslem_by_Doors_111","view":[{"id":1,"text":"((إِذَا سَمِعْتُمْ صِيَاحَ الدِّيَكَةِ فَاسْأَلُوا اللَّهَ مِنْ فَضْلِهِ؛ فَإِنَّهَا رَأَتْ مَلَكاً وَإِذَا سَمِعْتُمْ نَهِيقَ الْحِمَارِ فَتَعَوَّذُوا بِاللَّهِ مِنَ الشَّيطَانِ؛ فَإِنَّهُ رَأَى شَيْطَاناً)).","count":1,"audio":"/audio/228.mp3","filename":"228"}]},{"id":111,"category":"دعاء نباح الكلاب بالليل","audio":"/audio/ar_7esn_AlMoslem_by_Doors_112.mp3","filename":"ar_7esn_AlMoslem_by_Doors_112","view":[{"id":1,"text":"((إِذَا سَمِعْتُمْ نُبَاحَ الْكِلاَبِ وَنَهِيقَ الْحَمِيرِ بِاللَّيْلِ فَتَعَوَّذُوا بِاللَّهِ مِنْهُنَّ؛ فَإِنَّهُنَّ يَرَيْنَ مَا لاَ تَرَوْنَ)).","count":1,"audio":"/audio/229.mp3","filename":"229"}]},{"id":112,"category":"الدعاء لمن سببته","audio":"/audio/ar_7esn_AlMoslem_by_Doors_113.mp3","filename":"ar_7esn_AlMoslem_by_Doors_113","view":[{"id":1,"text":"قَالَ النَّبِيُّ صلى الله عليه وسلم: ((اللَّهُمَّ فَأَيُّمَا مُؤْمِنٍ سَبَبْتُهُ فَاجْعَلْ ذَلِكَ لَهُ قُرْبَةً إِلَيْكَ يَوْمَ الْقِيَامَةِ)).","count":1,"audio":"/audio/230.mp3","filename":"230"}]},{"id":113,"category":"ما يقول المسلم إذا مدح المسلم","audio":"/audio/ar_7esn_AlMoslem_by_Doors_114.mp3","filename":"ar_7esn_AlMoslem_by_Doors_114","view":[{"id":1,"text":"قَالَ النَّبِيُّ صلى الله عليه وسلم: ((إِذَا كَانَ أَحَدُكُم مَادِحاً صَاحِبَهُ لاَ مَحَالَةَ فَلْيَقُلْ: أَحْسِبُ فُلاَناً وَاللَّهُ حَسِيبُهُ، وَلاَ أُزَكِّي عَلَى اللَّهِ أَحَداً، أَحْسِبُهُ – إِنْ كَانَ يَعْلَمُ ذَاكَ – كَذَا وَكَذَا)).","count":1,"audio":"/audio/231.mp3","filename":"231"}]},{"id":114,"category":"ما يقول المسلم إذا زكي","audio":"/audio/ar_7esn_AlMoslem_by_Doors_115.mp3","filename":"ar_7esn_AlMoslem_by_Doors_115","view":[{"id":1,"text":"((اللَّهُمَّ لاَ تُؤَاخِذْنِي بِمَا يَقُولُونَ، وَاغْفِرْ لِي مَا لاَ يَعْلَمُونَ، [وَاجْعَلْنِي خَيْراً مِمَّا يَظُّنُّونَ])).","count":1,"audio":"/audio/232.mp3","filename":"232"}]},{"id":115,"category":"كيف يلبي المحرم في الحج أو العمرة ؟","audio":"/audio/ar_7esn_AlMoslem_by_Doors_116.mp3","filename":"ar_7esn_AlMoslem_by_Doors_116","view":[{"id":1,"text":"((لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ، لَبَّيْكَ لاَ شَرِيكَ لَكَ لَبَّيْكَ، إِنَّ الْحَمْدَ، وَالنِّعْمَةَ، لَكَ وَالْمُلْكَ، لاَ شَرِيكَ لَكَ)).","count":1,"audio":"/audio/233.mp3","filename":"233"}]},{"id":116,"category":"التكبير إذا أتى الركن الأسود","audio":"/audio/ar_7esn_AlMoslem_by_Doors_117.mp3","filename":"ar_7esn_AlMoslem_by_Doors_117","view":[{"id":1,"text":"((طَافَ النَّبيُّ صلى الله عليه وسلم بِالْبَيْتِ عَلَى بَعِيرٍ كُلَّمَا أَتَى الرُّكْنَ أَشَارَ إِلَيْهِ بِشَيْءٍ عِنْدَهُ وَكَبَّرَ)).","count":1,"audio":"/audio/234.mp3","filename":"234"}]},{"id":117,"category":"الدعاء بين الركن اليماني والحجر الأسود","audio":"/audio/ar_7esn_AlMoslem_by_Doors_118.mp3","filename":"ar_7esn_AlMoslem_by_Doors_118","view":[{"id":1,"text":"((﴿رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ﴾)).","count":1,"audio":"/audio/235.mp3","filename":"235"}]},{"id":118,"category":"دعاء الوقوف على الصفا والمروة","audio":"/audio/ar_7esn_AlMoslem_by_Doors_119.mp3","filename":"ar_7esn_AlMoslem_by_Doors_119","view":[{"id":1,"text":"لَمَّا دَنَا النَّبِيُّ صلى الله عليه وسلم مِنَ الصَّفَا قَرَأَ: ﴿إِنَّ الصَّفَا وَالْمَرْوَةَ مِنْ شَعَآئِرِ اللَّهِ﴾ أَبْدَأُ بِمَا بَدَأَ اللَّهُ بِهِ)) فَبَدَأَ بِالصَّفَا فَرَقِيَ عَلَيْهِ حَتَّى رَأَى الْبَيْتَ، فَاسْتَقْبَلَ الْقِبْلَةَ، فَوَحَّدَ اللَّهَ وَكبَّرَهُ وَقَالَ: ((لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ، أَنْجَزَ وَعْدَهُ، وَنَصَرَ عَبْدَهُ، وَهَزَمَ الْأَحْزَابَ وَحْدَهُ، ثُمَّ دَعَا بَيْنَ ذلكَ. قَالَ مِثْلَ هَذَا ثَلاَثَ مَرَّاتٍ)) الْحَدِيثُ. وَفِيهِ: ((فَفَعَلَ عَلَى الْمَرْوَةِ كَمَا فَعَلَ عَلَى الصَّفَا)).","count":1,"audio":"/audio/236.mp3","filename":"236"}]},{"id":119,"category":"الدعاء يوم عرفة","audio":"/audio/ar_7esn_AlMoslem_by_Doors_120.mp3","filename":"ar_7esn_AlMoslem_by_Doors_120","view":[{"id":1,"text":"قَالَ النَّبِيُّ صلى الله عليه وسلم: ((خَيْرُ الدُّعَاءِ دُعَاءُ يَوْمِ عَرَفَةَ، وَخَيْرُ مَا قُلْتُ أَنَا وَالنَّبيُّونَ مِنْ قَبْلِي: لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ)).","count":1,"audio":"/audio/237.mp3","filename":"237"}]},{"id":120,"category":"الذكر عند المشعر الحرام","audio":"/audio/ar_7esn_AlMoslem_by_Doors_121.mp3","filename":"ar_7esn_AlMoslem_by_Doors_121","view":[{"id":1,"text":"رَكِبَ النَّبِيُّ صلى الله عليه وسلم الْقَصْوَاءَ حَتَّى أَتَى الْمَشْعَرَ الْحَرَامَ فَاسْتَقْبَلَ الْقِبْلَةَ (فَدَعَاهُ، وَكَبَّرَهُ، وَهَللَّهُ، وَوَحَّدَهُ) فَلَمْ يَزَلْ وَاقِفاً حَتَّى أَسْفَرَ جِدَّاً فَدَفَعَ قَبْلَ أَنْ تَطْلُعَ الشَّمسُ.","count":1,"audio":"/audio/238.mp3","filename":"238"}]},{"id":121,"category":"التكبير عند رمي الجمار مع كل حصاة","audio":"/audio/ar_7esn_AlMoslem_by_Doors_122.mp3","filename":"ar_7esn_AlMoslem_by_Doors_122","view":[{"id":1,"text":"((يُكَبِّرُ كُلَّمَا رَمَى بِحَصَاةٍ عِنْدَ الْجِمَارِ الثَّلاَثِ، ثُمَّ يَتَقَدَّمُ، ويَقِفُ يَدْعُو مُسْتَقْبِلَ الْقِبلَةِ، رَافِعاً يَدَيْهِ بَعْدَ الْجَمْرَةِ الْأُولَى وَالثَّانِيَةِ. أَمَّا جَمْرَةُ الْعَقَبَةِ فَيَرْمِيهَا وَيُكَبِّرُ عِنْدَ كُلِّ حَصَاةٍ وَيَنْصَرِفُ وَلاَ يَقِفُ عِنْدَهَا)).","count":1,"audio":"/audio/239.mp3","filename":"239"}]},{"id":122,"category":"دعاء التعجب والأمر السار","audio":"/audio/ar_7esn_AlMoslem_by_Doors_123.mp3","filename":"ar_7esn_AlMoslem_by_Doors_123","view":[{"id":1,"text":"((سُبْحَانَ اللَّهِ!)).","count":1,"audio":"/audio/240.mp3","filename":"240"},{"id":2,"text":"((اللَّهُ أَكْبَرُ!)).","count":1,"audio":"/audio/241.mp3","filename":"241"}]},{"id":123,"category":"ما يفعل من أتاه أمر يسره","audio":"/audio/ar_7esn_AlMoslem_by_Doors_124.mp3","filename":"ar_7esn_AlMoslem_by_Doors_124","view":[{"id":1,"text":"((كَانَ النَّبيُّ صلى الله عليه وسلم إِذَا أَتَاهُ أَمْرٌ يَسُرُّهُ أَوْ يُسَرُّ بِهِ خَرَّ سَاجِداً شُكْراً لِلَّهِ تَبَارَكَ وَتَعَالَى)).","count":1,"audio":"/audio/242.mp3","filename":"242"}]},{"id":124,"category":"ما يقول من أحس وجعا في جسده","audio":"/audio/ar_7esn_AlMoslem_by_Doors_125.mp3","filename":"ar_7esn_AlMoslem_by_Doors_125","view":[{"id":1,"text":"((ضَعْ يَدَكَ عَلَى الَّذِي تَألَّمَ مِنْ جَسَدِكَ وَقُلْ: بِسْمِ اللَّهِ، ثَلاَثاً، وَقُلْ سَبْعَ مَرَّاتٍ: أَعُوذُ بِاللَّهِ وَقُدْرَتِهِ مِنْ شَرِّ مَا أَجِدُ وَأُحَاذِرُ)).","count":1,"audio":"/audio/243.mp3","filename":"243"}]},{"id":125,"category":"دعاء من خشي أن يصيب شيئا بعينه","audio":"/audio/ar_7esn_AlMoslem_by_Doors_126.mp3","filename":"ar_7esn_AlMoslem_by_Doors_126","view":[{"id":1,"text":"((إِذَا رَأَى أَحَدُكُم مِنْ أَخِيهِ، أَوْ مِنْ نَفْسِهِ، أَوْ مِنْ مَالِهِ مَا يُعْجِبُهُ [فَلْيَدْعُ لَهُ بِالْبَرَكَةِ] فَإِنَّ الْعَيْنَ حَقٌّ)).","count":1,"audio":"/audio/244.mp3","filename":"244"}]},{"id":126,"category":"ما يقال عند الفزع","audio":"/audio/ar_7esn_AlMoslem_by_Doors_127.mp3","filename":"ar_7esn_AlMoslem_by_Doors_127","view":[{"id":1,"text":"((لاَ إِلَهَ إِلاَّ اللَّهُ!)).","count":1,"audio":"/audio/245.mp3","filename":"245"}]},{"id":127,"category":"ما يقول عند الذبح أو النحر","audio":"/audio/ar_7esn_AlMoslem_by_Doors_128.mp3","filename":"ar_7esn_AlMoslem_by_Doors_128","view":[{"id":1,"text":"((بِسْمِ اللَّهِ وَاللَّهُ أَكْبَرُ [اللَّهُمَّ مِنْكَ وَلَكَ] اللَّهُمَّ تَقَبَّلْ مِنِّي)).","count":1,"audio":"/audio/246.mp3","filename":"246"}]},{"id":128,"category":"ما يقول لرد كيد مردة الشياطين","audio":"/audio/ar_7esn_AlMoslem_by_Doors_129.mp3","filename":"ar_7esn_AlMoslem_by_Doors_129","view":[{"id":1,"text":"((أَعُوذُ بكَلِمَاتِ اللَّهِ التَّامَّاتِ الَّتِي لاَ يُجَاوِزُهُنَّ بَرٌّ وَلاَ فَاجِرٌ: مِنْ شَرِّ مَا خَلَقَ، وَبَرَأَ وَذَرَأَ، وَمِنْ شَرِّ مَا يَنْزِلُ مِنَ السَّمَاءِ، وَمِنْ شَرِّ مَا يَعْرُجُ فيهَا، وَمِنْ شَرِّ مَا ذَرَأَ فِي الْأَرْضِ، وَمِنْ شَرِّ مَا يَخْرُجُ مِنْهَا، وَمِنْ شَرِّ فِتَنِ اللَّيْلِ وَالنَّهَارِ، وَمِنْ شَرِّ كُلِّ طَارِقٍ إِلاَّ طَارِقاً يَطْرُقُ بِخَيْرٍ يَا رَحْمَنُ)).","count":1,"audio":"/audio/247.mp3","filename":"247"}]},{"id":129,"category":"الاستغفار و التوبة","audio":"/audio/ar_7esn_AlMoslem_by_Doors_130.mp3","filename":"ar_7esn_AlMoslem_by_Doors_130","view":[{"id":1,"text":"قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم: ((وَاللَّهِ إِنِّي لأَسْتَغفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ فِي الْيَوْمِ أَكْثَرَ مِنْ سَبْعِينَ مَرَّةٍ)).","count":1,"audio":"/audio/248.mp3","filename":"248"},{"id":2,"text":"وَقَالَ صلى الله عليه وسلم: ((يَا أَيُّهَا النَّاسُ تُوبُوا إِلَى اللَّهِ فَإِنِّي أَتُوبُ فِي الْيَوْمِ إِلَيْهِ مِائَةَ مَرَّةٍ)).","count":1,"audio":"/audio/249.mp3","filename":"249"},{"id":3,"text":"وَقَالَ صلى الله عليه وسلم: ((مَنْ قَالَ أَسْتَغْفِرُ اللَّهَ الْعَظيمَ الَّذِي لاَ إِلَهَ إِلاَّ هُوَ الْحَيُّ القَيّوُمُ وَأَتُوبُ إِلَيهِ، غَفَرَ اللَّهُ لَهُ وَإِنْ كَانَ فَرَّ مِنَ الزَّحْفِ)).","count":1,"audio":"/audio/250.mp3","filename":"250"},{"id":4,"text":"وَقَالَ صلى الله عليه وسلم: ((أَقْرَبُ مَا يَكُونُ الرَّبُّ مِنَ الْعَبْدِ فِي جَوْفِ اللَّيْلِ الآخِرِ فَإِنِ اسْتَطَعْتَ أَنْ تَكُونَ مِمَّنْ يَذْكُرُ اللَّهَ فِي تِلْكَ السَّاعَةِ فَكُنْ)).","count":1,"audio":"/audio/251.mp3","filename":"251"},{"id":5,"text":"وَقَالَ صلى الله عليه وسلم: ((أَقْرَبُ مَا يَكُونُ الْعَبْدُ مِنْ رَبِّهِ وَهُوَ سَاجِدٌ فَأَكثِرُوا الدُّعَاءَ)).","count":1,"audio":"/audio/252.mp3","filename":"252"},{"id":6,"text":"وَقَالَ صلى الله عليه وسلم: ((إِنَّهُ لَيُغَانُ عَلَى قَلْبِي وَإِنِّي لأَسْتَغْفِرُ اللَّهَ فِي الْيَوْمِ مِائَةَ مَرَّةٍ)).","count":1,"audio":"/audio/253.mp3","filename":"253"}]},{"id":130,"category":"فضل التسبيح و التحميد، و التهليل، و التكبير","audio":"/audio/ar_7esn_AlMoslem_by_Doors_131.mp3","filename":"ar_7esn_AlMoslem_by_Doors_131","view":[{"id":1,"text":"قَالَ صلى الله عليه وسلم مَنْ قَالَ: سُبْحَانَ اللَّهِ وَبِحَمْدِهِ فِي يَوْمٍ مِائَةَ مَرَّةٍ حُطَّتْ خَطَايَاهُ وَلَوْ كَانَتْ مِثْلَ زَبَدِ الْبَحْر)).","count":100,"audio":"/audio/254.mp3","filename":"254"},{"id":2,"text":"وَقَالَ صلى الله عليه وسلم: ((مَنْ قَالَ لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ، لَهُ الْمُلْكُ، وَلَهُ الْحَمْدُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ عَشْرَ مِرَارٍ، كَانَ كَمَنْ أَعْتَقَ أَرْبَعَةَ أَنْفُسٍ مِنْ وَلَدِ إِسْمَاعِيلَ)).","count":10,"audio":"/audio/255.mp3","filename":"255"},{"id":3,"text":"وَقَالَ صلى الله عليه وسلم: ((كَلِمَتَانِ خَفِيفَتَانِ عَلَى اللِّسَانِ، ثَقِيلَتَانِ فِي الْمِيزَانِ، حَبِيبَتَانِ إِلَى الرَّحْمَنِ: سُبْحَانَ اللَّهِ وَبِحَمْدِهِ، سُبْحانَ اللَّهِ الْعَظِيمِ)).","count":1,"audio":"/audio/256.mp3","filename":"256"},{"id":4,"text":"وَقَالَ صلى الله عليه وسلم: ((لَأَنْ أَقُولَ سُبْحَانَ اللَّهِ، وَالْحَمْدُ لِلَّهِ، وَلاَ إِلَهَ إِلاَّ اللَّهُ، وَاللَّهُ أَكْبَرُ، أَحَبُّ إِلَيَّ مِمَّا طَلَعَتْ عَلَيْهِ الشَّمسُ)).","count":1,"audio":"/audio/257.mp3","filename":"257"},{"id":5,"text":"وَقَالَ صلى الله عليه وسلم: ((أَيَعْجِزُ أَحَدُكُم أَنْ يَكْسِبَ كُلَّ يَوْمٍ أَلْفَ حَسَنَةٍ)) فَسَأَلَهُ سَائِلٌ مِنْ جُلَسَائِهِ كَيْفَ يَكْسِبُ أَحَدُنَا أَلْفَ حَسَنَةٍ؟ قَالَ: ((يُسَبِّحُ مِائَةَ تَسْبِيحَةٍ، فَيُكتَبُ لَهُ أَلْفُ حَسَنَةٍ أَوْ يُحَطُّ عَنْهُ أَلْفُ خَطِيئَةٍ)).","count":100,"audio":"/audio/258.mp3","filename":"258"},{"id":6,"text":"((مَنْ قَالَ: سُبْحَانَ اللَّهِ الْعَظِيمِ وَبِحَمْدِهِ غُرِسَتْ لَهُ نَخْلَةٌ فِي الْجَنَّةِ)).","count":1,"audio":"/audio/259.mp3","filename":"259"},{"id":7,"text":"وَقَالَ صلى الله عليه وسلم: ((يَا عَبْدَ اللَّهِ بْنَ قَيْسٍ أَلاَ أَدُلُّكَ عَلَى كَنْزٍ مِنْ كُنُوزِ الْجَنَّةِ))؟ فَقُلْتُ: بَلَى يَا رَسُولَ اللَّهِ، قَالَ: ((قُلْ لاَ حَوْلَ وَلاَ قُوَّةَ إِلاَّ بِاللَّهِ)).","count":1,"audio":"/audio/260.mp3","filename":"260"},{"id":8,"text":"وَقَالَ صلى الله عليه وسلم: ((أَحَبُّ الْكَلاَمِ إِلَى اللَّهِ أَرْبَعٌ: سُبْحَانَ اللَّهِ، وَالْحَمْدُ لِلَّهِ، وَلاَ إِلَهَ إِلاَّ اللَّهُ، وَاللَّهُ أَكْبَرُ، لاَ يَضُرُّكَ بِأَيِّهِنَّ بَدَأتَ)).","count":1,"audio":"/audio/261.mp3","filename":"261"},{"id":9,"text":"جَاءَ أَعْرَابِيٌّ إِلَى رَسُولِ اللَّهِ صلى الله عليه وسلم فَقَالَ: عَلِّمْنِي كَلاماً أَقُولُهُ: قَالَ: ((قُلْ: لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ، اللَّهُ أَكْبَرُ كَبِيراً، وَالْحَمْدُ لِلَّهِ كَثِيراً، سُبْحَانَ اللَّهِ رَبِّ العَالَمِينَ، لاَ حَوْلَ وَلاَ قُوَّةَ إِلاَّ بِاللَّهِ الْعَزِيزِ الْحَكِيمِ)) قَالَ: فَهَؤُلاَءِ لِرَبِّي، فَمَا لِي؟ قَالَ: ((قُلْ: اللَّهُمَّ اغْفِرْ لِي، وَارْحَمْنِي، وَاهْدِنِي، وَارْزُقْنِي)).","count":1,"audio":"/audio/262.mp3","filename":"262"},{"id":10,"text":"كَانَ الرَّجُلُ إِذَا أَسْلَمَ عَلَّمَهُ النَّبيُّ صلى الله عليه وسلم الصَّلاَةَ ثُمَّ أَمَرَهُ أَنْ يَدْعُوَ بِهَؤُلاَءِ الْكَلِمَاتِ: ((اللَّهُمَّ اغْفِرِ لِي، وَارْحَمْنِي، وَاهْدِنِي، وَعَافِنِي وَارْزُقْنِي)).","count":1,"audio":"/audio/263.mp3","filename":"263"},{"id":11,"text":"((إِنَّ أَفْضَلَ الدُّعَاءِ الْحَمْدُ لِلَّهِ، وَأَفْضَلَ الذِّكْرِ لاَ إِلَهَ إِلاَّ اللَّهُ)).","count":1,"audio":"/audio/264.mp3","filename":"264"},{"id":12,"text":"الباقيات الصالحات : سبحان الله والحمد لله ، ولا إله إلا الله ،والله أكبر ،و لا حول ولا قوة إلا بالله","count":1,"audio":"/audio/265.mp3","filename":"265"}]},{"id":131,"category":"كيف كان النبي يسبح؟","audio":"/audio/ar_7esn_AlMoslem_by_Doors_132.mp3","filename":"ar_7esn_AlMoslem_by_Doors_132","view":[{"id":1,"text":"عَنْ عَبْدِ اللَّهِ بْنِ عَمْرٍو رضي الله عنه قَالَ: ((رَأَيْتُ النَّبيَّ صلى الله عليه وسلم يَعْقِدُ التَّسْبِيحَ)) وفي زيادةٍ: ((بِيَمِينِهِ)).","count":1,"audio":"/audio/266.mp3","filename":"266"}]},{"id":132,"category":"من أنواع الخير والآداب الجامعة","audio":"/audio/ar_7esn_AlMoslem_by_Doors_133.mp3","filename":"ar_7esn_AlMoslem_by_Doors_133","view":[{"id":1,"text":"قَالَ النَّبِيُّ صلى الله عليه وسلم ((إِذَا كَانَ جُنْحُ اللَّيْلِ – أَوْ أَمْسَيْتُم – فَـكُفُّوا صِبْيانَـكُم، فَإِنَّ الشَّيَاطِينَ تَنْتَشِرُ حِينَئِذٍ، فَإِذَا ذَهَبَ سَاعَةٌ مِنَ اللَّيلِ فَخَلُّوهُمْ، وَأَغْلِقُوا الأَبْوَابَ وَاذْكُرُوا اسْمَ اللَّهِ؛ فَإِنَّ الشَّيطَانَ لاَ يَفْتَحُ بَاباً مُغلَقاً، وَأَوْكُوا قِرَبَكُمْ، وَاذْكُرُوا اسْمَ اللَّهِ، وَخَمِّرُوا آنِيَتَكُم، وَاذْكُرُوا اسْمَ اللَّهِ، وَلَوْ أَنْ تَعْرُضُوا عَلَيْهَا شَيْئاً، وَأَطْفِئُوا مَصَابِيحَكُمْ)).","count":1,"audio":"/audio/267.mp3","filename":"267"}]}]');
-
-/***/ }),
-
-/***/ "./storage/allah_names.json":
-/*!**********************************!*\
-  !*** ./storage/allah_names.json ***!
-  \**********************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = JSON.parse('[{"id":1,"name":"اللَّهُ","text":"وهو الاسم الأعظم الذي تفرد به الحق سبحانه وخص به نفسه وجعله أول أسمائه، وأضافها كلها إليه فهو علم على ذاته سبحانه"},{"id":2,"name":"الرَّحْمَنُ","text":"كثير الرحمة وهو اسم مقصور على الله عز وجل ولا يجوز أن يقال رحمن لغير الله، وذلك لأن رحمته وسعت كل شيء وهو أرحم الراحمين"},{"id":3,"name":"الرَّحِيم","text":"هو المنعم أبدا، المتفضل دوما، فرحمته لا تنتهي"},{"id":4,"name":"المَلِك","text":"هو الله، ملك الملوك، له الملك، وهو مالك يوم الدين، ومليك الخلق فهو المالك المطلق"},{"id":5,"name":"الْقُدُّوس","text":"هو الطاهر المنزه عن العيوب والنقائص وعن كل ما تحيط به العقول"},{"id":6,"name":"السَّلَام","text":"هو ناشر السلام بين الأنام وهو الذي سلمت ذاته من النقص والعيب والفناء"},{"id":7,"name":"المُؤْمِن","text":"هو الذي سلم أوليائه من عذابه، والذي يصدق عباده ما وعدهم"},{"id":8,"name":"الْمُهَيْمِن","text":"هو الرقيب الحافظ لكل شيء، القائم على خلقه بأعمالهم، وأرزاقهم وآجالهم، والمطلع على خفايا الأمور وخبايا الصدور"},{"id":9,"name":"الْعَزِيز","text":"هو المنفرد بالعزة، الظاهر الذي لا يقهر، القوي الممتنع فلا يغلبه شيء وهو غالب كل شيء"},{"id":10,"name":"الْجَبَّار","text":"هو الذي تنفذ مشيئته، ولا يخرج أحد عن تقديره، وهو القاهر لخلقه على ما أراد"},{"id":11,"name":"الْمُتَكَبِّر","text":"هو المتعالى عن صفات الخلق المنفرد بالعظمة والكبرياء"},{"id":12,"name":"الْخَالِق","text":"هو الفاطر المبدع لكل شيء، والمقدر له والموجد للأشياء من العدم، فهو خالق كل صانع وصنعته"},{"id":13,"name":"الْبَارِئ","text":"هو الذي خلق الخلق بقدرته لا عن مثال سابق، القادر على إبراز ما قدره إلى الوجود"},{"id":14,"name":"الْمُصَوِّر","text":"هو الذي صور جميع الموجودات، ورتبها فأعطى كل شيء منها صورة خاصة، وهيئة منفردة، يتميز بها على اختلافها وكثرتها"},{"id":15,"name":"اَلْغَفَّار","text":"هو وحده الذي يغفر الذنوب ويستر العيوب في الدنيا والآخرة"},{"id":16,"name":"الْقَهَّار","text":"هو الغالب الذي قهر خلقه بسلطانه وقدرته، وخضعت له الرقاب وذلت له الجبابرة، وصرف خلقه على ما أراد طوعا وكرها، وعنت الوجوه له"},{"id":17,"name":"الْوَهَّاب","text":"هو المنعم على العباد، الذي يهب بغير عوض ويعطي الحاجة بغير سؤال، كثير النعم، دائم العطاء"},{"id":18,"name":"الرَّزَّاق","text":"هو الذي خلق الأرزاق وأعطى كل الخلائق أرزاقها، ويمد كل كائن لما يحتاجه، ويحفظ عليه حياته ويصلحه"},{"id":19,"name":"الْفَتَّاح","text":"هو الذي يفتح مغلق الأمور، ويسهل العسير، وبيده مفاتيح السماوات والأرض"},{"id":20,"name":"الْعَلِيم","text":"هو الذي يعلم تفاصيل الأمور، ودقائق الأشياء وخفايا الضمائر، والنفوس، لا يعزب عنه مثقال ذرة، فعلمه يحيط بجميع الأشياء"},{"id":21,"name":"الْقَابِضُ","text":"هو الذي يقبض الرزق عمن يشاء من الخلق بعدله وحكمته، والذي يوسع الرزق لمن يشاء من عباده بجوده ورحمته فهو سبحانه القابض الباسط"},{"id":22,"name":"الْبَاسِطُ","text":"هو الذي يقبض الرزق عمن يشاء من الخلق بعدله وحكمته، والذي يوسع الرزق لمن يشاء من عباده بجوده ورحمته فهو سبحانه القابض الباسط"},{"id":23,"name":"الخافض","text":"هو الذي يخفض الأذلال لكل من طغى وتجبر وخرج على شريعته وتمرد، وهو الذي يرفع عباده المؤمنين بالطاعات ويرفعهم على عدوهم فينصرهم وهو رافع السماوات السبع"},{"id":24,"name":"الرَّافِعُ","text":"هو الذي يخفض الأذلال لكل من طغى وتجبر وخرج على شريعته وتمرد، وهو الذي يرفع عباده المؤمنين بالطاعات ويرفعهم على عدوهم فينصرهم وهو رافع السماوات السبع"},{"id":25,"name":"المعز","text":"هو الذي يهب القوة والغلبة والشدة لمن شاء فيعزه، وينزعها عمن يشاء فيذله"},{"id":26,"name":"المذل","text":"هو الذي يهب القوة والغلبة والشدة لمن شاء فيعزه، وينزعها عمن يشاء فيذله"},{"id":27,"name":"السَّمِيعُ","text":"ومعناه سمعه لجميع الأصوات الظاهرة والباطنة الخفية والجلية، وإحاطته التامة بها، ومعناه أيضًا: سمع الإجابة منه للسائلين والداعين والعابدين فيجيبهم ويثيبهم"},{"id":28,"name":"الْبَصِير","text":"هو الذي يرى الأشياء كلها ظاهرها وباطنها وهو المحيط بكل شيء علماً"},{"id":29,"name":"الْحَكَم","text":"هو الذي يفصل بين مخلوقاته بما شاء ويفصل بين الحق والباطل لا راد لقضائه ولا معقب لحكمه"},{"id":30,"name":"العدل","text":"هو الذي حرم الظلم على نفسه، وجعله على عباده محرما، فهو المنزه عن الظلم والجور في أحكامه وأفعاله الذي يعطي كل ذي حق حقه"},{"id":31,"name":"اللَّطِيفُ","text":"هو البر الرفيق بعباده، يرزق وييسر ويحسن إليهم، ويرفق بهم ويتفضل عليهم"},{"id":32,"name":"الْخَبِيرُ","text":"هو العليم بدقائق الأمور، لا تخفى عليه خافية، ولا يغيب عن علمه شيء فهو العالم بما كان ويكون"},{"id":33,"name":"الْحَلِيمُ","text":"هو الصبور الذي يمهل ولا يهمل، ويستر الذنوب، ويؤخر العقوبة، فيرزق العاصي كما يرزق المطيع"},{"id":34,"name":"الْعَظِيمُ","text":"هو العظيم في كل شئ، عظيم في ذاته وأسمائه وصفاته، عظيم في رحمته، عظيم في قدرته، عظيم في حكمته، عظيم في جبروته وكبريائه، عظيم في هبته وعطائه، عظيم في خبرته ولطفه، عظيم في بره وإحسانه، عظيم في عزته وعدله وحمده، فهو العظيم المطلق، فلا أحد يساويه"},{"id":35,"name":"الْغَفُورُ","text":"هو الساتر لذنوب عباده المتجاوز عن خطاياهم وذنوبهم. الفرق بين هذا الاسم واسم الغفار أن اسم الغفور يكون للدلالة على مغفرة الذنب مهما عظم وأيس صاحبه من المغفرة أما الغفار فتدل على مغفرة الله المستمرة للذنوب المختلفة لأن الإنسان خطاء فالله غفار"},{"id":36,"name":"الشَّكُورُ","text":"هو الذي يزكو عنده القليل من أعمال العباد، فيتقبلها ويضاعف أجرها"},{"id":37,"name":"الْعَلِيُّ","text":"هو الرفيع القدر فلا يحيط به وصف الواصفين المتعالي عن الأنداد والأضداد، فكل معاني العلو ثابتة له ذاتا وقهرا وشأنا"},{"id":38,"name":"الْكَبِيرُ","text":"هو العظيم الجليل ذو الكبرياء في صفاته وأفعاله فلا يحتاج إلى شيء ولا يعجزه شيء (ليس كمثله شيء)"},{"id":39,"name":"الْحَفِيظُ","text":"هو الذي لا يغرب عن حفظه شيء ولو كمثقال الذر فحفظه لا يتبدل ولا يزول ولا يعتريه التبديل"},{"id":40,"name":"المُقِيت","text":"هو المتكفل بإيصال أقوات الخلق إليهم وهو الحفيظ والمقتدر والقدير والمقدر والممدد"},{"id":41,"name":"الْحَسِيبُ","text":"هو الكافي الذي منه كفاية العباد وهو الذي عليه الاعتماد يكفي العباد بفضله"},{"id":42,"name":"الجليل","text":"هو العظيم المطلق المتصف بجميع صفات الكمال والمنعوت بكمالها المنزه عن كل نقص"},{"id":43,"name":"الْكَرِيمُ","text":"هو الكثير الخير الجواد المعطي الذي لا ينفذ عطاؤه وهو الكريم المطلق الجامع لأنواع الخير والشرف والفضائل المحمود بفعاله"},{"id":44,"name":"الرَّقِيبُ","text":"هو الرقيب الذي يراقب أحوال العباد ويعلم أقوالهم ويحصي أعمالهم وهو الحافظ الذي لا يغيب عنه شيء"},{"id":45,"name":"الْمُجِيبُ","text":"هو الذي يجيب دعاء من دعاه، وسؤال من سأله، ويقابله بالعطاء والقبول، ولا يسأل أحد سواه"},{"id":46,"name":"الْوَاسِعُ","text":"هو الذي وسع رزقه جميع خلقه، وسعت رحمته كل شيء المحيط بكل شيء"},{"id":47,"name":"اَلْحَكِيمُ","text":"هو المحق في تدبيره اللطيف في تقديره الخبير بحقائق الأمور العليم بحكمه المقدور فجميع خلقه وقضاه خير وحكمة وعدل"},{"id":48,"name":"الْوَدُودُ","text":"هو المحب لعباده، والمحبوب في قلوب أوليائه"},{"id":49,"name":"الْمَجِيدُ","text":"هو الله تمجَّد بفعاله، ومجَّده خلقه لعظمته، والمجيد هو واسع الكرم، ووصف نفسه بالمجيد وهو متضمن كثرة صفات كماله وسعتها، وعدم إحصاء الخلق لها، وسعة أفعاله وكثرة خيره ودوامه. وتعني أيضاً البالغ النهاية في المجد، الكثير الإحسان الجزيل العطاء العظيم البر. تمجد"},{"id":50,"name":"الباعث","text":"هو باعث الخلق يوم القيامة، وباعث رسله إلى العباد، وباعث المعونة إلى العبد"},{"id":51,"name":"الشَّهِيدُ","text":"هو الحاضر الذي لا يغيب عنه شيء، فهو المطلع على كل شيء مشاهد له عليم بتفاصيله"},{"id":52,"name":"الْحَقُّ","text":"هو الذي يحق الحق بكلماته ويؤيد أولياءه فهو المستحق للعبادة"},{"id":53,"name":"الْوَكِيلُ","text":"هو الكفيل بالخلق القائم بأمورهم فمن توكل عليه تولاه وكفاه، ومن استغنى به أغناه وأرضاه"},{"id":54,"name":"الْقَوِيّ","text":"هو صاحب القدرة التامة البالغة الكمال غالب لا يُغلب فقوته فوق كل قوة، ولايرد قضاءه راد، ينفذ أمره، ويمضي قضاؤه في خلقه، شديد عقابه لمن كفر بآياته وجحد حججه"},{"id":55,"name":"الْمَتِينُ","text":"هو الشديد الذي لا يحتاج في إمضاء حكمه إلى جند أو مدد ولا إلى معين، فهو المتناهي في القوة، التي لاتلحق أفعاله مشقة، ولايمسه فيها لغوب"},{"id":56,"name":"الْوَلِيُّ","text":"هو المحب الناصر لمن أطاعه، ينصر أولياءه، ويقهر أعداءه، والمتولي الأمور الخلائق ويحفظهم"},{"id":57,"name":"الْحَمِيدُ","text":"هو المستحق للحمد والثناء له منتهى الحمد وأطيبه على ذاته وصفاته وعلى نعمه التي لا تحصى"},{"id":58,"name":"الْـمُحصِي","text":"هو الذي أحصى كل شيء بعلمه، فلا يفوته منها دقيق ولا جليل"},{"id":59,"name":"المبدئ","text":"هو الذي أنشأ الأشياء، واخترعها ابتداء من غير سابق مثال"},{"id":60,"name":"المعيد","text":"هو الذي يعيد الخلق بعد الحياة إلى الممات في الدنيا، وبعد الممات إلى الحياة يوم القيامة"},{"id":61,"name":"المُحيي","text":"هو خالق الحياة ومعطيها لمن شاء، يحيي الخلق من العدم ثم يحييهم بعد الموت"},{"id":62,"name":"المميت","text":"هو مقدر الموت على كل من أماته ولا مميت سواه، قهر عباده بالموت متى شاء وكيف شاء"},{"id":63,"name":"الْحَيُّ","text":"هو المتصف بالحياة الأبدية التي لا بداية لها ولا نهاية فهو الباقي أزلا وأبدا وهو الحي الذي لا يموت"},{"id":64,"name":"الْقَيُّومُ","text":"هو القائم بنفسه، الغني عن غيره، وهو القائم بتدبير أمر خلقه في إنشائهم ورزقهم"},{"id":65,"name":"الواجد","text":"هو الذي لا يعوزه شيء ولا يعجزه شيء يجد كل ما يطلبه، ويدرك كل ما يريده"},{"id":66,"name":"الماجد","text":"هو الذي له الكمال المتناهي والعز الباهي، له العز في الأوصاف والأفعال الذي يعامل العباد بالجود والرحمة"},{"id":67,"name":"الْوَاحِدُ","text":"هو الفرد المتفرد في ذاته وصفائه وأفعاله، واحد في ملكه لا ينازعه أحد، لا شريك له سبحانه"},{"id":68,"name":"الصَّمَدُ","text":"هو المطاع الذي لا يقضى دونه أمر، الذي يقصد إليه في الحوائج فهو مقصد عباده في مهمات دينهم ودنياهم"},{"id":69,"name":"الْقَادِرُ","text":"هو الذي يقدر على إيجاد المعدوم وإعدام الموجود على قدر ما تقتضي الحكمة، لا زائدا عليه ولا ناقصا عنه"},{"id":70,"name":"الْمُقْتَدِرُ","text":"هو الذي يقدر على إصلاح الخلائق على وجه لا يقدر عليه غيره"},{"id":71,"name":"الْمُقَدِّمُ","text":"هو الذي يقدم الأشياء ويضعها في مواضعها، فمن استحق التقديم قدمه"},{"id":72,"name":"الْمُؤَخِّرُ","text":"هو الذي يؤخر الأشياء فيضعها في مواضعها المؤخر لمن شاء من الفجار والكفار وكل من يستحق التأخير"},{"id":73,"name":"الْأَوَّلُ","text":"هو الذي لم يسبقه في الوجود شيء فهو أول قبل الوجود"},{"id":74,"name":"الْآخِرُ","text":"هو الباقي بعد فناء خلقه، البقاء الأبدي يفنى الكل وله البقاء وحده، فليس بعده شيء"},{"id":75,"name":"الظَّاهِرُ","text":"هو الذي ظهر فوق كل شيء وعلا عليه، الظاهر وجوده لكثرة دلائله"},{"id":76,"name":"الْبَاطِنُ","text":"هو العالم ببواطن الأمور وخفاياها، وهو أقرب إلينا من حبل الوريد"},{"id":77,"name":"الوالي","text":"هو المالك للأشياء المتصرف فيها بمشيئته وحكمته، ينفذ فيها أمره، ويجري عليها حكمه"},{"id":78,"name":"الْمُتَعَالِ","text":"هو الذي جل عن إفك المفترين، وتنزه عن وساوس المتحيرين"},{"id":79,"name":"الْبَرُّ","text":"هو العطوف على عباده ببره ولطفه، ومن على السائلين بحسن عطائه، وهو الصدق فيما وعد"},{"id":80,"name":"التَّوَّابُ","text":"هو الذي يوفق عباده للتوبة حتى يتوب عليهم ويقبل توبتهم فيقابل الدعاء بالعطاء، والتوبة بغفران الذنوب"},{"id":91,"name":"الْمُنْتَقِمُ","text":"هو الذي يقصم ظهور الطغاة، ويشدد العقوبة على العصاة، وذلك بعد الإعذار والإنذار"},{"id":82,"name":"العَفُو","text":"هو الذي يترك المؤاخدة على الذنوب ولا يذكرك بالعيوب فهو يمحو السيئات ويتجاوز عن المعاصي"},{"id":83,"name":"الرَّؤُوفُ","text":"هو المتعطف على المذنبين بالتوبة، الذي جاد بلطفه ومَنَّ بتعطفه، يستر العيوب ثم يعفو عنها"},{"id":84,"name":"مَالِكُ الْمُلْكِ","text":"هو المتصرف في ملكه كيف يشاء لا راد لحكمه، ولا معقب لأمره"},{"id":85,"name":"ذُو الْجَلَالِ والْإكْرَامِ","text":"هو المنفرد بصفات الجلال والكمال والعظمة، المختص بالإكرام والكرامة وهو أهل لأن يجل"},{"id":86,"name":"المقسط","text":"هو العادل في حكمه، الذي ينتصف للمظلوم من الظالم، ثم يكمل عدله فيرضي الظالم بعد إرضاء المظلوم"},{"id":87,"name":"الْجَامِعُ","text":"هو الذي جمع الكمالات كلها، ذاتا ووصفا وفعلا، الذي يجمع بين الخلائق المتماثلة والمتباينة، والذي يجمع الأولين والآخرين"},{"id":88,"name":"الْغَنِيُّ","text":"هو الذي لا يحتاج إلى شيء، وهو المستغني عن كل ما سواه، المفتقر إليه كل من عاداه"},{"id":89,"name":"المغني","text":"هو معطي الغنى لعباده، يغني من يشاء غناه، وهو الكافي لمن شاء من عباده"},{"id":90,"name":"الْمُعْطِي","text":"هو الذي أعطى كل شيء"},{"id":91,"name":"المانع","text":"يمنع العطاء عن من يشاء ابتلاء أو حماية"},{"id":92,"name":"الضار","text":"هو المقدر للضر على من أراد كيف أراد"},{"id":93,"name":"النافع","text":"مقدر النفع والخير لمن أراد كيف أراد كل ذلك على مقتضى حكمته سبحانه"},{"id":94,"name":"النُّورُ","text":"هو الهادي الرشيد الذي يرشد بهدايته من يشاء فيبين له الحق، ويلهمه اتباعه، الظاهر في ذاته، المظهر لغيره"},{"id":95,"name":"الْهَادِي","text":"هو المبين للخلق طريق الحق بكلامه يهدي القلوب إلى معرفته، والنفوس إلى طاعته"},{"id":96,"name":"الْبَدِيعُ","text":"هو الذي لا يماثله أحد في صفاته ولا في حكم من أحكامه، أو أمر من أموره، فهو المحدث الموجد على غير مثال"},{"id":97,"name":"الباقي","text":"هو وحده له البقاء، الدائم الوجود الموصوف بالبقاء الأزلي، غير قابل للفناء فهو الباقي بلا انتهاء"},{"id":98,"name":"الْوَارِثُ","text":"هو الأبقى الدائم الذي يرث الخلائق بعد فناء الخلق، وهو يرث الأرض ومن عليها"},{"id":99,"name":"الرشيد","text":"هو الذي أسعد من شاء بإرشاده، وأشقى من شاء بإبعاده، عظيم الحكمة بالغ الرشاد"},{"id":100,"name":"الصبور","text":"هو الحليم الذي لا يعاجل العصاة بالنقمة، بل يعفوا ويؤخر، ولا يسرع بالفعل قبل أوانه"}]');
 
 /***/ }),
 

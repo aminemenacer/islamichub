@@ -194,11 +194,11 @@
               </form>
              
 
-
+              
               <ul class="col-md-4 list-group container-fluid root"  style="max-width:100%;cursor:pointer" 
                   :class="{ 'selected': selectedIndex === ayahId }"
                   v-for="(ayah, ayahId) in ayahs" :key="ayahId"
-                  @click="getTafseers(ayahId)">
+                  @click="getTafseers(ayahId)" >
                 <li class="list-group-item" id="toggle" style="cursor:pointer;background:transparent"><b style="display:flex">Verse:</b> 
                 <h5>{{ ayah.ayah_id }}</h5><h5>{{ ayah.ayah_text }}</h5></li>
               </ul>

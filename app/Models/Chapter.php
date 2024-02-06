@@ -24,8 +24,8 @@ class Chapter extends Model
         return $this->BelongsTo(Imam::class, 'imam_id', 'id');
     }
 
-    public function chapter()
+    public function ahadith()
     {
-        return $this->BelongsTo(Ahadith::class,'chapter_id','id');
+        return $this->oneToMany(Ahadith::class,'chapter_id','id');
     }
 }

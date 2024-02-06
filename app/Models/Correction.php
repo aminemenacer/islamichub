@@ -12,11 +12,6 @@ class Correction extends Model
     protected $table = 'correction';
 
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
         'mistake_type',
         'name',

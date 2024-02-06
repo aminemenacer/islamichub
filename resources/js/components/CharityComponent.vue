@@ -42,7 +42,7 @@
                   <div class="card-footer"> <button type="button" class="subscribe btn btn-secondary btn-block shadow-sm"> Confirm Payment </button></div>
                 </form>
               </div>
-            </div> <!-- End -->
+            </div> 
 
           </div>
         </div>
