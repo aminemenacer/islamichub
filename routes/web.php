@@ -8,9 +8,7 @@ use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\AllahNamesController;
 use App\Http\Controllers\PricingController;
-use App\Http\Controllers\ReminderController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CharityController;
 use App\Http\Controllers\VolunteerController;
@@ -30,6 +28,11 @@ Route::get('/', function () {
 Route::get('/welcome', function () {
     return view('home');
 });
+
+// stripe payment
+Route::post('payment/initiate', [CharityController::class, 'initiatePayment']);
+Route::post('payment/complete', [CharityController::class, 'completePayment']);
+Route::post('payment/failure', [CharityController::class, 'failPayment']);
 
 // users
 Route::get('/users', [UserController::class, 'index']);
@@ -58,8 +61,6 @@ Route::post('/search', [AhadithController::class, 'search'])->name('search');
 Route::post('/search_chapter', [AhadithController::class, 'searchChapter'])->name('searchChapter');
 
 // frontend json files
-Route::get('/allah_names', [AllahNamesController::class, 'index']);
-Route::get('/reminders', [ReminderController::class, 'index']);
 Route::get('/hadith_qudsi', [HadithQudsiController::class, 'index']);
 Route::get('/hadith_shah', [HadithShahController::class, 'index']);
 

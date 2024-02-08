@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'IslamicZone',
+    'title' => 'IslamicConnect',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -63,8 +63,8 @@ return [
     |
     */
 
-    'logo' => '<b>IslamicZone</b>',
-    'logo_img' => '/images/muslim.png',
+    'logo' => '<b>IslamiConnect</b>',
+    'logo_img' => '/images/ornament.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -86,7 +86,7 @@ return [
     'auth_logo' => [
         'enabled' => false,
         'img' => [
-            'path' => '/images/muslim.png',
+            'path' => '/images/ornament.png',
             'alt' => 'Auth Logo',
             'class' => '',
             'width' => 100,
@@ -109,7 +109,7 @@ return [
     'preloader' => [
         'enabled' => false,
         'img' => [
-            'path' => '/images/muslim.png',
+            'path' => '/images/ornament.png',
             'alt' => 'AdminLTE Preloader Image',
             'effect' => 'animation__shake',
             'width' => 60,
@@ -297,14 +297,32 @@ return [
             'topnav' => true,
         ],
 
-        [
-            'text' => 'Home',
-            'url' => 'home',
-            'icon' => 'fas fa-fw fa-home',
-            'topnav_right' => true,
+        // [
+        //     'text' => 'Home',
+        //     'url' => 'home',
+        //     'icon' => 'fas fa-fw fa-home',
+        //     'topnav_right' => true,
 
 
-        ],
+        // ],
+
+        // [
+        //     'text' => 'Home',
+        //     'url' => '/',
+        //     'icon' => 'fas fa-fw fa-home',
+        //     'topnav_right' => true,
+
+
+        // ],
+
+        // [
+        //     'text' => 'Quran',
+        //     'url'  => '/',
+        //     'icon' => 'fas fa-fw fa-quran',
+        //     'topnav_right' => true,
+
+        // ],
+
 
         [
             'text' => 'Quran',

@@ -3011,6 +3011,192 @@ function withinMaxClamp(min, value, max) {
 
 /***/ }),
 
+/***/ "./node_modules/@stripe/stripe-js/dist/stripe.esm.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/@stripe/stripe-js/dist/stripe.esm.js ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   loadStripe: () => (/* binding */ loadStripe)
+/* harmony export */ });
+var V3_URL = 'https://js.stripe.com/v3';
+var V3_URL_REGEX = /^https:\/\/js\.stripe\.com\/v3\/?(\?.*)?$/;
+var EXISTING_SCRIPT_MESSAGE = 'loadStripe.setLoadParameters was called but an existing Stripe.js script already exists in the document; existing script parameters will be used';
+var findScript = function findScript() {
+  var scripts = document.querySelectorAll("script[src^=\"".concat(V3_URL, "\"]"));
+
+  for (var i = 0; i < scripts.length; i++) {
+    var script = scripts[i];
+
+    if (!V3_URL_REGEX.test(script.src)) {
+      continue;
+    }
+
+    return script;
+  }
+
+  return null;
+};
+
+var injectScript = function injectScript(params) {
+  var queryString = params && !params.advancedFraudSignals ? '?advancedFraudSignals=false' : '';
+  var script = document.createElement('script');
+  script.src = "".concat(V3_URL).concat(queryString);
+  var headOrBody = document.head || document.body;
+
+  if (!headOrBody) {
+    throw new Error('Expected document.body not to be null. Stripe.js requires a <body> element.');
+  }
+
+  headOrBody.appendChild(script);
+  return script;
+};
+
+var registerWrapper = function registerWrapper(stripe, startTime) {
+  if (!stripe || !stripe._registerWrapper) {
+    return;
+  }
+
+  stripe._registerWrapper({
+    name: 'stripe-js',
+    version: "2.4.0",
+    startTime: startTime
+  });
+};
+
+var stripePromise = null;
+var onErrorListener = null;
+var onLoadListener = null;
+
+var onError = function onError(reject) {
+  return function () {
+    reject(new Error('Failed to load Stripe.js'));
+  };
+};
+
+var onLoad = function onLoad(resolve, reject) {
+  return function () {
+    if (window.Stripe) {
+      resolve(window.Stripe);
+    } else {
+      reject(new Error('Stripe.js not available'));
+    }
+  };
+};
+
+var loadScript = function loadScript(params) {
+  // Ensure that we only attempt to load Stripe.js at most once
+  if (stripePromise !== null) {
+    return stripePromise;
+  }
+
+  stripePromise = new Promise(function (resolve, reject) {
+    if (typeof window === 'undefined' || typeof document === 'undefined') {
+      // Resolve to null when imported server side. This makes the module
+      // safe to import in an isomorphic code base.
+      resolve(null);
+      return;
+    }
+
+    if (window.Stripe && params) {
+      console.warn(EXISTING_SCRIPT_MESSAGE);
+    }
+
+    if (window.Stripe) {
+      resolve(window.Stripe);
+      return;
+    }
+
+    try {
+      var script = findScript();
+
+      if (script && params) {
+        console.warn(EXISTING_SCRIPT_MESSAGE);
+      } else if (!script) {
+        script = injectScript(params);
+      } else if (script && onLoadListener !== null && onErrorListener !== null) {
+        var _script$parentNode;
+
+        // remove event listeners
+        script.removeEventListener('load', onLoadListener);
+        script.removeEventListener('error', onErrorListener); // if script exists, but we are reloading due to an error,
+        // reload script to trigger 'load' event
+
+        (_script$parentNode = script.parentNode) === null || _script$parentNode === void 0 ? void 0 : _script$parentNode.removeChild(script);
+        script = injectScript(params);
+      }
+
+      onLoadListener = onLoad(resolve, reject);
+      onErrorListener = onError(reject);
+      script.addEventListener('load', onLoadListener);
+      script.addEventListener('error', onErrorListener);
+    } catch (error) {
+      reject(error);
+      return;
+    }
+  }); // Resets stripePromise on error
+
+  return stripePromise["catch"](function (error) {
+    stripePromise = null;
+    return Promise.reject(error);
+  });
+};
+var initStripe = function initStripe(maybeStripe, args, startTime) {
+  if (maybeStripe === null) {
+    return null;
+  }
+
+  var stripe = maybeStripe.apply(undefined, args);
+  registerWrapper(stripe, startTime);
+  return stripe;
+}; // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+
+var stripePromise$1;
+var loadCalled = false;
+
+var getStripePromise = function getStripePromise() {
+  if (stripePromise$1) {
+    return stripePromise$1;
+  }
+
+  stripePromise$1 = loadScript(null)["catch"](function (error) {
+    // clear cache on error
+    stripePromise$1 = null;
+    return Promise.reject(error);
+  });
+  return stripePromise$1;
+}; // Execute our own script injection after a tick to give users time to do their
+// own script injection.
+
+
+Promise.resolve().then(function () {
+  return getStripePromise();
+})["catch"](function (error) {
+  if (!loadCalled) {
+    console.warn(error);
+  }
+});
+var loadStripe = function loadStripe() {
+  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+    args[_key] = arguments[_key];
+  }
+
+  loadCalled = true;
+  var startTime = Date.now(); // if previous attempts are unsuccessful, will re-load script
+
+  return getStripePromise().then(function (maybeStripe) {
+    return initStripe(maybeStripe, args, startTime);
+  });
+};
+
+
+
+
+/***/ }),
+
 /***/ "./node_modules/@vue/compiler-core/dist/compiler-core.esm-bundler.js":
 /*!***************************************************************************!*\
   !*** ./node_modules/@vue/compiler-core/dist/compiler-core.esm-bundler.js ***!
@@ -20005,10 +20191,99 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /*!**********************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/CharityComponent.vue?vue&type=script&lang=js ***!
   \**********************************************************************************************************************************************************************************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip();
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw new Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw new Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      amount: 1,
+      // Default amount
+      selectedCurrency: 'usd' // Default currency
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+    return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+      var stripe, elements, cardElement;
+      return _regeneratorRuntime().wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            _context.next = 2;
+            return _this.$stripe;
+          case 2:
+            stripe = _context.sent;
+            elements = stripe.elements(); // Create an instance of the card Element.
+            cardElement = elements.create('card'); // Mount the card element to the DOM.
+            cardElement.mount('#card-element');
+          case 6:
+          case "end":
+            return _context.stop();
+        }
+      }, _callee);
+    }))();
+  },
+  methods: {
+    initiatePayment: function initiatePayment() {
+      var _this2 = this;
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        var stripe, response, _yield$stripe$confirm, error;
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.prev = 0;
+              _context2.next = 3;
+              return _this2.$stripe;
+            case 3:
+              stripe = _context2.sent;
+              _context2.next = 6;
+              return axios.post('/payment/initiate', {
+                amount: _this2.amount,
+                currency: 'usd' // Adjust currency as needed
+              });
+            case 6:
+              response = _context2.sent;
+              _context2.next = 9;
+              return stripe.confirmCardPayment(response.data.client_secret, {
+                payment_method: {
+                  card: elements.getElement('card-element'),
+                  // Use the card element created earlier
+                  billing_details: {
+                    // Include any additional billing details if needed
+                  }
+                }
+              });
+            case 9:
+              _yield$stripe$confirm = _context2.sent;
+              error = _yield$stripe$confirm.error;
+              cardElement.mount('#card-element');
+              if (error) {
+                console.error(error);
+              } else {
+                console.log('Payment successful!');
+              }
+              _context2.next = 18;
+              break;
+            case 15:
+              _context2.prev = 15;
+              _context2.t0 = _context2["catch"](0);
+              console.error(_context2.t0);
+            case 18:
+            case "end":
+              return _context2.stop();
+          }
+        }, _callee2, null, [[0, 15]]);
+      }))();
+    }
+  }
 });
 
 /***/ }),
@@ -21070,7 +21345,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
   },
   methods: {
     getSurahs: function getSurahs() {
-      axios.get('/get_surahs', {
+      axios.get("/get_surahs", {
         params: {
           id: this.surah
         }
@@ -21079,7 +21354,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       }.bind(this));
     },
     getAyahs: function getAyahs() {
-      axios.get('/get_ayahs', {
+      axios.get("/get_ayahs", {
         params: {
           surah_id: this.surah
         }
@@ -21092,7 +21367,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       axios.get("/tafseer/".concat(ayahId, "/fetch")).then(function (response) {
         this.tafseer = response.data;
       }.bind(this));
-      axios.get('/get_informations', {
+      axios.get("/get_informations", {
         params: {
           ayahId: ayahId
         }
@@ -21680,115 +21955,39 @@ var _hoisted_1 = {
   id: "app",
   "class": "pt-3"
 };
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
-  "class": "text-center mt"
-}, "Donations", -1 /* HOISTED */);
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_2 = {
   "class": "container py-3"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "row"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "col-lg-6 text-left"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-  "class": "text-left pt-3"
-}, "In Islam, the act of giving and charitable donations hold profound significance, emphasized through the pillar of Zakat. Zakat is a mandatory form of almsgiving, representing a fundamental aspect of Islamic financial and social responsibility. The term itself means \"purification,\" signifying the purification of one's wealth through the act of giving to those in need."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-  "class": "text-left"
-}, "The call for donations in Islam is rooted in compassion and empathy for the less fortunate. It is a way for individuals to fulfill their duty towards their fellow human beings, fostering a sense of community and solidarity. The Quran encourages believers to share their wealth with those facing hardship, reinforcing the notion that all possessions ultimately belong to God and are to be used for the betterment of society.")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "col-lg-6 mx-auto"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "card",
-  style: {
-    "border-radius": "8px"
-  }
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "card-header",
-  style: {
-    "border-radius": "8px"
-  }
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Credit card form content "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "tab-content"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" credit card info"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  id: "credit-card",
-  "class": "tab-pane fade show active pt-3"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
-  role: "form",
-  onsubmit: "event.preventDefault()"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "form-group"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "username"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", null, "Card Owner")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-  type: "text",
-  name: "username",
-  placeholder: "Card Owner Name",
-  required: "",
-  "class": "form-control"
-})]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "form-group"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "cardNumber"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", null, "Card number")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "input-group"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-  type: "text",
-  name: "cardNumber",
-  placeholder: "Valid card number",
-  "class": "form-control",
-  required: ""
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "input-group-append"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-  "class": "input-group-text text-muted"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-  "class": "fab fa-cc-visa mx-1"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-  "class": "fab fa-cc-mastercard mx-1"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-  "class": "fab fa-cc-amex mx-1"
-})])])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "row"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "col-sm-8"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "form-group"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-  "class": "hidden-xs"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", null, "Expiration Date")])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "input-group"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-  type: "number",
-  placeholder: "MM",
-  name: "",
-  "class": "form-control",
-  required: ""
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-  type: "number",
-  placeholder: "YY",
-  name: "",
-  "class": "form-control",
-  required: ""
-})])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "col-sm-4"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "form-group mb-4"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "data-toggle": "tooltip",
-  title: "Three digit CV code on the back of your card"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("CVV "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-  "class": "fa fa-question-circle d-inline"
-})])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-  type: "text",
-  required: "",
-  "class": "form-control"
-})])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "card-footer"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  type: "button",
-  "class": "subscribe btn btn-secondary btn-block shadow-sm"
-}, " Confirm Payment ")])])])])])])])])], -1 /* HOISTED */);
-var _hoisted_4 = [_hoisted_2, _hoisted_3];
+};
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "for": "amount"
+}, "Amount:", -1 /* HOISTED */);
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "for": "currency"
+}, "Currency:", -1 /* HOISTED */);
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  value: "usd"
+}, "USD", -1 /* HOISTED */);
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  value: "eur"
+}, "EUR", -1 /* HOISTED */);
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [].concat(_hoisted_4));
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("\n    <div class=\"row\">\n      <div class=\"col-lg-6 text-left\">\n      <h1 class=\"display-4\">Donations</h1>\n        <p class=\"lead text-muted mb-0\">In Islam, the act of giving and charitable donations hold profound significance, emphasized through the pillar of Zakat. Zakat is a mandatory form of almsgiving, representing a fundamental aspect of Islamic financial and social responsibility. The term itself means \"purification,\" signifying the purification of one's wealth through the act of giving to those in need.</p><br>\n        <p class=\"lead text-muted mb-0\">The call for donations in Islam is rooted in compassion and empathy for the less fortunate. It is a way for individuals to fulfill their duty towards their fellow human beings, fostering a sense of community and solidarity. </p>\n      </div>\n      <div class=\"col-lg-6 mx-auto\">\n        <div class=\"card mt-5\" style=\"border-radius:8px\">\n          <div class=\"card-header\" style=\"border-radius:8px\">\n\n            -- Credit card form content --\n            <div class=\"tab-content\">\n              -- credit card info--\n              <div id=\"credit-card\" class=\"tab-pane fade show active pt-3\">\n                <form role=\"form\" onsubmit=\"event.preventDefault()\">\n                  <div class=\"form-group\"> <label for=\"username\">\n                      <h6>Card Owner</h6>\n                    </label> <input type=\"text\" name=\"username\" placeholder=\"Card Owner Name\" required class=\"form-control \"> </div>\n                  <div class=\"form-group\"> <label for=\"cardNumber\">\n                      <h6>Card number</h6>\n                    </label>\n                    <div class=\"input-group\"> <input type=\"text\" name=\"card_number\" placeholder=\"Valid card number\" class=\"form-control \" required>\n                      <div class=\"input-group-append\"> <span class=\"input-group-text text-muted\"> <i class=\"fab fa-cc-visa mx-1\"></i> <i class=\"fab fa-cc-mastercard mx-1\"></i> <i class=\"fab fa-cc-amex mx-1\"></i> </span> </div>\n                    </div>\n                  </div>\n                  <div class=\"row\">\n                    <div class=\"col-sm-8\">\n                      <div class=\"form-group\"> <label><span class=\"hidden-xs\">\n                            <h6>Expiration Date</h6>\n                          </span></label>\n                        <div class=\"input-group\"> <input type=\"number\" placeholder=\"MM\" name=\"\" class=\"form-control\" required> <input type=\"number\" placeholder=\"YY\" name=\"\" class=\"form-control\" required> </div>\n                      </div>\n                    </div>\n                    <div class=\"col-sm-4\">\n                      <div class=\"form-group mb-4\"> <label data-toggle=\"tooltip\" title=\"Three digit CV code on the back of your card\">\n                          <h6>CVV <i class=\"fa fa-question-circle d-inline\"></i></h6>\n                        </label> <input type=\"text\" required class=\"form-control\"> </div>\n                    </div>\n                  </div>\n                  <div class=\"card-footer\"> \n                    <button type=\"button\" class=\"subscribe btn btn-secondary btn-block shadow-sm\" @click=\"handleSubmit\">Pay Now</button>\n                  </div>\n                </form>\n              </div>\n            </div>\n\n          </div>\n        </div>\n      </div>\n    </div>\n\n\n    <form id=\"payment-form\">\n        <div id=\"payment-element\">\n            -- Stripe will create form elements here --\n        </div>\n        <button type=\"submit\" @click=\"handleSubmit\">Pay via Stripe</button>\n    </form>\n  "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
+      return $data.amount = $event;
+    }),
+    type: "number",
+    min: "1",
+    step: "0.01"
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.amount]]), _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+    "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+      return $data.selectedCurrency = $event;
+    })
+  }, [_hoisted_5, _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Add more currency options as needed ")], 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.selectedCurrency]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    onClick: _cache[2] || (_cache[2] = function () {
+      return $options.initiatePayment && $options.initiatePayment.apply($options, arguments);
+    })
+  }, "Initiate Payment")])])]);
 }
 
 /***/ }),
@@ -25043,7 +25242,7 @@ var _hoisted_23 = {
   id: "home",
   role: "tabpanel"
 };
-var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"row\" data-v-2b3c2c26><div class=\"col-md-6\" data-v-2b3c2c26><img src=\"/images/calligraphy.png\" class=\"pl-3\" style=\"width:70%;\" data-v-2b3c2c26></div><div class=\"col-md-6\" data-v-2b3c2c26><h2 class=\"font-weight-bold mb-3 mt-3 text-center\" data-v-2b3c2c26>The Holy Quran</h2><span class=\"container text-left mb-4\" style=\"line-height:1.5em;\" data-v-2b3c2c26>The Quran, considered the holy scripture of Islam, is a sacred and comprehensive compilation of revelations believed by Muslims to have been conveyed to the Prophet Muhammad by the archangel Gabriel from around 610 CE to 632 CE. </span></div></div>", 1);
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"row\" data-v-2b3c2c26><div class=\"col-md-6\" data-v-2b3c2c26><img src=\"/images/calligraphy.png\" class=\"pl-3\" style=\"width:70%;\" data-v-2b3c2c26></div><div class=\"col-md-6\" data-v-2b3c2c26><h2 class=\"font-weight-bold mb-3 mt-3 text-center\" data-v-2b3c2c26> The Holy Quran </h2><span class=\"container text-left mb-4\" style=\"line-height:1.5em;\" data-v-2b3c2c26>The Quran, considered the holy scripture of Islam, is a sacred and comprehensive compilation of revelations believed by Muslims to have been conveyed to the Prophet Muhammad by the archangel Gabriel from around 610 CE to 632 CE. </span></div></div>", 1);
 var _hoisted_25 = [_hoisted_24];
 var _hoisted_26 = {
   key: 1,
@@ -25063,7 +25262,7 @@ var _hoisted_29 = {
 var _hoisted_30 = {
   "class": "container text-right",
   style: {
-    "line-height": "2.0em"
+    "line-height": "2em"
   }
 };
 var _hoisted_31 = /*#__PURE__*/_withScopeId(function () {
@@ -25092,7 +25291,7 @@ var _hoisted_35 = {
 var _hoisted_36 = {
   "class": "container text-right",
   style: {
-    "line-height": "2.0em"
+    "line-height": "2em"
   }
 };
 var _hoisted_37 = /*#__PURE__*/_withScopeId(function () {
@@ -25121,7 +25320,7 @@ var _hoisted_41 = {
 var _hoisted_42 = {
   "class": "container text-right",
   style: {
-    "line-height": "2.0em"
+    "line-height": "2em"
   }
 };
 var _hoisted_43 = /*#__PURE__*/_withScopeId(function () {
@@ -25161,7 +25360,7 @@ var _hoisted_49 = {
 var _hoisted_50 = {
   "class": "custom-scrollbar",
   style: {
-    "box-shadow": "rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px",
+    "box-shadow": "rgba(0, 0, 0, 0.12) 0px 1px 3px,\n                                        rgba(0, 0, 0, 0.24) 0px 1px 2px",
     "background": "transparent",
     "border": "5px solid #c3e6cb"
   }
@@ -25225,7 +25424,7 @@ var _hoisted_57 = /*#__PURE__*/_withScopeId(function () {
     "class": "pt-2 col-3"
   }, "Reciter:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: "0"
-  }, "Select Reciter"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option")])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+  }, " Select Reciter "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option")])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
     src: "/images/quran_img.png",
     "class": "pl-3",
     style: {
@@ -25241,7 +25440,7 @@ var _hoisted_58 = /*#__PURE__*/_withScopeId(function () {
 });
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" accordion headers"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Nav tabs "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [$data.information != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("ul", _hoisted_8, [].concat(_hoisted_12))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.information != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_16, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.information.ayah.surah_id) + " ; " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.information.ayah.ayah_id), 1 /* TEXT */)])])]), _hoisted_20])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Tab panes "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [$data.information == null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_23, [].concat(_hoisted_25))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" translation "), $data.information != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.information.ayah.ayah_text) + " (" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.information.ayah.ayah_id) + ")", 1 /* TEXT */)]), _hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", _hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.information.translation) + "\"", 1 /* TEXT */)])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" tafseer "), $data.information != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_34, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_35, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_36, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.information.ayah.ayah_text) + " (" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.information.ayah.ayah_id) + ")", 1 /* TEXT */)]), _hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_39, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.tafseer), 1 /* TEXT */)])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" transliteration "), $data.information != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_40, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_41, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_42, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.information.ayah.ayah_text) + " (" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.information.ayah.ayah_id) + ")", 1 /* TEXT */)]), _hoisted_43, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_44, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_45, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.information.transliteration), 1 /* TEXT */)])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" right side chapter list "), $data.ayah == null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_46, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("\n      <nav>\n        <div class=\" container-fluid nav nav-tabs justify-content-center mb-3\" id=\"nav-tab\" role=\"tablist\" style=\"display:flex;padding:5px; border-radius:5px;\">\n          <button class=\"nav-link active\"  id=\"nav-home-tab\" data-bs-toggle=\"tab\" data-bs-target=\"#nav-home\" type=\"button\" role=\"tab\" aria-controls=\"nav-home\" aria-selected=\"true\">List of ayat</button>\n          <button class=\"nav-link\" id=\"nav-profile-tab\" data-bs-toggle=\"tab\" data-bs-target=\"#nav-profile\" type=\"button\" role=\"tab\" aria-controls=\"nav-profile\" aria-selected=\"false\">Quran pages</button>\n        </div>\n      </nav>\n      "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_47, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_48, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_49, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_50, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_51, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" accordion headers"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Nav tabs "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [$data.information != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("ul", _hoisted_8, [].concat(_hoisted_12))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.information != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_16, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.information.ayah.surah_id) + " ; " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.information.ayah.ayah_id), 1 /* TEXT */)])])]), _hoisted_20])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Tab panes "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [$data.information == null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_23, [].concat(_hoisted_25))) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" translation "), $data.information != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.information.ayah.ayah_text) + " (" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.information.ayah.ayah_id) + ") ", 1 /* TEXT */)]), _hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", _hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.information.translation) + "\" ", 1 /* TEXT */)])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" tafseer "), $data.information != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_34, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_35, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_36, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.information.ayah.ayah_text) + " (" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.information.ayah.ayah_id) + ") ", 1 /* TEXT */)]), _hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_39, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.tafseer), 1 /* TEXT */)])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" transliteration "), $data.information != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_40, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_41, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_42, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.information.ayah.ayah_text) + " (" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.information.ayah.ayah_id) + ") ", 1 /* TEXT */)]), _hoisted_43, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_44, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_45, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.information.transliteration), 1 /* TEXT */)])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" right side chapter list "), $data.ayah == null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_46, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("\n      <nav>\n        <div class=\" container-fluid nav nav-tabs justify-content-center mb-3\" id=\"nav-tab\" role=\"tablist\" style=\"display:flex;padding:5px; border-radius:5px;\">\n          <button class=\"nav-link active\"  id=\"nav-home-tab\" data-bs-toggle=\"tab\" data-bs-target=\"#nav-home\" type=\"button\" role=\"tab\" aria-controls=\"nav-home\" aria-selected=\"true\">List of ayat</button>\n          <button class=\"nav-link\" id=\"nav-profile-tab\" data-bs-toggle=\"tab\" data-bs-target=\"#nav-profile\" type=\"button\" role=\"tab\" aria-controls=\"nav-profile\" aria-selected=\"false\">Quran pages</button>\n        </div>\n      </nav>\n      "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_47, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_48, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_49, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_50, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_51, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     "class": "form-control",
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
       return $data.surah = $event;
@@ -25254,18 +25453,18 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       key: data.id,
       value: data.id
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.name_en) + " - " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.name_ar), 9 /* TEXT, PROPS */, _hoisted_53);
-  }), 128 /* KEYED_FRAGMENT */))], 544 /* HYDRATE_EVENTS, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.surah]])]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.ayahs, function (ayah, ayahId) {
+  }), 128 /* KEYED_FRAGMENT */))], 544 /* HYDRATE_EVENTS, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.surah]])]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.ayahs, function (ayah, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("ul", {
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["col-md-4 list-group container-fluid root", {
-        'selected': $data.selectedIndex === ayahId
+        selected: $data.selectedIndex === $data.ayahId
       }]),
       style: {
         "max-width": "100%",
         "cursor": "pointer"
       },
-      key: ayahId,
+      key: index,
       onClick: function onClick($event) {
-        return $options.getTafseers(ayahId);
+        return $options.getTafseers(ayah.ayah_id);
       }
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_55, [_hoisted_56, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(ayah.ayah_id), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(ayah.ayah_text), 1 /* TEXT */)])], 10 /* CLASS, PROPS */, _hoisted_54);
   }), 128 /* KEYED_FRAGMENT */))])])]), _hoisted_57]), _hoisted_58])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]);
@@ -25834,7 +26033,7 @@ __webpack_require__.r(__webpack_exports__);
 var _hoisted_1 = {
   id: "app"
 };
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"container py-5\"><div class=\"row h-100 align-items-center py-5\"><div class=\"container col-lg-6\"><h1 class=\"display-4\">Help us grow</h1><p class=\"lead text-muted mb-0\">We are a community-driven business dedicated to making a positive impact through volunteerism. Our organization believes in the power of collective effort to bring about meaningful change. Whether you are a student, professional, retiree, or someone with a passion for giving back, Helping Hands Haven welcomes individuals from all walks of life.</p><button type=\"button btn-xl\" class=\"btn btn-outline-dark mt-3\">Learn more</button></div><div class=\"col-lg-5 d-none d-lg-block\"><img src=\"https://bootstrapious.com/i/snippets/sn-about/illus.png\" alt=\"\" class=\"img-fluid\"></div></div></div>", 1);
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"container mt-3\"><div class=\"row h-100 align-items-center py-3\"><div class=\"container col-lg-6\"><h1 class=\"display-4\">Help us grow</h1><p class=\"lead text-muted mb-0\">We are a community-driven business dedicated to making a positive impact through volunteerism. Our organization believes in the power of collective effort to bring about meaningful change. Whether you are a student, professional, retiree, or someone with a passion for giving back, Helping Hands Haven welcomes individuals from all walks of life.</p><button type=\"button btn-xl\" class=\"btn btn-outline-dark mt-3\">Learn more</button></div><div class=\"col-lg-5 mt-5 d-none d-lg-block\"><img src=\"https://bootstrapious.com/i/snippets/sn-about/illus.png\" alt=\"\" class=\"img-fluid\"></div></div></div>", 1);
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("\n  <div class=\"row\" style=\"padding:50px\">\n    <div class=\"col-md-6\" style=\"padding:10px\">\n      <h2 class=\"text-center pb-2\"><strong>Help us grow</strong></h2>\n      <p >It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>\n      <p >It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here</p>\n    </div>\n    <div class=\"col-md-6\">\n      <img src=\"/images/help.png\" width=\"100%\">\n    </div>\n  </div>\n  "), _hoisted_2]);
 }
@@ -25855,43 +26054,45 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var sweetalert2_src_sweetalert2_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! sweetalert2/src/sweetalert2.scss */ "./node_modules/sweetalert2/src/sweetalert2.scss");
 /* harmony import */ var laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! laravel-vue-pagination */ "./node_modules/laravel-vue-pagination/dist/laravel-vue-pagination.es.js");
-/* harmony import */ var primevue_config__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! primevue/config */ "./node_modules/primevue/config/config.esm.js");
-/* harmony import */ var primevue_resources_themes_saga_blue_theme_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! primevue/resources/themes/saga-blue/theme.css */ "./node_modules/primevue/resources/themes/saga-blue/theme.css");
-/* harmony import */ var primevue_resources_primevue_min_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! primevue/resources/primevue.min.css */ "./node_modules/primevue/resources/primevue.min.css");
-/* harmony import */ var primevue_datatable__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! primevue/datatable */ "./node_modules/primevue/datatable/datatable.esm.js");
-/* harmony import */ var primevue_column__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! primevue/column */ "./node_modules/primevue/column/column.esm.js");
-/* harmony import */ var primevue_button__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! primevue/button */ "./node_modules/primevue/button/button.esm.js");
-/* harmony import */ var primevue_inputtext__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! primevue/inputtext */ "./node_modules/primevue/inputtext/inputtext.esm.js");
-/* harmony import */ var primevue_card__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! primevue/card */ "./node_modules/primevue/card/card.esm.js");
-/* harmony import */ var primevue_tabview__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! primevue/tabview */ "./node_modules/primevue/tabview/tabview.esm.js");
-/* harmony import */ var primevue_tabpanel__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! primevue/tabpanel */ "./node_modules/primevue/tabpanel/tabpanel.esm.js");
-/* harmony import */ var primevue_accordion__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! primevue/accordion */ "./node_modules/primevue/accordion/accordion.esm.js");
-/* harmony import */ var primevue_accordiontab__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! primevue/accordiontab */ "./node_modules/primevue/accordiontab/accordiontab.esm.js");
-/* harmony import */ var primevue_listbox__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! primevue/listbox */ "./node_modules/primevue/listbox/listbox.esm.js");
-/* harmony import */ var primevue_fieldset__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! primevue/fieldset */ "./node_modules/primevue/fieldset/fieldset.esm.js");
-/* harmony import */ var primevue_panel__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! primevue/panel */ "./node_modules/primevue/panel/panel.esm.js");
-/* harmony import */ var primevue_dialog__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! primevue/dialog */ "./node_modules/primevue/dialog/dialog.esm.js");
-/* harmony import */ var primevue_image__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! primevue/image */ "./node_modules/primevue/image/image.esm.js");
-/* harmony import */ var _components_UsersComponent_vue__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/UsersComponent.vue */ "./resources/js/components/UsersComponent.vue");
-/* harmony import */ var _components_MailingListComponent_vue__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./components/MailingListComponent.vue */ "./resources/js/components/MailingListComponent.vue");
-/* harmony import */ var _components_FeedbackComponent_vue__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./components/FeedbackComponent.vue */ "./resources/js/components/FeedbackComponent.vue");
-/* harmony import */ var _components_PaymentComponent_vue__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./components/PaymentComponent.vue */ "./resources/js/components/PaymentComponent.vue");
-/* harmony import */ var _components_DonationComponent_vue__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./components/DonationComponent.vue */ "./resources/js/components/DonationComponent.vue");
-/* harmony import */ var _components_ProfileComponent_vue__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./components/ProfileComponent.vue */ "./resources/js/components/ProfileComponent.vue");
-/* harmony import */ var _components_DashboardComponent_vue__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./components/DashboardComponent.vue */ "./resources/js/components/DashboardComponent.vue");
-/* harmony import */ var _components_HomepageComponent_vue__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./components/HomepageComponent.vue */ "./resources/js/components/HomepageComponent.vue");
-/* harmony import */ var _components_PricingComponent_vue__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./components/PricingComponent.vue */ "./resources/js/components/PricingComponent.vue");
-/* harmony import */ var _components_ContactComponent_vue__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./components/ContactComponent.vue */ "./resources/js/components/ContactComponent.vue");
-/* harmony import */ var _components_CharityComponent_vue__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./components/CharityComponent.vue */ "./resources/js/components/CharityComponent.vue");
-/* harmony import */ var _components_VolunteerComponent_vue__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./components/VolunteerComponent.vue */ "./resources/js/components/VolunteerComponent.vue");
-/* harmony import */ var _components_AhadithComponent_vue__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./components/AhadithComponent.vue */ "./resources/js/components/AhadithComponent.vue");
-/* harmony import */ var _components_HadithNawawiComponent_vue__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./components/HadithNawawiComponent.vue */ "./resources/js/components/HadithNawawiComponent.vue");
-/* harmony import */ var _components_HadithQudsiComponent_vue__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./components/HadithQudsiComponent.vue */ "./resources/js/components/HadithQudsiComponent.vue");
-/* harmony import */ var _components_HadithShahComponent_vue__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./components/HadithShahComponent.vue */ "./resources/js/components/HadithShahComponent.vue");
-/* harmony import */ var _components_CorrectionComponent_vue__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./components/CorrectionComponent.vue */ "./resources/js/components/CorrectionComponent.vue");
-/* harmony import */ var _components_QuranComponent_vue__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./components/QuranComponent.vue */ "./resources/js/components/QuranComponent.vue");
+/* harmony import */ var _stripe_stripe_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @stripe/stripe-js */ "./node_modules/@stripe/stripe-js/dist/stripe.esm.js");
+/* harmony import */ var primevue_config__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! primevue/config */ "./node_modules/primevue/config/config.esm.js");
+/* harmony import */ var primevue_resources_themes_saga_blue_theme_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! primevue/resources/themes/saga-blue/theme.css */ "./node_modules/primevue/resources/themes/saga-blue/theme.css");
+/* harmony import */ var primevue_resources_primevue_min_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! primevue/resources/primevue.min.css */ "./node_modules/primevue/resources/primevue.min.css");
+/* harmony import */ var primevue_datatable__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! primevue/datatable */ "./node_modules/primevue/datatable/datatable.esm.js");
+/* harmony import */ var primevue_column__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! primevue/column */ "./node_modules/primevue/column/column.esm.js");
+/* harmony import */ var primevue_button__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! primevue/button */ "./node_modules/primevue/button/button.esm.js");
+/* harmony import */ var primevue_inputtext__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! primevue/inputtext */ "./node_modules/primevue/inputtext/inputtext.esm.js");
+/* harmony import */ var primevue_card__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! primevue/card */ "./node_modules/primevue/card/card.esm.js");
+/* harmony import */ var primevue_tabview__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! primevue/tabview */ "./node_modules/primevue/tabview/tabview.esm.js");
+/* harmony import */ var primevue_tabpanel__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! primevue/tabpanel */ "./node_modules/primevue/tabpanel/tabpanel.esm.js");
+/* harmony import */ var primevue_accordion__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! primevue/accordion */ "./node_modules/primevue/accordion/accordion.esm.js");
+/* harmony import */ var primevue_accordiontab__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! primevue/accordiontab */ "./node_modules/primevue/accordiontab/accordiontab.esm.js");
+/* harmony import */ var primevue_listbox__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! primevue/listbox */ "./node_modules/primevue/listbox/listbox.esm.js");
+/* harmony import */ var primevue_fieldset__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! primevue/fieldset */ "./node_modules/primevue/fieldset/fieldset.esm.js");
+/* harmony import */ var primevue_panel__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! primevue/panel */ "./node_modules/primevue/panel/panel.esm.js");
+/* harmony import */ var primevue_dialog__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! primevue/dialog */ "./node_modules/primevue/dialog/dialog.esm.js");
+/* harmony import */ var primevue_image__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! primevue/image */ "./node_modules/primevue/image/image.esm.js");
+/* harmony import */ var _components_UsersComponent_vue__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./components/UsersComponent.vue */ "./resources/js/components/UsersComponent.vue");
+/* harmony import */ var _components_MailingListComponent_vue__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./components/MailingListComponent.vue */ "./resources/js/components/MailingListComponent.vue");
+/* harmony import */ var _components_FeedbackComponent_vue__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./components/FeedbackComponent.vue */ "./resources/js/components/FeedbackComponent.vue");
+/* harmony import */ var _components_PaymentComponent_vue__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./components/PaymentComponent.vue */ "./resources/js/components/PaymentComponent.vue");
+/* harmony import */ var _components_DonationComponent_vue__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./components/DonationComponent.vue */ "./resources/js/components/DonationComponent.vue");
+/* harmony import */ var _components_ProfileComponent_vue__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./components/ProfileComponent.vue */ "./resources/js/components/ProfileComponent.vue");
+/* harmony import */ var _components_DashboardComponent_vue__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./components/DashboardComponent.vue */ "./resources/js/components/DashboardComponent.vue");
+/* harmony import */ var _components_HomepageComponent_vue__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./components/HomepageComponent.vue */ "./resources/js/components/HomepageComponent.vue");
+/* harmony import */ var _components_PricingComponent_vue__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./components/PricingComponent.vue */ "./resources/js/components/PricingComponent.vue");
+/* harmony import */ var _components_ContactComponent_vue__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./components/ContactComponent.vue */ "./resources/js/components/ContactComponent.vue");
+/* harmony import */ var _components_CharityComponent_vue__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./components/CharityComponent.vue */ "./resources/js/components/CharityComponent.vue");
+/* harmony import */ var _components_VolunteerComponent_vue__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./components/VolunteerComponent.vue */ "./resources/js/components/VolunteerComponent.vue");
+/* harmony import */ var _components_AhadithComponent_vue__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./components/AhadithComponent.vue */ "./resources/js/components/AhadithComponent.vue");
+/* harmony import */ var _components_HadithNawawiComponent_vue__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./components/HadithNawawiComponent.vue */ "./resources/js/components/HadithNawawiComponent.vue");
+/* harmony import */ var _components_HadithQudsiComponent_vue__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./components/HadithQudsiComponent.vue */ "./resources/js/components/HadithQudsiComponent.vue");
+/* harmony import */ var _components_HadithShahComponent_vue__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./components/HadithShahComponent.vue */ "./resources/js/components/HadithShahComponent.vue");
+/* harmony import */ var _components_CorrectionComponent_vue__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./components/CorrectionComponent.vue */ "./resources/js/components/CorrectionComponent.vue");
+/* harmony import */ var _components_QuranComponent_vue__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./components/QuranComponent.vue */ "./resources/js/components/QuranComponent.vue");
 // Vue libraries
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
 
 
 
@@ -25937,40 +26138,45 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bun
 var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({});
 window.Form = vform__WEBPACK_IMPORTED_MODULE_1__.Form;
 window.Swal = (sweetalert2__WEBPACK_IMPORTED_MODULE_2___default());
-app.use(primevue_config__WEBPACK_IMPORTED_MODULE_5__["default"]);
+app.use(primevue_config__WEBPACK_IMPORTED_MODULE_6__["default"]);
 app.component('pagination', __webpack_require__(/*! laravel-vue-pagination */ "./node_modules/laravel-vue-pagination/dist/laravel-vue-pagination.es.js"));
-app.component("Column", primevue_column__WEBPACK_IMPORTED_MODULE_9__["default"]);
-app.component("DataTable", primevue_datatable__WEBPACK_IMPORTED_MODULE_8__["default"]);
-app.component("Button", primevue_button__WEBPACK_IMPORTED_MODULE_10__["default"]);
-app.component("InputText", primevue_inputtext__WEBPACK_IMPORTED_MODULE_11__["default"]);
-app.component("AccordionTab", primevue_accordiontab__WEBPACK_IMPORTED_MODULE_16__["default"]);
-app.component("Accordion", primevue_accordion__WEBPACK_IMPORTED_MODULE_15__["default"]);
-app.component("Card", primevue_card__WEBPACK_IMPORTED_MODULE_12__["default"]);
-app.component("TabView", primevue_tabview__WEBPACK_IMPORTED_MODULE_13__["default"]);
-app.component("TabPanel", primevue_tabpanel__WEBPACK_IMPORTED_MODULE_14__["default"]);
-app.component("ListBox", primevue_listbox__WEBPACK_IMPORTED_MODULE_17__["default"]);
-app.component("Fieldset", primevue_fieldset__WEBPACK_IMPORTED_MODULE_18__["default"]);
-app.component("Panel", primevue_panel__WEBPACK_IMPORTED_MODULE_19__["default"]);
-app.component("Dialog", primevue_dialog__WEBPACK_IMPORTED_MODULE_20__["default"]);
-app.component("Image", primevue_image__WEBPACK_IMPORTED_MODULE_21__["default"]);
-app.component("users-component", _components_UsersComponent_vue__WEBPACK_IMPORTED_MODULE_22__["default"]);
-app.component("mailing_list-component", _components_MailingListComponent_vue__WEBPACK_IMPORTED_MODULE_23__["default"]);
-app.component("feedback-component", _components_FeedbackComponent_vue__WEBPACK_IMPORTED_MODULE_24__["default"]);
-app.component("payment-component", _components_PaymentComponent_vue__WEBPACK_IMPORTED_MODULE_25__["default"]);
-app.component("donation-component", _components_DonationComponent_vue__WEBPACK_IMPORTED_MODULE_26__["default"]);
-app.component("profile-component", _components_ProfileComponent_vue__WEBPACK_IMPORTED_MODULE_27__["default"]);
-app.component("dashboard-component", _components_DashboardComponent_vue__WEBPACK_IMPORTED_MODULE_28__["default"]);
-app.component("homepage-component", _components_HomepageComponent_vue__WEBPACK_IMPORTED_MODULE_29__["default"]);
-app.component("pricing-component", _components_PricingComponent_vue__WEBPACK_IMPORTED_MODULE_30__["default"]);
-app.component("contact-component", _components_ContactComponent_vue__WEBPACK_IMPORTED_MODULE_31__["default"]);
-app.component("charity-component", _components_CharityComponent_vue__WEBPACK_IMPORTED_MODULE_32__["default"]);
-app.component("volunteer-component", _components_VolunteerComponent_vue__WEBPACK_IMPORTED_MODULE_33__["default"]);
-app.component("ahadith-component", _components_AhadithComponent_vue__WEBPACK_IMPORTED_MODULE_34__["default"]);
-app.component("hadith_nawawi-component", _components_HadithNawawiComponent_vue__WEBPACK_IMPORTED_MODULE_35__["default"]);
-app.component("hadith_qudsi-component", _components_HadithQudsiComponent_vue__WEBPACK_IMPORTED_MODULE_36__["default"]);
-app.component("hadith_shah-component", _components_HadithShahComponent_vue__WEBPACK_IMPORTED_MODULE_37__["default"]);
-app.component("correction-component", _components_CorrectionComponent_vue__WEBPACK_IMPORTED_MODULE_38__["default"]);
-app.component("quran-component", _components_QuranComponent_vue__WEBPACK_IMPORTED_MODULE_39__["default"]);
+app.component("Column", primevue_column__WEBPACK_IMPORTED_MODULE_10__["default"]);
+app.component("DataTable", primevue_datatable__WEBPACK_IMPORTED_MODULE_9__["default"]);
+app.component("Button", primevue_button__WEBPACK_IMPORTED_MODULE_11__["default"]);
+app.component("InputText", primevue_inputtext__WEBPACK_IMPORTED_MODULE_12__["default"]);
+app.component("AccordionTab", primevue_accordiontab__WEBPACK_IMPORTED_MODULE_17__["default"]);
+app.component("Accordion", primevue_accordion__WEBPACK_IMPORTED_MODULE_16__["default"]);
+app.component("Card", primevue_card__WEBPACK_IMPORTED_MODULE_13__["default"]);
+app.component("TabView", primevue_tabview__WEBPACK_IMPORTED_MODULE_14__["default"]);
+app.component("TabPanel", primevue_tabpanel__WEBPACK_IMPORTED_MODULE_15__["default"]);
+app.component("ListBox", primevue_listbox__WEBPACK_IMPORTED_MODULE_18__["default"]);
+app.component("Fieldset", primevue_fieldset__WEBPACK_IMPORTED_MODULE_19__["default"]);
+app.component("Panel", primevue_panel__WEBPACK_IMPORTED_MODULE_20__["default"]);
+app.component("Dialog", primevue_dialog__WEBPACK_IMPORTED_MODULE_21__["default"]);
+app.component("Image", primevue_image__WEBPACK_IMPORTED_MODULE_22__["default"]);
+app.component("users-component", _components_UsersComponent_vue__WEBPACK_IMPORTED_MODULE_23__["default"]);
+app.component("mailing_list-component", _components_MailingListComponent_vue__WEBPACK_IMPORTED_MODULE_24__["default"]);
+app.component("feedback-component", _components_FeedbackComponent_vue__WEBPACK_IMPORTED_MODULE_25__["default"]);
+app.component("payment-component", _components_PaymentComponent_vue__WEBPACK_IMPORTED_MODULE_26__["default"]);
+app.component("donation-component", _components_DonationComponent_vue__WEBPACK_IMPORTED_MODULE_27__["default"]);
+app.component("profile-component", _components_ProfileComponent_vue__WEBPACK_IMPORTED_MODULE_28__["default"]);
+app.component("dashboard-component", _components_DashboardComponent_vue__WEBPACK_IMPORTED_MODULE_29__["default"]);
+app.component("homepage-component", _components_HomepageComponent_vue__WEBPACK_IMPORTED_MODULE_30__["default"]);
+app.component("pricing-component", _components_PricingComponent_vue__WEBPACK_IMPORTED_MODULE_31__["default"]);
+app.component("contact-component", _components_ContactComponent_vue__WEBPACK_IMPORTED_MODULE_32__["default"]);
+app.component("charity-component", _components_CharityComponent_vue__WEBPACK_IMPORTED_MODULE_33__["default"]);
+app.component("volunteer-component", _components_VolunteerComponent_vue__WEBPACK_IMPORTED_MODULE_34__["default"]);
+app.component("ahadith-component", _components_AhadithComponent_vue__WEBPACK_IMPORTED_MODULE_35__["default"]);
+app.component("hadith_nawawi-component", _components_HadithNawawiComponent_vue__WEBPACK_IMPORTED_MODULE_36__["default"]);
+app.component("hadith_qudsi-component", _components_HadithQudsiComponent_vue__WEBPACK_IMPORTED_MODULE_37__["default"]);
+app.component("hadith_shah-component", _components_HadithShahComponent_vue__WEBPACK_IMPORTED_MODULE_38__["default"]);
+app.component("correction-component", _components_CorrectionComponent_vue__WEBPACK_IMPORTED_MODULE_39__["default"]);
+app.component("quran-component", _components_QuranComponent_vue__WEBPACK_IMPORTED_MODULE_40__["default"]);
+
+// const stripePromise = loadStripe('pk_test_51OhWyICJwy2NXBn1qd6CDCqfzR5BkiaL4OYkl9EUc3nYm2D3paDVZuAyRks7NJBWodYHbQJOcxsxDA9L4umn4Kok00YuLJBbfh');
+
+// app.config.globalProperties.$stripe = stripePromise;
+
 app.mount('#app');
 
 /***/ }),
@@ -32665,7 +32871,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.selected[data-v-2b3c2c26] {\n  background-color: #c3e6cb; /* Change this to your desired highlight color */\n}\n.custom-scrollbar[data-v-2b3c2c26] {\n  background-color: transparent;\n  height: 800px;\n  width: 100%;\n  border-radius: 6px;\n  box-shadow: 0 4px 28px rgba(123, 151, 158, .25);\n  border: 1px solid #d6dee1;\n  padding: 1rem;\n  border-radius: 6px;\n  border: 1px solid #d6dee1;\n  padding: 1rem;\n  background-color: transparent;\n  outline: 1px solid #c3e6cb;\n  overflow: scroll;\n}\n.custom-scrollbar-chapters[data-v-2b3c2c26] {\n  background-color: transparent;\n  height: 600px;\n  width: 100%;\n  border-radius: 6px;\n  box-shadow: 0 4px 28px rgba(123, 151, 158, .25);\n  border: 1px solid #d6dee1;\n  padding: 1rem;\n  border-radius: 6px;\n  border: 1px solid #d6dee1;\n  padding: 1rem;\n  background-color: transparent;\n  outline: 1px solid #c3e6cb;\n  overflow: scroll;\n}\n.myButton[data-v-2b3c2c26] {\n  background-color: #c3e6cb;\n  border-radius: 8px;\n  display: inline-block;\n  cursor: pointer;\n  color: #000;\n  font-family: Arial;\n  font-size: 18px;\n  font-weight: bold;\n  padding: 13px 32px;\n  text-decoration: none;\n}\n@media (min-width: 768px) {\n.button-46[data-v-2b3c2c26] {\n    font-size: 20px;\n    min-width: 200px;\n    padding: 14px 16px;\n}\n}\np.no-after[data-v-2b3c2c26]:after {\n  content: none;\n}\n.btn[data-v-2b3c2c26]:hover {\n  background-color: #99e0ab81;\n  opacity: 2;\n}\n.ul-main[data-v-2b3c2c26] {\n  list-style: none;\n}\n.ul-main .li-main[data-v-2b3c2c26] {\n  display: inline-block;\n  font-size: 12px;\n  text-align: center;\n}\n.ul-main .li-main .span-main[data-v-2b3c2c26] {\n  font-size: 20px;\n  display: block;\n}\n.ayah_img[data-v-2b3c2c26]:hover {\n  background-color: #c3e6cb;\n  border-radius: 10px;\n  cursor: pointer;\n}\n.enlarge .ayah[data-v-2b3c2c26] {\n  transition: transform 0.50s ease;\n  float: right;\n}\n.enlarge[data-v-2b3c2c26]:hover {\n  /* or some other value */\n  transform: scale(1.2);\n}\nbutton[data-v-2b3c2c26],\ninput[data-v-2b3c2c26] {\n  font-family: \"Montserrat\", \"Helvetica Neue\", Arial, sans-serif;\n}\n.nav-item .nav-link[data-v-2b3c2c26],\n.nav-tabs .nav-link[data-v-2b3c2c26] {\n  transition: all 300ms ease 0s;\n}\n.nav-tabs>.nav-item>.nav-link[data-v-2b3c2c26] {\n  color: #888888;\n  margin: 0;\n  margin-right: 5px;\n  background-color: transparent;\n  border: 1px solid transparent;\n  font-size: 14px;\n  padding: 11px 23px;\n  line-height: 1.5;\n}\n.nav-tabs>.nav-item>.nav-link[data-v-2b3c2c26]:hover {\n  background-color: transparent;\n}\n.nav-tabs>.nav-item>.nav-link.active[data-v-2b3c2c26] {\n  background-color: #444;\n  color: #FFFFFF;\n}\n.nav-tabs>.nav-item>.nav-link i.now-ui-icons[data-v-2b3c2c26] {\n  font-size: 14px;\n  position: relative;\n  top: 1px;\n  margin-right: 3px;\n}\n.nav-tabs.nav-tabs-neutral>.nav-item>.nav-link[data-v-2b3c2c26] {\n  color: #FFFFFF;\n}\n.nav-tabs.nav-tabs-neutral>.nav-item>.nav-link.active[data-v-2b3c2c26] {\n  background-color: rgba(255, 255, 255, 0.2);\n  color: #FFFFFF;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.selected[data-v-2b3c2c26] {\n    background-color: #c3e6cb; /* Change this to your desired highlight color */\n}\n.custom-scrollbar[data-v-2b3c2c26] {\n    background-color: transparent;\n    height: 800px;\n    width: 100%;\n    border-radius: 6px;\n    box-shadow: 0 4px 28px rgba(123, 151, 158, 0.25);\n    border: 1px solid #d6dee1;\n    padding: 1rem;\n    border-radius: 6px;\n    border: 1px solid #d6dee1;\n    padding: 1rem;\n    background-color: transparent;\n    outline: 1px solid #c3e6cb;\n    overflow: scroll;\n}\n.custom-scrollbar-chapters[data-v-2b3c2c26] {\n    background-color: transparent;\n    height: 600px;\n    width: 100%;\n    border-radius: 6px;\n    box-shadow: 0 4px 28px rgba(123, 151, 158, 0.25);\n    border: 1px solid #d6dee1;\n    padding: 1rem;\n    border-radius: 6px;\n    border: 1px solid #d6dee1;\n    padding: 1rem;\n    background-color: transparent;\n    outline: 1px solid #c3e6cb;\n    overflow: scroll;\n}\n.myButton[data-v-2b3c2c26] {\n    background-color: #c3e6cb;\n    border-radius: 8px;\n    display: inline-block;\n    cursor: pointer;\n    color: #000;\n    font-family: Arial;\n    font-size: 18px;\n    font-weight: bold;\n    padding: 13px 32px;\n    text-decoration: none;\n}\n@media (min-width: 768px) {\n.button-46[data-v-2b3c2c26] {\n        font-size: 20px;\n        min-width: 200px;\n        padding: 14px 16px;\n}\n}\np.no-after[data-v-2b3c2c26]:after {\n    content: none;\n}\n.btn[data-v-2b3c2c26]:hover {\n    background-color: #99e0ab81;\n    opacity: 2;\n}\n.ul-main[data-v-2b3c2c26] {\n    list-style: none;\n}\n.ul-main .li-main[data-v-2b3c2c26] {\n    display: inline-block;\n    font-size: 12px;\n    text-align: center;\n}\n.ul-main .li-main .span-main[data-v-2b3c2c26] {\n    font-size: 20px;\n    display: block;\n}\n.ayah_img[data-v-2b3c2c26]:hover {\n    background-color: #c3e6cb;\n    border-radius: 10px;\n    cursor: pointer;\n}\n.enlarge .ayah[data-v-2b3c2c26] {\n    transition: transform 0.5s ease;\n    float: right;\n}\n.enlarge[data-v-2b3c2c26]:hover {\n    /* or some other value */\n    transform: scale(1.2);\n}\nbutton[data-v-2b3c2c26],\ninput[data-v-2b3c2c26] {\n    font-family: \"Montserrat\", \"Helvetica Neue\", Arial, sans-serif;\n}\n.nav-item .nav-link[data-v-2b3c2c26],\n.nav-tabs .nav-link[data-v-2b3c2c26] {\n    transition: all 300ms ease 0s;\n}\n.nav-tabs > .nav-item > .nav-link[data-v-2b3c2c26] {\n    color: #888888;\n    margin: 0;\n    margin-right: 5px;\n    background-color: transparent;\n    border: 1px solid transparent;\n    font-size: 14px;\n    padding: 11px 23px;\n    line-height: 1.5;\n}\n.nav-tabs > .nav-item > .nav-link[data-v-2b3c2c26]:hover {\n    background-color: transparent;\n}\n.nav-tabs > .nav-item > .nav-link.active[data-v-2b3c2c26] {\n    background-color: #444;\n    color: #ffffff;\n}\n.nav-tabs > .nav-item > .nav-link i.now-ui-icons[data-v-2b3c2c26] {\n    font-size: 14px;\n    position: relative;\n    top: 1px;\n    margin-right: 3px;\n}\n.nav-tabs.nav-tabs-neutral > .nav-item > .nav-link[data-v-2b3c2c26] {\n    color: #ffffff;\n}\n.nav-tabs.nav-tabs-neutral > .nav-item > .nav-link.active[data-v-2b3c2c26] {\n    background-color: rgba(255, 255, 255, 0.2);\n    color: #ffffff;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -58363,9 +58569,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _CharityComponent_vue_vue_type_template_id_5c37b230__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CharityComponent.vue?vue&type=template&id=5c37b230 */ "./resources/js/components/CharityComponent.vue?vue&type=template&id=5c37b230");
 /* harmony import */ var _CharityComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CharityComponent.vue?vue&type=script&lang=js */ "./resources/js/components/CharityComponent.vue?vue&type=script&lang=js");
-/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
-/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _CharityComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _CharityComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__[__WEBPACK_IMPORT_KEY__]
-/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
 /* harmony import */ var _CharityComponent_vue_vue_type_style_index_0_id_5c37b230_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CharityComponent.vue?vue&type=style&index=0&id=5c37b230&lang=css */ "./resources/js/components/CharityComponent.vue?vue&type=style&index=0&id=5c37b230&lang=css");
 /* harmony import */ var _node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
@@ -58869,13 +59072,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* reexport default from dynamic */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_CharityComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0___default.a)
+/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_CharityComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_CharityComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./CharityComponent.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/CharityComponent.vue?vue&type=script&lang=js");
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_CharityComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_CharityComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
-/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_CharityComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_CharityComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__[__WEBPACK_IMPORT_KEY__]
-/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
  
 
 /***/ }),

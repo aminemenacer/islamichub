@@ -5,6 +5,7 @@ import { Form } from "vform";
 import swal from "sweetalert2";
 import "sweetalert2/src/sweetalert2.scss";
 import { Bootstrap5Pagination } from 'laravel-vue-pagination';
+import { loadStripe } from '@stripe/stripe-js';
 
 
 window.Vue = require("vue");
@@ -95,5 +96,8 @@ app.component("hadith_shah-component", HadithShahComponent);
 app.component("correction-component", CorrectionComponent);
 app.component("quran-component", QuranComponent);
 
+// const stripePromise = loadStripe('pk_test_51OhWyICJwy2NXBn1qd6CDCqfzR5BkiaL4OYkl9EUc3nYm2D3paDVZuAyRks7NJBWodYHbQJOcxsxDA9L4umn4Kok00YuLJBbfh');
+
+// app.config.globalProperties.$stripe = stripePromise;
 
 app.mount('#app');

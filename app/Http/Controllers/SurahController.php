@@ -31,7 +31,7 @@ class SurahController extends Controller
 
     public function getTafseer($id)
     {
-        $tafseer = Tafseer::whereId($id)->first();
+        $tafseer = Tafseer::whereAyahId($id)->first();
         return response()->json($tafseer->tafseer);
     }
 }
