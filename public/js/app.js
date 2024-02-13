@@ -20300,9 +20300,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  mounted: function mounted() {
-    this.countDownTimer();
-  },
   data: function data() {
     return {
       feedback: {},
@@ -21676,7 +21673,7 @@ var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   type: "submit",
   "class": "btn btn-success"
 }, " Save changes ")], -1 /* HOISTED */);
-var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"row text-center\"><div class=\"col-md-12 text-center\"><div class=\"row\"><div class=\"col-md-2 pb-2\"></div><div class=\"col-md-8 pt-2\" style=\"display:flex;text-align:center;\"><div class=\"card-header\"><h1 class=\"card-text text-center mt-2 mb-2\"> Hadith Collection </h1><h5 class=\"card-text container\" style=\"line-height:1.7em;\"> Hadiths are the recorded sayings, actions, and approvals of Prophet Muhammad (peace be upon him) in Islam. </h5></div></div><div class=\"col-md-2\"></div></div></div></div>", 1);
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"row text-center\"><div class=\"col-md-12 text-center\"><div class=\"row\"><div class=\"col-md-2 pb-2\"></div><div class=\"col-md-8 pt-2\" style=\"display:flex;text-align:center;\"><div class=\"card-header\"><h1 class=\"card-text text-center mt-2 mb-2\"> Hadith Collection </h1><h5 class=\"card-text container lead text-muted mb-0 pt-3\" style=\"line-height:1.7em;\"> Hadiths are the recorded sayings, actions, and approvals of Prophet Muhammad (peace be upon him) in Islam. </h5></div></div><div class=\"col-md-2\"></div></div></div></div>", 1);
 var _hoisted_21 = {
   "class": "row"
 };
@@ -21814,9 +21811,12 @@ var _hoisted_51 = {
   }
 };
 var _hoisted_52 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", {
-  "class": "text-left"
+  "class": "text-left lead font-weight-bold mb-2"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Books:")], -1 /* HOISTED */);
 var _hoisted_53 = ["onClick"];
+var _hoisted_54 = {
+  "class": "lead mb-2"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" correction modal "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
     onSubmit: _cache[5] || (_cache[5] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
@@ -21921,7 +21921,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       },
       key: index,
       onClick: function onClick($event) {
-        return $options.getAhadiths(chapter.id);
+        return $options.getAhadiths(chapter.chapter_id);
       }
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["list-group-item", {
@@ -21932,7 +21932,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "cursor": "pointer",
         "background": "transparent"
       }
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(chapter.chapter_text), 1 /* TEXT */)], 2 /* CLASS */)], 8 /* PROPS */, _hoisted_53);
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", _hoisted_54, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(chapter.chapter_text), 1 /* TEXT */)], 2 /* CLASS */)], 8 /* PROPS */, _hoisted_53);
   }), 128 /* KEYED_FRAGMENT */))])])])])])])]);
 }
 
@@ -21958,36 +21958,81 @@ var _hoisted_1 = {
 var _hoisted_2 = {
   "class": "container py-3"
 };
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "amount"
-}, "Amount:", -1 /* HOISTED */);
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_3 = {
+  "class": "row"
+};
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "col-lg-6 text-left"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
+  "class": "display-4 text-center"
+}, "Donations"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+  "class": "lead text-muted mb-0"
+}, "In Islam, the act of giving and charitable donations hold profound significance, emphasized through the pillar of Zakat. Zakat is a mandatory form of almsgiving, representing a fundamental aspect of Islamic financial and social responsibility. The term itself means \"purification,\" signifying the purification of one's wealth through the act of giving to those in need."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+  "class": "lead text-muted mb-0"
+}, "The call for donations in Islam is rooted in compassion and empathy for the less fortunate. It is a way for individuals to fulfill their duty towards their fellow human beings, fostering a sense of community and solidarity. ")], -1 /* HOISTED */);
+var _hoisted_5 = {
+  "class": "col-lg-6 mx-auto"
+};
+var _hoisted_6 = {
+  "class": "card mt-5",
+  style: {
+    "border-radius": "8px"
+  }
+};
+var _hoisted_7 = {
+  "class": "card-header",
+  style: {
+    "border-radius": "8px"
+  }
+};
+var _hoisted_8 = {
+  "class": "tab-content"
+};
+var _hoisted_9 = {
+  id: "credit-card",
+  "class": "tab-pane fade show active pt-3"
+};
+var _hoisted_10 = {
+  role: "form",
+  onsubmit: "event.preventDefault()"
+};
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"form-group\"><label for=\"username\"><h6>Card Owner</h6></label> <input type=\"text\" name=\"username\" placeholder=\"Card Owner Name\" required class=\"form-control\"></div><div class=\"form-group\"><label for=\"cardNumber\"><h6>Card number</h6></label><div class=\"input-group\"><input type=\"text\" name=\"card_number\" placeholder=\"Valid card number\" class=\"form-control\" required><div class=\"input-group-append\"><span class=\"input-group-text text-muted\"><i class=\"fab fa-cc-visa mx-1\"></i> <i class=\"fab fa-cc-mastercard mx-1\"></i> <i class=\"fab fa-cc-amex mx-1\"></i></span></div></div></div><h6 for=\"amount\">Amount:</h6>", 3);
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", {
+  "class": "mt-2",
   "for": "currency"
 }, "Currency:", -1 /* HOISTED */);
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   value: "usd"
 }, "USD", -1 /* HOISTED */);
-var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   value: "eur"
 }, "EUR", -1 /* HOISTED */);
-
+var _hoisted_17 = [_hoisted_15, _hoisted_16];
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"row\"><div class=\"col-sm-8\"><div class=\"form-group\"><label><span class=\"hidden-xs\"><h6 class=\"mt-2\">Expiration Date</h6></span></label><div class=\"input-group\"><input type=\"number\" placeholder=\"MM\" name=\"\" class=\"form-control\" required> <input type=\"number\" placeholder=\"YY\" name=\"\" class=\"form-control\" required></div></div></div><div class=\"col-sm-4\"><div class=\"form-group mb-4\"><label data-toggle=\"tooltip\" title=\"Three digit CV code on the back of your card\"><h6>CVV <i class=\"fa fa-question-circle d-inline\"></i></h6></label> <input type=\"text\" required class=\"form-control\"></div></div></div>", 1);
+var _hoisted_19 = {
+  "class": "card-footer"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("\n    <div class=\"row\">\n      <div class=\"col-lg-6 text-left\">\n      <h1 class=\"display-4\">Donations</h1>\n        <p class=\"lead text-muted mb-0\">In Islam, the act of giving and charitable donations hold profound significance, emphasized through the pillar of Zakat. Zakat is a mandatory form of almsgiving, representing a fundamental aspect of Islamic financial and social responsibility. The term itself means \"purification,\" signifying the purification of one's wealth through the act of giving to those in need.</p><br>\n        <p class=\"lead text-muted mb-0\">The call for donations in Islam is rooted in compassion and empathy for the less fortunate. It is a way for individuals to fulfill their duty towards their fellow human beings, fostering a sense of community and solidarity. </p>\n      </div>\n      <div class=\"col-lg-6 mx-auto\">\n        <div class=\"card mt-5\" style=\"border-radius:8px\">\n          <div class=\"card-header\" style=\"border-radius:8px\">\n\n            -- Credit card form content --\n            <div class=\"tab-content\">\n              -- credit card info--\n              <div id=\"credit-card\" class=\"tab-pane fade show active pt-3\">\n                <form role=\"form\" onsubmit=\"event.preventDefault()\">\n                  <div class=\"form-group\"> <label for=\"username\">\n                      <h6>Card Owner</h6>\n                    </label> <input type=\"text\" name=\"username\" placeholder=\"Card Owner Name\" required class=\"form-control \"> </div>\n                  <div class=\"form-group\"> <label for=\"cardNumber\">\n                      <h6>Card number</h6>\n                    </label>\n                    <div class=\"input-group\"> <input type=\"text\" name=\"card_number\" placeholder=\"Valid card number\" class=\"form-control \" required>\n                      <div class=\"input-group-append\"> <span class=\"input-group-text text-muted\"> <i class=\"fab fa-cc-visa mx-1\"></i> <i class=\"fab fa-cc-mastercard mx-1\"></i> <i class=\"fab fa-cc-amex mx-1\"></i> </span> </div>\n                    </div>\n                  </div>\n                  <div class=\"row\">\n                    <div class=\"col-sm-8\">\n                      <div class=\"form-group\"> <label><span class=\"hidden-xs\">\n                            <h6>Expiration Date</h6>\n                          </span></label>\n                        <div class=\"input-group\"> <input type=\"number\" placeholder=\"MM\" name=\"\" class=\"form-control\" required> <input type=\"number\" placeholder=\"YY\" name=\"\" class=\"form-control\" required> </div>\n                      </div>\n                    </div>\n                    <div class=\"col-sm-4\">\n                      <div class=\"form-group mb-4\"> <label data-toggle=\"tooltip\" title=\"Three digit CV code on the back of your card\">\n                          <h6>CVV <i class=\"fa fa-question-circle d-inline\"></i></h6>\n                        </label> <input type=\"text\" required class=\"form-control\"> </div>\n                    </div>\n                  </div>\n                  <div class=\"card-footer\"> \n                    <button type=\"button\" class=\"subscribe btn btn-secondary btn-block shadow-sm\" @click=\"handleSubmit\">Pay Now</button>\n                  </div>\n                </form>\n              </div>\n            </div>\n\n          </div>\n        </div>\n      </div>\n    </div>\n\n\n    <form id=\"payment-form\">\n        <div id=\"payment-element\">\n            -- Stripe will create form elements here --\n        </div>\n        <button type=\"submit\" @click=\"handleSubmit\">Pay via Stripe</button>\n    </form>\n  "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_10, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
       return $data.amount = $event;
     }),
+    "class": "form-control",
     type: "number",
     min: "1",
     step: "0.01"
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.amount]]), _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.amount]]), _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+    "class": "form-control",
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
       return $data.selectedCurrency = $event;
     })
-  }, [_hoisted_5, _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Add more currency options as needed ")], 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.selectedCurrency]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, [].concat(_hoisted_17), 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.selectedCurrency]]), _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    type: "button",
+    "class": "subscribe btn btn-secondary btn-block shadow-sm",
     onClick: _cache[2] || (_cache[2] = function () {
       return $options.initiatePayment && $options.initiatePayment.apply($options, arguments);
     })
-  }, "Initiate Payment")])])]);
+  }, "Pay Now")])])])])])])])])])]);
 }
 
 /***/ }),
@@ -22009,108 +22054,115 @@ var _hoisted_1 = {
   "class": "id pt-3"
 };
 var _hoisted_2 = {
-  "class": "ftco-section mt-3"
+  "class": "container py-3"
 };
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
+var _hoisted_3 = {
+  "class": "row container"
+};
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "col-lg-5 mr-2 container"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
   "class": "display-4 text-center"
-}, "Contact Us", -1 /* HOISTED */);
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-  "class": "text-center container text-left pt-3"
-}, "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here,", -1 /* HOISTED */);
+}, "Get In Touch"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+  "class": "lead text-muted mb-0"
+}, "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here,"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br")], -1 /* HOISTED */);
 var _hoisted_5 = {
-  "class": "container"
+  "class": "col-lg-6 mx-auto"
 };
-var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "row justify-content-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "col-md-6 text-center mb-3"
-})], -1 /* HOISTED */);
+var _hoisted_6 = {
+  "class": "card mt-5",
+  style: {
+    "border-radius": "8px"
+  }
+};
 var _hoisted_7 = {
-  "class": "row justify-content-center"
+  "class": "card-header",
+  style: {
+    "border-radius": "8px"
+  }
 };
 var _hoisted_8 = {
-  "class": "col-md-12"
+  "class": "tab-content"
 };
 var _hoisted_9 = {
-  "class": "wrapper"
+  "class": "tab-pane fade show active pt-3"
 };
 var _hoisted_10 = {
-  "class": "row no-gutters"
-};
-var _hoisted_11 = {
-  "class": "col-lg-8 col-md-7 order-md-last d-flex align-items-stretch bg-white"
-};
-var _hoisted_12 = {
-  "class": "contact-wrap w-100 p-md-5 p-4"
-};
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  id: "form-message-warning",
-  "class": "mb-4"
-}, null, -1 /* HOISTED */);
-var _hoisted_14 = {
   "class": "row"
 };
-var _hoisted_15 = {
+var _hoisted_11 = {
   "class": "col-md-6"
 };
-var _hoisted_16 = {
+var _hoisted_12 = {
   "class": "form-group"
 };
-var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "class": "label",
-  "for": "name"
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+  "class": "lead mb-0",
+  style: {
+    "color": "black"
+  }
 }, "Firstname:", -1 /* HOISTED */);
-var _hoisted_18 = {
+var _hoisted_14 = {
   "class": "col-md-6"
 };
-var _hoisted_19 = {
+var _hoisted_15 = {
   "class": "form-group"
 };
-var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "class": "label",
-  "for": "email"
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+  "class": "lead mb-0",
+  style: {
+    "color": "black"
+  }
 }, "Lastname:", -1 /* HOISTED */);
-var _hoisted_21 = {
+var _hoisted_17 = {
   "class": "col-md-6"
 };
-var _hoisted_22 = {
+var _hoisted_18 = {
   "class": "form-group"
 };
-var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "class": "label",
-  "for": "email"
+var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+  "class": "lead mb-0",
+  style: {
+    "color": "black"
+  }
 }, "Email Address:", -1 /* HOISTED */);
-var _hoisted_24 = {
+var _hoisted_20 = {
   "class": "col-md-6"
 };
-var _hoisted_25 = {
+var _hoisted_21 = {
   "class": "form-group"
 };
-var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "class": "label",
-  "for": "email"
+var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+  "class": "lead mb-0",
+  style: {
+    "color": "black"
+  }
 }, "Phone:", -1 /* HOISTED */);
-var _hoisted_27 = {
+var _hoisted_23 = {
   "class": "col-md-10"
 };
-var _hoisted_28 = {
+var _hoisted_24 = {
   "class": "form-group"
 };
-var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "class": "label",
-  "for": "subject"
+var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+  "class": "lead mb-0",
+  style: {
+    "color": "black"
+  }
 }, "Subject:", -1 /* HOISTED */);
-var _hoisted_30 = {
+var _hoisted_26 = {
   "class": "col-md-10"
 };
-var _hoisted_31 = {
+var _hoisted_27 = {
   "class": "form-group"
 };
-var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "class": "label",
-  "for": "#"
+var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+  "class": "lead mb-0",
+  style: {
+    "color": "black"
+  }
 }, "Message:", -1 /* HOISTED */);
-var _hoisted_33 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "col-md-12"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "form-group"
@@ -22124,9 +22176,9 @@ var _hoisted_33 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "submitting"
 })])], -1 /* HOISTED */);
-var _hoisted_34 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"col-lg-4 col-md-5 d-flex align-items-stretch\" style=\"background:rgba(34,179,127,255);\"><div class=\"info-wrap w-100 p-md-5 p-4 text-white\"><h2><strong>Let&#39;s get in touch</strong></h2><p class=\"mb-4\">We&#39;re open for any suggestion or just to have a chat</p><div class=\"dbox w-100 d-flex align-items-start\"><div class=\"icon d-flex align-items-center justify-content-center\"><span class=\"fa fa-map-marker\"></span></div><div class=\"text pl-3\"><p class=\"text-white\"><span>Address:</span> Bilborough Nottingham, United Kingdom</p></div></div><div class=\"dbox w-100 d-flex align-items-center\"><div class=\"icon d-flex align-items-center justify-content-center\"><span class=\"fa fa-phone\"></span></div><div class=\"text pl-3\"><p class=\"text-white\"><span>Phone:</span>(+44) 7871594836</p></div></div><div class=\"dbox w-100 d-flex align-items-center\"><div class=\"icon d-flex align-items-center justify-content-center\"><span class=\"fa fa-paper-plane\"></span></div><div class=\"text pl-3\"><p class=\"text-white\"><span>Email:</span>menacer72@gmail.com</p></div></div><div class=\"dbox w-100 d-flex align-items-center\"><div class=\"icon d-flex align-items-center justify-content-center\"><span class=\"fa fa-globe\"></span></div><div class=\"text pl-3\"><p class=\"text-white\"><span>Website</span>Islamichub.com</p></div></div></div></div>", 1);
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_2, [_hoisted_3, _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
     onReset: _cache[6] || (_cache[6] = function () {
       return _ctx.reset && _ctx.reset.apply(_ctx, arguments);
     }),
@@ -22136,7 +22188,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     id: "contactForm",
     name: "contactForm",
     "class": "contactForm pb-5"
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
       return $data.form.firstname = $event;
     }),
@@ -22144,7 +22196,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     name: "firstname",
     placeholder: "Enter firstname",
     "class": "form-control"
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.firstname]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [_hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.firstname]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [_hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
       return $data.form.lastname = $event;
     }),
@@ -22152,7 +22204,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     name: "lastname",
     placeholder: "Enter lastname",
     "class": "form-control"
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.lastname]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [_hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.lastname]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [_hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
       return $data.form.email = $event;
     }),
@@ -22160,7 +22212,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     id: "email",
     placeholder: "Enter email",
     "class": "form-control"
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.email]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [_hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.email]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [_hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
       return $data.form.mobile = $event;
     }),
@@ -22168,7 +22220,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     name: "mobile",
     placeholder: "Enter mobile number",
     "class": "form-control"
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.mobile]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [_hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.mobile]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [_hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
       return $data.form.subject = $event;
     }),
@@ -22176,7 +22228,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     name: "subject",
     placeholder: "Enter subject",
     "class": "form-control"
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.subject]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [_hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.subject]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [_hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
     "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
       return $data.form.message = $event;
     }),
@@ -22185,7 +22237,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     name: "message",
     placeholder: "Enter message",
     "class": "form-control"
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.message]])])]), _hoisted_33])], 32 /* HYDRATE_EVENTS */)])]), _hoisted_34])])])])])])]);
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.message]])])]), _hoisted_29])], 32 /* HYDRATE_EVENTS */)])])])])])])])]);
 }
 
 /***/ }),
@@ -25136,7 +25188,7 @@ var _withScopeId = function _withScopeId(n) {
 var _hoisted_1 = {
   id: "app"
 };
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"container-fluid text-center pt-2\" data-v-2b3c2c26><div class=\"row text-center\" data-v-2b3c2c26><div class=\"col-md-12 text-center\" data-v-2b3c2c26><div class=\"row\" data-v-2b3c2c26><div class=\"col-md-2 pb-2\" data-v-2b3c2c26></div><div class=\"col-md-8 pt-2\" style=\"display:flex;text-align:center;\" data-v-2b3c2c26><div class=\"card-header\" data-v-2b3c2c26><h1 class=\"card-text text-center mt-2 mb-2\" data-v-2b3c2c26> The Holy Quran </h1><h5 class=\"card-text container\" style=\"line-height:1.7em;\" data-v-2b3c2c26> The Quran also spelled as Qur&#39;an is the holy book of Islam, considered by Muslims to be the verbatim word of God </h5></div><!-- multiple input sections \n              &lt;label class=&quot;pt-2 pl-3 pr-2&quot; style=&quot;display:flex&quot;&gt;Surah:&lt;/label&gt;\n              &lt;form class=&quot;col-md-5&quot;&gt;\n                &lt;select class=&quot;form-control&quot; v-model=&#39;surah&#39; @change=&#39;getAyahs()&#39;&gt;\n                  &lt;option value=&quot;0&quot;&gt;&lt;span&gt;Select Surah&lt;/span&gt;&lt;/option&gt;\n                  &lt;option v-for=&#39;data in surahs&#39; :key=&quot;data.id&quot; :value=&#39;data.id&#39;&gt;{{ data.name_en }}, {{ data.name_ar }}&lt;/option&gt;\n                &lt;/select&gt;\n              &lt;/form&gt;\n              &lt;label class=&quot;pt-2 pl-3 pr-2&quot;&gt;Ayah:&lt;/label&gt;\n\n              &lt;form class=&quot;col-md-8 &quot;&gt;\n                &lt;select class=&#39;form-control&#39; v-model=&#39;ayah_id&#39; @change=&#39;getTafseers(data.ayah_id)&#39;&gt;\n                  &lt;option value=&quot;0&quot;&gt;Select Ayah&lt;/option&gt;\n                  &lt;option v-for=&#39;data in ayahs&#39; :key=&quot;data.id&quot; :value=&#39;data.id&#39;&gt;{{ data.ayah_id }}, {{ data.ayah_text }}&lt;/option&gt;\n                &lt;/select&gt;\n              &lt;/form&gt;\n\n              &lt;form class=&quot;ml-3 col-md-4 &quot;&gt;\n                &lt;input class=&quot;form-control input is-primary&quot; type=&quot;text&quot; placeholder=&quot;Search keyword&quot; /&gt;\n              &lt;/form&gt;\n            --></div><div class=\"col-md-2\" data-v-2b3c2c26></div></div></div></div></div><div class=\"container-fluid mt-2\" data-v-2b3c2c26><div class=\"row\" data-v-2b3c2c26></div></div>", 2);
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"container-fluid text-center pt-2\" data-v-2b3c2c26><div class=\"row text-center\" data-v-2b3c2c26><div class=\"col-md-12 text-center\" data-v-2b3c2c26><div class=\"row\" data-v-2b3c2c26><div class=\"col-md-2 pb-2\" data-v-2b3c2c26></div><div class=\"col-md-8 pt-2\" style=\"display:flex;text-align:center;\" data-v-2b3c2c26><div class=\"card-header\" data-v-2b3c2c26><h1 class=\"card-text text-center mt-2 mb-2\" data-v-2b3c2c26> The Holy Quran </h1><h5 class=\"card-text container lead text-muted mb-0 pt-3\" style=\"line-height:1.7em;\" data-v-2b3c2c26> The Quran also spelled as Qur&#39;an is the holy book of Islam, considered by Muslims to be the verbatim word of God </h5></div><!-- multiple input sections \n              &lt;label class=&quot;pt-2 pl-3 pr-2&quot; style=&quot;display:flex&quot;&gt;Surah:&lt;/label&gt;\n              &lt;form class=&quot;col-md-5&quot;&gt;\n                &lt;select class=&quot;form-control&quot; v-model=&#39;surah&#39; @change=&#39;getAyahs()&#39;&gt;\n                  &lt;option value=&quot;0&quot;&gt;&lt;span&gt;Select Surah&lt;/span&gt;&lt;/option&gt;\n                  &lt;option v-for=&#39;data in surahs&#39; :key=&quot;data.id&quot; :value=&#39;data.id&#39;&gt;{{ data.name_en }}, {{ data.name_ar }}&lt;/option&gt;\n                &lt;/select&gt;\n              &lt;/form&gt;\n              &lt;label class=&quot;pt-2 pl-3 pr-2&quot;&gt;Ayah:&lt;/label&gt;\n\n              &lt;form class=&quot;col-md-8 &quot;&gt;\n                &lt;select class=&#39;form-control&#39; v-model=&#39;ayah_id&#39; @change=&#39;getTafseers(data.ayah_id)&#39;&gt;\n                  &lt;option value=&quot;0&quot;&gt;Select Ayah&lt;/option&gt;\n                  &lt;option v-for=&#39;data in ayahs&#39; :key=&quot;data.id&quot; :value=&#39;data.id&#39;&gt;{{ data.ayah_id }}, {{ data.ayah_text }}&lt;/option&gt;\n                &lt;/select&gt;\n              &lt;/form&gt;\n\n              &lt;form class=&quot;ml-3 col-md-4 &quot;&gt;\n                &lt;input class=&quot;form-control input is-primary&quot; type=&quot;text&quot; placeholder=&quot;Search keyword&quot; /&gt;\n              &lt;/form&gt;\n            --></div><div class=\"col-md-2\" data-v-2b3c2c26></div></div></div></div></div><div class=\"container-fluid mt-2\" data-v-2b3c2c26><div class=\"row\" data-v-2b3c2c26></div></div>", 2);
 var _hoisted_4 = {
   "class": "row container-fluid"
 };
@@ -25228,7 +25280,7 @@ var _hoisted_19 = {
 var _hoisted_20 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "col-md-5"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("\n                <audio controls>\n                  <source src=\"horse.ogg\" type=\"audio/ogg\">\n                  <source src=\"horse.mp3\" type=\"audio/mpeg\">\n                  Your browser does not support the audio element.\n                </audio>\n                ")], -1 /* HOISTED */);
+  }, null, -1 /* HOISTED */);
 });
 var _hoisted_21 = {
   "class": "card-body"
@@ -25242,7 +25294,7 @@ var _hoisted_23 = {
   id: "home",
   role: "tabpanel"
 };
-var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"row\" data-v-2b3c2c26><div class=\"col-md-6\" data-v-2b3c2c26><img src=\"/images/calligraphy.png\" class=\"pl-3\" style=\"width:70%;\" data-v-2b3c2c26></div><div class=\"col-md-6\" data-v-2b3c2c26><h2 class=\"font-weight-bold mb-3 mt-3 text-center\" data-v-2b3c2c26> The Holy Quran </h2><span class=\"container text-left mb-4\" style=\"line-height:1.5em;\" data-v-2b3c2c26>The Quran, considered the holy scripture of Islam, is a sacred and comprehensive compilation of revelations believed by Muslims to have been conveyed to the Prophet Muhammad by the archangel Gabriel from around 610 CE to 632 CE. </span></div></div>", 1);
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"row\" data-v-2b3c2c26><div class=\"col-md-6\" data-v-2b3c2c26><img src=\"/images/calligraphy.png\" class=\"pl-3\" style=\"width:70%;\" data-v-2b3c2c26></div><div class=\"col-md-6\" data-v-2b3c2c26><h2 class=\"mb-3 mt-3 text-center\" data-v-2b3c2c26> The Holy Quran </h2><span class=\"container text-left mb-4 lead text-muted mb-0 pt-3\" style=\"line-height:1.5em;\" data-v-2b3c2c26>The Quran, considered the holy scripture of Islam, is a sacred and comprehensive compilation of revelations believed by Muslims to have been conveyed to the Prophet Muhammad by the archangel Gabriel from around 610 CE to 632 CE. </span></div></div>", 1);
 var _hoisted_25 = [_hoisted_24];
 var _hoisted_26 = {
   key: 1,
@@ -25464,7 +25516,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       },
       key: index,
       onClick: function onClick($event) {
-        return $options.getTafseers(ayah.ayah_id);
+        return $options.getTafseers(ayah);
       }
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_55, [_hoisted_56, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(ayah.ayah_id), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(ayah.ayah_text), 1 /* TEXT */)])], 10 /* CLASS, PROPS */, _hoisted_54);
   }), 128 /* KEYED_FRAGMENT */))])])]), _hoisted_57]), _hoisted_58])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]);
@@ -32871,7 +32923,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.selected[data-v-2b3c2c26] {\n    background-color: #c3e6cb; /* Change this to your desired highlight color */\n}\n.custom-scrollbar[data-v-2b3c2c26] {\n    background-color: transparent;\n    height: 800px;\n    width: 100%;\n    border-radius: 6px;\n    box-shadow: 0 4px 28px rgba(123, 151, 158, 0.25);\n    border: 1px solid #d6dee1;\n    padding: 1rem;\n    border-radius: 6px;\n    border: 1px solid #d6dee1;\n    padding: 1rem;\n    background-color: transparent;\n    outline: 1px solid #c3e6cb;\n    overflow: scroll;\n}\n.custom-scrollbar-chapters[data-v-2b3c2c26] {\n    background-color: transparent;\n    height: 600px;\n    width: 100%;\n    border-radius: 6px;\n    box-shadow: 0 4px 28px rgba(123, 151, 158, 0.25);\n    border: 1px solid #d6dee1;\n    padding: 1rem;\n    border-radius: 6px;\n    border: 1px solid #d6dee1;\n    padding: 1rem;\n    background-color: transparent;\n    outline: 1px solid #c3e6cb;\n    overflow: scroll;\n}\n.myButton[data-v-2b3c2c26] {\n    background-color: #c3e6cb;\n    border-radius: 8px;\n    display: inline-block;\n    cursor: pointer;\n    color: #000;\n    font-family: Arial;\n    font-size: 18px;\n    font-weight: bold;\n    padding: 13px 32px;\n    text-decoration: none;\n}\n@media (min-width: 768px) {\n.button-46[data-v-2b3c2c26] {\n        font-size: 20px;\n        min-width: 200px;\n        padding: 14px 16px;\n}\n}\np.no-after[data-v-2b3c2c26]:after {\n    content: none;\n}\n.btn[data-v-2b3c2c26]:hover {\n    background-color: #99e0ab81;\n    opacity: 2;\n}\n.ul-main[data-v-2b3c2c26] {\n    list-style: none;\n}\n.ul-main .li-main[data-v-2b3c2c26] {\n    display: inline-block;\n    font-size: 12px;\n    text-align: center;\n}\n.ul-main .li-main .span-main[data-v-2b3c2c26] {\n    font-size: 20px;\n    display: block;\n}\n.ayah_img[data-v-2b3c2c26]:hover {\n    background-color: #c3e6cb;\n    border-radius: 10px;\n    cursor: pointer;\n}\n.enlarge .ayah[data-v-2b3c2c26] {\n    transition: transform 0.5s ease;\n    float: right;\n}\n.enlarge[data-v-2b3c2c26]:hover {\n    /* or some other value */\n    transform: scale(1.2);\n}\nbutton[data-v-2b3c2c26],\ninput[data-v-2b3c2c26] {\n    font-family: \"Montserrat\", \"Helvetica Neue\", Arial, sans-serif;\n}\n.nav-item .nav-link[data-v-2b3c2c26],\n.nav-tabs .nav-link[data-v-2b3c2c26] {\n    transition: all 300ms ease 0s;\n}\n.nav-tabs > .nav-item > .nav-link[data-v-2b3c2c26] {\n    color: #888888;\n    margin: 0;\n    margin-right: 5px;\n    background-color: transparent;\n    border: 1px solid transparent;\n    font-size: 14px;\n    padding: 11px 23px;\n    line-height: 1.5;\n}\n.nav-tabs > .nav-item > .nav-link[data-v-2b3c2c26]:hover {\n    background-color: transparent;\n}\n.nav-tabs > .nav-item > .nav-link.active[data-v-2b3c2c26] {\n    background-color: #444;\n    color: #ffffff;\n}\n.nav-tabs > .nav-item > .nav-link i.now-ui-icons[data-v-2b3c2c26] {\n    font-size: 14px;\n    position: relative;\n    top: 1px;\n    margin-right: 3px;\n}\n.nav-tabs.nav-tabs-neutral > .nav-item > .nav-link[data-v-2b3c2c26] {\n    color: #ffffff;\n}\n.nav-tabs.nav-tabs-neutral > .nav-item > .nav-link.active[data-v-2b3c2c26] {\n    background-color: rgba(255, 255, 255, 0.2);\n    color: #ffffff;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.selected[data-v-2b3c2c26] {\n  background-color: #c3e6cb;\n  /* Change this to your desired highlight color */\n}\n.custom-scrollbar[data-v-2b3c2c26] {\n  background-color: transparent;\n  height: 800px;\n  width: 100%;\n  border-radius: 6px;\n  box-shadow: 0 4px 28px rgba(123, 151, 158, 0.25);\n  border: 1px solid #d6dee1;\n  padding: 1rem;\n  border-radius: 6px;\n  border: 1px solid #d6dee1;\n  padding: 1rem;\n  background-color: transparent;\n  outline: 1px solid #c3e6cb;\n  overflow: scroll;\n}\n.custom-scrollbar-chapters[data-v-2b3c2c26] {\n  background-color: transparent;\n  height: 600px;\n  width: 100%;\n  border-radius: 6px;\n  box-shadow: 0 4px 28px rgba(123, 151, 158, 0.25);\n  border: 1px solid #d6dee1;\n  padding: 1rem;\n  border-radius: 6px;\n  border: 1px solid #d6dee1;\n  padding: 1rem;\n  background-color: transparent;\n  outline: 1px solid #c3e6cb;\n  overflow: scroll;\n}\n.myButton[data-v-2b3c2c26] {\n  background-color: #c3e6cb;\n  border-radius: 8px;\n  display: inline-block;\n  cursor: pointer;\n  color: #000;\n  font-family: Arial;\n  font-size: 18px;\n  font-weight: bold;\n  padding: 13px 32px;\n  text-decoration: none;\n}\n@media (min-width: 768px) {\n.button-46[data-v-2b3c2c26] {\n    font-size: 20px;\n    min-width: 200px;\n    padding: 14px 16px;\n}\n}\np.no-after[data-v-2b3c2c26]:after {\n  content: none;\n}\n.btn[data-v-2b3c2c26]:hover {\n  background-color: #99e0ab81;\n  opacity: 2;\n}\n.ul-main[data-v-2b3c2c26] {\n  list-style: none;\n}\n.ul-main .li-main[data-v-2b3c2c26] {\n  display: inline-block;\n  font-size: 12px;\n  text-align: center;\n}\n.ul-main .li-main .span-main[data-v-2b3c2c26] {\n  font-size: 20px;\n  display: block;\n}\n.ayah_img[data-v-2b3c2c26]:hover {\n  background-color: #c3e6cb;\n  border-radius: 10px;\n  cursor: pointer;\n}\n.enlarge .ayah[data-v-2b3c2c26] {\n  transition: transform 0.5s ease;\n  float: right;\n}\n.enlarge[data-v-2b3c2c26]:hover {\n  /* or some other value */\n  transform: scale(1.2);\n}\nbutton[data-v-2b3c2c26],\ninput[data-v-2b3c2c26] {\n  font-family: \"Montserrat\", \"Helvetica Neue\", Arial, sans-serif;\n}\n.nav-item .nav-link[data-v-2b3c2c26],\n.nav-tabs .nav-link[data-v-2b3c2c26] {\n  transition: all 300ms ease 0s;\n}\n.nav-tabs>.nav-item>.nav-link[data-v-2b3c2c26] {\n  color: #888888;\n  margin: 0;\n  margin-right: 5px;\n  background-color: transparent;\n  border: 1px solid transparent;\n  font-size: 14px;\n  padding: 11px 23px;\n  line-height: 1.5;\n}\n.nav-tabs>.nav-item>.nav-link[data-v-2b3c2c26]:hover {\n  background-color: transparent;\n}\n.nav-tabs>.nav-item>.nav-link.active[data-v-2b3c2c26] {\n  background-color: #444;\n  color: #ffffff;\n}\n.nav-tabs>.nav-item>.nav-link i.now-ui-icons[data-v-2b3c2c26] {\n  font-size: 14px;\n  position: relative;\n  top: 1px;\n  margin-right: 3px;\n}\n.nav-tabs.nav-tabs-neutral>.nav-item>.nav-link[data-v-2b3c2c26] {\n  color: #ffffff;\n}\n.nav-tabs.nav-tabs-neutral>.nav-item>.nav-link.active[data-v-2b3c2c26] {\n  background-color: rgba(255, 255, 255, 0.2);\n  color: #ffffff;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

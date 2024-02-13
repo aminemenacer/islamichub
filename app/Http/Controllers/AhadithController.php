@@ -32,9 +32,8 @@ class AhadithController extends Controller
 
     public function getAhadiths(Request $request)
     {
-        $ahadith = Ahadith::with('chapter')->where('chapter_id', $request->chapterId)->get();        
-        dd($request->imam_id, $ahadith[2]);
-
+        $ahadith = Ahadith::with('chapter')->where('chapter_id', $request->chapterId)
+                                           ->get();
         return response()->json($ahadith);
     }
 

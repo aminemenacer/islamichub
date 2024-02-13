@@ -21,8 +21,9 @@ class ChapterSeeder extends Seeder
         $csvFile = fopen(base_path("database/data/ahadith/hadith_chapter.csv"), "r");
 
         $firstline = true;
+        $i = 0;
         while (($data = fgetcsv($csvFile, 2000, ",")) !== FALSE) {
-            if (!$firstline) {
+            if (!$firstline && $i < 5000) {
                 Chapter::create([
                     "chapter_id" => $data['1'],
                     "imam_id" => $data['0'],
@@ -30,6 +31,7 @@ class ChapterSeeder extends Seeder
                 ]);
             }
             $firstline = false;
+            $i++;
         }
 
         fclose($csvFile);

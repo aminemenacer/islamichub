@@ -1,6 +1,5 @@
 <template>
 <div id="app">
-  
   <!-- correction modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -72,13 +71,12 @@
               Hadith Collection
             </h1>
 
-            <h5 class="card-text container" style="line-height: 1.7em; font-weight-bold">
+            <h5 class="card-text container lead text-muted mb-0 pt-3" style="line-height: 1.7em; font-weight-bold">
               Hadiths are the recorded sayings, actions, and
               approvals of Prophet Muhammad (peace be upon
               him) in Islam.
             </h5>
           </div>
-
         </div>
         <div class="col-md-2"></div>
       </div>
@@ -151,7 +149,6 @@
 
         <div class="row ml-2 custom-scrollbar" v-if="ahadith != null">
           <div class="container-fluid col-md-12" style="display: flex; border-radius: 10px" v-for="hadith in ahadith" :key="hadith.id" :value="hadith.id">
-
             <div class="card-body mb-2" style="
                                     background: white;
                                     border-radius: 10px;
@@ -227,7 +224,7 @@
                                     border: 3px solid #c3e6cb;
                                     border-radius: 8px;
                                 ">
-              <h5 class="text-left"><b>Books:</b></h5>
+              <h5 class="text-left lead font-weight-bold mb-2"><b>Books:</b></h5>
               <!--
                 <div>
                   <div
@@ -241,14 +238,14 @@
                 </div>
               -->
 
-              <ul class="col-md-4 list-group container-fluid root" style="max-width: 100%; cursor: pointer" v-for="(chapter, index) in chapters" :key="index" @click="getAhadiths(chapter.id)">
+              <ul class="col-md-4 list-group container-fluid root" style="max-width: 100%; cursor: pointer" v-for="(chapter, index) in chapters" :key="index" @click="getAhadiths(chapter.chapter_id,)">
                 <li class="list-group-item" :class="{
                                             selected: selectedIndex === index,
                                         }" id="toggle" style="
                                             cursor: pointer;
                                             background: transparent;
                                         ">
-                  <h5>{{ chapter.chapter_text }}</h5>
+                  <h5 class="lead mb-2">{{ chapter.chapter_text }}</h5>
                 </li>
               </ul>
             </div>

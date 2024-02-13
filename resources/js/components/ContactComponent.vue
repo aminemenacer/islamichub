@@ -1,61 +1,56 @@
 <template>
 <div class="id pt-3">
-  <section class="ftco-section mt-3">
-    <h1 class="display-4 text-center">Contact Us</h1>
-    <p class="text-center container text-left pt-3">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here,</p>
 
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-md-6 text-center mb-3">
-        </div>
+  <div class="container py-3">
+    <div class="row container">
+      <div class="col-lg-5 mr-2 container">
+        <h1 class="display-4 text-center">Get In Touch</h1>
+        <p class="lead text-muted mb-0">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here,</p><br>
       </div>
+      <div class="col-lg-6 mx-auto">
+        <div class="card mt-5" style="border-radius:8px">
+          <div class="card-header" style="border-radius:8px">
 
-      <div class="row justify-content-center">
-        <div class="col-md-12">
-          <div class="wrapper">
-            <div class="row no-gutters">
-              <div class="col-lg-8 col-md-7 order-md-last d-flex align-items-stretch bg-white">
-                <div class="contact-wrap w-100 p-md-5 p-4">
-                  <div id="form-message-warning" class="mb-4"></div>
+            <div class="tab-content">
+              <div class="tab-pane fade show active pt-3">
+                <form @reset="reset" @submit.prevent="sendMessage()" id="contactForm" name="contactForm" class="contactForm pb-5">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <p class="lead mb-0" style="color:black">Firstname:</p>
+                        <input v-model="form.firstname" type="text" name="firstname" placeholder="Enter firstname" class="form-control" />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <p class="lead mb-0" style="color:black">Lastname:</p>
+                        <input v-model="form.lastname" type="text" name="lastname" placeholder="Enter lastname" class="form-control" />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <p class="lead mb-0" style="color:black">Email Address:</p>
+                        <input v-model="form.email" name="email" id="email" placeholder="Enter email" class="form-control" />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <p class="lead mb-0" style="color:black">Phone:</p>
+                        <input v-model="form.mobile" type="text" name="mobile" placeholder="Enter mobile number" class="form-control" />
+                      </div>
+                    </div>
 
-                  <form @reset="reset" @submit.prevent="sendMessage()" id="contactForm" name="contactForm" class="contactForm pb-5">
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="label" for="name">Firstname:</label>
-                          <input v-model="form.firstname" type="text" name="firstname" placeholder="Enter firstname" class="form-control" />
-                        </div>
+                    <div class="col-md-10">
+                      <div class="form-group">
+                        <p class="lead mb-0" style="color:black">Subject:</p>
+                        <input v-model="form.subject" type="text" name="subject" placeholder="Enter subject" class="form-control" />
                       </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="label" for="email">Lastname:</label>
-                          <input v-model="form.lastname" type="text" name="lastname" placeholder="Enter lastname" class="form-control" />
+                    </div>
+                    <div class="col-md-10">
+                      <div class="form-group">
+                        <p class="lead mb-0" style="color:black">Message:</p>
+                        <textarea v-model="form.message" rows="4" type="text" name="message" placeholder="Enter message" class="form-control" />
                         </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="label" for="email">Email Address:</label>
-                          <input v-model="form.email" name="email" id="email" placeholder="Enter email" class="form-control" />
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="label" for="email">Phone:</label>
-                          <input v-model="form.mobile" type="text" name="mobile" placeholder="Enter mobile number" class="form-control" />
-                        </div>
-                      </div>
-
-                      <div class="col-md-10">
-                        <div class="form-group">
-                          <label class="label" for="subject">Subject:</label>
-                          <input v-model="form.subject" type="text" name="subject" placeholder="Enter subject" class="form-control" />
-                        </div>
-                      </div>
-                      <div class="col-md-10">
-                        <div class="form-group">
-                          <label class="label" for="#">Message:</label>
-                          <textarea v-model="form.message" rows="4" type="text" name="message" placeholder="Enter message" class="form-control" />
-                          </div>
                       </div>
                       <div class="col-md-12">
                         <div class="form-group">
@@ -64,62 +59,20 @@
                         </div>
                       </div>
                     </div>
-                  </form>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-5 d-flex align-items-stretch" style="background:rgba(34,179,127,255)">
-                <div class="info-wrap w-100 p-md-5 p-4 text-white">
-                  <h2><strong>Let's get in touch</strong></h2>
-                  <p class="mb-4">We're open for any suggestion or just to have a chat</p>
-                  <div class="dbox w-100 d-flex align-items-start">
-                    <div class="icon d-flex align-items-center justify-content-center">
-                      <span class="fa fa-map-marker"></span>
-                    </div>
-                    <div class="text pl-3">
-                      <p class="text-white"><span>Address:</span> Bilborough Nottingham, United Kingdom</p>
-                    </div>
-                  </div>
-                  <div class="dbox w-100 d-flex align-items-center">
-                    <div class="icon d-flex align-items-center justify-content-center">
-                      <span class="fa fa-phone"></span>
-                    </div>
-                    <div class="text pl-3">
-                      <p class="text-white"><span>Phone:</span>(+44) 7871594836</p>
-                    </div>
-                  </div>
-                  <div class="dbox w-100 d-flex align-items-center">
-                    <div class="icon d-flex align-items-center justify-content-center">
-                      <span class="fa fa-paper-plane"></span>
-                    </div>
-                    <div class="text pl-3">
-                      <p class="text-white"><span>Email:</span>menacer72@gmail.com</p>
-                    </div>
-                  </div>
-                  <div class="dbox w-100 d-flex align-items-center">
-                    <div class="icon d-flex align-items-center justify-content-center">
-                      <span class="fa fa-globe"></span>
-                    </div>
-                    <div class="text pl-3">
-                      <p class="text-white"><span>Website</span>Islamichub.com</p>
-                    </div>
-                  </div>
-                </div>
+                </form>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
-
-</div>
+  </div>
+  </div>
 </template>
 
 <script>
 export default {
-  mounted() {
-    this.countDownTimer();
-  },
+  
   data() {
     return {
       feedback: {},
@@ -141,7 +94,7 @@ export default {
     }
   },
   methods: {
-    
+
     sendMessage() {
       Swal.fire({
         title: "Are you sure?",
@@ -181,7 +134,6 @@ export default {
       });
     },
 
-   
   },
 }
 </script>
