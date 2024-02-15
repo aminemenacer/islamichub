@@ -48,6 +48,8 @@ Route::get('/get_chapters', [AhadithController::class, 'getChapters']);
 Route::get('/ahadith/{id}/fetch', [AhadithController::class, 'getAhadith']);
 Route::get('/get_ahadiths', [AhadithController::class, 'getAhadiths']);
 Route::get('/ahadith', [AhadithController::class, 'index']);
+Route::post('/search', [AhadithController::class, 'search'])->name('search');
+
 // Route::get('/hadith/{id}/fetch', [AhadithController::class, 'getAhadiths']);
 
 //quran
@@ -56,9 +58,6 @@ Route::get('/get_ayahs', [SurahController::class, 'getAyahs']);
 Route::get('/get_informations', [SurahController::class, 'getInformations']);
 Route::get('/tafseer/{id}/fetch', [SurahController::class, 'getTafseer']);
 
-//search
-Route::post('/search', [AhadithController::class, 'search'])->name('search');
-Route::post('/search_chapter', [AhadithController::class, 'searchChapter'])->name('searchChapter');
 
 // frontend json files
 Route::get('/hadith_qudsi', [HadithQudsiController::class, 'index']);
@@ -74,15 +73,6 @@ Route::post('api/submit-correction', [CorrectionController::class, 'submit']);
 Route::get('/correction', [CorrectionController::class, 'index']);
 Route::get('api/fetch-corrections', [CorrectionController::class, 'getCorrections']);
 Route::delete('api/delete-correction/{id}',  [CorrectionController::class, 'deleteCorrections']);
-
-// contact
-Route::get('/contact', [ContactController::class, 'index']);
-// pricing
-Route::get('/pricing', [PricingController::class, 'index'])->name('pricing');
-// charity
-Route::get('/charity', [CharityController::class, 'index'])->name('charity');
-// volunteer
-Route::get('/volunteer', [VolunteerController::class, 'index'])->name('volunteer');
 
 // dashboard
 Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -105,4 +95,11 @@ Route::get('api/fetch-donations', [DonationController::class, 'getDonations']);
 // quran
 Route::get('/quran', [QuranController::class, 'index']);
 
-
+// contact
+Route::get('/contact', [ContactController::class, 'index']);
+// pricing
+Route::get('/pricing', [PricingController::class, 'index'])->name('pricing');
+// charity
+Route::get('/charity', [CharityController::class, 'index'])->name('charity');
+// volunteer
+Route::get('/volunteer', [VolunteerController::class, 'index'])->name('volunteer');

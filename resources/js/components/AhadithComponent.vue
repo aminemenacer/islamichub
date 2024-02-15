@@ -342,10 +342,7 @@ export default {
         id: "",
         hadith_en: "",
       }),
-      searchChaptersFilters: new Form({
-        id: "",
-        chapter_text: "",
-      }),
+     
     };
   },
   methods: {
