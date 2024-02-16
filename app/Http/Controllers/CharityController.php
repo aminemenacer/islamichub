@@ -30,8 +30,6 @@ class CharityController extends Controller
                 'currency' => 'required|string|in:usd', // Adjust currency as needed
             ]);
 
-
-
             $paymentIntent = PaymentIntent::create([
                 'amount' => $request->amount * 100, // Convert to cents
                 'currency' => $request->currency,

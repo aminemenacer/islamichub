@@ -6,7 +6,7 @@
     <div class="row">
       <div class="col-lg-6 text-left">
       <h1 class="display-4 text-center">Donations</h1>
-        <p class="lead text-muted mb-0">In Islam, the act of giving and charitable donations hold profound significance, emphasized through the pillar of Zakat. Zakat is a mandatory form of almsgiving, representing a fundamental aspect of Islamic financial and social responsibility. The term itself means "purification," signifying the purification of one's wealth through the act of giving to those in need.</p><br>
+        <p class="lead text-muted mb-0">"As-salaamu Alaikum, As we want to keep IslamicHub ad-free, we would appreciate a small, sizable donation to continue the development and maintenance of the website. You will find a form on the right side where you can submit a donation amount of your choosing. Jazakum Allahu Khairan."</p><br>
         <p class="lead text-muted mb-0">The call for donations in Islam is rooted in compassion and empathy for the less fortunate. It is a way for individuals to fulfill their duty towards their fellow human beings, fostering a sense of community and solidarity. </p>
       </div>
       <div class="col-lg-6 mx-auto">
@@ -16,9 +16,7 @@
             <div class="tab-content">
               <div id="credit-card" class="tab-pane fade show active pt-3">
                 <form role="form" onsubmit="event.preventDefault()">
-                  <div class="form-group"> <label for="username">
-                      <h6>Card Owner</h6>
-                    </label> <input type="text" name="username" placeholder="Card Owner Name" required class="form-control "> </div>
+                 
                   <div class="form-group"> <label for="cardNumber">
                       <h6>Card number</h6>
                     </label>
@@ -33,6 +31,7 @@
                   <select class="form-control" v-model="selectedCurrency">
                     <option value="usd">USD</option>
                     <option value="eur">EUR</option>
+                    <option value="eur">GBP</option>
                   </select>
                   <div class="row">
                     <div class="col-sm-8">
@@ -48,8 +47,8 @@
                         </label> <input type="text" required class="form-control"> </div>
                     </div>
                   </div>
-                  <div class="card-footer"> 
-                    <button type="button" class="subscribe btn btn-secondary btn-block shadow-sm" @click="initiatePayment">Pay Now</button>
+                  <div > 
+                    <button type="button" class="subscribe btn btn-secondary btn-block" @click="initiatePayment">Pay Now</button>
                   </div>
                 </form>
               </div>
@@ -73,6 +72,7 @@ export default {
     return {
       amount: 1, // Default amount
       selectedCurrency: 'usd', // Default currency
+      stripeToken: 'tok_visa',
     };
   },
   async mounted() {

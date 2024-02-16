@@ -137,60 +137,60 @@
         </div>
 
         <!-- multiple input sections 
-    <div class="row  mt-3 text-center pt-3 container-fluid">
-      <div class="col-md-12 pt-3 text-center" style="box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px,rgba(0, 0, 0, 0.24) 0px 1px 2px;border-radius: 10px;background: transparent;border: 3px solid #c3e6cb;">
-        <div class="row">
-          <div class="col-md-12 container" style="display: flex; text-align: center">
-            
-            <label class="pt-2 pl-3 pr-2" style="display: flex">Imam:</label>
-            <form class="col-md-3">
-              <select class="form-control" v-model="imam" @change="getChapters()">
-                <option value="0">
-                  <span>Select Imam</span>
-                </option>
-                <option v-for="data in imams" :key="data.id" :value="data.id">
-                  {{ data.imam_name }}
-                </option>
-              </select>
-            </form>
+          <div class="row  mt-3 text-center pt-3 container-fluid">
+            <div class="col-md-12 pt-3 text-center" style="box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px,rgba(0, 0, 0, 0.24) 0px 1px 2px;border-radius: 10px;background: transparent;border: 3px solid #c3e6cb;">
+              <div class="row">
+                <div class="col-md-12 container" style="display: flex; text-align: center">
+                  
+                  <label class="pt-2 pl-3 pr-2" style="display: flex">Imam:</label>
+                  <form class="col-md-3">
+                    <select class="form-control" v-model="imam" @change="getChapters()">
+                      <option value="0">
+                        <span>Select Imam</span>
+                      </option>
+                      <option v-for="data in imams" :key="data.id" :value="data.id">
+                        {{ data.imam_name }}
+                      </option>
+                    </select>
+                  </form>
 
-            <label class="pt-2 pl-3 pr-3">Chapter:</label>
-            <form class="col-md-3">
-              <select class="form-control" v-model="chapter_id" @change="getAhadiths()">
-                <option value="0">
-                  <span>Select Chapter</span>
-                </option>
-                <option v-for="data in chapters" :key="data.id" :value="data.id">
-                  {{ data.chapter_text }}
-                </option>
-              </select>
-            </form>
+                  <label class="pt-2 pl-3 pr-3">Chapter:</label>
+                  <form class="col-md-3">
+                    <select class="form-control" v-model="chapter_id" @change="getAhadiths()">
+                      <option value="0">
+                        <span>Select Chapter</span>
+                      </option>
+                      <option v-for="data in chapters" :key="data.id" :value="data.id">
+                        {{ data.chapter_text }}
+                      </option>
+                    </select>
+                  </form>
 
-            <form class="mb-4 col-md-4" style="display: flex" @submit.prevent="search()">
-              <input style="padding: 12px" class="form-control mr-2 icon col-lg-12" type="search" id="search" name="search" @keyup="search" v-model="searchFilters.hadith_en" placeholder="Search for Keyword" aria-label="Search" />
-            </form>
-            <hr />
-          </div>
-        </div>
-      </div>
-    </div> 
-  -->
+                  <form class="mb-4 col-md-4" style="display: flex" @submit.prevent="search()">
+                    <input style="padding: 12px" class="form-control mr-2 icon col-lg-12" type="search" id="search" name="search" @keyup="search" v-model="searchFilters.hadith_en" placeholder="Search for Keyword" aria-label="Search" />
+                  </form>
+                  <hr />
+                </div>
+              </div>
+            </div>
+          </div> 
+        -->
 
         <!--  
-    <div class="container row" >
-      <div style="padding:10px" class="container col-md-12 pt-4">
-        <input class="container button-33 mr-2" type="button" v-for="data in imams" :key="data.id" :value="data.imam_name" @click="getChapters()" />
-      </div>
-    </div>
+          <div class="container row" >
+            <div style="padding:10px" class="container col-md-12 pt-4">
+              <input class="container button-33 mr-2" type="button" v-for="data in imams" :key="data.id" :value="data.imam_name" @click="getChapters()" />
+            </div>
+          </div>
 
-    <div class="container mt-2" v-if="ahadith == null">
-      <div class="row container">
-        <ul class="col-md-2 list-group mb-3" style="display:flex"  v-for="data in imams" :key="data.id" :value="data.imam_name" @click="getChapters()">
-          <li class="list-group-item list-group-item-success text-center"  style="cursor:pointer" >{{ data.imam_name }}</li>
-        </ul>
-      </div>
-    </div>
-  -->
+          <div class="container mt-2" v-if="ahadith == null">
+            <div class="row container">
+              <ul class="col-md-2 list-group mb-3" style="display:flex"  v-for="data in imams" :key="data.id" :value="data.imam_name" @click="getChapters()">
+                <li class="list-group-item list-group-item-success text-center"  style="cursor:pointer" >{{ data.imam_name }}</li>
+              </ul>
+            </div>
+          </div>
+        -->
 
         <div>
             <div class="row">
@@ -350,30 +350,28 @@
                                     <b>Books:</b>
                                 </h5>
                                 <!--
-                <div>
-                  <div
-                    v-for="(chapter, chapterId) in chapters"
-                    :key="chapterId"
-                    @click="getAhadiths(chapterId)"
-                    :class="{ 'selected': selectedIndex === chapterId }"
-                  >
-                    {{ chapter.chapter_text }}
-                  </div>
-                </div>
-              -->
+                                  <div>
+                                    <div
+                                      v-for="(chapter, chapterId) in chapters"
+                                      :key="chapterId"
+                                      @click="getAhadiths(chapterId)"
+                                      :class="{ 'selected': selectedIndex === chapterId }"
+                                    >
+                                      {{ chapter.chapter_text }}
+                                    </div>
+                                  </div>
+                                -->
 
                                 <ul
                                     class="col-md-4 list-group container-fluid root"
                                     style="max-width: 100%; cursor: pointer"
-                                    v-for="(chapter, index) in chapters"
-                                    :key="index"
+                                    v-for="(chapter, chapterId) in chapters"
+                                    :key="chapterId"
                                     @click="getAhadiths(chapter.chapter_id)"
+                                    :class="{ 'selected': selectedIndex === chapterId }"
                                 >
                                     <li
                                         class="list-group-item"
-                                        :class="{
-                                            selected: selectedIndex === index,
-                                        }"
                                         id="toggle"
                                         style="
                                             cursor: pointer;
@@ -485,7 +483,7 @@ export default {
             // axios.get(`/hadith/${chapterId}/fetch`).then(function (response) {
             //   this.tafseer = response.data;
             // }.bind(this));
-            this.selectedIndex = chapterId;
+            this.selectedIndex = chapterId - 1;
 
             axios
                 .get("/get_ahadiths", {

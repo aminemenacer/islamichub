@@ -20111,7 +20111,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       // axios.get(`/hadith/${chapterId}/fetch`).then(function (response) {
       //   this.tafseer = response.data;
       // }.bind(this));
-      this.selectedIndex = chapterId;
+      this.selectedIndex = chapterId - 1;
       axios__WEBPACK_IMPORTED_MODULE_0__["default"].get("/get_ahadiths", {
         params: {
           chapterId: chapterId
@@ -20203,7 +20203,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       amount: 1,
       // Default amount
-      selectedCurrency: 'usd' // Default currency
+      selectedCurrency: 'usd',
+      // Default currency
+      stripeToken: 'tok_visa'
     };
   },
   mounted: function mounted() {
@@ -21318,7 +21320,8 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
         this.surahs = response.data;
       }.bind(this));
     },
-    getAyahs: function getAyahs() {
+    getAyahs: function getAyahs(ayahId) {
+      this.selectedIndex = ayahId;
       axios.get("/get_ayahs", {
         params: {
           surah_id: this.surah
@@ -21328,7 +21331,8 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       }.bind(this));
     },
     getTafseers: function getTafseers(ayahId) {
-      this.selectedIndex = ayahId;
+      //   this.selectedIndex = ayahId;
+
       axios.get("/tafseer/".concat(ayahId, "/fetch")).then(function (response) {
         console.log(response);
         this.tafseer = response.data;
@@ -21784,6 +21788,14 @@ var _hoisted_52 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Books:")], -1 /* HOISTED */);
 var _hoisted_53 = ["onClick"];
 var _hoisted_54 = {
+  "class": "list-group-item",
+  id: "toggle",
+  style: {
+    "cursor": "pointer",
+    "background": "transparent"
+  }
+};
+var _hoisted_55 = {
   "class": "lead mb-2"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -21833,7 +21845,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     placeholder: "Explain to us exactly what the problem is",
     id: "added_comments",
     rows: "5"
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.added_notes]])]), _hoisted_19], 32 /* HYDRATE_EVENTS */)])])])]), _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" multiple input sections \n    <div class=\"row  mt-3 text-center pt-3 container-fluid\">\n      <div class=\"col-md-12 pt-3 text-center\" style=\"box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px,rgba(0, 0, 0, 0.24) 0px 1px 2px;border-radius: 10px;background: transparent;border: 3px solid #c3e6cb;\">\n        <div class=\"row\">\n          <div class=\"col-md-12 container\" style=\"display: flex; text-align: center\">\n            \n            <label class=\"pt-2 pl-3 pr-2\" style=\"display: flex\">Imam:</label>\n            <form class=\"col-md-3\">\n              <select class=\"form-control\" v-model=\"imam\" @change=\"getChapters()\">\n                <option value=\"0\">\n                  <span>Select Imam</span>\n                </option>\n                <option v-for=\"data in imams\" :key=\"data.id\" :value=\"data.id\">\n                  {{ data.imam_name }}\n                </option>\n              </select>\n            </form>\n\n            <label class=\"pt-2 pl-3 pr-3\">Chapter:</label>\n            <form class=\"col-md-3\">\n              <select class=\"form-control\" v-model=\"chapter_id\" @change=\"getAhadiths()\">\n                <option value=\"0\">\n                  <span>Select Chapter</span>\n                </option>\n                <option v-for=\"data in chapters\" :key=\"data.id\" :value=\"data.id\">\n                  {{ data.chapter_text }}\n                </option>\n              </select>\n            </form>\n\n            <form class=\"mb-4 col-md-4\" style=\"display: flex\" @submit.prevent=\"search()\">\n              <input style=\"padding: 12px\" class=\"form-control mr-2 icon col-lg-12\" type=\"search\" id=\"search\" name=\"search\" @keyup=\"search\" v-model=\"searchFilters.hadith_en\" placeholder=\"Search for Keyword\" aria-label=\"Search\" />\n            </form>\n            <hr />\n          </div>\n        </div>\n      </div>\n    </div> \n  "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("  \n    <div class=\"container row\" >\n      <div style=\"padding:10px\" class=\"container col-md-12 pt-4\">\n        <input class=\"container button-33 mr-2\" type=\"button\" v-for=\"data in imams\" :key=\"data.id\" :value=\"data.imam_name\" @click=\"getChapters()\" />\n      </div>\n    </div>\n\n    <div class=\"container mt-2\" v-if=\"ahadith == null\">\n      <div class=\"row container\">\n        <ul class=\"col-md-2 list-group mb-3\" style=\"display:flex\"  v-for=\"data in imams\" :key=\"data.id\" :value=\"data.imam_name\" @click=\"getChapters()\">\n          <li class=\"list-group-item list-group-item-success text-center\"  style=\"cursor:pointer\" >{{ data.imam_name }}</li>\n        </ul>\n      </div>\n    </div>\n  "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" left side ahadith list "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [$data.ahadith != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("form", {
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.added_notes]])]), _hoisted_19], 32 /* HYDRATE_EVENTS */)])])])]), _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" multiple input sections \n          <div class=\"row  mt-3 text-center pt-3 container-fluid\">\n            <div class=\"col-md-12 pt-3 text-center\" style=\"box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px,rgba(0, 0, 0, 0.24) 0px 1px 2px;border-radius: 10px;background: transparent;border: 3px solid #c3e6cb;\">\n              <div class=\"row\">\n                <div class=\"col-md-12 container\" style=\"display: flex; text-align: center\">\n                  \n                  <label class=\"pt-2 pl-3 pr-2\" style=\"display: flex\">Imam:</label>\n                  <form class=\"col-md-3\">\n                    <select class=\"form-control\" v-model=\"imam\" @change=\"getChapters()\">\n                      <option value=\"0\">\n                        <span>Select Imam</span>\n                      </option>\n                      <option v-for=\"data in imams\" :key=\"data.id\" :value=\"data.id\">\n                        {{ data.imam_name }}\n                      </option>\n                    </select>\n                  </form>\n\n                  <label class=\"pt-2 pl-3 pr-3\">Chapter:</label>\n                  <form class=\"col-md-3\">\n                    <select class=\"form-control\" v-model=\"chapter_id\" @change=\"getAhadiths()\">\n                      <option value=\"0\">\n                        <span>Select Chapter</span>\n                      </option>\n                      <option v-for=\"data in chapters\" :key=\"data.id\" :value=\"data.id\">\n                        {{ data.chapter_text }}\n                      </option>\n                    </select>\n                  </form>\n\n                  <form class=\"mb-4 col-md-4\" style=\"display: flex\" @submit.prevent=\"search()\">\n                    <input style=\"padding: 12px\" class=\"form-control mr-2 icon col-lg-12\" type=\"search\" id=\"search\" name=\"search\" @keyup=\"search\" v-model=\"searchFilters.hadith_en\" placeholder=\"Search for Keyword\" aria-label=\"Search\" />\n                  </form>\n                  <hr />\n                </div>\n              </div>\n            </div>\n          </div> \n        "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("  \n          <div class=\"container row\" >\n            <div style=\"padding:10px\" class=\"container col-md-12 pt-4\">\n              <input class=\"container button-33 mr-2\" type=\"button\" v-for=\"data in imams\" :key=\"data.id\" :value=\"data.imam_name\" @click=\"getChapters()\" />\n            </div>\n          </div>\n\n          <div class=\"container mt-2\" v-if=\"ahadith == null\">\n            <div class=\"row container\">\n              <ul class=\"col-md-2 list-group mb-3\" style=\"display:flex\"  v-for=\"data in imams\" :key=\"data.id\" :value=\"data.imam_name\" @click=\"getChapters()\">\n                <li class=\"list-group-item list-group-item-success text-center\"  style=\"cursor:pointer\" >{{ data.imam_name }}</li>\n              </ul>\n            </div>\n          </div>\n        "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" left side ahadith list "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [$data.ahadith != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("form", {
     key: 0,
     "class": "mb-3 mt-3 col-md-12",
     style: {
@@ -21881,27 +21893,20 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       key: data.id,
       value: data.id
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.imam_name), 9 /* TEXT, PROPS */, _hoisted_50);
-  }), 128 /* KEYED_FRAGMENT */))], 544 /* HYDRATE_EVENTS, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.imam]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_51, [_hoisted_52, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("\n                <div>\n                  <div\n                    v-for=\"(chapter, chapterId) in chapters\"\n                    :key=\"chapterId\"\n                    @click=\"getAhadiths(chapterId)\"\n                    :class=\"{ 'selected': selectedIndex === chapterId }\"\n                  >\n                    {{ chapter.chapter_text }}\n                  </div>\n                </div>\n              "), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.chapters, function (chapter, index) {
+  }), 128 /* KEYED_FRAGMENT */))], 544 /* HYDRATE_EVENTS, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.imam]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_51, [_hoisted_52, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("\n                                  <div>\n                                    <div\n                                      v-for=\"(chapter, chapterId) in chapters\"\n                                      :key=\"chapterId\"\n                                      @click=\"getAhadiths(chapterId)\"\n                                      :class=\"{ 'selected': selectedIndex === chapterId }\"\n                                    >\n                                      {{ chapter.chapter_text }}\n                                    </div>\n                                  </div>\n                                "), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.chapters, function (chapter, chapterId) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("ul", {
-      "class": "col-md-4 list-group container-fluid root",
+      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["col-md-4 list-group container-fluid root", {
+        'selected': $data.selectedIndex === chapterId
+      }]),
       style: {
         "max-width": "100%",
         "cursor": "pointer"
       },
-      key: index,
+      key: chapterId,
       onClick: function onClick($event) {
         return $options.getAhadiths(chapter.chapter_id);
       }
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
-      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["list-group-item", {
-        selected: $data.selectedIndex === index
-      }]),
-      id: "toggle",
-      style: {
-        "cursor": "pointer",
-        "background": "transparent"
-      }
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", _hoisted_54, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(chapter.chapter_text), 1 /* TEXT */)], 2 /* CLASS */)], 8 /* PROPS */, _hoisted_53);
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_54, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", _hoisted_55, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(chapter.chapter_text), 1 /* TEXT */)])], 10 /* CLASS, PROPS */, _hoisted_53);
   }), 128 /* KEYED_FRAGMENT */))])])])])])])]);
 }
 
@@ -21936,7 +21941,7 @@ var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
   "class": "display-4 text-center"
 }, "Donations"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "lead text-muted mb-0"
-}, "In Islam, the act of giving and charitable donations hold profound significance, emphasized through the pillar of Zakat. Zakat is a mandatory form of almsgiving, representing a fundamental aspect of Islamic financial and social responsibility. The term itself means \"purification,\" signifying the purification of one's wealth through the act of giving to those in need."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+}, "\"As-salaamu Alaikum, As we want to keep IslamicHub ad-free, we would appreciate a small, sizable donation to continue the development and maintenance of the website. You will find a form on the right side where you can submit a donation amount of your choosing. Jazakum Allahu Khairan.\""), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "lead text-muted mb-0"
 }, "The call for donations in Islam is rooted in compassion and empathy for the less fortunate. It is a way for individuals to fulfill their duty towards their fellow human beings, fostering a sense of community and solidarity. ")], -1 /* HOISTED */);
 var _hoisted_5 = {
@@ -21965,22 +21970,22 @@ var _hoisted_10 = {
   role: "form",
   onsubmit: "event.preventDefault()"
 };
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"form-group\"><label for=\"username\"><h6>Card Owner</h6></label> <input type=\"text\" name=\"username\" placeholder=\"Card Owner Name\" required class=\"form-control\"></div><div class=\"form-group\"><label for=\"cardNumber\"><h6>Card number</h6></label><div class=\"input-group\"><input type=\"text\" name=\"card_number\" placeholder=\"Valid card number\" class=\"form-control\" required><div class=\"input-group-append\"><span class=\"input-group-text text-muted\"><i class=\"fab fa-cc-visa mx-1\"></i> <i class=\"fab fa-cc-mastercard mx-1\"></i> <i class=\"fab fa-cc-amex mx-1\"></i></span></div></div></div><h6 for=\"amount\">Amount:</h6>", 3);
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", {
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"form-group\"><label for=\"cardNumber\"><h6>Card number</h6></label><div class=\"input-group\"><input type=\"text\" name=\"card_number\" placeholder=\"Valid card number\" class=\"form-control\" required><div class=\"input-group-append\"><span class=\"input-group-text text-muted\"><i class=\"fab fa-cc-visa mx-1\"></i> <i class=\"fab fa-cc-mastercard mx-1\"></i> <i class=\"fab fa-cc-amex mx-1\"></i></span></div></div></div><h6 for=\"amount\">Amount:</h6>", 2);
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", {
   "class": "mt-2",
   "for": "currency"
 }, "Currency:", -1 /* HOISTED */);
-var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   value: "usd"
 }, "USD", -1 /* HOISTED */);
-var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   value: "eur"
 }, "EUR", -1 /* HOISTED */);
-var _hoisted_17 = [_hoisted_15, _hoisted_16];
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  value: "eur"
+}, "GBP", -1 /* HOISTED */);
+var _hoisted_17 = [_hoisted_14, _hoisted_15, _hoisted_16];
 var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"row\"><div class=\"col-sm-8\"><div class=\"form-group\"><label><span class=\"hidden-xs\"><h6 class=\"mt-2\">Expiration Date</h6></span></label><div class=\"input-group\"><input type=\"number\" placeholder=\"MM\" name=\"\" class=\"form-control\" required> <input type=\"number\" placeholder=\"YY\" name=\"\" class=\"form-control\" required></div></div></div><div class=\"col-sm-4\"><div class=\"form-group mb-4\"><label data-toggle=\"tooltip\" title=\"Three digit CV code on the back of your card\"><h6>CVV <i class=\"fa fa-question-circle d-inline\"></i></h6></label> <input type=\"text\" required class=\"form-control\"></div></div></div>", 1);
-var _hoisted_19 = {
-  "class": "card-footer"
-};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_10, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
@@ -21990,14 +21995,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     type: "number",
     min: "1",
     step: "0.01"
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.amount]]), _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.amount]]), _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     "class": "form-control",
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
       return $data.selectedCurrency = $event;
     })
-  }, [].concat(_hoisted_17), 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.selectedCurrency]]), _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, [].concat(_hoisted_17), 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.selectedCurrency]]), _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     type: "button",
-    "class": "subscribe btn btn-secondary btn-block shadow-sm",
+    "class": "subscribe btn btn-secondary btn-block",
     onClick: _cache[2] || (_cache[2] = function () {
       return $options.initiatePayment && $options.initiatePayment.apply($options, arguments);
     })
@@ -25486,9 +25491,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.name_en) + " - " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.name_ar), 9 /* TEXT, PROPS */, _hoisted_53);
   }), 128 /* KEYED_FRAGMENT */))], 544 /* HYDRATE_EVENTS, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.surah]])]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.ayahs, function (ayah, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("ul", {
-      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["col-md-4 list-group container-fluid root", {
-        selected: $data.selectedIndex === $data.ayahId
-      }]),
+      "class": "col-md-4 list-group container-fluid root",
       style: {
         "max-width": "100%",
         "cursor": "pointer"
@@ -25497,7 +25500,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       onClick: function onClick($event) {
         return $options.getTafseers(ayah);
       }
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_55, [_hoisted_56, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(ayah.ayah_id), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(ayah.ayah_text), 1 /* TEXT */)])], 10 /* CLASS, PROPS */, _hoisted_54);
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_55, [_hoisted_56, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(ayah.ayah_id), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(ayah.ayah_text), 1 /* TEXT */)])], 8 /* PROPS */, _hoisted_54);
   }), 128 /* KEYED_FRAGMENT */))])])]), _hoisted_57]), _hoisted_58])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]);
 }
 
@@ -32902,7 +32905,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.selected[data-v-2b3c2c26] {\n    background-color: #c3e6cb;\n    /* Change this to your desired highlight color */\n}\n.custom-scrollbar[data-v-2b3c2c26] {\n    background-color: transparent;\n    height: 800px;\n    width: 100%;\n    border-radius: 6px;\n    box-shadow: 0 4px 28px rgba(123, 151, 158, 0.25);\n    border: 1px solid #d6dee1;\n    padding: 1rem;\n    border-radius: 6px;\n    border: 1px solid #d6dee1;\n    padding: 1rem;\n    background-color: transparent;\n    outline: 1px solid #c3e6cb;\n    overflow: scroll;\n}\n.custom-scrollbar-chapters[data-v-2b3c2c26] {\n    background-color: transparent;\n    height: 600px;\n    width: 100%;\n    border-radius: 6px;\n    box-shadow: 0 4px 28px rgba(123, 151, 158, 0.25);\n    border: 1px solid #d6dee1;\n    padding: 1rem;\n    border-radius: 6px;\n    border: 1px solid #d6dee1;\n    padding: 1rem;\n    background-color: transparent;\n    outline: 1px solid #c3e6cb;\n    overflow: scroll;\n}\n.myButton[data-v-2b3c2c26] {\n    background-color: #c3e6cb;\n    border-radius: 8px;\n    display: inline-block;\n    cursor: pointer;\n    color: #000;\n    font-family: Arial;\n    font-size: 18px;\n    font-weight: bold;\n    padding: 13px 32px;\n    text-decoration: none;\n}\n@media (min-width: 768px) {\n.button-46[data-v-2b3c2c26] {\n        font-size: 20px;\n        min-width: 200px;\n        padding: 14px 16px;\n}\n}\np.no-after[data-v-2b3c2c26]:after {\n    content: none;\n}\n.btn[data-v-2b3c2c26]:hover {\n    background-color: #99e0ab81;\n    opacity: 2;\n}\n.ul-main[data-v-2b3c2c26] {\n    list-style: none;\n}\n.ul-main .li-main[data-v-2b3c2c26] {\n    display: inline-block;\n    font-size: 12px;\n    text-align: center;\n}\n.ul-main .li-main .span-main[data-v-2b3c2c26] {\n    font-size: 20px;\n    display: block;\n}\n.ayah_img[data-v-2b3c2c26]:hover {\n    background-color: #c3e6cb;\n    border-radius: 10px;\n    cursor: pointer;\n}\n.enlarge .ayah[data-v-2b3c2c26] {\n    transition: transform 0.5s ease;\n    float: right;\n}\n.enlarge[data-v-2b3c2c26]:hover {\n    /* or some other value */\n    transform: scale(1.2);\n}\nbutton[data-v-2b3c2c26],\ninput[data-v-2b3c2c26] {\n    font-family: \"Montserrat\", \"Helvetica Neue\", Arial, sans-serif;\n}\n.nav-item .nav-link[data-v-2b3c2c26],\n.nav-tabs .nav-link[data-v-2b3c2c26] {\n    transition: all 300ms ease 0s;\n}\n.nav-tabs > .nav-item > .nav-link[data-v-2b3c2c26] {\n    color: #888888;\n    margin: 0;\n    margin-right: 5px;\n    background-color: transparent;\n    border: 1px solid transparent;\n    font-size: 14px;\n    padding: 11px 23px;\n    line-height: 1.5;\n}\n.nav-tabs > .nav-item > .nav-link[data-v-2b3c2c26]:hover {\n    background-color: transparent;\n}\n.nav-tabs > .nav-item > .nav-link.active[data-v-2b3c2c26] {\n    background-color: #444;\n    color: #ffffff;\n}\n.nav-tabs > .nav-item > .nav-link i.now-ui-icons[data-v-2b3c2c26] {\n    font-size: 14px;\n    position: relative;\n    top: 1px;\n    margin-right: 3px;\n}\n.nav-tabs.nav-tabs-neutral > .nav-item > .nav-link[data-v-2b3c2c26] {\n    color: #ffffff;\n}\n.nav-tabs.nav-tabs-neutral > .nav-item > .nav-link.active[data-v-2b3c2c26] {\n    background-color: rgba(255, 255, 255, 0.2);\n    color: #ffffff;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.selected[data-v-2b3c2c26] {\n  background-color: #c3e6cb;\n  /* Change this to your desired highlight color */\n}\n.custom-scrollbar[data-v-2b3c2c26] {\n  background-color: transparent;\n  height: 800px;\n  width: 100%;\n  border-radius: 6px;\n  box-shadow: 0 4px 28px rgba(123, 151, 158, 0.25);\n  border: 1px solid #d6dee1;\n  padding: 1rem;\n  border-radius: 6px;\n  border: 1px solid #d6dee1;\n  padding: 1rem;\n  background-color: transparent;\n  outline: 1px solid #c3e6cb;\n  overflow: scroll;\n}\n.custom-scrollbar-chapters[data-v-2b3c2c26] {\n  background-color: transparent;\n  height: 600px;\n  width: 100%;\n  border-radius: 6px;\n  box-shadow: 0 4px 28px rgba(123, 151, 158, 0.25);\n  border: 1px solid #d6dee1;\n  padding: 1rem;\n  border-radius: 6px;\n  border: 1px solid #d6dee1;\n  padding: 1rem;\n  background-color: transparent;\n  outline: 1px solid #c3e6cb;\n  overflow: scroll;\n}\n.myButton[data-v-2b3c2c26] {\n  background-color: #c3e6cb;\n  border-radius: 8px;\n  display: inline-block;\n  cursor: pointer;\n  color: #000;\n  font-family: Arial;\n  font-size: 18px;\n  font-weight: bold;\n  padding: 13px 32px;\n  text-decoration: none;\n}\n@media (min-width: 768px) {\n.button-46[data-v-2b3c2c26] {\n    font-size: 20px;\n    min-width: 200px;\n    padding: 14px 16px;\n}\n}\np.no-after[data-v-2b3c2c26]:after {\n  content: none;\n}\n.btn[data-v-2b3c2c26]:hover {\n  background-color: #99e0ab81;\n  opacity: 2;\n}\n.ul-main[data-v-2b3c2c26] {\n  list-style: none;\n}\n.ul-main .li-main[data-v-2b3c2c26] {\n  display: inline-block;\n  font-size: 12px;\n  text-align: center;\n}\n.ul-main .li-main .span-main[data-v-2b3c2c26] {\n  font-size: 20px;\n  display: block;\n}\n.ayah_img[data-v-2b3c2c26]:hover {\n  background-color: #c3e6cb;\n  border-radius: 10px;\n  cursor: pointer;\n}\n.enlarge .ayah[data-v-2b3c2c26] {\n  transition: transform 0.5s ease;\n  float: right;\n}\n.enlarge[data-v-2b3c2c26]:hover {\n  /* or some other value */\n  transform: scale(1.2);\n}\nbutton[data-v-2b3c2c26],\ninput[data-v-2b3c2c26] {\n  font-family: \"Montserrat\", \"Helvetica Neue\", Arial, sans-serif;\n}\n.nav-item .nav-link[data-v-2b3c2c26],\n.nav-tabs .nav-link[data-v-2b3c2c26] {\n  transition: all 300ms ease 0s;\n}\n.nav-tabs>.nav-item>.nav-link[data-v-2b3c2c26] {\n  color: #888888;\n  margin: 0;\n  margin-right: 5px;\n  background-color: transparent;\n  border: 1px solid transparent;\n  font-size: 14px;\n  padding: 11px 23px;\n  line-height: 1.5;\n}\n.nav-tabs>.nav-item>.nav-link[data-v-2b3c2c26]:hover {\n  background-color: transparent;\n}\n.nav-tabs>.nav-item>.nav-link.active[data-v-2b3c2c26] {\n  background-color: #444;\n  color: #ffffff;\n}\n.nav-tabs>.nav-item>.nav-link i.now-ui-icons[data-v-2b3c2c26] {\n  font-size: 14px;\n  position: relative;\n  top: 1px;\n  margin-right: 3px;\n}\n.nav-tabs.nav-tabs-neutral>.nav-item>.nav-link[data-v-2b3c2c26] {\n  color: #ffffff;\n}\n.nav-tabs.nav-tabs-neutral>.nav-item>.nav-link.active[data-v-2b3c2c26] {\n  background-color: rgba(255, 255, 255, 0.2);\n  color: #ffffff;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
