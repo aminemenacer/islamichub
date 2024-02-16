@@ -20091,7 +20091,6 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       data: [],
       imams: [],
       chapters: [],
-      ahadiths: [],
       imam: null,
       chapter: null,
       chapter_id: 0
@@ -20130,7 +20129,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       })["catch"](function (err) {
         console.log(err);
       })["finally"](function (data) {
-        _this.ahadiths = filteredHadiths;
+        _this.ahadith = filteredHadiths;
       });
     },
     createCorrection: function createCorrection() {
@@ -32783,7 +32782,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.selected {\n  background-color: #c3e6cb;\n}\n.custom-scrollbar {\n  background-color: transparent;\n  height: 1000px;\n  width: 100%;\n  border-radius: 6px;\n  box-shadow: 0 4px 28px rgba(123, 151, 158, 0.25);\n  border: 1px solid #d6dee1;\n  padding: 1rem;\n  border-radius: 6px;\n  border: 1px solid #d6dee1;\n  padding: 1rem;\n  background-color: transparent;\n  outline: 1px solid #c3e6cb;\n  overflow: scroll;\n}\n.custom-scrollbar-chapters {\n  background-color: transparent;\n  height: 600px;\n  width: 100%;\n  border-radius: 6px;\n  box-shadow: 0 4px 28px rgba(123, 151, 158, 0.25);\n  border: 1px solid #d6dee1;\n  padding: 1rem;\n  border-radius: 6px;\n  border: 1px solid #d6dee1;\n  padding: 1rem;\n  background-color: transparent;\n  outline: 1px solid #c3e6cb;\n  overflow: scroll;\n}\n.highlighted {\n  background-color: yellow;\n  font-weight: bold;\n}\n.red {\n  background: red;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.selected {\n    background-color: #c3e6cb;\n}\n.custom-scrollbar {\n    background-color: transparent;\n    height: 1000px;\n    width: 100%;\n    border-radius: 6px;\n    box-shadow: 0 4px 28px rgba(123, 151, 158, 0.25);\n    border: 1px solid #d6dee1;\n    padding: 1rem;\n    border-radius: 6px;\n    border: 1px solid #d6dee1;\n    padding: 1rem;\n    background-color: transparent;\n    outline: 1px solid #c3e6cb;\n    overflow: scroll;\n}\n.custom-scrollbar-chapters {\n    background-color: transparent;\n    height: 600px;\n    width: 100%;\n    border-radius: 6px;\n    box-shadow: 0 4px 28px rgba(123, 151, 158, 0.25);\n    border: 1px solid #d6dee1;\n    padding: 1rem;\n    border-radius: 6px;\n    border: 1px solid #d6dee1;\n    padding: 1rem;\n    background-color: transparent;\n    outline: 1px solid #c3e6cb;\n    overflow: scroll;\n}\n.highlighted {\n    background-color: yellow;\n    font-weight: bold;\n}\n.red {\n    background: red;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
