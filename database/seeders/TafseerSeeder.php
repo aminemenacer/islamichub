@@ -21,6 +21,7 @@ class TafseerSeeder extends Seeder
             if (!$firstline) {
                 Tafseer::create([
                     "tafseer" => $data['0'],
+                    "ayah_id" => $data['1']
                 ]);    
             }
             $firstline = false;
