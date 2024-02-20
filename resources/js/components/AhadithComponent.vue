@@ -352,19 +352,7 @@
                                 >
                                     <b>Books:</b>
                                 </h5>
-                                <!--
-                                  <div>
-                                    <div
-                                      v-for="(chapter, chapterId) in chapters"
-                                      :key="chapterId"
-                                      @click="getAhadiths(chapterId)"
-                                      :class="{ 'selected': selectedIndex === chapterId }"
-                                    >
-                                      {{ chapter.chapter_text }}
-                                    </div>
-                                  </div>
-                                -->
-
+                                
                                 <ul
                                     class="col-md-4 list-group container-fluid root"
                                     style="max-width: 100%; cursor: pointer"
@@ -486,11 +474,7 @@ export default {
     },
     methods: {
         getAhadiths: function (chapterId) {
-            // axios.get(`/hadith/${chapterId}/fetch`).then(function (response) {
-            //   this.tafseer = response.data;
-            // }.bind(this));
-            this.selectedIndex = chapterId - 1;
-
+            this.selectedIndex = chapterId -1;
             axios
                 .get("/get_ahadiths", {
                     params: {

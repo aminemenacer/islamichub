@@ -212,7 +212,7 @@
 
                 <ul class="col-md-4 list-group container-fluid root" 
                   style="max-width: 100%; cursor: pointer" 
-                  v-for="(ayah, index) in ayahs" :key="index" 
+                  v-for="(ayah, ayahId) in ayahs" :key="ayahId" 
                   @click="getTafseers(ayah.ayah_id)"
                   :class="{ 'selected': selectedIndex === ayahId }"
                   >
