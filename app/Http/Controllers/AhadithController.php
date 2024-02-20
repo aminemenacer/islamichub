@@ -49,4 +49,6 @@ class AhadithController extends Controller
         $ahadith = Ahadith::with('chapter')->where('hadith_en', 'LIKE', "%{$request->hadith_en}%")->get();
         return response()->json($ahadith);
     }
+
+    
 }

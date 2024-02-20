@@ -18,9 +18,9 @@ class Tafseer extends Model
     ];
 
     
-    // public function ayah()
-    // {
-    //     return $this->BelongsTo(Ayah::class,'id','id');
-    // }
+    public function ayah()
+    {
+        return $this->BelongsTo(Ayah::class,'ayah_id','id');
+    }
 
 }

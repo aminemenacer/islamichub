@@ -1,8 +1,8 @@
 <template>
 <div class="id pt-3">
 
-  <div class="container py-3">
-    <div class="row container">
+  <div class="container-fluid py-3">
+    <div class="row container-fluid">
       <div class="col-lg-5 mr-2 container">
         <h1 class="display-4 text-center">Get In Touch</h1>
         <p class="lead text-muted mb-0">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here,</p><br>
@@ -55,7 +55,6 @@
                       <div class="col-md-12">
                         <div class="form-group">
                           <input type="submit" value="Send Message" class="btn text-white" style="background:rgba(34,179,127,255)">
-                          <div class="submitting"></div>
                         </div>
                       </div>
                     </div>
@@ -84,13 +83,7 @@ export default {
         mobile: "",
         message: ""
       }),
-      form1: new Form({
-        name: "",
-        lastname: "",
-        phone: "",
-        email: "",
-      })
-
+     
     }
   },
   methods: {

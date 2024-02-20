@@ -25,6 +25,7 @@ class ContactController extends Controller
         ]);
 
         $feedback = new Feedback();
+
         $feedback->firstname = $request->firstname;
         $feedback->lastname = $request->lastname;
         $feedback->email = $request->email;

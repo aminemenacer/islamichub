@@ -1,9 +1,9 @@
 <template>
 <div id="app" class="pt-3">
 
-  <div class="container py-3">
+  <div class="container-fluid py-3">
   
-    <div class="row">
+    <div class="row ">
       <div class="col-lg-6 text-left">
       <h1 class="display-4 text-center">Donations</h1>
         <p class="lead text-muted mb-0">"As-salaamu Alaikum, As we want to keep IslamicHub ad-free, we would appreciate a small, sizable donation to continue the development and maintenance of the website. You will find a form on the right side where you can submit a donation amount of your choosing. Jazakum Allahu Khairan."</p><br>

@@ -307,7 +307,10 @@
 
                 <!-- right side chapter list -->
                 <div class="col-md-4 stcky-top">
+                    
+
                     <div class="container-fluid mr-5">
+                        
                         <div
                             class="row container-fluid"
                             style="flex-direction: column"
@@ -336,7 +339,7 @@
                                     </option>
                                 </select>
                             </form>
-
+                            
                             <div
                                 class="custom-scrollbar"
                                 style="
@@ -462,6 +465,7 @@ export default {
             imam: 0,
             ahadith: null,
             hadith_en: "",
+            chapter_text: "",
 
             form: new Form({
                 id: "",
@@ -476,6 +480,8 @@ export default {
                 id: "",
                 hadith_en: "",
             }),
+
+        
         };
     },
     methods: {
@@ -501,16 +507,16 @@ export default {
 
         search() {
             var filteredHadiths = [];
-            axios
-                .post("/search", this.searchFilters)
-                .then((data) => {
-                    filteredHadiths = data.data;
-                })
-                .catch(function (err) {
-                    console.log(err);
-                })
-                .finally((data) => {
-                    this.ahadith = filteredHadiths;
+                axios
+                    .post("/search", this.searchFilters)
+                    .then((data) => {
+                        filteredHadiths = data.data;
+                    })
+                    .catch(function (err) {
+                        console.log(err);
+                    })
+                    .finally((data) => {
+                        this.ahadith = filteredHadiths;
                 });
         },
 

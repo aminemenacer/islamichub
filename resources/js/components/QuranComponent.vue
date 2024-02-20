@@ -182,45 +182,49 @@
     <!-- right side chapter list -->
     <div class="col-md-4 stcky-top" v-if="ayah == null">
       <!--
-      <nav>
-        <div class=" container-fluid nav nav-tabs justify-content-center mb-3" id="nav-tab" role="tablist" style="display:flex;padding:5px; border-radius:5px;">
-          <button class="nav-link active"  id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">List of ayat</button>
-          <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Quran pages</button>
-        </div>
-      </nav>
+        <nav>
+          <div class=" container-fluid nav nav-tabs justify-content-center mb-3" id="nav-tab" role="tablist" style="display:flex;padding:5px; border-radius:5px;">
+            <button class="nav-link active"  id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">List of ayat</button>
+            <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Quran pages</button>
+          </div>
+        </nav>
       -->
-
+      <form class="mb-2 " style="border: 4px solid #c3e6cb;border-radius: 8px;">
+        <select class="form-control" v-model="surah" @change="getAyahs()">
+          <option value="0">
+            <span>Select Surah</span>
+          </option>
+          <option v-for="data in surahs" :key="data.id" :value="data.id">
+            {{ data.name_en }} -
+            {{ data.name_ar }}
+          </option>
+        </select>
+      </form>
       <div class="tab-content" id="nav-tabContent">
         <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-          <div class="row container-fluid" style="flex-direction: column">
+          <div class="row container-fluid">
             <div class="custom-scrollbar" style="
                                     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px,
                                         rgba(0, 0, 0, 0.24) 0px 1px 2px;
                                     background: transparent;
                                     border: 5px solid #c3e6cb;
                                 ">
-              <form class="mb-2">
-                <select class="form-control" v-model="surah" @change="getAyahs()">
-                  <option value="0">
-                    <span>Select Surah</span>
-                  </option>
-                  <option v-for="data in surahs" :key="data.id" :value="data.id">
-                    {{ data.name_en }} -
-                    {{ data.name_ar }}
-                  </option>
-                </select>
-              </form>
 
-              <ul class="col-md-4 list-group container-fluid root" style="max-width: 100%; cursor: pointer"  v-for="(ayah, index) in ayahs" :key="index" @click="getTafseers(ayah)">
-                <li class="list-group-item" id="toggle" style="
-                                            cursor: pointer;
-                                            background: transparent;
-                                        ">
-                  <b style="display: flex">Verse:</b>
-                  <h5>{{ ayah.ayah_id }}</h5>
-                  <h5>{{ ayah.ayah_text }}</h5>
-                </li>
-              </ul>
+                <ul class="col-md-4 list-group container-fluid root" 
+                  style="max-width: 100%; cursor: pointer" 
+                  v-for="(ayah, index) in ayahs" :key="index" 
+                  @click="getTafseers(ayah.ayah_id)"
+                  :class="{ 'selected': selectedIndex === ayahId }"
+                  >
+                  <li class="list-group-item" id="toggle" style="
+                                              cursor: pointer;
+                                              background: transparent;
+                                          ">
+                    <b style="display: flex">Verse:</b>
+                    <h5>{{ ayah.ayah_id }}</h5>
+                    <h5>{{ ayah.ayah_text }}</h5>
+                  </li>
+                </ul>
             </div>
           </div>
         </div>
@@ -276,8 +280,6 @@ export default {
       surah: null,
       ayah: null,
       tafseer: null,
-
-      // tafseer: null,
       information: null,
       surah: 0,
       ayah_id: 0,
@@ -299,7 +301,7 @@ export default {
     },
 
     getAyahs: function (ayahId) {
-        this.selectedIndex = ayahId;
+      this.selectedIndex = ayahId;
       axios
         .get("/get_ayahs", {
           params: {
@@ -314,11 +316,12 @@ export default {
     },
 
     getTafseers: function (ayahId) {
-    //   this.selectedIndex = ayahId;
+      this.selectedIndex = ayahId - 1;
 
       axios.get(`/tafseer/${ayahId}/fetch`).then(
         function (response) {
           console.log(response);
+          this.selectedAyah = ayahId;
           this.tafseer = response.data;
         }.bind(this)
       );
@@ -331,6 +334,7 @@ export default {
         })
         .then(
           function (response) {
+            this.selectedAyah = ayahId;
             this.information = response.data;
           }.bind(this)
         );
@@ -342,7 +346,6 @@ export default {
 <style scoped>
 .selected {
   background-color: #c3e6cb;
-  /* Change this to your desired highlight color */
 }
 
 .custom-scrollbar {
