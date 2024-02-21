@@ -23,15 +23,19 @@ class ChapterSeeder extends Seeder
         $firstline = true;
         $i = 0;
         while (($data = fgetcsv($csvFile, 2000, ",")) !== FALSE) {
-            if (!$firstline && $i < 5000) {
-                Chapter::create([
-                    "chapter_id" => $data['1'],
-                    "imam_id" => $data['0'],
-                    "chapter_text" => $data['2'],
-                ]);
+            if (!$firstline) {
+                // Check if the required keys exist in the $data array
+                if (count($data) >= 3) {
+                    Chapter::create([
+                        'imam_id' => $data[0],
+                        'chapter_id' => $data[1],
+                        'chapter_text' => $data[2],
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ]);
+                }
             }
             $firstline = false;
-            $i++;
         }
 
         fclose($csvFile);

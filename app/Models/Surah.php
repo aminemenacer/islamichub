@@ -12,7 +12,6 @@ class Surah extends Model
     protected $table = 'surah';
 
     protected $fillable = [
-        'juz_id',
         'name_en',
         'name_ar',
         'text'

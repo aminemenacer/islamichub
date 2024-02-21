@@ -33,5 +33,6 @@ class SurahController extends Controller
     {
         $tafseer = Tafseer::whereAyahId($id)->first();
         return response()->json($tafseer->tafseer);
+        
     }
 }

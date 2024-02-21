@@ -49,7 +49,6 @@ Route::get('/ahadith/{id}/fetch', [AhadithController::class, 'getAhadith']);
 Route::get('/get_ahadiths', [AhadithController::class, 'getAhadiths']);
 Route::get('/ahadith', [AhadithController::class, 'index']);
 Route::post('/search', [AhadithController::class, 'search'])->name('search');
-
 // Route::get('/hadith/{id}/fetch', [AhadithController::class, 'getAhadiths']);
 
 //quran
