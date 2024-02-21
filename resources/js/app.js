@@ -43,9 +43,6 @@ import ContactComponent from './components/ContactComponent.vue';
 import CharityComponent from './components/CharityComponent.vue';
 import VolunteerComponent from './components/VolunteerComponent.vue';
 import AhadithComponent from './components/AhadithComponent.vue';
-import HadithNawawiComponent from './components/HadithNawawiComponent.vue';
-import HadithQudsiComponent from './components/HadithQudsiComponent.vue';
-import HadithShahComponent from './components/HadithShahComponent.vue';
 import CorrectionComponent from './components/CorrectionComponent.vue';
 import QuranComponent from './components/QuranComponent.vue';
 
@@ -90,9 +87,6 @@ app.component("contact-component", ContactComponent);
 app.component("charity-component", CharityComponent);
 app.component("volunteer-component", VolunteerComponent);
 app.component("ahadith-component", AhadithComponent);
-app.component("hadith_nawawi-component", HadithNawawiComponent);
-app.component("hadith_qudsi-component", HadithQudsiComponent);
-app.component("hadith_shah-component", HadithShahComponent);
 app.component("correction-component", CorrectionComponent);
 app.component("quran-component", QuranComponent);
 

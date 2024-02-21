@@ -21791,31 +21791,35 @@ var _hoisted_1 = {
   "class": "id pt-3"
 };
 var _hoisted_2 = {
-  "class": "container-fluid py-3"
+  "class": "container py-3"
 };
-var _hoisted_3 = {
-  "class": "row container-fluid"
-};
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "col-lg-5 mr-2 container"
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "row container"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "mr-2"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
   "class": "display-4 text-center"
 }, "Get In Touch"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "lead text-muted mb-0"
-}, "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here,"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br")], -1 /* HOISTED */);
+}, "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here,"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br")])], -1 /* HOISTED */);
+var _hoisted_4 = {
+  "class": "row"
+};
 var _hoisted_5 = {
   "class": "col-lg-6 mx-auto"
 };
 var _hoisted_6 = {
   "class": "card mt-5",
   style: {
-    "border-radius": "8px"
+    "padding": "10px",
+    "border-radius": "10px",
+    "box-shadow": "rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px"
   }
 };
 var _hoisted_7 = {
   "class": "card-header",
   style: {
-    "border-radius": "8px"
+    "padding": "10px"
   }
 };
 var _hoisted_8 = {
@@ -21906,14 +21910,21 @@ var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
   type: "submit",
   value: "Send Message",
-  "class": "btn text-white",
+  "class": "btn text-white btn-lg",
   style: {
     "background": "rgba(34,179,127,255)"
   }
 })])], -1 /* HOISTED */);
+var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "col-lg-6 mt-5 d-none d-lg-block"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+  src: "/images/message.png",
+  alt: "",
+  "class": "img-fluid"
+})], -1 /* HOISTED */);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
     onReset: _cache[6] || (_cache[6] = function () {
       return _ctx.reset && _ctx.reset.apply(_ctx, arguments);
     }),
@@ -21967,12 +21978,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
       return $data.form.message = $event;
     }),
-    rows: "4",
+    rows: "5",
     type: "text",
     name: "message",
     placeholder: "Enter message",
     "class": "form-control"
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.message]])])]), _hoisted_29])], 32 /* HYDRATE_EVENTS */)])])])])])])])]);
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.message]])])]), _hoisted_29])], 32 /* HYDRATE_EVENTS */)])])])])]), _hoisted_30])])]);
 }
 
 /***/ }),
@@ -24986,11 +24997,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_CharityComponent_vue__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./components/CharityComponent.vue */ "./resources/js/components/CharityComponent.vue");
 /* harmony import */ var _components_VolunteerComponent_vue__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./components/VolunteerComponent.vue */ "./resources/js/components/VolunteerComponent.vue");
 /* harmony import */ var _components_AhadithComponent_vue__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./components/AhadithComponent.vue */ "./resources/js/components/AhadithComponent.vue");
-Object(function webpackMissingModule() { var e = new Error("Cannot find module './components/HadithNawawiComponent.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-Object(function webpackMissingModule() { var e = new Error("Cannot find module './components/HadithQudsiComponent.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-Object(function webpackMissingModule() { var e = new Error("Cannot find module './components/HadithShahComponent.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-/* harmony import */ var _components_CorrectionComponent_vue__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./components/CorrectionComponent.vue */ "./resources/js/components/CorrectionComponent.vue");
-/* harmony import */ var _components_QuranComponent_vue__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./components/QuranComponent.vue */ "./resources/js/components/QuranComponent.vue");
+/* harmony import */ var _components_CorrectionComponent_vue__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./components/CorrectionComponent.vue */ "./resources/js/components/CorrectionComponent.vue");
+/* harmony import */ var _components_QuranComponent_vue__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./components/QuranComponent.vue */ "./resources/js/components/QuranComponent.vue");
 // Vue libraries
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
@@ -25003,9 +25011,6 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bun
 
  //theme
  //core css
-
-
-
 
 
 
@@ -25068,11 +25073,8 @@ app.component("contact-component", _components_ContactComponent_vue__WEBPACK_IMP
 app.component("charity-component", _components_CharityComponent_vue__WEBPACK_IMPORTED_MODULE_33__["default"]);
 app.component("volunteer-component", _components_VolunteerComponent_vue__WEBPACK_IMPORTED_MODULE_34__["default"]);
 app.component("ahadith-component", _components_AhadithComponent_vue__WEBPACK_IMPORTED_MODULE_35__["default"]);
-app.component("hadith_nawawi-component", Object(function webpackMissingModule() { var e = new Error("Cannot find module './components/HadithNawawiComponent.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-app.component("hadith_qudsi-component", Object(function webpackMissingModule() { var e = new Error("Cannot find module './components/HadithQudsiComponent.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-app.component("hadith_shah-component", Object(function webpackMissingModule() { var e = new Error("Cannot find module './components/HadithShahComponent.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-app.component("correction-component", _components_CorrectionComponent_vue__WEBPACK_IMPORTED_MODULE_37__["default"]);
-app.component("quran-component", _components_QuranComponent_vue__WEBPACK_IMPORTED_MODULE_38__["default"]);
+app.component("correction-component", _components_CorrectionComponent_vue__WEBPACK_IMPORTED_MODULE_36__["default"]);
+app.component("quran-component", _components_QuranComponent_vue__WEBPACK_IMPORTED_MODULE_37__["default"]);
 
 // const stripePromise = loadStripe('pk_test_51OhWyICJwy2NXBn1qd6CDCqfzR5BkiaL4OYkl9EUc3nYm2D3paDVZuAyRks7NJBWodYHbQJOcxsxDA9L4umn4Kok00YuLJBbfh');
 
