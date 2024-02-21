@@ -21693,20 +21693,12 @@ var _hoisted_1 = {
   "class": "pt-3"
 };
 var _hoisted_2 = {
-  "class": "container-fluid py-3"
+  "class": "container py-3"
 };
-var _hoisted_3 = {
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"row container\"><div class=\"mr-2\"><h1 class=\"display-4 text-center\">Donations</h1><p class=\"lead text-muted mb-0\">&quot;As-salaamu Alaikum, As we want to keep IslamicHub ad-free, we would appreciate a small, sizable donation to continue the development and maintenance of the website. You will find a form on the right side where you can submit a donation amount of your choosing. Jazakum Allahu Khairan.&quot;</p><br><p class=\"lead text-muted mb-0\">The call for donations in Islam is rooted in compassion and empathy for the less fortunate. It is a way for individuals to fulfill their duty towards their fellow human beings, fostering a sense of community and solidarity. </p></div></div>", 1);
+var _hoisted_4 = {
   "class": "row"
 };
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "col-lg-6 text-left"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
-  "class": "display-4 text-center"
-}, "Donations"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-  "class": "lead text-muted mb-0"
-}, "\"As-salaamu Alaikum, As we want to keep IslamicHub ad-free, we would appreciate a small, sizable donation to continue the development and maintenance of the website. You will find a form on the right side where you can submit a donation amount of your choosing. Jazakum Allahu Khairan.\""), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-  "class": "lead text-muted mb-0"
-}, "The call for donations in Islam is rooted in compassion and empathy for the less fortunate. It is a way for individuals to fulfill their duty towards their fellow human beings, fostering a sense of community and solidarity. ")], -1 /* HOISTED */);
 var _hoisted_5 = {
   "class": "col-lg-6 mx-auto"
 };
@@ -21749,8 +21741,16 @@ var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 }, "GBP", -1 /* HOISTED */);
 var _hoisted_17 = [_hoisted_14, _hoisted_15, _hoisted_16];
 var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"row\"><div class=\"col-sm-8\"><div class=\"form-group\"><label><span class=\"hidden-xs\"><h6 class=\"mt-2\">Expiration Date</h6></span></label><div class=\"input-group\"><input type=\"number\" placeholder=\"MM\" name=\"\" class=\"form-control\" required> <input type=\"number\" placeholder=\"YY\" name=\"\" class=\"form-control\" required></div></div></div><div class=\"col-sm-4\"><div class=\"form-group mb-4\"><label data-toggle=\"tooltip\" title=\"Three digit CV code on the back of your card\"><h6>CVV <i class=\"fa fa-question-circle d-inline\"></i></h6></label> <input type=\"text\" required class=\"form-control\"></div></div></div>", 1);
+var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "col-lg-6 mt-5 d-none d-lg-block"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+  src: "/images/group.png",
+  alt: "",
+  "class": "img-fluid"
+})], -1 /* HOISTED */);
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_10, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_10, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
       return $data.amount = $event;
     }),
@@ -21769,7 +21769,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[2] || (_cache[2] = function () {
       return $options.initiatePayment && $options.initiatePayment.apply($options, arguments);
     })
-  }, "Pay Now")])])])])])])])])])]);
+  }, "Pay Now")])])])])])])]), _hoisted_19])])]);
 }
 
 /***/ }),
@@ -31678,7 +31678,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nbody {\n  background: #f5f5f5\n}\n.rounded {\n  border-radius: 1rem\n}\n.nav-pills .nav-link {\n  color: #555\n}\n.nav-pills .nav-link.active {\n  color: white\n}\ninput[type=\"radio\"] {\n  margin-right: 5px\n}\n.bold {\n  font-weight: bold\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nbody {\n background: #f5f5f5\n}\n.rounded {\n border-radius: 1rem\n}\n.nav-pills .nav-link {\n color: #555\n}\n.nav-pills .nav-link.active {\n color: white\n}\ninput[type=\"radio\"] {\n margin-right: 5px\n}\n.bold {\n font-weight: bold\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
