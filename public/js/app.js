@@ -23916,7 +23916,7 @@ var _withScopeId = function _withScopeId(n) {
 var _hoisted_1 = {
   id: "app"
 };
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"container-fluid text-center pt-2\" data-v-2b3c2c26><div class=\"row text-center\" data-v-2b3c2c26><div class=\"col-md-12 text-center\" data-v-2b3c2c26><div class=\"row\" data-v-2b3c2c26><div class=\"col-md-2 pb-2\" data-v-2b3c2c26></div><div class=\"col-md-8 pt-2\" style=\"display:flex;text-align:center;\" data-v-2b3c2c26><div class=\"card-header\" data-v-2b3c2c26><h1 class=\"card-text text-center mt-2 mb-2\" data-v-2b3c2c26> The Holy Quran </h1><h5 class=\"card-text container lead text-muted mb-0 pt-3\" style=\"line-height:1.7em;\" data-v-2b3c2c26> The Quran also spelled as Qur&#39;an is the holy book of Islam, considered by Muslims to be the verbatim word of God </h5></div><!-- multiple input sections \n              &lt;label class=&quot;pt-2 pl-3 pr-2&quot; style=&quot;display:flex&quot;&gt;Surah:&lt;/label&gt;\n              &lt;form class=&quot;col-md-5&quot;&gt;\n                &lt;select class=&quot;form-control&quot; v-model=&#39;surah&#39; @change=&#39;getAyahs()&#39;&gt;\n                  &lt;option value=&quot;0&quot;&gt;&lt;span&gt;Select Surah&lt;/span&gt;&lt;/option&gt;\n                  &lt;option v-for=&#39;data in surahs&#39; :key=&quot;data.id&quot; :value=&#39;data.id&#39;&gt;{{ data.name_en }}, {{ data.name_ar }}&lt;/option&gt;\n                &lt;/select&gt;\n              &lt;/form&gt;\n              &lt;label class=&quot;pt-2 pl-3 pr-2&quot;&gt;Ayah:&lt;/label&gt;\n\n              &lt;form class=&quot;col-md-8 &quot;&gt;\n                &lt;select class=&#39;form-control&#39; v-model=&#39;ayah_id&#39; @change=&#39;getTafseers(data.ayah_id)&#39;&gt;\n                  &lt;option value=&quot;0&quot;&gt;Select Ayah&lt;/option&gt;\n                  &lt;option v-for=&#39;data in ayahs&#39; :key=&quot;data.id&quot; :value=&#39;data.id&#39;&gt;{{ data.ayah_id }}, {{ data.ayah_text }}&lt;/option&gt;\n                &lt;/select&gt;\n              &lt;/form&gt;\n\n              &lt;form class=&quot;ml-3 col-md-4 &quot;&gt;\n                &lt;input class=&quot;form-control input is-primary&quot; type=&quot;text&quot; placeholder=&quot;Search keyword&quot; /&gt;\n              &lt;/form&gt;\n            --></div><div class=\"col-md-2\" data-v-2b3c2c26></div></div></div></div></div><div class=\"container-fluid mt-2\" data-v-2b3c2c26><div class=\"row\" data-v-2b3c2c26></div></div>", 2);
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"container-fluid text-center\" data-v-2b3c2c26><div class=\"row text-center\" data-v-2b3c2c26><div class=\"col-md-12 text-center\" data-v-2b3c2c26><div class=\"row\" data-v-2b3c2c26><div class=\"col-md-3\" data-v-2b3c2c26></div><div class=\"col-md-6\" style=\"display:flex;text-align:center;\" data-v-2b3c2c26><div class=\"card-header\" data-v-2b3c2c26><h1 class=\"card-text text-center mt-2 mb-2\" style=\"font-family:serif;\" data-v-2b3c2c26> The Holy Quran </h1><h5 class=\"card-text container lead text-muted mb-0 pb-3\" style=\"line-height:1.7em;font-family:serif;\" data-v-2b3c2c26> The Quran, considered the holy scripture of Islam, is a sacred and comprehensive compilation of revelations believed by Muslims to have been conveyed to the Prophet Muhammad by the archangel Gabriel. </h5></div><!-- multiple input sections \n              &lt;label class=&quot;pt-2 pl-3 pr-2&quot; style=&quot;display:flex&quot;&gt;Surah:&lt;/label&gt;\n              &lt;form class=&quot;col-md-5&quot;&gt;\n                &lt;select class=&quot;form-control&quot; v-model=&#39;surah&#39; @change=&#39;getAyahs()&#39;&gt;\n                  &lt;option value=&quot;0&quot;&gt;&lt;span&gt;Select Surah&lt;/span&gt;&lt;/option&gt;\n                  &lt;option v-for=&#39;data in surahs&#39; :key=&quot;data.id&quot; :value=&#39;data.id&#39;&gt;{{ data.name_en }}, {{ data.name_ar }}&lt;/option&gt;\n                &lt;/select&gt;\n              &lt;/form&gt;\n              &lt;label class=&quot;pt-2 pl-3 pr-2&quot;&gt;Ayah:&lt;/label&gt;\n\n              &lt;form class=&quot;col-md-8 &quot;&gt;\n                &lt;select class=&#39;form-control&#39; v-model=&#39;ayah_id&#39; @change=&#39;getTafseers(data.ayah_id)&#39;&gt;\n                  &lt;option value=&quot;0&quot;&gt;Select Ayah&lt;/option&gt;\n                  &lt;option v-for=&#39;data in ayahs&#39; :key=&quot;data.id&quot; :value=&#39;data.id&#39;&gt;{{ data.ayah_id }}, {{ data.ayah_text }}&lt;/option&gt;\n                &lt;/select&gt;\n              &lt;/form&gt;\n\n              &lt;form class=&quot;ml-3 col-md-4 &quot;&gt;\n                &lt;input class=&quot;form-control input is-primary&quot; type=&quot;text&quot; placeholder=&quot;Search keyword&quot; /&gt;\n              &lt;/form&gt;\n            --></div><div class=\"col-md-3\" data-v-2b3c2c26></div></div></div></div></div><div class=\"container-fluid mt-2\" data-v-2b3c2c26><div class=\"row\" data-v-2b3c2c26></div></div>", 2);
 var _hoisted_4 = {
   "class": "row container-fluid"
 };
@@ -23945,36 +23945,30 @@ var _hoisted_9 = /*#__PURE__*/_withScopeId(function () {
     "class": "nav-item"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     "class": "nav-link active",
-    "data-toggle": "tab",
+    "data-bs-toggle": "tab",
     href: "#home",
     role: "tab"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-    "class": "now-ui-icons objects_umbrella-13"
-  }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Translation ")])], -1 /* HOISTED */);
+  }, " Translation ")], -1 /* HOISTED */);
 });
 var _hoisted_10 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
     "class": "nav-item"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     "class": "nav-link",
-    "data-toggle": "tab",
+    "data-bs-toggle": "tab",
     href: "#profile",
     role: "tab"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-    "class": "now-ui-icons shopping_cart-simple"
-  }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Tafseer ")])], -1 /* HOISTED */);
+  }, " Tafseer ")], -1 /* HOISTED */);
 });
 var _hoisted_11 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
     "class": "nav-item"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     "class": "nav-link",
-    "data-toggle": "tab",
+    "data-bs-toggle": "tab",
     href: "#messages",
     role: "tab"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-    "class": "now-ui-icons shopping_shop"
-  }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Transliteration ")])], -1 /* HOISTED */);
+  }, " Transliteration ")], -1 /* HOISTED */);
 });
 var _hoisted_12 = [_hoisted_9, _hoisted_10, _hoisted_11];
 var _hoisted_13 = {
@@ -24022,7 +24016,7 @@ var _hoisted_23 = {
   id: "home",
   role: "tabpanel"
 };
-var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"row\" data-v-2b3c2c26><div class=\"col-md-6\" data-v-2b3c2c26><img src=\"/images/calligraphy.png\" class=\"pl-3\" style=\"width:70%;\" data-v-2b3c2c26></div><div class=\"col-md-6\" data-v-2b3c2c26><h2 class=\"mb-3 mt-3 text-center\" data-v-2b3c2c26> The Holy Quran </h2><span class=\"container text-left mb-4 lead text-muted mb-0 pt-3\" style=\"line-height:1.5em;\" data-v-2b3c2c26>The Quran, considered the holy scripture of Islam, is a sacred and comprehensive compilation of revelations believed by Muslims to have been conveyed to the Prophet Muhammad by the archangel Gabriel from around 610 CE to 632 CE. </span></div></div>", 1);
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"row\" data-v-2b3c2c26><div class=\"col-md-6\" data-v-2b3c2c26><img src=\"/images/calligraphy.png\" class=\"pl-3\" style=\"width:70%;\" data-v-2b3c2c26></div><div class=\"col-md-6\" data-v-2b3c2c26><h2 class=\"mb-3 mt-3 text-center\" style=\"font-family:serif;\" data-v-2b3c2c26> The Holy Quran </h2><span class=\"container text-left mb-4 lead text-muted mb-0 pt-3\" style=\"line-height:1.5em;font-family:serif;\" data-v-2b3c2c26>The Quran, considered the holy The Quran also spelled as Qur&#39;an is the holy book of Islam, considered by Muslims to be the verbatim word of God. </span></div></div>", 1);
 var _hoisted_25 = [_hoisted_24];
 var _hoisted_26 = {
   key: 1,
@@ -24056,7 +24050,8 @@ var _hoisted_32 = {
 var _hoisted_33 = {
   "class": "container text-left",
   style: {
-    "line-height": "1.6em"
+    "line-height": "1.6em",
+    "font-family": "serif"
   }
 };
 var _hoisted_34 = {
@@ -24085,7 +24080,8 @@ var _hoisted_38 = {
 var _hoisted_39 = {
   "class": "container text-left",
   style: {
-    "line-height": "1.6em"
+    "line-height": "1.6em",
+    "font-family": "serif"
   }
 };
 var _hoisted_40 = {
@@ -24114,12 +24110,13 @@ var _hoisted_44 = {
 var _hoisted_45 = {
   "class": "container text-left",
   style: {
-    "line-height": "1.6em"
+    "line-height": "1.6em",
+    "font-family": "serif"
   }
 };
 var _hoisted_46 = {
   key: 0,
-  "class": "col-md-4 stcky-top"
+  "class": "col-md-4 sticky-top"
 };
 var _hoisted_47 = {
   "class": "mb-2",
@@ -24131,7 +24128,11 @@ var _hoisted_47 = {
 var _hoisted_48 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: "0"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Select Surah")], -1 /* HOISTED */);
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+    style: {
+      "font-family": "serif"
+    }
+  }, "Select Surah")], -1 /* HOISTED */);
 });
 var _hoisted_49 = ["value"];
 var _hoisted_50 = {
@@ -24157,21 +24158,26 @@ var _hoisted_53 = {
 };
 var _hoisted_54 = ["onClick"];
 var _hoisted_55 = {
-  "class": "list-group-item",
+  "class": "list-group-item container-fluid min-width:100%",
   id: "toggle",
   style: {
     "cursor": "pointer",
-    "background": "transparent"
+    "background": "transparent",
+    "padding": "20px"
   }
 };
-var _hoisted_56 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", {
-    style: {
-      "display": "flex"
-    }
-  }, "Verse:", -1 /* HOISTED */);
-});
-var _hoisted_57 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_56 = {
+  style: {
+    "display": "flex",
+    "font-family": "serif"
+  }
+};
+var _hoisted_57 = {
+  style: {
+    "font-family": "serif"
+  }
+};
+var _hoisted_58 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "container-fluid mr-5",
     style: {}
@@ -24198,15 +24204,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         'selected': $data.selectedIndex === $data.ayahId
       }]),
       style: {
-        "max-width": "100%",
+        "min-width": "100%",
         "cursor": "pointer"
       },
       key: ayah_id,
       onClick: function onClick($event) {
         return $options.getTafseers(ayah.ayah_id);
       }
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_55, [_hoisted_56, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(ayah.ayah_id), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(ayah.ayah_text), 1 /* TEXT */)])], 10 /* CLASS, PROPS */, _hoisted_54);
-  }), 128 /* KEYED_FRAGMENT */))])])])]), _hoisted_57])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]);
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_55, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", _hoisted_56, "Verse: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(ayah.ayah_id), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", _hoisted_57, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(ayah.ayah_text), 1 /* TEXT */)])], 10 /* CLASS, PROPS */, _hoisted_54);
+  }), 128 /* KEYED_FRAGMENT */))])])])]), _hoisted_58])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]);
 }
 
 /***/ }),

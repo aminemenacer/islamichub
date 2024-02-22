@@ -1,20 +1,18 @@
 <template>
 <div id="app">
- <div class="container-fluid text-center pt-2">
+ <div class="container-fluid text-center ">
   <div class="row text-center">
    <div class="col-md-12 text-center">
     <div class="row">
-     <div class="col-md-2 pb-2"></div>
-     <div class="col-md-8 pt-2" style="display: flex; text-align: center">
+      <div class="col-md-3"></div>
+     <div class="col-md-6" style="display: flex; text-align: center">
       <div class="card-header">
-       <h1 class="card-text text-center mt-2 mb-2">
+       <h1 class="card-text text-center mt-2 mb-2" style="font-family:serif">
         The Holy Quran
        </h1>
 
-       <h5 class="card-text container lead text-muted mb-0 pt-3" style="line-height: 1.7em; font-weight-bold">
-        The Quran also spelled as Qur'an is the holy
-        book of Islam, considered by Muslims to be
-        the verbatim word of God
+       <h5 class="card-text container lead text-muted mb-0 pb-3" style="line-height: 1.7em;font-family:serif; font-weight-bold">
+        The Quran, considered the holy scripture of Islam, is a sacred and comprehensive compilation of revelations believed by Muslims to have been conveyed to the Prophet Muhammad by the archangel Gabriel.
        </h5>
       </div>
       <!-- multiple input sections 
@@ -39,7 +37,7 @@
               </form>
             -->
      </div>
-     <div class="col-md-2"></div>
+     <div class="col-md-3"></div>
     </div>
    </div>
   </div>
@@ -60,22 +58,20 @@
                         border-radius: 10px;
                     ">
     <div class="card-header">
+
      <ul class="nav nav-tabs text-left justify-content-center" role="tablist" v-if="information != null">
       <li class="nav-item">
-       <a class="nav-link active" data-toggle="tab" href="#home" role="tab">
-        <i class="now-ui-icons objects_umbrella-13"></i>
+       <a class="nav-link active" data-bs-toggle="tab" href="#home" role="tab">
         Translation
        </a>
       </li>
       <li class="nav-item">
-       <a class="nav-link" data-toggle="tab" href="#profile" role="tab">
-        <i class="now-ui-icons shopping_cart-simple"></i>
+       <a class="nav-link" data-bs-toggle="tab" href="#profile" role="tab">
         Tafseer
        </a>
       </li>
       <li class="nav-item">
-       <a class="nav-link" data-toggle="tab" href="#messages" role="tab">
-        <i class="now-ui-icons shopping_shop"></i>
+       <a class="nav-link" data-bs-toggle="tab" href="#messages" role="tab">
         Transliteration
        </a>
       </li>
@@ -109,16 +105,13 @@
          <img src="/images/calligraphy.png" class="pl-3" style="width: 70%" />
         </div>
         <div class="col-md-6">
-         <h2 class="mb-3 mt-3 text-center">
+         <h2 class="mb-3 mt-3 text-center" style="font-family:serif">
           The Holy Quran
          </h2>
-         <span class="container text-left mb-4 lead text-muted mb-0 pt-3" style="line-height: 1.5em">The Quran, considered the holy
-          scripture of Islam, is a sacred and
-          comprehensive compilation of
-          revelations believed by Muslims to
-          have been conveyed to the Prophet
-          Muhammad by the archangel Gabriel
-          from around 610 CE to 632 CE.
+         <span class="container text-left mb-4 lead text-muted mb-0 pt-3" style="line-height: 1.5em;font-family:serif">The Quran, considered the holy
+          The Quran also spelled as Qur'an is the holy
+          book of Islam, considered by Muslims to be
+          the verbatim word of God.
          </span>
         </div>
        </div>
@@ -137,7 +130,7 @@
 
          <hr class="container" />
          <div class="btn">
-          <h4 class="container text-left" style="line-height: 1.6em">
+          <h4 class="container text-left" style="line-height: 1.6em;font-family:serif">
            {{ information.translation }}"
           </h4>
          </div>
@@ -148,13 +141,13 @@
       <!-- tafseer -->
       <div class="tab-pane" id="profile" role="tabpanel" v-if="information != null">
        <div class="btn">
-        <h3 class="container text-right" style="line-height: 2em">
+        <h3 class="container text-right" style="line-height: 2em;">
          {{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})
         </h3>
        </div>
        <hr class="container" />
        <div class="btn">
-        <h4 class="container text-left" style="line-height: 1.6em">
+        <h4 class="container text-left" style="line-height: 1.6em;font-family:serif">
          {{ tafseer }}
         </h4>
        </div>
@@ -169,7 +162,7 @@
        </div>
        <hr class="container" />
        <div class="btn">
-        <h4 class="container text-left" style="line-height: 1.6em">
+        <h4 class="container text-left" style="line-height: 1.6em;font-family:serif">
          {{ information.transliteration }}
         </h4>
        </div>
@@ -180,12 +173,12 @@
   </div>
 
   <!-- right side chapter list -->
-  <div class="col-md-4 stcky-top" v-if="ayah == null">
+  <div class="col-md-4 sticky-top" v-if="ayah == null">
 
    <form class="mb-2 " style="border: 4px solid #c3e6cb;border-radius: 8px;">
     <select class="form-control" v-model="surah" @change="getAyahs()">
      <option value="0">
-      <span>Select Surah</span>
+      <span style="font-family:serif">Select Surah</span>
      </option>
      <option v-for="data in surahs" :key="data.id" :value="data.id">
       {{ data.name_en }} -
@@ -203,15 +196,10 @@
                                     border: 5px solid #c3e6cb;
                                 ">
 
-       <ul class="col-md-4 list-group container-fluid root" style="max-width: 100%; cursor: pointer" 
-        v-for="(ayah, ayah_id) in ayahs" :key="ayah_id" 
-        @click="getTafseers(ayah.ayah_id)" 
-        :class="{ 'selected': selectedIndex === ayahId }"
-        >
-        <li class="list-group-item" id="toggle" style="cursor: pointer; background: transparent;">
-         <b style="display: flex">Verse:</b>
-         <h5>{{ ayah.ayah_id }}</h5>
-         <h5>{{ ayah.ayah_text }}</h5>
+       <ul class="col-md-4 list-group container-fluid root" style="min-width: 100%; cursor: pointer" v-for="(ayah, ayah_id) in ayahs" :key="ayah_id" @click="getTafseers(ayah.ayah_id)" :class="{ 'selected': selectedIndex === ayahId }">
+        <li class="list-group-item container-fluid min-width:100%" id="toggle" style="cursor: pointer; background: transparent; padding:20px">
+         <h5 style="display: flex;font-family:serif">Verse: {{ayah.ayah_id}}</h5>
+         <h5 style="font-family:serif">{{ ayah.ayah_text }}</h5>
         </li>
        </ul>
 
@@ -219,7 +207,6 @@
      </div>
     </div>
 
-    
    </div>
 
    <div class="container-fluid mr-5" style=""></div>
@@ -246,7 +233,7 @@ export default {
    ayah: null,
    tafseer: null,
    information: null,
-   ayah_id:null,
+   ayah_id: null,
    surah: 0,
   };
  },

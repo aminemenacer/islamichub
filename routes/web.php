@@ -55,7 +55,7 @@ Route::post('/search', [AhadithController::class, 'search'])->name('search');
 Route::get('/get_surahs', [SurahController::class, 'getSurahs']);
 Route::get('/get_ayahs', [SurahController::class, 'getAyahs']);
 Route::get('/get_informations', [SurahController::class, 'getInformations']);
-Route::get('/tafseer/{id}/fetch', [SurahController::class, 'getTafseer']);
+Route::get('/tafseer/{id}/fetch', [SurahController::class, 'getTafseers']);
 
 
 // frontend json files
