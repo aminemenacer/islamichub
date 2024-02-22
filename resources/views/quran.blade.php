@@ -1,18 +1,7 @@
-@section('title', 'Dashboard')
-
-@section('content_header')
-@stop
-
+@extends('layouts.app')
 @section('content')
 <div id="app">
     <quran-component></quran-component>
-</div>
-@stop
+<div>
+@endsection
 
-@section('css')
-<link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css">
-@stop
-
-@section('js')
-<script src="{{ asset('js/app.js') }}"> </script>
-@stop

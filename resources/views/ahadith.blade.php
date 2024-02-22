@@ -1,19 +1,7 @@
 
-@section('title', 'Dashboard')
-
-@section('content_header')
-@stop
-
+@extends('layouts.app')
 @section('content')
-    <div id="app" >
-        <ahadith-component></ahadith-component>
-    </div>
-@stop
-
-@section('css')
-    <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css">
-@stop
-
-@section('js')
-    <script src="{{ asset('js/app.js') }}"> </script>
-@stop
+<div id="app">
+    <ahadith-component></ahadith-component>
+<div>
+@endsection
