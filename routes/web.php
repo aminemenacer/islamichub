@@ -23,7 +23,7 @@ use App\Http\Controllers\SurahController;
 Auth::routes();
 
 Route::get('/', function () {
-    return view('home');
+    return view('quran');
 });
 Route::get('/welcome', function () {
     return view('home');

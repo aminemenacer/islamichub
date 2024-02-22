@@ -24,7 +24,8 @@ class ImamSeeder extends Seeder
         while (($data = fgetcsv($csvFile, 2000, ",")) !== FALSE) {
             if (!$firstline) {
                 Imam::create([
-                    "imam_name" => $data['0'],
+                    "id" => $data['0'],
+                    "imam_name" => $data['1'],
                 ]);
             }
             $firstline = false;
