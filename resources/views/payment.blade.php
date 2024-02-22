@@ -1,14 +1,12 @@
-@extends('adminlte::page')
-
 @section('title', 'Dashboard')
 
 @section('content_header')
 @stop
 
 @section('content')
-    <div id="app">
-        <payment-component></payment-component>
-    </div>
+<div id="app">
+    <payment-component></payment-component>
+</div>
 @stop
 
 @section('css')

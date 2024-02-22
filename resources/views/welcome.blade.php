@@ -1,4 +1,3 @@
-@extends('adminlte::page')
 @if (!auth()->check())
 
 @section('title', 'Dashboard')
@@ -20,4 +19,3 @@
 <script src="{{ asset('js/app.js') }}"> </script>
 @stop
 @endif
-

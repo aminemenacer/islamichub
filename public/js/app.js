@@ -21057,8 +21057,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
     this.getSurahs();
   },
   data: function data() {
-    var _ref;
-    return _ref = {
+    return _defineProperty({
       selectedIndex: null,
       ayahId: null,
       data: [],
@@ -21069,8 +21068,9 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       surah: null,
       ayah: null,
       tafseer: null,
-      information: null
-    }, _defineProperty(_ref, "surah", 0), _defineProperty(_ref, "ayah_id", 0), _ref;
+      information: null,
+      ayah_id: null
+    }, "surah", 0);
   },
   methods: {
     getSurahs: function getSurahs() {
@@ -21817,7 +21817,6 @@ var _hoisted_6 = {
   }
 };
 var _hoisted_7 = {
-  "class": "card-header",
   style: {
     "padding": "10px"
   }
@@ -21880,7 +21879,7 @@ var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   }
 }, "Phone:", -1 /* HOISTED */);
 var _hoisted_23 = {
-  "class": "col-md-10"
+  "class": "col-md-12"
 };
 var _hoisted_24 = {
   "class": "form-group"
@@ -21892,7 +21891,7 @@ var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   }
 }, "Subject:", -1 /* HOISTED */);
 var _hoisted_26 = {
-  "class": "col-md-10"
+  "class": "col-md-12"
 };
 var _hoisted_27 = {
   "class": "form-group"
@@ -24364,16 +24363,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       key: data.id,
       value: data.id
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.name_en) + " - " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.name_ar), 9 /* TEXT, PROPS */, _hoisted_49);
-  }), 128 /* KEYED_FRAGMENT */))], 544 /* HYDRATE_EVENTS, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.surah]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_50, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_51, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_52, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_53, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.ayahs, function (ayah, ayahId) {
+  }), 128 /* KEYED_FRAGMENT */))], 544 /* HYDRATE_EVENTS, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.surah]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_50, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_51, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_52, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_53, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.ayahs, function (ayah, ayah_id) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("ul", {
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["col-md-4 list-group container-fluid root", {
-        'selected': $data.selectedIndex === ayahId
+        'selected': $data.selectedIndex === $data.ayahId
       }]),
       style: {
         "max-width": "100%",
         "cursor": "pointer"
       },
-      key: ayahId,
+      key: ayah_id,
       onClick: function onClick($event) {
         return $options.getTafseers(ayah.ayah_id);
       }

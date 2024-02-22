@@ -11,7 +11,7 @@
       <div class="row">
         <div class="col-lg-6 mx-auto">
           <div class="card mt-5" style="padding:10px;border-radius:10px;box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;">
-            <div class="card-header" style="padding:10px;">
+            <div  style="padding:10px;">
 
               <div class="tab-content">
                 <div class="tab-pane fade show active pt-3">
@@ -42,13 +42,13 @@
                         </div>
                       </div>
 
-                      <div class="col-md-10">
+                      <div class="col-md-12">
                         <div class="form-group">
                           <p class="lead mb-0" style="color:black">Subject:</p>
                           <input v-model="form.subject" type="text" name="subject" placeholder="Enter subject" class="form-control" />
                         </div>
                       </div>
-                      <div class="col-md-10">
+                      <div class="col-md-12">
                         <div class="form-group">
                           <p class="lead mb-0" style="color:black">Message:</p>
                           <textarea v-model="form.message" rows="5" type="text" name="message" placeholder="Enter message" class="form-control" />

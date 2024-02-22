@@ -25,11 +25,11 @@ class SurahController extends Controller
 
     public function getInformations(Request $request)
     {
-        $information = Information::with('ayah')->where('ayah_id', $request->ayahId)->first();
+        $information = Information::with('ayah')->where('id', $request->ayahId)->first();
         return response()->json($information);
     }
 
-    public function getTafseer($id)
+    public function getTafseers($id)
     {
         $tafseer = Tafseer::whereAyahId($id)->first();
         return response()->json($tafseer->tafseer);
