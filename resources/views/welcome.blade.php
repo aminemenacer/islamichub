@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<div id="app">
+<div id="app" style="padding-left: 30px">
     <quran-component></quran-component>
 <div>
 @endsection

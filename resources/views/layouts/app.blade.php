@@ -37,12 +37,27 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mx-auto">
+                    <ul class="navbar-nav justify-content-end mt-2 pr-4 flex-grow-1 pe-3">
                         <li class="nav-item">
-                            <a class="nav-link" style="font-family: serif" href="/quran">Quran</a>
+                            <h6><a class="nav-link ml-4" style="color: grey;"
+                                    href="/quran">Quran</a></h6>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" style="font-family: serif" href="/ahadith">Hadith</a>
+                            <h6><a class="nav-link ml-4" style="color: grey;"
+                                    href="/ahadith">Ahadith</a></h6>
+                        </li>
+                        <li class="nav-item">
+                            <h6><a class="nav-link ml-4" style="color: grey;"
+                                    href="/charity">Donations</a></h6>
+                        </li>
+                        <li class="nav-item">
+                            <h6><a class="nav-link ml-4 mr-5" style="color: grey;"
+                                    href="/contact">Contact Us</a></h6>
+                        </li>
+        
+                        <li class="nav-item">
+                            <h6><a class="nav-link ml-5" style="color: grey;"
+                                    href="/volunteer">Volunteer</a></h6>
                         </li>
                     </ul>
 

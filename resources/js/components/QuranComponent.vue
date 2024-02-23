@@ -4,7 +4,7 @@
   <div class="row text-center">
    <div class="col-md-12 text-center">
     <div class="row">
-      <div class="col-md-3"></div>
+     <div class="col-md-3"></div>
      <div class="col-md-6" style="display: flex; text-align: center">
       <div class="card-header">
        <h1 class="card-text text-center mt-2 mb-2" style="font-family:serif">
@@ -57,9 +57,9 @@
                         padding: 10px;
                         border-radius: 10px;
                     ">
-    <div class="card-header">
+    <div class="card-header" v-if="information != null">
 
-     <ul class="nav nav-tabs text-left justify-content-center" role="tablist" v-if="information != null">
+     <ul class="nav nav-tabs text-left justify-content-center" role="tablist">
       <li class="nav-item">
        <a class="nav-link active" data-bs-toggle="tab" href="#home" role="tab">
         Translation

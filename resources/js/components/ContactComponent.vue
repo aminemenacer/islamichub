@@ -4,8 +4,8 @@
     <div class="container py-3">
       <div class="row container">
         <div class="mr-2 ">
-          <h1 class="display-4 text-center">Get In Touch</h1>
-          <p class="lead text-muted mb-0">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here,</p><br>
+          <h1 class="display-4 text-center" style="font-family:serif">Get In Touch</h1>
+          <p class="lead text-muted mb-0" style="font-family:serif">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here,</p><br>
         </div>
       </div>
       <div class="row">
@@ -14,41 +14,41 @@
             <div  style="padding:10px;">
 
               <div class="tab-content">
-                <div class="tab-pane fade show active pt-3">
+                <div class="tab-pane fade show active ">
                   <form @reset="reset" @submit.prevent="sendMessage()" id="contactForm" name="contactForm" class="contactForm pb-5" >
                     <div class="row">
-                      <div class="col-md-6">
+                      <div class="col-md-6" style="padding:10px">
                         <div class="form-group">
                           <p class="lead mb-0" style="color:black">Firstname:</p>
                           <input v-model="form.firstname" type="text" name="firstname" placeholder="Enter firstname" class="form-control" />
                         </div>
                       </div>
-                      <div class="col-md-6">
+                      <div class="col-md-6" style="padding:10px">
                         <div class="form-group">
                           <p class="lead mb-0" style="color:black">Lastname:</p>
                           <input v-model="form.lastname" type="text" name="lastname" placeholder="Enter lastname" class="form-control" />
                         </div>
                       </div>
-                      <div class="col-md-6">
+                      <div class="col-md-6" style="padding:10px">
                         <div class="form-group">
                           <p class="lead mb-0" style="color:black">Email Address:</p>
                           <input v-model="form.email" name="email" id="email" placeholder="Enter email" class="form-control" />
                         </div>
                       </div>
-                      <div class="col-md-6">
+                      <div class="col-md-6" style="padding:10px">
                         <div class="form-group">
                           <p class="lead mb-0" style="color:black">Phone:</p>
                           <input v-model="form.mobile" type="text" name="mobile" placeholder="Enter mobile number" class="form-control" />
                         </div>
                       </div>
 
-                      <div class="col-md-12">
+                      <div class="col-md-12" style="padding:10px">
                         <div class="form-group">
                           <p class="lead mb-0" style="color:black">Subject:</p>
                           <input v-model="form.subject" type="text" name="subject" placeholder="Enter subject" class="form-control" />
                         </div>
                       </div>
-                      <div class="col-md-12">
+                      <div class="col-md-12" style="padding:10px">
                         <div class="form-group">
                           <p class="lead mb-0" style="color:black">Message:</p>
                           <textarea v-model="form.message" rows="5" type="text" name="message" placeholder="Enter message" class="form-control" />
