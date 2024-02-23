@@ -4,26 +4,26 @@
 
 
 <!-- Section: Design Block -->
-<section class="">
+<section >
     <!-- Jumbotron -->
-    <div class="px-4 py-5 px-md-5 text-center text-lg-start" style="background-color: hsl(0, 0%, 96%)">
+    <div class="px-4 py-5 px-md-5 text-center text-lg-start" style="background-color: transparent">
       <div class="container">
         <div class="row gx-lg-5 align-items-center">
           <div class="col-lg-6 mb-5 mb-lg-0">
-            <h1 class="my-5 display-3 fw-bold ls-tight">
+            <h1 class="my-3 display-2 fw-bold ls-tight" style="font-family:arial">
               The best offer <br />
               <span class="text-success">for your business</span>
             </h1>
-            <p style="color: hsl(217, 10%, 50.8%)">
+            <h5 style="color: hsl(217, 10%, 50.8%);font-family:arial;line-height:1.7em" >
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
               Eveniet, itaque accusantium odio, soluta, corrupti aliquam
               quibusdam tempora at cupiditate quis eum maiores libero
               veritatis? Dicta facilis sint aliquid ipsum atque?
-            </p>
+            </h5>
           </div>
   
           <div class="col-lg-6 mb-5 mb-lg-0">
-            <div class="card">
+            <div class="card" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px; border-radius:20px">
 
                 <div class="card-body">
                     <div class="text-center container pb-3">

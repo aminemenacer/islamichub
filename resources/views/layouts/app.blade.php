@@ -39,42 +39,42 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav justify-content-end mt-2 pr-4 flex-grow-1 pe-3">
                         <li class="nav-item">
-                            <h6><a class="nav-link ml-4" style="color: grey;"
-                                    href="/quran">Quran</a></h6>
+                            <h5><a class="nav-link ml-4" style="color: grey;"
+                                    href="/quran">Quran</a></h5>
                         </li>
                         <li class="nav-item">
-                            <h6><a class="nav-link ml-4" style="color: grey;"
-                                    href="/ahadith">Ahadith</a></h6>
+                            <h5><a class="nav-link ml-4" style="color: grey;"
+                                    href="/ahadith">Ahadith</a></h5>
                         </li>
                         <li class="nav-item">
-                            <h6><a class="nav-link ml-4" style="color: grey;"
-                                    href="/charity">Donations</a></h6>
+                            <h5><a class="nav-link ml-4" style="color: grey;"
+                                    href="/charity">Donations</a></h5>
                         </li>
                         <li class="nav-item">
-                            <h6><a class="nav-link ml-4 mr-5" style="color: grey;"
-                                    href="/contact">Contact Us</a></h6>
+                            <h5><a class="nav-link ml-4 mr-5" style="color: grey;"
+                                    href="/contact">Contact Us</a></h5>
                         </li>
         
                         <li class="nav-item">
-                            <h6><a class="nav-link ml-5" style="color: grey;"
-                                    href="/volunteer">Volunteer</a></h6>
+                            <h5><a class="nav-link ml-5" style="color: grey;"
+                                    href="/volunteer">Volunteer</a></h5>
                         </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto ml-4">
+                    <ul class="navbar-nav ms-auto mt-2 ml-4">
                         <!-- Authentication Links -->
 
                         @guest
                         @if (Route::has('login'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <h5><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></h5>
                         </li>
                         @endif
 
                         @if (Route::has('register'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <h5><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></h5>
                         </li>
                         @endif
                         @else
