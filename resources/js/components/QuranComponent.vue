@@ -57,7 +57,7 @@
                         padding: 10px;
                         border-radius: 10px;
                     ">
-    <div class="card-header" v-if="information != null">
+    <div v-if="information != null">
 
      <ul class="nav nav-tabs text-left justify-content-center" role="tablist">
       <li class="nav-item">
@@ -173,10 +173,10 @@
   </div>
 
   <!-- right side chapter list -->
-  <div class="col-md-4 sticky-top" v-if="ayah == null">
+  <div class="col-md-4 sticky-top container" v-if="ayah == null">
 
    <form class="mb-2 " style="border: 4px solid #c3e6cb;border-radius: 8px;">
-    <select class="form-control" v-model="surah" @change="getAyahs()">
+    <select class="form-control " v-model="surah" @change="getAyahs()">
      <option value="0">
       <span style="font-family:serif">Select Surah</span>
      </option>

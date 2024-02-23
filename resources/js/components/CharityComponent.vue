@@ -49,7 +49,7 @@
           </div>
          </div>
          <div>
-          <button type="button" class="subscribe btn btn-secondary btn-block" @click="initiatePayment">Pay Now</button>
+          <button type="button" class="subscribe btn btn-success btn-lg btn-block" @click="initiatePayment">Pay Now</button>
          </div>
         </form>
        </div>

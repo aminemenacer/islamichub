@@ -10,12 +10,14 @@
       </div>
       <div class="row">
         <div class="col-lg-6 mx-auto">
-          <div class="card mt-5" style="padding:10px;border-radius:10px;box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;">
-            <div  style="padding:10px;">
 
-              <div class="tab-content">
-                <div class="tab-pane fade show active ">
-                  <form @reset="reset" @submit.prevent="sendMessage()" id="contactForm" name="contactForm" class="contactForm pb-5" >
+        <div class="card" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px; border-radius:20px">
+                <div class="card-body">
+                    <div class="text-center container pb-3">
+                        <img src="/images/logo8.png"
+                        style="width: 80%;" alt="logo">
+                    </div>
+                    <form @reset="reset" @submit.prevent="sendMessage()" id="contactForm" name="contactForm" class="contactForm pb-3" >
                     <div class="row">
                       <div class="col-md-6" style="padding:10px">
                         <div class="form-group">
@@ -51,20 +53,20 @@
                       <div class="col-md-12" style="padding:10px">
                         <div class="form-group">
                           <p class="lead mb-0" style="color:black">Message:</p>
-                          <textarea v-model="form.message" rows="5" type="text" name="message" placeholder="Enter message" class="form-control" />
+                          <textarea v-model="form.message" rows="4" type="text" name="message" placeholder="Enter message" class="form-control" />
                           </div>
                         </div>
                         <div class="col-md-12">
                           <div class="form-group">
-                            <input type="submit" value="Send Message" class="btn text-white btn-lg" style="background:rgba(34,179,127,255)">
+                            <input type="submit" value="Send Message" class="btn btn-success text-white btn-lg">
                           </div>
                         </div>
-                      </div>
+                    </div>
                   </form>
                 </div>
-              </div>
             </div>
-          </div>
+
+          
         </div>
         <div class="col-lg-6 mt-5 d-none d-lg-block"><img src="/images/message.png" alt="" class="img-fluid"></div>
       </div>
