@@ -11,14 +11,14 @@
   </div>
   <div class="row">
    <div class="col-lg-6 mx-auto">
-    <div class="card mt-5" style="border-radius:8px">
+    <div class="card mt-5 box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;" style="border-radius:8px">
      <div class="card-header" style="border-radius:8px">
 
       <div class="tab-content">
        <div id="credit-card" class="tab-pane fade show active pt-3">
-        <form role="form" onsubmit="event.preventDefault()">
+        <form role="form" onsubmit="event.preventDefault()" style="padding:10px">
 
-         <div class="form-group"> <label for="cardNumber">
+         <div class="form-group mb-3"> <label for="cardNumber">
            <h6>Card number</h6>
           </label>
           <div class="input-group"> <input type="text" name="card_number" placeholder="Valid card number" class="form-control " required>
@@ -26,15 +26,15 @@
           </div>
          </div>
          <h6 for="amount">Amount:</h6>
-         <input v-model="amount" class="form-control" type="number" min="1" step="0.01">
+         <input v-model="amount" class="form-control mb-3" type="number" min="1" step="0.01">
 
          <h6 class="mt-2" for="currency">Currency:</h6>
-         <select class="form-control" v-model="selectedCurrency">
+         <select class="form-control mb-3" v-model="selectedCurrency">
           <option value="usd">USD</option>
           <option value="eur">EUR</option>
           <option value="eur">GBP</option>
          </select>
-         <div class="row">
+         <div class="row mb-3">
           <div class="col-sm-8">
            <div class="form-group"> <label><span class="hidden-xs">
               <h6 class="mt-2">Expiration Date</h6>
@@ -48,8 +48,8 @@
             </label> <input type="text" required class="form-control"> </div>
           </div>
          </div>
-         <div>
-          <button type="button" class="subscribe btn btn-success btn-lg btn-block" @click="initiatePayment">Pay Now</button>
+         <div class="row">
+          <button type="button" class="subscribe btn btn-success btn-lg btn-block col-md-12" @click="initiatePayment">Pay Now</button>
          </div>
         </form>
        </div>

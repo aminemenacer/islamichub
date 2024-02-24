@@ -11,7 +11,7 @@
       <div class="row">
         <div class="col-lg-6 mx-auto">
 
-        <div class="card" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px; border-radius:20px">
+        <div class="card" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px; border-radius:20px;padding:15px">
                 <div class="card-body">
                     <div class="text-center container pb-3">
                         <img src="/images/logo8.png"

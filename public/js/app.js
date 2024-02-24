@@ -21525,7 +21525,7 @@ var _hoisted_5 = {
   "class": "col-lg-6 mx-auto"
 };
 var _hoisted_6 = {
-  "class": "card mt-5",
+  "class": "card mt-5 box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;",
   style: {
     "border-radius": "8px"
   }
@@ -21545,9 +21545,12 @@ var _hoisted_9 = {
 };
 var _hoisted_10 = {
   role: "form",
-  onsubmit: "event.preventDefault()"
+  onsubmit: "event.preventDefault()",
+  style: {
+    "padding": "10px"
+  }
 };
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"form-group\"><label for=\"cardNumber\"><h6>Card number</h6></label><div class=\"input-group\"><input type=\"text\" name=\"card_number\" placeholder=\"Valid card number\" class=\"form-control\" required><div class=\"input-group-append\"><span class=\"input-group-text text-muted\"><i class=\"fab fa-cc-visa mx-1\"></i> <i class=\"fab fa-cc-mastercard mx-1\"></i> <i class=\"fab fa-cc-amex mx-1\"></i></span></div></div></div><h6 for=\"amount\">Amount:</h6>", 2);
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"form-group mb-3\"><label for=\"cardNumber\"><h6>Card number</h6></label><div class=\"input-group\"><input type=\"text\" name=\"card_number\" placeholder=\"Valid card number\" class=\"form-control\" required><div class=\"input-group-append\"><span class=\"input-group-text text-muted\"><i class=\"fab fa-cc-visa mx-1\"></i> <i class=\"fab fa-cc-mastercard mx-1\"></i> <i class=\"fab fa-cc-amex mx-1\"></i></span></div></div></div><h6 for=\"amount\">Amount:</h6>", 2);
 var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", {
   "class": "mt-2",
   "for": "currency"
@@ -21562,8 +21565,11 @@ var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   value: "eur"
 }, "GBP", -1 /* HOISTED */);
 var _hoisted_17 = [_hoisted_14, _hoisted_15, _hoisted_16];
-var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"row\"><div class=\"col-sm-8\"><div class=\"form-group\"><label><span class=\"hidden-xs\"><h6 class=\"mt-2\">Expiration Date</h6></span></label><div class=\"input-group\"><input type=\"number\" placeholder=\"MM\" name=\"\" class=\"form-control\" required> <input type=\"number\" placeholder=\"YY\" name=\"\" class=\"form-control\" required></div></div></div><div class=\"col-sm-4\"><div class=\"form-group mb-4\"><label data-toggle=\"tooltip\" title=\"Three digit CV code on the back of your card\"><h6>CVV <i class=\"fa fa-question-circle d-inline\"></i></h6></label> <input type=\"text\" required class=\"form-control\"></div></div></div>", 1);
-var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"row mb-3\"><div class=\"col-sm-8\"><div class=\"form-group\"><label><span class=\"hidden-xs\"><h6 class=\"mt-2\">Expiration Date</h6></span></label><div class=\"input-group\"><input type=\"number\" placeholder=\"MM\" name=\"\" class=\"form-control\" required> <input type=\"number\" placeholder=\"YY\" name=\"\" class=\"form-control\" required></div></div></div><div class=\"col-sm-4\"><div class=\"form-group mb-4\"><label data-toggle=\"tooltip\" title=\"Three digit CV code on the back of your card\"><h6>CVV <i class=\"fa fa-question-circle d-inline\"></i></h6></label> <input type=\"text\" required class=\"form-control\"></div></div></div>", 1);
+var _hoisted_19 = {
+  "class": "row"
+};
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "col-lg-6 mt-5 d-none d-lg-block"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
   src: "/images/group.png",
@@ -21576,22 +21582,22 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
       return $data.amount = $event;
     }),
-    "class": "form-control",
+    "class": "form-control mb-3",
     type: "number",
     min: "1",
     step: "0.01"
   }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.amount]]), _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
-    "class": "form-control",
+    "class": "form-control mb-3",
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
       return $data.selectedCurrency = $event;
     })
-  }, [].concat(_hoisted_17), 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.selectedCurrency]]), _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, [].concat(_hoisted_17), 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.selectedCurrency]]), _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     type: "button",
-    "class": "subscribe btn btn-success btn-lg btn-block",
+    "class": "subscribe btn btn-success btn-lg btn-block col-md-12",
     onClick: _cache[2] || (_cache[2] = function () {
       return $options.initiatePayment && $options.initiatePayment.apply($options, arguments);
     })
-  }, "Pay Now")])])])])])])]), _hoisted_19])])]);
+  }, "Pay Now")])])])])])])]), _hoisted_20])])]);
 }
 
 /***/ }),
@@ -21640,7 +21646,8 @@ var _hoisted_6 = {
   "class": "card",
   style: {
     "box-shadow": "rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px",
-    "border-radius": "20px"
+    "border-radius": "20px",
+    "padding": "15px"
   }
 };
 var _hoisted_7 = {
@@ -24214,7 +24221,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       },
       key: ayah_id,
       onClick: function onClick($event) {
-        return $options.getTafseers(ayah.ayah_id);
+        return $options.getTafseers(ayah.id);
       }
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_51, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", _hoisted_52, "Verse: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(ayah.ayah_id), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", _hoisted_53, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(ayah.ayah_text), 1 /* TEXT */)])], 10 /* CLASS, PROPS */, _hoisted_50);
   }), 128 /* KEYED_FRAGMENT */))])])])]), _hoisted_54])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]);
@@ -24783,7 +24790,7 @@ __webpack_require__.r(__webpack_exports__);
 var _hoisted_1 = {
   id: "app"
 };
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"container\"><h1 class=\"display-4 text-center\" style=\"font-family:serif;\">Help us grow</h1><div class=\"row align-items-center\"><div class=\"container-fluid col-lg-6\"><p class=\"lead text-muted mb-0\" style=\"font-family:serif;\">We are a community-driven business dedicated to making a positive impact through volunteerism. Our organization believes in the power of collective effort to bring about meaningful change. Whether you are a student, professional, retiree, or someone with a passion for giving back, Helping Hands Haven welcomes individuals from all walks of life.</p><button type=\"button btn-xl\" class=\"btn-md btn btn-outline-success mt-3\">Learn more</button></div><div class=\"col-lg-6 d-none d-lg-block\"><img src=\"/images/helpp.png\" alt=\"\" class=\"img-fluid\"></div></div></div>", 1);
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"container\"><h1 class=\"display-4 text-center\" style=\"font-family:serif;\">Help us grow</h1><div class=\"row align-items-center\"><div class=\"container-fluid col-lg-6\"><p class=\"lead text-muted mb-0\" style=\"font-family:serif;\">We are a community-driven business dedicated to making a positive impact through volunteerism. Our organization believes in the power of collective effort to bring about meaningful change. Whether you are a student, professional, retiree, or someone with a passion for giving back, Helping Hands Haven welcomes individuals from all walks of life.</p><button type=\"button btn-xl\" class=\"btn-md btn btn-outline-success mt-3\">Learn more</button></div><div class=\"col-lg-6 d-none d-lg-block\"><img src=\"/images/volunteer1.png\" alt=\"\" class=\"img-fluid\"></div></div></div>", 1);
 var _hoisted_3 = [_hoisted_2];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [].concat(_hoisted_3));

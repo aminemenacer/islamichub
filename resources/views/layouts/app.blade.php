@@ -18,6 +18,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script src="{{ asset('js/app.js') }}" defer></script>
 
+    <link rel="icon" href="{{ asset('images/favicon.ico') }}">
 
 
 </head>
@@ -39,67 +40,77 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav justify-content-end mt-2 pr-4 flex-grow-1 pe-3" >
                         <li class="nav-item" >
-                            <h5><a style="font-family:arial" class="nav-link ml-4" style="color: grey;"
+                            <h5><a style="font-family:inter" class="nav-link ml-4" style="color: grey;"
                                     href="/quran">Quran</a></h5>
                         </li>
                         <li class="nav-item">
-                            <h5><a style="font-family:arial" class="nav-link ml-4" style="color: grey;"
+                            <h5><a style="font-family:inter" class="nav-link ml-4" style="color: grey;"
                                     href="/ahadith">Ahadith</a></h5>
                         </li>
                         <li class="nav-item">
-                            <h5><a style="font-family:arial" class="nav-link ml-4" style="color: grey;"
+                            <h5><a style="font-family:inter" class="nav-link ml-4" style="color: grey;"
                                     href="/charity">Donations</a></h5>
                         </li>
                         <li class="nav-item">
-                            <h5><a style="font-family:arial" class="nav-link ml-4 mr-5" style="color: grey;"
+                            <h5><a style="font-family:inter" class="nav-link ml-4 mr-5" style="color: grey;"
                                     href="/contact">Contact Us</a></h5>
                         </li>
         
                         <li class="nav-item">
-                            <h5><a style="font-family:arial;padding-right:20px" class="nav-link ml-5 mr-4" style="color: grey;"
+                            <h5><a style="font-family:inter;padding-right:20px" class="nav-link pr-5" style="color: grey;"
                                     href="/volunteer">Volunteer</a></h5>
                         </li>
+
+                        <li class="nav-item pr-5">
+                            <a href="/charity" type="button" class="btn btn-success">Donation</a>
+                        </li>
+                        
                     </ul>
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto mt-2 ml-4">
-                        <!-- Authentication Links -->
+                    <!-- Right Side Of Navbar 
+                        <ul class="navbar-nav mt-2 pl-5 mr-4">
+                            -- Authentication Links --
+                            <li class="nav-item pr-5">
+                                <a href="/charity" type="button" class="btn btn-success">Donation</a>
+                            </li>
+                            @guest
+                            @if (Route::has('login'))
+                            <li class="nav-item">
+                                <h5><a style="font-family:inter" class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></h5>
+                            </li>
+                            @endif
 
-                        @guest
-                        @if (Route::has('login'))
-                        <li class="nav-item">
-                            <h5><a style="font-family:arial" class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></h5>
-                        </li>
-                        @endif
-
-                        @if (Route::has('register'))
-                        <li class="nav-item">
-                            <h5><a style="font-family:arial" class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></h5>
-                        </li>
-                        @endif
-                        @else
-                        <li class="nav-item dropdown ml-5">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }}
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                            @if (Route::has('register'))
+                            <li class="nav-item">
+                                <h5><a style="font-family:inter" class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></h5>
+                            </li>
+                            @endif
+                            @else
+                            <li class="nav-item dropdown ml-5">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }}
                                 </a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                            </div>
-                        </li>
-                        @endguest
-                    </ul>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                        document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                            @endguest
+                        </ul>
+                    -->
                 </div>
             </div>
         </nav>
+
+        
 
         <main class="py-4">
             @yield('content')

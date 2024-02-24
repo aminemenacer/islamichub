@@ -196,7 +196,7 @@
                                     border: 5px solid #c3e6cb;
                                 ">
 
-       <ul class="col-md-4 list-group container-fluid root" style="min-width: 100%; cursor: pointer" v-for="(ayah, ayah_id) in ayahs" :key="ayah_id" @click="getTafseers(ayah.ayah_id)" :class="{ 'selected': selectedIndex === ayahId }">
+       <ul class="col-md-4 list-group container-fluid root" style="min-width: 100%; cursor: pointer" v-for="(ayah, ayah_id) in ayahs" :key="ayah_id" @click="getTafseers(ayah.id)" :class="{ 'selected': selectedIndex === ayahId }">
         <li class="list-group-item container-fluid min-width:100%" id="toggle" style="cursor: pointer; background: transparent; padding:20px">
          <h5 style="display: flex;font-family:serif">Verse: {{ayah.ayah_id}}</h5>
          <h5 style="font-family:serif">{{ ayah.ayah_text }}</h5>
