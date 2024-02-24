@@ -104,14 +104,9 @@
         <div class="col-md-6">
          <img src="/images/calligraphy.png" class="pl-3" style="width: 70%" />
         </div>
-        <div class="col-md-6">
-         <h2 class="mb-3 mt-3 text-center" style="font-family:serif">
-          The Holy Quran
-         </h2>
-         <span class="container text-left mb-4 lead text-muted mb-0 pt-3" style="line-height: 1.5em;font-family:serif">The Quran, considered the holy
-          The Quran also spelled as Qur'an is the holy
-          book of Islam, considered by Muslims to be
-          the verbatim word of God.
+        <div class="col-md-6 pt-">
+         <span class="container text-left mb-4 lead text-muted mb-0 " style="line-height: 1.5em;font-family:serif">The Quran, considered the holy
+            The Quran, also spelled as Qur'an, is the holy book of Islam and is considered by Muslims to be the literal word of God as revealed to the Prophet Muhammad (peace be upon him) through the Angel Gabriel. It is the primary source of guidance for Muslims and serves as a comprehensive manual for life, covering matters of faith, morality, law, and guidance for personal conduct.
          </span>
         </div>
        </div>

@@ -28,7 +28,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm sticky-top">
             <div class=" pl-5 container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="/images/logo8.png" width="290" height="50" class="d-inline-block align-top ml-5" alt="">
+                    <img src="/images/logo6.png" width="275" height="58" class="d-inline-block align-top ml-5" alt="">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"

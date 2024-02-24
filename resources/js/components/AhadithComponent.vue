@@ -218,7 +218,11 @@
         <h4 style="font-family:serif">Books:</h4>
        </h5>
 
-       <ul class="col-md-4 list-group container-fluid" style="min-width: 100%; cursor: pointer" v-for="(chapter, chapterId) in chapters" :key="chapterId" @click="getAhadiths(chapter.chapter_id)" :class="{ 'selected': selectedIndex === chapterId }">
+       <ul class="col-md-4 list-group container-fluid" style="min-width: 100%; cursor: pointer" 
+       v-for="(chapter, chapterId) in chapters" :key="chapterId" 
+       @click="getAhadiths(chapter.chapter_id)" 
+       :class="{ 'selected': selectedIndex === chapterId }">
+       
         <li class="list-group-item container-fluid min-width:100%" id="toggle" style="cursor: pointer; background: transparent; padding:15px">
          <h5 class="lead mb-2" style="font-family:serif">
           {{ chapter.chapter_text }}

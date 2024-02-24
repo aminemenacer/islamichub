@@ -21654,11 +21654,11 @@ var _hoisted_7 = {
   "class": "card-body"
 };
 var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "text-center container pb-3"
+  "class": "text-center container pb-4 text-left"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-  src: "/images/logo8.png",
+  src: "/images/logo6.png",
   style: {
-    "width": "80%"
+    "width": "50%"
   },
   alt: "logo"
 })], -1 /* HOISTED */);
@@ -24028,7 +24028,7 @@ var _hoisted_19 = {
   id: "home",
   role: "tabpanel"
 };
-var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"row\" data-v-2b3c2c26><div class=\"col-md-6\" data-v-2b3c2c26><img src=\"/images/calligraphy.png\" class=\"pl-3\" style=\"width:70%;\" data-v-2b3c2c26></div><div class=\"col-md-6\" data-v-2b3c2c26><h2 class=\"mb-3 mt-3 text-center\" style=\"font-family:serif;\" data-v-2b3c2c26> The Holy Quran </h2><span class=\"container text-left mb-4 lead text-muted mb-0 pt-3\" style=\"line-height:1.5em;font-family:serif;\" data-v-2b3c2c26>The Quran, considered the holy The Quran also spelled as Qur&#39;an is the holy book of Islam, considered by Muslims to be the verbatim word of God. </span></div></div>", 1);
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"row\" data-v-2b3c2c26><div class=\"col-md-6\" data-v-2b3c2c26><img src=\"/images/calligraphy.png\" class=\"pl-3\" style=\"width:70%;\" data-v-2b3c2c26></div><div class=\"col-md-6 pt-\" data-v-2b3c2c26><span class=\"container text-left mb-4 lead text-muted mb-0\" style=\"line-height:1.5em;font-family:serif;\" data-v-2b3c2c26>The Quran, considered the holy The Quran, also spelled as Qur&#39;an, is the holy book of Islam and is considered by Muslims to be the literal word of God as revealed to the Prophet Muhammad (peace be upon him) through the Angel Gabriel. It is the primary source of guidance for Muslims and serves as a comprehensive manual for life, covering matters of faith, morality, law, and guidance for personal conduct. </span></div></div>", 1);
 var _hoisted_21 = [_hoisted_20];
 var _hoisted_22 = {
   key: 1,
