@@ -28,7 +28,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm sticky-top">
             <div class=" pl-5 container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="/images/logo6.png" width="275" height="58" class="d-inline-block align-top ml-5" alt="">
+                    <img src="/images/logo1.png" width="275" height="58" class="d-inline-block align-top ml-5" alt="">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -38,30 +38,31 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav justify-content-end mt-2 pr-4 flex-grow-1 pe-3" >
+                    <ul class="navbar-nav justify-content-end mt-2 pr-4 flex-grow-1 " >
                         <li class="nav-item" >
-                            <h5><a style="font-family:inter" class="nav-link ml-4" style="color: grey;"
+                            <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: grey;"
                                     href="/quran">Quran</a></h5>
                         </li>
                         <li class="nav-item">
-                            <h5><a style="font-family:inter" class="nav-link ml-4" style="color: grey;"
+                            <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: grey;"
                                     href="/ahadith">Ahadith</a></h5>
                         </li>
                         <li class="nav-item">
-                            <h5><a style="font-family:inter" class="nav-link ml-4" style="color: grey;"
+                            <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: grey;"
                                     href="/charity">Donations</a></h5>
                         </li>
                         <li class="nav-item">
-                            <h5><a style="font-family:inter" class="nav-link ml-4 mr-5" style="color: grey;"
+                            <h5><a style="font-family:inter" class="nav-link ml-4 pr-5 pl-3" style="color: grey;"
                                     href="/contact">Contact Us</a></h5>
                         </li>
-        
+                        <!--
                         <li class="nav-item">
-                            <h5><a style="font-family:inter;padding-right:20px" class="nav-link pr-5" style="color: grey;"
+                            <h5><a style="font-family:inter;padding-right:20px" class="nav-link pr-5 pl-3" style="color: grey;"
                                     href="/volunteer">Volunteer</a></h5>
                         </li>
+                     -->
 
-                        <li class="nav-item pr-5">
+                        <li class="nav-item pl-5" style="padding-left:5%">
                             <a href="/charity" type="button" class="btn btn-success">Donation</a>
                         </li>
                         

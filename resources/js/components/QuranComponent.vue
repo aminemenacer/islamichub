@@ -15,27 +15,7 @@
         The Quran, considered the holy scripture of Islam, is a sacred and comprehensive compilation of revelations believed by Muslims to have been conveyed to the Prophet Muhammad by the archangel Gabriel.
        </h5>
       </div>
-      <!-- multiple input sections 
-              <label class="pt-2 pl-3 pr-2" style="display:flex">Surah:</label>
-              <form class="col-md-5">
-                <select class="form-control" v-model='surah' @change='getAyahs()'>
-                  <option value="0"><span>Select Surah</span></option>
-                  <option v-for='data in surahs' :key="data.id" :value='data.id'>{{ data.name_en }}, {{ data.name_ar }}</option>
-                </select>
-              </form>
-              <label class="pt-2 pl-3 pr-2">Ayah:</label>
 
-              <form class="col-md-8 ">
-                <select class='form-control' v-model='ayah_id' @change='getTafseers(data.ayah_id)'>
-                  <option value="0">Select Ayah</option>
-                  <option v-for='data in ayahs' :key="data.id" :value='data.id'>{{ data.ayah_id }}, {{ data.ayah_text }}</option>
-                </select>
-              </form>
-
-              <form class="ml-3 col-md-4 ">
-                <input class="form-control input is-primary" type="text" placeholder="Search keyword" />
-              </form>
-            -->
      </div>
      <div class="col-md-3"></div>
     </div>
@@ -83,12 +63,10 @@
         <ul class="ul-main">
          <img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" />
          <li class="li-main mr-3">
-          <span class="span-main">{{ information.ayah.surah_id }}
-           ;
-           {{
-                                                    information.ayah.ayah_id
-                                                }}</span>
+          <span class="span-main">{{ information.ayah.surah_id }};
+           {{information.ayah.ayah_id}}</span>
          </li>
+
         </ul>
        </div>
        <div class="col-md-5"></div>
@@ -106,7 +84,7 @@
         </div>
         <div class="col-md-6 pt-">
          <span class="container text-left mb-4 lead text-muted mb-0 " style="line-height: 1.5em;font-family:serif">The Quran, considered the holy
-            The Quran, also spelled as Qur'an, is the holy book of Islam and is considered by Muslims to be the literal word of God as revealed to the Prophet Muhammad (peace be upon him) through the Angel Gabriel. It is the primary source of guidance for Muslims and serves as a comprehensive manual for life, covering matters of faith, morality, law, and guidance for personal conduct.
+          The Quran, also spelled as Qur'an, is the holy book of Islam and is considered by Muslims to be the literal word of God as revealed to the Prophet Muhammad (peace be upon him) through the Angel Gabriel. It is the primary source of guidance for Muslims and serves as a comprehensive manual for life, covering matters of faith, morality, law, and guidance for personal conduct.
          </span>
         </div>
        </div>
@@ -190,11 +168,10 @@
                                     background: transparent;
                                     border: 5px solid #c3e6cb;
                                 ">
-
-       <ul class="col-md-4 list-group container-fluid root" style="min-width: 100%; cursor: pointer" v-for="(ayah, ayah_id) in ayahs" :key="ayah_id" @click="getTafseers(ayah.id)" :class="{ 'selected': selectedIndex === ayahId }">
-        <li class="list-group-item container-fluid min-width:100%" id="toggle" style="cursor: pointer; background: transparent; padding:20px">
-         <h5 style="display: flex;font-family:serif">Verse: {{ayah.ayah_id}}</h5>
-         <h5 style="font-family:serif">{{ ayah.ayah_text }}</h5>
+       <ul class="col-md-4 list-group container-fluid root" style="min-width: 100%; cursor: pointer" v-for="(ayah, index) in ayahs" :key="index" @click="getTafseers(ayah.id, index)" :class="{ 'selected': selectedIndexAyah === index }">
+        <li class="list-group-item container-fluid" id="toggle" style="cursor: pointer; background: transparent; padding: 20px">
+         <h5 style="display: flex; font-family: serif">Verse: {{ ayah.ayah_id }}</h5>
+         <h5 style="font-family: serif">{{ ayah.ayah_text }}</h5>
         </li>
        </ul>
 
@@ -210,6 +187,28 @@
 </div>
 </template>
 
+<!-- multiple input sections 
+  <label class="pt-2 pl-3 pr-2" style="display:flex">Surah:</label>
+  <form class="col-md-5">
+    <select class="form-control" v-model='surah' @change='getAyahs()'>
+      <option value="0"><span>Select Surah</span></option>
+      <option v-for='data in surahs' :key="data.id" :value='data.id'>{{ data.name_en }}, {{ data.name_ar }}</option>
+    </select>
+  </form>
+  <label class="pt-2 pl-3 pr-2">Ayah:</label>
+
+  <form class="col-md-8 ">
+    <select class='form-control' v-model='ayah_id' @change='getTafseers(data.ayah_id)'>
+      <option value="0">Select Ayah</option>
+      <option v-for='data in ayahs' :key="data.id" :value='data.id'>{{ data.ayah_id }}, {{ data.ayah_text }}</option>
+    </select>
+  </form>
+
+  <form class="ml-3 col-md-4 ">
+    <input class="form-control input is-primary" type="text" placeholder="Search keyword" />
+  </form>
+-->
+
 <script>
 export default {
  mounted() {
@@ -217,7 +216,7 @@ export default {
  },
  data() {
   return {
-   selectedIndex: null,
+   selectedIndexAyah: null,
    ayahId: null,
    data: [],
    surahs: [],
@@ -229,10 +228,47 @@ export default {
    tafseer: null,
    information: null,
    ayah_id: null,
+   id: null,
    surah: 0,
   };
  },
  methods: {
+  getTafseers: function (id, index) {
+   this.selectedIndexAyah = index;
+
+   axios.get(`/tafseer/${id}/fetch`).then(
+    function (response) {
+     console.log(response);
+     this.selectedAyah = id;
+     this.tafseer = response.data;
+    }.bind(this)
+   );
+
+   axios.get("/get_informations", {
+    params: {
+     id: id,
+    },
+   }).then(
+    function (response) {
+     this.selectedAyah = id;
+     this.information = response.data;
+    }.bind(this)
+   );
+  },
+
+  getAyahs: function (id) {
+   this.selectedIndexAyah = id;
+   axios.get("/get_ayahs", {
+    params: {
+     surah_id: this.surah,
+    },
+   }).then(
+    function (response) {
+     this.ayahs = response.data;
+    }.bind(this)
+   );
+  },
+
   getSurahs: function () {
    axios
     .get("/get_surahs", {
@@ -243,46 +279,6 @@ export default {
     .then(
      function (response) {
       this.surahs = response.data;
-     }.bind(this)
-    );
-  },
-
-  getAyahs: function (ayahId) {
-   this.selectedIndex = ayahId - 1;
-   axios
-    .get("/get_ayahs", {
-     params: {
-      surah_id: this.surah,
-     },
-    })
-    .then(
-     function (response) {
-      this.ayahs = response.data;
-     }.bind(this)
-    );
-  },
-
-  getTafseers: function (ayahId) {
-   this.selectedIndex = ayahId - 1;
-
-   axios.get(`/tafseer/${ayahId}/fetch`).then(
-    function (response) {
-     console.log(response);
-     this.selectedAyah = ayahId;
-     this.tafseer = response.data;
-    }.bind(this)
-   );
-
-   axios
-    .get("/get_informations", {
-     params: {
-      ayahId: ayahId,
-     },
-    })
-    .then(
-     function (response) {
-      this.selectedAyah = ayahId;
-      this.information = response.data;
      }.bind(this)
     );
   },

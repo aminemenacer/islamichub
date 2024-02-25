@@ -58,81 +58,25 @@
   </div>
  </div>
 
+ <div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6" style="display: flex; text-align: center">
+   <div class="card-header text-center">
+    <h1 class="card-text" style="font-family:serif">
+     Hadith Collection
+    </h1>
 
-   <div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-6" style="display: flex; text-align: center">
-     <div class="card-header text-center">
-      <h1 class="card-text" style="font-family:serif">
-       Hadith Collection
-      </h1>
-
-      <h5 class="card-text container lead text-muted mb-0 " style="line-height: 1.7em; font-family:serif; font-weight-bold">
-       Hadiths are the recorded sayings, actions, and
-       approvals of Prophet Muhammad (peace be upon
-       him) in Islam.
-      </h5>
-     </div>
-    </div>
-    <div class="col-md-3"></div>
+    <h5 class="card-text container lead text-muted mb-0 " style="line-height: 1.7em; font-family:serif; ">
+     Hadiths are the recorded sayings, actions, and
+     approvals of Prophet Muhammad (peace be upon
+     him) in Islam.
+    </h5>
    </div>
+  </div>
+  <div class="col-md-3"></div>
+ </div>
 
 
- <!-- multiple input sections 
-          <div class="row  mt-3 text-center pt-3 container-fluid">
-            <div class="col-md-12 pt-3 text-center" style="box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px,rgba(0, 0, 0, 0.24) 0px 1px 2px;border-radius: 10px;background: transparent;border: 3px solid #c3e6cb;">
-              <div class="row">
-                <div class="col-md-12 container" style="display: flex; text-align: center">
-                  
-                  <label class="pt-2 pl-3 pr-2" style="display: flex">Imam:</label>
-                  <form class="col-md-3">
-                    <select class="form-control" v-model="imam" @change="getChapters()">
-                      <option value="0">
-                        <span>Select Imam</span>
-                      </option>
-                      <option v-for="data in imams" :key="data.id" :value="data.id">
-                        {{ data.imam_name }}
-                      </option>
-                    </select>
-                  </form>
-
-                  <label class="pt-2 pl-3 pr-3">Chapter:</label>
-                  <form class="col-md-3">
-                    <select class="form-control" v-model="chapter_id" @change="getAhadiths()">
-                      <option value="0">
-                        <span>Select Chapter</span>
-                      </option>
-                      <option v-for="data in chapters" :key="data.id" :value="data.id">
-                        {{ data.chapter_text }}
-                      </option>
-                    </select>
-                  </form>
-
-                  <form class="mb-4 col-md-4" style="display: flex" @submit.prevent="search()">
-                    <input style="padding: 12px" class="form-control mr-2 icon col-lg-12" type="search" id="search" name="search" @keyup="search" v-model="searchFilters.hadith_en" placeholder="Search for Keyword" aria-label="Search" />
-                  </form>
-                  <hr />
-                </div>
-              </div>
-            </div>
-          </div> 
-        -->
-
- <!--  
-          <div class="container row" >
-            <div style="padding:10px" class="container col-md-12 pt-4">
-              <input class="container button-33 mr-2" type="button" v-for="data in imams" :key="data.id" :value="data.imam_name" @click="getChapters()" />
-            </div>
-          </div>
-
-          <div class="container mt-2" v-if="ahadith == null">
-            <div class="row container">
-              <ul class="col-md-2 list-group mb-3" style="display:flex"  v-for="data in imams" :key="data.id" :value="data.imam_name" @click="getChapters()">
-                <li class="list-group-item list-group-item-success text-center"  style="cursor:pointer" >{{ data.imam_name }}</li>
-              </ul>
-            </div>
-          </div>
-        -->
 
  <div class="conainer">
   <div class="row">
@@ -214,15 +158,12 @@
                                     border: 3px solid #c3e6cb;
                                     border-radius: 8px;
                                 ">
-       <h5 class="text-left lead font-weight-bold mb-2">
+       <h5 class="text-left lead  mb-2">
         <h4 style="font-family:serif">Books:</h4>
        </h5>
 
-       <ul class="col-md-4 list-group container-fluid" style="min-width: 100%; cursor: pointer" 
-       v-for="(chapter, chapterId) in chapters" :key="chapterId" 
-       @click="getAhadiths(chapter.chapter_id)" 
-       :class="{ 'selected': selectedIndex === chapterId }">
-       
+       <ul class="col-md-4 list-group container-fluid" style="min-width: 100%; cursor: pointer" v-for="(chapter, chapterId) in chapters" :key="chapterId" @click="getAhadiths(chapter.chapter_id)" :class="{ 'selected': selectedIndex === chapterId }">
+
         <li class="list-group-item container-fluid min-width:100%" id="toggle" style="cursor: pointer; background: transparent; padding:15px">
          <h5 class="lead mb-2" style="font-family:serif">
           {{ chapter.chapter_text }}
@@ -238,7 +179,48 @@
 </div>
 </template>
 
-<style>
+
+ <!-- multiple input sections 
+    <div class="row  mt-3 text-center pt-3 container-fluid">
+      <div class="col-md-12 pt-3 text-center" style="box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px,rgba(0, 0, 0, 0.24) 0px 1px 2px;border-radius: 10px;background: transparent;border: 3px solid #c3e6cb;">
+        <div class="row">
+          <div class="col-md-12 container" style="display: flex; text-align: center">
+            
+            <label class="pt-2 pl-3 pr-2" style="display: flex">Imam:</label>
+            <form class="col-md-3">
+              <select class="form-control" v-model="imam" @change="getChapters()">
+                <option value="0">
+                  <span>Select Imam</span>
+                </option>
+                <option v-for="data in imams" :key="data.id" :value="data.id">
+                  {{ data.imam_name }}
+                </option>
+              </select>
+            </form>
+
+            <label class="pt-2 pl-3 pr-3">Chapter:</label>
+            <form class="col-md-3">
+              <select class="form-control" v-model="chapter_id" @change="getAhadiths()">
+                <option value="0">
+                  <span>Select Chapter</span>
+                </option>
+                <option v-for="data in chapters" :key="data.id" :value="data.id">
+                  {{ data.chapter_text }}
+                </option>
+              </select>
+            </form>
+
+            <form class="mb-4 col-md-4" style="display: flex" @submit.prevent="search()">
+              <input style="padding: 12px" class="form-control mr-2 icon col-lg-12" type="search" id="search" name="search" @keyup="search" v-model="searchFilters.hadith_en" placeholder="Search for Keyword" aria-label="Search" />
+            </form>
+            <hr />
+          </div>
+        </div>
+      </div>
+    </div> 
+  -->
+
+<style scoped>
 .selected {
  background-color: #c3e6cb;
 }
