@@ -92,7 +92,7 @@
        <div class="row container">
         <div class="col-md-11">
          <h3 style="display: flex">
-          <img src="/images/art1.png" style="width: 27px;font-family:serif;margin-right:10px" class="mb-1 pr-3" />{{ hadith.chapter.chapter_text  }}
+          <img src="/images/art1.png" style="width: 50px;font-family:serif;margin-right:10px" class="mb-1 pr-3 pb-4" />{{ hadith.chapter.chapter_text  }}
          </h3>
         </div>
         <div class="col-md-1" style="display: flex">
@@ -140,11 +140,10 @@
    <!-- right side chapter list -->
    <div class="col-md-4 stcky-top">
 
-    <div class="container-fluid mr-5">
 
      <div class="row container-fluid" style="flex-direction: column">
       <form class="mt-3 mb-2">
-       <select class="form-control" v-model="imam" @change="getChapters()" style="border: 4px solid #c3e6cb;border-radius: 8px;">
+       <select class="form-control" v-model="imam" @change="getChapters()" style="border: 2px solid #c3e6cb;border-radius: 8px;">
         <option value="0">
          <span>Select Imam</span>
         </option>
@@ -155,7 +154,7 @@
       </form>
 
       <div class="custom-scrollbar" style="
-                                    border: 3px solid #c3e6cb;
+                                    border: 5px solid #c3e6cb;
                                     border-radius: 8px;
                                 ">
        <h5 class="text-left lead  mb-2">
@@ -176,7 +175,6 @@
    </div>
   </div>
  </div>
-</div>
 </template>
 
 

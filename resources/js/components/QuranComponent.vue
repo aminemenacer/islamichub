@@ -11,7 +11,7 @@
         The Holy Quran
        </h1>
 
-       <h5 class="card-text container lead text-muted mb-0 pb-3" style="line-height: 1.7em;font-family:serif; font-weight-bold">
+       <h5 class="card-text container lead text-muted mb-0 pb-3" style="line-height: 1.7em;font-family:serif;">
         The Quran, considered the holy scripture of Islam, is a sacred and comprehensive compilation of revelations believed by Muslims to have been conveyed to the Prophet Muhammad by the archangel Gabriel.
        </h5>
       </div>
@@ -148,7 +148,7 @@
   <!-- right side chapter list -->
   <div class="col-md-4 sticky-top container" v-if="ayah == null">
 
-   <form class="mb-2 " style="border: 4px solid #c3e6cb;border-radius: 8px;">
+   <form class="mb-2 " style="border: 2px solid #c3e6cb;border-radius: 8px;">
     <select class="form-control " v-model="surah" @change="getAyahs()">
      <option value="0">
       <span style="font-family:serif">Select Surah</span>
@@ -332,7 +332,6 @@ export default {
  color: #000;
  font-family: Arial;
  font-size: 18px;
- font-weight: bold;
  padding: 13px 32px;
  text-decoration: none;
 }

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master')
 @section('content')
 <div id="app" >
     <correction-component></correction-component>

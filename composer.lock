@@ -105,16 +105,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.300.2",
+            "version": "3.300.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "61d3d0179eff76793e338349c40c73271854fd1c"
+                "reference": "27d59c22c121ce9c0041c563dc9d7270e180925c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/61d3d0179eff76793e338349c40c73271854fd1c",
-                "reference": "61d3d0179eff76793e338349c40c73271854fd1c",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/27d59c22c121ce9c0041c563dc9d7270e180925c",
+                "reference": "27d59c22c121ce9c0041c563dc9d7270e180925c",
                 "shasum": ""
             },
             "require": {
@@ -194,9 +194,9 @@
             "support": {
                 "forum": "https://forums.aws.amazon.com/forum.jspa?forumID=80",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.300.2"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.300.4"
             },
-            "time": "2024-02-21T19:07:54+00:00"
+            "time": "2024-02-23T19:10:30+00:00"
         },
         {
             "name": "brick/math",
@@ -887,16 +887,16 @@
         },
         {
             "name": "google/cloud-core",
-            "version": "v1.55.0",
+            "version": "v1.56.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-cloud-php-core.git",
-                "reference": "45c8e6e0511944b410bb788a940b2a1ab75975ff"
+                "reference": "35ca0fd74685c635a4c027c871de9d716c504933"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-cloud-php-core/zipball/45c8e6e0511944b410bb788a940b2a1ab75975ff",
-                "reference": "45c8e6e0511944b410bb788a940b2a1ab75975ff",
+                "url": "https://api.github.com/repos/googleapis/google-cloud-php-core/zipball/35ca0fd74685c635a4c027c871de9d716c504933",
+                "reference": "35ca0fd74685c635a4c027c871de9d716c504933",
                 "shasum": ""
             },
             "require": {
@@ -947,26 +947,26 @@
             ],
             "description": "Google Cloud PHP shared dependency, providing functionality useful to all components.",
             "support": {
-                "source": "https://github.com/googleapis/google-cloud-php-core/tree/v1.55.0"
+                "source": "https://github.com/googleapis/google-cloud-php-core/tree/v1.56.0"
             },
-            "time": "2024-02-09T19:51:53+00:00"
+            "time": "2024-02-23T23:49:35+00:00"
         },
         {
             "name": "google/cloud-storage",
-            "version": "v1.38.0",
+            "version": "v1.39.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-cloud-php-storage.git",
-                "reference": "0e77372b224d7d6dd2766bc0644da86b5d2b2de9"
+                "reference": "2425a167578084af5c9b87fac6eb59b09b33b8f5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-cloud-php-storage/zipball/0e77372b224d7d6dd2766bc0644da86b5d2b2de9",
-                "reference": "0e77372b224d7d6dd2766bc0644da86b5d2b2de9",
+                "url": "https://api.github.com/repos/googleapis/google-cloud-php-storage/zipball/2425a167578084af5c9b87fac6eb59b09b33b8f5",
+                "reference": "2425a167578084af5c9b87fac6eb59b09b33b8f5",
                 "shasum": ""
             },
             "require": {
-                "google/cloud-core": "^1.53",
+                "google/cloud-core": "^1.55",
                 "php": ">=7.4",
                 "ramsey/uuid": "^4.2.3"
             },
@@ -1004,9 +1004,9 @@
             ],
             "description": "Cloud Storage Client for PHP",
             "support": {
-                "source": "https://github.com/googleapis/google-cloud-php-storage/tree/v1.38.0"
+                "source": "https://github.com/googleapis/google-cloud-php-storage/tree/v1.39.0"
             },
-            "time": "2024-02-16T17:18:43+00:00"
+            "time": "2024-02-23T23:49:35+00:00"
         },
         {
             "name": "google/common-protos",
@@ -8071,16 +8071,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "9.6.16",
+            "version": "9.6.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "3767b2c56ce02d01e3491046f33466a1ae60a37f"
+                "reference": "1a156980d78a6666721b7e8e8502fe210b587fcd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/3767b2c56ce02d01e3491046f33466a1ae60a37f",
-                "reference": "3767b2c56ce02d01e3491046f33466a1ae60a37f",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/1a156980d78a6666721b7e8e8502fe210b587fcd",
+                "reference": "1a156980d78a6666721b7e8e8502fe210b587fcd",
                 "shasum": ""
             },
             "require": {
@@ -8154,7 +8154,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.6.16"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.6.17"
             },
             "funding": [
                 {
@@ -8170,7 +8170,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-01-19T07:03:14+00:00"
+            "time": "2024-02-23T13:14:51+00:00"
         },
         {
             "name": "sebastian/cli-parser",

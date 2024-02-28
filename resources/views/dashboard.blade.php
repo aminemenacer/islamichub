@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.master')
 @section('content')
-<div id="app" >
-    <dashboard-component></dashboard-component>
-<div>
-@endsection
+<div id="app">
+  <dashboard-component></dashboard-component>
+  <div>
+    @endsection

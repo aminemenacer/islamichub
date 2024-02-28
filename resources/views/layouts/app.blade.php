@@ -13,18 +13,22 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
+
 
     <!-- resources/views/layouts/app.blade.php -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="icon" href="{{ asset('images/favicon.ico') }}"> 
+    
     <script src="{{ asset('js/app.js') }}" defer></script>
-
-    <link rel="icon" href="{{ asset('images/favicon.ico') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
 
 
 </head>
 
 <body>
-    <div id="app">
+    <div >
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm sticky-top">
             <div class=" pl-5 container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -52,15 +56,19 @@
                                     href="/charity">Donations</a></h5>
                         </li>
                         <li class="nav-item">
-                            <h5><a style="font-family:inter" class="nav-link ml-4 pr-5 pl-3" style="color: grey;"
+                            <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: grey;"
                                     href="/contact">Contact Us</a></h5>
                         </li>
-                        <!--
                         <li class="nav-item">
-                            <h5><a style="font-family:inter;padding-right:20px" class="nav-link pr-5 pl-3" style="color: grey;"
-                                    href="/volunteer">Volunteer</a></h5>
+                            <h5><a style="font-family:inter" class="nav-link ml-4 pr-5 pl-3" style="color: grey;"
+                                    href="/dashboard">Dashboard</a></h5>
                         </li>
-                     -->
+                        <!--
+                            <li class="nav-item">
+                                <h5><a style="font-family:inter;padding-right:20px" class="nav-link pr-5 pl-3" style="color: grey;"
+                                        href="/volunteer">Volunteer</a></h5>
+                            </li>
+                        -->
 
                         <li class="nav-item pl-5" style="padding-left:5%">
                             <a href="/charity" type="button" class="btn btn-success">Donation</a>
