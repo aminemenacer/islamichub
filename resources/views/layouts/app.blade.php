@@ -29,10 +29,10 @@
 
 <body>
     <div >
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm sticky-top">
-            <div class=" pl-5 container-fluid">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm ">
+            <div class=" container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="/images/logo1.png" width="275" height="58" class="d-inline-block align-top ml-5" alt="">
+                    <img src="/images/logo1.png" width="275" height="58" class="d-inline-block align-top" alt="">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -57,7 +57,7 @@
                         </li>
                         <li class="nav-item">
                             <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: grey;"
-                                    href="/contact">Contact Us</a></h5>
+                                    href="/contact">Contact</a></h5>
                         </li>
                         <li class="nav-item">
                             <h5><a style="font-family:inter" class="nav-link ml-4 pr-5 pl-3" style="color: grey;"

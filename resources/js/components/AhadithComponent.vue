@@ -86,7 +86,7 @@
      <input style="padding: 12px" class="form-control mr-2 icon col-lg-12" type="search" id="search" name="search" @keyup="search" v-model="searchFilters.hadith_en" placeholder="Search for Keywords, sentences or paragraphs " aria-label="Search" />
     </form>
 
-    <div class="row ml-2 custom-scrollbar" v-if="ahadith != null">
+    <div class="row custom-scrollbar" v-if="ahadith != null">
      <div class="container-fluid col-md-12" style="display: flex; border-radius: 10px" v-for="hadith in ahadith" :key="hadith.id" :value="hadith.id">
       <div class="card-body mb-2" style=" background: white; padding:30px;border-radius: 10px; box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;">
        <div class="row container">
@@ -138,12 +138,12 @@
    </div>
 
    <!-- right side chapter list -->
-   <div class="col-md-4 stcky-top">
+   <div class="col-md-4 ">
 
 
-     <div class="row container-fluid" style="flex-direction: column">
-      <form class="mt-3 mb-2">
-       <select class="form-control" v-model="imam" @change="getChapters()" style="border: 2px solid #c3e6cb;border-radius: 8px;">
+     <div class=" row container-fluid" style="flex-direction: column">
+      <form class="mt-3 mb-2" >
+       <select class="form-control" v-model="imam" @change="getChapters()" style="border: 4px solid #c3e6cb;border-radius: 8px;padding-botom:8px">
         <option value="0">
          <span>Select Imam</span>
         </option>

@@ -11,9 +11,9 @@
 <body class="hold-transition sidebar-mini">
   <div class="wrapper" id="app">
 
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <nav class="main-header  navbar navbar-expand navbar-white navbar-light">
 
-      <ul class="navbar-nav mx-auto mt-2 mr-5">
+      <ul class="navbar-nav mt-2 mr-5 mr-auto">
         <li class="nav-item">
           <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: grey;" href="/quran">Quran</a></h5>
         </li>

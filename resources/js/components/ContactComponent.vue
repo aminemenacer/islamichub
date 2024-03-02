@@ -14,40 +14,40 @@
         <div class="card mt-5" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px; border-radius:20px;padding:15px">
                 <div class="card-body">
                     
-                    <form @reset="reset" @submit.prevent="sendMessage()" id="contactForm" name="contactForm" class="contactForm pb-3" >
+                    <form @reset="reset" @submit.prevent="sendMessage()" id="contactForm" name="contactForm" class="contactForm " >
                     <div class="row">
-                      <div class="col-md-6" style="padding:10px">
+                      <div class="col-md-6">
                         <div class="form-group">
                           <p class="lead mb-0" style="color:black">Firstname:</p>
                           <input v-model="form.firstname" type="text" name="firstname" placeholder="Enter firstname" class="form-control" />
                         </div>
                       </div>
-                      <div class="col-md-6" style="padding:10px">
+                      <div class="col-md-6">
                         <div class="form-group">
                           <p class="lead mb-0" style="color:black">Lastname:</p>
                           <input v-model="form.lastname" type="text" name="lastname" placeholder="Enter lastname" class="form-control" />
                         </div>
                       </div>
-                      <div class="col-md-6" style="padding:10px">
+                      <div class="col-md-6">
                         <div class="form-group">
                           <p class="lead mb-0" style="color:black">Email Address:</p>
                           <input v-model="form.email" name="email" id="email" placeholder="Enter email" class="form-control" />
                         </div>
                       </div>
-                      <div class="col-md-6" style="padding:10px">
+                      <div class="col-md-6">
                         <div class="form-group">
                           <p class="lead mb-0" style="color:black">Phone:</p>
                           <input v-model="form.mobile" type="text" name="mobile" placeholder="Enter mobile number" class="form-control" />
                         </div>
                       </div>
 
-                      <div class="col-md-12" style="padding:10px">
+                      <div class="col-md-12">
                         <div class="form-group">
                           <p class="lead mb-0" style="color:black">Subject:</p>
                           <input v-model="form.subject" type="text" name="subject" placeholder="Enter subject" class="form-control" />
                         </div>
                       </div>
-                      <div class="col-md-12" style="padding:10px">
+                      <div class="col-md-12" >
                         <div class="form-group">
                           <p class="lead mb-0" style="color:black">Message:</p>
                           <textarea v-model="form.message" rows="4" type="text" name="message" placeholder="Enter message" class="form-control" />

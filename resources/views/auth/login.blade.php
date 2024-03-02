@@ -27,7 +27,7 @@
             <div class="card" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px; border-radius:20px">
                 <div class="card-body">
                     <div class="text-center container pb-4">
-                        <img src="/images/logo6.png"
+                        <img src="/images/logo1.png"
                         style="width: 50%;" alt="logo">
                     </div>
                     <form method="POST" action="{{ route('login') }}">

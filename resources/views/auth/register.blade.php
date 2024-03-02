@@ -27,7 +27,7 @@
 
                 <div class="card-body">
                     <div class="text-center container pb-4">
-                        <img src="/images/logo6.png"
+                        <img src="/images/logo1.png"
                         style="width: 50%;" alt="logo">
                     </div>
                     <form method="POST" action="{{ route('register') }}">

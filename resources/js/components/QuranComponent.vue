@@ -12,7 +12,7 @@
        </h1>
 
        <h5 class="card-text container lead text-muted mb-0 pb-3" style="line-height: 1.7em;font-family:serif;">
-        The Quran, considered the holy scripture of Islam, is a sacred and comprehensive compilation of revelations believed by Muslims to have been conveyed to the Prophet Muhammad by the archangel Gabriel.
+        The Quran, considered the holy scripture of Islam, is a sacred and comprehensive compilation of revelations.
        </h5>
       </div>
 
@@ -84,7 +84,7 @@
         </div>
         <div class="col-md-6 pt-">
          <span class="container text-left mb-4 lead text-muted mb-0 " style="line-height: 1.5em;font-family:serif">The Quran, considered the holy
-          The Quran, also spelled as Qur'an, is the holy book of Islam and is considered by Muslims to be the literal word of God as revealed to the Prophet Muhammad (peace be upon him) through the Angel Gabriel. It is the primary source of guidance for Muslims and serves as a comprehensive manual for life, covering matters of faith, morality, law, and guidance for personal conduct.
+          The Quran, also spelled as Qur'an, is the holy book of Islam and is considered by Muslims to be the literal word of God as revealed to the Prophet Muhammad (peace be upon him) through the Angel Gabriel.
          </span>
         </div>
        </div>
@@ -146,9 +146,9 @@
   </div>
 
   <!-- right side chapter list -->
-  <div class="col-md-4 sticky-top container" v-if="ayah == null">
+  <div class="col-md-4 sticky-top container" >
 
-   <form class="mb-2 " style="border: 2px solid #c3e6cb;border-radius: 8px;">
+   <form class="mb-2 " style="border: 4px solid #c3e6cb;border-radius: 8px;">
     <select class="form-control " v-model="surah" @change="getAyahs()">
      <option value="0">
       <span style="font-family:serif">Select Surah</span>
@@ -160,7 +160,7 @@
     </select>
    </form>
    <div class="tab-content" id="nav-tabContent">
-    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" v-if="ayah == null">
      <div class="row container-fluid">
       <div class="custom-scrollbar" style="
                                     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px,
