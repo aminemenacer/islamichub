@@ -19,6 +19,7 @@ class UserSeeder extends Seeder
                 'email' => $faker->email(),
                 'phone' => $faker->PhoneNumber,
                 'user_type' => $faker->word(),
+                'subscribe' => $faker->boolean(),
                 'status' => $faker->word(),
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),

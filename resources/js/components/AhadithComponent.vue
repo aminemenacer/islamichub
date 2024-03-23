@@ -91,14 +91,16 @@
       <div class="card-body mb-2" style=" background: white; padding:30px;border-radius: 10px; box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;">
        <div class="row container">
         <div class="col-md-11">
-         <h3 style="display: flex">
+         <h3 style="display: flex;font-family:serif">
           <img src="/images/art1.png" style="width: 50px;font-family:serif;margin-right:10px" class="mb-1 pr-3 pb-4" />{{ hadith.chapter.chapter_text  }}
          </h3>
         </div>
         <div class="col-md-1" style="display: flex">
+         <!--
          <h2 class="text-center" style="color: grey">
-          {{ hadith.imam_id }}
+          {{ hadith.id }}
          </h2>
+         -->
         </div>
        </div>
        <hr />
@@ -110,23 +112,25 @@
         <h5 style="line-height: 1.6em;font-family:serif">
          {{ hadith.hadith_en }}
         </h5>
+        
        </div>
        <hr />
        <div class="row">
         <div class="col-9" style="background: lighgrey">
-         <h6 style="background: lighgrey">
+         <h6 style="background: lighgrey;font-family:serif">
           <b class="pr-2">Reference:</b> Book
           {{ hadith.chapter_id }}
          </h6>
-         <h6 style="background: lighgrey">
+         <h6 style="background: lighgrey;font-family:serif">
           <b class="pr-2">Hadith Num:</b>
-          {{ hadith.imam_id }}
+          {{ hadith.id }}
          </h6>
+        
         </div>
         <div class="col-3" style="background: lighgrey">
          <h6 style="
                                                 background: lighgrey;
-                                                cursor: pointer;
+                                                cursor: pointer;font-family:serif
                                             " data-bs-toggle="modal" data-bs-target="#exampleModal">
           <i class="fas fa-fw fa-edit mr-2"></i>Report Mistake
          </h6>

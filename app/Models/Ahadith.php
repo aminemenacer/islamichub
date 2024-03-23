@@ -11,6 +11,8 @@ class Ahadith extends Model
 
     protected $table = 'ahadith';
 
+    public $timestamps = false;
+
     protected $fillable = [
         'hadith_ar',
         'hadith_en',
@@ -22,5 +24,6 @@ class Ahadith extends Model
     {
         return $this->BelongsTo(Chapter::class,'chapter_id','id');
     }
+
 
 }

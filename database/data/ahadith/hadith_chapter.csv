@@ -118,39 +118,40 @@ imam_id,chapter_id,chapter_text,
 2,21,The Book of Emancipating Slaves - كتاب العتق
 2,22,The Book of Transactions - كتاب البيوع
 2,23,The Book of Masaaqah - كتاب المساقاة
-2,24,The Book Pertaining to the Rules of Inheritance - كتاب الفرائض
+2,24,The Book Rules of Inheritance - كتاب الفرائض
 2,25,The Book of Gifts - كتاب الهبات
 2,26,The Book of Wills - كتاب الوصايا
 2,27,The Book of Vows - كتاب النذر
 2,28,The Book of Oaths - كتاب الأيمان
-2,29,The Book Pertaining to the Oath; for Establishing the Responsibility of Murders; Fighting; Requital - كتاب القسامة والمحاربين والقصاص والديات
-2,30,The Book Pertaining to Punishments Prescribed by Islam - كتاب الحدود
-2,31,The Book Pertaining to Judicial Decisions - كتاب الأقضية
-2,32,The Book of Luqatah - كتاب اللقطة
+2,29,The Book Oaths; Muharibin; Qasas (Retaliation) and Diyat (Blood Money) - كتاب القسامة والمحاربين والقصاص والديات
+2,30,The Book Legal Punishments - كتاب الحدود
+2,31,The Book Judicial Decisions - كتاب الأقضية
+2,32,The Book of Lost Property - كتاب اللقطة
 2,33,The Book of Jihad and Expedition - كتاب الجهاد والسير
 2,34,The Book on Government - كتاب الإمارة
-2,35,The Book of Games and the Animals which May be Slaughtered and the Aninals that Are to be Eaten - كتاب الصيد والذبائح وما يؤكل من الحيوان
+2,35,The Book of Hunting; Slaughter; and what may be Eaten - كتاب الصيد والذبائح وما يؤكل من الحيوان
 2,36,The Book of Sacrifices - كتاب الأضاحى
 2,37,The Book of Drinks - كتاب الأشربة
-2,38,The Book Pertaining to Clothes and Decoration - كتاب اللباس والزينة
-2,39,The Book on General Behaviour - كتاب الآداب
-2,40,The Book on Salutations and Greetings - كتاب السلام
+2,38,The Book of Clothes and Decoration - كتاب اللباس والزينة
+2,39,The Book of Manners and Etiquette - كتاب الآداب
+2,40,The Book of Greetings - كتاب السلام
 2,41,The Book Concerning the Use of Correct Words - كتاب الألفاظ من الأدب وغيرها
 2,42,The Book of Poetry - كتاب الشعر
-2,43,The Book of Vision - كتاب الرؤيا
-2,44,The Book Pertaining to the Excellent Qualities of the Holy Prophet (may Peace be upon them) and His - كتاب الفضائل
-2,45,The Book Pertaining to the Merits of the Companions (Allah Be Pleased With Them) of the Holy Prophet - كتاب فضائل الصحابة رضى الله تعالى عنهم
-2,46,The Book of Virtue; Good Manners and Joining of the Ties of Relationship - كتاب البر والصلة والآداب
+2,43,The Book of Dreams - كتاب الرؤيا
+2,44,The Book of Virtues - كتاب الفضائل
+2,45,The Book of Merits of the Companions (Allah Be Pleased With Them) of the Holy Prophet - كتاب فضائل الصحابة رضى الله تعالى عنهم
+2,46,The Book of Virtue; Good Manners and Joining of the Ties of Kindship - كتاب البر والصلة والآداب
 2,47,The Book of Destiny - كتاب القدر
-2,48,The Book Pertaining to the Remembrance of Allah; Supplication; Repentance and Seeking Forgiveness - كتاب الذكر والدعاء والتوبة والاستغفار
-2,49,The Book of Heart-Melting Traditions - كتاب الرقاق
-2,50,The Book Pertaining to Repentance and Exhortation to Repentance - كتاب التوبة
-2,51,Pertaining To The Charateristics Of The Hypocrites And Command Concerning Them - كتاب صفات المنافقين وأحكامهم
-2,52,The Book Giving Description of the Day of Judgement; Paradise and Hell - كتاب صفة القيامة والجنة والنار
-2,53,The Book Pertaining to Paradise; Its Description; Its Bounties and Its Intimates - كتاب الجنة وصفة نعيمها وأهلها
-2,54,The Book Pertaining to the Turmoil and Portents of the Last Hour - كتاب الفتن وأشراط الساعة
-2,55,The Book Pertaining to Piety and Softening of Hearts - كتاب الزهد والرقائق
-2,56,The Book of Commentary - كتاب التفسير
+2,48,The Book of Knowledge - كتاب العلم
+2,49,The Book Pertaining to the Remembrance of Allah; Supplication; Repentance and Seeking Forgiveness - كتاب الذكر والدعاء والتوبة والاستغفار
+2,50,The Book of Heart-Melting Traditions - كتاب الرقاق
+2,51,The Book of Repentance - كتاب التوبة
+2,52,Charateristics Of The Hypocrites And Command Concerning Them - كتاب صفات المنافقين وأحكامهم
+2,53,Charateristics Of The Day of Judgement; Paradise and Hell - كتاب صفة القيامة والجنة والنار
+2,54,The Book of Paradise; Its Description; Its Bounties and Its Inhabitants - كتاب الجنة وصفة نعيمها وأهلها
+2,55,The Book of Tribulations and Portents of the Last Hour - كتاب الفتن وأشراط الساعة
+2,56,The Book of Zuhd and Softening of Hearts - كتاب الزهد والرقائق
+2,57,The Book of Commentary on the Qur'an - كتاب التفسير
 3,1,Purification (Kitab Al-Taharah) - كتاب الطهارة
 3,2,Prayer (Kitab Al-Salat) - كتاب الصلاة
 3,3,The Book Of The Prayer For Rain (Kitab al-Istisqa') - كتاب الاستسقاء
@@ -194,8 +195,6 @@ imam_id,chapter_id,chapter_text,
 3,41,Types of Blood-Wit (Kitab Al-Diyat) - كتاب الديات
 3,42,Model Behavior of the Prophet (Kitab Al-Sunnah) - كتاب السنة
 3,43,General Behavior (Kitab Al-Adab) - كتاب الأدب
-
-
 4,1,The Book on Purification - كتاب الطهارة عن رسول الله صلى الله عليه وسلم
 4,2,The Book on Salat (Prayer) - كتاب الصلاة
 4,3,The Book on Al-Witr - أَبْوَابُ الْوِتْرِ
@@ -245,8 +244,6 @@ imam_id,chapter_id,chapter_text,
 4,47,Chapters on Tafsir - كتاب تفسير القرآن عن رسول الله صلى الله عليه وسلم
 4,48,Chapters on Supplication - كتاب الدعوات عن رسول الله صلى الله عليه وسلم
 4,49,Chapters on Virtues - كتاب المناقب عن رسول الله صلى الله عليه وسلم
-
-
 5,1,The Book of Purification - كتاب الطهارة
 5,2,The Book of Water - كتاب المياه
 5,3,The Book of Menstruation and Istihadah - كتاب الحيض والاستحاضة
@@ -298,8 +295,6 @@ imam_id,chapter_id,chapter_text,
 5,49,The Book of the Etiquette of Judges - كتاب آداب القضاة
 5,50,The Book of Seeking Refuge with Allah - كتاب الاستعاذة
 5,51,The Book of Drinks - كتاب الأشربة
-
-
 6,0,The Book of the Sunnah - كتاب المقدمة
 6,1,The Book of Purification and its Sunnah - كتاب الطهارة وسننها
 6,2,The Book of the Prayer - كتاب الصلاة

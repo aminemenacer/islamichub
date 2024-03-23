@@ -146,7 +146,7 @@
   </div>
 
   <!-- right side chapter list -->
-  <div class="col-md-4 sticky-top container" >
+  <div class="col-md-4 sticky-top container">
 
    <form class="mb-2 " style="border: 4px solid #c3e6cb;border-radius: 8px;">
     <select class="form-control " v-model="surah" @change="getAyahs()">
@@ -159,7 +159,7 @@
      </option>
     </select>
    </form>
-   <div class="tab-content" id="nav-tabContent">
+   <div class="tab-content" id="nav-tabContent" v-if="ayah == null">
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" v-if="ayah == null">
      <div class="row container-fluid">
       <div class="custom-scrollbar" style="

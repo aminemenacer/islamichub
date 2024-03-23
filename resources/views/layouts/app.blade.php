@@ -18,8 +18,8 @@
 
     <!-- resources/views/layouts/app.blade.php -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="icon" href="{{ asset('images/favicon.ico') }}"> 
-    
+    <link rel="icon" href="{{ asset('images/favicon.ico') }}">
+
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
@@ -28,11 +28,11 @@
 </head>
 
 <body>
-    <div >
+    <div>
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm ">
-            <div class=" container-fluid">
+            <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="/images/logo1.png" width="275" height="58" class="d-inline-block align-top" alt="">
+                    <img src="/images/logo11.png" width="275" height="54" class="d-inline-block align-top" alt="">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -42,8 +42,8 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav justify-content-end mt-2 pr-4 flex-grow-1 " >
-                        <li class="nav-item" >
+                    <ul class="navbar-nav justify-content-end mt-2 pr-4 flex-grow-1 ">
+                        <li class="nav-item">
                             <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: grey;"
                                     href="/quran">Quran</a></h5>
                         </li>
@@ -59,10 +59,14 @@
                             <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: grey;"
                                     href="/contact">Contact</a></h5>
                         </li>
+                        @if (Auth::user())
                         <li class="nav-item">
                             <h5><a style="font-family:inter" class="nav-link ml-4 pr-5 pl-3" style="color: grey;"
                                     href="/dashboard">Dashboard</a></h5>
                         </li>
+                        @else
+
+                        @endif
                         <!--
                             <li class="nav-item">
                                 <h5><a style="font-family:inter;padding-right:20px" class="nav-link pr-5 pl-3" style="color: grey;"
@@ -70,18 +74,16 @@
                             </li>
                         -->
 
-                        <li class="nav-item pl-5" style="padding-left:5%">
-                            <a href="/charity" type="button" class="btn btn-success">Donation</a>
-                        </li>
-                        
-                    </ul>
+                        <ul class="navbar-nav pl-5 mr-4">
+                            <li class="nav-item " style="padding-left:5%">
+                                <a href="/charity" class="donate" role="button">Donations</a>
 
-                    <!-- Right Side Of Navbar 
-                        <ul class="navbar-nav mt-2 pl-5 mr-4">
-                            -- Authentication Links --
-                            <li class="nav-item pr-5">
-                                <a href="/charity" type="button" class="btn btn-success">Donation</a>
                             </li>
+
+                        </ul>
+
+                        <!-- Right Side Of Navbar 
+                        
                             @guest
                             @if (Route::has('login'))
                             <li class="nav-item">
@@ -119,7 +121,7 @@
             </div>
         </nav>
 
-        
+
 
         <main class="py-4">
             @yield('content')
@@ -128,3 +130,23 @@
 </body>
 
 </html>
+
+<style>
+    .donate {
+        font-weight:300;
+        background-color: #c3e6cb;
+        border-radius: 10px;
+        color: darkgreen;
+        cursor: pointer;
+        display: inline-block;
+        font-family:serif;
+        padding: 7px 20px;
+        text-align: center;
+        text-decoration: none;
+        border: 0;
+        font-size: 18px;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+    }
+</style>
