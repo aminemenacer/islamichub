@@ -11,9 +11,9 @@
 <body class="hold-transition sidebar-mini">
   <div class="wrapper" id="app">
 
-    <nav class="main-header  navbar navbar-expand navbar-white navbar-light">
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
 
-      <ul class="navbar-nav mt-2 mr-5 mx-auto">
+      <ul class="navbar-nav mt-2 mr-5 ml-3">
         <li class="nav-item">
           <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: grey;" href="/quran">Quran</a></h5>
         </li>
@@ -29,18 +29,17 @@
           <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: grey;" href="/contact">Contact
               Us</a></h5>
         </li>
-        <ul class="navbar-nav ml-auto mt-1 pl-5 mr-4">
-                            
+        <li >                   
           @guest
           @if (Route::has('login'))
           <li class="nav-item">
-              <h5><a style="font-family:inter" class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></h5>
+              <h4><a style="font-family:inter" class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></h4>
           </li>
           @endif
 
           @if (Route::has('register'))
           <li class="nav-item">
-              <h5><a style="font-family:inter" class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></h5>
+              <h4><a style="font-family:inter" class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></h4>
           </li>
           @endif
           @else
@@ -62,15 +61,14 @@
               </div>
           </li>
           @endguest
-      </ul>
-
+        </li>
     </nav>
 
 
     <aside class="main-sidebar sidebar-light-primary elevation-4">
 
       <a href="/" class="brand-link">
-        <img src="/images/logo11.png" width="220" height="58" alt="">
+        <img src="/images/logo11.png" width="220" height="45" alt="">
       </a>
 
       <div class="sidebar">
@@ -123,6 +121,14 @@
                 <i class="nav-icon fas fa-th"></i>
                 <p>
                   Correction
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="" class="nav-link">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                  Bookmarks
                 </p>
               </a>
             </li>
