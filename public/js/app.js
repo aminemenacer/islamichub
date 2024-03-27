@@ -21426,7 +21426,7 @@ var _hoisted_19 = /*#__PURE__*/_withScopeId(function () {
     "class": "btn btn-success"
   }, " Save changes ")], -1 /* HOISTED */);
 });
-var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"row\" data-v-23ef7dd5><div class=\"col-md-3\" data-v-23ef7dd5></div><div class=\"col-md-6\" style=\"display:flex;text-align:center;\" data-v-23ef7dd5><div class=\"card-header text-center\" data-v-23ef7dd5><h1 class=\"card-text\" style=\"font-family:serif;\" data-v-23ef7dd5> Hadith Collection </h1><h5 class=\"card-text container lead text-muted mb-0\" style=\"line-height:1.7em;font-family:serif;\" data-v-23ef7dd5> Hadiths are the recorded sayings, actions, and approvals of Prophet Muhammad (peace be upon him) in Islam. </h5></div></div><div class=\"col-md-3\" data-v-23ef7dd5></div></div>", 1);
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"row\" data-v-23ef7dd5><div class=\"col-md-3\" data-v-23ef7dd5></div><div class=\"col-md-6\" style=\"display:flex;text-align:center;\" data-v-23ef7dd5><div class=\"card-header text-center\" data-v-23ef7dd5><h1 class=\"card-text\" style=\"\" data-v-23ef7dd5> Hadith Collection </h1><h5 class=\"card-text container lead text-muted mb-0\" style=\"line-height:1.7em;\" data-v-23ef7dd5> Hadiths are the recorded sayings, actions, and approvals of Prophet Muhammad (peace be upon him) in Islam. </h5></div></div><div class=\"col-md-3\" data-v-23ef7dd5></div></div>", 1);
 var _hoisted_21 = {
   "class": "conainer"
 };
@@ -21442,13 +21442,7 @@ var _hoisted_24 = {
 };
 var _hoisted_25 = ["value"];
 var _hoisted_26 = {
-  "class": "card-body mb-2",
-  style: {
-    "background": "white",
-    "padding": "30px",
-    "border-radius": "10px",
-    "box-shadow": "rgba(0, 0, 0, 0.16) 0px 1px 4px"
-  }
+  "class": "card-body mb-2"
 };
 var _hoisted_27 = {
   "class": "row container"
@@ -21458,18 +21452,12 @@ var _hoisted_28 = {
 };
 var _hoisted_29 = {
   style: {
-    "display": "flex",
-    "font-family": "serif"
+    "display": "flex"
   }
 };
 var _hoisted_30 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
     src: "/images/art1.png",
-    style: {
-      "width": "50px",
-      "font-family": "serif",
-      "margin-right": "10px"
-    },
     "class": "mb-1 pr-3 pb-4"
   }, null, -1 /* HOISTED */);
 });
@@ -21479,7 +21467,7 @@ var _hoisted_31 = /*#__PURE__*/_withScopeId(function () {
     style: {
       "display": "flex"
     }
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("\n         <h2 class=\"text-center\" style=\"color: grey\">\n          {{ hadith.id }}\n         </h2>\n         ")], -1 /* HOISTED */);
+  }, null, -1 /* HOISTED */);
 });
 var _hoisted_32 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", null, null, -1 /* HOISTED */);
@@ -21498,8 +21486,7 @@ var _hoisted_35 = /*#__PURE__*/_withScopeId(function () {
 });
 var _hoisted_36 = {
   style: {
-    "line-height": "1.6em",
-    "font-family": "serif"
+    "line-height": "1.6em"
   }
 };
 var _hoisted_37 = /*#__PURE__*/_withScopeId(function () {
@@ -21516,8 +21503,7 @@ var _hoisted_39 = {
 };
 var _hoisted_40 = {
   style: {
-    "background": "lighgrey",
-    "font-family": "serif"
+    "background": "lighgrey"
   }
 };
 var _hoisted_41 = /*#__PURE__*/_withScopeId(function () {
@@ -21527,8 +21513,7 @@ var _hoisted_41 = /*#__PURE__*/_withScopeId(function () {
 });
 var _hoisted_42 = {
   style: {
-    "background": "lighgrey",
-    "font-family": "serif"
+    "background": "lighgrey"
   }
 };
 var _hoisted_43 = /*#__PURE__*/_withScopeId(function () {
@@ -21543,11 +21528,7 @@ var _hoisted_44 = /*#__PURE__*/_withScopeId(function () {
       "background": "lighgrey"
     }
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", {
-    style: {
-      "background": "lighgrey",
-      "cursor": "pointer",
-      "font-family": "serif"
-    },
+    "class": "report-mistake",
     "data-bs-toggle": "modal",
     "data-bs-target": "#exampleModal"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
@@ -21573,36 +21554,23 @@ var _hoisted_48 = /*#__PURE__*/_withScopeId(function () {
 });
 var _hoisted_49 = ["value"];
 var _hoisted_50 = {
-  "class": "custom-scrollbar",
-  style: {
-    "border": "5px solid #c3e6cb",
-    "border-radius": "8px"
-  }
+  "class": "custom-scrollbar"
 };
 var _hoisted_51 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", {
     "class": "text-left lead mb-2"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", {
-    style: {
-      "font-family": "serif"
-    }
+    style: {}
   }, "Books:")], -1 /* HOISTED */);
 });
 var _hoisted_52 = ["onClick"];
 var _hoisted_53 = {
   "class": "list-group-item container-fluid min-width:100%",
-  id: "toggle",
-  style: {
-    "cursor": "pointer",
-    "background": "transparent",
-    "padding": "15px"
-  }
+  id: "toggle"
 };
 var _hoisted_54 = {
   "class": "lead mb-2",
-  style: {
-    "font-family": "serif"
-  }
+  style: {}
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" correction modal "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
@@ -21651,7 +21619,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     placeholder: "Explain to us exactly what the problem is",
     id: "added_comments",
     rows: "5"
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.added_notes]])]), _hoisted_19], 32 /* HYDRATE_EVENTS */)])])])]), _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" left side ahadith list "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [$data.ahadith != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("form", {
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.added_notes]])]), _hoisted_19], 32 /* HYDRATE_EVENTS */)])])])]), _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" left side ahadith list "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" search "), $data.ahadith != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("form", {
     key: 0,
     "class": "mb-3 mt-3 col-md-12",
     style: {
@@ -21693,12 +21661,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     onChange: _cache[10] || (_cache[10] = function ($event) {
       return $options.getChapters();
-    }),
-    style: {
-      "border": "4px solid #c3e6cb",
-      "border-radius": "8px",
-      "padding-botom": "8px"
-    }
+    })
   }, [_hoisted_48, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.imams, function (data) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
       key: data.id,
@@ -21709,10 +21672,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["col-md-4 list-group container-fluid", {
         'selected': $data.selectedIndex === chapterId
       }]),
-      style: {
-        "min-width": "100%",
-        "cursor": "pointer"
-      },
       key: chapterId,
       onClick: function onClick($event) {
         return $options.getAhadiths(chapter.chapter_id);
@@ -24175,17 +24134,10 @@ var _hoisted_8 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "card-header"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
-    "class": "card-text text-center mt-2 mb-2",
-    style: {
-      "font-family": "serif"
-    }
+    "class": "card-text text-center mt-2 mb-2"
   }, " The Holy Quran "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", {
-    "class": "card-text container lead text-muted mb-0 pb-3",
-    style: {
-      "line-height": "1.7em",
-      "font-family": "serif"
-    }
-  }, " The Quran, considered the holy scripture of Islam, is a sacred and comprehensive compilation of revelations. ")], -1 /* HOISTED */);
+    "class": "card-text container lead text-muted mb-0 pb-3"
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "The Quran, considered the holy scripture of Islam, is a sacred and comprehensive compilation of revelations.")])], -1 /* HOISTED */);
 });
 var _hoisted_9 = {
   controls: ""
@@ -24210,13 +24162,7 @@ var _hoisted_14 = {
   "class": "col-md-8"
 };
 var _hoisted_15 = {
-  "class": "card",
-  style: {
-    "display": "flex",
-    "border": "5px solid #c3e6cb",
-    "padding": "10px",
-    "border-radius": "10px"
-  }
+  "class": "card"
 };
 var _hoisted_16 = {
   key: 0
@@ -24293,7 +24239,7 @@ var _hoisted_28 = {
   id: "home",
   role: "tabpanel"
 };
-var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"row\" data-v-2b3c2c26><div class=\"col-md-6\" data-v-2b3c2c26><img src=\"/images/calligraphy.png\" class=\"pl-3\" style=\"width:70%;\" data-v-2b3c2c26></div><div class=\"col-md-6 pt-\" data-v-2b3c2c26><span class=\"container text-left mb-4 lead text-muted mb-0\" style=\"line-height:1.5em;font-family:serif;\" data-v-2b3c2c26>The Quran, considered the holy The Quran, also spelled as Qur&#39;an, is the holy book of Islam and is considered by Muslims to be the literal word of God as revealed to the Prophet Muhammad (peace be upon him) through the Angel Gabriel. </span></div></div>", 1);
+var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"row\" data-v-2b3c2c26><div class=\"col-md-6\" data-v-2b3c2c26><img src=\"/images/calligraphy.png\" class=\"pl-3\" style=\"width:70%;\" data-v-2b3c2c26></div><div class=\"col-md-6 pt-\" data-v-2b3c2c26><span class=\"container text-left mb-4 lead text-muted mb-0\" data-v-2b3c2c26>The Quran, considered the holy The Quran, also spelled as Qur&#39;an, is the holy book of Islam and is considered by Muslims to be the literal word of God as revealed to the Prophet Muhammad (peace be upon him) through the Angel Gabriel. </span></div></div>", 1);
 var _hoisted_30 = [_hoisted_29];
 var _hoisted_31 = {
   key: 1,
@@ -24327,8 +24273,7 @@ var _hoisted_37 = {
 var _hoisted_38 = {
   "class": "container text-left",
   style: {
-    "line-height": "1.6em",
-    "font-family": "serif"
+    "line-height": "1.6em"
   }
 };
 var _hoisted_39 = {
@@ -24357,8 +24302,7 @@ var _hoisted_43 = {
 var _hoisted_44 = {
   "class": "container text-left",
   style: {
-    "line-height": "1.6em",
-    "font-family": "serif"
+    "line-height": "1.6em"
   }
 };
 var _hoisted_45 = {
@@ -24387,28 +24331,19 @@ var _hoisted_49 = {
 var _hoisted_50 = {
   "class": "container text-left",
   style: {
-    "line-height": "1.6em",
-    "font-family": "serif"
+    "line-height": "1.6em"
   }
 };
 var _hoisted_51 = {
   "class": "col-md-4 sticky-top container"
 };
 var _hoisted_52 = {
-  "class": "mb-2",
-  style: {
-    "border": "4px solid #c3e6cb",
-    "border-radius": "8px"
-  }
+  "class": "mb-2 right-side-form"
 };
 var _hoisted_53 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
     value: "0"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    style: {
-      "font-family": "serif"
-    }
-  }, "Select Surah")], -1 /* HOISTED */);
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Select Surah")], -1 /* HOISTED */);
 });
 var _hoisted_54 = ["value"];
 var _hoisted_55 = {
@@ -24427,35 +24362,19 @@ var _hoisted_57 = {
   "class": "row container-fluid"
 };
 var _hoisted_58 = {
-  "class": "custom-scrollbar",
-  style: {
-    "box-shadow": "rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px",
-    "background": "transparent",
-    "border": "5px solid #c3e6cb"
-  }
+  "class": "custom-scrollbar"
 };
 var _hoisted_59 = ["onClick"];
 var _hoisted_60 = {
   "class": "list-group-item container-fluid",
-  id: "toggle",
-  style: {
-    "cursor": "pointer",
-    "background": "transparent",
-    "padding": "20px"
-  }
+  id: "toggle"
 };
 var _hoisted_61 = {
   style: {
-    "display": "flex",
-    "font-family": "serif"
+    "display": "flex"
   }
 };
-var _hoisted_62 = {
-  style: {
-    "font-family": "serif"
-  }
-};
-var _hoisted_63 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_62 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "container-fluid mr-5",
     style: {}
@@ -24488,16 +24407,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["col-md-4 list-group container-fluid root", {
         'selected': $data.selectedIndexAyah === index
       }]),
-      style: {
-        "min-width": "100%",
-        "cursor": "pointer"
-      },
       key: index,
       onClick: function onClick($event) {
         return $options.getTafseers(ayah.id, index);
       }
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_60, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", _hoisted_61, "Verse: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(ayah.ayah_id), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", _hoisted_62, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(ayah.ayah_text), 1 /* TEXT */)])], 10 /* CLASS, PROPS */, _hoisted_59);
-  }), 128 /* KEYED_FRAGMENT */))])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_63])])]);
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_60, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", _hoisted_61, "Verse: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(ayah.ayah_id), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(ayah.ayah_text), 1 /* TEXT */)])], 10 /* CLASS, PROPS */, _hoisted_59);
+  }), 128 /* KEYED_FRAGMENT */))])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_62])])]);
 }
 
 /***/ }),
@@ -31644,7 +31559,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.selected[data-v-23ef7dd5] {\n background-color: #c3e6cb;\n}\n.custom-scrollbar[data-v-23ef7dd5] {\n background-color: transparent;\n height: 1000px;\n width: 100%;\n border-radius: 6px;\n box-shadow: 0 4px 28px rgba(123, 151, 158, 0.25);\n border: 1px solid #d6dee1;\n padding: 1rem;\n border-radius: 6px;\n border: 1px solid #d6dee1;\n padding: 1rem;\n background-color: transparent;\n outline: 1px solid #c3e6cb;\n overflow: scroll;\n}\n.custom-scrollbar-chapters[data-v-23ef7dd5] {\n background-color: transparent;\n height: 600px;\n width: 100%;\n border-radius: 6px;\n box-shadow: 0 4px 28px rgba(123, 151, 158, 0.25);\n border: 1px solid #d6dee1;\n padding: 1rem;\n border-radius: 6px;\n border: 1px solid #d6dee1;\n padding: 1rem;\n background-color: transparent;\n outline: 1px solid #c3e6cb;\n overflow: scroll;\n}\n.highlighted[data-v-23ef7dd5] {\n background-color: yellow;\n font-weight: bold;\n}\n.red[data-v-23ef7dd5] {\n background: red;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.list-group-item[data-v-23ef7dd5]{\n  cursor: pointer; \n  background: transparent; \n  padding:15px;\n}\n.list-group[data-v-23ef7dd5]{\n  min-width: 100%; \n  cursor: pointer\n}\n.form-control[data-v-23ef7dd5]{\n  border: 4px solid #c3e6cb;\n  border-radius: 8px;\n  padding-bottom:8px\n}\n.report-mistake[data-v-23ef7dd5]{\n  background: lighgrey;\n  cursor: pointer;\n}\nimg[data-v-23ef7dd5]{\n  width: 50px;\n  margin-right:10px;\n}\n.card-body[data-v-23ef7dd5]{\n background: white; \n padding:30px;\n border-radius: 10px; \n box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;\n}\n.selected[data-v-23ef7dd5] {\n background-color: #c3e6cb;\n}\n.custom-scrollbar[data-v-23ef7dd5] {\n background-color: transparent;\n height: 1000px;\n width: 100%;\n border-radius: 6px;\n box-shadow: 0 4px 28px rgba(123, 151, 158, 0.25);\n border: 1px solid #d6dee1;\n padding: 1rem;\n border-radius: 6px;\n border: 1px solid #d6dee1;\n padding: 1rem;\n background-color: transparent;\n outline: 1px solid #c3e6cb;\n overflow: scroll;\n border: 5px solid #c3e6cb;\n border-radius: 8px;\n}\n.custom-scrollbar-chapters[data-v-23ef7dd5] {\n background-color: transparent;\n height: 600px;\n width: 100%;\n border-radius: 6px;\n box-shadow: 0 4px 28px rgba(123, 151, 158, 0.25);\n border: 1px solid #d6dee1;\n padding: 1rem;\n border-radius: 6px;\n border: 1px solid #d6dee1;\n padding: 1rem;\n background-color: transparent;\n outline: 1px solid #c3e6cb;\n overflow: scroll;\n}\n.highlighted[data-v-23ef7dd5] {\n background-color: yellow;\n font-weight: bold;\n}\n.red[data-v-23ef7dd5] {\n background: red;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -31764,7 +31679,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.selected[data-v-2b3c2c26] {\n background-color: #c3e6cb;\n}\n.custom-scrollbar[data-v-2b3c2c26] {\n background-color: transparent;\n height: 800px;\n width: 100%;\n border-radius: 6px;\n box-shadow: 0 4px 28px rgba(123, 151, 158, 0.25);\n border: 1px solid #d6dee1;\n padding: 1rem;\n border-radius: 6px;\n border: 1px solid #d6dee1;\n padding: 1rem;\n background-color: transparent;\n outline: 1px solid #c3e6cb;\n overflow: scroll;\n}\n.custom-scrollbar-chapters[data-v-2b3c2c26] {\n background-color: transparent;\n height: 600px;\n width: 100%;\n border-radius: 6px;\n box-shadow: 0 4px 28px rgba(123, 151, 158, 0.25);\n border: 1px solid #d6dee1;\n padding: 1rem;\n border-radius: 6px;\n border: 1px solid #d6dee1;\n padding: 1rem;\n background-color: transparent;\n outline: 1px solid #c3e6cb;\n overflow: scroll;\n}\n.myButton[data-v-2b3c2c26] {\n background-color: #c3e6cb;\n border-radius: 8px;\n display: inline-block;\n cursor: pointer;\n color: #000;\n font-family: Arial;\n font-size: 18px;\n padding: 13px 32px;\n text-decoration: none;\n}\n@media (min-width: 768px) {\n.button-46[data-v-2b3c2c26] {\n  font-size: 20px;\n  min-width: 200px;\n  padding: 14px 16px;\n}\n}\np.no-after[data-v-2b3c2c26]:after {\n content: none;\n}\n.btn[data-v-2b3c2c26]:hover {\n background-color: #99e0ab81;\n opacity: 2;\n}\n.ul-main[data-v-2b3c2c26] {\n list-style: none;\n}\n.ul-main .li-main[data-v-2b3c2c26] {\n display: inline-block;\n font-size: 12px;\n text-align: center;\n}\n.ul-main .li-main .span-main[data-v-2b3c2c26] {\n font-size: 20px;\n display: block;\n}\n.ayah_img[data-v-2b3c2c26]:hover {\n background-color: #c3e6cb;\n border-radius: 10px;\n cursor: pointer;\n}\n.enlarge .ayah[data-v-2b3c2c26] {\n transition: transform 0.5s ease;\n float: right;\n}\n.enlarge[data-v-2b3c2c26]:hover {\n /* or some other value */\n transform: scale(1.2);\n}\nbutton[data-v-2b3c2c26],\ninput[data-v-2b3c2c26] {\n font-family: \"Montserrat\", \"Helvetica Neue\", Arial, sans-serif;\n}\n.nav-item .nav-link[data-v-2b3c2c26],\n.nav-tabs .nav-link[data-v-2b3c2c26] {\n transition: all 300ms ease 0s;\n}\n.nav-tabs>.nav-item>.nav-link[data-v-2b3c2c26] {\n color: #888888;\n margin: 0;\n margin-right: 5px;\n background-color: transparent;\n border: 1px solid transparent;\n font-size: 14px;\n padding: 11px 23px;\n line-height: 1.5;\n}\n.nav-tabs>.nav-item>.nav-link[data-v-2b3c2c26]:hover {\n background-color: transparent;\n}\n.nav-tabs>.nav-item>.nav-link.active[data-v-2b3c2c26] {\n background-color: #444;\n color: #ffffff;\n}\n.nav-tabs>.nav-item>.nav-link i.now-ui-icons[data-v-2b3c2c26] {\n font-size: 14px;\n position: relative;\n top: 1px;\n margin-right: 3px;\n}\n.nav-tabs.nav-tabs-neutral>.nav-item>.nav-link[data-v-2b3c2c26] {\n color: #ffffff;\n}\n.nav-tabs.nav-tabs-neutral>.nav-item>.nav-link.active[data-v-2b3c2c26] {\n background-color: rgba(255, 255, 255, 0.2);\n color: #ffffff;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.list-group-item[data-v-2b3c2c26] {\n cursor: pointer;\n background: transparent;\n padding: 20px;\n}\n.list-group[data-v-2b3c2c26] {\n min-width: 100%;\n cursor: pointer;\n}\n.right-side-form[data-v-2b3c2c26] {\n border: 4px solid #c3e6cb;\n border-radius: 8px;\n}\n.card[data-v-2b3c2c26] {\n display: flex;\n border: 5px solid #c3e6cb;\n padding: 10px;\n border-radius: 10px;\n}\n.card-text[data-v-2b3c2c26] {\n line-height: 1.7em;\n}\n.selected[data-v-2b3c2c26] {\n background-color: #c3e6cb;\n}\n.custom-scrollbar[data-v-2b3c2c26] {\n background-color: transparent;\n height: 800px;\n width: 100%;\n border-radius: 6px;\n box-shadow: 0 4px 28px rgba(123, 151, 158, 0.25);\n border: 1px solid #d6dee1;\n padding: 1rem;\n border-radius: 6px;\n border: 1px solid #d6dee1;\n padding: 1rem;\n background-color: transparent;\n outline: 1px solid #c3e6cb;\n overflow: scroll;\n box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;\n background: transparent;\n border: 5px solid #c3e6cb;\n}\n.custom-scrollbar-chapters[data-v-2b3c2c26] {\n background-color: transparent;\n height: 600px;\n width: 100%;\n border-radius: 6px;\n box-shadow: 0 4px 28px rgba(123, 151, 158, 0.25);\n border: 1px solid #d6dee1;\n padding: 1rem;\n border-radius: 6px;\n border: 1px solid #d6dee1;\n padding: 1rem;\n background-color: transparent;\n outline: 1px solid #c3e6cb;\n overflow: scroll;\n}\n.myButton[data-v-2b3c2c26] {\n background-color: #c3e6cb;\n border-radius: 8px;\n display: inline-block;\n cursor: pointer;\n color: #000;\n font-family: Arial;\n font-size: 18px;\n padding: 13px 32px;\n text-decoration: none;\n}\n@media (min-width: 768px) {\n.button-46[data-v-2b3c2c26] {\n  font-size: 20px;\n  min-width: 200px;\n  padding: 14px 16px;\n}\n}\np.no-after[data-v-2b3c2c26]:after {\n content: none;\n}\n.btn[data-v-2b3c2c26]:hover {\n background-color: #99e0ab81;\n opacity: 2;\n}\n.ul-main[data-v-2b3c2c26] {\n list-style: none;\n}\n.ul-main .li-main[data-v-2b3c2c26] {\n display: inline-block;\n font-size: 12px;\n text-align: center;\n}\n.ul-main .li-main .span-main[data-v-2b3c2c26] {\n font-size: 20px;\n display: block;\n}\n.ayah_img[data-v-2b3c2c26]:hover {\n background-color: #c3e6cb;\n border-radius: 10px;\n cursor: pointer;\n}\n.enlarge .ayah[data-v-2b3c2c26] {\n transition: transform 0.5s ease;\n float: right;\n}\n.enlarge[data-v-2b3c2c26]:hover {\n /* or some other value */\n transform: scale(1.2);\n}\nbutton[data-v-2b3c2c26],\ninput[data-v-2b3c2c26] {\n font-family: \"Montserrat\", \"Helvetica Neue\", Arial, sans-serif;\n}\n.nav-item .nav-link[data-v-2b3c2c26],\n.nav-tabs .nav-link[data-v-2b3c2c26] {\n transition: all 300ms ease 0s;\n}\n.nav-tabs>.nav-item>.nav-link[data-v-2b3c2c26] {\n color: #888888;\n margin: 0;\n margin-right: 5px;\n background-color: transparent;\n border: 1px solid transparent;\n font-size: 14px;\n padding: 11px 23px;\n line-height: 1.5;\n}\n.nav-tabs>.nav-item>.nav-link[data-v-2b3c2c26]:hover {\n background-color: transparent;\n}\n.nav-tabs>.nav-item>.nav-link.active[data-v-2b3c2c26] {\n background-color: #444;\n color: #ffffff;\n}\n.nav-tabs>.nav-item>.nav-link i.now-ui-icons[data-v-2b3c2c26] {\n font-size: 14px;\n position: relative;\n top: 1px;\n margin-right: 3px;\n}\n.nav-tabs.nav-tabs-neutral>.nav-item>.nav-link[data-v-2b3c2c26] {\n color: #ffffff;\n}\n.nav-tabs.nav-tabs-neutral>.nav-item>.nav-link.active[data-v-2b3c2c26] {\n background-color: rgba(255, 255, 255, 0.2);\n color: #ffffff;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

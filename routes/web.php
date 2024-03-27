@@ -80,9 +80,9 @@ Route::get('/tafseer/{id}/fetch', [SurahController::class, 'getTafseers']);
 // Route::delete('api/delete-correction/{id}',  [CorrectionController::class, 'deleteCorrections']);
 
 // dashboard
-// Route::get('/home', [HomeController::class, 'index'])->name('home');
-// Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-// Route::get('api/fetch-dashboard', [DashboardController::class, 'getDashboard'])->name('dashboard');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('api/fetch-dashboard', [DashboardController::class, 'getDashboard'])->name('dashboard');
 
 // feedback
 // Route::get('/feedback', [FeedbackController::class, 'index']);

@@ -62,14 +62,12 @@
   <div class="col-md-3"></div>
   <div class="col-md-6" style="display: flex; text-align: center">
    <div class="card-header text-center">
-    <h1 class="card-text" style="font-family:serif">
+    <h1 class="card-text" style="">
      Hadith Collection
     </h1>
 
-    <h5 class="card-text container lead text-muted mb-0 " style="line-height: 1.7em; font-family:serif; ">
-     Hadiths are the recorded sayings, actions, and
-     approvals of Prophet Muhammad (peace be upon
-     him) in Islam.
+    <h5 class="card-text container lead text-muted mb-0 " style="line-height: 1.7em; ; ">
+     Hadiths are the recorded sayings, actions, and approvals of Prophet Muhammad (peace be upon him) in Islam.
     </h5>
    </div>
   </div>
@@ -80,25 +78,22 @@
   <div class="row">
    <!-- left side ahadith list -->
    <div class="col-md-8">
+    <!-- search -->
     <form class="mb-3 mt-3 col-md-12" style="display: flex" @submit.prevent="search()" v-if="ahadith != null">
      <input style="padding: 12px" class="form-control mr-2 icon col-lg-12" type="search" id="search" name="search" @keyup="search" v-model="searchFilters.hadith_en" placeholder="Search for Keywords, sentences or paragraphs " aria-label="Search" />
     </form>
 
     <div class="row custom-scrollbar" v-if="ahadith != null">
      <div class="container-fluid col-md-12" style="display: flex; border-radius: 10px" v-for="hadith in ahadith" :key="hadith.id" :value="hadith.id">
-      <div class="card-body mb-2" style=" background: white; padding:30px;border-radius: 10px; box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;">
+      <div class="card-body mb-2">
        <div class="row container">
         <div class="col-md-11">
-         <h3 style="display: flex;font-family:serif">
-          <img src="/images/art1.png" style="width: 50px;font-family:serif;margin-right:10px" class="mb-1 pr-3 pb-4" />{{ hadith.chapter.chapter_text  }}
+         <h3 style="display: flex;">
+          <img src="/images/art1.png" class="mb-1 pr-3 pb-4" />{{ hadith.chapter.chapter_text  }}
          </h3>
         </div>
         <div class="col-md-1" style="display: flex">
-         <!--
-         <h2 class="text-center" style="color: grey">
-          {{ hadith.id }}
-         </h2>
-         -->
+         
         </div>
        </div>
        <hr />
@@ -107,7 +102,7 @@
          {{ hadith.hadith_ar }}
         </h5>
         <br />
-        <h5 style="line-height: 1.6em;font-family:serif">
+        <h5 style="line-height: 1.6em;">
          {{ hadith.hadith_en }}
         </h5>
 
@@ -115,21 +110,18 @@
        <hr />
        <div class="row">
         <div class="col-9" style="background: lighgrey">
-         <h6 style="background: lighgrey;font-family:serif">
+         <h6 style="background: lighgrey;">
           <b class="pr-2">Reference:</b> Book
           {{ hadith.chapter_id }}
          </h6>
-         <h6 style="background: lighgrey;font-family:serif">
+         <h6 style="background: lighgrey;">
           <b class="pr-2">Hadith Num:</b>
           {{ hadith.id }}
          </h6>
 
         </div>
         <div class="col-3" style="background: lighgrey">
-         <h6 style="
-                                                background: lighgrey;
-                                                cursor: pointer;font-family:serif
-                                            " data-bs-toggle="modal" data-bs-target="#exampleModal">
+         <h6 class="report-mistake" data-bs-toggle="modal" data-bs-target="#exampleModal">
           <i class="fas fa-fw fa-edit mr-2"></i>Report Mistake
          </h6>
         </div>
@@ -144,7 +136,7 @@
 
     <div class=" row container-fluid" style="flex-direction: column">
      <form class="mt-3 mb-2">
-      <select class="form-control" v-model="imam" @change="getChapters()" style="border: 4px solid #c3e6cb;border-radius: 8px;padding-botom:8px">
+      <select class="form-control" v-model="imam" @change="getChapters()">
        <option value="0">
         <span>Select Imam</span>
        </option>
@@ -154,18 +146,15 @@
       </select>
      </form>
 
-     <div class="custom-scrollbar" style="
-                                    border: 5px solid #c3e6cb;
-                                    border-radius: 8px;
-                                ">
+     <div class="custom-scrollbar">
       <h5 class="text-left lead  mb-2">
-       <h4 style="font-family:serif">Books:</h4>
+       <h4 style="">Books:</h4>
       </h5>
 
-      <ul class="col-md-4 list-group container-fluid" style="min-width: 100%; cursor: pointer" v-for="(chapter, chapterId) in chapters" :key="chapterId" @click="getAhadiths(chapter.chapter_id)" :class="{ 'selected': selectedIndex === chapterId }">
+      <ul class="col-md-4 list-group container-fluid" v-for="(chapter, chapterId) in chapters" :key="chapterId" @click="getAhadiths(chapter.chapter_id)" :class="{ 'selected': selectedIndex === chapterId }">
 
-       <li class="list-group-item container-fluid min-width:100%" id="toggle" style="cursor: pointer; background: transparent; padding:15px">
-        <h5 class="lead mb-2" style="font-family:serif">
+       <li class="list-group-item container-fluid min-width:100%" id="toggle">
+        <h5 class="lead mb-2" style="">
          {{ chapter.chapter_text }}
         </h5>
        </li>
@@ -219,6 +208,40 @@
   -->
 
 <style scoped>
+
+.list-group-item{
+  cursor: pointer; 
+  background: transparent; 
+  padding:15px;
+}
+
+.list-group{
+  min-width: 100%; 
+  cursor: pointer
+}
+
+.form-control{
+  border: 4px solid #c3e6cb;
+  border-radius: 8px;
+  padding-bottom:8px
+}
+
+.report-mistake{
+  background: lighgrey;
+  cursor: pointer;
+}
+
+img{
+  width: 50px;
+  margin-right:10px;
+}
+.card-body{
+ background: white; 
+ padding:30px;
+ border-radius: 10px; 
+ box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
 .selected {
  background-color: #c3e6cb;
 }
@@ -237,6 +260,8 @@
  background-color: transparent;
  outline: 1px solid #c3e6cb;
  overflow: scroll;
+ border: 5px solid #c3e6cb;
+ border-radius: 8px;
 }
 
 .custom-scrollbar-chapters {

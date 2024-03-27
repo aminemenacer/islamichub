@@ -7,12 +7,12 @@
      <div class="col-md-3"></div>
      <div class="col-md-6" style="display: flex; text-align: center">
       <div class="card-header">
-       <h1 class="card-text text-center mt-2 mb-2" style="font-family:serif">
+       <h1 class="card-text text-center mt-2 mb-2">
         The Holy Quran
        </h1>
 
-       <h5 class="card-text container lead text-muted mb-0 pb-3" style="line-height: 1.7em;font-family:serif;">
-        The Quran, considered the holy scripture of Islam, is a sacred and comprehensive compilation of revelations.
+       <h5 class="card-text container lead text-muted mb-0 pb-3">
+        <span>The Quran, considered the holy scripture of Islam, is a sacred and comprehensive compilation of revelations.</span>
        </h5>
       </div>
 
@@ -38,7 +38,7 @@
  <div class="row container-fluid">
   <div class="col-md-8">
    <!-- Nav tabs -->
-   <div class="card" style=" display: flex;border: 5px solid #c3e6cb;padding: 10px;border-radius: 10px;">
+   <div class="card">
     <div v-if="information != null">
 
      <ul class="nav nav-tabs text-left justify-content-center" role="tablist">
@@ -68,25 +68,25 @@
           <span class="span-main">{{ information.ayah.surah_id }};
            {{information.ayah.ayah_id}}</span>
          </li>
-
         </ul>
        </div>
        <div class="col-md-5"></div>
       </div>
      </div>
+
     </div>
 
     <div class="card-body">
      <!-- Tab panes -->
      <div class="tab-content text-center">
+
       <div class="tab-pane active" id="home" role="tabpanel" v-if="information == null">
        <div class="row">
         <div class="col-md-6">
          <img src="/images/calligraphy.png" class="pl-3" style="width: 70%" />
-
         </div>
         <div class="col-md-6 pt-">
-         <span class="container text-left mb-4 lead text-muted mb-0 " style="line-height: 1.5em;font-family:serif">The Quran, considered the holy
+         <span class="container text-left mb-4 lead text-muted mb-0 ">The Quran, considered the holy
           The Quran, also spelled as Qur'an, is the holy book of Islam and is considered by Muslims to be the literal word of God as revealed to the Prophet Muhammad (peace be upon him) through the Angel Gabriel.
          </span>
         </div>
@@ -106,7 +106,7 @@
 
          <hr class="container" />
          <div class="btn">
-          <h4 class="container text-left" style="line-height: 1.6em;font-family:serif">
+          <h4 class="container text-left" style="line-height: 1.6em;">
            {{ information.translation }}"
           </h4>
          </div>
@@ -123,7 +123,7 @@
        </div>
        <hr class="container" />
        <div class="btn">
-        <h4 class="container text-left" style="line-height: 1.6em;font-family:serif">
+        <h4 class="container text-left" style="line-height: 1.6em;">
          {{ tafseer }}
         </h4>
        </div>
@@ -138,7 +138,7 @@
        </div>
        <hr class="container" />
        <div class="btn">
-        <h4 class="container text-left" style="line-height: 1.6em;font-family:serif">
+        <h4 class="container text-left" style="line-height: 1.6em;">
          {{ information.transliteration }}
         </h4>
        </div>
@@ -151,25 +151,24 @@
   <!-- right side chapter list -->
   <div class="col-md-4 sticky-top container">
 
-   <form class="mb-2 " style="border: 4px solid #c3e6cb;border-radius: 8px;">
+   <form class="mb-2 right-side-form">
     <select class="form-control " v-model="surah" @change="getAyahs()">
      <option value="0">
-      <span style="font-family:serif">Select Surah</span>
+      <span>Select Surah</span>
      </option>
      <option v-for="data in surahs" :key="data.id" :value="data.id">
-      {{ data.name_en }} -
-      {{ data.name_ar }}
+      {{ data.name_en }} - {{ data.name_ar }}
      </option>
     </select>
    </form>
    <div class="tab-content" id="nav-tabContent" v-if="ayah == null">
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" v-if="ayah == null">
      <div class="row container-fluid">
-      <div class="custom-scrollbar" style=" box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; background: transparent; border: 5px solid #c3e6cb;">
-       <ul class="col-md-4 list-group container-fluid root" style="min-width: 100%; cursor: pointer" v-for="(ayah, index) in ayahs" :key="index" @click="getTafseers(ayah.id, index)" :class="{ 'selected': selectedIndexAyah === index }">
-        <li class="list-group-item container-fluid" id="toggle" style="cursor: pointer; background: transparent; padding: 20px">
-         <h5 style="display: flex; font-family: serif">Verse: {{ ayah.ayah_id }}</h5>
-         <h5 style="font-family: serif">{{ ayah.ayah_text }}</h5>
+      <div class="custom-scrollbar">
+       <ul class="col-md-4 list-group container-fluid root" v-for="(ayah, index) in ayahs" :key="index" @click="getTafseers(ayah.id, index)" :class="{ 'selected': selectedIndexAyah === index }">
+        <li class="list-group-item container-fluid" id="toggle">
+         <h5 style="display: flex;">Verse: {{ ayah.ayah_id }}</h5>
+         <h5>{{ ayah.ayah_text }}</h5>
         </li>
        </ul>
 
@@ -208,7 +207,6 @@
 -->
 
 <script>
-
 export default {
  mounted() {
   this.getSurahs();
@@ -237,14 +235,14 @@ export default {
  },
  methods: {
   async fetchAllAudios() {
-    const audioUrl = 'https://cdn.islamic.network/quran/audio/128/ar.alafasy/29.mp3';
-    const corsProxyUrl = 'https://cors-proxy.htmldriven.com/';
+   const audioUrl = 'https://cdn.islamic.network/quran/audio/128/ar.alafasy/29.mp3';
+   const corsProxyUrl = 'https://cors-proxy.htmldriven.com/';
 
-    // Construct the proxied URL
-    const proxiedUrl = corsProxyUrl + audioUrl;
+   // Construct the proxied URL
+   const proxiedUrl = corsProxyUrl + audioUrl;
 
-    // Make a request to the proxied URL
-    const response = await axios.get(proxiedUrl);
+   // Make a request to the proxied URL
+   const response = await axios.get(proxiedUrl);
    try {
     const batchSize = 0; // Adjust the batch size as needed
     const totalAudios = 6236; // Total number of audio files
@@ -325,6 +323,34 @@ export default {
 </script>
 
 <style scoped>
+.list-group-item {
+ cursor: pointer;
+ background: transparent;
+ padding: 20px;
+}
+
+.list-group {
+ min-width: 100%;
+ cursor: pointer;
+}
+
+.right-side-form {
+ border: 4px solid #c3e6cb;
+ border-radius: 8px;
+}
+
+.card {
+ display: flex;
+ border: 5px solid #c3e6cb;
+ padding: 10px;
+ border-radius: 10px;
+}
+
+.card-text {
+ line-height: 1.7em;
+
+}
+
 .selected {
  background-color: #c3e6cb;
 }
@@ -343,6 +369,9 @@ export default {
  background-color: transparent;
  outline: 1px solid #c3e6cb;
  overflow: scroll;
+ box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+ background: transparent;
+ border: 5px solid #c3e6cb;
 }
 
 .custom-scrollbar-chapters {
