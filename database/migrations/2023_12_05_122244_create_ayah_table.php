@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('surah_id');
             $table->longText('ayah_text')->charset('utf8mb4')->collation('utf8mb4_unicode_ci');
             $table->string('ayah_id');
+            $table->string('audio_links');
             $table->timestamps();
         });
     }

@@ -76,8 +76,6 @@
   <div class="col-md-3"></div>
  </div>
 
-
-
  <div class="conainer">
   <div class="row">
    <!-- left side ahadith list -->
@@ -112,7 +110,7 @@
         <h5 style="line-height: 1.6em;font-family:serif">
          {{ hadith.hadith_en }}
         </h5>
-        
+
        </div>
        <hr />
        <div class="row">
@@ -125,7 +123,7 @@
           <b class="pr-2">Hadith Num:</b>
           {{ hadith.id }}
          </h6>
-        
+
         </div>
         <div class="col-3" style="background: lighgrey">
          <h6 style="
@@ -144,43 +142,41 @@
    <!-- right side chapter list -->
    <div class="col-md-4 ">
 
+    <div class=" row container-fluid" style="flex-direction: column">
+     <form class="mt-3 mb-2">
+      <select class="form-control" v-model="imam" @change="getChapters()" style="border: 4px solid #c3e6cb;border-radius: 8px;padding-botom:8px">
+       <option value="0">
+        <span>Select Imam</span>
+       </option>
+       <option v-for="data in imams" :key="data.id" :value="data.id">
+        {{ data.imam_name }}
+       </option>
+      </select>
+     </form>
 
-     <div class=" row container-fluid" style="flex-direction: column">
-      <form class="mt-3 mb-2" >
-       <select class="form-control" v-model="imam" @change="getChapters()" style="border: 4px solid #c3e6cb;border-radius: 8px;padding-botom:8px">
-        <option value="0">
-         <span>Select Imam</span>
-        </option>
-        <option v-for="data in imams" :key="data.id" :value="data.id">
-         {{ data.imam_name }}
-        </option>
-       </select>
-      </form>
-
-      <div class="custom-scrollbar" style="
+     <div class="custom-scrollbar" style="
                                     border: 5px solid #c3e6cb;
                                     border-radius: 8px;
                                 ">
-       <h5 class="text-left lead  mb-2">
-        <h4 style="font-family:serif">Books:</h4>
-       </h5>
+      <h5 class="text-left lead  mb-2">
+       <h4 style="font-family:serif">Books:</h4>
+      </h5>
 
-       <ul class="col-md-4 list-group container-fluid" style="min-width: 100%; cursor: pointer" v-for="(chapter, chapterId) in chapters" :key="chapterId" @click="getAhadiths(chapter.chapter_id)" :class="{ 'selected': selectedIndex === chapterId }">
+      <ul class="col-md-4 list-group container-fluid" style="min-width: 100%; cursor: pointer" v-for="(chapter, chapterId) in chapters" :key="chapterId" @click="getAhadiths(chapter.chapter_id)" :class="{ 'selected': selectedIndex === chapterId }">
 
-        <li class="list-group-item container-fluid min-width:100%" id="toggle" style="cursor: pointer; background: transparent; padding:15px">
-         <h5 class="lead mb-2" style="font-family:serif">
-          {{ chapter.chapter_text }}
-         </h5>
-        </li>
-       </ul>
-      </div>
+       <li class="list-group-item container-fluid min-width:100%" id="toggle" style="cursor: pointer; background: transparent; padding:15px">
+        <h5 class="lead mb-2" style="font-family:serif">
+         {{ chapter.chapter_text }}
+        </h5>
+       </li>
+      </ul>
      </div>
     </div>
    </div>
   </div>
  </div>
+</div>
 </template>
-
 
  <!-- multiple input sections 
     <div class="row  mt-3 text-center pt-3 container-fluid">

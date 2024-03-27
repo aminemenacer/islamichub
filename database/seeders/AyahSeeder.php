@@ -17,16 +17,13 @@ class AyahSeeder extends Seeder
   
         $firstline = true;
 
-
-        
-
-        
         while (($data = fgetcsv($csvFile, 2000, ",")) !== FALSE) {
             if (!$firstline) {
                 Ayah::create([
                     "surah_id" => $data['0'],
                     "ayah_id" => $data['1'],
-                    "ayah_text" => $data['2'],
+                    "audio_links" => $data['2'],
+                    "ayah_text" => $data['3'],
                     'created_at' => now(),
                     'updated_at' => now(),
 

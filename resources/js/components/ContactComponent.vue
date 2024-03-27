@@ -10,6 +10,12 @@
   </div>
   <div class="row">
    <div class="col-lg-6 mx-auto">
+    <li v-for="(audio, index) in audioFiles" :key="index">
+     <audio controls>
+      <source :src="audio.url" type="audio/mpeg">
+      Your browser does not support the audio element.
+     </audio>
+    </li>
 
     <div class="card mt-5" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px; border-radius:20px;padding:15px">
      <div class="card-body">
@@ -72,10 +78,18 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
+ mounted() {
+  this.fetchAllAudios();
+ },
 
  data() {
   return {
+   audioFiles: [],
+   totalAudios: 10,
+   audioUrl: '',
    feedback: {},
    form: new Form({
     firstname: "",
@@ -88,7 +102,34 @@ export default {
 
   }
  },
+
  methods: {
+  async fetchAllAudios() {
+   try {
+    const batchSize = 100; // Adjust the batch size as needed
+    const totalAudios = 6236; // Total number of audio files
+    const numBatches = Math.ceil(totalAudios / batchSize);
+
+    for (let batchIndex = 0; batchIndex < numBatches; batchIndex++) {
+     const startId = batchIndex * batchSize + 1;
+     const endId = Math.min(startId + batchSize - 1, totalAudios);
+
+     const batchAudioIds = Array.from({
+      length: endId - startId + 1
+     }, (_, i) => startId + i);
+
+     const batchResponses = await Promise.all(batchAudioIds.map(id => axios.get(`https://cdn.islamic.network/quran/audio/128/ar.alafasy/${id}.mp3`)));
+
+     for (let response of batchResponses) {
+      this.audioFiles.push({
+       url: response.request.responseURL
+      });
+     }
+    }
+   } catch (error) {
+    console.error('Error fetching audio files:', error);
+   }
+  },
 
   sendMessage() {
    Swal.fire({
@@ -129,8 +170,8 @@ export default {
    });
   },
 
- },
-}
+ }
+ }
 </script>
 
 <style scoped>

@@ -51,10 +51,10 @@
                             <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: grey;"
                                     href="/ahadith">Ahadith</a></h5>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: grey;"
                                     href="/charity">Donations</a></h5>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: grey;"
                                     href="/contact">Contact</a></h5>

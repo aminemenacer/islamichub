@@ -12,15 +12,17 @@ use App\Http\Controllers\PricingController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CharityController;
 use App\Http\Controllers\VolunteerController;
-use App\Http\Controllers\HadithQudsiController;
-use App\Http\Controllers\HadithShahController;
 use App\Http\Controllers\MailingListController;
 use App\Http\Controllers\CorrectionController;
 use App\Http\Controllers\QuranController;
 use App\Http\Controllers\SurahController;
+use Illuminate\Support\Facades\Http;
+
+
 
 // Auth routes
 Auth::routes();
+
 
 Route::get('/', function () {
     return view('quran');
@@ -28,6 +30,10 @@ Route::get('/', function () {
 Route::get('/welcome', function () {
     return view('home');
 });
+
+Route::get('/audio-files/{id}', [ContactController::class, 'fetchAudioFile']);
+
+
 
 // stripe payment
 Route::post('payment/initiate', [CharityController::class, 'initiatePayment']);

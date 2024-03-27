@@ -16,6 +16,13 @@
        </h5>
       </div>
 
+      <li v-for="(audio, index) in audioFiles" :key="index">
+       <audio controls>
+        <source :src="audio.url" type="audio/mpeg">
+        Your browser does not support the audio element.
+       </audio>
+      </li>
+
      </div>
      <div class="col-md-3"></div>
     </div>
@@ -31,12 +38,7 @@
  <div class="row container-fluid">
   <div class="col-md-8">
    <!-- Nav tabs -->
-   <div class="card" style="
-                        display: flex;
-                        border: 5px solid #c3e6cb;
-                        padding: 10px;
-                        border-radius: 10px;
-                    ">
+   <div class="card" style=" display: flex;border: 5px solid #c3e6cb;padding: 10px;border-radius: 10px;">
     <div v-if="information != null">
 
      <ul class="nav nav-tabs text-left justify-content-center" role="tablist">
@@ -81,6 +83,7 @@
        <div class="row">
         <div class="col-md-6">
          <img src="/images/calligraphy.png" class="pl-3" style="width: 70%" />
+
         </div>
         <div class="col-md-6 pt-">
          <span class="container text-left mb-4 lead text-muted mb-0 " style="line-height: 1.5em;font-family:serif">The Quran, considered the holy
@@ -162,12 +165,7 @@
    <div class="tab-content" id="nav-tabContent" v-if="ayah == null">
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" v-if="ayah == null">
      <div class="row container-fluid">
-      <div class="custom-scrollbar" style="
-                                    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px,
-                                        rgba(0, 0, 0, 0.24) 0px 1px 2px;
-                                    background: transparent;
-                                    border: 5px solid #c3e6cb;
-                                ">
+      <div class="custom-scrollbar" style=" box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; background: transparent; border: 5px solid #c3e6cb;">
        <ul class="col-md-4 list-group container-fluid root" style="min-width: 100%; cursor: pointer" v-for="(ayah, index) in ayahs" :key="index" @click="getTafseers(ayah.id, index)" :class="{ 'selected': selectedIndexAyah === index }">
         <li class="list-group-item container-fluid" id="toggle" style="cursor: pointer; background: transparent; padding: 20px">
          <h5 style="display: flex; font-family: serif">Verse: {{ ayah.ayah_id }}</h5>
@@ -210,12 +208,17 @@
 -->
 
 <script>
+
 export default {
  mounted() {
   this.getSurahs();
+  this.fetchAllAudios();
  },
  data() {
   return {
+   audioFiles: [],
+   totalAudios: 6236,
+   audioUrl: '',
    selectedIndexAyah: null,
    ayahId: null,
    data: [],
@@ -233,6 +236,40 @@ export default {
   };
  },
  methods: {
+  async fetchAllAudios() {
+    const audioUrl = 'https://cdn.islamic.network/quran/audio/128/ar.alafasy/29.mp3';
+    const corsProxyUrl = 'https://cors-proxy.htmldriven.com/';
+
+    // Construct the proxied URL
+    const proxiedUrl = corsProxyUrl + audioUrl;
+
+    // Make a request to the proxied URL
+    const response = await axios.get(proxiedUrl);
+   try {
+    const batchSize = 0; // Adjust the batch size as needed
+    const totalAudios = 6236; // Total number of audio files
+    const numBatches = Math.ceil(totalAudios / batchSize);
+
+    for (let batchIndex = 0; batchIndex < numBatches; batchIndex++) {
+     const startId = batchIndex * batchSize + 1;
+     const endId = Math.min(startId + batchSize - 1, totalAudios);
+
+     const batchAudioIds = Array.from({
+      length: endId - startId + 1
+     }, (_, i) => startId + i);
+
+     const batchResponses = await Promise.all(batchAudioIds.map(id => axios.get(`https://cdn.islamic.network/quran/audio/128/ar.alafasy/${id}.mp3`)));
+
+     for (let response of batchResponses) {
+      this.audioFiles.push({
+       url: response.request.responseURL
+      });
+     }
+    }
+   } catch (error) {
+    console.error('Error fetching audio files:', error);
+   }
+  },
   getTafseers: function (id, index) {
    this.selectedIndexAyah = index;
 
