@@ -7,7 +7,7 @@
      <div class="col-md-3"></div>
      <div class="col-md-6" style="display: flex; text-align: center">
       <div class="card-header">
-       <h1 class="card-text text-center mt-2 mb-2">
+       <h1 class="card-text text-center mt-2 mb-2" style="font-family:serif">
         The Holy Quran
        </h1>
 

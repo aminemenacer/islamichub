@@ -62,11 +62,11 @@
   <div class="col-md-3"></div>
   <div class="col-md-6" style="display: flex; text-align: center">
    <div class="card-header text-center">
-    <h1 class="card-text" style="">
+    <h1 class="card-text" style="font-family:serif">
      Hadith Collection
     </h1>
 
-    <h5 class="card-text container lead text-muted mb-0 " style="line-height: 1.7em; ; ">
+    <h5 class="card-text lead text-muted mb-0 " style="line-height: 1.7em; ; ">
      Hadiths are the recorded sayings, actions, and approvals of Prophet Muhammad (peace be upon him) in Islam.
     </h5>
    </div>

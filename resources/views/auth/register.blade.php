@@ -81,10 +81,13 @@
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
-                        </div>
+                        </div>                            
+
 
                         <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
+                            <div class="col-md-8 offset-md-4">
+                                <label class="mb-3">Already have an account ? Click <a href="/login">here</a> to login.</label><br>
+                       
                                 <button type="submit" class="btn btn-success btn-md">
                                     {{ __('Register') }}
                                 </button>

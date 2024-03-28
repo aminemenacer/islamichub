@@ -21379,7 +21379,7 @@ var _hoisted_19 = /*#__PURE__*/_withScopeId(function () {
     "class": "btn btn-success"
   }, " Save changes ")], -1 /* HOISTED */);
 });
-var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"row\" data-v-23ef7dd5><div class=\"col-md-3\" data-v-23ef7dd5></div><div class=\"col-md-6\" style=\"display:flex;text-align:center;\" data-v-23ef7dd5><div class=\"card-header text-center\" data-v-23ef7dd5><h1 class=\"card-text\" style=\"\" data-v-23ef7dd5> Hadith Collection </h1><h5 class=\"card-text container lead text-muted mb-0\" style=\"line-height:1.7em;\" data-v-23ef7dd5> Hadiths are the recorded sayings, actions, and approvals of Prophet Muhammad (peace be upon him) in Islam. </h5></div></div><div class=\"col-md-3\" data-v-23ef7dd5></div></div>", 1);
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"row\" data-v-23ef7dd5><div class=\"col-md-3\" data-v-23ef7dd5></div><div class=\"col-md-6\" style=\"display:flex;text-align:center;\" data-v-23ef7dd5><div class=\"card-header text-center\" data-v-23ef7dd5><h1 class=\"card-text\" style=\"font-family:serif;\" data-v-23ef7dd5> Hadith Collection </h1><h5 class=\"card-text lead text-muted mb-0\" style=\"line-height:1.7em;\" data-v-23ef7dd5> Hadiths are the recorded sayings, actions, and approvals of Prophet Muhammad (peace be upon him) in Islam. </h5></div></div><div class=\"col-md-3\" data-v-23ef7dd5></div></div>", 1);
 var _hoisted_21 = {
   "class": "conainer"
 };
@@ -24087,7 +24087,10 @@ var _hoisted_8 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "card-header"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
-    "class": "card-text text-center mt-2 mb-2"
+    "class": "card-text text-center mt-2 mb-2",
+    style: {
+      "font-family": "serif"
+    }
   }, " The Holy Quran "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", {
     "class": "card-text container lead text-muted mb-0 pb-3"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "The Quran, considered the holy scripture of Islam, is a sacred and comprehensive compilation of revelations.")])], -1 /* HOISTED */);

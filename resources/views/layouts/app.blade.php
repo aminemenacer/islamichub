@@ -14,6 +14,7 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
+    <link href="{{ asset('node_modules/@fortawesome/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
 
 
     <!-- resources/views/layouts/app.blade.php -->
@@ -51,46 +52,30 @@
                             <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: grey;"
                                     href="/ahadith">Ahadith</a></h5>
                         </li>
-                        {{-- <li class="nav-item">
-                            <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: grey;"
-                                    href="/charity">Donations</a></h5>
-                        </li> --}}
+                    
                         <li class="nav-item">
                             <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: grey;"
                                     href="/contact">Contact</a></h5>
                         </li>
                         <li class="nav-item">
                             <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: grey;"
+                                    href="/charity">Support Us</a></h5>
+                        </li>
+                        <li class="nav-item">
+                            <h5><a style="font-family:inter" class="nav-link ml-4 pl-3 pr-5" style="color: grey;"
                                     href="/about">About Us</a></h5>
                         </li>
-                        <li class="nav-item">
-                            <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: grey;"
-                                    href="/login">Login</a></h5>
-                        </li>
+                        
                         @if (Auth::user())
                         <li class="nav-item">
-                            <h5><a style="font-family:inter" class="nav-link ml-4 pr-5 pl-3" style="color: grey;"
+                            <h5><a style="font-family:inter" class="nav-link ml-4  pl-3" style="color: grey;"
                                     href="/dashboard">Dashboard</a></h5>
                         </li>
                         @else
 
                         @endif
-                        <!--
-                            <li class="nav-item">
-                                <h5><a style="font-family:inter;padding-right:20px" class="nav-link pr-5 pl-3" style="color: grey;"
-                                        href="/volunteer">Volunteer</a></h5>
-                            </li>
-                        -->
-
-                        <ul class="navbar-nav pl-5 mr-4">
-                            <li class="nav-item " style="padding-left:5%">
-                                <a href="/charity" class="donate" role="button">Donations</a>
-
-                            </li>
-
-                        </ul>
-
-                        <!-- Right Side Of Navbar 
+                        
+                        <!-- Right Side Of Navbar -->
                         
                             @guest
                             @if (Route::has('login'))
@@ -124,7 +109,7 @@
                             </li>
                             @endguest
                         </ul>
-                    -->
+                    
                 </div>
             </div>
         </nav>

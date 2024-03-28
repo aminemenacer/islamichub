@@ -22,45 +22,50 @@
           </h5>
         </li>
         <li class="nav-item">
-          <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: grey;" href="/charity">Donations</a>
-          </h5>
-        </li>
-        <li class="nav-item">
           <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: grey;" href="/contact">Contact
               Us</a></h5>
         </li>
-        <li >                   
+        <li class="nav-item">
+          <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: grey;" href="/about">About Us</a>
+          </h5>
+        </li>
+        <li class="nav-item">
+          <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: grey;" href="/charity">Support
+              Us</a></h5>
+        </li>
+
+        <li>
           @guest
           @if (Route::has('login'))
-          <li class="nav-item">
-              <h4><a style="font-family:inter" class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></h4>
-          </li>
-          @endif
+        <li class="nav-item">
+          <h4><a style="font-family:inter" class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></h4>
+        </li>
+        @endif
 
-          @if (Route::has('register'))
-          <li class="nav-item">
-              <h4><a style="font-family:inter" class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></h4>
-          </li>
-          @endif
-          @else
-          <li class="nav-item dropdown ml-5">
-              <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                  data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                  {{ Auth::user()->name }}
-              </a>
+        @if (Route::has('register'))
+        <li class="nav-item">
+          <h4><a style="font-family:inter" class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></h4>
+        </li>
+        @endif
+        @else
+        <li class="nav-item dropdown ml-5">
+          <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false" v-pre>
+            {{ Auth::user()->name }}
+          </a>
 
-              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                       document.getElementById('logout-form').submit();">
-                      {{ __('Logout') }}
-                  </a>
+              {{ __('Logout') }}
+            </a>
 
-                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                      @csrf
-                  </form>
-              </div>
-          </li>
-          @endguest
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+              @csrf
+            </form>
+          </div>
+        </li>
+        @endguest
         </li>
     </nav>
 
@@ -78,7 +83,7 @@
 
             <li class="nav-item">
               <a href="/dashboard" class="nav-link">
-                <i class="nav-icon fas fa-th"></i>
+                <i class="fas fa-home"></i>
                 <p>
                   Dashboard
                 </p>
@@ -132,7 +137,17 @@
                 </p>
               </a>
             </li>
-           
+            <li class="nav-item ml-1">
+              <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                      document.getElementById('logout-form').submit();">
+                {{ __('Logout') }}
+              </a>
+
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+              </form>
+            </li>
+
           </ul>
         </nav>
 
