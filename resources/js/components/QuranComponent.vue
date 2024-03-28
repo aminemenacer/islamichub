@@ -57,16 +57,18 @@
         Transliteration
        </a>
       </li>
+      
      </ul>
 
-     <div class="mt-2" v-if="information != null">
+     <div class="mt-2" v-if="information.surah != null">
+     {{ information.surah.name_en }}
       <div class="row">
        <div class="col-md-7">
         <ul class="ul-main">
          <img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" />
          <li class="li-main mr-3">
           <span class="span-main">{{ information.ayah.surah_id }};
-           {{information.ayah.ayah_id}}</span>
+           {{information.ayah.ayah_id}} </span> 
          </li>
         </ul>
        </div>

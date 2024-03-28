@@ -39,6 +39,7 @@ import VolunteerComponent from "./components/VolunteerComponent.vue";
 import AhadithComponent from "./components/AhadithComponent.vue";
 import CorrectionComponent from "./components/CorrectionComponent.vue";
 import QuranComponent from "./components/QuranComponent.vue";
+import AboutComponent from "./components/AboutComponent.vue";
 
 window.Vue = require("vue");
 
@@ -83,5 +84,6 @@ app.component("volunteer-component", VolunteerComponent);
 app.component("ahadith-component", AhadithComponent);
 app.component("correction-component", CorrectionComponent);
 app.component("quran-component", QuranComponent);
+app.component("about-component", AboutComponent);
 
 app.mount("#app");

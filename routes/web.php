@@ -16,6 +16,8 @@ use App\Http\Controllers\MailingListController;
 use App\Http\Controllers\CorrectionController;
 use App\Http\Controllers\QuranController;
 use App\Http\Controllers\SurahController;
+use App\Http\Controllers\AboutController;
+
 use Illuminate\Support\Facades\Http;
 
 
@@ -104,3 +106,5 @@ Route::get('/pricing', [PricingController::class, 'index'])->name('pricing');
 Route::get('/charity', [CharityController::class, 'index'])->name('charity');
 // volunteer
 Route::get('/volunteer', [VolunteerController::class, 'index'])->name('volunteer');
+// about
+Route::get('/about', [AboutController::class, 'index'])->name('about');

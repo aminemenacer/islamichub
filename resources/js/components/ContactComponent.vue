@@ -1,6 +1,8 @@
 <template>
 <div class="id pt-3">
 
+
+
  <div class="container py-3">
   <div class="row container">
    <div class="mr-2 ">
@@ -81,15 +83,10 @@
 import axios from 'axios';
 
 export default {
- mounted() {
-  this.fetchAllAudios();
- },
-
+ 
  data() {
   return {
-   audioFiles: [],
-   totalAudios: 10,
-   audioUrl: '',
+  
    feedback: {},
    form: new Form({
     firstname: "",
@@ -104,32 +101,7 @@ export default {
  },
 
  methods: {
-  async fetchAllAudios() {
-   try {
-    const batchSize = 100; // Adjust the batch size as needed
-    const totalAudios = 6236; // Total number of audio files
-    const numBatches = Math.ceil(totalAudios / batchSize);
-
-    for (let batchIndex = 0; batchIndex < numBatches; batchIndex++) {
-     const startId = batchIndex * batchSize + 1;
-     const endId = Math.min(startId + batchSize - 1, totalAudios);
-
-     const batchAudioIds = Array.from({
-      length: endId - startId + 1
-     }, (_, i) => startId + i);
-
-     const batchResponses = await Promise.all(batchAudioIds.map(id => axios.get(`https://cdn.islamic.network/quran/audio/128/ar.alafasy/${id}.mp3`)));
-
-     for (let response of batchResponses) {
-      this.audioFiles.push({
-       url: response.request.responseURL
-      });
-     }
-    }
-   } catch (error) {
-    console.error('Error fetching audio files:', error);
-   }
-  },
+  
 
   sendMessage() {
    Swal.fire({

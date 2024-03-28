@@ -61,6 +61,10 @@
                         </li>
                         <li class="nav-item">
                             <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: grey;"
+                                    href="/about">About Us</a></h5>
+                        </li>
+                        <li class="nav-item">
+                            <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: grey;"
                                     href="/login">Login</a></h5>
                         </li>
                         @if (Auth::user())
