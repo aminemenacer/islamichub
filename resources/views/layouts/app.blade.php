@@ -44,59 +44,55 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav justify-content-end mt-2 pr-4 flex-grow-1 ">
-                        <li class="nav-item">
-                            <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: grey;"
+                        <li class="nav-item mt-1">
+                            <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: black;"
                                     href="/quran">Quran</a></h5>
                         </li>
-                        <li class="nav-item">
-                            <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: grey;"
+                        <li class="nav-item mt-1">
+                            <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: black;"
                                     href="/ahadith">Ahadith</a></h5>
                         </li>
                     
-                        <li class="nav-item">
-                            <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: grey;"
+                        <li class="nav-item mt-1">
+                            <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: black;"
                                     href="/contact">Contact</a></h5>
                         </li>
-                        <li class="nav-item">
-                            <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: grey;"
-                                    href="/charity">Support Us</a></h5>
-                        </li>
-                        <li class="nav-item">
-                            <h5><a style="font-family:inter" class="nav-link ml-4 pl-3 pr-5" style="color: grey;"
+    
+                        <li class="nav-item mt-1">
+                            <h5><a style="font-family:inter" class="nav-link ml-4 pl-3 pr-5" style="color: black;"
                                     href="/about">About Us</a></h5>
                         </li>
-                        
-                        @if (Auth::user())
-                        <li class="nav-item">
-                            <h5><a style="font-family:inter" class="nav-link ml-4  pl-3" style="color: grey;"
-                                    href="/dashboard">Dashboard</a></h5>
-                        </li>
-                        @else
 
-                        @endif
+                        <li class="nav-item pr-2 mb-1">
+                            <a href="/charity" type="button" class="btn btn-success btn-lg" style="font-family:inter">Support Us</a>
+                        </li>
+                        
                         
                         <!-- Right Side Of Navbar -->
                         
                             @guest
                             @if (Route::has('login'))
-                            <li class="nav-item">
+                            <li class="nav-item mt-1">
                                 <h5><a style="font-family:inter" class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></h5>
                             </li>
                             @endif
 
                             @if (Route::has('register'))
-                            <li class="nav-item">
+                            <li class="nav-item mt-1">
                                 <h5><a style="font-family:inter" class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></h5>
                             </li>
+                           
                             @endif
                             @else
-                            <li class="nav-item dropdown ml-5">
+                            <li class="nav-item dropdown mt-1 ml-5">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" style="color: black;" href="/dashboard">Dashboard</a>
+
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
@@ -125,21 +121,21 @@
 </html>
 
 <style>
-    .donate {
-        font-weight:300;
-        background-color: #c3e6cb;
-        border-radius: 10px;
-        color: darkgreen;
-        cursor: pointer;
-        display: inline-block;
-        font-family:serif;
-        padding: 7px 20px;
-        text-align: center;
-        text-decoration: none;
-        border: 0;
-        font-size: 18px;
-        user-select: none;
-        -webkit-user-select: none;
-        touch-action: manipulation;
-    }
+.donate {
+    font-weight:300;
+    background-color: #c3e6cb;
+    border-radius: 10px;
+    color: darkgreen;
+    cursor: pointer;
+    display: inline-block;
+    font-family:serif;
+    padding: 7px 20px;
+    text-align: center;
+    text-decoration: none;
+    border: 0;
+    font-size: 18px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
 </style>

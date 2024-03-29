@@ -15,22 +15,22 @@
 
       <ul class="navbar-nav mt-2 mr-5 ml-3">
         <li class="nav-item">
-          <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: grey;" href="/quran">Quran</a></h5>
+          <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: black;" href="/quran">Quran</a></h5>
         </li>
         <li class="nav-item">
-          <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: grey;" href="/ahadith">Ahadith</a>
+          <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: black;" href="/ahadith">Ahadith</a>
           </h5>
         </li>
         <li class="nav-item">
-          <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: grey;" href="/contact">Contact
+          <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: black;" href="/contact">Contact
               Us</a></h5>
         </li>
         <li class="nav-item">
-          <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: grey;" href="/about">About Us</a>
+          <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: black;" href="/about">About Us</a>
           </h5>
         </li>
         <li class="nav-item">
-          <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: grey;" href="/charity">Support
+          <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: black;" href="/charity">Support
               Us</a></h5>
         </li>
 

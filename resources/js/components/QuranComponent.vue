@@ -6,12 +6,12 @@
     <div class="row">
      <div class="col-md-3"></div>
      <div class="col-md-6" style="display: flex; text-align: center">
-      <div class="card-header">
+      <div class="card-header" >
        <h1 class="card-text text-center mt-2 mb-2" style="font-family:serif">
         The Holy Quran
        </h1>
 
-       <h5 class="card-text container lead text-muted mb-0 pb-3">
+       <h5 class="card-text container-fluid mb-0 pb-3">
         <span>The Quran, considered the holy scripture of Islam, is a sacred and comprehensive compilation of revelations.</span>
        </h5>
       </div>
@@ -38,7 +38,7 @@
  <div class="row container-fluid">
   <div class="col-md-8">
    <!-- Nav tabs -->
-   <div class="card">
+   <div class="card" style="padding">
     <div v-if="information != null">
 
      <ul class="nav nav-tabs text-left justify-content-center" role="tablist">
@@ -60,16 +60,14 @@
       
      </ul>
 
-     <div class="mt-2" v-if="information.surah != null">
-     {{ information.surah.name_en }}
+     <div class="mt-2" v-if="information !== null">
       <div class="row">
        <div class="col-md-7">
         <ul class="ul-main">
          <img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" />
-         <li class="li-main mr-3">
-          <span class="span-main">{{ information.ayah.surah_id }};
-           {{information.ayah.ayah_id}} </span> 
-         </li>
+          <li class="li-main mr-3">
+            <span class="span-main">{{ information.ayah.surah_id }} : {{ information.ayah.ayah_id }}</span>          
+          </li>
         </ul>
        </div>
        <div class="col-md-5"></div>
@@ -231,6 +229,7 @@ export default {
    tafseer: null,
    information: null,
    ayah_id: null,
+   name_en: null,
    id: null,
    surah: 0,
   };
