@@ -17,6 +17,7 @@ use App\Http\Controllers\CorrectionController;
 use App\Http\Controllers\QuranController;
 use App\Http\Controllers\SurahController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\Auth\LoginController;
 
 use Illuminate\Support\Facades\Http;
 
@@ -25,6 +26,12 @@ use Illuminate\Support\Facades\Http;
 // Auth routes
 Auth::routes();
 
+Route::get('auth/google', [LoginController::class, 'redirectToGoogle'])->name('google-auth');
+Route::get('auth/google/callback', [LoginController::class, 'handleGoogleCallback']);
+
+// Example: Restrict access to a route to authenticated users
+Route::get('dashboard', [App\Http\Controllers\DashboardController::class, 'index'])
+    ->middleware('auth');
 
 Route::get('/', function () {
     return view('quran');

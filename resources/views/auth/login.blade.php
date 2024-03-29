@@ -45,6 +45,7 @@
 
                   <div class="pt-1 mb-4">
                     <button type="submit" class="btn btn-success btn-lg btn-block" type="button">Login</button>
+
                   </div>
                 
                   <div class="text-center">
@@ -58,7 +59,8 @@
                   </div>
                   <hr class="my-4">
 
-                  <button class="btn btn-lg btn-block btn-primary" style="background-color: #fff; box-shadow:2px 2px 4px" type="submit"><span style="color:black"> Sign in with google</span></button>
+                  <a href="{{ url('auth/google') }}" class="btn btn-lg btn-block " style="background-color: #dd4b39; color:white" type="submit"><i class="fab fa-google me-2"></i> Login with google</a>
+
                 
                 </form>
 
