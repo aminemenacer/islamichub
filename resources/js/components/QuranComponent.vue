@@ -10,7 +10,7 @@
        <h1 class="card-text text-center mt-2 mb-2" style="font-family:serif">
         The Holy Quran
        </h1>
-           <h5 class="card-text container-fluid mb-0 pb-3">
+       <h5 class="card-text container-fluid mb-0 pb-3">
         <span>The Quran, considered the holy scripture of Islam, is a sacred and comprehensive compilation of revelations.</span>
        </h5>
       </div>
@@ -37,6 +37,63 @@
   <div class="col-md-8">
    <!-- Nav tabs -->
    <div class="card" style="padding">
+    <h5 class="container font-weight-bold" style="padding-left:10px; padding-top:10px; font-family:serif; ">Featured Reading:</h5>
+    <div class="container text-center" >
+     <div class="row container">
+      <div class="col container">
+      <div class="btn-group">
+        <form class="mb-2 right-side-form">
+        <select class="form-control" v-model="surah" @change="getAyahs()">
+          <option value="0">Select Surah</option>
+          <!-- Manually specify three options -->
+          <option value="1">Al-Fatiha - الفاتحة</option>
+          <option value="2">Al-Baqarah - البقرة</option>
+          <option value="3">Al-Imran - آل عمران</option>
+        </select>
+      </form>
+
+      <div class="btn-group">
+  <button @click="selectSurah(1)" :class="{ 'active': surah === 1 }" class="btn btn-primary">Al-Fatiha - الفاتحة</button>
+  <button @click="selectSurah(2)" :class="{ 'active': surah === 2 }" class="btn btn-primary">Al-Baqarah - البقرة</button>
+  <button @click="selectSurah(3)" :class="{ 'active': surah === 3 }" class="btn btn-primary">Al-Imran - آل عمران</button>
+</div>
+
+
+
+</div>
+       <div class="flex justify-content-center">
+        <Button class="width:100%" label="success" severity="success" raised outlined />
+       </div>
+      </div>
+      <div class="col">
+       <div class=" flex justify-content-center">
+        <Button label="success" severity="success" raised outlined />
+       </div>
+      </div>
+      <div class="col">
+       <div class="flex justify-content-center">
+        <Button label="success" severity="success" raised outlined />
+       </div>
+      </div>
+      <div class="col">
+       <div class="flex justify-content-center">
+        <Button label="success" severity="success" raised outlined />
+       </div>
+      </div>
+      <div class="col">
+       <div class="flex justify-content-center">
+        <Button label="success" severity="success" raised outlined />
+       </div>
+      </div>
+      <div class="col">
+       <div class="flex justify-content-center">
+        <Button label="success" severity="success" raised outlined />
+       </div>
+      </div>
+     </div>
+    </div>
+    <hr>
+
     <div v-if="information != null">
 
      <ul class="nav nav-tabs text-left justify-content-center" role="tablist">
@@ -60,14 +117,34 @@
 
      <div class="mt-2" v-if="information !== null">
       <div class="row">
-       <div class="col-md-7">
+       <div class="col-md-2">
         <ul class="ul-main">
          <img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" />
          <li class="li-main mr-3">
-          <span class="span-main">{{ information.ayah.surah_id }} : {{ information.ayah.ayah_id }}</span>
+          <span class="span-main" style="font-style:bold">{{ information.ayah.surah_id }} : {{ information.ayah.ayah_id }}</span>
          </li>
-          <button @click="copyText">Copy Text</button>
         </ul>
+       </div>
+       <div class="col-md-3" style="padding:5px">
+        <img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" />
+        <img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" />
+        <img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" />
+
+       </div>
+
+       <div class="col-md-4">
+        <audio controls>
+         <source type="audio/mpeg">
+         Your browser does not support the audio element.
+        </audio>
+       </div>
+       <div class="col-md-1 mt-3 font-weight-bold">
+        Al-Nisa
+       </div>
+      </div>
+      <div class="row">
+       <div class="col-md-7">
+
        </div>
        <div class="col-md-5"></div>
       </div>
@@ -88,14 +165,14 @@
         <div class="col-md-6 pt-">
          <p>The Quran, considered the holy
           The Quran, also spelled as Qur'an, is the holy book of Islam and is considered by Muslims to be the literal word of God as revealed to the Prophet Muhammad (peace be upon him) through the Angel Gabriel.
-         </p>         
+         </p>
         </div>
-          
+
        </div>
       </div>
 
       <!-- translation -->
-      <div class="tab-pane active" id="home" role="tabpanel"  v-if="information != null">
+      <div class="tab-pane active" id="home" role="tabpanel" v-if="information != null">
        <div class="row">
         <div class="col-12">
          <div class="btn">
@@ -105,7 +182,6 @@
           </h3>
 
          </div>
-          
 
          <hr class="container" />
          <div class="btn">
@@ -187,39 +263,19 @@
 </div>
 </template>
 
-<!-- multiple input sections 
-  <label class="pt-2 pl-3 pr-2" style="display:flex">Surah:</label>
-  <form class="col-md-5">
-    <select class="form-control" v-model='surah' @change='getAyahs()'>
-      <option value="0"><span>Select Surah</span></option>
-      <option v-for='data in surahs' :key="data.id" :value='data.id'>{{ data.name_en }}, {{ data.name_ar }}</option>
-    </select>
-  </form>
-  <label class="pt-2 pl-3 pr-2">Ayah:</label>
-
-  <form class="col-md-8 ">
-    <select class='form-control' v-model='ayah_id' @change='getTafseers(data.ayah_id)'>
-      <option value="0">Select Ayah</option>
-      <option v-for='data in ayahs' :key="data.id" :value='data.id'>{{ data.ayah_id }}, {{ data.ayah_text }}</option>
-    </select>
-  </form>
-
-  <form class="ml-3 col-md-4 ">
-    <input class="form-control input is-primary" type="text" placeholder="Search keyword" />
-  </form>
--->
 
 <script>
-
 export default {
 
  mounted() {
   this.getSurahs();
-  this.fetchAllAudios();
  },
- data() {   
-   
+ 
+ data() {
+
   return {
+    surah: 0,
+    selectedSurah: '',
    audioFiles: [],
    totalAudios: 6236,
    audioUrl: '',
@@ -238,9 +294,21 @@ export default {
    name_en: null,
    id: null,
    surah: 0,
+    selectedSurah: null, // Initialize selectedSurah as null initially
+      surahs: [ // Dummy data for demonstration
+        { id: 1, name_en: 'Surah 1', name_ar: 'Surah 1 Arabic' },
+        { id: 2, name_en: 'Surah 2', name_ar: 'Surah 2 Arabic' },
+        { id: 3, name_en: 'Surah 3', name_ar: 'Surah 3 Arabic' },
+      ]
   };
  },
  methods: {
+   selectSurah(surahId) {
+      this.surah = surahId;
+      this.getAyahs(surahId); // Call the getAyahs method with the selected Surah ID
+      // You can perform further actions, such as fetching data related to the selected Surah
+    },
+  
   async fetchAllAudios() {
    const audioUrl = 'https://cdn.islamic.network/quran/audio/128/ar.alafasy/29.mp3';
    const corsProxyUrl = 'https://cors-proxy.htmldriven.com/';
@@ -277,31 +345,31 @@ export default {
   },
 
   copyText() {
-      // Get the text content of the h3 element
-      var textToCopy = this.$refs.heading.innerText;
-      
-      // Create a temporary textarea element
-      var textarea = document.createElement("textarea");
-      
-      // Set its value to the text content
-      textarea.value = textToCopy;
-      
-      // Append the textarea to the document body
-      document.body.appendChild(textarea);
-      
-      // Select its text
-      textarea.select();
-      
-      // Copy the selected text to the clipboard
-      document.execCommand("copy");
-      
-      // Remove the temporary textarea
-      document.body.removeChild(textarea);
-      
-      // Optionally, you can show a success message or perform other actions here
-      alert("Copied text to clipboard");
-    },
-  
+   // Get the text content of the h3 element
+   var textToCopy = this.$refs.heading.innerText;
+
+   // Create a temporary textarea element
+   var textarea = document.createElement("textarea");
+
+   // Set its value to the text content
+   textarea.value = textToCopy;
+
+   // Append the textarea to the document body
+   document.body.appendChild(textarea);
+
+   // Select its text
+   textarea.select();
+
+   // Copy the selected text to the clipboard
+   document.execCommand("copy");
+
+   // Remove the temporary textarea
+   document.body.removeChild(textarea);
+
+   // Optionally, you can show a success message or perform other actions here
+   alert("Copied text to clipboard");
+  },
+
   getTafseers: function (id, index) {
    this.selectedIndexAyah = index;
 
