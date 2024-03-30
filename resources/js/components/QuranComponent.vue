@@ -6,16 +6,14 @@
     <div class="row">
      <div class="col-md-3"></div>
      <div class="col-md-6" style="display: flex; text-align: center">
-      <div class="card-header" >
+      <div class="card-header">
        <h1 class="card-text text-center mt-2 mb-2" style="font-family:serif">
         The Holy Quran
        </h1>
-
-       <h5 class="card-text container-fluid mb-0 pb-3">
+           <h5 class="card-text container-fluid mb-0 pb-3">
         <span>The Quran, considered the holy scripture of Islam, is a sacred and comprehensive compilation of revelations.</span>
        </h5>
       </div>
-
       <li v-for="(audio, index) in audioFiles" :key="index">
        <audio controls>
         <source :src="audio.url" type="audio/mpeg">
@@ -57,7 +55,7 @@
         Transliteration
        </a>
       </li>
-      
+
      </ul>
 
      <div class="mt-2" v-if="information !== null">
@@ -65,9 +63,10 @@
        <div class="col-md-7">
         <ul class="ul-main">
          <img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" />
-          <li class="li-main mr-3">
-            <span class="span-main">{{ information.ayah.surah_id }} : {{ information.ayah.ayah_id }}</span>          
-          </li>
+         <li class="li-main mr-3">
+          <span class="span-main">{{ information.ayah.surah_id }} : {{ information.ayah.ayah_id }}</span>
+         </li>
+          <button @click="copyText">Copy Text</button>
         </ul>
        </div>
        <div class="col-md-5"></div>
@@ -85,28 +84,32 @@
         <div class="col-md-6">
          <img src="/images/calligraphy.png" class="pl-3" style="width: 70%" />
         </div>
+
         <div class="col-md-6 pt-">
-         <span class="container text-left mb-4 lead text-muted mb-0 ">The Quran, considered the holy
+         <p>The Quran, considered the holy
           The Quran, also spelled as Qur'an, is the holy book of Islam and is considered by Muslims to be the literal word of God as revealed to the Prophet Muhammad (peace be upon him) through the Angel Gabriel.
-         </span>
+         </p>         
         </div>
+          
        </div>
       </div>
 
       <!-- translation -->
-      <div class="tab-pane active" id="home" role="tabpanel" v-if="information != null">
+      <div class="tab-pane active" id="home" role="tabpanel"  v-if="information != null">
        <div class="row">
         <div class="col-12">
          <div class="btn">
-          <h3 class="container text-right" style="line-height: 2em">
+          <h3 ref="heading" @click="copyText" class="container text-right" style="line-height: 2em">
            {{ information.ayah.ayah_text }}
            ({{ information.ayah.ayah_id }})
           </h3>
+
          </div>
+          
 
          <hr class="container" />
          <div class="btn">
-          <h4 class="container text-left" style="line-height: 1.6em;">
+          <h4 ref="heading" class="container text-left" style="line-height: 1.6em;">
            {{ information.translation }}"
           </h4>
          </div>
@@ -207,12 +210,15 @@
 -->
 
 <script>
+
 export default {
+
  mounted() {
   this.getSurahs();
   this.fetchAllAudios();
  },
- data() {
+ data() {   
+   
   return {
    audioFiles: [],
    totalAudios: 6236,
@@ -269,6 +275,33 @@ export default {
     console.error('Error fetching audio files:', error);
    }
   },
+
+  copyText() {
+      // Get the text content of the h3 element
+      var textToCopy = this.$refs.heading.innerText;
+      
+      // Create a temporary textarea element
+      var textarea = document.createElement("textarea");
+      
+      // Set its value to the text content
+      textarea.value = textToCopy;
+      
+      // Append the textarea to the document body
+      document.body.appendChild(textarea);
+      
+      // Select its text
+      textarea.select();
+      
+      // Copy the selected text to the clipboard
+      document.execCommand("copy");
+      
+      // Remove the temporary textarea
+      document.body.removeChild(textarea);
+      
+      // Optionally, you can show a success message or perform other actions here
+      alert("Copied text to clipboard");
+    },
+  
   getTafseers: function (id, index) {
    this.selectedIndexAyah = index;
 

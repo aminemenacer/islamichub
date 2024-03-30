@@ -45,6 +45,7 @@ window.Vue = require("vue");
 
 const app = createApp({});
 
+
 window.Form = Form;
 window.Swal = swal;
 

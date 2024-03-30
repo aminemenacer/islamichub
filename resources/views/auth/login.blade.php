@@ -59,9 +59,7 @@
                   </div>
                   <hr class="my-4">
 
-                  <a href="{{ url('auth/google') }}" class="btn btn-lg btn-block " style="background-color: #dd4b39; color:white" type="submit"><i class="fab fa-google me-2"></i> Login with google</a>
-
-                
+                  <a href="{{ url('auth/google') }}" class="btn btn-lg btn-block " style="border: lightgrey solid 1px; color:black" type="submit"><img src="https://img.icons8.com/color/16/000000/google-logo.png"> Login Using Google</a>                
                 </form>
 
               </div>

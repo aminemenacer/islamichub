@@ -19,13 +19,12 @@ use App\Http\Controllers\SurahController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Auth\LoginController;
 
-use Illuminate\Support\Facades\Http;
-
-
 
 // Auth routes
 Auth::routes();
 
+
+// google sign-in
 Route::get('auth/google', [LoginController::class, 'redirectToGoogle'])->name('google-auth');
 Route::get('auth/google/callback', [LoginController::class, 'handleGoogleCallback']);
 
