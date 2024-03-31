@@ -1,26 +1,29 @@
 <template>
 <div id="app">
- <div class="container-fluid text-center ">
+ <div class="container-fluid text-center">
   <div class="row text-center">
    <div class="col-md-12 text-center">
     <div class="row">
      <div class="col-md-3"></div>
      <div class="col-md-6" style="display: flex; text-align: center">
       <div class="card-header">
-       <h1 class="card-text text-center mt-2 mb-2" style="font-family:serif">
+       <h1 class="card-text text-center mt-2 mb-2" style="font-family: serif">
         The Holy Quran
        </h1>
        <h5 class="card-text container-fluid mb-0 pb-3">
-        <span>The Quran, considered the holy scripture of Islam, is a sacred and comprehensive compilation of revelations.</span>
+        <span>The Quran, considered the holy
+         scripture of Islam, is a sacred and
+         comprehensive compilation of
+         revelations.</span>
        </h5>
       </div>
       <li v-for="(audio, index) in audioFiles" :key="index">
        <audio controls>
-        <source :src="audio.url" type="audio/mpeg">
-        Your browser does not support the audio element.
+        <source :src="audio.url" type="audio/mpeg" />
+        Your browser does not support the audio
+        element.
        </audio>
       </li>
-
      </div>
      <div class="col-md-3"></div>
     </div>
@@ -92,71 +95,69 @@
 
  <!-- accordion headers-->
  <div class="row container-fluid">
-  <div class="col-md-8 ">
+  <div class="col-md-8">
    <!-- Nav tabs -->
-   <div class="card " style="padding">
-    <h5 class="container font-weight-bold pl-3 pt-3" style="font-family:inter; ">Featured Reading:</h5>
+   <div class="card" style="padding">
+    <h5 class="container font-weight-bold pl-3 pt-3" style="font-family: inter">
+     Featured Reading:
+    </h5>
 
-    <div class="scrollmenu ">
-
+    <div class="scrollmenu">
      <a href="#">
-      <div class="col container ">
-       <div class="flex justify-content-center ">
-        <Button class="button-33 " label="Al-Fatiha - الفاتحة" severity="success" raised outlined @click="selectSurah(1)" :class="{ 'active': surah === 1 }" />
+      <div class="col container">
+       <div class="flex justify-content-center">
+        <Button class="button-33" label="Ya Seen - يس" severity="success" raised outlined @click="selectSurah(36)" :class="{ active: surah === 36 }" />
        </div>
       </div>
      </a>
      <a href="#">
-      <div class="col container ">
-       <div class="flex justify-content-center ">
-        <Button class="button-33 " label="An-Nas - 	الناس" severity="success" raised outlined @click="selectSurah(114)" :class="{ 'active': surah === 114 }" />
+      <div class="col container">
+       <div class="flex justify-content-center">
+        <Button class="button-33" label="An-Nas - 	الناس" severity="success" raised outlined @click="selectSurah(114)" :class="{ active: surah === 114 }" />
        </div>
       </div>
      </a>
      <a href="#">
-      <div class="col container ">
-       <div class="flex justify-content-center ">
-        <Button class="button-33 " label="Al-Falak - 	الفلق" severity="success" raised outlined @click="selectSurah(113)" :class="{ 'active': surah === 133 }" />
+      <div class="col container">
+       <div class="flex justify-content-center">
+        <Button class="button-33" label="Al-Falak - 	الفلق" severity="success" raised outlined @click="selectSurah(113)" :class="{ active: surah === 133 }" />
        </div>
       </div>
      </a>
      <a href="#">
-      <div class="col container ">
-       <div class="flex justify-content-center ">
-        <Button class="button-33 " label="Al-Kafiroon -	الكافرون" severity="success" raised outlined @click="selectSurah(109)" :class="{ 'active': surah === 109 }" />
+      <div class="col container">
+       <div class="flex justify-content-center">
+        <Button class="button-33" label="Al-Kafiroon -	الكافرون" severity="success" raised outlined @click="selectSurah(109)" :class="{ active: surah === 109 }" />
        </div>
       </div>
      </a>
      <a href="#">
-      <div class="col container ">
-       <div class="flex justify-content-center ">
-        <Button class="button-33 " label="Al-Mulk - الملك" severity="success" raised outlined @click="selectSurah(67)" :class="{ 'active': surah === 67 }" />
+      <div class="col container">
+       <div class="flex justify-content-center">
+        <Button class="button-33" label="Al-Mulk - الملك" severity="success" raised outlined @click="selectSurah(67)" :class="{ active: surah === 67 }" />
        </div>
       </div>
      </a>
      <a href="#">
-      <div class="col container ">
-       <div class="flex justify-content-center ">
-        <Button class="button-33 " label="Al-Rahman - الرحمن" severity="success" raised outlined @click="selectSurah(55)" :class="{ 'active': surah === 55 }" />
+      <div class="col container">
+       <div class="flex justify-content-center">
+        <Button class="button-33" label="Al-Rahman - الرحمن" severity="success" raised outlined @click="selectSurah(55)" :class="{ active: surah === 55 }" />
        </div>
       </div>
      </a>
      <a href="#">
-      <div class="col container ">
-       <div class="flex justify-content-center ">
-        <Button class="button-33 " label="Al-Kahf -	الكهف" severity="success" raised outlined @click="selectSurah(18)" :class="{ 'active': surah === 18 }" />
+      <div class="col container">
+       <div class="flex justify-content-center">
+        <Button class="button-33" label="Al-Kahf -	الكهف" severity="success" raised outlined @click="selectSurah(18)" :class="{ active: surah === 18 }" />
        </div>
       </div>
      </a>
-
     </div>
 
     <!-- HTML !-->
-    <div class="container" style="padding:8px" id="alertContainer"></div>
+    <div class="container" style="padding: 8px" id="alertContainer"></div>
     <div class="container-fluid" v-if="information != null">
-
      <ul class="nav nav-tabs text-left justify-content-center pt-3" role="tablist">
-
       <li class="nav-item text-right">
        <a class="nav-link active" data-bs-toggle="tab" href="#home" role="tab">
         Translation
@@ -172,14 +173,12 @@
         Transliteration
        </a>
       </li>
-
      </ul>
     </div>
 
     <div class="card-body" id="alertContainer">
      <!-- Tab panes -->
-     <div class=" tab-content text-center">
-
+     <div class="tab-content text-center">
       <div class="tab-pane active" id="home" role="tabpanel" v-if="information == null">
        <div class="row">
         <div class="col-md-6">
@@ -187,11 +186,16 @@
         </div>
 
         <div class="col-md-6 mt-4">
-         <h5 style="line-height:1.6em">The Quran, considered the holy
-          The Quran, also spelled as Qur'an, is the holy book of Islam and is considered by Muslims to be the literal word of God as revealed to the Prophet Muhammad (peace be upon him) through the Angel Gabriel.
+         <h5 style="line-height: 1.6em">
+          The Quran, considered the holy The
+          Quran, also spelled as Qur'an, is
+          the holy book of Islam and is
+          considered by Muslims to be the
+          literal word of God as revealed to
+          the Prophet Muhammad (peace be upon
+          him) through the Angel Gabriel.
          </h5>
         </div>
-
        </div>
       </div>
 
@@ -201,23 +205,35 @@
         <!-- left side stack of icon features -->
         <div class="col-md-1">
          <div class="list-group styling">
-          <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Play audio"><i class="bi-play-circle-fill test" style="font-size: 1.2rem;"></i></a>
-          <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi-bug-fill test" style="font-size: 1.2rem;"></i></a>
-          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Bookmark verse"><i class="bi-bookmark-fill test" style="font-size: 1.2rem;"></i></a>
-          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy text" @click="copyText"><i class="bi bi-collection-fill test" style="font-size: 1.2rem; "></i></a>
-          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse"><i class="bi-share-fill test" style="font-size: 1.2rem;"></i></a>
-          <a class="list-group-item list-group-item-action disabled" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot" aria-disabled="true"><i class="bi-camera-fill test" style="font-size: 1.2rem; "></i></a>
+          <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Play audio"><i class="bi-play-circle-fill test" style="font-size: 1.2rem"></i></a>
+          <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi-bug-fill test" style="font-size: 1.2rem"></i></a>
+          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Bookmark verse"><i class="bi-bookmark-fill test" style="font-size: 1.2rem"></i></a>
+          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText"><i class="bi bi-collection-fill test" style="font-size: 1.2rem"></i></a>
+          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse"><i class="bi-share-fill test" style="font-size: 1.2rem"></i></a>
+          <a class="list-group-item list-group-item-action disabled" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot" aria-disabled="true"><i class="bi-camera-fill test" style="font-size: 1.2rem"></i></a>
          </div>
         </div>
-        <div class="col-11">
-         <ul class="ul-main">
-          <img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" />
-          <li class="li-main mr-3">
-           <span class="span-main" style="font-style:bold">{{ information.ayah.surah_id }} : {{ information.ayah.ayah_id }}</span>
-          </li>
+        <div class="col-11">            
+
+         <ul class="ul-main row">
+          <h5 class="col-md-2 font-weight-bold">{{information.ayah.surah.name_en}}</h5>
+          <div class="col-md-8">
+            <img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" />
+            <li class="li-main mr-3">
+            <span class="span-main" style="font-style: bold">{{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}
+            </span>
+            </li>
+          </div>
+          <h5 class="col-md-2 font-weight-bold">{{information.ayah.surah.name_ar}}</h5>
          </ul>
+         <hr style="border: 1px dotted grey">
+
+
          <div class="btn">
-          <div class="span-main text:left" style="font-style:bolder; color:black"></div>
+          <div class="span-main text:left" style="
+                                                    font-style: bolder;
+                                                    color: black;
+                                                "></div>
           <h3 ref="heading" class="container text-right" style="line-height: 2em">
            {{ information.ayah.ayah_text }}
            ({{ information.ayah.ayah_id }})
@@ -226,7 +242,7 @@
          <hr />
 
          <div class="btn">
-          <h4 ref="heading" class="container text-left" style="line-height: 1.6em;">
+          <h4 ref="heading" class="container text-left" style="line-height: 1.6em">
            {{ information.translation }}"
           </h4>
          </div>
@@ -237,13 +253,15 @@
       <!-- tafseer -->
       <div class="tab-pane" id="profile" role="tabpanel" v-if="information != null">
        <div class="btn">
-        <h3 class="container text-right" style="line-height: 2em;">
-         {{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})
+        <h3 class="container text-right" style="line-height: 2em">
+         {{ information.ayah.ayah_text }} ({{
+                                            information.ayah.ayah_id
+                                        }})
         </h3>
        </div>
        <hr />
        <div class="btn">
-        <h4 class="container text-left" style="line-height: 1.6em;">
+        <h4 class="container text-left" style="line-height: 1.6em">
          {{ tafseer }}
         </h4>
        </div>
@@ -253,12 +271,14 @@
       <div class="tab-pane" id="messages" role="tabpanel" v-if="information != null">
        <div class="btn">
         <h3 class="container text-right" style="line-height: 2em">
-         {{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})
+         {{ information.ayah.ayah_text }} ({{
+                                            information.ayah.ayah_id
+                                        }})
         </h3>
        </div>
        <hr />
        <div class="btn">
-        <h4 class="container text-left" style="line-height: 1.6em;">
+        <h4 class="container text-left" style="line-height: 1.6em">
          {{ information.transliteration }}
         </h4>
        </div>
@@ -270,9 +290,8 @@
 
   <!-- right side chapter list -->
   <div class="col-md-4 sticky-top container">
-
    <form class="mb-2 right-side-form">
-    <select class="form-control " v-model="surah" @change="getAyahs()">
+    <select class="form-control" v-model="surah" @change="getAyahs()">
      <option value="0">
       <span>Select Surah</span>
      </option>
@@ -285,17 +304,19 @@
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" v-if="ayah == null">
      <div class="row container-fluid">
       <div class="custom-scrollbar">
-       <ul class="col-md-4 list-group container-fluid root" v-for="(ayah, index) in ayahs" :key="index" @click="getTafseers(ayah.id, index)" :class="{ 'selected': selectedIndexAyah === index }">
+       <ul class="col-md-4 list-group container-fluid root" v-for="(ayah, index) in ayahs" :key="index" @click="getTafseers(ayah.id, index)" :class="{
+                                        selected: selectedIndexAyah === index,
+                                    }">
         <li class="list-group-item container-fluid" id="toggle">
-         <h5 style="display: flex;">Verse: {{ ayah.ayah_id }}</h5>
+         <h5 style="display: flex">
+          Verse: {{ ayah.ayah_id }}
+         </h5>
          <h5>{{ ayah.ayah_text }}</h5>
         </li>
        </ul>
-
       </div>
      </div>
     </div>
-
    </div>
 
    <div class="container-fluid mr-5" style=""></div>
@@ -306,19 +327,17 @@
 
 <script>
 export default {
-
  mounted() {
   this.getSurahs();
  },
 
  data() {
-
   return {
    surah: 0,
-   selectedSurah: '',
+   selectedSurah: "",
    audioFiles: [],
    totalAudios: 6236,
-   audioUrl: '',
+   audioUrl: "",
    selectedIndexAyah: null,
    ayahId: null,
    data: [],
@@ -353,8 +372,9 @@ export default {
   },
 
   async fetchAllAudios() {
-   const audioUrl = 'https://cdn.islamic.network/quran/audio/128/ar.alafasy/29.mp3';
-   const corsProxyUrl = 'https://cors-proxy.htmldriven.com/';
+   const audioUrl =
+    "https://cdn.islamic.network/quran/audio/128/ar.alafasy/29.mp3";
+   const corsProxyUrl = "https://cors-proxy.htmldriven.com/";
 
    // Construct the proxied URL
    const proxiedUrl = corsProxyUrl + audioUrl;
@@ -366,24 +386,37 @@ export default {
     const totalAudios = 6236; // Total number of audio files
     const numBatches = Math.ceil(totalAudios / batchSize);
 
-    for (let batchIndex = 0; batchIndex < numBatches; batchIndex++) {
+    for (
+     let batchIndex = 0; batchIndex < numBatches; batchIndex++
+    ) {
      const startId = batchIndex * batchSize + 1;
-     const endId = Math.min(startId + batchSize - 1, totalAudios);
+     const endId = Math.min(
+      startId + batchSize - 1,
+      totalAudios
+     );
 
      const batchAudioIds = Array.from({
-      length: endId - startId + 1
-     }, (_, i) => startId + i);
+       length: endId - startId + 1,
+      },
+      (_, i) => startId + i
+     );
 
-     const batchResponses = await Promise.all(batchAudioIds.map(id => axios.get(`https://cdn.islamic.network/quran/audio/128/ar.alafasy/${id}.mp3`)));
+     const batchResponses = await Promise.all(
+      batchAudioIds.map((id) =>
+       axios.get(
+        `https://cdn.islamic.network/quran/audio/128/ar.alafasy/${id}.mp3`
+       )
+      )
+     );
 
      for (let response of batchResponses) {
       this.audioFiles.push({
-       url: response.request.responseURL
+       url: response.request.responseURL,
       });
      }
     }
    } catch (error) {
-    console.error('Error fetching audio files:', error);
+    console.error("Error fetching audio files:", error);
    }
   },
 
@@ -426,7 +459,6 @@ export default {
    var textToCopy = this.$refs.heading.innerText;
    var textarea = document.createElement("textarea");
 
-  
    textarea.value = textToCopy;
    document.body.appendChild(textarea);
    textarea.select();
@@ -440,7 +472,7 @@ export default {
    document.getElementById("alertContainer").appendChild(alertElement);
 
    setTimeout(function () {
-    alertElement.remove(); 
+    alertElement.remove();
    }, 3000);
   },
 
@@ -455,29 +487,33 @@ export default {
     }.bind(this)
    );
 
-   axios.get("/get_informations", {
-    params: {
-     id: id,
-    },
-   }).then(
-    function (response) {
-     this.selectedAyah = id;
-     this.information = response.data;
-    }.bind(this)
-   );
+   axios
+    .get("/get_informations", {
+     params: {
+      id: id,
+     },
+    })
+    .then(
+     function (response) {
+      this.selectedAyah = id;
+      this.information = response.data;
+     }.bind(this)
+    );
   },
 
   getAyahs: function (id) {
    this.selectedIndexAyah = id;
-   axios.get("/get_ayahs", {
-    params: {
-     surah_id: this.surah,
-    },
-   }).then(
-    function (response) {
-     this.ayahs = response.data;
-    }.bind(this)
-   );
+   axios
+    .get("/get_ayahs", {
+     params: {
+      surah_id: this.surah,
+     },
+    })
+    .then(
+     function (response) {
+      this.ayahs = response.data;
+     }.bind(this)
+    );
   },
 
   getSurahs: function () {
@@ -493,18 +529,24 @@ export default {
      }.bind(this)
     );
   },
-
  },
 };
 </script>
 
 <style scoped>
 .styling {
- box-shadow: rgba(154, 167, 159, 0.2) 0 -25px 18px -14px inset, rgba(44, 187, 99, .15) 0 1px 2px, rgba(44, 187, 99, .15) 0 2px 4px, rgba(44, 187, 99, .15) 0 4px 8px, rgba(44, 187, 99, .15) 0 8px 16px, rgba(44, 187, 99, .15) 0 16px 32px;
+ box-shadow: rgba(154, 167, 159, 0.2) 0 -25px 18px -14px inset,
+  rgba(44, 187, 99, 0.15) 0 1px 2px, rgba(44, 187, 99, 0.15) 0 2px 4px,
+  rgba(44, 187, 99, 0.15) 0 4px 8px, rgba(44, 187, 99, 0.15) 0 8px 16px,
+  rgba(44, 187, 99, 0.15) 0 16px 32px;
  transition: all 250ms;
  cursor: pointer;
  touch-action: manipulation;
  border: 1px solid lightgrey;
+}
+
+.styling:hover {
+ background-attachment: red;
 }
 
 .test {
@@ -519,11 +561,15 @@ export default {
 .button-33 {
  background-color: #c2fbd7;
  border-radius: 10px;
- box-shadow: rgba(154, 167, 159, 0.2) 0 -25px 18px -14px inset, rgba(44, 187, 99, .15) 0 1px 2px, rgba(44, 187, 99, .15) 0 2px 4px, rgba(44, 187, 99, .15) 0 4px 8px, rgba(44, 187, 99, .15) 0 8px 16px, rgba(44, 187, 99, .15) 0 16px 32px;
+ box-shadow: rgba(154, 167, 159, 0.2) 0 -25px 18px -14px inset,
+  rgba(44, 187, 99, 0.15) 0 1px 2px, rgba(44, 187, 99, 0.15) 0 2px 4px,
+  rgba(44, 187, 99, 0.15) 0 4px 8px, rgba(44, 187, 99, 0.15) 0 8px 16px,
+  rgba(44, 187, 99, 0.15) 0 16px 32px;
  color: green;
  cursor: pointer;
  display: inline-block;
- font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
+ font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto,
+  sans-serif;
  padding: 7px 20px;
  text-align: center;
  text-decoration: none;
@@ -551,7 +597,10 @@ export default {
 }
 
 .button-33:hover {
- box-shadow: rgba(44, 187, 99, .35) 0 -25px 18px -14px inset, rgba(44, 187, 99, .25) 0 1px 2px, rgba(44, 187, 99, .25) 0 2px 4px, rgba(44, 187, 99, .25) 0 4px 8px, rgba(44, 187, 99, .25) 0 8px 16px, rgba(44, 187, 99, .25) 0 16px 32px;
+ box-shadow: rgba(44, 187, 99, 0.35) 0 -25px 18px -14px inset,
+  rgba(44, 187, 99, 0.25) 0 1px 2px, rgba(44, 187, 99, 0.25) 0 2px 4px,
+  rgba(44, 187, 99, 0.25) 0 4px 8px, rgba(44, 187, 99, 0.25) 0 8px 16px,
+  rgba(44, 187, 99, 0.25) 0 16px 32px;
  transform: scale(1.05) rotate(-1deg);
 }
 
@@ -580,7 +629,6 @@ export default {
 
 .card-text {
  line-height: 1.7em;
-
 }
 
 .selected {
