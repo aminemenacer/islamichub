@@ -33,71 +33,79 @@
  </div>
 
  <!-- accordion headers-->
- <div class="row container-fluid">
-  <div class="col-md-8">
+ <div class="row container-fluid" >
+  <div class="col-md-8 " >
    <!-- Nav tabs -->
-   <div class="card" style="padding">
-    <h5 class="container font-weight-bold" style="padding-left:10px; padding-top:10px; font-family:serif; ">Featured Reading:</h5>
-    <div class="container text-center" >
-     <div class="row container">
-      <div class="col container">
-      <div class="btn-group">
-        <form class="mb-2 right-side-form">
-        <select class="form-control" v-model="surah" @change="getAyahs()">
-          <option value="0">Select Surah</option>
-          <!-- Manually specify three options -->
-          <option value="1">Al-Fatiha - الفاتحة</option>
-          <option value="2">Al-Baqarah - البقرة</option>
-          <option value="3">Al-Imran - آل عمران</option>
-        </select>
-      </form>
+   <div class="card " style="padding">
+    <h5 class="container font-weight-bold pl-3 pt-3" style="font-family:inter; ">Featured Reading:</h5>
 
-      <div class="btn-group">
-  <button @click="selectSurah(1)" :class="{ 'active': surah === 1 }" class="btn btn-primary">Al-Fatiha - الفاتحة</button>
-  <button @click="selectSurah(2)" :class="{ 'active': surah === 2 }" class="btn btn-primary">Al-Baqarah - البقرة</button>
-  <button @click="selectSurah(3)" :class="{ 'active': surah === 3 }" class="btn btn-primary">Al-Imran - آل عمران</button>
-</div>
+    <div class="scrollmenu ">
+     <a href="#home">
+      <div class="col container ">
+       <div class="flex justify-content-center ">
+        <Button class="button-33 " label="Al-Fatiha - الفاتحة" severity="success" raised outlined @click="selectSurah(1)" :class="{ 'active': surah === 1 }" />
+       </div>
+      </div>
+     </a>
+     <a href="#news">
+      <div class="col container ">
+       <div class="flex justify-content-center ">
+        <Button class="button-33 " label="Al-Fatiha - الفاتحة" severity="success" raised outlined @click="selectSurah(1)" :class="{ 'active': surah === 1 }" />
+       </div>
+      </div>
+     </a>
+     <a href="#contact">
+      <div class="col container ">
+       <div class="flex justify-content-center ">
+        <Button class="button-33 " label="Al-Fatiha - الفاتحة" severity="success" raised outlined @click="selectSurah(1)" :class="{ 'active': surah === 1 }" />
+       </div>
+      </div>
+     </a>
+     <a href="#about">
+      <div class="col container ">
+       <div class="flex justify-content-center ">
+        <Button class="button-33 " label="Al-Fatiha - الفاتحة" severity="success" raised outlined @click="selectSurah(1)" :class="{ 'active': surah === 1 }" />
+       </div>
+      </div>
+     </a>
+     <a href="#support">
+      <div class="col container ">
+       <div class="flex justify-content-center ">
+        <Button class="button-33 " label="Al-Fatiha - الفاتحة" severity="success" raised outlined @click="selectSurah(1)" :class="{ 'active': surah === 1 }" />
+       </div>
+      </div>
+     </a>
+     <a href="">
+      <div class="col container ">
+       <div class="flex justify-content-center ">
+        <Button class="button-33 " label="Al-Fatiha - الفاتحة" severity="success" raised outlined @click="selectSurah(1)" :class="{ 'active': surah === 1 }" />
+       </div>
+      </div>
+     </a>
+     <a href="#tools">
+      <div class="col container ">
+       <div class="flex justify-content-center ">
+        <Button class="button-33 " label="Al-Fatiha - الفاتحة" severity="success" raised outlined @click="selectSurah(1)" :class="{ 'active': surah === 1 }" />
+       </div>
+      </div>
+     </a>
+     <a href="#base">
+      <div class="col container ">
+       <div class="flex justify-content-center ">
+        <Button class="button-33 " label="Al-Fatiha - الفاتحة" severity="success" raised outlined @click="selectSurah(1)" :class="{ 'active': surah === 1 }" />
+       </div>
+      </div>
+     </a>
 
-
-
-</div>
-       <div class="flex justify-content-center">
-        <Button class="width:100%" label="success" severity="success" raised outlined />
-       </div>
-      </div>
-      <div class="col">
-       <div class=" flex justify-content-center">
-        <Button label="success" severity="success" raised outlined />
-       </div>
-      </div>
-      <div class="col">
-       <div class="flex justify-content-center">
-        <Button label="success" severity="success" raised outlined />
-       </div>
-      </div>
-      <div class="col">
-       <div class="flex justify-content-center">
-        <Button label="success" severity="success" raised outlined />
-       </div>
-      </div>
-      <div class="col">
-       <div class="flex justify-content-center">
-        <Button label="success" severity="success" raised outlined />
-       </div>
-      </div>
-      <div class="col">
-       <div class="flex justify-content-center">
-        <Button label="success" severity="success" raised outlined />
-       </div>
-      </div>
-     </div>
     </div>
-    <hr>
 
-    <div v-if="information != null">
+    <!-- HTML !-->
 
-     <ul class="nav nav-tabs text-left justify-content-center" role="tablist">
-      <li class="nav-item">
+    <div class="container-fluid" v-if="information != null">
+
+     <ul class="nav nav-tabs text-left justify-content-center pt-3" role="tablist">
+
+      <li class="nav-item text-right">
        <a class="nav-link active" data-bs-toggle="tab" href="#home" role="tab">
         Translation
        </a>
@@ -115,46 +123,11 @@
 
      </ul>
 
-     <div class="mt-2" v-if="information !== null">
-      <div class="row">
-       <div class="col-md-2">
-        <ul class="ul-main">
-         <img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" />
-         <li class="li-main mr-3">
-          <span class="span-main" style="font-style:bold">{{ information.ayah.surah_id }} : {{ information.ayah.ayah_id }}</span>
-         </li>
-        </ul>
-       </div>
-       <div class="col-md-3" style="padding:5px">
-        <img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" />
-        <img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" />
-        <img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" />
-
-       </div>
-
-       <div class="col-md-4">
-        <audio controls>
-         <source type="audio/mpeg">
-         Your browser does not support the audio element.
-        </audio>
-       </div>
-       <div class="col-md-1 mt-3 font-weight-bold">
-        Al-Nisa
-       </div>
-      </div>
-      <div class="row">
-       <div class="col-md-7">
-
-       </div>
-       <div class="col-md-5"></div>
-      </div>
-     </div>
-
     </div>
 
-    <div class="card-body">
+    <div class="card-body" id="alertContainer">
      <!-- Tab panes -->
-     <div class="tab-content text-center">
+     <div class=" tab-content text-center">
 
       <div class="tab-pane active" id="home" role="tabpanel" v-if="information == null">
        <div class="row">
@@ -162,10 +135,10 @@
          <img src="/images/calligraphy.png" class="pl-3" style="width: 70%" />
         </div>
 
-        <div class="col-md-6 pt-">
-         <p>The Quran, considered the holy
+        <div class="col-md-6 mt-4">
+         <h5 style="line-height:1.6em">The Quran, considered the holy
           The Quran, also spelled as Qur'an, is the holy book of Islam and is considered by Muslims to be the literal word of God as revealed to the Prophet Muhammad (peace be upon him) through the Angel Gabriel.
-         </p>
+         </h5>
         </div>
 
        </div>
@@ -174,8 +147,25 @@
       <!-- translation -->
       <div class="tab-pane active" id="home" role="tabpanel" v-if="information != null">
        <div class="row">
-        <div class="col-12">
+        <!-- left side stack of icon features -->
+        <div class="col-md-1">
+         <div class="list-group">
+          <a href="#" class="list-group-item list-group-item-action"  aria-current="true"><i data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Tooltip on top" class="bi-bug-fill" style="font-size: 1.1rem; color: black;"></i></a>
+          <a href="#" class="list-group-item list-group-item-action"><i class="bi-bookmark-fill" style="font-size: 1.1rem; color: black;"></i></a>
+          <a href="#" class="list-group-item list-group-item-action"  @click="copyText"><i class="bi bi-collection-fill" style="font-size: 1.1rem; color: black;"></i></a>
+          <a href="#" class="list-group-item list-group-item-action"><i class="bi-share-fill" style="font-size: 1.1rem; color: black;"></i></a>
+          <a class="list-group-item list-group-item-action disabled" aria-disabled="true"><i class="bi-camera-fill" style="font-size: 1.1rem; color: black;"></i></a>
+         </div>
+        </div>
+        <div class="col-11">
+        <ul class="ul-main">
+         <img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" />
+         <li class="li-main mr-3">
+          <span class="span-main" style="font-style:bold">{{ information.ayah.surah_id }} : {{ information.ayah.ayah_id }}</span>
+         </li>
+        </ul>
          <div class="btn">
+         <div class="span-main text:left" style="font-style:bolder; color:black"></div>
           <h3 ref="heading" @click="copyText" class="container text-right" style="line-height: 2em">
            {{ information.ayah.ayah_text }}
            ({{ information.ayah.ayah_id }})
@@ -183,7 +173,7 @@
 
          </div>
 
-         <hr class="container" />
+         <hr class="container" style="border:2px dotted black" />
          <div class="btn">
           <h4 ref="heading" class="container text-left" style="line-height: 1.6em;">
            {{ information.translation }}"
@@ -263,19 +253,18 @@
 </div>
 </template>
 
-
 <script>
 export default {
 
  mounted() {
   this.getSurahs();
  },
- 
+
  data() {
 
   return {
-    surah: 0,
-    selectedSurah: '',
+   surah: 0,
+   selectedSurah: '',
    audioFiles: [],
    totalAudios: 6236,
    audioUrl: '',
@@ -294,21 +283,17 @@ export default {
    name_en: null,
    id: null,
    surah: 0,
-    selectedSurah: null, // Initialize selectedSurah as null initially
-      surahs: [ // Dummy data for demonstration
-        { id: 1, name_en: 'Surah 1', name_ar: 'Surah 1 Arabic' },
-        { id: 2, name_en: 'Surah 2', name_ar: 'Surah 2 Arabic' },
-        { id: 3, name_en: 'Surah 3', name_ar: 'Surah 3 Arabic' },
-      ]
+   selectedSurah: null, // Initialize selectedSurah as null initially
+
   };
  },
  methods: {
-   selectSurah(surahId) {
-      this.surah = surahId;
-      this.getAyahs(surahId); // Call the getAyahs method with the selected Surah ID
-      // You can perform further actions, such as fetching data related to the selected Surah
-    },
-  
+  selectSurah(surahId) {
+   this.surah = surahId;
+   this.getAyahs(surahId); // Call the getAyahs method with the selected Surah ID
+   // You can perform further actions, such as fetching data related to the selected Surah
+  },
+
   async fetchAllAudios() {
    const audioUrl = 'https://cdn.islamic.network/quran/audio/128/ar.alafasy/29.mp3';
    const corsProxyUrl = 'https://cors-proxy.htmldriven.com/';
@@ -345,30 +330,41 @@ export default {
   },
 
   copyText() {
-   // Get the text content of the h3 element
-   var textToCopy = this.$refs.heading.innerText;
+    // Get the text content of the h3 element
+    var textToCopy = this.$refs.heading.innerText;
 
-   // Create a temporary textarea element
-   var textarea = document.createElement("textarea");
+    // Create a temporary textarea element
+    var textarea = document.createElement("textarea");
 
-   // Set its value to the text content
-   textarea.value = textToCopy;
+    // Set its value to the text content
+    textarea.value = textToCopy;
 
-   // Append the textarea to the document body
-   document.body.appendChild(textarea);
+    // Append the textarea to the document body
+    document.body.appendChild(textarea);
 
-   // Select its text
-   textarea.select();
+    // Select its text
+    textarea.select();
 
-   // Copy the selected text to the clipboard
-   document.execCommand("copy");
+    // Copy the selected text to the clipboard
+    document.execCommand("copy");
 
-   // Remove the temporary textarea
-   document.body.removeChild(textarea);
+    // Remove the temporary textarea
+    document.body.removeChild(textarea);
 
-   // Optionally, you can show a success message or perform other actions here
-   alert("Copied text to clipboard");
+    // Create a Bootstrap alert element
+    var alertElement = document.createElement("div");
+    alertElement.classList.add("alert", "alert-success");
+    alertElement.textContent = "Copied text to clipboard";
+    
+    // Append the alert element to a container in your HTML
+    document.getElementById("alertContainer").appendChild(alertElement);
+
+    // Optionally, you can hide or remove the alert after a certain duration
+    setTimeout(function() {
+      alertElement.remove(); // Remove the alert element after 3 seconds
+    }, 3000);
   },
+
 
   getTafseers: function (id, index) {
    this.selectedIndexAyah = index;
@@ -425,6 +421,52 @@ export default {
 </script>
 
 <style scoped>
+
+.list-group-item {
+  border: none;
+}
+/* CSS */
+.button-33 {
+ background-color: #c2fbd7;
+ border-radius: 10px;
+ box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset, rgba(44, 187, 99, .15) 0 1px 2px, rgba(44, 187, 99, .15) 0 2px 4px, rgba(44, 187, 99, .15) 0 4px 8px, rgba(44, 187, 99, .15) 0 8px 16px, rgba(44, 187, 99, .15) 0 16px 32px;
+ color: green;
+ cursor: pointer;
+ display: inline-block;
+ font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
+ padding: 7px 20px;
+ text-align: center;
+ text-decoration: none;
+ transition: all 250ms;
+ border: 0;
+ font-size: 16px;
+ user-select: none;
+ -webkit-user-select: none;
+ touch-action: manipulation;
+}
+
+.scrollmenu {
+ padding-bottom: 10px;
+ padding-top: 10px;
+ overflow-y: hidden;
+ /* Enable horizontal scrolling */
+ white-space: nowrap;
+ /* Prevent line breaks */
+}
+
+.scrollmenu a {
+ display: inline-block;
+ vertical-align: top;
+ /* Align icons to the top */
+ margin-right: 20px;
+ /* Adjust spacing between icons */
+}
+
+.button-33:hover {
+ box-shadow: rgba(44, 187, 99, .35) 0 -25px 18px -14px inset, rgba(44, 187, 99, .25) 0 1px 2px, rgba(44, 187, 99, .25) 0 2px 4px, rgba(44, 187, 99, .25) 0 4px 8px, rgba(44, 187, 99, .25) 0 8px 16px, rgba(44, 187, 99, .25) 0 16px 32px;
+ transform: scale(1.05) rotate(-1deg);
+}
+
 .list-group-item {
  cursor: pointer;
  background: transparent;
@@ -455,6 +497,13 @@ export default {
 
 .selected {
  background-color: #c3e6cb;
+}
+
+.horizontal-scroll-wrapper {
+ overflow-x: scroll;
+ overflow-y: hidden;
+ white-space: nowrap;
+ width: 600px;
 }
 
 .custom-scrollbar {
