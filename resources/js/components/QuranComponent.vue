@@ -33,27 +33,14 @@
  </div>
 
  <!-- accordion headers-->
- <div class="row container-fluid" >
-  <div class="col-md-8 " >
+ <div class="row container-fluid">
+  <div class="col-md-8 ">
    <!-- Nav tabs -->
    <div class="card " style="padding">
     <h5 class="container font-weight-bold pl-3 pt-3" style="font-family:inter; ">Featured Reading:</h5>
 
     <div class="scrollmenu ">
-     <a href="#home">
-      <div class="col container ">
-       <div class="flex justify-content-center ">
-        <Button class="button-33 " label="Al-Fatiha - الفاتحة" severity="success" raised outlined @click="selectSurah(1)" :class="{ 'active': surah === 1 }" />
-       </div>
-      </div>
-     </a>
-     <a href="#news">
-      <div class="col container ">
-       <div class="flex justify-content-center ">
-        <Button class="button-33 " label="Al-Fatiha - الفاتحة" severity="success" raised outlined @click="selectSurah(1)" :class="{ 'active': surah === 1 }" />
-       </div>
-      </div>
-     </a>
+     
      <a href="#contact">
       <div class="col container ">
        <div class="flex justify-content-center ">
@@ -64,35 +51,42 @@
      <a href="#about">
       <div class="col container ">
        <div class="flex justify-content-center ">
-        <Button class="button-33 " label="Al-Fatiha - الفاتحة" severity="success" raised outlined @click="selectSurah(1)" :class="{ 'active': surah === 1 }" />
-       </div>
-      </div>
-     </a>
-     <a href="#support">
-      <div class="col container ">
-       <div class="flex justify-content-center ">
-        <Button class="button-33 " label="Al-Fatiha - الفاتحة" severity="success" raised outlined @click="selectSurah(1)" :class="{ 'active': surah === 1 }" />
-       </div>
-      </div>
-     </a>
-     <a href="">
-      <div class="col container ">
-       <div class="flex justify-content-center ">
-        <Button class="button-33 " label="Al-Fatiha - الفاتحة" severity="success" raised outlined @click="selectSurah(1)" :class="{ 'active': surah === 1 }" />
+        <Button class="button-33 " label="An-Nas - 	الناس" severity="success" raised outlined @click="selectSurah(114)" :class="{ 'active': surah === 114 }" />
        </div>
       </div>
      </a>
      <a href="#tools">
       <div class="col container ">
        <div class="flex justify-content-center ">
-        <Button class="button-33 " label="Al-Fatiha - الفاتحة" severity="success" raised outlined @click="selectSurah(1)" :class="{ 'active': surah === 1 }" />
+        <Button class="button-33 " label="Al-Falak - 	الفلق" severity="success" raised outlined @click="selectSurah(113)" :class="{ 'active': surah === 133 }" />
+       </div>
+      </div>
+     </a>
+     <a href="#support">
+      <div class="col container ">
+       <div class="flex justify-content-center ">
+        <Button class="button-33 " label="Al-Kafiroon -	الكافرون" severity="success" raised outlined @click="selectSurah(109)" :class="{ 'active': surah === 109 }" />
+       </div>
+      </div>
+     </a>
+     <a href="#supports">
+      <div class="col container ">
+       <div class="flex justify-content-center ">
+        <Button class="button-33 " label="Al-Mulk - الملك" severity="success" raised outlined @click="selectSurah(67)" :class="{ 'active': surah === 67 }" />
+       </div>
+      </div>
+     </a>
+     <a href="#tools">
+      <div class="col container ">
+       <div class="flex justify-content-center ">
+        <Button class="button-33 " label="Al-Rahman - الرحمن" severity="success" raised outlined @click="selectSurah(55)" :class="{ 'active': surah === 55 }" />
        </div>
       </div>
      </a>
      <a href="#base">
       <div class="col container ">
        <div class="flex justify-content-center ">
-        <Button class="button-33 " label="Al-Fatiha - الفاتحة" severity="success" raised outlined @click="selectSurah(1)" :class="{ 'active': surah === 1 }" />
+        <Button class="button-33 " label="Al-Kahf -	الكهف" severity="success" raised outlined @click="selectSurah(18)" :class="{ 'active': surah === 18 }" />
        </div>
       </div>
      </a>
@@ -100,7 +94,7 @@
     </div>
 
     <!-- HTML !-->
-
+    <div class="container" style="padding:8px" id="alertContainer"></div>
     <div class="container-fluid" v-if="information != null">
 
      <ul class="nav nav-tabs text-left justify-content-center pt-3" role="tablist">
@@ -122,7 +116,6 @@
       </li>
 
      </ul>
-
     </div>
 
     <div class="card-body" id="alertContainer">
@@ -149,31 +142,31 @@
        <div class="row">
         <!-- left side stack of icon features -->
         <div class="col-md-1">
-         <div class="list-group">
-          <a href="#" class="list-group-item list-group-item-action"  aria-current="true"><i data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Tooltip on top" class="bi-bug-fill" style="font-size: 1.1rem; color: black;"></i></a>
-          <a href="#" class="list-group-item list-group-item-action"><i class="bi-bookmark-fill" style="font-size: 1.1rem; color: black;"></i></a>
-          <a href="#" class="list-group-item list-group-item-action"  @click="copyText"><i class="bi bi-collection-fill" style="font-size: 1.1rem; color: black;"></i></a>
-          <a href="#" class="list-group-item list-group-item-action"><i class="bi-share-fill" style="font-size: 1.1rem; color: black;"></i></a>
-          <a class="list-group-item list-group-item-action disabled" aria-disabled="true"><i class="bi-camera-fill" style="font-size: 1.1rem; color: black;"></i></a>
+         <div class="list-group styling">
+          <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Play audio"><i class="bi-play-circle-fill test" style="font-size: 1.2rem;"></i></a>
+          <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Report a bug"><i class="bi-bug-fill test" style="font-size: 1.2rem;"></i></a>
+          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Bookmark verse"><i class="bi-bookmark-fill test" style="font-size: 1.2rem;"></i></a>
+          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy text" @click="copyText"><i class="bi bi-collection-fill test" style="font-size: 1.2rem; "></i></a>
+          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse"><i class="bi-share-fill test" style="font-size: 1.2rem;"></i></a>
+          <a class="list-group-item list-group-item-action disabled" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot" aria-disabled="true"><i class="bi-camera-fill test" style="font-size: 1.2rem; "></i></a>
          </div>
         </div>
         <div class="col-11">
-        <ul class="ul-main">
-         <img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" />
-         <li class="li-main mr-3">
-          <span class="span-main" style="font-style:bold">{{ information.ayah.surah_id }} : {{ information.ayah.ayah_id }}</span>
-         </li>
-        </ul>
+         <ul class="ul-main">
+          <img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" />
+          <li class="li-main mr-3">
+           <span class="span-main" style="font-style:bold">{{ information.ayah.surah_id }} : {{ information.ayah.ayah_id }}</span>
+          </li>
+         </ul>
          <div class="btn">
-         <div class="span-main text:left" style="font-style:bolder; color:black"></div>
-          <h3 ref="heading" @click="copyText" class="container text-right" style="line-height: 2em">
+          <div class="span-main text:left" style="font-style:bolder; color:black"></div>
+          <h3 ref="heading" class="container text-right" style="line-height: 2em">
            {{ information.ayah.ayah_text }}
            ({{ information.ayah.ayah_id }})
           </h3>
-
          </div>
+         <hr />
 
-         <hr class="container" style="border:2px dotted black" />
          <div class="btn">
           <h4 ref="heading" class="container text-left" style="line-height: 1.6em;">
            {{ information.translation }}"
@@ -190,7 +183,7 @@
          {{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})
         </h3>
        </div>
-       <hr class="container" />
+       <hr />
        <div class="btn">
         <h4 class="container text-left" style="line-height: 1.6em;">
          {{ tafseer }}
@@ -205,7 +198,7 @@
          {{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})
         </h3>
        </div>
-       <hr class="container" />
+       <hr />
        <div class="btn">
         <h4 class="container text-left" style="line-height: 1.6em;">
          {{ information.transliteration }}
@@ -330,41 +323,40 @@ export default {
   },
 
   copyText() {
-    // Get the text content of the h3 element
-    var textToCopy = this.$refs.heading.innerText;
+   // Get the text content of the h3 element
+   var textToCopy = this.$refs.heading.innerText;
 
-    // Create a temporary textarea element
-    var textarea = document.createElement("textarea");
+   // Create a temporary textarea element
+   var textarea = document.createElement("textarea");
 
-    // Set its value to the text content
-    textarea.value = textToCopy;
+   // Set its value to the text content
+   textarea.value = textToCopy;
 
-    // Append the textarea to the document body
-    document.body.appendChild(textarea);
+   // Append the textarea to the document body
+   document.body.appendChild(textarea);
 
-    // Select its text
-    textarea.select();
+   // Select its text
+   textarea.select();
 
-    // Copy the selected text to the clipboard
-    document.execCommand("copy");
+   // Copy the selected text to the clipboard
+   document.execCommand("copy");
 
-    // Remove the temporary textarea
-    document.body.removeChild(textarea);
+   // Remove the temporary textarea
+   document.body.removeChild(textarea);
 
-    // Create a Bootstrap alert element
-    var alertElement = document.createElement("div");
-    alertElement.classList.add("alert", "alert-success");
-    alertElement.textContent = "Copied text to clipboard";
-    
-    // Append the alert element to a container in your HTML
-    document.getElementById("alertContainer").appendChild(alertElement);
+   // Create a Bootstrap alert element
+   var alertElement = document.createElement("div");
+   alertElement.classList.add("alert", "alert-success");
+   alertElement.textContent = "Copied text to clipboard";
 
-    // Optionally, you can hide or remove the alert after a certain duration
-    setTimeout(function() {
-      alertElement.remove(); // Remove the alert element after 3 seconds
-    }, 3000);
+   // Append the alert element to a container in your HTML
+   document.getElementById("alertContainer").appendChild(alertElement);
+
+   // Optionally, you can hide or remove the alert after a certain duration
+   setTimeout(function () {
+    alertElement.remove(); // Remove the alert element after 3 seconds
+   }, 3000);
   },
-
 
   getTafseers: function (id, index) {
    this.selectedIndexAyah = index;
@@ -421,15 +413,27 @@ export default {
 </script>
 
 <style scoped>
+.styling {
+ box-shadow: rgba(154, 167, 159, 0.2) 0 -25px 18px -14px inset, rgba(44, 187, 99, .15) 0 1px 2px, rgba(44, 187, 99, .15) 0 2px 4px, rgba(44, 187, 99, .15) 0 4px 8px, rgba(44, 187, 99, .15) 0 8px 16px, rgba(44, 187, 99, .15) 0 16px 32px;
+ transition: all 250ms;
+ cursor: pointer;
+ touch-action: manipulation;
+ border: 1px solid lightgrey;
+}
+
+.test {
+ color: rgba(68, 68, 68, 0.918);
+}
 
 .list-group-item {
-  border: none;
+ border: none;
 }
+
 /* CSS */
 .button-33 {
  background-color: #c2fbd7;
  border-radius: 10px;
- box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset, rgba(44, 187, 99, .15) 0 1px 2px, rgba(44, 187, 99, .15) 0 2px 4px, rgba(44, 187, 99, .15) 0 4px 8px, rgba(44, 187, 99, .15) 0 8px 16px, rgba(44, 187, 99, .15) 0 16px 32px;
+ box-shadow: rgba(154, 167, 159, 0.2) 0 -25px 18px -14px inset, rgba(44, 187, 99, .15) 0 1px 2px, rgba(44, 187, 99, .15) 0 2px 4px, rgba(44, 187, 99, .15) 0 4px 8px, rgba(44, 187, 99, .15) 0 8px 16px, rgba(44, 187, 99, .15) 0 16px 32px;
  color: green;
  cursor: pointer;
  display: inline-block;
