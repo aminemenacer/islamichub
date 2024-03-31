@@ -28,6 +28,64 @@
   </div>
  </div>
 
+ <!-- correction modal -->
+ <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+   <div class="modal-content form">
+    <div class="modal-header">
+     <h5 class="modal-title" id="exampleModalLabel">
+      <b>Report a Mistake</b>
+     </h5>
+    </div>
+    <div class="modal-body">
+     <form @submit.prevent="createCorrection()">
+      <div class="row container">
+       <div class="col">
+        <input v-model="form.name" type="text" class="form-control" name="name" placeholder="First name (Optional)" aria-label="First name" />
+       </div>
+       <div class="col">
+        <input v-model="form.email" type="text" class="form-control" name="email" placeholder="Email Address (Optional)" aria-label="Email Address" />
+       </div>
+      </div>
+      <div class="row mt-3 container">
+       <div class="col">
+        <input v-model="form.hadith_num" type="text" class="form-control" name="hadith_num" placeholder="Hadith number" aria-label="Hadith number" />
+       </div>
+
+       <div class="col">
+        <select class="form-control" name="mistake_type" v-model="form.mistake_type">
+         <option value="" disabled>
+          Select Type
+         </option>
+         <option value="Spelling mistakes">
+          Spelling mistakes
+         </option>
+         <option value="Translation error">
+          Translation error
+         </option>
+         <option value="Reference mismatch">
+          Reference mismatch
+         </option>
+        </select>
+       </div>
+      </div>
+      <div class="row container mt-3">
+       <textarea v-model="form.added_notes" class="form-control container mb-3" name="added_notes" placeholder="Explain to us exactly what the problem is" id="added_comments" rows="5"></textarea>
+      </div>
+      <div class="modal-footer">
+       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+        Close
+       </button>
+       <button type="submit" class="btn btn-success">
+        Save changes
+       </button>
+      </div>
+     </form>
+    </div>
+   </div>
+  </div>
+ </div>
+
  <div class="container-fluid mt-2">
   <div class="row"></div>
  </div>
@@ -40,50 +98,50 @@
     <h5 class="container font-weight-bold pl-3 pt-3" style="font-family:inter; ">Featured Reading:</h5>
 
     <div class="scrollmenu ">
-     
-     <a href="#contact">
+
+     <a href="#">
       <div class="col container ">
        <div class="flex justify-content-center ">
         <Button class="button-33 " label="Al-Fatiha - الفاتحة" severity="success" raised outlined @click="selectSurah(1)" :class="{ 'active': surah === 1 }" />
        </div>
       </div>
      </a>
-     <a href="#about">
+     <a href="#">
       <div class="col container ">
        <div class="flex justify-content-center ">
         <Button class="button-33 " label="An-Nas - 	الناس" severity="success" raised outlined @click="selectSurah(114)" :class="{ 'active': surah === 114 }" />
        </div>
       </div>
      </a>
-     <a href="#tools">
+     <a href="#">
       <div class="col container ">
        <div class="flex justify-content-center ">
         <Button class="button-33 " label="Al-Falak - 	الفلق" severity="success" raised outlined @click="selectSurah(113)" :class="{ 'active': surah === 133 }" />
        </div>
       </div>
      </a>
-     <a href="#support">
+     <a href="#">
       <div class="col container ">
        <div class="flex justify-content-center ">
         <Button class="button-33 " label="Al-Kafiroon -	الكافرون" severity="success" raised outlined @click="selectSurah(109)" :class="{ 'active': surah === 109 }" />
        </div>
       </div>
      </a>
-     <a href="#supports">
+     <a href="#">
       <div class="col container ">
        <div class="flex justify-content-center ">
         <Button class="button-33 " label="Al-Mulk - الملك" severity="success" raised outlined @click="selectSurah(67)" :class="{ 'active': surah === 67 }" />
        </div>
       </div>
      </a>
-     <a href="#tools">
+     <a href="#">
       <div class="col container ">
        <div class="flex justify-content-center ">
         <Button class="button-33 " label="Al-Rahman - الرحمن" severity="success" raised outlined @click="selectSurah(55)" :class="{ 'active': surah === 55 }" />
        </div>
       </div>
      </a>
-     <a href="#base">
+     <a href="#">
       <div class="col container ">
        <div class="flex justify-content-center ">
         <Button class="button-33 " label="Al-Kahf -	الكهف" severity="success" raised outlined @click="selectSurah(18)" :class="{ 'active': surah === 18 }" />
@@ -144,7 +202,7 @@
         <div class="col-md-1">
          <div class="list-group styling">
           <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Play audio"><i class="bi-play-circle-fill test" style="font-size: 1.2rem;"></i></a>
-          <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Report a bug"><i class="bi-bug-fill test" style="font-size: 1.2rem;"></i></a>
+          <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi-bug-fill test" style="font-size: 1.2rem;"></i></a>
           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Bookmark verse"><i class="bi-bookmark-fill test" style="font-size: 1.2rem;"></i></a>
           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy text" @click="copyText"><i class="bi bi-collection-fill test" style="font-size: 1.2rem; "></i></a>
           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse"><i class="bi-share-fill test" style="font-size: 1.2rem;"></i></a>
@@ -277,7 +335,14 @@ export default {
    id: null,
    surah: 0,
    selectedSurah: null, // Initialize selectedSurah as null initially
-
+   form: new Form({
+    id: "",
+    name: "",
+    email: "",
+    mistake_type: "",
+    added_notes: "",
+    hadith_num: "",
+   }),
   };
  },
  methods: {
@@ -322,39 +387,60 @@ export default {
    }
   },
 
-  copyText() {
-   // Get the text content of the h3 element
-   var textToCopy = this.$refs.heading.innerText;
+  createCorrection() {
+   Swal.fire({
+    title: "Are you sure?",
+    text: "You want to create a new Correction !",
+    showCancelButton: true,
+    confirmButtonColor: "green",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Create correction!",
+   }).then((result) => {
+    if (result.isConfirmed) {
+     axios
+      .post("/api/submit-correction", this.form)
+      .then((res) => {
+       if (!res.data.success) {
+        Swal.fire({
+         position: "top-end",
+         icon: "success",
+         title: "Correction created successfully ",
+         showConfirmButton: false,
+         timer: 1500,
+        });
+        $("#exampleModal").modal("hide");
+       } else if (res.data.success) {
+        Swal.fire(
+         "Error!",
+         "Unable to create correction.",
+         "error"
+        );
+       }
+      })
+      .catch(function (err) {});
+    }
+   });
+  },
 
-   // Create a temporary textarea element
+  copyText() {
+   var textToCopy = this.$refs.heading.innerText;
    var textarea = document.createElement("textarea");
 
-   // Set its value to the text content
+  
    textarea.value = textToCopy;
-
-   // Append the textarea to the document body
    document.body.appendChild(textarea);
-
-   // Select its text
    textarea.select();
-
-   // Copy the selected text to the clipboard
    document.execCommand("copy");
-
-   // Remove the temporary textarea
    document.body.removeChild(textarea);
 
-   // Create a Bootstrap alert element
    var alertElement = document.createElement("div");
    alertElement.classList.add("alert", "alert-success");
    alertElement.textContent = "Copied text to clipboard";
 
-   // Append the alert element to a container in your HTML
    document.getElementById("alertContainer").appendChild(alertElement);
 
-   // Optionally, you can hide or remove the alert after a certain duration
    setTimeout(function () {
-    alertElement.remove(); // Remove the alert element after 3 seconds
+    alertElement.remove(); 
    }, 3000);
   },
 
@@ -453,17 +539,15 @@ export default {
  padding-bottom: 10px;
  padding-top: 10px;
  overflow-y: hidden;
- /* Enable horizontal scrolling */
+ overflow-x: inherit;
+ /* Hide horizontal scrollbar */
  white-space: nowrap;
- /* Prevent line breaks */
 }
 
 .scrollmenu a {
  display: inline-block;
  vertical-align: top;
- /* Align icons to the top */
  margin-right: 20px;
- /* Adjust spacing between icons */
 }
 
 .button-33:hover {
