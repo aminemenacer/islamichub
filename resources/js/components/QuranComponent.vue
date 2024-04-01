@@ -205,27 +205,28 @@
         <!-- left side stack of icon features -->
         <div class="col-md-1">
          <div class="list-group styling">
+                   <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Play audio"><i class="bi-play-circle-fill test" style="font-size: 1.2rem"></i></a>
           <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Play audio"><i class="bi-play-circle-fill test" style="font-size: 1.2rem"></i></a>
           <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi-bug-fill test" style="font-size: 1.2rem"></i></a>
           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Bookmark verse"><i class="bi-bookmark-fill test" style="font-size: 1.2rem"></i></a>
           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText"><i class="bi bi-collection-fill test" style="font-size: 1.2rem"></i></a>
           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse"><i class="bi-share-fill test" style="font-size: 1.2rem"></i></a>
-          <a class="list-group-item list-group-item-action disabled" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot" aria-disabled="true"><i class="bi-camera-fill test" style="font-size: 1.2rem"></i></a>
+          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot" aria-disabled="true"><i class="bi-camera-fill test" style="font-size: 1.2rem"></i></a>
          </div>
         </div>
         <div class="col-11">            
 
          <ul class="ul-main row">
-          <h5 class="col-md-2 font-weight-bold">{{information.ayah.surah.name_en}}</h5>
-          <div class="col-md-8">
-            <img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" />
+          <h5 class="col-md-3 font-weight-bold"><img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}}</h5>
+          <div class="col-md-6">
             <li class="li-main mr-3">
             <span class="span-main" style="font-style: bold">{{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}
             </span>
             </li>
           </div>
-          <h5 class="col-md-2 font-weight-bold">{{information.ayah.surah.name_ar}}</h5>
+          <h5 class="col-md-3 ">{{information.ayah.surah.name_ar}} <img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" /></h5>
          </ul>
+
          <hr style="border: 1px dotted grey">
 
 
@@ -240,7 +241,6 @@
           </h3>
          </div>
          <hr />
-
          <div class="btn">
           <h4 ref="heading" class="container text-left" style="line-height: 1.6em">
            {{ information.translation }}"
@@ -254,9 +254,7 @@
       <div class="tab-pane" id="profile" role="tabpanel" v-if="information != null">
        <div class="btn">
         <h3 class="container text-right" style="line-height: 2em">
-         {{ information.ayah.ayah_text }} ({{
-                                            information.ayah.ayah_id
-                                        }})
+         {{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})
         </h3>
        </div>
        <hr />
@@ -271,9 +269,7 @@
       <div class="tab-pane" id="messages" role="tabpanel" v-if="information != null">
        <div class="btn">
         <h3 class="container text-right" style="line-height: 2em">
-         {{ information.ayah.ayah_text }} ({{
-                                            information.ayah.ayah_id
-                                        }})
+         {{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})
         </h3>
        </div>
        <hr />
@@ -326,6 +322,8 @@
 </template>
 
 <script>
+import html2canvas from 'html2canvas'; // Import html2canvas library
+
 export default {
  mounted() {
   this.getSurahs();
@@ -333,7 +331,10 @@ export default {
 
  data() {
   return {
-   surah: 0,
+ text: 'Enter text here',
+      isCapturing: false,
+      errorMessage: null,
+         surah: 0,
    selectedSurah: "",
    audioFiles: [],
    totalAudios: 6236,
@@ -365,6 +366,7 @@ export default {
   };
  },
  methods: {
+  
   selectSurah(surahId) {
    this.surah = surahId;
    this.getAyahs(surahId); // Call the getAyahs method with the selected Surah ID
@@ -534,6 +536,10 @@ export default {
 </script>
 
 <style scoped>
+.list-group-item-action:hover {
+  background-color: #c3e6cb;
+}
+
 .styling {
  box-shadow: rgba(154, 167, 159, 0.2) 0 -25px 18px -14px inset,
   rgba(44, 187, 99, 0.15) 0 1px 2px, rgba(44, 187, 99, 0.15) 0 2px 4px,

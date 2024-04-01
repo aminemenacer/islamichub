@@ -83,7 +83,7 @@
 
             <li class="nav-item">
               <a href="/dashboard" class="nav-link">
-                <i class="fas fa-home"></i>
+                <i class="bi bi-speedometer"></i>
                 <p>
                   Dashboard
                 </p>

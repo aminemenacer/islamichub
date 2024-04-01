@@ -48,26 +48,26 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav justify-content-end mt-2 pr-4 flex-grow-1 ">
-                        <li class="nav-item mt-1">
+                        <li class="nav-item mt-2">
                             <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: black;"
                                     href="/quran">Quran</a></h5>
                         </li>
-                        <li class="nav-item mt-1">
+                        <li class="nav-item mt-2">
                             <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: black;"
                                     href="/ahadith">Ahadith</a></h5>
                         </li>
                     
-                        <li class="nav-item mt-1">
+                        <li class="nav-item mt-2">
                             <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: black;"
                                     href="/contact">Contact</a></h5>
                         </li>
     
-                        <li class="nav-item mt-1">
+                        <li class="nav-item mt-2">
                             <h5><a style="font-family:inter" class="nav-link ml-4 pl-3 pr-5" style="color: black;"
                                     href="/about">About Us</a></h5>
                         </li>
 
-                        <li class="nav-item pr-2 mb-1">
+                        <li class="nav-item mt-2 pr-2 mb-1">
                             <a href="/charity" type="button" class="btn btn-success btn-lg" style="font-family:inter">Support Us</a>
                         </li>
                         
@@ -91,7 +91,8 @@
                             <li class="nav-item dropdown mt-1 ml-5">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                                    {{-- {{ Auth::user()->name }} --}}
+                                    <i class="bi bi-person-circle" style="font-size: 1.8rem"></i>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
