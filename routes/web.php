@@ -41,6 +41,8 @@ Route::get('/welcome', function () {
 
 Route::get('/audio-files/{id}', [ContactController::class, 'fetchAudioFile']);
 
+//bookmark
+Route::post('api/create-bookmark', [BookmarkController::class, 'createBookmark']);
 
 
 // stripe payment

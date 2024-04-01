@@ -205,7 +205,6 @@
         <!-- left side stack of icon features -->
         <div class="col-md-1">
          <div class="list-group styling">
-                   <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Play audio"><i class="bi-play-circle-fill test" style="font-size: 1.2rem"></i></a>
           <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Play audio"><i class="bi-play-circle-fill test" style="font-size: 1.2rem"></i></a>
           <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi-bug-fill test" style="font-size: 1.2rem"></i></a>
           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Bookmark verse"><i class="bi-bookmark-fill test" style="font-size: 1.2rem"></i></a>
