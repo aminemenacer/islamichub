@@ -24,9 +24,6 @@ class AyahSeeder extends Seeder
                     "ayah_id" => $data['1'],
                     "audio_links" => $data['2'],
                     "ayah_text" => $data['3'],
-                    'created_at' => now(),
-                    'updated_at' => now(),
-
                 ]);    
             }
             $firstline = false;

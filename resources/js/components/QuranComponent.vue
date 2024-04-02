@@ -7,9 +7,11 @@
      <div class="col-md-3"></div>
      <div class="col-md-6" style="display: flex; text-align: center">
       <div class="card-header">
+       <!-- quran title -->
        <h1 class="card-text text-center mt-2 mb-2" style="font-family: serif">
         The Holy Quran
        </h1>
+       <!-- quran description -->
        <h5 class="card-text container-fluid mb-0 pb-3">
         <span>The Quran, considered the holy
          scripture of Islam, is a sacred and
@@ -17,6 +19,7 @@
          revelations.</span>
        </h5>
       </div>
+      <!-- play audio -->
       <li v-for="(audio, index) in audioFiles" :key="index">
        <audio controls>
         <source :src="audio.url" type="audio/mpeg" />
@@ -89,19 +92,16 @@
   </div>
  </div>
 
- <div class="container-fluid mt-2">
-  <div class="row"></div>
- </div>
-
  <!-- accordion headers-->
  <div class="row container-fluid">
   <div class="col-md-8">
    <!-- Nav tabs -->
    <div class="card" style="padding">
+    <!-- title of featured reading -->
     <h5 class="container font-weight-bold pl-3 pt-3" style="font-family: inter">
      Featured Reading:
     </h5>
-
+    <!-- list of featured reading -->
     <div class="scrollmenu">
      <a href="#">
       <div class="col container">
@@ -154,8 +154,7 @@
      </a>
     </div>
 
-    <!-- HTML !-->
-    <div class="container" style="padding: 8px" id="alertContainer"></div>
+    <!-- tabs for Translation, Tafseer & Transliteration -->
     <div class="container-fluid" v-if="information != null">
      <ul class="nav nav-tabs text-left justify-content-center pt-3" role="tablist">
       <li class="nav-item text-right">
@@ -177,14 +176,17 @@
     </div>
 
     <div class="card-body" id="alertContainer">
-     <!-- Tab panes -->
+
+     <!-- Intro -->
      <div class="tab-content text-center">
+
       <div class="tab-pane active" id="home" role="tabpanel" v-if="information == null">
        <div class="row">
+        <!-- Intro image -->
         <div class="col-md-6">
          <img src="/images/calligraphy.png" class="pl-3" style="width: 70%" />
         </div>
-
+        <!-- Intro desc -->
         <div class="col-md-6 mt-4">
          <h5 style="line-height: 1.6em">
           The Quran, considered the holy The
@@ -199,7 +201,7 @@
        </div>
       </div>
 
-      <!-- translation -->
+      <!-- translation section -->
       <div class="tab-pane active" id="home" role="tabpanel" v-if="information != null">
        <div class="row">
         <!-- left side stack of icon features -->
@@ -207,41 +209,38 @@
          <div class="list-group styling">
           <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Play audio"><i class="bi-play-circle-fill test" style="font-size: 1.2rem"></i></a>
           <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi-bug-fill test" style="font-size: 1.2rem"></i></a>
-          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Bookmark verse"><i class="bi-bookmark-fill test" style="font-size: 1.2rem"></i></a>
           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText"><i class="bi bi-collection-fill test" style="font-size: 1.2rem"></i></a>
-          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse"><i class="bi-share-fill test" style="font-size: 1.2rem"></i></a>
-          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot" aria-disabled="true"><i class="bi-camera-fill test" style="font-size: 1.2rem"></i></a>
          </div>
         </div>
-        <div class="col-11">            
 
+        <div class="col-11">
+
+         <!-- surah/ayah detail -->
          <ul class="ul-main row">
           <h5 class="col-md-3 font-weight-bold"><img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}}</h5>
           <div class="col-md-6">
-            <li class="li-main mr-3">
+           <li class="li-main mr-3">
             <span class="span-main" style="font-style: bold">{{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}
             </span>
-            </li>
+           </li>
           </div>
           <h5 class="col-md-3 ">{{information.ayah.surah.name_ar}} <img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" /></h5>
          </ul>
 
          <hr style="border: 1px dotted grey">
-
-
+         <!-- main stack top -->
          <div class="btn">
-          <div class="span-main text:left" style="
-                                                    font-style: bolder;
-                                                    color: black;
-                                                "></div>
+          <div class="span-main text:left" style="font-style: bolder;color: black;"></div>
           <h3 ref="heading" class="container text-right" style="line-height: 2em">
            {{ information.ayah.ayah_text }}
            ({{ information.ayah.ayah_id }})
           </h3>
          </div>
          <hr />
+         <!-- main stack below -->
          <div class="btn">
           <h4 ref="heading" class="container text-left" style="line-height: 1.6em">
+           <input type="hidden" name="text">
            {{ information.translation }}"
           </h4>
          </div>
@@ -249,14 +248,29 @@
        </div>
       </div>
 
-      <!-- tafseer -->
+      <!-- tafseer section -->
       <div class="tab-pane" id="profile" role="tabpanel" v-if="information != null">
+
+       <!-- surah/ayah detail -->
+       <ul class="ul-main row col-md-10">
+        <h5 class="col-md-3 font-weight-bold"><img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}}</h5>
+        <div class="col-md-6">
+         <li class="li-main mr-3">
+          <span class="span-main" style="font-style: bold">{{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}
+          </span>
+         </li>
+        </div>
+        <h5 class="col-md-3 ">{{information.ayah.surah.name_ar}} <img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" /></h5>
+       </ul>
+       <hr>
+       <!-- main stack top -->
        <div class="btn">
         <h3 class="container text-right" style="line-height: 2em">
          {{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})
         </h3>
        </div>
        <hr />
+       <!-- main stack below -->
        <div class="btn">
         <h4 class="container text-left" style="line-height: 1.6em">
          {{ tafseer }}
@@ -264,14 +278,29 @@
        </div>
       </div>
 
-      <!-- transliteration -->
+      <!-- transliteration section -->
       <div class="tab-pane" id="messages" role="tabpanel" v-if="information != null">
+
+       <!-- surah/ayah detail -->
+       <ul class="ul-main row ">
+        <h5 class="col-md-3 font-weight-bold"><img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}}</h5>
+        <div class="col-md-6">
+         <li class="li-main mr-3">
+          <span class="span-main" style="font-style: bold">{{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}
+          </span>
+         </li>
+        </div>
+        <h5 class="col-md-3 ">{{information.ayah.surah.name_ar}} <img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" /></h5>
+       </ul>
+       <hr>
+       <!-- main stack top -->
        <div class="btn">
         <h3 class="container text-right" style="line-height: 2em">
          {{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})
         </h3>
        </div>
        <hr />
+       <!-- main stack below -->
        <div class="btn">
         <h4 class="container text-left" style="line-height: 1.6em">
          {{ information.transliteration }}
@@ -285,6 +314,8 @@
 
   <!-- right side chapter list -->
   <div class="col-md-4 sticky-top container">
+
+   <!-- component search for surat -->
    <form class="mb-2 right-side-form">
     <select class="form-control" v-model="surah" @change="getAyahs()">
      <option value="0">
@@ -295,13 +326,13 @@
      </option>
     </select>
    </form>
+
+   <!-- list search for surat -->
    <div class="tab-content" id="nav-tabContent" v-if="ayah == null">
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" v-if="ayah == null">
      <div class="row container-fluid">
       <div class="custom-scrollbar">
-       <ul class="col-md-4 list-group container-fluid root" v-for="(ayah, index) in ayahs" :key="index" @click="getTafseers(ayah.id, index)" :class="{
-                                        selected: selectedIndexAyah === index,
-                                    }">
+       <ul class="col-md-4 list-group container-fluid root" v-for="(ayah, index) in ayahs" :key="index" @click="getTafseers(ayah.id, index)" :class="{selected: selectedIndexAyah === index,}">
         <li class="list-group-item container-fluid" id="toggle">
          <h5 style="display: flex">
           Verse: {{ ayah.ayah_id }}
@@ -321,8 +352,6 @@
 </template>
 
 <script>
-import html2canvas from 'html2canvas'; // Import html2canvas library
-
 export default {
  mounted() {
   this.getSurahs();
@@ -330,10 +359,6 @@ export default {
 
  data() {
   return {
- text: 'Enter text here',
-      isCapturing: false,
-      errorMessage: null,
-         surah: 0,
    selectedSurah: "",
    audioFiles: [],
    totalAudios: 6236,
@@ -353,7 +378,7 @@ export default {
    name_en: null,
    id: null,
    surah: 0,
-   selectedSurah: null, // Initialize selectedSurah as null initially
+
    form: new Form({
     id: "",
     name: "",
@@ -365,7 +390,7 @@ export default {
   };
  },
  methods: {
-  
+
   selectSurah(surahId) {
    this.surah = surahId;
    this.getAyahs(surahId); // Call the getAyahs method with the selected Surah ID
@@ -531,12 +556,13 @@ export default {
     );
   },
  },
+
 };
 </script>
 
 <style scoped>
 .list-group-item-action:hover {
-  background-color: #c3e6cb;
+ background-color: #c3e6cb;
 }
 
 .styling {
@@ -550,19 +576,11 @@ export default {
  border: 1px solid lightgrey;
 }
 
-.styling:hover {
- background-attachment: red;
-}
-
-.test {
- color: rgba(68, 68, 68, 0.918);
-}
 
 .list-group-item {
  border: none;
 }
 
-/* CSS */
 .button-33 {
  background-color: #c2fbd7;
  border-radius: 10px;

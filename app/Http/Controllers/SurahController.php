@@ -33,6 +33,15 @@ class SurahController extends Controller
     {
         $tafseer = Tafseer::whereId($id)->first();
         return response()->json($tafseer->tafseer);
-        
     }
+
+    public function search(Request $request)
+    {
+        $surah = Surah::with('surah')
+            ->where('name_en', 'LIKE', "%{$request->name_en}%")
+            ->where('name_ar', 'LIKE', "%{$request->name_ar}%")
+            ->get();
+        return response()->json($surah);
+    }
+
 }

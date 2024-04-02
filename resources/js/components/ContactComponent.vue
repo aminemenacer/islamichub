@@ -119,6 +119,7 @@ export default {
        if (!res.data.success) {
         Swal.fire({
          position: "top-end",
+         
          icon: "success",
          title: "Message sent successfully ",
          showConfirmButton: false,
