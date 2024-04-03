@@ -2,5 +2,7 @@
 @section('content')
 <div id="app">
     <about-component></about-component>
-<div>
+<div>    
+@include('layouts.footer')
+
 @endsection

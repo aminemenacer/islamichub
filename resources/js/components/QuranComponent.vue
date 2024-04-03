@@ -315,7 +315,6 @@
   <!-- right side chapter list -->
   <div class="col-md-4 sticky-top container">
 
-   <!-- component search for surat -->
    <form class="mb-2 right-side-form">
     <select class="form-control" v-model="surah" @change="getAyahs()">
      <option value="0">
@@ -328,7 +327,7 @@
    </form>
 
    <!-- list search for surat -->
-   <div class="tab-content" id="nav-tabContent" v-if="ayah == null">
+   <div class="tab-content" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" v-if="ayah == null">
      <div class="row container-fluid">
       <div class="custom-scrollbar">
@@ -359,6 +358,10 @@ export default {
 
  data() {
   return {
+   surah: null,
+   ayah: null,
+   ayahs: [],
+   dropdownHidden: true,
    selectedSurah: "",
    audioFiles: [],
    totalAudios: 6236,
@@ -528,6 +531,7 @@ export default {
   },
 
   getAyahs: function (id) {
+   this.dropdownHidden = false;
    this.selectedIndexAyah = id;
    axios
     .get("/get_ayahs", {
@@ -576,7 +580,6 @@ export default {
  border: 1px solid lightgrey;
 }
 
-
 .list-group-item {
  border: none;
 }
@@ -591,7 +594,7 @@ export default {
  color: green;
  cursor: pointer;
  display: inline-block;
- font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto,sans-serif;
+ font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
  padding: 7px 20px;
  text-align: center;
  text-decoration: none;
