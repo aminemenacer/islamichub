@@ -1,6 +1,6 @@
 <template>
-  <div class="container text-center">
-   <h1 class="text-center mt-3" style="line-height: 1.7em; font-family:inter">Who Are We ?</h1>
+  <div class="container text-center" style="font-family:Libre Baskerville">
+   <h1 class="text-center mt-3" style="line-height: 1.7em; font-family:Abril Fatface">Who Are We ?</h1>
    <h5 class="text-left mt-3" style="line-height: 1.7em; font-family:inter">Welcome to Islamic Connect, where we strive to make accessing and understanding the Noble Quran an enriching experience for all.</h5>
    <h5 class="text-left mt-3" style="line-height: 1.7em; font-family:inter">Islamic Connect isn't just a platform—it's a Sadaqah Jariyah, a continuous charity that benefits both individuals and communities for years to come. Our vision is to provide easy access to the timeless wisdom and guidance found within the Quran, fostering a deeper connection to faith and spirituality for people around the globe.</h5>
    <h5 class="text-left mt-3" style="line-height: 1.7em; font-family:inter">With Islamic Connect, you can embark on a journey of enlightenment and discovery, delving into the profound teachings of Islam in a user-friendly and accessible format. Whether you're a seasoned scholar or new to the faith, our resources are designed to cater to individuals of all backgrounds and levels of knowledge.</h5>
