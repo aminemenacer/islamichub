@@ -24903,6 +24903,30 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/UpdatesComponent.vue?vue&type=template&id=2790503e":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/UpdatesComponent.vue?vue&type=template&id=2790503e ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: () => (/* binding */ render)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+var _hoisted_1 = {
+  "class": "container"
+};
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<h1 class=\"text-left mt-3 font-weight-bold\" style=\"line-height:1.7em;font-family:inter;\"><img src=\"/images/art1.png\" style=\"width:27px;\" class=\"mb-1 mr-2\"> Welcome to Islamic Connect Beta Version</h1><h5 class=\"text-left ml-5 text-secondary\" style=\"line-height:1.7em;font-family:inter;\">Islamic Connect isn&#39;t just a platform ”it&#39;s a Sadaqah Jariyah, a continuous charity that benefits both individuals and communities for years to come. Our vision is to provide easy access to the timeless wisdom and guidance found within the Quran, fostering a deeper connection to faith and spirituality for people around the globe.</h5><h6 class=\"text-left container ml-4 text-secondary\" style=\"line-height:1.7em;font-family:inter;\">DECEMBER 27, 2021</h6><div class=\"row ml-4\" style=\"border:3px solid darkgrey;border-radius:15px;\"><div class=\"col-md-12\"><img class=\"card-img-top\" style=\"border-shadow:box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;\" src=\"/images/screenshot2.png\"></div></div>", 4);
+var _hoisted_6 = [_hoisted_2];
+function render(_ctx, _cache) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [].concat(_hoisted_6));
+}
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/UsersComponent.vue?vue&type=template&id=47d47080":
 /*!************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/UsersComponent.vue?vue&type=template&id=47d47080 ***!
@@ -32165,7 +32189,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.list-group-item-action[data-v-2b3c2c26]:hover {\n background-color: #c3e6cb;\n}\n.styling[data-v-2b3c2c26] {\n box-shadow: rgba(154, 167, 159, 0.2) 0 -25px 18px -14px inset,\n  rgba(44, 187, 99, 0.15) 0 1px 2px, rgba(44, 187, 99, 0.15) 0 2px 4px,\n  rgba(44, 187, 99, 0.15) 0 4px 8px, rgba(44, 187, 99, 0.15) 0 8px 16px,\n  rgba(44, 187, 99, 0.15) 0 16px 32px;\n transition: all 250ms;\n cursor: pointer;\n touch-action: manipulation;\n border: 1px solid lightgrey;\n}\n.list-group-item[data-v-2b3c2c26] {\n border: none;\n}\n.button-33[data-v-2b3c2c26] {\n background-color: #c2fbd7;\n border-radius: 10px;\n box-shadow: rgba(154, 167, 159, 0.2) 0 -25px 18px -14px inset,\n  rgba(44, 187, 99, 0.15) 0 1px 2px, rgba(44, 187, 99, 0.15) 0 2px 4px,\n  rgba(44, 187, 99, 0.15) 0 4px 8px, rgba(44, 187, 99, 0.15) 0 8px 16px,\n  rgba(44, 187, 99, 0.15) 0 16px 32px;\n color: green;\n cursor: pointer;\n display: inline-block;\n font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto,\n  sans-serif;\n padding: 7px 20px;\n text-align: center;\n text-decoration: none;\n transition: all 250ms;\n border: 0;\n font-size: 16px;\n -moz-user-select: none;\n      user-select: none;\n -webkit-user-select: none;\n touch-action: manipulation;\n}\n.scrollmenu[data-v-2b3c2c26] {\n padding-bottom: 10px;\n padding-top: 10px;\n overflow-y: hidden;\n overflow-x: inherit;\n /* Hide horizontal scrollbar */\n white-space: nowrap;\n}\n.scrollmenu a[data-v-2b3c2c26] {\n display: inline-block;\n vertical-align: top;\n margin-right: 20px;\n}\n.button-33[data-v-2b3c2c26]:hover {\n box-shadow: rgba(44, 187, 99, 0.35) 0 -25px 18px -14px inset,\n  rgba(44, 187, 99, 0.25) 0 1px 2px, rgba(44, 187, 99, 0.25) 0 2px 4px,\n  rgba(44, 187, 99, 0.25) 0 4px 8px, rgba(44, 187, 99, 0.25) 0 8px 16px,\n  rgba(44, 187, 99, 0.25) 0 16px 32px;\n transform: scale(1.05) rotate(-1deg);\n}\n.list-group-item[data-v-2b3c2c26] {\n cursor: pointer;\n background: transparent;\n padding: 20px;\n}\n.list-group[data-v-2b3c2c26] {\n min-width: 100%;\n cursor: pointer;\n}\n.right-side-form[data-v-2b3c2c26] {\n border: 4px solid #c3e6cb;\n border-radius: 8px;\n}\n.card[data-v-2b3c2c26] {\n display: flex;\n border: 5px solid #c3e6cb;\n padding: 10px;\n border-radius: 10px;\n}\n.card-text[data-v-2b3c2c26] {\n line-height: 1.7em;\n}\n.selected[data-v-2b3c2c26] {\n background-color: #c3e6cb;\n}\n.horizontal-scroll-wrapper[data-v-2b3c2c26] {\n overflow-x: scroll;\n overflow-y: hidden;\n white-space: nowrap;\n width: 600px;\n}\n.custom-scrollbar[data-v-2b3c2c26] {\n background-color: transparent;\n height: 800px;\n width: 100%;\n border-radius: 6px;\n box-shadow: 0 4px 28px rgba(123, 151, 158, 0.25);\n border: 1px solid #d6dee1;\n padding: 1rem;\n border-radius: 6px;\n border: 1px solid #d6dee1;\n padding: 1rem;\n background-color: transparent;\n outline: 1px solid #c3e6cb;\n overflow: scroll;\n box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;\n background: transparent;\n border: 5px solid #c3e6cb;\n}\n.custom-scrollbar-chapters[data-v-2b3c2c26] {\n background-color: transparent;\n height: 600px;\n width: 100%;\n border-radius: 6px;\n box-shadow: 0 4px 28px rgba(123, 151, 158, 0.25);\n border: 1px solid #d6dee1;\n padding: 1rem;\n border-radius: 6px;\n border: 1px solid #d6dee1;\n padding: 1rem;\n background-color: transparent;\n outline: 1px solid #c3e6cb;\n overflow: scroll;\n}\n.myButton[data-v-2b3c2c26] {\n background-color: #c3e6cb;\n border-radius: 8px;\n display: inline-block;\n cursor: pointer;\n color: #000;\n font-family: Arial;\n font-size: 18px;\n padding: 13px 32px;\n text-decoration: none;\n}\n@media (min-width: 768px) {\n.button-46[data-v-2b3c2c26] {\n  font-size: 20px;\n  min-width: 200px;\n  padding: 14px 16px;\n}\n}\np.no-after[data-v-2b3c2c26]:after {\n content: none;\n}\n.btn[data-v-2b3c2c26]:hover {\n background-color: #99e0ab81;\n opacity: 2;\n}\n.ul-main[data-v-2b3c2c26] {\n list-style: none;\n}\n.ul-main .li-main[data-v-2b3c2c26] {\n display: inline-block;\n font-size: 12px;\n text-align: center;\n}\n.ul-main .li-main .span-main[data-v-2b3c2c26] {\n font-size: 20px;\n display: block;\n}\n.ayah_img[data-v-2b3c2c26]:hover {\n background-color: #c3e6cb;\n border-radius: 10px;\n cursor: pointer;\n}\n.enlarge .ayah[data-v-2b3c2c26] {\n transition: transform 0.5s ease;\n float: right;\n}\n.enlarge[data-v-2b3c2c26]:hover {\n /* or some other value */\n transform: scale(1.2);\n}\nbutton[data-v-2b3c2c26],\ninput[data-v-2b3c2c26] {\n font-family: \"Montserrat\", \"Helvetica Neue\", Arial, sans-serif;\n}\n.nav-item .nav-link[data-v-2b3c2c26],\n.nav-tabs .nav-link[data-v-2b3c2c26] {\n transition: all 300ms ease 0s;\n}\n.nav-tabs>.nav-item>.nav-link[data-v-2b3c2c26] {\n color: #888888;\n margin: 0;\n margin-right: 5px;\n background-color: transparent;\n border: 1px solid transparent;\n font-size: 14px;\n padding: 11px 23px;\n line-height: 1.5;\n}\n.nav-tabs>.nav-item>.nav-link[data-v-2b3c2c26]:hover {\n background-color: transparent;\n}\n.nav-tabs>.nav-item>.nav-link.active[data-v-2b3c2c26] {\n background-color: #444;\n color: #ffffff;\n}\n.nav-tabs>.nav-item>.nav-link i.now-ui-icons[data-v-2b3c2c26] {\n font-size: 14px;\n position: relative;\n top: 1px;\n margin-right: 3px;\n}\n.nav-tabs.nav-tabs-neutral>.nav-item>.nav-link[data-v-2b3c2c26] {\n color: #ffffff;\n}\n.nav-tabs.nav-tabs-neutral>.nav-item>.nav-link.active[data-v-2b3c2c26] {\n background-color: rgba(255, 255, 255, 0.2);\n color: #ffffff;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.list-group-item-action[data-v-2b3c2c26]:hover {\n background-color: #c3e6cb;\n}\n.styling[data-v-2b3c2c26] {\n box-shadow: rgba(154, 167, 159, 0.2) 0 -25px 18px -14px inset,\n  rgba(44, 187, 99, 0.15) 0 1px 2px, rgba(44, 187, 99, 0.15) 0 2px 4px,\n  rgba(44, 187, 99, 0.15) 0 4px 8px, rgba(44, 187, 99, 0.15) 0 8px 16px,\n  rgba(44, 187, 99, 0.15) 0 16px 32px;\n transition: all 250ms;\n cursor: pointer;\n touch-action: manipulation;\n border: 1px solid lightgrey;\n}\n.list-group-item[data-v-2b3c2c26] {\n border: none;\n}\n.button-33[data-v-2b3c2c26] {\n background-color: #c2fbd7;\n border-radius: 10px;\n box-shadow: rgba(154, 167, 159, 0.2) 0 -25px 18px -14px inset,\n  rgba(44, 187, 99, 0.15) 0 1px 2px, rgba(44, 187, 99, 0.15) 0 2px 4px,\n  rgba(44, 187, 99, 0.15) 0 4px 8px, rgba(44, 187, 99, 0.15) 0 8px 16px,\n  rgba(44, 187, 99, 0.15) 0 16px 32px;\n color: green;\n cursor: pointer;\n display: inline-block;\n font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto,sans-serif;\n padding: 7px 20px;\n text-align: center;\n text-decoration: none;\n transition: all 250ms;\n border: 0;\n font-size: 16px;\n -moz-user-select: none;\n      user-select: none;\n -webkit-user-select: none;\n touch-action: manipulation;\n}\n.scrollmenu[data-v-2b3c2c26] {\n padding-bottom: 10px;\n padding-top: 10px;\n overflow-y: hidden;\n overflow-x: inherit;\n /* Hide horizontal scrollbar */\n white-space: nowrap;\n}\n.scrollmenu a[data-v-2b3c2c26] {\n display: inline-block;\n vertical-align: top;\n margin-right: 20px;\n}\n.button-33[data-v-2b3c2c26]:hover {\n box-shadow: rgba(44, 187, 99, 0.35) 0 -25px 18px -14px inset,\n  rgba(44, 187, 99, 0.25) 0 1px 2px, rgba(44, 187, 99, 0.25) 0 2px 4px,\n  rgba(44, 187, 99, 0.25) 0 4px 8px, rgba(44, 187, 99, 0.25) 0 8px 16px,\n  rgba(44, 187, 99, 0.25) 0 16px 32px;\n transform: scale(1.05) rotate(-1deg);\n}\n.list-group-item[data-v-2b3c2c26] {\n cursor: pointer;\n background: transparent;\n padding: 20px;\n}\n.list-group[data-v-2b3c2c26] {\n min-width: 100%;\n cursor: pointer;\n}\n.right-side-form[data-v-2b3c2c26] {\n border: 4px solid #c3e6cb;\n border-radius: 8px;\n}\n.card[data-v-2b3c2c26] {\n display: flex;\n border: 5px solid #c3e6cb;\n padding: 10px;\n border-radius: 10px;\n}\n.card-text[data-v-2b3c2c26] {\n line-height: 1.7em;\n}\n.selected[data-v-2b3c2c26] {\n background-color: #c3e6cb;\n}\n.horizontal-scroll-wrapper[data-v-2b3c2c26] {\n overflow-x: scroll;\n overflow-y: hidden;\n white-space: nowrap;\n width: 600px;\n}\n.custom-scrollbar[data-v-2b3c2c26] {\n background-color: transparent;\n height: 800px;\n width: 100%;\n border-radius: 6px;\n box-shadow: 0 4px 28px rgba(123, 151, 158, 0.25);\n border: 1px solid #d6dee1;\n padding: 1rem;\n border-radius: 6px;\n border: 1px solid #d6dee1;\n padding: 1rem;\n background-color: transparent;\n outline: 1px solid #c3e6cb;\n overflow: scroll;\n box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;\n background: transparent;\n border: 5px solid #c3e6cb;\n}\n.custom-scrollbar-chapters[data-v-2b3c2c26] {\n background-color: transparent;\n height: 600px;\n width: 100%;\n border-radius: 6px;\n box-shadow: 0 4px 28px rgba(123, 151, 158, 0.25);\n border: 1px solid #d6dee1;\n padding: 1rem;\n border-radius: 6px;\n border: 1px solid #d6dee1;\n padding: 1rem;\n background-color: transparent;\n outline: 1px solid #c3e6cb;\n overflow: scroll;\n}\n.myButton[data-v-2b3c2c26] {\n background-color: #c3e6cb;\n border-radius: 8px;\n display: inline-block;\n cursor: pointer;\n color: #000;\n font-family: Arial;\n font-size: 18px;\n padding: 13px 32px;\n text-decoration: none;\n}\n@media (min-width: 768px) {\n.button-46[data-v-2b3c2c26] {\n  font-size: 20px;\n  min-width: 200px;\n  padding: 14px 16px;\n}\n}\np.no-after[data-v-2b3c2c26]:after {\n content: none;\n}\n.btn[data-v-2b3c2c26]:hover {\n background-color: #99e0ab81;\n opacity: 2;\n}\n.ul-main[data-v-2b3c2c26] {\n list-style: none;\n}\n.ul-main .li-main[data-v-2b3c2c26] {\n display: inline-block;\n font-size: 12px;\n text-align: center;\n}\n.ul-main .li-main .span-main[data-v-2b3c2c26] {\n font-size: 20px;\n display: block;\n}\n.ayah_img[data-v-2b3c2c26]:hover {\n background-color: #c3e6cb;\n border-radius: 10px;\n cursor: pointer;\n}\n.enlarge .ayah[data-v-2b3c2c26] {\n transition: transform 0.5s ease;\n float: right;\n}\n.enlarge[data-v-2b3c2c26]:hover {\n /* or some other value */\n transform: scale(1.2);\n}\nbutton[data-v-2b3c2c26],\ninput[data-v-2b3c2c26] {\n font-family: \"Montserrat\", \"Helvetica Neue\", Arial, sans-serif;\n}\n.nav-item .nav-link[data-v-2b3c2c26],\n.nav-tabs .nav-link[data-v-2b3c2c26] {\n transition: all 300ms ease 0s;\n}\n.nav-tabs>.nav-item>.nav-link[data-v-2b3c2c26] {\n color: #888888;\n margin: 0;\n margin-right: 5px;\n background-color: transparent;\n border: 1px solid transparent;\n font-size: 14px;\n padding: 11px 23px;\n line-height: 1.5;\n}\n.nav-tabs>.nav-item>.nav-link[data-v-2b3c2c26]:hover {\n background-color: transparent;\n}\n.nav-tabs>.nav-item>.nav-link.active[data-v-2b3c2c26] {\n background-color: #444;\n color: #ffffff;\n}\n.nav-tabs>.nav-item>.nav-link i.now-ui-icons[data-v-2b3c2c26] {\n font-size: 14px;\n position: relative;\n top: 1px;\n margin-right: 3px;\n}\n.nav-tabs.nav-tabs-neutral>.nav-item>.nav-link[data-v-2b3c2c26] {\n color: #ffffff;\n}\n.nav-tabs.nav-tabs-neutral>.nav-item>.nav-link.active[data-v-2b3c2c26] {\n background-color: rgba(255, 255, 255, 0.2);\n color: #ffffff;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -68484,6 +68508,32 @@ if (false) {}
 
 /***/ }),
 
+/***/ "./resources/js/components/UpdatesComponent.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/components/UpdatesComponent.vue ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _UpdatesComponent_vue_vue_type_template_id_2790503e__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UpdatesComponent.vue?vue&type=template&id=2790503e */ "./resources/js/components/UpdatesComponent.vue?vue&type=template&id=2790503e");
+/* harmony import */ var _node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+
+const script = {}
+
+;
+const __exports__ = /*#__PURE__*/(0,_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_1__["default"])(script, [['render',_UpdatesComponent_vue_vue_type_template_id_2790503e__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/UpdatesComponent.vue"]])
+/* hot reload */
+if (false) {}
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
+
+/***/ }),
+
 /***/ "./resources/js/components/UsersComponent.vue":
 /*!****************************************************!*\
   !*** ./resources/js/components/UsersComponent.vue ***!
@@ -69048,6 +69098,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   render: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_QuranComponent_vue_vue_type_template_id_2b3c2c26_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_QuranComponent_vue_vue_type_template_id_2b3c2c26_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./QuranComponent.vue?vue&type=template&id=2b3c2c26&scoped=true */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/QuranComponent.vue?vue&type=template&id=2b3c2c26&scoped=true");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/UpdatesComponent.vue?vue&type=template&id=2790503e":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/UpdatesComponent.vue?vue&type=template&id=2790503e ***!
+  \************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_UpdatesComponent_vue_vue_type_template_id_2790503e__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_UpdatesComponent_vue_vue_type_template_id_2790503e__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./UpdatesComponent.vue?vue&type=template&id=2790503e */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/UpdatesComponent.vue?vue&type=template&id=2790503e");
 
 
 /***/ }),
@@ -87241,6 +87307,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_QuranComponent_vue__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./components/QuranComponent.vue */ "./resources/js/components/QuranComponent.vue");
 /* harmony import */ var _components_AboutComponent_vue__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./components/AboutComponent.vue */ "./resources/js/components/AboutComponent.vue");
 /* harmony import */ var _components_BookmarkComponent_vue__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./components/BookmarkComponent.vue */ "./resources/js/components/BookmarkComponent.vue");
+/* harmony import */ var _components_UpdatesComponent_vue__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./components/UpdatesComponent.vue */ "./resources/js/components/UpdatesComponent.vue");
 // Vue libraries
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
@@ -87251,6 +87318,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
  //theme
  //core css
+
 
 
 
@@ -87321,6 +87389,7 @@ app.component("correction-component", _components_CorrectionComponent_vue__WEBPA
 app.component("quran-component", _components_QuranComponent_vue__WEBPACK_IMPORTED_MODULE_36__["default"]);
 app.component("about-component", _components_AboutComponent_vue__WEBPACK_IMPORTED_MODULE_37__["default"]);
 app.component("bookmark-component", _components_BookmarkComponent_vue__WEBPACK_IMPORTED_MODULE_38__["default"]);
+app.component("updates-component", _components_UpdatesComponent_vue__WEBPACK_IMPORTED_MODULE_39__["default"]);
 app.mount("#app");
 })();
 

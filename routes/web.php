@@ -18,7 +18,7 @@ use App\Http\Controllers\QuranController;
 use App\Http\Controllers\SurahController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Auth\LoginController;
-
+use App\Http\Controllers\UpdatesController;
 
 // Auth routes
 Auth::routes();
@@ -41,8 +41,8 @@ Route::get('/welcome', function () {
 
 Route::get('/audio-files/{id}', [ContactController::class, 'fetchAudioFile']);
 
-//bookmark
-Route::post('api/create-bookmark', [BookmarkController::class, 'createBookmark']);
+//updates
+Route::get('/updates', [UpdatesController::class, 'index']);
 
 
 // stripe payment

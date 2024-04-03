@@ -7,7 +7,6 @@
    <h5 class="text-left mt-3" style="line-height: 1.7em; font-family:inter">We understand that navigating the Quran can be daunting, which is why we've curated a range of tools and resources to make the process easier and more fulfilling. From searchable translations and interpretations to audio recitations and educational articles, we offer everything you need to engage with the Quran on your terms.</h5>
    <h5 class="text-left mt-3" style="line-height: 1.7em; font-family:inter">But Islamic Connect is more than just a platform for reading and learning—it's a community united by a shared passion for knowledge and spiritual growth. Through forums, discussion groups, and virtual events, we encourage meaningful dialogue and collaboration, fostering connections that transcend borders and cultures.</h5>
    <h5 class="text-left mt-3" style="line-height: 1.7em; font-family:inter">Join us on this journey of exploration and enlightenment as we strive to make the teachings of the Quran accessible to all, leaving a lasting legacy of knowledge and understanding for generations to come. With Islamic Connect, the path to spiritual fulfillment is within reach.</h5>
-
   </div>
 </template>
 

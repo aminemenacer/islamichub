@@ -52,10 +52,12 @@
                             <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: black;"
                                     href="/quran">Quran</a></h5>
                         </li>
+                        <!--
                         <li class="nav-item mt-2">
                             <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: black;"
                                     href="/ahadith">Ahadith</a></h5>
                         </li>
+                        -->
                     
                         <li class="nav-item mt-2">
                             <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: black;"
@@ -63,17 +65,23 @@
                         </li>
     
                         <li class="nav-item mt-2">
-                            <h5><a style="font-family:inter" class="nav-link ml-4 pl-3 pr-5" style="color: black;"
+                            <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: black;"
                                     href="/about">About Us</a></h5>
                         </li>
 
+                        <li class="nav-item mt-2">
+                            <h5><a style="font-family:inter" class="nav-link ml-4 pl-3 pr-5" style="color: black;"
+                                    href="/updates">Updates</a></h5>
+                        </li>
+
                         <li class="nav-item mt-2 pr-2 mb-1">
-                            <a href="/charity" type="button" class="btn btn-success btn-lg" style="font-family:inter">Support Us</a>
+                            <button class="button-33" >Support Us</button>
                         </li>
                         
+
                         
                         <!-- Right Side Of Navbar -->
-                        
+                        <!--
                             @guest
                             @if (Route::has('login'))
                             <li class="nav-item mt-1">
@@ -109,6 +117,7 @@
                                 </div>
                             </li>
                             @endguest
+                        -->
                         </ul>
                     
                 </div>
@@ -126,21 +135,33 @@
 </html>
 
 <style>
-.donate {
-    font-weight:300;
-    background-color: #c3e6cb;
-    border-radius: 10px;
-    color: darkgreen;
-    cursor: pointer;
-    display: inline-block;
-    font-family:serif;
-    padding: 7px 20px;
-    text-align: center;
-    text-decoration: none;
-    border: 0;
-    font-size: 18px;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
+.button-33 {
+ background-color: #c2fbd7;
+ border-radius: 10px;
+ box-shadow: rgba(154, 167, 159, 0.2) 0 -25px 18px -14px inset,
+  rgba(44, 187, 99, 0.15) 0 1px 2px, rgba(44, 187, 99, 0.15) 0 2px 4px,
+  rgba(44, 187, 99, 0.15) 0 4px 8px, rgba(44, 187, 99, 0.15) 0 8px 16px,
+  rgba(44, 187, 99, 0.15) 0 16px 32px;
+ color: green;
+ cursor: pointer;
+ display: inline-block;
+ font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto,sans-serif;
+ padding: 7px 20px;
+ text-align: center;
+ text-decoration: none;
+ transition: all 250ms;
+ border: 0;
+ font-size: 16px;
+ user-select: none;
+ -webkit-user-select: none;
+ touch-action: manipulation;
+}
+
+.button-33:hover {
+ box-shadow: rgba(44, 187, 99, 0.35) 0 -25px 18px -14px inset,
+  rgba(44, 187, 99, 0.25) 0 1px 2px, rgba(44, 187, 99, 0.25) 0 2px 4px,
+  rgba(44, 187, 99, 0.25) 0 4px 8px, rgba(44, 187, 99, 0.25) 0 8px 16px,
+  rgba(44, 187, 99, 0.25) 0 16px 32px;
+ transform: scale(1.05) rotate(-1deg);
 }
 </style>
