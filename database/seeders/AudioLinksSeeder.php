@@ -15,7 +15,7 @@ class AudioLinksSeeder extends Seeder
         $audioUrls = [];
         for ($i = 1; $i <= 6236; $i++) {
             try {
-                $response = Http::get("https://cdn.islamic.network/quran/audio/128/ar.alafasy/{$i}.mp3");
+                $response = Http::get("https://cdn.islamic.network/quran/audio/64/ar.alafasy/{$i}.mp3");
                 
                 if ($response->successful()) {
                     // Get the URL from the response's effective URL

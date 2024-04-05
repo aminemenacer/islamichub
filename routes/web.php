@@ -23,6 +23,9 @@ use App\Http\Controllers\UpdatesController;
 // Auth routes
 Auth::routes();
 
+Route::get('/ayahs', [QuranController::class, 'index']);
+
+
 
 // google sign-in
 Route::get('auth/google', [LoginController::class, 'redirectToGoogle'])->name('google-auth');

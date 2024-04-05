@@ -19,14 +19,10 @@
          revelations.</span>
        </h5>
       </div>
-      <!-- play audio -->
-      <li v-for="(audio, index) in audioFiles" :key="index">
-       <audio controls>
-        <source :src="audio.url" type="audio/mpeg" />
-        Your browser does not support the audio
-        element.
-       </audio>
-      </li>
+
+      
+
+
      </div>
      <div class="col-md-3"></div>
     </div>
@@ -207,13 +203,17 @@
         <!-- left side stack of icon features -->
         <div class="col-md-1">
          <div class="list-group styling">
-          <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Play audio"><i class="bi-play-circle-fill test" style="font-size: 1.2rem"></i></a>
+          <a  href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Play audio"><i class="bi-play-circle-fill test" style="font-size: 1.2rem"></i></a>
           <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi-bug-fill test" style="font-size: 1.2rem"></i></a>
           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText"><i class="bi bi-collection-fill test" style="font-size: 1.2rem"></i></a>
          </div>
         </div>
 
         <div class="col-11">
+          <button @click="captureScreenshot">Capture and Download Screenshot</button>
+          <a :href="downloadUrl" download="screenshot.png" v-if="downloadUrl">Download Screenshot</a>
+
+        
 
          <!-- surah/ayah detail -->
          <ul class="ul-main row">
@@ -228,24 +228,37 @@
          </ul>
 
          <hr style="border: 1px dotted grey">
-         <!-- main stack top -->
-         <div class="btn">
+         <!-- main stack top           
+          <div v-for="(ayah, index) in ayahs" :key="index">
+                  <p>{{ ayah.ayah_text }}</p>
+                  <audio ref="audioPlayer" :src="ayah.audio_links" controls></audio>
+
+              </div>-->
+
+    
+         <div ref="targetElement" class="btn">
           <div class="span-main text:left" style="font-style: bolder;color: black;"></div>
-          <h3 ref="heading" class="container text-right" style="line-height: 2em">
+          <h3   class="container text-right" style="line-height: 2em">
            {{ information.ayah.ayah_text }}
            ({{ information.ayah.ayah_id }})
           </h3>
+          <div v-for="(ayah, index) in filteredAyahs" :key="index">
+          <p>{{ ayah.ayah_text }}</p>
+
+
          </div>
          <hr />
          <!-- main stack below -->
          <div class="btn">
           <h4 ref="heading" class="container text-left" style="line-height: 1.6em">
-           <input type="hidden" name="text">
+           <h3  name="text">
            {{ information.translation }}"
+           </h3>
           </h4>
          </div>
         </div>
        </div>
+      </div>
       </div>
 
       <!-- tafseer section -->
@@ -351,16 +364,18 @@
 </template>
 
 <script>
+import html2canvas from 'html2canvas';
+
 export default {
  mounted() {
   this.getSurahs();
+  this.fetchAyahs();
  },
 
  data() {
   return {
-   surah: null,
-   ayah: null,
-   ayahs: [],
+    downloadUrl: null,
+    ayahs: [], // Your list of ayahs
    dropdownHidden: true,
    selectedSurah: "",
    audioFiles: [],
@@ -392,174 +407,173 @@ export default {
    }),
   };
  },
+ computed: {
+    filteredAyahs() {
+      // Filter ayahs based on selected surah
+      if (!this.surah) return [];
+      return this.ayahs.filter(ayah => ayah.surah_id === this.surah);
+    }
+  },
  methods: {
+   captureScreenshot() {
+      const targetElement = this.$refs.targetElement;
 
-  selectSurah(surahId) {
-   this.surah = surahId;
-   this.getAyahs(surahId); // Call the getAyahs method with the selected Surah ID
-   // You can perform further actions, such as fetching data related to the selected Surah
-  },
+      // Use html2canvas to capture the target element
+      html2canvas(targetElement).then(canvas => {
+        // Convert canvas to data URL
+        const dataUrl = canvas.toDataURL('image/png');
 
-  async fetchAllAudios() {
-   const audioUrl =
-    "https://cdn.islamic.network/quran/audio/128/ar.alafasy/29.mp3";
-   const corsProxyUrl = "https://cors-proxy.htmldriven.com/";
-
-   // Construct the proxied URL
-   const proxiedUrl = corsProxyUrl + audioUrl;
-
-   // Make a request to the proxied URL
-   const response = await axios.get(proxiedUrl);
-   try {
-    const batchSize = 0; // Adjust the batch size as needed
-    const totalAudios = 6236; // Total number of audio files
-    const numBatches = Math.ceil(totalAudios / batchSize);
-
-    for (
-     let batchIndex = 0; batchIndex < numBatches; batchIndex++
-    ) {
-     const startId = batchIndex * batchSize + 1;
-     const endId = Math.min(
-      startId + batchSize - 1,
-      totalAudios
-     );
-
-     const batchAudioIds = Array.from({
-       length: endId - startId + 1,
-      },
-      (_, i) => startId + i
-     );
-
-     const batchResponses = await Promise.all(
-      batchAudioIds.map((id) =>
-       axios.get(
-        `https://cdn.islamic.network/quran/audio/128/ar.alafasy/${id}.mp3`
-       )
-      )
-     );
-
-     for (let response of batchResponses) {
-      this.audioFiles.push({
-       url: response.request.responseURL,
+        // Set download URL
+        this.downloadUrl = dataUrl;
       });
-     }
-    }
-   } catch (error) {
-    console.error("Error fetching audio files:", error);
-   }
-  },
-
-  createCorrection() {
-   Swal.fire({
-    title: "Are you sure?",
-    text: "You want to create a new Correction !",
-    showCancelButton: true,
-    confirmButtonColor: "green",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Create correction!",
-   }).then((result) => {
-    if (result.isConfirmed) {
-     axios
-      .post("/api/submit-correction", this.form)
-      .then((res) => {
-       if (!res.data.success) {
-        Swal.fire({
-         position: "top-end",
-         icon: "success",
-         title: "Correction created successfully ",
-         showConfirmButton: false,
-         timer: 1500,
+    },
+  fetchAyahs() {
+      fetch('/api/ayahs')
+        .then(response => response.json())
+        .then(data => {
+          this.ayahs = data;
+        })
+        .catch(error => {
+          console.error('Error fetching ayahs:', error);
         });
-        $("#exampleModal").modal("hide");
-       } else if (res.data.success) {
-        Swal.fire(
-         "Error!",
-         "Unable to create correction.",
-         "error"
-        );
-       }
-      })
-      .catch(function (err) {});
-    }
-   });
-  },
+    },
+ selectSurah(surahId) {
+  this.surah = surahId;
+  this.getAyahs(surahId); // Call the getAyahs method with the selected Surah ID
+  // You can perform further actions, such as fetching data related to the selected Surah
+ },
 
-  copyText() {
-   var textToCopy = this.$refs.heading.innerText;
-   var textarea = document.createElement("textarea");
+ async getAyahs() {
+        try {
+            // Make an HTTP request to fetch ayahs based on selected surah
+            const response = await axios.get(`http://localhost:8000/api/ayahs?surah=${this.surah}`);
+            // Assuming the response data contains ayahs
+            this.ayahs = response.data;
+        } catch (error) {
+            console.error('Error fetching ayahs:', error);
+        }
+    },
 
-   textarea.value = textToCopy;
-   document.body.appendChild(textarea);
-   textarea.select();
-   document.execCommand("copy");
-   document.body.removeChild(textarea);
+  playAudio(audioSrc) {
+        // Create an audio element dynamically
+        const audio = new Audio(audioSrc);
+        // Play the audio
+        audio.play()
+            .then(() => console.log('Audio is playing'))
+            .catch(error => console.error('Error playing audio:', error));
+    },
 
-   var alertElement = document.createElement("div");
-   alertElement.classList.add("alert", "alert-success");
-   alertElement.textContent = "Copied text to clipboard";
+ createCorrection() {
+  Swal.fire({
+   title: "Are you sure?",
+   text: "You want to create a new Correction !",
+   showCancelButton: true,
+   confirmButtonColor: "green",
+   cancelButtonColor: "#d33",
+   confirmButtonText: "Create correction!",
+  }).then((result) => {
+   if (result.isConfirmed) {
+    axios
+     .post("/api/submit-correction", this.form)
+     .then((res) => {
+      if (!res.data.success) {
+       Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Correction created successfully ",
+        showConfirmButton: false,
+        timer: 1500,
+       });
+       $("#exampleModal").modal("hide");
+      } else if (res.data.success) {
+       Swal.fire(
+        "Error!",
+        "Unable to create correction.",
+        "error"
+       );
+      }
+     })
+     .catch(function (err) {});
+   }
+  });
+ },
 
-   document.getElementById("alertContainer").appendChild(alertElement);
+ copyText() {
+  var textToCopy = this.$refs.heading.innerText;
+  var textarea = document.createElement("textarea");
 
-   setTimeout(function () {
-    alertElement.remove();
-   }, 3000);
-  },
+  textarea.value = textToCopy;
+  document.body.appendChild(textarea);
+  textarea.select();
+  document.execCommand("copy");
+  document.body.removeChild(textarea);
 
-  getTafseers: function (id, index) {
-   this.selectedIndexAyah = index;
+  var alertElement = document.createElement("div");
+  alertElement.classList.add("alert", "alert-success");
+  alertElement.textContent = "Copied text to clipboard";
 
-   axios.get(`/tafseer/${id}/fetch`).then(
+  document.getElementById("alertContainer").appendChild(alertElement);
+
+  setTimeout(function () {
+   alertElement.remove();
+  }, 3000);
+ },
+
+ getTafseers: function (id, index) {
+  this.selectedIndexAyah = index;
+
+  axios.get(`/tafseer/${id}/fetch`).then(
+   function (response) {
+    console.log(response);
+    this.selectedAyah = id;
+    this.tafseer = response.data;
+   }.bind(this)
+  );
+
+  axios
+   .get("/get_informations", {
+    params: {
+     id: id,
+    },
+   })
+   .then(
     function (response) {
-     console.log(response);
      this.selectedAyah = id;
-     this.tafseer = response.data;
+     this.information = response.data;
     }.bind(this)
    );
-
-   axios
-    .get("/get_informations", {
-     params: {
-      id: id,
-     },
-    })
-    .then(
-     function (response) {
-      this.selectedAyah = id;
-      this.information = response.data;
-     }.bind(this)
-    );
-  },
-
-  getAyahs: function (id) {
-   this.dropdownHidden = false;
-   this.selectedIndexAyah = id;
-   axios
-    .get("/get_ayahs", {
-     params: {
-      surah_id: this.surah,
-     },
-    })
-    .then(
-     function (response) {
-      this.ayahs = response.data;
-     }.bind(this)
-    );
-  },
-
-  getSurahs: function () {
-   axios
-    .get("/get_surahs", {
-     params: {
-      id: this.surah,
-     },
-    })
-    .then(
-     function (response) {
-      this.surahs = response.data;
-     }.bind(this)
-    );
-  },
  },
+
+ getAyahs: function (id) {
+  this.dropdownHidden = false;
+  this.selectedIndexAyah = id;
+  axios
+   .get("/get_ayahs", {
+    params: {
+     surah_id: this.surah,
+    },
+   })
+   .then(
+    function (response) {
+     this.ayahs = response.data;
+    }.bind(this)
+   );
+ },
+
+ getSurahs: function () {
+  axios
+   .get("/get_surahs", {
+    params: {
+     id: this.surah,
+    },
+   })
+   .then(
+    function (response) {
+     this.surahs = response.data;
+    }.bind(this)
+   );
+ },
+},
 
 };
 </script>
