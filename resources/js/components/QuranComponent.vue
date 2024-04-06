@@ -204,7 +204,9 @@
           <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi-bug-fill test" style="font-size: 1.2rem"></i></a>
           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText"><i class="bi bi-collection-fill test" style="font-size: 1.2rem"></i></a>
           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot"><i class="bi bi-camera-fill test" style="font-size: 1.2rem"></i></a>
-            <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse" @click="shareTextViaWhatsApp"><i class="bi bi-whatsapp test" style="font-size: 1.2rem"></i></a>
+          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with whatsapp" @click="shareTextViaWhatsApp"><i class="bi bi-whatsapp test" style="font-size: 1.2rem"></i></a>
+          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with mail" @click="shareViaEmail('Subject of your email', $refs.targetElement.innerText)"><i class="bi bi-envelope-at-fill test" style="font-size: 1.2rem"></i></a>
+
          </div>
         </div>
 
@@ -224,6 +226,11 @@
 
          <hr style="border: 1px dotted grey">
          <a :href="downloadUrl" class="button-33 mb-2 mt-2" download="screenshot.png" v-if="downloadUrl">Download Screenshot</a>
+         
+         <!--
+    <button @click="shareViaFacebook($refs.targetElement.innerText)">Share via Facebook</button>
+    -->
+
 
          <!-- main stack top           
             <div v-for="(ayah, index) in ayahs" :key="index">
@@ -412,6 +419,14 @@ export default {
   }
  },
  methods: {
+   shareViaEmail(subject, body) {
+      const url = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = url;
+    },
+    shareViaFacebook(text) {
+      const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(text)}`;
+      window.open(url, '_blank');
+    },
 
   shareTextViaWhatsApp() {
    const text = this.$refs.targetElement.innerText;
