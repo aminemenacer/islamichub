@@ -206,12 +206,11 @@
           <a  href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Play audio"><i class="bi-play-circle-fill test" style="font-size: 1.2rem"></i></a>
           <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi-bug-fill test" style="font-size: 1.2rem"></i></a>
           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText"><i class="bi bi-collection-fill test" style="font-size: 1.2rem"></i></a>
+          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot"><i class="bi bi-camera-fill test" style="font-size: 1.2rem"></i></a>
          </div>
         </div>
 
         <div class="col-11">
-          <button @click="captureScreenshot">Capture and Download Screenshot</button>
-          <a :href="downloadUrl" download="screenshot.png" v-if="downloadUrl">Download Screenshot</a>
 
         
 
@@ -227,14 +226,16 @@
           <h5 class="col-md-3 ">{{information.ayah.surah.name_ar}} <img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" /></h5>
          </ul>
 
-         <hr style="border: 1px dotted grey">
+         <hr style="border: 1px dotted grey">          
+         <a :href="downloadUrl" class="button-33 mb-2 mt-2" download="fileName" v-if="downloadUrl">Download Screenshot</a>
+
          <!-- main stack top           
           <div v-for="(ayah, index) in ayahs" :key="index">
                   <p>{{ ayah.ayah_text }}</p>
                   <audio ref="audioPlayer" :src="ayah.audio_links" controls></audio>
 
-              </div>-->
-
+              </div>
+          -->
     
          <div ref="targetElement" class="btn">
           <div class="span-main text:left" style="font-style: bolder;color: black;"></div>
@@ -374,6 +375,7 @@ export default {
 
  data() {
   return {
+    fileName: 'screenshot.png',
     downloadUrl: null,
     ayahs: [], // Your list of ayahs
    dropdownHidden: true,
@@ -415,6 +417,11 @@ export default {
     }
   },
  methods: {
+   updateFileName() {
+    if (this.information && this.information.ayah && this.information.ayah.surah && this.information.ayah.surah.name_ar) {
+      this.fileName = this.information.ayah.surah.name_ar + '.png';
+    }
+   },
    captureScreenshot() {
       const targetElement = this.$refs.targetElement;
 
@@ -422,7 +429,7 @@ export default {
       html2canvas(targetElement).then(canvas => {
         // Convert canvas to data URL
         const dataUrl = canvas.toDataURL('image/png');
-
+        
         // Set download URL
         this.downloadUrl = dataUrl;
       });
@@ -574,6 +581,10 @@ export default {
    );
  },
 },
+
+watch: {
+  'information.ayah.surah.name_ar': 'updateFileName'
+}
 
 };
 </script>
