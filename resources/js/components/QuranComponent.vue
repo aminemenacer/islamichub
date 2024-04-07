@@ -89,7 +89,7 @@
  <div class="row container-fluid">
   <div class="col-md-8">
    <!-- Nav tabs -->
-   <div class="card" style="padding">
+   <div class="card" style="padding; display:flex">
     <!-- title of featured reading -->
     <h5 class="container font-weight-bold pl-3 pt-3" style="font-family: inter">
      Featured Reading:
@@ -169,7 +169,6 @@
     </div>
 
     <div class="card-body" id="alertContainer">
-
      <!-- Intro -->
      <div class="tab-content text-center">
 
@@ -204,12 +203,12 @@
           <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi-bug-fill test" style="font-size: 1.2rem"></i></a>
           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText"><i class="bi bi-collection-fill test" style="font-size: 1.2rem"></i></a>
           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot"><i class="bi bi-camera-fill test" style="font-size: 1.2rem"></i></a>
-          <a href="#" class="list-group-item list-group-item-action dropdown-toggle dropend" data-bs-toggle="dropdown" aria-expanded="false"  data-bs-placement="top" title="Share verse" ><i class="bi bi-share-fill test" style="font-size: 1.2rem"></i></a>
+          <a href="#" class="list-group-item list-group-item-action dropdown-toggle dropend" data-bs-toggle="dropdown" aria-expanded="false" data-bs-placement="top" title="Share verse"><i class="bi bi-share-fill test" style="font-size: 1.2rem"></i></a>
 
           <ul class="dropdown-menu">
-            <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with whatsapp" @click="shareTextViaWhatsApp"><i class="bi bi-whatsapp test" style="font-size: 1.2rem">Whatsapp</i></a>
-            <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with mail" @click="shareViaEmail('Subject of your email', $refs.targetElement.innerText)"><i class="bi bi-envelope-at-fill test" style="font-size: 1.2rem">Email</i></a>
-            <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with mail" @click="shareHeadingOnTwitter()"><i class="bi bi-twitter-x test" style="font-size: 1.2rem">Twitter</i></a>
+           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with whatsapp" @click="shareTextViaWhatsApp"><i class="bi bi-whatsapp test" style="font-size: 1.2rem">Whatsapp</i></a>
+           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with mail" @click="shareViaEmail($refs.targetElement.innerText)"><i class="bi bi-envelope-at-fill test" style="font-size: 1.2rem">Email</i></a>
+           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with twitter" @click="shareHeadingOnTwitter()"><i class="bi bi-twitter-x test" style="font-size: 1.2rem">Twitter</i></a>
           </ul>
 
          </div>
@@ -218,7 +217,7 @@
         <div class="col-11" ref="targetElement">
 
          <!-- surah/ayah detail -->
-         <ul class="ul-main row">
+         <ul class="ul-main row mb-3">
           <h5 class="col-md-3 font-weight-bold"><img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}}</h5>
           <div class="col-md-6">
            <li class="li-main mr-3">
@@ -231,19 +230,17 @@
 
          <hr style="border: 1px dotted grey">
          <a :href="downloadUrl" class="button-33 mb-2 mt-2" download="screenshot.png" v-if="downloadUrl">Download Screenshot</a>
-         
-
 
          <!-- main stack top           
-            <div v-for="(ayah, index) in ayahs" :key="index">
-              <p>{{ ayah.ayah_text }}</p>
-              <audio ref="audioPlayer" :src="ayah.audio_links" controls></audio>
-            </div>
-          -->
+              <div v-for="(ayah, index) in ayahs" :key="index">
+                <p>{{ ayah.ayah_text }}</p>
+                <audio ref="audioPlayer" :src="ayah.audio_links" controls></audio>
+              </div>
+            -->
 
          <div class="btn">
           <div class="span-main text:left" style="font-style: bolder;color: black;"></div>
-          <h3  class="container text-right" style="line-height: 2em">
+          <h3 class="container text-right" style="line-height: 2em">
            {{ information.ayah.ayah_text }}
            ({{ information.ayah.ayah_id }})
           </h3>
@@ -253,11 +250,11 @@
           </div>
           <hr />
           <!-- main stack below -->
-          <div  class="btn">
-          
+          <div class="btn">
+
            <h4 ref="heading" class="container text-left" style="line-height: 1.6em">
-           
-            <h3  name="text">
+
+            <h3 name="text">
              {{ information.translation }}"
             </h3>
            </h4>
@@ -269,67 +266,113 @@
 
       <!-- tafseer section -->
       <div class="tab-pane" id="profile" role="tabpanel" v-if="information != null">
+       <div class="row">
 
-       <!-- surah/ayah detail -->
-       <ul class="ul-main row col-md-10">
-        <h5 class="col-md-3 font-weight-bold"><img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}}</h5>
-        <div class="col-md-6">
-         <li class="li-main mr-3">
-          <span class="span-main" style="font-style: bold">{{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}
-          </span>
-         </li>
+        <!-- left side stack of icon features -->
+        <div class="col-md-1">
+         <div class="list-group styling">
+          <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Play audio"><i class="bi-play-circle-fill test" style="font-size: 1.2rem"></i></a>
+          <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi-bug-fill test" style="font-size: 1.2rem"></i></a>
+          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText1"><i class="bi bi-collection-fill test" style="font-size: 1.2rem"></i></a>
+          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot"><i class="bi bi-camera-fill test" style="font-size: 1.2rem"></i></a>
+          <a href="#" class="list-group-item list-group-item-action dropdown-toggle dropend" data-bs-toggle="dropdown" aria-expanded="false" data-bs-placement="top" title="Share verse"><i class="bi bi-share-fill test" style="font-size: 1.2rem"></i></a>
+
+          <ul class="dropdown-menu">
+           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with whatsapp" @click="shareTextViaWhatsApp"><i class="bi bi-whatsapp test" style="font-size: 1.2rem">Whatsapp</i></a>
+           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with mail" @click="shareViaEmail( $refs.targetElement1.innerText)"><i class="bi bi-envelope-at-fill test" style="font-size: 1.2rem">Email</i></a>
+           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with twitter" @click="shareHeadingOnTwitter()"><i class="bi bi-twitter-x test" style="font-size: 1.2rem">Twitter</i></a>
+          </ul>
+
+         </div>
         </div>
-        <h5 class="col-md-3 ">{{information.ayah.surah.name_ar}} <img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" /></h5>
-       </ul>
-       <hr>
-       <!-- main stack top -->
-       <div class="btn">
-        <h3 class="container text-right" style="line-height: 2em">
-         {{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})
-        </h3>
-       </div>
-       <hr />
-       <!-- main stack below -->
-       <div class="btn">
-        <h4 class="container text-left" style="line-height: 1.6em">
-         {{ tafseer }}
-        </h4>
+
+        <div class="col-11" ref="targetElement1">
+         <!-- surah/ayah detail -->
+         <ul class="ul-main row mb-3">
+          <h5 class="col-md-3 font-weight-bold"><img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}}</h5>
+          <div class="col-md-6">
+           <li class="li-main mr-3">
+            <span class="span-main" style="font-style: bold">{{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}
+            </span>
+           </li>
+          </div>
+          <h5 class="col-md-3 ">{{information.ayah.surah.name_ar}} <img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" /></h5>
+         </ul>
+
+         <hr style="border: 1px dotted grey">
+         <a :href="downloadUrl" class="button-33 mb-2 mt-2" download="screenshot.png" v-if="downloadUrl">Download Screenshot</a>
+         <!-- main stack top -->
+         <div class="btn">
+          <h3 class="container text-right" style="line-height: 2em">
+           {{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})
+          </h3>
+         </div>
+         <hr />
+         <!-- main stack below -->
+         <div class="btn">
+          <h4 class="container text-left" ref="heading1" style="line-height: 1.6em">
+           {{ tafseer }}
+          </h4>
+         </div>
+        </div>
        </div>
       </div>
 
       <!-- transliteration section -->
       <div class="tab-pane" id="messages" role="tabpanel" v-if="information != null">
+       <div class="row">
 
-       <!-- surah/ayah detail -->
-       <ul class="ul-main row ">
-        <h5 class="col-md-3 font-weight-bold"><img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}}</h5>
-        <div class="col-md-6">
-         <li class="li-main mr-3">
-          <span class="span-main" style="font-style: bold">{{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}
-          </span>
-         </li>
+        <!-- left side stack of icon features -->
+        <div class="col-md-1">
+         <div class="list-group styling">
+          <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Play audio"><i class="bi-play-circle-fill test" style="font-size: 1.2rem"></i></a>
+          <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi-bug-fill test" style="font-size: 1.2rem"></i></a>
+          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText2"><i class="bi bi-collection-fill test" style="font-size: 1.2rem"></i></a>
+          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot"><i class="bi bi-camera-fill test" style="font-size: 1.2rem"></i></a>
+          <a href="#" class="list-group-item list-group-item-action dropdown-toggle dropend" data-bs-toggle="dropdown" aria-expanded="false" data-bs-placement="top" title="Share verse"><i class="bi bi-share-fill test" style="font-size: 1.2rem"></i></a>
+
+          <ul class="dropdown-menu">
+           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with whatsapp" @click="shareTextViaWhatsApp"><i class="bi bi-whatsapp test" style="font-size: 1.2rem">Whatsapp</i></a>
+           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with mail" @click="shareViaEmail($refs.targetElement2.innerText)"><i class="bi bi-envelope-at-fill test" style="font-size: 1.2rem">Email</i></a>
+           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with mail" @click="shareHeadingOnTwitter()"><i class="bi bi-twitter-x test" style="font-size: 1.2rem">Twitter</i></a>
+          </ul>
+         </div>
         </div>
-        <h5 class="col-md-3 ">{{information.ayah.surah.name_ar}} <img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" /></h5>
-       </ul>
-       <hr>
-       <!-- main stack top -->
-       <div class="btn">
-        <h3 class="container text-right" style="line-height: 2em">
-         {{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})
-        </h3>
-       </div>
-       <hr />
-       <!-- main stack below -->
-       <div class="btn">
-        <h4 class="container text-left" style="line-height: 1.6em">
-         {{ information.transliteration }}
-        </h4>
+
+        <div class="col-11" ref="targetElement2">
+         <!-- surah/ayah detail -->
+         <ul class="ul-main row ">
+          <h5 class="col-md-3 font-weight-bold"><img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}}</h5>
+          <div class="col-md-6">
+           <li class="li-main mr-3">
+            <span class="span-main" style="font-style: bold">{{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}
+            </span>
+           </li>
+          </div>
+          <h5 class="col-md-3 ">{{information.ayah.surah.name_ar}} <img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" /></h5>
+         </ul>
+         <hr style="border: 1px dotted grey">
+         <a :href="downloadUrl" class="button-33 mb-2 mt-2" download="screenshot.png" v-if="downloadUrl">Download Screenshot</a>
+         <!-- main stack top -->
+         <div class="btn">
+          <h3 class="container text-right" style="line-height: 2em">
+           {{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})
+          </h3>
+         </div>
+         <hr />
+         <!-- main stack below -->
+         <div class="btn">
+          <h4 class="container text-left" ref="heading2" style="line-height: 1.6em">
+           {{ information.transliteration }}
+          </h4>
+         </div>
+        </div>
        </div>
       </div>
      </div>
     </div>
    </div>
-  </div>
+  </div> 
 
   <!-- right side chapter list -->
   <div class="col-md-4 sticky-top container">
@@ -363,7 +406,6 @@
     </div>
    </div>
 
-   <div class="container-fluid mr-5" style=""></div>
   </div>
  </div>
 </div>
@@ -421,40 +463,58 @@ export default {
   }
  },
  methods: {
-   
+
   shareHeadingOnTwitter() {
-    try {
-      // Extract the heading text from the referenced div
-      const headingText = this.$refs.targetElement.textContent.trim();
-      // Encode the heading text
-      const encodedHeading = encodeURIComponent(headingText);
-      // Construct the Twitter share URL
-      const twitterUrl = `https://twitter.com/intent/tweet?text=${encodedHeading}`;
-      // Open the Twitter sharing dialog in a new window
-      window.open(twitterUrl, "_blank") || console.error("Failed to open Twitter sharing dialog.");
-    } catch (error) {
-      console.error("Error:", error);
-    }
+   try {
+    // Extract the heading text from the referenced div
+    const headingText = this.$refs.targetElement.textContent.trim();
+    // Encode the heading text
+    const encodedHeading = encodeURIComponent(headingText);
+    // Construct the Twitter share URL
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodedHeading}`;
+    // Open the Twitter sharing dialog in a new window
+    window.open(twitterUrl, "_blank") || console.error("Failed to open Twitter sharing dialog.");
+   } catch (error) {
+    console.error("Error:", error);
+   }
   },
-   shareViaEmail(subject, body) {
-      const url = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      window.location.href = url;
-    },
-    shareViaFacebook(text) {
-      const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(text)}`;
-      window.open(url, '_blank');
-    },
+  shareViaEmail(subject, body) {
+   const url = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+   window.location.href = url;
+  },
 
   shareTextViaWhatsApp() {
    const text = this.$refs.targetElement.innerText;
+   const text1 = this.$refs.targetElement1.innerText1;
    const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
+   const url1 = `https://api.whatsapp.com/send?text=${encodeURIComponent(text1)}`;
    window.open(url, '_blank');
+   window.open(url1, '_blank');
+
   },
   captureScreenshot() {
-   const targetElement = this.$refs.targetElement;
+    const targetElement = this.$refs.targetElement;
+    const targetElement1 = this.$refs.targetElement1;
+    const targetElement2 = this.$refs.targetElement2;
 
    // Use html2canvas to capture the target element
    html2canvas(targetElement).then(canvas => {
+    // Convert canvas to data URL
+    const dataUrl = canvas.toDataURL('image/png');
+
+    // Set download URL
+    this.downloadUrl = dataUrl;
+   });
+   // Use html2canvas to capture the target element
+   html2canvas(targetElement1).then(canvas => {
+    // Convert canvas to data URL
+    const dataUrl = canvas.toDataURL('image/png');
+
+    // Set download URL
+    this.downloadUrl = dataUrl;
+   });
+   // Use html2canvas to capture the target element
+   html2canvas(targetElement2).then(canvas => {
     // Convert canvas to data URL
     const dataUrl = canvas.toDataURL('image/png');
 
@@ -534,7 +594,7 @@ export default {
   },
 
   copyText() {
-   var textToCopy = this.$refs.heading.innerText;
+   var textToCopy = this.$refs.targetElement1.innerText;
    var textarea = document.createElement("textarea");
 
    textarea.value = textToCopy;
@@ -552,6 +612,51 @@ export default {
    setTimeout(function () {
     alertElement.remove();
    }, 3000);
+  
+  },
+
+  copyText1() {
+   var textToCopy1 = this.$refs.heading1.innerText;
+   var textarea = document.createElement("textarea");
+
+   textarea.value = textToCopy1;
+   document.body.appendChild(textarea);
+   textarea.select();
+   document.execCommand("copy");
+   document.body.removeChild(textarea);
+
+   var alertElement = document.createElement("div");
+   alertElement.classList.add("alert", "alert-success");
+   alertElement.textContent = "Copied text to clipboard";
+
+   document.getElementById("alertContainer").appendChild(alertElement);
+
+   setTimeout(function () {
+    alertElement.remove();
+   }, 3000);
+  
+  },
+
+   copyText2() {
+   var textToCopy1 = this.$refs.heading2.innerText;
+   var textarea = document.createElement("textarea");
+
+   textarea.value = textToCopy1;
+   document.body.appendChild(textarea);
+   textarea.select();
+   document.execCommand("copy");
+   document.body.removeChild(textarea);
+
+   var alertElement = document.createElement("div");
+   alertElement.classList.add("alert", "alert-success");
+   alertElement.textContent = "Copied text to clipboard";
+
+   document.getElementById("alertContainer").appendChild(alertElement);
+
+   setTimeout(function () {
+    alertElement.remove();
+   }, 3000);
+  
   },
 
   getTafseers: function (id, index) {
