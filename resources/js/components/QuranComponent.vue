@@ -227,9 +227,7 @@
          <hr style="border: 1px dotted grey">
          <a :href="downloadUrl" class="button-33 mb-2 mt-2" download="screenshot.png" v-if="downloadUrl">Download Screenshot</a>
          
-         <!--
-    <button @click="shareViaFacebook($refs.targetElement.innerText)">Share via Facebook</button>
-    -->
+             <button @click="shareHeadingOnTwitter()"></button>
 
 
          <!-- main stack top           
@@ -419,6 +417,21 @@ export default {
   }
  },
  methods: {
+   
+  shareHeadingOnTwitter() {
+    try {
+      // Extract the heading text from the referenced div
+      const headingText = this.$refs.targetElement.textContent.trim();
+      // Encode the heading text
+      const encodedHeading = encodeURIComponent(headingText);
+      // Construct the Twitter share URL
+      const twitterUrl = `https://twitter.com/intent/tweet?text=${encodedHeading}`;
+      // Open the Twitter sharing dialog in a new window
+      window.open(twitterUrl, "_blank") || console.error("Failed to open Twitter sharing dialog.");
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  },
    shareViaEmail(subject, body) {
       const url = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       window.location.href = url;
