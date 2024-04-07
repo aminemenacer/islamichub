@@ -236,8 +236,7 @@
                 <p>{{ ayah.ayah_text }}</p>
                 <audio ref="audioPlayer" :src="ayah.audio_links" controls></audio>
               </div>
-            -->
-
+          -->
          <div class="btn">
           <div class="span-main text:left" style="font-style: bolder;color: black;"></div>
           <h3 class="container text-right" style="line-height: 2em">
@@ -274,13 +273,13 @@
           <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Play audio"><i class="bi-play-circle-fill test" style="font-size: 1.2rem"></i></a>
           <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi-bug-fill test" style="font-size: 1.2rem"></i></a>
           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText1"><i class="bi bi-collection-fill test" style="font-size: 1.2rem"></i></a>
-          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot"><i class="bi bi-camera-fill test" style="font-size: 1.2rem"></i></a>
+          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot1"><i class="bi bi-camera-fill test" style="font-size: 1.2rem"></i></a>
           <a href="#" class="list-group-item list-group-item-action dropdown-toggle dropend" data-bs-toggle="dropdown" aria-expanded="false" data-bs-placement="top" title="Share verse"><i class="bi bi-share-fill test" style="font-size: 1.2rem"></i></a>
 
           <ul class="dropdown-menu">
-           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with whatsapp" @click="shareTextViaWhatsApp"><i class="bi bi-whatsapp test" style="font-size: 1.2rem">Whatsapp</i></a>
-           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with mail" @click="shareViaEmail( $refs.targetElement1.innerText)"><i class="bi bi-envelope-at-fill test" style="font-size: 1.2rem">Email</i></a>
-           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with twitter" @click="shareHeadingOnTwitter()"><i class="bi bi-twitter-x test" style="font-size: 1.2rem">Twitter</i></a>
+           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with whatsapp" @click="shareTextViaWhatsApp1"><i class="bi bi-whatsapp test" style="font-size: 1.2rem">Whatsapp</i></a>
+           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with mail" @click="shareViaEmail1( $refs.targetElement1.innerText)"><i class="bi bi-envelope-at-fill test" style="font-size: 1.2rem">Email</i></a>
+           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with twitter" @click="shareHeadingOnTwitter1()"><i class="bi bi-twitter-x test" style="font-size: 1.2rem">Twitter</i></a>
           </ul>
 
          </div>
@@ -328,13 +327,13 @@
           <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Play audio"><i class="bi-play-circle-fill test" style="font-size: 1.2rem"></i></a>
           <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi-bug-fill test" style="font-size: 1.2rem"></i></a>
           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText2"><i class="bi bi-collection-fill test" style="font-size: 1.2rem"></i></a>
-          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot"><i class="bi bi-camera-fill test" style="font-size: 1.2rem"></i></a>
+          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot2"><i class="bi bi-camera-fill test" style="font-size: 1.2rem"></i></a>
           <a href="#" class="list-group-item list-group-item-action dropdown-toggle dropend" data-bs-toggle="dropdown" aria-expanded="false" data-bs-placement="top" title="Share verse"><i class="bi bi-share-fill test" style="font-size: 1.2rem"></i></a>
 
           <ul class="dropdown-menu">
-           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with whatsapp" @click="shareTextViaWhatsApp"><i class="bi bi-whatsapp test" style="font-size: 1.2rem">Whatsapp</i></a>
-           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with mail" @click="shareViaEmail($refs.targetElement2.innerText)"><i class="bi bi-envelope-at-fill test" style="font-size: 1.2rem">Email</i></a>
-           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with mail" @click="shareHeadingOnTwitter()"><i class="bi bi-twitter-x test" style="font-size: 1.2rem">Twitter</i></a>
+           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with whatsapp" @click="shareTextViaWhatsApp2"><i class="bi bi-whatsapp test" style="font-size: 1.2rem">Whatsapp</i></a>
+           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with mail" @click="shareViaEmail2($refs.targetElement2.innerText)"><i class="bi bi-envelope-at-fill test" style="font-size: 1.2rem">Email</i></a>
+           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with mail" @click="shareHeadingOnTwitter2()"><i class="bi bi-twitter-x test" style="font-size: 1.2rem">Twitter</i></a>
           </ul>
          </div>
         </div>
@@ -372,7 +371,7 @@
      </div>
     </div>
    </div>
-  </div> 
+  </div>
 
   <!-- right side chapter list -->
   <div class="col-md-4 sticky-top container">
@@ -466,62 +465,117 @@ export default {
 
   shareHeadingOnTwitter() {
    try {
-    // Extract the heading text from the referenced div
     const headingText = this.$refs.targetElement.textContent.trim();
-    // Encode the heading text
     const encodedHeading = encodeURIComponent(headingText);
-    // Construct the Twitter share URL
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodedHeading}`;
-    // Open the Twitter sharing dialog in a new window
     window.open(twitterUrl, "_blank") || console.error("Failed to open Twitter sharing dialog.");
    } catch (error) {
     console.error("Error:", error);
    }
   },
-  shareViaEmail(subject, body) {
-   const url = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+  shareHeadingOnTwitter1() {
+   try {
+    const headingText1 = this.$refs.targetElement1.textContent.trim();
+    const encodedHeading = encodeURIComponent(headingText1);
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodedHeading}`;
+    window.open(twitterUrl, "_blank") || console.error("Failed to open Twitter sharing dialog.");
+   } catch (error) {
+    console.error("Error:", error);
+   }
+  },
+
+  shareHeadingOnTwitter2() {
+   try {
+    const headingText2 = this.$refs.targetElement2.textContent.trim();
+    const encodedHeading = encodeURIComponent(headingText2);
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodedHeading}`;
+    window.open(twitterUrl, "_blank") || console.error("Failed to open Twitter sharing dialog.");
+   } catch (error) {
+    console.error("Error:", error);
+   }
+  },
+
+  shareViaEmail(body) {
+   const url = `mailto:?body=${encodeURIComponent(body)}`;
+   window.location.href = url;
+  },
+  shareViaEmail1(body1) {
+   const url = `mailto:?body=${encodeURIComponent(body1)}`;
+   window.location.href = url;
+  },
+  shareViaEmail2(body2) {
+   const url = `mailto:?body=${encodeURIComponent(body2)}`;
    window.location.href = url;
   },
 
   shareTextViaWhatsApp() {
    const text = this.$refs.targetElement.innerText;
-   const text1 = this.$refs.targetElement1.innerText1;
    const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
-   const url1 = `https://api.whatsapp.com/send?text=${encodeURIComponent(text1)}`;
    window.open(url, '_blank');
-   window.open(url1, '_blank');
-
   },
+  shareTextViaWhatsApp1() {
+   const text1 = this.$refs.targetElement1.innerText;
+   const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text1)}`;
+   window.open(url, '_blank');
+  },
+  shareTextViaWhatsApp2() {
+   const text2 = this.$refs.targetElement2.innerText;
+   const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text2)}`;
+   window.open(url, '_blank');
+  },
+
   captureScreenshot() {
-    const targetElement = this.$refs.targetElement;
-    const targetElement1 = this.$refs.targetElement1;
-    const targetElement2 = this.$refs.targetElement2;
+   const targetElement = this.$refs.targetElement;
+   // Show the button initially
+   this.showScreenshotButton = true;
 
-   // Use html2canvas to capture the target element
-   html2canvas(targetElement).then(canvas => {
-    // Convert canvas to data URL
-    const dataUrl = canvas.toDataURL('image/png');
+   setTimeout(() => {
+    // Capture screenshot for targetElement
+    html2canvas(targetElement).then(canvas => {
+     const dataUrl = canvas.toDataURL('image/png');
+     this.downloadUrl = dataUrl;
 
-    // Set download URL
-    this.downloadUrl = dataUrl;
-   });
-   // Use html2canvas to capture the target element
-   html2canvas(targetElement1).then(canvas => {
-    // Convert canvas to data URL
-    const dataUrl = canvas.toDataURL('image/png');
+     // Extract text content for targetElement
+     const textContent = targetElement.innerText;
+     console.log("Text content for targetElement:", textContent);
 
-    // Set download URL
-    this.downloadUrl = dataUrl;
-   });
-   // Use html2canvas to capture the target element
-   html2canvas(targetElement2).then(canvas => {
-    // Convert canvas to data URL
-    const dataUrl = canvas.toDataURL('image/png');
-
-    // Set download URL
-    this.downloadUrl = dataUrl;
-   });
+     // Hide the button after 5 seconds
+     setTimeout(() => {
+      this.showScreenshotButton = false; // Hide the button
+     }, 5000); // 5000 milliseconds = 5 seconds
+    });
+   }, 5000); // 5000 milliseconds = 5 seconds
   },
+  captureScreenshot1() {
+   const targetElement1 = this.$refs.targetElement1;
+   setTimeout(() => {
+    // Capture screenshot for targetElement
+    html2canvas(targetElement1).then(canvas => {
+     const dataUrl = canvas.toDataURL('image/png');
+     this.downloadUrl = dataUrl;
+
+     // Extract text content for targetElement
+     const textContent = targetElement1.innerText;
+     console.log("Text content for targetElement:", textContent);
+    });
+   }, 5000); // 5000 milliseconds = 5 seconds
+  },
+  captureScreenshot2() {
+   const targetElement2 = this.$refs.targetElement2;
+   setTimeout(() => {
+    // Capture screenshot for targetElement
+    html2canvas(targetElement2).then(canvas => {
+     const dataUrl = canvas.toDataURL('image/png');
+     this.downloadUrl = dataUrl;
+
+     // Extract text content for targetElement
+     const textContent = targetElement2.innerText;
+     console.log("Text content for targetElement:", textContent);
+    });
+   }, 5000); // 5000 milliseconds = 5 seconds
+  },
+  // 5000 milliseconds = 5 seconds,
   fetchAyahs() {
    fetch('/api/ayahs')
     .then(response => response.json())
@@ -594,7 +648,7 @@ export default {
   },
 
   copyText() {
-   var textToCopy = this.$refs.targetElement1.innerText;
+   var textToCopy = this.$refs.heading.innerText;
    var textarea = document.createElement("textarea");
 
    textarea.value = textToCopy;
@@ -612,7 +666,7 @@ export default {
    setTimeout(function () {
     alertElement.remove();
    }, 3000);
-  
+
   },
 
   copyText1() {
@@ -634,10 +688,10 @@ export default {
    setTimeout(function () {
     alertElement.remove();
    }, 3000);
-  
+
   },
 
-   copyText2() {
+  copyText2() {
    var textToCopy1 = this.$refs.heading2.innerText;
    var textarea = document.createElement("textarea");
 
@@ -656,7 +710,7 @@ export default {
    setTimeout(function () {
     alertElement.remove();
    }, 3000);
-  
+
   },
 
   getTafseers: function (id, index) {
