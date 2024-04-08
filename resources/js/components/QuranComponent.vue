@@ -211,12 +211,6 @@
         <div class="col-11" ref="targetElement">
          <!-- surah/ayah detail -->
 
-        <button class="btn bg-success" @click="goToPreviousAyah()" :disabled="selectedIndexAyah === 0">Previous Ayah</button>
-        <button class="btn bg-success" @click="goToNextAyah()">Next Ayah</button>
-          <button class="btn btn-primary" @click="goToPreviousSurah">Previous Surah</button>
-        <button class="btn bg-success" @click="goToNextSurah()">Next Surah</button>
-
-
          <ul class="ul-main row mb-3">
           <h5 class="col-md-3 font-weight-bold">
            <img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" />{{ information.ayah.surah.name_en }}
@@ -232,7 +226,14 @@
          <a :href="downloadUrl" class="button-33 mb-2 mt-2" download="screenshot.png" v-if="downloadUrl">Download Screenshot</a>
 
          <!-- Display audio for the selected ayah -->
-         <audio ref="audioPlayer" :src="selectedAyah ? selectedAyah.audio_link : ''" controls></audio>
+         <div class="row">
+          <div class="col-md-4"> <button class="btn button-33" @click="goToPreviousSurah">Previous Surah</button>
+          </div>
+          <div class="col-md-4"> <audio ref="audioPlayer" :src="selectedAyah ? selectedAyah.audio_link : ''" controls></audio>
+          </div>
+          <div class="col-md-4"><button class="btn button-33" @click="goToNextSurah()">Next Surah</button></div>
+
+         </div>
 
          <div class="btn">
           <div class="span-main text:left" style="font-style: bolder;color: black;"></div>
@@ -384,6 +385,16 @@
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" v-if="ayah == null">
      <div class="row container-fluid">
       <div class="custom-scrollbar">
+       <!-- controls -->
+       <div class="row mb-3">
+        <div class="col-md-6">
+         <button class="btn  button-33" style="width:100%" @click="goToPreviousAyah()" if>Previous Ayah</button>
+        </div>
+        <div class="col-md-6">
+         <button class="btn  button-33" style="width:100%" @click="goToNextAyah()">Next Ayah</button>
+        </div>
+       </div>
+
        <ul class="col-md-4 list-group container-fluid root" v-for="(ayah, index) in ayahs" :key="index" @click="getTafseers(ayah.id, index)" :class="{selected: selectedIndexAyah === index,}">
         <li class="list-group-item container-fluid" id="toggle">
          <h5 style="display: flex"> Verse: {{ ayah.ayah_id }} </h5>
@@ -461,95 +472,89 @@ export default {
   }
  },
  methods: {
-  goToPreviousAyah() {
-    if (this.selectedIndexAyah > 0) {
-        const previousIndex = this.selectedIndexAyah - 1;
-        this.getTafseers(this.ayahs[previousIndex].id, previousIndex);
-    }
-  },
 
-   goToNextAyah() {
-    // Check if selectedIndexAyah is within the range of ayahs
-    if (this.selectedIndexAyah < this.ayahs.length - 1) {
-      // Increment the index to move to the next ayah
-      this.selectedIndexAyah++;
-      // Fetch tafseers for the next ayah
-      this.getTafseers(this.ayahs[this.selectedIndexAyah].id, this.selectedIndexAyah);
-    } else {
-      // You can handle what happens when there are no more ayahs to show, for example, looping back to the first ayah
-      // Here, I'm resetting the index to 0 to loop back to the first ayah
-      this.selectedIndexAyah = 0;
-      // Fetch tafseers for the first ayah
-      this.getTafseers(this.ayahs[this.selectedIndexAyah].id, this.selectedIndexAyah);
-    }
+  goToNextAyah() {
+   // Check if selectedIndexAyah is within the range of ayahs
+   if (this.selectedIndexAyah < this.ayahs.length - 1) {
+    // Increment the index to move to the next ayah
+    this.selectedIndexAyah++;
+    // Fetch tafseers for the next ayah
+    this.getTafseers(this.ayahs[this.selectedIndexAyah].id, this.selectedIndexAyah);
+   } else {
+    // You can handle what happens when there are no more ayahs to show, for example, looping back to the first ayah
+    // Here, I'm resetting the index to 0 to loop back to the first ayah
+    this.selectedIndexAyah = 0;
+    // Fetch tafseers for the first ayah
+    this.getTafseers(this.ayahs[this.selectedIndexAyah].id, this.selectedIndexAyah);
+   }
   },
   goToPreviousAyah() {
-    if (this.selectedIndexAyah > 0) {
-      this.selectedIndexAyah--;
-      this.getTafseers(this.ayahs[this.selectedIndexAyah].id, this.selectedIndexAyah);
-    }
+   if (this.selectedIndexAyah > 0) {
+    this.selectedIndexAyah--;
+    this.getTafseers(this.ayahs[this.selectedIndexAyah].id, this.selectedIndexAyah);
+   }
   },
   // Modify the existing getAyahs method to update selectedIndexAyah properly
-  getAyahs: function() {
-    this.dropdownHidden = false;
-    axios
-      .get("/get_ayahs", {
-        params: {
-          surah_id: this.surah,
-        },
-      })
-      .then(
-        function(response) {
-          this.ayahs = response.data;
-          // Reset selectedIndexAyah if it exceeds the ayahs length
-          if (this.selectedIndexAyah >= this.ayahs.length) {
-            this.selectedIndexAyah = 0;
-          }
-        }.bind(this)
-      );
+  getAyahs: function () {
+   this.dropdownHidden = false;
+   axios
+    .get("/get_ayahs", {
+     params: {
+      surah_id: this.surah,
+     },
+    })
+    .then(
+     function (response) {
+      this.ayahs = response.data;
+      // Reset selectedIndexAyah if it exceeds the ayahs length
+      if (this.selectedIndexAyah >= this.ayahs.length) {
+       this.selectedIndexAyah = 0;
+      }
+     }.bind(this)
+    );
   },
-   goToNextSurah() {
-    // Check if the current selected surah is not the last one
-    if (this.surah < this.surahs.length) {
-      // Increment the surah index to move to the next surah
-      this.surah++;
-      // Fetch ayahs for the next surah
-      this.getAyahs(this.surah);
-    } else {
-      // You can handle what happens when there are no more surahs to show, for example, looping back to the first surah
-      // Here, I'm resetting the surah index to 0 to loop back to the first surah
-      this.surah = 0;
-      // Fetch ayahs for the first surah
-      this.getAyahs(this.surah);
-    }
+  goToNextSurah() {
+   // Check if the current selected surah is not the last one
+   if (this.surah < this.surahs.length) {
+    // Increment the surah index to move to the next surah
+    this.surah++;
+    // Fetch ayahs for the next surah
+    this.getAyahs(this.surah);
+   } else {
+    // You can handle what happens when there are no more surahs to show, for example, looping back to the first surah
+    // Here, I'm resetting the surah index to 0 to loop back to the first surah
+    this.surah = 0;
+    // Fetch ayahs for the first surah
+    this.getAyahs(this.surah);
+   }
   },
   getSurahs() {
-    axios
-      .get("/get_surahs")
-      .then(response => {
-        this.surahs = response.data;
-      })
-      .catch(error => {
-        console.error('Error fetching surahs:', error);
-      });
+   axios
+    .get("/get_surahs")
+    .then(response => {
+     this.surahs = response.data;
+    })
+    .catch(error => {
+     console.error('Error fetching surahs:', error);
+    });
   },
   goToPreviousSurah() {
-    // Check if the current selected surah is not the first one
-    if (this.surah > 1) {
-      // Decrement the surah index to move to the previous surah
-      this.surah--;
-      // Fetch ayahs for the previous surah
-      this.getAyahs(this.surah);
-    } else {
-      // Handle what happens when the first surah is reached
-      // Here, you may choose to keep the index as it is or loop back to the last surah
-      // For example, keeping the index as it is:
-      // this.getAyahs(this.surah);
-      
-      // Or looping back to the last surah:
-      this.surah = this.surahs.length;
-      this.getAyahs(this.surah);
-    }
+   // Check if the current selected surah is not the first one
+   if (this.surah > 1) {
+    // Decrement the surah index to move to the previous surah
+    this.surah--;
+    // Fetch ayahs for the previous surah
+    this.getAyahs(this.surah);
+   } else {
+    // Handle what happens when the first surah is reached
+    // Here, you may choose to keep the index as it is or loop back to the last surah
+    // For example, keeping the index as it is:
+    // this.getAyahs(this.surah);
+
+    // Or looping back to the last surah:
+    this.surah = this.surahs.length;
+    this.getAyahs(this.surah);
+   }
   },
   shareHeadingOnTwitter() {
    try {
