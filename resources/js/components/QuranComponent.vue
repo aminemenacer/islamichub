@@ -99,49 +99,49 @@
      <a href="#">
       <div class="col container">
        <div class="flex justify-content-center">
-        <Button class="button-33" label="Ya Seen - يس" severity="success" raised outlined @click="selectSurah(36)" :class="{ active: surah === 36 }" />
+        <Button class="button-33" label="Ya Seen 36 - يس ٣٦ " severity="success" raised outlined @click="selectSurah(36)" :class="{ active: surah === 36 }" />
        </div>
       </div>
      </a>
      <a href="#">
       <div class="col container">
        <div class="flex justify-content-center">
-        <Button class="button-33" label="An-Nas - 	الناس" severity="success" raised outlined @click="selectSurah(114)" :class="{ active: surah === 114 }" />
+        <Button class="button-33" label="An-Nas 114 - الناس ١١٤" severity="success" raised outlined @click="selectSurah(114)" :class="{ active: surah === 114 }" />
        </div>
       </div>
      </a>
      <a href="#">
       <div class="col container">
        <div class="flex justify-content-center">
-        <Button class="button-33" label="Al-Falak - 	الفلق" severity="success" raised outlined @click="selectSurah(113)" :class="{ active: surah === 133 }" />
+        <Button class="button-33" label="Al-Falak 113 - الفلق ١١٣" severity="success" raised outlined @click="selectSurah(113)" :class="{ active: surah === 133 }" />
        </div>
       </div>
      </a>
      <a href="#">
       <div class="col container">
        <div class="flex justify-content-center">
-        <Button class="button-33" label="Al-Kafiroon -	الكافرون" severity="success" raised outlined @click="selectSurah(109)" :class="{ active: surah === 109 }" />
+        <Button class="button-33" label="Al-Kafiroon 109 - الكافيرون ١٠٩" severity="success" raised outlined @click="selectSurah(109)" :class="{ active: surah === 109 }" />
        </div>
       </div>
      </a>
      <a href="#">
       <div class="col container">
        <div class="flex justify-content-center">
-        <Button class="button-33" label="Al-Mulk - الملك" severity="success" raised outlined @click="selectSurah(67)" :class="{ active: surah === 67 }" />
+        <Button class="button-33" label="Al-Mulk 67 - الملك ٦٧" severity="success" raised outlined @click="selectSurah(67)" :class="{ active: surah === 67 }" />
        </div>
       </div>
      </a>
      <a href="#">
       <div class="col container">
        <div class="flex justify-content-center">
-        <Button class="button-33" label="Al-Rahman - الرحمن" severity="success" raised outlined @click="selectSurah(55)" :class="{ active: surah === 55 }" />
+        <Button class="button-33" label="Al-Rahman 55 - الرمان ٥٥" severity="success" raised outlined @click="selectSurah(55)" :class="{ active: surah === 55 }" />
        </div>
       </div>
      </a>
      <a href="#">
       <div class="col container">
        <div class="flex justify-content-center">
-        <Button class="button-33" label="Al-Kahf -	الكهف" severity="success" raised outlined @click="selectSurah(18)" :class="{ active: surah === 18 }" />
+        <Button class="button-33" label="Al-Kahf 18 -	الكهف ١٨" severity="success" raised outlined @click="selectSurah(18)" :class="{ active: surah === 18 }" />
        </div>
       </div>
      </a>
@@ -181,13 +181,7 @@
         <!-- Intro desc -->
         <div class="col-md-6 mt-4">
          <h5 style="line-height: 1.6em">
-          The Quran, considered the holy The
-          Quran, also spelled as Qur'an, is
-          the holy book of Islam and is
-          considered by Muslims to be the
-          literal word of God as revealed to
-          the Prophet Muhammad (peace be upon
-          him) through the Angel Gabriel.
+          The Holy Quran is the central religious text of Islam, believed by Muslims to be a revelation from God. It is written in Arabic and is considered the literal word of God as conveyed to Prophet Muhammad (peace be upon him) through the Angel Gabriel over a period of approximately 23 years. The Quran is divided into chapters called surahs, which vary in length, and contains guidance on matters of faith, morality, law, and spirituality.
          </h5>
         </div>
        </div>
@@ -200,10 +194,10 @@
         <div class="col-md-1">
          <div class="list-group styling">
           <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Play audio"><i class="bi-play-circle-fill test" style="font-size: 1.2rem"></i></a>
-          <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi-bug-fill test" style="font-size: 1.2rem"></i></a>
+          <a href="#" class="list-group-item list-group-item-action dropdown-toggle dropend" data-bs-toggle="dropdown" aria-expanded="false" data-bs-placement="top" title="Share verse"><i class="bi bi-share-fill test" style="font-size: 1.2rem"></i></a>
           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText"><i class="bi bi-collection-fill test" style="font-size: 1.2rem"></i></a>
           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot"><i class="bi bi-camera-fill test" style="font-size: 1.2rem"></i></a>
-          <a href="#" class="list-group-item list-group-item-action dropdown-toggle dropend" data-bs-toggle="dropdown" aria-expanded="false" data-bs-placement="top" title="Share verse"><i class="bi bi-share-fill test" style="font-size: 1.2rem"></i></a>
+          <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi-bug-fill test" style="font-size: 1.2rem"></i></a>
 
           <ul class="dropdown-menu">
            <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with whatsapp" @click="shareTextViaWhatsApp"><i class="bi bi-whatsapp test" style="font-size: 1.2rem">Whatsapp</i></a>
@@ -215,51 +209,51 @@
         </div>
 
         <div class="col-11" ref="targetElement">
-
          <!-- surah/ayah detail -->
+
+        <button class="btn bg-success" @click="goToPreviousAyah()" :disabled="selectedIndexAyah === 0">Previous Ayah</button>
+        <button class="btn bg-success" @click="goToNextAyah()">Next Ayah</button>
+          <button class="btn btn-primary" @click="goToPreviousSurah">Previous Surah</button>
+        <button class="btn bg-success" @click="goToNextSurah()">Next Surah</button>
+
+
          <ul class="ul-main row mb-3">
-          <h5 class="col-md-3 font-weight-bold"><img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}}</h5>
+          <h5 class="col-md-3 font-weight-bold">
+           <img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" />{{ information.ayah.surah.name_en }}
+          </h5>
           <div class="col-md-6">
            <li class="li-main mr-3">
-            <span class="span-main" style="font-style: bold">{{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}
-            </span>
+            <span class="span-main" style="font-style: bold">{{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }}</span>
            </li>
           </div>
-          <h5 class="col-md-3 ">{{information.ayah.surah.name_ar}} <img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" /></h5>
+          <h5 class="col-md-3 ">{{ information.ayah.surah.name_ar }} <img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" /></h5>
          </ul>
-
          <hr style="border: 1px dotted grey">
          <a :href="downloadUrl" class="button-33 mb-2 mt-2" download="screenshot.png" v-if="downloadUrl">Download Screenshot</a>
 
-         <!-- main stack top           
-              <div v-for="(ayah, index) in ayahs" :key="index">
-                <p>{{ ayah.ayah_text }}</p>
-                <audio ref="audioPlayer" :src="ayah.audio_links" controls></audio>
-              </div>
-          -->
+         <!-- Display audio for the selected ayah -->
+         <audio ref="audioPlayer" :src="selectedAyah ? selectedAyah.audio_link : ''" controls></audio>
+
          <div class="btn">
           <div class="span-main text:left" style="font-style: bolder;color: black;"></div>
           <h3 class="container text-right" style="line-height: 2em">
-           {{ information.ayah.ayah_text }}
-           ({{ information.ayah.ayah_id }})
+           {{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})
           </h3>
           <div v-for="(ayah, index) in filteredAyahs" :key="index">
            <p>{{ ayah.ayah_text }}</p>
-
           </div>
           <hr />
           <!-- main stack below -->
           <div class="btn">
-
            <h4 ref="heading" class="container text-left" style="line-height: 1.6em">
-
             <h3 name="text">
-             {{ information.translation }}"
+             {{ information.translation }}
             </h3>
            </h4>
           </div>
          </div>
         </div>
+
        </div>
       </div>
 
@@ -271,10 +265,10 @@
         <div class="col-md-1">
          <div class="list-group styling">
           <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Play audio"><i class="bi-play-circle-fill test" style="font-size: 1.2rem"></i></a>
-          <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi-bug-fill test" style="font-size: 1.2rem"></i></a>
+          <a href="#" class="list-group-item list-group-item-action dropdown-toggle dropend" data-bs-toggle="dropdown" aria-expanded="false" data-bs-placement="top" title="Share verse"><i class="bi bi-share-fill test" style="font-size: 1.2rem"></i></a>
           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText1"><i class="bi bi-collection-fill test" style="font-size: 1.2rem"></i></a>
           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot1"><i class="bi bi-camera-fill test" style="font-size: 1.2rem"></i></a>
-          <a href="#" class="list-group-item list-group-item-action dropdown-toggle dropend" data-bs-toggle="dropdown" aria-expanded="false" data-bs-placement="top" title="Share verse"><i class="bi bi-share-fill test" style="font-size: 1.2rem"></i></a>
+          <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi-bug-fill test" style="font-size: 1.2rem"></i></a>
 
           <ul class="dropdown-menu">
            <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with whatsapp" @click="shareTextViaWhatsApp1"><i class="bi bi-whatsapp test" style="font-size: 1.2rem">Whatsapp</i></a>
@@ -325,10 +319,10 @@
         <div class="col-md-1">
          <div class="list-group styling">
           <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Play audio"><i class="bi-play-circle-fill test" style="font-size: 1.2rem"></i></a>
-          <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi-bug-fill test" style="font-size: 1.2rem"></i></a>
+          <a href="#" class="list-group-item list-group-item-action dropdown-toggle dropend" data-bs-toggle="dropdown" aria-expanded="false" data-bs-placement="top" title="Share verse"><i class="bi bi-share-fill test" style="font-size: 1.2rem"></i></a>
           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText2"><i class="bi bi-collection-fill test" style="font-size: 1.2rem"></i></a>
           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot2"><i class="bi bi-camera-fill test" style="font-size: 1.2rem"></i></a>
-          <a href="#" class="list-group-item list-group-item-action dropdown-toggle dropend" data-bs-toggle="dropdown" aria-expanded="false" data-bs-placement="top" title="Share verse"><i class="bi bi-share-fill test" style="font-size: 1.2rem"></i></a>
+          <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi-bug-fill test" style="font-size: 1.2rem"></i></a>
 
           <ul class="dropdown-menu">
            <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with whatsapp" @click="shareTextViaWhatsApp2"><i class="bi bi-whatsapp test" style="font-size: 1.2rem">Whatsapp</i></a>
@@ -375,7 +369,6 @@
 
   <!-- right side chapter list -->
   <div class="col-md-4 sticky-top container">
-
    <form class="mb-2 right-side-form">
     <select class="form-control" v-model="surah" @change="getAyahs()">
      <option value="0">
@@ -386,7 +379,6 @@
      </option>
     </select>
    </form>
-
    <!-- list search for surat -->
    <div class="tab-content" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" v-if="ayah == null">
@@ -394,9 +386,7 @@
       <div class="custom-scrollbar">
        <ul class="col-md-4 list-group container-fluid root" v-for="(ayah, index) in ayahs" :key="index" @click="getTafseers(ayah.id, index)" :class="{selected: selectedIndexAyah === index,}">
         <li class="list-group-item container-fluid" id="toggle">
-         <h5 style="display: flex">
-          Verse: {{ ayah.ayah_id }}
-         </h5>
+         <h5 style="display: flex"> Verse: {{ ayah.ayah_id }} </h5>
          <h5>{{ ayah.ayah_text }}</h5>
         </li>
        </ul>
@@ -404,7 +394,6 @@
      </div>
     </div>
    </div>
-
   </div>
  </div>
 </div>
@@ -421,6 +410,7 @@ export default {
 
  data() {
   return {
+   selectedAyah: null,
    downloadUrl: null,
    ayahs: [], // Your list of ayahs
    dropdownHidden: true,
@@ -443,6 +433,7 @@ export default {
    name_en: null,
    id: null,
    surah: 0,
+   isPlaying: false,
 
    form: new Form({
     id: "",
@@ -461,8 +452,105 @@ export default {
    return this.ayahs.filter(ayah => ayah.surah_id === this.surah);
   }
  },
+ async getAyahs() {
+  try {
+   const response = await axios.get(`http://localhost:8000/api/ayahs?surah=${this.surah}`);
+   this.ayahs = response.data;
+  } catch (error) {
+   console.error('Error fetching ayahs:', error);
+  }
+ },
  methods: {
+  goToPreviousAyah() {
+    if (this.selectedIndexAyah > 0) {
+        const previousIndex = this.selectedIndexAyah - 1;
+        this.getTafseers(this.ayahs[previousIndex].id, previousIndex);
+    }
+  },
 
+   goToNextAyah() {
+    // Check if selectedIndexAyah is within the range of ayahs
+    if (this.selectedIndexAyah < this.ayahs.length - 1) {
+      // Increment the index to move to the next ayah
+      this.selectedIndexAyah++;
+      // Fetch tafseers for the next ayah
+      this.getTafseers(this.ayahs[this.selectedIndexAyah].id, this.selectedIndexAyah);
+    } else {
+      // You can handle what happens when there are no more ayahs to show, for example, looping back to the first ayah
+      // Here, I'm resetting the index to 0 to loop back to the first ayah
+      this.selectedIndexAyah = 0;
+      // Fetch tafseers for the first ayah
+      this.getTafseers(this.ayahs[this.selectedIndexAyah].id, this.selectedIndexAyah);
+    }
+  },
+  goToPreviousAyah() {
+    if (this.selectedIndexAyah > 0) {
+      this.selectedIndexAyah--;
+      this.getTafseers(this.ayahs[this.selectedIndexAyah].id, this.selectedIndexAyah);
+    }
+  },
+  // Modify the existing getAyahs method to update selectedIndexAyah properly
+  getAyahs: function() {
+    this.dropdownHidden = false;
+    axios
+      .get("/get_ayahs", {
+        params: {
+          surah_id: this.surah,
+        },
+      })
+      .then(
+        function(response) {
+          this.ayahs = response.data;
+          // Reset selectedIndexAyah if it exceeds the ayahs length
+          if (this.selectedIndexAyah >= this.ayahs.length) {
+            this.selectedIndexAyah = 0;
+          }
+        }.bind(this)
+      );
+  },
+   goToNextSurah() {
+    // Check if the current selected surah is not the last one
+    if (this.surah < this.surahs.length) {
+      // Increment the surah index to move to the next surah
+      this.surah++;
+      // Fetch ayahs for the next surah
+      this.getAyahs(this.surah);
+    } else {
+      // You can handle what happens when there are no more surahs to show, for example, looping back to the first surah
+      // Here, I'm resetting the surah index to 0 to loop back to the first surah
+      this.surah = 0;
+      // Fetch ayahs for the first surah
+      this.getAyahs(this.surah);
+    }
+  },
+  getSurahs() {
+    axios
+      .get("/get_surahs")
+      .then(response => {
+        this.surahs = response.data;
+      })
+      .catch(error => {
+        console.error('Error fetching surahs:', error);
+      });
+  },
+  goToPreviousSurah() {
+    // Check if the current selected surah is not the first one
+    if (this.surah > 1) {
+      // Decrement the surah index to move to the previous surah
+      this.surah--;
+      // Fetch ayahs for the previous surah
+      this.getAyahs(this.surah);
+    } else {
+      // Handle what happens when the first surah is reached
+      // Here, you may choose to keep the index as it is or loop back to the last surah
+      // For example, keeping the index as it is:
+      // this.getAyahs(this.surah);
+      
+      // Or looping back to the last surah:
+      this.surah = this.surahs.length;
+      this.getAyahs(this.surah);
+    }
+  },
   shareHeadingOnTwitter() {
    try {
     const headingText = this.$refs.targetElement.textContent.trim();
@@ -527,26 +615,24 @@ export default {
 
   captureScreenshot() {
    const targetElement = this.$refs.targetElement;
+
    // Show the button initially
    this.showScreenshotButton = true;
 
+   // Capture screenshot for targetElement after 5 seconds
    setTimeout(() => {
-    // Capture screenshot for targetElement
     html2canvas(targetElement).then(canvas => {
      const dataUrl = canvas.toDataURL('image/png');
      this.downloadUrl = dataUrl;
 
-     // Extract text content for targetElement
-     const textContent = targetElement.innerText;
-     console.log("Text content for targetElement:", textContent);
-
-     // Hide the button after 5 seconds
+     // Hide the button after another 5 seconds
      setTimeout(() => {
-      this.showScreenshotButton = false; // Hide the button
+      this.showScreenshotButton = false;
      }, 5000); // 5000 milliseconds = 5 seconds
     });
    }, 5000); // 5000 milliseconds = 5 seconds
   },
+
   captureScreenshot1() {
    const targetElement1 = this.$refs.targetElement1;
    setTimeout(() => {
@@ -586,30 +672,36 @@ export default {
      console.error('Error fetching ayahs:', error);
     });
   },
+  playAudio() {
+   this.$refs.audioPlayer.play();
+   this.isPlaying = true;
+  },
+  pauseAudio() {
+   this.$refs.audioPlayer.pause();
+   this.isPlaying = false;
+  },
+  async getAyahs() {
+    try {
+     const response = await axios.get(`http://localhost:8000/api/ayahs?surah=${this.surah}`);
+     this.ayahs = response.data;
+     console.log('Ayahs:', this.ayahs); // Check the fetched ayahs data
+     // Ensure that the selectedAyah object is populated with valid data
+     if (this.ayahs.length > 0) {
+      this.selectedAyah = this.ayahs[0]; // Assuming you want to select the first ayah by default
+      console.log('Selected Ayah:', this.selectedAyah); // Check the selected ayah data
+      // Assuming you have an <audio> element with id="ayahAudio", update its source with the selected ayah's audio_link
+      document.getElementById('ayahAudio').src = this.selectedAyah.audio_link;
+     }
+    } catch (error) {
+     console.error('Error fetching ayahs:', error);
+    }
+   }
+
+   ,
   selectSurah(surahId) {
    this.surah = surahId;
-   this.getAyahs(surahId); // Call the getAyahs method with the selected Surah ID
+   this.getAyahs(); // Call the getAyahs method with the selected Surah ID
    // You can perform further actions, such as fetching data related to the selected Surah
-  },
-
-  async getAyahs() {
-   try {
-    // Make an HTTP request to fetch ayahs based on selected surah
-    const response = await axios.get(`http://localhost:8000/api/ayahs?surah=${this.surah}`);
-    // Assuming the response data contains ayahs
-    this.ayahs = response.data;
-   } catch (error) {
-    console.error('Error fetching ayahs:', error);
-   }
-  },
-
-  playAudio(audioSrc) {
-   // Create an audio element dynamically
-   const audio = new Audio(audioSrc);
-   // Play the audio
-   audio.play()
-    .then(() => console.log('Audio is playing'))
-    .catch(error => console.error('Error playing audio:', error));
   },
 
   createCorrection() {
