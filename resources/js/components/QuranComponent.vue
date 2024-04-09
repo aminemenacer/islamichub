@@ -189,7 +189,7 @@
       </div>
 
       <!-- translation section -->
-      <div class="tab-pane active" id="home" role="tabpanel" v-if="information != null" @mousemove="resetTimer" @keydown="resetTimer">
+      <div class="tab-pane active" id="home" role="tabpanel" v-if="information != null" >
        <div class="row">
         <!-- left side stack of icon features -->
         <div class="col-md-1">
@@ -224,7 +224,6 @@
           <h5 class="col-md-3 ">{{ information.ayah.surah.name_ar }} <img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" /></h5>
          </ul>
          <hr style="border: 1px dotted grey">
-         <a :href="downloadUrl" class="button-33 mb-2 mt-2" download="screenshot.png" v-if="downloadUrl" @click="resetTimer()">Download Screenshot</a>
 
          <!-- Display audio for the selected ayah -->
          <div class="row">
@@ -294,7 +293,6 @@
          </ul>
 
          <hr style="border: 1px dotted grey">
-         <a :href="downloadUrl" class="button-33 mb-2 mt-2" download="screenshot.png" v-if="downloadUrl">Download Screenshot</a>
 
          <!-- Display audio for the selected ayah -->
          <div class="row">
@@ -356,7 +354,6 @@
           <h5 class="col-md-3 ">{{information.ayah.surah.name_ar}} <img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" /></h5>
          </ul>
          <hr style="border: 1px dotted grey">
-         <a :href="downloadUrl" class="button-33 mb-2 mt-2" download="screenshot.png" v-if="downloadUrl">Download Screenshot</a>
 
          <!-- Display audio for the selected ayah -->
          <div class="row">
@@ -436,13 +433,13 @@ export default {
  mounted() {
   this.getSurahs();
   this.fetchAyahs();
-  
+
  },
 
  data() {
   return {
    timer: null,
-         showScreenshotButton: false,
+   showScreenshotButton: false,
    selectedIndexAyah: -1,
    selectedAyah: null,
    downloadUrl: null,
@@ -495,12 +492,7 @@ export default {
   }
  },
  methods: {
-resetTimer() {
-      clearTimeout(this.timer); // Clear previous timer
-      this.timer = setTimeout(() => {
-        this.showScreenshotButton = false;
-      }, 2000); // Hide button after 2 seconds of inactivity
-    },
+  
   goToNextAyah() {
    if (this.selectedIndexAyah < this.ayahs.length - 1) {
     this.selectedIndexAyah++;
@@ -639,58 +631,66 @@ resetTimer() {
    window.open(url, '_blank');
   },
 
-captureScreenshot() {
-  const targetElement = this.$refs.targetElement;
+  captureScreenshot() {
+    const targetElement = this.$refs.targetElement;
 
-  // Show the button initially
-  this.showScreenshotButton = true;
+    // Capture screenshot for targetElement after 5 seconds
+    setTimeout(() => {
+      html2canvas(targetElement).then(canvas => {
+        const dataUrl = canvas.toDataURL('image/png');
+        this.downloadUrl = dataUrl;
 
-  // Capture screenshot for targetElement after 5 seconds
-  setTimeout(() => {
-    html2canvas(targetElement).then(canvas => {
-      const dataUrl = canvas.toDataURL('image/png');
-      this.downloadUrl = dataUrl;
-
-      // Hide the button after 2 seconds
-      setTimeout(() => {
-        this.showScreenshotButton = false;
-      }, 2000); // 2000 milliseconds = 2 seconds
-    });
-  }, 5000); // 5000 milliseconds = 5 seconds
-},
-
-
-
+        // Simulate click on download link after 2 seconds
+        setTimeout(() => {
+          const downloadLink = document.createElement('a');
+          downloadLink.href = dataUrl;
+          downloadLink.download = 'screenshot.png';
+          downloadLink.click();
+        }, 10); // 2000 milliseconds = 2 seconds
+      });
+    }, 10); // 5000 milliseconds = 5 seconds
+  },
 
   captureScreenshot1() {
-   const targetElement1 = this.$refs.targetElement1;
-   setTimeout(() => {
-    // Capture screenshot for targetElement
-    html2canvas(targetElement1).then(canvas => {
-     const dataUrl = canvas.toDataURL('image/png');
-     this.downloadUrl = dataUrl;
+    const targetElement1 = this.$refs.targetElement1;
 
-     // Extract text content for targetElement
-     const textContent = targetElement1.innerText;
-     console.log("Text content for targetElement:", textContent);
-    });
-   }, 5000); // 5000 milliseconds = 5 seconds
-  },
-  captureScreenshot2() {
-   const targetElement2 = this.$refs.targetElement2;
-   setTimeout(() => {
-    // Capture screenshot for targetElement
-    html2canvas(targetElement2).then(canvas => {
-     const dataUrl = canvas.toDataURL('image/png');
-     this.downloadUrl = dataUrl;
+    // Capture screenshot for targetElement after 5 seconds
+    setTimeout(() => {
+      html2canvas(targetElement1).then(canvas => {
+        const dataUrl = canvas.toDataURL('image/png');
+        this.downloadUrl = dataUrl;
 
-     // Extract text content for targetElement
-     const textContent = targetElement2.innerText;
-     console.log("Text content for targetElement:", textContent);
-    });
-   }, 5000); // 5000 milliseconds = 5 seconds
+        // Simulate click on download link after 2 seconds
+        setTimeout(() => {
+          const downloadLink = document.createElement('a');
+          downloadLink.href = dataUrl;
+          downloadLink.download = 'screenshot.png';
+          downloadLink.click();
+        }, 10); // 2000 milliseconds = 2 seconds
+      });
+    }, 10); // 5000 milliseconds = 5 seconds
   },
-  // 5000 milliseconds = 5 seconds,
+
+    captureScreenshot2() {
+      const targetElement2 = this.$refs.targetElement2;
+
+      // Capture screenshot for targetElement after 5 seconds
+      setTimeout(() => {
+        html2canvas(targetElement2).then(canvas => {
+          const dataUrl = canvas.toDataURL('image/png');
+          this.downloadUrl = dataUrl;
+
+          // Simulate click on download link after 2 seconds
+          setTimeout(() => {
+            const downloadLink = document.createElement('a');
+            downloadLink.href = dataUrl;
+            downloadLink.download = 'screenshot.png';
+            downloadLink.click();
+          }, 10); // 2000 milliseconds = 2 seconds
+        });
+      }, 10); // 5000 milliseconds = 5 seconds
+    },
+
   fetchAyahs() {
    fetch('/api/ayahs')
     .then(response => response.json())
