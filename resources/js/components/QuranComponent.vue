@@ -89,7 +89,7 @@
  <div class="row container-fluid">
   <div class="col-md-8">
    <!-- Nav tabs -->
-   <div class="card" style="padding; display:flex">
+   <div class="card" style="padding; display:flex; max-height">
     <!-- title of featured reading -->
     <h5 class="container font-weight-bold pl-3 pt-3" style="font-family: inter">
      Featured Reading:
@@ -184,11 +184,12 @@
           The Holy Quran is the central religious text of Islam, believed by Muslims to be a revelation from God. It is written in Arabic and is considered the literal word of God as conveyed to Prophet Muhammad (peace be upon him) through the Angel Gabriel over a period of approximately 23 years. The Quran is divided into chapters called surahs, which vary in length, and contains guidance on matters of faith, morality, law, and spirituality.
          </h5>
         </div>
+
        </div>
       </div>
 
       <!-- translation section -->
-      <div class="tab-pane active" id="home" role="tabpanel" v-if="information != null">
+      <div class="tab-pane active" id="home" role="tabpanel" v-if="information != null" @mousemove="resetTimer" @keydown="resetTimer">
        <div class="row">
         <!-- left side stack of icon features -->
         <div class="col-md-1">
@@ -223,7 +224,7 @@
           <h5 class="col-md-3 ">{{ information.ayah.surah.name_ar }} <img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" /></h5>
          </ul>
          <hr style="border: 1px dotted grey">
-         <a :href="downloadUrl" class="button-33 mb-2 mt-2" download="screenshot.png" v-if="downloadUrl">Download Screenshot</a>
+         <a :href="downloadUrl" class="button-33 mb-2 mt-2" download="screenshot.png" v-if="downloadUrl" @click="resetTimer()">Download Screenshot</a>
 
          <!-- Display audio for the selected ayah -->
          <div class="row">
@@ -412,7 +413,7 @@
         <button class="btn button-33" style="width:100%" @click="goToNextAyah()">Next Ayah</button>
        </div>
       </div>
-      <div class="custom-scrollbar" style="overflow-y:auto; max-height:600px">
+      <div class="custom-scrollbar" style="overflow-y:auto; max-height:700px">
        <ul class="col-md-4 list-group container-fluid root" v-for="(ayah, index) in ayahs" :key="index" @click="getTafseers(ayah.id, index)" :class="{selected: selectedIndexAyah === index,}">
         <li class="list-group-item container-fluid" id="toggle" ref="selectedAyah">
          <h5 style="display: flex"> Verse: {{ ayah.ayah_id }} </h5>
@@ -435,10 +436,13 @@ export default {
  mounted() {
   this.getSurahs();
   this.fetchAyahs();
+  
  },
 
  data() {
   return {
+   timer: null,
+         showScreenshotButton: false,
    selectedIndexAyah: -1,
    selectedAyah: null,
    downloadUrl: null,
@@ -491,7 +495,12 @@ export default {
   }
  },
  methods: {
-
+resetTimer() {
+      clearTimeout(this.timer); // Clear previous timer
+      this.timer = setTimeout(() => {
+        this.showScreenshotButton = false;
+      }, 2000); // Hide button after 2 seconds of inactivity
+    },
   goToNextAyah() {
    if (this.selectedIndexAyah < this.ayahs.length - 1) {
     this.selectedIndexAyah++;
@@ -630,25 +639,28 @@ export default {
    window.open(url, '_blank');
   },
 
-  captureScreenshot() {
-   const targetElement = this.$refs.targetElement;
+captureScreenshot() {
+  const targetElement = this.$refs.targetElement;
 
-   // Show the button initially
-   this.showScreenshotButton = true;
+  // Show the button initially
+  this.showScreenshotButton = true;
 
-   // Capture screenshot for targetElement after 5 seconds
-   setTimeout(() => {
+  // Capture screenshot for targetElement after 5 seconds
+  setTimeout(() => {
     html2canvas(targetElement).then(canvas => {
-     const dataUrl = canvas.toDataURL('image/png');
-     this.downloadUrl = dataUrl;
+      const dataUrl = canvas.toDataURL('image/png');
+      this.downloadUrl = dataUrl;
 
-     // Hide the button after another 5 seconds
-     setTimeout(() => {
-      this.showScreenshotButton = false;
-     }, 5000); // 5000 milliseconds = 5 seconds
+      // Hide the button after 2 seconds
+      setTimeout(() => {
+        this.showScreenshotButton = false;
+      }, 2000); // 2000 milliseconds = 2 seconds
     });
-   }, 5000); // 5000 milliseconds = 5 seconds
-  },
+  }, 5000); // 5000 milliseconds = 5 seconds
+},
+
+
+
 
   captureScreenshot1() {
    const targetElement1 = this.$refs.targetElement1;

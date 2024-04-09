@@ -3,6 +3,6 @@
 <div id="app">
     <about-component></about-component>
 <div>    
-@include('layouts.footer')
+{{-- @include('layouts.footer') --}}
 
 @endsection
