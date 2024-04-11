@@ -189,7 +189,7 @@
       </div>
 
       <!-- translation section -->
-      <div class="tab-pane active" id="home" role="tabpanel" v-if="information != null" >
+      <div class="tab-pane active" id="home" role="tabpanel" v-if="information != null">
        <div class="row">
         <!-- left side stack of icon features -->
         <div class="col-md-1">
@@ -224,25 +224,26 @@
           <h5 class="col-md-3 ">{{ information.ayah.surah.name_ar }} <img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" /></h5>
          </ul>
          <hr style="border: 1px dotted grey">
-
-         <!-- Display audio for the selected ayah -->
+        
+         <div class="btn">
+          <!-- Display audio for the selected ayah 
          <div class="row">
           <div class="col-md-4"> <button class="btn button-33" @click="goToPreviousSurah">Previous Surah</button>
+          </div>-->
+          <div class="col-md-12"> <audio ref="audioPlayer" :src="selectedAyah ? selectedAyah.audio_link : ''" controls></audio>
           </div>
-          <div class="col-md-4"> <audio ref="audioPlayer" :src="selectedAyah ? selectedAyah.audio_link : ''" controls></audio>
-          </div>
+          <!--
           <div class="col-md-4"><button class="btn button-33" @click="goToNextSurah()">Next Surah</button></div>
          </div>
-
+         -->
+          <hr />
+          <!-- main stack top -->
          <div class="btn">
-          <div class="span-main text:left" style="font-style: bolder;color: black;"></div>
           <h3 class="container text-right" style="line-height: 2em">
            {{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})
           </h3>
-          <div v-for="(ayah, index) in filteredAyahs" :key="index">
-           <p>{{ ayah.ayah_text }}</p>
-          </div>
-          <hr />
+         </div>
+         <hr />
           <!-- main stack below -->
           <div class="btn">
            <h4 ref="heading" class="container text-left" style="line-height: 1.6em">
@@ -294,14 +295,16 @@
 
          <hr style="border: 1px dotted grey">
 
-         <!-- Display audio for the selected ayah -->
+          <!-- Display audio for the selected ayah 
          <div class="row">
           <div class="col-md-4"> <button class="btn button-33" @click="goToPreviousSurah">Previous Surah</button>
+          </div>-->
+          <div class="col-md-12"> <audio ref="audioPlayer" :src="selectedAyah ? selectedAyah.audio_link : ''" controls></audio>
           </div>
-          <div class="col-md-4"> <audio ref="audioPlayer" :src="selectedAyah ? selectedAyah.audio_link : ''" controls></audio>
-          </div>
+          <!--
           <div class="col-md-4"><button class="btn button-33" @click="goToNextSurah()">Next Surah</button></div>
          </div>
+         -->
 
          <!-- main stack top -->
          <div class="btn">
@@ -355,14 +358,17 @@
          </ul>
          <hr style="border: 1px dotted grey">
 
-         <!-- Display audio for the selected ayah -->
+         <!-- Display audio for the selected ayah 
          <div class="row">
           <div class="col-md-4"> <button class="btn button-33" @click="goToPreviousSurah">Previous Surah</button>
+          </div>-->
+          <div class="col-md-12"> <audio ref="audioPlayer" :src="selectedAyah ? selectedAyah.audio_link : ''" controls></audio>
           </div>
-          <div class="col-md-4"> <audio ref="audioPlayer" :src="selectedAyah ? selectedAyah.audio_link : ''" controls></audio>
-          </div>
+          <!--
           <div class="col-md-4"><button class="btn button-33" @click="goToNextSurah()">Next Surah</button></div>
          </div>
+         -->
+         
 
          <!-- main stack top -->
          <div class="btn">
@@ -401,7 +407,14 @@
    <div class="tab-content" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" v-if="ayah == null">
      <div class="row container-fluid">
-      <!-- controls -->
+      
+      <!-- controls 
+      <div class="row">
+       <div class="col-md-4"> <button class="btn button-33" @click="goToPreviousSurah">Previous Surah</button>
+       </div>
+       </div>
+       <div class="col-md-4"><button class="btn button-33" @click="goToNextSurah()">Next Surah</button></div>
+      </div>
       <div class="row mb-3">
        <div class="col-md-6">
         <button class="btn button-33" style="width:100%" @click="goToPreviousAyah()">Previous Ayah</button>
@@ -410,6 +423,8 @@
         <button class="btn button-33" style="width:100%" @click="goToNextAyah()">Next Ayah</button>
        </div>
       </div>
+      -->
+
       <div class="custom-scrollbar" style="overflow-y:auto; max-height:700px">
        <ul class="col-md-4 list-group container-fluid root" v-for="(ayah, index) in ayahs" :key="index" @click="getTafseers(ayah.id, index)" :class="{selected: selectedIndexAyah === index,}">
         <li class="list-group-item container-fluid" id="toggle" ref="selectedAyah">
@@ -492,7 +507,7 @@ export default {
   }
  },
  methods: {
-  
+
   goToNextAyah() {
    if (this.selectedIndexAyah < this.ayahs.length - 1) {
     this.selectedIndexAyah++;
@@ -632,64 +647,64 @@ export default {
   },
 
   captureScreenshot() {
-    const targetElement = this.$refs.targetElement;
+   const targetElement = this.$refs.targetElement;
 
-    // Capture screenshot for targetElement after 5 seconds
-    setTimeout(() => {
-      html2canvas(targetElement).then(canvas => {
-        const dataUrl = canvas.toDataURL('image/png');
-        this.downloadUrl = dataUrl;
+   // Capture screenshot for targetElement after 5 seconds
+   setTimeout(() => {
+    html2canvas(targetElement).then(canvas => {
+     const dataUrl = canvas.toDataURL('image/png');
+     this.downloadUrl = dataUrl;
 
-        // Simulate click on download link after 2 seconds
-        setTimeout(() => {
-          const downloadLink = document.createElement('a');
-          downloadLink.href = dataUrl;
-          downloadLink.download = 'screenshot.png';
-          downloadLink.click();
-        }, 10); // 2000 milliseconds = 2 seconds
-      });
-    }, 10); // 5000 milliseconds = 5 seconds
+     // Simulate click on download link after 2 seconds
+     setTimeout(() => {
+      const downloadLink = document.createElement('a');
+      downloadLink.href = dataUrl;
+      downloadLink.download = 'screenshot.png';
+      downloadLink.click();
+     }, 10); // 2000 milliseconds = 2 seconds
+    });
+   }, 10); // 5000 milliseconds = 5 seconds
   },
 
   captureScreenshot1() {
-    const targetElement1 = this.$refs.targetElement1;
+   const targetElement1 = this.$refs.targetElement1;
 
-    // Capture screenshot for targetElement after 5 seconds
-    setTimeout(() => {
-      html2canvas(targetElement1).then(canvas => {
-        const dataUrl = canvas.toDataURL('image/png');
-        this.downloadUrl = dataUrl;
+   // Capture screenshot for targetElement after 5 seconds
+   setTimeout(() => {
+    html2canvas(targetElement1).then(canvas => {
+     const dataUrl = canvas.toDataURL('image/png');
+     this.downloadUrl = dataUrl;
 
-        // Simulate click on download link after 2 seconds
-        setTimeout(() => {
-          const downloadLink = document.createElement('a');
-          downloadLink.href = dataUrl;
-          downloadLink.download = 'screenshot.png';
-          downloadLink.click();
-        }, 10); // 2000 milliseconds = 2 seconds
-      });
-    }, 10); // 5000 milliseconds = 5 seconds
+     // Simulate click on download link after 2 seconds
+     setTimeout(() => {
+      const downloadLink = document.createElement('a');
+      downloadLink.href = dataUrl;
+      downloadLink.download = 'screenshot.png';
+      downloadLink.click();
+     }, 10); // 2000 milliseconds = 2 seconds
+    });
+   }, 10); // 5000 milliseconds = 5 seconds
   },
 
-    captureScreenshot2() {
-      const targetElement2 = this.$refs.targetElement2;
+  captureScreenshot2() {
+   const targetElement2 = this.$refs.targetElement2;
 
-      // Capture screenshot for targetElement after 5 seconds
-      setTimeout(() => {
-        html2canvas(targetElement2).then(canvas => {
-          const dataUrl = canvas.toDataURL('image/png');
-          this.downloadUrl = dataUrl;
+   // Capture screenshot for targetElement after 5 seconds
+   setTimeout(() => {
+    html2canvas(targetElement2).then(canvas => {
+     const dataUrl = canvas.toDataURL('image/png');
+     this.downloadUrl = dataUrl;
 
-          // Simulate click on download link after 2 seconds
-          setTimeout(() => {
-            const downloadLink = document.createElement('a');
-            downloadLink.href = dataUrl;
-            downloadLink.download = 'screenshot.png';
-            downloadLink.click();
-          }, 10); // 2000 milliseconds = 2 seconds
-        });
-      }, 10); // 5000 milliseconds = 5 seconds
-    },
+     // Simulate click on download link after 2 seconds
+     setTimeout(() => {
+      const downloadLink = document.createElement('a');
+      downloadLink.href = dataUrl;
+      downloadLink.download = 'screenshot.png';
+      downloadLink.click();
+     }, 10); // 2000 milliseconds = 2 seconds
+    });
+   }, 10); // 5000 milliseconds = 5 seconds
+  },
 
   fetchAyahs() {
    fetch('/api/ayahs')

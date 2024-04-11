@@ -15,7 +15,7 @@ class AyahSeeder extends Seeder
   
         $firstline = true;
 
-        while (($data = fgetcsv($csvFile, 2000, "|")) !== FALSE) {
+        while (($data = fgetcsv($csvFile, 2000, ",")) !== FALSE) {
             if (!$firstline) {
                 // Check if the $data array has the expected number of elements
                 if (count($data) === 4) {
