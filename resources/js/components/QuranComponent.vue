@@ -91,7 +91,7 @@
    <!-- Nav tabs -->
    <div class="card" style="padding; display:flex; max-height">
     <!-- title of featured reading -->
-    <h5 class="container font-weight-bold pl-3 pt-3" style="font-family: inter">
+    <h5 class="container font-weight-bold pl-3 pt-3" style="font-family: sans-serif">
      Featured Reading:
     </h5>
     <!-- list of featured reading -->
