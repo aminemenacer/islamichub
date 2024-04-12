@@ -118,7 +118,7 @@
                                 <div class="col-md-7">
                                     <ul class="ul-main">
                                         <img
-                                            src="/images/art1.png"
+                                            src="/images/art.png"
                                             style="width: 27px"
                                             class="mb-1 mr-2"
                                         />

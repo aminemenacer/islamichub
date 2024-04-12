@@ -89,7 +89,7 @@
        <div class="row container">
         <div class="col-md-11">
          <h3 style="display: flex;">
-          <img src="/images/art1.png" class="mb-1 pr-3 pb-4" />{{ hadith.chapter.chapter_text  }}
+          <img src="/images/.png" class="mb-1 pr-3 pb-4" />{{ hadith.chapter.chapter_text  }}
          </h3>
         </div>
         <div class="col-md-1" style="display: flex">

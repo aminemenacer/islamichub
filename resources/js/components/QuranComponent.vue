@@ -214,14 +214,14 @@
 
          <ul class="ul-main row mb-3">
           <h5 class="col-md-3 font-weight-bold">
-           <img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" />{{ information.ayah.surah.name_en }}
+           <img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />{{ information.ayah.surah.name_en }}
           </h5>
           <div class="col-md-6">
            <li class="li-main mr-3">
             <span class="span-main" style="font-style: bold">{{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }}</span>
            </li>
           </div>
-          <h5 class="col-md-3 ">{{ information.ayah.surah.name_ar }} <img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" /></h5>
+          <h5 class="col-md-3 ">{{ information.ayah.surah.name_ar }} <img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" /></h5>
          </ul>
          <hr style="border: 1px dotted grey">
         
@@ -283,14 +283,14 @@
         <div class="col-11" ref="targetElement1">
          <!-- surah/ayah detail -->
          <ul class="ul-main row mb-3">
-          <h5 class="col-md-3 font-weight-bold"><img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}}</h5>
+          <h5 class="col-md-3 font-weight-bold"><img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}}</h5>
           <div class="col-md-6">
            <li class="li-main mr-3">
             <span class="span-main" style="font-style: bold">{{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}
             </span>
            </li>
           </div>
-          <h5 class="col-md-3 ">{{information.ayah.surah.name_ar}} <img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" /></h5>
+          <h5 class="col-md-3 ">{{information.ayah.surah.name_ar}} <img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" /></h5>
          </ul>
 
          <hr style="border: 1px dotted grey">
@@ -347,14 +347,14 @@
         <div class="col-11" ref="targetElement2">
          <!-- surah/ayah detail -->
          <ul class="ul-main row ">
-          <h5 class="col-md-3 font-weight-bold"><img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}}</h5>
+          <h5 class="col-md-3 font-weight-bold"><img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}}</h5>
           <div class="col-md-6">
            <li class="li-main mr-3">
             <span class="span-main" style="font-style: bold">{{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}
             </span>
            </li>
           </div>
-          <h5 class="col-md-3 ">{{information.ayah.surah.name_ar}} <img src="/images/art1.png" style="width: 27px" class="mb-1 mr-2" /></h5>
+          <h5 class="col-md-3 ">{{information.ayah.surah.name_ar}} <img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" /></h5>
          </ul>
          <hr style="border: 1px dotted grey">
 
