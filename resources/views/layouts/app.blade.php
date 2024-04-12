@@ -37,7 +37,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm ">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="/images/logo11.png" width="275" height="54" class="d-inline-block align-top" alt="">
+                    <img src="/images/logo_main.png" width="275" height="54" class="d-inline-block align-top" alt="">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -141,13 +141,9 @@
 
 <style>
 .button-33 {
- background-color: #c2fbd7;
+ background-color: #00BFA6;
  border-radius: 10px;
- box-shadow: rgba(154, 167, 159, 0.2) 0 -25px 18px -14px inset,
-  rgba(44, 187, 99, 0.15) 0 1px 2px, rgba(44, 187, 99, 0.15) 0 2px 4px,
-  rgba(44, 187, 99, 0.15) 0 4px 8px, rgba(44, 187, 99, 0.15) 0 8px 16px,
-  rgba(44, 187, 99, 0.15) 0 16px 32px;
- color: green;
+ color: white;
  cursor: pointer;
  display: inline-block;
  font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto,sans-serif;
@@ -162,11 +158,4 @@
  touch-action: manipulation;
 }
 
-.button-33:hover {
- box-shadow: rgba(44, 187, 99, 0.35) 0 -25px 18px -14px inset,
-  rgba(44, 187, 99, 0.25) 0 1px 2px, rgba(44, 187, 99, 0.25) 0 2px 4px,
-  rgba(44, 187, 99, 0.25) 0 4px 8px, rgba(44, 187, 99, 0.25) 0 8px 16px,
-  rgba(44, 187, 99, 0.25) 0 16px 32px;
- transform: scale(1.05) rotate(-1deg);
-}
 </style>

@@ -4,46 +4,49 @@
   <div class="container">
    <div class="intro">
     <h1 class="text-center newsletter font-weight-bold" style="font-family:inter;">Get In Touch</h1>
-    <p style="font-family:inter; line-height:1.7em">"Get in Touch with Us! Have questions, suggestions, or just want to say hello? We'd love to hear from you! Feel free to reach out to us using the contact form below. Our team is here to assist you and will get back to you as soon as possible."</p>
-    <div> <img src="/images/message.png" style="width: 100%;" />
-   </div>
-   </div>
 
-   <form  @reset="reset" @submit.prevent="sendMessage()">
-
-    <div class="row mb-2">
-     <div class="col-md-6">
-      <input type="text" class="form-control " v-model="form.firstname" name="firstname" placeholder="Enter firstname">
-     </div>
-     <div class="col-md-6">
-      <input type="text" class="form-control" v-model="form.lastname" name="lastname" placeholder="Enter lastname">
-     </div>
+   </div>
+   <div class="row container-fluid">
+    <div class="col-md-6 mt-3">
+     <h5 style="font-family:inter; line-height:1.7em">"Get in Touch with Us! Have questions, suggestions, or just want to say hello? We'd love to hear from you! Feel free to reach out to us using the contact form below. Our team is here to assist you and will get back to you as soon as possible."</h5>
+     <form @reset="reset" @submit.prevent="sendMessage()">
+      <div class="row mt-3">
+       <div class="col-md-12 mb-3">
+        <input type="text" class="form-control " v-model="form.firstname" name="firstname" placeholder="Enter firstname">
+       </div>
+       <div class="col-md-12 mb-3">
+        <input type="text" class="form-control" v-model="form.lastname" name="lastname" placeholder="Enter lastname">
+       </div>
+      </div>
+      <div class="row">
+       <div class="col-md-12 mb-3">
+        <input type="email" class="form-control" v-model="form.email" name="email" placeholder="Enter email">
+       </div>
+       <div class="col-md-12 mb-3">
+        <input type="text" class="form-control" v-model="form.mobile" name="mobile" placeholder="Enter mobile">
+       </div>
+      </div>
+      <div class="row">
+       <div class="col-md-12 mb-3">
+        <input class="form-control" v-model="form.subject" type="text" name="subject" placeholder="Enter subject">
+       </div>
+       <div class="col-md-12 mb-3">
+        <textarea class="form-control" v-model="form.message" name="message" placeholder="Enter message" rows="5"></textarea>
+       </div>
+      </div>
+      <div class="row">
+       <div class="col-md-12">
+        <div class="form-group"><button class="btn text-left" style="background:#00BFA6;color:white" type="submit">Submit</button></div>
+       </div>
+      </div>
+     </form>
     </div>
-    <div class="row mb-2">
-     <div class="col-md-6">
-      <input type="email" class="form-control" v-model="form.email" name="email" placeholder="Enter email">
-     </div>
-     <div class="col-md-6">
-      <input type="text" class="form-control" v-model="form.mobile" name="mobile" placeholder="Enter mobile">
-     </div>
+    <div class="col-md-6">
+     <img src="/images/message.png" style="width: 100%;" />
     </div>
-    <div class="row mb-2">
-     <div class="col-md-6">
-      <input class="form-control" v-model="form.subject" type="text" name="subject" placeholder="Enter subject">
-     </div>
-     <div class="col-md-6">
-      <textarea class="form-control"  v-model="form.message" name="message" placeholder="Enter message" rows="5"></textarea>
-     </div>
-    </div>
-    <div class="row mb-2">
-     <div class="col-md-12">
-        <div class="form-group"><button class="btn btn-primary text-left" type="submit">Submit</button></div>
-     </div>
-     
-    </div>
-    
-   </form>
+   </div>
   </div>
+
  </div>
 </div>
 </template>
@@ -199,6 +202,6 @@ body {
 }
 
 .newsletter {
- color: green !important;
+ color: black !important;
 }
 </style>

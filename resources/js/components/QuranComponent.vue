@@ -91,7 +91,7 @@
    <!-- Nav tabs -->
    <div class="card" style="padding; display:flex; max-height">
     <!-- title of featured reading -->
-    <h5 class="container font-weight-bold pl-3 pt-3" style="font-family: sans-serif">
+    <h5 class="container pl-3 pt-3" style="font-family: sans-serif">
      Featured Reading:
     </h5>
     <!-- list of featured reading -->
@@ -120,28 +120,28 @@
      <a href="#">
       <div class="col container">
        <div class="flex justify-content-center">
-        <Button class="button-33" label="Al-Kafiroon 109 - الكافيرون ١٠٩" severity="success" raised outlined @click="selectSurah(109)" :class="{ active: surah === 109 }" />
+        <Button class="button-33" label="Al-Kafiroon 109 - الكافيرون ١٠٩" raised outlined @click="selectSurah(109)" :class="{ active: surah === 109 }" />
        </div>
       </div>
      </a>
      <a href="#">
       <div class="col container">
        <div class="flex justify-content-center">
-        <Button class="button-33" label="Al-Mulk 67 - الملك ٦٧" severity="success" raised outlined @click="selectSurah(67)" :class="{ active: surah === 67 }" />
+        <Button class="button-33" label="Al-Mulk 67 - الملك ٦٧"  raised outlined @click="selectSurah(67)" :class="{ active: surah === 67 }" />
        </div>
       </div>
      </a>
      <a href="#">
       <div class="col container">
        <div class="flex justify-content-center">
-        <Button class="button-33" label="Al-Rahman 55 - الرمان ٥٥" severity="success" raised outlined @click="selectSurah(55)" :class="{ active: surah === 55 }" />
+        <Button class="button-33" label="Al-Rahman 55 - الرمان ٥٥"  raised outlined @click="selectSurah(55)" :class="{ active: surah === 55 }" />
        </div>
       </div>
      </a>
      <a href="#">
       <div class="col container">
        <div class="flex justify-content-center">
-        <Button class="button-33" label="Al-Kahf 18 -	الكهف ١٨" severity="success" raised outlined @click="selectSurah(18)" :class="{ active: surah === 18 }" />
+        <Button class="button-33" label="Al-Kahf 18 -	الكهف ١٨"  raised outlined @click="selectSurah(18)" :class="{ active: surah === 18 }" />
        </div>
       </div>
      </a>
@@ -913,19 +913,13 @@ export default {
 </script>
 
 <style scoped>
-.list-group-item-action:hover {
- background-color: #c3e6cb;
+
+.styling{
+   border: 1px solid #00BFA6;
 }
 
-.styling {
- box-shadow: rgba(154, 167, 159, 0.2) 0 -25px 18px -14px inset,
-  rgba(44, 187, 99, 0.15) 0 1px 2px, rgba(44, 187, 99, 0.15) 0 2px 4px,
-  rgba(44, 187, 99, 0.15) 0 4px 8px, rgba(44, 187, 99, 0.15) 0 8px 16px,
-  rgba(44, 187, 99, 0.15) 0 16px 32px;
- transition: all 250ms;
- cursor: pointer;
- touch-action: manipulation;
- border: 1px solid lightgrey;
+.list-group-item-action:hover {
+  background-color: rgba(0, 191, 166, 0.452);
 }
 
 .list-group-item {
@@ -933,13 +927,9 @@ export default {
 }
 
 .button-33 {
- background-color: #c2fbd7;
+ background-color: #00BFA6;
  border-radius: 10px;
- box-shadow: rgba(154, 167, 159, 0.2) 0 -25px 18px -14px inset,
-  rgba(44, 187, 99, 0.15) 0 1px 2px, rgba(44, 187, 99, 0.15) 0 2px 4px,
-  rgba(44, 187, 99, 0.15) 0 4px 8px, rgba(44, 187, 99, 0.15) 0 8px 16px,
-  rgba(44, 187, 99, 0.15) 0 16px 32px;
- color: green;
+ color: white;
  cursor: pointer;
  display: inline-block;
  font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
@@ -969,14 +959,6 @@ export default {
  margin-right: 20px;
 }
 
-.button-33:hover {
- box-shadow: rgba(44, 187, 99, 0.35) 0 -25px 18px -14px inset,
-  rgba(44, 187, 99, 0.25) 0 1px 2px, rgba(44, 187, 99, 0.25) 0 2px 4px,
-  rgba(44, 187, 99, 0.25) 0 4px 8px, rgba(44, 187, 99, 0.25) 0 8px 16px,
-  rgba(44, 187, 99, 0.25) 0 16px 32px;
- transform: scale(1.05) rotate(-1deg);
-}
-
 .list-group-item {
  cursor: pointer;
  background: transparent;
@@ -989,13 +971,13 @@ export default {
 }
 
 .right-side-form {
- border: 4px solid #c3e6cb;
+ border: 1px solid #00BFA6;
  border-radius: 8px;
 }
 
 .card {
  display: flex;
- border: 5px solid #c3e6cb;
+ border: 1px solid #00BFA6;
  padding: 10px;
  border-radius: 10px;
 }
@@ -1005,7 +987,7 @@ export default {
 }
 
 .selected {
- background-color: #c3e6cb;
+ background-color: rgba(0, 191, 166, 0.452);
 }
 
 .horizontal-scroll-wrapper {
@@ -1020,18 +1002,15 @@ export default {
  height: 800px;
  width: 100%;
  border-radius: 6px;
- box-shadow: 0 4px 28px rgba(123, 151, 158, 0.25);
  border: 1px solid #d6dee1;
  padding: 1rem;
  border-radius: 6px;
  border: 1px solid #d6dee1;
  padding: 1rem;
  background-color: transparent;
- outline: 1px solid #c3e6cb;
  overflow: scroll;
- box-shadow: rgba(161, 159, 159, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
  background: transparent;
- border: 5px solid #c3e6cb;
+ border: 1px solid #00BFA6;
 }
 
 .custom-scrollbar-chapters {
@@ -1039,19 +1018,19 @@ export default {
  height: 600px;
  width: 100%;
  border-radius: 6px;
- box-shadow: 0 4px 28px rgba(123, 151, 158, 0.25);
  border: 1px solid #d6dee1;
  padding: 1rem;
  border-radius: 6px;
  border: 1px solid #d6dee1;
  padding: 1rem;
+ color:white;
  background-color: transparent;
- outline: 1px solid #c3e6cb;
+ outline: 1px solid #00BFA6;
  overflow: scroll;
 }
 
 .myButton {
- background-color: #c3e6cb;
+ background-color: #00BFA6;
  border-radius: 8px;
  display: inline-block;
  cursor: pointer;
@@ -1074,10 +1053,6 @@ p.no-after:after {
  content: none;
 }
 
-.btn:hover {
- background-color: #99e0ab81;
- opacity: 2;
-}
 
 .ul-main {
  list-style: none;
@@ -1095,7 +1070,7 @@ p.no-after:after {
 }
 
 .ayah_img:hover {
- background-color: #c3e6cb;
+ background-color: #00BFA6;
  border-radius: 10px;
  cursor: pointer;
 }
