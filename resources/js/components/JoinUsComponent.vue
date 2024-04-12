@@ -3,7 +3,7 @@
  <div class="container">
   <div class="intro">
    <h1 class="text-center newsletter font-weight-bold" style="font-family:inter;">Subscribe to our Mailing List</h1>
-   <div> <img src="/images/mail1.png" style="width: 100%;" />
+   <div> <img src="/images/mail2.png" style="width: 100%;" />
    </div>
 
    <p class="text-center" style="font-family:inter;line-height: 1.7em;">Stay up-to-date with the latest news and updates by joining our mailing list! Be the first to know about new releases, product updates, and important announcements straight to your inbox. Joining our mailing list is the easiest way to stay connected and informed about everything happening in our community. Don't miss out on the latest developments – sign up now!</p>
