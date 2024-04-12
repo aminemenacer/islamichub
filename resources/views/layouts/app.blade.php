@@ -70,8 +70,13 @@
                         </li>
 
                         <li class="nav-item mt-2">
-                            <h5><a style="font-family:inter" class="nav-link ml-4 pl-3 pr-5" style="color: black;"
+                            <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: black;"
                                     href="/updates">Updates</a></h5>
+                        </li>
+
+                        <li class="nav-item mt-2">
+                            <h5><a style="font-family:inter" class="nav-link ml-4 pl-3 pr-5" style="color: black;"
+                                    href="/join_us">Mailing List</a></h5>
                         </li>
 
                         <li class="nav-item mt-2 pr-2 mb-1">

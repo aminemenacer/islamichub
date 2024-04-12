@@ -1029,7 +1029,7 @@ export default {
  background-color: transparent;
  outline: 1px solid #c3e6cb;
  overflow: scroll;
- box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+ box-shadow: rgba(161, 159, 159, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
  background: transparent;
  border: 5px solid #c3e6cb;
 }

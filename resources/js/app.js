@@ -42,6 +42,7 @@ import QuranComponent from "./components/QuranComponent.vue";
 import AboutComponent from "./components/AboutComponent.vue";
 import BookmarkComponent from "./components/BookmarkComponent.vue";
 import UpdatesComponent from "./components/UpdatesComponent.vue";
+import JoinUsComponent from "./components/JoinUsComponent.vue";
 
 window.Vue = require("vue");
 
@@ -90,5 +91,6 @@ app.component("quran-component", QuranComponent);
 app.component("about-component", AboutComponent);
 app.component("bookmark-component", BookmarkComponent);
 app.component("updates-component", UpdatesComponent);
+app.component("join_us-component", JoinUsComponent);
 
 app.mount("#app");

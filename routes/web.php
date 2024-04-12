@@ -18,6 +18,7 @@ use App\Http\Controllers\QuranController;
 use App\Http\Controllers\SurahController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\JoinUsController;
 use App\Http\Controllers\UpdatesController;
 
 // Auth routes
@@ -25,7 +26,8 @@ Auth::routes();
 
 Route::get('/ayahs', [QuranController::class, 'index']);
 
-
+//join us
+Route::get('/join_us', [JoinUsController::class, 'index']);
 
 // google sign-in
 Route::get('auth/google', [LoginController::class, 'redirectToGoogle'])->name('google-auth');
@@ -77,12 +79,11 @@ Route::get('/get_informations', [SurahController::class, 'getInformations']);
 Route::get('/tafseer/{id}/fetch', [SurahController::class, 'getTafseers']);
 Route::post('/search', [SurahController::class, 'search'])->name('search');
 
-
-
 // mailing list
 Route::get('/mailing_list', [MailingListController::class, 'index'])->name('mailing_list');
 Route::get('api/fetch-mail', [MailingListController::class, 'getMail'])->name('mailing_list');
 Route::post('api/subscribe', [MailingListController::class, 'create']);
+Route::post('api/submit-mail', [MailingListController::class, 'submitMail']);
 
 // correction
 Route::post('api/submit-correction', [CorrectionController::class, 'submit']);

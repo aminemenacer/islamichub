@@ -34,4 +34,17 @@ class MailingListController extends Controller
         $mailinglist->email = $request->email;
         $mailinglist->save();
     }
+
+    public function submitMail(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:mailinglist,email',
+        ]);
+
+        $mailinglist = new MailingList();
+        $mailinglist->name = $request->name;
+        $mailinglist->email = $request->email;
+        $mailinglist->save();
+    }
 }
