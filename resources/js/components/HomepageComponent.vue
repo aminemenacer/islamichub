@@ -517,7 +517,7 @@ export default {
     display: inline-block;
     cursor: pointer;
     color: #000;
-    font-family: Arial;
+    font-family: inter;
     font-size: 18px;
     font-weight: bold;
     padding: 13px 32px;

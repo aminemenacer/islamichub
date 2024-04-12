@@ -62,7 +62,7 @@
   <div class="col-md-3"></div>
   <div class="col-md-6" style="display: flex; text-align: center">
    <div class="card-header text-center">
-    <h1 class="card-text" style="font-family:serif">
+    <h1 class="card-text" style="font-family:inter">
      Hadith Collection
     </h1>
 

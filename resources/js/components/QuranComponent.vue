@@ -8,7 +8,7 @@
      <div class="col-md-6" style="display: flex; text-align: center">
       <div class="card-header">
        <!-- quran title -->
-       <h1 class="card-text text-center mt-2 mb-2" style="font-family: serif">
+       <h1 class="card-text text-center mt-2 mb-2" style="font-family: inter">
         The Holy Quran
        </h1>
        <!-- quran description -->
@@ -91,7 +91,7 @@
    <!-- Nav tabs -->
    <div class="card" style="padding; display:flex; max-height">
     <!-- title of featured reading -->
-    <h5 class="container pl-3 pt-3" style="font-family: sans-serif">
+    <h5 class="container pl-3 pt-3" style="font-family: inter">
      Featured Reading:
     </h5>
     <!-- list of featured reading -->
@@ -932,7 +932,7 @@ export default {
  color: white;
  cursor: pointer;
  display: inline-block;
- font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
+ font-family: inter;
  padding: 7px 20px;
  text-align: center;
  text-decoration: none;
@@ -1035,7 +1035,7 @@ export default {
  display: inline-block;
  cursor: pointer;
  color: #000;
- font-family: Arial;
+ font-family: inter;
  font-size: 18px;
  padding: 13px 32px;
  text-decoration: none;
@@ -1088,7 +1088,7 @@ p.no-after:after {
 
 button,
 input {
- font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+ font-family: inter;
 }
 
 .nav-item .nav-link,

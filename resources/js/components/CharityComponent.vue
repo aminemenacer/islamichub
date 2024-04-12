@@ -4,9 +4,9 @@
  <div class="container py-3">
   <div class="row container">
    <div class="mr-2 ">
-    <h1 class="display-4 text-center" style="font-family:serif">Donations</h1>
-    <p class="lead text-muted mb-0" style="font-family:serif">"As-salaamu Alaikum, As we want to keep IslamicHub ad-free, we would appreciate a small, sizable donation to continue the development and maintenance of the website. You will find a form on the right side where you can submit a donation amount of your choosing. Jazakum Allahu Khairan."</p><br>
-    <p class="lead text-muted mb-0" style="font-family:serif">The call for donations in Islam is rooted in compassion and empathy for the less fortunate. It is a way for individuals to fulfill their duty towards their fellow human beings, fostering a sense of community and solidarity. </p>
+    <h1 class="display-4 text-center" style="font-family:inter">Donations</h1>
+    <p class="lead text-muted mb-0" style="font-family:inter">"As-salaamu Alaikum, As we want to keep IslamicHub ad-free, we would appreciate a small, sizable donation to continue the development and maintenance of the website. You will find a form on the right side where you can submit a donation amount of your choosing. Jazakum Allahu Khairan."</p><br>
+    <p class="lead text-muted mb-0" style="font-family:inter">The call for donations in Islam is rooted in compassion and empathy for the less fortunate. It is a way for individuals to fulfill their duty towards their fellow human beings, fostering a sense of community and solidarity. </p>
    </div>
   </div>
   <div class="row">
