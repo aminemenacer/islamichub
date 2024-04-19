@@ -2,11 +2,11 @@
 <div class="newsletter-subscribe container">
  <div class="container">
   <div class="intro">
-   <h1 class="text-center newsletter font-weight-bold" style="font-family:inter;">Subscribe to our Mailing List</h1>
+   <h1 class="text-center newsletter-title ">Subscribe to our Mailing List</h1>
    <div> <img src="/images/mail2.png" style="width: 100%;" />
-   </div>
+  </div>
 
-   <p class="text-center" style="font-family:inter;line-height: 1.7em;">Stay up-to-date with the latest news and updates by joining our mailing list! Be the first to know about new releases, product updates, and important announcements straight to your inbox. Joining our mailing list is the easiest way to stay connected and informed about everything happening in our community. Don't miss out on the latest developments – sign up now!</p>
+   <p class="text-center newsletter-subtitle" style="line-height: 1.7em;">Stay up-to-date with the latest news and updates by joining our mailing list! Be the first to know about new releases, product updates, and important announcements straight to your inbox. Joining our mailing list is the easiest way to stay connected and informed about everything happening in our community. Don't miss out on the latest developments – sign up now!</p>
   </div>
 
   <form class="form-inline" @reset="reset" @submit.prevent="submitMail()">
@@ -35,11 +35,11 @@ export default {
   submitMail() {
    Swal.fire({
     title: "Are you sure?",
-    text: "You want to join the mailing !",
+    text: "You want to join the mailing list !",
     showCancelButton: true,
     confirmButtonColor: "green",
     cancelButtonColor: "#d33",
-    confirmButtonText: "Submit mailing!",
+    confirmButtonText: "Submit",
    }).then((result) => {
     if (result.isConfirmed) {
      axios.post("/api/submit-mail", this.form)
@@ -75,16 +75,17 @@ export default {
 
 <style scoped>
 .newsletter-subscribe {
+font-family: inter;
  color: #313437;
  background-color: #ffffff;
  padding: 55px 74px;
  box-shadow: rgba(161, 159, 159, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-
 }
 
 .newsletter-subscribe p {
  color: #7d8285;
  line-height: 1.5;
+ font-family: inter;
 }
 
 .newsletter-subscribe h2 {

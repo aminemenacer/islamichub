@@ -27,63 +27,50 @@
   </div>
  </div>
 
- <!-- correction modal -->
- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- correction modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
-   <div class="modal-content form">
-    <div class="modal-header">
-     <h5 class="modal-title" id="exampleModalLabel">
-      <b>Report a Mistake</b>
-     </h5>
-    </div>
-    <div class="modal-body">
-     <form @submit.prevent="createCorrection()">
-      <div class="row container">
-       <div class="col">
-        <input v-model="form.name" type="text" class="form-control" name="name" placeholder="First name (Optional)" aria-label="First name" />
-       </div>
-       <div class="col">
-        <input v-model="form.email" type="text" class="form-control" name="email" placeholder="Email Address (Optional)" aria-label="Email Address" />
-       </div>
+    <div class="modal-content form">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          <b>Report a Mistake</b>
+        </h5>
       </div>
-      <div class="row mt-3 container">
-       <div class="col">
-        <input v-model="form.hadith_num" type="text" class="form-control" name="hadith_num" placeholder="Hadith number" aria-label="Hadith number" />
-       </div>
-
-       <div class="col">
-        <select class="form-control" name="mistake_type" v-model="form.mistake_type">
-         <option value="" disabled>
-          Select Type
-         </option>
-         <option value="Spelling mistakes">
-          Spelling mistakes
-         </option>
-         <option value="Translation error">
-          Translation error
-         </option>
-         <option value="Reference mismatch">
-          Reference mismatch
-         </option>
-        </select>
-       </div>
-      </div>
-      <div class="row container mt-3">
-       <textarea v-model="form.added_notes" class="form-control container mb-3" name="added_notes" placeholder="Explain to us exactly what the problem is" id="added_comments" rows="5"></textarea>
+      <div class="modal-body">
+        <form @submit.prevent="createCorrection" id="reportForm">
+          <div class="row container">
+            <div class="col">
+              <input v-model="form.name" type="text" class="form-control" name="name" placeholder="First name (Optional)" aria-label="First name" />
+            </div>
+            <div class="col">
+              <input v-model="form.email" type="text" class="form-control" name="email" placeholder="Email Address (Optional)" aria-label="Email Address" />
+            </div>
+          </div>
+          <div class="row mt-3 container">
+            <div class="col">
+              <input v-model="form.hadith_num" type="text" class="form-control" name="hadith_num" placeholder="Hadith number" aria-label="Hadith number" />
+            </div>
+            <div class="col">
+              <select class="form-control" name="mistake_type" v-model="form.mistake_type">
+                <option value="" disabled>Select Type</option>
+                <option value="Spelling mistakes">Spelling mistakes</option>
+                <option value="Translation error">Translation error</option>
+                <option value="Reference mismatch">Reference mismatch</option>
+              </select>
+            </div>
+          </div>
+          <div class="row container mt-3">
+            <textarea v-model="form.added_notes" class="form-control container mb-3" name="added_notes" placeholder="Explain to us exactly what the problem is" id="added_comments" rows="5"></textarea>
+          </div>
+        </form>
       </div>
       <div class="modal-footer">
-       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-        Close
-       </button>
-       <button type="submit" class="btn btn-success">
-        Save changes
-       </button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" form="reportForm" class="btn btn-success">Save changes</button>
       </div>
-     </form>
     </div>
-   </div>
   </div>
- </div>
+</div>
 
  <!-- accordion headers-->
  <div class="row container-fluid">
@@ -198,8 +185,9 @@
           <a href="#" class="list-group-item list-group-item-action dropdown-toggle dropend" data-bs-toggle="dropdown" aria-expanded="false" data-bs-placement="top" title="Share verse"><i class="bi bi-share-fill test" style="font-size: 1.2rem"></i></a>
           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText"><i class="bi bi-collection-fill test" style="font-size: 1.2rem"></i></a>
           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot"><i class="bi bi-camera-fill test" style="font-size: 1.2rem"></i></a>
-          <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi-bug-fill test" style="font-size: 1.2rem"></i></a>
-
+<a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  <i class="bi-bug-fill test" style="font-size: 1.2rem"></i>
+</a>
           <ul class="dropdown-menu">
            <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with whatsapp" @click="shareTextViaWhatsApp"><i class="bi bi-whatsapp test" style="font-size: 1.2rem">Whatsapp</i></a>
            <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with mail" @click="shareViaEmail($refs.targetElement.innerText)"><i class="bi bi-envelope-at-fill test" style="font-size: 1.2rem">Email</i></a>
@@ -254,8 +242,9 @@
           <a href="#" class="list-group-item list-group-item-action dropdown-toggle dropend" data-bs-toggle="dropdown" aria-expanded="false" data-bs-placement="top" title="Share verse"><i class="bi bi-share-fill test" style="font-size: 1.2rem"></i></a>
           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText1"><i class="bi bi-collection-fill test" style="font-size: 1.2rem"></i></a>
           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot1"><i class="bi bi-camera-fill test" style="font-size: 1.2rem"></i></a>
-          <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi-bug-fill test" style="font-size: 1.2rem"></i></a>
-
+<a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  <i class="bi-bug-fill test" style="font-size: 1.2rem"></i>
+</a>
           <ul class="dropdown-menu">
            <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with whatsapp" @click="shareTextViaWhatsApp1"><i class="bi bi-whatsapp test" style="font-size: 1.2rem">Whatsapp</i></a>
            <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with mail" @click="shareViaEmail1( $refs.targetElement1.innerText)"><i class="bi bi-envelope-at-fill test" style="font-size: 1.2rem">Email</i></a>
@@ -319,8 +308,9 @@
           <a href="#" class="list-group-item list-group-item-action dropdown-toggle dropend" data-bs-toggle="dropdown" aria-expanded="false" data-bs-placement="top" title="Share verse"><i class="bi bi-share-fill test" style="font-size: 1.2rem"></i></a>
           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText2"><i class="bi bi-collection-fill test" style="font-size: 1.2rem"></i></a>
           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot2"><i class="bi bi-camera-fill test" style="font-size: 1.2rem"></i></a>
-          <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi-bug-fill test" style="font-size: 1.2rem"></i></a>
-
+<a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  <i class="bi-bug-fill test" style="font-size: 1.2rem"></i>
+</a>
           <ul class="dropdown-menu">
            <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with whatsapp" @click="shareTextViaWhatsApp2"><i class="bi bi-whatsapp test" style="font-size: 1.2rem">Whatsapp</i></a>
            <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with mail" @click="shareViaEmail2($refs.targetElement2.innerText)"><i class="bi bi-envelope-at-fill test" style="font-size: 1.2rem">Email</i></a>
@@ -751,41 +741,53 @@ export default {
    this.getAyahs(); // Call the getAyahs method with the selected Surah ID
    // You can perform further actions, such as fetching data related to the selected Surah
   },
-
+// Function to close the modal
+    closeModal() {
+      $('#exampleModal').modal('hide');
+    },
   createCorrection() {
-   Swal.fire({
+  Swal.fire({
     title: "Are you sure?",
     text: "You want to create a new Correction !",
     showCancelButton: true,
     confirmButtonColor: "green",
     cancelButtonColor: "#d33",
     confirmButtonText: "Create correction!",
-   }).then((result) => {
+  }).then((result) => {
     if (result.isConfirmed) {
-     axios
-      .post("/api/submit-correction", this.form)
-      .then((res) => {
-       if (!res.data.success) {
-        Swal.fire({
-         position: "top-end",
-         icon: "success",
-         title: "Correction created successfully ",
-         showConfirmButton: false,
-         timer: 1500,
-        });
-        $("#exampleModal").modal("hide");
-       } else if (res.data.success) {
-        Swal.fire(
-         "Error!",
-         "Unable to create correction.",
-         "error"
-        );
-       }
-      })
-      .catch(function (err) {});
+      axios
+        .post("/api/submit-correction", this.form)
+        .then((res) => {
+          if (result.isConfirmed) {
+          axios
+            .post("/api/submit-correction", this.form)
+            .then((res) => {
+              if (!res.data.success) {
+                Swal.fire({
+                  position: "top-end",
+                  icon: "success",
+                  title: "Correction created successfully",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+                closeModal(); // Close the modal after successful submission
+              } else if (res.data.success) {
+                Swal.fire(
+                  "Error!",
+                  "Unable to create correction.",
+                  "error"
+                );
+              }
+            })
+            .catch(function(err) {
+              console.error(err);
+            });
+        }
+      });
     }
-   });
-  },
+  });
+},
+
 
   copyText() {
    var textToCopy = this.$refs.heading.innerText;
