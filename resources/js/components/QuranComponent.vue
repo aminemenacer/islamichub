@@ -27,50 +27,50 @@
   </div>
  </div>
 
-<!-- correction modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+ <!-- correction modal -->
+ <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
-    <div class="modal-content form">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">
-          <b>Report a Mistake</b>
-        </h5>
-      </div>
-      <div class="modal-body">
-        <form @submit.prevent="createCorrection" id="reportForm">
-          <div class="row container">
-            <div class="col">
-              <input v-model="form.name" type="text" class="form-control" name="name" placeholder="First name (Optional)" aria-label="First name" />
-            </div>
-            <div class="col">
-              <input v-model="form.email" type="text" class="form-control" name="email" placeholder="Email Address (Optional)" aria-label="Email Address" />
-            </div>
-          </div>
-          <div class="row mt-3 container">
-            <div class="col">
-              <input v-model="form.hadith_num" type="text" class="form-control" name="hadith_num" placeholder="Hadith number" aria-label="Hadith number" />
-            </div>
-            <div class="col">
-              <select class="form-control" name="mistake_type" v-model="form.mistake_type">
-                <option value="" disabled>Select Type</option>
-                <option value="Spelling mistakes">Spelling mistakes</option>
-                <option value="Translation error">Translation error</option>
-                <option value="Reference mismatch">Reference mismatch</option>
-              </select>
-            </div>
-          </div>
-          <div class="row container mt-3">
-            <textarea v-model="form.added_notes" class="form-control container mb-3" name="added_notes" placeholder="Explain to us exactly what the problem is" id="added_comments" rows="5"></textarea>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" form="reportForm" class="btn btn-success">Save changes</button>
-      </div>
+   <div class="modal-content form">
+    <div class="modal-header">
+     <h5 class="modal-title" id="exampleModalLabel">
+      <b>Report a Mistake</b>
+     </h5>
     </div>
+    <div class="modal-body">
+     <form @submit.prevent="createCorrection" id="reportForm">
+      <div class="row container">
+       <div class="col">
+        <input v-model="form.name" type="text" class="form-control" name="name" placeholder="First name (Optional)" aria-label="First name" />
+       </div>
+       <div class="col">
+        <input v-model="form.email" type="text" class="form-control" name="email" placeholder="Email Address (Optional)" aria-label="Email Address" />
+       </div>
+      </div>
+      <div class="row mt-3 container">
+       <div class="col">
+        <input v-model="form.hadith_num" type="text" class="form-control" name="hadith_num" placeholder="Hadith number" aria-label="Hadith number" />
+       </div>
+       <div class="col">
+        <select class="form-control" name="mistake_type" v-model="form.mistake_type">
+         <option value="" disabled>Select Type</option>
+         <option value="Spelling mistakes">Spelling mistakes</option>
+         <option value="Translation error">Translation error</option>
+         <option value="Reference mismatch">Reference mismatch</option>
+        </select>
+       </div>
+      </div>
+      <div class="row container mt-3">
+       <textarea v-model="form.added_notes" class="form-control container mb-3" name="added_notes" placeholder="Explain to us exactly what the problem is" id="added_comments" rows="5"></textarea>
+      </div>
+     </form>
+    </div>
+    <div class="modal-footer">
+     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+     <button type="submit" form="reportForm" class="btn btn-success">Save changes</button>
+    </div>
+   </div>
   </div>
-</div>
+ </div>
 
  <!-- accordion headers-->
  <div class="row container-fluid">
@@ -114,21 +114,21 @@
      <a href="#">
       <div class="col container">
        <div class="flex justify-content-center">
-        <Button class="button-33" label="Al-Mulk 67 - الملك ٦٧"  raised outlined @click="selectSurah(67)" :class="{ active: surah === 67 }" />
+        <Button class="button-33" label="Al-Mulk 67 - الملك ٦٧" raised outlined @click="selectSurah(67)" :class="{ active: surah === 67 }" />
        </div>
       </div>
      </a>
      <a href="#">
       <div class="col container">
        <div class="flex justify-content-center">
-        <Button class="button-33" label="Al-Rahman 55 - الرمان ٥٥"  raised outlined @click="selectSurah(55)" :class="{ active: surah === 55 }" />
+        <Button class="button-33" label="Al-Rahman 55 - الرمان ٥٥" raised outlined @click="selectSurah(55)" :class="{ active: surah === 55 }" />
        </div>
       </div>
      </a>
      <a href="#">
       <div class="col container">
        <div class="flex justify-content-center">
-        <Button class="button-33" label="Al-Kahf 18 -	الكهف ١٨"  raised outlined @click="selectSurah(18)" :class="{ active: surah === 18 }" />
+        <Button class="button-33" label="Al-Kahf 18 -	الكهف ١٨" raised outlined @click="selectSurah(18)" :class="{ active: surah === 18 }" />
        </div>
       </div>
      </a>
@@ -185,9 +185,9 @@
           <a href="#" class="list-group-item list-group-item-action dropdown-toggle dropend" data-bs-toggle="dropdown" aria-expanded="false" data-bs-placement="top" title="Share verse"><i class="bi bi-share-fill test" style="font-size: 1.2rem"></i></a>
           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText"><i class="bi bi-collection-fill test" style="font-size: 1.2rem"></i></a>
           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot"><i class="bi bi-camera-fill test" style="font-size: 1.2rem"></i></a>
-<a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  <i class="bi-bug-fill test" style="font-size: 1.2rem"></i>
-</a>
+          <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal">
+           <i class="bi-bug-fill test" style="font-size: 1.2rem"></i>
+          </a>
           <ul class="dropdown-menu">
            <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with whatsapp" @click="shareTextViaWhatsApp"><i class="bi bi-whatsapp test" style="font-size: 1.2rem">Whatsapp</i></a>
            <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with mail" @click="shareViaEmail($refs.targetElement.innerText)"><i class="bi bi-envelope-at-fill test" style="font-size: 1.2rem">Email</i></a>
@@ -198,35 +198,34 @@
         </div>
 
         <div class="col-11" ref="targetElement">
-            <!-- surah/ayah detail -->
-            <ul class="ul-main row ">
-                <h5 class="col-md-3 font-weight-bold"><img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}}</h5>
-                <div class="col-md-6">
-                    <li class="li-main mr-3">
-                        <span class="span-main" style="font-style: bold">{{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</span>
-                    </li>
-                </div>
-                <h5 class="col-md-3 ">{{information.ayah.surah.name_ar}} <img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" /></h5>
-            </ul>
-            <hr style="border: 1px dotted grey">
+         <!-- surah/ayah detail -->
+         <ul class="ul-main row ">
+          <h5 class="col-md-3 font-weight-bold"><img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}}</h5>
+          <div class="col-md-6">
+           <li class="li-main mr-3">
+            <span class="span-main" style="font-style: bold">{{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</span>
+           </li>
+          </div>
+          <h5 class="col-md-3 ">{{information.ayah.surah.name_ar}} <img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" /></h5>
+         </ul>
+         <hr style="border: 1px dotted grey">
 
-            <!-- Display audio for the selected ayah 
+         <!-- Display audio for the selected ayah 
             <div class="col-md-12">
                 <audio ref="audioPlayer" :src="selectedAyah ? selectedAyah.audio_link : ''" controls></audio>
             </div>-->
 
-            <!-- main stack top -->
-            <div class="btn">
-                <h3 class="container text-right" style="line-height: 2em">{{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})</h3>
-            </div>
-            <hr />
+         <!-- main stack top -->
+         <div class="btn">
+          <h3 class="container text-right" style="line-height: 2em">{{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})</h3>
+         </div>
+         <hr />
 
-            <!-- main stack below -->
-            <div class="btn">
-                <h4 class="container text-left" ref="heading2" style="line-height: 1.6em">{{ information.transliteration }}</h4>
-            </div>
+         <!-- main stack below -->
+         <div class="btn">
+          <h4 class="container text-left" ref="heading" style="line-height: 1.6em">{{ information.transliteration }}</h4>
+         </div>
         </div>
-
 
        </div>
       </div>
@@ -242,9 +241,9 @@
           <a href="#" class="list-group-item list-group-item-action dropdown-toggle dropend" data-bs-toggle="dropdown" aria-expanded="false" data-bs-placement="top" title="Share verse"><i class="bi bi-share-fill test" style="font-size: 1.2rem"></i></a>
           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText1"><i class="bi bi-collection-fill test" style="font-size: 1.2rem"></i></a>
           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot1"><i class="bi bi-camera-fill test" style="font-size: 1.2rem"></i></a>
-<a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  <i class="bi-bug-fill test" style="font-size: 1.2rem"></i>
-</a>
+          <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal">
+           <i class="bi-bug-fill test" style="font-size: 1.2rem"></i>
+          </a>
           <ul class="dropdown-menu">
            <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with whatsapp" @click="shareTextViaWhatsApp1"><i class="bi bi-whatsapp test" style="font-size: 1.2rem">Whatsapp</i></a>
            <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with mail" @click="shareViaEmail1( $refs.targetElement1.innerText)"><i class="bi bi-envelope-at-fill test" style="font-size: 1.2rem">Email</i></a>
@@ -269,7 +268,7 @@
 
          <hr style="border: 1px dotted grey">
 
-          <!-- Display audio for the selected ayah 
+         <!-- Display audio for the selected ayah 
          <div class="row">
           <div class="col-md-4"> <button class="btn button-33" @click="goToPreviousSurah">Previous Surah</button>
           </div>
@@ -308,9 +307,9 @@
           <a href="#" class="list-group-item list-group-item-action dropdown-toggle dropend" data-bs-toggle="dropdown" aria-expanded="false" data-bs-placement="top" title="Share verse"><i class="bi bi-share-fill test" style="font-size: 1.2rem"></i></a>
           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText2"><i class="bi bi-collection-fill test" style="font-size: 1.2rem"></i></a>
           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot2"><i class="bi bi-camera-fill test" style="font-size: 1.2rem"></i></a>
-<a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  <i class="bi-bug-fill test" style="font-size: 1.2rem"></i>
-</a>
+          <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal">
+           <i class="bi-bug-fill test" style="font-size: 1.2rem"></i>
+          </a>
           <ul class="dropdown-menu">
            <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with whatsapp" @click="shareTextViaWhatsApp2"><i class="bi bi-whatsapp test" style="font-size: 1.2rem">Whatsapp</i></a>
            <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with mail" @click="shareViaEmail2($refs.targetElement2.innerText)"><i class="bi bi-envelope-at-fill test" style="font-size: 1.2rem">Email</i></a>
@@ -320,39 +319,39 @@
         </div>
 
         <div class="col-11" ref="targetElement2">
-          <!-- surah/ayah detail -->
-          <ul class="ul-main row ">
-            <h5 class="col-md-3 font-weight-bold">
-              <img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />{{ information.ayah.surah.name_en }}
-            </h5>
-            <div class="col-md-6">
-              <li class="li-main mr-3">
-                <span class="span-main" style="font-style: bold">{{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }}</span>
-              </li>
-            </div>
-            <h5 class="col-md-3 ">{{ information.ayah.surah.name_ar }} <img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" /></h5>
-          </ul>
-          <hr style="border: 1px dotted grey">
+         <!-- surah/ayah detail -->
+         <ul class="ul-main row ">
+          <h5 class="col-md-3 font-weight-bold">
+           <img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />{{ information.ayah.surah.name_en }}
+          </h5>
+          <div class="col-md-6">
+           <li class="li-main mr-3">
+            <span class="span-main" style="font-style: bold">{{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }}</span>
+           </li>
+          </div>
+          <h5 class="col-md-3 ">{{ information.ayah.surah.name_ar }} <img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" /></h5>
+         </ul>
+         <hr style="border: 1px dotted grey">
 
-          <!-- Display audio for the selected ayah
+         <!-- Display audio for the selected ayah
           <div class="col-md-12">
             <audio ref="audioPlayer" controls></audio>
           </div> -->
 
-          <!-- main stack top -->
-          <div class="btn">
-            <h3 class="container text-right" style="line-height: 2em">
-              {{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})
-            </h3>
-          </div>
-          <hr />
+         <!-- main stack top -->
+         <div class="btn">
+          <h3 class="container text-right" style="line-height: 2em">
+           {{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})
+          </h3>
+         </div>
+         <hr />
 
-          <!-- main stack below -->
-          <div class="btn">
-            <h4 class="container text-left" ref="heading2" style="line-height: 1.6em">
-              {{ information.transliteration }}
-            </h4>
-          </div>
+         <!-- main stack below -->
+         <div class="btn">
+          <h4 class="container text-left" ref="heading2" style="line-height: 1.6em">
+           {{ information.transliteration }}
+          </h4>
+         </div>
         </div>
 
        </div>
@@ -378,7 +377,7 @@
    <div class="tab-content" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" v-if="ayah == null">
      <div class="row container-fluid">
-      
+
       <!-- controls 
       <div class="row">
        <div class="col-md-4"> <button class="btn button-33" @click="goToPreviousSurah">Previous Surah</button>
@@ -424,6 +423,7 @@ export default {
 
  data() {
   return {
+   showModal: false,
    timer: null,
    showScreenshotButton: false,
    selectedIndexAyah: -1,
@@ -471,33 +471,32 @@ export default {
  },
  async getAyahs() {
   try {
-    const response = await axios.get(`http://localhost:8000/api/ayahs?surah=${this.surah}`);
-    this.ayahs = response.data;
-    console.log('Ayahs:', this.ayahs); // Check the fetched ayahs data
-    // Ensure that the selectedAyah object is populated with valid data
-    if (this.ayahs.length > 0) {
-      this.selectedAyah = this.ayahs[0]; // Assuming you want to select the first ayah by default
-      console.log('Selected Ayah:', this.selectedAyah); // Check the selected ayah data
-      // Update the audio source with the selected ayah's audio_link
-      this.$refs.audioPlayer.src = this.selectedAyah.audio_link;
-    }
+   const response = await axios.get(`http://localhost:8000/api/ayahs?surah=${this.surah}`);
+   this.ayahs = response.data;
+   console.log('Ayahs:', this.ayahs); // Check the fetched ayahs data
+   // Ensure that the selectedAyah object is populated with valid data
+   if (this.ayahs.length > 0) {
+    this.selectedAyah = this.ayahs[0]; // Assuming you want to select the first ayah by default
+    console.log('Selected Ayah:', this.selectedAyah); // Check the selected ayah data
+    // Update the audio source with the selected ayah's audio_link
+    this.$refs.audioPlayer.src = this.selectedAyah.audio_link;
+   }
   } catch (error) {
-    console.error('Error fetching ayahs:', error);
+   console.error('Error fetching ayahs:', error);
   }
-},
+ },
 
  methods: {
 
-   playAudio() {
-    const audioPlayer = this.$refs.audioPlayer;
-    console.log('Audio Player:', audioPlayer);
-    if (audioPlayer) {
-        audioPlayer.play();
-    } else {
-        console.error("Audio player element not found.");
-    }
-}
-,
+  playAudio() {
+   const audioPlayer = this.$refs.audioPlayer;
+   console.log('Audio Player:', audioPlayer);
+   if (audioPlayer) {
+    audioPlayer.play();
+   } else {
+    console.error("Audio player element not found.");
+   }
+  },
 
   goToNextAyah() {
    if (this.selectedIndexAyah < this.ayahs.length - 1) {
@@ -519,28 +518,28 @@ export default {
   },
 
   async getAyahs() {
-        try {
-            const response = await axios.get(`http://localhost:8000/api/ayahs?surah=${this.surah}`);
-            this.ayahs = response.data;
-            console.log('Ayahs:', this.ayahs);
+   try {
+    const response = await axios.get(`http://localhost:8000/api/ayahs?surah=${this.surah}`);
+    this.ayahs = response.data;
+    console.log('Ayahs:', this.ayahs);
 
-            if (this.ayahs.length > 0) {
-                this.selectedAyah = this.ayahs[0];
-                console.log('Selected Ayah:', this.selectedAyah);
-            } else {
-                console.warn("No ayahs found in the response data.");
-            }
+    if (this.ayahs.length > 0) {
+     this.selectedAyah = this.ayahs[0];
+     console.log('Selected Ayah:', this.selectedAyah);
+    } else {
+     console.warn("No ayahs found in the response data.");
+    }
 
-            const audioPlayer = this.$refs.audioPlayer;
-            if (audioPlayer && this.selectedAyah) {
-                audioPlayer.src = this.selectedAyah.audio_link;
-            } else {
-                console.error("Audio player element or selectedAyah not found.");
-            }
-        } catch (error) {
-            console.error('Error fetching ayahs:', error);
-        }
-    },
+    const audioPlayer = this.$refs.audioPlayer;
+    if (audioPlayer && this.selectedAyah) {
+     audioPlayer.src = this.selectedAyah.audio_link;
+    } else {
+     console.error("Audio player element or selectedAyah not found.");
+    }
+   } catch (error) {
+    console.error('Error fetching ayahs:', error);
+   }
+  },
   goToNextSurah() {
    // Check if the current selected surah is not the last one
    if (this.surah < this.surahs.length - 1) {
@@ -717,83 +716,81 @@ export default {
    this.$refs.audioPlayer.pause();
    this.isPlaying = false;
   },
- getAyahs() {
-    try {
-        // Fetch ayahs data
-        // ...
-        
-        // Assign selectedAyah
-        if (this.ayahs.length > 0) {
-            this.selectedAyah = this.ayahs[0];
-            console.log('Selected Ayah:', this.selectedAyah);
-        } else {
-            console.warn("No ayahs found in the response data.");
-        }
-    } catch (error) {
-        console.error('Error fetching ayahs:', error);
+  getAyahs() {
+   try {
+    // Fetch ayahs data
+    // ...
+
+    // Assign selectedAyah
+    if (this.ayahs.length > 0) {
+     this.selectedAyah = this.ayahs[0];
+     console.log('Selected Ayah:', this.selectedAyah);
+    } else {
+     console.warn("No ayahs found in the response data.");
     }
-}
+   } catch (error) {
+    console.error('Error fetching ayahs:', error);
+   }
+  }
 
-
-   ,
+  ,
   selectSurah(surahId) {
    this.surah = surahId;
    this.getAyahs(); // Call the getAyahs method with the selected Surah ID
    // You can perform further actions, such as fetching data related to the selected Surah
   },
-// Function to close the modal
-    closeModal() {
-      $('#exampleModal').modal('hide');
-    },
+  // Function to close the modal
+  // Function to open the modal
+  openModal() {
+   this.showModal = true;
+  },
+  // Function to close the modal
+  closeModal() {
+   this.showModal = false;
+  },
   createCorrection() {
-  Swal.fire({
+   Swal.fire({
     title: "Are you sure?",
-    text: "You want to create a new Correction !",
+    text: "You want to create a submit message!",
     showCancelButton: true,
     confirmButtonColor: "green",
     cancelButtonColor: "#d33",
-    confirmButtonText: "Create correction!",
-  }).then((result) => {
+    confirmButtonText: "Submit!",
+   }).then((result) => {
     if (result.isConfirmed) {
-      axios
-        .post("/api/submit-correction", this.form)
-        .then((res) => {
-          if (result.isConfirmed) {
-          axios
-            .post("/api/submit-correction", this.form)
-            .then((res) => {
-              if (!res.data.success) {
-                Swal.fire({
-                  position: "top-end",
-                  icon: "success",
-                  title: "Correction created successfully",
-                  showConfirmButton: false,
-                  timer: 1500,
-                });
-                closeModal(); // Close the modal after successful submission
-              } else if (res.data.success) {
-                Swal.fire(
-                  "Error!",
-                  "Unable to create correction.",
-                  "error"
-                );
-              }
-            })
-            .catch(function(err) {
-              console.error(err);
-            });
-        }
+     axios
+      .post("/api/submit-correction", this.form)
+      .then((res) => {
+       if (!res.data.success) {
+        Swal.fire({
+         position: "top-end",
+         icon: "success",
+         title: "Message submitted succesfully successfully",
+         showConfirmButton: false,
+         timer: 1500,
+        });
+        // Close the modal after successful submission
+        $('#exampleModal').modal('hide');
+       } else if (res.data.success) {
+        Swal.fire(
+         "Error!",
+         "Unable to create correction.",
+         "error"
+        );
+       }
+      })
+      .catch(function (err) {
+       console.error(err);
       });
     }
-  });
-},
-
+   });
+  },
 
   copyText() {
-   var textToCopy = this.$refs.heading.innerText;
+   var textToCopy1 = this.$refs.heading.innerText;
    var textarea = document.createElement("textarea");
 
-   textarea.value = textToCopy;
+   textarea.value = textToCopy1;
    document.body.appendChild(textarea);
    textarea.select();
    document.execCommand("copy");
@@ -914,14 +911,12 @@ export default {
  watch: {
   'information.ayah.surah.name_ar': 'updateFileName'
  }
-
 };
 </script>
 
 <style scoped>
-
 .list-group-item-action:hover {
-  background-color: rgba(0, 191, 166, 0.452);
+ background-color: rgba(0, 191, 166, 0.452);
 }
 
 .list-group-item {
@@ -1025,7 +1020,7 @@ export default {
  border-radius: 6px;
  border: 1px solid #d6dee1;
  padding: 1rem;
- color:white;
+ color: white;
  background-color: transparent;
  outline: 1px solid #00BFA6;
  overflow: scroll;
@@ -1054,7 +1049,6 @@ export default {
 p.no-after:after {
  content: none;
 }
-
 
 .ul-main {
  list-style: none;
