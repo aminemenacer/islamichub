@@ -2,6 +2,17 @@
 <div class="container text-center" style="font-family:inter">   
   <h1 class="text-center mt-3" style="line-height: 1.7em; font-family:inter">Who Are We ?</h1>
 
+  <div class="container text-center">
+  <div class="row">
+    <div class="col-md-6">
+      Column
+    </div>
+    <div class="col-md-6">
+      Column
+    </div>
+  </div>
+</div>
+
  <div class="row mt-3">
   <div class="col-6">
    <h5 class="text-left mt-3" style="line-height: 1.7em; font-family:inter">Welcome to Islamic Connect, where we strive to make accessing and understanding the Noble Quran an enriching experience for all.</h5>

@@ -1,5 +1,5 @@
 <template>
-<div class="newsletter-subscribe mt-5 container">
+<div class="newsletter-subscribe container">
  <div class="container">
   <div class="intro">
    <h1 class="text-center newsletter font-weight-bold" style="font-family:inter;">Subscribe to our Mailing List</h1>

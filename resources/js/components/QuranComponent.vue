@@ -193,7 +193,7 @@
        <div class="row">
         <!-- left side stack of icon features -->
         <div class="col-md-1">
-         <div class="list-group styling">
+         <div class="list-group ">
           <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Play audio"><i class="bi-play-circle-fill test" style="font-size: 1.2rem"></i></a>
           <a href="#" class="list-group-item list-group-item-action dropdown-toggle dropend" data-bs-toggle="dropdown" aria-expanded="false" data-bs-placement="top" title="Share verse"><i class="bi bi-share-fill test" style="font-size: 1.2rem"></i></a>
           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText"><i class="bi bi-collection-fill test" style="font-size: 1.2rem"></i></a>
@@ -210,50 +210,35 @@
         </div>
 
         <div class="col-11" ref="targetElement">
-         <!-- surah/ayah detail -->
+            <!-- surah/ayah detail -->
+            <ul class="ul-main row ">
+                <h5 class="col-md-3 font-weight-bold"><img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}}</h5>
+                <div class="col-md-6">
+                    <li class="li-main mr-3">
+                        <span class="span-main" style="font-style: bold">{{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</span>
+                    </li>
+                </div>
+                <h5 class="col-md-3 ">{{information.ayah.surah.name_ar}} <img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" /></h5>
+            </ul>
+            <hr style="border: 1px dotted grey">
 
-         <ul class="ul-main row mb-3">
-          <h5 class="col-md-3 font-weight-bold">
-           <img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />{{ information.ayah.surah.name_en }}
-          </h5>
-          <div class="col-md-6">
-           <li class="li-main mr-3">
-            <span class="span-main" style="font-style: bold">{{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }}</span>
-           </li>
-          </div>
-          <h5 class="col-md-3 ">{{ information.ayah.surah.name_ar }} <img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" /></h5>
-         </ul>
-         <hr style="border: 1px dotted grey">
-        
-         <div class="btn">
-          <!-- Display audio for the selected ayah 
-         <div class="row">
-          <div class="col-md-4"> <button class="btn button-33" @click="goToPreviousSurah">Previous Surah</button>
-          </div>-->
-          <div class="col-md-12"> <audio ref="audioPlayer" :src="selectedAyah ? selectedAyah.audio_link : ''" controls></audio>
-          </div>
-          <!--
-          <div class="col-md-4"><button class="btn button-33" @click="goToNextSurah()">Next Surah</button></div>
-         </div>
-         -->
-          <hr />
-          <!-- main stack top -->
-         <div class="btn">
-          <h3 class="container text-right" style="line-height: 2em">
-           {{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})
-          </h3>
-         </div>
-         <hr />
-          <!-- main stack below -->
-          <div class="btn">
-           <h4 ref="heading" class="container text-left" style="line-height: 1.6em">
-            <h3 name="text">
-             {{ information.translation }}
-            </h3>
-           </h4>
-          </div>
-         </div>
+            <!-- Display audio for the selected ayah 
+            <div class="col-md-12">
+                <audio ref="audioPlayer" :src="selectedAyah ? selectedAyah.audio_link : ''" controls></audio>
+            </div>-->
+
+            <!-- main stack top -->
+            <div class="btn">
+                <h3 class="container text-right" style="line-height: 2em">{{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})</h3>
+            </div>
+            <hr />
+
+            <!-- main stack below -->
+            <div class="btn">
+                <h4 class="container text-left" ref="heading2" style="line-height: 1.6em">{{ information.transliteration }}</h4>
+            </div>
         </div>
+
 
        </div>
       </div>
@@ -264,7 +249,7 @@
 
         <!-- left side stack of icon features -->
         <div class="col-md-1">
-         <div class="list-group styling">
+         <div class="list-group ">
           <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Play audio"><i class="bi-play-circle-fill test" style="font-size: 1.2rem"></i></a>
           <a href="#" class="list-group-item list-group-item-action dropdown-toggle dropend" data-bs-toggle="dropdown" aria-expanded="false" data-bs-placement="top" title="Share verse"><i class="bi bi-share-fill test" style="font-size: 1.2rem"></i></a>
           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText1"><i class="bi bi-collection-fill test" style="font-size: 1.2rem"></i></a>
@@ -298,10 +283,10 @@
           <!-- Display audio for the selected ayah 
          <div class="row">
           <div class="col-md-4"> <button class="btn button-33" @click="goToPreviousSurah">Previous Surah</button>
-          </div>-->
+          </div>
           <div class="col-md-12"> <audio ref="audioPlayer" :src="selectedAyah ? selectedAyah.audio_link : ''" controls></audio>
           </div>
-          <!--
+          
           <div class="col-md-4"><button class="btn button-33" @click="goToNextSurah()">Next Surah</button></div>
          </div>
          -->
@@ -329,7 +314,7 @@
 
         <!-- left side stack of icon features -->
         <div class="col-md-1">
-         <div class="list-group styling">
+         <div class="list-group ">
           <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Play audio"><i class="bi-play-circle-fill test" style="font-size: 1.2rem"></i></a>
           <a href="#" class="list-group-item list-group-item-action dropdown-toggle dropend" data-bs-toggle="dropdown" aria-expanded="false" data-bs-placement="top" title="Share verse"><i class="bi bi-share-fill test" style="font-size: 1.2rem"></i></a>
           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText2"><i class="bi bi-collection-fill test" style="font-size: 1.2rem"></i></a>
@@ -345,45 +330,41 @@
         </div>
 
         <div class="col-11" ref="targetElement2">
-         <!-- surah/ayah detail -->
-         <ul class="ul-main row ">
-          <h5 class="col-md-3 font-weight-bold"><img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}}</h5>
-          <div class="col-md-6">
-           <li class="li-main mr-3">
-            <span class="span-main" style="font-style: bold">{{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}
-            </span>
-           </li>
-          </div>
-          <h5 class="col-md-3 ">{{information.ayah.surah.name_ar}} <img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" /></h5>
-         </ul>
-         <hr style="border: 1px dotted grey">
+          <!-- surah/ayah detail -->
+          <ul class="ul-main row ">
+            <h5 class="col-md-3 font-weight-bold">
+              <img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />{{ information.ayah.surah.name_en }}
+            </h5>
+            <div class="col-md-6">
+              <li class="li-main mr-3">
+                <span class="span-main" style="font-style: bold">{{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }}</span>
+              </li>
+            </div>
+            <h5 class="col-md-3 ">{{ information.ayah.surah.name_ar }} <img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" /></h5>
+          </ul>
+          <hr style="border: 1px dotted grey">
 
-         <!-- Display audio for the selected ayah 
-         <div class="row">
-          <div class="col-md-4"> <button class="btn button-33" @click="goToPreviousSurah">Previous Surah</button>
-          </div>-->
-          <div class="col-md-12"> <audio ref="audioPlayer" :src="selectedAyah ? selectedAyah.audio_link : ''" controls></audio>
-          </div>
-          <!--
-          <div class="col-md-4"><button class="btn button-33" @click="goToNextSurah()">Next Surah</button></div>
-         </div>
-         -->
-         
+          <!-- Display audio for the selected ayah
+          <div class="col-md-12">
+            <audio ref="audioPlayer" controls></audio>
+          </div> -->
 
-         <!-- main stack top -->
-         <div class="btn">
-          <h3 class="container text-right" style="line-height: 2em">
-           {{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})
-          </h3>
-         </div>
-         <hr />
-         <!-- main stack below -->
-         <div class="btn">
-          <h4 class="container text-left" ref="heading2" style="line-height: 1.6em">
-           {{ information.transliteration }}
-          </h4>
-         </div>
+          <!-- main stack top -->
+          <div class="btn">
+            <h3 class="container text-right" style="line-height: 2em">
+              {{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})
+            </h3>
+          </div>
+          <hr />
+
+          <!-- main stack below -->
+          <div class="btn">
+            <h4 class="container text-left" ref="heading2" style="line-height: 1.6em">
+              {{ information.transliteration }}
+            </h4>
+          </div>
         </div>
+
        </div>
       </div>
      </div>
@@ -500,13 +481,33 @@ export default {
  },
  async getAyahs() {
   try {
-   const response = await axios.get(`http://localhost:8000/api/ayahs?surah=${this.surah}`);
-   this.ayahs = response.data;
+    const response = await axios.get(`http://localhost:8000/api/ayahs?surah=${this.surah}`);
+    this.ayahs = response.data;
+    console.log('Ayahs:', this.ayahs); // Check the fetched ayahs data
+    // Ensure that the selectedAyah object is populated with valid data
+    if (this.ayahs.length > 0) {
+      this.selectedAyah = this.ayahs[0]; // Assuming you want to select the first ayah by default
+      console.log('Selected Ayah:', this.selectedAyah); // Check the selected ayah data
+      // Update the audio source with the selected ayah's audio_link
+      this.$refs.audioPlayer.src = this.selectedAyah.audio_link;
+    }
   } catch (error) {
-   console.error('Error fetching ayahs:', error);
+    console.error('Error fetching ayahs:', error);
   }
- },
+},
+
  methods: {
+
+   playAudio() {
+    const audioPlayer = this.$refs.audioPlayer;
+    console.log('Audio Player:', audioPlayer);
+    if (audioPlayer) {
+        audioPlayer.play();
+    } else {
+        console.error("Audio player element not found.");
+    }
+}
+,
 
   goToNextAyah() {
    if (this.selectedIndexAyah < this.ayahs.length - 1) {
@@ -527,27 +528,29 @@ export default {
    this.getTafseers(this.ayahs[this.selectedIndexAyah].id, this.selectedIndexAyah);
   },
 
-  getAyahs: function () {
-   this.dropdownHidden = false;
-   axios
-    .get("/get_ayahs", {
-     params: {
-      surah_id: this.surah,
-     },
-    })
-    .then(
-     function (response) {
-      this.ayahs = response.data;
-      // Reset selectedIndexAyah to 0 when fetching ayahs for a new surah
-      this.selectedIndexAyah = 0;
-      // Ensure that the first verse is highlighted
-      this.scrollSelectedAyahIntoView();
-     }.bind(this)
-    )
-    .catch(function (error) {
-     console.error("Error fetching ayahs:", error);
-    });
-  },
+  async getAyahs() {
+        try {
+            const response = await axios.get(`http://localhost:8000/api/ayahs?surah=${this.surah}`);
+            this.ayahs = response.data;
+            console.log('Ayahs:', this.ayahs);
+
+            if (this.ayahs.length > 0) {
+                this.selectedAyah = this.ayahs[0];
+                console.log('Selected Ayah:', this.selectedAyah);
+            } else {
+                console.warn("No ayahs found in the response data.");
+            }
+
+            const audioPlayer = this.$refs.audioPlayer;
+            if (audioPlayer && this.selectedAyah) {
+                audioPlayer.src = this.selectedAyah.audio_link;
+            } else {
+                console.error("Audio player element or selectedAyah not found.");
+            }
+        } catch (error) {
+            console.error('Error fetching ayahs:', error);
+        }
+    },
   goToNextSurah() {
    // Check if the current selected surah is not the last one
    if (this.surah < this.surahs.length - 1) {
@@ -724,22 +727,23 @@ export default {
    this.$refs.audioPlayer.pause();
    this.isPlaying = false;
   },
-  async getAyahs() {
+ getAyahs() {
     try {
-     const response = await axios.get(`http://localhost:8000/api/ayahs?surah=${this.surah}`);
-     this.ayahs = response.data;
-     console.log('Ayahs:', this.ayahs); // Check the fetched ayahs data
-     // Ensure that the selectedAyah object is populated with valid data
-     if (this.ayahs.length > 0) {
-      this.selectedAyah = this.ayahs[0]; // Assuming you want to select the first ayah by default
-      console.log('Selected Ayah:', this.selectedAyah); // Check the selected ayah data
-      // Assuming you have an <audio> element with id="ayahAudio", update its source with the selected ayah's audio_link
-      document.getElementById('ayahAudio').src = this.selectedAyah.audio_link;
-     }
+        // Fetch ayahs data
+        // ...
+        
+        // Assign selectedAyah
+        if (this.ayahs.length > 0) {
+            this.selectedAyah = this.ayahs[0];
+            console.log('Selected Ayah:', this.selectedAyah);
+        } else {
+            console.warn("No ayahs found in the response data.");
+        }
     } catch (error) {
-     console.error('Error fetching ayahs:', error);
+        console.error('Error fetching ayahs:', error);
     }
-   }
+}
+
 
    ,
   selectSurah(surahId) {
@@ -913,10 +917,6 @@ export default {
 </script>
 
 <style scoped>
-
-.styling{
-   border: 1px solid #00BFA6;
-}
 
 .list-group-item-action:hover {
   background-color: rgba(0, 191, 166, 0.452);
