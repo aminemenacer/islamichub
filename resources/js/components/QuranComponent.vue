@@ -223,7 +223,7 @@
 
          <!-- main stack below -->
          <div class="btn">
-          <h4 class="container text-left" ref="heading" style="line-height: 1.6em">{{ information.transliteration }}</h4>
+          <h4 class="container text-left" ref="heading" style="line-height: 1.6em">{{ information.translation }}</h4>
          </div>
         </div>
 
