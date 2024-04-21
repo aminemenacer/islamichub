@@ -36,100 +36,76 @@
 
 <body>
     <div>
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm ">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="/images/logo_main.png" width="275" height="54" class="d-inline-block align-top" alt="">
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
+        
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav justify-content-end mt-2 pr-4 flex-grow-1 ">
+                    <ul class="navbar-nav justify-content-end mt-2 pr-4 flex-grow-1">
                         <li class="nav-item mt-2">
-                            <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: black;"
-                                    href="/quran">Quran</a></h5>
+                            <h5><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/quran">Quran</a></h5>
                         </li>
-                        <!--
+                        <!-- <li class="nav-item mt-2">
+                            <h5><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/ahadith">Ahadith</a></h5>
+                        </li> -->
                         <li class="nav-item mt-2">
-                            <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: black;"
-                                    href="/ahadith">Ahadith</a></h5>
+                            <h5><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/contact">Contact</a></h5>
                         </li>
-                        -->
-                    
                         <li class="nav-item mt-2">
-                            <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: black;"
-                                    href="/contact">Contact</a></h5>
+                            <h5><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/about">About Us</a></h5>
                         </li>
-    
                         <li class="nav-item mt-2">
-                            <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: black;"
-                                    href="/about">About Us</a></h5>
+                            <h5><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/updates">Updates</a></h5>
                         </li>
-
                         <li class="nav-item mt-2">
-                            <h5><a style="font-family:inter" class="nav-link ml-4 pl-3" style="color: black;"
-                                    href="/updates">Updates</a></h5>
+                            <h5><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3 pr-5" href="/join_us">Mailing List</a></h5>
                         </li>
-
-                        <li class="nav-item mt-2">
-                            <h5><a style="font-family:inter" class="nav-link ml-4 pl-3 pr-5" style="color: black;"
-                                    href="/join_us">Mailing List</a></h5>
-                        </li>
-
                         <li class="nav-item mt-2 pr-2 mb-1">
-                            <button class="button-33" >Support Us</button>
+                            <button class="button-33">Support Us</button>
                         </li>
-                        
-
-                        
                         <!-- Right Side Of Navbar -->
-                        <!--
-                            @guest
-                            @if (Route::has('login'))
-                            <li class="nav-item mt-1">
-                                <h5><a style="font-family:inter" class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></h5>
-                            </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                            <li class="nav-item mt-1">
-                                <h5><a style="font-family:inter" class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></h5>
-                            </li>
-                           
-                            @endif
-                            @else
-                            <li class="nav-item dropdown mt-1 ml-5">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{-- {{ Auth::user()->name }} --}}
-                                    <i class="bi bi-person-circle" style="font-size: 1.8rem"></i>
+                        <!-- @guest
+                        @if (Route::has('login'))
+                        <li class="nav-item mt-1">
+                            <h5><a style="font-family:inter;" class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></h5>
+                        </li>
+                        @endif
+                        @if (Route::has('register'))
+                        <li class="nav-item mt-1">
+                            <h5><a style="font-family:inter;" class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></h5>
+                        </li>
+                        @endif
+                        @else
+                        <li class="nav-item dropdown mt-1 ml-5">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{-- {{ Auth::user()->name }} --}}
+                                <i class="bi bi-person-circle" style="font-size: 1.8rem"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="/dashboard">Dashboard</a>
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
                                 </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" style="color: black;" href="/dashboard">Dashboard</a>
-
-                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                        document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                            @endguest
-                        -->
-                        </ul>
-                    
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                        @endguest -->
+                    </ul>
                 </div>
             </div>
         </nav>
+        
 
 
 
