@@ -2,21 +2,19 @@
 <div id="app">
  <div class="container-fluid text-center">
   <div class="row text-center">
+   <!-- quran title -->
+       <h1 class="card-text text-center mt-2 mb-2" style="font-family: inter">
+        The Holy Quran
+       </h1>
    <div class="col-md-12 text-center">
     <div class="row">
      <div class="col-md-3"></div>
      <div class="col-md-6" style="display: flex; text-align: center">
       <div class="card-header">
-       <!-- quran title -->
-       <h1 class="card-text text-center mt-2 mb-2" style="font-family: inter">
-        The Holy Quran
-       </h1>
+      
        <!-- quran description -->
        <h5 class="card-text container-fluid mb-0 pb-3">
-        <span>The Quran, considered the holy
-         scripture of Islam, is a sacred and
-         comprehensive compilation of
-         revelations.</span>
+        
        </h5>
       </div>
 
@@ -74,66 +72,81 @@
 
  <!-- accordion headers-->
  <div class="row container-fluid">
-  <div class="col-md-8">
-   <!-- Nav tabs -->
-   <div class="card" style="padding; display:flex; max-height">
-    <!-- title of featured reading -->
-    <h5 class="container pl-3 pt-3" style="font-family: inter">
-     Featured Reading:
-    </h5>
-    <!-- list of featured reading -->
-    <div class="scrollmenu">
-     <a href="#">
-      <div class="col container">
-       <div class="flex justify-content-center">
-        <Button class="button-33" label="Ya Seen 36 - يس ٣٦ " severity="success" raised outlined @click="selectSurah(36)" :class="{ active: surah === 36 }" />
-       </div>
+ <!-- right side chapter list -->
+
+
+ 
+  <div class="col-md-4  container" >
+   <form class="mb-2 right-side-form">
+    <select class="form-control"  v-model="surah" @change="getAyahs()">
+     <option value="0">
+      <span>Select Surah</span>
+     </option>
+     <option v-for="data in surahs" :key="data.id" :value="data.id" @click="showCard">
+      {{ data.name_en }} - {{ data.name_ar }}
+     </option>
+    </select>
+   </form>
+
+
+<!-- list search for surat -->
+<div class="tab-content hide-on-mobile" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
+  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" v-if="ayah == null">
+    <div class="row container-fluid">
+      <!-- controls 
+      <div class="row "> 
+        <div class="col-md-4">
+          <button class="btn button-33" @click="goToPreviousSurah">Previous Surah</button>
+        </div>
+        <div class="col-md-4">
+          <button class="btn button-33" @click="goToNextSurah()">Next Surah</button>
+        </div>
       </div>
-     </a>
-     <a href="#">
-      <div class="col container">
-       <div class="flex justify-content-center">
-        <Button class="button-33" label="An-Nas 114 - الناس ١١٤" severity="success" raised outlined @click="selectSurah(114)" :class="{ active: surah === 114 }" />
-       </div>
+      <div class="row mb-3 hide-on-mobile"> 
+        <div class="col-md-6">
+          <button class="btn button-33" style="width:100%" @click="goToPreviousAyah()">Previous Ayah</button>
+        </div>
+        <div class="col-md-6">
+          <button class="btn button-33" style="width:100%" @click="goToNextAyah()">Next Ayah</button>
+        </div>
       </div>
-     </a>
-     <a href="#">
-      <div class="col container">
-       <div class="flex justify-content-center">
-        <Button class="button-33" label="Al-Falak 113 - الفلق ١١٣" severity="success" raised outlined @click="selectSurah(113)" :class="{ active: surah === 133 }" />
-       </div>
+      -->
+      <div class="custom-scrollbar" style="overflow-y:auto; max-height:700px">
+        <ul class="col-md-4 list-group container-fluid root" v-for="(ayah, index) in ayahs" :key="index" @click="getTafseers(ayah.id, index)" :class="{selected: selectedIndexAyah === index,}">
+          <li class="list-group-item container-fluid" id="toggle" ref="selectedAyah">
+            <h5 style="display: flex"> Verse: {{ ayah.ayah_id }} </h5>
+            <h5>{{ ayah.ayah_text }}</h5>
+          </li>
+        </ul>
       </div>
-     </a>
-     <a href="#">
-      <div class="col container">
-       <div class="flex justify-content-center">
-        <Button class="button-33" label="Al-Kafiroon 109 - الكافيرون ١٠٩" raised outlined @click="selectSurah(109)" :class="{ active: surah === 109 }" />
-       </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+    <!-- list of ayah dropdown -->
+    <div class="tab-content" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
+      <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" v-if="ayah == null">
+        <form @change="handleSelectionChange" class="row container-fluid">
+          <!-- Add a class to the select element for easier targeting -->
+          <select class="form-control custom-scrollbar targetDiv mobile-only hide-on-full-screen" @change="getTafseers(ayahs[$event.target.value].id, $event.target.value)">
+            <option v-for="(ayah, index) in ayahs" :key="index" :value="index">{{ ayah.ayah_text }}</option>
+          </select>
+        </form>
       </div>
-     </a>
-     <a href="#">
-      <div class="col container">
-       <div class="flex justify-content-center">
-        <Button class="button-33" label="Al-Mulk 67 - الملك ٦٧" raised outlined @click="selectSurah(67)" :class="{ active: surah === 67 }" />
-       </div>
-      </div>
-     </a>
-     <a href="#">
-      <div class="col container">
-       <div class="flex justify-content-center">
-        <Button class="button-33" label="Al-Rahman 55 - الرمان ٥٥" raised outlined @click="selectSurah(55)" :class="{ active: surah === 55 }" />
-       </div>
-      </div>
-     </a>
-     <a href="#">
-      <div class="col container">
-       <div class="flex justify-content-center">
-        <Button class="button-33" label="Al-Kahf 18 -	الكهف ١٨" raised outlined @click="selectSurah(18)" :class="{ active: surah === 18 }" />
-       </div>
-      </div>
-     </a>
     </div>
 
+
+  </div>
+
+
+
+  <div class="col-md-8">
+   <!-- Nav tabs -->
+   <div class="card card-hide" >
+  
     <!-- tabs for Translation, Tafseer & Transliteration -->
     <div class="container-fluid" v-if="information != null">
      <ul class="nav nav-tabs text-left justify-content-center pt-3" role="tablist">
@@ -160,70 +173,60 @@
      <div class="tab-content text-center">
 
       <div class="tab-pane active" id="home" role="tabpanel" v-if="information == null">
-       <div class="row">
-        <!-- Intro image -->
-        <div class="col-md-6">
-         <img src="/images/calligraphy.png" class="pl-3" style="width: 70%" />
-        </div>
-        <!-- Intro desc -->
-        <div class="col-md-6 mt-4">
-         <h5 style="line-height: 1.6em">
-          The Holy Quran is the central religious text of Islam, believed by Muslims to be a revelation from God. It is written in Arabic and is considered the literal word of God as conveyed to Prophet Muhammad (peace be upon him) through the Angel Gabriel over a period of approximately 23 years. The Quran is divided into chapters called surahs, which vary in length, and contains guidance on matters of faith, morality, law, and spirituality.
-         </h5>
-        </div>
-
-       </div>
+       
       </div>
 
       <!-- translation section -->
       <div class="tab-pane active" id="home" role="tabpanel" v-if="information != null">
        <div class="row">
         <!-- left side stack of icon features -->
-        <div class="col-md-1">
-         <div class="list-group ">
-          <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Play audio"><i class="bi-play-circle-fill test" style="font-size: 1.2rem"></i></a>
-          <a href="#" class="list-group-item list-group-item-action dropdown-toggle dropend" data-bs-toggle="dropdown" aria-expanded="false" data-bs-placement="top" title="Share verse"><i class="bi bi-share-fill test" style="font-size: 1.2rem"></i></a>
-          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText"><i class="bi bi-collection-fill test" style="font-size: 1.2rem"></i></a>
-          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot"><i class="bi bi-camera-fill test" style="font-size: 1.2rem"></i></a>
-          <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal">
-           <i class="bi-bug-fill test" style="font-size: 1.2rem"></i>
-          </a>
-          <ul class="dropdown-menu">
-           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with whatsapp" @click="shareTextViaWhatsApp"><i class="bi bi-whatsapp test" style="font-size: 1.2rem">Whatsapp</i></a>
-           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with mail" @click="shareViaEmail($refs.targetElement.innerText)"><i class="bi bi-envelope-at-fill test" style="font-size: 1.2rem">Email</i></a>
-           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with twitter" @click="shareHeadingOnTwitter()"><i class="bi bi-twitter-x test" style="font-size: 1.2rem">Twitter</i></a>
-          </ul>
+          <div class="col-md-1">
+          <div class="list-group ">
+            <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Play audio"><i class="bi-play-circle-fill test" style="font-size: 1.2rem"></i></a>
+            <a href="#" class="list-group-item list-group-item-action dropdown-toggle dropend" data-bs-toggle="dropdown" aria-expanded="false" data-bs-placement="top" title="Share verse"><i class="bi bi-share-fill test" style="font-size: 1.2rem"></i></a>
+            <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText"><i class="bi bi-collection-fill test" style="font-size: 1.2rem"></i></a>
+            <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot"><i class="bi bi-camera-fill test" style="font-size: 1.2rem"></i></a>
+            <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <i class="bi-bug-fill test" style="font-size: 1.2rem"></i>
+            </a>
+            <ul class="dropdown-menu">
+            <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with whatsapp" @click="shareTextViaWhatsApp"><i class="bi bi-whatsapp test" style="font-size: 1.2rem">Whatsapp</i></a>
+            <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with mail" @click="shareViaEmail($refs.targetElement.innerText)"><i class="bi bi-envelope-at-fill test" style="font-size: 1.2rem">Email</i></a>
+            <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with twitter" @click="shareHeadingOnTwitter()"><i class="bi bi-twitter-x test" style="font-size: 1.2rem">Twitter</i></a>
+            </ul>
 
-         </div>
-        </div>
-
+          </div>
+          </div>
+        
+        
         <div class="col-11" ref="targetElement">
          <!-- surah/ayah detail -->
-         <ul class="ul-main row ">
-          <h5 class="col-md-3 font-weight-bold"><img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}}</h5>
-          <div class="col-md-6">
-           <li class="li-main mr-3">
-            <span class="span-main" style="font-style: bold">{{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</span>
-           </li>
-          </div>
-          <h5 class="col-md-3 ">{{information.ayah.surah.name_ar}} <img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" /></h5>
-         </ul>
-         <hr style="border: 1px dotted grey">
-
+          <ul class="ul-main row ">
+            <h5 class="col-md-3 font-weight-bold"><img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}}</h5>
+            <div class="col-md-6">
+            <li class="li-main mr-3">
+              <span class="span-main" style="font-style: bold">{{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</span>
+            </li>
+            </div>
+            <h5 class="col-md-3 ">{{information.ayah.surah.name_ar}} <img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" /></h5>
+          </ul>
+          <hr style="border: 1px dotted grey">
+          
          <!-- Display audio for the selected ayah 
             <div class="col-md-12">
                 <audio ref="audioPlayer" :src="selectedAyah ? selectedAyah.audio_link : ''" controls></audio>
-            </div>-->
+            </div>
+          -->
 
          <!-- main stack top -->
          <div class="btn">
-          <h3 class="container text-right" style="line-height: 2em">{{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})</h3>
+          <h4 class="container text-right" style="line-height: 2em">{{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})</h4>
          </div>
          <hr />
 
          <!-- main stack below -->
          <div class="btn">
-          <h4 class="container text-left" ref="heading" style="line-height: 1.6em">{{ information.translation }}</h4>
+          <h5 class="container text-left" ref="heading" style="line-height: 1.6em">{{ information.translation }}</h5>
          </div>
         </div>
 
@@ -281,16 +284,16 @@
 
          <!-- main stack top -->
          <div class="btn">
-          <h3 class="container text-right" style="line-height: 2em">
+          <h4 class="container text-right" style="line-height: 2em">
            {{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})
-          </h3>
+          </h4>
          </div>
          <hr />
          <!-- main stack below -->
          <div class="btn">
-          <h4 class="container text-left" ref="heading1" style="line-height: 1.6em">
+          <h5 class="container text-left" ref="heading1" style="line-height: 1.6em">
            {{ tafseer }}
-          </h4>
+          </h5>
          </div>
         </div>
        </div>
@@ -361,52 +364,8 @@
    </div>
   </div>
 
-  <!-- right side chapter list -->
-  <div class="col-md-4 sticky-top container">
-   <form class="mb-2 right-side-form">
-    <select class="form-control" v-model="surah" @change="getAyahs()">
-     <option value="0">
-      <span>Select Surah</span>
-     </option>
-     <option v-for="data in surahs" :key="data.id" :value="data.id">
-      {{ data.name_en }} - {{ data.name_ar }}
-     </option>
-    </select>
-   </form>
-   <!-- list search for surat -->
-   <div class="tab-content" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
-    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" v-if="ayah == null">
-     <div class="row container-fluid">
-
-      <!-- controls 
-      <div class="row">
-       <div class="col-md-4"> <button class="btn button-33" @click="goToPreviousSurah">Previous Surah</button>
-       </div>
-       </div>
-       <div class="col-md-4"><button class="btn button-33" @click="goToNextSurah()">Next Surah</button></div>
-      </div>
-      <div class="row mb-3">
-       <div class="col-md-6">
-        <button class="btn button-33" style="width:100%" @click="goToPreviousAyah()">Previous Ayah</button>
-       </div>
-       <div class="col-md-6">
-        <button class="btn button-33" style="width:100%" @click="goToNextAyah()">Next Ayah</button>
-       </div>
-      </div>
-      -->
-
-      <div class="custom-scrollbar" style="overflow-y:auto; max-height:700px">
-       <ul class="col-md-4 list-group container-fluid root" v-for="(ayah, index) in ayahs" :key="index" @click="getTafseers(ayah.id, index)" :class="{selected: selectedIndexAyah === index,}">
-        <li class="list-group-item container-fluid" id="toggle" ref="selectedAyah">
-         <h5 style="display: flex"> Verse: {{ ayah.ayah_id }} </h5>
-         <h5>{{ ayah.ayah_text }}</h5>
-        </li>
-       </ul>
-      </div>
-     </div>
-    </div>
-   </div>
-  </div>
+  
+  
  </div>
 </div>
 </template>
@@ -423,6 +382,7 @@ export default {
 
  data() {
   return {
+   isCardVisible: false,
    showModal: false,
    timer: null,
    showScreenshotButton: false,
@@ -487,7 +447,9 @@ export default {
  },
 
  methods: {
-
+  showCard() {
+    this.isCardVisible = true; // Show the card when button is clicked
+  },
   playAudio() {
    const audioPlayer = this.$refs.audioPlayer;
    console.log('Audio Player:', audioPlayer);
@@ -915,6 +877,64 @@ export default {
 </script>
 
 <style scoped>
+#movingDiv {
+    /* Position the div absolutely */
+    position: absolute;
+    /* Place the div at the top-left corner of the viewport */
+    top: 0;
+    left: 0;
+    /* Add more styling as needed */
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    padding: 10px;
+    /* Adjust z-index to ensure it's on top of other content */
+    z-index: 9999;
+  }
+
+  @media (max-width: 575px) {
+  /* Hide the content on mobile devices */
+  .hide-on-mobile {
+    display: none;
+  }
+}
+
+
+  @media (max-width: 767px) {
+  /* Hide the content on mobile devices */
+  .hide-on-mobile {
+    display: none;
+  }
+}
+
+  
+  /* Define a media query for full-screen devices */
+@media screen and (min-width: 1024px) {
+  /* Select the element with the class hide-on-full-screen and hide it */
+  .hide-on-full-screen {
+    display: none;
+  }
+}
+
+  /* Media query for mobile screens */
+  @media screen and (max-width: 768px) {
+    #movingDiv {
+      /* Adjust positioning for smaller screens */
+      /* For example, center the div horizontally */
+      left: 50%;
+      transform: translateX(-50%);
+      /* You can adjust other styles as needed for mobile */
+    }
+
+    /* Initially visible */
+  .targetDiv {
+      display: block;
+  }
+
+  /* Hide when the corresponding anchor link is targeted */
+  .targetDiv:target {
+      display: none;
+  }
+  }
 .list-group-item-action:hover {
  background-color: rgba(0, 191, 166, 0.452);
 }
@@ -924,7 +944,7 @@ export default {
 }
 
 .button-33 {
- background-color: #00BFA6;
+ background-color: rgb(19, 22, 22);
  border-radius: 10px;
  color: white;
  cursor: pointer;
