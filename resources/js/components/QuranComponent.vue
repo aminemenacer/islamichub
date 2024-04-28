@@ -6,22 +6,7 @@
    <h1 class="card-text text-center mt-2 mb-2" style="font-family: inter">
     The Holy Quran
    </h1>
-   <div class="col-md-12 text-center">
-    <div class="row">
-     <div class="col-md-3"></div>
-     <div class="col-md-6" style="display: flex; text-align: center">
-      <div class="card-header">
 
-       <!-- quran description -->
-       <h5 class="card-text container-fluid mb-0 pb-3">
-
-       </h5>
-      </div>
-
-     </div>
-     <div class="col-md-3"></div>
-    </div>
-   </div>
   </div>
  </div>
 
@@ -162,13 +147,13 @@
        <i class="bi bi-three-dots-vertical custom-icon" data-bs-toggle="dropdown"></i>
 
        <ul class="dropdown-menu">
-        <div class="list-group text-black">
+        <div class="list-group text-black list-padding">
          <a>
           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with whatsapp" @click="shareTextViaWhatsApp1">Share Whatsapp</a>
           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with mail" @click="shareViaEmail1( $refs.targetElement1.innerText)">Share Email</a>
           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with twitter" @click="shareHeadingOnTwitter1()">Share Twitter</a>
          </a>
-  <hr>
+         <hr>
          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText">
           <p>Copy Text</p>
          </a>
@@ -190,38 +175,36 @@
      <div class="tab-content text-center">
 
       <div class="tab-pane active" id="home" role="tabpanel" v-if="information == null">
-
+        <div class="row">
+          <div class="col-md-6">
+          <img src="/images/calligraphy.png" class="pl-3" style="width: 70%" />
+          </div>
+          <div class="col-md-6 mt-4">
+          <h5 style="line-height: 1.6em">
+            The Holy Quran is the central religious text of Islam, believed by Muslims to be a revelation from God. It is written in Arabic and is considered the literal word of God as conveyed to Prophet Muhammad (peace be upon him).
+          </h5>
+          </div>
+        </div>
       </div>
 
       <!-- translation section -->
       <div class="tab-pane active" id="home" role="tabpanel" v-if="information != null">
        <div class="row">
-        <!-- left side stack of icon features 
-          <div class="col-md-1">
-          <div class="list-group ">
-            <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Play audio"><i class="bi-play-circle-fill test" style="font-size: 1.2rem"></i></a>
-            <a href="#" class="list-group-item list-group-item-action dropdown-toggle dropend" data-bs-toggle="dropdown" aria-expanded="false" data-bs-placement="top" title="Share verse"><i class="bi bi-share-fill test" style="font-size: 1.2rem"></i></a>
-            <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText"><i class="bi bi-collection-fill test" style="font-size: 1.2rem"></i></a>
-            <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot"><i class="bi bi-camera-fill test" style="font-size: 1.2rem"></i></a>
-            <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            <i class="bi-bug-fill test" style="font-size: 1.2rem"></i>
-            </a>
-            <ul class="dropdown-menu">
-            <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with whatsapp" @click="shareTextViaWhatsApp"><i class="bi bi-whatsapp test" style="font-size: 1.2rem">Whatsapp</i></a>
-            <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with mail" @click="shareViaEmail($refs.targetElement.innerText)"><i class="bi bi-envelope-at-fill test" style="font-size: 1.2rem">Email</i></a>
-            <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with twitter" @click="shareHeadingOnTwitter()"><i class="bi bi-twitter-x test" style="font-size: 1.2rem">Twitter</i></a>
-            </ul>
 
-          </div>
-          </div>
-        -->
-
-        <div class="col-11" ref="targetElement">
+        <div class="col-12" ref="targetElement">
          <!-- surah/ayah detail -->
          <ul class="ul-main row ">
-          <h5 class="col-md-3 font-weight-bold"><img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
+          <h5 class="col-md-6 text-left font-weight-bold"><img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
 
+          <!-- ayah controls -->
+          <div class="col-md-3">
+           <button class="btn button-33 mb-1" style="width:100%; font-family:inter;background:#00BFA6" @click="goToPreviousAyah()">Prev Ayah</button>
+          </div>
+          <div class="col-md-3">
+           <button class="btn button-33" style="width:100%; font-family:inter;background:#00BFA6" @click="goToNextAyah()">Next Ayah</button>
+          </div>
          </ul>
+
          <hr style="border: 1px dotted grey">
 
          <!-- Display audio for the selected ayah 
@@ -350,9 +333,9 @@
 
          <!-- main stack top -->
          <div class="btn">
-          <h3 class="container text-right" style="line-height: 2em">
+          <h4 class="container text-right" style="line-height: 2em">
            {{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})
-          </h3>
+          </h4>
          </div>
          <hr />
 
@@ -882,6 +865,10 @@ export default {
 </script>
 
 <style scoped>
+
+.list-group-item .list-padding{
+  padding: 0px;
+}
 .custom-icon {
  font-size: 1.3rem;
  /* Adjust the font-size as needed */
@@ -956,6 +943,24 @@ export default {
 
  /* Hide when the corresponding anchor link is targeted */
  .targetDiv:target {
+  display: none;
+ }
+
+  .hide-on-mobile {
+  display: none;
+ }
+}
+
+/* Media query for mobile screens */
+@media screen and (max-width: 820px) {
+ .hide-on-full-screen {
+  display: none;
+ }
+}
+
+/* Media query for mobile screens */
+@media screen and (max-width: 834px) {
+ .hide-on-full-screen {
   display: none;
  }
 }
