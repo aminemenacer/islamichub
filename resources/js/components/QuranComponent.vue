@@ -167,52 +167,44 @@
       <div class="tab-pane active" id="home" role="tabpanel" v-if="information != null">
        <div class="row">
 
-        <div class="col-12" ref="targetElement">
+        <div class="col-12">
          <!-- surah/ayah detail -->
          <ul class="ul-main row ">
 
           <!-- ayah controls -->
-          <div class="col-md-5"></div>
-          <div class="col-md-1">
-           <button class="btn button-33 mb-1" style="width:100%; font-family:inter;background:#00BFA6" @click="goToPreviousAyah()"><i class="bi bi-arrow-left-square-fill"></i></button>
+          <div class="text-center">
+           <button class="btn button-33 mr-2" style="font-family:inter;background:#00BFA6" @click="goToPreviousAyah()">Prev Ayah</button>
+           <button class="btn button-33" style="font-family:inter;background:#00BFA6" @click="goToNextAyah()">Next Ayah</button>
           </div>
-          <div class="col-md-1">
-           <button class="btn button-33" style="width:100%; font-family:inter;background:#00BFA6" @click="goToNextAyah()"><i class="bi bi-arrow-right-square-fill"></i></button>
-          </div>
-          <div class="col-md-5"></div>
 
          </ul>
 
          <hr style="border: 1px dotted grey">
-
+         <div ref="targetElement">
           <h5 class="col-md-9 text-left pl-4 font-weight-bold"><img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
 
           <!-- Display audio for the selected ayah 
             <div class="col-md-12">
                 <audio ref="audioPlayer" :src="selectedAyah ? selectedAyah.audio_link : ''" controls></audio>
             </div>
-           -->
+          -->
 
-        
-        
-        
-         
-         <!-- main stack top -->
-         <div class="btn">
-          <h5 class="container text-right" style="line-height: 2em">{{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})</h5>
+          <!-- main stack top -->
+          <div class="btn zoomable">
+           <h5 class="container text-right" style="line-height: 2em">{{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})</h5>
+          </div>
+          <hr />
+
+          <!-- main stack below -->
+          <div class="btn zoomable">
+           <h5 class="container text-left" ref="heading" style="line-height: 1.6em">{{ information.translation }}</h5>
+          </div>
          </div>
-         <hr />
-
-         <!-- main stack below -->
-         <div class="btn">
-          <h5 class="container text-left" ref="heading" style="line-height: 1.6em">{{ information.translation }}</h5>
-         </div>
-
          <!-- features -->
          <div class="text-right mt-2 mr-3 container">
           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-whatsapp text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp" @click="shareTextViaWhatsApp()"></i>
           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-twitter-x text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X" @click="shareHeadingOnTwitter()"></i>
-          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-clipboard-check-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="copyText"></i>
+          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-clipboard-check-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText"></i>
           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-camera-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot"></i>
           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bug-fill text-right h4" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
          </div>
@@ -226,50 +218,48 @@
       <div class="tab-pane" id="profile" role="tabpanel" v-if="information != null">
        <div class="row">
 
-        <div class="col-12" ref="targetElement1">
+        <div class="col-12">
          <!-- surah/ayah detail -->
          <ul class="ul-main row ">
-          <h5 class="col-md-9 text-left font-weight-bold"><img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
 
           <!-- ayah controls -->
-          <div class="col-md-1">
-           <button class="btn button-33 mb-1" style="width:100%; font-family:inter;background:#00BFA6" @click="goToPreviousAyah()"><i class="bi bi-arrow-left-square-fill"></i></button>
-          </div>
-          <div class="col-md-1">
-           <button class="btn button-33" style="width:100%; font-family:inter;background:#00BFA6" @click="goToNextAyah()"><i class="bi bi-arrow-right-square-fill"></i></button>
+          <div class="text-center">
+           <button class="btn button-33 mr-2" style="font-family:inter;background:#00BFA6" @click="goToPreviousAyah()">Prev Ayah</button>
+           <button class="btn button-33" style="font-family:inter;background:#00BFA6" @click="goToNextAyah()">Next Ayah</button>
           </div>
 
          </ul>
-
          <hr style="border: 1px dotted grey">
+         <div ref="targetElement1">
+          <h5 class="col-md-9 text-left pl-4 font-weight-bold"><img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
 
-         <!-- Display audio for the selected ayah 
+          <!-- Display audio for the selected ayah 
             <div class="col-md-12">
                 <audio ref="audioPlayer" :src="selectedAyah ? selectedAyah.audio_link : ''" controls></audio>
             </div>
           -->
 
-         <!-- main stack top -->
-         <div class="btn">
-          <h5 class="container text-right" style="line-height: 2em">{{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})</h5>
+          <!-- main stack top -->
+          <div class="btn zoomable">
+           <h5 class="container text-right" style="line-height: 2em">{{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})</h5>
+          </div>
+          <hr />
+
+          <!-- main stack below -->
+          <div class="btn zoomable">
+           <h5 class="container text-left" ref="heading" style="line-height: 1.6em">{{ tafseer }}</h5>
+
+          </div>
+
+          <!-- features -->
+          <div class="text-right mt-2 mr-3 container">
+           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-whatsapp text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp" @click="shareTextViaWhatsApp1()"></i>
+           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-twitter-x text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X" @click="shareHeadingOnTwitter1()"></i>
+           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-clipboard-check-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText1"></i>
+           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-camera-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot1"></i>
+           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bug-fill text-right h4" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
+          </div>
          </div>
-         <hr />
-
-         <!-- main stack below -->
-         <div class="btn">
-          <h5 class="container text-left" ref="heading" style="line-height: 1.6em">{{ tafseer }}</h5>
-
-         </div>
-
-         <!-- features -->
-         <div class="text-right mt-2 mr-3 container">
-          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-whatsapp text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp" @click="shareTextViaWhatsApp1()"></i>
-          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-twitter-x text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X" @click="shareHeadingOnTwitter1()"></i>
-          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-clipboard-check-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText1"></i>
-          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-camera-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot1"></i>
-          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bug-fill text-right h4" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
-         </div>
-
         </div>
        </div>
       </div>
@@ -279,54 +269,50 @@
        <div class="row">
 
         <div ref="targetElement2">
-         <ul class="ul-main  ">
-          <div class="row">
+         <ul class="ul-main row ">
 
-           <h5 class="col-md-9 text-left font-weight-bold"><img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
-
-           <!-- ayah controls -->
-           <div class="col-md-1">
-            <button class="btn button-33 mb-1" style="width:100%; font-family:inter;background:#00BFA6" @click="goToPreviousAyah()"><i class="bi bi-arrow-left-square-fill"></i></button>
-           </div>
-           <div class="col-md-1">
-            <button class="btn button-33" style="width:100%; font-family:inter;background:#00BFA6" @click="goToNextAyah()"><i class="bi bi-arrow-right-square-fill"></i></button>
-           </div>
-
+          <!-- ayah controls -->
+          <div class="text-center">
+           <button class="btn button-33 mr-2" style="font-family:inter;background:#00BFA6" @click="goToPreviousAyah()">Prev Ayah</button>
+           <button class="btn button-33" style="font-family:inter;background:#00BFA6" @click="goToNextAyah()">Next Ayah</button>
           </div>
+
          </ul>
          <hr style="border: 1px dotted grey">
+         <div ref="targetElement2">
+          <h5 class="col-md-9 text-left pl-4 font-weight-bold"><img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
 
-         <!-- Display audio for the selected ayah
+          <!-- Display audio for the selected ayah
           <div class="col-md-12">
             <audio ref="audioPlayer" controls></audio>
           </div> -->
 
-         <!-- main stack top -->
-         <div class="btn">
-          <h5 class="container text-right" style="line-height: 2em">
-           {{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})
-          </h5>
-         </div>
-         <hr />
+          <!-- main stack top -->
+          <div class="btn zoomable">
+           <h5 class="container text-right" style="line-height: 2em">
+            {{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})
+           </h5>
+          </div>
+          <hr />
 
-         <!-- main stack below -->
-         <div class="btn">
-          <h5 class="container text-left" ref="heading2" style="line-height: 1.6em">
-           {{ information.transliteration }}
-          </h5>
-         </div>
+          <!-- main stack below -->
+          <div class="btn zoomable">
+           <h5 class="container text-left" ref="heading2" style="line-height: 1.6em">
+            {{ information.transliteration }}
+           </h5>
+          </div>
 
-         <!-- features -->
-         <div class="text-right mt-2 mr-3 container">
-          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-whatsapp text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp" @click="shareTextViaWhatsApp2()"></i>
-          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-twitter-x text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X" @click="shareHeadingOnTwitter2()"></i>
-          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-clipboard-check-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="copyText2"></i>
-          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-camera-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot2"></i>
-          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bug-fill text-right h4" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
-         </div>
+          <!-- features -->
+          <div class="text-right mt-2 mr-3 container">
+           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-whatsapp text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp" @click="shareTextViaWhatsApp2()"></i>
+           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-twitter-x text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X" @click="shareHeadingOnTwitter2()"></i>
+           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-clipboard-check-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="copyText"></i>
+           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-camera-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot2"></i>
+           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bug-fill text-right h4" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
+          </div>
 
+         </div>
         </div>
-
        </div>
       </div>
      </div>
@@ -350,6 +336,8 @@ export default {
 
  data() {
   return {
+   boxSize: 0, // Initial size of the box
+   isExpanded: false,
    isCardVisible: false,
    showModal: false,
    timer: null,
@@ -415,6 +403,7 @@ export default {
  },
 
  methods: {
+
   showCard() {
    this.isCardVisible = true; // Show the card when button is clicked
   },
@@ -734,7 +723,7 @@ export default {
 
    setTimeout(function () {
     alertElement.remove();
-   }, 3000);
+   }, 2000);
 
   },
 
@@ -756,8 +745,7 @@ export default {
 
    setTimeout(function () {
     alertElement.remove();
-   }, 3000);
-
+   }, 2000);
   },
 
   copyText2() {
@@ -778,9 +766,9 @@ export default {
 
    setTimeout(function () {
     alertElement.remove();
-   }, 3000);
-
+   }, 2000);
   },
+
 
   getTafseers: function (id, index) {
    this.selectedIndexAyah = index;
@@ -845,6 +833,16 @@ export default {
 </script>
 
 <style scoped>
+.zoomable {
+ transition: transform 0.4s;
+ /* Smooth transition effect */
+}
+
+.zoomable:hover {
+ transform: scale(1.1);
+ /* Zoom in effect */
+}
+
 .custom-icon {
  font-size: 1.3rem;
  /* Adjust the font-size as needed */
