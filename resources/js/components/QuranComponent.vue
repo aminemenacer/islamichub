@@ -124,7 +124,7 @@
 
   <div class="col-md-8 card-hide">
    <!-- Nav tabs -->
-   <div class="card ">
+   <div class="card " style="box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;">
     <!-- tabs for Translation, Tafseer & Transliteration -->
     <div class="container-fluid" v-if="information != null">
      <ul class="nav nav-tabs text-left justify-content-center pt-3" role="tablist">
@@ -143,31 +143,7 @@
         Transliteration
        </a>
       </li>
-      <div class="dropdown">
-       <i class="bi bi-three-dots-vertical custom-icon" data-bs-toggle="dropdown"></i>
-
-       <ul class="dropdown-menu">
-        <div class="list-group text-black list-padding">
-         <a>
-          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with whatsapp" @click="shareTextViaWhatsApp1">Share Whatsapp</a>
-          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with mail" @click="shareViaEmail1( $refs.targetElement1.innerText)">Share Email</a>
-          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with twitter" @click="shareHeadingOnTwitter1()">Share Twitter</a>
-         </a>
-         <hr>
-         <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText">
-          <p>Copy Text</p>
-         </a>
-         <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot">
-          <p>Screenshot</p>
-         </a>
-         <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          <p>Report a bug</p>
-         </a>
-        </div>
-       </ul>
-      </div>
      </ul>
-
     </div>
 
     <div class="card-body" id="alertContainer">
@@ -175,16 +151,16 @@
      <div class="tab-content text-center">
 
       <div class="tab-pane active" id="home" role="tabpanel" v-if="information == null">
-        <div class="row">
-          <div class="col-md-6">
-          <img src="/images/calligraphy.png" class="pl-3" style="width: 70%" />
-          </div>
-          <div class="col-md-6 mt-4">
-          <h5 style="line-height: 1.6em">
-            The Holy Quran is the central religious text of Islam, believed by Muslims to be a revelation from God. It is written in Arabic and is considered the literal word of God as conveyed to Prophet Muhammad (peace be upon him).
-          </h5>
-          </div>
+       <div class="row">
+        <div class="col-md-6">
+         <img src="/images/calligraphy.png" class="pl-3" style="width: 70%" />
         </div>
+        <div class="col-md-6 mt-4">
+         <h5 style="line-height: 1.6em">
+          The Holy Quran is the central religious text of Islam, believed by Muslims to be a revelation from God. It is written in Arabic and is considered the literal word of God as conveyed to Prophet Muhammad (peace be upon him).
+         </h5>
+        </div>
+       </div>
       </div>
 
       <!-- translation section -->
@@ -194,15 +170,75 @@
         <div class="col-12" ref="targetElement">
          <!-- surah/ayah detail -->
          <ul class="ul-main row ">
-          <h5 class="col-md-6 text-left font-weight-bold"><img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
 
           <!-- ayah controls -->
-          <div class="col-md-3">
-           <button class="btn button-33 mb-1" style="width:100%; font-family:inter;background:#00BFA6" @click="goToPreviousAyah()">Prev Ayah</button>
+          <div class="col-md-5"></div>
+          <div class="col-md-1">
+           <button class="btn button-33 mb-1" style="width:100%; font-family:inter;background:#00BFA6" @click="goToPreviousAyah()"><i class="bi bi-arrow-left-square-fill"></i></button>
           </div>
-          <div class="col-md-3">
-           <button class="btn button-33" style="width:100%; font-family:inter;background:#00BFA6" @click="goToNextAyah()">Next Ayah</button>
+          <div class="col-md-1">
+           <button class="btn button-33" style="width:100%; font-family:inter;background:#00BFA6" @click="goToNextAyah()"><i class="bi bi-arrow-right-square-fill"></i></button>
           </div>
+          <div class="col-md-5"></div>
+
+         </ul>
+
+         <hr style="border: 1px dotted grey">
+
+          <h5 class="col-md-9 text-left pl-4 font-weight-bold"><img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
+
+          <!-- Display audio for the selected ayah 
+            <div class="col-md-12">
+                <audio ref="audioPlayer" :src="selectedAyah ? selectedAyah.audio_link : ''" controls></audio>
+            </div>
+           -->
+
+        
+        
+        
+         
+         <!-- main stack top -->
+         <div class="btn">
+          <h5 class="container text-right" style="line-height: 2em">{{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})</h5>
+         </div>
+         <hr />
+
+         <!-- main stack below -->
+         <div class="btn">
+          <h5 class="container text-left" ref="heading" style="line-height: 1.6em">{{ information.translation }}</h5>
+         </div>
+
+         <!-- features -->
+         <div class="text-right mt-2 mr-3 container">
+          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-whatsapp text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp" @click="shareTextViaWhatsApp()"></i>
+          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-twitter-x text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X" @click="shareHeadingOnTwitter()"></i>
+          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-clipboard-check-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="copyText"></i>
+          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-camera-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot"></i>
+          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bug-fill text-right h4" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
+         </div>
+
+        </div>
+
+       </div>
+      </div>
+
+      <!-- tafseer section -->
+      <div class="tab-pane" id="profile" role="tabpanel" v-if="information != null">
+       <div class="row">
+
+        <div class="col-12" ref="targetElement1">
+         <!-- surah/ayah detail -->
+         <ul class="ul-main row ">
+          <h5 class="col-md-9 text-left font-weight-bold"><img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
+
+          <!-- ayah controls -->
+          <div class="col-md-1">
+           <button class="btn button-33 mb-1" style="width:100%; font-family:inter;background:#00BFA6" @click="goToPreviousAyah()"><i class="bi bi-arrow-left-square-fill"></i></button>
+          </div>
+          <div class="col-md-1">
+           <button class="btn button-33" style="width:100%; font-family:inter;background:#00BFA6" @click="goToNextAyah()"><i class="bi bi-arrow-right-square-fill"></i></button>
+          </div>
+
          </ul>
 
          <hr style="border: 1px dotted grey">
@@ -215,76 +251,25 @@
 
          <!-- main stack top -->
          <div class="btn">
-          <h4 class="container text-right" style="line-height: 2em">{{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})</h4>
+          <h5 class="container text-right" style="line-height: 2em">{{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})</h5>
          </div>
          <hr />
 
          <!-- main stack below -->
          <div class="btn">
-          <h5 class="container text-left" ref="heading" style="line-height: 1.6em">{{ information.translation }}</h5>
-         </div>
-        </div>
-
-       </div>
-      </div>
-
-      <!-- tafseer section -->
-      <div class="tab-pane" id="profile" role="tabpanel" v-if="information != null">
-       <div class="row">
-
-        <!-- left side stack of icon features -->
-        <div class="col-md-1">
-         <div class="list-group ">
-          <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Play audio"><i class="bi-play-circle-fill test" style="font-size: 1.2rem"></i></a>
-          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with whatsapp" @click="shareTextViaWhatsApp1"><i class="bi bi-whatsapp test" style="font-size: 1.2rem">Share with Whatsapp</i></a>
-          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with mail" @click="shareViaEmail1( $refs.targetElement1.innerText)"><i class="bi bi-envelope-at-fill test" style="font-size: 1.2rem">Share with Email</i></a>
-          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with twitter" @click="shareHeadingOnTwitter1()"><i class="bi bi-twitter-x test" style="font-size: 1.2rem">Share with Twitter</i></a>
-          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText1"><i class="bi bi-collection-fill test" style="font-size: 1.2rem"></i></a>
-          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot1"><i class="bi bi-camera-fill test" style="font-size: 1.2rem"></i></a>
-          <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"></a>
+          <h5 class="container text-left" ref="heading" style="line-height: 1.6em">{{ tafseer }}</h5>
 
          </div>
-        </div>
 
-        <div class="col-11" ref="targetElement1">
-         <!-- surah/ayah detail -->
-         <ul class="ul-main row mb-3">
-          <h5 class="col-md-3 font-weight-bold"><img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}}</h5>
-          <div class="col-md-6">
-           <li class="li-main mr-3">
-            <span class="span-main" style="font-style: bold">{{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}
-            </span>
-           </li>
-          </div>
-          <h5 class="col-md-3 ">{{information.ayah.surah.name_ar}} <img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" /></h5>
-         </ul>
-
-         <hr style="border: 1px dotted grey">
-
-         <!-- Display audio for the selected ayah 
-         <div class="row">
-          <div class="col-md-4"> <button class="btn button-33" @click="goToPreviousSurah">Previous Surah</button>
-          </div>
-          <div class="col-md-12"> <audio ref="audioPlayer" :src="selectedAyah ? selectedAyah.audio_link : ''" controls></audio>
-          </div>
-          
-          <div class="col-md-4"><button class="btn button-33" @click="goToNextSurah()">Next Surah</button></div>
+         <!-- features -->
+         <div class="text-right mt-2 mr-3 container">
+          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-whatsapp text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp" @click="shareTextViaWhatsApp1()"></i>
+          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-twitter-x text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X" @click="shareHeadingOnTwitter1()"></i>
+          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-clipboard-check-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText1"></i>
+          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-camera-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot1"></i>
+          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bug-fill text-right h4" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
          </div>
-         -->
 
-         <!-- main stack top -->
-         <div class="btn">
-          <h4 class="container text-right" style="line-height: 2em">
-           {{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})
-          </h4>
-         </div>
-         <hr />
-         <!-- main stack below -->
-         <div class="btn">
-          <h5 class="container text-left" ref="heading1" style="line-height: 1.6em">
-           {{ tafseer }}
-          </h5>
-         </div>
         </div>
        </div>
       </div>
@@ -293,36 +278,21 @@
       <div class="tab-pane" id="messages" role="tabpanel" v-if="information != null">
        <div class="row">
 
-        <!-- left side stack of icon features -->
-        <div class="col-md-1">
-         <div class="list-group ">
-          <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Play audio"><i class="bi-play-circle-fill test" style="font-size: 1.2rem"></i></a>
-          <a href="#" class="list-group-item list-group-item-action dropdown-toggle dropend" data-bs-toggle="dropdown" aria-expanded="false" data-bs-placement="top" title="Share verse"><i class="bi bi-share-fill test" style="font-size: 1.2rem"></i></a>
-          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText2"><i class="bi bi-collection-fill test" style="font-size: 1.2rem"></i></a>
-          <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot2"><i class="bi bi-camera-fill test" style="font-size: 1.2rem"></i></a>
-          <a href="#" class="list-group-item list-group-item-action" aria-current="true" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal">
-           <i class="bi-bug-fill test" style="font-size: 1.2rem"></i>
-          </a>
-          <ul class="dropdown-menu">
-           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with whatsapp" @click="shareTextViaWhatsApp2"><i class="bi bi-whatsapp test" style="font-size: 1.2rem">Whatsapp</i></a>
-           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with mail" @click="shareViaEmail2($refs.targetElement2.innerText)"><i class="bi bi-envelope-at-fill test" style="font-size: 1.2rem">Email</i></a>
-           <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="tooltip" data-bs-placement="top" title="Share verse with mail" @click="shareHeadingOnTwitter2()"><i class="bi bi-twitter-x test" style="font-size: 1.2rem">Twitter</i></a>
-          </ul>
-         </div>
-        </div>
+        <div ref="targetElement2">
+         <ul class="ul-main  ">
+          <div class="row">
 
-        <div class="col-11" ref="targetElement2">
-         <!-- surah/ayah detail -->
-         <ul class="ul-main row ">
-          <h5 class="col-md-3 font-weight-bold">
-           <img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />{{ information.ayah.surah.name_en }}
-          </h5>
-          <div class="col-md-6">
-           <li class="li-main mr-3">
-            <span class="span-main" style="font-style: bold">{{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }}</span>
-           </li>
+           <h5 class="col-md-9 text-left font-weight-bold"><img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
+
+           <!-- ayah controls -->
+           <div class="col-md-1">
+            <button class="btn button-33 mb-1" style="width:100%; font-family:inter;background:#00BFA6" @click="goToPreviousAyah()"><i class="bi bi-arrow-left-square-fill"></i></button>
+           </div>
+           <div class="col-md-1">
+            <button class="btn button-33" style="width:100%; font-family:inter;background:#00BFA6" @click="goToNextAyah()"><i class="bi bi-arrow-right-square-fill"></i></button>
+           </div>
+
           </div>
-          <h5 class="col-md-3 ">{{ information.ayah.surah.name_ar }} <img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" /></h5>
          </ul>
          <hr style="border: 1px dotted grey">
 
@@ -333,18 +303,28 @@
 
          <!-- main stack top -->
          <div class="btn">
-          <h4 class="container text-right" style="line-height: 2em">
+          <h5 class="container text-right" style="line-height: 2em">
            {{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})
-          </h4>
+          </h5>
          </div>
          <hr />
 
          <!-- main stack below -->
          <div class="btn">
-          <h4 class="container text-left" ref="heading2" style="line-height: 1.6em">
+          <h5 class="container text-left" ref="heading2" style="line-height: 1.6em">
            {{ information.transliteration }}
-          </h4>
+          </h5>
          </div>
+
+         <!-- features -->
+         <div class="text-right mt-2 mr-3 container">
+          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-whatsapp text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp" @click="shareTextViaWhatsApp2()"></i>
+          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-twitter-x text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X" @click="shareHeadingOnTwitter2()"></i>
+          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-clipboard-check-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="copyText2"></i>
+          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-camera-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot2"></i>
+          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bug-fill text-right h4" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
+         </div>
+
         </div>
 
        </div>
@@ -865,10 +845,6 @@ export default {
 </script>
 
 <style scoped>
-
-.list-group-item .list-padding{
-  padding: 0px;
-}
 .custom-icon {
  font-size: 1.3rem;
  /* Adjust the font-size as needed */
@@ -943,24 +919,6 @@ export default {
 
  /* Hide when the corresponding anchor link is targeted */
  .targetDiv:target {
-  display: none;
- }
-
-  .hide-on-mobile {
-  display: none;
- }
-}
-
-/* Media query for mobile screens */
-@media screen and (max-width: 820px) {
- .hide-on-full-screen {
-  display: none;
- }
-}
-
-/* Media query for mobile screens */
-@media screen and (max-width: 834px) {
- .hide-on-full-screen {
   display: none;
  }
 }
@@ -1086,14 +1044,6 @@ export default {
  font-size: 18px;
  padding: 13px 32px;
  text-decoration: none;
-}
-
-@media (min-width: 768px) {
- .button-46 {
-  font-size: 20px;
-  min-width: 200px;
-  padding: 14px 16px;
- }
 }
 
 p.no-after:after {

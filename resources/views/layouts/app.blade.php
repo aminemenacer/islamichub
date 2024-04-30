@@ -50,6 +50,10 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav justify-content-end mt-2 pr-4 flex-grow-1">
                         <li class="nav-item mt-2">
+                            <h5><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/quran">Home
+                            </a></h5>
+                        </li>
+                        <li class="nav-item mt-2">
                             <h5><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/quran">Quran</a></h5>
                         </li>
                         <!-- <li class="nav-item mt-2">
