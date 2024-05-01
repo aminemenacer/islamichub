@@ -60,6 +60,9 @@
   <!-- right side chapter list -->
 
   <div class="col-md-4  container">
+
+  
+<!--  
    <form class="mb-2 right-side-form">
     <select class="form-control custom-dropdown" v-model="surah" @change="getAyahs()">
      <option value="0">
@@ -70,6 +73,51 @@
      </option>
     </select>
    </form>
+-->   
+   
+   
+   
+    <!-- Search form -->
+<form class="d-flex mb-2" @submit.prevent="search">
+  <input class="form-control me-2" type="search" id="search" name="search" v-model="searchFilters.name_en" placeholder="Search for surah name" aria-label="Search"/>
+  <button class="btn btn-primary" type="submit">Search</button>
+</form>
+
+<!-- Surah list -->
+<ul class="col-md-4 list-group container-fluid root" style="list-style-type: none;">
+  <li v-for="item in surah" :key="item.id" @click="selectSurah(item.id)" style="cursor: pointer;">
+    <p>{{ item.name_en }} - {{ item.name_ar }}</p>
+  </li>
+</ul>
+
+   <!-- 
+    <form class="mb-2 right-side-form">
+      <select class="form-control custom-dropdown" v-model="selectedSurahId" @change="search">
+        <option value="">Select Surah</option>
+        <option v-for="surah in surahs" :key="surah.id" :value="surah.id">{{ surah.name_en }} - {{ surah.name_ar }}</option>
+      </select>
+    </form>
+    -->
+    
+
+    <!-- List of surahs 
+    <div class="tab-content hide-on-mobile" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
+      <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" v-if="ayah == null">
+        <div class="row container-fluid">
+          <div class="custom-scrollbar" style="overflow-y:auto; max-height:700px;background:white">
+            <ul class="col-md-4 list-group container-fluid root">
+              <li v-for="(surah, index) in surahs" :key="index" @click="selectSurah(surah.id)">
+                <h5>{{ surah.name_en }} - {{ surah.name_ar }}</h5>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+-->
+    
+    
+    
 
    <!-- list search for surat -->
    <div class="tab-content hide-on-mobile" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
@@ -93,14 +141,15 @@
             </div>
           </div>
           -->
-      <div class="custom-scrollbar" style="overflow-y:auto; max-height:700px;background:white">
-       <ul class="col-md-4 list-group container-fluid root" v-for="(ayah, index) in ayahs" :key="index" @click="getTafseers(ayah.id, index)" :class="{selected: selectedIndexAyah === index,}">
+      <div class="custom-scrollbar" style="overflow-y:auto; max-height:700px;background:white" >
+       <ul class="col-md-4 list-group container-fluid root"  v-for="(ayah, index) in ayahs" :key="index" @click="getTafseers(ayah.id, index)" :class="{selected: selectedIndexAyah === index,}">
         <li class="list-group-item container-fluid" id="toggle" ref="selectedAyah">
          <h5 style="display: flex"> Verse: {{ ayah.ayah_id }} </h5>
          <h5>{{ ayah.ayah_text }}</h5>
         </li>
        </ul>
       </div>
+       
      </div>
     </div>
    </div>
@@ -119,6 +168,8 @@
      </form>
     </div>
    </div>
+
+   
 
   </div>
 
@@ -336,6 +387,7 @@ export default {
 
  data() {
   return {
+    selectedSurahId: '',
    boxSize: 0, // Initial size of the box
    isExpanded: false,
    isCardVisible: false,
@@ -345,7 +397,7 @@ export default {
    selectedIndexAyah: -1,
    selectedAyah: null,
    downloadUrl: null,
-   ayahs: [], // Your list of ayahs
+   transition: [], // Your list of ayahs
    dropdownHidden: true,
    selectedSurah: "",
    audioFiles: [],
@@ -358,6 +410,7 @@ export default {
    ayahs: [],
    informations: [],
    tafseers: [],
+   surah: [],
    surah: null,
    ayah: null,
    tafseer: null,
@@ -375,6 +428,11 @@ export default {
     mistake_type: "",
     added_notes: "",
     hadith_num: "",
+   }),
+
+   searchFilters: new Form({
+    name_en: "",
+    name_ar: ""
    }),
   };
  },
@@ -403,7 +461,41 @@ export default {
  },
 
  methods: {
-
+  getAyahs() {
+  if (this.selectedSurahId) { // Ensure a surah is selected
+    axios.post("/getAyahs", { surahId: this.selectedSurahId })
+      .then(response => {
+        // Log the data returned from the API
+        console.log(response.data);
+        
+        // Update surah array with data from the API
+        this.surah = response.data;
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  } else {
+    // Handle case where no surah is selected
+    console.log("No surah selected");
+    this.surah = []; // Clear the surah array
+  }
+},
+  search() {
+    if (this.searchFilters.name_en.trim() !== '') { // Check if search query is not empty
+    // Perform the API call
+    axios.post("/search", this.searchFilters)
+      .then(response => {
+        // Update surah with the response data
+        this.surah = response.data;
+      })
+      .catch(error => {
+        console.error(error);
+      });
+    } else {
+      // Clear the surah list if search query is empty
+      this.surah = [];
+    }
+  },
   showCard() {
    this.isCardVisible = true; // Show the card when button is clicked
   },
