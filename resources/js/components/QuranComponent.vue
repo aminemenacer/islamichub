@@ -74,21 +74,22 @@
     </form>
     -->
 
-   <form class="d-flex pb-2" @submit.prevent="search">
-    <input class="form-control me-2" type="search" id="search" name="search" v-model="searchTerm" placeholder="Search for Surah name" aria-label="Search" autocomplete="off" />
-    <button class="btn" type="submit" style="background: rgb(0, 191, 166); color:white">Search</button>
+  <form class="d-flex pb-1" @submit.prevent="search">
+    <input class="form-control me-2" type="search" id="search" name="search" v-model="searchTerm" placeholder="Search for Surah name" aria-label="Search" autocomplete="off" @keyup="search">
+    <button v-if="showClearButton" class="btn btn-outline-secondary text-center width:100%" @click="clearResults">Clear</button>
+  </form>
 
-   </form>    
-   <button v-if="showClearButton" class="btn btn-secondary text-center  width:100%" style="padding:10px"  @click="clearResults">Clear Results</button>
+  <!-- Surah list -->
+    <ul class="col-md-12 mt-1 scrollable-list" style="list-style-type: none; overflow-y: auto; max-height: 300px;">
+      <li v-for="item in filteredSurah" :key="item.id" @click="selectSurah(item.id)" style="cursor: pointer;">
+          <p>{{ item.name_en }} - {{ item.name_ar }}</p>
+          <hr>
+      </li>
+    </ul>
 
 
-   <!-- Surah list -->
-   <ul class="col-md-10" style="list-style-type: none;">
-    <li v-for="item in filteredSurah" :key="item.id" @click="selectSurah(item.id)" style="cursor: pointer;">
-     <p>{{ item.name_en }} - {{ item.name_ar }}</p>
-     <hr />
-    </li>
-   </ul>       
+
+      
 
 
    <!-- list of ayat for surat -->
@@ -227,7 +228,7 @@
          <div class="text-right mt-2 mr-3 container">
           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-whatsapp text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp" @click="shareTextViaWhatsApp()"></i>
           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-twitter-x text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X" @click="shareHeadingOnTwitter()"></i>
-          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-clipboard-check-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText"></i>
+          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-clipboard-check-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText1"></i>
           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-camera-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot"></i>
           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bug-fill text-right h4" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
          </div>
@@ -278,7 +279,7 @@
           <div class="text-right mt-2 mr-3 container">
            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-whatsapp text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp" @click="shareTextViaWhatsApp1()"></i>
            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-twitter-x text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X" @click="shareHeadingOnTwitter1()"></i>
-           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-clipboard-check-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText1"></i>
+          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-clipboard-check-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText1"></i>
            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-camera-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot1"></i>
            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bug-fill text-right h4" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
           </div>
@@ -329,7 +330,7 @@
           <div class="text-right mt-2 mr-3 container">
            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-whatsapp text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp" @click="shareTextViaWhatsApp2()"></i>
            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-twitter-x text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X" @click="shareHeadingOnTwitter2()"></i>
-           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-clipboard-check-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="copyText"></i>
+           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-clipboard-check-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="copyText2"></i>
            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-camera-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot2"></i>
            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bug-fill text-right h4" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
           </div>
@@ -729,13 +730,13 @@ export default {
 
   ,
   selectSurah(surahId) {
-   this.surah = surahId;
-        this.searchTerm = ''; // Clear the search term
-  this.filteredSurah = []; // Clear the filtered results
-  
-  this.showClearButton = false; // Hide the clear button after clearing results
-   this.getAyahs(); // Call the getAyahs method with the selected Surah ID
-   // You can perform further actions, such as fetching data related to the selected Surah
+    
+    this.surah = surahId;
+    this.searchTerm = ''; // Clear the search term
+    this.filteredSurah = []; // Clear the filtered results
+    this.showClearButton = false; // Hide the clear button after clearing results
+    this.getAyahs(); // Call the getAyahs method with the selected Surah ID
+   
   },
   // Function to close the modal
   // Function to open the modal
@@ -997,6 +998,10 @@ export default {
  .targetDiv:target {
   display: none;
  }
+
+ .scrollable-list {
+        overflow-x: auto;
+    }
 }
 
 .list-group-item-action:hover {
