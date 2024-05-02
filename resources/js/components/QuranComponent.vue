@@ -195,10 +195,17 @@
          <!-- surah/ayah detail -->
          <ul class="ul-main row ">
 
+          
           <!-- ayah controls -->
-          <div class="text-center">
-           <button class="btn button-33 mr-2" style="font-family:inter;background:#00BFA6" @click="goToPreviousAyah()">Prev Ayah</button>
-           <button class="btn button-33" style="font-family:inter;background:#00BFA6" @click="goToNextAyah()">Next Ayah</button>
+          <div class="text-center"> 
+          <!--           
+          <button class="btn button-33" @click="goToPreviousSurah">Previous Surah</button>
+          -->
+           <button class="btn button-33 mr-2" style="font-family:inter;background:#00BFA6" @click="goToPreviousAyah()">Prev</button>
+           <button class="btn button-33" style="font-family:inter;background:#00BFA6" @click="goToNextAyah()">Next</button>   
+           <!--         
+           <button class="btn button-33" @click="goToNextSurah()">Next Surah</button>
+          -->
           </div>
 
          </ul>
@@ -248,8 +255,8 @@
 
           <!-- ayah controls -->
           <div class="text-center">
-           <button class="btn button-33 mr-2" style="font-family:inter;background:#00BFA6" @click="goToPreviousAyah()">Prev Ayah</button>
-           <button class="btn button-33" style="font-family:inter;background:#00BFA6" @click="goToNextAyah()">Next Ayah</button>
+           <button class="btn button-33 mr-2" style="font-family:inter;background:#00BFA6" @click="goToPreviousAyah()">Prev</button>
+           <button class="btn button-33" style="font-family:inter;background:#00BFA6" @click="goToNextAyah()">Next</button>
           </div>
 
          </ul>
@@ -297,8 +304,8 @@
 
           <!-- ayah controls -->
           <div class="text-center">
-           <button class="btn button-33 mr-2" style="font-family:inter;background:#00BFA6" @click="goToPreviousAyah()">Prev Ayah</button>
-           <button class="btn button-33" style="font-family:inter;background:#00BFA6" @click="goToNextAyah()">Next Ayah</button>
+           <button class="btn button-33 mr-2" style="font-family:inter;background:#00BFA6" @click="goToPreviousAyah()">Prev</button>
+           <button class="btn button-33" style="font-family:inter;background:#00BFA6" @click="goToNextAyah()">Next</button>
           </div>
 
          </ul>
