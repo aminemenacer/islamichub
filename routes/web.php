@@ -18,6 +18,7 @@ use App\Http\Controllers\QuranController;
 use App\Http\Controllers\SurahController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\JoinUsController;
 use App\Http\Controllers\UpdatesController;
 
@@ -78,6 +79,13 @@ Route::get('/get_ayahs', [SurahController::class, 'getAyahs']);
 Route::get('/get_informations', [SurahController::class, 'getInformations']);
 Route::get('/tafseer/{id}/fetch', [SurahController::class, 'getTafseers']);
 Route::post('/search', [SurahController::class, 'search'])->name('search');
+Route::post('/bookmarks', [BookmarkController::class, 'store']);
+
+//bookmark
+Route::get('/bookmarks', [BookmarkController::class, 'index']);
+Route::get('api/fetch-bookmarks', [BookmarkController::class, 'getBookmarks']);
+Route::delete('api/delete-bookmarks/{id}',  [BookmarkController::class, 'deleteBookmarks']);
+
 
 // mailing list
 Route::get('/mailing_list', [MailingListController::class, 'index'])->name('mailing_list');

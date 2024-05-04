@@ -138,7 +138,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="" class="nav-link">
+              <a href="/bookmarks" class="nav-link">
                 <i class="bi bi-bookmark-dash-fill mr-1"></i>
                 <p>
                   Bookmarks

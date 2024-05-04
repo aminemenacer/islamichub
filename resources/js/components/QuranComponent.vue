@@ -62,35 +62,30 @@
   <div class="col-md-4  container">
 
    <!--  
-    <form class="mb-2 right-side-form">
-      <select class="form-control custom-dropdown" v-model="surah" @change="getAyahs()">
-      <option value="0">
-        <span>Select Surah</span>
-      </option>
-      <option v-for="data in surahs" :key="data.id" :value="data.id" @click="showCard">
-        {{ data.name_en }} - {{ data.name_ar }}
-      </option>
-      </select>
-    </form>
+      <form class="mb-2 right-side-form">
+        <select class="form-control custom-dropdown" v-model="surah" @change="getAyahs()">
+        <option value="0">
+          <span>Select Surah</span>
+        </option>
+        <option v-for="data in surahs" :key="data.id" :value="data.id" @click="showCard">
+          {{ data.name_en }} - {{ data.name_ar }}
+        </option>
+        </select>
+      </form>
     -->
 
-  <form class="d-flex pb-1" @submit.prevent="search">
+   <form class="d-flex pb-1" @submit.prevent="search">
     <input class="form-control me-2" type="search" id="search" name="search" v-model="searchTerm" placeholder="Search for Surah name" aria-label="Search" autocomplete="off" @keyup="search">
     <button v-if="showClearButton" class="btn btn-outline-secondary text-center width:100%" @click="clearResults">Clear</button>
-  </form>
+   </form>
 
-  <!-- Surah list -->
-    <ul class="col-md-12 mt-1 scrollable-list" style="list-style-type: none; overflow-y: auto; max-height: 300px;">
-      <li v-for="item in filteredSurah" :key="item.id" @click="selectSurah(item.id)" style="cursor: pointer;">
-          <p>{{ item.name_en }} - {{ item.name_ar }}</p>
-          <hr>
-      </li>
-    </ul>
-
-
-
-      
-
+   <!-- Surah list -->
+   <ul class="col-md-12 mt-1 scrollable-list" style="list-style-type: none; overflow-y: auto; max-height: 300px;">
+    <li v-for="item in filteredSurah" :key="item.id" @click="selectSurah(item.id)" style="cursor: pointer;">
+     <p>{{ item.name_en }} - {{ item.name_ar }}</p>
+     <hr>
+    </li>
+   </ul>
 
    <!-- list of ayat for surat -->
    <div class="tab-content hide-on-mobile" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
@@ -194,31 +189,26 @@
         <div class="col-12">
          <!-- surah/ayah detail -->
          <ul class="ul-main row ">
-
-          
           <!-- ayah controls -->
-          <div class="text-center"> 
-          <!--           
-          <button class="btn button-33" @click="goToPreviousSurah">Previous Surah</button>
-          -->
-           <button class="btn button-33 mr-2" style="font-family:inter;background:#00BFA6" @click="goToPreviousAyah()">Prev</button>
-           <button class="btn button-33" style="font-family:inter;background:#00BFA6" @click="goToNextAyah()">Next</button>   
-           <!--         
-           <button class="btn button-33" @click="goToNextSurah()">Next Surah</button>
-          -->
-          </div>
+          <div>
 
+           <!-- Surah information -->
+           <div class="row" ref="targetElement">
+             <h5 class="col-md-6 text-left pl-4 font-weight-bold"><img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
+            <div class="col-md-6">
+             <!-- Next surah button -->
+            <button class="btn button-33 mr-2" @click="goToPreviousAyah()"><i class="bi bi-arrow-left-circle-fill mr-2"></i> Prev Ayah</button>
+            <button class="btn button-33 " @click="goToNextAyah()">Next Ayah <i class="bi bi-arrow-right-circle-fill ml-2"></i></button>
+
+
+            </div>
+           </div>
+
+          </div>
          </ul>
 
          <hr style="border: 1px dotted grey">
          <div ref="targetElement">
-          <h5 class="col-md-9 text-left pl-4 font-weight-bold"><img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
-
-          <!-- Display audio for the selected ayah 
-            <div class="col-md-12">
-                <audio ref="audioPlayer" :src="selectedAyah ? selectedAyah.audio_link : ''" controls></audio>
-            </div>
-          -->
 
           <!-- main stack top -->
           <div class="btn zoomable">
@@ -228,13 +218,20 @@
 
           <!-- main stack below -->
           <div class="btn zoomable">
+          <!--
            <h5 class="container text-left" ref="heading" style="line-height: 1.6em">{{ information.translation }}</h5>
+           -->
+          <h5 class="container text-left" name="test_field" ref="heading" style="line-height: 1.6em">{{ information.translation }}</h5>
+
           </div>
+
+
          </div>
          <!-- features -->
-         <div class="text-right mt-2 mr-3 container">
+         <div class="text-right mt-2">
           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-whatsapp text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp" @click="shareTextViaWhatsApp()"></i>
           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-twitter-x text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X" @click="shareHeadingOnTwitter()"></i>
+          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bookmark-fill text-right h4" aria-expanded="false" data-bs-placement="top" title="Save bookmark" @click="submitForm"></i>
           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-clipboard-check-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText1"></i>
           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-camera-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot"></i>
           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bug-fill text-right h4" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
@@ -286,7 +283,7 @@
           <div class="text-right mt-2 mr-3 container">
            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-whatsapp text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp" @click="shareTextViaWhatsApp1()"></i>
            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-twitter-x text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X" @click="shareHeadingOnTwitter1()"></i>
-          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-clipboard-check-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText1"></i>
+           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-clipboard-check-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText1"></i>
            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-camera-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot1"></i>
            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bug-fill text-right h4" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
           </div>
@@ -367,7 +364,7 @@ export default {
 
  data() {
   return {
-    showClearButton: false,
+   showClearButton: false,
    searchTerm: '', // Search term entered by the user
    filteredSurah: [], // Array to hold filtered surahs based on search term,
    selectedSurahId: '',
@@ -403,6 +400,8 @@ export default {
    id: null,
    surah: 0,
    isPlaying: false,
+   textContent: "",
+   test_field: "",
 
    form: new Form({
     id: "",
@@ -424,8 +423,15 @@ export default {
    // Filter ayahs based on selected surah
    if (!this.surah) return [];
    return this.ayahs.filter(ayah => ayah.surah_id === this.surah);
+  },
+  currentSurah() {
+   return this.surahs[this.surah];
+  },
+  currentAyah() {
+   return this.ayahs[this.selectedIndexAyah];
   }
  },
+
  async getAyahs() {
   try {
    const response = await axios.get(`http://localhost:8000/api/ayahs?surah=${this.surah}`);
@@ -444,11 +450,24 @@ export default {
  },
 
  methods: {
-   clearResults() {
-       this.searchTerm = ''; // Clear the search term
-  this.filteredSurah = []; // Clear the filtered results
-  this.showClearButton = false; // Hide the clear button after clearing results
+  submitForm() {
+      const formData = {
+        test_field: this.information.translation // Ensure that the field name matches the one expected by the backend
+      };
+
+      axios.post('/bookmarks', formData)
+        .then(response => {
+          console.log(response.data.message);
+        })
+        .catch(error => {
+          console.error(error);
+        });
     },
+  clearResults() {
+   this.searchTerm = ''; // Clear the search term
+   this.filteredSurah = []; // Clear the filtered results
+   this.showClearButton = false; // Hide the clear button after clearing results
+  },
   getAyahs() {
    if (this.selectedSurahId) {
     axios.post("/getAyahs", {
@@ -473,31 +492,22 @@ export default {
    }
   },
   search() {
-      // Perform search and update filteredSurah based on search term
-      const searchTerm = this.searchTerm.trim().toLowerCase();
-      if (searchTerm === '') {
-        this.filteredSurah = [];
-        this.showClearButton = false;
-        return;
-      }
-      this.filteredSurah = this.surahs.filter(surah => {
-        const nameEn = surah.name_en.toLowerCase();
-        const nameAr = surah.name_ar.toLowerCase();
-        return nameEn.includes(searchTerm) || nameAr.includes(searchTerm);
-      });
-      this.showClearButton = true; // Show clear button after search
-    },
+   // Perform search and update filteredSurah based on search term
+   const searchTerm = this.searchTerm.trim().toLowerCase();
+   if (searchTerm === '') {
+    this.filteredSurah = [];
+    this.showClearButton = false;
+    return;
+   }
+   this.filteredSurah = this.surahs.filter(surah => {
+    const nameEn = surah.name_en.toLowerCase();
+    const nameAr = surah.name_ar.toLowerCase();
+    return nameEn.includes(searchTerm) || nameAr.includes(searchTerm);
+   });
+   this.showClearButton = true; // Show clear button after search
+  },
   showCard() {
    this.isCardVisible = true; // Show the card when button is clicked
-  },
-  playAudio() {
-   const audioPlayer = this.$refs.audioPlayer;
-   console.log('Audio Player:', audioPlayer);
-   if (audioPlayer) {
-    audioPlayer.play();
-   } else {
-    console.error("Audio player element not found.");
-   }
   },
 
   goToNextAyah() {
@@ -519,29 +529,6 @@ export default {
    this.getTafseers(this.ayahs[this.selectedIndexAyah].id, this.selectedIndexAyah);
   },
 
-  async getAyahs() {
-   try {
-    const response = await axios.get(`http://localhost:8000/api/ayahs?surah=${this.surah}`);
-    this.ayahs = response.data;
-    console.log('Ayahs:', this.ayahs);
-
-    if (this.ayahs.length > 0) {
-     this.selectedAyah = this.ayahs[0];
-     console.log('Selected Ayah:', this.selectedAyah);
-    } else {
-     console.warn("No ayahs found in the response data.");
-    }
-
-    const audioPlayer = this.$refs.audioPlayer;
-    if (audioPlayer && this.selectedAyah) {
-     audioPlayer.src = this.selectedAyah.audio_link;
-    } else {
-     console.error("Audio player element or selectedAyah not found.");
-    }
-   } catch (error) {
-    console.error('Error fetching ayahs:', error);
-   }
-  },
   goToNextSurah() {
    // Check if the current selected surah is not the last one
    if (this.surah < this.surahs.length - 1) {
@@ -556,17 +543,18 @@ export default {
   },
   goToPreviousSurah() {
    // Check if the current selected surah is not the first one
-   if (this.surah > 1) {
+   if (this.surah > 0) {
     // Decrement the surah index to move to the previous surah
     this.surah--;
    } else {
     // If already at the first surah, loop to the last surah
-    this.surah = this.surahs.length;
+    this.surah = this.surahs.length - 1;
    }
    this.selectedIndexAyah = 0; // Reset the selected ayah index to the first verse of the previous surah
    // Fetch ayahs for the previous surah
    this.getAyahs(this.surah);
   },
+
   getSurahs() {
    axios
     .get("/get_surahs")
@@ -609,19 +597,6 @@ export default {
    } catch (error) {
     console.error("Error:", error);
    }
-  },
-
-  shareViaEmail(body) {
-   const url = `mailto:?body=${encodeURIComponent(body)}`;
-   window.location.href = url;
-  },
-  shareViaEmail1(body1) {
-   const url = `mailto:?body=${encodeURIComponent(body1)}`;
-   window.location.href = url;
-  },
-  shareViaEmail2(body2) {
-   const url = `mailto:?body=${encodeURIComponent(body2)}`;
-   window.location.href = url;
   },
 
   shareTextViaWhatsApp() {
@@ -710,14 +685,7 @@ export default {
      console.error('Error fetching ayahs:', error);
     });
   },
-  playAudio() {
-   this.$refs.audioPlayer.play();
-   this.isPlaying = true;
-  },
-  pauseAudio() {
-   this.$refs.audioPlayer.pause();
-   this.isPlaying = false;
-  },
+
   getAyahs() {
    try {
     // Fetch ayahs data
@@ -737,13 +705,13 @@ export default {
 
   ,
   selectSurah(surahId) {
-    
-    this.surah = surahId;
-    this.searchTerm = ''; // Clear the search term
-    this.filteredSurah = []; // Clear the filtered results
-    this.showClearButton = false; // Hide the clear button after clearing results
-    this.getAyahs(); // Call the getAyahs method with the selected Surah ID
-   
+
+   this.surah = surahId;
+   this.searchTerm = ''; // Clear the search term
+   this.filteredSurah = []; // Clear the filtered results
+   this.showClearButton = false; // Hide the clear button after clearing results
+   this.getAyahs(); // Call the getAyahs method with the selected Surah ID
+
   },
   // Function to close the modal
   // Function to open the modal
@@ -1007,8 +975,8 @@ export default {
  }
 
  .scrollable-list {
-        overflow-x: auto;
-    }
+  overflow-x: auto;
+ }
 }
 
 .list-group-item-action:hover {
