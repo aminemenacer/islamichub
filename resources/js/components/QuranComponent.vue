@@ -224,6 +224,12 @@
           <h5 class="container text-left" name="test_field" ref="heading" style="line-height: 1.6em">{{ information.translation }}</h5>
 
           </div>
+          <div v-if="showAlert" class="alert alert-success" role="alert">
+            Bookmark created successfully!
+          </div>
+          <div v-if="showErrorAlert" class="alert alert-danger" role="alert">
+            Error occurred while creating bookmark. Please try again.
+          </div>
 
 
          </div>
@@ -364,6 +370,8 @@ export default {
 
  data() {
   return {
+   showAlert: false,
+   showErrorAlert: false,
    showClearButton: false,
    searchTerm: '', // Search term entered by the user
    filteredSurah: [], // Array to hold filtered surahs based on search term,
@@ -458,10 +466,23 @@ export default {
       axios.post('/bookmarks', formData)
         .then(response => {
           console.log(response.data.message);
+          this.showAlert = true; // Show success alert
+          this.showErrorAlert = false; // Hide error alert
+          this.hideAlertAfterDelay(); // Start timer to hide alert
         })
         .catch(error => {
           console.error(error);
+          this.showAlert = false; // Hide success alert
+          this.showErrorAlert = true; // Show error alert
+          this.hideAlertAfterDelay(); // Start timer to hide alert
         });
+        
+    },
+    hideAlertAfterDelay() {
+      setTimeout(() => {
+        this.showAlert = false;
+        this.showErrorAlert = false;
+      }, 3000); // Adjust the duration (in milliseconds) as needed
     },
   clearResults() {
    this.searchTerm = ''; // Clear the search term
