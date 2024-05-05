@@ -16,7 +16,10 @@ return new class extends Migration
         Schema::create('bookmarks', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->text('test_field')->nullable();
+            $table->text('surah_name')->nullable();
+            $table->text('ayah_num')->nullable();
+            $table->text('ayah_text')->nullable();
+
             $table->timestamps();
         });
     }

@@ -61,21 +61,8 @@
 
   <div class="col-md-4  container">
 
-   <!--  
-      <form class="mb-2 right-side-form">
-        <select class="form-control custom-dropdown" v-model="surah" @change="getAyahs()">
-        <option value="0">
-          <span>Select Surah</span>
-        </option>
-        <option v-for="data in surahs" :key="data.id" :value="data.id" @click="showCard">
-          {{ data.name_en }} - {{ data.name_ar }}
-        </option>
-        </select>
-      </form>
-    -->
-
    <form class="d-flex pb-1" @submit.prevent="search">
-    <input class="form-control me-2" type="search" id="search" name="search" v-model="searchTerm" placeholder="Search for Surah name" aria-label="Search" autocomplete="off" @keyup="search">
+    <input class="form-control me-2" type="search" id="search" name="search" v-model="searchTerm" placeholder="Search for Surah name" autocomplete="off" @keyup="search">
     <button v-if="showClearButton" class="btn btn-outline-secondary text-center width:100%" @click="clearResults">Clear</button>
    </form>
 
@@ -99,14 +86,6 @@
           </div>
           <div class="col-md-4">
             <button class="btn button-33" @click="goToNextSurah()">Next Surah</button>
-          </div>
-        </div>
-        <div class="row mb-3 hide-on-mobile"> 
-          <div class="col-md-6">
-            <button class="btn button-33" style="width:100%" @click="goToPreviousAyah()">Previous Ayah</button>
-          </div>
-          <div class="col-md-6">
-            <button class="btn button-33" style="width:100%" @click="goToNextAyah()">Next Ayah</button>
           </div>
         </div>
       -->
@@ -194,12 +173,11 @@
 
            <!-- Surah information -->
            <div class="row" ref="targetElement">
-             <h5 class="col-md-6 text-left pl-4 font-weight-bold"><img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
+            <h5 class="col-md-6 text-left pl-4 font-weight-bold" name="ayah_num"><img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
             <div class="col-md-6">
              <!-- Next surah button -->
-            <button class="btn button-33 mr-2" @click="goToPreviousAyah()"><i class="bi bi-arrow-left-circle-fill mr-2"></i> Prev Ayah</button>
-            <button class="btn button-33 " @click="goToNextAyah()">Next Ayah <i class="bi bi-arrow-right-circle-fill ml-2"></i></button>
-
+             <button class="btn button-33 mr-2" @click="goToPreviousAyah()"><i class="bi bi-arrow-left-circle-fill mr-2"></i> Prev Ayah</button>
+             <button class="btn button-33 " @click="goToNextAyah()">Next Ayah <i class="bi bi-arrow-right-circle-fill ml-2"></i></button>
 
             </div>
            </div>
@@ -218,19 +196,22 @@
 
           <!-- main stack below -->
           <div class="btn zoomable">
-          <!--
-           <h5 class="container text-left" ref="heading" style="line-height: 1.6em">{{ information.translation }}</h5>
-           -->
-          <h5 class="container text-left" name="test_field" ref="heading" style="line-height: 1.6em">{{ information.translation }}</h5>
+
+           <h5 class="container text-left" name="ayah_text" ref="heading" style="line-height: 1.6em">{{ information.translation }}</h5>
 
           </div>
+          <!-- Bootstrap alert component -->
+          <div v-if="showAlertText" class="alert alert-success alert-dismissible fade show" role="alert">
+           Text copied successfully!
+          </div>
+
+          <!-- bookmark component -->
           <div v-if="showAlert" class="alert alert-success" role="alert">
-            Bookmark created successfully!
+           Bookmark created successfully!
           </div>
           <div v-if="showErrorAlert" class="alert alert-danger" role="alert">
-            Error occurred while creating bookmark. Please try again.
+           Login to your account to be able to bookmark verses.
           </div>
-
 
          </div>
          <!-- features -->
@@ -238,7 +219,7 @@
           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-whatsapp text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp" @click="shareTextViaWhatsApp()"></i>
           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-twitter-x text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X" @click="shareHeadingOnTwitter()"></i>
           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bookmark-fill text-right h4" aria-expanded="false" data-bs-placement="top" title="Save bookmark" @click="submitForm"></i>
-          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-clipboard-check-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText1"></i>
+          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-clipboard-check-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText"></i>
           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-camera-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot"></i>
           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bug-fill text-right h4" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
          </div>
@@ -255,23 +236,24 @@
         <div class="col-12">
          <!-- surah/ayah detail -->
          <ul class="ul-main row ">
-
           <!-- ayah controls -->
-          <div class="text-center">
-           <button class="btn button-33 mr-2" style="font-family:inter;background:#00BFA6" @click="goToPreviousAyah()">Prev</button>
-           <button class="btn button-33" style="font-family:inter;background:#00BFA6" @click="goToNextAyah()">Next</button>
-          </div>
+          <div>
 
+           <!-- Surah information -->
+           <div class="row" ref="targetElement">
+            <h5 class="col-md-6 text-left pl-4 font-weight-bold" name="ayah_num"><img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
+            <div class="col-md-6">
+             <!-- Next surah button -->
+             <button class="btn button-33 mr-2" @click="goToPreviousAyah()"><i class="bi bi-arrow-left-circle-fill mr-2"></i> Prev Ayah</button>
+             <button class="btn button-33 " @click="goToNextAyah()">Next Ayah <i class="bi bi-arrow-right-circle-fill ml-2"></i></button>
+
+            </div>
+           </div>
+
+          </div>
          </ul>
          <hr style="border: 1px dotted grey">
          <div ref="targetElement1">
-          <h5 class="col-md-9 text-left pl-4 font-weight-bold"><img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
-
-          <!-- Display audio for the selected ayah 
-            <div class="col-md-12">
-                <audio ref="audioPlayer" :src="selectedAyah ? selectedAyah.audio_link : ''" controls></audio>
-            </div>
-          -->
 
           <!-- main stack top -->
           <div class="btn zoomable">
@@ -281,14 +263,28 @@
 
           <!-- main stack below -->
           <div class="btn zoomable">
-           <h5 class="container text-left" ref="heading" style="line-height: 1.6em">{{ tafseer }}</h5>
 
+           <h5 class="container text-left" name="ayah_text" ref="heading1" style="line-height: 1.6em">{{ tafseer }}</h5>
+
+          </div>
+          <!-- Bootstrap alert component -->
+          <div v-if="showAlertText" class="alert alert-success alert-dismissible fade show" role="alert">
+           Text copied successfully!
+          </div>
+
+          <!-- bookmark component -->
+          <div v-if="showAlert" class="alert alert-success" role="alert">
+           Bookmark created successfully!
+          </div>
+          <div v-if="showErrorAlert" class="alert alert-danger" role="alert">
+           Login to your account to be able to bookmark verses.
           </div>
 
           <!-- features -->
           <div class="text-right mt-2 mr-3 container">
            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-whatsapp text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp" @click="shareTextViaWhatsApp1()"></i>
            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-twitter-x text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X" @click="shareHeadingOnTwitter1()"></i>
+           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bookmark-fill text-right h4" aria-expanded="false" data-bs-placement="top" title="Save bookmark" @click="submitForm1"></i>
            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-clipboard-check-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText1"></i>
            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-camera-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot1"></i>
            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bug-fill text-right h4" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
@@ -302,51 +298,63 @@
       <div class="tab-pane" id="messages" role="tabpanel" v-if="information != null">
        <div class="row">
 
-        <div ref="targetElement2">
+        <div class="col-12">
+         <!-- surah/ayah detail -->
          <ul class="ul-main row ">
-
           <!-- ayah controls -->
-          <div class="text-center">
-           <button class="btn button-33 mr-2" style="font-family:inter;background:#00BFA6" @click="goToPreviousAyah()">Prev</button>
-           <button class="btn button-33" style="font-family:inter;background:#00BFA6" @click="goToNextAyah()">Next</button>
-          </div>
+          <div>
 
+           <!-- Surah information -->
+           <div class="row" ref="targetElement">
+            <h5 class="col-md-6 text-left pl-4 font-weight-bold" name="ayah_num"><img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
+            <div class="col-md-6">
+             <!-- Next surah button -->
+             <button class="btn button-33 mr-2" @click="goToPreviousAyah()"><i class="bi bi-arrow-left-circle-fill mr-2"></i> Prev Ayah</button>
+             <button class="btn button-33 " @click="goToNextAyah()">Next Ayah <i class="bi bi-arrow-right-circle-fill ml-2"></i></button>
+
+            </div>
+           </div>
+
+          </div>
          </ul>
          <hr style="border: 1px dotted grey">
          <div ref="targetElement2">
-          <h5 class="col-md-9 text-left pl-4 font-weight-bold"><img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
-
-          <!-- Display audio for the selected ayah
-          <div class="col-md-12">
-            <audio ref="audioPlayer" controls></audio>
-          </div> -->
 
           <!-- main stack top -->
           <div class="btn zoomable">
-           <h5 class="container text-right" style="line-height: 2em">
-            {{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})
-           </h5>
+           <h5 class="container text-right" style="line-height: 2em">{{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})</h5>
           </div>
           <hr />
 
           <!-- main stack below -->
           <div class="btn zoomable">
-           <h5 class="container text-left" ref="heading2" style="line-height: 1.6em">
-            {{ information.transliteration }}
-           </h5>
+           <h5 class="container text-left" name="ayah_text" ref="heading2" style="line-height: 1.6em">{{ information.transliteration }}</h5>
+          </div>
+          <!-- Bootstrap alert component -->
+          <div v-if="showAlertText" class="alert alert-success alert-dismissible fade show" role="alert">
+           Text copied successfully!
+          </div>
+
+          <!-- bookmark component -->
+          <div v-if="showAlert" class="alert alert-success" role="alert">
+           Bookmark created successfully!
+          </div>
+          <div v-if="showErrorAlert" class="alert alert-danger" role="alert">
+           Login to your account to be able to bookmark verses.
           </div>
 
           <!-- features -->
-          <div class="text-right mt-2 mr-3 container">
+          <div class="text-right mt-2">
            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-whatsapp text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp" @click="shareTextViaWhatsApp2()"></i>
            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-twitter-x text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X" @click="shareHeadingOnTwitter2()"></i>
-           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-clipboard-check-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="copyText2"></i>
+           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bookmark-fill text-right h4" aria-expanded="false" data-bs-placement="top" title="Save bookmark" @click="submitForm2"></i>
+           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-clipboard-check-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText2"></i>
            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-camera-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot2"></i>
            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bug-fill text-right h4" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
           </div>
-
          </div>
         </div>
+
        </div>
       </div>
      </div>
@@ -409,7 +417,10 @@ export default {
    surah: 0,
    isPlaying: false,
    textContent: "",
-   test_field: "",
+   ayah_num: "",
+   ayah_text: "",
+   showAlert: false,
+   showAlertText: false,
 
    form: new Form({
     id: "",
@@ -459,31 +470,75 @@ export default {
 
  methods: {
   submitForm() {
-      const formData = {
-        test_field: this.information.translation // Ensure that the field name matches the one expected by the backend
-      };
+   const formData = {
+    ayah_text: this.information.translation, // Ensure that the field name matches the one expected by the backend
+    ayah_num: this.information.ayah.surah.name_en
+   };
 
-      axios.post('/bookmarks', formData)
-        .then(response => {
-          console.log(response.data.message);
-          this.showAlert = true; // Show success alert
-          this.showErrorAlert = false; // Hide error alert
-          this.hideAlertAfterDelay(); // Start timer to hide alert
-        })
-        .catch(error => {
-          console.error(error);
-          this.showAlert = false; // Hide success alert
-          this.showErrorAlert = true; // Show error alert
-          this.hideAlertAfterDelay(); // Start timer to hide alert
-        });
-        
-    },
-    hideAlertAfterDelay() {
-      setTimeout(() => {
-        this.showAlert = false;
-        this.showErrorAlert = false;
-      }, 3000); // Adjust the duration (in milliseconds) as needed
-    },
+   axios.post('/bookmarks', formData)
+    .then(response => {
+     console.log(response.data.message);
+     this.showAlert = true; // Show success alert
+     this.showErrorAlert = false; // Hide error alert
+     this.hideAlertAfterDelay(); // Start timer to hide alert
+    })
+    .catch(error => {
+     console.error(error);
+     this.showAlert = false; // Hide success alert
+     this.showErrorAlert = true; // Show error alert
+     this.hideAlertAfterDelay(); // Start timer to hide alert
+    });
+
+  },
+  submitForm1() {
+   const formData = {
+    ayah_text: this.tafseer, // Ensure that the field name matches the one expected by the backend
+    ayah_num: this.information.ayah.surah.name_en
+   };
+
+   axios.post('/bookmarks', formData)
+    .then(response => {
+     console.log(response.data.message);
+     this.showAlert = true; // Show success alert
+     this.showErrorAlert = false; // Hide error alert
+     this.hideAlertAfterDelay(); // Start timer to hide alert
+    })
+    .catch(error => {
+     console.error(error);
+     this.showAlert = false; // Hide success alert
+     this.showErrorAlert = true; // Show error alert
+     this.hideAlertAfterDelay(); // Start timer to hide alert
+    });
+
+  },
+  submitForm2() {
+   const formData = {
+    ayah_text: this.information.transliteration, // Ensure that the field name matches the one expected by the backend
+    ayah_num: this.information.ayah.surah.name_en
+   };
+
+   axios.post('/bookmarks', formData)
+    .then(response => {
+     console.log(response.data.message);
+     this.showAlert = true; // Show success alert
+     this.showErrorAlert = false; // Hide error alert
+     this.hideAlertAfterDelay(); // Start timer to hide alert
+    })
+    .catch(error => {
+     console.error(error);
+     this.showAlert = false; // Hide success alert
+     this.showErrorAlert = true; // Show error alert
+     this.hideAlertAfterDelay(); // Start timer to hide alert
+    });
+
+  },
+  hideAlertAfterDelay() {
+   setTimeout(() => {
+    this.showAlert = false;
+    this.showAlertText = false;
+    this.showErrorAlert = false;
+   }, 3000); // Adjust the duration (in milliseconds) as needed
+  },
   clearResults() {
    this.searchTerm = ''; // Clear the search term
    this.filteredSurah = []; // Clear the filtered results
@@ -782,67 +837,64 @@ export default {
   },
 
   copyText() {
-   var textToCopy1 = this.$refs.heading.innerText;
-   var textarea = document.createElement("textarea");
-
-   textarea.value = textToCopy1;
-   document.body.appendChild(textarea);
-   textarea.select();
-   document.execCommand("copy");
-   document.body.removeChild(textarea);
-
-   var alertElement = document.createElement("div");
-   alertElement.classList.add("alert", "alert-success");
-   alertElement.textContent = "Copied text to clipboard";
-
-   document.getElementById("alertContainer").appendChild(alertElement);
-
-   setTimeout(function () {
-    alertElement.remove();
-   }, 2000);
-
+   console.log(this.$refs.heading);
+   var textToCopy = this.$refs.heading.innerText;
+   console.log(textToCopy);
+   // Copy the text to the clipboard
+   this.copyToClipboard(textToCopy);
+   this.showAlertText = true; // Show success alert
+   this.showErrorAlert = false; // Hide error alert
+   this.hideAlertAfterDelay(); // Start timer to hide alert
   },
 
   copyText1() {
+   console.log(this.$refs.heading1);
    var textToCopy1 = this.$refs.heading1.innerText;
-   var textarea = document.createElement("textarea");
-
-   textarea.value = textToCopy1;
-   document.body.appendChild(textarea);
-   textarea.select();
-   document.execCommand("copy");
-   document.body.removeChild(textarea);
-
-   var alertElement = document.createElement("div");
-   alertElement.classList.add("alert", "alert-success");
-   alertElement.textContent = "Copied text to clipboard";
-
-   document.getElementById("alertContainer").appendChild(alertElement);
-
-   setTimeout(function () {
-    alertElement.remove();
-   }, 2000);
+   console.log(textToCopy1);
+   this.copyToClipboard(textToCopy1);
+   this.showAlertText = true; // Show success alert
+   this.showErrorAlert = false; // Hide error alert
+   this.hideAlertAfterDelay(); // Start timer to hide alert
   },
 
   copyText2() {
-   var textToCopy1 = this.$refs.heading2.innerText;
+   // Log the reference to ensure it's correct
+   console.log(this.$refs.heading2);
+
+   // Access the text content from the reference
+   var textToCopy2 = this.$refs.heading2.innerText;
+
+   // Log the text content to ensure it's correct
+   console.log(textToCopy2);
+
+   // Copy the text to the clipboard
+   this.copyToClipboard(textToCopy2);
+   this.showAlertText = true; // Show success alert
+   this.showErrorAlert = false; // Hide error alert
+   this.hideAlertAfterDelay(); // Start timer to hide alert
+  },
+
+  copyToClipboard(text) {
+   // Create a textarea element to copy the text
    var textarea = document.createElement("textarea");
 
-   textarea.value = textToCopy1;
+   // Set the value of the textarea to the text to be copied
+   textarea.value = text;
+
+   // Append the textarea to the document body
    document.body.appendChild(textarea);
+
+   // Select the text within the textarea
    textarea.select();
+
+   // Execute the copy command to copy the selected text
    document.execCommand("copy");
+
+   // Remove the textarea from the document body
    document.body.removeChild(textarea);
 
-   var alertElement = document.createElement("div");
-   alertElement.classList.add("alert", "alert-success");
-   alertElement.textContent = "Copied text to clipboard";
-
-   document.getElementById("alertContainer").appendChild(alertElement);
-
-   setTimeout(function () {
-    alertElement.remove();
-   }, 2000);
+   // Log a success message
+   console.log("Text copied to clipboard:", text);
   },
 
   getTafseers: function (id, index) {

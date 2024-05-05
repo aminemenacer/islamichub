@@ -21,11 +21,8 @@ class BookmarkController extends Controller
         return $bookmark;
     }
 
-
-
     public function store(Request $request)
-    {
-       
+    {  
         // Create a new bookmark instance
         $bookmark = new Bookmark();
 
@@ -33,7 +30,10 @@ class BookmarkController extends Controller
         $bookmark->user_id = auth()->id(); // Assuming you are using Laravel's built-in authentication
 
         // Assign other fields from the request
-        $bookmark->test_field = $request->input('test_field');
+        $bookmark->surah_name = $request->input('surah_name');
+        $bookmark->ayah_num = $request->input('ayah_num');
+        $bookmark->ayah_text = $request->input('ayah_text');
+
 
         // Save the bookmark
         $bookmark->save();

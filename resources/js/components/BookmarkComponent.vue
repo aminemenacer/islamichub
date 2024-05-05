@@ -7,9 +7,7 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title text-dark" id="addNew">
-            View message
-          </h5>
+          <h5 class="modal-title text-dark" id="addNew">View message</h5>
           <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -24,22 +22,30 @@
             </div>
 
             <div class="mr-2" style="display: flex">
-              <label class="mt-2 mr-2 col-sm-3">Ayah verse:</label>
-              <p class="mt-2 text-dark">
-                {{ form.test_field }}
+              <label class="mt-2 mr-2 col-sm-3">Surah name:</label>
+              <p class="mt-2 text-dark " >
+                {{ form.ayah_num }}
               </p>
             </div>
 
+            <div class="mr-2" style="display: flex">
+              <label class="mt-2 mr-2 col-sm-3">Ayah text:</label>
+              <p class="mt-2 text-dark" >
+                {{ form.ayah_text }}                
+              </p>
+            </div>
+
+            
+
             <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
-                Close
-              </button>
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
             </div>
           </form>
         </div>
       </div>
     </div>
   </div>
+
 
   <DataTable class="pt-5" v-model:filters="filters" showGridlines stripedRows sortable filterDisplay="row" :value="bookmarks" paginator :rows="7" :rowsPerPageOptions="[5, 10, 20, 50]" removableSort width="100%" tableStyle="max-width:100%">
     <template #header>
@@ -54,7 +60,7 @@
       </div>
     </template>
 
-    <Column v-for="col of columns" :key="col.field" :field="col.field" :header="col.header" sortable class="text-left" style="align-items:center" width>
+    <Column v-for="col of columns" :key="col.field" :field="col.field" :header="col.header" sortable class="text-left truncate" style="align-items:center" width>
     </Column>
 
     <Column :exportable="true" style="min-width: 8rem">
@@ -62,11 +68,11 @@
         <div class="wrapper text-center" style="display:flex">
           <Button data-bs-toggle="modal" data-bs-target="#editNewBookmark" type="button" class="btn user-btn text-white text-center mr-2 action btn1" style="background-color: #1e88e5; display:flex;display:inline-block" @click="editModal(slotProps.data)">
             <i class="bi bi-eye-fill mr-2"></i>
-            View Verse
+            View
           </Button>
           <button class="btn text-white user-btn" style="background-color: #b71c1c" @click="deleteBookmark(slotProps.data.id)">
               <i class="bi bi-trash-fill"></i>
-              Delete Verse
+              Delete
             </button>
         </div>
       </template>
@@ -100,12 +106,17 @@ export default {
           field: "id",
           header: "ID",
           sortable: true,
-        }, 
+        },
         {
-          field: "test_field",
-          header: "Ayah text",
+          field: "ayah_num",
+          header: "Surah name",
           sortable: true,
         },
+        {
+          field: "ayah_text",
+          header: "Ayah text",
+          sortable: true,
+        }, 
         {
           field:"",
           header:"Actions",
@@ -116,10 +127,20 @@ export default {
       sortDesc: false,
       form: new Form({
         id: "",
-        test_field: "",
+        ayah_num: "",
+        ayah_text: "",
         created_at: "",
       }),
+      maxLength: 70, // Set your desired max length
     }
+  },
+  computed: {
+    truncatedText() {
+      if (!this.form.ayah_text) return '';
+      return this.form.ayah_text.length > this.maxLength
+        ? this.form.ayah_text.substring(0, this.maxLength) + '...' // Append ellipsis
+        : this.form.ayah_text;
+    },
   },
   methods: {
     loadBookmark() {
@@ -168,5 +189,9 @@ export default {
 </script>
 
 <style>
-
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 </style>

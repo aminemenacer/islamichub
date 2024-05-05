@@ -71,30 +71,29 @@
                         <li class="nav-item mt-2">
                             <h5><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3 pr-5" href="/join_us">Mailing List</a></h5>
                         </li>
-                        <li class="nav-item mt-2 pr-2 mb-1">
-                            <button class="button-33">Support Us</button>
-                        </li>
+                        
                         <!-- Right Side Of Navbar -->
-                        <!-- @guest
+                         @guest
                         @if (Route::has('login'))
-                        <li class="nav-item mt-1">
+                        <li class="nav-item mt-2">
                             <h5><a style="font-family:inter;" class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></h5>
                         </li>
                         @endif
                         @if (Route::has('register'))
-                        <li class="nav-item mt-1">
+                        <li class="nav-item mt-2">
                             <h5><a style="font-family:inter;" class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></h5>
                         </li>
                         @endif
                         @else
                         <li class="nav-item dropdown mt-1 ml-5">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle mb-1" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{-- {{ Auth::user()->name }} --}}
                                 <i class="bi bi-person-circle" style="font-size: 1.8rem"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="/dashboard">Dashboard</a>
+                                <a class="dropdown-item" href="/bookmarks">Bookmarks</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
@@ -104,7 +103,10 @@
                                 </form>
                             </div>
                         </li>
-                        @endguest -->
+                        @endguest 
+                        <li class="nav-item mt-2 pl-4 mb-1">
+                            <button class="button-33">Support Us</button>
+                        </li>
                     </ul>
                 </div>
             </div>
