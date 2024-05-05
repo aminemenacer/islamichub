@@ -59,7 +59,8 @@
                   </div>
                   <hr class="my-4">
 
-                  <a href="{{ url('auth/google') }}" class="btn btn-lg btn-block " style="border: lightgrey solid 1px; color:black" type="submit"><img src="https://img.icons8.com/color/16/000000/google-logo.png"> Login Using Google</a>                
+                  <a href="{{ url('auth/google') }}" class="btn btn-lg btn-block " style="border: lightgrey solid 1px; color:black" type="submit"><img src="https://img.icons8.com/color/16/000000/google-logo.png" class="pr-2"> Login Using Google</a> 
+                  <a href="{{ url('auth/facebook') }}" class="btn btn-lg btn-block btn-primary text-white" style="border: lightgrey solid 1px; color:black" type="submit"><img src="images/icons8-facebook-32.png" class="pr-2"> Login Using Facebook</a>
                 </form>
 
               </div>

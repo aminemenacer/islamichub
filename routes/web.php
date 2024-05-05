@@ -50,6 +50,9 @@ Route::get('/audio-files/{id}', [ContactController::class, 'fetchAudioFile']);
 //updates
 Route::get('/updates', [UpdatesController::class, 'index']);
 
+//facebook login
+Route::get('/auth/facebook', [LoginController::class, 'redirectToFacebook'])->name('fb-auth');
+Route::get('/auth/facebook/callback', [LoginController::class, 'loginWithFacebook']);
 
 // stripe payment
 Route::post('payment/initiate', [CharityController::class, 'initiatePayment']);

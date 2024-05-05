@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('password')->nullable();
             $table->string('subscribe')->nullable();
             $table->string('google_id')->nullable();
+            $table->string('fb_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

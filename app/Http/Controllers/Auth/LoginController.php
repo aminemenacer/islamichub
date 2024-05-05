@@ -12,7 +12,6 @@ use App\Models\User;
 class LoginController extends Controller
 {
     
-
     use AuthenticatesUsers;
 
     /**
@@ -27,6 +26,32 @@ class LoginController extends Controller
      *
      * @return void
      */
+    public function redirectToFacebook()
+    {
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    public function loginWithFacebook()
+    {
+        $facebook_user = Socialite::driver('facebook')->user();
+        
+        $user = User::where('fb_id', $facebook_user->getId())->first();
+    
+        if(!$user){
+            $new_user = User::create([
+                'name' => $facebook_user->name,
+                'email' => $facebook_user->email,
+                'fb_id' => $facebook_user->getId(),
+            ]);
+
+            Auth::login($new_user);
+            return redirect('/');
+        }else{
+            
+            Auth::login($user);
+            return redirect('/');
+        }
+    }
     
     public function redirectToGoogle()
     {
@@ -48,11 +73,11 @@ class LoginController extends Controller
         ]);
 
         Auth::login($new_user);
-        return redirect()->intended('/');
+            return redirect('/');
         } else {
 
         Auth::login($user);
-        return redirect()->intended('/');
+            return redirect('/');
         }
     }
     

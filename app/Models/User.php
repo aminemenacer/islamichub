@@ -22,7 +22,8 @@ class User extends Authenticatable
         'user_type',
         'status',
         'subscribe',
-        'google_id'
+        'google_id',
+        'fb_id'
        
     ];
 
