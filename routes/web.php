@@ -20,6 +20,7 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\JoinUsController;
+use App\Http\Controllers\NotesController;
 use App\Http\Controllers\UpdatesController;
 
 // Auth routes
@@ -59,6 +60,12 @@ Route::post('payment/initiate', [CharityController::class, 'initiatePayment']);
 Route::post('payment/complete', [CharityController::class, 'completePayment']);
 Route::post('payment/failure', [CharityController::class, 'failPayment']);
 
+// notes
+Route::get('/notes', [NotesController::class, 'index']);
+Route::get('api/fetch-notes', [NotesController::class, 'getNotes']);
+Route::post('api/submit-note', [NotesController::class, 'store']);
+Route::delete('api/delete-notes/{id}',  [NotesController::class, 'deleteNotes']);
+
 // users
 Route::get('/users', [UserController::class, 'index']);
 Route::get('api/fetch-users', [UserController::class, 'getUsers']);
@@ -82,9 +89,9 @@ Route::get('/get_ayahs', [SurahController::class, 'getAyahs']);
 Route::get('/get_informations', [SurahController::class, 'getInformations']);
 Route::get('/tafseer/{id}/fetch', [SurahController::class, 'getTafseers']);
 Route::post('/search', [SurahController::class, 'search'])->name('search');
-Route::post('/bookmarks', [BookmarkController::class, 'store']);
 
 //bookmark
+Route::post('/bookmarks', [BookmarkController::class, 'store']);
 Route::get('/bookmarks', [BookmarkController::class, 'index']);
 Route::get('api/fetch-bookmarks', [BookmarkController::class, 'getBookmarks']);
 Route::delete('api/delete-bookmarks/{id}',  [BookmarkController::class, 'deleteBookmarks']);

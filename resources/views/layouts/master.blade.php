@@ -145,6 +145,14 @@
                 </p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="/notes" class="nav-link">
+                <i class="bi bi-file-earmark-text-fill mr-1"></i>
+                <p>
+                  Notes
+                </p>
+              </a>
+            </li>
             <li class="nav-item ml-1">
               <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                                       document.getElementById('logout-form').submit();">

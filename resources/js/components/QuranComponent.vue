@@ -213,9 +213,63 @@
            Login to your account to be able to bookmark verses.
           </div>
 
+          <!-- note component -->
+          <div v-if="showAlertNote" class="alert alert-success" role="alert">
+            Note created successfully!
+          </div>
+          <div v-if="showErrorAlertNote" class="alert alert-danger" role="alert">
+            Login to your account to be able to write a note.
+          </div>
+
+
+
          </div>
          <!-- features -->
          <div class="text-right mt-2">
+          <div class="dropdown">
+           
+
+            <!-- notes modal -->
+            <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" @show.bs.modal="fillModalFields">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Write a Note</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <form @submit.prevent="createNote">
+                      <div class="row container">
+                        <div class="col">
+                          <input v-model="form1.surah_name" type="text" class="form-control" name="surah_name" placeholder="Surah name" aria-label="Surah name" required>
+                        </div>
+                        <div class="col">
+                          <input v-model="form1.ayah_num" type="text" class="form-control" name="ayah_num" placeholder="Ayah number" aria-label="Ayah number" required>
+                        </div>
+                      </div>
+                      <div class="row container mt-3">
+                        <div class="col">
+                          <textarea v-model="form1.ayah_text" class="form-control container mb-3" name="ayah_text" placeholder="Ayah text" rows="5" required></textarea>
+                        </div>
+                      </div>
+                      <div class="row container mt-3">
+                        <div class="col">
+                          <textarea v-model="form1.ayah_notes" class="form-control container mb-3" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah ﷻ." rows="5"></textarea>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          
+          </div>
+          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-file-earmark-text-fill text-right h4" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#exampleModal1" @click="openNoteModal"></i>
           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-whatsapp text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp" @click="shareTextViaWhatsApp()"></i>
           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-twitter-x text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X" @click="shareHeadingOnTwitter()"></i>
           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bookmark-fill text-right h4" aria-expanded="false" data-bs-placement="top" title="Save bookmark" @click="submitForm"></i>
@@ -421,6 +475,16 @@ export default {
    ayah_text: "",
    showAlert: false,
    showAlertText: false,
+   showAlertNote: false,
+   showAlertTextNote: false,
+
+   form1: new Form({
+    id: "",
+    surah_name: "",
+    ayah_num: "",
+    ayah_text: "",
+    ayah_notes: "",
+   }),
 
    form: new Form({
     id: "",
@@ -798,10 +862,11 @@ export default {
   closeModal() {
    this.showModal = false;
   },
+  
   createCorrection() {
    Swal.fire({
     title: "Are you sure?",
-    text: "You want to create a submit message!",
+    text: "You want to submit message!",
     showCancelButton: true,
     confirmButtonColor: "green",
     cancelButtonColor: "#d33",
@@ -815,7 +880,7 @@ export default {
         Swal.fire({
          position: "top-end",
          icon: "success",
-         title: "Message submitted succesfully successfully",
+         title: "Message submitted succesfully",
          showConfirmButton: false,
          timer: 1500,
         });
@@ -835,6 +900,51 @@ export default {
     }
    });
   },
+  fillModalFields() {
+    // Autofill the modal fields with the provided data
+    this.form1.surah_name = this.information.ayah.surah.name_en;
+    this.form1.ayah_text = this.information.translation;
+  },
+  
+  createNote() {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You want to submit note!",
+      showCancelButton: true,
+      confirmButtonColor: "green",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Submit!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .post("/api/submit-note", this.form1)
+          .then((res) => {
+            if (res.data.success) {
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Note submitted successfully",
+                showConfirmButton: false,
+                timer: 1500
+              });
+              // Close the modal after successful submission
+              $('#exampleModal1').modal('hide');
+            } else {
+              Swal.fire({
+                position: "top-end",
+                icon: "error",
+                title: "Unable to submit note",
+                showConfirmButton: false,
+                timer: 1500
+              });
+            }
+          })
+          .catch(function(err) {
+            console.error(err);
+          });
+        }
+      });
+    },
 
   copyText() {
    console.log(this.$refs.heading);

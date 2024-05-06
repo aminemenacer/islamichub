@@ -43,6 +43,7 @@ import AboutComponent from "./components/AboutComponent.vue";
 import BookmarkComponent from "./components/BookmarkComponent.vue";
 import UpdatesComponent from "./components/UpdatesComponent.vue";
 import JoinUsComponent from "./components/JoinUsComponent.vue";
+import NotesComponent from "./components/NotesComponent.vue";
 
 window.Vue = require("vue");
 
@@ -92,5 +93,6 @@ app.component("about-component", AboutComponent);
 app.component("bookmark-component", BookmarkComponent);
 app.component("updates-component", UpdatesComponent);
 app.component("join_us-component", JoinUsComponent);
+app.component("notes-component", NotesComponent);
 
 app.mount("#app");
