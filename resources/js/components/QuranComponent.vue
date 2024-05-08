@@ -67,12 +67,15 @@
    </form>
 
    <!-- Surah list -->
-   <ul class="col-md-12 mt-1 scrollable-list" style="list-style-type: none; overflow-y: auto; max-height: 300px;">
-    <li v-for="item in filteredSurah" :key="item.id" @click="selectSurah(item.id)" style="cursor: pointer;">
-     <p>{{ item.name_en }} - {{ item.name_ar }}</p>
-     <hr>
-    </li>
-   </ul>
+    <ul class="col-md-12 mt-1 scrollable-list " style="list-style-type: none; overflow-y: auto; max-height: 350px;">
+      <li v-for="item in filteredSurah" :key="item.id" @click="selectSurah(item.id)" style="cursor: pointer; padding:5px;" class="highlight-on-hover">
+        <div style="display: flex; align-items: center;">
+          <img src="/images/art.png" style="width: 23px" class="mb-1 mr-2" />
+          <p style="font-size: 18px;" class="mt-2">{{ item.name_en }} - {{ item.name_ar }}</p>
+        </div>
+      </li>
+    </ul>
+
 
    <!-- list of ayat for surat -->
    <div class="tab-content hide-on-mobile" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
@@ -91,14 +94,13 @@
       -->
 
       <div class="custom-scrollbar" style="overflow-y:auto; max-height:700px;background:white">
-       <ul class="col-md-4 list-group container-fluid root" v-for="(ayah, index) in ayahs" :key="index" @click="getTafseers(ayah.id, index)" :class="{selected: selectedIndexAyah === index,}">
-        <li class="list-group-item container-fluid" id="toggle" ref="selectedAyah">
-         <h5 style="display: flex"> Verse: {{ ayah.ayah_id }} </h5>
-         <h5>{{ ayah.ayah_text }}</h5>
-        </li>
-       </ul>
+       <ul class="col-md-4 list-group container-fluid root" v-for="(ayah, index) in ayahs" :key="index" @click="getTafseers(ayah.id, index)" :class="{selected: selectedIndexAyah === index, }">
+          <li class="list-group-item container-fluid" id="toggle" ref="selectedAyah">
+            <h5 style="display: flex"> Verse: {{ ayah.ayah_id }} </h5>
+            <h5>{{ ayah.ayah_text }}</h5>
+          </li>
+        </ul>
       </div>
-
      </div>
     </div>
    </div>
@@ -230,7 +232,6 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                <!-- Bootstrap alert for error (user not logged in) -->
                 
 
                 <!-- Note form -->
@@ -1053,6 +1054,11 @@ export default {
 </script>
 
 <style scoped>
+.highlight-on-hover:hover {
+    background-color: rgba(16, 247, 216, 0.192); /* Change to your desired highlight color */
+    border-radius: 10px;
+    padding: 15px;
+  }
 .zoomable {
  transition: transform 0.4s;
  /* Smooth transition effect */

@@ -9,10 +9,11 @@
     <div class="px-4 py-5 px-md-5 text-center text-lg-start" style="background-color: hsl(0, 0%, 96%)">
       <div class="container">
         <div class="row gx-lg-5 align-items-center">
-          <div class="col-lg-6  mb-lg-0">
-            <h3 class=" display-3 fw-bold ls-tight">
-            </h3>
+          
+          <div class="col-lg-6  mb-lg-0 hide-on-mobile">
+            <img src="images/mob-auth.png" width="90%">
           </div>
+  
   
           <div class="col-lg-6 mb-lg-0">
             <div class="card">
@@ -90,7 +91,36 @@
   </section>
 
   @endsection
-
+  <style>
+    @media (max-width: 575px) {
+  
+  /* Hide the content on mobile devices */
+  .hide-on-mobile {
+   display: none;
+  }
+  
+  .custom-dropdown {
+   max-height: 200px;
+   /* Adjust the value as needed */
+   overflow-y: auto;
+  }
+  }
+  
+  @media (max-width: 767px) {
+  
+  /* Hide the content on mobile devices */
+  .hide-on-mobile {
+   display: none;
+  }
+  
+  .custom-dropdown {
+   max-height: 200px;
+   /* Adjust the value as needed */
+   overflow-y: auto;
+  }
+  
+  }
+  </style>
 
 
   
