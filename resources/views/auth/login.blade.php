@@ -2,26 +2,26 @@
 
 @section('content')
 
-<section class="vw-100" >
-  <div class="container h-90">
-    <div class="row d-flex justify-content-center align-items-center ">
-      <div class="col col-xl-10">
-        <div class="card mt-5" style="border-radius: 1rem;">
-          <div class="row g-0">
-            <div class="col-md-6 col-lg-5 d-none d-md-block">
-              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
-                alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
-            </div>
-            <div class="col-md-6 col-lg-7 d-flex align-items-center">
-              <div class="card-body p-4  text-black">
+<!-- Section: Design Block -->
+<section class="">
+  <!-- Jumbotron -->
+  <div class="px-4 py-5 px-md-5 text-center text-lg-start" style="background-color: hsl(0, 0%, 96%)">
+    <div class="container">
+      <div class="row gx-lg-5 align-items-center">
+        <div class="col-lg-6  mb-lg-0">
+          
+        </div>
 
-                <form method="POST" action="{{ route('login') }}">
-                  @csrf
-                  
-                  <h2 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;font-family:inter"><b>Sign into your account</b></h2>
+        <div class="col-lg-6 mb-5 mb-lg-0">
+          <div class="card">
+            <div class="card-body py-5 px-md-5">
+              <form>
+                <!-- 2 column grid layout with text inputs for the first and last names -->
+                <h2 class="fw-normal mt-3 pb-3" style="font-family:inter"><b>Login to your account</b></h2>
 
+                <div class="row">
                   <div class="form-outline mb-4">
-                    <label class="form-label" for="form2Example17">Email address</label>
+                    <label class="form-label" style="font-weight:bold" >Email address</label>
                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                     @error('email')
@@ -29,8 +29,7 @@
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
-
-                </div>
+                 </div>
 
                   <div class="form-outline mb-4">
                     <label class="form-label" for="form2Example27">Password</label>
@@ -42,34 +41,48 @@
                         </span>
                     @enderror
                   </div>
+                </div>
 
-                  <div class="pt-1 mb-4">
-                    <button type="submit" class="btn btn-success btn-lg btn-block" type="button">Login</button>
-
-                  </div>
                 
-                  <div class="text-center">
-                    @if (Route::has('password.request'))
-                        <a class="btn btn-link" href="{{ route('password.request') }}">
-                            {{ __('Forgot Your Password?') }}
-                        </a>
-                    @endif
-                    <p class="mb-3 pb-lg-2" style="color: #393f81;">Don't have an account? <a href="/register"
-                        style="color: #393f81;">Register here</a></p>
-                  </div>
-                  <hr class="my-4">
+                <!-- Submit button -->
+                <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-block mb-4 text-white" style="background: #00BFA6;">
+                  <span>Login</span>
+                </button>
 
-                  <a href="{{ url('auth/google') }}" class="btn btn-lg btn-block " style="border: lightgrey solid 1px; color:black" type="submit"><img src="https://img.icons8.com/color/16/000000/google-logo.png" class="pr-2"> Login Using Google</a> 
-                  <a href="{{ url('auth/facebook') }}" class="btn btn-lg btn-block btn-primary text-white" style="border: lightgrey solid 1px; color:black" type="submit"><img src="images/icons8-facebook-32.png" class="pr-2"> Login Using Facebook</a>
-                </form>
+                <div class="text-center">
+                  @if (Route::has('password.request'))
+                      <a class="btn btn-link" href="{{ route('password.request') }}">
+                          {{ __('Forgot Your Password?') }}
+                      </a>
+                  @endif
+                  <p class="mb-3 pb-lg-2" style="color: #000000;">Don't have an account? <a href="/register"
+                      style="color: #00BFA6;">Register here</a></p>
+                </div>
+                <hr class="my-4">
 
-              </div>
+                <!-- Register buttons -->
+                <div class="text-center">
+                  <b>or login with:</b>
+                  <a href="{{ url('auth/facebook') }}" type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-link btn-floating mx-2" style="font-size: 22px; color:#00BFA6;">
+                    <i class="fab fa-facebook-f"></i>
+                  </a>
+
+
+                  <a href="{{ url('auth/google') }}" type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-link btn-floating mx-2" style="font-size: 22px; color:#00BFA6;">
+                    <i class="fab fa-google"></i>
+                  </a>
+
+                
+                </div>
+              </form>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <!-- Jumbotron -->
 </section>
+<!-- Section: Design Block -->
 @endsection
 
