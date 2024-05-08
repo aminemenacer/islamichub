@@ -187,7 +187,7 @@ export default {
           Swal.fire({
             position: "top-end",
             icon: "success",
-            title: "Correction deleted successfully ",
+            title: "Note deleted successfully ",
             showConfirmButton: false,
             timer: 1500,
           });
