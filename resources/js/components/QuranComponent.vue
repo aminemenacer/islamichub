@@ -411,8 +411,6 @@ export default {
  mounted() {
   this.getSurahs();
   this.fetchAyahs();
-    $(this.$refs.exampleModal1).on('shown.bs.modal', this.loadFormData);
-
  },
 
  data() {
@@ -520,7 +518,7 @@ export default {
    const formData = {
     surah_name: this.information.ayah.surah.name_en,    
     ayah_num: this.information.ayah_id,
-    ayah_verse_ar: this.information.ayah_text,
+    ayah_verse_ar: this.information.ayah.ayah_text,
     ayah_verse_en: this.information.translation,
    };
 
@@ -919,9 +917,7 @@ export default {
             // Show success message or perform any other action on successful submission
             Swal.fire("Success!", "Your note has been submitted.", "success");
             // Reset the form inputs
-            this.form1.surah_name = "";
-            this.form1.ayah_num = "";
-            this.form1.ayah_text = "";
+            
             this.form1.ayah_notes = "";
             // Close the Sweet Alert dialog
             setTimeout(() => {
@@ -929,9 +925,7 @@ export default {
             }, 2000);
           } else {
             Swal.fire("Success!", "Your note has been submitted.", "success");
-            this.form1.surah_name = "";
-            this.form1.ayah_num = "";
-            this.form1.ayah_text = "";
+            
             this.form1.ayah_notes = "";
             setTimeout(() => {
               Swal.close();

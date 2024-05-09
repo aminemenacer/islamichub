@@ -28,13 +28,14 @@
                 {{ form1.surah_name }}
               </p>
             </div>
-
+            <!--
             <div class="mr-2" style="display: flex">
               <label class="mt-2 mr-2 col-sm-3">Ayah number:</label>
               <p class="mt-2 text-dark">
                 {{ form1.ayah_num }}
               </p>
             </div>
+            -->
 
             <div class="mr-2" style="display: flex">
               <label class="mt-2 mr-2 col-sm-3">Ayah verse Arabic:</label>
@@ -44,7 +45,7 @@
             </div>
 
             <div class="mr-2" style="display: flex">
-              <label class="mt-2 mr-2 col-sm-3">Ayah verse English:</label>
+              <label class="mt-2 mr-2 col-sm-3">English Info:</label>
               <p class="mt-2 text-dark">
                 {{ form1.ayah_verse_en }}
               </p>
@@ -133,19 +134,19 @@ export default {
           header: "Surah name",
           sortable: true,
         },
-        {
-          field: "ayah_num",
-          header: "Ayah number",
-          sortable: true,
-        },
+        // {
+        //   field: "ayah_num",
+        //   header: "Ayah number",
+        //   sortable: true,
+        // },
         {
           field: "ayah_verse_ar",
           header: "Arabic verse",
           sortable: true,
         },
         {
-          field: "ayah_verse_ar",
-          header: "English verse",
+          field: "ayah_verse_en",
+          header: "English Info",
           sortable: true,
         },
         {
@@ -165,7 +166,7 @@ export default {
         ayah_info: "",
         ayah_notes: "",
       }),
-      maxLength: 70, // Set your desired max length
+      maxLength: 100, // Set your desired max length
     }
   },
   computed: {

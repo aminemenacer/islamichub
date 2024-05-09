@@ -29,12 +29,11 @@ class BookmarkController extends Controller
         // Assign the user_id to the bookmark
         $bookmark->user_id = auth()->id(); // Assuming you are using Laravel's built-in authentication
 
-        // Assign other fields from the request
         $bookmark->surah_name = $request->input('surah_name');
         $bookmark->ayah_num = $request->input('ayah_num');
-        $bookmark->ayah_text = $request->input('ayah_text');
-
-
+        $bookmark->ayah_verse_ar = $request->input('ayah_verse_ar');
+        $bookmark->ayah_verse_en = $request->input('ayah_verse_en');
+        $bookmark->ayah_info = $request->input('ayah_info');
         // Save the bookmark
         $bookmark->save();
 

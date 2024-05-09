@@ -14,24 +14,40 @@
         </div>
         <div class="modal-body">
           <form>
+            
+
             <div class="mr-2" style="display: flex">
-              <label class="mt-2 mr-2 col-sm-3">Id:</label>
+              <label class="mt-2 mr-2 col-sm-3">ID:</label>
               <p class="mt-2 text-dark">
                 {{ form.id }}
               </p>
             </div>
+            <div class="mr-2" style="display: flex">
+              <label class="mt-2 mr-2 col-sm-3">Surah Name:</label>
+              <p class="mt-2 text-dark">
+                {{ form.surah_name }}
+              </p>
+            </div>
+            <!--
+            <div class="mr-2" style="display: flex">
+              <label class="mt-2 mr-2 col-sm-3">Ayah number:</label>
+              <p class="mt-2 text-dark">
+                {{ form1.ayah_num }}
+              </p>
+            </div>
+            -->
 
             <div class="mr-2" style="display: flex">
-              <label class="mt-2 mr-2 col-sm-3">Surah name:</label>
-              <p class="mt-2 text-dark " >
-                {{ form.ayah_num }}
+              <label class="mt-2 mr-2 col-sm-3">Ayah verse Arabic:</label>
+              <p class="mt-2 text-dark">
+                {{ form.ayah_verse_ar }}
               </p>
             </div>
 
             <div class="mr-2" style="display: flex">
-              <label class="mt-2 mr-2 col-sm-3">Ayah text:</label>
-              <p class="mt-2 text-dark" >
-                {{ form.ayah_text }}                
+              <label class="mt-2 mr-2 col-sm-3">English Info:</label>
+              <p class="mt-2 text-dark">
+                {{ form.ayah_verse_en }}
               </p>
             </div>
 
@@ -41,6 +57,8 @@
               <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
             </div>
           </form>
+
+
         </div>
       </div>
     </div>
@@ -106,22 +124,28 @@ export default {
           field: "id",
           header: "ID",
           sortable: true,
-        },
+        }, 
         {
-          field: "ayah_num",
+          field: "surah_name",
           header: "Surah name",
           sortable: true,
         },
+        // {
+        //   field: "ayah_num",
+        //   header: "Ayah number",
+        //   sortable: true,
+        // },
         {
-          field: "ayah_text",
-          header: "Ayah text",
+          field: "ayah_verse_ar",
+          header: "Arabic verse",
           sortable: true,
-        }, 
+        },
         {
-          field:"",
-          header:"Actions",
-          sortable:true
-        }
+          field: "ayah_verse_en",
+          header: "English Info",
+          sortable: true,
+        },
+        
         
       ],
       sortDesc: false,
@@ -130,6 +154,11 @@ export default {
         ayah_num: "",
         ayah_text: "",
         created_at: "",
+        surah_name: "",
+        ayah_num: "",
+        ayah_verse_ar: "",
+        ayah_verse_en:"",
+        ayah_notes: "",
       }),
       maxLength: 70, // Set your desired max length
     }
