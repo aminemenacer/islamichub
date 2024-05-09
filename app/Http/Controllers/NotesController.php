@@ -32,7 +32,9 @@ class NotesController extends Controller
         // Assign other fields from the request
         $note->surah_name = $request->input('surah_name');
         $note->ayah_num = $request->input('ayah_num');
-        $note->ayah_text = $request->input('ayah_text');
+        $note->ayah_verse_ar = $request->input('ayah_verse_ar');
+        $note->ayah_verse_en = $request->input('ayah_verse_en');
+        $note->ayah_info = $request->input('ayah_info');
         $note->ayah_notes = $request->input('ayah_notes');
 
 

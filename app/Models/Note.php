@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Note extends Model
 {
-    protected $fillable = ['user_id', 'surah_name', 'ayah_num', "ayah_text", "ayah_notes"];
-
+    protected $fillable = ['user_id', 'surah_name', 'ayah_num', 'ayah_verse_ar', 'ayah_verse_en', "ayah_text", "ayah_notes"];
+   
     public function user()
     {
         return $this->belongsTo(User::class);

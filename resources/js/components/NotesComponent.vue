@@ -23,7 +23,7 @@
               </p>
             </div>
             <div class="mr-2" style="display: flex">
-              <label class="mt-2 mr-2 col-sm-3">Surah name:</label>
+              <label class="mt-2 mr-2 col-sm-3">Surah Name:</label>
               <p class="mt-2 text-dark">
                 {{ form1.surah_name }}
               </p>
@@ -37,9 +37,16 @@
             </div>
 
             <div class="mr-2" style="display: flex">
-              <label class="mt-2 mr-2 col-sm-3">Ayah verse:</label>
+              <label class="mt-2 mr-2 col-sm-3">Ayah verse Arabic:</label>
               <p class="mt-2 text-dark">
-                {{ form1.ayah_text }}
+                {{ form1.ayah_verse_ar }}
+              </p>
+            </div>
+
+            <div class="mr-2" style="display: flex">
+              <label class="mt-2 mr-2 col-sm-3">Ayah verse English:</label>
+              <p class="mt-2 text-dark">
+                {{ form1.ayah_verse_en }}
               </p>
             </div>
 
@@ -120,7 +127,8 @@ export default {
           field: "id",
           header: "ID",
           sortable: true,
-        }, {
+        }, 
+        {
           field: "surah_name",
           header: "Surah name",
           sortable: true,
@@ -131,8 +139,13 @@ export default {
           sortable: true,
         },
         {
-          field: "ayah_text",
-          header: "Verse",
+          field: "ayah_verse_ar",
+          header: "Arabic verse",
+          sortable: true,
+        },
+        {
+          field: "ayah_verse_ar",
+          header: "English verse",
           sortable: true,
         },
         {
@@ -147,7 +160,9 @@ export default {
         id: "",
         surah_name: "",
         ayah_num: "",
-        ayah_text: "",
+        ayah_verse_ar:"",
+        ayah_verse_en:"",
+        ayah_info: "",
         ayah_notes: "",
       }),
       maxLength: 70, // Set your desired max length

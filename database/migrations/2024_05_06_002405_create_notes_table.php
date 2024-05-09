@@ -18,7 +18,9 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->text('surah_name')->nullable();
             $table->text('ayah_num')->nullable();
-            $table->text('ayah_text')->nullable();
+            $table->text('ayah_info')->nullable();
+            $table->text('ayah_verse_ar')->nullable();
+            $table->text('ayah_verse_en')->nullable();
             $table->text('ayah_notes')->nullable();
             $table->timestamps();
         });

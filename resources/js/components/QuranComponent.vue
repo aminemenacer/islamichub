@@ -223,7 +223,7 @@
           <div class="dropdown">
 
            <!-- notes modal -->
-           <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" @show="loadAyahInfo">
+          <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" ref="exampleModal1" >
             <div class="modal-dialog modal-lg">
              <div class="modal-content">
               <div class="modal-header">
@@ -234,22 +234,12 @@
 
                <!-- Note form -->
                <form @submit.prevent="createNote">
-                <div class="row container">
-                 <div class="col">
-                  <input v-model="form1.surah_name" type="text" class="form-control" name="surah_name" placeholder="Surah name"  required>
-                 </div>
-                 <div class="col">
-                  <input v-model="form1.ayah_num" type="text" class="form-control" name="ayah_num" placeholder="Ayah number"  required>
-                 </div>
-                </div>
+                
                 <div class="row container mt-3">
+                  <h5 class="text-left pb-2" style="font-weight:bolder">Notes & Reflections</h5>
+
                  <div class="col">
-                  <textarea v-model="form1.ayah_text" class="form-control container mb-3" name="ayah_text" placeholder="Ayah text" rows="5" required></textarea>
-                 </div>
-                </div>
-                <div class="row container mt-3">
-                 <div class="col">
-                  <textarea v-model="form1.ayah_notes" class="form-control container mb-3" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah ﷻ." rows="5"></textarea>
+                  <textarea v-model="form1.ayah_notes" class="form-control container mb-3" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah ﷻ." rows="8"></textarea>
                  </div>
                 </div>
                 <div class="modal-footer">
@@ -421,6 +411,8 @@ export default {
  mounted() {
   this.getSurahs();
   this.fetchAyahs();
+    $(this.$refs.exampleModal1).on('shown.bs.modal', this.loadFormData);
+
  },
 
  data() {
@@ -471,7 +463,8 @@ export default {
     id: "",
     surah_name: "",
     ayah_num: "",
-    ayah_text: "",
+    ayah_verse_ar: "",
+    ayah_verse_en:"",
     ayah_notes: "",
    }),
 
@@ -522,11 +515,13 @@ export default {
  },
 
  methods: {
-
+  
   submitForm() {
    const formData = {
-    ayah_text: this.information.translation, // Ensure that the field name matches the one expected by the backend
-    ayah_num: this.information.ayah.surah.name_en
+    surah_name: this.information.ayah.surah.name_en,    
+    ayah_num: this.information.ayah_id,
+    ayah_verse_ar: this.information.ayah_text,
+    ayah_verse_en: this.information.translation,
    };
 
    axios.post('/bookmarks', formData)
@@ -546,8 +541,10 @@ export default {
   },
   submitForm1() {
    const formData = {
-    ayah_text: this.tafseer, // Ensure that the field name matches the one expected by the backend
-    ayah_num: this.information.ayah.surah.name_en
+    surah_name: this.information.surah_name,    
+    ayah_num: this.information.ayah_id,
+    ayah_verse_ar: this.information.ayah_text,
+    ayah_verse_en: this.information.tafseer,
    };
 
    axios.post('/bookmarks', formData)
@@ -567,8 +564,10 @@ export default {
   },
   submitForm2() {
    const formData = {
-    ayah_text: this.information.transliteration, // Ensure that the field name matches the one expected by the backend
-    ayah_num: this.information.ayah.surah.name_en
+    surah_name: this.information.surah_name,    
+    ayah_num: this.information.ayah_id,
+    ayah_verse_ar: this.information.ayah_text,
+    ayah_verse_en: this.information.transliteration,
    };
 
    axios.post('/bookmarks', formData)
@@ -887,63 +886,67 @@ export default {
     }
    });
   },
-  fillModalFields() {
-   // Autofill the modal fields with the provided data
-   this.form1.surah_name = this.information.ayah.surah.name_en;
-   this.form1.ayah_text = this.information.translation;
+  loadFormData() {
+    // Load form data into the modal
+    this.form1.surah_name = "";
+    this.form1.ayah_num = "";
+    this.form1.ayah_text = "";
+    this.form1.ayah_notes = "";
   },
+  
   createNote() {
-   Swal.fire({
+  const formData = {
+    surah_name: this.information.ayah.surah.name_en,    
+    ayah_num: this.information.ayah_id,
+    ayah_verse_ar: this.information.ayah.ayah_text,
+    ayah_verse_en: this.information.translation,
+    ayah_notes: this.form1.ayah_notes // Add ayah_notes to formData
+  };
+
+  Swal.fire({
     title: "Are you sure?",
     text: "You want to submit note!",
     showCancelButton: true,
     confirmButtonColor: "green",
     cancelButtonColor: "#d33",
     confirmButtonText: "Submit!"
-   }).then((result) => {
+  }).then((result) => {
     if (result.isConfirmed) {
-     axios
-      .post("/api/submit-note", this.form1)
-      .then((res) => {
-       if (res.data.success) {
-        // Show success message or perform any other action on successful submission
-        Swal.fire("Success!", "Your note has been submitted.", "success");
-        // Reset the form inputs
-        this.form1.surah_name = "";
-        this.form1.ayah_num = "";
-        this.form1.ayah_text = "";
-        this.form1.ayah_notes = "";
-        // Close the Sweet Alert dialog
-        setTimeout(() => {
-         Swal.close();
-        }, 2000);
-       } else {
-        Swal.fire("Success!", "Your note has been submitted.", "success");
-        this.form1.surah_name = "";
-        this.form1.ayah_num = "";
-        this.form1.ayah_text = "";
-        this.form1.ayah_notes = "";
-        setTimeout(() => {
-         Swal.close();
-        }, 2000);
-       }
-      })
-      .catch(function (err) {
-       console.error(err);
-       // Show generic error message
-       Swal.fire("Error!", "Failed to submit note. Login or create an account to be able to write a note", "error");
-       
-      });this.form1.surah_name = "";
-        this.form1.ayah_num = "";
-        this.form1.ayah_text = "";
-        this.form1.ayah_notes = "";
-        setTimeout(() => {
-         Swal.close();
-        }, 2000);
-       
+      axios
+        .post("/api/submit-note", formData)
+        .then((res) => {
+          if (res.data.success) {
+            // Show success message or perform any other action on successful submission
+            Swal.fire("Success!", "Your note has been submitted.", "success");
+            // Reset the form inputs
+            this.form1.surah_name = "";
+            this.form1.ayah_num = "";
+            this.form1.ayah_text = "";
+            this.form1.ayah_notes = "";
+            // Close the Sweet Alert dialog
+            setTimeout(() => {
+              Swal.close();
+            }, 2000);
+          } else {
+            Swal.fire("Success!", "Your note has been submitted.", "success");
+            this.form1.surah_name = "";
+            this.form1.ayah_num = "";
+            this.form1.ayah_text = "";
+            this.form1.ayah_notes = "";
+            setTimeout(() => {
+              Swal.close();
+            }, 2000);
+          }
+        })
+        .catch(function (err) {
+          console.error(err);
+          // Show generic error message
+          Swal.fire("Error!", "Failed to submit note. Login or create an account to be able to write a note", "error");
+        });
     }
-   });
-  },
+  });
+},
+
 
   copyText() {
    console.log(this.$refs.heading);
