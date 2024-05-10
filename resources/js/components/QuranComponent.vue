@@ -92,14 +92,15 @@
         </div>
       -->
 
-      <div class="custom-scrollbar" style="overflow-y:auto; max-height:700px;background:white">
-       <ul class="col-md-4 list-group container-fluid root" v-for="(ayah, index) in ayahs" :key="index" @click="getTafseers(ayah.id, index)" :class="{selected: selectedIndexAyah === index, }">
-        <li class="list-group-item container-fluid" id="toggle" ref="selectedAyah">
-         <h5 style="display: flex"> Verse: {{ ayah.ayah_id }} </h5>
-         <h5>{{ ayah.ayah_text }}</h5>
-        </li>
-       </ul>
+      <div class="custom-scrollbar" style="overflow-y: auto; max-height: 700px; background: white;">
+        <ul class="col-md-4 list-group container-fluid root" id="toggle" ref="ayahList" style="list-style-type: none; padding: 10px">
+          <li v-for="(ayah, index) in ayahs" :key="index" @click="getTafseers(ayah.id, index)" :class="{ selected: selectedIndexAyah === index }" style="padding: 10px;border-radius:10px">
+            <h5 style="display: flex;"> Verse: {{ ayah.ayah_id }} </h5>
+            <h5>{{ ayah.ayah_text }}</h5>
+          </li>
+        </ul>
       </div>
+
      </div>
     </div>
    </div>
@@ -701,22 +702,30 @@ export default {
   },
 
   goToNextAyah() {
-   if (this.selectedIndexAyah < this.ayahs.length - 1) {
-    this.selectedIndexAyah++;
+    if (this.selectedIndexAyah < this.ayahs.length - 1) {
+      this.selectedIndexAyah++;
+    } else {
+      this.selectedIndexAyah = 0;
+    }
+    this.scrollToSelectedAyah();
     this.getTafseers(this.ayahs[this.selectedIndexAyah].id, this.selectedIndexAyah);
-   } else {
-    this.selectedIndexAyah = 0;
-    this.getTafseers(this.ayahs[this.selectedIndexAyah].id, this.selectedIndexAyah);
-   }
   },
   goToPreviousAyah() {
-   if (this.selectedIndexAyah > 0) {
-    this.selectedIndexAyah--;
-   } else {
-    // If already at the beginning, loop to the end
-    this.selectedIndexAyah = this.ayahs.length - 1;
-   }
-   this.getTafseers(this.ayahs[this.selectedIndexAyah].id, this.selectedIndexAyah);
+    if (this.selectedIndexAyah > 0) {
+      this.selectedIndexAyah--;
+    } else {
+      this.selectedIndexAyah = this.ayahs.length - 1;
+    }
+    this.scrollToSelectedAyah();
+    this.getTafseers(this.ayahs[this.selectedIndexAyah].id, this.selectedIndexAyah);
+  },
+  scrollToSelectedAyah() {
+    const list = this.$refs.ayahList;
+    const selectedAyah = list.querySelector('.selected');
+
+    if (selectedAyah) {
+      selectedAyah.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
+    }
   },
 
   goToNextSurah() {
