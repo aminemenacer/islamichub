@@ -92,13 +92,18 @@
         </div>
       -->
 
+      <form class="d-flex" @submit.prevent="scrollToAyah">
+        <input class="form-control mb-2" type="number" placeholder="Enter Ayah Number" aria-label="Search" v-model="verseNumber" required>
+        <button class="btn btn-success mb-2 ml-2" type="submit">Search</button>
+      </form>
+
       <div class="custom-scrollbar" style="overflow-y: auto; max-height: 700px; background: white;">
-        <ul class="col-md-4 list-group container-fluid root" id="toggle" ref="ayahList" style="list-style-type: none; padding: 10px">
-          <li v-for="(ayah, index) in ayahs" :key="index" @click="getTafseers(ayah.id, index)" :class="{ selected: selectedIndexAyah === index }" style="padding: 10px;border-radius:10px">
-            <h5 style="display: flex;"> Verse: {{ ayah.ayah_id }} </h5>
-            <h5>{{ ayah.ayah_text }}</h5>
-          </li>
-        </ul>
+       <ul class="col-md-4 list-group container-fluid root" id="toggle" ref="ayahList" style="list-style-type: none; padding: 10px">
+        <li v-for="(ayah, index) in ayahs" :key="index" @click="getTafseers(ayah.id, index)" :class="{ selected: selectedIndexAyah === index, 'highlighted': verseNumber && parseInt(verseNumber) === ayah.ayah_id }" style="padding: 10px;border-radius:10px">
+         <h5 style="display: flex;"> Verse: {{ ayah.ayah_id }} </h5>
+         <h5>{{ ayah.ayah_text }}</h5>
+        </li>
+       </ul>
       </div>
 
      </div>
@@ -224,7 +229,7 @@
           <div class="dropdown">
 
            <!-- notes modal -->
-          <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" ref="exampleModal1" >
+           <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" ref="exampleModal1">
             <div class="modal-dialog modal-lg">
              <div class="modal-content">
               <div class="modal-header">
@@ -235,9 +240,9 @@
 
                <!-- Note form -->
                <form @submit.prevent="createNote">
-                
+
                 <div class="row container mt-3">
-                  <h5 class="text-left pb-2" style="font-weight:bolder">Notes & Reflections</h5>
+                 <h5 class="text-left pb-2" style="font-weight:bolder">Notes & Reflections</h5>
 
                  <div class="col">
                   <textarea v-model="form1.ayah_notes" class="form-control container mb-3" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah ﷻ." rows="8"></textarea>
@@ -324,7 +329,7 @@
           <div class="text-right mt-2 mr-3 container">
 
            <!-- notes modal -->
-          <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" ref="exampleModal2" >
+           <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" ref="exampleModal2">
             <div class="modal-dialog modal-lg">
              <div class="modal-content">
               <div class="modal-header">
@@ -335,9 +340,9 @@
 
                <!-- Note form -->
                <form @submit.prevent="createNote">
-                
+
                 <div class="row container mt-3">
-                  <h5 class="text-left pb-2" style="font-weight:bolder">Notes & Reflections</h5>
+                 <h5 class="text-left pb-2" style="font-weight:bolder">Notes & Reflections</h5>
 
                  <div class="col">
                   <textarea v-model="form1.ayah_notes" class="form-control container mb-3" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah ﷻ." rows="8"></textarea>
@@ -418,7 +423,7 @@
           <!-- features -->
           <div class="text-right mt-2">
            <!-- notes modal -->
-          <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" ref="exampleModal3" >
+           <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" ref="exampleModal3">
             <div class="modal-dialog modal-lg">
              <div class="modal-content">
               <div class="modal-header">
@@ -427,11 +432,10 @@
               </div>
               <div class="modal-body">
 
-               
                <form @submit.prevent="createNote">
-                
+
                 <div class="row container mt-3">
-                  <h5 class="text-left pb-2" style="font-weight:bolder">Notes & Reflections</h5>
+                 <h5 class="text-left pb-2" style="font-weight:bolder">Notes & Reflections</h5>
 
                  <div class="col">
                   <textarea v-model="form1.ayah_notes" class="form-control container mb-3" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah ﷻ." rows="8"></textarea>
@@ -479,6 +483,7 @@ export default {
 
  data() {
   return {
+   verseNumber: null,
    showClearButton: false,
    searchTerm: '', // Search term entered by the user
    filteredSurah: [], // Array to hold filtered surahs based on search term,
@@ -526,7 +531,7 @@ export default {
     surah_name: "",
     ayah_num: "",
     ayah_verse_ar: "",
-    ayah_verse_en:"",
+    ayah_verse_en: "",
     ayah_notes: "",
    }),
 
@@ -577,10 +582,23 @@ export default {
  },
 
  methods: {
-  
+  scrollToAyah() {
+   const verseNum = parseInt(this.verseNumber);
+   if (!isNaN(verseNum) && verseNum >= 1 && verseNum <= this.ayahs.length) {
+    const ayahElement = this.$refs.ayahList.querySelectorAll("li")[verseNum - 1];
+    if (ayahElement) {
+     ayahElement.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+     });
+    }
+   } else {
+    alert("Please enter a valid ayah number.");
+   }
+  },
   submitForm() {
    const formData = {
-    surah_name: this.information.ayah.surah.name_en,    
+    surah_name: this.information.ayah.surah.name_en,
     ayah_num: this.information.ayah_id,
     ayah_verse_ar: this.information.ayah.ayah_text,
     ayah_verse_en: this.information.translation,
@@ -603,7 +621,7 @@ export default {
   },
   submitForm1() {
    const formData = {
-    surah_name: this.information.ayah.surah.name_en,    
+    surah_name: this.information.ayah.surah.name_en,
     ayah_num: this.information.ayah_id,
     ayah_verse_ar: this.information.ayah.ayah_text,
     ayah_verse_en: this.tafseer,
@@ -626,7 +644,7 @@ export default {
   },
   submitForm2() {
    const formData = {
-    surah_name: this.information.ayah.surah.name_en,    
+    surah_name: this.information.ayah.surah.name_en,
     ayah_num: this.information.ayah_id,
     ayah_verse_ar: this.information.ayah.ayah_text,
     ayah_verse_en: this.information.transliteration,
@@ -702,30 +720,34 @@ export default {
   },
 
   goToNextAyah() {
-    if (this.selectedIndexAyah < this.ayahs.length - 1) {
-      this.selectedIndexAyah++;
-    } else {
-      this.selectedIndexAyah = 0;
-    }
-    this.scrollToSelectedAyah();
-    this.getTafseers(this.ayahs[this.selectedIndexAyah].id, this.selectedIndexAyah);
+   if (this.selectedIndexAyah < this.ayahs.length - 1) {
+    this.selectedIndexAyah++;
+   } else {
+    this.selectedIndexAyah = 0;
+   }
+   this.scrollToSelectedAyah();
+   this.getTafseers(this.ayahs[this.selectedIndexAyah].id, this.selectedIndexAyah);
   },
   goToPreviousAyah() {
-    if (this.selectedIndexAyah > 0) {
-      this.selectedIndexAyah--;
-    } else {
-      this.selectedIndexAyah = this.ayahs.length - 1;
-    }
-    this.scrollToSelectedAyah();
-    this.getTafseers(this.ayahs[this.selectedIndexAyah].id, this.selectedIndexAyah);
+   if (this.selectedIndexAyah > 0) {
+    this.selectedIndexAyah--;
+   } else {
+    this.selectedIndexAyah = this.ayahs.length - 1;
+   }
+   this.scrollToSelectedAyah();
+   this.getTafseers(this.ayahs[this.selectedIndexAyah].id, this.selectedIndexAyah);
   },
   scrollToSelectedAyah() {
-    const list = this.$refs.ayahList;
-    const selectedAyah = list.querySelector('.selected');
+   const list = this.$refs.ayahList;
+   const selectedAyah = list.querySelector('.selected');
 
-    if (selectedAyah) {
-      selectedAyah.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
-    }
+   if (selectedAyah) {
+    selectedAyah.scrollIntoView({
+     behavior: 'smooth',
+     block: 'center',
+     inline: 'nearest'
+    });
+   }
   },
 
   goToNextSurah() {
@@ -956,57 +978,55 @@ export default {
     }
    });
   },
- 
-  
+
   createNote() {
-    const formData = {
-      surah_name: this.information.ayah.surah.name_en,    
-      ayah_num: this.information.ayah_id,
-      ayah_verse_ar: this.information.ayah.ayah_text,
-      ayah_verse_en: this.information.translation,
-      ayah_notes: this.form1.ayah_notes // Add ayah_notes to formData
-    };
+   const formData = {
+    surah_name: this.information.ayah.surah.name_en,
+    ayah_num: this.information.ayah_id,
+    ayah_verse_ar: this.information.ayah.ayah_text,
+    ayah_verse_en: this.information.translation,
+    ayah_notes: this.form1.ayah_notes // Add ayah_notes to formData
+   };
 
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You want to submit note!",
-      showCancelButton: true,
-      confirmButtonColor: "green",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Submit!"
-    }).then((result) => {
-      if (result.isConfirmed) {
-        axios
-          .post("/api/submit-note", formData)
-          .then((res) => {
-            if (res.data.success) {
-              // Show success message or perform any other action on successful submission
-              Swal.fire("Success!", "Your note has been submitted.", "success");
-              // Reset the form inputs
-              
-              this.form1.ayah_notes = "";
-              // Close the Sweet Alert dialog
-              setTimeout(() => {
-                Swal.close();
-              }, 2000);
-            } else {
-              Swal.fire("Success!", "Your note has been submitted.", "success");
-              
-              this.form1.ayah_notes = "";
-              setTimeout(() => {
-                Swal.close();
-              }, 2000);
-            }
-          })
-          .catch(function (err) {
-            console.error(err);
-            // Show generic error message
-            Swal.fire("Error!", "Failed to submit note. Login or create an account to be able to write a note", "error");
-          });
-      }
-    });
+   Swal.fire({
+    title: "Are you sure?",
+    text: "You want to submit note!",
+    showCancelButton: true,
+    confirmButtonColor: "green",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Submit!"
+   }).then((result) => {
+    if (result.isConfirmed) {
+     axios
+      .post("/api/submit-note", formData)
+      .then((res) => {
+       if (res.data.success) {
+        // Show success message or perform any other action on successful submission
+        Swal.fire("Success!", "Your note has been submitted.", "success");
+        // Reset the form inputs
+
+        this.form1.ayah_notes = "";
+        // Close the Sweet Alert dialog
+        setTimeout(() => {
+         Swal.close();
+        }, 2000);
+       } else {
+        Swal.fire("Success!", "Your note has been submitted.", "success");
+
+        this.form1.ayah_notes = "";
+        setTimeout(() => {
+         Swal.close();
+        }, 2000);
+       }
+      })
+      .catch(function (err) {
+       console.error(err);
+       // Show generic error message
+       Swal.fire("Error!", "Failed to submit note. Login or create an account to be able to write a note", "error");
+      });
+    }
+   });
   },
-
 
   copyText() {
    console.log(this.$refs.heading);
@@ -1126,12 +1146,27 @@ export default {
  },
 
  watch: {
-  'information.ayah.surah.name_ar': 'updateFileName'
+  'information.ayah.surah.name_ar': 'updateFileName',
+  verseNumber(newVal, oldVal) {
+      if (newVal !== oldVal && parseInt(newVal)) {
+        this.selectedIndexAyah = parseInt(newVal) - 1;
+      }
+    }
  }
 };
 </script>
 
 <style scoped>
+.selected {
+ background-color: yellow;
+ /* Change to any desired highlight color */
+}
+
+.highlighted {
+ background-color: lightblue;
+ /* Change to any desired highlight color */
+}
+
 .highlight-on-hover:hover {
  background-color: rgba(16, 247, 216, 0.192);
  /* Change to your desired highlight color */
