@@ -18,25 +18,25 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <!-- Left Side Of Navbar -->
-          <ul class="navbar-nav justify-content-end mt-2 pr-4 flex-grow-1">
-            <li class="nav-item mt-2">
+          <ul class="navbar-nav justify-content-end pr-4 flex-grow-1">
+            <li class="nav-item ">
               <h5><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/quran">Quran</a></h5>
             </li>
             <!-- <li class="nav-item mt-2">
                       <h5><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/ahadith">Ahadith</a></h5>
                   </li> -->
-            <li class="nav-item mt-2">
+            <li class="nav-item">
               <h5><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/contact">Contact</a>
               </h5>
             </li>
-            <li class="nav-item mt-2">
+            <li class="nav-item">
               <h5><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/about">About Us</a></h5>
             </li>
-            <li class="nav-item mt-2">
+            <li class="nav-item">
               <h5><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/updates">Updates</a>
               </h5>
             </li>
-            <li class="nav-item mt-2">
+            <li class="nav-item">
               <h5><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3 pr-5" href="/join_us">Mailing
                   List</a></h5>
             </li>
@@ -153,10 +153,11 @@
                 </p>
               </a>
             </li>
-            <li class="nav-item ml-1">
+            <li class="nav-item ">
               <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                      document.getElementById('logout-form').submit();">
-                {{ __('Logout') }}
+               document.getElementById('logout-form').submit();">              
+              <i class="bi bi-plug-fill" style="font-size: 22px"></i>
+                <p class="mb-2">{{ __('Logout') }}</p>
               </a>
 
               <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

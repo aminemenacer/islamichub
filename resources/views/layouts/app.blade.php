@@ -56,45 +56,45 @@
         
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav justify-content-end mt-2 pr-4 flex-grow-1">
-                        <li class="nav-item mt-2">
+                    <ul class="navbar-nav justify-content-end  pr-4 flex-grow-1">
+                        <li class="nav-item mt-3">
                             <h5><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/quran">Home
                             </a></h5>
                         </li>
-                        <li class="nav-item mt-2">
+                        <li class="nav-item mt-3">
                             <h5><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/quran">Quran</a></h5>
                         </li>
                         <!-- <li class="nav-item mt-2">
                             <h5><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/ahadith">Ahadith</a></h5>
                         </li> -->
-                        <li class="nav-item mt-2">
+                        <li class="nav-item mt-3">
                             <h5><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/contact">Contact</a></h5>
                         </li>
-                        <li class="nav-item mt-2">
+                        <li class="nav-item mt-3">
                             <h5><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/about">About Us</a></h5>
                         </li>
-                        <li class="nav-item mt-2">
+                        <li class="nav-item mt-3">
                             <h5><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/updates">Updates</a></h5>
                         </li>
-                        <li class="nav-item mt-2">
+                        <li class="nav-item mt-3">
                             <h5><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3 pr-5" href="/join_us">Mailing List</a></h5>
                         </li>
                         
                         <!-- Right Side Of Navbar -->
                          @guest
                         @if (Route::has('login'))
-                        <li class="nav-item mt-2">
+                        <li class="nav-item mt-3">
                             <h5><a style="font-family:inter;" class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></h5>
                         </li>
                         @endif
                         @if (Route::has('register'))
-                        <li class="nav-item mt-2">
+                        <li class="nav-item mt-3">
                             <h5><a style="font-family:inter;" class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></h5>
                         </li>
                         @endif
                         @else
-                        <li class="nav-item dropdown mt-1 ml-5">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle mb-1" href="#" role="button"
+                        <li class="nav-item dropdown ml-5">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{-- {{ Auth::user()->name }} --}}
                                 <i class="bi bi-person-circle" style="font-size: 1.8rem"></i>

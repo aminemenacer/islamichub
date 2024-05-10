@@ -319,7 +319,40 @@
           </div>
 
           <!-- features -->
+
           <div class="text-right mt-2 mr-3 container">
+
+           <!-- notes modal -->
+          <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" ref="exampleModal2" >
+            <div class="modal-dialog modal-lg">
+             <div class="modal-content">
+              <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">Write a Note</h5>
+               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+
+               <!-- Note form -->
+               <form @submit.prevent="createNote">
+                
+                <div class="row container mt-3">
+                  <h5 class="text-left pb-2" style="font-weight:bolder">Notes & Reflections</h5>
+
+                 <div class="col">
+                  <textarea v-model="form1.ayah_notes" class="form-control container mb-3" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah ﷻ." rows="8"></textarea>
+                 </div>
+                </div>
+                <div class="modal-footer">
+                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                 <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+               </form>
+              </div>
+             </div>
+            </div>
+           </div>
+
+           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-file-earmark-text-fill text-right h4" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#exampleModal2" @click="openNoteModal"></i>
            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-whatsapp text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp" @click="shareTextViaWhatsApp1()"></i>
            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-twitter-x text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X" @click="shareHeadingOnTwitter1()"></i>
            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bookmark-fill text-right h4" aria-expanded="false" data-bs-placement="top" title="Save bookmark" @click="submitForm1"></i>
@@ -383,6 +416,36 @@
 
           <!-- features -->
           <div class="text-right mt-2">
+           <!-- notes modal -->
+          <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" ref="exampleModal3" >
+            <div class="modal-dialog modal-lg">
+             <div class="modal-content">
+              <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">Write a Note</h5>
+               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+
+               
+               <form @submit.prevent="createNote">
+                
+                <div class="row container mt-3">
+                  <h5 class="text-left pb-2" style="font-weight:bolder">Notes & Reflections</h5>
+
+                 <div class="col">
+                  <textarea v-model="form1.ayah_notes" class="form-control container mb-3" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah ﷻ." rows="8"></textarea>
+                 </div>
+                </div>
+                <div class="modal-footer">
+                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                 <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+               </form>
+              </div>
+             </div>
+            </div>
+           </div>
+           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-file-earmark-text-fill text-right h4" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#exampleModal3" @click="openNoteModal"></i>
            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-whatsapp text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp" @click="shareTextViaWhatsApp2()"></i>
            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-twitter-x text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X" @click="shareHeadingOnTwitter2()"></i>
            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bookmark-fill text-right h4" aria-expanded="false" data-bs-placement="top" title="Save bookmark" @click="submitForm2"></i>
@@ -539,10 +602,10 @@ export default {
   },
   submitForm1() {
    const formData = {
-    surah_name: this.information.surah_name,    
+    surah_name: this.information.ayah.surah.name_en,    
     ayah_num: this.information.ayah_id,
-    ayah_verse_ar: this.information.ayah_text,
-    ayah_verse_en: this.information.tafseer,
+    ayah_verse_ar: this.information.ayah.ayah_text,
+    ayah_verse_en: this.tafseer,
    };
 
    axios.post('/bookmarks', formData)
@@ -562,9 +625,9 @@ export default {
   },
   submitForm2() {
    const formData = {
-    surah_name: this.information.surah_name,    
+    surah_name: this.information.ayah.surah.name_en,    
     ayah_num: this.information.ayah_id,
-    ayah_verse_ar: this.information.ayah_text,
+    ayah_verse_ar: this.information.ayah.ayah_text,
     ayah_verse_en: this.information.transliteration,
    };
 
@@ -884,62 +947,56 @@ export default {
     }
    });
   },
-  loadFormData() {
-    // Load form data into the modal
-    this.form1.surah_name = "";
-    this.form1.ayah_num = "";
-    this.form1.ayah_text = "";
-    this.form1.ayah_notes = "";
-  },
+ 
   
   createNote() {
-  const formData = {
-    surah_name: this.information.ayah.surah.name_en,    
-    ayah_num: this.information.ayah_id,
-    ayah_verse_ar: this.information.ayah.ayah_text,
-    ayah_verse_en: this.information.translation,
-    ayah_notes: this.form1.ayah_notes // Add ayah_notes to formData
-  };
+    const formData = {
+      surah_name: this.information.ayah.surah.name_en,    
+      ayah_num: this.information.ayah_id,
+      ayah_verse_ar: this.information.ayah.ayah_text,
+      ayah_verse_en: this.information.translation,
+      ayah_notes: this.form1.ayah_notes // Add ayah_notes to formData
+    };
 
-  Swal.fire({
-    title: "Are you sure?",
-    text: "You want to submit note!",
-    showCancelButton: true,
-    confirmButtonColor: "green",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Submit!"
-  }).then((result) => {
-    if (result.isConfirmed) {
-      axios
-        .post("/api/submit-note", formData)
-        .then((res) => {
-          if (res.data.success) {
-            // Show success message or perform any other action on successful submission
-            Swal.fire("Success!", "Your note has been submitted.", "success");
-            // Reset the form inputs
-            
-            this.form1.ayah_notes = "";
-            // Close the Sweet Alert dialog
-            setTimeout(() => {
-              Swal.close();
-            }, 2000);
-          } else {
-            Swal.fire("Success!", "Your note has been submitted.", "success");
-            
-            this.form1.ayah_notes = "";
-            setTimeout(() => {
-              Swal.close();
-            }, 2000);
-          }
-        })
-        .catch(function (err) {
-          console.error(err);
-          // Show generic error message
-          Swal.fire("Error!", "Failed to submit note. Login or create an account to be able to write a note", "error");
-        });
-    }
-  });
-},
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You want to submit note!",
+      showCancelButton: true,
+      confirmButtonColor: "green",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Submit!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .post("/api/submit-note", formData)
+          .then((res) => {
+            if (res.data.success) {
+              // Show success message or perform any other action on successful submission
+              Swal.fire("Success!", "Your note has been submitted.", "success");
+              // Reset the form inputs
+              
+              this.form1.ayah_notes = "";
+              // Close the Sweet Alert dialog
+              setTimeout(() => {
+                Swal.close();
+              }, 2000);
+            } else {
+              Swal.fire("Success!", "Your note has been submitted.", "success");
+              
+              this.form1.ayah_notes = "";
+              setTimeout(() => {
+                Swal.close();
+              }, 2000);
+            }
+          })
+          .catch(function (err) {
+            console.error(err);
+            // Show generic error message
+            Swal.fire("Error!", "Failed to submit note. Login or create an account to be able to write a note", "error");
+          });
+      }
+    });
+  },
 
 
   copyText() {
