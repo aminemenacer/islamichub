@@ -84,6 +84,7 @@
     <Column :exportable="true" style="min-width: 8rem">
       <template #body="slotProps">
         <div class="wrapper text-center" style="display:flex">
+
           <Button data-bs-toggle="modal" data-bs-target="#editNewBookmark" type="button" class="btn user-btn text-white text-center mr-2 action btn1" style="background-color: #1e88e5; display:flex;display:inline-block" @click="editModal(slotProps.data)">
             <i class="bi bi-eye-fill mr-2"></i>
             View
@@ -110,6 +111,7 @@ import {
 export default {
   mounted() {
     this.loadBookmark();
+    
   },
   data() {
     return {
@@ -172,6 +174,9 @@ export default {
     },
   },
   methods: {
+   
+
+
     loadBookmark() {
       axios.get("api/fetch-bookmarks").then((data) => {
         this.bookmarks = data.data;

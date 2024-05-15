@@ -57,16 +57,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav justify-content-end  pr-4 flex-grow-1">
+                        
                         <li class="nav-item mt-3">
-                            <h5><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/quran">Home
-                            </a></h5>
+                            <h5><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/quran">Home</a></h5>
                         </li>
-                        <li class="nav-item mt-3">
-                            <h5><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/quran">Quran</a></h5>
-                        </li>
-                        <!-- <li class="nav-item mt-2">
-                            <h5><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/ahadith">Ahadith</a></h5>
-                        </li> -->
                         <li class="nav-item mt-3">
                             <h5><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/contact">Contact</a></h5>
                         </li>
@@ -100,9 +94,9 @@
                                 <i class="bi bi-person-circle" style="font-size: 1.8rem"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="/dashboard">Dashboard</a>
-                                <a class="dropdown-item" href="/bookmarks">Bookmarks</a>
-                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                <a class="dropdown-item" style="font-size: 28px" href="/bookmarks"><h6>Bookmarks</h6></a>
+                                <a class="dropdown-item" style="font-size: 28px" href="/notes"><h6>Notes & Reflections</h6></a>
+                                <a class="dropdown-item"  href="{{ route('logout') }}"
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>

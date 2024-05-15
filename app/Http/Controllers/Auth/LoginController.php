@@ -58,6 +58,17 @@ class LoginController extends Controller
         return Socialite::driver('google')->redirect();
     }
 
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
+    }
+
     public function handleGoogleCallback()
     {
         $google_user = Socialite::driver('google')->user();

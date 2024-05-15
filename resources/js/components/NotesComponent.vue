@@ -3,7 +3,7 @@
   <h2 class="pt-3 text-center"><strong>Notes Management</strong></h2>
 
   <!-- view new Modal -->
-  <div class="modal fade" id="editNewCorrection" tabindex="-1" aria-labelledby="editNew" aria-hidden="true">
+    <div class="modal fade" id="editNewCorrection" tabindex="-1" aria-labelledby="editNew" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">

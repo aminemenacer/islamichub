@@ -20,11 +20,9 @@
           <!-- Left Side Of Navbar -->
           <ul class="navbar-nav justify-content-end pr-4 flex-grow-1">
             <li class="nav-item ">
-              <h5><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/quran">Quran</a></h5>
+              <h5><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/quran">Home</a></h5>
             </li>
-            <!-- <li class="nav-item mt-2">
-                      <h5><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/ahadith">Ahadith</a></h5>
-                  </li> -->
+            
             <li class="nav-item">
               <h5><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/contact">Contact</a>
               </h5>
@@ -88,7 +86,7 @@
 
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-
+            
             <li class="nav-item">
               <a href="/dashboard" class="nav-link">
                 <i class="bi bi-speedometer mr-1 "></i>
@@ -183,7 +181,6 @@
         </div><!-- /.container-fluid -->
       </div>
     </div>
-
   </div>
 
   <script src="/js/app.js"></script>
