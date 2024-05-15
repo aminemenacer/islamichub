@@ -110,20 +110,22 @@
     </div>
    </div>
 
-   <!-- list of ayah dropdown -->
-   <div class="tab-content mb-2" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
-    <div class="tab-pane fade show active " id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" v-if="ayah == null">
-     <form @change="handleSelectionChange" class="row container-fluid ">
-      <!-- Add a class to the select element for easier targeting -->
-      <select class="form-control mobile-only hide-on-full-screen hide-on-tablet right-side-form" @change="getTafseers(ayahs[$event.target.value].id, $event.target.value)">
-       <option value="0">
-        <span>Select Ayah</span>
-       </option>
-       <option v-for="(ayah, index) in ayahs" :key="index" :value="index">{{ ayah.ayah_text }}</option>
-      </select>
-     </form>
+    <!-- list of ayah dropdown -->
+    <div class="tab-content mb-2" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
+      <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" v-if="ayah == null">
+        <form @change="handleSelectionChange" class="row container-fluid">
+          <!-- Add a class to the select element for easier targeting -->
+          <select class="form-control mobile-only hide-on-full-screen hide-on-tablet right-side-form" @change="getTafseers(ayahs[$event.target.value].id, $event.target.value)">
+            <option value="0">
+              <span>Select Ayah</span>
+            </option>
+            <option v-for="(ayah, index) in ayahs" :key="index" :value="index">{{ ayah.ayah_text }}</option>
+          </select>
+        </form>
+      </div>
     </div>
-   </div>
+
+
 
   </div>
 
@@ -1214,6 +1216,18 @@ export default {
  z-index: 9999;
 }
 
+/* Hide on full-screen sizes */
+@media (min-width: 992px) {
+  .hide-on-full-screen {
+    display: none;
+  }
+}
+@media (max-width: 991.98px) {
+  .hide-on-full-screen {
+    display: none;
+  }
+}
+
 @media (max-width: 575px) {
 
  /* Hide the content on mobile devices */
@@ -1228,11 +1242,15 @@ export default {
  }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
 
  /* Hide the content on mobile devices */
  .hide-on-mobile {
   display: none;
+ }
+
+ .hide-on-tablet{
+   display:unset;
  }
 
  .custom-dropdown {
