@@ -22,6 +22,8 @@ use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\JoinUsController;
 use App\Http\Controllers\NotesController;
 use App\Http\Controllers\UpdatesController;
+use App\Http\Controllers\DownloadController;
+use App\Http\Controllers\ExportController;
 
 // Auth routes
 Auth::routes();
@@ -54,6 +56,9 @@ Route::get('/updates', [UpdatesController::class, 'index']);
 //facebook login
 Route::get('/auth/facebook', [LoginController::class, 'redirectToFacebook'])->name('fb-auth');
 Route::get('/auth/facebook/callback', [LoginController::class, 'loginWithFacebook']);
+
+
+
 
 // stripe payment
 Route::post('payment/initiate', [CharityController::class, 'initiatePayment']);

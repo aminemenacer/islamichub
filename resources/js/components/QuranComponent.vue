@@ -125,8 +125,6 @@
       </div>
     </div>
 
-
-
   </div>
 
   <div class="col-md-8 card-hide">
@@ -207,7 +205,6 @@
             <h5 class="container text-left" name="ayah_text" ref="heading" style="line-height: 1.6em">{{ information.translation }}</h5>
            </div>
 
-      
 
             <!-- Bootstrap alert component -->
             <div v-if="showAlertText" class="alert alert-success alert-dismissible fade show" role="alert">
@@ -219,12 +216,14 @@
             Bookmark created successfully!
             </div>
             <div v-if="showErrorAlert" class="alert alert-danger" role="alert">
-            Login to your account to be able to bookmark verses.
+              Login to your account to be able to bookmark verses.
             </div>
 
             <div v-if="showAlertTextNote" class="alert alert-danger" role="alert">
             Please log in to write a note.
             </div>
+
+
          </div>
          <!-- features -->
          <div class="text-right mt-2">
@@ -259,11 +258,27 @@
             </div>
            </div>
 
+          <i class="bi bi-cloud-arrow-down-fill mt-1 h3" style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" title="Download Verse" @click="exportToCSV"></i>
           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-file-earmark-text-fill text-right h4" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#exampleModal1" @click="openNoteModal"></i>
           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-whatsapp text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp" @click="shareTextViaWhatsApp3()"></i>
           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-twitter-x text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X" @click="shareHeadingOnTwitter3()"></i>
-          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bookmark-fill text-right h4" aria-expanded="false" data-bs-placement="top" title="Save bookmark" @click="submitForm"></i>
-          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-clipboard-check-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText"></i>
+          <i 
+            v-if="!bookmarkSubmitted[this.information.ayah_id]" 
+            style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" 
+            class="bi bi-bookmark text-right h4" 
+            aria-expanded="false" 
+            data-bs-placement="top" 
+            title="Save bookmark" 
+            @click="submitForm"
+          ></i>
+
+          <i 
+            v-if="bookmarkSubmitted[this.information.ayah_id]" 
+            style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" 
+            class="bi bi-bookmark-fill text-right h4" 
+          ></i>
+           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-clipboard-check-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText"></i>
+
           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-camera-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot3"></i>
           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bug-fill text-right h4" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
          </div>
@@ -308,19 +323,21 @@
             <h5 class="container text-left" name="ayah_text" ref="heading1" style="line-height: 1.6em">{{ tafseer }}</h5>
            </div>
           </div>
-          <!-- Bootstrap alert component -->
+
+          <button @click="exportToCSV1">Export to CSV</button>
+
+       <!-- Bootstrap alert component -->
           <div v-if="showAlertText" class="alert alert-success alert-dismissible fade show" role="alert">
            Text copied successfully!
           </div>
 
           <!-- bookmark component -->
-          <div v-if="showAlert" class="alert alert-success" role="alert">
-           Bookmark created successfully!
-          </div>
-          <div v-if="showErrorAlert" class="alert alert-danger" role="alert">
-           Login to your account to be able to bookmark verses.
-          </div>
-
+            <div v-if="showAlert" class="alert alert-success" role="alert">
+            Bookmark created successfully!
+            </div>
+            <div v-if="showErrorAlert" class="alert alert-danger" role="alert">
+            Login to your account to be able to bookmark verses.
+            </div>
           <!-- features -->
 
           <div class="text-right mt-2 mr-3 container">
@@ -405,6 +422,9 @@
             <h5 class="container text-left" name="ayah_text" ref="heading2" style="line-height: 1.6em">{{ information.transliteration }}</h5>
            </div>
           </div>
+
+          <button @click="exportToCSV2">Export to CSV</button>
+
           <!-- Bootstrap alert component -->
           <div v-if="showAlertText" class="alert alert-success alert-dismissible fade show" role="alert">
            Text copied successfully!
@@ -477,11 +497,13 @@ export default {
  mounted() {
   this.getSurahs();
   this.fetchAyahs();
-
  },
 
  data() {
   return {
+    isLoggedIn:false,
+   bookmarkSubmitted: false,
+    bookmarkSubmitted: JSON.parse(localStorage.getItem('bookmarkSubmitted')) || {},
    selectedCategory: '',
    verseNumber: null,
    showClearButton: false,
@@ -583,6 +605,79 @@ export default {
 
  methods: {
   
+  exportToCSV() {
+  // Extract the content from the data object
+  const formData = {
+    surah_name: this.information.ayah.surah.name_en,
+    ayah_num: this.information.ayah.ayah_id,
+    ayah_verse_ar: this.information.ayah.ayah_text,
+    ayah_verse_en: this.information.translation,
+  };
+
+  // Convert formData to a CSV string
+  const csvContent = `Surah Name,Ayah Number,Ayah Verse (AR),Ayah Verse (EN)\n${formData.surah_name},${formData.ayah_num},${formData.ayah_verse_ar},${formData.ayah_verse_en}`;
+
+  // Create and download the CSV file
+  this.downloadCSV(csvContent, 'export.csv');
+},
+
+exportToCSV1() {
+  // Extract the content from the data object
+  const formData1 = {
+    surah_name: this.information.ayah.surah.name_en,
+    ayah_num: this.information.ayah.ayah_id,
+    ayah_verse_ar: this.information.ayah.ayah_text,
+    ayah_verse_en: this.information.translation,
+  };
+
+  // Convert formData1 to a CSV string
+  const csvContent1 = `Surah Name,Ayah Number,Ayah Verse (AR),Ayah Verse (EN)\n${formData1.surah_name},${formData1.ayah_num},${formData1.ayah_verse_ar},${formData1.ayah_verse_en}`;
+
+  // Create and download the CSV file
+  this.downloadCSV(csvContent1, 'export1.csv');
+},
+
+exportToCSV2() {
+  // Extract the content from the data object
+  const formData2 = {
+    surah_name: this.information.ayah.surah.name_en,
+    ayah_num: this.information.ayah.ayah_id,
+    ayah_verse_ar: this.information.ayah.ayah_text,
+    ayah_verse_en: this.information.translation,
+  };
+
+  // Convert formData2 to a CSV string
+  const csvContent2 = `Surah Name,Ayah Number,Ayah Verse (AR),Ayah Verse (EN)\n${formData2.surah_name},${formData2.ayah_num},${formData2.ayah_verse_ar},${formData2.ayah_verse_en}`;
+
+  // Create and download the CSV file
+  this.downloadCSV(csvContent2, 'export2.csv');
+},
+
+downloadCSV(csvContent, fileName) {
+  // Create a Blob from the CSV content
+  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+
+  // Create a link element
+  const link = document.createElement('a');
+  if (link.download !== undefined) { // feature detection
+    // Set the download attribute with a filename
+    const url = URL.createObjectURL(blob);
+    link.setAttribute('href', url);
+    link.setAttribute('download', fileName);
+
+    // Append the link to the body
+    document.body.appendChild(link);
+
+    // Trigger the download by simulating click
+    link.click();
+
+    // Clean up by removing the link
+    document.body.removeChild(link);
+  }
+},
+
+
+   
   submitCat() {
    const formData = {
     surah_name: this.information.ayah.surah.name_en,
@@ -608,27 +703,30 @@ export default {
    }
   },
   submitForm() {
-   const formData = {
-    surah_name: this.information.ayah.surah.name_en,
-    ayah_num: this.information.ayah_id,
-    ayah_verse_ar: this.information.ayah.ayah_text,
-    ayah_verse_en: this.information.translation,
-   };
+    const formData = {
+      surah_name: this.information.ayah.surah.name_en,
+      ayah_num: this.information.ayah_id,
+      ayah_verse_ar: this.information.ayah.ayah_text,
+      ayah_verse_en: this.information.translation,
+    };
 
-   axios.post('/bookmarks', formData)
-    .then(response => {
-     console.log(response.data.message);
-     this.showAlert = true; // Show success alert
-     this.showErrorAlert = false; // Hide error alert
-     this.hideAlertAfterDelay(); // Start timer to hide alert
-    })
-    .catch(error => {
-     console.error(error);
-     this.showAlert = false; // Hide success alert
-     this.showErrorAlert = true; // Show error alert
-     this.hideAlertAfterDelay(); // Start timer to hide alert
-    });
-
+    axios.post('/bookmarks', formData)
+      .then(response => {
+        console.log(response.data.message);
+        // Set the submitted status for the selected bookmark
+        localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
+        // Log the updated bookmarkSubmitted object
+        console.log(this.bookmarkSubmitted);
+        this.showAlert = true; // Show success alert
+        this.showErrorAlert = false; // Hide error alert
+        this.hideAlertAfterDelay(); // Start timer to hide alert
+      })
+      .catch(error => {
+        console.error(error);
+        this.showAlert = false; // Hide success alert
+        this.showErrorAlert = true; // Show error alert
+        this.hideAlertAfterDelay(); // Start timer to hide alert
+      });
   },
   submitForm1() {
    const formData = {
@@ -1156,6 +1254,16 @@ export default {
   },
 
  },
+ created() {
+  // Initialize submitted status for each bookmark
+  this.ayahs.forEach(ayah => {
+    const submitted = localStorage.getItem(`bookmarkSubmitted_${ayah.id}`);
+    if (submitted) {
+      this.$set(this.bookmarkSubmitted, ayah.id, true);
+    }
+  });
+},
+
 
  watch: {
   'information.ayah.surah.name_ar': 'updateFileName',
@@ -1275,7 +1383,6 @@ export default {
  #movingDiv {
   /* Adjust positioning for smaller screens */
   /* For example, center the div horizontally */
-  left: 50%;
   transform: translateX(-50%);
   /* You can adjust other styles as needed for mobile */
  }
