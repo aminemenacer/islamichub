@@ -1,22 +1,30 @@
 <template>
-<div class="container-fluid">
- <h2 class="pt-4 pb-4 text-center"><strong>Bookmark Management</strong></h2>
- <a href="/home" style="color:#00BFA6; text-decoration:none" class="h4 text-center">Back</a>
- 
- <div class="row">
-  <div class="card" v-for="bookmark in bookmarks" :key="bookmark.id">
-    <div class="card-body">
-      <h5 class="card-title"><b>Ayah Number: {{ bookmark.id }}</b></h5>
-      <strong class="mb-0">{{ bookmark.surah_name }}</strong>
-      <div class="d-flex">
-        <i class="bi bi-eye-fill h4 ml-3" style="color:rgb(0, 191, 166); cursor:pointer" data-bs-toggle="modal" data-bs-target="#viewBookmark" @click="viewModal(bookmark)"></i>
-        <i class="bi bi-trash-fill h4 ml-3" style="color:rgb(0, 191, 166); cursor:pointer" @click="deleteBookmark(bookmark.id)"></i>
-      </div>
-    </div>
-  </div>
-</div>
 
- 
+<div>1
+ <h2 class="pt-4 pb-2 text-center"><strong>Bookmarks</strong></h2>
+ <a href="/home" style="color:#00BFA6; text-decoration:none" class="h4 text-left pb-3">Back</a>
+
+ <div class="row">
+  <div class="col-md-4 mb-4" v-for="bookmark in bookmarks" :key="bookmark.id">
+   <div class="card">
+    <div class="card-body">
+     <div>
+      <h5> <strong>Surah Name:</strong></h5> <b>{{ bookmark.surah_name }}</b>
+     </div>
+     <div class="mt-2">
+      <h5>Ayah Number:</h5> {{ bookmark.id }}
+     </div>
+     <hr />
+     <i class="bi bi-eye-fill h4 " style="color:rgb(0, 191, 166); cursor:pointer" data-bs-toggle="modal" data-bs-target="#viewBookmark" @click="viewModal(bookmark)">
+     </i>
+     <i class="bi bi-trash-fill h4 ml-3" style="color:rgb(0, 191, 166); cursor:pointer" @click="deleteBookmark(bookmark.id)">
+     </i>
+    </div>
+   </div>
+
+  </div>
+ </div>
+
  
 
  <!-- View Bookmark Modal -->
@@ -35,9 +43,9 @@
         {{ form.id }}
        </p>
       </div>
-      <div class="mr-2 text-left" style="display: flex">
+      <div class="mr-2 " style="display: flex">
        <label class="mt-2 mr-2 col-sm-3">Surah Name:</label>
-       <p class="mt-2 text-dark text-left">
+       <p class="mt-2 text-dark text-right">
         {{ form.surah_name }}
        </p>
       </div>
@@ -189,7 +197,7 @@ export default {
 }
 
 .card {
-  padding-bottom: 5px ;
-   border: 1px solid #00BFA6;
+ padding-bottom: 5px;
+ border: 1px solid #00BFA6;
 }
 </style>

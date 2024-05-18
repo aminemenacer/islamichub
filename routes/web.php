@@ -69,6 +69,7 @@ Route::post('payment/failure', [CharityController::class, 'failPayment']);
 Route::get('/notes', [NotesController::class, 'index']);
 Route::get('api/fetch-notes', [NotesController::class, 'getNotes']);
 Route::post('api/submit-note', [NotesController::class, 'store']);
+Route::post('api/update-notes/{id}',  [NotesController::class, 'updateNotes']);
 Route::delete('api/delete-notes/{id}',  [NotesController::class, 'deleteNotes']);
 
 // users

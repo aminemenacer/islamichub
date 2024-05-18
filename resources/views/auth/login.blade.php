@@ -14,7 +14,7 @@
         </div>
 
         <div class="col-lg-6 mb-5 mb-lg-0">
-          <div class="card">
+          <div class="card" style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; border-radius:10px">
             <div class="card-body py-5 px-md-5">
               <form>
                 <!-- 2 column grid layout with text inputs for the first and last names -->

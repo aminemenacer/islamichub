@@ -45,6 +45,27 @@ class NotesController extends Controller
         return response()->json(['message' => 'Note created successfully'], 201);
     }
 
+    public function updateNotes(Request $request, $id)
+    {
+        $this->validate($request, [
+            'surah_name',
+            'ayah_num',
+            'ayah_verse_ar',
+            'ayah_verse_en',
+            'ayah_info',
+            'ayah_notes',
+        ]);
+
+        $note = Note::find($id);
+        $note->surah_name = $request->surah_name;
+        $note->ayah_num = $request->ayah_num;
+        $note->ayah_verse_ar = $request->ayah_verse_ar;
+        $note->ayah_verse_en = $request->ayah_verse_en;
+        $note->ayah_info = $request->ayah_info;
+        $note->ayah_notes = $request->ayah_notes;
+        $note->save();
+    }
+
 
     public function deleteNotes($id)
     {

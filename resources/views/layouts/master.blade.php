@@ -14,161 +14,139 @@
 
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
       <div class="container-fluid">
-        
+
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <!-- Left Side Of Navbar -->
           <ul class="navbar-nav justify-content-end pr-4 flex-grow-1">
             <li class="nav-item ">
-              <h5><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/quran">Home</a></h5>
+              <h5><a style="font-family:inter; color: black;" class="nav-link mt-3 ml-4 pl-3" href="/quran">Home</a></h5>
             </li>
-            
+
             <li class="nav-item">
-              <h5><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/contact">Contact</a>
+              <h5><a style="font-family:inter; color: black;" class="nav-link mt-3 ml-4 pl-3" href="/contact">Contact</a>
               </h5>
             </li>
             <li class="nav-item">
-              <h5><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/about">About Us</a></h5>
+              <h5><a style="font-family:inter; color: black;" class="nav-link mt-3 ml-4 pl-3" href="/about">About Us</a></h5>
             </li>
             <li class="nav-item">
-              <h5><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/updates">Updates</a>
+              <h5><a style="font-family:inter; color: black;" class="nav-link mt-3 ml-4 pl-3" href="/updates">Updates</a>
               </h5>
             </li>
             <li class="nav-item">
-              <h5><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3 pr-5" href="/join_us">Mailing
+              <h5><a style="font-family:inter; color: black;" class="nav-link mt-3 ml-4 pl-3 pr-5" href="/join_us">Mailing
                   List</a></h5>
             </li>
-            
+
             <!-- Right Side Of Navbar -->
-            <!-- @guest
-                  @if (Route::has('login'))
-                  <li class="nav-item mt-1">
-                      <h5><a style="font-family:inter;" class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></h5>
-                  </li>
-                  @endif
-                  @if (Route::has('register'))
-                  <li class="nav-item mt-1">
-                      <h5><a style="font-family:inter;" class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></h5>
-                  </li>
-                  @endif
-                  @else
-                  <li class="nav-item dropdown mt-1 ml-5">
-                      <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                          data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                          {{-- {{ Auth::user()->name }} --}}
-                          <i class="bi bi-person-circle" style="font-size: 1.8rem"></i>
-                      </a>
-                      <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" href="/dashboard">Dashboard</a>
-                          <a class="dropdown-item" href="{{ route('logout') }}"
-                              onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                              {{ __('Logout') }}
-                          </a>
-                          <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                              @csrf
-                          </form>
-                      </div>
-                  </li>
-                  @endguest -->
+            @guest
+              @if (Route::has('login'))
+              <li class="nav-item mt-1">
+                <h5><a style="font-family:inter;" class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></h5>
+              </li>
+              @endif
+              @if (Route::has('register'))
+              <li class="nav-item mt-1">
+                <h5><a style="font-family:inter;" class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                </h5>
+              </li>
+              @endif
+              @else
+              <li class="nav-item dropdown mt-1 ml-5">
+                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false" v-pre>
+                  {{-- {{ Auth::user()->name }} --}}
+                  <i class="bi bi-person-circle" style="font-size: 1.8rem"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="/dashboard">Dashboard</a>
+                  <a class="dropdown-item" href="{{ route('logout') }}"
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
+                  </a>
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                  </form>
+                </div>
+              </li>
+            @endguest
           </ul>
         </div>
       </div>
     </nav>
 
 
-    <aside class="main-sidebar sidebar-light-primary elevation-4">
-
+    <aside id="tablet-sidebar" class="main-sidebar sidebar-light-primary elevation-4">
       <a href="/" class="brand-link">
         <img src="/images/logo_main.png" width="220" height="45" alt="">
       </a>
-
+    
       <div class="sidebar">
-
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            
             <li class="nav-item">
               <a href="/dashboard" class="nav-link">
-                <i class="bi bi-speedometer mr-1 "></i>
-                <p>
-                  Dashboard
-                </p>
+                <i class="bi bi-speedometer mr-1"></i>
+                <p>Dashboard</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="/users" class="nav-link">
                 <i class="bi bi-people-fill mr-1"></i>
-                <p>
-                  Users
-                </p>
+                <p>Users</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="/feedback" class="nav-link">
                 <i class="bi bi-chat-left-text-fill mr-1"></i>
-                <p>
-                  Feedback
-                </p>
+                <p>Feedback</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="/payments" class="nav-link">
                 <i class="bi bi-currency-exchange mr-1"></i>
-                <p>
-                  Donations
-                </p>
+                <p>Donations</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="/mailing_list" class="nav-link">
                 <i class="bi bi-envelope-at-fill mr-1"></i>
-                <p>
-                  Mailing List
-                </p>
+                <p>Mailing List</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="/correction" class="nav-link">
                 <i class="bi bi-bug-fill mr-1"></i>
-                <p>
-                  Correction
-                </p>
+                <p>Correction</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="/bookmarks" class="nav-link">
                 <i class="bi bi-bookmark-dash-fill mr-1"></i>
-                <p>
-                  Bookmarks
-                </p>
+                <p>Bookmarks</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="/notes" class="nav-link">
                 <i class="bi bi-file-earmark-text-fill mr-1"></i>
-                <p>
-                  Notes
-                </p>
+                <p>Notes</p>
               </a>
             </li>
-            <li class="nav-item ">
-              <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
-               document.getElementById('logout-form').submit();">              
-              <i class="bi bi-plug-fill" style="font-size: 22px"></i>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <i class="bi bi-plug-fill" style="font-size: 22px"></i>
                 <p class="mb-2">{{ __('Logout') }}</p>
               </a>
-
               <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                 @csrf
               </form>
             </li>
-
           </ul>
         </nav>
-
       </div>
-
     </aside>
+    
 
 
 
@@ -186,5 +164,15 @@
   <script src="/js/app.js"></script>
 
 </body>
+
+<style>
+  /* Hide sidebar on tablet screen sizes */
+@media (min-width: 768px) and (max-width: 1024px) and (max-width: 575px) {
+  #tablet-sidebar {
+    display: none;
+  }
+}
+
+</style>
 
 </html>

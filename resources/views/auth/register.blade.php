@@ -16,7 +16,7 @@
   
   
           <div class="col-lg-6 mb-lg-0">
-            <div class="card">
+            <div class="card" style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; border-radius:10px">
               <div class="card-body px-md-5">
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
