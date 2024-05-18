@@ -184,8 +184,8 @@
             <div class="col-md-6">
              <!-- Next surah button -->
              <div class="d-flex gap-2 justify-content-end">
-              <button class="btn button-33 mr-2" @click="goToPreviousAyah()"><i class="bi bi-arrow-left-circle-fill mr-2"></i> Prev Ayah</button>
-              <button class="btn button-33 " @click="goToNextAyah()">Next Ayah <i class="bi bi-arrow-right-circle-fill ml-2"></i></button>
+              <button class="btn button-33 mr-2" @click="goToPreviousAyah()"><i class="bi bi-arrow-left-circle-fill"></i></button>
+              <button class="btn button-33 " @click="goToNextAyah()"><i class="bi bi-arrow-right-circle-fill "></i></button>
              </div>
             </div>
            </div>
@@ -288,20 +288,10 @@
            <div class="row" ref="targetElement">
             <h5 class="col-md-6 text-left pl-4 font-weight-bold" name="ayah_num"><img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
             <div class="col-md-6">
-             <!-- Next surah button -->
-             <div class="row">
-              <div class="col-6">
-               <button class="btn button-33 w-100" @click="goToPreviousAyah()">
-                <i class="bi bi-arrow-left-circle-fill mr-2"></i> Prev Ayah
-               </button>
+              <div class="d-flex gap-2 justify-content-end">
+                <button class="btn button-33 mr-2" @click="goToPreviousAyah()"><i class="bi bi-arrow-left-circle-fill"></i></button>
+                <button class="btn button-33 " @click="goToNextAyah()"><i class="bi bi-arrow-right-circle-fill "></i></button>
               </div>
-              <div class="col-6">
-               <button class="btn button-33 w-100" @click="goToNextAyah()">
-                Next Ayah <i class="bi bi-arrow-right-circle-fill ml-2"></i>
-               </button>
-              </div>
-             </div>
-
             </div>
            </div>
 
@@ -399,10 +389,10 @@
            <div class="row" ref="targetElement2">
             <h5 class="col-md-6 text-left pl-4 font-weight-bold" name="ayah_num"><img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
             <div class="col-md-6">
-             <!-- Next surah button -->
-             <button class="btn button-33 mr-2" @click="goToPreviousAyah()"><i class="bi bi-arrow-left-circle-fill mr-2"></i> Prev Ayah</button>
-             <button class="btn button-33 " @click="goToNextAyah()">Next Ayah <i class="bi bi-arrow-right-circle-fill ml-2"></i></button>
-
+              <div class="d-flex gap-2 justify-content-end">
+                <button class="btn button-33 mr-2" @click="goToPreviousAyah()"><i class="bi bi-arrow-left-circle-fill"></i></button>
+                <button class="btn button-33 " @click="goToNextAyah()"><i class="bi bi-arrow-right-circle-fill "></i></button>
+              </div>
             </div>
            </div>
 
@@ -1344,7 +1334,7 @@ export default {
 }
 
 .button-33 {
- background-color: rgb(19, 22, 22);
+ background-color:rgba(0, 191, 166);
  border-radius: 10px;
  color: white;
  cursor: pointer;
