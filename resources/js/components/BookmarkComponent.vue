@@ -1,8 +1,21 @@
 <template>
 
-<div>1
+<div>
  <h2 class="pt-4 pb-2 text-center"><strong>Bookmarks</strong></h2>
- <a href="/home" style="color:#00BFA6; text-decoration:none" class="h4 text-left pb-3">Back</a>
+
+  <div class="text-center">
+    <div class="row">
+      <div class="col">
+        <span class="badge h3" style="width:100%;font-size:18px;border-radius:10px; color:#B70D52;background:#ead1dc"><a href="/notes" style="text-decoration:none;color:#B70D52;background:#ead1dc">Notes</a></span>
+      </div>
+      <div class="col">
+        <span class="badge h3" style="width:100%;font-size:18px;border-radius:10px; color:#3D8F67;background:#d1f4d0"><a href="/profile" style="text-decoration:none;color:#3D8F67;background:#d1f4d0">Profile</a></span>
+      </div>
+      <div class="col">
+        <span class="badge h3" style="width:100%;font-size:18px;border-radius:10px; color:#0263FF;background:#c2d8fb"><a href="/home" style="text-decoration:none;color:#0263FF;background:#c2d8fb">Home</a></span>
+      </div> 
+    </div>
+  </div>
 
  <div class="row">
   <div class="col-md-4 mb-4" v-for="bookmark in bookmarks" :key="bookmark.id">

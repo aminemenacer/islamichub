@@ -94,8 +94,9 @@
                                 <i class="bi bi-person-circle" style="font-size: 1.8rem"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" style="font-size: 28px" href="/bookmarks"><h6>Bookmarks</h6></a>
-                                <a class="dropdown-item" style="font-size: 28px" href="/notes"><h6>Notes & Reflections</h6></a>
+                                <a class="dropdown-item" style="font-size: 32px" href="/bookmarks"><h6>Bookmarks</h6></a>
+                                <a class="dropdown-item" style="font-size: 32px" href="/notes"><h6>Notes & Reflections</h6></a>
+                                <a class="dropdown-item" style="font-size: 32px" href="/profile"><h6>Profile</h6></a>
                                 <a class="dropdown-item"  href="{{ route('logout') }}"
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}

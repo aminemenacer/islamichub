@@ -42,7 +42,7 @@
             </div>
 
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                 Close
               </button>
 
@@ -56,64 +56,80 @@
     </div>
   </div>
 
+  <div class="container text-center">
+    <div class="row container text-center">
+      <div class="col">
+        <span class="badge h3" style="width:100%;font-size:18px;border-radius:10px; color:#B70D52;background:#ead1dc"><a href="/bookmarks" style="text-decoration:none;color:#B70D52;background:#ead1dc">Bookmarks</a></span>
+      </div>
+      <div class="col">
+        <span class="badge h3" style="width:100%;font-size:18px;border-radius:10px; color:#3D8F67;background:#d1f4d0"><a href="/notes" style="text-decoration:none;color:#3D8F67;background:#d1f4d0">Notes</a></span>
+      </div>
+      <div class="col">
+        <span class="badge h3" style="width:100%;font-size:18px;border-radius:10px; color:#0263FF;background:#c2d8fb"><a href="/home" style="text-decoration:none;color:#0263FF;background:#c2d8fb">Home</a></span>
+      </div> 
+    </div>
+  </div>
+
   <!-- profile section -->
-  <div class="row pt-5">
-    <div class="col-lg-4">
-      <div class="card mb-4">
-        <div class="card-body text-center">
-          <img src="/images/user.png" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
-          <h5 class="my-3">{{ user.name }} {{ user.lastname }}</h5>
-          <p class="text-muted mb-3">{{ user.email }}</p>
-          <div class="d-flex justify-content-center mb-2 mt-2">
-            <button data-toggle="modal" data-target="#editNew" type="button" class="btn text-white user-btn mr-2 bg-secondary" @click="editModal(user)">
-              Edit Profile
-            </button>
+  <div class="container">
+    <div class="row pt-5">
+      <div class="col-lg-4">
+        <div class="card mb-4">
+          <div class="card-body text-center">
+                                <i class="bi bi-person-circle" style="font-size: 4rem"></i>
+            <h5 class="my-3">{{ user.name }} {{ user.lastname }}</h5>
+            <p class="text-muted mb-3">{{ user.email }}</p>
+            <div class="d-flex justify-content-center mb-2 mt-2">
+              <button data-bs-toggle="modal" data-bs-target="#editNew" type="button" class="btn text-white user-btn mr-2 bg-secondary" @click="editModal(user)">
+                Edit Profile
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="col-lg-8">
-      <div class="card mb-4">
-        <div class="card-body">
-          <div class="row">
-            <div class="text-center">
-              <h3 class="mb-3"><strong>Personal Information:</strong></h3>
-            </div><br><br>
+      <div class="col-lg-8">
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="row">
+              <div class="text-center">
+                <h3 class="mb-3 text-left"><strong>Personal Information:</strong></h3>
+              </div><br><br>
+              <hr>
+            </div>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Full Name:</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0 text-black">{{ user.name }} {{ user.lastname }}</p>
+              </div>
+            </div>
             <hr>
-          </div>
-          <div class="row">
-            <div class="col-sm-3">
-              <p class="mb-0">Full Name:</p>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Email:</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ user.email }}</p>
+              </div>
             </div>
-            <div class="col-sm-9">
-              <p class="text-muted mb-0 text-black">{{ user.name }} {{ user.lastname }}</p>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Phone:</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ user.phone }}</p>
+              </div>
             </div>
-          </div>
-          <hr>
-          <div class="row">
-            <div class="col-sm-3">
-              <p class="mb-0">Email:</p>
-            </div>
-            <div class="col-sm-9">
-              <p class="text-muted mb-0">{{ user.email }}</p>
-            </div>
-          </div>
-          <hr>
-          <div class="row">
-            <div class="col-sm-3">
-              <p class="mb-0">Phone:</p>
-            </div>
-            <div class="col-sm-9">
-              <p class="text-muted mb-0">{{ user.phone }}</p>
-            </div>
-          </div>
-          <hr>
-          <div class="row">
-            <div class="col-sm-3">
-              <p class="mb-0">Joined in:</p>
-            </div>
-            <div class="col-sm-9">
-              <p class="text-muted mb-0">{{ user.created_at }}</p>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Joined in:</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ user.created_at }}</p>
+              </div>
             </div>
           </div>
         </div>
