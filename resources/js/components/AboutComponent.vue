@@ -5,8 +5,8 @@
    <h1 class="text-center newsletter-title ">Who Are We?</h1>
   </div>
 
-  <div class="row mt-3">
-   <div class="col-md-6 mt-3">
+  <div class="row">
+   <div class="col-md-6 ">
     <img src="/images/about1.png" style="width: 100%;" />
    </div>
    <div class="col-md-6">
@@ -35,7 +35,7 @@
  font-family: inter;
  color: #313437;
  background-color: #ffffff;
- padding: 55px 74px;
+ padding: 45px 64px;
  box-shadow: rgba(161, 159, 159, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 }
 

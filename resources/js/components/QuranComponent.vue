@@ -61,8 +61,8 @@
 
   <div class="col-md-4  container">
 
-   <form class="d-flex pb-1" @submit.prevent="search">
-    <input class="form-control me-2" type="search" id="search" name="search" v-model="searchTerm" placeholder="Search for Surah name" autocomplete="off" @keyup="search">
+   <form class="d-flex pb-1" @submit.prevent="search" >
+    <input style="box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;" class="form-control me-2" type="search" id="search" name="search" v-model="searchTerm" placeholder="Search for Surah name" autocomplete="off" @keyup="search">
     <button v-if="showClearButton" class="btn btn-outline-secondary text-center width:100%" @click="clearResults">Clear</button>
    </form>
 

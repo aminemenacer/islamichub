@@ -15,7 +15,6 @@
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
       <div class="container-fluid">
 
-
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <!-- Left Side Of Navbar -->
           <ul class="navbar-nav justify-content-end pr-4 flex-grow-1">
