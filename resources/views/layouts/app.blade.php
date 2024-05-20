@@ -90,8 +90,9 @@
                         <li class="nav-item dropdown ml-5">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{-- {{ Auth::user()->name }} --}}
-                                <i class="bi bi-person-circle" style="font-size: 1.8rem"></i>
+                                <i class="bi bi-person-circle mr-2 mt-1" style="font-size: 1.8rem"></i>                                
+                                {{ Auth::user()->name }}
+
                             </a>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" style="font-size: 32px" href="/bookmarks"><h6>Bookmarks</h6></a>

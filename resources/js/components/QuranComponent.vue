@@ -244,7 +244,7 @@
                 <h5 class="text-left pb-2" style="font-weight:bolder">Notes & Reflections</h5>
 
                 <div class="col">
-                 <textarea v-model="form1.ayah_notes" class="form-control container mb-3" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah ﷻ." rows="8"></textarea>
+                 <textarea v-model="form1.ayah_notes" class="form-control container mb-3" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah ?." rows="8"></textarea>
                 </div>
                </div>
                <div class="modal-footer">
@@ -288,10 +288,10 @@
            <div class="row" ref="targetElement">
             <h5 class="col-md-6 text-left pl-4 font-weight-bold" name="ayah_num"><img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
             <div class="col-md-6">
-              <div class="d-flex gap-2 justify-content-end">
-                <button class="btn button-33 mr-2" @click="goToPreviousAyah()"><i class="bi bi-arrow-left-circle-fill"></i></button>
-                <button class="btn button-33 " @click="goToNextAyah()"><i class="bi bi-arrow-right-circle-fill "></i></button>
-              </div>
+             <div class="d-flex gap-2 justify-content-end">
+              <button class="btn button-33 mr-2" @click="goToPreviousAyah()"><i class="bi bi-arrow-left-circle-fill"></i></button>
+              <button class="btn button-33 " @click="goToNextAyah()"><i class="bi bi-arrow-right-circle-fill "></i></button>
+             </div>
             </div>
            </div>
 
@@ -389,10 +389,10 @@
            <div class="row" ref="targetElement2">
             <h5 class="col-md-6 text-left pl-4 font-weight-bold" name="ayah_num"><img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
             <div class="col-md-6">
-              <div class="d-flex gap-2 justify-content-end">
-                <button class="btn button-33 mr-2" @click="goToPreviousAyah()"><i class="bi bi-arrow-left-circle-fill"></i></button>
-                <button class="btn button-33 " @click="goToNextAyah()"><i class="bi bi-arrow-right-circle-fill "></i></button>
-              </div>
+             <div class="d-flex gap-2 justify-content-end">
+              <button class="btn button-33 mr-2" @click="goToPreviousAyah()"><i class="bi bi-arrow-left-circle-fill"></i></button>
+              <button class="btn button-33 " @click="goToNextAyah()"><i class="bi bi-arrow-right-circle-fill "></i></button>
+             </div>
             </div>
            </div>
 
@@ -444,7 +444,7 @@
                  <h5 class="text-left pb-2" style="font-weight:bolder">Notes & Reflections</h5>
 
                  <div class="col">
-                  <textarea v-model="form1.ayah_notes" class="form-control container mb-3" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah ﷻ." rows="8"></textarea>
+                  <textarea v-model="form1.ayah_notes" class="form-control container mb-3" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah ?." rows="8"></textarea>
                  </div>
                 </div>
                 <div class="modal-footer">
@@ -648,20 +648,26 @@ export default {
 
    axios.post('/bookmarks', formData)
     .then(response => {
-     console.log(response.data.message);
-     // Set the submitted status for the selected bookmark
-     localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
-     // Log the updated bookmarkSubmitted object
-     console.log(this.bookmarkSubmitted);
-     this.showAlert = true; // Show success alert
-     this.showErrorAlert = false; // Hide error alert
-     this.hideAlertAfterDelay(); // Start timer to hide alert
+      console.log(response.data.message);
+      // Set the submitted status for the selected bookmark
+      localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
+      // Log the updated bookmarkSubmitted object
+      console.log(this.bookmarkSubmitted);
+      this.showAlert = true; // Show success alert
+      this.showErrorAlert = false; // Hide error alert
+      this.hideAlertAfterDelay(); // Start timer to hide alert
     })
     .catch(error => {
-     console.error(error);
-     this.showAlert = false; // Hide success alert
-     this.showErrorAlert = true; // Show error alert
-     this.hideAlertAfterDelay(); // Start timer to hide alert
+      console.error(error);
+      this.showAlert = false; // Hide success alert
+      this.showErrorAlert = true; // Show error alert
+      Swal.fire({
+        title: "Error!",
+        text: "You need to be logged in to create a bookmark.",
+        icon: "error",
+        confirmButtonText: "OK"
+      });
+      this.hideAlertAfterDelay(); // Start timer to hide alert
     });
   },
   submitForm1() {
@@ -674,18 +680,27 @@ export default {
 
    axios.post('/bookmarks', formData)
     .then(response => {
-     console.log(response.data.message);
-     this.showAlert = true; // Show success alert
-     this.showErrorAlert = false; // Hide error alert
-     this.hideAlertAfterDelay(); // Start timer to hide alert
+      console.log(response.data.message);
+      // Set the submitted status for the selected bookmark
+      localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
+      // Log the updated bookmarkSubmitted object
+      console.log(this.bookmarkSubmitted);
+      this.showAlert = true; // Show success alert
+      this.showErrorAlert = false; // Hide error alert
+      this.hideAlertAfterDelay(); // Start timer to hide alert
     })
     .catch(error => {
-     console.error(error);
-     this.showAlert = false; // Hide success alert
-     this.showErrorAlert = true; // Show error alert
-     this.hideAlertAfterDelay(); // Start timer to hide alert
+      console.error(error);
+      this.showAlert = false; // Hide success alert
+      this.showErrorAlert = true; // Show error alert
+      Swal.fire({
+        title: "Error!",
+        text: "You need to be logged in to create a bookmark.",
+        icon: "error",
+        confirmButtonText: "OK"
+      });
+      this.hideAlertAfterDelay(); // Start timer to hide alert
     });
-
   },
   submitForm2() {
    const formData = {
@@ -697,18 +712,27 @@ export default {
 
    axios.post('/bookmarks', formData)
     .then(response => {
-     console.log(response.data.message);
-     this.showAlert = true; // Show success alert
-     this.showErrorAlert = false; // Hide error alert
-     this.hideAlertAfterDelay(); // Start timer to hide alert
+      console.log(response.data.message);
+      // Set the submitted status for the selected bookmark
+      localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
+      // Log the updated bookmarkSubmitted object
+      console.log(this.bookmarkSubmitted);
+      this.showAlert = true; // Show success alert
+      this.showErrorAlert = false; // Hide error alert
+      this.hideAlertAfterDelay(); // Start timer to hide alert
     })
     .catch(error => {
-     console.error(error);
-     this.showAlert = false; // Hide success alert
-     this.showErrorAlert = true; // Show error alert
-     this.hideAlertAfterDelay(); // Start timer to hide alert
+      console.error(error);
+      this.showAlert = false; // Hide success alert
+      this.showErrorAlert = true; // Show error alert
+      Swal.fire({
+        title: "Error!",
+        text: "You need to be logged in to create a bookmark.",
+        icon: "error",
+        confirmButtonText: "OK"
+      });
+      this.hideAlertAfterDelay(); // Start timer to hide alert
     });
-
   },
   hideAlertAfterDelay() {
    setTimeout(() => {
@@ -1008,6 +1032,7 @@ export default {
          timer: 1500,
         });
         // Close the modal after successful submission
+        this.resetForm();
         $('#exampleModal').modal('hide');
        } else if (res.data.success) {
         Swal.fire(
@@ -1016,43 +1041,64 @@ export default {
          "error"
         );
        }
+       this.resetForm();
+        $('#exampleModal').modal('hide');
       })
-      .catch(function (err) {
-       console.error(err);
-      });
+      this.resetForm();
+      $('#exampleModal').modal('hide');
     }
    });
   },
 
   createNote() {
-   Swal.fire({
-    title: "Are you sure?",
-    text: "You want to submit the note!",
-    showCancelButton: true,
-    confirmButtonColor: "green",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Submit!",
-   }).then((result) => {
-    if (result.isConfirmed) {
-     axios
-      .post("/api/submit-note", this.form1)
-      .then((res) => {
-       if (res.data.success) {
-        Swal.fire("Success!", "Your note has been submitted.", "success");
-       } else {
-        Swal.fire("Error!", "Failed to submit note.", "error");
-       }
-       this.resetForm();
-      })
-      .catch((err) => {
-       console.error(err);
-       Swal.fire("Error!", "Failed to submit note. Login or create an account to be able to write a note", "error");
-       this.resetForm();
-      });
-    }
-   });
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You want to submit the note!",
+      showCancelButton: true,
+      confirmButtonColor: "green",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Submit!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .post("/api/submit-note", this.form1)
+          .then((res) => {
+            if (res.data.success) {
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Note saved successfully",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+              // Close the modal after successful submission
+              this.resetForm();
+              $('#exampleModal1').modal('hide');
+            } else {
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Note saved successfully",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+              this.resetForm();
+              $('#exampleModal1').modal('hide');
+            }
+          })
+          .catch((error) => {
+            if (error.response && error.response.status === 401) {
+              Swal.fire("Error!", "You need to be logged in to create a note.", "error");
+              this.resetForm();
+              $('#exampleModal1').modal('hide');
+            } 
+          });
+      }
+    });
   },
+
   resetForm() {
+   this.form.reset();
    this.form1.reset();
    const exampleModal2 = bootstrap.Modal.getInstance(this.$refs.exampleModal2);
    if (exampleModal2) {
@@ -1334,7 +1380,7 @@ export default {
 }
 
 .button-33 {
- background-color:rgba(0, 191, 166);
+ background-color: rgba(0, 191, 166);
  border-radius: 10px;
  color: white;
  cursor: pointer;

@@ -12,18 +12,34 @@ class UserSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        foreach(range(1,15) as $index){
-            DB::table('users')->insert([
-                'name' => $faker->firstNameMale(),
-                'lastname' => $faker->lastname(),
-                'email' => $faker->email(),
-                'phone' => $faker->PhoneNumber,
-                'user_type' => $faker->word(),
-                'subscribe' => $faker->boolean(),
-                'status' => $faker->word(),
-                'created_at' => date("Y-m-d H:i:s"),
-                'updated_at' => date("Y-m-d H:i:s"),
-            ]);
+        foreach (range(1, 15) as $index) {
+            DB::table('users')->insert(
+                [
+                    'name' => $faker->firstNameMale(),
+                    'lastname' => $faker->lastname(),
+                    'email' => $faker->email(),
+                    'phone' => $faker->PhoneNumber,
+                    'user_type' => $faker->word(),
+                    'subscribe' => $faker->boolean(),
+                    'status' => $faker->word(),
+                    'created_at' => date("Y-m-d H:i:s"),
+                    'updated_at' => date("Y-m-d H:i:s"),
+                ],
+
+                [
+                    'name' => 'Admin User',
+                    'email' => 'admin@example.com',
+                    'password' => bcrypt('password'),
+                    'role' => 'admin',
+                ],
+                [
+                    'name' => 'Regular User',
+                    'email' => 'user@example.com',
+                    'password' => bcrypt('password'),
+                    'role' => 'user',
+                ],
+
+            );
         }
     }
 }

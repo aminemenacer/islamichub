@@ -45,6 +45,10 @@ import UpdatesComponent from "./components/UpdatesComponent.vue";
 import JoinUsComponent from "./components/JoinUsComponent.vue";
 import NotesComponent from "./components/NotesComponent.vue";
 
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.bundle.js';
+
+
 window.Vue = require("vue");
 
 const app = createApp({});

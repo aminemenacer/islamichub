@@ -56,8 +56,9 @@
               <li class="nav-item dropdown mt-1 ml-5">
                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false" v-pre>
-                  {{-- {{ Auth::user()->name }} --}}
-                  <i class="bi bi-person-circle" style="font-size: 1.8rem"></i>
+                  
+                  <i class="bi bi-person-circle mr-2 mt-1" style="font-size: 1.8rem"></i>
+                  {{ Auth::user()->name }}
                 </a>
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="/dashboard">Dashboard</a>
@@ -113,6 +114,12 @@
               <a href="/mailing_list" class="nav-link">
                 <i class="bi bi-envelope-at-fill mr-1"></i>
                 <p>Mailing List</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/profile" class="nav-link">
+                <i class="bi bi-people-fill mr-1"></i>
+                <p>Profile</p>
               </a>
             </li>
             <li class="nav-item">

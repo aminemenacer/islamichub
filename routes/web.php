@@ -22,11 +22,31 @@ use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\JoinUsController;
 use App\Http\Controllers\NotesController;
 use App\Http\Controllers\UpdatesController;
-use App\Http\Controllers\DownloadController;
-use App\Http\Controllers\ExportController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\NoteController;
 
 // Auth routes
 Auth::routes();
+
+// web.php
+Route::get('/admin-dashboard', [AdminController::class, 'index'])->middleware('role:admin');
+Route::get('/user-dashboard', [UserController::class, 'index'])->middleware('role:user');
+
+Route::middleware(['auth'])->group(function () {
+    //bookmark
+    Route::post('/bookmarks', [BookmarkController::class, 'store']);
+    Route::get('/bookmarks', [BookmarkController::class, 'index']);
+    Route::get('api/fetch-bookmarks', [BookmarkController::class, 'getBookmarks']);
+    Route::delete('api/delete-bookmarks/{id}',  [BookmarkController::class, 'deleteBookmarks']);
+
+    // notes
+    Route::get('/notes', [NotesController::class, 'index']);
+    Route::get('api/fetch-notes', [NotesController::class, 'getNotes']);
+    Route::post('api/submit-note', [NotesController::class, 'store']);
+    Route::post('api/update-notes/{id}',  [NotesController::class, 'updateNotes']);
+    Route::delete('api/delete-notes/{id}',  [NotesController::class, 'deleteNotes']);
+});
+
 
 Route::get('/ayahs', [QuranController::class, 'index']);
 
@@ -65,12 +85,6 @@ Route::post('payment/initiate', [CharityController::class, 'initiatePayment']);
 Route::post('payment/complete', [CharityController::class, 'completePayment']);
 Route::post('payment/failure', [CharityController::class, 'failPayment']);
 
-// notes
-Route::get('/notes', [NotesController::class, 'index']);
-Route::get('api/fetch-notes', [NotesController::class, 'getNotes']);
-Route::post('api/submit-note', [NotesController::class, 'store']);
-Route::post('api/update-notes/{id}',  [NotesController::class, 'updateNotes']);
-Route::delete('api/delete-notes/{id}',  [NotesController::class, 'deleteNotes']);
 
 // users
 Route::get('/users', [UserController::class, 'index']);
@@ -96,11 +110,7 @@ Route::get('/get_informations', [SurahController::class, 'getInformations']);
 Route::get('/tafseer/{id}/fetch', [SurahController::class, 'getTafseers']);
 Route::post('/search', [SurahController::class, 'search'])->name('search');
 
-//bookmark
-Route::post('/bookmarks', [BookmarkController::class, 'store']);
-Route::get('/bookmarks', [BookmarkController::class, 'index']);
-Route::get('api/fetch-bookmarks', [BookmarkController::class, 'getBookmarks']);
-Route::delete('api/delete-bookmarks/{id}',  [BookmarkController::class, 'deleteBookmarks']);
+
 
 
 // mailing list

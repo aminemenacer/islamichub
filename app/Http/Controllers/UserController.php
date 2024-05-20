@@ -32,13 +32,14 @@ class UserController extends Controller
     public function createUsers(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
-            'lastname' => 'required',
-            'email' => 'required',
+            'name' => 'required|string|max:20',
+            'lastname' => 'required|string|max:20',
+            'email' => 'required|string|email|max:255|unique:users',
             'phone' => 'required',
             'user_type' => 'required',
             'status' => 'required',
-            'password' => 'required'
+            'password' => 'required|string|min:6|confirmed|unique',
+            'role' => ['required', 'string', 'in:user,admin'] // Validate role
 
         ]);
         $user = new User();
@@ -50,6 +51,7 @@ class UserController extends Controller
         $user->phone = $request->phone;
         $user->user_type = $request->user_type;
         $user->status = $request->status;
+        $user->role = $request->role;
         $user->password = Hash::make($request->password);
         $user->save();
     }

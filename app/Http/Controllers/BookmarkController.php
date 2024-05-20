@@ -12,7 +12,8 @@ class BookmarkController extends Controller
 
     public function index()
     {
-        return view('bookmark');
+        $bookmark = Auth::user()->bookmarks;
+        return view('bookmark', compact('bookmark'));
     }
 
     public function getBookmarks()
@@ -22,18 +23,26 @@ class BookmarkController extends Controller
     }
 
     public function store(Request $request)
-    {  
+    {
+        $request->validate([
+            'surah_name' => 'required',
+            'ayah_num' => 'required',
+            'ayah_verse_ar' => 'required',
+            'ayah_verse_en' => 'required',
+        ]);
+
         // Create a new bookmark instance
-        $bookmark = new Bookmark();
+        $bookmark = new Bookmark([
+            'surah_name' => $request->input('surah_name'),
+            'ayah_num' => $request->input('ayah_num'),
+            'ayah_verse_ar' => $request->input('ayah_verse_ar'),
+            'ayah_verse_en' => $request->input('ayah_verse_en'),
+            'ayah_info' => $request->input('ayah_info'),
+        ]);
 
         // Assign the user_id to the bookmark
-        $bookmark->user_id = auth()->id(); // Assuming you are using Laravel's built-in authentication
+        $bookmark->user_id = Auth::id();
 
-        $bookmark->surah_name = $request->input('surah_name');
-        $bookmark->ayah_num = $request->input('ayah_num');
-        $bookmark->ayah_verse_ar = $request->input('ayah_verse_ar');
-        $bookmark->ayah_verse_en = $request->input('ayah_verse_en');
-        $bookmark->ayah_info = $request->input('ayah_info');
         // Save the bookmark
         $bookmark->save();
 
@@ -44,10 +53,15 @@ class BookmarkController extends Controller
 
     public function deleteBookmarks($id)
     {
+       
         $bookmark = Bookmark::findOrFail($id);
+        if (Auth::id() != $bookmark->user_id) {
+            abort(403);
+        }
         $bookmark->delete();
         return response()->json([
             'message' => 'Bookmark deleted successfully'
-        ]);
+        ]); 
+        
     }
 }
