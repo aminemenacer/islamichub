@@ -22,19 +22,6 @@
       </div>
     </div>
 
-     <h1>Notes for User {{ userId }}</h1>
-    <ul>
-      <li v-for="note in notes" :key="note.id">
-        <strong>Surah:</strong> {{ note.surah_name }}<br>
-        <strong>Ayah Number:</strong> {{ note.ayah_num }}<br>
-        <strong>Ayah Verse (AR):</strong> {{ note.ayah_verse_ar }}<br>
-        <strong>Ayah Verse (EN):</strong> {{ note.ayah_verse_en }}<br>
-        <strong>Info:</strong> {{ note.ayah_info }}<br>
-        <strong>Notes:</strong> {{ note.ayah_notes }}<br>
-        <hr>
-      </li>
-    </ul>
-
     <div class="row">
       <div class="col-md-4 mb-4" v-for="note in notes" :key="note.id">
         <div class="card">
@@ -117,7 +104,6 @@
   </div>
 </template>
 
-
 <script>
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -125,26 +111,29 @@ import { FilterMatchMode } from "primevue/api";
 
 export default {
   mounted() {
-    try {
-      // Dynamically extract userId from the URL path
-      const pathSegments = window.location.pathname.split('/');
-      const userIdIndex = pathSegments.indexOf('users') + 1;
-      const userId = userIdIndex > 0 ? pathSegments[userIdIndex] : null;
-
-      console.log('URL Path:', window.location.pathname);
-      console.log('Extracted userId:', userId);
-
-      if (userId) {
-        this.userId = userId;
-        this.fetchNotes(userId);
-      } else {
-        console.error('User ID not found in URL path');
-      }
-    } catch (error) {
-      console.error('Error while extracting userId:', error);
-    }
-  
+    fetch('/api/userId')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch user ID');
+        }
+        return response.json();
+      })
+      .then(data => {
+        const userId = data.userId; // Assuming the API returns the user ID in a field called userId
+        console.log('UserId:', userId);
+        
+        if (userId) {
+          this.userId = userId;
+          this.fetchNotes(this.userId);
+        } else {
+          console.error('User ID not found');
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching user ID:', error);
+      });
   },
+
   data() {
     return {
       filters: {
@@ -185,8 +174,7 @@ export default {
     },
     viewModal(note) {
       this.form1 = { ...note };  // Make sure form1 is populated
-      const viewNotesModal = new bootstrap.Modal(document.getElementById('viewNotes'));
-      viewNotesModal.show();
+      $('#viewNotes').modal('show');
     },
     updateNotes() {
       Swal.fire({
@@ -207,9 +195,8 @@ export default {
                 showConfirmButton: false,
                 timer: 1500,
               });
-              this.loadNotes();
-              const editNotesModal = bootstrap.Modal.getInstance(document.getElementById('editNotes'));
-              editNotesModal.hide();
+              this.fetchNotes(this.userId);
+              $('#editNotes').modal('hide');
             })
             .catch((error) => {
               console.error(error);
@@ -237,7 +224,7 @@ export default {
                 showConfirmButton: false,
                 timer: 1500,
               });
-              this.loadNotes();
+              this.fetchNotes(this.userId);
             })
             .catch((error) => {
               console.error(error);
@@ -247,8 +234,7 @@ export default {
     },
     editModal(note) {
       this.form1 = { ...note };  // Make sure form1 is populated
-      const editNotesModal = new bootstrap.Modal(document.getElementById('editNotes'));
-      editNotesModal.show();
+      $('#editNotes').modal('show');
     },
   },
 };

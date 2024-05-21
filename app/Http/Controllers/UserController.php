@@ -24,6 +24,18 @@ class UserController extends Controller
         return $user;
     }
 
+    public function getUserId()
+    {
+        // Assuming you have some logic to fetch the user ID
+        $userId = auth()->id(); // Example: Fetch user ID using Laravel's authentication
+        
+        if ($userId) {
+            return response()->json(['userId' => $userId]);
+        } else {
+            return response()->json(['error' => 'User ID not found'], 404);
+        }
+    }
+
     public function getProfile()
     {
         return view('profile');

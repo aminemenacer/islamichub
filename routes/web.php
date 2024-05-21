@@ -23,7 +23,6 @@ use App\Http\Controllers\JoinUsController;
 use App\Http\Controllers\NotesController;
 use App\Http\Controllers\UpdatesController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\NoteController;
 
 
 // Auth routes
@@ -32,6 +31,8 @@ Auth::routes();
 // web.php
 Route::get('/admin-dashboard', [AdminController::class, 'index'])->middleware('role:admin');
 Route::get('/user-dashboard', [UserController::class, 'index'])->middleware('role:user');
+
+Route::get('api/userId', [UserController::class, 'getUserId']);
 
 Route::middleware(['auth'])->group(function () {
     //bookmark

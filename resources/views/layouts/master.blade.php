@@ -18,27 +18,22 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <!-- Left Side Of Navbar -->
           <ul class="navbar-nav justify-content-end pr-4 flex-grow-1">
-            <li class="nav-item ">
+            <li class="nav-item">
               <h5><a style="font-family:inter; color: black;" class="nav-link mt-3 ml-4 pl-3" href="/quran">Home</a></h5>
             </li>
-
             <li class="nav-item">
-              <h5><a style="font-family:inter; color: black;" class="nav-link mt-3 ml-4 pl-3" href="/contact">Contact</a>
-              </h5>
+              <h5><a style="font-family:inter; color: black;" class="nav-link mt-3 ml-4 pl-3" href="/contact">Contact</a></h5>
             </li>
             <li class="nav-item">
               <h5><a style="font-family:inter; color: black;" class="nav-link mt-3 ml-4 pl-3" href="/about">About Us</a></h5>
             </li>
             <li class="nav-item">
-              <h5><a style="font-family:inter; color: black;" class="nav-link mt-3 ml-4 pl-3" href="/updates">Updates</a>
-              </h5>
+              <h5><a style="font-family:inter; color: black;" class="nav-link mt-3 ml-4 pl-3" href="/updates">Updates</a></h5>
             </li>
             <li class="nav-item">
-              <h5><a style="font-family:inter; color: black;" class="nav-link mt-3 ml-4 pl-3 pr-5" href="/join_us">Mailing
-                  List</a></h5>
+              <h5><a style="font-family:inter; color: black;" class="nav-link mt-3 ml-4 pl-3 pr-5" href="/join_us">Mailing List</a></h5>
             </li>
-
-            <!-- Right Side Of Navbar -->
+          
             @guest
               @if (Route::has('login'))
               <li class="nav-item mt-1">
@@ -47,31 +42,27 @@
               @endif
               @if (Route::has('register'))
               <li class="nav-item mt-1">
-                <h5><a style="font-family:inter;" class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                </h5>
+                <h5><a style="font-family:inter;" class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></h5>
               </li>
               @endif
-              @else
-              <li class="nav-item dropdown mt-1 ml-5">
-                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false" v-pre>
-                  
-                  <i class="bi bi-person-circle mr-2 mt-1" style="font-size: 1.8rem"></i>
-                  {{ Auth::user()->name }}
+            @else
+            <li class="nav-item dropdown mt-1 ml-5">
+              <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                <i class="bi bi-person-circle mr-2 mt-1" style="font-size: 1.8rem"></i>
+                {{ Auth::user()->name }}
+              </a>
+              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/dashboard">Dashboard</a>
+                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                  {{ __('Logout') }}
                 </a>
-                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="/dashboard">Dashboard</a>
-                  <a class="dropdown-item" href="{{ route('logout') }}"
-                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    {{ __('Logout') }}
-                  </a>
-                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                    @csrf
-                  </form>
-                </div>
-              </li>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                  @csrf
+                </form>
+              </div>
+            </li>
             @endguest
-          </ul>
+          </ul>          
         </div>
       </div>
     </nav>
@@ -168,6 +159,9 @@
   </div>
 
   <script src="/js/app.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
 
 </body>
 
