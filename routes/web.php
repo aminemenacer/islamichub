@@ -41,6 +41,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('api/fetch-bookmarks', [BookmarkController::class, 'getBookmarks']);
     Route::delete('api/delete-bookmarks/{id}',  [BookmarkController::class, 'deleteBookmarks']);
 
+    Route::get('api/fetch-bookmarks/{userId}', [BookmarkController::class, 'getBookmarks']);
+
     // notes
     Route::get('/notes', [NotesController::class, 'index']);
     // Route::get('api/fetch-notes', [NotesController::class, 'getNotes']);

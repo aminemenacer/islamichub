@@ -16,10 +16,10 @@ class BookmarkController extends Controller
         return view('bookmark', compact('bookmark'));
     }
 
-    public function getBookmarks()
+    public function getBookmarks($userId)
     {
-        $bookmark = Bookmark::orderBy('id', 'desc')->get();
-        return $bookmark;
+        $bookmark = Bookmark::where('user_id', $userId)->get();
+        return response()->json($bookmark);
     }
 
     public function store(Request $request)

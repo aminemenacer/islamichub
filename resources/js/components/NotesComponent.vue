@@ -196,7 +196,14 @@ export default {
                 timer: 1500,
               });
               this.fetchNotes(this.userId);
-              $('#editNotes').modal('hide');
+              const editNotesModal = bootstrap.Modal.getInstance(document.getElementById('editNotes'));
+              if (editNotesModal) {
+                editNotesModal.hide();
+              }
+              // Ensure any modal overlay is removed
+              document.body.classList.remove('modal-open');
+              const modals = document.querySelectorAll('.modal-backdrop');
+              modals.forEach(modal => modal.remove());
             })
             .catch((error) => {
               console.error(error);

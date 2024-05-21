@@ -1050,53 +1050,78 @@ export default {
    });
   },
 
-  createNote() {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You want to submit the note!",
-      showCancelButton: true,
-      confirmButtonColor: "green",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Submit!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        axios
-          .post("/api/submit-note", this.form1)
-          .then((res) => {
-            if (res.data.success) {
-              Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Note saved successfully",
-                showConfirmButton: false,
-                timer: 1500,
-              });
-              // Close the modal after successful submission
-              this.resetForm();
-              $('#exampleModal1').modal('hide');
-            } else {
-              Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Note saved successfully",
-                showConfirmButton: false,
-                timer: 1500,
-              });
-              this.resetForm();
-              $('#exampleModal1').modal('hide');
-            }
-          })
-          .catch((error) => {
-            if (error.response && error.response.status === 401) {
-              Swal.fire("Error!", "You need to be logged in to create a note.", "error");
-              this.resetForm();
-              $('#exampleModal1').modal('hide');
-            } 
-          });
-      }
-    });
-  },
+createNote() {
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You want to submit the note!",
+    showCancelButton: true,
+    confirmButtonColor: "green",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Submit!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      axios
+        .post("/api/submit-note", this.form1)
+        .then((res) => {
+          if (res.data.success) {
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Note saved successfully",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            this.resetForm();
+            this.closeModal('exampleModal1');
+            this.fetchNotes(this.userId);
+          } else {
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Note saved successfully",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            this.resetForm();
+            this.closeModal('exampleModal1');
+            this.fetchNotes(this.userId);
+          }
+        })
+        .catch((error) => {
+          if (error.response && error.response.status === 401) {
+            Swal.fire("Error!", "You need to be logged in to create a note.", "error");
+          } else {
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Note saved successfully",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+          this.resetForm();
+          this.closeModal('exampleModal1');
+          this.fetchNotes(this.userId);
+        });
+    }
+  });
+},
 
+
+  closeModal(modalId) {
+    const modalElement = document.getElementById(modalId);
+    const modalInstance = bootstrap.Modal.getInstance(modalElement);
+
+    if (modalInstance) {
+      modalInstance.hide();
+    } else {
+      $(modalElement).modal('hide');
+    }
+
+    document.body.classList.remove('modal-open');
+    const modals = document.querySelectorAll('.modal-backdrop');
+    modals.forEach(modal => modal.remove());
+  },
   resetForm() {
    this.form.reset();
    this.form1.reset();

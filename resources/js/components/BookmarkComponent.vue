@@ -1,21 +1,20 @@
 <template>
-
 <div>
  <h2 class="pt-4 pb-2 text-center"><strong>Bookmarks</strong></h2>
 
-  <div class="text-center">
-    <div class="row">
-      <div class="col">
-        <span class="badge h3" style="width:100%;font-size:18px;border-radius:10px; color:#B70D52;background:#ead1dc"><a href="/notes" style="text-decoration:none;color:#B70D52;background:#ead1dc">Notes</a></span>
-      </div>
-      <div class="col">
-        <span class="badge h3" style="width:100%;font-size:18px;border-radius:10px; color:#3D8F67;background:#d1f4d0"><a href="/profile" style="text-decoration:none;color:#3D8F67;background:#d1f4d0">Profile</a></span>
-      </div>
-      <div class="col">
-        <span class="badge h3" style="width:100%;font-size:18px;border-radius:10px; color:#0263FF;background:#c2d8fb"><a href="/home" style="text-decoration:none;color:#0263FF;background:#c2d8fb">Home</a></span>
-      </div> 
-    </div>
+ <div class="text-center">
+  <div class="row">
+   <div class="col">
+    <span class="badge h3" style="width:100%;font-size:18px;border-radius:10px; color:#B70D52;background:#ead1dc"><a href="/notes" style="text-decoration:none;color:#B70D52;background:#ead1dc">Notes</a></span>
+   </div>
+   <div class="col">
+    <span class="badge h3" style="width:100%;font-size:18px;border-radius:10px; color:#3D8F67;background:#d1f4d0"><a href="/profile" style="text-decoration:none;color:#3D8F67;background:#d1f4d0">Profile</a></span>
+   </div>
+   <div class="col">
+    <span class="badge h3" style="width:100%;font-size:18px;border-radius:10px; color:#0263FF;background:#c2d8fb"><a href="/home" style="text-decoration:none;color:#0263FF;background:#c2d8fb">Home</a></span>
+   </div>
   </div>
+ </div>
 
  <div class="row">
   <div class="col-md-4 mb-4" v-for="bookmark in bookmarks" :key="bookmark.id">
@@ -37,8 +36,6 @@
 
   </div>
  </div>
-
- 
 
  <!-- View Bookmark Modal -->
  <div class="modal fade" id="viewBookmark" tabindex="-1" aria-labelledby="viewBookmarkLabel" aria-hidden="true">
@@ -92,8 +89,27 @@ import {
 } from "primevue/api";
 export default {
  mounted() {
-  this.loadBookmark();
+  fetch('/api/userId')
+   .then(response => {
+    if (!response.ok) {
+     throw new Error('Failed to fetch user ID');
+    }
+    return response.json();
+   })
+   .then(data => {
+    const userId = data.userId; // Assuming the API returns the user ID in a field called userId
+    console.log('UserId:', userId);
 
+    if (userId) {
+     this.userId = userId;
+     this.fetchBookmarks(this.userId);
+    } else {
+     console.error('User ID not found');
+    }
+   })
+   .catch(error => {
+    console.error('Error fetching user ID:', error);
+   });
  },
  data() {
   return {
@@ -156,7 +172,22 @@ export default {
   },
  },
  methods: {
-
+  async fetchBookmarks(userId) {
+    try {
+      const response = await fetch(`/api/fetch-bookmarks/${userId}`);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      this.bookmarks = await response.json();
+    } catch (error) {
+      console.error('There was a problem with the fetch operation:', error);
+    }
+  },
+  viewModal(bookmark) {
+    this.form1 = { ...bookmark };  // Make sure form1 is populated
+    const viewBookmarksModal = new bootstrap.Modal(document.getElementById('viewBookmarks'));
+    viewBookmarksModal.show();
+  },
   loadBookmark() {
    axios.get("api/fetch-bookmarks").then((data) => {
     this.bookmarks = data.data;
@@ -173,7 +204,7 @@ export default {
     confirmButtonText: "Yes, delete bookmark!",
    }).then((result) => {
     if (result.isConfirmed) {
-     axios.delete("api/delete-bookmarks/" + id);
+     axios.delete(`/api/delete-bookmarks/${id}`);
      Swal.fire({
       position: "top-end",
       icon: "success",
@@ -181,7 +212,7 @@ export default {
       showConfirmButton: false,
       timer: 1500,
      });
-     this.loadBookmark();
+      this.fetchBookmarks(this.userId);
      self.close();
     }
    });
