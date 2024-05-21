@@ -78,6 +78,8 @@
       <div class="sidebar">
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <!-- admin dashboard -->
+            @if(auth()->user()->role === 'admin')
             <li class="nav-item">
               <a href="/dashboard" class="nav-link">
                 <i class="bi bi-speedometer mr-1"></i>
@@ -141,6 +143,39 @@
                 @csrf
               </form>
             </li>
+            @endif
+            
+            <!-- user dashboard -->
+            @if(auth()->user()->role === 'user')
+            
+            <li class="nav-item">
+              <a href="/bookmarks" class="nav-link">
+                <i class="bi bi-bookmark-dash-fill mr-1"></i>
+                <p>Bookmarks</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/notes" class="nav-link">
+                <i class="bi bi-file-earmark-text-fill mr-1"></i>
+                <p>Notes</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/profile" class="nav-link">
+                <i class="bi bi-people-fill mr-1"></i>
+                <p>Profile</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <i class="bi bi-plug-fill" style="font-size: 22px"></i>
+                <p class="mb-2">{{ __('Logout') }}</p>
+              </a>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+              </form>
+            </li>
+            @endif
           </ul>
         </nav>
       </div>

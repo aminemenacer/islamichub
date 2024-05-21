@@ -41,6 +41,7 @@ class LoginController extends Controller
             $new_user = User::create([
                 'name' => $facebook_user->name,
                 'email' => $facebook_user->email,
+                'user_id' => $facebook_user->user_id,
                 'fb_id' => $facebook_user->getId(),
             ]);
 
@@ -80,6 +81,7 @@ class LoginController extends Controller
         $new_user = User::create([
             'name' => $google_user->getName(),
             'email' => $google_user->getEmail(),
+            'user_id' => $google_user->user_id,
             'google_id' => $google_user->getId(),
         ]);
 

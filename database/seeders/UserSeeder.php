@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -15,9 +16,12 @@ class UserSeeder extends Seeder
         foreach (range(1, 15) as $index) {
             DB::table('users')->insert(
                 [
-                    'name' => $faker->firstNameMale(),
+                    'name' => 'Admin',
+                    'user_id' => '1',
                     'lastname' => $faker->lastname(),
-                    'email' => $faker->email(),
+                    'email' => 'admin@admin.com',
+                    'password' => Hash::make('admin'),
+                    'role' => 'admin',
                     'phone' => $faker->PhoneNumber,
                     'user_type' => $faker->word(),
                     'subscribe' => $faker->boolean(),
@@ -25,20 +29,6 @@ class UserSeeder extends Seeder
                     'created_at' => date("Y-m-d H:i:s"),
                     'updated_at' => date("Y-m-d H:i:s"),
                 ],
-
-                [
-                    'name' => 'Admin User',
-                    'email' => 'admin@example.com',
-                    'password' => bcrypt('password'),
-                    'role' => 'admin',
-                ],
-                [
-                    'name' => 'Regular User',
-                    'email' => 'user@example.com',
-                    'password' => bcrypt('password'),
-                    'role' => 'user',
-                ],
-
             );
         }
     }

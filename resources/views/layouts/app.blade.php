@@ -46,7 +46,7 @@
 
 <body>
     <div>
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm py-2">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm ">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="/images/logo_main.png" width="275" height="54" class="d-inline-block align-top" alt="">
@@ -93,7 +93,7 @@
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                <i class="bi bi-person-circle pr-2 pb-2" style="font-size: 1.8rem"></i>
+                                <i class="bi bi-person-circle pr-2" style="font-size: 1.8rem"></i>
                                 {{ Auth::user()->name }}
                             </a>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">

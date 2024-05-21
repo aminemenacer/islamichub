@@ -97,7 +97,7 @@
        <button class="btn btn-success mb-2 ml-2" type="submit">Search</button>
       </form>
 
-      <div class="custom-scrollbar" style="overflow-y: auto; max-height: 700px; background: white;">
+      <div class="custom-scrollbar" style="overflow-y: auto; max-height: 650px; background: white;">
        <ul class="col-md-4 list-group container-fluid root" id="toggle" ref="ayahList" style="list-style-type: none; padding: 10px">
         <li v-for="(ayah, index) in ayahs" :key="index" @click="getTafseers(ayah.id, index)" :class="{ selected: selectedIndexAyah === index, 'highlighted': verseNumber && parseInt(verseNumber) === ayah.ayah_id }" style="padding: 10px;border-radius:10px">
          <h5 style="display: flex;"> Verse: {{ ayah.ayah_id }} </h5>
@@ -1050,62 +1050,60 @@ export default {
    });
   },
 
-createNote() {
-  Swal.fire({
-    title: "Are you sure?",
-    text: "You want to submit the note!",
-    showCancelButton: true,
-    confirmButtonColor: "green",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Submit!",
-  }).then((result) => {
-    if (result.isConfirmed) {
-      axios
-        .post("/api/submit-note", this.form1)
-        .then((res) => {
-          if (res.data.success) {
-            Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: "Note saved successfully",
-              showConfirmButton: false,
-              timer: 1500,
-            });
-            this.resetForm();
-            this.closeModal('exampleModal1');
-            this.fetchNotes(this.userId);
-          } else {
-            Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: "Note saved successfully",
-              showConfirmButton: false,
-              timer: 1500,
-            });
-            this.resetForm();
-            this.closeModal('exampleModal1');
-            this.fetchNotes(this.userId);
-          }
-        })
-        .catch((error) => {
-          if (error.response && error.response.status === 401) {
-            Swal.fire("Error!", "You need to be logged in to create a note.", "error");
-          } else {
-            Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: "Note saved successfully",
-              showConfirmButton: false,
-              timer: 1500,
-            });
-          }
-          this.resetForm();
-          this.closeModal('exampleModal1');
-          this.fetchNotes(this.userId);
-        });
-    }
-  });
-},
+  createNote() {
+    const formData = {
+      surah_name: this.information.ayah.surah.name_en,    
+      ayah_num: this.information.ayah_id,
+      ayah_verse_ar: this.information.ayah.ayah_text,
+      ayah_verse_en: this.information.translation,
+      ayah_notes: this.form1.ayah_notes // Add ayah_notes to formData
+    };
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You want to submit note!",
+      showCancelButton: true,
+      confirmButtonColor: "green",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Submit!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .post("/api/submit-note", formData)
+          .then((res) => {
+            if (res.data.success) {
+              // Show success message or perform any other action on successful submission
+              Swal.fire("Success!", "Your note has been submitted.", "success");
+              // Reset the form inputs
+              this.form1.surah_name = "";
+              this.form1.ayah_num = "";
+              this.form1.ayah_text = "";
+              
+              this.form1.ayah_notes = "";
+              // Close the Sweet Alert dialog
+              setTimeout(() => {
+                Swal.close();
+              }, 2000);
+            } else {
+              Swal.fire("Success!", "Your note has been submitted.", "success");
+              this.form1.surah_name = "";
+              this.form1.ayah_num = "";
+              this.form1.ayah_text = "";
+              
+              this.form1.ayah_notes = "";
+              setTimeout(() => {
+                Swal.close();
+              }, 2000);
+            }
+          })
+          .catch(function (err) {
+            console.error(err);
+            // Show generic error message
+            Swal.fire("Error!", "Failed to submit note. Login or create an account to be able to write a note", "error");
+          });
+      }
+    });
+  },
+
 
 
   closeModal(modalId) {

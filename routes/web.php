@@ -28,9 +28,10 @@ use App\Http\Controllers\AdminController;
 // Auth routes
 Auth::routes();
 
-// web.php
-Route::get('/admin-dashboard', [AdminController::class, 'index'])->middleware('role:admin');
-Route::get('/user-dashboard', [UserController::class, 'index'])->middleware('role:user');
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+    // Other admin routes...
+});
 
 Route::get('api/userId', [UserController::class, 'getUserId']);
 
