@@ -1,5 +1,8 @@
 // Vue libraries
 require("./bootstrap");
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.bundle.js';
+
 import { createApp } from "vue";
 import { Form } from "vform";
 import swal from "sweetalert2";
@@ -45,8 +48,6 @@ import UpdatesComponent from "./components/UpdatesComponent.vue";
 import JoinUsComponent from "./components/JoinUsComponent.vue";
 import NotesComponent from "./components/NotesComponent.vue";
 
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/js/bootstrap.bundle.js';
 
 
 window.Vue = require("vue");

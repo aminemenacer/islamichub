@@ -61,13 +61,13 @@
 
   <div class="col-md-4  container">
 
-   <form class="d-flex pb-1" @submit.prevent="search" >
-    <input style="box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;" class="form-control me-2" type="search" id="search" name="search" v-model="searchTerm" placeholder="Search for Surah name" autocomplete="off" @keyup="search">
+   <form class="d-flex pb-1" style="color:rgba(0, 191, 166)" @submit.prevent="search" >
+    <input style="box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px; border-radius:10px" class="form-control me-2" type="search" id="search" name="search" v-model="searchTerm" placeholder="Search for Surah name" autocomplete="off" @keyup="search">
     <button v-if="showClearButton" class="btn btn-outline-secondary text-center width:100%" @click="clearResults">Clear</button>
    </form>
 
    <!-- Surah list -->
-   <ul class="col-md-12 mt-1 scrollable-list " style="list-style-type: none; overflow-y: auto; max-height: 350px;">
+   <ul class="col-md-12 mt-1 scrollable-list " style="list-style-type: none; overflow-y: auto; max-height: 400px;">
     <li v-for="item in filteredSurah" :key="item.id" @click="selectSurah(item.id)" style="cursor: pointer; padding:5px;" class="highlight-on-hover">
      <div style="display: flex; align-items: center;">
       <img src="/images/art.png" style="width: 23px" class="mb-1 mr-2" />
@@ -92,8 +92,8 @@
         </div>
       -->
 
-      <form class="d-flex" @submit.prevent="scrollToAyah">
-       <input class="form-control mb-2" type="number" placeholder="Enter Ayah Number" aria-label="Search" v-model="verseNumber" required>
+      <form class="d-flex text-left width:50%"  @submit.prevent="scrollToAyah">
+       <input class="form-control pb-2" type="number" placeholder="Enter Ayah Number" aria-label="Search" v-model="verseNumber" style="box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px; border-radius:10px" required>
        <button class="btn btn-success mb-2 ml-2" type="submit">Search</button>
       </form>
 

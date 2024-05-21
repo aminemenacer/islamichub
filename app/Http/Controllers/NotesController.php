@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Note;
 use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
@@ -15,10 +16,10 @@ class NotesController extends Controller
         return view('notes');
     }
 
-    public function getNotes()
+    public function getNotes($userId)
     {
-        $note = Note::orderBy('id', 'desc')->get();
-        return $note;
+        $notes = Note::where('user_id', $userId)->get();
+        return response()->json($notes);
     }
 
     public function store(Request $request)

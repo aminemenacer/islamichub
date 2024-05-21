@@ -25,6 +25,7 @@ use App\Http\Controllers\UpdatesController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\NoteController;
 
+
 // Auth routes
 Auth::routes();
 
@@ -41,10 +42,13 @@ Route::middleware(['auth'])->group(function () {
 
     // notes
     Route::get('/notes', [NotesController::class, 'index']);
-    Route::get('api/fetch-notes', [NotesController::class, 'getNotes']);
+    // Route::get('api/fetch-notes', [NotesController::class, 'getNotes']);
     Route::post('api/submit-note', [NotesController::class, 'store']);
     Route::post('api/update-notes/{id}',  [NotesController::class, 'updateNotes']);
     Route::delete('api/delete-notes/{id}',  [NotesController::class, 'deleteNotes']);
+
+    Route::get('api/fetch-notes/{userId}', [NotesController::class, 'getNotes']);
+
 });
 
 

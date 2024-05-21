@@ -22,6 +22,19 @@
       </div>
     </div>
 
+     <h1>Notes for User {{ userId }}</h1>
+    <ul>
+      <li v-for="note in notes" :key="note.id">
+        <strong>Surah:</strong> {{ note.surah_name }}<br>
+        <strong>Ayah Number:</strong> {{ note.ayah_num }}<br>
+        <strong>Ayah Verse (AR):</strong> {{ note.ayah_verse_ar }}<br>
+        <strong>Ayah Verse (EN):</strong> {{ note.ayah_verse_en }}<br>
+        <strong>Info:</strong> {{ note.ayah_info }}<br>
+        <strong>Notes:</strong> {{ note.ayah_notes }}<br>
+        <hr>
+      </li>
+    </ul>
+
     <div class="row">
       <div class="col-md-4 mb-4" v-for="note in notes" :key="note.id">
         <div class="card">
@@ -112,7 +125,25 @@ import { FilterMatchMode } from "primevue/api";
 
 export default {
   mounted() {
-    this.loadNotes();
+    try {
+      // Dynamically extract userId from the URL path
+      const pathSegments = window.location.pathname.split('/');
+      const userIdIndex = pathSegments.indexOf('users') + 1;
+      const userId = userIdIndex > 0 ? pathSegments[userIdIndex] : null;
+
+      console.log('URL Path:', window.location.pathname);
+      console.log('Extracted userId:', userId);
+
+      if (userId) {
+        this.userId = userId;
+        this.fetchNotes(userId);
+      } else {
+        console.error('User ID not found in URL path');
+      }
+    } catch (error) {
+      console.error('Error while extracting userId:', error);
+    }
+  
   },
   data() {
     return {
@@ -122,7 +153,8 @@ export default {
           matchMode: FilterMatchMode.CONTAINS,
         },
       },
-      notes: null,
+      notes: [],
+      userId: null,
       columns: [
         { field: "id", header: "ID", sortable: true },
         { field: "surah_name", header: "Surah name", sortable: true },
@@ -140,10 +172,16 @@ export default {
     };
   },
   methods: {
-    loadNotes() {
-      axios.get("api/fetch-notes").then((response) => {
-        this.notes = response.data;
-      });
+    async fetchNotes(userId) {
+      try {
+        const response = await fetch(`/api/fetch-notes/${userId}`);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        this.notes = await response.json();
+      } catch (error) {
+        console.error('There was a problem with the fetch operation:', error);
+      }
     },
     viewModal(note) {
       this.form1 = { ...note };  // Make sure form1 is populated

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateNotesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('notes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
             $table->text('surah_name')->nullable();
             $table->text('ayah_num')->nullable();
             $table->text('ayah_info')->nullable();
@@ -23,6 +23,9 @@ return new class extends Migration
             $table->text('ayah_verse_en')->nullable();
             $table->text('ayah_notes')->nullable();
             $table->timestamps();
+
+            // Assuming 'id' is the primary key of the users table
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -35,4 +38,5 @@ return new class extends Migration
     {
         Schema::dropIfExists('notes');
     }
-};
+}
+
