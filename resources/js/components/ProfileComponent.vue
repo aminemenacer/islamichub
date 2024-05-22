@@ -1,5 +1,6 @@
 <template>
 <div id="app">
+ <h2 class="pb-3 pt-4 text-center"><strong>Profile</strong></h2>
 
  <!-- edit new Modal -->
  <div class="modal fade" id="editNew" tabindex="-1" aria-labelledby="editNew" aria-hidden="true">
@@ -59,7 +60,6 @@
  <div class="container text-center">
 
   <div class="row pb-2  text-center">
- <h2 class="pb-2 pt-5 text-center"><strong>Profile</strong></h2>
 
    <div class="col">
     <span class="badge h3" style="width:100%;font-size:18px;border-radius:10px; color:#3D8F67;background:#d1f4d0"><a href="/notes" style="text-decoration:none;color:#3D8F67;background:#d1f4d0">Notes</a></span>

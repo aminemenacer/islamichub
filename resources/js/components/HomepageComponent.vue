@@ -24,26 +24,26 @@
                                 </h5>
                             </div>
                             <!-- multiple input sections 
-              <label class="pt-2 pl-3 pr-2" style="display:flex">Surah:</label>
-              <form class="col-md-5">
-                <select class="form-control" v-model='surah' @change='getAyahs()'>
-                  <option value="0"><span>Select Surah</span></option>
-                  <option v-for='data in surahs' :key="data.id" :value='data.id'>{{ data.name_en }}, {{ data.name_ar }}</option>
-                </select>
-              </form>
-              <label class="pt-2 pl-3 pr-2">Ayah:</label>
+                                <label class="pt-2 pl-3 pr-2" style="display:flex">Surah:</label>
+                                <form class="col-md-5">
+                                    <select class="form-control" v-model='surah' @change='getAyahs()'>
+                                    <option value="0"><span>Select Surah</span></option>
+                                    <option v-for='data in surahs' :key="data.id" :value='data.id'>{{ data.name_en }}, {{ data.name_ar }}</option>
+                                    </select>
+                                </form>
+                                <label class="pt-2 pl-3 pr-2">Ayah:</label>
 
-              <form class="col-md-8 ">
-                <select class='form-control' v-model='ayah_id' @change='getTafseers(data.ayah_id)'>
-                  <option value="0">Select Ayah</option>
-                  <option v-for='data in ayahs' :key="data.id" :value='data.id'>{{ data.ayah_id }}, {{ data.ayah_text }}</option>
-                </select>
-              </form>
+                                <form class="col-md-8 ">
+                                    <select class='form-control' v-model='ayah_id' @change='getTafseers(data.ayah_id)'>
+                                    <option value="0">Select Ayah</option>
+                                    <option v-for='data in ayahs' :key="data.id" :value='data.id'>{{ data.ayah_id }}, {{ data.ayah_text }}</option>
+                                    </select>
+                                </form>
 
-              <form class="ml-3 col-md-4 ">
-                <input class="form-control input is-primary" type="text" placeholder="Search keyword" />
-              </form>
-            -->
+                                <form class="ml-3 col-md-4 ">
+                                    <input class="form-control input is-primary" type="text" placeholder="Search keyword" />
+                                </form>
+                            -->
                         </div>
                         <div class="col-md-2"></div>
                     </div>

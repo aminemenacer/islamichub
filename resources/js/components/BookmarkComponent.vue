@@ -2,17 +2,20 @@
 <div>
  <h2 class="pt-4 pb-2 text-center"><strong>Bookmarks</strong></h2>
 
- <div class="text-center">
-  <div class="row">
+ <div class="container text-center">
+
+  <div class="row pb-2  text-center">
+
    <div class="col">
-    <span class="badge h3" style="width:100%;font-size:18px;border-radius:10px; color:#B70D52;background:#ead1dc"><a href="/notes" style="text-decoration:none;color:#B70D52;background:#ead1dc">Notes</a></span>
+    <span class="badge h3" style="width:100%;font-size:18px;border-radius:10px; color:#3D8F67;background:#d1f4d0"><a href="/notes" style="text-decoration:none;color:#3D8F67;background:#d1f4d0">Notes</a></span>
    </div>
    <div class="col">
-    <span class="badge h3" style="width:100%;font-size:18px;border-radius:10px; color:#3D8F67;background:#d1f4d0"><a href="/profile" style="text-decoration:none;color:#3D8F67;background:#d1f4d0">Profile</a></span>
+    <span class="badge h3" style="width:100%;font-size:18px;border-radius:10px; color:#B70D52;background:#ead1dc"><a href="/bookmarks" style="text-decoration:none;color:#B70D52;background:#ead1dc">Bookmarks</a></span>
    </div>
    <div class="col">
     <span class="badge h3" style="width:100%;font-size:18px;border-radius:10px; color:#0263FF;background:#c2d8fb"><a href="/home" style="text-decoration:none;color:#0263FF;background:#c2d8fb">Home</a></span>
    </div>
+
   </div>
  </div>
 
@@ -113,41 +116,9 @@ export default {
  },
  data() {
   return {
-   filters: {
-    global: {
-     value: null,
-     matchMode: FilterMatchMode.CONTAINS,
-    },
-   },
+   
    bookmarks: [],
-   columns: [{
-     field: "id",
-     header: "ID",
-     sortable: true,
-    },
-    {
-     field: "surah_name",
-     header: "Surah name",
-     sortable: true,
-    },
-    // {
-    //   field: "ayah_num",
-    //   header: "Ayah number",
-    //   sortable: true,
-    // },
-    {
-     field: "ayah_verse_ar",
-     header: "Arabic verse",
-     sortable: true,
-    },
-    {
-     field: "ayah_verse_en",
-     header: "English Info",
-     sortable: true,
-    },
-
-   ],
-   sortDesc: false,
+   
    form: new Form({
     id: "",
     ayah_num: "",
@@ -173,20 +144,22 @@ export default {
  },
  methods: {
   async fetchBookmarks(userId) {
-    try {
-      const response = await fetch(`/api/fetch-bookmarks/${userId}`);
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      this.bookmarks = await response.json();
-    } catch (error) {
-      console.error('There was a problem with the fetch operation:', error);
+   try {
+    const response = await fetch(`/api/fetch-bookmarks/${userId}`);
+    if (!response.ok) {
+     throw new Error('Network response was not ok');
     }
+    this.bookmarks = await response.json();
+   } catch (error) {
+    console.error('There was a problem with the fetch operation:', error);
+   }
   },
   viewModal(bookmark) {
-    this.form1 = { ...bookmark };  // Make sure form1 is populated
-    const viewBookmarksModal = new bootstrap.Modal(document.getElementById('viewBookmarks'));
-    viewBookmarksModal.show();
+   this.form1 = {
+    ...bookmark
+   }; // Make sure form1 is populated
+   const viewBookmarksModal = new bootstrap.Modal(document.getElementById('viewBookmarks'));
+   viewBookmarksModal.show();
   },
   loadBookmark() {
    axios.get("api/fetch-bookmarks").then((data) => {
@@ -212,7 +185,7 @@ export default {
       showConfirmButton: false,
       timer: 1500,
      });
-      this.fetchBookmarks(this.userId);
+     this.fetchBookmarks(this.userId);
      self.close();
     }
    });

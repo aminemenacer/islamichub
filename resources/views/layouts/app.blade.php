@@ -61,32 +61,32 @@
                     <ul class="navbar-nav justify-content-end  pr-4 flex-grow-1">
                         <!-- Your existing navigation items -->
                         <li class="nav-item mt-3">
-                            <h5><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/quran">Home</a></h5>
+                            <h6><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/quran">Home</a></h6>
                         </li>
                         <li class="nav-item mt-3">
-                            <h5><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/contact">Contact</a></h5>
+                            <h6><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/contact">Contact</a></h6>
                         </li>
                         <li class="nav-item mt-3">
-                            <h5><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/about">About Us</a></h5>
+                            <h6><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/about">About Us</a></h6>
                         </li>
                         <li class="nav-item mt-3">
-                            <h5><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/updates">Updates</a></h5>
+                            <h6><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/updates">Updates</a></h6>
                         </li>
                         <li class="nav-item mt-3">
-                            <h5><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3 pr-5" href="/join_us">Mailing List</a></h5>
+                            <h6><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3 pr-5" href="/join_us">Mailing List</a></h6>
                         </li>
                     </ul>
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav mt-3 ml-auto">
+                    <ul class="navbar-nav" style="align-items: center">
                         @guest
                         @if (Route::has('login'))
                         <li class="nav-item">
-                            <h5><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></h5>
+                            <h6><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></h6>
                         </li>
                         @endif
                         @if (Route::has('register'))
                         <li class="nav-item">
-                            <h5><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></h5>
+                            <h6><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></h6>
                         </li>
                         @endif
                         @else
@@ -110,7 +110,7 @@
                             </div>
                         </li>
                         @endguest
-                        <li class="nav-item mb-1 pl-4">
+                        <li class="nav-item mt-2 pl-4">
                             <button class="button-33">Support Us</button>
                         </li>
                     </ul>
@@ -122,7 +122,10 @@
         </main>
     </div>
 
-    
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+
 </body>
 
 </html>

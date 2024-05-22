@@ -61,14 +61,14 @@
 
   <div class="col-md-4  container">
 
-   <form class="d-flex pb-1" style="color:rgba(0, 191, 166)" @submit.prevent="search" >
+   <form class="d-flex pb-1" style="color:rgba(0, 191, 166)" @submit.prevent="search">
     <input style="box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px; border-radius:10px" class="form-control me-2" type="search" id="search" name="search" v-model="searchTerm" placeholder="Search for Surah name" autocomplete="off" @keyup="search">
     <button v-if="showClearButton" class="btn btn-outline-secondary text-center width:100%" @click="clearResults">Clear</button>
    </form>
 
    <!-- Surah list -->
-   <ul class="col-md-12 mt-1 scrollable-list " style="list-style-type: none; overflow-y: auto; max-height: 400px;">
-    <li v-for="item in filteredSurah" :key="item.id" @click="selectSurah(item.id)" style="cursor: pointer; padding:5px;" class="highlight-on-hover">
+   <ul class="col-md-12 mt-1 scrollable-list " style="list-style-type: none; overflow-y: auto; max-height: 400px; box-shadow: box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
+    <li v-for="item in filteredSurah" :key="item.id" @click="selectSurah(item.id)" style="cursor: pointer; padding:5px;box-shadow: box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px; " class="highlight-on-hover">
      <div style="display: flex; align-items: center;">
       <img src="/images/art.png" style="width: 23px" class="mb-1 mr-2" />
       <p style="font-size: 18px;" class="mt-2">{{ item.name_en }} - {{ item.name_ar }}</p>
@@ -91,11 +91,14 @@
           </div>
         </div>
       -->
-
-      <form class="d-flex text-left width:50%"  @submit.prevent="scrollToAyah">
-       <input class="form-control pb-2" type="number" placeholder="Enter Ayah Number" aria-label="Search" v-model="verseNumber" style="box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px; border-radius:10px" required>
-       <button class="btn btn-success mb-2 ml-2" type="submit">Search</button>
-      </form>
+      <div class="row">
+       <div class="col-md-8">
+        <form class="d-flex text-left " @submit.prevent="scrollToAyah">
+         <input class="form-control pb-2 width:100%" type="number" placeholder="Enter Number" aria-label="Search" v-model="verseNumber" style="box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px; border-radius:10px" required>
+         <button class="btn btn-success mb-2 ml-2" type="submit">Search</button>
+        </form>
+       </div>
+      </div>
 
       <div class="custom-scrollbar" style="overflow-y: auto; max-height: 650px; background: white;">
        <ul class="col-md-4 list-group container-fluid root" id="toggle" ref="ayahList" style="list-style-type: none; padding: 10px">
@@ -104,6 +107,8 @@
          <h5>{{ ayah.ayah_text }}</h5>
         </li>
        </ul>
+       <hr>
+
       </div>
 
      </div>
@@ -264,9 +269,7 @@
           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-whatsapp text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp" @click="shareTextViaWhatsApp3()"></i>
           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-twitter-x text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X" @click="shareHeadingOnTwitter3()"></i>
           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bookmark text-right h4" aria-expanded="false" data-bs-placement="top" title="Save bookmark" @click="submitForm"></i>
-
           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-clipboard-check-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText"></i>
-
           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-camera-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot3"></i>
           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bug-fill text-right h4" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
          </div>
@@ -648,26 +651,26 @@ export default {
 
    axios.post('/bookmarks', formData)
     .then(response => {
-      console.log(response.data.message);
-      // Set the submitted status for the selected bookmark
-      localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
-      // Log the updated bookmarkSubmitted object
-      console.log(this.bookmarkSubmitted);
-      this.showAlert = true; // Show success alert
-      this.showErrorAlert = false; // Hide error alert
-      this.hideAlertAfterDelay(); // Start timer to hide alert
+     console.log(response.data.message);
+     // Set the submitted status for the selected bookmark
+     localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
+     // Log the updated bookmarkSubmitted object
+     console.log(this.bookmarkSubmitted);
+     this.showAlert = true; // Show success alert
+     this.showErrorAlert = false; // Hide error alert
+     this.hideAlertAfterDelay(); // Start timer to hide alert
     })
     .catch(error => {
-      console.error(error);
-      this.showAlert = false; // Hide success alert
-      this.showErrorAlert = true; // Show error alert
-      Swal.fire({
-        title: "Error!",
-        text: "You need to be logged in to create a bookmark.",
-        icon: "error",
-        confirmButtonText: "OK"
-      });
-      this.hideAlertAfterDelay(); // Start timer to hide alert
+     console.error(error);
+     this.showAlert = false; // Hide success alert
+     this.showErrorAlert = true; // Show error alert
+     Swal.fire({
+      title: "Error!",
+      text: "You need to be logged in to create a bookmark.",
+      icon: "error",
+      confirmButtonText: "OK"
+     });
+     this.hideAlertAfterDelay(); // Start timer to hide alert
     });
   },
   submitForm1() {
@@ -680,26 +683,26 @@ export default {
 
    axios.post('/bookmarks', formData)
     .then(response => {
-      console.log(response.data.message);
-      // Set the submitted status for the selected bookmark
-      localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
-      // Log the updated bookmarkSubmitted object
-      console.log(this.bookmarkSubmitted);
-      this.showAlert = true; // Show success alert
-      this.showErrorAlert = false; // Hide error alert
-      this.hideAlertAfterDelay(); // Start timer to hide alert
+     console.log(response.data.message);
+     // Set the submitted status for the selected bookmark
+     localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
+     // Log the updated bookmarkSubmitted object
+     console.log(this.bookmarkSubmitted);
+     this.showAlert = true; // Show success alert
+     this.showErrorAlert = false; // Hide error alert
+     this.hideAlertAfterDelay(); // Start timer to hide alert
     })
     .catch(error => {
-      console.error(error);
-      this.showAlert = false; // Hide success alert
-      this.showErrorAlert = true; // Show error alert
-      Swal.fire({
-        title: "Error!",
-        text: "You need to be logged in to create a bookmark.",
-        icon: "error",
-        confirmButtonText: "OK"
-      });
-      this.hideAlertAfterDelay(); // Start timer to hide alert
+     console.error(error);
+     this.showAlert = false; // Hide success alert
+     this.showErrorAlert = true; // Show error alert
+     Swal.fire({
+      title: "Error!",
+      text: "You need to be logged in to create a bookmark.",
+      icon: "error",
+      confirmButtonText: "OK"
+     });
+     this.hideAlertAfterDelay(); // Start timer to hide alert
     });
   },
   submitForm2() {
@@ -712,26 +715,26 @@ export default {
 
    axios.post('/bookmarks', formData)
     .then(response => {
-      console.log(response.data.message);
-      // Set the submitted status for the selected bookmark
-      localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
-      // Log the updated bookmarkSubmitted object
-      console.log(this.bookmarkSubmitted);
-      this.showAlert = true; // Show success alert
-      this.showErrorAlert = false; // Hide error alert
-      this.hideAlertAfterDelay(); // Start timer to hide alert
+     console.log(response.data.message);
+     // Set the submitted status for the selected bookmark
+     localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
+     // Log the updated bookmarkSubmitted object
+     console.log(this.bookmarkSubmitted);
+     this.showAlert = true; // Show success alert
+     this.showErrorAlert = false; // Hide error alert
+     this.hideAlertAfterDelay(); // Start timer to hide alert
     })
     .catch(error => {
-      console.error(error);
-      this.showAlert = false; // Hide success alert
-      this.showErrorAlert = true; // Show error alert
-      Swal.fire({
-        title: "Error!",
-        text: "You need to be logged in to create a bookmark.",
-        icon: "error",
-        confirmButtonText: "OK"
-      });
-      this.hideAlertAfterDelay(); // Start timer to hide alert
+     console.error(error);
+     this.showAlert = false; // Hide success alert
+     this.showErrorAlert = true; // Show error alert
+     Swal.fire({
+      title: "Error!",
+      text: "You need to be logged in to create a bookmark.",
+      icon: "error",
+      confirmButtonText: "OK"
+     });
+     this.hideAlertAfterDelay(); // Start timer to hide alert
     });
   },
   hideAlertAfterDelay() {
@@ -1040,85 +1043,108 @@ export default {
          "Unable to create correction.",
          "error"
         );
+        // Ensure any modal overlay is removed
+        document.body.classList.remove('modal-open');
+        const modals = document.querySelectorAll('.modal-backdrop');
+        modals.forEach(modal => modal.remove());
        }
        this.resetForm();
-        $('#exampleModal').modal('hide');
+       $('#exampleModal').modal('hide');
+       // Ensure any modal overlay is removed
+       document.body.classList.remove('modal-open');
+       const modals = document.querySelectorAll('.modal-backdrop');
+       modals.forEach(modal => modal.remove());
       })
-      this.resetForm();
-      $('#exampleModal').modal('hide');
+     this.resetForm();
+     $('#exampleModal').modal('hide');
+
     }
    });
   },
 
   createNote() {
-    const formData = {
-      surah_name: this.information.ayah.surah.name_en,    
-      ayah_num: this.information.ayah_id,
-      ayah_verse_ar: this.information.ayah.ayah_text,
-      ayah_verse_en: this.information.translation,
-      ayah_notes: this.form1.ayah_notes // Add ayah_notes to formData
-    };
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You want to submit note!",
-      showCancelButton: true,
-      confirmButtonColor: "green",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Submit!"
-    }).then((result) => {
-      if (result.isConfirmed) {
-        axios
-          .post("/api/submit-note", formData)
-          .then((res) => {
-            if (res.data.success) {
-              // Show success message or perform any other action on successful submission
-              Swal.fire("Success!", "Your note has been submitted.", "success");
-              // Reset the form inputs
-              this.form1.surah_name = "";
-              this.form1.ayah_num = "";
-              this.form1.ayah_text = "";
-              
-              this.form1.ayah_notes = "";
-              // Close the Sweet Alert dialog
-              setTimeout(() => {
-                Swal.close();
-              }, 2000);
-            } else {
-              Swal.fire("Success!", "Your note has been submitted.", "success");
-              this.form1.surah_name = "";
-              this.form1.ayah_num = "";
-              this.form1.ayah_text = "";
-              
-              this.form1.ayah_notes = "";
-              setTimeout(() => {
-                Swal.close();
-              }, 2000);
-            }
-          })
-          .catch(function (err) {
-            console.error(err);
-            // Show generic error message
-            Swal.fire("Error!", "Failed to submit note. Login or create an account to be able to write a note", "error");
-          });
-      }
-    });
-  },
+   const formData = {
+    surah_name: this.information.ayah.surah.name_en,
+    ayah_num: this.information.ayah_id,
+    ayah_verse_ar: this.information.ayah.ayah_text,
+    ayah_verse_en: this.information.translation,
+    ayah_notes: this.form1.ayah_notes // Add ayah_notes to formData
+   };
 
-
-
-  closeModal(modalId) {
-    const modalElement = document.getElementById(modalId);
-    const modalInstance = bootstrap.Modal.getInstance(modalElement);
-
-    if (modalInstance) {
-      modalInstance.hide();
-    } else {
-      $(modalElement).modal('hide');
+   Swal.fire({
+    title: "Are you sure?",
+    text: "You want to submit note!",
+    showCancelButton: true,
+    confirmButtonColor: "green",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Submit!"
+   }).then((result) => {
+    if (result.isConfirmed) {
+     axios
+      .post("/api/submit-note", formData)
+      .then((res) => {
+       if (res.data.success) {
+        Swal.fire({
+         icon: "success",
+         title: "Success!",
+         text: "Your note has been submitted.",
+         timer: 1500,
+         showConfirmButton: false
+        }).then(() => {
+         // Close the modal
+         $('#exampleModal1').modal('hide');
+         // Reset the form inputs
+         this.form1.surah_name = "";
+         this.form1.ayah_num = "";
+         this.form1.ayah_text = "";
+         this.form1.ayah_notes = "";
+         // Ensure any modal overlay is removed
+         document.body.classList.remove('modal-open');
+         const modals = document.querySelectorAll('.modal-backdrop');
+         modals.forEach(modal => modal.remove());
+        });
+       } else {
+        Swal.fire({
+         icon: "success",
+         title: "Success!",
+         text: "Your note has been submitted.",
+         timer: 1500,
+         showConfirmButton: false
+        }).then(() => {
+         // Close the modal
+         $('#exampleModal1').modal('hide');
+         // Reset the form inputs
+         this.form1.surah_name = "";
+         this.form1.ayah_num = "";
+         this.form1.ayah_text = "";
+         this.form1.ayah_notes = "";
+         // Ensure any modal overlay is removed
+         document.body.classList.remove('modal-open');
+         const modals = document.querySelectorAll('.modal-backdrop');
+         modals.forEach(modal => modal.remove());
+        });
+       }
+      })
+      .catch((err) => {
+       console.error(err);
+       Swal.fire("Error!", "Failed to submit note. Login or create an account to be able to write a note", "error");
+      });
     }
+   });
+  },
+  closeModal(modalId) {
+   const modalElement = document.getElementById(modalId);
+   const modalInstance = bootstrap.Modal.getInstance(modalElement);
 
-    document.body.classList.remove('modal-open');
-    const modals = document.querySelectorAll('.modal-backdrop');
-    modals.forEach(modal => modal.remove());
+   if (modalInstance) {
+    modalInstance.hide();
+   } else {
+    $(modalElement).modal('hide');
+   }
+
+   document.body.classList.remove('modal-open');
+   const modals = document.querySelectorAll('.modal-backdrop');
+   modals.forEach(modal => modal.remove());
   },
   resetForm() {
    this.form.reset();

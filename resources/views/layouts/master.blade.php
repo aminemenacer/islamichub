@@ -20,31 +20,31 @@
           <!-- Left Side Of Navbar -->
           <ul class="navbar-nav justify-content-end pr-4 flex-grow-1">
             <li class="nav-item">
-              <h5><a style="font-family:inter; color: black;" class="nav-link mt-3 ml-4 pl-3" href="/quran">Home</a></h5>
+              <h6><a style="font-family:inter; color: black;" class="nav-link mt-3 ml-4 pl-3" href="/quran">Home</a></h6>
             </li>
             <li class="nav-item">
-              <h5><a style="font-family:inter; color: black;" class="nav-link mt-3 ml-4 pl-3" href="/contact">Contact</a></h5>
+              <h6><a style="font-family:inter; color: black;" class="nav-link mt-3 ml-4 pl-3" href="/contact">Contact</a></h6>
             </li>
             <li class="nav-item">
-              <h5><a style="font-family:inter; color: black;" class="nav-link mt-3 ml-4 pl-3" href="/about">About Us</a></h5>
+              <h6><a style="font-family:inter; color: black;" class="nav-link mt-3 ml-4 pl-3" href="/about">About Us</a></h6>
             </li>
             <li class="nav-item">
-              <h5><a style="font-family:inter; color: black;" class="nav-link mt-3 ml-4 pl-3" href="/updates">Updates</a></h5>
+              <h6><a style="font-family:inter; color: black;" class="nav-link mt-3 ml-4 pl-3" href="/updates">Updates</a></h6>
             </li>
             <li class="nav-item">
-              <h5><a style="font-family:inter; color: black;" class="nav-link mt-3 ml-4 pl-3 pr-5" href="/join_us">Mailing List</a></h5>
+              <h6><a style="font-family:inter; color: black;" class="nav-link mt-3 ml-4 pl-3 pr-5" href="/join_us">Mailing List</a></h6>
             </li>
 
             
             @guest
               @if (Route::has('login'))
               <li class="nav-item mt-1">
-                <h5><a style="font-family:inter;" class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></h5>
+                <h6><a style="font-family:inter;" class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></h6>
               </li>
               @endif
               @if (Route::has('register'))
               <li class="nav-item mt-1">
-                <h5><a style="font-family:inter;" class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></h5>
+                <h6><a style="font-family:inter;" class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></h6>
               </li>
               @endif
             @else
