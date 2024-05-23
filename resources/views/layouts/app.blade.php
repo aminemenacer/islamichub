@@ -8,6 +8,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
     <!-- Fonts -->
+    <link rel="icon" href="/public/images/favicon.ico" type="image/x-icon">
+
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <!-- Admin LTE CSS -->
@@ -111,7 +113,7 @@
                         </li>
                         @endguest
                         <li class="nav-item mt-2 pl-4">
-                            <button class="button-33">Support Us</button>
+                            <button class="button-33"><a style="text-decoration: none;color:white" href="/https://www.gofundme.com/f/empowerment-through-quran-support-islamic-connects-mission">Support Us</a></button>
                         </li>
                     </ul>
                 </div>
