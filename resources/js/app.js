@@ -1,8 +1,7 @@
 // Vue libraries
 require("./bootstrap");
-import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css'; // Optional: If you want to include Bootstrap's CSS
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-
 
 import { createApp } from "vue";
 import { Form } from "vform";
@@ -49,19 +48,11 @@ import UpdatesComponent from "./components/UpdatesComponent.vue";
 import JoinUsComponent from "./components/JoinUsComponent.vue";
 import NotesComponent from "./components/NotesComponent.vue";
 
-
-
-window.Vue = require("vue");
-
 const app = createApp({});
-
 
 window.Form = Form;
 window.Swal = swal;
-
-require("./bootstrap");
 window.$ = window.jQuery = $;
-window.Vue = require("vue");
 
 app.use(PrimeVue);
 
@@ -100,5 +91,13 @@ app.component("bookmark-component", BookmarkComponent);
 app.component("updates-component", UpdatesComponent);
 app.component("join_us-component", JoinUsComponent);
 app.component("notes-component", NotesComponent);
+
+// Ensure Bootstrap dropdowns are initialized correctly
+document.addEventListener('DOMContentLoaded', function () {
+    var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'));
+    var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
+        return new bootstrap.Dropdown(dropdownToggleEl);
+    });
+});
 
 app.mount("#app");

@@ -10,43 +10,43 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <!-- Admin LTE CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
+    <!-- FontAwesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="/css/stylesheet.css?v=1" />
-    <!-- Bootstrap JavaScript -->
-
     <link rel="stylesheet" href="/css/app.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-
+    <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Google tag (gtag.js) -->
+    <!-- Bootstrap JavaScript Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-QWLL07EBX9"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-  
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+        function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', 'G-QWLL07EBX9');
     </script>
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <!-- Tooltip Initialization -->
     <script>
-        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-          return new bootstrap.Tooltip(tooltipTriggerEl)
+        document.addEventListener('DOMContentLoaded', function () {
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
+            });
         });
     </script>
-
 </head>
 
 <body>
-    <div>
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm ">
+    <div id="app">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="/images/logo_main.png" width="275" height="54" class="d-inline-block align-top" alt="">
@@ -58,7 +58,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav justify-content-end  pr-4 flex-grow-1">
+                    <ul class="navbar-nav justify-content-end pr-4 flex-grow-1">
                         <!-- Your existing navigation items -->
                         <li class="nav-item mt-3">
                             <h6><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/quran">Home</a></h6>
@@ -77,15 +77,15 @@
                         </li>
                     </ul>
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav" style="align-items: center">
+                    <ul class="navbar-nav mt-1" style="align-items: center">
                         @guest
                         @if (Route::has('login'))
-                        <li class="nav-item">
+                        <li class="nav-item ">
                             <h6><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></h6>
                         </li>
                         @endif
                         @if (Route::has('register'))
-                        <li class="nav-item">
+                        <li class="nav-item ">
                             <h6><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></h6>
                         </li>
                         @endif
@@ -117,15 +117,14 @@
                 </div>
             </div>
         </nav>
+
+        
         <main class="py-4">
             @yield('content')
         </main>
     </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
-
+    {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
 </body>
 
 </html>

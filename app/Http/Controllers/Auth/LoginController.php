@@ -37,24 +37,32 @@ class LoginController extends Controller
      */
     public function loginWithFacebook()
     {
-        $facebook_user = Socialite::driver('facebook')->user();
-        
-        $user = User::where('fb_id', $facebook_user->getId())->first();
-    
-        if (!$user) {
-            $new_user = User::create([
-                'name' => $facebook_user->name,
-                'email' => $facebook_user->email,
-                'fb_id' => $facebook_user->getId(),
-            ]);
+        try {
+            $facebook_user = Socialite::driver('facebook')->user();
+            $user = User::where('facebook_id', $facebook_user->getId())->orWhere('email', $facebook_user->getEmail())->first();
 
-            Auth::login($new_user);
-            return redirect('/');
-        } else {
-            Auth::login($user);
-            return redirect('/');
+            if ($user) {
+                // Update Facebook ID if the user exists but does not have a Facebook ID
+                if (!$user->facebook_id) {
+                    $user->facebook_id = $facebook_user->getId();
+                    $user->save();
+                }
+            } else {
+                $user = User::create([
+                    'name' => $facebook_user->getName(),
+                    'email' => $facebook_user->getEmail(),
+                    'facebook_id' => $facebook_user->getId(),
+                    // You may want to handle other fields as well
+                ]);
+            }
+
+            Auth::login($user, true);
+            return redirect($this->redirectTo);
+        } catch (\Exception $e) {
+            return redirect('/login')->withErrors(['error' => 'Unable to login using Facebook. Please try again.']);
         }
     }
+
     
     /**
      * Redirect the user to the Google authentication page.
@@ -73,24 +81,38 @@ class LoginController extends Controller
      */
     public function handleGoogleCallback()
     {
-        $google_user = Socialite::driver('google')->user();
+        try {
+            $googleUser = Socialite::driver('google')->user();
 
-        $user = User::where('google_id', $google_user->getId())->first();
+            // Log the user details for debugging
+            \Log::info('Google User: ', (array) $googleUser);
 
-        if (!$user) {
-            $new_user = User::create([
-                'name' => $google_user->getName(),
-                'email' => $google_user->getEmail(),
-                'google_id' => $google_user->getId(),
-            ]);
+            // Check if the user already exists
+            $user = User::where('email', $googleUser->getEmail())->first();
 
-            Auth::login($new_user);
-            return redirect('/');
-        } else {
-            Auth::login($user);
-            return redirect('/');
+            if ($user) {
+                // If user already exists, log them in
+                Auth::login($user);
+            } else {
+                // If user does not exist, create a new user
+                $user = User::create([
+                    'name' => $googleUser->getName(),
+                    'email' => $googleUser->getEmail(),
+                    'google_id' => $googleUser->getId(),
+                    // Assuming 'user_id' is nullable and not needed here
+                ]);
+
+                Auth::login($user);
+            }
+
+            return redirect()->route('home');
+        } catch (\Exception $e) {
+            // Handle exceptions (e.g., logging in case of an error)
+            \Log::error('Google callback error: ' . $e->getMessage());
+            return redirect()->route('login')->with('error', 'Unable to login using Google.');
         }
     }
+
     
     /**
      * Logout the user.

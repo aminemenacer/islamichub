@@ -10,7 +10,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id(); // Primary auto-increment key
-            $table->bigInteger('user_id')->unique(); // Unique user ID
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->string('name')->nullable();
             $table->string('lastname')->nullable();
             $table->string('phone')->nullable();
@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('subscribe')->nullable();
             $table->string('role')->default('user'); // Default role is 'user'
             $table->string('google_id')->nullable();
-            $table->string('fb_id')->nullable();
+            $table->string('facebook_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

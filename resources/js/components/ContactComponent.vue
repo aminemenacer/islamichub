@@ -9,7 +9,7 @@
     <img src="/images/message.png" style="width: 100%;" />
    </div>
    <div class="col-sm-6 mt-3">
-    <h6 style="font-family:inter; line-height:1.7em">"Connect with Us: Whether you have questions, suggestions, or simply want to say hello, we welcome your input. Please use the contact form below to reach out. Our team is ready to assist you and will respond promptly."</h6>
+    <p class="text-left text-secondary " style="line-height: 1.7em; font-family:inter">"Connect with Us: Whether you have questions, suggestions, or simply want to say hello, we welcome your input. Please use the contact form below to reach out. Our team is ready to assist you and will respond promptly."</p>
     <form @reset="reset" @submit.prevent="sendMessage()">
      <div class="row mt-3">
       <div class="col-md-10 mb-3">

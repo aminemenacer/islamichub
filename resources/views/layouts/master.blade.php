@@ -34,36 +34,6 @@
             <li class="nav-item">
               <h6><a style="font-family:inter; color: black;" class="nav-link mt-3 ml-4 pl-3 pr-5" href="/join_us">Mailing List</a></h6>
             </li>
-
-            
-            @guest
-              @if (Route::has('login'))
-              <li class="nav-item mt-1">
-                <h6><a style="font-family:inter;" class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></h6>
-              </li>
-              @endif
-              @if (Route::has('register'))
-              <li class="nav-item mt-1">
-                <h6><a style="font-family:inter;" class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></h6>
-              </li>
-              @endif
-            @else
-            <li class="nav-item dropdown mt-1 ml-5">
-              <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                <i class="bi bi-person-circle mr-2 mt-1" style="font-size: 1.8rem"></i>
-                {{ Auth::user()->name }}
-              </a>
-              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="/dashboard">Dashboard</a>
-                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                  {{ __('Logout') }}
-                </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                  @csrf
-                </form>
-              </div>
-            </li>
-            @endguest
           </ul>
           
 

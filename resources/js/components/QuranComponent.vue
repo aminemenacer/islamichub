@@ -94,7 +94,7 @@
       <div class="row">
        <div class="col-md-8">
         <form class="d-flex text-left " @submit.prevent="scrollToAyah">
-         <input class="form-control pb-2 width:100%" type="number" placeholder="Enter Number" aria-label="Search" v-model="verseNumber" style="box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px; border-radius:10px" required>
+         <input class="form-control pb-2 width:100%" type="number" placeholder="Enter Verse Number" aria-label="Search" v-model="verseNumber" style="box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px; border-radius:10px" required>
          <button class="btn btn-success mb-2 ml-2" type="submit">Search</button>
         </form>
        </div>

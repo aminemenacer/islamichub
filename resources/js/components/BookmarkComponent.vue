@@ -1,5 +1,5 @@
 <template>
-<div>
+<div id="app">
  <h2 class="pt-4 pb-2 text-center"><strong>Bookmarks</strong></h2>
 
  <div class="container text-center">
@@ -19,15 +19,17 @@
   </div>
  </div>
 
+
+<div class="container">
  <div class="row">
   <div class="col-md-4 mb-4" v-for="bookmark in bookmarks" :key="bookmark.id">
    <div class="card">
     <div class="card-body">
      <div>
-      <h5> <strong>Surah Name:</strong></h5> <b>{{ bookmark.surah_name }}</b>
+      <h5> <strong>Surah Name:</strong></h5> {{ bookmark.surah_name }}
      </div>
      <div class="mt-2">
-      <h5>Ayah Number:</h5> {{ bookmark.id }}
+      <h5><strong> Number:</strong></h5> {{ bookmark.id }}
      </div>
      <hr />
      <i class="bi bi-eye-fill h4 " style="color:rgb(0, 191, 166); cursor:pointer" data-bs-toggle="modal" data-bs-target="#viewBookmark" @click="viewModal(bookmark)">
@@ -82,6 +84,7 @@
    </div>
   </div>
  </div>
+</div>
 </div>
 </template>
 

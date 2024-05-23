@@ -10,15 +10,15 @@
     <img src="/images/about1.png" style="width: 100%;" />
    </div>
    <div class="col-md-6">
-    <h5 class="text-left mt-3" style="line-height: 1.7em; font-family:Inter;">
+    <p class="text-left text-secondary " style="line-height: 1.7em; font-family:inter">
      Welcome to Islamic Connect, where we aim to make accessing and understanding the Noble Quran a truly enriching experience for everyone.
-    </h5>
-    <h5 class="text-left mt-3" style="line-height: 1.7em; font-family:Inter;">
+    </p>
+    <p class="text-left text-secondary " style="line-height: 1.7em; font-family:inter">
      Islamic Connect is more than just a platform its a Sadaqah Jariyah, a continuous charity that benefits individuals and communities for years to come. Our vision is to provide effortless access to the timeless wisdom and guidance found within the Quran, fostering a deeper connection to faith and spirituality for people around the world.
-    </h5>
-    <h5 class="text-left mt-3" style="line-height: 1.7em; font-family:Inter;">
+    </p>
+    <p class="text-left text-secondary " style="line-height: 1.7em; font-family:inter">
      We recognize that navigating the Quran can be challenging, which is why we have curated a range of tools and resources to make the process easier and more fulfilling. From searchable translations and interpretations to audio recitations and educational articles, we offer everything you need to engage with the Quran on your own terms.
-    </h5>
+    </p>
    </div>
 
   </div>

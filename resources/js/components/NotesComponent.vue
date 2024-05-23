@@ -19,15 +19,15 @@
   </div>
  </div>
 
- <div class="row">
+ <div class="row container">
   <div class="col-md-4 mb-4" v-for="note in notes" :key="note.id">
    <div class="card">
     <div class="card-body">
      <div>
-      <h5><strong>Surah Name:</strong></h5> <b>{{ note.surah_name }}</b>
+      <h5><strong>Surah Name:</strong></h5> {{ note.surah_name }}
      </div>
      <div class="mt-2">
-      <h5>Note:</h5> {{ truncatedText(note.ayah_notes) }}
+      <h5><strong>Note:</strong></h5> {{ truncatedText(note.ayah_notes) }}
      </div>
      <hr />
      <i class="bi bi-eye-fill h4" style="color:rgb(0, 191, 166); cursor:pointer" @click="viewModal(note)"></i>
@@ -48,7 +48,6 @@
     </div>
     <div class="modal-body">
      <form @submit.prevent="updateNotes">
-      <h3 class="mt-2 mr-2 col-sm-3">Notes:</h3>
       <div class="form-group mr-2" style="display: flex">
        <textarea v-model="form1.ayah_notes" type="text" name="ayah_notes" placeholder="Enter notes" class="form-control" rows="5"></textarea>
       </div>

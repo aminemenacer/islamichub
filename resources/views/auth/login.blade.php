@@ -60,17 +60,18 @@
                 </div>
                 <hr>
 
-                <!-- Register buttons -->
-                <div class="text-center">
-                  <b>or login with:</b>
-                  <a href="{{ url('auth/facebook') }}" class="btn btn-link btn-floating" style="font-size: 22px; color:#00BFA6;">
-                    <i class="fab fa-facebook-f"></i>
-                  </a>
+              <!-- Register buttons -->
+              <div class="text-center">
+                <b>or login with:</b>
+                <a href="{{ url('auth/facebook') }}" class="btn btn-link btn-floating" style="font-size: 22px; color:#00BFA6;">
+                  <i class="fab fa-facebook-f"></i>
+                </a>
 
-                  <a href="{{ url('auth/google') }}" class="btn btn-link btn-floating" style="font-size: 22px; color:#00BFA6;">
-                    <i class="fab fa-google"></i>
-                  </a>
-                </div>
+                <a href="{{ url('auth/google') }}" class="btn btn-link btn-floating" style="font-size: 22px; color:#00BFA6;">
+                  <i class="fab fa-google"></i>
+                </a>
+              </div>
+
               </form>
             </div>
           </div>

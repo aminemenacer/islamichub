@@ -2,8 +2,7 @@
 @section('content')
 <div id="app">
     <join_us-component></join_us-component>
-    {{-- @include('layouts.footer') --}}
-
 <div>
+{{-- @include('layouts.footer') --}}
 @endsection
 
