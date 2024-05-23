@@ -117,7 +117,12 @@
             
             <!-- user dashboard -->
             @if(auth()->user()->role === 'user')
-            
+            <li class="nav-item">
+              <a href="/home" class="nav-link">
+                <i class="bi bi-house-fill mr-1"></i>
+                <p>Home</p>
+              </a>
+            </li>
             <li class="nav-item">
               <a href="/bookmarks" class="nav-link">
                 <i class="bi bi-bookmark-dash-fill mr-1"></i>

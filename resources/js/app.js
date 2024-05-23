@@ -92,12 +92,12 @@ app.component("updates-component", UpdatesComponent);
 app.component("join_us-component", JoinUsComponent);
 app.component("notes-component", NotesComponent);
 
-// Ensure Bootstrap dropdowns are initialized correctly
+app.mount("#app");
+
+// Dropdown initialization
 document.addEventListener('DOMContentLoaded', function () {
     var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'));
     var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
         return new bootstrap.Dropdown(dropdownToggleEl);
     });
 });
-
-app.mount("#app");

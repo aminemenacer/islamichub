@@ -61,9 +61,7 @@ Route::get('/ayahs', [QuranController::class, 'index']);
 //join us
 Route::get('/join_us', [JoinUsController::class, 'index']);
 
-// google sign-in
-Route::get('auth/google', [LoginController::class, 'redirectToGoogle'])->name('google-auth');
-Route::get('auth/google/callback', [LoginController::class, 'handleGoogleCallback']);
+
 
 // Example: Restrict access to a route to authenticated users
 Route::get('dashboard', [App\Http\Controllers\DashboardController::class, 'index'])
@@ -85,7 +83,9 @@ Route::get('/updates', [UpdatesController::class, 'index']);
 Route::get('/auth/facebook', [LoginController::class, 'redirectToFacebook'])->name('fb-auth');
 Route::get('/auth/facebook/callback', [LoginController::class, 'loginWithFacebook']);
 
-
+// google sign-in
+Route::get('auth/google', [LoginController::class, 'redirectToGoogle'])->name('google-auth');
+Route::get('auth/google/callback', [LoginController::class, 'handleGoogleCallback']);
 
 
 // stripe payment
