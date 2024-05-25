@@ -8,19 +8,17 @@
   <div class="px-4 py-5 px-md-5 text-center text-lg-start">
     <div class="container">
       <div class="row gx-lg-5 align-items-center">
-          
+        
         <div class="col-lg-6 mb-lg-0 hide-on-mobile">
-          <img src="images/mob-auth.png" width="90%">
+          <img src="{{ asset('images/mob-auth.png') }}" width="90%">
         </div>
 
-        <div class="col-lg-6 mb-5 mb-lg-0">
+        <div class="col-lg-6 mb-lg-0">
           <div class="card" style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; border-radius:10px">
-            <div class="card-body py-5 px-md-5">
+            <div class="card-body px-md-5">
               <form method="POST" action="{{ route('login') }}">
                 @csrf
-                <!-- 2 column grid layout with text inputs for the first and last names -->
-                <h2 class="fw-normal mt-3 pb-3" style="font-family:inter"><b>Login to your account</b></h2>
-
+                <h2 class="fw-normal mt-4 pb-3" style="font-family:inter"><b>Login to your account</b></h2>
                 <div class="row">
                   <div class="form-outline mb-4">
                     <label class="form-label" style="font-weight:bold">Email address</label>
@@ -64,11 +62,10 @@
               <div class="text-center">
                 <b>or login with:</b>
                 <a href="{{ url('auth/facebook') }}" class="btn btn-link btn-floating" style="font-size: 22px; color:#00BFA6;">
-                  <i class="fab fa-facebook-f"></i>
+                    <i class="fab fa-facebook-f"></i>
                 </a>
-
                 <a href="{{ url('auth/google') }}" class="btn btn-link btn-floating" style="font-size: 22px; color:#00BFA6;">
-                  <i class="fab fa-google"></i>
+                    <i class="fab fa-google"></i>
                 </a>
               </div>
 

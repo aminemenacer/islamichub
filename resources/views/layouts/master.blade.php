@@ -34,6 +34,7 @@
             <li class="nav-item">
               <h6><a style="font-family:inter; color: black;" class="nav-link mt-3 ml-4 pl-3 pr-5" href="/join_us">Mailing List</a></h6>
             </li>
+            
           </ul>
           
 

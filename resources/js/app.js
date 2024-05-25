@@ -52,7 +52,7 @@ const app = createApp({});
 
 window.Form = Form;
 window.Swal = swal;
-window.$ = window.jQuery = $;
+// window.$ = window.jQuery = $;
 
 app.use(PrimeVue);
 
@@ -93,11 +93,3 @@ app.component("join_us-component", JoinUsComponent);
 app.component("notes-component", NotesComponent);
 
 app.mount("#app");
-
-// Dropdown initialization
-document.addEventListener('DOMContentLoaded', function () {
-    var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'));
-    var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
-        return new bootstrap.Dropdown(dropdownToggleEl);
-    });
-});

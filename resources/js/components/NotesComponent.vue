@@ -2,8 +2,11 @@
   <div>
     <h2 class="pt-4 pb-3 text-center"><strong>Notes</strong></h2>
 
-    <span class="container text-center">"Welcome to the Notes page, your central hub for storing and organizing your favorite Notes. Access all your saved Notes effortlessly."</span>
-
+    <div class="container">
+      <div class="col-md-4"></div>
+        <span class="container text-center">"Welcome to the Notes page, your central hub for storing and organizing your favorite Notes. Access all your saved Notes effortlessly."</span>
+      <div class="col-md-4"></div>
+    </div>
 
     <!-- Container visible only on mobile screens -->
     <div class="container text-center mt-3 d-md-none">
@@ -64,8 +67,8 @@
                   <textarea v-model="form1.ayah_notes" type="text" name="ayah_notes" placeholder="Enter notes" class="form-control" rows="5"></textarea>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-primary">Update</button>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-success">Update</button>
                 </div>
               </form>
             </div>
@@ -103,7 +106,7 @@
                 <p class="mt-2 text-dark">{{ form1.ayah_notes }}</p>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
               </div>
             </div>
           </div>

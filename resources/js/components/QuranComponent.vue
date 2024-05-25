@@ -212,7 +212,7 @@
           </div>
           <br>
           <hr>
-          <span class="text-center mr-2 pb-2"><a href="/bookmarks" style=";color:black"><strong>View Bookmarks</strong></a></span>
+          <span class="text-center pr-2 pb-2"><a href="/bookmarks" style=";color:black"><strong>View Bookmarks</strong></a></span>
           <span class="text-center pb-2"><a href="/notes" style="none;color:black"><strong>View Notes</strong></a></span>
 
           <!-- Bootstrap alert component -->
@@ -234,7 +234,7 @@
 
          </div>
          <!-- features -->
-         <div class="text-right mt-2">
+         <div class="text-right pt-4">
 
           <!-- notes modal -->
           <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" ref="exampleModal1">
@@ -338,7 +338,7 @@
           </div>
           <!-- features -->
 
-          <div class="text-right mt-2 mr-3 container">
+          <div class="text-right pt-4 mr-3 container">
 
            <div>
             <!-- Your other components and code -->
@@ -426,8 +426,8 @@
           </div>
            <br>
           <hr>
-          <span class="text-center mr-2 mb-2"><a href="/bookmarks" style=";color:black"><strong>View Bookmarks</strong></a></span>
-          <span class="text-center mb-2"><a href="/notes" style="none;color:black"><strong>View Notes</strong></a></span>
+          <span class="text-center mr-2 pb-4"><a href="/bookmarks" style=";color:black"><strong>View Bookmarks</strong></a></span>
+          <span class="text-center pb-4 "><a href="/notes" style="none;color:black"><strong>View Notes</strong></a></span>
 
 
           <!-- Bootstrap alert component -->
@@ -444,7 +444,7 @@
           </div>
 
           <!-- features -->
-          <div class="text-right mt-2">
+          <div class="text-right pt-4">
            <!-- notes modal -->
            <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" ref="exampleModal3">
             <div class="modal-dialog modal-lg">

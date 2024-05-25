@@ -6,52 +6,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- Title -->
     <title>{{ config('app.name', 'Laravel') }}</title>
-    <!-- Fonts -->
-    <link rel="icon" href="/public/images/favicon.ico" type="image/x-icon">
-
-    <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-    <!-- Admin LTE CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
-    <!-- FontAwesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
+    <!-- Styling -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="/css/stylesheet.css?v=1" />
-    <link rel="stylesheet" href="/css/app.css">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
-    <!-- JQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- Bootstrap JavaScript Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QWLL07EBX9"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-QWLL07EBX9');
-    </script>
-    <!-- Tooltip Initialization -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-                return new bootstrap.Tooltip(tooltipTriggerEl);
-            });
-        });
-    </script>
-</head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
 
+    <!-- resources/views/layouts/app.blade.php -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="icon" href="{{ asset('images/favicon.ico') }}">
+
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-QWLL07EBX9');
+    </script>
+    <!-- Tooltip and Dropdown Initialization -->
+    
+</head>
 <body>
     <div id="app">
+        
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="/images/logo_main.png" width="275" height="54" class="d-inline-block align-top" alt="">
+                    <img src="/images/logo_main.png" width="275" height="54" class="d-inline-block align-top"
+                        alt="">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -63,19 +47,24 @@
                     <ul class="navbar-nav justify-content-end pr-4 flex-grow-1">
                         <!-- Your existing navigation items -->
                         <li class="nav-item mt-3">
-                            <h6><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/quran">Home</a></h6>
+                            <h6><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3"
+                                    href="/quran">Home</a></h6>
                         </li>
                         <li class="nav-item mt-3">
-                            <h6><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/contact">Contact</a></h6>
+                            <h6><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3"
+                                    href="/contact">Contact</a></h6>
                         </li>
                         <li class="nav-item mt-3">
-                            <h6><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/about">About Us</a></h6>
+                            <h6><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3"
+                                    href="/about">About Us</a></h6>
                         </li>
                         <li class="nav-item mt-3">
-                            <h6><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/updates">Updates</a></h6>
+                            <h6><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3"
+                                    href="/updates">Updates</a></h6>
                         </li>
                         <li class="nav-item mt-3">
-                            <h6><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3 pr-5" href="/join_us">Mailing List</a></h6>
+                            <h6><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3 pr-5"
+                                    href="/join_us">Mailing List</a></h6>
                         </li>
                     </ul>
                     <!-- Right Side Of Navbar -->
@@ -83,12 +72,14 @@
                         @guest
                         @if (Route::has('login'))
                         <li class="nav-item ">
-                            <h6><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></h6>
+                            <h6><a class="nav-link"
+                                    href="{{ route('login') }}">{{ __('Login') }}</a></h6>
                         </li>
                         @endif
                         @if (Route::has('register'))
                         <li class="nav-item ">
-                            <h6><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></h6>
+                            <h6><a class="nav-link"
+                                    href="{{ route('register') }}">{{ __('Register') }}</a></h6>
                         </li>
                         @endif
                         @else
@@ -106,27 +97,45 @@
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                    class="d-none">
                                     @csrf
                                 </form>
                             </div>
                         </li>
                         @endguest
                         <li class="nav-item mt-2 pl-4">
-                            <button class="button-33"><a style="text-decoration: none;color:white" href="/https://www.gofundme.com/f/empowerment-through-quran-support-islamic-connects-mission">Support Us</a></button>
+                            <button class="button-33"><a style="text-decoration: none;color:white"
+                                    href="https://www.gofundme.com/f/empowerment-through-quran-support-islamic-connects-mission">Support
+                                    Us</a></button>
                         </li>
                     </ul>
+                    
                 </div>
             </div>
         </nav>
 
-        
         <main class="py-4">
             @yield('content')
-
         </main>
     </div>
-    <script src="{{ asset('js/app.js') }}"></script>
+    <!-- Custom JS -->
+    {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
+
+    <!-- Tooltip and Dropdown Initialization -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+
+            var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'));
+            var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
+                return new bootstrap.Dropdown(dropdownToggleEl);
+            });
+        });
+    </script>
 </body>
 
 </html>
@@ -148,5 +157,9 @@
         user-select: none;
         -webkit-user-select: none;
         touch-action: manipulation;
+    }
+
+    .button-33:hover {
+        background-color: #00a58a;
     }
 </style>
