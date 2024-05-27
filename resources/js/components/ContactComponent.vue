@@ -1,17 +1,18 @@
 <template>
 <div class="newsletter-subscribe container">
- <div class="container">
+ <div class="container ">
   <div class="intro">
    <h1 class="text-center newsletter-title ">Get In Touch</h1>
   </div>
 
-  <div class="row mt-3"><div class="col-md-6 mt-3">
+  <div class="row mt-5">
+  <div class="col-md-6">
     <img src="/images/message.png" style="width: 100%;" />
    </div>
-   <div class="col-sm-6 mt-3">
+   <div class="col-sm-6 ">
     <p class="text-left text-secondary " style="line-height: 1.7em; font-family:inter">"Connect with Us: Whether you have questions, suggestions, or simply want to say hello, we welcome your input. Please use the contact form below to reach out. Our team is ready to assist you and will respond promptly."</p>
     <form @reset="reset" @submit.prevent="sendMessage()">
-     <div class="row mt-3">
+     <div class="row ">
       <div class="col-md-10 mb-3">
        <input type="text" class="form-control " v-model="form.firstname" name="firstname" placeholder="Enter firstname">
       </div>
@@ -52,7 +53,7 @@
 
 </script>
 
-<style scoped>
+<style >
  .newsletter-subscribe {
   font-family: inter;
   color: #313437;

@@ -1,6 +1,15 @@
-@extends('layouts.master')
+@extends('layouts.app')
 @section('content')
-<div id="app" >
-    <payment-component></payment-component>
-<div>
+<div id="app" class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            @include('partials.sidebar')
+        </div>
+        <div class="col-md-10">
+            <payment-component></payment-component>
+            {{-- @include('layouts.footer') --}}
+        </div>
+    </div>
+</div>
 @endsection
+

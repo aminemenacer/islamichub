@@ -2,11 +2,6 @@
   <div>
     <h2 class="pt-4 pb-3 text-center"><strong>Notes</strong></h2>
 
-    <div class="container">
-      <div class="col-md-4"></div>
-        <span class="container text-center">"Welcome to the Notes page, your central hub for storing and organizing your favorite Notes. Access all your saved Notes effortlessly."</span>
-      <div class="col-md-4"></div>
-    </div>
 
     <!-- Container visible only on mobile screens -->
     <div class="container text-center mt-3 d-md-none">

@@ -48,7 +48,10 @@ import UpdatesComponent from "./components/UpdatesComponent.vue";
 import JoinUsComponent from "./components/JoinUsComponent.vue";
 import NotesComponent from "./components/NotesComponent.vue";
 
+
 const app = createApp({});
+
+
 
 window.Form = Form;
 window.Swal = swal;
@@ -91,5 +94,7 @@ app.component("bookmark-component", BookmarkComponent);
 app.component("updates-component", UpdatesComponent);
 app.component("join_us-component", JoinUsComponent);
 app.component("notes-component", NotesComponent);
+
+
 
 app.mount("#app");

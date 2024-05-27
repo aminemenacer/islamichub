@@ -2,11 +2,6 @@
 <div id="app">
  <h2 class="pt-4 pb-3 text-center"><strong>Bookmarks</strong></h2>
 
-  <div class="container">
-    <div class="col-md-4"></div>
-      <span class="container">"Welcome to the Bookmarks page, your central hub for storing and organizing your favorite bookmarks. Access all your saved bookmarks effortlessly."</span>
-    <div class="col-md-4"></div>
-  </div>
  <!-- Container visible only on mobile screens -->
  <div class="container text-center mt-3 d-md-none">
   <div class="row pb-2  text-center">
@@ -227,7 +222,7 @@ export default {
 };
 </script>
 
-<style>
+<!-- <style scoped>
 .truncate {
  white-space: nowrap;
  overflow: hidden;
@@ -238,4 +233,4 @@ export default {
  padding-bottom: 5px;
  border: 1px solid #00BFA6;
 }
-</style>
+</style> -->

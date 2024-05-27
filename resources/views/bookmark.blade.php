@@ -1,8 +1,15 @@
-@extends('layouts.master')
-@section('content')
-<div id="app" style="padding-left: 50px">
-    <bookmark-component></bookmark-component>
-    {{-- @include('layouts.footer') --}}
+@extends('layouts.app')
 
-<div>
+@section('content')
+<div id="app" class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            @include('partials.sidebar')
+        </div>
+        <div class="col-md-10">
+            <bookmark-component></bookmark-component>
+            {{-- @include('layouts.footer') --}}
+        </div>
+    </div>
+</div>
 @endsection

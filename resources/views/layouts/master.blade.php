@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
@@ -9,178 +8,178 @@
   <link rel="stylesheet" href="/css/app.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+  <style>
+    /* Custom sidebar styles */
+
+    .sidebar .nav-link p {
+      margin-left: 0.5rem;
+    }
+
+    .nav-link.active {
+      background-color: #00BFA6;
+      color: white;
+    }
+
+    /* Adjust navbar links */
+    .navbar-nav .nav-item .nav-link {
+      font-family: 'Inter', sans-serif;
+      color: black;
+    }
+
+    .navbar-nav .nav-item .nav-link:hover {
+      color: #00BFA6;
+    }
+
+    /* Hide sidebar on smaller screen sizes */
+    @media (max-width: 768px) {
+      #tablet-sidebar {
+        display: none;
+      }
+      .content-wrapper {
+        margin-left: 0;
+      }
+    }
+  </style>
 </head>
 
 <body class="hold-transition sidebar-mini">
   <div class="wrapper" id="app">
-
-    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-      <div class="container-fluid">
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <!-- Left Side Of Navbar -->
-          <ul class="navbar-nav justify-content-end pr-4 flex-grow-1">
-            <li class="nav-item">
-              <h6><a style="font-family:inter; color: black;" class="nav-link mt-3 ml-4 pl-3" href="/quran">Home</a></h6>
-            </li>
-            <li class="nav-item">
-              <h6><a style="font-family:inter; color: black;" class="nav-link mt-3 ml-4 pl-3" href="/contact">Contact</a></h6>
-            </li>
-            <li class="nav-item">
-              <h6><a style="font-family:inter; color: black;" class="nav-link mt-3 ml-4 pl-3" href="/about">About Us</a></h6>
-            </li>
-            <li class="nav-item">
-              <h6><a style="font-family:inter; color: black;" class="nav-link mt-3 ml-4 pl-3" href="/updates">Updates</a></h6>
-            </li>
-            <li class="nav-item">
-              <h6><a style="font-family:inter; color: black;" class="nav-link mt-3 ml-4 pl-3 pr-5" href="/join_us">Mailing List</a></h6>
-            </li>
-            
-          </ul>
-          
-
-        </div>
-      </div>
-    </nav>
+    @include('partials.navbar')
 
     <aside id="tablet-sidebar" class="main-sidebar sidebar-light-primary elevation-4">
       <a href="/" class="brand-link">
-        <img src="/images/logo_main.png" width="220" height="45" alt="">
+          <img src="/images/logo_main.png" width="220" height="45" alt="">
       </a>
       <div class="sidebar">
-        <nav class="mt-2">
-          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            <!-- admin dashboard -->
-            @if(auth()->user()->role === 'admin')
-            <li class="nav-item">
-              <a href="/dashboard" class="nav-link">
-                <i class="bi bi-speedometer mr-1"></i>
-                <p>Dashboard</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="/users" class="nav-link">
-                <i class="bi bi-people-fill mr-1"></i>
-                <p>Users</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="/feedback" class="nav-link">
-                <i class="bi bi-chat-left-text-fill mr-1"></i>
-                <p>Feedback</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="/payments" class="nav-link">
-                <i class="bi bi-currency-exchange mr-1"></i>
-                <p>Donations</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="/mailing_list" class="nav-link">
-                <i class="bi bi-envelope-at-fill mr-1"></i>
-                <p>Mailing List</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="/profile" class="nav-link">
-                <i class="bi bi-people-fill mr-1"></i>
-                <p>Profile</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="/correction" class="nav-link">
-                <i class="bi bi-bug-fill mr-1"></i>
-                <p>Correction</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="/bookmarks" class="nav-link">
-                <i class="bi bi-bookmark-dash-fill mr-1"></i>
-                <p>Bookmarks</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="/notes" class="nav-link">
-                <i class="bi bi-file-earmark-text-fill mr-1"></i>
-                <p>Notes</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                <i class="bi bi-plug-fill" style="font-size: 22px"></i>
-                <p class="mb-2">{{ __('Logout') }}</p>
-              </a>
-              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                @csrf
-              </form>
-            </li>
-            @endif
-            
-            <!-- user dashboard -->
-            @if(auth()->user()->role === 'user')
-            <li class="nav-item">
-              <a href="/home" class="nav-link">
-                <i class="bi bi-house-fill mr-1"></i>
-                <p>Home</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="/bookmarks" class="nav-link">
-                <i class="bi bi-bookmark-dash-fill mr-1"></i>
-                <p>Bookmarks</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="/notes" class="nav-link">
-                <i class="bi bi-file-earmark-text-fill mr-1"></i>
-                <p>Notes</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="/profile" class="nav-link">
-                <i class="bi bi-people-fill mr-1"></i>
-                <p>Profile</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                <i class="bi bi-plug-fill" style="font-size: 22px"></i>
-                <p class="mb-2">{{ __('Logout') }}</p>
-              </a>
-              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                @csrf
-              </form>
-            </li>
-            @endif
-          </ul>
-        </nav>
+          <nav class="mt-2">
+              <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                  @if(auth()->user()->role === 'admin')
+                  <li class="nav-item">
+                      <a href="/dashboard" class="nav-link">
+                          <i class="bi bi-speedometer mr-1"></i>
+                          <p>Dashboard</p>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="/users" class="nav-link">
+                          <i class="bi bi-people-fill mr-1"></i>
+                          <p>Users</p>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="/feedback" class="nav-link">
+                          <i class="bi bi-chat-left-text-fill mr-1"></i>
+                          <p>Feedback</p>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="/payments" class="nav-link">
+                          <i class="bi bi-currency-exchange mr-1"></i>
+                          <p>Donations</p>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="/mailing_list" class="nav-link">
+                          <i class="bi bi-envelope-at-fill mr-1"></i>
+                          <p>Mailing List</p>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="/profile" class="nav-link">
+                          <i class="bi bi-people-fill mr-1"></i>
+                          <p>Profile</p>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="/correction" class="nav-link">
+                          <i class="bi bi-bug-fill mr-1"></i>
+                          <p>Correction</p>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="/bookmarks" class="nav-link">
+                          <i class="bi bi-bookmark-dash-fill mr-1"></i>
+                          <p>Bookmarks</p>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="/notes" class="nav-link">
+                          <i class="bi bi-file-earmark-text-fill mr-1"></i>
+                          <p>Notes</p>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                          <i class="bi bi-plug-fill" style="font-size: 22px"></i>
+                          <p class="mb-2">{{ __('Logout') }}</p>
+                      </a>
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                          @csrf
+                      </form>
+                  </li>
+                  @endif
+                  @if(auth()->user()->role === 'user')
+                  <li class="nav-item">
+                      <a href="/home" class="nav-link">
+                          <i class="bi bi-house-fill mr-1"></i>
+                          <p>Home</p>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="/bookmarks" class="nav-link">
+                          <i class="bi bi-bookmark-dash-fill mr-1"></i>
+                          <p>Bookmarks</p>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="/notes" class="nav-link">
+                          <i class="bi bi-file-earmark-text-fill mr-1"></i>
+                          <p>Notes</p>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="/profile" class="nav-link">
+                          <i class="bi bi-people-fill mr-1"></i>
+                          <p>Profile</p>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                          <i class="bi bi-plug-fill" style="font-size: 22px"></i>
+                          <p class="mb-2">{{ __('Logout') }}</p>
+                      </a>
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                          @csrf
+                      </form>
+                  </li>
+                  @endif
+              </ul>
+          </nav>
       </div>
-    </aside>
+     </aside>
+     
 
-    <div class="content-wrapper">
-      <!-- Main content -->
+    <div class="content-wrapper" style="margin-left: 250px;">
       <div class="content">
         <div class="container-fluid">
           @yield('content')
-        </div><!-- /.container-fluid -->
+        </div>
       </div>
     </div>
   </div>
 
-  <script src="/js/app.js"></script>
+  <script src="/js/app.js" defer></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
-
+  <script>
+    // JavaScript for toggling the sidebar
+    $(document).ready(function () {
+      $('.navbar-toggler').click(function () {
+        $('#tablet-sidebar').toggleClass('d-block');
+      });
+    });
+  </script>
 </body>
-
-<style>
-  /* Hide sidebar on tablet screen sizes */
-  @media (min-width: 768px) and (max-width: 1024px) and (max-width: 575px) {
-    #tablet-sidebar {
-      display: none;
-    }
-  }
-</style>
 
 </html>

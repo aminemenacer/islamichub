@@ -57,7 +57,7 @@
 
  <!-- accordion headers-->
  <div class="row container-fluid">
-  <!-- left side chapter list -->
+   <!-- left side chapter list -->
 
   <div class="col-md-4  container">
 
@@ -76,7 +76,7 @@
     </li>
    </ul>
 
-   <!-- list of ayat for surat -->
+    <!-- list of ayat for surat -->
    <div class="tab-content hide-on-mobile" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" v-if="ayah == null">
      <div class="row container-fluid">
@@ -209,19 +209,19 @@
           <!-- main stack below -->
           <div class="btn zoomable">
            <h5 class="container text-left" name="ayah_text" ref="heading" style="line-height: 1.6em">{{ information.translation }}</h5>
+           </div>
           </div>
-          <br>
-          <hr>
-          <span class="text-center pr-2 pb-2"><a href="/bookmarks" style=";color:black"><strong>View Bookmarks</strong></a></span>
+          <span class="text-center mr-2 pb-2"><a href="/bookmarks" style=";color:black"><strong>View Bookmarks</strong></a></span>
           <span class="text-center pb-2"><a href="/notes" style="none;color:black"><strong>View Notes</strong></a></span>
 
+
           <!-- Bootstrap alert component -->
-          <div v-if="showAlertText" class="alert alert-success alert-dismissible fade show" role="alert">
+          <div v-if="showAlertText" class="alert alert-success alert-dismissible fade show mt-2" role="alert">
            Text copied successfully!
           </div>
 
           <!-- bookmark component -->
-          <div v-if="showAlert" class="alert alert-success" role="alert">
+          <div v-if="showAlert" class="alert alert-success mt-2" role="alert">
            Bookmark created successfully!
           </div>
           <div v-if="showErrorAlert" class="alert alert-danger" role="alert">
@@ -269,14 +269,17 @@
           <!--
           <i class="bi bi-cloud-arrow-down-fill mt-1 h3" style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" title="Download Verse" @click="exportToCSV"></i>
           -->
-          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-file-earmark-text-fill text-right h4" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#exampleModal1" @click="openNoteModal"></i>
-          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-whatsapp text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp" @click="shareTextViaWhatsApp3()"></i>
-          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-twitter-x text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X" @click="shareHeadingOnTwitter3()"></i>
-          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bookmark text-right h4" aria-expanded="false" data-bs-placement="top" title="Save bookmark" @click="submitForm"></i>
-          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-clipboard-check-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText"></i>
-          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-camera-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot3"></i>
-          <!-- <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bug-fill text-right h4" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"></i> -->
-         </div>
+          
+            <div class="col-md-6">
+              <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-file-earmark-text-fill text-right h4" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#exampleModal1" @click="openNoteModal"></i>
+              <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-whatsapp text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp" @click="shareTextViaWhatsApp3()"></i>
+              <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-twitter-x text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X" @click="shareHeadingOnTwitter3()"></i>
+              <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bookmark text-right h4" aria-expanded="false" data-bs-placement="top" title="Save bookmark" @click="submitForm"></i>
+              <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-clipboard-check-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText"></i>
+              <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-camera-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot3"></i>
+              <!-- <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bug-fill text-right h4" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"></i> -->
+            </div>
+          
         </div>
        </div>
       </div>
@@ -319,7 +322,6 @@
            </div>
           </div>
            <br>
-          <hr>
           <span class="text-center mr-2 pb-2"><a href="/bookmarks" style=";color:black"><strong>View Bookmarks</strong></a></span>
           <span class="text-center pb-2"><a href="/notes" style="none;color:black"><strong>View Notes</strong></a></span>
 
@@ -425,7 +427,6 @@
            </div>
           </div>
            <br>
-          <hr>
           <span class="text-center mr-2 pb-4"><a href="/bookmarks" style=";color:black"><strong>View Bookmarks</strong></a></span>
           <span class="text-center pb-4 "><a href="/notes" style="none;color:black"><strong>View Notes</strong></a></span>
 
