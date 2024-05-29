@@ -3,7 +3,7 @@
  <div class="container-fluid text-center">
   <div class="row text-center">
    <!-- quran title -->
-   <h1 class="card-text text-center mt-2 mb-2" style="font-family: inter">
+   <h1 class="card-text text-center mt-3 mb-3" style="font-family: inter">
     The Holy Quran
    </h1>
 
@@ -136,25 +136,30 @@
    <!-- Nav tabs -->
    <div class="card " style="box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;">
     <!-- tabs for Translation, Tafseer & Transliteration -->
-    <div class="container-fluid" v-if="information != null">
-     <ul class="nav nav-tabs text-left justify-content-center pt-3" role="tablist">
-      <li class="nav-item text-right">
-       <a class="nav-link active" data-bs-toggle="tab" href="#home" role="tab">
-        Translation
-       </a>
+<!-- tabs for Translation, Tafseer & Transliteration -->
+<div class="container-fluid" v-if="information != null">
+  <div class="overflow-auto">
+    <ul class="nav nav-tabs text-left justify-content-start pt-3 flex-nowrap" style="white-space: nowrap;" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" data-bs-toggle="tab" href="#home" role="tab">
+          Translation
+        </a>
       </li>
       <li class="nav-item">
-       <a class="nav-link" data-bs-toggle="tab" href="#profile" role="tab">
-        Tafseer
-       </a>
+        <a class="nav-link" data-bs-toggle="tab" href="#profile" role="tab">
+          Tafseer
+        </a>
       </li>
       <li class="nav-item">
-       <a class="nav-link" data-bs-toggle="tab" href="#messages" role="tab">
-        Transliteration
-       </a>
+        <a class="nav-link" data-bs-toggle="tab" href="#messages" role="tab">
+          Transliteration
+        </a>
       </li>
-     </ul>
-    </div>
+    </ul>
+  </div>
+</div>
+
+
 
     <div class="card-body" id="alertContainer">
      <!-- Intro -->
@@ -162,13 +167,8 @@
 
       <div class="tab-pane active" id="home" role="tabpanel" v-if="information == null">
        <div class="row">
-        <div class="col-md-6">
-         <img src="/images/calligraphy.png" class="pl-3" style="width: 70%" />
-        </div>
-        <div class="col-md-6 mt-4">
-         <h5 style="line-height: 1.6em">
-          The Holy Quran is the central religious text of Islam, believed by Muslims to be a revelation from God. It is written in Arabic and is considered the literal word of God as conveyed to Prophet Muhammad (peace be upon him).
-         </h5>
+        <div class="col-md-12">
+         <img src="/images/calligraphy.png" style="width: 40%" />
         </div>
        </div>
       </div>
@@ -185,7 +185,7 @@
 
            <!-- Surah information -->
            <div class="row" ref="targetElement3">
-            <h5 class="col-md-6 text-left pl-4 font-weight-bold" name="ayah_num"><img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
+            <h6 class="col-md-6 text-left pl-4 font-weight-bold" name="ayah_num"><img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h6>
             <div class="col-md-6">
              <!-- Next surah button -->
              <div class="d-flex gap-2 justify-content-end">
@@ -201,19 +201,17 @@
 
          <div ref="targetElement3">
           <!-- main stack top -->
-          <div class="btn zoomable">
-           <h5 class="container text-right" style="line-height: 2em">{{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})</h5>
+          <div class="btn ">
+           <h6 class="container text-right" style="line-height: 2em">{{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})</h6>
           </div>
           <hr />
 
           <!-- main stack below -->
-          <div class="btn zoomable">
-           <h5 class="container text-left" name="ayah_text" ref="heading" style="line-height: 1.6em">{{ information.translation }}</h5>
+          <div class="btn ">
+           <h6 class="container text-left" name="ayah_text" ref="heading" style="line-height: 1.6em">{{ information.translation }}</h6>
            </div>
           </div>
-          <span class="text-center mr-2 pb-2"><a href="/bookmarks" style=";color:black"><strong>View Bookmarks</strong></a></span>
-          <span class="text-center pb-2"><a href="/notes" style="none;color:black"><strong>View Notes</strong></a></span>
-
+        
 
           <!-- Bootstrap alert component -->
           <div v-if="showAlertText" class="alert alert-success alert-dismissible fade show mt-2" role="alert">
@@ -234,7 +232,7 @@
 
          </div>
          <!-- features -->
-         <div class="text-right pt-4">
+         <div class="text-right pt-2">
 
           <!-- notes modal -->
           <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" ref="exampleModal1">
@@ -270,7 +268,6 @@
           <i class="bi bi-cloud-arrow-down-fill mt-1 h3" style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" title="Download Verse" @click="exportToCSV"></i>
           -->
           
-            <div class="col-md-6">
               <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-file-earmark-text-fill text-right h4" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#exampleModal1" @click="openNoteModal"></i>
               <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-whatsapp text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp" @click="shareTextViaWhatsApp3()"></i>
               <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-twitter-x text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X" @click="shareHeadingOnTwitter3()"></i>
@@ -278,7 +275,6 @@
               <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-clipboard-check-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText"></i>
               <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-camera-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot3"></i>
               <!-- <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bug-fill text-right h4" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"></i> -->
-            </div>
           
         </div>
        </div>
@@ -296,7 +292,7 @@
 
            <!-- Surah information -->
            <div class="row" ref="targetElement">
-            <h5 class="col-md-6 text-left pl-4 font-weight-bold" name="ayah_num"><img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
+            <h6 class="col-md-6 text-left pl-4 font-weight-bold" name="ayah_num"><img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h6>
             <div class="col-md-6">
              <div class="d-flex gap-2 justify-content-end">
               <button class="btn button-33 mr-2" @click="goToPreviousAyah()"><i class="bi bi-arrow-left-circle-fill"></i></button>
@@ -311,20 +307,18 @@
          <div>
           <div ref="targetElement1">
            <!-- main stack top -->
-           <div class="btn zoomable">
-            <h5 class="container text-right" style="line-height: 2em">{{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})</h5>
+           <div class="btn ">
+            <h6 class="container text-right" style="line-height: 2em">{{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})</h6>
            </div>
            <hr />
 
            <!-- main stack below -->
-           <div class="btn zoomable">
-            <h5 class="container text-left" name="ayah_text" ref="heading1" style="line-height: 1.6em">{{ tafseer }}</h5>
+           <div class="btn ">
+            <h6 class="container text-left" name="ayah_text" ref="heading1" style="line-height: 1.6em">{{ tafseer }}</h6>
            </div>
           </div>
            <br>
-          <span class="text-center mr-2 pb-2"><a href="/bookmarks" style=";color:black"><strong>View Bookmarks</strong></a></span>
-          <span class="text-center pb-2"><a href="/notes" style="none;color:black"><strong>View Notes</strong></a></span>
-
+          
 
           <!-- Bootstrap alert component -->
           <div v-if="showAlertText" class="alert alert-success alert-dismissible fade show" role="alert">
@@ -340,7 +334,7 @@
           </div>
           <!-- features -->
 
-          <div class="text-right pt-4 mr-3 container">
+          <div class="text-right pt-2 mr-3 container">
 
            <div>
             <!-- Your other components and code -->
@@ -401,7 +395,7 @@
 
            <!-- Surah information -->
            <div class="row" ref="targetElement2">
-            <h5 class="col-md-6 text-left pl-4 font-weight-bold" name="ayah_num"><img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
+            <h6 class="col-md-6 text-left pl-4 font-weight-bold" name="ayah_num"><img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h6>
             <div class="col-md-6">
              <div class="d-flex gap-2 justify-content-end">
               <button class="btn button-33 mr-2" @click="goToPreviousAyah()"><i class="bi bi-arrow-left-circle-fill"></i></button>
@@ -416,20 +410,18 @@
          <div>
           <div ref="targetElement2">
            <!-- main stack top -->
-           <div class="btn zoomable">
-            <h5 class="container text-right" style="line-height: 2em">{{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})</h5>
+           <div class="btn ">
+            <h6 class="container text-right" style="line-height: 2em">{{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})</h6>
            </div>
            <hr />
 
            <!-- main stack below -->
-           <div class="btn zoomable">
-            <h5 class="container text-left" name="ayah_text" ref="heading2" style="line-height: 1.6em">{{ information.transliteration }}</h5>
+           <div class="btn ">
+            <h6 class="container text-left" name="ayah_text" ref="heading2" style="line-height: 1.6em">{{ information.transliteration }}</h6>
            </div>
           </div>
            <br>
-          <span class="text-center mr-2 pb-4"><a href="/bookmarks" style=";color:black"><strong>View Bookmarks</strong></a></span>
-          <span class="text-center pb-4 "><a href="/notes" style="none;color:black"><strong>View Notes</strong></a></span>
-
+         
 
           <!-- Bootstrap alert component -->
           <div v-if="showAlertText" class="alert alert-success alert-dismissible fade show" role="alert">
@@ -445,7 +437,7 @@
           </div>
 
           <!-- features -->
-          <div class="text-right pt-4">
+          <div class="text-right pt-2">
            <!-- notes modal -->
            <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" ref="exampleModal3">
             <div class="modal-dialog modal-lg">
@@ -490,6 +482,11 @@
 
        </div>
       </div>
+
+        <span class="text-center mr-2 pb-4"><a href="/bookmarks" style="text-decoration:none;color:black"><strong>View Bookmarks</strong></a></span>
+        <span class="text-center pb-4 "><a href="/notes" style="text-decoration:none;color:black"><strong>View Notes</strong></a></span>
+
+
      </div>
     </div>
    </div>

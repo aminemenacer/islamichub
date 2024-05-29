@@ -17,28 +17,27 @@
     <div class="modal-body">
      <form @submit.prevent="updateUser()">
       <div class="form-group mr-2" style="display: flex">
-       <label class="mt-2 mr-2 col-sm-3">Firstname:</label>
+       <label class="mt-2 mr-2">Firstname:</label><br><br>
        <input v-model="form.name" type="text" name="name" placeholder="Enter name" class="form-control" />
       </div>
 
       <div class="form-group mr-2" style="display: flex">
-       <label class="mt-2 mr-2 col-sm-3">Lastname:</label>
+       <label class="mt-2 mr-2">Lastname:</label><br><br>
        <input v-model="form.lastname" type="text" name="lastname" placeholder="Enter lastname" class="form-control" />
       </div>
 
       <div class="form-group" style="display: flex">
-       <label class="mt-2 mr-2 col-sm-3">Email:</label>
+       <label class="mt-2 mr-2">Email:</label><br><br>
        <input v-model="form.email" name="email" id="email" placeholder="email" class="form-control" />
       </div>
 
       <div class="form-group mr-2" style="display: flex">
-       <label class="mt-2 mr-2 col-sm-3">Phone number:</label>
+       <label class="mt-2 mr-2">Phone number:</label><br>
        <input v-model="form.phone" type="text" name="phone" placeholder="Enter mobile number" class="form-control" />
       </div>
-      <hr>
 
       <div class="form-group mr-2" style="display: flex">
-       <label class="mt-2 mr-2 col-sm-3">Password:</label>
+       <label class="mt-2 mr-2">Password:</label><br><br>
        <input v-model="form.password" id="password" type="text" name="password" placeholder="Enter password" class="form-control" />
       </div>
 
@@ -97,9 +96,9 @@
       <div class="row">
        <div class="text-center">
         <h3 class="mb-3 text-left"><strong>Personal Information:</strong></h3>
-       </div><br><br>
-       <hr>
+       </div>
       </div>
+      <hr>
       <div class="row">
        <div class="col-sm-3">
         <p class="mb-0">Full Name:</p>

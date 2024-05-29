@@ -81,23 +81,23 @@
             </div>
             <div class="modal-body">
               <div class="mr-2" style="display: flex">
-                <label class="mt-2 mr-2 col-sm-3">ID:</label>
+                <label class="mt-2 mr-2 col-sm-3">ID:</label><br><br>
                 <p class="mt-2 text-dark">{{ form1.id }}</p>
               </div>
               <div class="mr-2" style="display: flex">
-                <label class="mt-2 mr-2 col-sm-3">Surah Name:</label>
+                <label class="mt-2 mr-2 col-sm-3">Surah Name:</label><br><br>
                 <p class="mt-2 text-dark">{{ form1.surah_name }}</p>
               </div>
               <div class="mr-2" style="display: flex">
-                <label class="mt-2 mr-2 col-sm-3">Ayah Verse Arabic:</label>
+                <label class="mt-2 mr-2 col-sm-3">Ayah Verse Arabic:</label><br><br>
                 <p class="mt-2 text-dark">{{ form1.ayah_verse_ar }}</p>
               </div>
               <div class="mr-2" style="display: flex">
-                <label class="mt-2 mr-2 col-sm-3">English Info:</label>
+                <label class="mt-2 mr-2 col-sm-3">English Info:</label><br><br>
                 <p class="mt-2 text-dark">{{ form1.ayah_verse_en }}</p>
               </div>
               <div class="mr-2" style="display: flex">
-                <label class="mt-2 mr-2 col-sm-3">Notes:</label>
+                <label class="mt-2 mr-2 col-sm-3">Notes:</label><br><br>
                 <p class="mt-2 text-dark">{{ form1.ayah_notes }}</p>
               </div>
               <div class="modal-footer">

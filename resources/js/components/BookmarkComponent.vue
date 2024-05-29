@@ -64,25 +64,25 @@
     <div class="modal-body">
      <form>
       <div class="mr-2 text-left" style="display: flex">
-       <label class="mt-2 mr-2 col-sm-3">ID:</label>
+       <label class="mt-2 mr-2 col-sm-3">ID:</label><br><br>
        <p class="mt-2 text-dark text-left">
         {{ form.id }}
        </p>
       </div>
       <div class="mr-2 " style="display: flex">
-       <label class="mt-2 mr-2 col-sm-3">Surah Name:</label>
+       <label class="mt-2 mr-2 col-sm-3">Surah Name:</label><br><br>
        <p class="mt-2 text-dark text-right">
         {{ form.surah_name }}
        </p>
       </div>
       <div class="mr-2" style="display: flex">
-       <label class="mt-2 mr-2 col-sm-3">Arabic Verse:</label>
+       <label class="mt-2 mr-2 col-sm-3">Arabic Verse:</label><br><br>
        <p class="mt-2 text-dark text-right">
         {{ form.ayah_verse_ar }}
        </p>
       </div>
       <div class="mr-2" style="display: flex">
-       <label class="mt-2 mr-2 col-sm-3">English Info:</label>
+       <label class="mt-2 mr-2 col-sm-3">English Info:</label><br><br>
        <p class="mt-2 text-dark">
         {{ form.ayah_verse_en }}
        </p>
