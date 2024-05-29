@@ -1,6 +1,6 @@
 <template>
-<div class="newsletter-subscribe container">
- <div class="container-fluid">
+<div class="newsletter-subscribe ">
+ <div>
   <div class="intro">
    <h1 class="text-center newsletter-title ">Who Are We?</h1>
   </div>
@@ -9,7 +9,7 @@
    <div class="col-md-6 ">
     <img src="/images/about1.png" style="width: 100%;" />
    </div>
-   <div class="col-md-6">
+   <div class="col-md-6 pt-5">
     <p class="text-left text-secondary " style="line-height: 1.7em; font-family:inter">
      Welcome to Islamic Connect, where we aim to make accessing and understanding the Noble Quran a truly enriching experience for everyone.
     </p>
@@ -34,9 +34,7 @@
 .newsletter-subscribe {
  font-family: inter;
  color: #313437;
- background-color: #ffffff;
  padding: 45px 64px;
- box-shadow: rgba(161, 159, 159, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 }
 
 .newsletter-subscribe p {
