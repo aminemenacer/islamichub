@@ -277,8 +277,8 @@
        </div>
 
         <div class="pt-4">
-          <strong class="text-center mr-3 pb-4" style="font-size:18px"><a href="/bookmarks" style="text-decoration:none;color:rgb(0, 191, 166)"><strong>Bookmarks</strong></a></strong>
-          <strong class="text-center pt-3 pb-4" style="font-size:18px"><a href="/notes" style="text-decoration:none;color:rgb(0, 191, 166)"><strong>Notes</strong></a></strong>
+          <strong class="text-center mr-3 pb-4" style="font-size:18px"><a href="/bookmarks" style="text-decoration:none;color:black;text-decoration:underline"><strong>Bookmarks</strong></a></strong>
+          <strong class="text-center pt-3 pb-4" style="font-size:18px"><a href="/notes" style="text-decoration:none;color:black;text-decoration:underline"><strong>Notes</strong></a></strong>
         </div>
 
       </div>
@@ -369,22 +369,19 @@
             </div>
            </div>
 
-           <!--
-           <i class="bi bi-cloud-arrow-down-fill mt-1 h3" style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" title="Download Verse" @click="exportToCSV2"></i>
-           -->
-           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-file-earmark-text-fill text-right h4" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#exampleModal2" @click="openNoteModal"></i>
-           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-whatsapp text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp" @click="shareTextViaWhatsApp1()"></i>
-           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-twitter-x text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X" @click="shareHeadingOnTwitter1()"></i>
-           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bookmark text-right h4" aria-expanded="false" data-bs-placement="top" title="Save bookmark" @click="submitForm1"></i>
-           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-clipboard-check-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText1"></i>
-           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-camera-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot1"></i>
-           <!-- <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bug-fill text-right h4" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"></i> -->
+          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-file-earmark-text-fill text-right h4" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#exampleModal2" @click="openNoteModal"></i>
+          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-whatsapp text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp" @click="shareTextViaWhatsApp1()"></i>
+          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-twitter-x text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X" @click="shareHeadingOnTwitter1()"></i>
+          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bookmark text-right h4" aria-expanded="false" data-bs-placement="top" title="Save bookmark" @click="submitForm1"></i>
+          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-clipboard-check-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText1"></i>
+          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-camera-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot1"></i>
+          <!-- <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bug-fill text-right h4" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"></i> -->
           </div>
          </div>
 
         <div class="pt-4">
-          <strong class="text-center mr-3 pb-4" style="font-size:18px"><a href="/bookmarks" style="text-decoration:none;color:rgb(0, 191, 166)"><strong>Bookmarks</strong></a></strong>
-          <strong class="text-center pt-3 pb-4" style="font-size:18px"><a href="/notes" style="text-decoration:none;color:rgb(0, 191, 166)"><strong>Notes</strong></a></strong>
+          <strong class="text-center mr-3 pb-4" style="font-size:18px"><a href="/bookmarks" style="text-decoration:underline;color:black"><strong>Bookmarks</strong></a></strong>
+          <strong class="text-center pt-3 pb-4" style="font-size:18px"><a href="/notes" style="text-decoration:underline;color:black"><strong>Notes</strong></a></strong>
         </div>
 
         </div>
@@ -403,20 +400,11 @@
 
            <!-- Surah information -->
            <div class="row" ref="targetElement2">
-            <h5 class="col-12 col-md-6 text-left pl-4 font-weight-bold d-flex align-items-center justify-content-between" name="ayah_num">
-             <div>
-              <img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />
-              {{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}
-             </div>
-             <div class="d-md-none">
+            <h5 class="col-md-6 text-left pl-4 font-weight-bold" name="ayah_num"><img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
+            <div class="col-md-6">
+             <div class="d-flex gap-2 justify-content-end">
               <button class="btn button-33 mr-2" @click="goToPreviousAyah()"><i class="bi bi-arrow-left-circle-fill"></i></button>
-              <button class="btn button-33" @click="goToNextAyah()"><i class="bi bi-arrow-right-circle-fill"></i></button>
-             </div>
-            </h5>
-            <div class="col-md-6 d-none d-md-flex">
-             <div class="d-flex gap-2 justify-content-end w-100">
-              <button class="btn button-33 mr-2" @click="goToPreviousAyah()"><i class="bi bi-arrow-left-circle-fill"></i></button>
-              <button class="btn button-33" @click="goToNextAyah()"><i class="bi bi-arrow-right-circle-fill"></i></button>
+              <button class="btn button-33 " @click="goToNextAyah()"><i class="bi bi-arrow-right-circle-fill "></i></button>
              </div>
             </div>
            </div>
@@ -497,8 +485,8 @@
         </div>
         
         <div class="pt-4">
-          <strong class="text-center pt-3 mr-3 pb-4" style="font-size:18px"><a href="/bookmarks" style="text-decoration:none;color:rgb(0, 191, 166)"><strong>Bookmarks</strong></a></strong>
-          <strong class="text-center pt-3 pb-4" style="font-size:18px"><a href="/notes" style="text-decoration:none;color:rgb(0, 191, 166)"><strong>Notes</strong></a></strong>
+          <strong class="text-center pt-3 mr-3 pb-4" style="font-size:18px"><a href="/bookmarks" style="text-decoration:underline;color:black"><strong>Bookmarks</strong></a></strong>
+          <strong class="text-center pt-3 pb-4" style="font-size:18px"><a href="/notes" style="text-decoration:underline;color:black"><strong>Notes</strong></a></strong>
         </div>
        </div>
       </div>
