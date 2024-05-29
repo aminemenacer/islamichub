@@ -14,26 +14,26 @@
     <form @reset="reset" @submit.prevent="sendMessage()">
      <div class="row ">
       <div class="col-md-10 mb-3">
-       <input type="text" class="form-control " v-model="form.firstname" name="firstname" placeholder="Enter firstname">
+       <input type="text" style="border:1px solid grey; border-radius:10px" class="form-control " v-model="form.firstname" name="firstname" placeholder="Enter firstname">
       </div>
       <div class="col-md-10 mb-3">
-       <input type="text" class="form-control" v-model="form.lastname" name="lastname" placeholder="Enter lastname">
-      </div>
-     </div>
-     <div class="row">
-      <div class="col-md-10 mb-3">
-       <input type="email" class="form-control" v-model="form.email" name="email" placeholder="Enter email">
-      </div>
-      <div class="col-md-10 mb-3">
-       <input type="text" class="form-control" v-model="form.mobile" name="mobile" placeholder="Enter mobile">
+       <input type="text" style="border:1px solid grey; border-radius:10px" class="form-control" v-model="form.lastname" name="lastname" placeholder="Enter lastname">
       </div>
      </div>
      <div class="row">
       <div class="col-md-10 mb-3">
-       <input class="form-control" v-model="form.subject" type="text" name="subject" placeholder="Enter subject">
+       <input type="email" style="border:1px solid grey; border-radius:10px" class="form-control" v-model="form.email" name="email" placeholder="Enter email">
+      </div>
+      <div class="col-md-10 mb-3">
+       <input type="text" style="border:1px solid grey; border-radius:10px" class="form-control" v-model="form.mobile" name="mobile" placeholder="Enter mobile">
+      </div>
+     </div>
+     <div class="row">
+      <div class="col-md-10 mb-3">
+       <input class="form-control" style="border:1px solid grey; border-radius:10px" v-model="form.subject" type="text" name="subject" placeholder="Enter subject">
       </div>
       <div class="col-md-10 mb-3 ">
-       <textarea class="form-control" v-model="form.message" name="message" placeholder="Enter message" rows="5"></textarea> 
+       <textarea class="form-control" style="border:1px solid grey; border-radius:10px" v-model="form.message" name="message" placeholder="Enter message" rows="5"></textarea> 
       </div>
      </div>
      <div class="row">

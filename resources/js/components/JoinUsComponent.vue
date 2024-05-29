@@ -9,8 +9,8 @@
   </div>
 
   <form class="form-inline" @reset="reset" @submit.prevent="submitMail()">
-   <div class="form-group"><input class="form-control" v-model="form.name" type="text" name="name" placeholder="Your Name"></div>
-   <div class="form-group"><input class="form-control" v-model="form.email" type="email" name="email" placeholder="Your Email Address"></div><br>
+   <div class="form-group"><input class="form-control" style="border:1px solid grey; border-radius:10px" v-model="form.name" type="text" name="name" placeholder="Your Name"></div>
+   <div class="form-group"><input class="form-control" style="border:1px solid grey; border-radius:10px" v-model="form.email" type="email" name="email" placeholder="Your Email Address"></div><br>
    <div class="form-group"><button class="btn" style="background:#00BFA6;color:white" type="submit">Subscribe </button></div>
   </form>
  </div>

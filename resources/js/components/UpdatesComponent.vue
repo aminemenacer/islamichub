@@ -14,7 +14,6 @@
    <li style="padding:5px"><strong>Mobile friendly design</strong></li>
   </div>
   <p class="text-left text-secondary mt-1" style="line-height: 1.7em; font-family:inter">and much, much more.</p>
-  <div class="pb-5"><img  src="/images/calligraphy.png" width="35%;" /></div>
 
   <div class="col-md-12">
   </div>

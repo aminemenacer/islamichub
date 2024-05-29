@@ -10,11 +10,7 @@
      <a href="/notes" style="text-decoration:none;color:#3D8F67;background:#d1f4d0">Notes</a>
     </span>
    </div>
-   <div class="col">
-    <span class="badge h3" style="width:100%;font-size:18px;border-radius:10px; color:#B70D52;background:#ead1dc">
-     <a href="/bookmarks" style="text-decoration:none;color:#B70D52;background:#ead1dc">Bookmarks</a>
-    </span>
-   </div>
+   
    <div class="col">
     <span class="badge h3" style="width:100%;font-size:18px;border-radius:10px; color:#0263FF;background:#c2d8fb">
      <a href="/home" style="text-decoration:none;color:#0263FF;background:#c2d8fb">Home</a>
@@ -62,28 +58,22 @@
      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
     <div class="modal-body">
-     <form>
-      <div class="mr-2 text-left" style="display: flex">
-       <label class="mt-2 mr-2 col-sm-3">ID:</label><br><br>
-       <p class="mt-2 text-dark text-left">
-        {{ form.id }}
-       </p>
-      </div>
-      <div class="mr-2 " style="display: flex">
-       <label class="mt-2 mr-2 col-sm-3">Surah Name:</label><br><br>
-       <p class="mt-2 text-dark text-right">
+     <form class="container">
+      <div class="mb-3 container">
+        <label for="formGroupExampleInput" class="form-label"><strong>Surah Name:</strong></label>
+        <p class="mt-2 text-dark text-left">
         {{ form.surah_name }}
        </p>
       </div>
-      <div class="mr-2" style="display: flex">
-       <label class="mt-2 mr-2 col-sm-3">Arabic Verse:</label><br><br>
-       <p class="mt-2 text-dark text-right">
+      <div class="mb-3 container">
+        <label for="formGroupExampleInput" class="form-label"><strong>Arabic Verse:</strong></label>
+        <p class="mt-2 text-dark text-left">
         {{ form.ayah_verse_ar }}
        </p>
       </div>
-      <div class="mr-2" style="display: flex">
-       <label class="mt-2 mr-2 col-sm-3">English Info:</label><br><br>
-       <p class="mt-2 text-dark">
+      <div class="mb-3 container">
+        <label for="formGroupExampleInput" class="form-label"><strong>English Info:</strong></label>
+        <p class="mt-2 text-dark text-left">
         {{ form.ayah_verse_en }}
        </p>
       </div>

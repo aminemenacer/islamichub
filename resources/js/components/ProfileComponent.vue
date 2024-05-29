@@ -16,40 +16,36 @@
     </div>
     <div class="modal-body">
      <form @submit.prevent="updateUser()">
-      <div class="form-group mr-2" style="display: flex">
-       <label class="mt-2 mr-2">Firstname:</label><br><br>
-       <input v-model="form.name" type="text" name="name" placeholder="Enter name" class="form-control" />
-      </div>
 
-      <div class="form-group mr-2" style="display: flex">
-       <label class="mt-2 mr-2">Lastname:</label><br><br>
-       <input v-model="form.lastname" type="text" name="lastname" placeholder="Enter lastname" class="form-control" />
+      <div class="mb-3">
+        <label for="formGroupExampleInput" class="form-label"><strong>Firstname:</strong></label>
+        <input v-model="form.name" type="text" name="name" placeholder="Enter name" class="form-control" />
       </div>
-
-      <div class="form-group" style="display: flex">
-       <label class="mt-2 mr-2">Email:</label><br><br>
-       <input v-model="form.email" name="email" id="email" placeholder="email" class="form-control" />
+      <div class="mb-3">
+        <label for="formGroupExampleInput2" class="form-label"><strong>Lastname:</strong></label>
+        <input v-model="form.lastname" type="text" name="lastname" placeholder="Enter lastname" class="form-control" />
       </div>
-
-      <div class="form-group mr-2" style="display: flex">
-       <label class="mt-2 mr-2">Phone number:</label><br>
-       <input v-model="form.phone" type="text" name="phone" placeholder="Enter mobile number" class="form-control" />
+      <div class="mb-3">
+        <label for="formGroupExampleInput" class="form-label"><strong>Email address:</strong></label>
+        <input v-model="form.email" name="email" id="email" placeholder="email" class="form-control" />
       </div>
-
-      <div class="form-group mr-2" style="display: flex">
-       <label class="mt-2 mr-2">Password:</label><br><br>
-       <input v-model="form.password" id="password" type="text" name="password" placeholder="Enter password" class="form-control" />
+      <div class="mb-3">
+        <label for="formGroupExampleInput" class="form-label"><strong>Phone number:</strong></label>
+        <input v-model="form.phone" type="text" name="phone" placeholder="Enter mobile number" class="form-control" />
       </div>
-
+      <div class="mb-3">
+        <label for="formGroupExampleInput" class="form-label"><strong>Password:</strong></label>
+        <input v-model="form.password" id="password" type="text" name="password" placeholder="Enter password" class="form-control" />
+      </div>
       <div class="modal-footer">
        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
         Close
        </button>
-
        <button type="submit" class="btn btn-primary">
         Update
        </button>
       </div>
+    
      </form>
     </div>
    </div>
@@ -76,7 +72,7 @@
  <!-- profile section -->
  <div class="container">
   <div class="row ">
-   <div class="col-lg-4">
+   <!-- <div class="col-lg-4">
     <div class="card mb-4">
      <div class="card-body text-center">
       <i class="bi bi-person-circle" style="font-size: 4rem"></i>
@@ -89,7 +85,7 @@
       </div>
      </div>
     </div>
-   </div>
+   </div> -->
    <div class="col-lg-8">
     <div class="card mb-4">
      <div class="card-body">
@@ -101,7 +97,7 @@
       <hr>
       <div class="row">
        <div class="col-sm-3">
-        <p class="mb-0">Full Name:</p>
+        <strong class="mb-0">Full Name:</strong>
        </div>
        <div class="col-sm-9">
         <p class="text-muted mb-0 text-black">{{ user.name }} {{ user.lastname }}</p>
@@ -110,7 +106,7 @@
       <hr>
       <div class="row">
        <div class="col-sm-3">
-        <p class="mb-0">Email:</p>
+        <strong class="mb-0">Email:</strong>
        </div>
        <div class="col-sm-9">
         <p class="text-muted mb-0">{{ user.email }}</p>
@@ -119,21 +115,16 @@
       <hr>
       <div class="row">
        <div class="col-sm-3">
-        <p class="mb-0">Phone:</p>
+        <strong class="mb-0">Phone:</strong>
        </div>
        <div class="col-sm-9">
         <p class="text-muted mb-0">{{ user.phone }}</p>
        </div>
       </div>
       <hr>
-      <div class="row">
-       <div class="col-sm-3">
-        <p class="mb-0">Joined in:</p>
-       </div>
-       <div class="col-sm-9">
-        <p class="text-muted mb-0">{{ user.created_at }}</p>
-       </div>
-      </div>
+       <button data-bs-toggle="modal" data-bs-target="#editNew" type="button" class="btn text-white text-right user-btn mr-2 bg-secondary" @click="editModal(user)">
+        Edit Profile
+       </button>
      </div>
     </div>
    </div>

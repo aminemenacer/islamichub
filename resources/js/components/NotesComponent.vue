@@ -6,11 +6,7 @@
     <!-- Container visible only on mobile screens -->
     <div class="container text-center mt-3 d-md-none">
       <div class="row pb-2 text-center">
-        <div class="col">
-          <span class="badge h3" style="width:100%;font-size:18px;border-radius:10px; color:#3D8F67;background:#d1f4d0">
-            <a href="/notes" style="text-decoration:none;color:#3D8F67;background:#d1f4d0">Notes</a>
-          </span>
-        </div>
+        
         <div class="col">
           <span class="badge h3" style="width:100%;font-size:18px;border-radius:10px; color:#B70D52;background:#ead1dc">
             <a href="/bookmarks" style="text-decoration:none;color:#B70D52;background:#ead1dc">Bookmarks</a>
@@ -53,7 +49,7 @@
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title text-dark" id="editNotesLabel">Edit Note</h5>
+              <h5 class="modal-title text-dark" id="editNotesLabel"><strong>Edit Note</strong></h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -80,29 +76,38 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <div class="mr-2" style="display: flex">
-                <label class="mt-2 mr-2 col-sm-3">ID:</label><br><br>
-                <p class="mt-2 text-dark">{{ form1.id }}</p>
+
+            <form class="container">
+              
+              <div class="mb-3 container">
+                <label for="formGroupExampleInput" class="form-label"><strong>Surah Name:</strong></label>
+                <p class="mt-2 text-dark text-left">
+                {{ form1.surah_name }}
+              </p>
               </div>
-              <div class="mr-2" style="display: flex">
-                <label class="mt-2 mr-2 col-sm-3">Surah Name:</label><br><br>
-                <p class="mt-2 text-dark">{{ form1.surah_name }}</p>
+              <div class="mb-3 container">
+                <label for="formGroupExampleInput" class="form-label"><strong>Ayah Verse Arabic:</strong></label>
+                <p class="mt-2 text-dark text-left">
+                {{ form1.ayah_verse_ar }}
+              </p>
               </div>
-              <div class="mr-2" style="display: flex">
-                <label class="mt-2 mr-2 col-sm-3">Ayah Verse Arabic:</label><br><br>
-                <p class="mt-2 text-dark">{{ form1.ayah_verse_ar }}</p>
+              <div class="mb-3 container">
+                <label for="formGroupExampleInput" class="form-label"><strong>English Info:</strong></label>
+                <p class="mt-2 text-dark text-left">
+                {{ form1.ayah_verse_en }}
+                </p>
               </div>
-              <div class="mr-2" style="display: flex">
-                <label class="mt-2 mr-2 col-sm-3">English Info:</label><br><br>
-                <p class="mt-2 text-dark">{{ form1.ayah_verse_en }}</p>
-              </div>
-              <div class="mr-2" style="display: flex">
-                <label class="mt-2 mr-2 col-sm-3">Notes:</label><br><br>
-                <p class="mt-2 text-dark">{{ form1.ayah_notes }}</p>
+              <div class="mb-3 container">
+                <label for="formGroupExampleInput" class="form-label"><strong>Notes:</strong></label>
+                <p class="mt-2 text-dark text-left">
+                {{ form1.ayah_notes }}
+                </p>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
               </div>
+            </form>
+
             </div>
           </div>
         </div>
