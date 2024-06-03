@@ -10,10 +10,12 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- External CSS Libraries -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Compiled CSS -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -49,7 +51,7 @@
                         <!-- Navigation Items -->
                         <li class="nav-item mt-3">
                             <h6><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3"
-                                    href="/quran">Home</a></h6>
+                                    href="/home">Home</a></h6>
                         </li>
                         <li class="nav-item mt-3">
                             <h6><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3"
@@ -121,6 +123,10 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
 
     <!-- Tooltip and Dropdown Initialization -->
     <script>

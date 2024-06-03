@@ -1,7 +1,7 @@
 // Vue libraries
 require("./bootstrap");
-import 'bootstrap/dist/css/bootstrap.min.css'; // Optional: If you want to include Bootstrap's CSS
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { createApp } from "vue";
 import { Form } from "vform";
