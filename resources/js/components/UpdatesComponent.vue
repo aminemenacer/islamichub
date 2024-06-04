@@ -1,7 +1,7 @@
 <template>
 <div class="container">
 
- <div class="row ml-4 container">
+ <div class="row ml-4 mt-5 container">
  
   <h3 class="text-left mt-3 container" style="line-height: 1.7em; font-family:inter; "><img src="/images/art.png" style="width: 40px;" class="mb-1 mr-2" /> Welcome to the Islamic Connect Beta Version.</h3>
   <div class="col-md-6"><h5 class="text-left text-secondary" width="80%" style="line-height: 1.7em; font-family:inter">MAY 27th, 2024</h5>

@@ -61,14 +61,14 @@
 
   <div class="col-md-4  container">
 
-   <form class="d-flex pb-1" style="color:rgba(0, 191, 166)" @submit.prevent="search">
+   <form  class="d-flex pb-1" style="color:rgba(0, 191, 166)" @submit.prevent="search">
     <input style="box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px; border-radius:10px" class="form-control me-2" type="search" id="search" name="search" v-model="searchTerm" placeholder="Search for Surah name" autocomplete="off" @keyup="search">
     <button v-if="showClearButton" class="btn btn-outline-secondary text-center width:100%" @click="clearResults">Clear</button>
    </form>
 
    <!-- Surah list -->
    <ul class="col-md-12 mt-1 scrollable-list " style="list-style-type: none; overflow-y: auto; max-height: 400px; box-shadow: box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
-    <li v-for="item in filteredSurah" :key="item.id" @click="selectSurah(item.id)" style="cursor: pointer; padding:5px;box-shadow: box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px; " class="highlight-on-hover">
+    <li  v-for="item in filteredSurah" :key="item.id" @click="selectSurah(item.id)" style="cursor: pointer; padding:5px;box-shadow: box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px; " class="highlight-on-hover">
      <div style="display: flex; align-items: center;">
       <img src="/images/art.png" style="width: 23px" class="mb-1 mr-2" />
       <p style="font-size: 18px;" class="mt-2">{{ item.name_en }} - {{ item.name_ar }}</p>
@@ -79,9 +79,9 @@
    <!-- List of Ayah Dropdown -->
    <div class="tab-content mb-2" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-     <form @change="handleSelectionChange" class="row container-fluid">
+     <form @change="handleSelectionChange" style="cursor: pointer; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px; ">
       <!-- Add a class to the select element for easier targeting -->
-      <select class="form-control mobile-only hide-on-full-screen hide-on-tablet right-side-form" @change="getTafseers(ayahs[$event.target.value].id, $event.target.value)">
+      <select class="form-control mobile-only hide-on-full-screen hide-on-tablet right-side-form" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;" @change="getTafseers(ayahs[$event.target.value].id, $event.target.value)">
        <option value="0">
         <span>Select Ayah</span>
        </option>
@@ -165,25 +165,18 @@
 
         <div class="col-12" ref="targetElement3">
          <!-- surah/ayah detail -->
-         <ul class="ul-main row ">
+         <ul class="ul-main container-fluid">
           <!-- ayah controls -->
           <div>
           
             <!-- Surah information -->
             <div class="row" >
-              <div class="col-md-12">
-              <i style=" color:rgb(0, 191, 166); cursor:pointer" @click="goToPreviousAyah()" class="bi bi-arrow-left-circle text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp"></i>
+              <div >
+              <i style=" color:rgb(0, 191, 166); cursor:pointer" @click="goToPreviousAyah()" class="bi bi-arrow-left-circle h4" aria-expanded="false" data-bs-placement="top" title="Previous verse"></i>
               <h5 class="container text-right" style="line-height: 2em; display: inline;">{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
-              <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToNextAyah()" class="bi bi-arrow-right-circle text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp"></i>
+              <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToNextAyah()" class="bi bi-arrow-right-circle h4 ml-2 mt-1" aria-expanded="false" data-bs-placement="top" title="Next verse"></i>
               </div>
-              <div class="col-md-6">
-              <!-- Next surah button 
-              <div class="d-flex gap-2 justify-content-end">
-                <button class="btn button-33 mr-2" @click="goToPreviousAyah()"><i class="bi bi-arrow-left-circle-fill"></i></button>
-                <button class="btn button-33 " @click="goToNextAyah()"><i class="bi bi-arrow-right-circle-fill "></i></button>
-              </div>
-              -->
-              </div>
+              
             </div>
 
               </div>
@@ -279,29 +272,27 @@
       <div class="tab-pane" id="profile" role="tabpanel" v-if="information != null">
        <div class="row">
 
-        <div class="col-12">
+        <div class="col-12" ref="targetElement1">
          <!-- surah/ayah detail -->
-         <ul class="ul-main row ">
+         <ul class="ul-main container-fluid">
           <!-- ayah controls -->
           <div>
 
            <!-- Surah information -->
-           <div class="row" ref="targetElement">
-            <div class="col-md-12">
-             <i style=" color:rgb(0, 191, 166); cursor:pointer" @click="goToPreviousAyah()" class="bi bi-arrow-left-circle text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp"></i>
+           <div class="row" >
+            <div >
+             <i style=" color:rgb(0, 191, 166); cursor:pointer" @click="goToPreviousAyah()" class="bi bi-arrow-left-circle h4" aria-expanded="false" data-bs-placement="top" title="Previous verse"></i>
              <h5 class="container text-right" style="line-height: 2em; display: inline;">{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
-             <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToNextAyah()" class="bi bi-arrow-right-circle text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp"></i>
+             <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToNextAyah()" class="bi bi-arrow-right-circle h4 ml-2 mt-1" aria-expanded="false" data-bs-placement="top" title="Next verse"></i>
             </div>
-            <div class="col-md-6">
-
-            </div>
+            
            </div>
 
           </div>
          </ul>
          <hr style="border: 1px dotted grey">
          <div>
-          <div ref="targetElement1">
+          <div >
            <!-- main stack top -->
            <div class="btn">
             <h5 class="container text-right ayah-text" style="line-height: 2em">{{ information.ayah.ayah_text }}</h5>
@@ -390,20 +381,20 @@
       <div class="tab-pane" id="messages" role="tabpanel" v-if="information != null">
        <div class="row">
 
-        <div class="col-12">
+        <div class="col-12" ref="targetElement2">
          <!-- surah/ayah detail -->
-         <ul class="ul-main row ">
+         <ul class="ul-main container-fluid">
           <!-- ayah controls -->
           <div>
 
            <!-- Surah information -->
-           <div class="row" ref="targetElement2">
+           <div class="row" >
             <div class="col-md-12">
-             <i style=" color:rgb(0, 191, 166); cursor:pointer" @click="goToPreviousAyah()" class="bi bi-arrow-left-circle text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp"></i>
+             <i style=" color:rgb(0, 191, 166); cursor:pointer" @click="goToPreviousAyah()" class="bi bi-arrow-left-circle h4" aria-expanded="false" data-bs-placement="top" title="Previous verse"></i>
              <h5 class="container text-right" style="line-height: 2em; display: inline;">{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
-             <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToNextAyah()" class="bi bi-arrow-right-circle text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp"></i>
+             <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToNextAyah()" class="bi bi-arrow-right-circle h4 ml-2 mt-1" aria-expanded="false" data-bs-placement="top" title="Next verse"></i>
             </div>
-            <div class="col-md-6">
+            <div>
              <!--
              <div class="d-flex gap-2 justify-content-end">
               <button class="btn button-33 mr-2" @click="goToPreviousAyah()"><i class="bi bi-arrow-left-circle-fill"></i></button>
@@ -417,7 +408,7 @@
          </ul>
          <hr style="border: 1px dotted grey">
          <div>
-          <div ref="targetElement2">
+          <div>
            <!-- main stack top -->
            <div class="btn">
             <div class="mobile-inline">
