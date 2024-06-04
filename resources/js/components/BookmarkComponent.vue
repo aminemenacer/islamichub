@@ -77,6 +77,12 @@
         {{ form.ayah_verse_en }}
        </p>
       </div>
+      <div class="mb-3 container">
+        <label for="formGroupExampleInput" class="form-label"><strong>Date Created:</strong></label>
+        <p class="mt-2 text-dark text-left">
+          {{ extractDate(form.created_at) }}
+        </p>
+      </div>
      </form>
     </div>
     <div class="modal-footer">
@@ -131,6 +137,7 @@ export default {
     ayah_verse_ar: "",
     ayah_verse_en: "",
     ayah_notes: "",
+    created_at: ""
    }),
    maxLength: 70, // Set your desired max length
   };
@@ -145,6 +152,9 @@ export default {
   },
  },
  methods: {
+   extractDate(dateTimeString) {
+      return dateTimeString.split('T')[0];
+    },
   async fetchBookmarks(userId) {
    try {
     const response = await fetch(`/api/fetch-bookmarks/${userId}`);

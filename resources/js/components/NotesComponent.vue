@@ -103,6 +103,12 @@
                 {{ form1.ayah_notes }}
                 </p>
               </div>
+              <div class="mb-3 container">
+                <label for="formGroupExampleInput" class="form-label"><strong>Date Created:</strong></label>
+                <p class="mt-2 text-dark text-left">
+                  {{ extractDate(form1.created_at) }}
+                </p>
+              </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
               </div>
@@ -156,12 +162,16 @@ export default {
         ayah_verse_ar: "",
         ayah_verse_en: "",
         ayah_notes: "",
+        created_at:""
       },
       maxLength: 100
     };
   },
  
   methods: {
+    extractDate(dateTimeString) {
+      return dateTimeString.split('T')[0];
+    },
     async fetchNotes(userId) {
       try {
         const response = await fetch(`/api/fetch-notes/${userId}`);

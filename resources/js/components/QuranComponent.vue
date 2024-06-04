@@ -81,16 +81,6 @@
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" v-if="ayah == null">
      <div class="row container-fluid">
 
-      <!-- controls 
-        <div class="row "> 
-          <div class="col-md-4">
-            <button class="btn button-33" @click="goToPreviousSurah">Previous Surah</button>
-          </div>
-          <div class="col-md-4">
-            <button class="btn button-33" @click="goToNextSurah()">Next Surah</button>
-          </div>
-        </div>
-      -->
       <div class="row">
        <div class="col-md-10">
         <form class="d-flex text-left " @submit.prevent="scrollToAyah">
@@ -103,8 +93,8 @@
       <div class="custom-scrollbar" style="overflow-y: auto; max-height: 650px; background: white;">
        <ul class="col-md-4 list-group container-fluid root" id="toggle" ref="ayahList" style="list-style-type: none; padding: 10px">
         <li v-for="(ayah, index) in ayahs" :key="index" @click="getTafseers(ayah.id, index)" :class="{ selected: selectedIndexAyah === index, 'highlighted': verseNumber && parseInt(verseNumber) === ayah.ayah_id }" style="padding: 10px;border-radius:10px">
-         <h5 style="display: flex;"> Verse: {{ ayah.ayah_id }} </h5>
-         <h5>{{ ayah.ayah_text }}</h5>
+         <h5 class="text-right" style="display: flex;"> Verse: {{ ayah.ayah_id }} </h5>
+         <h5 class="text-right" >{{ ayah.ayah_text }}</h5>
         </li>
        </ul>
        <hr>
@@ -115,16 +105,16 @@
     </div>
    </div>
 
-   <!-- list of ayah dropdown -->
+   <!-- List of Ayah Dropdown -->
    <div class="tab-content mb-2" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
-    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" v-if="ayah == null">
+    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
      <form @change="handleSelectionChange" class="row container-fluid">
       <!-- Add a class to the select element for easier targeting -->
       <select class="form-control mobile-only hide-on-full-screen hide-on-tablet right-side-form" @change="getTafseers(ayahs[$event.target.value].id, $event.target.value)">
        <option value="0">
         <span>Select Ayah</span>
        </option>
-       <option v-for="(ayah, index) in ayahs" :key="index" :value="index">{{ ayah.ayah_text }}</option>
+       <option v-for="(ayah, index) in ayahs" :key="index" :value="index">{{ ayah.ayah_text }}:{{ayah.ayah_id}}</option>
       </select>
      </form>
     </div>
@@ -135,7 +125,6 @@
   <div class="col-md-8 card-hide">
    <!-- Nav tabs -->
    <div class="card " style="box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;">
-    <!-- tabs for Translation, Tafseer & Transliteration -->
     <!-- tabs for Translation, Tafseer & Transliteration -->
     <div class="container-fluid" v-if="information != null">
      <div class="overflow-auto">
@@ -183,7 +172,11 @@
 
            <!-- Surah information -->
            <div class="row" ref="targetElement3">
-            <h5 class="col-md-6 text-left pl-4 font-weight-bold" name="ayah_num"><img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
+            <div class="col-md-12">
+             <i style=" color:rgb(0, 191, 166); cursor:pointer" @click="goToPreviousAyah()" class="bi bi-arrow-left-circle text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp"></i>
+             <h5 class="container text-right" style="line-height: 2em; display: inline;">{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
+             <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToNextAyah()" class="bi bi-arrow-right-circle text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp"></i>
+            </div>
             <div class="col-md-6">
              <!-- Next surah button 
              <div class="d-flex gap-2 justify-content-end">
@@ -263,20 +256,21 @@
           </div>
          </div>
 
-         <!--
-          <i class="bi bi-cloud-arrow-down-fill mt-1 h3" style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" title="Download Verse" @click="exportToCSV"></i>
-          -->
+         <div class="icon-container">
+          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-file-earmark-text text-right h4" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#exampleModal1" @click="openNoteModal"></i>
+          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-whatsapp text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp" @click="shareTextViaWhatsApp3()"></i>
+          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bookmark text-right h4" aria-expanded="false" data-bs-placement="top" title="Save bookmark" @click="submitForm"></i>
+          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-clipboard-check text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText"></i>
+          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-camera text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot3"></i>
+         </div>
 
-         <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-file-earmark-text-fill text-right h4" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#exampleModal1" @click="openNoteModal"></i>
-         <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-whatsapp text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp" @click="shareTextViaWhatsApp3()"></i>
+         <!-- <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bug-fill text-right h4" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"></i> -->
          <!--
          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-twitter-x text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X" @click="shareHeadingOnTwitter3()"></i>
          -->
-         <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bookmark text-right h4" aria-expanded="false" data-bs-placement="top" title="Save bookmark" @click="submitForm"></i>
-         <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-clipboard-check text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText"></i>
-         <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-camera-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot3"></i>
-         <!-- <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bug-fill text-right h4" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"></i> -->
-
+         <!--
+          <i class="bi bi-cloud-arrow-down-fill mt-1 h3" style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" title="Download Verse" @click="exportToCSV"></i>
+         -->
         </div>
        </div>
        <!--
@@ -300,14 +294,13 @@
 
            <!-- Surah information -->
            <div class="row" ref="targetElement">
-            <h5 class="col-md-6 text-left pl-4 font-weight-bold" name="ayah_num"><img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
+            <div class="col-md-12">
+             <i style=" color:rgb(0, 191, 166); cursor:pointer" @click="goToPreviousAyah()" class="bi bi-arrow-left-circle text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp"></i>
+             <h5 class="container text-right" style="line-height: 2em; display: inline;">{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
+             <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToNextAyah()" class="bi bi-arrow-right-circle text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp"></i>
+            </div>
             <div class="col-md-6">
-            <!--
-             <div class="d-flex gap-2 justify-content-end">
-              <button class="btn button-33 mr-2" @click="goToPreviousAyah()"><i class="bi bi-arrow-left-circle-fill"></i></button>
-              <button class="btn button-33 " @click="goToNextAyah()"><i class="bi bi-arrow-right-circle-fill "></i></button>
-             </div>
-            -->
+
             </div>
            </div>
 
@@ -375,15 +368,18 @@
             </div>
            </div>
 
-           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-file-earmark-text-fill text-right h4" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#exampleModal2" @click="openNoteModal"></i>
-           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-whatsapp text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp" @click="shareTextViaWhatsApp1()"></i>
-           <!--
-          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-twitter-x text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X" @click="shareHeadingOnTwitter1()"></i>
-          -->
-           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bookmark text-right h4" aria-expanded="false" data-bs-placement="top" title="Save bookmark" @click="submitForm1"></i>
-           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-clipboard-check text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText1"></i>
-           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-camera-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot1"></i>
-           <!-- <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bug-fill text-right h4" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"></i> -->
+           <div class="icon-container">
+            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-file-earmark-text text-right h4" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#exampleModal1" @click="openNoteModal"></i>
+            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-whatsapp text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp" @click="shareTextViaWhatsApp1()"></i>
+           
+            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bookmark text-right h4" aria-expanded="false" data-bs-placement="top" title="Save bookmark" @click="submitForm1"></i>
+            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-clipboard-check text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText1"></i>
+            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-camera text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot1"></i>
+            <!-- <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bug-fill text-right h4" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"></i> -->
+            <!--
+            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-twitter-x text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X" @click="shareHeadingOnTwitter2()"></i>
+            -->
+            </div>
           </div>
          </div>
          <!--
@@ -409,9 +405,13 @@
 
            <!-- Surah information -->
            <div class="row" ref="targetElement2">
-            <h5 class="col-md-6 text-left pl-4 font-weight-bold" name="ayah_num"><img src="/images/art.png" style="width: 27px" class="mb-1 mr-2" />{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
+            <div class="col-md-12">
+             <i style=" color:rgb(0, 191, 166); cursor:pointer" @click="goToPreviousAyah()" class="bi bi-arrow-left-circle text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp"></i>
+             <h5 class="container text-right" style="line-height: 2em; display: inline;">{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
+             <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToNextAyah()" class="bi bi-arrow-right-circle text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp"></i>
+            </div>
             <div class="col-md-6">
-            <!--
+             <!--
              <div class="d-flex gap-2 justify-content-end">
               <button class="btn button-33 mr-2" @click="goToPreviousAyah()"><i class="bi bi-arrow-left-circle-fill"></i></button>
               <button class="btn button-33 " @click="goToNextAyah()"><i class="bi bi-arrow-right-circle-fill "></i></button>
@@ -427,7 +427,10 @@
           <div ref="targetElement2">
            <!-- main stack top -->
            <div class="btn">
-            <h5 class="container text-right" style="line-height: 2em">{{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})</h5>
+            <div class="mobile-inline">
+             <h5 class="container text-right" style="line-height: 2em; display: inline;">{{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})</h5>
+            </div>
+
            </div>
            <hr />
 
@@ -485,15 +488,17 @@
            <!--
            <i class="bi bi-cloud-arrow-down-fill mt-1 h3" style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" title="Download Verse" @click="exportToCSV2"></i>
            -->
-           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-file-earmark-text-fill text-right h4" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#exampleModal3" @click="openNoteModal"></i>
-           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-whatsapp text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp" @click="shareTextViaWhatsApp2()"></i>
-           <!--
-           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-twitter-x text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X" @click="shareHeadingOnTwitter2()"></i>
-           -->
-           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bookmark text-right h4" aria-expanded="false" data-bs-placement="top" title="Save bookmark" @click="submitForm2"></i>
-           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-clipboard-check text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText2"></i>
-           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-camera-fill text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot2"></i>
-           <!-- <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bug-fill text-right h4" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"></i> -->
+           <div class="icon-container">
+            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-file-earmark-text text-right h4" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#exampleModal3" @click="openNoteModal"></i>
+            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-whatsapp text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp" @click="shareTextViaWhatsApp2()"></i>
+            <!--
+            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-twitter-x text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X" @click="shareHeadingOnTwitter2()"></i>
+            -->
+            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bookmark text-right h4" aria-expanded="false" data-bs-placement="top" title="Save bookmark" @click="submitForm2"></i>
+            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-clipboard-check text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText2"></i>
+            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-camera text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot2"></i>
+            <!-- <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bug-fill text-right h4" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"></i> -->
+           </div>
           </div>
          </div>
         </div>
@@ -1325,18 +1330,63 @@ export default {
 };
 </script>
 
-
 <style scoped>
+.icon-container {
+ display: flex;
+ justify-content: space-around;
+}
 
-.container.text-right, .container.text-left {
-  font-size: 1.25em; /* Equivalent to h5 font size */
+@media (max-width: 768px) {
+ .icon-container {
+  justify-content: center;
+  flex-wrap: wrap;
+  text-align: center;
+ }
+
+ .icon-container i {
+  margin: 2px;
+ }
+}
+
+.mobile-only {
+ display: none;
+}
+
+@media (min-width: 992px) {
+  .icon-container {
+    width: 50%; /* Adjust this value as needed */
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+ .mobile-only {
+  display: block;
+ }
+
+ .hide-on-full-screen {
+  display: none;
+ }
+
+ .hide-on-tablet {
+  display: none;
+ }
+}
+
+.container.text-right,
+.container.text-left {
+ font-size: 1.25em;
+ /* Equivalent to h5 font size */
 }
 
 /* Media query for mobile devices (example: max-width 600px) */
 @media (max-width: 600px) {
-  .container.text-right, .container.text-left {
-    font-size: 1em; /* Equivalent to h6 font size */
-  }
+
+ .container.text-right,
+ .container.text-left {
+  font-size: 1em;
+  /* Equivalent to h6 font size */
+ }
 }
 
 .ayah-text,
