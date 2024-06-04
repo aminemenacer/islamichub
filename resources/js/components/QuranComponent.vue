@@ -76,35 +76,6 @@
     </li>
    </ul>
 
-   <!-- list of ayat for surat -->
-   <div class="tab-content hide-on-mobile" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
-    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" v-if="ayah == null">
-     <div class="row container-fluid">
-
-      <div class="row">
-       <div class="col-md-10">
-        <form class="d-flex text-left " @submit.prevent="scrollToAyah">
-         <input class="form-control pb-2 width:100%" type="number" placeholder="Enter Verse Number" aria-label="Search" v-model="verseNumber" style="box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px; border-radius:10px" required>
-         <button class="btn btn-success mb-2 ml-2" type="submit">Search</button>
-        </form>
-       </div>
-      </div>
-
-      <div class="custom-scrollbar" style="overflow-y: auto; max-height: 650px; background: white;">
-       <ul class="col-md-4 list-group container-fluid root" id="toggle" ref="ayahList" style="list-style-type: none; padding: 10px">
-        <li v-for="(ayah, index) in ayahs" :key="index" @click="getTafseers(ayah.id, index)" :class="{ selected: selectedIndexAyah === index, 'highlighted': verseNumber && parseInt(verseNumber) === ayah.ayah_id }" style="padding: 10px;border-radius:10px">
-         <h5 class="text-right" style="display: flex;"> Verse: {{ ayah.ayah_id }} </h5>
-         <h5 class="text-right" >{{ ayah.ayah_text }}</h5>
-        </li>
-       </ul>
-       <hr>
-
-      </div>
-
-     </div>
-    </div>
-   </div>
-
    <!-- List of Ayah Dropdown -->
    <div class="tab-content mb-2" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
@@ -114,9 +85,37 @@
        <option value="0">
         <span>Select Ayah</span>
        </option>
-       <option v-for="(ayah, index) in ayahs" :key="index" :value="index">{{ ayah.ayah_text }}:{{ayah.ayah_id}}</option>
+       <option v-for="(ayah, index) in ayahs" :key="index" :value="index">{{ ayah.ayah_text }} : {{ayah.ayah_id}}</option>
       </select>
      </form>
+    </div>
+   </div>
+
+   <!-- list of ayat for surat -->
+   <div class="tab-content hide-on-mobile" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
+    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" v-if="ayah == null">
+     <div class="row container-fluid">
+
+      <div class="row">
+       <div class="col-md-10">
+        <form class="d-flex text-left " @submit.prevent="scrollToAyah">
+         <input class="form-control pb-2 width:100%" type="number" placeholder="Enter Verse Number" aria-label="Search" v-model="verseNumber" style="box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px; border-radius:10px" required>
+         <button class="btn btn-outline-success mb-2 ml-2" type="submit">Search</button>
+        </form>
+       </div>
+      </div>
+
+      <div class="custom-scrollbar" style="overflow-y: auto; max-height: 650px; background: white;">
+       <ul class="col-md-4 list-group container-fluid root" id="toggle" ref="ayahList" style="list-style-type: none; padding: 10px">
+        <li v-for="(ayah, index) in ayahs" :key="index" @click="getTafseers(ayah.id, index)" :class="{ selected: selectedIndexAyah === index, 'highlighted': verseNumber && parseInt(verseNumber) === ayah.ayah_id }" style="padding: 10px;border-radius:10px">
+         <h5 class="text-right" style="display: flex;"> Verse: {{ ayah.ayah_id }} </h5>
+         <h5 class="text-right">{{ ayah.ayah_text }}</h5>
+        </li>
+       </ul>
+       <hr>
+      </div>
+
+     </div>
     </div>
    </div>
 
@@ -164,46 +163,46 @@
       <div class="tab-pane active" id="home" role="tabpanel" v-if="information != null">
        <div class="row">
 
-        <div class="col-12">
+        <div class="col-12" ref="targetElement3">
          <!-- surah/ayah detail -->
          <ul class="ul-main row ">
           <!-- ayah controls -->
           <div>
-
-           <!-- Surah information -->
-           <div class="row" ref="targetElement3">
-            <div class="col-md-12">
-             <i style=" color:rgb(0, 191, 166); cursor:pointer" @click="goToPreviousAyah()" class="bi bi-arrow-left-circle text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp"></i>
-             <h5 class="container text-right" style="line-height: 2em; display: inline;">{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
-             <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToNextAyah()" class="bi bi-arrow-right-circle text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp"></i>
+          
+            <!-- Surah information -->
+            <div class="row" >
+              <div class="col-md-12">
+              <i style=" color:rgb(0, 191, 166); cursor:pointer" @click="goToPreviousAyah()" class="bi bi-arrow-left-circle text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp"></i>
+              <h5 class="container text-right" style="line-height: 2em; display: inline;">{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
+              <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToNextAyah()" class="bi bi-arrow-right-circle text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp"></i>
+              </div>
+              <div class="col-md-6">
+              <!-- Next surah button 
+              <div class="d-flex gap-2 justify-content-end">
+                <button class="btn button-33 mr-2" @click="goToPreviousAyah()"><i class="bi bi-arrow-left-circle-fill"></i></button>
+                <button class="btn button-33 " @click="goToNextAyah()"><i class="bi bi-arrow-right-circle-fill "></i></button>
+              </div>
+              -->
+              </div>
             </div>
-            <div class="col-md-6">
-             <!-- Next surah button 
-             <div class="d-flex gap-2 justify-content-end">
-              <button class="btn button-33 mr-2" @click="goToPreviousAyah()"><i class="bi bi-arrow-left-circle-fill"></i></button>
-              <button class="btn button-33 " @click="goToNextAyah()"><i class="bi bi-arrow-right-circle-fill "></i></button>
-             </div>
-             -->
+
+              </div>
+            </ul>
+            <hr style="border: 1px dotted grey">
+
+            <div >
+              <!-- main stack top -->
+              <div class="btn">
+              <h5 class="container text-right ayah-text" style="line-height: 2em">{{ information.ayah.ayah_text }}</h5>
+              </div>
+              <hr />
+
+              <!-- main stack below -->
+              <div class="btn">
+              <h5 class="container text-left ayah-translation" name="ayah_text" ref="heading" style="line-height: 1.6em">{{ information.translation }}</h5>
+              </div>
+
             </div>
-           </div>
-
-          </div>
-         </ul>
-         <hr style="border: 1px dotted grey">
-
-         <div ref="targetElement3">
-          <!-- main stack top -->
-          <div class="btn">
-           <h5 class="container text-right ayah-text" style="line-height: 2em">{{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})</h5>
-          </div>
-          <hr />
-
-          <!-- main stack below -->
-          <div class="btn">
-           <h5 class="container text-left ayah-translation" name="ayah_text" ref="heading" style="line-height: 1.6em">{{ information.translation }}</h5>
-          </div>
-
-         </div>
 
          <!-- Bootstrap alert component -->
          <div v-if="showAlertText" class="alert alert-success alert-dismissible fade show mt-2" role="alert">
@@ -273,12 +272,6 @@
          -->
         </div>
        </div>
-       <!--
-        <div class="pt-4">
-          <strong class="text-center mr-3 pb-4" style="font-size:18px"><a href="/bookmarks" style="text-decoration:none;color:black;text-decoration:underline"><strong>Bookmarks</strong></a></strong>
-          <strong class="text-center pt-3 pb-4" style="font-size:18px"><a href="/notes" style="text-decoration:none;color:black;text-decoration:underline"><strong>Notes</strong></a></strong>
-        </div>
-        -->
 
       </div>
 
@@ -311,7 +304,7 @@
           <div ref="targetElement1">
            <!-- main stack top -->
            <div class="btn">
-            <h5 class="container text-right ayah-text" style="line-height: 2em">{{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})</h5>
+            <h5 class="container text-right ayah-text" style="line-height: 2em">{{ information.ayah.ayah_text }}</h5>
            </div>
            <hr />
            <div class="btn">
@@ -371,7 +364,7 @@
            <div class="icon-container">
             <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-file-earmark-text text-right h4" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#exampleModal1" @click="openNoteModal"></i>
             <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-whatsapp text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp" @click="shareTextViaWhatsApp1()"></i>
-           
+
             <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bookmark text-right h4" aria-expanded="false" data-bs-placement="top" title="Save bookmark" @click="submitForm1"></i>
             <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-clipboard-check text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText1"></i>
             <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-camera text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot1"></i>
@@ -379,7 +372,7 @@
             <!--
             <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-twitter-x text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X" @click="shareHeadingOnTwitter2()"></i>
             -->
-            </div>
+           </div>
           </div>
          </div>
          <!--
@@ -428,7 +421,7 @@
            <!-- main stack top -->
            <div class="btn">
             <div class="mobile-inline">
-             <h5 class="container text-right" style="line-height: 2em; display: inline;">{{ information.ayah.ayah_text }} ({{ information.ayah.ayah_id }})</h5>
+             <h5 class="container text-right" style="line-height: 2em; display: inline;">{{ information.ayah.ayah_text }}</h5>
             </div>
 
            </div>
@@ -1353,10 +1346,11 @@ export default {
 }
 
 @media (min-width: 992px) {
-  .icon-container {
-    width: 50%; /* Adjust this value as needed */
-    margin: 0 auto;
-  }
+ .icon-container {
+  width: 50%;
+  /* Adjust this value as needed */
+  margin: 0 auto;
+ }
 }
 
 @media (max-width: 768px) {
