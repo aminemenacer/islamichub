@@ -22,19 +22,19 @@ class CorrectionController extends Controller
     public function submit(Request $request)
     {
         $this->validate($request, [
-            'mistake_type',
-            'name',
-            'email',
-            'added_notes',
-            'hadith_num'
+            'mistake_type' => 'required',
+            // 'name' => 'string|min:3',
+            // 'email' => 'string|email|max:255|unique:users',
+            'added_notes' => 'required|string|min:5',
+            // 'ayah_num' => 'integer',
         ]);
 
         $correction = new Correction();
         $correction->mistake_type = $request->mistake_type;
-        $correction->name = $request->name;
-        $correction->email = $request->email;
+        // $correction->name = $request->name;
+        // $correction->email = $request->email;
         $correction->added_notes = $request->added_notes;
-        $correction->hadith_num = $request->hadith_num;
+        // $correction->ayah_num = $request->ayah_num;
         $correction->save();
     }
 

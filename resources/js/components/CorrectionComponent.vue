@@ -22,7 +22,7 @@
                 {{ form.id }}
               </p>
             </div>
-            <div class="mr-2" style="display: flex">
+            <!-- <div class="mr-2" style="display: flex">
               <label class="mt-2 mr-2 col-sm-3">Name:</label>
               <p class="mt-2 text-dark">
                 {{ form.name }}
@@ -37,11 +37,11 @@
             </div>
 
             <div class="mr-2" style="display: flex">
-              <label class="mt-2 mr-2 col-sm-3">Hadith Number:</label>
+              <label class="mt-2 mr-2 col-sm-3">Ayah Number:</label>
               <p class="mt-2 text-dark">
-                {{ form.hadith_num }}
+                {{ form.ayah_num }}
               </p>
-            </div>
+            </div> -->
 
             <div class="mr-2" style="display: flex">
               <label class="mt-2 mr-2 col-sm-3">Mistake type:</label>
@@ -127,21 +127,22 @@ export default {
           field: "id",
           header: "ID",
           sortable: true,
-        }, {
-          field: "name",
-          header: "Firstname",
-          sortable: true,
-        },
-        {
-          field: "email",
-          header: "Email Address",
-          sortable: true,
-        },
-        {
-          field: "hadith_num",
-          header: "Hadith Num",
-          sortable: true,
-        },
+        }, 
+        // {
+        //   field: "name",
+        //   header: "Firstname",
+        //   sortable: true,
+        // },
+        // {
+        //   field: "email",
+        //   header: "Email Address",
+        //   sortable: true,
+        // },
+        // {
+        //   field: "ayah_num",
+        //   header: "Ayah Num",
+        //   sortable: true,
+        // },
         {
           field: "mistake_type",
           header: "Mistake type",
@@ -160,7 +161,7 @@ export default {
         name: "",
         email: "",
         mistake_type: "",
-        hadith_num: "",
+        ayah_num: "",
         added_notes: "",
       }),
     }
