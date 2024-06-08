@@ -2,6 +2,27 @@
 <div class="container">
 
  <div class="row ml-4 mt-3 container-fluid">
+  <h3 class="text-left mt-3 mb-2 container" style="line-height: 1.7em; font-family:inter; "><img src="/images/art.png" style="width: 40px;" class="mb-1 mr-2" /> Discover Our Updated Features for an Enhanced Quranic Journey</h3>
+  <div class="col-md-6">
+   <h5 class="text-left text-secondary" width="80%" style="line-height: 1.7em; font-family:inter">June 8th, 2024</h5>
+   <p class="text-left text-secondary " style="line-height: 1.7em; font-family:inter">Welcome everyone! I'm excited to share with you the latest updates and features we've added to our website. Our team has been working diligently to enhance your user experience and provide you with the best possible tools and resources. Here’s a rundown of what’s new:</p>
+
+   <div>
+    <li style="padding:5px" class="text-left text-secondary "><strong>Revamped User Interface:</strong> We've completely redesigned our user interface to make it more intuitive and user-friendly. The new layout is cleaner, more modern, and optimized for both desktop and mobile devices, ensuring a seamless experience no matter how you access our site.</li>
+    <li style="padding:5px" class="text-left text-secondary "><strong>Improved Navigation:</strong> Navigating through our website is now easier than ever. We’ve streamlined the menu structure, added a search bar.</li>
+    <li style="padding:5px" class="text-left text-secondary "><strong>Report a Bug:</strong> This tool allows you to easily report any issues or bugs you encounter while using our website. Your feedback is crucial in helping us identify and fix problems quickly, ensuring a smoother and more enjoyable experience for everyone.</li>
+    <li style="padding:5px" class="text-left text-secondary "><strong>Ayah Numbering:</strong> This enhancement allows you to easily locate and reference specific verses in the Quran. Each Ayah is now clearly numbered, providing a more organized and efficient way to navigate through the sacred text. Whether you're studying, teaching, or simply reading.</li>
+    <li style="padding:5px" class="text-left text-secondary "><strong>Bug Fixes:</strong> In addition to the exciting new features, we’ve also addressed several bugs to improve the overall stability and performance of our website. Our team has been hard at work identifying and resolving issues reported by our users.</li>
+   </div>
+  </div>
+  <div class="col-md-6">
+   <img src="images/updatesv3.png" style="width:80%" />
+  </div>
+ </div>
+
+ <hr>
+
+ <div class="row ml-4 mt-3 container-fluid">
 
   <h3 class="text-left mt-3 mb-2 container" style="line-height: 1.7em; font-family:inter; "><img src="/images/art.png" style="width: 40px;" class="mb-1 mr-2" /> Unlock Your Quranic Journey with Ayah Controls</h3>
   <div class="col-md-6">
