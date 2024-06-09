@@ -203,17 +203,22 @@
          </ul>
          <hr style="border: 1px dotted grey">
 
-         <div class="swipeable-div" @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd">
+         <div @touchstart="handleTouchStart" @touchend="handleTouchEnd" class="swipeable-div">
           <!-- main stack top -->
           <div class="btn">
            <h5 class="container text-right ayah-text" style="line-height: 2em">{{ information.ayah.ayah_text }}</h5>
+
           </div>
           <hr />
 
           <!-- main stack below -->
           <div class="btn">
-           <h5 class="container text-left ayah-translation" name="ayah_text" ref="heading1" style="line-height: 1.6em">
-            {{ expanded ? information.translation : truncatedText(information.translation) }} <a href="#" @click="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a></h5>
+           <h5 class="container text-left ayah-translation" style="line-height: 1.6em">
+            {{ expanded ? information.translation : truncatedText(information.translation) }}
+            <template v-if="showMoreLink">
+             <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
+            </template>
+           </h5>
           </div>
 
          </div>
@@ -315,7 +320,7 @@
           </ul>
           <hr style="border: 1px dotted grey">
           <div>
-           <div class="swipeable-div" @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd">
+           <div>
             <!-- main stack top -->
             <div class="btn">
              <h5 class="container text-right ayah-text" style="line-height: 2em">{{ information.ayah.ayah_text }}</h5>
@@ -425,7 +430,7 @@
           </ul>
           <hr style="border: 1px dotted grey">
           <div>
-           <div class="swipeable-div" @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd">
+           <div>
             <!-- main stack top -->
             <div class="btn">
              <div class="mobile-inline">
@@ -589,6 +594,7 @@ export default {
    maxLength: 200,
    touchStartX: 0,
    touchEndX: 0,
+
    form1: new Form({
     id: "",
     surah_name: "",
@@ -614,6 +620,9 @@ export default {
   };
  },
  computed: {
+  showMoreLink() {
+   return this.information.translation.length > this.maxLength;
+  },
   filteredAyahs() {
    // Filter ayahs based on selected surah
    if (!this.surah) return [];
@@ -645,6 +654,36 @@ export default {
  },
 
  methods: {
+
+  toggleExpand() {
+   this.expanded = !this.expanded;
+  },
+  truncatedText(text) {
+   if (!text) return '';
+   return text.length > this.maxLength ?
+    text.substring(0, this.maxLength) + '...' :
+    text;
+  },
+  handleTouchStart(event) {
+   this.touchStartX = event.changedTouches[0].screenX;
+   console.log('Touch start X:', this.touchStartX);
+  },
+  handleTouchEnd(event) {
+   this.touchEndX = event.changedTouches[0].screenX;
+   console.log('Touch end X:', this.touchEndX);
+   this.detectSwipe();
+  },
+  detectSwipe() {
+   const swipeDistance = this.touchStartX - this.touchEndX;
+   console.log('Swipe distance:', swipeDistance);
+   if (swipeDistance > 50) {
+    console.log('Swipe left detected');
+    alert('Swipe left detected');
+   } else if (swipeDistance < -50) {
+    console.log('Swipe right detected');
+    alert('Swipe right detected');
+   }
+  },
   truncatedText(text) {
    if (!text) return '';
    return text.length > this.maxLength ?
@@ -653,31 +692,6 @@ export default {
   },
   toggleExpand() {
    this.expanded = !this.expanded;
-  },
-
-  handleTouchStart(event) {
-   this.touchStartX = event.touches[0].clientX;
-   console.log('Touch Start X:', this.touchStartX);
-  },
-
-  handleTouchMove(event) {
-   this.touchEndX = event.touches[0].clientX;
-   console.log('Touch End X:', this.touchEndX);
-  },
-
-  handleTouchEnd() {
-   const swipeThreshold = 50; // Adjust as needed
-   const swipeDistance = this.touchEndX - this.touchStartX;
-
-   if (Math.abs(swipeDistance) > swipeThreshold) {
-    if (swipeDistance > 0) {
-     this.goToPreviousAyah();
-     console.log('Swipe Right Detected');
-    } else {
-     this.goToNextAyah();
-     console.log('Swipe Left Detected');
-    }
-   }
   },
   handleNoteClick() {
    if (this.isLoggedIn) {
@@ -1411,20 +1425,14 @@ export default {
 @media (max-width: 576px) {
 
  .swipeable-div {
-  display: flex;
+  width: 100%;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
-  flex-wrap: nowrap;
-  padding: 10px;
- }
-
- .swipeable-div {
-  flex-direction: column;
-  align-items: center;
- }
-
- .swipeable-div h5 {
-  margin-bottom: 10px;
+  font-size: 24px;
+  user-select: none;
+  /* To prevent text selection on swipe */
+  touch-action: none;
+  /* Prevent default touch actions */
  }
 }
 

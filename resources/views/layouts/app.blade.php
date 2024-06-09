@@ -55,10 +55,12 @@
                             <h6><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3"
                                     href="/contact">Contact</a></h6>
                         </li>
+                        <!--
                         <li class="nav-item mt-3">
                             <h6><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3"
                                     href="/about">About Us</a></h6>
                         </li>
+                        -->
                         <li class="nav-item mt-3">
                             <h6><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3"
                                     href="/updates">Updates</a></h6>

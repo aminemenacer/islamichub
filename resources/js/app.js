@@ -47,6 +47,7 @@ import BookmarkComponent from "./components/BookmarkComponent.vue";
 import UpdatesComponent from "./components/UpdatesComponent.vue";
 import JoinUsComponent from "./components/JoinUsComponent.vue";
 import NotesComponent from "./components/NotesComponent.vue";
+import Vue3TouchEvents from 'vue3-touch-events';
 
 
 const app = createApp({});
@@ -58,6 +59,8 @@ window.Swal = swal;
 // window.$ = window.jQuery = $;
 
 app.use(PrimeVue);
+app.use(Vue3TouchEvents);
+
 
 app.component("Column", Column);
 app.component("DataTable", DataTable);
