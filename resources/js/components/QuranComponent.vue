@@ -83,7 +83,7 @@
       <span disabled>Select Surah</span>
      </option>
      <option v-for="data in surahs" :key="data.id" :value="data.id" @click="showCard">
-      {{ data.name_en }} - {{ data.name_ar }}
+      {{data.id}} : {{ data.name_en }} - {{ data.name_ar }}
      </option>
     </select>
    </form>
@@ -188,13 +188,13 @@
              <button class="btn button-33 " @click="goToNextSurah()"><i class="bi bi-arrow-right-circle-fill "></i></button>
             -->
             <div class="flex-container">
-              <h5>{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
-              <div class="icon-row">
-                <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToEndAyah()" class="bi bi-chevron-bar-left h5" aria-expanded="false" data-bs-placement="top" title="Last verse"></i>
-                <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToPreviousAyah()" class="bi bi-arrow-left-circle h5" aria-expanded="false" data-bs-placement="top" title="Previous verse"></i>
-                <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToNextAyah()" class="bi bi-arrow-right-circle h5" aria-expanded="false" data-bs-placement="top" title="Next verse"></i>
-                <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToLastAyah()" class="bi bi-chevron-bar-right h5" aria-expanded="false" data-bs-placement="top" title="End verse"></i>
-              </div>
+             <h5>{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
+             <div class="icon-row">
+              <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToEndAyah()" class="bi bi-chevron-bar-left h5" aria-expanded="false" data-bs-placement="top" title="Last verse"></i>
+              <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToPreviousAyah()" class="bi bi-arrow-left-circle h5" aria-expanded="false" data-bs-placement="top" title="Previous verse"></i>
+              <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToNextAyah()" class="bi bi-arrow-right-circle h5" aria-expanded="false" data-bs-placement="top" title="Next verse"></i>
+              <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToLastAyah()" class="bi bi-chevron-bar-right h5" aria-expanded="false" data-bs-placement="top" title="End verse"></i>
+             </div>
             </div>
 
            </div>
@@ -203,7 +203,6 @@
          </ul>
          <hr style="border: 1px dotted grey">
 
-         
          <div class="swipeable-div" @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd">
           <!-- main stack top -->
           <div class="btn">
@@ -213,7 +212,8 @@
 
           <!-- main stack below -->
           <div class="btn">
-           <h5 class="container text-left ayah-translation" name="ayah_text" ref="heading" style="line-height: 1.6em">{{ information.translation }}</h5>
+           <h5 class="container text-left ayah-translation" name="ayah_text" ref="heading1" style="line-height: 1.6em">
+            {{ expanded ? information.translation : truncatedText(information.translation) }} <a href="#" @click="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a></h5>
           </div>
 
          </div>
@@ -270,13 +270,13 @@
          </div>
 
          <div class="icon-container">
-            <i class="bi bi-file-earmark-text text-right" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#exampleModal1" @click="openNoteModal"></i>
-            <i class="bi bi-whatsapp text-right" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp" @click="shareTextViaWhatsApp3()"></i>
-            <i class="bi bi-bookmark text-right" aria-expanded="false" data-bs-placement="top" title="Save bookmark" @click="submitForm"></i>
-            <i class="bi bi-clipboard-check text-right" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText"></i>
-            <i class="bi bi-camera text-right" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot3"></i>
-            <i class="bi bi-bug text-right" aria-expanded="false" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
-          </div>
+          <i class="bi bi-file-earmark-text text-right" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#exampleModal1" @click="openNoteModal"></i>
+          <i class="bi bi-whatsapp text-right" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp" @click="shareTextViaWhatsApp3()"></i>
+          <i class="bi bi-bookmark text-right" aria-expanded="false" data-bs-placement="top" title="Save bookmark" @click="submitForm"></i>
+          <i class="bi bi-clipboard-check text-right" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText"></i>
+          <i class="bi bi-camera text-right" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot3"></i>
+          <i class="bi bi-bug text-right" aria-expanded="false" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
+         </div>
 
          <!--
           <i class="bi bi-cloud-arrow-down-fill mt-1 h3" style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" title="Download Verse" @click="exportToCSV"></i>
@@ -302,12 +302,12 @@
              <div class="flex-container">
               <h5>{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
               <div class="icon-row">
-                <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToEndAyah()" class="bi bi-chevron-bar-left h5" aria-expanded="false" data-bs-placement="top" title="Last verse"></i>
-                <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToPreviousAyah()" class="bi bi-arrow-left-circle h5" aria-expanded="false" data-bs-placement="top" title="Previous verse"></i>
-                <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToNextAyah()" class="bi bi-arrow-right-circle h5" aria-expanded="false" data-bs-placement="top" title="Next verse"></i>
-                <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToLastAyah()" class="bi bi-chevron-bar-right h5" aria-expanded="false" data-bs-placement="top" title="End verse"></i>
+               <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToEndAyah()" class="bi bi-chevron-bar-left h5" aria-expanded="false" data-bs-placement="top" title="Last verse"></i>
+               <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToPreviousAyah()" class="bi bi-arrow-left-circle h5" aria-expanded="false" data-bs-placement="top" title="Previous verse"></i>
+               <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToNextAyah()" class="bi bi-arrow-right-circle h5" aria-expanded="false" data-bs-placement="top" title="Next verse"></i>
+               <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToLastAyah()" class="bi bi-chevron-bar-right h5" aria-expanded="false" data-bs-placement="top" title="End verse"></i>
               </div>
-            </div>
+             </div>
 
             </div>
 
@@ -321,10 +321,8 @@
              <h5 class="container text-right ayah-text" style="line-height: 2em">{{ information.ayah.ayah_text }}</h5>
             </div>
             <hr />
-            <div class="btn">
-             <h5 class="container text-left ayah-translation" name="ayah_text" ref="heading1" style="line-height: 1.6em">{{ tafseer }}</h5>
-            </div>
-
+            <h5 class="container text-left ayah-translation" name="ayah_text" ref="heading1" style="line-height: 1.6em">
+             {{ expanded ? tafseer : truncatedText(tafseer) }} <a href="#" @click="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a></h5>
            </div>
            <br>
 
@@ -379,7 +377,7 @@
           <div class="icon-container">
            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-file-earmark-text text-right h4" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#exampleModal1" @click="openNoteModal"></i>
            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-whatsapp text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp" @click="shareTextViaWhatsApp1()"></i>
-          <!--  
+           <!--  
             <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" border="" class="bi bi-share text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X" @click="shareHeadingOnTwitter3()"></i>
           -->
            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bookmark text-right h4" aria-expanded="false" data-bs-placement="top" title="Save bookmark" @click="submitForm1"></i>
@@ -415,12 +413,12 @@
              <div class="flex-container">
               <h5>{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
               <div class="icon-row">
-                <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToEndAyah()" class="bi bi-chevron-bar-left h5" aria-expanded="false" data-bs-placement="top" title="Last verse"></i>
-                <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToPreviousAyah()" class="bi bi-arrow-left-circle h5" aria-expanded="false" data-bs-placement="top" title="Previous verse"></i>
-                <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToNextAyah()" class="bi bi-arrow-right-circle h5" aria-expanded="false" data-bs-placement="top" title="Next verse"></i>
-                <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToLastAyah()" class="bi bi-chevron-bar-right h5" aria-expanded="false" data-bs-placement="top" title="End verse"></i>
+               <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToEndAyah()" class="bi bi-chevron-bar-left h5" aria-expanded="false" data-bs-placement="top" title="Last verse"></i>
+               <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToPreviousAyah()" class="bi bi-arrow-left-circle h5" aria-expanded="false" data-bs-placement="top" title="Previous verse"></i>
+               <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToNextAyah()" class="bi bi-arrow-right-circle h5" aria-expanded="false" data-bs-placement="top" title="Next verse"></i>
+               <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToLastAyah()" class="bi bi-chevron-bar-right h5" aria-expanded="false" data-bs-placement="top" title="End verse"></i>
               </div>
-            </div>
+             </div>
             </div>
 
            </div>
@@ -439,7 +437,8 @@
 
             <!-- main stack below -->
             <div class="btn">
-             <h5 class="container text-left" name="ayah_text" ref="heading2" style="line-height: 1.6em">{{ information.transliteration }}</h5>
+             <h5 class="container text-left ayah-translation" name="ayah_text" ref="heading1" style="line-height: 1.6em">
+              {{ expanded ? information.transliteration : truncatedText(information.transliteration) }} <a href="#" @click="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a></h5>
             </div>
 
            </div>
@@ -495,10 +494,10 @@
           <div class="icon-container">
            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-file-earmark-text text-right h4" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#exampleModal3" @click="openNoteModal"></i>
            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-whatsapp text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp" @click="shareTextViaWhatsApp2()"></i>
-            <!--
+           <!--
               <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" border="" class="bi bi-share text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X" @click="shareHeadingOnTwitter3()"></i>
             -->
-            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bookmark text-right h4" aria-expanded="false" data-bs-placement="top" title="Save bookmark" @click="submitForm2"></i>
+           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bookmark text-right h4" aria-expanded="false" data-bs-placement="top" title="Save bookmark" @click="submitForm2"></i>
            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-clipboard-check text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText2"></i>
            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-camera text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot2"></i>
            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bug text-right h4" aria-expanded="false" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
@@ -586,6 +585,8 @@ export default {
    showAlert: false,
    showErrorAlert: false,
    showAlertTextNote: false,
+   expanded: false,
+   maxLength: 200,
    touchStartX: 0,
    touchEndX: 0,
    form1: new Form({
@@ -644,23 +645,40 @@ export default {
  },
 
  methods: {
-   handleTouchStart(event) {
-      this.touchStartX = event.changedTouches[0].screenX;
-      console.log('Touch Start:', this.touchStartX);
-    },
-    handleTouchMove(event) {
-      this.touchEndX = event.changedTouches[0].screenX;
-      console.log('Touch End:', this.touchStartX);
-    },
-    handleTouchEnd() {
-      if (this.touchStartX - this.touchEndX > 50) {
-        this.goToPreviousAyah();
-        console.log('Swipe Left Detected');
-      } else if (this.touchEndX - this.touchStartX > 50) {
-         this.goToNextAyah();
-        console.log('Swipe Right Detected');
-      }
-    },
+  truncatedText(text) {
+   if (!text) return '';
+   return text.length > this.maxLength ?
+    text.substring(0, this.maxLength) + '...' :
+    text;
+  },
+  toggleExpand() {
+   this.expanded = !this.expanded;
+  },
+
+  handleTouchStart(event) {
+   this.touchStartX = event.touches[0].clientX;
+   console.log('Touch Start X:', this.touchStartX);
+  },
+
+  handleTouchMove(event) {
+   this.touchEndX = event.touches[0].clientX;
+   console.log('Touch End X:', this.touchEndX);
+  },
+
+  handleTouchEnd() {
+   const swipeThreshold = 50; // Adjust as needed
+   const swipeDistance = this.touchEndX - this.touchStartX;
+
+   if (Math.abs(swipeDistance) > swipeThreshold) {
+    if (swipeDistance > 0) {
+     this.goToPreviousAyah();
+     console.log('Swipe Right Detected');
+    } else {
+     this.goToNextAyah();
+     console.log('Swipe Left Detected');
+    }
+   }
+  },
   handleNoteClick() {
    if (this.isLoggedIn) {
     this.showAlertTextNote = false; // Hide any previous alerts
@@ -1390,58 +1408,59 @@ export default {
 </script>
 
 <style scoped>
-
-
 @media (max-width: 576px) {
 
-  .swipeable-div {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: nowrap;
-    padding: 10px;
-  }
-  .swipeable-div {
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .swipeable-div h5 {
-    margin-bottom: 10px;
-  }
+ .swipeable-div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  padding: 10px;
+ }
+
+ .swipeable-div {
+  flex-direction: column;
+  align-items: center;
+ }
+
+ .swipeable-div h5 {
+  margin-bottom: 10px;
+ }
 }
 
 .flex-container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: nowrap;
-    }
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ flex-wrap: nowrap;
+}
 
-    .flex-container h5 {
-      flex: 1;
-      text-align: center;
-      margin: 0;
-      white-space: nowrap; /* Prevent text from wrapping */
-    }
+.flex-container h5 {
+ flex: 1;
+ text-align: center;
+ margin: 0;
+ white-space: nowrap;
+ /* Prevent text from wrapping */
+}
 
-    .flex-container i {
-      padding: 10px;
-    }
+.flex-container i {
+ padding: 10px;
+}
 
 .icon-container {
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-      flex-wrap: nowrap;
-    }
+ display: flex;
+ align-items: center;
+ justify-content: space-around;
+ flex-wrap: nowrap;
+}
 
-    .icon-container i {
-      padding: 10px;
-      color: rgb(0, 191, 166);
-      cursor: pointer;
-      font-size: 1.5rem; /* Adjust the font size to ensure icons fit in one line */
-    }
+.icon-container i {
+ padding: 10px;
+ color: rgb(0, 191, 166);
+ cursor: pointer;
+ font-size: 1.5rem;
+ /* Adjust the font size to ensure icons fit in one line */
+}
 
 @media (max-width: 768px) {
  .icon-container {
@@ -1488,25 +1507,25 @@ export default {
 }
 
 @media (max-width: 576px) {
-  .flex-container {
-    flex-direction: column;
-    align-items: stretch;
-  }
+ .flex-container {
+  flex-direction: column;
+  align-items: stretch;
+ }
 
-  .icon-row {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-  }
+ .icon-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+ }
 
-  .icon-row i {
-    flex: 1;
-    text-align: center;
-  }
+ .icon-row i {
+  flex: 1;
+  text-align: center;
+ }
 
-  .flex-container h5 {
-    margin-bottom: 10px;
-  }
+ .flex-container h5 {
+  margin-bottom: 10px;
+ }
 }
 
 /* Media query for mobile devices (example: max-width 600px) */
