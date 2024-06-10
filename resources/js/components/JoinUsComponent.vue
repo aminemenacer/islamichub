@@ -1,7 +1,7 @@
 <template>
-<div class="newsletter-subscribe ">
- <div >
-  <div class="intro">
+<div class="newsletter-subscribe">
+ <div class="container">
+  <div class="intro ">
    <h1 class="text-center newsletter-title ">Subscribe to our Mailing List</h1>
    <div><img src="/images/mail3.png" style="width: 100%;" /></div>
 
@@ -72,7 +72,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style >
 .newsletter-subscribe {
   font-family: inter;
   color: #313437;

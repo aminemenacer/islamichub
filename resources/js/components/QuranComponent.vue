@@ -188,13 +188,13 @@
              <button class="btn button-33 " @click="goToNextSurah()"><i class="bi bi-arrow-right-circle-fill "></i></button>
             -->
             <div class="flex-container">
-             <h5>{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
              <div class="icon-row">
               <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToEndAyah()" class="bi bi-chevron-bar-left h5" aria-expanded="false" data-bs-placement="top" title="Last verse"></i>
               <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToPreviousAyah()" class="bi bi-arrow-left-circle h5" aria-expanded="false" data-bs-placement="top" title="Previous verse"></i>
               <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToNextAyah()" class="bi bi-arrow-right-circle h5" aria-expanded="false" data-bs-placement="top" title="Next verse"></i>
               <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToLastAyah()" class="bi bi-chevron-bar-right h5" aria-expanded="false" data-bs-placement="top" title="End verse"></i>
              </div>
+              <h5>{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
             </div>
 
            </div>
@@ -203,7 +203,6 @@
          </ul>
          <hr style="border: 1px dotted grey">
 
-         <div @touchstart="handleTouchStart" @touchend="handleTouchEnd" class="swipeable-div">
           <!-- main stack top -->
           <div class="btn">
            <h5 class="container text-right ayah-text" style="line-height: 2em">{{ information.ayah.ayah_text }}</h5>
@@ -213,15 +212,17 @@
 
           <!-- main stack below -->
           <div class="btn">
-           <h5 class="container text-left ayah-translation" style="line-height: 1.6em">
+           <h5 class="container text-left ayah-translation" ref="heading3" style="line-height: 1.6em">
             {{ expanded ? information.translation : truncatedText(information.translation) }}
             <template v-if="showMoreLink">
              <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
             </template>
            </h5>
+           <h5 class="text-left mt-2 container"><strong>- Translation: </strong>Ahmed Ali</h5>
+
           </div>
 
-         </div>
+          
 
          <!-- Bootstrap alert component -->
          <div v-if="showAlertText" class="alert alert-success alert-dismissible fade show mt-2" role="alert">
@@ -278,7 +279,7 @@
           <i class="bi bi-file-earmark-text text-right" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#exampleModal1" @click="openNoteModal"></i>
           <i class="bi bi-whatsapp text-right" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp" @click="shareTextViaWhatsApp3()"></i>
           <i class="bi bi-bookmark text-right" aria-expanded="false" data-bs-placement="top" title="Save bookmark" @click="submitForm"></i>
-          <i class="bi bi-clipboard-check text-right" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText"></i>
+          <i class="bi bi-clipboard-check text-right" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText3"></i>
           <i class="bi bi-camera text-right" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot3"></i>
           <i class="bi bi-bug text-right" aria-expanded="false" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
          </div>
@@ -305,13 +306,13 @@
             <!-- Surah information -->
             <div class="row">
              <div class="flex-container">
-              <h5>{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
               <div class="icon-row">
                <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToEndAyah()" class="bi bi-chevron-bar-left h5" aria-expanded="false" data-bs-placement="top" title="Last verse"></i>
                <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToPreviousAyah()" class="bi bi-arrow-left-circle h5" aria-expanded="false" data-bs-placement="top" title="Previous verse"></i>
                <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToNextAyah()" class="bi bi-arrow-right-circle h5" aria-expanded="false" data-bs-placement="top" title="Next verse"></i>
                <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToLastAyah()" class="bi bi-chevron-bar-right h5" aria-expanded="false" data-bs-placement="top" title="End verse"></i>
               </div>
+              <h5>{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
              </div>
 
             </div>
@@ -416,13 +417,13 @@
             <!-- Surah information -->
             <div class="row">
              <div class="flex-container">
-              <h5>{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
               <div class="icon-row">
                <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToEndAyah()" class="bi bi-chevron-bar-left h5" aria-expanded="false" data-bs-placement="top" title="Last verse"></i>
                <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToPreviousAyah()" class="bi bi-arrow-left-circle h5" aria-expanded="false" data-bs-placement="top" title="Previous verse"></i>
                <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToNextAyah()" class="bi bi-arrow-right-circle h5" aria-expanded="false" data-bs-placement="top" title="Next verse"></i>
                <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToLastAyah()" class="bi bi-chevron-bar-right h5" aria-expanded="false" data-bs-placement="top" title="End verse"></i>
               </div>
+              <h5>{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
              </div>
             </div>
 
@@ -442,7 +443,7 @@
 
             <!-- main stack below -->
             <div class="btn">
-             <h5 class="container text-left ayah-translation" name="ayah_text" ref="heading1" style="line-height: 1.6em">
+             <h5 class="container text-left ayah-translation" name="ayah_text" ref="heading2" style="line-height: 1.6em">
               {{ expanded ? information.transliteration : truncatedText(information.transliteration) }} <a href="#" @click="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a></h5>
             </div>
 
@@ -530,15 +531,21 @@
 
 <script>
 import html2canvas from 'html2canvas';
+import { ref } from 'vue';
 
 export default {
+
+
  mounted() {
+
   this.getSurahs();
   this.fetchAyahs();
  },
 
  data() {
   return {
+    touchStartX: 0,
+    touchEndX: 0,
    isLoggedIn: false,
    bookmarkSubmitted: false,
    bookmarkSubmitted: JSON.parse(localStorage.getItem('bookmarkSubmitted')) || {},
@@ -591,7 +598,7 @@ export default {
    showErrorAlert: false,
    showAlertTextNote: false,
    expanded: false,
-   maxLength: 200,
+   maxLength: 180,
    touchStartX: 0,
    touchEndX: 0,
 
@@ -1282,12 +1289,12 @@ export default {
    }
   },
 
-  copyText() {
-   console.log(this.$refs.heading);
-   var textToCopy = this.$refs.heading.innerText;
-   console.log(textToCopy);
+  copyText3() {
+   console.log(this.$refs.heading3);
+   var textToCopy3 = this.$refs.heading3.innerText;
+   console.log(textToCopy3);
    // Copy the text to the clipboard
-   this.copyToClipboard(textToCopy);
+   this.copyToClipboard(textToCopy3);
    this.showAlertText = true; // Show success alert
    this.showErrorAlert = false; // Hide error alert
    this.hideAlertAfterDelay(); // Start timer to hide alert
@@ -1306,13 +1313,10 @@ export default {
   copyText2() {
    // Log the reference to ensure it's correct
    console.log(this.$refs.heading2);
-
    // Access the text content from the reference
    var textToCopy2 = this.$refs.heading2.innerText;
-
    // Log the text content to ensure it's correct
    console.log(textToCopy2);
-
    // Copy the text to the clipboard
    this.copyToClipboard(textToCopy2);
    this.showAlertText = true; // Show success alert
@@ -1423,7 +1427,15 @@ export default {
 
 <style scoped>
 @media (max-width: 576px) {
-
+  
+  .swipe-element {
+  width: 200px;
+  height: 200px;
+  background-color: lightgray;
+  text-align: center;
+  line-height: 200px;
+  cursor: pointer;
+}
  .swipeable-div {
   width: 100%;
   justify-content: center;

@@ -10,8 +10,8 @@ import "sweetalert2/src/sweetalert2.scss";
 import $ from "jquery";
 
 import PrimeVue from "primevue/config";
-import "primevue/resources/themes/saga-blue/theme.css"; //theme
-import "primevue/resources/primevue.min.css"; //core css
+import "primevue/resources/themes/saga-blue/theme.css";
+import "primevue/resources/primevue.min.css";
 import DataTable from "primevue/datatable";
 import Column from "primevue/column";
 import Button from "primevue/button";
@@ -47,19 +47,16 @@ import BookmarkComponent from "./components/BookmarkComponent.vue";
 import UpdatesComponent from "./components/UpdatesComponent.vue";
 import JoinUsComponent from "./components/JoinUsComponent.vue";
 import NotesComponent from "./components/NotesComponent.vue";
-import Vue3TouchEvents from 'vue3-touch-events';
-
 
 const app = createApp({});
-
-
 
 window.Form = Form;
 window.Swal = swal;
 // window.$ = window.jQuery = $;
 
 app.use(PrimeVue);
-app.use(Vue3TouchEvents);
+
+
 
 
 app.component("Column", Column);
@@ -97,7 +94,5 @@ app.component("bookmark-component", BookmarkComponent);
 app.component("updates-component", UpdatesComponent);
 app.component("join_us-component", JoinUsComponent);
 app.component("notes-component", NotesComponent);
-
-
 
 app.mount("#app");
