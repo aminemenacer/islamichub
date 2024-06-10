@@ -21,11 +21,11 @@ class SurahSeeder extends Seeder
         while (($data = fgetcsv($csvFile, 2000, ",")) !== FALSE) {
             if (!$firstline) {
                 Surah::create([
-                    "id" => $data['0'],
-                    "name_en" => $data['1'],
-                    "name_ar" => $data['2'],
-                    "text" => $data['3']
-
+                    "id" => $data[0],
+                    "name_en" => $data[1],
+                    "juz_id" => $data[3],
+                    "name_ar" => $data[2],
+                    "text" => $data[4],
                 ]);
             }
             $firstline = false;

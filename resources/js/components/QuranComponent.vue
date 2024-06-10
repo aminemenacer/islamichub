@@ -194,7 +194,53 @@
               <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToNextAyah()" class="bi bi-arrow-right-circle h5" aria-expanded="false" data-bs-placement="top" title="Next verse"></i>
               <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToLastAyah()" class="bi bi-chevron-bar-right h5" aria-expanded="false" data-bs-placement="top" title="End verse"></i>
              </div>
-              <h5>{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
+             <div style="display: flex; align-items: center;">
+              <h5 style="margin-right: 10px;" >
+                {{ information.ayah.surah.name_en }} {{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }}
+              </h5>
+              <i style="color:rgb(0, 191, 166); cursor:pointer" data-bs-toggle="modal" data-bs-target="#exampleModal2" class="bi bi-info-circle pt-2 h5" aria-expanded="false" data-bs-placement="top" title="Information"></i>
+            </div>
+
+
+             <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg">
+               <div class="modal-content">
+                <div class="modal-header">
+                 <h1 class="modal-title fs-5" id="exampleModalLabel"><strong>Information</strong></h1>
+                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                 <form class="container text-left">
+                  <div class="mb-3 container">
+                   <label for="formGroupExampleInput" class="form-label text-left">Surah Name (Arabic):</label>
+                   <p class="mt-2 text-dark text-right">
+                    {{ information.ayah.surah.name_ar }}
+                   </p>
+                  </div>
+                  <div class="mb-3 container">
+                   <label for="formGroupExampleInput" class="form-label">Surah Name (English):</label>
+                   <p class="mt-2 text-dark text-left">
+                    {{ information.ayah.surah.name_en }}
+                   </p>
+                  </div>
+                  <div class="mb-3 container">
+                   <label for="formGroupExampleInput" class="form-label text-left">Surah Information:</label>
+                   <p class="text-left">
+                    {{ expanded ? information.ayah.surah.text : truncatedText(information.ayah.surah.text) }}
+                    <template v-if="showMoreLink">
+                     <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
+                    </template>
+                   </p>
+                  </div>
+
+                 </form>
+                </div>
+                <div class="modal-footer">
+                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+               </div>
+              </div>
+             </div>
             </div>
 
            </div>
@@ -203,26 +249,23 @@
          </ul>
          <hr style="border: 1px dotted grey">
 
-          <!-- main stack top -->
-          <div class="btn">
-           <h5 class="container text-right ayah-text" style="line-height: 2em">{{ information.ayah.ayah_text }}</h5>
+         <!-- main stack top -->
+         <div class="btn">
+          <h5 class="container text-right ayah-text" style="line-height: 2em">{{ information.ayah.ayah_text }}</h5>
+         </div>
+         <hr />
 
-          </div>
-          <hr />
+         <!-- main stack below -->
+         <div class="btn">
+          <h5 class="container text-left ayah-translation" ref="heading3" style="line-height: 1.6em">
+           {{ expanded ? information.translation : truncatedText(information.translation) }}
+           <template v-if="showMoreLink">
+            <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
+           </template>
+          </h5>
+          <h5 class="text-left mt-2 container"><strong>- Translation: </strong>Ahmed Ali</h5>
 
-          <!-- main stack below -->
-          <div class="btn">
-           <h5 class="container text-left ayah-translation" ref="heading3" style="line-height: 1.6em">
-            {{ expanded ? information.translation : truncatedText(information.translation) }}
-            <template v-if="showMoreLink">
-             <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
-            </template>
-           </h5>
-           <h5 class="text-left mt-2 container"><strong>- Translation: </strong>Ahmed Ali</h5>
-
-          </div>
-
-          
+         </div>
 
          <!-- Bootstrap alert component -->
          <div v-if="showAlertText" class="alert alert-success alert-dismissible fade show mt-2" role="alert">
@@ -306,15 +349,19 @@
             <!-- Surah information -->
             <div class="row">
              <div class="flex-container">
-              <div class="icon-row">
-               <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToEndAyah()" class="bi bi-chevron-bar-left h5" aria-expanded="false" data-bs-placement="top" title="Last verse"></i>
-               <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToPreviousAyah()" class="bi bi-arrow-left-circle h5" aria-expanded="false" data-bs-placement="top" title="Previous verse"></i>
-               <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToNextAyah()" class="bi bi-arrow-right-circle h5" aria-expanded="false" data-bs-placement="top" title="Next verse"></i>
-               <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToLastAyah()" class="bi bi-chevron-bar-right h5" aria-expanded="false" data-bs-placement="top" title="End verse"></i>
-              </div>
-              <h5>{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
+             <div class="icon-row">
+              <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToEndAyah()" class="bi bi-chevron-bar-left h5" aria-expanded="false" data-bs-placement="top" title="Last verse"></i>
+              <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToPreviousAyah()" class="bi bi-arrow-left-circle h5" aria-expanded="false" data-bs-placement="top" title="Previous verse"></i>
+              <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToNextAyah()" class="bi bi-arrow-right-circle h5" aria-expanded="false" data-bs-placement="top" title="Next verse"></i>
+              <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToLastAyah()" class="bi bi-chevron-bar-right h5" aria-expanded="false" data-bs-placement="top" title="End verse"></i>
              </div>
-
+             <div style="display: flex; align-items: center;">
+              <h5 style="margin-right: 10px;" >
+                {{ information.ayah.surah.name_en }} {{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }}
+              </h5>
+              <i style="color:rgb(0, 191, 166); cursor:pointer" data-bs-toggle="modal" data-bs-target="#exampleModal2" class="bi bi-info-circle pt-2 h5" aria-expanded="false" data-bs-placement="top" title="Information"></i>
+            </div>
+            </div>
             </div>
 
            </div>
@@ -417,14 +464,19 @@
             <!-- Surah information -->
             <div class="row">
              <div class="flex-container">
-              <div class="icon-row">
-               <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToEndAyah()" class="bi bi-chevron-bar-left h5" aria-expanded="false" data-bs-placement="top" title="Last verse"></i>
-               <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToPreviousAyah()" class="bi bi-arrow-left-circle h5" aria-expanded="false" data-bs-placement="top" title="Previous verse"></i>
-               <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToNextAyah()" class="bi bi-arrow-right-circle h5" aria-expanded="false" data-bs-placement="top" title="Next verse"></i>
-               <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToLastAyah()" class="bi bi-chevron-bar-right h5" aria-expanded="false" data-bs-placement="top" title="End verse"></i>
-              </div>
-              <h5>{{information.ayah.surah.name_en}} {{information.ayah.surah_id}}: {{ information.ayah.ayah_id }}</h5>
+             <div class="icon-row">
+              <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToEndAyah()" class="bi bi-chevron-bar-left h5" aria-expanded="false" data-bs-placement="top" title="Last verse"></i>
+              <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToPreviousAyah()" class="bi bi-arrow-left-circle h5" aria-expanded="false" data-bs-placement="top" title="Previous verse"></i>
+              <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToNextAyah()" class="bi bi-arrow-right-circle h5" aria-expanded="false" data-bs-placement="top" title="Next verse"></i>
+              <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToLastAyah()" class="bi bi-chevron-bar-right h5" aria-expanded="false" data-bs-placement="top" title="End verse"></i>
              </div>
+             <div style="display: flex; align-items: center;">
+              <h5 style="margin-right: 10px;" >
+                {{ information.ayah.surah.name_en }} {{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }}
+              </h5>
+              <i style="color:rgb(0, 191, 166); cursor:pointer" data-bs-toggle="modal" data-bs-target="#exampleModal2" class="bi bi-info-circle pt-2 h5" aria-expanded="false" data-bs-placement="top" title="Information"></i>
+            </div>
+            </div>
             </div>
 
            </div>
@@ -531,10 +583,11 @@
 
 <script>
 import html2canvas from 'html2canvas';
-import { ref } from 'vue';
+import {
+ ref
+} from 'vue';
 
 export default {
-
 
  mounted() {
 
@@ -544,8 +597,8 @@ export default {
 
  data() {
   return {
-    touchStartX: 0,
-    touchEndX: 0,
+   touchStartX: 0,
+   touchEndX: 0,
    isLoggedIn: false,
    bookmarkSubmitted: false,
    bookmarkSubmitted: JSON.parse(localStorage.getItem('bookmarkSubmitted')) || {},
@@ -1427,15 +1480,16 @@ export default {
 
 <style scoped>
 @media (max-width: 576px) {
-  
-  .swipe-element {
+
+ .swipe-element {
   width: 200px;
   height: 200px;
   background-color: lightgray;
   text-align: center;
   line-height: 200px;
   cursor: pointer;
-}
+ }
+
  .swipeable-div {
   width: 100%;
   justify-content: center;
