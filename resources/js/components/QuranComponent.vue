@@ -195,12 +195,11 @@
               <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToLastAyah()" class="bi bi-chevron-bar-right h5" aria-expanded="false" data-bs-placement="top" title="End verse"></i>
              </div>
              <div style="display: flex; align-items: center;">
-              <h5 style="margin-right: 10px;" >
-                {{ information.ayah.surah.name_en }} {{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }}
+              <h5 style="margin-right: 10px;">
+               {{ information.ayah.surah.name_en }} {{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }}
               </h5>
               <i style="color:rgb(0, 191, 166); cursor:pointer" data-bs-toggle="modal" data-bs-target="#exampleModal2" class="bi bi-info-circle pt-2 h5" aria-expanded="false" data-bs-placement="top" title="Information"></i>
-            </div>
-
+             </div>
 
              <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog modal-lg">
@@ -211,12 +210,6 @@
                 </div>
                 <div class="modal-body">
                  <form class="container text-left">
-                  <div class="mb-3 container">
-                   <label for="formGroupExampleInput" class="form-label text-left">Surah Name (Arabic):</label>
-                   <p class="mt-2 text-dark text-right">
-                    {{ information.ayah.surah.name_ar }}
-                   </p>
-                  </div>
                   <div class="mb-3 container">
                    <label for="formGroupExampleInput" class="form-label">Surah Name (English):</label>
                    <p class="mt-2 text-dark text-left">
@@ -249,41 +242,43 @@
          </ul>
          <hr style="border: 1px dotted grey">
 
-         <!-- main stack top -->
-         <div class="btn">
-          <h5 class="container text-right ayah-text" style="line-height: 2em">{{ information.ayah.ayah_text }}</h5>
-         </div>
-         <hr />
+         <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div">
 
-         <!-- main stack below -->
-         <div class="btn">
-          <h5 class="container text-left ayah-translation" ref="heading3" style="line-height: 1.6em">
-           {{ expanded ? information.translation : truncatedText(information.translation) }}
-           <template v-if="showMoreLink">
-            <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
-           </template>
-          </h5>
-          <h5 class="text-left mt-2 container"><strong>- Translation: </strong>Ahmed Ali</h5>
+          <!-- main stack top -->
+          <div class="btn">
+           <h5 class="container text-right ayah-text" style="line-height: 2em">{{ information.ayah.ayah_text }}</h5>
+          </div>
+          <hr />
 
-         </div>
+          <!-- main stack below -->
 
-         <!-- Bootstrap alert component -->
-         <div v-if="showAlertText" class="alert alert-success alert-dismissible fade show mt-2" role="alert">
-          Text copied successfully!
-         </div>
+          <div class="btn">
+           <h5 class="container text-left ayah-translation" ref="heading3" style="line-height: 1.6em">
+            {{ expanded ? information.translation : truncatedText(information.translation) }}
+            <template v-if="showMoreLink">
+             <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
+            </template>
+           </h5>
+           <h5 class="text-left mt-2 container"><strong>- Translation: </strong>Ahmed Ali</h5>
+          </div>
 
-         <!-- bookmark component -->
-         <div v-if="showAlert" class="alert alert-success mt-2" role="alert">
-          Bookmark created successfully!
-         </div>
-         <div v-if="showErrorAlert" class="alert alert-danger" role="alert">
-          Login to your account to be able to bookmark verses.
-         </div>
+          <!-- Bootstrap alert component -->
+          <div v-if="showAlertText" class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+           Text copied successfully!
+          </div>
 
-         <div v-if="showAlertTextNote" class="alert alert-danger" role="alert">
-          Please log in to write a note.
-         </div>
+          <!-- bookmark component -->
+          <div v-if="showAlert" class="alert alert-success mt-2" role="alert">
+           Bookmark created successfully!
+          </div>
+          <div v-if="showErrorAlert" class="alert alert-danger" role="alert">
+           Login to your account to be able to bookmark verses.
+          </div>
 
+          <div v-if="showAlertTextNote" class="alert alert-danger" role="alert">
+           Please log in to write a note.
+          </div>
+         </div>
         </div>
         <!-- features -->
         <div class="text-right pt-2">
@@ -349,19 +344,19 @@
             <!-- Surah information -->
             <div class="row">
              <div class="flex-container">
-             <div class="icon-row">
-              <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToEndAyah()" class="bi bi-chevron-bar-left h5" aria-expanded="false" data-bs-placement="top" title="Last verse"></i>
-              <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToPreviousAyah()" class="bi bi-arrow-left-circle h5" aria-expanded="false" data-bs-placement="top" title="Previous verse"></i>
-              <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToNextAyah()" class="bi bi-arrow-right-circle h5" aria-expanded="false" data-bs-placement="top" title="Next verse"></i>
-              <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToLastAyah()" class="bi bi-chevron-bar-right h5" aria-expanded="false" data-bs-placement="top" title="End verse"></i>
-             </div>
-             <div style="display: flex; align-items: center;">
-              <h5 style="margin-right: 10px;" >
+              <div class="icon-row">
+               <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToEndAyah()" class="bi bi-chevron-bar-left h5" aria-expanded="false" data-bs-placement="top" title="Last verse"></i>
+               <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToPreviousAyah()" class="bi bi-arrow-left-circle h5" aria-expanded="false" data-bs-placement="top" title="Previous verse"></i>
+               <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToNextAyah()" class="bi bi-arrow-right-circle h5" aria-expanded="false" data-bs-placement="top" title="Next verse"></i>
+               <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToLastAyah()" class="bi bi-chevron-bar-right h5" aria-expanded="false" data-bs-placement="top" title="End verse"></i>
+              </div>
+              <div style="display: flex; align-items: center;">
+               <h5 style="margin-right: 10px;">
                 {{ information.ayah.surah.name_en }} {{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }}
-              </h5>
-              <i style="color:rgb(0, 191, 166); cursor:pointer" data-bs-toggle="modal" data-bs-target="#exampleModal2" class="bi bi-info-circle pt-2 h5" aria-expanded="false" data-bs-placement="top" title="Information"></i>
-            </div>
-            </div>
+               </h5>
+               <i style="color:rgb(0, 191, 166); cursor:pointer" data-bs-toggle="modal" data-bs-target="#exampleModal2" class="bi bi-info-circle pt-2 h5" aria-expanded="false" data-bs-placement="top" title="Information"></i>
+              </div>
+             </div>
             </div>
 
            </div>
@@ -369,27 +364,29 @@
           <hr style="border: 1px dotted grey">
           <div>
            <div>
-            <!-- main stack top -->
-            <div class="btn">
-             <h5 class="container text-right ayah-text" style="line-height: 2em">{{ information.ayah.ayah_text }}</h5>
+            <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div">
+             <!-- main stack top -->
+             <div class="btn">
+              <h5 class="container text-right ayah-text" style="line-height: 2em">{{ information.ayah.ayah_text }}</h5>
+             </div>
+             <hr />
+             <h5 class="container text-left ayah-translation" name="ayah_text" ref="heading1" style="line-height: 1.6em">
+              {{ expanded ? tafseer : truncatedText(tafseer) }} <a href="#" @click="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a></h5>
             </div>
-            <hr />
-            <h5 class="container text-left ayah-translation" name="ayah_text" ref="heading1" style="line-height: 1.6em">
-             {{ expanded ? tafseer : truncatedText(tafseer) }} <a href="#" @click="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a></h5>
-           </div>
-           <br>
+            <br>
 
-           <!-- Bootstrap alert component -->
-           <div v-if="showAlertText" class="alert alert-success alert-dismissible fade show" role="alert">
-            Text copied successfully!
-           </div>
+            <!-- Bootstrap alert component -->
+            <div v-if="showAlertText" class="alert alert-success alert-dismissible fade show" role="alert">
+             Text copied successfully!
+            </div>
 
-           <!-- bookmark component -->
-           <div v-if="showAlert" class="alert alert-success" role="alert">
-            Bookmark created successfully!
-           </div>
-           <div v-if="showErrorAlert" class="alert alert-danger" role="alert">
-            Login to your account to be able to bookmark verses.
+            <!-- bookmark component -->
+            <div v-if="showAlert" class="alert alert-success" role="alert">
+             Bookmark created successfully!
+            </div>
+            <div v-if="showErrorAlert" class="alert alert-danger" role="alert">
+             Login to your account to be able to bookmark verses.
+            </div>
            </div>
           </div>
          </div>
@@ -464,26 +461,26 @@
             <!-- Surah information -->
             <div class="row">
              <div class="flex-container">
-             <div class="icon-row">
-              <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToEndAyah()" class="bi bi-chevron-bar-left h5" aria-expanded="false" data-bs-placement="top" title="Last verse"></i>
-              <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToPreviousAyah()" class="bi bi-arrow-left-circle h5" aria-expanded="false" data-bs-placement="top" title="Previous verse"></i>
-              <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToNextAyah()" class="bi bi-arrow-right-circle h5" aria-expanded="false" data-bs-placement="top" title="Next verse"></i>
-              <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToLastAyah()" class="bi bi-chevron-bar-right h5" aria-expanded="false" data-bs-placement="top" title="End verse"></i>
-             </div>
-             <div style="display: flex; align-items: center;">
-              <h5 style="margin-right: 10px;" >
+              <div class="icon-row">
+               <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToEndAyah()" class="bi bi-chevron-bar-left h5" aria-expanded="false" data-bs-placement="top" title="Last verse"></i>
+               <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToPreviousAyah()" class="bi bi-arrow-left-circle h5" aria-expanded="false" data-bs-placement="top" title="Previous verse"></i>
+               <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToNextAyah()" class="bi bi-arrow-right-circle h5" aria-expanded="false" data-bs-placement="top" title="Next verse"></i>
+               <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToLastAyah()" class="bi bi-chevron-bar-right h5" aria-expanded="false" data-bs-placement="top" title="End verse"></i>
+              </div>
+              <div style="display: flex; align-items: center;">
+               <h5 style="margin-right: 10px;">
                 {{ information.ayah.surah.name_en }} {{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }}
-              </h5>
-              <i style="color:rgb(0, 191, 166); cursor:pointer" data-bs-toggle="modal" data-bs-target="#exampleModal2" class="bi bi-info-circle pt-2 h5" aria-expanded="false" data-bs-placement="top" title="Information"></i>
-            </div>
-            </div>
+               </h5>
+               <i style="color:rgb(0, 191, 166); cursor:pointer" data-bs-toggle="modal" data-bs-target="#exampleModal2" class="bi bi-info-circle pt-2 h5" aria-expanded="false" data-bs-placement="top" title="Information"></i>
+              </div>
+             </div>
             </div>
 
            </div>
           </ul>
           <hr style="border: 1px dotted grey">
           <div>
-           <div>
+           <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div">
             <!-- main stack top -->
             <div class="btn">
              <div class="mobile-inline">
@@ -516,68 +513,68 @@
            </div>
           </div>
          </div>
-         <!-- features -->
-         <div class="text-right ">
-          <!-- notes modal -->
-          <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" ref="exampleModal3">
-           <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Write a Note</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-             </div>
-             <div class="modal-body">
+        </div>
+        <!-- features -->
+        <div class="text-right ">
+         <!-- notes modal -->
+         <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" ref="exampleModal3">
+          <div class="modal-dialog modal-lg">
+           <div class="modal-content">
+            <div class="modal-header">
+             <h5 class="modal-title" id="exampleModalLabel">Write a Note</h5>
+             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
 
-              <form @submit.prevent="createNote">
+             <form @submit.prevent="createNote">
 
-               <div class="row container mt-3">
-                <h5 class="text-left pb-2" style="font-weight:bolder">Notes & Reflections</h5>
+              <div class="row container mt-3">
+               <h5 class="text-left pb-2" style="font-weight:bolder">Notes & Reflections</h5>
 
-                <div class="col">
-                 <textarea v-model="form1.ayah_notes" class="form-control container mb-3" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah ?." rows="8"></textarea>
-                </div>
+               <div class="col">
+                <textarea v-model="form1.ayah_notes" class="form-control container mb-3" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah ?." rows="8"></textarea>
                </div>
-               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-success">Submit</button>
-               </div>
-              </form>
-             </div>
+              </div>
+              <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+               <button type="submit" class="btn btn-success">Submit</button>
+              </div>
+             </form>
             </div>
            </div>
           </div>
-          <!--
+         </div>
+         <!--
            <i class="bi bi-cloud-arrow-down-fill mt-1 h3" style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" title="Download Verse" @click="exportToCSV2"></i>
            -->
-          <div class="icon-container">
-           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-file-earmark-text text-right h4" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#exampleModal3" @click="openNoteModal"></i>
-           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-whatsapp text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp" @click="shareTextViaWhatsApp2()"></i>
-           <!--
+         <div class="icon-container">
+          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-file-earmark-text text-right h4" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#exampleModal3" @click="openNoteModal"></i>
+          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-whatsapp text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp" @click="shareTextViaWhatsApp2()"></i>
+          <!--
               <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" border="" class="bi bi-share text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X" @click="shareHeadingOnTwitter3()"></i>
             -->
-           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bookmark text-right h4" aria-expanded="false" data-bs-placement="top" title="Save bookmark" @click="submitForm2"></i>
-           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-clipboard-check text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText2"></i>
-           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-camera text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot2"></i>
-           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bug text-right h4" aria-expanded="false" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
-          </div>
+          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bookmark text-right h4" aria-expanded="false" data-bs-placement="top" title="Save bookmark" @click="submitForm2"></i>
+          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-clipboard-check text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText2"></i>
+          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-camera text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot2"></i>
+          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bug text-right h4" aria-expanded="false" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
          </div>
         </div>
+       </div>
 
-        <!--
+       <!--
         <div class="pt-4">
           <strong class="text-center pt-3 mr-3 pb-4" style="font-size:18px"><a href="/bookmarks" style="text-decoration:underline;color:black"><strong>Bookmarks</strong></a></strong>
           <strong class="text-center pt-3 pb-4" style="font-size:18px"><a href="/notes" style="text-decoration:underline;color:black"><strong>Notes</strong></a></strong>
         </div>
         -->
-       </div>
       </div>
-
      </div>
+
     </div>
    </div>
   </div>
-
  </div>
+
 </div>
 </template>
 
@@ -714,7 +711,29 @@ export default {
  },
 
  methods: {
-
+  handleTouchStart(event) {
+   this.touchStartX = event.changedTouches[0].screenX;
+  },
+  handleTouchMove(event) {
+   this.touchEndX = event.changedTouches[0].screenX;
+  },
+  handleTouchEnd() {
+   if (this.touchStartX - this.touchEndX > 50) {
+    this.onSwipeLeft();
+   } else if (this.touchEndX - this.touchStartX > 50) {
+    this.onSwipeRight();
+   }
+  },
+  onSwipeLeft() {
+   this.goToPreviousAyah();
+   console.log('Swiped left');
+   // Add your logic for swiping left here
+  },
+  onSwipeRight() {
+   this.goToNextAyah();
+   console.log('Swiped right');
+   // Add your logic for swiping right here
+  },
   toggleExpand() {
    this.expanded = !this.expanded;
   },
@@ -724,15 +743,7 @@ export default {
     text.substring(0, this.maxLength) + '...' :
     text;
   },
-  handleTouchStart(event) {
-   this.touchStartX = event.changedTouches[0].screenX;
-   console.log('Touch start X:', this.touchStartX);
-  },
-  handleTouchEnd(event) {
-   this.touchEndX = event.changedTouches[0].screenX;
-   console.log('Touch end X:', this.touchEndX);
-   this.detectSwipe();
-  },
+
   detectSwipe() {
    const swipeDistance = this.touchStartX - this.touchEndX;
    console.log('Swipe distance:', swipeDistance);
