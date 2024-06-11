@@ -1,6 +1,30 @@
 <template>
 <div class="container">
 
+<div class="row ml-4 mt-3 container-fluid">
+  <h3 class="text-left mt-3 mb-2 container" style="line-height: 1.7em; font-family:inter; "><img src="/images/art.png" style="width: 40px;" class="mb-1 mr-2" />Introducing "Swipe Gestures"</h3>
+  <div class="col-md-6">
+   <h5 class="text-left text-secondary" width="80%" style="line-height: 1.7em; font-family:inter">June 11th, 2024</h5>
+   <div>
+    <p style="padding:5px; line-height: 1.7em; font-family:inter" class="text-left text-secondary ">The Ayah Swipe Gesture feature offers a significant enhancement to the user experience by providing an intuitive and fluid method for navigating through the Quran. By enabling users to swipe left or right to move between ayahs, the feature mimics the natural act of turning pages, making digital Quran reading more engaging and less cumbersome. This seamless navigation reduces the need for repetitive clicks or taps, allowing readers to maintain their focus and concentration on the sacred text.</p>
+   </div>
+   <p class="text-left text-secondary " style="line-height: 1.7em; font-family:inter">In addition to the Ayah Swipe Gesture, several other features have been added to enrich the Quran reading experience:</p>
+   <div>
+    <li style="padding:5px" class="text-left text-secondary "><strong>Surah Information</strong></li>
+    <li style="padding:5px" class="text-left text-secondary "><strong>Surah Indexing</strong></li>
+    <li style="padding:5px" class="text-left text-secondary "><strong>Easier reading experience</strong></li>
+    <li style="padding:5px" class="text-left text-secondary "><strong>Added translation source</strong></li>
+    <li style="padding:5px" class="text-left text-secondary "><strong>Beginning and ending around arrow</strong></li>
+   </div>
+
+  </div>
+  <div class="col-md-6">
+   <img src="images/updategesture.png" style="width:80%" />
+  </div>
+ </div>
+
+ <hr>
+
  <div class="row ml-4 mt-3 container-fluid">
   <h3 class="text-left mt-3 mb-2 container" style="line-height: 1.7em; font-family:inter; "><img src="/images/art.png" style="width: 40px;" class="mb-1 mr-2" /> Discover Our Updated Features for an Enhanced Quranic Journey</h3>
   <div class="col-md-6">
