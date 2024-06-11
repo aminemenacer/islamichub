@@ -195,10 +195,10 @@
               <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToLastAyah()" class="bi bi-chevron-bar-right h5" aria-expanded="false" data-bs-placement="top" title="End verse"></i>
              </div>
              <div style="display: flex; align-items: center;">
-              <h5 style="margin-right: 10px;">
+              <h5 style="margin-right: 10px; " data-bs-toggle="modal" data-bs-target="#exampleModal2" data-bs-placement="top" class="highlight-hover">
                {{ information.ayah.surah.name_en }} {{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }}
               </h5>
-              <i style="color:rgb(0, 191, 166); cursor:pointer" data-bs-toggle="modal" data-bs-target="#exampleModal2" class="bi bi-info-circle pt-2 h5" aria-expanded="false" data-bs-placement="top" title="Information"></i>
+              <i style="color:rgb(0, 191, 166); cursor:pointer"  class="bi bi-info-circle pt-2 h5" aria-expanded="false" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
              </div>
 
              <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -242,17 +242,22 @@
          </ul>
          <hr style="border: 1px dotted grey">
 
-         <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div">
+         <div  class="swipeable-div">
 
           <!-- main stack top -->
-          <div class="btn">
-           <h5 class="container text-right ayah-text" style="line-height: 2em">{{ information.ayah.ayah_text }}</h5>
+          <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="btn">
+           <h5 class="container text-left ayah-translation" ref="heading3" style="line-height: 1.6em">
+            {{ expanded ? information.ayah.ayah_text : truncatedText(information.ayah.ayah_text) }}
+            <template v-if="showMoreLink">
+             <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'عرض أقل' : 'أظهر المزيد' }}</a>
+            </template>
+           </h5>
           </div>
           <hr />
 
           <!-- main stack below -->
 
-          <div class="btn">
+          <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="btn">
            <h5 class="container text-left ayah-translation" ref="heading3" style="line-height: 1.6em">
             {{ expanded ? information.translation : truncatedText(information.translation) }}
             <template v-if="showMoreLink">
@@ -319,7 +324,9 @@
           <i class="bi bi-bookmark text-right" aria-expanded="false" data-bs-placement="top" title="Save bookmark" @click="submitForm"></i>
           <i class="bi bi-clipboard-check text-right" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText3"></i>
           <i class="bi bi-camera text-right" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot3"></i>
+          <!--
           <i class="bi bi-bug text-right" aria-expanded="false" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
+          -->
          </div>
 
          <!--
@@ -354,7 +361,7 @@
                <h5 style="margin-right: 10px;">
                 {{ information.ayah.surah.name_en }} {{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }}
                </h5>
-               <i style="color:rgb(0, 191, 166); cursor:pointer" data-bs-toggle="modal" data-bs-target="#exampleModal2" class="bi bi-info-circle pt-2 h5" aria-expanded="false" data-bs-placement="top" title="Information"></i>
+                <i style="color:rgb(0, 191, 166); cursor:pointer"  class="bi bi-info-circle pt-2 h5" aria-expanded="false" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
               </div>
              </div>
             </div>
@@ -366,21 +373,30 @@
            <div>
             <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div">
              <!-- main stack top -->
+
+             <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="btn">
+              <h5 class="container text-left ayah-translation" ref="heading3" style="line-height: 1.6em">
+                {{ expanded ? tafseer : truncatedText(tafseer) }}
+                <template v-if="showMoreLink">
+                <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'عرض أقل' : 'أظهر المزيد' }}</a>
+                </template>
+              </h5>
+              </div>
+
              <div class="btn">
               <h5 class="container text-right ayah-text" style="line-height: 2em">{{ information.ayah.ayah_text }}</h5>
              </div>
              <hr />
 
-            <div class="btn">
-            <h5 class="container text-left ayah-translation" ref="heading3" style="line-height: 1.6em">
-              {{ expanded ? tafseer : truncatedText(tafseer) }}
-              <template v-if="showMoreLink">
-              <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
-              </template>
-            </h5>
-            </div>
+             <div class="btn">
+              <h5 class="container text-left ayah-translation" ref="heading3" style="line-height: 1.6em">
+               {{ expanded ? tafseer : truncatedText(tafseer) }}
+               <template v-if="showMoreLink">
+                <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
+               </template>
+              </h5>
+             </div>
 
-             
             </div>
             <br>
 
@@ -436,13 +452,15 @@
           <div class="icon-container">
            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-file-earmark-text text-right h4" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#exampleModal1" @click="openNoteModal"></i>
            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-whatsapp text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp" @click="shareTextViaWhatsApp1()"></i>
-           <!--  
-            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" border="" class="bi bi-share text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X" @click="shareHeadingOnTwitter3()"></i>
-          -->
+            <!--  
+              <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" border="" class="bi bi-share text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X" @click="shareHeadingOnTwitter3()"></i>
+            -->
            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bookmark text-right h4" aria-expanded="false" data-bs-placement="top" title="Save bookmark" @click="submitForm1"></i>
            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-clipboard-check text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText1"></i>
            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-camera text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot1"></i>
-           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bug text-right h4" aria-expanded="false" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
+            <!--
+              <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bug text-right h4" aria-expanded="false" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
+            -->
           </div>
          </div>
         </div>
@@ -480,7 +498,7 @@
                <h5 style="margin-right: 10px;">
                 {{ information.ayah.surah.name_en }} {{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }}
                </h5>
-               <i style="color:rgb(0, 191, 166); cursor:pointer" data-bs-toggle="modal" data-bs-target="#exampleModal2" class="bi bi-info-circle pt-2 h5" aria-expanded="false" data-bs-placement="top" title="Information"></i>
+                <i style="color:rgb(0, 191, 166); cursor:pointer"  class="bi bi-info-circle pt-2 h5" aria-expanded="false" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
               </div>
              </div>
             </div>
@@ -491,16 +509,16 @@
           <div>
            <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div">
             <!-- main stack top -->
-            <div class="btn">
-             <div class="mobile-inline">
-              <h5 class="container text-right" style="line-height: 2em; display: inline;">{{ information.ayah.ayah_text }}</h5>
-             </div>
+            
 
+            <div class="btn" @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" >
+             <h5 class="container text-left ayah-translation" name="ayah_text" ref="heading2" style="line-height: 1.6em">
+              {{ expanded ? information.ayah.ayah_text : truncatedText(information.ayah.ayah_text) }} <a href="#" @click="toggleExpand">{{ expanded ? 'عرض أقل' : 'أظهر المزيد' }}</a></h5>
             </div>
             <hr />
 
             <!-- main stack below -->
-            <div class="btn">
+            <div class="btn" @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" >
              <h5 class="container text-left ayah-translation" name="ayah_text" ref="heading2" style="line-height: 1.6em">
               {{ expanded ? information.transliteration : truncatedText(information.transliteration) }} <a href="#" @click="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a></h5>
             </div>
@@ -565,7 +583,9 @@
           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bookmark text-right h4" aria-expanded="false" data-bs-placement="top" title="Save bookmark" @click="submitForm2"></i>
           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-clipboard-check text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText2"></i>
           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-camera text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot2"></i>
-          <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bug text-right h4" aria-expanded="false" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
+          <!--
+            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bug text-right h4" aria-expanded="false" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
+          -->
          </div>
         </div>
        </div>
@@ -720,6 +740,7 @@ export default {
  },
 
  methods: {
+
   handleTouchStart(event) {
    this.touchStartX = event.changedTouches[0].screenX;
   },
@@ -1499,7 +1520,26 @@ export default {
 </script>
 
 <style scoped>
+  .highlight-hover {
+    transition: background-color 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+  }
+
+ .highlight-hover:hover {
+  color: #333;
+  cursor: pointer;
+ }
 @media (max-width: 576px) {
+ .highlight-hover {
+  transition: background-color 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+ }
+
+ .highlight-hover:hover {
+  color: #333;
+  text-decoration: underline;
+  cursor: pointer;
+ }
 
  .swipe-element {
   width: 200px;
@@ -1509,7 +1549,7 @@ export default {
   line-height: 200px;
   cursor: pointer;
  }
-
+  
  .swipeable-div {
   width: 100%;
   justify-content: center;
@@ -1520,6 +1560,7 @@ export default {
   touch-action: none;
   /* Prevent default touch actions */
  }
+ 
 }
 
 .flex-container {
