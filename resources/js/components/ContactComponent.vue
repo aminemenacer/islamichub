@@ -1,14 +1,14 @@
 <template>
-<div class="newsletter-subscribe container">
+<div class="newsletter-subscribe">
  <div>
   <div class="intro">
    <h1 class="text-center newsletter-title ">Get In Touch</h1>
   </div>
 
-  <div class="contact3 ">
+  <div class="contact3 container-fluid">
    <div class="row no-gutters">
-    <div class="container">
-     <div class="row">
+    <div >
+     <div class="row container-fluid">
       <div class="col-lg-6">
        <p class="text-left text-secondary " style="line-height: 1.7em; font-family:inter">
         Welcome to Islamic Connect, where we aim to make accessing and understanding the Noble Quran a truly enriching experience for everyone.
@@ -113,7 +113,7 @@
 .newsletter-subscribe {
  font-family: inter;
  color: #313437;
- padding: 55px 74px;
+ padding: 40px;
 }
 
 .newsletter-subscribe p {
@@ -134,7 +134,6 @@
 
 .newsletter-subscribe .intro {
  font-size: 16px;
- max-width: 500px;
  margin: 0 auto 25px;
 }
 

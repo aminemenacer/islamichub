@@ -259,7 +259,7 @@
              <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
             </template>
            </h5>
-           <h5 class="text-left mt-2 container"><strong>- Translation: </strong>Ahmed Ali</h5>
+           <h5 class="text-left mt-3 container"><strong>- Translation: </strong>Ahmed Ali</h5>
           </div>
 
           <!-- Bootstrap alert component -->
@@ -370,8 +370,17 @@
               <h5 class="container text-right ayah-text" style="line-height: 2em">{{ information.ayah.ayah_text }}</h5>
              </div>
              <hr />
-             <h5 class="container text-left ayah-translation" name="ayah_text" ref="heading1" style="line-height: 1.6em">
-              {{ expanded ? tafseer : truncatedText(tafseer) }} <a href="#" @click="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a></h5>
+
+            <div class="btn">
+            <h5 class="container text-left ayah-translation" ref="heading3" style="line-height: 1.6em">
+              {{ expanded ? tafseer : truncatedText(tafseer) }}
+              <template v-if="showMoreLink">
+              <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
+              </template>
+            </h5>
+            </div>
+
+             
             </div>
             <br>
 
