@@ -212,10 +212,10 @@
          </ul>
          <hr style="border: 1px dotted grey">
 
-         <div  class="swipeable-div">
+         <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div">
 
           <!-- main stack top -->
-          <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="btn">
+          <div  class="btn">
            <h5 class="container text-left ayah-translation" ref="heading3" style="line-height: 1.6em">
             {{ information.ayah.ayah_text }}
            </h5>
@@ -224,7 +224,7 @@
 
           <!-- main stack below -->
 
-          <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="btn">
+          <div class="btn">
            <h5 class="container text-left ayah-translation" ref="heading3" style="line-height: 1.6em">
             {{ expanded ? information.translation : truncatedText(information.translation) }}
             <template v-if="showMoreLink">
@@ -370,9 +370,9 @@
            </div>
           </ul>
           <hr style="border: 1px dotted grey">
-          <div>
+          <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div">
            <div>
-            <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div">
+            <div >
              <!-- main stack top -->
 
              <div class="btn">
@@ -390,20 +390,20 @@
              </div>
 
             </div>
-            <br>
+              <br>
 
-            <!-- Bootstrap alert component -->
-            <div v-if="showAlertText" class="alert alert-success alert-dismissible fade show" role="alert">
-             Text copied successfully!
-            </div>
+              <!-- Bootstrap alert component -->
+              <div v-if="showAlertText" class="alert alert-success alert-dismissible fade show" role="alert">
+              Text copied successfully!
+              </div>
 
-            <!-- bookmark component -->
-            <div v-if="showAlert" class="alert alert-success" role="alert">
-             Bookmark created successfully!
-            </div>
-            <div v-if="showErrorAlert" class="alert alert-danger" role="alert">
-             Login to your account to be able to bookmark verses.
-            </div>
+              <!-- bookmark component -->
+              <div v-if="showAlert" class="alert alert-success" role="alert">
+              Bookmark created successfully!
+              </div>
+              <div v-if="showErrorAlert" class="alert alert-danger" role="alert">
+              Login to your account to be able to bookmark verses.
+              </div>
            </div>
           </div>
          </div>
@@ -495,11 +495,11 @@
            </div>
           </ul>
           <hr style="border: 1px dotted grey">
-          <div>
+          <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd">
             <!-- main stack top -->
             
 
-            <div class="btn" @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" >
+            <div class="btn"  >
              <h5 class="container text-left ayah-translation" name="ayah_text" ref="heading2" style="line-height: 1.6em">
               {{ information.ayah.ayah_text }}
              </h5>
