@@ -10,6 +10,9 @@
   </div>
  </div>
 
+
+  
+
  <!-- correction modal -->
  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
@@ -183,10 +186,10 @@
 
            <!-- Surah information -->
            <div class="row">
-            <!--
-             <button class="btn button-33 mr-2" @click="goToPreviousSurah()"><i class="bi bi-arrow-left-circle-fill"></i></button>
-             <button class="btn button-33 " @click="goToNextSurah()"><i class="bi bi-arrow-right-circle-fill "></i></button>
-            -->
+              <!--
+              <button class="btn button-33 mr-2" @click="goToPreviousSurah()"><i class="bi bi-arrow-left-circle-fill"></i></button>
+              <button class="btn button-33 " @click="goToNextSurah()"><i class="bi bi-arrow-right-circle-fill "></i></button>
+              -->
             <div class="flex-container">
              <div class="icon-row">
               <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToEndAyah()" class="bi bi-chevron-bar-left h5" aria-expanded="false" data-bs-placement="top" title="Last verse"></i>
@@ -201,39 +204,6 @@
               <i style="color:rgb(0, 191, 166); cursor:pointer"  class="bi bi-info-circle pt-2 h5" aria-expanded="false" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
              </div>
 
-             <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog modal-lg">
-               <div class="modal-content">
-                <div class="modal-header">
-                 <h1 class="modal-title fs-5" id="exampleModalLabel"><strong>Information</strong></h1>
-                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                 <form class="container text-left">
-                  <div class="mb-3 container">
-                   <label for="formGroupExampleInput" class="form-label">Surah Name (English):</label>
-                   <p class="mt-2 text-dark text-left">
-                    {{ information.ayah.surah.name_en }}
-                   </p>
-                  </div>
-                  <div class="mb-3 container">
-                   <label for="formGroupExampleInput" class="form-label text-left">Surah Information:</label>
-                   <p class="text-left">
-                    {{ expanded ? information.ayah.surah.text : truncatedText(information.ayah.surah.text) }}
-                    <template v-if="showMoreLink">
-                     <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
-                    </template>
-                   </p>
-                  </div>
-
-                 </form>
-                </div>
-                <div class="modal-footer">
-                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-               </div>
-              </div>
-             </div>
             </div>
 
            </div>
@@ -247,10 +217,7 @@
           <!-- main stack top -->
           <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="btn">
            <h5 class="container text-left ayah-translation" ref="heading3" style="line-height: 1.6em">
-            {{ expanded ? information.ayah.ayah_text : truncatedText(information.ayah.ayah_text) }}
-            <template v-if="showMoreLink">
-             <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'عرض أقل' : 'أظهر المزيد' }}</a>
-            </template>
+            {{ information.ayah.ayah_text }}
            </h5>
           </div>
           <hr />
@@ -264,7 +231,7 @@
              <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
             </template>
            </h5>
-           <h5 class="text-left mt-3 container"><strong>- Translation: </strong>Ahmed Ali</h5>
+           <h6 class="text-left mt-4 container"><strong>* Translation: </strong>Ahmed Ali</h6>
           </div>
 
           <!-- Bootstrap alert component -->
@@ -287,6 +254,40 @@
         </div>
         <!-- features -->
         <div class="text-right pt-2">
+
+        <!-- surah info -->
+        <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel"><strong>Information</strong></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form class="container text-left">
+                  <div class="mb-3 container">
+                    <label for="formGroupExampleInput" class="form-label">Surah Name (English):</label>
+                    <p class="mt-2 text-dark text-left">
+                      {{ information.ayah.surah.name_en }}
+                    </p>
+                  </div>
+                  <div class="mb-3 container">
+                    <label for="formGroupExampleInput" class="form-label text-left">Surah Information:</label>
+                    <p class="text-left">
+                      {{ expanded ? information.ayah.surah.text : truncatedText(information.ayah.surah.text) }}
+                      <template v-if="showMoreLink">
+                        <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
+                      </template>
+                    </p>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
 
          <!-- notes modal -->
          <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" ref="exampleModal1">
@@ -358,9 +359,9 @@
                <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToLastAyah()" class="bi bi-chevron-bar-right h5" aria-expanded="false" data-bs-placement="top" title="End verse"></i>
               </div>
               <div style="display: flex; align-items: center;">
-               <h5 style="margin-right: 10px;">
-                {{ information.ayah.surah.name_en }} {{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }}
-               </h5>
+               <h5 style="margin-right: 10px; " data-bs-toggle="modal" data-bs-target="#exampleModal2" data-bs-placement="top" class="highlight-hover">
+               {{ information.ayah.surah.name_en }} {{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }}
+              </h5>
                 <i style="color:rgb(0, 191, 166); cursor:pointer"  class="bi bi-info-circle pt-2 h5" aria-expanded="false" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
               </div>
              </div>
@@ -374,22 +375,13 @@
             <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div">
              <!-- main stack top -->
 
-             <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="btn">
-              <h5 class="container text-left ayah-translation" ref="heading3" style="line-height: 1.6em">
-                {{ expanded ? tafseer : truncatedText(tafseer) }}
-                <template v-if="showMoreLink">
-                <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'عرض أقل' : 'أظهر المزيد' }}</a>
-                </template>
-              </h5>
-              </div>
-
              <div class="btn">
               <h5 class="container text-right ayah-text" style="line-height: 2em">{{ information.ayah.ayah_text }}</h5>
              </div>
              <hr />
 
              <div class="btn">
-              <h5 class="container text-left ayah-translation" ref="heading3" style="line-height: 1.6em">
+              <h5 class="container text-left ayah-translation" ref="heading1" style="line-height: 1.6em">
                {{ expanded ? tafseer : truncatedText(tafseer) }}
                <template v-if="showMoreLink">
                 <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
@@ -416,11 +408,12 @@
           </div>
          </div>
          <!-- features -->
-
-         <div class="text-right mr-3 container">
+        <div>
 
           <div>
            <!-- Your other components and code -->
+
+           
 
            <!-- Notes Modal -->
            <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" ref="exampleModal2">
@@ -449,6 +442,8 @@
            </div>
           </div>
 
+
+
           <div class="icon-container">
            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-file-earmark-text text-right h4" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#exampleModal1" @click="openNoteModal"></i>
            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-whatsapp text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp" @click="shareTextViaWhatsApp1()"></i>
@@ -464,13 +459,7 @@
           </div>
          </div>
         </div>
-        <!--
-          <div class="pt-4">
-            <strong class="text-center mr-3 pb-4" style="font-size:18px"><a href="/bookmarks" style="text-decoration:underline;color:black"><strong>Bookmarks</strong></a></strong>
-            <strong class="text-center pt-3 pb-4" style="font-size:18px"><a href="/notes" style="text-decoration:underline;color:black"><strong>Notes</strong></a></strong>
-          </div>
-          -->
-
+        
        </div>
       </div>
 
@@ -495,9 +484,9 @@
                <i style="color:rgb(0, 191, 166); cursor:pointer" @click="goToLastAyah()" class="bi bi-chevron-bar-right h5" aria-expanded="false" data-bs-placement="top" title="End verse"></i>
               </div>
               <div style="display: flex; align-items: center;">
-               <h5 style="margin-right: 10px;">
-                {{ information.ayah.surah.name_en }} {{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }}
-               </h5>
+               <h5 style="margin-right: 10px; " data-bs-toggle="modal" data-bs-target="#exampleModal2" data-bs-placement="top" class="highlight-hover">
+               {{ information.ayah.surah.name_en }} {{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }}
+              </h5>
                 <i style="color:rgb(0, 191, 166); cursor:pointer"  class="bi bi-info-circle pt-2 h5" aria-expanded="false" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
               </div>
              </div>
@@ -507,22 +496,24 @@
           </ul>
           <hr style="border: 1px dotted grey">
           <div>
-           <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div">
             <!-- main stack top -->
             
 
             <div class="btn" @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" >
              <h5 class="container text-left ayah-translation" name="ayah_text" ref="heading2" style="line-height: 1.6em">
-              {{ expanded ? information.ayah.ayah_text : truncatedText(information.ayah.ayah_text) }} <a href="#" @click="toggleExpand">{{ expanded ? 'عرض أقل' : 'أظهر المزيد' }}</a></h5>
+              {{ information.ayah.ayah_text }}
+             </h5>
             </div>
             <hr />
 
             <!-- main stack below -->
-            <div class="btn" @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" >
-             <h5 class="container text-left ayah-translation" name="ayah_text" ref="heading2" style="line-height: 1.6em">
-              {{ expanded ? information.transliteration : truncatedText(information.transliteration) }} <a href="#" @click="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a></h5>
-            </div>
-
+            <h5 class="container text-left ayah-translation" ref="heading1" style="line-height: 1.6em">
+               {{ expanded ? information.transliteration : truncatedText(information.transliteration) }}
+               <template v-if="showMoreLink">
+                <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
+               </template>
+              </h5>
+        
            </div>
            <br>
 
@@ -539,10 +530,10 @@
             Login to your account to be able to bookmark verses.
            </div>
           </div>
-         </div>
         </div>
         <!-- features -->
-        <div class="text-right ">
+
+        <div >
          <!-- notes modal -->
          <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" ref="exampleModal3">
           <div class="modal-dialog modal-lg">
@@ -571,9 +562,7 @@
            </div>
           </div>
          </div>
-         <!--
-           <i class="bi bi-cloud-arrow-down-fill mt-1 h3" style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" title="Download Verse" @click="exportToCSV2"></i>
-           -->
+         
          <div class="icon-container">
           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-file-earmark-text text-right h4" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#exampleModal3" @click="openNoteModal"></i>
           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-whatsapp text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via whatsapp" @click="shareTextViaWhatsApp2()"></i>
@@ -583,9 +572,6 @@
           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bookmark text-right h4" aria-expanded="false" data-bs-placement="top" title="Save bookmark" @click="submitForm2"></i>
           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-clipboard-check text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy verse" @click="copyText2"></i>
           <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-camera text-right h4" data-bs-toggle="tooltip" data-bs-placement="top" title="Screenshot verse" @click="captureScreenshot2"></i>
-          <!--
-            <i style="padding:10px; color:rgb(0, 191, 166); cursor:pointer" class="bi bi-bug text-right h4" aria-expanded="false" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
-          -->
          </div>
         </div>
        </div>
@@ -1604,9 +1590,6 @@ export default {
   text-align: center;
  }
 
- .icon-container i {
-  margin: 2px;
- }
 }
 
 .mobile-only {
@@ -1614,11 +1597,7 @@ export default {
 }
 
 @media (min-width: 992px) {
- .icon-container {
-  width: 50%;
-  /* Adjust this value as needed */
-  margin: 0 auto;
- }
+ 
 }
 
 @media (max-width: 768px) {
@@ -1650,7 +1629,6 @@ export default {
  .icon-row {
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
  }
 
  .icon-row i {
