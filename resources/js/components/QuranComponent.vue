@@ -609,8 +609,11 @@ export default {
 
  data() {
   return {
-   touchStartX: 0,
-   touchEndX: 0,
+    touchStartX: 0,
+    touchEndX: 0,
+    touchStartY: 0,
+    touchEndY: 0,
+    touchStartTime: 0,
    isLoggedIn: false,
    bookmarkSubmitted: false,
    bookmarkSubmitted: JSON.parse(localStorage.getItem('bookmarkSubmitted')) || {},
@@ -726,19 +729,42 @@ export default {
  },
 
  methods: {
-
   handleTouchStart(event) {
-   this.touchStartX = event.changedTouches[0].screenX;
+    this.touchStartX = event.changedTouches[0].screenX;
+    this.touchStartY = event.changedTouches[0].screenY;
+    this.touchStartTime = Date.now();
   },
   handleTouchMove(event) {
-   this.touchEndX = event.changedTouches[0].screenX;
+    this.touchEndX = event.changedTouches[0].screenX;
+    this.touchEndY = event.changedTouches[0].screenY;
   },
   handleTouchEnd() {
-   if (this.touchStartX - this.touchEndX > 50) {
-    this.onSwipeLeft();
-   } else if (this.touchEndX - this.touchStartX > 50) {
-    this.onSwipeRight();
-   }
+    const touchEndTime = Date.now();
+    const timeDiff = touchEndTime - this.touchStartTime;
+    const deltaX = this.touchEndX - this.touchStartX;
+    const deltaY = this.touchEndY - this.touchStartY;
+
+      const minSwipeDistance = 50; // Minimum distance in pixels to be considered a swipe
+      const maxTapDistance = 10; // Maximum distance in pixels to be considered a tap
+      const maxSwipeDuration = 500; // Maximum duration in ms to be considered a swipe
+      const maxTapDuration = 200; // Maximum duration in ms to be considered a tap
+
+    // Check if it's a tap
+    if (Math.abs(deltaX) < maxTapDistance && Math.abs(deltaY) < maxTapDistance && timeDiff < maxTapDuration) {
+      this.onTap();
+    }
+    // Check if it's a swipe
+    else if (
+      Math.abs(deltaX) > minSwipeDistance &&
+      timeDiff < maxSwipeDuration &&
+      Math.abs(deltaX) > Math.abs(deltaY) // Ensure it's a horizontal swipe
+    ) {
+      if (deltaX > 0) {
+        this.onSwipeRight();
+      } else {
+        this.onSwipeLeft();
+      }
+    }
   },
   onSwipeLeft() {
    this.goToPreviousAyah();
@@ -749,6 +775,10 @@ export default {
    this.goToNextAyah();
    console.log('Swiped right');
    // Add your logic for swiping right here
+  },
+  onTap() {
+    console.log('Tapped');
+    // Add your logic for a tap here
   },
   toggleExpand() {
    this.expanded = !this.expanded;
