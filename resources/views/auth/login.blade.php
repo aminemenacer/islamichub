@@ -45,8 +45,8 @@
                                     @endif
                                     <p class="mb-3 pb-lg-2" style="color: #000000;">Don't have an account? <a href="/register" style="color: #00BFA6;">Register here</a></p>
                                 </div>
-                                {{-- <hr>
-                                <div class="text-center">
+                                <hr>
+                                {{-- <div class="text-center">
                                     <b>or login with:</b>
                                     <a href="{{ url('auth/facebook') }}" class="btn btn-link btn-floating" style="font-size: 22px; color:#00BFA6;">
                                         <i class="fab fa-facebook-f"></i>

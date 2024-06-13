@@ -1,18 +1,19 @@
 // Vue libraries
 require("./bootstrap");
-import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import $ from 'jquery';
+
 
 import { createApp } from "vue";
 import { Form } from "vform";
 import swal from "sweetalert2";
 import "sweetalert2/src/sweetalert2.scss";
-import $ from "jquery";
 
 import PrimeVue from "primevue/config";
 import "primevue/resources/themes/saga-blue/theme.css";
 import "primevue/resources/primevue.min.css";
+
 import DataTable from "primevue/datatable";
 import Column from "primevue/column";
 import Button from "primevue/button";
@@ -53,12 +54,11 @@ const app = createApp({});
 
 window.Form = Form;
 window.Swal = swal;
-// window.$ = window.jQuery = $;
+
+window.jQuery = $;
+window.$ = $;
 
 app.use(PrimeVue);
-
-
-
 
 app.component("Column", Column);
 app.component("DataTable", DataTable);
@@ -76,7 +76,7 @@ app.component("Dialog", Dialog);
 app.component("Image", Image);
 
 app.component("users-component", UsersComponent);
-app.component("mailing_list-component", MailingListComponent);
+app.component("mailing-list-component", MailingListComponent);
 app.component("feedback-component", FeedbackComponent);
 app.component("payment-component", PaymentComponent);
 app.component("donation-component", DonationComponent);
@@ -93,7 +93,7 @@ app.component("quran-component", QuranComponent);
 app.component("about-component", AboutComponent);
 app.component("bookmark-component", BookmarkComponent);
 app.component("updates-component", UpdatesComponent);
-app.component("join_us-component", JoinUsComponent);
+app.component("join-us-component", JoinUsComponent);
 app.component("notes-component", NotesComponent);
 
 app.mount("#app");
