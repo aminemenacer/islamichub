@@ -45,3 +45,4 @@ class SurahController extends Controller
     }
 
 }
+
