@@ -191,6 +191,7 @@
        </li>
       </ul>
      </div>
+
     </div>
 
     <div class="card-body" id="alertContainer">
@@ -218,7 +219,9 @@
               <div class="dropdown">
                 <i style="color:rgb(0, 191, 166); cursor:pointer" class="bi pt-3 bi-three-dots-vertical h5 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></i>
                 <ul class="dropdown-menu">
+                  <!--
                   <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal3" @click="openNoteModal">Write a Note</a></li>
+                  -->
                   <li><a class="dropdown-item" @click="shareTextViaWhatsApp3">Share via WhatsApp</a></li>
                   <li><a class="dropdown-item" @click="submitForm">Bookmark Verse</a></li>
                   <li><a class="dropdown-item" @click="copyText3">Copy Verse</a></li>
@@ -234,7 +237,7 @@
          <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
           <!-- Main Stack Top -->
           <div class="btn">
-           <h5 class="text-left ayah-translation text-right" ref="heading3" style="line-height: 1.6em">
+           <h5 class="ayah-translation text-right" ref="heading3" style="line-height: 1.6em">
             {{ information.ayah.ayah_text }}
            </h5>
           </div>
@@ -347,7 +350,9 @@
               <div class="dropdown">
                 <i style="color:rgb(0, 191, 166); cursor:pointer" class="bi pt-3 bi-three-dots-vertical h5 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></i>
                 <ul class="dropdown-menu">
+                  <!--
                   <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal1" @click="openNoteModal">Write a Note</a></li>
+                  -->
                   <li><a class="dropdown-item" @click="shareTextViaWhatsApp1">Share via WhatsApp</a></li>
                   <li><a class="dropdown-item" @click="submitForm">Bookmark Verse</a></li>
                   <li><a class="dropdown-item" @click="copyText1">Copy Verse</a></li>
@@ -357,36 +362,37 @@
               </div>
             </div>
           <div ref="targetElement1">
-           <h5 style="margin-right: 10px;">
-            {{ information.ayah.surah.name_en }} {{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }}
-           </h5>
-           <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div">
-            <!-- Main Stack Top -->
-            <div class="btn">
-             <h5 class="container text-right ayah-text" style="line-height: 2em">{{ information.ayah.ayah_text }}</h5>
+            <h5 style="margin-right: 10px;">
+              {{ information.ayah.surah.name_en }} {{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }}
+            </h5>
+            <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div">
+              <!-- Main Stack Top -->
+              <div class="btn">
+                <h5 class="container text-right ayah-text" style="line-height: 2em">{{ information.ayah.ayah_text }}</h5>
+              </div>
+              <div class="btn">
+                <h5 class="container text-left ayah-translation" ref="heading1" style="line-height: 1.6em">
+                  {{ expanded ? tafseer : truncatedText(tafseer) }}
+                  <template v-if="showMoreLink">
+                    <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
+                  </template>
+                </h5>
+              </div>
+              <br>
+              <!-- Bootstrap Alert Component -->
+              <div v-if="showAlertText" class="alert alert-success alert-dismissible fade show" role="alert">
+                Text copied successfully!
+              </div>
+              <!-- Bookmark Component -->
+              <div v-if="showAlert" class="alert alert-success" role="alert">
+                Bookmark created successfully!
+              </div>
+              <div v-if="showErrorAlert" class="alert alert-danger" role="alert">
+                Login to your account to be able to bookmark verses.
+              </div>
             </div>
-            <div class="btn">
-             <h5 class="container text-left ayah-translation" ref="heading1" style="line-height: 1.6em">
-              {{ expanded ? tafseer : truncatedText(tafseer) }}
-              <template v-if="showMoreLink">
-               <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
-              </template>
-             </h5>
-            </div>
-            <br>
-            <!-- Bootstrap Alert Component -->
-            <div v-if="showAlertText" class="alert alert-success alert-dismissible fade show" role="alert">
-             Text copied successfully!
-            </div>
-            <!-- Bookmark Component -->
-            <div v-if="showAlert" class="alert alert-success" role="alert">
-             Bookmark created successfully!
-            </div>
-            <div v-if="showErrorAlert" class="alert alert-danger" role="alert">
-             Login to your account to be able to bookmark verses.
-            </div>
-           </div>
           </div>
+
          </div>
          <!-- Notes Modal -->
          <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" ref="exampleModal4">
@@ -434,7 +440,9 @@
               <div class="dropdown">
                 <i style="color:rgb(0, 191, 166); cursor:pointer" class="bi pt-3 bi-three-dots-vertical h5 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></i>
                 <ul class="dropdown-menu">
+                  <!--
                   <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal3" @click="openNoteModal">Write a Note</a></li>
+                  -->
                   <li><a class="dropdown-item" @click="shareTextViaWhatsApp2">Share via WhatsApp</a></li>
                   <li><a class="dropdown-item" @click="submitForm">Bookmark Verse</a></li>
                   <li><a class="dropdown-item" @click="copyText2">Copy Verse</a></li>
@@ -443,28 +451,26 @@
                 </ul>
               </div>
             </div>
-          <div ref="targetElement2">
-           <h5 style="margin-right: 10px;">
-            {{ information.ayah.surah.name_en }} {{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }}
-           </h5>
-           <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd">
-            <!-- main stack top -->
-
-            <div class="btn">
-             <h5 class=" text-right ayah-translation" name="ayah_text" style="line-height: 1.6em">
-              {{ information.ayah.ayah_text }}
-             </h5>
-            </div>
-
-            <!-- main stack below -->
-            <h5 class=" text-left ayah-translation" ref="heading2" style="line-height: 1.6em">
-             {{ expanded ? information.transliteration : truncatedText(information.transliteration) }}
-             <template v-if="showMoreLink">
-              <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
-             </template>
+          <div ref="targetElement2" class="scrollable-container" @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd">
+            <h5 style="margin-right: 10px;">
+              {{ information.ayah.surah.name_en }} {{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }}
             </h5>
+            <div>
+              <!-- main stack top -->
+              <div class="btn">
+                <h5 class="text-right ayah-translation" name="ayah_text" style="line-height: 1.6em">
+                  {{ information.ayah.ayah_text }}
+                </h5>
+              </div>
 
-           </div>
+              <!-- main stack below -->
+              <h5 class="text-left ayah-translation" ref="heading2" style="line-height: 1.6em">
+                {{ expanded ? information.transliteration : truncatedText(information.transliteration) }}
+                <template v-if="showMoreLink">
+                  <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
+                </template>
+              </h5>
+            </div>
           </div>
           <br>
 
@@ -549,6 +555,7 @@ export default {
    touchStartY: 0,
    touchEndY: 0,
    touchStartTime: 0,
+   threshold: 50,
    isLoggedIn: false,
    bookmarkSubmitted: false,
    bookmarkSubmitted: JSON.parse(localStorage.getItem('bookmarkSubmitted')) || {},
@@ -1525,7 +1532,7 @@ export default {
 
 .scrollmenu {
  overflow-y: hidden;
- overflow-x: inherit;
+ overflow-x: hidden;
  /* Hide horizontal scrollbar */
  white-space: nowrap;
 }
@@ -1583,6 +1590,12 @@ export default {
 }
 
 @media (max-width: 768px) {
+  .scrollable-container {
+    overflow-y: auto;
+    max-height: 100vh; /* Adjust the height as needed */
+    -webkit-overflow-scrolling: touch; /* Enables smooth scrolling on iOS */
+  }
+
  .icon-row {
   justify-content: center;
   flex-wrap: wrap;
