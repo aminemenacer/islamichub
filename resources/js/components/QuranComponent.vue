@@ -65,64 +65,74 @@
         </li>
       </ul>
     -->
-    
-    <!-- Custom Surah Selection -->
-    <div class="scrollmenu" @change="getAyahs()">
-      <a href="#">
-        <div class="flex justify-content-center mr-1">
-            <span class="badge button-33" label="" severity="success" raised outlined @click="selectSurah(36)" :class="{ active: surah === 36 }">Ya Seen</span>
-        </div>
-      </a>
-      <a href="#">
-        <div class="flex justify-content-center mr-1">
-            <span class="badge button-33" label="" severity="success" raised outlined @click="selectSurah(114)" :class="{ active: surah === 114 }">An-Nas</span>
-        </div>
-      </a>
-      <a href="#">
-        <div class="flex justify-content-center mr-1">
-            <span class="badge button-33" label="" severity="success" raised outlined @click="selectSurah(113)" :class="{ active: surah === 113 }">Al-Falak</span>
-        </div>
-      </a>
-      <a href="#">
-        <div class="flex justify-content-center mr-1">
-            <span class="badge button-33" label="" severity="success" raised outlined @click="selectSurah(109)" :class="{ active: surah === 109 }">Al-Kafiroon</span>
-        </div>
-      </a>
-      <a href="#">
-        <div class="flex justify-content-center mr-1">
-            <span class="badge button-33" label="" severity="success" raised outlined @click="selectSurah(67)" :class="{ active: surah === 67 }">Al-Mulk</span>
-        </div>
-      </a>
-      <a href="#">
-        <div class="flex justify-content-center mr-1">
-            <span class="badge button-33" label="" severity="success" raised outlined @click="selectSurah(55)" :class="{ active: surah === 55 }">Al-Rahman</span>
-        </div>
-      </a>
-      <a href="#">
-        <div class="flex justify-content-center mr-1">
-            <span class="badge button-33" label="" severity="success" raised outlined @click="selectSurah(18)" :class="{ active: surah === 18 }">Al-Kahf</span>
-        </div>
-      </a>
-    </div>
 
+   <!-- Custom Surah Selection -->
+   <div class="scrollmenu" @change="getAyahs()">
+    <a href="#">
+     <div class="flex justify-content-center mr-1">
+      <span class="badge button-33" label="" severity="success" raised outlined @click="selectSurah(1)" :class="{ active: surah === 1 }">Al Fatiha</span>
+     </div>
+    </a>
+    <a href="#">
+     <div class="flex justify-content-center mr-1">
+      <span class="badge button-33" label="" severity="success" raised outlined @click="selectSurah(114)" :class="{ active: surah === 114 }">An-Nas</span>
+     </div>
+    </a>
+    <a href="#">
+     <div class="flex justify-content-center mr-1">
+      <span class="badge button-33" label="" severity="success" raised outlined @click="selectSurah(113)" :class="{ active: surah === 113 }">Al-Falak</span>
+     </div>
+    </a>
+    <a href="#">
+     <div class="flex justify-content-center mr-1">
+      <span class="badge button-33" label="" severity="success" raised outlined @click="selectSurah(67)" :class="{ active: surah === 67 }">Al-Mulk</span>
+     </div>
+    </a>
+    <a href="#">
+     <div class="flex justify-content-center mr-1">
+      <span class="badge button-33" label="" severity="success" raised outlined @click="selectSurah(18)" :class="{ active: surah === 18 }">Al-Kahf</span>
+     </div>
+    </a>
+    <a href="#">
+     <div class="flex justify-content-center mr-1">
+      <span class="badge button-33" label="" severity="success" raised outlined @click="selectSurah(55)" :class="{ active: surah === 55 }">Al-Rahman</span>
+     </div>
+    </a>
+    <a href="#">
+     <div class="flex justify-content-center mr-1">
+      <span class="badge button-33" label="" severity="success" raised outlined @click="selectSurah(36)" :class="{ active: surah === 36 }">Ya Seen</span>
+     </div>
+    </a>
+    <a href="#">
+     <div class="flex justify-content-center mr-1">
+      <span class="badge button-33" label="" severity="success" raised outlined @click="selectSurah(87)" :class="{ active: surah === 87 }">Al-A'la</span>
+     </div>
+    </a>
+    <a href="#">
+     <div class="flex justify-content-center mr-1">
+      <span class="badge button-33" label="" severity="success" raised outlined @click="selectSurah(88)" :class="{ active: surah === 88 }">Al Ghashiya</span>
+     </div>
+    </a>
+   </div>
 
-   <form class="mb-2 right-side-form" style="cursor: pointer; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px; ">
-    <select class="form-control custom-dropdown" v-model="surah" @change="getAyahs()" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
-     <option value="0">
-      <span disabled>Select Surah</span>
-     </option>
-     <option v-for="data in surahs" :key="data.id" :value="data.id" @click="showCard">
-      {{data.id}} : {{ data.name_en }} - {{ data.name_ar }}
-     </option>
-    </select>
-   </form>
+   <form class="mb-2 right-side-form" style="cursor: pointer; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px;">
+      <select class="form-control custom-dropdown" v-model="surah" @change="getAyahs" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
+        <option value="0" disabled>Select Surah</option>
+        <option v-for="data in surahs" :key="data.id" :value="data.id">
+          {{ data.id }} : {{ data.name_en }} - {{ data.name_ar }}
+        </option>
+      </select>
+    </form>
 
    <!-- Ayah Dropdown List -->
-    <div class="tab-content mb-2" id="nav-tabContent" v-if="ayah != null && !dropdownHidden">
+   <div class="tab-content mb-2" id="nav-tabContent" v-if="ayahs.length > 0 && !dropdownHidden">
       <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
         <form @change="handleSelectionChange" style="cursor: pointer; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px;">
           <select class="form-control mobile-only hide-on-full-screen hide-on-tablet right-side-form" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;" v-model="selectedAyah" @change="getTafseers(selectedAyah, selectedAyahIndex)">
-            <option v-for="(ayah, index) in ayahs" :key="index" :value="ayah.id">{{ ayah.ayah_text }} : {{ ayah.ayah_id }}</option>
+            <option value="" disabled>Select Ayah</option>
+            <option v-for="(ayah, index) in ayahs" :key="index" :value="ayah.id">
+              {{ ayah.ayah_text }} : {{ ayah.ayah_id }}
+            </option>
           </select>
         </form>
       </div>
@@ -130,48 +140,38 @@
 
    <!-- list of ayat for surat -->
    <div class="tab-content hide-on-mobile" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
-    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" v-if="ayah == null">
-     <div class="row container-fluid">
-
-      <div class="row">
-       <div class="col-md-12">
-
-        <form class="d-flex" role="search" @submit.prevent="scrollToAyah">
-         <input class="form-control me-2" type="number" placeholder="Enter Verse Number" v-model="verseNumber" required>
-         <button class="btn btn-success mb-2 ml-2" type="submit">Search</button>
-        </form>
-       </div>
+      <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" v-if="ayah == null">
+        <div class="row container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <form class="d-flex" role="search" @submit.prevent="scrollToAyah">
+                <input class="form-control me-2" type="number" placeholder="Enter Verse Number" v-model="verseNumber" required>
+                <button class="btn btn-success mb-2 ml-2" type="submit">Search</button>
+              </form>
+            </div>
+          </div>
+          <div class="custom-scrollbar" style="overflow-y: auto; max-height: 650px; background: white;">
+            <ul class="col-md-4 list-group container-fluid root" id="toggle" ref="ayahList" style="list-style-type: none; padding: 10px">
+              <li v-for="(ayah, index) in ayahs" :key="index" @click="getTafseers(ayah.id, index)" :class="{ selected: selectedIndexAyah === index, 'highlighted': verseNumber && parseInt(verseNumber) === ayah.ayah_id }" style="padding: 10px;border-radius:10px">
+                <h5 class="text-right" style="display: flex;"> Verse: {{ ayah.ayah_id }} </h5>
+                <h5 class="text-right">{{ ayah.ayah_text }}</h5>
+              </li>
+            </ul>
+            <hr>
+          </div>
+        </div>
       </div>
-       
-
-      <div class="custom-scrollbar" style="overflow-y: auto; max-height: 650px; background: white;">
-       <ul class="col-md-4 list-group container-fluid root" id="toggle" ref="ayahList" style="list-style-type: none; padding: 10px">
-        <li v-for="(ayah, index) in ayahs" :key="index" @click="getTafseers(ayah.id, index)" :class="{ selected: selectedIndexAyah === index, 'highlighted': verseNumber && parseInt(verseNumber) === ayah.ayah_id }" style="padding: 10px;border-radius:10px">
-         <h5 class="text-right" style="display: flex;"> Verse: {{ ayah.ayah_id }} </h5>
-         <h5 class="text-right">{{ ayah.ayah_text }}</h5>
-        </li>
-       </ul>
-       <hr>
-      </div>
-
-      
-        
-     </div>
     </div>
-   </div>
-    
-
 
   </div>
 
   <div class="col-md-8 card-hide">
 
-   
    <!-- Nav tabs -->
    <div class="card " style="box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;">
     <!-- tabs for Translation, Tafseer & Transliteration -->
     <div class="container-fluid" v-if="information != null">
-    
+
      <div class="overflow-auto">
       <ul class="nav nav-tabs text-left justify-content-start pt-3 flex-nowrap" style="white-space: nowrap;" role="tablist">
        <li class="nav-item">
@@ -209,40 +209,39 @@
       <!-- Translation Section -->
       <div class="tab-pane active" id="home" role="tabpanel" v-if="information != null">
        <div class="">
-         
-            <div class="icon-container pb-3">
-              <i class="bi bi-chevron-bar-left h5" style="color: rgb(0, 191, 166);" @click="goToEndAyah()" title="Last verse"></i>
-              <i class="bi bi-arrow-left-circle h5" style="color: rgb(0, 191, 166);" @click="goToPreviousAyah()" title="Previous verse"></i>
-              <i class="bi bi-arrow-right-circle h5" style="color: rgb(0, 191, 166);" @click="goToNextAyah()" title="Next verse"></i>
-              <i class="bi bi-chevron-bar-right h5" style="color: rgb(0, 191, 166);" @click="goToLastAyah()" title="End verse"></i>
-              <!-- Dropdown Features -->
-              <div class="dropdown">
-                <i style="color:rgb(0, 191, 166); cursor:pointer" class="bi pt-3 bi-three-dots-vertical h5 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></i>
-                <ul class="dropdown-menu">
-                  <!--
+
+        <div class="icon-container pb-3">
+         <i class="bi bi-chevron-bar-left h5" style="color: rgb(0, 191, 166);" @click="goToEndAyah()" title="Last verse"></i>
+         <i class="bi bi-arrow-left-circle h5" style="color: rgb(0, 191, 166);" @click="goToPreviousAyah()" title="Previous verse"></i>
+         <i class="bi bi-arrow-right-circle h5" style="color: rgb(0, 191, 166);" @click="goToNextAyah()" title="Next verse"></i>
+         <i class="bi bi-chevron-bar-right h5" style="color: rgb(0, 191, 166);" @click="goToLastAyah()" title="End verse"></i>
+         <!-- Dropdown Features -->
+         <div class="dropdown">
+          <i style="color:rgb(0, 191, 166); cursor:pointer" class="bi pt-3 bi-three-dots-vertical h5 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></i>
+          <ul class="dropdown-menu">
+           <!--
                   <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal3" @click="openNoteModal">Write a Note</a></li>
                   -->
-                  <li><a class="dropdown-item" @click="shareTextViaWhatsApp3">Share via WhatsApp</a></li>
-                  <li><a class="dropdown-item" @click="submitForm">Bookmark Verse</a></li>
-                  <li><a class="dropdown-item" @click="copyText3">Copy Verse</a></li>
-                  <li><a class="dropdown-item" @click="captureScreenshot3">Screenshot Verse</a></li>
-                  <li><a class="dropdown-item" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal">Report a bug</a></li>
-                </ul>
-              </div>
-            </div>
-        
+           <li><a class="dropdown-item" @click="shareTextViaWhatsApp3">Share via WhatsApp</a></li>
+           <li><a class="dropdown-item" @click="submitForm">Bookmark Verse</a></li>
+           <li><a class="dropdown-item" @click="copyText3">Copy Verse</a></li>
+           <li><a class="dropdown-item" @click="captureScreenshot3">Screenshot Verse</a></li>
+           <li><a class="dropdown-item" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal">Report a bug</a></li>
+          </ul>
+         </div>
+        </div>
 
         <div ref="targetElement3" class="w-100">
          <h5 class="mr-2">{{ information.ayah.surah.name_en }} {{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }}</h5>
+         
          <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
           <!-- Main Stack Top -->
           <div class="btn">
-           <h5 class="ayah-translation text-right" ref="heading3" style="line-height: 1.6em">
+           <h5 class="text-right ayah-translation" name="ayah_text" style="line-height: 1.6em">
             {{ information.ayah.ayah_text }}
            </h5>
           </div>
           <!-- Main Stack Below -->
-          <div class="btn">
            <h5 class="text-left ayah-translation" ref="heading3" style="line-height: 1.6em">
             {{ expanded ? information.translation : truncatedText(information.translation) }}
             <template v-if="showMoreLink">
@@ -250,7 +249,9 @@
             </template>
            </h5>
            <h6 class="text-left mt-3"><strong>Translation: </strong>Ahmed Ali</h6>
-          </div>
+
+
+          
           <!-- Alerts -->
           <div v-if="showAlertText" class="alert alert-success alert-dismissible fade show mt-2" role="alert">
            Text copied successfully!
@@ -335,62 +336,67 @@
       <!-- Tafseer Section -->
       <div class="tab-pane" id="profile" role="tabpanel" v-if="information != null">
        <div class="">
-        <div class="col-12">
+        <div>
          <div>
           <!-- Surah/Ayah Detail -->
-           <!-- Ayah Controls -->
-            <!-- Surah Information -->
           <!-- Ayah Controls -->
-            <div class="icon-container pb-3">
-              <i class="bi bi-chevron-bar-left h5" style="color: rgb(0, 191, 166);" @click="goToEndAyah()" title="Last verse"></i>
-              <i class="bi bi-arrow-left-circle h5" style="color: rgb(0, 191, 166);" @click="goToPreviousAyah()" title="Previous verse"></i>
-              <i class="bi bi-arrow-right-circle h5" style="color: rgb(0, 191, 166);" @click="goToNextAyah()" title="Next verse"></i>
-              <i class="bi bi-chevron-bar-right h5" style="color: rgb(0, 191, 166);" @click="goToLastAyah()" title="End verse"></i>
-              <!-- Dropdown Features -->
-              <div class="dropdown">
-                <i style="color:rgb(0, 191, 166); cursor:pointer" class="bi pt-3 bi-three-dots-vertical h5 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></i>
-                <ul class="dropdown-menu">
-                  <!--
+          <!-- Surah Information -->
+          <!-- Ayah Controls -->
+          <div class="icon-container pb-3">
+           <i class="bi bi-chevron-bar-left h5" style="color: rgb(0, 191, 166);" @click="goToEndAyah()" title="Last verse"></i>
+           <i class="bi bi-arrow-left-circle h5" style="color: rgb(0, 191, 166);" @click="goToPreviousAyah()" title="Previous verse"></i>
+           <i class="bi bi-arrow-right-circle h5" style="color: rgb(0, 191, 166);" @click="goToNextAyah()" title="Next verse"></i>
+           <i class="bi bi-chevron-bar-right h5" style="color: rgb(0, 191, 166);" @click="goToLastAyah()" title="End verse"></i>
+           <!-- Dropdown Features -->
+           <div class="dropdown">
+            <i style="color:rgb(0, 191, 166); cursor:pointer" class="bi pt-3 bi-three-dots-vertical h5 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></i>
+            <ul class="dropdown-menu">
+             <!--
                   <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal1" @click="openNoteModal">Write a Note</a></li>
                   -->
-                  <li><a class="dropdown-item" @click="shareTextViaWhatsApp1">Share via WhatsApp</a></li>
-                  <li><a class="dropdown-item" @click="submitForm">Bookmark Verse</a></li>
-                  <li><a class="dropdown-item" @click="copyText1">Copy Verse</a></li>
-                  <li><a class="dropdown-item" @click="captureScreenshot1">Screenshot Verse</a></li>
-                  <li><a class="dropdown-item" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal">Report a bug</a></li>
-                </ul>
-              </div>
+             <li><a class="dropdown-item" @click="shareTextViaWhatsApp1">Share via WhatsApp</a></li>
+             <li><a class="dropdown-item" @click="submitForm">Bookmark Verse</a></li>
+             <li><a class="dropdown-item" @click="copyText1">Copy Verse</a></li>
+             <li><a class="dropdown-item" @click="captureScreenshot1">Screenshot Verse</a></li>
+             <li><a class="dropdown-item" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal">Report a bug</a></li>
+            </ul>
+           </div>
+          </div>
+
+          <div ref="targetElement1" class="w-100">
+           <h5 class="mr-2">
+            {{ information.ayah.surah.name_en }} {{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }}
+           </h5>
+           <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
+            
+            <!-- main stack top -->
+            <div class="btn">
+             <h5 class="text-right ayah-translation" name="ayah_text" style="line-height: 1.6em">
+              {{ information.ayah.ayah_text }}
+             </h5>
             </div>
-          <div ref="targetElement1">
-            <h5 style="margin-right: 10px;">
-              {{ information.ayah.surah.name_en }} {{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }}
+
+            <!-- main stack below -->
+            <h5 class="text-left ayah-translation" ref="heading1" style="line-height: 1.6em">
+             {{ expanded ? tafseer : truncatedText(tafseer) }}
+             <template v-if="showMoreLink">
+              <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
+             </template>
             </h5>
-            <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div">
-              <!-- Main Stack Top -->
-              <div class="btn">
-                <h5 class="container text-right ayah-text" style="line-height: 2em">{{ information.ayah.ayah_text }}</h5>
-              </div>
-              <div class="btn">
-                <h5 class="container text-left ayah-translation" ref="heading1" style="line-height: 1.6em">
-                  {{ expanded ? tafseer : truncatedText(tafseer) }}
-                  <template v-if="showMoreLink">
-                    <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
-                  </template>
-                </h5>
-              </div>
-              <br>
-              <!-- Bootstrap Alert Component -->
-              <div v-if="showAlertText" class="alert alert-success alert-dismissible fade show" role="alert">
-                Text copied successfully!
-              </div>
-              <!-- Bookmark Component -->
-              <div v-if="showAlert" class="alert alert-success" role="alert">
-                Bookmark created successfully!
-              </div>
-              <div v-if="showErrorAlert" class="alert alert-danger" role="alert">
-                Login to your account to be able to bookmark verses.
-              </div>
+
+            <br>
+            <!-- Bootstrap Alert Component -->
+            <div v-if="showAlertText" class="alert alert-success alert-dismissible fade show" role="alert">
+             Text copied successfully!
             </div>
+            <!-- Bookmark Component -->
+            <div v-if="showAlert" class="alert alert-success" role="alert">
+             Bookmark created successfully!
+            </div>
+            <div v-if="showErrorAlert" class="alert alert-danger" role="alert">
+             Login to your account to be able to bookmark verses.
+            </div>
+           </div>
           </div>
 
          </div>
@@ -428,49 +434,50 @@
       <div class="tab-pane" id="messages" role="tabpanel" v-if="information != null">
        <div class="">
 
-        <div class="col-12">
+        <div>
          <div>
-           <!-- Ayah Controls -->
-            <div class="icon-container pb-3">
-              <i class="bi bi-chevron-bar-left h5" style="color: rgb(0, 191, 166);" @click="goToEndAyah()" title="Last verse"></i>
-              <i class="bi bi-arrow-left-circle h5" style="color: rgb(0, 191, 166);" @click="goToPreviousAyah()" title="Previous verse"></i>
-              <i class="bi bi-arrow-right-circle h5" style="color: rgb(0, 191, 166);" @click="goToNextAyah()" title="Next verse"></i>
-              <i class="bi bi-chevron-bar-right h5" style="color: rgb(0, 191, 166);" @click="goToLastAyah()" title="End verse"></i>
-              <!-- Dropdown Features -->
-              <div class="dropdown">
-                <i style="color:rgb(0, 191, 166); cursor:pointer" class="bi pt-3 bi-three-dots-vertical h5 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></i>
-                <ul class="dropdown-menu">
-                  <!--
+          <!-- Ayah Controls -->
+          <div class="icon-container pb-3">
+           <i class="bi bi-chevron-bar-left h5" style="color: rgb(0, 191, 166);" @click="goToEndAyah()" title="Last verse"></i>
+           <i class="bi bi-arrow-left-circle h5" style="color: rgb(0, 191, 166);" @click="goToPreviousAyah()" title="Previous verse"></i>
+           <i class="bi bi-arrow-right-circle h5" style="color: rgb(0, 191, 166);" @click="goToNextAyah()" title="Next verse"></i>
+           <i class="bi bi-chevron-bar-right h5" style="color: rgb(0, 191, 166);" @click="goToLastAyah()" title="End verse"></i>
+           <!-- Dropdown Features -->
+           <div class="dropdown">
+            <i style="color:rgb(0, 191, 166); cursor:pointer" class="bi pt-3 bi-three-dots-vertical h5 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></i>
+            <ul class="dropdown-menu">
+             <!--
                   <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal3" @click="openNoteModal">Write a Note</a></li>
                   -->
-                  <li><a class="dropdown-item" @click="shareTextViaWhatsApp2">Share via WhatsApp</a></li>
-                  <li><a class="dropdown-item" @click="submitForm">Bookmark Verse</a></li>
-                  <li><a class="dropdown-item" @click="copyText2">Copy Verse</a></li>
-                  <li><a class="dropdown-item" @click="captureScreenshot2">Screenshot Verse</a></li>
-                  <li><a class="dropdown-item" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal">Report a bug</a></li>
-                </ul>
-              </div>
-            </div>
-          <div ref="targetElement2" class="scrollable-container" @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd">
-            <h5 style="margin-right: 10px;">
-              {{ information.ayah.surah.name_en }} {{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }}
-            </h5>
-            <div>
-              <!-- main stack top -->
-              <div class="btn">
-                <h5 class="text-right ayah-translation" name="ayah_text" style="line-height: 1.6em">
-                  {{ information.ayah.ayah_text }}
-                </h5>
-              </div>
+             <li><a class="dropdown-item" @click="shareTextViaWhatsApp2">Share via WhatsApp</a></li>
+             <li><a class="dropdown-item" @click="submitForm">Bookmark Verse</a></li>
+             <li><a class="dropdown-item" @click="copyText2">Copy Verse</a></li>
+             <li><a class="dropdown-item" @click="captureScreenshot2">Screenshot Verse</a></li>
+             <li><a class="dropdown-item" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal">Report a bug</a></li>
+            </ul>
+           </div>
+          </div>
 
-              <!-- main stack below -->
-              <h5 class="text-left ayah-translation" ref="heading2" style="line-height: 1.6em">
-                {{ expanded ? information.transliteration : truncatedText(information.transliteration) }}
-                <template v-if="showMoreLink">
-                  <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
-                </template>
-              </h5>
+          <div ref="targetElement2" class=" w-100" >
+           <h5 class="mr-2">
+            {{ information.ayah.surah.name_en }} {{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }}
+           </h5>
+           <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
+            <!-- main stack top -->
+            <div class="btn">
+             <h5 class="text-right ayah-translation" name="ayah_text" style="line-height: 1.6em">
+              {{ information.ayah.ayah_text }}
+             </h5>
             </div>
+
+            <!-- main stack below -->
+            <h5 class="text-left ayah-translation" ref="heading2" style="line-height: 1.6em">
+             {{ expanded ? information.transliteration : truncatedText(information.transliteration) }}
+             <template v-if="showMoreLink">
+              <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
+             </template>
+            </h5>
+           </div>
           </div>
           <br>
 
@@ -653,21 +660,36 @@ export default {
   }
  },
 
-  async getAyahs() {
-    try {
-      // Simulate API call to fetch Ayahs based on selected Surah
-      const response = await fetch(`https://api.example.com/ayahs?surah=${this.surah}`);
-      const data = await response.json();
-      this.ayahs = data; // Update ayahs array with fetched data
-      if (this.ayahs.length > 0) {
-        this.selectedAyah = this.ayahs[0].id; // Select the first Ayah by default
-      }
-    } catch (error) {
-      console.error('Error fetching Ayahs:', error);
+ async getAyahs() {
+  if (this.surah > 0) {
+   try {
+    // Replace with your API call to fetch ayahs based on the selected surah
+    const response = await axios.get(`/api/ayahs/${this.surah}`);
+    this.ayahs = response.data;
+
+    // Set the first ayah as the selected one by default if necessary
+    if (this.ayahs.length > 0) {
+     this.selectedAyah = this.ayahs[0].id;
     }
-  },
+   } catch (error) {
+    console.error('Error fetching ayahs:', error);
+   }
+  } else {
+   this.ayahs = [];
+   this.selectedAyah = null;
+  }
+ },
 
  methods: {
+  async fetchSurahs() {
+   try {
+    const response = await axios.get('/api/surahs'); // Adjust the endpoint as necessary
+    this.surahs = response.data;
+    console.log('Fetched surahs:', this.surahs);
+   } catch (error) {
+    console.error('Error fetching surahs:', error);
+   }
+  },
   handleTouchStart(event) {
    this.touchStartX = event.changedTouches[0].screenX;
    this.touchStartY = event.changedTouches[0].screenY;
@@ -910,27 +932,23 @@ export default {
    this.filteredSurah = []; // Clear the filtered results
    this.showClearButton = false; // Hide the clear button after clearing results
   },
-  getAyahs() {
-   if (this.selectedSurahId) {
-    axios.post("/getAyahs", {
-      surahId: this.selectedSurahId
-     })
-     .then(response => {
-      if (response.data.length > 0) {
-       this.surah = response.data; // Update surah array with data from API
-      } else {
-       console.warn("No ayahs found for the selected surah");
-       // Optionally, you can clear the surah array if no ayahs are found
-       // this.surah = [];
-      }
-     })
-     .catch(error => {
-      console.error("API Error:", error); // Log any errors
-     });
+  async getAyahs() {
+   if (this.surah > 0) {
+    try {
+     console.log(`Fetching ayahs for surah ${this.surah}`);
+     const response = await axios.get(`/api/ayahs/${this.surah}`);
+     this.ayahs = response.data;
+     console.log('Fetched ayahs:', this.ayahs);
+
+     if (this.ayahs.length > 0) {
+      this.selectedAyah = this.ayahs[0].id;
+     }
+    } catch (error) {
+     console.error('Error fetching ayahs:', error);
+    }
    } else {
-    console.warn("No surah selected");
-    // Optionally, you can clear the surah array if no surah is selected
-    // this.surah = [];
+    this.ayahs = [];
+    this.selectedAyah = null;
    }
   },
   search() {
@@ -963,46 +981,48 @@ export default {
   },
 
   goToNextAyah() {
-    if (this.selectedIndexAyah < this.ayahs.length - 1) {
-      this.selectedIndexAyah++;
-    } else {
-      this.selectedIndexAyah = 0;
-    }
-    this.scrollToSelectedAyah();
-    this.getTafseers(this.ayahs[this.selectedIndexAyah].id, this.selectedIndexAyah);
+   if (this.selectedIndexAyah < this.ayahs.length - 1) {
+    this.selectedIndexAyah++;
+   } else {
+    this.selectedIndexAyah = 0;
+   }
+   this.scrollToSelectedAyah();
+   this.getTafseers(this.ayahs[this.selectedIndexAyah].id, this.selectedIndexAyah);
   },
   goToPreviousAyah() {
-    if (this.selectedIndexAyah > 0) {
-      this.selectedIndexAyah--;
-    } else {
-      this.selectedIndexAyah = this.ayahs.length - 1;
-    }
-    this.scrollToSelectedAyah();
-    this.getTafseers(this.ayahs[this.selectedIndexAyah].id, this.selectedIndexAyah);
+   if (this.selectedIndexAyah > 0) {
+    this.selectedIndexAyah--;
+   } else {
+    this.selectedIndexAyah = this.ayahs.length - 1;
+   }
+   this.scrollToSelectedAyah();
+   this.getTafseers(this.ayahs[this.selectedIndexAyah].id, this.selectedIndexAyah);
   },
   scrollToSelectedAyah() {
    this.$nextTick(() => {
-      const selectedAyah = document.querySelector('.ayah.selected');
-      if (selectedAyah) {
-        selectedAyah.scrollIntoView({ behavior: 'smooth' });
-      }
-    });
+    const selectedAyah = document.querySelector('.ayah.selected');
+    if (selectedAyah) {
+     selectedAyah.scrollIntoView({
+      behavior: 'smooth'
+     });
+    }
+   });
   },
   determineNextAyah() {
-    // Your logic to determine the next Ayah
-    // This is just a placeholder
-    const currentIndex = this.ayahs.findIndex(ayah => ayah.id === this.selectedAyah.id);
-    if (currentIndex !== -1 && currentIndex < this.ayahs.length - 1) {
-      return this.ayahs[currentIndex + 1];
-    }
-    return null;
+   // Your logic to determine the next Ayah
+   // This is just a placeholder
+   const currentIndex = this.ayahs.findIndex(ayah => ayah.id === this.selectedAyah.id);
+   if (currentIndex !== -1 && currentIndex < this.ayahs.length - 1) {
+    return this.ayahs[currentIndex + 1];
+   }
+   return null;
   },
   determinePreviousAyah() {
-    const currentIndex = this.ayahs.findIndex(ayah => ayah.id === this.selectedAyah.id);
-    if (currentIndex > 0) {
-      return this.ayahs[currentIndex - 1];
-    }
-    return null;
+   const currentIndex = this.ayahs.findIndex(ayah => ayah.id === this.selectedAyah.id);
+   if (currentIndex > 0) {
+    return this.ayahs[currentIndex - 1];
+   }
+   return null;
   },
 
   goToNextSurah() {
@@ -1509,26 +1529,24 @@ export default {
 </script>
 
 <style scoped>
-
 @media (max-width: 767.98px) {
-  .icon-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-  }
+ .icon-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+ }
 
-  .icon-container i {
-    flex: 1;
-    text-align: center;
-  }
+ .icon-container i {
+  flex: 1;
+  text-align: center;
+ }
 
-  .dropdown {
-    flex: 1;
-    text-align: center;
-  }
+ .dropdown {
+  flex: 1;
+  text-align: center;
+ }
 }
-
 
 .scrollmenu {
  overflow-y: hidden;
@@ -1536,6 +1554,7 @@ export default {
  /* Hide horizontal scrollbar */
  white-space: nowrap;
 }
+
 .scrollmenu a {
  display: inline-block;
  vertical-align: top;
@@ -1590,11 +1609,13 @@ export default {
 }
 
 @media (max-width: 768px) {
-  .scrollable-container {
-    overflow-y: auto;
-    max-height: 100vh; /* Adjust the height as needed */
-    -webkit-overflow-scrolling: touch; /* Enables smooth scrolling on iOS */
-  }
+ .scrollable-container {
+  overflow-y: auto;
+  max-height: 100vh;
+  /* Adjust the height as needed */
+  -webkit-overflow-scrolling: touch;
+  /* Enables smooth scrolling on iOS */
+ }
 
  .icon-row {
   justify-content: center;
@@ -1604,7 +1625,7 @@ export default {
 
  .icon-row i {
   font-size: 1.2rem;
-  padding: 10px;
+  padding: 5px;
  }
 
  .dropdown {
