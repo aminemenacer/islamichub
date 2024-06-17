@@ -68,7 +68,7 @@
 
    <!-- Custom Surah Selection -->
    <div class="scrollmenu" @change="getAyahs()">
-    <a href="#">
+    <a href="#" v-for="data in customSurahs" :key="data.id" @click.prevent="selectSurah(data.id)">
      <div class="flex justify-content-center mr-1">
       <span class="badge button-33" label="" severity="success" raised outlined @click="selectSurah(1)" :class="{ active: surah === 1 }">Al Fatiha</span>
      </div>
@@ -115,7 +115,8 @@
     </a>
    </div>
 
-   <form class="mb-2 right-side-form" style="cursor: pointer; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px;">
+   <!-- Surah Selection Dropdown -->
+    <form class="mb-2 right-side-form" style="cursor: pointer; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px;">
       <select class="form-control custom-dropdown" v-model="surah" @change="getAyahs" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
         <option value="0" disabled>Select Surah</option>
         <option v-for="data in surahs" :key="data.id" :value="data.id">
@@ -125,7 +126,7 @@
     </form>
 
    <!-- Ayah Dropdown List -->
-   <div class="tab-content mb-2" id="nav-tabContent" v-if="ayahs.length > 0 && !dropdownHidden">
+    <div class="tab-content mb-2" id="nav-tabContent" v-if="ayahs.length > 0 && !dropdownHidden">
       <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
         <form @change="handleSelectionChange" style="cursor: pointer; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px;">
           <select class="form-control mobile-only hide-on-full-screen hide-on-tablet right-side-form" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;" v-model="selectedAyah" @change="getTafseers(selectedAyah, selectedAyahIndex)">
@@ -138,10 +139,11 @@
       </div>
     </div>
 
-   <!-- list of ayat for surat -->
-   <div class="tab-content hide-on-mobile" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
+   <!-- List of Ayat for Surah -->
+    <div class="tab-content hide-on-mobile" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
       <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" v-if="ayah == null">
         <div class="row container-fluid">
+          <!--
           <div class="row">
             <div class="col-md-12">
               <form class="d-flex" role="search" @submit.prevent="scrollToAyah">
@@ -150,6 +152,7 @@
               </form>
             </div>
           </div>
+          -->
           <div class="custom-scrollbar" style="overflow-y: auto; max-height: 650px; background: white;">
             <ul class="col-md-4 list-group container-fluid root" id="toggle" ref="ayahList" style="list-style-type: none; padding: 10px">
               <li v-for="(ayah, index) in ayahs" :key="index" @click="getTafseers(ayah.id, index)" :class="{ selected: selectedIndexAyah === index, 'highlighted': verseNumber && parseInt(verseNumber) === ayah.ayah_id }" style="padding: 10px;border-radius:10px">
@@ -933,24 +936,29 @@ export default {
    this.showClearButton = false; // Hide the clear button after clearing results
   },
   async getAyahs() {
-   if (this.surah > 0) {
-    try {
-     console.log(`Fetching ayahs for surah ${this.surah}`);
-     const response = await axios.get(`/api/ayahs/${this.surah}`);
-     this.ayahs = response.data;
-     console.log('Fetched ayahs:', this.ayahs);
+      if (this.surah > 0) {
+        try {
+          console.log(`Fetching ayahs for surah ${this.surah}`);
+          // Replace with your API call to fetch ayahs based on the selected surah
+          const response = await axios.get(`/api/ayahs/${this.surah}`);
+          this.ayahs = response.data;
+          console.log('Fetched ayahs:', this.ayahs);
 
-     if (this.ayahs.length > 0) {
-      this.selectedAyah = this.ayahs[0].id;
-     }
-    } catch (error) {
-     console.error('Error fetching ayahs:', error);
-    }
-   } else {
-    this.ayahs = [];
-    this.selectedAyah = null;
-   }
-  },
+          // Set the first ayah as the selected one by default if necessary
+          if (this.ayahs.length > 0) {
+            this.selectedAyah = this.ayahs[0].id;
+            this.selectedIndexAyah = 0;
+          }
+        } catch (error) {
+          console.error('Error fetching ayahs:', error);
+        }
+      } else {
+        this.ayahs = [];
+        this.selectedAyah = null;
+        this.selectedIndexAyah = null;
+      }
+    },
+    
   search() {
    // Perform search and update filteredSurah based on search term
    const searchTerm = this.searchTerm.trim().toLowerCase();
@@ -1221,7 +1229,6 @@ export default {
   },
   selectSurah(surahId) {
    this.surah = surahId;
-   this.ayah = 1;
    this.searchTerm = ''; // Clear the search term
    this.filteredSurah = []; // Clear the filtered results
    this.showClearButton = false; // Hide the clear button after clearing results
@@ -1696,7 +1703,7 @@ export default {
 
 .ayah-text,
 .ayah-translation {
- font-size: 1.25em;
+ font-size: 1em;
  /* Equivalent to h5 font size */
 }
 
