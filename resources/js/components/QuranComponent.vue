@@ -116,34 +116,36 @@
    </div>
 
    <!-- Surah Selection Dropdown -->
-    <form class="mb-2 right-side-form" style="cursor: pointer; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px;">
-      <select class="form-control custom-dropdown" v-model="surah" @change="getAyahs" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
-        <option value="0" disabled>Select Surah</option>
-        <option v-for="data in surahs" :key="data.id" :value="data.id">
-          {{ data.id }} : {{ data.name_en }} - {{ data.name_ar }}
-        </option>
+   <form class="mb-2 right-side-form" style="cursor: pointer; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px; ">
+    <select class="form-control custom-dropdown" v-model="surah" @change="getAyahs()" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
+     <option value="0">
+      <span disabled>Select Surah</span>
+     </option>
+     <option v-for="data in surahs" :key="data.id" :value="data.id" @click="showCard">
+      {{data.id}} : {{ data.name_en }} - {{ data.name_ar }}
+     </option>
+    </select>
+   </form>
+
+   <!-- List of Ayah Dropdown -->
+   <div class="tab-content mb-2" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
+    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+     <form @change="handleSelectionChange" style="cursor: pointer; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px; ">
+      <!-- Add a class to the select element for easier targeting -->
+      <select class="form-control mobile-only hide-on-full-screen hide-on-tablet right-side-form" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;" @change="getTafseers(ayahs[$event.target.value].id, $event.target.value)">
+       <option value="0">
+        <span disabled>Select Ayah</span>
+       </option>
+       <option v-for="(ayah, index) in ayahs" :key="index" :value="index">{{ ayah.ayah_text }} : {{ayah.ayah_id}}</option>
       </select>
-    </form>
-
-   <!-- Ayah Dropdown List -->
-    <div class="tab-content mb-2" id="nav-tabContent" v-if="ayahs.length > 0 && !dropdownHidden">
-      <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-        <form @change="handleSelectionChange" style="cursor: pointer; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px;">
-          <select class="form-control mobile-only hide-on-full-screen hide-on-tablet right-side-form" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;" v-model="selectedAyah" @change="getTafseers(selectedAyah, selectedAyahIndex)">
-            <option value="" disabled>Select Ayah</option>
-            <option v-for="(ayah, index) in ayahs" :key="index" :value="ayah.id">
-              {{ ayah.ayah_text }} : {{ ayah.ayah_id }}
-            </option>
-          </select>
-        </form>
-      </div>
+     </form>
     </div>
-
+   </div>
    <!-- List of Ayat for Surah -->
-    <div class="tab-content hide-on-mobile" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
-      <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" v-if="ayah == null">
-        <div class="row container-fluid">
-          <!--
+   <div class="tab-content hide-on-mobile" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
+    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" v-if="ayah == null">
+     <div class="row container-fluid">
+      <!--
           <div class="row">
             <div class="col-md-12">
               <form class="d-flex" role="search" @submit.prevent="scrollToAyah">
@@ -153,18 +155,18 @@
             </div>
           </div>
           -->
-          <div class="custom-scrollbar" style="overflow-y: auto; max-height: 650px; background: white;">
-            <ul class="col-md-4 list-group container-fluid root" id="toggle" ref="ayahList" style="list-style-type: none; padding: 10px">
-              <li v-for="(ayah, index) in ayahs" :key="index" @click="getTafseers(ayah.id, index)" :class="{ selected: selectedIndexAyah === index, 'highlighted': verseNumber && parseInt(verseNumber) === ayah.ayah_id }" style="padding: 10px;border-radius:10px">
-                <h5 class="text-right" style="display: flex;"> Verse: {{ ayah.ayah_id }} </h5>
-                <h5 class="text-right">{{ ayah.ayah_text }}</h5>
-              </li>
-            </ul>
-            <hr>
-          </div>
-        </div>
+      <div class="custom-scrollbar" style="overflow-y: auto; max-height: 650px; background: white;">
+       <ul class="col-md-4 list-group container-fluid root" id="toggle" ref="ayahList" style="list-style-type: none; padding: 10px">
+        <li v-for="(ayah, index) in ayahs" :key="index" @click="getTafseers(ayah.id, index)" :class="{ selected: selectedIndexAyah === index, 'highlighted': verseNumber && parseInt(verseNumber) === ayah.ayah_id }" style="padding: 10px;border-radius:10px">
+         <h5 class="text-right" style="display: flex;"> Verse: {{ ayah.ayah_id }} </h5>
+         <h5 class="text-right">{{ ayah.ayah_text }}</h5>
+        </li>
+       </ul>
+       <hr>
       </div>
+     </div>
     </div>
+   </div>
 
   </div>
 
@@ -236,7 +238,7 @@
 
         <div ref="targetElement3" class="w-100">
          <h5 class="mr-2">{{ information.ayah.surah.name_en }} {{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }}</h5>
-         
+
          <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
           <!-- Main Stack Top -->
           <div class="btn">
@@ -245,16 +247,14 @@
            </h5>
           </div>
           <!-- Main Stack Below -->
-           <h5 class="text-left ayah-translation" ref="heading3" style="line-height: 1.6em">
-            {{ expanded ? information.translation : truncatedText(information.translation) }}
-            <template v-if="showMoreLink">
-             <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
-            </template>
-           </h5>
-           <h6 class="text-left mt-3"><strong>Translation: </strong>Ahmed Ali</h6>
+          <h5 class="text-left ayah-translation" ref="heading3" style="line-height: 1.6em">
+           {{ expanded ? information.translation : truncatedText(information.translation) }}
+           <template v-if="showMoreLink">
+            <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
+           </template>
+          </h5>
+          <h6 class="text-left mt-3"><strong>Translation: </strong>Ahmed Ali</h6>
 
-
-          
           <!-- Alerts -->
           <div v-if="showAlertText" class="alert alert-success alert-dismissible fade show mt-2" role="alert">
            Text copied successfully!
@@ -371,7 +371,7 @@
             {{ information.ayah.surah.name_en }} {{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }}
            </h5>
            <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
-            
+
             <!-- main stack top -->
             <div class="btn">
              <h5 class="text-right ayah-translation" name="ayah_text" style="line-height: 1.6em">
@@ -461,7 +461,7 @@
            </div>
           </div>
 
-          <div ref="targetElement2" class=" w-100" >
+          <div ref="targetElement2" class=" w-100">
            <h5 class="mr-2">
             {{ information.ayah.surah.name_en }} {{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }}
            </h5>
@@ -936,29 +936,29 @@ export default {
    this.showClearButton = false; // Hide the clear button after clearing results
   },
   async getAyahs() {
-      if (this.surah > 0) {
-        try {
-          console.log(`Fetching ayahs for surah ${this.surah}`);
-          // Replace with your API call to fetch ayahs based on the selected surah
-          const response = await axios.get(`/api/ayahs/${this.surah}`);
-          this.ayahs = response.data;
-          console.log('Fetched ayahs:', this.ayahs);
+   if (this.surah > 0) {
+    try {
+     console.log(`Fetching ayahs for surah ${this.surah}`);
+     // Replace with your API call to fetch ayahs based on the selected surah
+     const response = await axios.get(`/api/ayahs/${this.surah}`);
+     this.ayahs = response.data;
+     console.log('Fetched ayahs:', this.ayahs);
 
-          // Set the first ayah as the selected one by default if necessary
-          if (this.ayahs.length > 0) {
-            this.selectedAyah = this.ayahs[0].id;
-            this.selectedIndexAyah = 0;
-          }
-        } catch (error) {
-          console.error('Error fetching ayahs:', error);
-        }
-      } else {
-        this.ayahs = [];
-        this.selectedAyah = null;
-        this.selectedIndexAyah = null;
-      }
-    },
-    
+     // Set the first ayah as the selected one by default if necessary
+     if (this.ayahs.length > 0) {
+      this.selectedAyah = this.ayahs[0].id;
+      this.selectedIndexAyah = 0;
+     }
+    } catch (error) {
+     console.error('Error fetching ayahs:', error);
+    }
+   } else {
+    this.ayahs = [];
+    this.selectedAyah = null;
+    this.selectedIndexAyah = null;
+   }
+  },
+
   search() {
    // Perform search and update filteredSurah based on search term
    const searchTerm = this.searchTerm.trim().toLowerCase();
@@ -1227,6 +1227,13 @@ export default {
     console.error('Error fetching ayahs:', error);
    }
   },
+  selectSurah() {
+      // Example: Fetch ayahs data for the selected surah (replace with actual logic)
+      // Simulate fetching ayahs data for the selected surah
+      this.ayahs = this.fetchAyahsForSurah(this.surah); // Replace with actual logic
+      // Always select the first ayah when a surah is selected
+      this.selectedAyah = this.ayahs.length > 0 ? '0' : '0'; // Select the first ayah
+    },
   selectSurah(surahId) {
    this.surah = surahId;
    this.searchTerm = ''; // Clear the search term
@@ -1536,7 +1543,27 @@ export default {
 </script>
 
 <style scoped>
+
+.custom-form {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-radius: 5px;
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+}
+
+.tab-content {
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+}
 @media (max-width: 767.98px) {
+
+  .custom-form {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-radius: 5px;
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+}
+
+.tab-content {
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+}
  .icon-container {
   display: flex;
   justify-content: space-between;
