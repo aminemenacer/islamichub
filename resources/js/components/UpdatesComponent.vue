@@ -2,6 +2,23 @@
 <div class="container">
 
 <div class="row ml-4 mt-3 container-fluid">
+  <h3 class="text-left mt-3 mb-2 container" style="line-height: 1.7em; font-family:inter; "><img src="/images/art.png" style="width: 40px;" class="mb-1 mr-2" />Announcing our latest feature "Notes and Reflections"</h3>
+  <div class="col-md-6">
+   <h5 class="text-left text-secondary" width="80%" style="line-height: 1.7em; font-family:inter">June 19th, 2024</h5>
+   <div>
+    <p style="padding:5px; line-height: 1.7em; font-family:inter" class="text-left text-secondary ">Introducing the writing notes and reflections feature for the Quran: This innovative tool is designed to enrich your study and understanding of the Quran by allowing you to record personal insights, reflections, and interpretations as you read.</p>
+   <p style="padding:5px; line-height: 1.7em; font-family:inter" class="text-left text-secondary ">Whether you're engaging with the text for spiritual growth, academic research, or personal contemplation, this feature provides a seamless way to capture your thoughts in real-time.</p>
+
+
+   </div>   
+  </div>
+  <div class="col-md-6">
+   <img src="images/notes_feat.png" style="width:80%" />
+  </div>
+ </div>
+
+ <hr>
+<div class="row ml-4 mt-3 container-fluid">
   <h3 class="text-left mt-3 mb-2 container" style="line-height: 1.7em; font-family:inter; "><img src="/images/art.png" style="width: 40px;" class="mb-1 mr-2" />Introducing "Featured Reading"</h3>
   <div class="col-md-6">
    <h5 class="text-left text-secondary" width="80%" style="line-height: 1.7em; font-family:inter">June 17th, 2024</h5>
