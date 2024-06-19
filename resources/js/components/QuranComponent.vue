@@ -204,11 +204,14 @@
      <div class="tab-content text-center">
 
       <div class="tab-pane active" id="home" role="tabpanel" v-if="information == null">
+      <h4 class="text-center"><strong>Welcome to Islamic Connect</strong></h4>
        <div class="row">
-       <p class="text-center ayah-translation" name="ayah_text" style="line-height: 1.6em; padding:8px">Islamic Connect is a revolutionary platform committed to making the profound teachings of the Noble Quran accessible and comprehensible to all. It transcends being just a website; it's a Sadaqah Jariyah perpetual charity that enriches individuals and communities for generations to come.</p>
+       <p class="text-center ayah-translation" name="ayah_text" style="line-height: 1.6em; padding:6px">Islamic Connect is a revolutionary platform committed to making the profound teachings of the Noble Quran accessible to all. It transcends being just a website; it's a Sadaqah Jariyah perpetual charity that enriches individuals and communities for generations to come.</p>
+        <!--
         <div class="col-md-12">
          <img src="/images/calligraphy.png" style="width: 40%" />
         </div>
+        -->
        </div>
       </div>
 
@@ -224,12 +227,12 @@
          <div class="dropdown">
           <i style="color:rgb(0, 191, 166); cursor:pointer" class="bi pt-3 bi-three-dots-vertical h5 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></i>
           <ul class="dropdown-menu">
-           <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#noteModal" @click="openNoteModal">Write a Note</a></li>
-           <li><a class="dropdown-item" @click="shareTextViaWhatsApp3">Share via WhatsApp</a></li>
-           <li><a class="dropdown-item" @click="submitForm">Bookmark Verse</a></li>
-           <li><a class="dropdown-item" @click="copyText3">Copy Verse</a></li>
-           <li><a class="dropdown-item" @click="captureScreenshot3">Screenshot Verse</a></li>
-           <li><a class="dropdown-item" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#bugModal">Report a bug</a></li>
+           <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#noteModal" @click="openNoteModal"><i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#exampleModal1" style="color: rgba(0, 191, 166);"></i>Write a Note</a></li>
+           <li><a class="dropdown-item" @click="shareTextViaWhatsApp3"><i class="bi bi-whatsapp text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Share on Whatsapp"  style="color: rgba(0, 191, 166);"></i>Share via WhatsApp</a></li>
+           <li><a class="dropdown-item" @click="submitForm"><i class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse"  style="color: rgba(0, 191, 166);"></i>Bookmark Verse</a></li>
+           <li><a class="dropdown-item" @click="copyText3"><i class="bi bi-clipboard-check text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Copy verse"  style="color: rgba(0, 191, 166);"></i>Copy Verse</a></li>
+           <li><a class="dropdown-item" @click="captureScreenshot3"><i class="bi bi-camera text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Screenshot verse"  style="color: rgba(0, 191, 166);"></i>Screenshot Verse</a></li>
+           <li><a class="dropdown-item" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#bugModal"><i class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Share on Whatsapp"  style="color: rgba(0, 191, 166);"></i>Report a bug</a></li>
           </ul>
          </div>
         </div>
@@ -319,32 +322,6 @@
         </div>
 
          <!-- Notes Modal -->
-         <div class="modal fade" id="noteModal" tabindex="-1" aria-labelledby="noteModalLabel" aria-hidden="true" ref="noteModal">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="noteModalLabel">Write a Note</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <!-- Note Form -->
-          <form @submit.prevent="createNote">
-            <div class="row container mt-3">
-              <h5 class="text-left pb-2 font-weight-bold">Notes & Reflections</h5>
-              <div class="col">
-                <textarea v-model="form1.ayah_notes" class="form-control container mb-3" name="ayah_notes" placeholder="Save your notes and personal reflections privately..." rows="8"></textarea>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" @click="closeModal('noteModal')">Close</button>
-              <button type="submit" class="btn btn-success">Submit</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
          <div class="modal fade" id="bugModal" tabindex="-1" aria-labelledby="bugModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-lg">
            <div class="modal-content">
@@ -387,12 +364,12 @@
           <div class="dropdown">
            <i style="color:rgb(0, 191, 166); cursor:pointer" class="bi pt-3 bi-three-dots-vertical h5 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></i>
            <ul class="dropdown-menu">
-            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal1" @click="openNoteModal">Write a Note</a></li>
-            <li><a class="dropdown-item" @click="shareTextViaWhatsApp1">Share via WhatsApp</a></li>
-            <li><a class="dropdown-item" @click="submitForm">Bookmark Verse</a></li>
-            <li><a class="dropdown-item" @click="copyText1">Copy Verse</a></li>
-            <li><a class="dropdown-item" @click="captureScreenshot1">Screenshot Verse</a></li>
-            <li><a class="dropdown-item" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal">Report a bug</a></li>
+            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal1" @click="openNoteModal"><i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#exampleModal1" style="color: rgba(0, 191, 166);"></i>Write a Note</a></li>
+            <li><a class="dropdown-item" @click="shareTextViaWhatsApp1"><i class="bi bi-whatsapp text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Share on Whatsapp"  style="color: rgba(0, 191, 166);"></i>Share via WhatsApp</a></li>
+            <li><a class="dropdown-item" @click="submitForm"><i class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse"  style="color: rgba(0, 191, 166);"></i>Bookmark Verse</a></li>
+            <li><a class="dropdown-item" @click="copyText1"><i class="bi bi-clipboard-check text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Copy verse"  style="color: rgba(0, 191, 166);"></i>Copy Verse</a></li>
+            <li><a class="dropdown-item" @click="captureScreenshot1"><i class="bi bi-camera text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Screenshot verse"  style="color: rgba(0, 191, 166);"></i>Screenshot Verse</a></li>
+            <li><a class="dropdown-item" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Report a bug"  style="color: rgba(0, 191, 166);"></i>Report a bug</a></li>          
            </ul>
           </div>
          </div>
@@ -500,12 +477,12 @@
           <div class="dropdown">
            <i style="color:rgb(0, 191, 166); cursor:pointer" class="bi pt-3 bi-three-dots-vertical h5 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></i>
            <ul class="dropdown-menu">
-            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal1" @click="openNoteModal">Write a Note</a></li>
-            <li><a class="dropdown-item" @click="shareTextViaWhatsApp2">Share via WhatsApp</a></li>
-            <li><a class="dropdown-item" @click="submitForm">Bookmark Verse</a></li>
-            <li><a class="dropdown-item" @click="copyText2">Copy Verse</a></li>
-            <li><a class="dropdown-item" @click="captureScreenshot2">Screenshot Verse</a></li>
-            <li><a class="dropdown-item" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal">Report a bug</a></li>
+            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal1" @click="openNoteModal"><i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#exampleModal1" style="color: rgba(0, 191, 166);"></i>Write a Note</a></li>
+            <li><a class="dropdown-item" @click="shareTextViaWhatsApp2"><i class="bi bi-whatsapp text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Share on Whatsapp"  style="color: rgba(0, 191, 166);"></i>Share via WhatsApp</a></li>
+            <li><a class="dropdown-item" @click="submitForm"><i class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse"  style="color: rgba(0, 191, 166);"></i>Bookmark Verse</a></li>
+            <li><a class="dropdown-item" @click="copyText2"><i class="bi bi-clipboard-check text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Copy verse"  style="color: rgba(0, 191, 166);"></i>Copy Verse</a></li>
+            <li><a class="dropdown-item" @click="captureScreenshot2"><i class="bi bi-camera text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Screenshot verse"  style="color: rgba(0, 191, 166);"></i>Screenshot Verse</a></li>
+            <li><a class="dropdown-item" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Report a bug"  style="color: rgba(0, 191, 166);"></i>Report a bug</a></li>
            </ul>
           </div>
          </div>
@@ -1902,7 +1879,7 @@ export default {
  .custom-dropdown {
   max-height: 200px;
   /* Adjust the value as needed */
-  overflow-y: auto;
+  overflow-y: hidden;
  }
 
 }
@@ -1936,7 +1913,7 @@ export default {
  }
 
  .scrollable-list {
-  overflow-x: auto;
+  overflow-x: hidden;
  }
 }
 
@@ -1969,7 +1946,7 @@ export default {
  padding-bottom: 10px;
  padding-top: 10px;
  overflow-y: hidden;
- overflow-x: inherit;
+ overflow-x: hidden;
  /* Hide horizontal scrollbar */
  white-space: nowrap;
 }
