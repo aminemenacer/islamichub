@@ -227,12 +227,12 @@
          <div class="dropdown">
           <i style="color:rgb(0, 191, 166); cursor:pointer" class="bi pt-3 bi-three-dots-vertical h5 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></i>
           <ul class="dropdown-menu">
-           <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#noteModal" @click="openNoteModal"><i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#exampleModal1" style="color: rgba(0, 191, 166);"></i>Write a Note</a></li>
+           <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#translationModal" ><i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" style="color: rgba(0, 191, 166);"></i>Write a Note</a></li>
            <li><a class="dropdown-item" @click="shareTextViaWhatsApp3"><i class="bi bi-whatsapp text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Share on Whatsapp"  style="color: rgba(0, 191, 166);"></i>Share via WhatsApp</a></li>
            <li><a class="dropdown-item" @click="submitForm"><i class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse"  style="color: rgba(0, 191, 166);"></i>Bookmark Verse</a></li>
            <li><a class="dropdown-item" @click="copyText3"><i class="bi bi-clipboard-check text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Copy verse"  style="color: rgba(0, 191, 166);"></i>Copy Verse</a></li>
            <li><a class="dropdown-item" @click="captureScreenshot3"><i class="bi bi-camera text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Screenshot verse"  style="color: rgba(0, 191, 166);"></i>Screenshot Verse</a></li>
-           <li><a class="dropdown-item" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#bugModal"><i class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Share on Whatsapp"  style="color: rgba(0, 191, 166);"></i>Report a bug</a></li>
+           <li><a class="dropdown-item" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#bugModal"><i class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Report a bug"  style="color: rgba(0, 191, 166);"></i>Report a bug</a></li>
           </ul>
          </div>
         </div>
@@ -306,22 +306,34 @@
           </div>
          </div>
 
-         <div id="noteModal" title="Write a Note" @hide="resetNoteForm">
-          <form @submit.prevent="createNote">
-            <div class="row container mt-3">
-              <h5 class="text-left pb-2 font-weight-bold">Notes & Reflections</h5>
-              <div class="col">
-                <textarea v-model="form1.ayah_notes" class="form-control container mb-3" name="ayah_notes" placeholder="Save your notes and personal reflections..." rows="8"></textarea>
+          <!-- Notes Modal -->
+          <div class="modal fade" id="translationModal" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true" ref="exampleModal1">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel1">Write a Note</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <!-- Note Form -->
+                <form @submit.prevent="createNote">
+                <div class="row container mt-3">
+                  <h5 class="text-left pb-2 font-weight-bold">Notes & Reflections</h5>
+                  <div class="col">
+                  <textarea v-model="form1.ayah_notes" class="form-control container mb-3" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah." rows="8"></textarea>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+                </form>
+              </div>
               </div>
             </div>
-            <div class="modal-footer">
-              <b-button variant="secondary" @click="hideNoteModal">Close</b-button>
-              <b-button type="submit" variant="success">Submit</b-button>
-            </div>
-          </form>
-        </div>
+          </div>
 
-         <!-- Notes Modal -->
+         <!-- bugs Modal -->
          <div class="modal fade" id="bugModal" tabindex="-1" aria-labelledby="bugModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-lg">
            <div class="modal-content">
@@ -364,12 +376,12 @@
           <div class="dropdown">
            <i style="color:rgb(0, 191, 166); cursor:pointer" class="bi pt-3 bi-three-dots-vertical h5 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></i>
            <ul class="dropdown-menu">
-            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal1" @click="openNoteModal"><i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#exampleModal1" style="color: rgba(0, 191, 166);"></i>Write a Note</a></li>
+            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#tafseerNote" ><i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" style="color: rgba(0, 191, 166);"></i>Write a Note</a></li>
             <li><a class="dropdown-item" @click="shareTextViaWhatsApp1"><i class="bi bi-whatsapp text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Share on Whatsapp"  style="color: rgba(0, 191, 166);"></i>Share via WhatsApp</a></li>
             <li><a class="dropdown-item" @click="submitForm"><i class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse"  style="color: rgba(0, 191, 166);"></i>Bookmark Verse</a></li>
             <li><a class="dropdown-item" @click="copyText1"><i class="bi bi-clipboard-check text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Copy verse"  style="color: rgba(0, 191, 166);"></i>Copy Verse</a></li>
             <li><a class="dropdown-item" @click="captureScreenshot1"><i class="bi bi-camera text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Screenshot verse"  style="color: rgba(0, 191, 166);"></i>Screenshot Verse</a></li>
-            <li><a class="dropdown-item" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Report a bug"  style="color: rgba(0, 191, 166);"></i>Report a bug</a></li>          
+            <li><a class="dropdown-item" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#bugModal"><i class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Report a bug"  style="color: rgba(0, 191, 166);"></i>Report a bug</a></li>          
            </ul>
           </div>
          </div>
@@ -407,62 +419,66 @@
           </div>
          </div>
 
-        </div>
-       </div>
-      </div>
 
-      <!-- Notes Modal -->
-      <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true" ref="exampleModal1">
-       <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel1">Write a Note</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-         </div>
-         <div class="modal-body">
-          <!-- Note Form -->
-          <form @submit.prevent="createNote">
-           <div class="row container mt-3">
-            <h5 class="text-left pb-2 font-weight-bold">Notes & Reflections</h5>
-            <div class="col">
-             <textarea v-model="form1.ayah_notes" class="form-control container mb-3" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah." rows="8"></textarea>
+          <!-- Notes Modal -->
+          <div class="modal fade" id="tafseerNote" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true" ref="exampleModal1">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel1">Write a Note</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <!-- Note Form -->
+                <form @submit.prevent="createNote">
+                <div class="row container mt-3">
+                  <h5 class="text-left pb-2 font-weight-bold">Notes & Reflections</h5>
+                  <div class="col">
+                  <textarea v-model="form1.ayah_notes" class="form-control container mb-3" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah." rows="8"></textarea>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+                </form>
+              </div>
+              </div>
             </div>
-           </div>
-           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-success">Submit</button>
-           </div>
-          </form>
-         </div>
-        </div>
-       </div>
-      </div>
+          </div>
 
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-       <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Report a Bug</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-         </div>
-         <div class="modal-body">
-          <form @submit.prevent="reportBug">
-           <div class="row container mt-3">
-            <h5 class="text-left pb-2 font-weight-bold">Bug Report</h5>
-            <div class="col">
-             <textarea v-model="form1.bug_description" class="form-control container mb-3" name="bug_description" placeholder="Describe the issue you encountered." rows="8"></textarea>
+          
+
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Report a Bug</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form @submit.prevent="reportBug">
+                <div class="row container mt-3">
+                  <h5 class="text-left pb-2 font-weight-bold">Bug Report</h5>
+                  <div class="col">
+                  <textarea v-model="form1.bug_description" class="form-control container mb-3" name="bug_description" placeholder="Describe the issue you encountered." rows="8"></textarea>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+                </form>
+              </div>
+              </div>
             </div>
-           </div>
-           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-success">Submit</button>
-           </div>
-          </form>
-         </div>
-        </div>
+            </div>
+
+          </div>
+       
        </div>
       </div>
-
+ 
       <!-- Transliteration Section -->
       <div class="tab-pane" id="messages" role="tabpanel" v-if="information != null">
        <div class="">
@@ -477,7 +493,7 @@
           <div class="dropdown">
            <i style="color:rgb(0, 191, 166); cursor:pointer" class="bi pt-3 bi-three-dots-vertical h5 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></i>
            <ul class="dropdown-menu">
-            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal1" @click="openNoteModal"><i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#exampleModal1" style="color: rgba(0, 191, 166);"></i>Write a Note</a></li>
+            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#transliterationNote"><i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" style="color: rgba(0, 191, 166);"></i>Write a Note</a></li>
             <li><a class="dropdown-item" @click="shareTextViaWhatsApp2"><i class="bi bi-whatsapp text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Share on Whatsapp"  style="color: rgba(0, 191, 166);"></i>Share via WhatsApp</a></li>
             <li><a class="dropdown-item" @click="submitForm"><i class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse"  style="color: rgba(0, 191, 166);"></i>Bookmark Verse</a></li>
             <li><a class="dropdown-item" @click="copyText2"><i class="bi bi-clipboard-check text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Copy verse"  style="color: rgba(0, 191, 166);"></i>Copy Verse</a></li>
@@ -522,11 +538,39 @@
          <div v-if="showErrorAlert" class="alert alert-danger" role="alert">
           Login to your account to be able to bookmark verses.
          </div>
+
+          <!-- Notes Modal -->
+          <div class="modal fade" id="transliterationNote" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true" ref="exampleModal1">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel1">Write a Note</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <!-- Note Form -->
+                <form @submit.prevent="createNote">
+                <div class="row container mt-3">
+                  <h5 class="text-left pb-2 font-weight-bold">Notes & Reflections</h5>
+                  <div class="col">
+                  <textarea v-model="form1.ayah_notes" class="form-control container mb-3" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah." rows="8"></textarea>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+                </form>
+              </div>
+              </div>
+            </div>
+          </div>
+
         </div>
        </div>
 
        <!-- Notes Modal -->
-       <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true" ref="exampleModal1">
+       <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true" ref="exampleModal1">
         <div class="modal-dialog modal-lg">
          <div class="modal-content">
           <div class="modal-header">
