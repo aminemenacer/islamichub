@@ -55,8 +55,8 @@ const app = createApp({});
 window.Form = Form;
 window.Swal = swal;
 
-window.jQuery = $;
-window.$ = $;
+window.$ = window.jQuery = $;
+
 
 app.use(PrimeVue);
 

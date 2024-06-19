@@ -26,6 +26,14 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QWLL07EBX9"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-QWLL07EBX9');
+    </script>
+
 </head>
 <body>
     <div id="app">
@@ -110,7 +118,7 @@
     </div>
 
     {{-- Ensure that app.js is loaded at the end --}}
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ mix('js/app.js') }}" ></script>
 </body>
 </html>
 

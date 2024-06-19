@@ -205,6 +205,7 @@
 
       <div class="tab-pane active" id="home" role="tabpanel" v-if="information == null">
        <div class="row">
+       <p class="text-center ayah-translation" name="ayah_text" style="line-height: 1.6em; padding:8px">Islamic Connect is a revolutionary platform committed to making the profound teachings of the Noble Quran accessible and comprehensible to all. It transcends being just a website; it's a Sadaqah Jariyah perpetual charity that enriches individuals and communities for generations to come.</p>
         <div class="col-md-12">
          <img src="/images/calligraphy.png" style="width: 40%" />
         </div>
@@ -214,7 +215,6 @@
       <!-- Translation Section -->
       <div class="tab-pane active" id="home" role="tabpanel" v-if="information != null">
        <div class="">
-
         <div class="icon-container pb-3">
          <i class="bi bi-chevron-bar-left h5" style="color: rgb(0, 191, 166);" @click="goToEndAyah()" title="Last verse"></i>
          <i class="bi bi-arrow-left-circle h5" style="color: rgb(0, 191, 166);" @click="goToPreviousAyah()" title="Previous verse"></i>
@@ -224,14 +224,12 @@
          <div class="dropdown">
           <i style="color:rgb(0, 191, 166); cursor:pointer" class="bi pt-3 bi-three-dots-vertical h5 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></i>
           <ul class="dropdown-menu">
-           <!--
-                  <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal3" @click="openNoteModal">Write a Note</a></li>
-                  -->
+           <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#noteModal" @click="openNoteModal">Write a Note</a></li>
            <li><a class="dropdown-item" @click="shareTextViaWhatsApp3">Share via WhatsApp</a></li>
            <li><a class="dropdown-item" @click="submitForm">Bookmark Verse</a></li>
            <li><a class="dropdown-item" @click="copyText3">Copy Verse</a></li>
            <li><a class="dropdown-item" @click="captureScreenshot3">Screenshot Verse</a></li>
-           <li><a class="dropdown-item" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal">Report a bug</a></li>
+           <li><a class="dropdown-item" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#bugModal">Report a bug</a></li>
           </ul>
          </div>
         </div>
@@ -274,11 +272,11 @@
         <!-- Features -->
         <div class="text-right pt-2">
          <!-- Surah Info Modal -->
-         <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+         <div class="modal fade" id="surahInfoModal" tabindex="-1" aria-labelledby="surahInfoModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-lg">
            <div class="modal-content">
             <div class="modal-header">
-             <h1 class="modal-title fs-5" id="exampleModalLabel"><strong>Information</strong></h1>
+             <h1 class="modal-title fs-5" id="surahInfoModalLabel"><strong>Information</strong></h1>
              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -305,25 +303,65 @@
           </div>
          </div>
 
+         <div id="noteModal" title="Write a Note" @hide="resetNoteForm">
+          <form @submit.prevent="createNote">
+            <div class="row container mt-3">
+              <h5 class="text-left pb-2 font-weight-bold">Notes & Reflections</h5>
+              <div class="col">
+                <textarea v-model="form1.ayah_notes" class="form-control container mb-3" name="ayah_notes" placeholder="Save your notes and personal reflections..." rows="8"></textarea>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <b-button variant="secondary" @click="hideNoteModal">Close</b-button>
+              <b-button type="submit" variant="success">Submit</b-button>
+            </div>
+          </form>
+        </div>
+
          <!-- Notes Modal -->
-         <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" ref="exampleModal1">
+         <div class="modal fade" id="noteModal" tabindex="-1" aria-labelledby="noteModalLabel" aria-hidden="true" ref="noteModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="noteModalLabel">Write a Note</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Note Form -->
+          <form @submit.prevent="createNote">
+            <div class="row container mt-3">
+              <h5 class="text-left pb-2 font-weight-bold">Notes & Reflections</h5>
+              <div class="col">
+                <textarea v-model="form1.ayah_notes" class="form-control container mb-3" name="ayah_notes" placeholder="Save your notes and personal reflections privately..." rows="8"></textarea>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" @click="closeModal('noteModal')">Close</button>
+              <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+         <div class="modal fade" id="bugModal" tabindex="-1" aria-labelledby="bugModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-lg">
            <div class="modal-content">
             <div class="modal-header">
-             <h5 class="modal-title" id="exampleModalLabel">Write a Note</h5>
+             <h5 class="modal-title" id="bugModalLabel">Report a Bug</h5>
              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-             <!-- Note Form -->
-             <form @submit.prevent="createNote">
+             <form @submit.prevent="reportBug">
               <div class="row container mt-3">
-               <h5 class="text-left pb-2 font-weight-bold">Notes & Reflections</h5>
+               <h5 class="text-left pb-2 font-weight-bold">Bug Report</h5>
                <div class="col">
-                <textarea v-model="form1.ayah_notes" class="form-control container mb-3" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah." rows="8"></textarea>
+                <textarea v-model="form1.bug_description" class="form-control container mb-3" name="bug_description" placeholder="Describe the issue you encountered." rows="8"></textarea>
                </div>
               </div>
               <div class="modal-footer">
-               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="closeModal('noteModal')">Close</button>
                <button type="submit" class="btn btn-success">Submit</button>
               </div>
              </form>
@@ -331,7 +369,6 @@
            </div>
           </div>
          </div>
-
         </div>
        </div>
       </div>
@@ -340,207 +377,213 @@
       <div class="tab-pane" id="profile" role="tabpanel" v-if="information != null">
        <div class="">
         <div>
-         <div>
-          <!-- Surah/Ayah Detail -->
-          <!-- Ayah Controls -->
-          <!-- Surah Information -->
-          <!-- Ayah Controls -->
-          <div class="icon-container pb-3">
-           <i class="bi bi-chevron-bar-left h5" style="color: rgb(0, 191, 166);" @click="goToEndAyah()" title="Last verse"></i>
-           <i class="bi bi-arrow-left-circle h5" style="color: rgb(0, 191, 166);" @click="goToPreviousAyah()" title="Previous verse"></i>
-           <i class="bi bi-arrow-right-circle h5" style="color: rgb(0, 191, 166);" @click="goToNextAyah()" title="Next verse"></i>
-           <i class="bi bi-chevron-bar-right h5" style="color: rgb(0, 191, 166);" @click="goToLastAyah()" title="End verse"></i>
-           <!-- Dropdown Features -->
-           <div class="dropdown">
-            <i style="color:rgb(0, 191, 166); cursor:pointer" class="bi pt-3 bi-three-dots-vertical h5 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></i>
-            <ul class="dropdown-menu">
-             <!--
-                  <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal1" @click="openNoteModal">Write a Note</a></li>
-                  -->
-             <li><a class="dropdown-item" @click="shareTextViaWhatsApp1">Share via WhatsApp</a></li>
-             <li><a class="dropdown-item" @click="submitForm">Bookmark Verse</a></li>
-             <li><a class="dropdown-item" @click="copyText1">Copy Verse</a></li>
-             <li><a class="dropdown-item" @click="captureScreenshot1">Screenshot Verse</a></li>
-             <li><a class="dropdown-item" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal">Report a bug</a></li>
-            </ul>
-           </div>
+         <!-- Ayah Controls -->
+         <div class="icon-container pb-3">
+          <i class="bi bi-chevron-bar-left h5" style="color: rgb(0, 191, 166);" @click="goToEndAyah()" title="Last verse"></i>
+          <i class="bi bi-arrow-left-circle h5" style="color: rgb(0, 191, 166);" @click="goToPreviousAyah()" title="Previous verse"></i>
+          <i class="bi bi-arrow-right-circle h5" style="color: rgb(0, 191, 166);" @click="goToNextAyah()" title="Next verse"></i>
+          <i class="bi bi-chevron-bar-right h5" style="color: rgb(0, 191, 166);" @click="goToLastAyah()" title="End verse"></i>
+          <!-- Dropdown Features -->
+          <div class="dropdown">
+           <i style="color:rgb(0, 191, 166); cursor:pointer" class="bi pt-3 bi-three-dots-vertical h5 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></i>
+           <ul class="dropdown-menu">
+            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal1" @click="openNoteModal">Write a Note</a></li>
+            <li><a class="dropdown-item" @click="shareTextViaWhatsApp1">Share via WhatsApp</a></li>
+            <li><a class="dropdown-item" @click="submitForm">Bookmark Verse</a></li>
+            <li><a class="dropdown-item" @click="copyText1">Copy Verse</a></li>
+            <li><a class="dropdown-item" @click="captureScreenshot1">Screenshot Verse</a></li>
+            <li><a class="dropdown-item" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal">Report a bug</a></li>
+           </ul>
           </div>
-
-          <div ref="targetElement1" class="w-100">
-           <h5 class="mr-2">
-            {{ information.ayah.surah.name_en }} {{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }}
-           </h5>
-           <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
-
-            <!-- main stack top -->
-            <div class="btn">
-             <h5 class="text-right ayah-translation" name="ayah_text" style="line-height: 1.6em">
-              {{ information.ayah.ayah_text }}
-             </h5>
-            </div>
-
-            <!-- main stack below -->
-            <h5 class="text-left ayah-translation" ref="heading1" style="line-height: 1.6em">
-             {{ expanded ? tafseer : truncatedText(tafseer) }}
-             <template v-if="showMoreLink">
-              <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
-             </template>
-            </h5>
-
-            <br>
-            <!-- Bootstrap Alert Component -->
-            <div v-if="showAlertText" class="alert alert-success alert-dismissible fade show" role="alert">
-             Text copied successfully!
-            </div>
-            <!-- Bookmark Component -->
-            <div v-if="showAlert" class="alert alert-success" role="alert">
-             Bookmark created successfully!
-            </div>
-            <div v-if="showErrorAlert" class="alert alert-danger" role="alert">
-             Login to your account to be able to bookmark verses.
-            </div>
-           </div>
-          </div>
-
          </div>
-         <!-- Notes Modal -->
-         <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" ref="exampleModal4">
-          <div class="modal-dialog modal-lg">
-           <div class="modal-content">
-            <div class="modal-header">
-             <h5 class="modal-title" id="exampleModalLabel">Write a Note</h5>
-             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-             <!-- Note Form -->
-             <form @submit.prevent="createNote">
-              <div class="row container mt-3">
-               <h5 class="text-left pb-2 font-weight-bold">Notes & Reflections</h5>
-               <div class="col">
-                <textarea v-model="form1.ayah_notes" class="form-control container mb-3" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah." rows="8"></textarea>
-               </div>
-              </div>
-              <div class="modal-footer">
-               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-               <button type="submit" class="btn btn-success">Submit</button>
-              </div>
-             </form>
-            </div>
+
+         <div ref="targetElement1" class="w-100">
+          <h5 class="mr-2">
+           {{ information.ayah.surah.name_en }} {{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }}
+          </h5>
+          <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
+           <!-- main stack top -->
+           <div class="btn">
+            <h5 class="text-right ayah-translation" name="ayah_text" style="line-height: 1.6em">
+             {{ information.ayah.ayah_text }}
+            </h5>
+           </div>
+           <!-- main stack below -->
+           <h5 class="text-left ayah-translation" ref="heading1" style="line-height: 1.6em">
+            {{ expanded ? tafseer : truncatedText(tafseer) }}
+            <template v-if="showMoreLink">
+             <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
+            </template>
+           </h5>
+           <br>
+           <!-- Bootstrap Alert Component -->
+           <div v-if="showAlertText" class="alert alert-success alert-dismissible fade show" role="alert">
+            Text copied successfully!
+           </div>
+           <!-- Bookmark Component -->
+           <div v-if="showAlert" class="alert alert-success" role="alert">
+            Bookmark created successfully!
+           </div>
+           <div v-if="showErrorAlert" class="alert alert-danger" role="alert">
+            Login to your account to be able to bookmark verses.
            </div>
           </div>
+         </div>
+
+        </div>
+       </div>
+      </div>
+
+      <!-- Notes Modal -->
+      <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true" ref="exampleModal1">
+       <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+         <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel1">Write a Note</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+         </div>
+         <div class="modal-body">
+          <!-- Note Form -->
+          <form @submit.prevent="createNote">
+           <div class="row container mt-3">
+            <h5 class="text-left pb-2 font-weight-bold">Notes & Reflections</h5>
+            <div class="col">
+             <textarea v-model="form1.ayah_notes" class="form-control container mb-3" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah." rows="8"></textarea>
+            </div>
+           </div>
+           <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-success">Submit</button>
+           </div>
+          </form>
          </div>
         </div>
        </div>
       </div>
 
-      <!-- transliteration section -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+       <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+         <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Report a Bug</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+         </div>
+         <div class="modal-body">
+          <form @submit.prevent="reportBug">
+           <div class="row container mt-3">
+            <h5 class="text-left pb-2 font-weight-bold">Bug Report</h5>
+            <div class="col">
+             <textarea v-model="form1.bug_description" class="form-control container mb-3" name="bug_description" placeholder="Describe the issue you encountered." rows="8"></textarea>
+            </div>
+           </div>
+           <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-success">Submit</button>
+           </div>
+          </form>
+         </div>
+        </div>
+       </div>
+      </div>
+
+      <!-- Transliteration Section -->
       <div class="tab-pane" id="messages" role="tabpanel" v-if="information != null">
        <div class="">
-
         <div>
-         <div>
-          <!-- Ayah Controls -->
-          <div class="icon-container pb-3">
-           <i class="bi bi-chevron-bar-left h5" style="color: rgb(0, 191, 166);" @click="goToEndAyah()" title="Last verse"></i>
-           <i class="bi bi-arrow-left-circle h5" style="color: rgb(0, 191, 166);" @click="goToPreviousAyah()" title="Previous verse"></i>
-           <i class="bi bi-arrow-right-circle h5" style="color: rgb(0, 191, 166);" @click="goToNextAyah()" title="Next verse"></i>
-           <i class="bi bi-chevron-bar-right h5" style="color: rgb(0, 191, 166);" @click="goToLastAyah()" title="End verse"></i>
-           <!-- Dropdown Features -->
-           <div class="dropdown">
-            <i style="color:rgb(0, 191, 166); cursor:pointer" class="bi pt-3 bi-three-dots-vertical h5 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></i>
-            <ul class="dropdown-menu">
-             <!--
-                  <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal3" @click="openNoteModal">Write a Note</a></li>
-                  -->
-             <li><a class="dropdown-item" @click="shareTextViaWhatsApp2">Share via WhatsApp</a></li>
-             <li><a class="dropdown-item" @click="submitForm">Bookmark Verse</a></li>
-             <li><a class="dropdown-item" @click="copyText2">Copy Verse</a></li>
-             <li><a class="dropdown-item" @click="captureScreenshot2">Screenshot Verse</a></li>
-             <li><a class="dropdown-item" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal">Report a bug</a></li>
-            </ul>
-           </div>
+         <!-- Ayah Controls -->
+         <div class="icon-container pb-3">
+          <i class="bi bi-chevron-bar-left h5" style="color: rgb(0, 191, 166);" @click="goToEndAyah()" title="Last verse"></i>
+          <i class="bi bi-arrow-left-circle h5" style="color: rgb(0, 191, 166);" @click="goToPreviousAyah()" title="Previous verse"></i>
+          <i class="bi bi-arrow-right-circle h5" style="color: rgb(0, 191, 166);" @click="goToNextAyah()" title="Next verse"></i>
+          <i class="bi bi-chevron-bar-right h5" style="color: rgb(0, 191, 166);" @click="goToLastAyah()" title="End verse"></i>
+          <!-- Dropdown Features -->
+          <div class="dropdown">
+           <i style="color:rgb(0, 191, 166); cursor:pointer" class="bi pt-3 bi-three-dots-vertical h5 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></i>
+           <ul class="dropdown-menu">
+            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal1" @click="openNoteModal">Write a Note</a></li>
+            <li><a class="dropdown-item" @click="shareTextViaWhatsApp2">Share via WhatsApp</a></li>
+            <li><a class="dropdown-item" @click="submitForm">Bookmark Verse</a></li>
+            <li><a class="dropdown-item" @click="copyText2">Copy Verse</a></li>
+            <li><a class="dropdown-item" @click="captureScreenshot2">Screenshot Verse</a></li>
+            <li><a class="dropdown-item" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal">Report a bug</a></li>
+           </ul>
           </div>
+         </div>
 
-          <div ref="targetElement2" class=" w-100">
-           <h5 class="mr-2">
-            {{ information.ayah.surah.name_en }} {{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }}
-           </h5>
-           <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
-            <!-- main stack top -->
-            <div class="btn">
-             <h5 class="text-right ayah-translation" name="ayah_text" style="line-height: 1.6em">
-              {{ information.ayah.ayah_text }}
-             </h5>
-            </div>
-
-            <!-- main stack below -->
-            <h5 class="text-left ayah-translation" ref="heading2" style="line-height: 1.6em">
-             {{ expanded ? information.transliteration : truncatedText(information.transliteration) }}
-             <template v-if="showMoreLink">
-              <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
-             </template>
+         <div ref="targetElement2" class="w-100">
+          <h5 class="mr-2">
+           {{ information.ayah.surah.name_en }} {{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }}
+          </h5>
+          <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
+           <!-- main stack top -->
+           <div class="btn">
+            <h5 class="text-right ayah-translation" name="ayah_text" style="line-height: 1.6em">
+             {{ information.ayah.ayah_text }}
             </h5>
            </div>
-          </div>
-          <br>
 
-          <!-- Bootstrap alert component -->
-          <div v-if="showAlertText" class="alert alert-success alert-dismissible fade show" role="alert">
-           Text copied successfully!
+           <!-- main stack below -->
+           <h5 class="text-left ayah-translation" ref="heading2" style="line-height: 1.6em">
+            {{ expanded ? information.transliteration : truncatedText(information.transliteration) }}
+            <template v-if="showMoreLink">
+             <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
+            </template>
+           </h5>
           </div>
+         </div>
+         <br>
 
-          <!-- bookmark component -->
-          <div v-if="showAlert" class="alert alert-success" role="alert">
-           Bookmark created successfully!
-          </div>
-          <div v-if="showErrorAlert" class="alert alert-danger" role="alert">
-           Login to your account to be able to bookmark verses.
-          </div>
+         <!-- Bootstrap alert component -->
+         <div v-if="showAlertText" class="alert alert-success alert-dismissible fade show" role="alert">
+          Text copied successfully!
+         </div>
+
+         <!-- bookmark component -->
+         <div v-if="showAlert" class="alert alert-success" role="alert">
+          Bookmark created successfully!
+         </div>
+         <div v-if="showErrorAlert" class="alert alert-danger" role="alert">
+          Login to your account to be able to bookmark verses.
          </div>
         </div>
-        <!-- features -->
+       </div>
 
-        <div>
-         <!-- notes modal -->
-         <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" ref="exampleModal3">
-          <div class="modal-dialog modal-lg">
-           <div class="modal-content">
-            <div class="modal-header">
-             <h5 class="modal-title" id="exampleModalLabel">Write a Note</h5>
-             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+       <!-- Notes Modal -->
+       <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true" ref="exampleModal1">
+        <div class="modal-dialog modal-lg">
+         <div class="modal-content">
+          <div class="modal-header">
+           <h5 class="modal-title" id="exampleModalLabel1">Write a Note</h5>
+           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+           <!-- Note Form -->
+           <form @submit.prevent="createNote">
+            <div class="row container mt-3">
+             <h5 class="text-left pb-2" style="font-weight: bold;">Notes & Reflections</h5>
+
+             <div class="col">
+              <textarea v-model="form1.ayah_notes" class="form-control container mb-3" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah." rows="8"></textarea>
+             </div>
             </div>
-            <div class="modal-body">
-
-             <form @submit.prevent="createNote">
-
-              <div class="row container mt-3">
-               <h5 class="text-left pb-2" style="font-weight:bolder">Notes & Reflections</h5>
-
-               <div class="col">
-                <textarea v-model="form1.ayah_notes" class="form-control container mb-3" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah ?." rows="8"></textarea>
-               </div>
-              </div>
-              <div class="modal-footer">
-               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-               <button type="submit" class="btn btn-success">Submit</button>
-              </div>
-             </form>
+            <div class="modal-footer">
+             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+             <button type="submit" class="btn btn-success">Submit</button>
             </div>
-           </div>
+           </form>
           </div>
          </div>
-
         </div>
        </div>
 
       </div>
+
      </div>
 
     </div>
    </div>
   </div>
  </div>
-
 </div>
 </template>
 
@@ -1228,12 +1271,12 @@ export default {
    }
   },
   selectSurah() {
-      // Example: Fetch ayahs data for the selected surah (replace with actual logic)
-      // Simulate fetching ayahs data for the selected surah
-      this.ayahs = this.fetchAyahsForSurah(this.surah); // Replace with actual logic
-      // Always select the first ayah when a surah is selected
-      this.selectedAyah = this.ayahs.length > 0 ? '0' : '0'; // Select the first ayah
-    },
+   // Example: Fetch ayahs data for the selected surah (replace with actual logic)
+   // Simulate fetching ayahs data for the selected surah
+   this.ayahs = this.fetchAyahsForSurah(this.surah); // Replace with actual logic
+   // Always select the first ayah when a surah is selected
+   this.selectedAyah = this.ayahs.length > 0 ? '0' : '0'; // Select the first ayah
+  },
   selectSurah(surahId) {
    this.surah = surahId;
    this.searchTerm = ''; // Clear the search term
@@ -1383,20 +1426,50 @@ export default {
     }
    });
   },
+  resetNoteForm() {
+      this.form1.ayah_notes = '';
+    },
+    hideNoteModal() {
+      this.$refs.noteModal.hide();
+    },
   closeModal(modalId) {
-   const modalElement = document.getElementById(modalId);
-   const modalInstance = bootstrap.Modal.getInstance(modalElement);
+      const modalElement = document.getElementById(modalId);
+      const modalInstance = new bootstrap.Modal(modalElement);
 
-   if (modalInstance) {
-    modalInstance.hide();
-   } else {
-    $(modalElement).modal('hide');
-   }
+      modalInstance.hide();
 
-   document.body.classList.remove('modal-open');
-   const modals = document.querySelectorAll('.modal-backdrop');
-   modals.forEach(modal => modal.remove());
+      // Remove any existing modal backdrops
+      const modalBackdrops = document.querySelectorAll('.modal-backdrop');
+      modalBackdrops.forEach(backdrop => {
+        backdrop.parentNode.removeChild(backdrop);
+      });
+
+      // Ensure modal-open class is removed from body
+      document.body.classList.remove('modal-open');
+    },
+  resetForm() {
+   this.form1.surah_name = "";
+   this.form1.ayah_num = "";
+   this.form1.ayah_text = "";
+   this.form1.ayah_notes = "";
   },
+
+  closeModal(modalId) {
+    const modalElement = document.getElementById(modalId);
+    const modalInstance = new bootstrap.Modal(modalElement);
+
+    modalInstance.hide();
+
+    // Ensure modal backdrop is properly removed
+    const modalBackdrops = document.querySelectorAll('.modal-backdrop');
+    modalBackdrops.forEach(backdrop => {
+      backdrop.parentNode.removeChild(backdrop);
+    });
+
+    // Reset body class to remove modal-open if necessary
+    document.body.classList.remove('modal-open');
+  },
+
   resetForm() {
    this.form.reset();
    this.form1.reset();
@@ -1543,27 +1616,32 @@ export default {
 </script>
 
 <style scoped>
-
 .custom-form {
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  border-radius: 5px;
-  overflow-x: hidden; /* Hide horizontal scrollbar */
+ box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+ border-radius: 5px;
+ overflow-x: hidden;
+ /* Hide horizontal scrollbar */
 }
 
 .tab-content {
-  overflow-x: hidden; /* Hide horizontal scrollbar */
+ overflow-x: hidden;
+ /* Hide horizontal scrollbar */
 }
+
 @media (max-width: 767.98px) {
 
-  .custom-form {
+ .custom-form {
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   border-radius: 5px;
-  overflow-x: hidden; /* Hide horizontal scrollbar */
-}
+  overflow-x: hidden;
+  /* Hide horizontal scrollbar */
+ }
 
-.tab-content {
-  overflow-x: hidden; /* Hide horizontal scrollbar */
-}
+ .tab-content {
+  overflow-x: hidden;
+  /* Hide horizontal scrollbar */
+ }
+
  .icon-container {
   display: flex;
   justify-content: space-between;

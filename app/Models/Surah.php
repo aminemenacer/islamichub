@@ -14,7 +14,9 @@ class Surah extends Model
     protected $fillable = [
         'name_en',
         'name_ar',
-        'text'
+        'text',
+        'juz_id',
+        
     ];
 
     public function ayat()
