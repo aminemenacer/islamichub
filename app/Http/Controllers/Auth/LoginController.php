@@ -20,21 +20,13 @@ class LoginController extends Controller
      */
     protected $redirectTo = '/home';
 
-    /**
-     * Redirect the user to the Facebook authentication page.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    // facebook
+
     public function redirectToFacebook()
     {
         return Socialite::driver('facebook')->redirect();
     }
 
-    /**
-     * Obtain the user information from Facebook.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function loginWithFacebook()
     {
         try {
@@ -63,29 +55,50 @@ class LoginController extends Controller
         }
     }
 
+    // linkedin
     
-    /**
-     * Redirect the user to the Google authentication page.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function redirectToLinkedin()
+    {
+        return Socialite::driver('linkedin')->redirect();
+    }
+
+    public function handleLinkedinCallback()
+    {
+        try {
+            $linkedin_user = Socialite::driver('linkedin')->user();
+            $user = User::where('linkedin_id', $linkedin_user->getId())->orWhere('email', $linkedin_user->getEmail())->first();
+
+            if ($user) {
+                Auth::login($user, true);
+            } else {
+                $newUser = User::create([
+                    'name' => $linkedin_user->getName(),
+                    'email' => $linkedin_user->getEmail(),
+                    'linkedin_id' => $linkedin_user->getId(),
+                ]);
+                Auth::login($newUser, true);
+            }
+
+            Auth::login($user, true);
+            return redirect($this->redirectTo);
+        } catch (\Exception $e) {
+            return redirect('/login')->withErrors(['error' => 'Unable to login using Facebook. Please try again.']);
+        }
+    }
+
+    // google
+    
     public function redirectToGoogle()
     {
         return Socialite::driver('google')->redirect();
     }
 
-    /**
-     * Obtain the user information from Google.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function handleGoogleCallback()
     {
         try {
             $googleUser = Socialite::driver('google')->user();
 
-            // Log the user details for debugging
-            \Log::info('Google User: ', (array) $googleUser);
+            
 
             // Check if the user already exists
             $user = User::where('email', $googleUser->getEmail())->first();
@@ -107,8 +120,7 @@ class LoginController extends Controller
 
             return redirect()->route('home');
         } catch (\Exception $e) {
-            // Handle exceptions (e.g., logging in case of an error)
-            \Log::error('Google callback error: ' . $e->getMessage());
+
             return redirect()->route('login')->with('error', 'Unable to login using Google.');
         }
     }
@@ -116,9 +128,7 @@ class LoginController extends Controller
     
     /**
      * Logout the user.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     
      */
     public function logout(Request $request)
     {

@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('role')->default('user'); // Default role is 'user'
             $table->string('google_id')->nullable();
             $table->string('facebook_id')->nullable();
+            $table->string('linkedin_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

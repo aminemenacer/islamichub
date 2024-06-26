@@ -79,13 +79,18 @@ Route::get('/audio-files/{id}', [ContactController::class, 'fetchAudioFile']);
 //updates
 Route::get('/updates', [UpdatesController::class, 'index']);
 
-//facebook login
+//facebook sign-in
 Route::get('/auth/facebook', [LoginController::class, 'redirectToFacebook'])->name('fb-auth');
 Route::get('/auth/facebook/callback', [LoginController::class, 'loginWithFacebook']);
 
 // google sign-in
 Route::get('auth/google', [LoginController::class, 'redirectToGoogle'])->name('google-auth');
 Route::get('auth/google/callback', [LoginController::class, 'handleGoogleCallback']);
+
+// linked sign-in
+Route::get('auth/linkedin', [LoginController::class, 'redirectToLinkedin'])->name('linkedin-auth');
+Route::get('auth/linkedin/callback', [LoginController::class, 'handleLinkedinCallback']);
+
 
 
 // stripe payment

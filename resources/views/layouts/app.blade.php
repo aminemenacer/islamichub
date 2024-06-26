@@ -64,9 +64,11 @@
                         <li class="nav-item mt-3">
                             <h6><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/updates">Updates</a></h6>
                         </li>
-                        <li class="nav-item mt-3">
-                            <h6><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3 pr-5" href="/join_us">Mailing List</a></h6>
-                        </li>
+                        <!--
+                            <li class="nav-item mt-3">
+                                <h6><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3 pr-5" href="/join_us">Mailing List</a></h6>
+                            </li>
+                        -->
                     </ul>
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav mt-1" style="align-items: center">

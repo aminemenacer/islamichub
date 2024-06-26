@@ -205,14 +205,12 @@
 
       <div class="tab-pane active" id="home" role="tabpanel" v-if="information == null">
       <h4 class="text-center"><strong>Welcome to Islamic Connect</strong></h4>
-       <div class="row">
-       <p class="text-center ayah-translation" name="ayah_text" style="line-height: 1.6em; padding:6px">Islamic Connect is a revolutionary platform committed to making the profound teachings of the Noble Quran accessible to all. It transcends being just a website; it's a Sadaqah Jariyah perpetual charity that enriches individuals and communities for generations to come.</p>
+       <p class="text-center ayah-translation" style="line-height: 1.6em;">Islamic Connect is a revolutionary platform committed to making the profound teachings of the Noble Quran accessible to all. It transcends being just a website; it's a Sadaqah Jariyah perpetual charity that enriches individuals and communities for generations to come.</p>
         <!--
         <div class="col-md-12">
          <img src="/images/calligraphy.png" style="width: 40%" />
         </div>
         -->
-       </div>
       </div>
 
       <!-- Translation Section -->
@@ -1682,8 +1680,7 @@ export default {
 }
 
 .scrollmenu {
- overflow-y: hidden;
- overflow-x: hidden;
+ overflow-x: auto;
  /* Hide horizontal scrollbar */
  white-space: nowrap;
 }
@@ -1990,7 +1987,7 @@ export default {
  padding-bottom: 10px;
  padding-top: 10px;
  overflow-y: hidden;
- overflow-x: hidden;
+ overflow-x: scroll;
  /* Hide horizontal scrollbar */
  white-space: nowrap;
 }
