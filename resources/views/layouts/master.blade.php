@@ -143,13 +143,10 @@
                       </a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                          <i class="bi bi-plug-fill" style="font-size: 22px"></i>
-                          <p class="mb-2">{{ __('Logout') }}</p>
-                      </a>
-                      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                          @csrf
-                      </form>
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
                   </li>
                   @endif
               </ul>

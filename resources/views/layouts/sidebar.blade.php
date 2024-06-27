@@ -1,8 +1,8 @@
-<aside id="tablet-sidebar" class="main-sidebar sidebar-light-primary elevation-2" style="position: fixed; top: 0; left: 0; height: 100vh; overflow-y: auto;">
+<aside id="tablet-sidebar" class="main-sidebar sidebar-light-primary elevation-2 h-100" style="position: fixed; top: 0; left: 0; height: 100vh; overflow-y: auto;">
     <a href="/" class="brand-link">
         <img src="/images/logo_main.png" width="220" height="45" alt="">
     </a>
-    <div class="sidebar">
+    <div class="sidebar ">
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 @if(auth()->user()->role === 'admin')
