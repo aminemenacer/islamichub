@@ -18,28 +18,6 @@
  </div>
 
  <hr>
-<div class="row ml-4 mt-3 container-fluid">
-  <h3 class="text-left mt-3 mb-2 container" style="line-height: 1.7em; font-family:inter; "><img src="/images/art.png" style="width: 40px;" class="mb-1 mr-2" />Introducing "Featured Reading"</h3>
-  <div class="col-md-6">
-   <h5 class="text-left text-secondary" width="80%" style="line-height: 1.7em; font-family:inter">June 17th, 2024</h5>
-   <div>
-    <p style="padding:5px; line-height: 1.7em; font-family:inter" class="text-left text-secondary ">We are excited to announce the addition of a new feature set for Surat, enhancing user experience with adding a curated collection of significant Surahs for your daily reflection and study</p>
-   </div>
-   <p class="text-left text-secondary " style="line-height: 1.7em; font-family:inter">In addition to the Featured reading feature, several other features and improvments have been made to further enhance better user and Quran reading experience:</p>
-   <div>
-    <li style="padding:5px" class="text-left text-secondary "><strong>New UI layout for better user experience</strong></li>
-    <li style="padding:5px" class="text-left text-secondary "><strong>Improved screenshoots</strong></li>
-    <li style="padding:5px" class="text-left text-secondary "><strong>Improved reading experience</strong></li>
-    <li style="padding:5px" class="text-left text-secondary "><strong>Smooth transitions between dropdowns</strong></li>
-   </div>
-
-  </div>
-  <div class="col-md-6">
-   <img src="images/featured_read.png" style="width:80%" />
-  </div>
- </div>
-
- <hr>
 
 <div class="row ml-4 mt-3 container-fluid">
   <h3 class="text-left mt-3 mb-2 container" style="line-height: 1.7em; font-family:inter; "><img src="/images/art.png" style="width: 40px;" class="mb-1 mr-2" />Announcing our latest feature "Notes and Reflections"</h3>
