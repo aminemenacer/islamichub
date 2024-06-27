@@ -67,7 +67,7 @@
     -->
 
    <!-- Custom Surah Selection -->
-   <div class="scrollmenu" @change="getAyahs()">
+   <div class="scrollmenu pt-3" @change="getAyahs()">
     <a href="#" v-for="data in customSurahs" :key="data.id" @click.prevent="selectSurah(data.id)">
      <div class="flex justify-content-center mr-1">
       <span class="badge button-33" label="" severity="success" raised outlined @click="selectSurah(1)" :class="{ active: surah === 1 }">Al Fatiha</span>
@@ -174,14 +174,14 @@
 
   </div>
 
-  <div class="col-md-8 card-hide">
+  <div class="col-md-8 pt-3 card-hide">
 
    <!-- Nav tabs -->
-   <div class="card " style="box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;">
+   <div class="card pt-2" style="box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;">
     <!-- tabs for Translation, Tafseer & Transliteration -->
     <div class="container-fluid" v-if="information != null">
 
-     <div class="overflow-auto">
+     <div >
       <ul class="nav nav-tabs text-left justify-content-start pt-3 flex-nowrap" style="white-space: nowrap;" role="tablist">
        <li class="nav-item">
         <a class="nav-link active" data-bs-toggle="tab" href="#home" role="tab">
