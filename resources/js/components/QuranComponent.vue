@@ -157,7 +157,7 @@
       <i class="bi bi-chevron-bar-right h5" style="color: rgb(0, 191, 166);" @click="goToLastAyah" title="Last verse"></i>
      </div>
      <div class="row container-fluid">
-      <div class="custom-scrollbar" style="overflow-y: auto; max-height: 650px; background: white;">
+      <div class="custom-scrollbar" style="overflow-y: auto; max-height: 600px; background: white;">
        <ul class="col-md-12 list-group container-fluid root" id="toggle" ref="ayahList" style="list-style-type: none; padding: 10px">
         <li v-for="(ayah, index) in ayahs" :key="index" @click="selectAyah(index)" :class="{ selected: selectedIndexAyah === index, highlighted: verseNumber && parseInt(verseNumber) === ayah.ayah_id }" style="padding: 10px; border-radius:10px">
          <h5 class="text-right" style="display: flex;"> Verse: {{ ayah.ayah_id }} </h5>
@@ -172,7 +172,7 @@
 
   </div>
 
-  <div class="col-md-8 card-hide">
+  <div class="col-md-8 pt-2 card-hide">
 
    <!-- Nav tabs -->
    <div class="card pt-2" style="box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;">
@@ -215,15 +215,15 @@
        <div class="icon-container pb-3">
 
         <div class="icon-container w-100 hide-on-mobile pb-3">
-         <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#translationNote" style="color: rgba(0, 191, 166);"></i>
-         <i class="bi bi-whatsapp text-right mr-2 h4" @click="shareTextViaWhatsApp3" aria-expanded="false" data-bs-placement="top" title="Share on Whatsapp" style="color: rgba(0, 191, 166);"></i>
-         <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);"></i>
-         <i @click="copyText3" class="bi bi-clipboard-check text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Copy verse" style="color: rgba(0, 191, 166);"></i>
-         <i class="bi bi-camera text-right mr-2 h3" @click="captureScreenshot3" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" style="color: rgba(0, 191, 166);"></i>
-         <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#bugTranslation" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166);"></i>
-         <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);" @click="toggleFullScreen" title="Full screen"></i>
-         <i class="bi bi-info-circle h4" style="color: rgb(0, 191, 166);" data-bs-target="#translationInfo" aria-expanded="false" data-bs-toggle="modal" data-bs-placement="top" title="Surah info"></i>
-         
+         <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#translationNote" style="color: rgba(0, 191, 166);cursor:pointer"></i>
+         <i class="bi bi-whatsapp text-right mr-2 h4" @click="shareTextViaWhatsApp3" aria-expanded="false" data-bs-placement="top" title="Share on Whatsapp" style="color: rgba(0, 191, 166);cursor:pointer"></i>
+         <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
+         <i @click="copyText3" class="bi bi-clipboard-check text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Copy verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
+         <i class="bi bi-camera text-right mr-2 h3" @click="captureScreenshot3" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
+         <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#bugTranslation" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166);cursor:pointer"></i>
+         <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
+         <i class="bi bi-info-circle h4" style="color: rgb(0, 191, 166);cursor:pointer" data-bs-target="#translationInfo" aria-expanded="false" data-bs-toggle="modal" data-bs-placement="top" title="Surah info"></i>
+
         </div>
 
         <!-- Dropdown Features -->
@@ -381,14 +381,15 @@
        <div class="icon-container pb-3">
 
         <div class="icon-container w-100 hide-on-mobile pb-3">
-         <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#tafseerNote" style="color: rgba(0, 191, 166);"></i>
-         <i class="bi bi-whatsapp text-right mr-2 h4" @click="shareTextViaWhatsApp1" aria-expanded="false" data-bs-placement="top" title="Share on Whatsapp" style="color: rgba(0, 191, 166);"></i>
-         <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);"></i>
-         <i @click="copyText1" class="bi bi-clipboard-check text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Copy verse" style="color: rgba(0, 191, 166);"></i>
-         <i class="bi bi-camera text-right mr-2 h3" @click="captureScreenshot1" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" style="color: rgba(0, 191, 166);"></i>
-         <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#bugTafseer" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166);"></i>
-         <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);" @click="toggleFullScreen" title="Full screen"></i>
-         <i class="bi bi-info-circle h4" style="color: rgb(0, 191, 166);" data-bs-target="#tafseerInfo" aria-expanded="false" data-bs-toggle="modal" data-bs-placement="top" title="Surah info"></i>
+         <!-- Camera Icon for Screenshot -->
+         <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#tafseerNote" style="color: rgba(0, 191, 166);cursor:pointer"></i>
+         <i class="bi bi-whatsapp text-right mr-2 h4" @click="shareTextViaWhatsApp1" aria-expanded="false" data-bs-placement="top" title="Share on Whatsapp" style="color: rgba(0, 191, 166);cursor:pointer"></i>
+         <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
+         <i class="bi bi-clipboard-check text-right mr-2 h4" @click="copyText1" aria-expanded="false" data-bs-placement="top" title="Copy verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
+         <i class="bi bi-camera text-right mr-2 h3" @click="captureScreenshot1" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
+         <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#bugTafseer" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166);cursor:pointer"></i>
+         <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
+         <i class="bi bi-info-circle h4" style="color: rgb(0, 191, 166);cursor:pointer" data-bs-target="#tafseerInfo" aria-expanded="false" data-bs-toggle="modal" data-bs-placement="top" title="Surah info"></i>
         </div>
 
         <!-- Dropdown Features -->
@@ -406,8 +407,8 @@
            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#tafseerNote"><i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" style="color: rgba(0, 191, 166);"></i>Write a Note</a></li>
            <li><a class="dropdown-item" @click="shareTextViaWhatsApp1"><i class="bi bi-whatsapp text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Share on Whatsapp" style="color: rgba(0, 191, 166);"></i>Share via WhatsApp</a></li>
            <li><a class="dropdown-item" @click="submitForm"><i class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);"></i>Bookmark Verse</a></li>
-           <li><a class="dropdown-item" @click="copyText1"><i class="bi bi-clipboard-check text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Copy verse" style="color: rgba(0, 191, 166);"></i>Copy Verse</a></li>
-           <li><a class="dropdown-item" @click="captureScreenshot1"><i class="bi bi-camera text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" style="color: rgba(0, 191, 166);"></i>Screenshot Verse</a></li>
+           <li><a class="dropdown-item" @click="copyText1"><i class="bi bi-clipboard-check text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Copy verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>Copy Verse</a></li>
+           <li><a class="dropdown-item" @click="captureScreenshot1"><i class="bi bi-camera text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>Screenshot Verse</a></li>
            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#tafseerInfo"><i class="bi bi-info-circle text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Surah info" style="color: rgba(0, 191, 166);"></i>Surah Info</a></li>
            <li><a class="dropdown-item" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#bugTafseer"><i class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Report a bug" style="color: rgba(0, 191, 166);"></i>Report a bug</a></li>
           </ul>
@@ -416,38 +417,37 @@
         </div>
        </div>
 
-       <div ref="targetElement3" class="w-100 my-element " :class="{'full-screen': isFullScreen}">
+       <!-- Main Content to Capture -->
+       <div ref="targetElement1" class="w-100 my-element" :class="{'full-screen': isFullScreen}">
         <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
         <h5 class="mr-2">{{ information.ayah.surah.name_en }} {{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }}</h5>
 
         <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
-         <!-- Main Stack Top -->
+        <!-- main stack top -->
          <div class="btn">
           <h5 class="text-right ayah-translation" name="ayah_text" style="line-height: 1.6em">
            {{ information.ayah.ayah_text }}
           </h5>
          </div>
-         <!-- Main Stack Below -->
-         <h5 class="text-left ayah-translation" ref="heading3" style="line-height: 1.6em">
+         <!-- main stack below -->
+         <h5 class="text-left ayah-translation" ref="heading1" style="line-height: 1.6em">
           {{ expanded ? tafseer : truncatedText(tafseer) }}
           <template v-if="showMoreLink">
            <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
           </template>
          </h5>
-
-         <!-- Alerts -->
-         <div v-if="showAlertText" class="alert alert-success alert-dismissible fade show mt-2" role="alert">
-          Text copied successfully!
-         </div>
-         <div v-if="showAlert" class="alert alert-success mt-2" role="alert">
-          Bookmark created successfully!
-         </div>
-         <div v-if="showErrorAlert" class="alert alert-danger" role="alert">
-          Login to your account to be able to bookmark verses.
-         </div>
-         <div v-if="showAlertTextNote" class="alert alert-danger" role="alert">
-          Please log in to write a note.
-         </div>
+          <br>
+           <!-- Bootstrap Alert Component -->
+           <div v-if="showAlertText" class="alert alert-success alert-dismissible fade show" role="alert">
+            Text copied successfully!
+           </div>
+           <!-- Bookmark Component -->
+           <div v-if="showAlert" class="alert alert-success" role="alert">
+            Bookmark created successfully!
+           </div>
+           <div v-if="showErrorAlert" class="alert alert-danger" role="alert">
+            Login to your account to be able to bookmark verses.
+           </div>
         </div>
        </div>
 
@@ -465,7 +465,7 @@
             <form class="container text-left">
              <div class="mb-3 container">
               <label for="formGroupExampleInput" class="form-label">Surah Name (English):</label>
-              <p class="mt-2 text-dark text-right">{{ information.ayah.surah.name_en }}</p>
+              <p class="mt-2 text-dark text-left">{{ information.ayah.surah.name_en }}</p>
              </div>
              <div class="mb-3 container">
               <label for="formGroupExampleInput" class="form-label text-left">Surah Information:</label>
@@ -484,6 +484,8 @@
           </div>
          </div>
         </div>
+
+        
 
         <!-- Notes Modal -->
         <div class="modal fade" id="tafseerNote" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true" ref="exampleModal1">
@@ -550,14 +552,14 @@
          <div class="icon-container pb-3">
 
           <div class="icon-container w-100 hide-on-mobile pb-3">
-           <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#transliterationNote" style="color: rgba(0, 191, 166);"></i>
-           <i class="bi bi-whatsapp text-right mr-2 h4" @click="shareTextViaWhatsApp2" aria-expanded="false" data-bs-placement="top" title="Share on Whatsapp" style="color: rgba(0, 191, 166);"></i>
-           <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);"></i>
-           <i @click="copyText2" class="bi bi-clipboard-check text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Copy verse" style="color: rgba(0, 191, 166);"></i>
-           <i class="bi bi-camera text-right mr-2 h3" @click="captureScreenshot2" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" style="color: rgba(0, 191, 166);"></i>
-           <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#bugTransliteration" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166);"></i>
-           <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);" @click="toggleFullScreen" title="Full screen"></i>
-           <i class="bi bi-info-circle h4" style="color: rgb(0, 191, 166);" data-bs-target="#transliterationInfo" aria-expanded="false" data-bs-toggle="modal" data-bs-placement="top" title="Surah info"></i>
+           <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#transliterationNote" style="color: rgba(0, 191, 166);cursor:pointer"></i>
+           <i class="bi bi-whatsapp text-right mr-2 h4" @click="shareTextViaWhatsApp2" aria-expanded="false" data-bs-placement="top" title="Share on Whatsapp" style="color: rgba(0, 191, 166);cursor:pointer"></i>
+           <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
+           <i @click="copyText2" class="bi bi-clipboard-check text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Copy verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
+           <i class="bi bi-camera text-right mr-2 h3" @click="captureScreenshot2" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" style="color: rgba(0, 191, 166); cursor:pointer"></i>
+           <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#bugTransliteration" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166);cursor:pointer"></i>
+           <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
+           <i class="bi bi-info-circle h4" style="color: rgb(0, 191, 166);cursor:pointer" data-bs-target="#transliterationInfo" aria-expanded="false" data-bs-toggle="modal" data-bs-placement="top" title="Surah info"></i>
           </div>
 
           <!-- Dropdown Features -->
@@ -674,36 +676,36 @@
          </div>
 
          <!-- Surah Info Modal -->
-        <div class="modal fade" id="transliterationInfo" tabindex="-1" aria-labelledby="surahInfoModalLabel" aria-hidden="true">
-         <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="surahInfoModalLabel"><strong>Information</strong></h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-           </div>
-           <div class="modal-body">
-            <form class="container text-left">
-             <div class="mb-3 container">
-              <label for="formGroupExampleInput" class="form-label">Surah Name (English):</label>
-              <p class="mt-2 text-dark text-left">{{ information.ayah.surah.name_en }}</p>
-             </div>
-             <div class="mb-3 container">
-              <label for="formGroupExampleInput" class="form-label text-left">Surah Information:</label>
-              <p class="text-left">
-               {{ expanded ? information.ayah.surah.text : truncatedText(information.ayah.surah.text) }}
-               <template v-if="showMoreLink">
-                <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
-               </template>
-              </p>
-             </div>
-            </form>
-           </div>
-           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+         <div class="modal fade" id="transliterationInfo" tabindex="-1" aria-labelledby="surahInfoModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+           <div class="modal-content">
+            <div class="modal-header">
+             <h1 class="modal-title fs-5" id="surahInfoModalLabel"><strong>Information</strong></h1>
+             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+             <form class="container text-left">
+              <div class="mb-3 container">
+               <label for="formGroupExampleInput" class="form-label">Surah Name (English):</label>
+               <p class="mt-2 text-dark text-left">{{ information.ayah.surah.name_en }}</p>
+              </div>
+              <div class="mb-3 container">
+               <label for="formGroupExampleInput" class="form-label text-left">Surah Information:</label>
+               <p class="text-left">
+                {{ expanded ? information.ayah.surah.text : truncatedText(information.ayah.surah.text) }}
+                <template v-if="showMoreLink">
+                 <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
+                </template>
+               </p>
+              </div>
+             </form>
+            </div>
+            <div class="modal-footer">
+             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
            </div>
           </div>
          </div>
-        </div>
 
         </div>
        </div>
@@ -796,7 +798,7 @@ export default {
    showErrorAlert: false,
    showAlertTextNote: false,
    expanded: false,
-   maxLength: 120,
+   maxLength: 200,
    touchStartX: 0,
    touchEndX: 0,
 
@@ -1296,6 +1298,7 @@ export default {
    window.open(url, '_blank');
   },
 
+
   captureScreenshot3() {
    const targetElement3 = this.$refs.targetElement3;
 
@@ -1649,7 +1652,7 @@ export default {
   },
 
   copyToClipboard(text) {
-   // Create a textarea element to copy the text
+    // Create a textarea element to copy the text
    var textarea = document.createElement("textarea");
 
    // Set the value of the textarea to the text to be copied
@@ -1670,6 +1673,8 @@ export default {
    // Log a success message
    console.log("Text copied to clipboard:", text);
   },
+
+  
 
   getTafseers: function (id, index) {
    this.selectedIndexAyah = index;
