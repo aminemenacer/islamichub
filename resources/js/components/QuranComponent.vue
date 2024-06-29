@@ -965,11 +965,25 @@ export default {
     closeModal() {
       this.showModal = false;
       this.screenshotUrl = null;
+      this.screenshotUrl1 = null;
+      this.screenshotUrl2 = null;
     },
     downloadScreenshot() {
       if (this.screenshotUrl) {
         const downloadLink = document.createElement('a');
         downloadLink.href = this.screenshotUrl;
+        downloadLink.download = 'screenshot.png';
+        downloadLink.click();
+      }
+      if (this.screenshotUrl1) {
+        const downloadLink = document.createElement('a');
+        downloadLink.href = this.screenshotUrl1;
+        downloadLink.download = 'screenshot.png';
+        downloadLink.click();
+      }
+      if (this.screenshotUrl2) {
+        const downloadLink = document.createElement('a');
+        downloadLink.href = this.screenshotUrl2;
         downloadLink.download = 'screenshot.png';
         downloadLink.click();
       }
