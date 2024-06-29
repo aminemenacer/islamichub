@@ -24,6 +24,8 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-QWLL07EBX9"></script>
@@ -120,6 +122,8 @@
     </div>
 
     {{-- Ensure that app.js is loaded at the end --}}
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
     <script src="{{ mix('js/app.js') }}" ></script>
 </body>
 </html>

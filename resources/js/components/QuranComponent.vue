@@ -215,6 +215,8 @@
 
       <!-- Translation Section -->
       <div class="tab-pane active" id="home" role="tabpanel" v-if="information != null">
+
+
        <div class="icon-container pb-3">
 
         <div class="icon-container w-100 hide-on-mobile pb-3">
@@ -226,7 +228,20 @@
          <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#bugTranslation" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166);cursor:pointer"></i>
          <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
          <i class="bi bi-info-circle h4" style="color: rgb(0, 191, 166);cursor:pointer" data-bs-target="#translationInfo" aria-expanded="false" data-bs-toggle="modal" data-bs-placement="top" title="Surah info"></i>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#screenModal">
+            Launch demo modal
+          </button>
+           <i class="bi bi-camera text-right mr-2 h3"
+            data-bs-toggle="modal"
+            data-bs-target="#screenshotModal"
+            @click="captureScreenshot"
+            aria-expanded="false"
+            data-bs-placement="top"
+            title="Screenshot verse"
+            style="color: rgba(0, 191, 166); cursor:pointer">
+          </i>
 
+          
         </div>
 
         <!-- Dropdown Features -->
@@ -280,24 +295,25 @@
           </div>
         </div>
 
-        <!-- Screenshot Preview Modal -->
-        <div v-if="showModal" class="modal fade show" tabindex="-1" style="display: block; background: rgba(0, 0, 0, 0.5);">
-          <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title"><b>Screenshot Preview</b></h5>
-                <button type="button" class="btn-close" @click="closeModal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body text-center">
-                <img :src="screenshotUrl" alt="Screenshot Preview" class="img-fluid" style="box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px; border-radius:8px; padding:10px"/>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" @click="closeModal">Close</button>
-                <button type="submit" class="btn btn-success" @click="downloadScreenshot">Download</button>
-              </div>
-            </div>
+
+       <!-- Screenshot Preview Modal -->
+    <div class="modal fade" id="screenshotModal" tabindex="-1" aria-labelledby="screenshotModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="screenshotModalLabel"><b>Screenshot Preview</b></h5>
+            <button type="button" class="btn-close" @click="closeModal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body text-center">
+            <img v-if="currentScreenshot" :src="currentScreenshot" alt="Screenshot Preview" class="img-fluid" style="box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px; border-radius:8px; padding:10px"/>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" @click="closeModal">Close</button>
+            <button type="submit" class="btn btn-success" @click="downloadScreenshot">Download</button>
           </div>
         </div>
+      </div>
+    </div>
 
        
        <!-- Features -->
@@ -778,13 +794,19 @@ import {
 export default {
 
  mounted() {
-
-  this.getSurahs();
-  this.fetchAyahs();
+  this.getSurahs(); // Ensure data dependencies are handled correctly
+    this.fetchAyahs(); // Ensure data dependencies are handled correctly
+    this.timer = setInterval(this.changeText, 1000); // Start timer to change text every 30 seconds
  },
+ beforeUnmount() {
+    clearInterval(this.timer);
+  },
 
  data() {
   return {
+    screenshotUrls: [],
+    texts: [],
+      currentText: '',
     screenshotUrl: null,
     screenshotUrl1: null,
     screenshotUrl2: null,
@@ -915,79 +937,44 @@ export default {
  },
 
  methods: {
-  //  captureScreenshot() {
-  //   const targetElement = this.$refs.targetElement;
-  //   const targetElement1 = this.$refs.targetElement1;
-  //   const targetElement2 = this.$refs.targetElement2;
-  //   html2canvas(targetElement).then(canvas => {
-  //     this.screenshotUrl = canvas.toDataURL('image/png');
-  //     this.showModal = true;
-  //   });
-  //   html2canvas(targetElement1).then(canvas => {
-  //     this.screenshotUrl = canvas.toDataURL('image/png');
-  //     this.showModal = true;
-  //   });
-  //   html2canvas(targetElement2).then(canvas => {
-  //     this.screenshotUrl = canvas.toDataURL('image/png');
-  //     this.showModal = true;
-  //   });
-  // },
-  // closeModal() {
-  //   this.showModal = false;
-  //   this.screenshotUrl = null;
-  // },
-  // downloadScreenshot() {
-  //   if (this.screenshotUrl) {
-  //     const downloadLink = document.createElement('a');
-  //     downloadLink.href = this.screenshotUrl;
-  //     downloadLink.download = 'screenshot.png';
-  //     downloadLink.click();
-  //   }
-  // },
   captureScreenshot() {
-      const targetElement = this.$refs.targetElement;
-      const targetElement1 = this.$refs.targetElement1;
-      const targetElement2 = this.$refs.targetElement2;
-
-      html2canvas(targetElement).then(canvas => {
-        this.screenshotUrl = canvas.toDataURL('image/png');
-        this.showModal = true;
+      const elements = [this.$refs.targetElement, this.$refs.targetElement1, this.$refs.targetElement2];
+      this.screenshotUrls = [];
+      elements.forEach((element, index) => {
+        if (element) {
+          html2canvas(element).then(canvas => {
+            this.screenshotUrls[index] = canvas.toDataURL('image/png');
+            if (index === 0) {
+              this.currentScreenshot = this.screenshotUrls[index];
+              this.showModal = true;
+            }
+          });
+        }
       });
-      html2canvas(targetElement1).then(canvas => {
-        this.screenshotUrl1 = canvas.toDataURL('image/png');
-        this.showModal = true;
-      });
-      html2canvas(targetElement2).then(canvas => {
-        this.screenshotUrl2 = canvas.toDataURL('image/png');
-        this.showModal = true;
-      });
+    },
+    showBootstrapModal() {
+      const modalElement = document.getElementById('screenshotModal');
+      const modal = new Modal(modalElement);
+      modal.show();
     },
     closeModal() {
       this.showModal = false;
-      this.screenshotUrl = null;
-      this.screenshotUrl1 = null;
-      this.screenshotUrl2 = null;
+      this.currentScreenshot = null;
     },
     downloadScreenshot() {
-      if (this.screenshotUrl) {
-        const downloadLink = document.createElement('a');
-        downloadLink.href = this.screenshotUrl;
-        downloadLink.download = 'screenshot.png';
-        downloadLink.click();
-      }
-      if (this.screenshotUrl1) {
-        const downloadLink = document.createElement('a');
-        downloadLink.href = this.screenshotUrl1;
-        downloadLink.download = 'screenshot.png';
-        downloadLink.click();
-      }
-      if (this.screenshotUrl2) {
-        const downloadLink = document.createElement('a');
-        downloadLink.href = this.screenshotUrl2;
-        downloadLink.download = 'screenshot.png';
-        downloadLink.click();
+      if (this.currentScreenshot) {
+        this.downloadImage(this.currentScreenshot, 'screenshot.png');
       }
     },
+    downloadImage(dataUrl, filename) {
+      const downloadLink = document.createElement('a');
+      downloadLink.href = dataUrl;
+      downloadLink.download = filename;
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+    },
+  
   toggleFullScreen() {
    this.isFullScreen = !this.isFullScreen;
   },
@@ -1539,13 +1526,13 @@ export default {
   },
   // Function to close the modal
   // Function to open the modal
-  openModal() {
-   this.showModal = true;
-  },
-  // Function to close the modal
-  closeModal() {
-   this.showModal = false;
-  },
+  // openModal() {
+  //  this.showModal = true;
+  // },
+  // // Function to close the modal
+  // closeModal() {
+  //  this.showModal = false;
+  // },
   createCorrection() {
    Swal.fire({
     title: "Are you sure?",
