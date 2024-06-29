@@ -150,14 +150,17 @@
       <button class="btn btn-success mb-1 ml-2" type="submit">Search</button>
      </form>
 
-     <div class="icon-container pb-1">
-      <i class="bi bi-chevron-bar-left h5" style="color: rgb(0, 191, 166);" @click="goToFirstAyah" title="First verse"></i>
+    <!-- arrow controls -->
+     <div class="icon-container pt-2 pb-1 content">
+      <i class="bi bi-chevron-bar-left h5" style="color: rgb(0, 191, 166); " @click="goToFirstAyah" title="First verse"></i>
       <i class="bi bi-arrow-left-circle h5" style="color: rgb(0, 191, 166);" @click="goToPreviousAyah" title="Previous verse"></i>
       <i class="bi bi-arrow-right-circle h5" style="color: rgb(0, 191, 166);" @click="goToNextAyah" title="Next verse"></i>
       <i class="bi bi-chevron-bar-right h5" style="color: rgb(0, 191, 166);" @click="goToLastAyah" title="Last verse"></i>
      </div>
-     <div class="row container-fluid">
-      <div class="custom-scrollbar" style="overflow-y: auto; max-height: 600px; background: white;">
+
+
+     <div class="row container-fluid pt-2">
+      <div class="custom-scrollbar " style="overflow-y: auto; max-height: 600px; background: white;">
        <ul class="col-md-12 list-group container-fluid root" id="toggle" ref="ayahList" style="list-style-type: none; padding: 10px">
         <li v-for="(ayah, index) in ayahs" :key="index" @click="selectAyah(index)" :class="{ selected: selectedIndexAyah === index, highlighted: verseNumber && parseInt(verseNumber) === ayah.ayah_id }" style="padding: 10px; border-radius:10px">
          <h5 class="text-right" style="display: flex;"> Verse: {{ ayah.ayah_id }} </h5>
@@ -219,7 +222,7 @@
          <i class="bi bi-whatsapp text-right mr-2 h4" @click="shareTextViaWhatsApp3" aria-expanded="false" data-bs-placement="top" title="Share on Whatsapp" style="color: rgba(0, 191, 166);cursor:pointer"></i>
          <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
          <i @click="copyText3" class="bi bi-clipboard-check text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Copy verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
-         <i class="bi bi-camera text-right mr-2 h3" @click="captureScreenshot3" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
+         <i class="bi bi-camera text-right mr-2 h3" data-bs-toggle="modal" data-bs-target="#screenshotModal" @click="captureScreenshot" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" style="color: rgba(0, 191, 166); cursor:pointer"></i>
          <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#bugTranslation" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166);cursor:pointer"></i>
          <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
          <i class="bi bi-info-circle h4" style="color: rgb(0, 191, 166);cursor:pointer" data-bs-target="#translationInfo" aria-expanded="false" data-bs-toggle="modal" data-bs-placement="top" title="Surah info"></i>
@@ -229,12 +232,11 @@
         <!-- Dropdown Features -->
         <div class="dropdown mobile-only">
 
-         <div class="icon-container">
+         <div class=" icon-container">
           <i class="bi bi-chevron-bar-left h5" style="color: rgb(0, 191, 166);" @click="goToEndAyah()" title="Last verse"></i>
           <i class="bi bi-arrow-left-circle h5" style="color: rgb(0, 191, 166);" @click="goToPreviousAyah()" title="Previous verse"></i>
           <i class="bi bi-arrow-right-circle h5" style="color: rgb(0, 191, 166);" @click="goToNextAyah()" title="Next verse"></i>
           <i class="bi bi-chevron-bar-right h5" style="color: rgb(0, 191, 166);" @click="goToLastAyah()" title="End verse"></i>
-          <i class="bi bi-arrows-fullscreen h6" style="color: rgb(0, 191, 166);" @click="toggleFullScreen" title="Full screen"></i>
 
           <i style="color:rgb(0, 191, 166); cursor:pointer" class="bi bi-three-dots-vertical h5 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></i>
           <ul class="dropdown-menu">
@@ -242,51 +244,63 @@
            <li><a class="dropdown-item" @click="shareTextViaWhatsApp3"><i class="bi bi-whatsapp text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Share on Whatsapp" style="color: rgba(0, 191, 166);"></i>Share via WhatsApp</a></li>
            <li><a class="dropdown-item" @click="submitForm"><i class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);"></i>Bookmark Verse</a></li>
            <li><a class="dropdown-item" @click="copyText3"><i class="bi bi-clipboard-check text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Copy verse" style="color: rgba(0, 191, 166);"></i>Copy Verse</a></li>
-           <li><a class="dropdown-item" @click="captureScreenshot3"><i class="bi bi-camera text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" style="color: rgba(0, 191, 166);"></i>Screenshot Verse</a></li>
+           <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#screenshotModal"><i class="bi bi-camera text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" style="color: rgba(0, 191, 166);"></i>Screenshot Verse</a></li>
+               <i class="bi bi-camera text-right mr-2 h3" @click="captureScreenshot" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" style="color: rgba(0, 191, 166); cursor:pointer"></i>
            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#translationInfo"><i class="bi bi-info-circle text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Surah info" style="color: rgba(0, 191, 166);"></i>Surah Info</a></li>
            <li><a class="dropdown-item" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#bugTranslation"><i class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Report a bug" style="color: rgba(0, 191, 166);"></i>Report a bug</a></li>
-          </ul>
+
+          </ul>             
+
          </div>
 
         </div>
        </div>
 
-       <div ref="targetElement3" class="w-100 my-element " :class="{'full-screen': isFullScreen}">
-        <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
-        <h5 class="mr-2">{{ information.ayah.surah.name_en }} {{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }}</h5>
+       <!-- Target Element for Screenshot -->
+        <div ref="targetElement" class="w-100 my-element" :class="{'full-screen': isFullScreen}">
+          <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
+          <h5 class="mr-2">{{ information.ayah.surah.name_en }} {{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }}</h5>
 
-        <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
-         <!-- Main Stack Top -->
-         <div class="btn">
-          <h5 class="text-right ayah-translation" name="ayah_text" style="line-height: 1.6em">
-           {{ information.ayah.ayah_text }}
-          </h5>
-         </div>
-         <!-- Main Stack Below -->
-         <h5 class="text-left ayah-translation" ref="heading3" style="line-height: 1.6em">
-          {{ expanded ? information.translation : truncatedText(information.translation) }}
-          <template v-if="showMoreLink">
-           <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
-          </template>
-         </h5>
-         <h6 class="text-left mt-3"><strong>Translation: </strong>Ahmed Ali</h6>
+          <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
+            <div class="btn">
+              <h5 class="text-right ayah-translation" name="ayah_text" style="line-height: 1.6em">{{ information.ayah.ayah_text }}</h5>
+            </div>
+            <h5 class="text-left ayah-translation" ref="heading3" style="line-height: 1.6em">
+              {{ expanded ? information.translation : truncatedText(information.translation) }}
+              <template v-if="showMoreLink">
+                <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
+              </template>
+            </h5>
+            <h6 class="text-left mt-3"><strong>Translation: </strong>Ahmed Ali</h6>
 
-         <!-- Alerts -->
-         <div v-if="showAlertText" class="alert alert-success alert-dismissible fade show mt-2" role="alert">
-          Text copied successfully!
-         </div>
-         <div v-if="showAlert" class="alert alert-success mt-2" role="alert">
-          Bookmark created successfully!
-         </div>
-         <div v-if="showErrorAlert" class="alert alert-danger" role="alert">
-          Login to your account to be able to bookmark verses.
-         </div>
-         <div v-if="showAlertTextNote" class="alert alert-danger" role="alert">
-          Please log in to write a note.
-         </div>
+            <!-- Alerts -->
+            <div v-if="showAlertText" class="alert alert-success alert-dismissible fade show mt-2" role="alert">Text copied successfully!</div>
+            <div v-if="showAlert" class="alert alert-success mt-2" role="alert">Bookmark created successfully!</div>
+            <div v-if="showErrorAlert" class="alert alert-danger" role="alert">Login to your account to be able to bookmark verses.</div>
+            <div v-if="showAlertTextNote" class="alert alert-danger" role="alert">Please log in to write a note.</div>
+          </div>
         </div>
-       </div>
 
+        <!-- Screenshot Preview Modal -->
+        <div v-if="showModal" class="modal fade show" tabindex="-1" style="display: block; background: rgba(0, 0, 0, 0.5);">
+          <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title"><b>Screenshot Preview</b></h5>
+                <button type="button" class="btn-close" @click="closeModal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body text-center">
+                <img :src="screenshotUrl" alt="Screenshot Preview" class="img-fluid" style="box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px; border-radius:8px; padding:10px"/>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" @click="closeModal">Close</button>
+                <button type="submit" class="btn btn-success" @click="downloadScreenshot">Download</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+       
        <!-- Features -->
        <div class="text-right pt-2">
         <!-- Surah Info Modal -->
@@ -386,7 +400,7 @@
          <i class="bi bi-whatsapp text-right mr-2 h4" @click="shareTextViaWhatsApp1" aria-expanded="false" data-bs-placement="top" title="Share on Whatsapp" style="color: rgba(0, 191, 166);cursor:pointer"></i>
          <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
          <i class="bi bi-clipboard-check text-right mr-2 h4" @click="copyText1" aria-expanded="false" data-bs-placement="top" title="Copy verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
-         <i class="bi bi-camera text-right mr-2 h3" @click="captureScreenshot1" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
+         <i class="bi bi-camera text-right mr-2 h3" data-bs-toggle="modal" data-bs-target="#screenshotModal" @click="captureScreenshot" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" style="color: rgba(0, 191, 166); cursor:pointer"></i>
          <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#bugTafseer" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166);cursor:pointer"></i>
          <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
          <i class="bi bi-info-circle h4" style="color: rgb(0, 191, 166);cursor:pointer" data-bs-target="#tafseerInfo" aria-expanded="false" data-bs-toggle="modal" data-bs-placement="top" title="Surah info"></i>
@@ -485,7 +499,24 @@
          </div>
         </div>
 
-        
+        <!-- Screenshot Preview Modal -->
+        <div v-if="showModal" class="modal fade show" id="screenshot2Modal" tabindex="-1" style="display: block; background: rgba(0, 0, 0, 0.5);">
+          <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title"><b>Screenshot Preview</b></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body text-center" >
+                <img :src="screenshotUrl" alt="Screenshot Preview" class="img-fluid" style="box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px; border-radius:8px;padding:10px"/>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-success" @click="downloadScreenshot">Download</button>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <!-- Notes Modal -->
         <div class="modal fade" id="tafseerNote" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true" ref="exampleModal1">
@@ -556,7 +587,7 @@
            <i class="bi bi-whatsapp text-right mr-2 h4" @click="shareTextViaWhatsApp2" aria-expanded="false" data-bs-placement="top" title="Share on Whatsapp" style="color: rgba(0, 191, 166);cursor:pointer"></i>
            <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
            <i @click="copyText2" class="bi bi-clipboard-check text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Copy verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
-           <i class="bi bi-camera text-right mr-2 h3" @click="captureScreenshot2" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" style="color: rgba(0, 191, 166); cursor:pointer"></i>
+           <i class="bi bi-camera text-right mr-2 h3" data-bs-toggle="modal" data-bs-target="#screenshotModal" @click="captureScreenshot" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" style="color: rgba(0, 191, 166); cursor:pointer"></i>
            <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#bugTransliteration" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166);cursor:pointer"></i>
            <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
            <i class="bi bi-info-circle h4" style="color: rgb(0, 191, 166);cursor:pointer" data-bs-target="#transliterationInfo" aria-expanded="false" data-bs-toggle="modal" data-bs-placement="top" title="Surah info"></i>
@@ -576,7 +607,7 @@
              <li><a class="dropdown-item" @click="shareTextViaWhatsApp2"><i class="bi bi-whatsapp text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Share on Whatsapp" style="color: rgba(0, 191, 166);"></i>Share via WhatsApp</a></li>
              <li><a class="dropdown-item" @click="submitForm"><i class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);"></i>Bookmark Verse</a></li>
              <li><a class="dropdown-item" @click="copyText2"><i class="bi bi-clipboard-check text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Copy verse" style="color: rgba(0, 191, 166);"></i>Copy Verse</a></li>
-             <li><a class="dropdown-item" @click="captureScreenshot2"><i class="bi bi-camera text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" style="color: rgba(0, 191, 166);"></i>Screenshot Verse</a></li>
+             <li><a class="dropdown-item" @click="captureScreenshot"><i class="bi bi-camera text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" style="color: rgba(0, 191, 166);"></i>Screenshot Verse</a></li>
              <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#transliterationInfo"><i class="bi bi-info-circle text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Surah info" style="color: rgba(0, 191, 166);"></i>Surah Info</a></li>
              <li><a class="dropdown-item" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#bugTransliteration"><i class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Report a bug" style="color: rgba(0, 191, 166);"></i>Report a bug</a></li>
             </ul>
@@ -613,7 +644,6 @@
          <div v-if="showAlertText" class="alert alert-success alert-dismissible fade show" role="alert">
           Text copied successfully!
          </div>
-
          <!-- bookmark component -->
          <div v-if="showAlert" class="alert alert-success" role="alert">
           Bookmark created successfully!
@@ -621,6 +651,25 @@
          <div v-if="showErrorAlert" class="alert alert-danger" role="alert">
           Login to your account to be able to bookmark verses.
          </div>
+
+         <!-- Screenshot Preview Modal -->
+        <div v-if="showModal" class="modal fade show" id="screenshotModal" tabindex="-1" style="display: block; background: rgba(0, 0, 0, 0.5);">
+          <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title"><b>Screenshot Preview</b></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body text-center" >
+                <img :src="screenshotUrl" alt="Screenshot Preview" class="img-fluid" style="box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px; border-radius:8px;padding:10px"/>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-success" @click="downloadScreenshot">Download</button>
+              </div>
+            </div>
+          </div>
+        </div>
 
          <!-- Notes Modal -->
          <div class="modal fade" id="transliterationNote" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true" ref="exampleModal1">
@@ -737,6 +786,7 @@ export default {
 
  data() {
   return {
+    screenshotUrl: null,
    dropdownHidden: false,
    verseNumber: null,
    isFullScreen: false,
@@ -864,6 +914,65 @@ export default {
  },
 
  methods: {
+  //  captureScreenshot() {
+  //   const targetElement = this.$refs.targetElement;
+  //   const targetElement1 = this.$refs.targetElement1;
+  //   const targetElement2 = this.$refs.targetElement2;
+  //   html2canvas(targetElement).then(canvas => {
+  //     this.screenshotUrl = canvas.toDataURL('image/png');
+  //     this.showModal = true;
+  //   });
+  //   html2canvas(targetElement1).then(canvas => {
+  //     this.screenshotUrl = canvas.toDataURL('image/png');
+  //     this.showModal = true;
+  //   });
+  //   html2canvas(targetElement2).then(canvas => {
+  //     this.screenshotUrl = canvas.toDataURL('image/png');
+  //     this.showModal = true;
+  //   });
+  // },
+  // closeModal() {
+  //   this.showModal = false;
+  //   this.screenshotUrl = null;
+  // },
+  // downloadScreenshot() {
+  //   if (this.screenshotUrl) {
+  //     const downloadLink = document.createElement('a');
+  //     downloadLink.href = this.screenshotUrl;
+  //     downloadLink.download = 'screenshot.png';
+  //     downloadLink.click();
+  //   }
+  // },
+  captureScreenshot() {
+      const targetElement = this.$refs.targetElement;
+      const targetElement1 = this.$refs.targetElement1;
+      const targetElement2 = this.$refs.targetElement2;
+
+      html2canvas(targetElement).then(canvas => {
+        this.screenshotUrl = canvas.toDataURL('image/png');
+        this.showModal = true;
+      });
+      html2canvas(targetElement1).then(canvas => {
+        this.screenshotUrl = canvas.toDataURL('image/png');
+        this.showModal = true;
+      });
+      html2canvas(targetElement2).then(canvas => {
+        this.screenshotUrl = canvas.toDataURL('image/png');
+        this.showModal = true;
+      });
+    },
+    closeModal() {
+      this.showModal = false;
+      this.screenshotUrl = null;
+    },
+    downloadScreenshot() {
+      if (this.screenshotUrl) {
+        const downloadLink = document.createElement('a');
+        downloadLink.href = this.screenshotUrl;
+        downloadLink.download = 'screenshot.png';
+        downloadLink.click();
+      }
+    },
   toggleFullScreen() {
    this.isFullScreen = !this.isFullScreen;
   },
@@ -1141,7 +1250,6 @@ export default {
     this.selectedIndexAyah = null;
    }
   },
-
   search() {
    // Perform search and update filteredSurah based on search term
    const searchTerm = this.searchTerm.trim().toLowerCase();
@@ -1211,7 +1319,6 @@ export default {
    }
    return null;
   },
-
   goToNextSurah() {
    // Check if the current selected surah is not the last one
    if (this.surah < this.surahs.length - 1) {
@@ -1237,7 +1344,6 @@ export default {
    // Fetch ayahs for the previous surah
    this.getAyahs(this.surah);
   },
-
   getSurahs() {
    axios
     .get("/get_surahs")
@@ -1248,7 +1354,6 @@ export default {
      console.error('Error fetching surahs:', error);
     });
   },
-
   shareHeadingOnTwitter3() {
    try {
     const headingText3 = this.$refs.targetElement3.textContent.trim();
@@ -1259,7 +1364,6 @@ export default {
     console.error("Error:", error);
    }
   },
-
   shareHeadingOnTwitter1() {
    try {
     const headingText1 = this.$refs.targetElement1.textContent.trim();
@@ -1270,7 +1374,6 @@ export default {
     console.error("Error:", error);
    }
   },
-
   shareHeadingOnTwitter2() {
    try {
     const headingText2 = this.$refs.targetElement2.textContent.trim();
@@ -1281,7 +1384,6 @@ export default {
     console.error("Error:", error);
    }
   },
-
   shareTextViaWhatsApp3() {
    const text3 = this.$refs.targetElement3.innerText;
    const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text3)}`;
@@ -1297,8 +1399,6 @@ export default {
    const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text2)}`;
    window.open(url, '_blank');
   },
-
-
   captureScreenshot3() {
    const targetElement3 = this.$refs.targetElement3;
 
@@ -1755,6 +1855,12 @@ export default {
 </script>
 
 <style scoped>
+
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
 .my-element {
  /* Add your regular styles here */
  background: #fff;
