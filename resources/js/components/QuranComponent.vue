@@ -150,15 +150,26 @@
       <button class="btn btn-success mb-1 ml-2" type="submit">Search</button>
      </form>
 
-     <!-- arrow controls -->
-     <div class="icon-container pt-2 pb-1 content">
-      <i class="bi bi-chevron-bar-left h5" style="color: rgb(0, 191, 166); " @click="goToFirstAyah" title="First verse"></i>
-      <i class="bi bi-arrow-left-circle h5" style="color: rgb(0, 191, 166);" @click="goToPreviousAyah" title="Previous verse"></i>
-      <i class="bi bi-arrow-right-circle h5" style="color: rgb(0, 191, 166);" @click="goToNextAyah" title="Next verse"></i>
-      <i class="bi bi-chevron-bar-right h5" style="color: rgb(0, 191, 166);" @click="goToLastAyah" title="Last verse"></i>
+     
+     
+     <!-- Bootstrap error alert -->
+     <div v-if="showError" class="alert alert-danger alert-dismissible fade show" role="alert">
+      Please enter a valid ayah number.
+      <button type="button" class="btn-close" @click="dismissError" aria-label="Close"></button>
      </div>
 
-     <div class="row container-fluid pt-2">
+     <div class="row container-fluid">
+      <hr class="container" style="height: 4px; background: lightgrey;">
+
+    <!-- arrow controls -->
+     <div class="icon-container pb-2">
+      <i class="bi bi-chevron-bar-left h5" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToEndAyah()" title="Last verse"></i>
+      <i class="bi bi-arrow-left-circle h5" style="color: rgb(0, 191, 166);" @click="goToFirstAyah" title="First verse"></i>
+      <i class="bi bi-arrow-right-circle h5" style="color: rgb(0, 191, 166);" @click="goToNextAyah" title="Next verse"></i>
+      <i class="bi bi-chevron-bar-left h5" style="color: rgb(0, 191, 166);" @click="goToEndAyah()" title="Last verse"></i>
+    </div>
+
+
       <div class="custom-scrollbar " style="overflow-y: auto; max-height: 600px; background: white;">
        <ul class="col-md-12 list-group container-fluid root" id="toggle" ref="ayahList" style="list-style-type: none; padding: 10px">
         <li v-for="(ayah, index) in ayahs" :key="index" @click="selectAyah(index)" :class="{ selected: selectedIndexAyah === index, highlighted: verseNumber && parseInt(verseNumber) === ayah.ayah_id }" style="padding: 10px; border-radius:10px">
@@ -170,11 +181,7 @@
       </div>
      </div>
 
-     <!-- Bootstrap error alert -->
-     <div v-if="showError" class="alert alert-danger alert-dismissible fade show" role="alert">
-      Please enter a valid ayah number.
-      <button type="button" class="btn-close" @click="dismissError" aria-label="Close"></button>
-     </div>
+     
 
     </div>
    </div>
@@ -240,7 +247,8 @@
         <div class="dropdown mobile-only">
 
          <div class=" icon-container">
-          <i class="bi bi-chevron-bar-left h5" style="color: rgb(0, 191, 166);" @click="goToEndAyah()" title="Last verse"></i>
+
+          <i class="bi bi-chevron-bar-left h5" style="color: rgb(0, 191, 166);" @click="goToFirstAyah()" title="First verse"></i>
           <i class="bi bi-arrow-left-circle h5" style="color: rgb(0, 191, 166);" @click="goToPreviousAyah()" title="Previous verse"></i>
           <i class="bi bi-arrow-right-circle h5" style="color: rgb(0, 191, 166);" @click="goToNextAyah()" title="Next verse"></i>
           <i class="bi bi-chevron-bar-right h5" style="color: rgb(0, 191, 166);" @click="goToLastAyah()" title="End verse"></i>
@@ -255,7 +263,6 @@
            <li><a class="dropdown-item" @click="captureScreenshot3"><i class="bi bi-camera text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" style="color: rgba(0, 191, 166);"></i>Screenshot Verse</a></li>
            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#translationInfo"><i class="bi bi-info-circle text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Surah info" style="color: rgba(0, 191, 166);"></i>Surah Info</a></li>
            <li><a class="dropdown-item" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#bugTranslation"><i class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Report a bug" style="color: rgba(0, 191, 166);"></i>Report a bug</a></li>
-
           </ul>
 
          </div>
@@ -742,15 +749,10 @@ export default {
  mounted() {
   this.getSurahs(); // Ensure data dependencies are handled correctly
   this.fetchAyahs(); // Ensure data dependencies are handled correctly
-  this.timer = setInterval(this.changeText, 1000); // Start timer to change text every 30 seconds
  },
- beforeUnmount() {
-  clearInterval(this.timer);
- },
-
- data() {
+  data() {
   return {
-   
+   showError: false,
    dropdownHidden: false,
    verseNumber: null,
    isFullScreen: false,
@@ -1189,6 +1191,9 @@ export default {
    this.scrollToSelectedAyah();
    this.getTafseers(this.ayahs[index].id, index);
   },
+  dismissError() {
+    this.showError = false; // Dismiss the error alert by setting showError to false
+  },
   goToFirstAyah() {
    this.selectAyah(0);
   },
@@ -1210,14 +1215,22 @@ export default {
    this.selectAyah(this.ayahs.length - 1);
   },
   scrollToSelectedAyah() {
-   this.$nextTick(() => {
-    const selectedAyah = this.$refs.ayahList.querySelector('.selected');
-    if (selectedAyah) {
-     selectedAyah.scrollIntoView({
-      behavior: 'smooth'
-     });
-    }
-   });
+    this.$nextTick(() => {
+      const selectedAyah = this.$refs.ayahList.querySelector('.selected');
+      if (selectedAyah) {
+        selectedAyah.scrollIntoView({
+          behavior: 'smooth'
+        });
+      } else {
+        // Display error alert if no ayah is selected
+        this.showError = true;
+
+        // Automatically dismiss the alert after 5 seconds
+        setTimeout(() => {
+          this.dismissError();
+        }, 1000);
+      }
+    });
   },
   determineNextAyah() {
    // Your logic to determine the next Ayah
@@ -1301,7 +1314,7 @@ export default {
    }
   },
   shareTextViaWhatsApp3() {
-   const text3 = this.$refs.targetElement3.innerText;
+   const text3 = this.$refs.targetElement.innerText;
    const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text3)}`;
    window.open(url, '_blank');
   },
@@ -1750,6 +1763,34 @@ export default {
 </script>
 
 <style scoped>
+
+.icon-container {
+  text-align: center;
+}
+
+.icon-row {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.icon-row i {
+  cursor: pointer;
+  color: rgb(0, 191, 166);
+}
+
+.alert {
+  margin-top: 20px;
+}
+
+.selected {
+  background-color: yellow; /* Example style for selected ayah */
+}
+
+.highlighted {
+  background-color: lightblue; /* Example style for highlighted ayah based on verseNumber */
+}
 .full-screen[data-v-2b3c2c26] {
  position: fixed;
  top: 0;
