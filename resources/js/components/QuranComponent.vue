@@ -1,14 +1,19 @@
 <template>
 <div id="app">
- <div class="container-fluid text-center" v-if="!ayah && dropdownHidden">
-  <div class="row text-center">
+ <div class="container text-center" v-if="!ayah && dropdownHidden">
    <!-- quran title -->
    <h1 class="card-text text-center mb-3" style="font-family: inter">
     The Holy Quran
    </h1>
+    <form class="search-form d-flex pt-2 container h2" @submit.prevent="search">
+      <input class="form-control me-2 display-1" type="search" id="search" name="search" v-model="searchTerm" placeholder="What do you want to read today?" autocomplete="off" @keyup="search">
+      <button v-if="showClearButton" class="btn btn-outline-secondary h2" @click="clearResults">Clear</button>
+    </form>
+    <custom-surah-selection :customSurahs="customSurahs" v-model="surah"></custom-surah-selection>
 
-  </div>
+    
  </div>
+
 
  <!-- Correction Modal -->
  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -47,76 +52,29 @@
  <div class="row container-fluid">
   <!-- left side chapter list -->
 
-  <div class="col-md-4 pb-4 container">
+  <div class="col-md-4 container">
 
-   <!--
-      <form class="d-flex pb-1" style="color:rgba(0, 191, 166)" @submit.prevent="search">
-        <input style="box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px; border-radius:10px" class="form-control me-2" type="search" id="search" name="search" v-model="searchTerm" placeholder="Search for Surah name" autocomplete="off" @keyup="search">
-        <button v-if="showClearButton" class="btn btn-outline-secondary text-center width:100%" @click="clearResults">Clear</button>
-      </form>
+   <!--  Surah list -->
+   <ul class="col-md-12 mt-1 scrollable-list " style="list-style-type: none; overflow-y: auto; max-height: 400px; box-shadow: box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
+    <li v-for="item in filteredSurah" :key="item.id" @click="selectSurah(item.id)" style="cursor: pointer; padding:5px;box-shadow: box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px; " class="highlight-on-hover">
+     <div style="display: flex; align-items: center;">
+      <img src="/images/art.png" style="width: 23px" class="mb-1 mr-2" />
+      <p style="font-size: 18px;" class="mt-2">{{ item.name_en }} - {{ item.name_ar }}</p>
+     </div>
+    </li>
+   </ul>
+    <div class="alert container-fluid alert-success d-flex align-items-center mr-2" role="alert">
+      <div>
+        Support our project with a donation. Your generosity helps us improve, and continue delivering valuable content. click <a href="https://www.gofundme.com/f/empowerment-through-quran-support-islamic-connects-mission" style="color:black;text-decoration:none">here</a> to donate.
+      </div>
+      <div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
 
-        Surah list 
-      <ul class="col-md-12 mt-1 scrollable-list " style="list-style-type: none; overflow-y: auto; max-height: 400px; box-shadow: box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
-        <li v-for="item in filteredSurah" :key="item.id" @click="selectSurah(item.id)" style="cursor: pointer; padding:5px;box-shadow: box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px; " class="highlight-on-hover">
-        <div style="display: flex; align-items: center;">
-          <img src="/images/art.png" style="width: 23px" class="mb-1 mr-2" />
-          <p style="font-size: 18px;" class="mt-2">{{ item.name_en }} - {{ item.name_ar }}</p>
-        </div>
-        </li>
-      </ul>
-    -->
-
-   <!-- Custom Surah Selection -->
-   <div class="scrollmenu" @change="getAyahs()">
-    <a href="#" v-for="data in customSurahs" :key="data.id" @click.prevent="selectSurah(data.id)">
-     <div class="flex justify-content-center mr-1">
-      <span class="badge button-33" label="" severity="success" raised outlined @click="selectSurah(1)" :class="{ active: surah === 1 }">Al Fatiha</span>
-     </div>
-    </a>
-    <a href="#">
-     <div class="flex justify-content-center mr-1">
-      <span class="badge button-33" label="" severity="success" raised outlined @click="selectSurah(114)" :class="{ active: surah === 114 }">An-Nas</span>
-     </div>
-    </a>
-    <a href="#">
-     <div class="flex justify-content-center mr-1">
-      <span class="badge button-33" label="" severity="success" raised outlined @click="selectSurah(113)" :class="{ active: surah === 113 }">Al-Falak</span>
-     </div>
-    </a>
-    <a href="#">
-     <div class="flex justify-content-center mr-1">
-      <span class="badge button-33" label="" severity="success" raised outlined @click="selectSurah(67)" :class="{ active: surah === 67 }">Al-Mulk</span>
-     </div>
-    </a>
-    <a href="#">
-     <div class="flex justify-content-center mr-1">
-      <span class="badge button-33" label="" severity="success" raised outlined @click="selectSurah(18)" :class="{ active: surah === 18 }">Al-Kahf</span>
-     </div>
-    </a>
-    <a href="#">
-     <div class="flex justify-content-center mr-1">
-      <span class="badge button-33" label="" severity="success" raised outlined @click="selectSurah(55)" :class="{ active: surah === 55 }">Al-Rahman</span>
-     </div>
-    </a>
-    <a href="#">
-     <div class="flex justify-content-center mr-1">
-      <span class="badge button-33" label="" severity="success" raised outlined @click="selectSurah(36)" :class="{ active: surah === 36 }">Ya Seen</span>
-     </div>
-    </a>
-    <a href="#">
-     <div class="flex justify-content-center mr-1">
-      <span class="badge button-33" label="" severity="success" raised outlined @click="selectSurah(87)" :class="{ active: surah === 87 }">Al-A'la</span>
-     </div>
-    </a>
-    <a href="#">
-     <div class="flex justify-content-center mr-1">
-      <span class="badge button-33" label="" severity="success" raised outlined @click="selectSurah(88)" :class="{ active: surah === 88 }">Al Ghashiya</span>
-     </div>
-    </a>
-   </div>
-
+    </div>
    <!-- Surah Selection Dropdown -->
    <form class="mb-2 right-side-form " style="cursor: pointer; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px; ">
+   
     <select class="form-control custom-dropdown" v-model="surah" @change="getAyahs()" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
      <option value="0">
       <span disabled>Select Surah</span>
@@ -150,8 +108,6 @@
       <button class="btn btn-success mb-1 ml-2" type="submit">Search</button>
      </form>
 
-     
-     
      <!-- Bootstrap error alert -->
      <div v-if="showError" class="alert alert-danger alert-dismissible fade show" role="alert">
       Please enter a valid ayah number.
@@ -161,14 +117,13 @@
      <div class="row container-fluid">
       <hr class="container" style="height: 4px; background: lightgrey;">
 
-    <!-- arrow controls -->
-     <div class="icon-container pb-2">
-      <i class="bi bi-chevron-bar-left h5" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToEndAyah()" title="Last verse"></i>
-      <i class="bi bi-arrow-left-circle h5" style="color: rgb(0, 191, 166);" @click="goToFirstAyah" title="First verse"></i>
-      <i class="bi bi-arrow-right-circle h5" style="color: rgb(0, 191, 166);" @click="goToNextAyah" title="Next verse"></i>
-      <i class="bi bi-chevron-bar-left h5" style="color: rgb(0, 191, 166);" @click="goToEndAyah()" title="Last verse"></i>
-    </div>
-
+      <!-- arrow controls -->
+      <div class="icon-container pb-2">
+       <i class="bi bi-chevron-bar-left h5" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToEndAyah()" title="Last verse"></i>
+       <i class="bi bi-arrow-left-circle h5" style="color: rgb(0, 191, 166);" @click="goToFirstAyah" title="First verse"></i>
+       <i class="bi bi-arrow-right-circle h5" style="color: rgb(0, 191, 166);" @click="goToNextAyah" title="Next verse"></i>
+       <i class="bi bi-chevron-bar-left h5" style="color: rgb(0, 191, 166);" @click="goToEndAyah()" title="Last verse"></i>
+      </div>
 
       <div class="custom-scrollbar " style="overflow-y: auto; max-height: 600px; background: white;">
        <ul class="col-md-12 list-group container-fluid root" id="toggle" ref="ayahList" style="list-style-type: none; padding: 10px">
@@ -180,8 +135,6 @@
        <hr>
       </div>
      </div>
-
-     
 
     </div>
    </div>
@@ -240,7 +193,6 @@
          <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#bugTranslation" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166);cursor:pointer"></i>
          <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
          <i class="bi bi-info-circle h4" style="color: rgb(0, 191, 166);cursor:pointer" data-bs-target="#translationInfo" aria-expanded="false" data-bs-toggle="modal" data-bs-placement="top" title="Surah info"></i>
-
         </div>
 
         <!-- Dropdown Features -->
@@ -298,8 +250,6 @@
          <div v-if="showAlertTextNote" class="alert alert-danger" role="alert">Please log in to write a note.</div>
         </div>
        </div>
-
-       
 
        <!-- Features -->
        <div class="text-right pt-2">
@@ -405,7 +355,6 @@
          <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
          <i class="bi bi-info-circle h4" style="color: rgb(0, 191, 166);cursor:pointer" data-bs-target="#tafseerInfo" aria-expanded="false" data-bs-toggle="modal" data-bs-placement="top" title="Surah info"></i>
 
-
         </div>
 
         <!-- Dropdown Features -->
@@ -502,7 +451,6 @@
          </div>
         </div>
 
-
         <!-- Notes Modal -->
         <div class="modal fade" id="tafseerNote" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true" ref="exampleModal1">
          <div class="modal-dialog modal-lg">
@@ -592,7 +540,7 @@
              <li><a class="dropdown-item" @click="shareTextViaWhatsApp2"><i class="bi bi-whatsapp text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Share on Whatsapp" style="color: rgba(0, 191, 166);"></i>Share via WhatsApp</a></li>
              <li><a class="dropdown-item" @click="submitForm"><i class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);"></i>Bookmark Verse</a></li>
              <li><a class="dropdown-item" @click="copyText2"><i class="bi bi-clipboard-check text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Copy verse" style="color: rgba(0, 191, 166);"></i>Copy Verse</a></li>
-             <li><a class="dropdown-item" data-bs-toggle="modal" 		 @click="captureScreenshot2"><i class="bi bi-camera text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" style="color: rgba(0, 191, 166);"></i>Screenshot Verse</a></li>
+             <li><a class="dropdown-item" data-bs-toggle="modal" @click="captureScreenshot2"><i class="bi bi-camera text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" style="color: rgba(0, 191, 166);"></i>Screenshot Verse</a></li>
              <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#transliterationInfo"><i class="bi bi-info-circle text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Surah info" style="color: rgba(0, 191, 166);"></i>Surah Info</a></li>
              <li><a class="dropdown-item" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#bugTransliteration"><i class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Report a bug" style="color: rgba(0, 191, 166);"></i>Report a bug</a></li>
             </ul>
@@ -636,8 +584,6 @@
          <div v-if="showErrorAlert" class="alert alert-danger" role="alert">
           Login to your account to be able to bookmark verses.
          </div>
-
-        
 
          <!-- Notes Modal -->
          <div class="modal fade" id="transliterationNote" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true" ref="exampleModal1">
@@ -740,18 +686,62 @@
 
 <script>
 import html2canvas from 'html2canvas';
+import CustomSurahSelection from './CustomSurahSelection.vue'; // Ensure the path is correct
+import SearchForm from './SearchForm.vue';
+
 import {
  ref
 } from 'vue';
 
 export default {
-
+ components: {
+  CustomSurahSelection,
+  // SearchForm,
+ },
  mounted() {
   this.getSurahs(); // Ensure data dependencies are handled correctly
   this.fetchAyahs(); // Ensure data dependencies are handled correctly
  },
-  data() {
+ data() {
   return {
+   customSurahs: [{
+     id: 1,
+     name: 'Al Fatiha'
+    },
+    {
+     id: 114,
+     name: 'An-Nas'
+    },
+    {
+     id: 113,
+     name: 'Al-Falak'
+    },
+    {
+     id: 67,
+     name: 'Al-Mulk'
+    },
+    {
+     id: 18,
+     name: 'Al-Kahf'
+    },
+    {
+     id: 55,
+     name: 'Al-Rahman'
+    },
+    {
+     id: 36,
+     name: 'Ya Seen'
+    },
+    {
+     id: 87,
+     name: 'Al-A\'la'
+    },
+    {
+     id: 88,
+     name: 'Al Ghashiya'
+    }
+   ],
+   surah: null,
    showError: false,
    dropdownHidden: false,
    verseNumber: null,
@@ -881,7 +871,6 @@ export default {
 
  methods: {
 
-  
   toggleFullScreen() {
    this.isFullScreen = !this.isFullScreen;
   },
@@ -1192,7 +1181,7 @@ export default {
    this.getTafseers(this.ayahs[index].id, index);
   },
   dismissError() {
-    this.showError = false; // Dismiss the error alert by setting showError to false
+   this.showError = false; // Dismiss the error alert by setting showError to false
   },
   goToFirstAyah() {
    this.selectAyah(0);
@@ -1215,22 +1204,22 @@ export default {
    this.selectAyah(this.ayahs.length - 1);
   },
   scrollToSelectedAyah() {
-    this.$nextTick(() => {
-      const selectedAyah = this.$refs.ayahList.querySelector('.selected');
-      if (selectedAyah) {
-        selectedAyah.scrollIntoView({
-          behavior: 'smooth'
-        });
-      } else {
-        // Display error alert if no ayah is selected
-        this.showError = true;
+   this.$nextTick(() => {
+    const selectedAyah = this.$refs.ayahList.querySelector('.selected');
+    if (selectedAyah) {
+     selectedAyah.scrollIntoView({
+      behavior: 'smooth'
+     });
+    } else {
+     // Display error alert if no ayah is selected
+     this.showError = true;
 
-        // Automatically dismiss the alert after 5 seconds
-        setTimeout(() => {
-          this.dismissError();
-        }, 1000);
-      }
-    });
+     // Automatically dismiss the alert after 5 seconds
+     setTimeout(() => {
+      this.dismissError();
+     }, 1000);
+    }
+   });
   },
   determineNextAyah() {
    // Your logic to determine the next Ayah
@@ -1328,7 +1317,6 @@ export default {
    const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text2)}`;
    window.open(url, '_blank');
   },
-   
 
   captureScreenshot3() {
    const targetElement = this.$refs.targetElement;
@@ -1432,15 +1420,7 @@ export default {
    this.getAyahs(); // Call the getAyahs method with the selected Surah ID
 
   },
-  // Function to close the modal
-  // Function to open the modal
-  // openModal() {
-  //  this.showModal = true;
-  // },
-  // // Function to close the modal
-  // closeModal() {
-  //  this.showModal = false;
-  // },
+
   createCorrection() {
    Swal.fire({
     title: "Are you sure?",
@@ -1751,6 +1731,9 @@ export default {
  },
 
  watch: {
+  surah(newSurah) {
+   this.getAyahs(newSurah);
+  },
   'information.ayah.surah.name_ar': 'updateFileName',
   verseNumber(newVal, oldVal) {
    if (newVal !== oldVal && parseInt(newVal)) {
@@ -1763,34 +1746,36 @@ export default {
 </script>
 
 <style scoped>
-
 .icon-container {
-  text-align: center;
+ text-align: center;
 }
 
 .icon-row {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 10px 0;
+ display: flex;
+ justify-content: space-around;
+ align-items: center;
+ padding: 10px 0;
 }
 
 .icon-row i {
-  cursor: pointer;
-  color: rgb(0, 191, 166);
+ cursor: pointer;
+ color: rgb(0, 191, 166);
 }
 
 .alert {
-  margin-top: 20px;
+ margin-top: 20px;
 }
 
 .selected {
-  background-color: yellow; /* Example style for selected ayah */
+ background-color: yellow;
+ /* Example style for selected ayah */
 }
 
 .highlighted {
-  background-color: lightblue; /* Example style for highlighted ayah based on verseNumber */
+ background-color: lightblue;
+ /* Example style for highlighted ayah based on verseNumber */
 }
+
 .full-screen[data-v-2b3c2c26] {
  position: fixed;
  top: 0;
@@ -1821,7 +1806,6 @@ export default {
 }
 
 @media (max-width: 767.98px) {
-  
 
  .hide-on-mobile-tablet {
   display: none !important;
@@ -1925,17 +1909,17 @@ export default {
 }
 
 @media (max-width: 768px) {
-  .full-screen[data-v-2b3c2c26] {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 9999;
-    background: #fff;
-    padding: 20px;
-    overflow: auto;
-  }
+ .full-screen[data-v-2b3c2c26] {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  background: #fff;
+  padding: 20px;
+  overflow: auto;
+ }
 
  .scrollable-container {
   overflow-y: auto;

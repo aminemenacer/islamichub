@@ -55,20 +55,20 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav justify-content-end pr-4 flex-grow-1">
                         <li class="nav-item mt-3">
-                            <h6><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/quran">Home</a></h6>
+                            <h6><a style="	color: black;" class="nav-link ml-4 pl-3" href="/quran"><b>Home</b></a></h6>
                         </li>
                         <li class="nav-item mt-3">
-                            <h6><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/contact">Contact</a></h6>
+                            <h6><a style="	color: black;" class="nav-link ml-4 pl-3" href="/contact"><b>Contact</b></a></h6>
                         </li>
                         <li class="nav-item mt-3">
-                            <h6><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/about">About Us</a></h6>
+                            <h6><a style="	color: black;" class="nav-link ml-4 pl-3" href="/about"><b>About Us</b></a></h6>
                         </li>
                         <li class="nav-item mt-3">
-                            <h6><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3" href="/updates">Updates</a></h6>
+                            <h6><a style="	color: black;" class="nav-link ml-4 pl-3" href="/updates"><b>Updates</b></a></h6>
                         </li>
                         <!--
                             <li class="nav-item mt-3">
-                                <h6><a style="font-family:inter; color: black;" class="nav-link ml-4 pl-3 pr-5" href="/join_us">Mailing List</a></h6>
+                                <h6><a style="	color: black;" class="nav-link ml-4 pl-3 pr-5" href="/join_us">Mailing List</a></h6>
                             </li>
                         -->
                     </ul>
@@ -77,12 +77,12 @@
                         @guest
                         @if (Route::has('login'))
                         <li class="nav-item ">
-                            <h6><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></h6>
+                            <h6><a class="nav-link" href="{{ route('login') }}"><b>{{ __('Login') }}</b></a></h6>
                         </li>
                         @endif
                         @if (Route::has('register'))
                         <li class="nav-item ">
-                            <h6><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></h6>
+                            <h6><a class="nav-link" href="{{ route('register') }}"><b>{{ __('Register') }}</b></a></h6>
                         </li>
                         @endif
                         @else
