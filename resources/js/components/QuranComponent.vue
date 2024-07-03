@@ -406,6 +406,7 @@
            <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
           </template>
          </h5>
+          <h6 class="text-left mt-3"><strong>Tafseer: </strong>Ibn Kathir</h6>
          <br>
          <!-- Bootstrap Alert Component -->
          <div v-if="showAlertText" class="alert alert-success alert-dismissible fade show" role="alert">
@@ -575,6 +576,7 @@
              <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
             </template>
            </h5>
+            <h6 class="text-left mt-3"><strong>Transliteration: </strong>Saheeh International</h6>
           </div>
          </div>
          <br>
