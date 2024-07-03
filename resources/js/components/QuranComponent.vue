@@ -2,10 +2,10 @@
 <div id="app">
  <div class="container text-center" v-if="!ayah && dropdownHidden">
    <!-- quran title -->
-   <h1 class="card-text text-center mb-3" style="font-family: inter">
+   <h1 class="card-text text-center pt-2" style="font-family: inter">
     The Holy Quran
    </h1>
-    <form class="search-form d-flex pt-2 container h2" @submit.prevent="search">
+    <form class="search-form d-flex container h2" @submit.prevent="search">
       <input class="form-control me-2 display-1" type="search" id="search" name="search" v-model="searchTerm" placeholder="What do you want to read today?" autocomplete="off" @keyup="search">
       <button v-if="showClearButton" class="btn btn-outline-secondary h2" @click="clearResults">Clear</button>
     </form>

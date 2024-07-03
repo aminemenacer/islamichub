@@ -40,7 +40,7 @@
 <body>
     <div id="app">
   
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm py-1">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="/images/logo_main.png" width="275" height="54" class="d-inline-block align-top" alt="">
@@ -55,33 +55,25 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav justify-content-end pr-4 flex-grow-1">
                         <li class="nav-item mt-3">
-                            <h6><a style="	color: black;" class="nav-link ml-4 pl-3" href="/quran"><b>Home</b></a></h6>
+                            <h6><a style="	color: black;" class="nav-link ml-3 pl-3" href="/quran"><b>Home</b></a></h6>
                         </li>
                         <li class="nav-item mt-3">
-                            <h6><a style="	color: black;" class="nav-link ml-4 pl-3" href="/contact"><b>Contact</b></a></h6>
+                            <h6><a style="	color: black;" class="nav-link ml-3 pl-3" href="/contact"><b>Contact</b></a></h6>
                         </li>
                         <li class="nav-item mt-3">
-                            <h6><a style="	color: black;" class="nav-link ml-4 pl-3" href="/about"><b>About Us</b></a></h6>
+                            <h6><a style="	color: black;" class="nav-link ml-3 pl-3" href="/about"><b>About Us</b></a></h6>
                         </li>
                         <li class="nav-item mt-3">
-                            <h6><a style="	color: black;" class="nav-link ml-4 pl-3" href="/updates"><b>Updates</b></a></h6>
+                            <h6><a style="	color: black;" class="nav-link ml-3 pl-3" href="/updates"><b>Updates</b></a></h6>
                         </li>
-                        <!--
-                            <li class="nav-item mt-3">
-                                <h6><a style="	color: black;" class="nav-link ml-4 pl-3 pr-5" href="/join_us">Mailing List</a></h6>
-                            </li>
-                        -->
-                    </ul>
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav mt-1" style="align-items: center">
                         @guest
                         @if (Route::has('login'))
-                        <li class="nav-item ">
+                        <li class="nav-item pl-5 mt-3">
                             <h6><a class="nav-link" href="{{ route('login') }}"><b>{{ __('Login') }}</b></a></h6>
                         </li>
                         @endif
                         @if (Route::has('register'))
-                        <li class="nav-item ">
+                        <li class="nav-item mt-3">
                             <h6><a class="nav-link" href="{{ route('register') }}"><b>{{ __('Register') }}</b></a></h6>
                         </li>
                         @endif
@@ -106,17 +98,18 @@
                             </div>
                         </li>
                         @endguest
-                        <li class="nav-item mt-2 pl-4">
+                        <li class="nav-item mt-3 pl-4">
                             <button class="button-33"><a style="text-decoration: none;color:white"
                                 href="https://www.gofundme.com/f/empowerment-through-quran-support-islamic-connects-mission">Support
                                 Us</a></button>
                         </li>
                     </ul>
+                    
                 </div>
             </div>
         </nav>
 
-        <main class="py-0">
+        <main >
             @yield('content')
         </main>
     </div>
