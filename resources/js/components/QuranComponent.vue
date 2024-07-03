@@ -1277,7 +1277,7 @@ export default {
   },
   shareHeadingOnTwitter3() {
    try {
-    const headingText3 = this.$refs.targetElement3.textContent.trim();
+    const headingText3 = this.$refs.targetElement.textContent.trim();
     const encodedHeading = encodeURIComponent(headingText3);
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodedHeading}`;
     window.open(twitterUrl, "_blank") || console.error("Failed to open Twitter sharing dialog.");
