@@ -24,18 +24,18 @@
   <div class="row">
    <div class="col-md-4 mb-4" v-for="bookmark in bookmarks" :key="bookmark.id">
     <!-- Bookmark Card -->
-    <div class="card">
+    <div class="card" style="border-radius:8px;padding:10px; border: 2px solid rgba(0, 191, 166);">
      <div class="card-body">
       <!-- Bookmark details -->
       <!-- Truncated text example -->
       <div class="truncate">
        <h5> <strong>Surah Name:</strong></h5>
-       {{ bookmark.surah_name }}
+       {{ truncatedText (bookmark.surah_name) }}
       </div>
       <!-- End of truncated text -->
       <div class="mt-2">
-       <h5><strong> Number:</strong></h5>
-       {{ bookmark.id }}
+       <h5><strong>Information:</strong></h5>
+       {{ truncatedText (bookmark.ayah_verse_en) }}
       </div>
       <hr />
       <!-- Icons for actions -->
@@ -142,15 +142,7 @@ export default {
    maxLength: 70, // Set your desired max length
   };
  },
- computed: {
-  truncatedText() {
-   if (!this.form.ayah_text) return "";
-   return this.form.ayah_text.length > this.maxLength ?
-    this.form.ayah_text.substring(0, this.maxLength) + "..." // Append ellipsis
-    :
-    this.form.ayah_text;
-  },
- },
+ 
  methods: {
    extractDate(dateTimeString) {
       return dateTimeString.split('T')[0];
@@ -168,6 +160,12 @@ export default {
      error
     );
    }
+  },
+  truncatedText(text) {
+    if (!text) return '';
+    return text.length > this.maxLength
+      ? text.substring(0, this.maxLength) + '...'
+      : text;
   },
   viewModal(bookmark) {
    this.form1 = {

@@ -6,7 +6,7 @@
     The Holy Quran
    </h1>
     <form class="search-form d-flex container h2" @submit.prevent="search">
-      <input class="form-control me-2 display-1" type="search" id="search" name="search" v-model="searchTerm" placeholder="What do you want to read today?" autocomplete="off" @keyup="search">
+      <input class="form-control me-2 display-3" type="search" id="search" name="search" v-model="searchTerm" placeholder="What do you want to read today?" autocomplete="off" @keyup="search">
       <button v-if="showClearButton" class="btn btn-outline-secondary h2" @click="clearResults">Clear</button>
     </form>
     <custom-surah-selection :customSurahs="customSurahs" v-model="surah"></custom-surah-selection>
@@ -65,7 +65,7 @@
    </ul>
     <div class="alert container-fluid alert-success d-flex align-items-center mr-2 mobile-only" role="alert">
       <div>
-        Support our project with a donation to help us improve and expand our community-driven platform, click <a href="https://www.gofundme.com/f/empowerment-through-quran-support-islamic-connects-mission" style="color:black;text-decoration:none">here</a> to donate.
+        Support our project with a donation to help us improve and expand our community-driven platform, click <a href="https://www.gofundme.com/f/empowerment-through-quran-support-islamic-connects-mission" style="color:black;text-decoration:underline">here</a> to donate.
       </div>
       <div>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -86,16 +86,15 @@
    </form>
 
    <!-- List of Ayah Dropdown -->
-   <div class="tab-content mb-1" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
+   <div class="tab-content mb-1" id="nav-tabContent" >
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
      <form @change="handleSelectionChange" style="cursor: pointer; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px; ">
-      <!-- Add a class to the select element for easier targeting -->
-      <select class="form-control mobile-only hide-on-full-screen hide-on-tablet right-side-form" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;" @change="getTafseers(ayahs[$event.target.value].id, $event.target.value)">
-       <option value="0">
-        <span disabled>Select Ayah</span>
-       </option>
-       <option v-for="(ayah, index) in ayahs" :key="index" :value="index">{{ ayah.ayah_text }} : {{ayah.ayah_id}}</option>
-      </select>
+      <select class="form-control mobile-only hide-on-full-screen hide-on-tablet right-side-form" 
+                    style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;" 
+                    @change="getTafseers(ayahs[$event.target.value].id, $event.target.value)">
+                <option value="0" disabled>Select Ayah</option>
+                <option v-for="(ayah, index) in ayahs" :key="index" :value="index">{{ ayah.ayah_text }} : {{ayah.ayah_id}}</option>
+            </select>
      </form>
     </div>
    </div>
@@ -243,6 +242,12 @@
            <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
           </template>
          </h5>
+
+         <!-- --> 
+
+          <!-- --> 
+
+
          <h6 class="text-left mt-3"><strong>Translation: </strong>Ahmed Ali</h6>
 
          <!-- Alerts -->
@@ -682,9 +687,19 @@
        </div>
 
       </div>
-
+      
+      <div v-if="isLoggedIn == true && information != null">
+        <hr class="container text:secondary">
+        <div class="light-grey-background" style="display: flex; gap: 10px;">
+          <p class="text-left ayah-translation text-secondary" style="line-height: 1.6em; cursor: pointer;">
+            <a href="/bookmarks" class="link-darkgrey-underline">View bookmarks</a>
+          </p>
+          <p class="text-left ayah-translation text-secondary" style="line-height: 1.6em; cursor: pointer;">
+            <a href="/notes" class="link-darkgrey-underline">View Notes</a>
+          </p>
+        </div>
+      </div>
      </div>
-
     </div>
    </div>
   </div>
@@ -702,6 +717,12 @@ import {
 } from 'vue';
 
 export default {
+  props: {
+    information: {
+      type: Object,
+      default: () => null
+    }
+  },
  components: {
   CustomSurahSelection,
   // SearchForm,
@@ -712,6 +733,7 @@ export default {
  },
  data() {
   return {
+   isLoggedIn: true,
    customSurahs: [{
      id: 1,
      name: 'Al Fatiha'
@@ -749,6 +771,7 @@ export default {
      name: 'Al Ghashiya'
     }
    ],
+
    surah: null,
    showError: false,
    dropdownHidden: false,
@@ -1754,6 +1777,22 @@ export default {
 </script>
 
 <style scoped>
+.link-darkgrey-underline {
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  text-decoration: none;
+  background-color: rgba(0, 191, 166);
+  padding: 8px;
+  color: #fff;   /*for background new colour (it worked)*/
+  border-radius: 3px;
+
+}
+.link-darkgrey-underline:hover{
+  color: #231f20;     /*for text new colour (not worked)*/
+  background-color: rgba(0, 191, 166);
+  color: #fff;   /*for background new colour (it worked)*/
+  transition: opacity .9s, margin-left .5s, margin-right .5s;
+}
 .icon-container {
  text-align: center;
 }

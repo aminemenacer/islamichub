@@ -68,20 +68,20 @@
                         </li>
                         @guest
                         @if (Route::has('login'))
-                        <li class="nav-item pl-5 mt-3">
+                        <li class="nav-item pl-3 mt-3">
                             <h6><a class="nav-link" href="{{ route('login') }}"><b>{{ __('Login') }}</b></a></h6>
                         </li>
                         @endif
                         @if (Route::has('register'))
-                        <li class="nav-item mt-3">
+                        <li class="nav-item pl-3 mt-3">
                             <h6><a class="nav-link" href="{{ route('register') }}"><b>{{ __('Register') }}</b></a></h6>
                         </li>
                         @endif
                         @else
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown pl-3">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                <i class="bi bi-person-circle pr-2" style="font-size: 1.8rem"></i>
+                                <i class="bi bi-person-circle pr-2 " style="font-size: 1.8rem"></i>
                                 {{ Auth::user()->name }}
                             </a>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">

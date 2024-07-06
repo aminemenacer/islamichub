@@ -43,8 +43,9 @@
 
 <body class="hold-transition sidebar-mini">
   <div class="wrapper" id="app">
-    @include('partials.navbar')
-
+    {{-- @include('partials.navbar') --}}
+    
+  <!--
     <aside id="tablet-sidebar" class="main-sidebar sidebar-light-primary elevation-4">
       <a href="/" class="brand-link">
           <img src="/images/logo_main.png" width="220" height="45" alt="">
@@ -152,10 +153,10 @@
               </ul>
           </nav>
       </div>
-     </aside>
-     
+    </aside>
+  -->
 
-    <div class="content-wrapper" style="margin-left: 250px;">
+    <div class="content-wrapper" >
       <div class="content">
         <div class="container-fluid">
           @yield('content')

@@ -1,4 +1,4 @@
-<aside id="tablet-sidebar" class="main-sidebar sidebar-light-primary elevation-4" style="left:0px; height: 100vh;">
+<aside id="tablet-sidebar;" class="main-sidebar sidebar-light-primary" style="left:0px; height: 100vh; background:#fff	">
  <div class="sidebar">
   <nav class="mt-2">
    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -6,8 +6,8 @@
     <!-- Admin Dashboard -->
     <li class="nav-item">
      <a href="/dashboard" class="nav-link">
-      <i class="bi bi-speedometer mr-1"></i>
-      <p class="mr-2">Dashboard</p>
+      <i class="bi bi-speedometer mr-1 "></i>
+      <p class="mr-2 "><b>Dashboard</b></p>
      </a>
     </li>
     <li class="nav-item">
@@ -75,28 +75,29 @@
     <!-- User Dashboard -->
     <li class="nav-item">
      <a href="/home" class="nav-link">
-      <i class="bi bi-house-fill mr-3"></i>
-      <p>Home</p>
-     </a>
-    </li>
-    <li class="nav-item">
-     <a href="/bookmarks" class="nav-link">
-      <i class="bi bi-bookmark-fill mr-3"></i>
-      <p>Bookmarks</p>
-     </a>
-    </li>
-    <li class="nav-item">
-     <a href="/notes" class="nav-link">
-      <i class="bi bi-file-earmark-text-fill mr-3"></i>
-      <p>Notes</p>
+      <i class="bi bi-house mr-3"></i>
+      <b>Home</b>
      </a>
     </li>
     <li class="nav-item">
      <a href="/profile" class="nav-link">
       <i class="bi bi-person-circle mr-3"></i>
-      <p>Profile</p>
+      <b>Profile</b>
      </a>
     </li>
+    <li class="nav-item">
+     <a href="/bookmarks" class="nav-link">
+      <i class="bi bi-bookmark mr-3"></i>
+      <b>Bookmarks</b>
+     </a>
+    </li>
+    <li class="nav-item">
+     <a href="/notes" class="nav-link">
+      <i class="bi bi-file-earmark-text mr-3"></i>
+      <b>Notes</b>
+     </a>
+    </li>
+    
     <!-- Other user links -->
     @endif
 

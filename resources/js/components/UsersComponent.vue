@@ -194,29 +194,32 @@
     </div>
   </div>
 
-  <DataTable v-model:filters="filters" showGridlines stripedRows sortable filterDisplay="row" :value="users" ref="dt" class="text-center pt-5" width="100%" paginator :rows="7" :rowsPerPageOptions="[5, 10, 20, 50]" tableStyle="min-width: 50rem">
+
+
+  <DataTable v-model:filters="filters"  :value="users" ref="dt" class="text-center pt-5" width="100%" paginator :rows="7" :rowsPerPageOptions="[5, 10, 20, 50]"  >
     <template #header>
 
       <div class="flex justify-content-start" style="display:flex">
-        <Button type="button" class="flex flex-column md:flex-row md:justify-content-between row-gap-3 mr-3" style="background:teal;border-radius:8%" data-bs-toggle="modal" data-bs-target="#createModal">
+      <!--
+        <Button type="button" class="flex flex-column md:flex-row md:justify-content-between  mr-3" style="background:teal;border-radius:8%" data-bs-toggle="modal" data-bs-target="#createModal">
           Add New User
         </button>
-
+ 
         <p style="display: flex" class=" ml-auto mr-3 mt-2 text-black">
           Search:
         </p>
         <span>
           <InputText class="flex justify-content-end ml-2" v-model="filters['global'].value" placeholder="Keyword Search" />
         </span>
-
+ -->
       </div>
 
     </template>
 
-    <Column v-for="col of columns" :key="col.field" :field="col.field" :header="col.header" sortable style="text-align:center" width>
+    <Column v-for="col of columns" :key="col.field" :field="col.field" :header="col.header" sortable style="text-align:center" >
     </Column>
 
-    <Column :exportable="true" style="min-width: 8rem">
+    <Column :exportable="true" >
       <template #body="slotProps">
         <div style="display:flex">
 
@@ -256,7 +259,7 @@ export default {
     this.loadUsers();
     this.InitializeForm();
 
-// ProductService.getProductsMini().then((data) => (this.users = data));
+ ProductService.getProductsMini().then((data) => (this.users = data));
   },
   data() {
     return {
@@ -270,7 +273,9 @@ export default {
       searchValue: "",
       totalUsers: 0,
 
-      columns: [{
+      columns: [
+        
+        {
           field: "name",
           header: "Firstname",
           sortable: true,
@@ -286,7 +291,7 @@ export default {
           sortable: true,
         },
         {
-          field: "user_type",
+          field: "role",
           header: "User Type",
           sortable: true,
         }
@@ -300,6 +305,7 @@ export default {
         phone: "",
         // status: "",
         password: "",
+        role:"",
         user_type: "",
       }),
     }

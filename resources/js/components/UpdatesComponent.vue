@@ -2,6 +2,22 @@
 <div class="container">
 
 <div class="row ml-4 mt-3 container-fluid">
+  <h3 class="text-left mt-3 mb-2 container" style="line-height: 1.7em; font-family:inter; "><img src="/images/art.png" style="width: 40px;" class="mb-1 mr-2" />Introducing Ayah (verse) sharing</h3>
+  <div class="col-md-6">
+   <h5 class="text-left text-secondary" width="80%" style="line-height: 1.7em; font-family:inter">July 4th, 2024</h5>
+   <div>
+    <p style="padding:5px; line-height: 1.7em; font-family:inter" class="text-left text-secondary ">Share meaningful verses (Ayahs) using WhatsApp or Twitter with their friends and family. This can help spread the message and teachings of the Quran, facilitating more discussions and reflections on its content.</p>
+    <p style="padding:5px; line-height: 1.7em; font-family:inter" class="text-left text-secondary ">You can now share specific Ayahs that hold personal significance or relevance to current events, making the shared content more impactful.</p>
+   </div>   
+  </div>
+  <div class="col-md-6">
+   <img src="images/ayah_sharing.png" style="width:80%" />
+  </div>
+ </div>
+
+ <hr>
+
+<div class="row ml-4 mt-3 container-fluid">
   <h3 class="text-left mt-3 mb-2 container" style="line-height: 1.7em; font-family:inter; "><img src="/images/art.png" style="width: 40px;" class="mb-1 mr-2" />Revamp of New UI with Enhanced Features</h3>
   <div class="col-md-6">
    <h5 class="text-left text-secondary" width="80%" style="line-height: 1.7em; font-family:inter">June 30th, 2024</h5>

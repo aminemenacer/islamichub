@@ -53,6 +53,7 @@ import NotesComponent from "./components/NotesComponent.vue";
 import CustomSurahSelection from "./components/CustomSurahSelection.vue";
 import SurahList from "./components/SurahList.vue";
 
+
 import SearchForm from "./components/SearchForm.vue";
 
 const app = createApp({});
@@ -100,10 +101,6 @@ app.component("bookmark-component", BookmarkComponent);
 app.component("updates-component", UpdatesComponent);
 app.component("join-us-component", JoinUsComponent);
 app.component("notes-component", NotesComponent);
-
 app.component("search-component", CustomSurahSelection);
-app.component("surah_list-component", SurahList);
-
-app.component("form-component", SearchForm);
 
 app.mount("#app");

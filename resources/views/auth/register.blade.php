@@ -74,12 +74,30 @@
                     </div>
 
                     <div class="row mb-0">
-                        <div class="pt-1 mb-2">
-                            <button type="submit" class="btn btn-lg btn-block text-white" style="background: #00BFA6" type="button">Submit</button>
-                          </div>
-                        <label class="mt-3 text-center">Already have an account ? Click <a href="/login">here</a> to login.</label>
-
+                      <div class="pt-1 mb-2">
+                          <button type="submit" class="btn btn-lg btn-block text-white" style="background: #00BFA6" type="button">Submit</button>
+                        </div>
+                      <label class="mt-3 text-center">Already have an account ? Click <a href="/login">here</a> to login.</label>
                     </div>
+                    <!--
+                      <hr>
+                      <div class="text-center">
+                        <b>or login with:</b>
+                          <a href="{{ url('auth/facebook') }}" class="btn btn-link btn-floating" style="font-size: 22px; color:#00BFA6;">
+                              <i class="bi bi-facebook"></i>
+                          </a>
+                        -->
+                        <!--
+                        <a href="{{ url('auth/google') }}" class="btn btn-link btn-floating" style="font-size: 22px; color:#00BFA6;">
+                            <i class="bi bi-google"></i>
+                        </a>
+                        -->
+                        <!--
+                          <a href="{{ url('auth/linkedin') }}" class="btn btn-link btn-floating" style="font-size: 22px; color:#00BFA6;">
+                              <i class="bi bi-linkedin"></i>
+                          </a>
+                      -->
+                    
                 </form>
               </div>
             </div>

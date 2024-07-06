@@ -25,7 +25,7 @@
       <div class="row">
         <div class="col-md-4 mb-4" v-for="note in notes" :key="note.id">
           <!-- Note Card -->
-          <div class="card">
+          <div class="card" style="border-radius:8px;padding:10px; border: 2px solid rgba(0, 191, 166);">
             <div class="card-body">
               <!-- Note details -->
               <div>

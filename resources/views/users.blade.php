@@ -6,7 +6,7 @@
             @include('partials.sidebar')
         </div>
         <div class="col-md-10">
-            <users-component></users-component>
+            <users-component :information="information"></users-component>
             {{-- @include('layouts.footer') --}}
         </div>
     </div>

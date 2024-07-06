@@ -1,8 +1,8 @@
 <template>
-  <form class="search-form d-flex pb-1 pt-2 container" @submit.prevent="search">
-   <input class="form-control me-2" type="search" id="search" name="search" v-model="searchTerm" placeholder="What do you want to read?" autocomplete="off" @keyup="search">
-   <button v-if="showClearButton" class="btn btn-outline-secondary" @click="clearResults">Clear</button>
- </form>
+  <form class="search-form d-flex container h2" @submit.prevent="search">
+    <input class="form-control me-2 display-1" type="search" id="search" name="search" v-model="searchTerm" placeholder="What do you want to read today?" autocomplete="off" @keyup="search">
+    <button v-if="showClearButton" class="btn btn-outline-secondary h2" @click="clearResults">Clear</button>
+  </form>
 </template>
 
 <script>
@@ -10,23 +10,22 @@ export default {
   data() {
     return {
       searchTerm: '',
-      showClearButton: false,
+      showClearButton: false
     };
   },
   methods: {
     search() {
-      // Handle the search functionality
-      console.log('Searching for:', this.searchTerm);
       this.showClearButton = this.searchTerm.length > 0;
+      this.$emit('search', this.searchTerm);
     },
     clearResults() {
       this.searchTerm = '';
       this.showClearButton = false;
+      this.$emit('clear');
     }
   }
 };
 </script>
-
 <style scoped>
 .search-form {
   color: rgba(0, 191, 166);
