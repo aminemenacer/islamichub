@@ -1,9 +1,9 @@
-<aside id="tablet-sidebar; background:#C1E1C1" class="main-sidebar">
+<aside id="tablet-sidebar; background:#C1E1C1; " class="main-sidebar">
     <a href="/" class="brand-link">
         <img src="/images/logo_main.png" width="420" height="45" alt="">
     </a>
-    <div class="w-200">
-        <nav class="mt-2">
+    <div class="w-200 elevation-4">
+        <nav class="mt-2 ">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 @if(auth()->user()->role === 'admin')
                     <li class="nav-item">

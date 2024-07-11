@@ -50,11 +50,13 @@ import UpdatesComponent from "./components/UpdatesComponent.vue";
 import JoinUsComponent from "./components/JoinUsComponent.vue";
 import NotesComponent from "./components/NotesComponent.vue";
 
-import CustomSurahSelection from "./components/CustomSurahSelection.vue";
-import SurahList from "./components/SurahList.vue";
+import CustomSurahSelection from "./components/surah_selection/CustomSurahSelection.vue";
+import Donation from "./components/intro/Donation.vue";
+
+import SurahList from "./components/search/SurahList.vue";
+import SearchForm from "./components/search/SearchForm.vue";
 
 
-import SearchForm from "./components/SearchForm.vue";
 
 const app = createApp({});
 
@@ -102,5 +104,8 @@ app.component("updates-component", UpdatesComponent);
 app.component("join-us-component", JoinUsComponent);
 app.component("notes-component", NotesComponent);
 app.component("search-component", CustomSurahSelection);
+app.component("surah-list-component", SurahList);
+
+app.component("donations-component", Donation);
 
 app.mount("#app");

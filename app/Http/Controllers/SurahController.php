@@ -35,6 +35,7 @@ class SurahController extends Controller
         return response()->json($tafseer->tafseer);
     }
 
+
     public function search(Request $request)
     {
         $surah = Surah::with('surah')

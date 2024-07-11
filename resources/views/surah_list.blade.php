@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
  <div id="app" >
-  <surah-list :filteredSurah="filteredSurah" @select-surah="handleSelectSurah"></surah-list>
+  <surah-list-component :initialSurahs="surahs" :initialSurah="surah"></surah-list-component>
   <div>
 {{-- @include('layouts.footer') --}}
 @endsection

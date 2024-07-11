@@ -23,6 +23,7 @@ use App\Http\Controllers\JoinUsController;
 use App\Http\Controllers\NotesController;
 use App\Http\Controllers\UpdatesController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\TranslationController;
 
 
 // Auth routes
@@ -55,13 +56,13 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
+//translations
+Route::get('/translation/ahmed-raza/{id}/fetch', [TranslationController::class, 'fetchAhmedRazaTranslation']);
+
 
 Route::get('/ayahs', [QuranController::class, 'index']);
-
 //join us
 Route::get('/join_us', [JoinUsController::class, 'index']);
-
-
 
 // Example: Restrict access to a route to authenticated users
 Route::get('dashboard', [App\Http\Controllers\DashboardController::class, 'index'])

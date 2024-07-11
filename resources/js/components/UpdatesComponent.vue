@@ -2,6 +2,43 @@
 <div class="container">
 
 <div class="row ml-4 mt-3 container-fluid">
+  <h3 class="text-left mt-3 mb-2 container" style="line-height: 1.7em; font-family:inter; "><img src="/images/art.png" style="width: 40px;" class="mb-1 mr-2" />Access Your Bookmarks and Notes</h3>
+  <div class="col-md-6">
+   <h5 class="text-left text-secondary" width="80%" style="line-height: 1.7em; font-family:inter">July 7th, 2024</h5>
+   <div>
+    <p style="padding:5px; line-height: 1.7em; font-family:inter" class="text-left text-secondary ">Log into your account to easily access and manage all your saved Ayah verses and notes. Whether you have bookmarked verses for further reflection or taken notes for deeper understanding.</p>
+    <p style="padding:5px; line-height: 1.7em; font-family:inter" class="text-left text-secondary ">They are securely stored and readily available. Enhance your study and spiritual journey by logging in to view and edit your saved Ayah verses and notes with ease.</p>
+   </div>   
+  </div>
+  <div class="col-md-6">
+   <img src="images/collection.png" style="width:80%" />
+  </div>
+ </div>
+
+ <hr>
+
+<div class="row ml-4 mt-3 container-fluid">
+  <h3 class="text-left mt-3 mb-2 container" style="line-height: 1.7em; font-family:inter; "><img src="/images/art.png" style="width: 40px;" class="mb-1 mr-2" />Revamp of New UI with Enhanced Features</h3>
+  <div class="col-md-6">
+   <h5 class="text-left text-secondary" width="80%" style="line-height: 1.7em; font-family:inter">June 30th, 2024</h5>
+   <div>
+    <p style="padding:5px; line-height: 1.7em; font-family:inter" class="text-left text-secondary ">We are excited to announce a significant revamp of our user interface, incorporating several new features designed to enhance your experience. Our goal is to provide a more intuitive, user-friendly, and engaging platform for reading and exploring the Quran. Below, we outline the key enhancements we've made to achieve this objective.</p>
+    <div>
+      <li style="padding:5px" class="text-left text-secondary "><strong>Expand Text to Full Screen </strong></li>
+      <li style="padding:5px" class="text-left text-secondary "><strong>Search by Quran Verse Number</strong></li>
+      <li style="padding:5px" class="text-left text-secondary "><strong>Improved UI for Mobile and Desktop Devices</strong></li>
+      <li style="padding:5px" class="text-left text-secondary "><strong>Comprehensive Surah Information</strong></li>
+   </div>
+   </div>   
+  </div>
+  <div class="col-md-6">
+   <img src="images/new__ui.png" style="width:80%" />
+  </div>
+ </div>
+
+ <hr>
+
+<div class="row ml-4 mt-3 container-fluid">
   <h3 class="text-left mt-3 mb-2 container" style="line-height: 1.7em; font-family:inter; "><img src="/images/art.png" style="width: 40px;" class="mb-1 mr-2" />Introducing Ayah (verse) sharing</h3>
   <div class="col-md-6">
    <h5 class="text-left text-secondary" width="80%" style="line-height: 1.7em; font-family:inter">July 4th, 2024</h5>
