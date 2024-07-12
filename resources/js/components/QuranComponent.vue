@@ -97,9 +97,7 @@
 
       <!-- Translation Section -->
       <div class="tab-pane active" id="home" role="tabpanel" v-if="information != null">
-
        <div class="icon-container pb-3">
-
         <div class="icon-container w-100 hide-on-mobile pb-3">
          <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#translationNote" style="color: rgba(0, 191, 166);cursor:pointer"></i>
          <i class="bi bi-whatsapp text-right mr-2 h4" @click="shareTextViaWhatsApp3" aria-expanded="false" data-bs-placement="top" title="Share on Whatsapp" style="color: rgba(0, 191, 166);cursor:pointer"></i>
@@ -111,12 +109,9 @@
          <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
          <i class="bi bi-info-circle h4" style="color: rgb(0, 191, 166);cursor:pointer" data-bs-target="#translationInfo" aria-expanded="false" data-bs-toggle="modal" data-bs-placement="top" title="Surah info"></i>
         </div>
-
         <!-- Dropdown Features -->
         <div class="dropdown mobile-only">
-
          <div class=" icon-container">
-
           <i class="bi bi-chevron-bar-left h5" style="color: rgb(0, 191, 166);" @click="goToFirstAyah()" title="First verse"></i>
           <i class="bi bi-arrow-left-circle h5" style="color: rgb(0, 191, 166);" @click="goToPreviousAyah()" title="Previous verse"></i>
           <i class="bi bi-arrow-right-circle h5" style="color: rgb(0, 191, 166);" @click="goToNextAyah()" title="Next verse"></i>
@@ -136,35 +131,17 @@
           </ul>
 
          </div>
-
         </div>
        </div>
 
        <!-- Target Element for Screenshot -->
        <div ref="targetElement" class="w-100 my-element " :class="{'full-screen': isFullScreen}">
         <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
-        <div class="container">
-         <h5 class="mr-2 container">
-          <p class="container">{{ information.ayah.surah.name_en }} {{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }}</p>
-         </h5>
-        </div>
-
+        <AyahInfo :information="information" />
         <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
-         <div class="btn">
-          <h5 class="text-right ayah-translation" name="ayah_text" style="line-height: 1.6em">{{ information.ayah.ayah_text }}</h5>
-         </div>
-
-         
-         <h5 class="text-left ayah-translation" ref="heading3" style="line-height: 1.6em">
-          {{ expanded ? information.translation : truncatedText(information.translation) }}
-          <template v-if="showMoreLink">
-           <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
-          </template>
-         </h5>
-
-         <h6 class="text-left mt-3"><strong>Translation: </strong>Ahmed Ali</h6>
-
-         <!-- Include the AlertModal component -->
+         <MainAyah :information="information" />
+         <EnglishTranslation :information="information" />
+         <Translator translator="Ahmed Ali" />
          <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
         </div>
        </div>
@@ -510,9 +487,7 @@
 
       </div>
 
-      <!-- view bookmarks and notes -->
       <BookmarksAndNotes :information="information" />
-      <!-- correction modal -->
       <CorrectionModal />
 
      </div>
@@ -538,6 +513,11 @@ import Title from './intro/Title.vue';
 import CorrectionModal from './modals/CorrectionModal.vue';
 import Donation from './intro/Donation.vue'
 import NavTabs from './tabs/NavTabs.vue';
+import AyahInfo from './translation/AyahInfo.vue';
+import MainAyah from './translation/MainAyah.vue';
+import EnglishTranslation from './translation/EnglishTranslation.vue';
+import Translator from './translation/Translator.vue';
+
 
 export default {
  name: 'QuranComponent',
@@ -554,6 +534,10 @@ export default {
   NavTabs,
   Title,
   SearchForm,
+  AyahInfo,
+  MainAyah,
+  EnglishTranslation,
+  Translator,
  },
  mounted() {
   this.getSurahs(); // Ensure data dependencies are handled correctly
@@ -1371,7 +1355,6 @@ export default {
 
 <style scoped>
 
-
 .full-screen[data-v-2b3c2c26] {
  position: fixed;
  top: 0;
@@ -1428,37 +1411,10 @@ export default {
  }
 }
 
-.scrollmenu {
- overflow-x: auto;
- /* Hide horizontal scrollbar */
- white-space: nowrap;
-}
-
-.scrollmenu a {
- display: inline-block;
- vertical-align: top;
-}
-
 .dropdown-toggle::after {
  display: none !important;
 }
 
-
-.ul-main {
- list-style: none;
- width: 100%;
-}
-
-.ul-main .li-main {
- display: inline-block;
- font-size: 12px;
- text-align: center;
-}
-
-.ul-main .li-main .span-main {
- font-size: 20px;
- display: block;
-}
 
 .flex-container i {
  color: rgb(0, 191, 166);
@@ -1478,10 +1434,6 @@ export default {
  /* Adjust the font size to ensure icons fit in one line */
 }
 
-
-.w-100 {
- width: 100% !important;
-}
 
 .mobile-only {
  display: none;
@@ -1547,11 +1499,6 @@ export default {
  }
 }
 
-.ayah-text,
-.ayah-translation {
- font-size: 1em;
- /* Equivalent to h5 font size */
-}
 
 
 /* Hide on full-screen sizes */
@@ -1661,18 +1608,11 @@ export default {
  vertical-align: top;
 }
 
-.list-group-item {
- cursor: pointer;
- background: transparent;
- padding: 10px;
-}
-
 .list-group {
  min-width: 100%;
+ background: transparent;
  cursor: pointer;
 }
-
-
 
 .card {
  display: flex;
@@ -1685,30 +1625,12 @@ export default {
  background-color: rgba(0, 191, 166, 0.452);
 }
 
-.horizontal-scroll-wrapper {
- overflow-x: scroll;
- overflow-y: hidden;
- white-space: nowrap;
- width: 600px;
-}
-
 .custom-scrollbar {
- background-color: transparent;
- height: 100%;
- width: 100%;
  border-radius: 6px;
- border: 1px solid #d6dee1;
  padding: 1rem;
- border-radius: 6px;
- border: 1px solid #d6dee1;
- padding: 1rem;
- background-color: transparent;
  overflow: scroll;
- background: transparent;
- border: 1px solid #00BFA6;
+ border: 2px solid #00BFA6;
 }
-
-
 
 </style>
 
