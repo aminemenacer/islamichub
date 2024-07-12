@@ -1,22 +1,18 @@
 <template>
 <div id="app">
- <div class="container text-center" v-if="!ayah && dropdownHidden">
-  <!-- quran title -->
-  <Title />
-  <form class="search-form d-flex container h2" @submit.prevent="search">
-   <input class="form-control me-2 display-3" type="search" id="search" name="search" v-model="searchTerm" placeholder="What do you want to read today?" autocomplete="off" @keyup="search">
-   <button v-if="showClearButton" class="btn btn-outline-secondary h2" @click="clearResults">Clear</button>
-  </form>
-  <custom-surah-selection :customSurahs="customSurahs" v-model="surah"></custom-surah-selection>
 
- </div>
+  <div class="container text-center" v-if="!ayah && dropdownHidden">
+    <!-- quran title -->
+    <Title />
+    <!-- Search bar  -->
+    <SearchForm :surahs="surahs" @update-results="handleUpdateResults" @clear-results="handleClearResults" />
+    <!-- custom surah selection -->
+    <custom-surah-selection :customSurahs="customSurahs" v-model="surah"></custom-surah-selection>
+  </div>
 
  <!-- accordion headers-->
  <div class="row container-fluid">
-  <!-- left side chapter list -->
-
   <div class="col-md-4 container">
-
    <!--  Surah list -->
    <ul class="col-md-12 mt-1 scrollable-list " style="list-style-type: none; overflow-y: auto; max-height: 400px; box-shadow: box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
     <li v-for="item in filteredSurah" :key="item.id" @click="selectSurah(item.id)" style="cursor: pointer; padding:5px;box-shadow: box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px; " class="highlight-on-hover">
@@ -26,8 +22,8 @@
      </div>
     </li>
    </ul>
+   <!-- donation message -->
    <Donation />
-
    <!-- Surah Selection Dropdown -->
    <form class="mb-2 right-side-form " style="cursor: pointer; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px; ">
     <select class="form-control custom-dropdown" v-model="surah" @change="getAyahs()" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
@@ -39,7 +35,6 @@
      </option>
     </select>
    </form>
-
    <!-- List of Ayah Dropdown -->
    <div class="tab-content mb-1" id="nav-tabContent">
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
@@ -51,7 +46,6 @@
      </form>
     </div>
    </div>
-
    <!-- List of Ayat for Surah -->
    <div class="tab-content hide-on-mobile-tablet" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" v-if="ayah == null">
@@ -84,22 +78,21 @@
 
     </div>
    </div>
-
   </div>
 
   <div class="col-md-8 pt-2 card-hide">
 
-   <!-- Nav tabs -->
+   
    <div class="card pt-2" style="box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;">
-    <!-- tabs for Translation, Tafseer & Transliteration -->
+
     <div class="container-fluid" v-if="information != null">
+      <!-- navigation tabs -->
       <NavTabs />
     </div>
 
     <div class="card-body" id="alertContainer">
-     <!-- Intro -->
      <div class="tab-content text-center">
-
+      <!-- Intro welcome message -->
       <Welcome :information="information" />
 
       <!-- Translation Section -->
@@ -161,20 +154,15 @@
           <h5 class="text-right ayah-translation" name="ayah_text" style="line-height: 1.6em">{{ information.ayah.ayah_text }}</h5>
          </div>
 
-         <!-- Translation dropdown -->
-         <div class="row pt-3" style="display: flex; align-items: center;">
-          <b class="mb-2 text-left col-md-2 mt-2" style="margin-right: 10px;">Translation:</b>
-          <select class="form-select" v-model="selectedTranslator" @change="fetchAhmedRazaTranslation(ayah_id)" style="width: auto;">
-           <option value="ahmedAli">Ahmed Ali</option>
-           <option value="ahmedRaza">Ahmed Raza</option>
-          </select>
-         </div>
+         
+         <h5 class="text-left ayah-translation" ref="heading3" style="line-height: 1.6em">
+          {{ expanded ? information.translation : truncatedText(information.translation) }}
+          <template v-if="showMoreLink">
+           <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
+          </template>
+         </h5>
 
-         <div v-if="selectedTranslator === 'ahmedRaza'">
-          <h5 class="text-left ayah-translation" style="line-height: 1.6em">
-           {{ translation }}
-          </h5>
-         </div>
+         <h6 class="text-left mt-3"><strong>Translation: </strong>Ahmed Ali</h6>
 
          <!-- Include the AlertModal component -->
          <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
@@ -522,13 +510,16 @@
 
       </div>
 
+      <!-- view bookmarks and notes -->
       <BookmarksAndNotes :information="information" />
+      <!-- correction modal -->
       <CorrectionModal />
 
      </div>
     </div>
    </div>
   </div>
+  
  </div>
 </div>
 </template>
@@ -537,7 +528,8 @@
 import html2canvas from 'html2canvas';
 import CustomSurahSelection from './surah_selection/CustomSurahSelection.vue'; // Ensure the path is correct
 import SearchForm from './search/SearchForm.vue';
-import SurahList from './search/SurahList.vue'; // Adjust path as per your project structure
+import SurahList from './search/SurahList.vue';
+import SurahDropdown from './search/SurahDropdown.vue';
 import ArrowControls from './arrowControls/ArrowControls.vue';
 import BookmarksAndNotes from './bookmark_and_notes_links/BookmarksAndNotes.vue';
 import AlertModal from './modals/AlertModal.vue';
@@ -561,7 +553,7 @@ export default {
   Donation,
   NavTabs,
   Title,
-  // SearchForm,
+  SearchForm,
  },
  mounted() {
   this.getSurahs(); // Ensure data dependencies are handled correctly
@@ -569,11 +561,7 @@ export default {
  },
  data() {
   return {
-   selectedTranslator: 'ahmedAli',
-   translation: '',
    expanded: false,
-   ahmedRazaTranslation: '',
-   isLoggedIn: true,
    information: null,
    surah: null,
    showError: false,
@@ -587,45 +575,27 @@ export default {
    touchStartTime: 0,
    threshold: 50,
    isLoggedIn: false,
-   bookmarkSubmitted: false,
-   bookmarkSubmitted: JSON.parse(localStorage.getItem('bookmarkSubmitted')) || {},
-   selectedCategory: '',
-   verseNumber: null,
    showClearButton: false,
    searchTerm: '', // Search term entered by the user
    filteredSurah: [], // Array to hold filtered surahs based on search term,
-   isExpanded: false,
    isCardVisible: false,
-   showModal: false,
-   timer: null,
    selectedIndexAyah: -1,
    selectedAyah: null,
-   downloadUrl: null,
    dropdownHidden: true,
-   selectedIndexAyah: null,
    data: [],
    surahs: [],
    ayahs: [],
-   informations: [],
    tafseers: [],
    surah: [],
-   surah: null,
-   ayah: null,
-   tafseer: null,
    ayah_id: null,
    name_en: null,
    id: null,
-   textContent: "",
-   ayah_num: "",
-   ayah_text: "",
-   translation: '',
-   transliteration: '',
-   tafseer: '',
+   textContent: "",   
    showAlertText: false,
    showAlert: false,
    showErrorAlert: false,
    showAlertTextNote: false,
-   maxLength: 200,
+   maxLength: 400,
 
    form1: new Form({
     id: "",
@@ -651,58 +621,17 @@ export default {
    }),
   };
  },
- computed: {
-  showMoreLink() {
-   return this.information.translation.length > this.maxLength;
-  },
-  filteredAyahs() {
-   // Filter ayahs based on selected surah
-   if (!this.surah) return [];
-   return this.ayahs.filter(ayah => ayah.surah_id === this.surah);
-  },
-  currentSurah() {
-   return this.surahs[this.surah];
-  },
-  currentAyah() {
-   return this.ayahs[this.selectedIndexAyah];
-  }
- },
-
- async getAyahs() {
-  if (this.surah > 0) {
-   try {
-    // Replace with your API call to fetch ayahs based on the selected surah
-    const response = await axios.get(`/api/ayahs/${this.surah}`);
-    this.ayahs = response.data;
-
-    // Set the first ayah as the selected one by default if necessary
-    if (this.ayahs.length > 0) {
-     this.selectedAyah = this.ayahs[0].id;
-    }
-   } catch (error) {
-    console.error('Error fetching ayahs:', error);
-   }
-  } else {
-   this.ayahs = [];
-   this.selectedAyah = null;
-  }
- },
-
  methods: {
+  handleUpdateResults(filteredSurah) {
+    this.filteredSurah = filteredSurah;
+  },
+  handleClearResults() {
+    this.filteredSurah = [];
+  }, 
   toggleExpand() {
    this.expanded = !this.expanded;
   },
-  async fetchAhmedRazaTranslation(id) {
-   console.log(`Fetching translation for ID: ${this.information.ayah_id} from ${this.selectedTranslator}`);
-   try {
-    const response = await axios.get(`/translation/ahmed-raza/${this.information.ayah_id}/fetch`);
-    console.log('Response data:', response.data);
-    this.translation = response.data;
-   } catch (error) {
-    console.error("Error fetching translations:", error);
-    this.translation = 'Translation not found';
-   }
-  },
+  
   goToFirstAyah() {
    console.log("Going to the first Ayah");
    this.selectedIndexAyah = 0;
@@ -1189,22 +1118,6 @@ export default {
     });
   },
 
-  getAyahs() {
-   try {
-    // Fetch ayahs data
-    // ...
-
-    // Assign selectedAyah
-    if (this.ayahs.length > 1) {
-     this.selectedAyah = this.ayahs[0];
-     console.log('Selected Ayah:', this.selectedAyah);
-    } else {
-     console.warn("No ayahs found in the response data.");
-    }
-   } catch (error) {
-    console.error('Error fetching ayahs:', error);
-   }
-  },
   selectSurah() {
    // Example: Fetch ayahs data for the selected surah (replace with actual logic)
    // Simulate fetching ayahs data for the selected surah
@@ -1457,35 +1370,7 @@ export default {
 </script>
 
 <style scoped>
-.icon-container {
- text-align: center;
-}
 
-.icon-row {
- display: flex;
- justify-content: space-around;
- align-items: center;
- padding: 10px 0;
-}
-
-.icon-row i {
- cursor: pointer;
- color: rgb(0, 191, 166);
-}
-
-.alert {
- margin-top: 20px;
-}
-
-.selected {
- background-color: yellow;
- /* Example style for selected ayah */
-}
-
-.highlighted {
- background-color: lightblue;
- /* Example style for highlighted ayah based on verseNumber */
-}
 
 .full-screen[data-v-2b3c2c26] {
  position: fixed;
@@ -1497,23 +1382,6 @@ export default {
  background: #fff;
  padding: 100px;
  overflow: auto;
-}
-
-.img-fluid {
- max-width: 100%;
- height: auto;
-}
-
-.custom-form {
- box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
- border-radius: 5px;
- overflow-x: hidden;
- /* Hide horizontal scrollbar */
-}
-
-.tab-content {
- overflow-x: hidden;
- /* Hide horizontal scrollbar */
 }
 
 @media (max-width: 767.98px) {
@@ -1575,15 +1443,6 @@ export default {
  display: none !important;
 }
 
-.highlight-hover {
- transition: background-color 0.3s ease, color 0.3s ease;
- cursor: pointer;
-}
-
-.highlight-hover:hover {
- color: #333;
- cursor: pointer;
-}
 
 .ul-main {
  list-style: none;
@@ -1619,47 +1478,6 @@ export default {
  /* Adjust the font size to ensure icons fit in one line */
 }
 
-@media (max-width: 768px) {
- .full-screen[data-v-2b3c2c26] {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 9999;
-  background: #fff;
-  padding: 20px;
-  overflow: auto;
- }
-
- .scrollable-container {
-  overflow-y: auto;
-  max-height: 100vh;
-  /* Adjust the height as needed */
-  -webkit-overflow-scrolling: touch;
-  /* Enables smooth scrolling on iOS */
- }
-
- .icon-row {
-  justify-content: center;
-  flex-wrap: wrap;
-  text-align: center;
- }
-
- .icon-row i {
-  font-size: 1.2rem;
-  padding: 5px;
- }
-
- .dropdown {
-  width: 100%;
-  text-align: center;
- }
-
- .dropdown-toggle::after {
-  display: none;
- }
-}
 
 .w-100 {
  width: 100% !important;
@@ -1670,6 +1488,18 @@ export default {
 }
 
 @media (max-width: 768px) {
+  .full-screen[data-v-2b3c2c26] {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    background: #fff;
+    padding: 20px;
+    overflow: auto;
+ }
+
  .mobile-only {
   display: block;
  }
@@ -1723,54 +1553,6 @@ export default {
  /* Equivalent to h5 font size */
 }
 
-/* Media query for mobile devices (example: max-width 600px) */
-@media (max-width: 600px) {}
-
-.selected {
- background-color: yellow;
- /* Change to any desired highlight color */
-}
-
-.highlighted {
- background-color: lightblue;
- /* Change to any desired highlight color */
-}
-
-.highlight-on-hover:hover {
- background-color: rgba(16, 247, 216, 0.192);
- /* Change to your desired highlight color */
- border-radius: 10px;
- padding: 15px;
-}
-
-.zoomable {
- transition: transform 0.4s;
- /* Smooth transition effect */
-}
-
-.zoomable:hover {
- transform: scale(1.1);
- /* Zoom in effect */
-}
-
-.custom-icon {
- font-size: 1.3rem;
- /* Adjust the font-size as needed */
-}
-
-#movingDiv {
- /* Position the div absolutely */
- position: absolute;
- /* Place the div at the top-left corner of the viewport */
- top: 0;
- left: 0;
- /* Add more styling as needed */
- background-color: #ffffff;
- border: 1px solid #000000;
- padding: 10px;
- /* Adjust z-index to ensure it's on top of other content */
- z-index: 9999;
-}
 
 /* Hide on full-screen sizes */
 @media (min-width: 992px) {
@@ -1846,17 +1628,6 @@ export default {
   display: none;
  }
 
- .scrollable-list {
-  overflow-x: hidden;
- }
-}
-
-.list-group-item-action:hover {
- background-color: rgba(0, 191, 166, 0.452);
-}
-
-.list-group-item {
- border: none;
 }
 
 .button-33 {
@@ -1901,20 +1672,13 @@ export default {
  cursor: pointer;
 }
 
-.right-side-form {
- border: 1px solid rgb(65, 66, 66);
- border-radius: 8px;
-}
+
 
 .card {
  display: flex;
  border: 1px solid #00BFA6;
  padding: 10px;
  border-radius: 10px;
-}
-
-.card-text {
- line-height: 1.7em;
 }
 
 .selected {
@@ -1944,619 +1708,7 @@ export default {
  border: 1px solid #00BFA6;
 }
 
-.custom-scrollbar-chapters {
- background-color: transparent;
- height: 600px;
- width: 100%;
- border-radius: 6px;
- border: 1px solid #d6dee1;
- padding: 1rem;
- border-radius: 6px;
- border: 1px solid #d6dee1;
- padding: 1rem;
- color: white;
- background-color: transparent;
- outline: 1px solid #00BFA6;
- overflow: scroll;
-}
-
-.myButton {
- background-color: #00BFA6;
- border-radius: 8px;
- display: inline-block;
- cursor: pointer;
- color: #000;
- font-family: inter;
- font-size: 18px;
- padding: 13px 32px;
- text-decoration: none;
-}
-
-p.no-after:after {
- content: none;
-}
-
-.ayah_img:hover {
- background-color: #00BFA6;
- border-radius: 10px;
- cursor: pointer;
-}
-
-.enlarge .ayah {
- transition: transform 0.5s ease;
- float: right;
-}
-
-.enlarge:hover {
- -webkit-transform: scale(1.5);
- /* or some other value */
- transform: scale(1.2);
-}
-
-button,
-input {
- font-family: inter;
-}
-
-.nav-item .nav-link,
-.nav-tabs .nav-link {
- -webkit-transition: all 300ms ease 0s;
- -moz-transition: all 300ms ease 0s;
- -o-transition: all 300ms ease 0s;
- -ms-transition: all 300ms ease 0s;
- transition: all 300ms ease 0s;
-}
-
-.nav-tabs>.nav-item>.nav-link {
- color: #888888;
- margin: 0;
- margin-right: 5px;
- background-color: transparent;
- border: 1px solid transparent;
- font-size: 14px;
- padding: 11px 23px;
- line-height: 1.5;
-}
-
-.nav-tabs>.nav-item>.nav-link:hover {
- background-color: transparent;
-}
-
-.nav-tabs>.nav-item>.nav-link.active {
- background-color: #444;
- color: #ffffff;
-}
-
-.nav-tabs>.nav-item>.nav-link i.now-ui-icons {
- font-size: 14px;
- position: relative;
- top: 1px;
- margin-right: 3px;
-}
-
-.nav-tabs.nav-tabs-neutral>.nav-item>.nav-link {
- color: #ffffff;
-}
-
-.nav-tabs.nav-tabs-neutral>.nav-item>.nav-link.active {
- background-color: rgba(255, 255, 255, 0.2);
- color: #ffffff;
-}
-</style>
-
-<style scoped>
-.link-darkgrey-underline {
- color: rgb(0, 0, 0);
- font-weight: bold;
- text-decoration: none;
- background-color: rgba(0, 191, 166);
- padding: 6px;
- color: #fff;
- /*for background new colour (it worked)*/
- border-radius: 3px;
-
-}
-
-.icon-container {
- text-align: center;
-}
-
-.icon-row {
- display: flex;
- justify-content: space-around;
- align-items: center;
- padding: 10px 0;
-}
-
-.icon-row i {
- cursor: pointer;
- color: rgb(0, 191, 166);
-}
-
-.alert {
- margin-top: 20px;
-}
-
-.selected {
- background-color: yellow;
- /* Example style for selected ayah */
-}
-
-.highlighted {
- background-color: lightblue;
- /* Example style for highlighted ayah based on verseNumber */
-}
-
-.full-screen[data-v-2b3c2c26] {
- position: fixed;
- top: 0;
- left: 0;
- width: 100vw;
- height: 100vh;
- z-index: 9999;
- background: #fff;
- padding: 100px;
- overflow: auto;
-}
-
-.img-fluid {
- max-width: 100%;
- height: auto;
-}
-
-.custom-form {
- box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
- border-radius: 5px;
- overflow-x: hidden;
- /* Hide horizontal scrollbar */
-}
-
-.tab-content {
- overflow-x: hidden;
- /* Hide horizontal scrollbar */
-}
-
-@media (max-width: 767.98px) {
-
- .hide-on-mobile-tablet {
-  display: none !important;
- }
-
- .show-on-desktop {
-  display: flex !important;
- }
-
- .show-on-desktop {
-  display: block;
- }
-
- .custom-form {
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  border-radius: 5px;
-  overflow-x: hidden;
-  /* Hide horizontal scrollbar */
- }
-
- .tab-content {
-  overflow-x: hidden;
-  /* Hide horizontal scrollbar */
- }
-
- .icon-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
- }
-
- .icon-container i {
-  flex: 1;
-  text-align: center;
- }
-
- .dropdown {
-  flex: 1;
-  text-align: center;
- }
-}
-
-.scrollmenu {
- overflow-x: auto;
- /* Hide horizontal scrollbar */
- white-space: nowrap;
-}
-
-.scrollmenu a {
- display: inline-block;
- vertical-align: top;
-}
-
-.dropdown-toggle::after {
- display: none !important;
-}
-
-.highlight-hover {
- transition: background-color 0.3s ease, color 0.3s ease;
- cursor: pointer;
-}
-
-.highlight-hover:hover {
- color: #333;
- cursor: pointer;
-}
-
-.ul-main {
- list-style: none;
- width: 100%;
-}
-
-.ul-main .li-main {
- display: inline-block;
- font-size: 12px;
- text-align: center;
-}
-
-.ul-main .li-main .span-main {
- font-size: 20px;
- display: block;
-}
-
-.flex-container i {
- color: rgb(0, 191, 166);
-}
-
-.icon-container {
- display: flex;
- align-items: center;
- justify-content: space-around;
- flex-wrap: nowrap;
-}
-
-.icon-row i {
- color: rgb(0, 191, 166);
- cursor: pointer;
- font-size: 1.5rem;
- /* Adjust the font size to ensure icons fit in one line */
-}
-
-@media (max-width: 768px) {
- .full-screen[data-v-2b3c2c26] {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 9999;
-  background: #fff;
-  padding: 20px;
-  overflow: auto;
- }
-
- .scrollable-container {
-  overflow-y: auto;
-  max-height: 100vh;
-  /* Adjust the height as needed */
-  -webkit-overflow-scrolling: touch;
-  /* Enables smooth scrolling on iOS */
- }
-
- .icon-row {
-  justify-content: center;
-  flex-wrap: wrap;
-  text-align: center;
- }
-
- .icon-row i {
-  font-size: 1.2rem;
-  padding: 5px;
- }
-
- .dropdown {
-  width: 100%;
-  text-align: center;
- }
-
- .dropdown-toggle::after {
-  display: none;
- }
-}
-
-.w-100 {
- width: 100% !important;
-}
-
-.mobile-only {
- display: none;
-}
-
-@media (max-width: 768px) {
- .mobile-only {
-  display: block;
- }
-
- .hide-on-full-screen {
-  display: none;
- }
-
- .hide-on-tablet {
-  display: none;
- }
-}
-
-.container.text-right,
-.container.text-left {
- font-size: 1.25em;
- /* Equivalent to h5 font size */
-}
-
-@media (max-width: 576px) {
- .flex-container {
-  flex-direction: column;
-  align-items: stretch;
- }
-
- .icon-row {
-  display: flex;
-  justify-content: space-between;
- }
-
- .icon-row i {
-  flex: 1;
-  text-align: center;
- }
-
-}
-
-/* Media query for mobile devices (example: max-width 600px) */
-@media (max-width: 600px) {
-
- .container.text-right,
- .container.text-left {
-  font-size: 1em;
-  /* Equivalent to h6 font size */
- }
-}
-
-.ayah-text,
-.ayah-translation {
- font-size: 1em;
- /* Equivalent to h5 font size */
-}
-
-/* Media query for mobile devices (example: max-width 600px) */
-@media (max-width: 600px) {}
-
-.selected {
- background-color: yellow;
- /* Change to any desired highlight color */
-}
-
-.highlighted {
- background-color: lightblue;
- /* Change to any desired highlight color */
-}
-
-
-
-.custom-icon {
- font-size: 1.3rem;
- /* Adjust the font-size as needed */
-}
-
-#movingDiv {
- /* Position the div absolutely */
- position: absolute;
- /* Place the div at the top-left corner of the viewport */
- top: 0;
- left: 0;
- /* Add more styling as needed */
- background-color: #ffffff;
- border: 1px solid #000000;
- padding: 10px;
- /* Adjust z-index to ensure it's on top of other content */
- z-index: 9999;
-}
-
-/* Hide on full-screen sizes */
-@media (min-width: 992px) {
- .hide-on-full-screen {
-  display: none;
- }
-}
-
-@media (max-width: 991.98px) {
- .hide-on-full-screen {
-  display: none;
- }
-}
-
-@media (max-width: 575px) {
-
- /* Hide the content on mobile devices */
- .hide-on-mobile {
-  display: none;
- }
-
- .custom-dropdown {
-  max-height: 200px;
-  /* Adjust the value as needed */
-  overflow-y: auto;
- }
-}
-
-@media (max-width: 768px) {
-
- /* Hide the content on mobile devices */
- .hide-on-mobile {
-  display: none;
- }
-
- .hide-on-tablet {
-  display: unset;
- }
-
- .custom-dropdown {
-  max-height: 200px;
-  /* Adjust the value as needed */
-  overflow-y: hidden;
- }
-
-}
-
-/* Define a media query for full-screen devices */
-@media screen and (min-width: 1024px) {
-
- /* Select the element with the class hide-on-full-screen and hide it */
- .hide-on-full-screen {
-  display: none;
- }
-}
-
-/* Media query for mobile screens */
-@media screen and (max-width: 768px) {
- #movingDiv {
-  /* Adjust positioning for smaller screens */
-  /* For example, center the div horizontally */
-  transform: translateX(-50%);
-  /* You can adjust other styles as needed for mobile */
- }
-
- /* Initially visible */
- .targetDiv {
-  display: block;
- }
-
- /* Hide when the corresponding anchor link is targeted */
- .targetDiv:target {
-  display: none;
- }
-
- .scrollable-list {
-  overflow-x: hidden;
- }
-}
-
-.list-group-item-action:hover {
- background-color: rgba(0, 191, 166, 0.452);
-}
-
-.list-group-item {
- border: none;
-}
-
-.button-33 {
- background-color: rgba(0, 191, 166);
- border-radius: 8px;
- color: white;
- cursor: pointer;
- display: inline-block;
- font-family: inter;
- text-align: center;
- text-decoration: none;
- transition: all 250ms;
- border: 0;
- font-size: 16px;
- user-select: none;
- -webkit-user-select: none;
- touch-action: manipulation;
-}
-
-.scrollmenu {
- padding-bottom: 10px;
- padding-top: 10px;
- overflow-y: hidden;
- overflow-x: scroll;
- /* Hide horizontal scrollbar */
- white-space: nowrap;
-}
-
-.scrollmenu a {
- display: inline-block;
- vertical-align: top;
-}
-
-.list-group-item {
- cursor: pointer;
- background: transparent;
- padding: 10px;
-}
-
-.list-group {
- min-width: 100%;
- cursor: pointer;
-}
-
-.right-side-form {
- border: 1px solid rgb(65, 66, 66);
- border-radius: 8px;
-}
-
-.card {
- display: flex;
- border: 1px solid #00BFA6;
- padding: 10px;
- border-radius: 10px;
-}
-
-.card-text {
- line-height: 1.7em;
-}
-
-.selected {
- background-color: rgba(0, 191, 166, 0.452);
-}
-
-.horizontal-scroll-wrapper {
- overflow-x: scroll;
- overflow-y: hidden;
- white-space: nowrap;
- width: 600px;
-}
-
-.custom-scrollbar {
- background-color: transparent;
- height: 100%;
- width: 100%;
- border-radius: 6px;
- border: 1px solid #d6dee1;
- padding: 1rem;
- border-radius: 6px;
- border: 1px solid #d6dee1;
- padding: 1rem;
- background-color: transparent;
- overflow: scroll;
- background: transparent;
- border: 1px solid #00BFA6;
-}
-
-.custom-scrollbar-chapters {
- background-color: transparent;
- height: 600px;
- width: 100%;
- border-radius: 6px;
- border: 1px solid #d6dee1;
- padding: 1rem;
- border-radius: 6px;
- border: 1px solid #d6dee1;
- padding: 1rem;
- color: white;
- background-color: transparent;
- outline: 1px solid #00BFA6;
- overflow: scroll;
-}
-
-.myButton {
- background-color: #00BFA6;
- border-radius: 8px;
- display: inline-block;
- cursor: pointer;
- color: #000;
- font-family: inter;
- font-size: 18px;
- padding: 13px 32px;
- text-decoration: none;
-}
-
 
 
 </style>
+
