@@ -23,24 +23,24 @@
 export default {
   name: 'SurahList',
   props: {
-    surahs: {
+    surah: {
       type: Array,
       required: true
     }
   },
   data() {
     return {
-      filteredSurah: this.surahs,
+      filteredSurah: this.surah,
       selectedSurah: null,
       ayahs: []
     };
   },
   methods: {
     selectSurah(surahId) {
-      this.selectedSurah = this.surahs.find(surah => surah.id === surahId);
-      this.getAyahs(surahId);
+      this.selectedSurah = this.surah.find(surah => surah.id === surahId);
+      this.getAyat(surahId);
     },
-    getAyahs(surahId) {
+    getAyat(surahId) {
       // Placeholder logic to fetch Ayahs for a selected Surah
       // Replace with actual logic for fetching Ayahs
       this.ayahs = [

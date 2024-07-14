@@ -1,10 +1,10 @@
 <template>
   <form class="mb-2 right-side-form" style="cursor: pointer; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px;">
-    <select class="form-control custom-dropdown" v-model="selectedSurah" @change="getAyahs" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
+    <select class="form-control custom-dropdown" v-model="selectedSurah" @change="getAyat" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
       <option value="0">
         <span disabled>Select Surah</span>
       </option>
-      <option v-for="data in surahs" :key="data.id" :value="data.id">
+      <option v-for="data in surats" :key="data.id" :value="data.id">
         {{ data.id }} : {{ data.name_en }} - {{ data.name_ar }}
       </option>
     </select>
@@ -17,7 +17,7 @@ import axios from 'axios';
 export default {
   name: 'SurahDropdown',
   props: {
-    surahs: {
+    surats: {
       type: Array,
       required: true
     }
@@ -28,10 +28,10 @@ export default {
     };
   },
   methods: {
-    async getAyahs() {
+    async getAyat() {
       if (this.selectedSurah > 0) {
         try {
-          console.log(`Fetching ayahs for surah ${this.selectedSurah}`);
+          console.log(`Fetching ayahs for surat ${this.selectedSurah}`);
           const response = await axios.get(`/api/ayahs/${this.selectedSurah}`);
           this.$emit('update-ayahs', response.data);
           if (response.data.length > 0) {
