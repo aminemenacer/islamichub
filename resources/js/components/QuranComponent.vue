@@ -16,7 +16,7 @@
  <!-- accordion headers-->
  <div class="row container-fluid">
   <div class="col-md-4 container">
-   <!--  Surah list -->
+   <!--  Surah list dropdown from search bar -->
    <ul class="col-md-12 mt-1 scrollable-list " style="list-style-type: none; overflow-y: auto; max-height: 400px; box-shadow: box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
     <li v-for="item in filteredSurah" :key="item.id" @click="selectSurah(item.id)" style="cursor: pointer; padding:5px;box-shadow: box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px; " class="highlight-on-hover">
      <div style="display: flex; align-items: center;">
@@ -30,29 +30,27 @@
    
    <!-- Surah Selection Dropdown (mobile) -->
     <form class="mb-2 right-side-form" style="cursor: pointer; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius: 5px;">
-        <select class="form-control custom-dropdown" v-model="surah" @change="getAyahs()" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
-     <option value="0">
-      <span disabled>Select Surah</span>
-     </option>
-     <option v-for="data in surahs" :key="data.id" :value="data.id" @click="showCard">
-      {{data.id}} : {{ data.name_en }} - {{ data.name_ar }}
-     </option>
-    </select>
+      <select class="form-control custom-dropdown" v-model="surah" @change="getAyahs()" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
+        <option value="" disabled selected>Select Surah</option>
+        <option v-for="data in surahs" :key="data.id" :value="data.id" @click="showCard">
+          {{ data.id }} : {{ data.name_en }} - {{ data.name_ar }}
+        </option>
+      </select>
     </form>
 
     <!-- Ayah Dropdown (mobile) -->
     <div class="tab-content mb-1" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
-        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-            <form @change="handleSelectionChange" style="cursor: pointer; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px; ">
-              <!-- Add a class to the select element for easier targeting -->
-              <select class="form-control mobile-only hide-on-full-screen hide-on-tablet right-side-form" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;" @change="getTafseers(ayahs[$event.target.value].id, $event.target.value)">
-              <option value="0">
-                <span disabled>Select Ayah</span>
-              </option>
-              <option v-for="(ayah, index) in ayahs" :key="index" :value="index">{{ ayah.ayah_text }} : {{ayah.ayah_id}}</option>
-              </select>
-            </form>
-        </div>
+      <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+        <form @change="handleSelectionChange" style="cursor: pointer; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px; ">
+          <!-- Add a class to the select element for easier targeting -->
+          <select class="form-control mobile-only hide-on-full-screen hide-on-tablet right-side-form" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;" @change="getTafseers(ayahs[$event.target.value].id, $event.target.value)">
+          <option value="0">
+            <span disabled>Select Ayah</span>
+          </option>
+          <option v-for="(ayah, index) in ayahs" :key="index" :value="index">{{ ayah.ayah_text }} : {{ayah.ayah_id}}</option>
+          </select>
+        </form>
+      </div>
     </div>
    
    <!-- List of Ayat for Surah in desktop -->
@@ -72,16 +70,20 @@
      <div class="row container-fluid">
       <hr class="container" style="height: 4px; background: lightgrey;">
 
-      <ArrowControls @go-to-first-ayah="goToFirstAyah" @go-to-previous-ayah="goToPreviousAyah" @go-to-next-ayah="goToNextAyah" @go-to-last-ayah="goToLastAyah" />
-
-      <div class="custom-scrollbar " style="overflow-y: auto; max-height: 600px; background: white;">
+      <AyahControls
+        :surahs="surahs"
+        :selectedSurah="surah"
+        :ayahs="getSelectedSurahAyahs()"
+        @updateAyah="handleUpdateAyah"
+      />
+   
+      <div class="custom-scrollbar pb-5" style="overflow-y: auto; max-height: 600px; background: white;">
        <ul class="col-md-12 list-group container-fluid root" id="toggle" ref="ayahList" style="list-style-type: none; padding: 10px">
         <li v-for="(ayah, index) in ayahs" :key="index" @click="selectAyah(index)" :class="{ selected: selectedIndexAyah === index, highlighted: verseNumber && parseInt(verseNumber) === ayah.ayah_id }" style="padding: 10px; border-radius:10px">
          <h5 class="text-right" style="display: flex;"> Verse: {{ ayah.ayah_id }} </h5>
          <h5 class="text-right">{{ ayah.ayah_text }}</h5>
         </li>
        </ul>
-       <hr>
       </div>
      </div>
 
@@ -581,6 +583,7 @@ export default {
    isCardVisible: false,
    // select ayah dropdown
    selectedIndexAyah: -1,
+   selectedIndexAyah: null,
    selectedAyah: null,
    dropdownHidden: true,
    verseNumber: null,
@@ -620,40 +623,39 @@ export default {
   };
  },
  methods: {
+  handleUpdateAyah(index) {
+    console.log("Updating selected ayah to index:", index);
+    const surahData = this.surahs.find(surah => surah.id === parseInt(this.surah));
+    if (surahData) {
+      const ayah = surahData.ayahs[index];
+      if (ayah) {
+        this.selectedAyah.id = ayah.ayah_id;
+        this.selectedAyah.index = index;
+      } else {
+        console.error(`Ayah at index ${index} not found.`);
+      }
+    } else {
+      console.error(`Surah with id ${this.surah} not found.`);
+    }
+  },
+  handleSelectionChange(event) {
+    const selectedIndex = event.target.value;
+    const surahData = this.surahs.find(surah => surah.id === parseInt(this.surah));
+    if (surahData) {
+      const ayah = surahData.ayahs[selectedIndex];
+      if (ayah) {
+        this.selectedAyah.id = ayah.ayah_id;
+        this.selectedAyah.index = selectedIndex;
+      }
+    }
+  },
+  getSelectedSurahAyahs() {
+    const surahData = this.surahs.find(surah => surah.id === parseInt(this.surah));
+    return surahData ? surahData.ayahs : [];
+  },
   toggleExpand() {
    this.expanded = !this.expanded;
   },
-  goToFirstAyah() {
-   console.log("Going to the first Ayah");
-   this.selectedIndexAyah = 0;
-   this.updateAyah();
-  },
-  goToPreviousAyah() {
-   console.log("Going to the previous Ayah");
-   if (this.selectedIndexAyah > 0) {
-    this.selectedIndexAyah--;
-   } else if (this.surah > 0) {
-    this.surah--;
-    this.selectedIndexAyah = this.surahs[this.surah].ayahs.length - 1;
-   }
-   this.updateAyah();
-  },
-  goToNextAyah() {
-   console.log("Going to the next Ayah");
-   if (this.selectedIndexAyah < this.surahs[this.surah].ayahs.length - 1) {
-    this.selectedIndexAyah++;
-   } else if (this.surah < this.surahs.length - 1) {
-    this.surah++;
-    this.selectedIndexAyah = 0;
-   }
-   this.updateAyah();
-  },
-  goToLastAyah() {
-   console.log("Going to the last Ayah");
-   this.selectedIndexAyah = this.surahs[this.surah].ayahs.length - 1;
-   this.updateAyah();
-  },
-
   closeAlertText() {
    this.showAlertText = false;
   },
@@ -1443,37 +1445,6 @@ export default {
  display: none;
 }
 
-@media (max-width: 768px) {
- .full-screen[data-v-2b3c2c26] {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 9999;
-  background: #fff;
-  padding: 20px;
-  overflow: auto;
- }
-
- .mobile-only {
-  display: block;
- }
-
- .hide-on-full-screen {
-  display: none;
- }
-
- .hide-on-tablet {
-  display: none;
- }
-}
-
-.container.text-right,
-.container.text-left {
- font-size: 1.25em;
- /* Equivalent to h5 font size */
-}
 
 @media (max-width: 576px) {
  .flex-container {
@@ -1530,9 +1501,49 @@ export default {
  }
 }
 
-@media (max-width: 768px) {
 
- /* Hide the content on mobile devices */
+/* Define a media query for full-screen devices */
+@media screen and (min-width: 1024px) {
+
+ /* Select the element with the class hide-on-full-screen and hide it */
+ .hide-on-full-screen {
+  display: none;
+ }
+}
+
+/* Media query for mobile screens */
+@media screen and (max-width: 768px) {
+   .full-screen[data-v-2b3c2c26] {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  background: #fff;
+  padding: 20px;
+  overflow: auto;
+ }
+
+ .mobile-only {
+  display: block;
+ }
+
+ .hide-on-full-screen {
+  display: none;
+ }
+
+ .hide-on-tablet {
+  display: none;
+ }
+
+
+.container.text-right,
+.container.text-left {
+ font-size: 1.25em;
+ /* Equivalent to h5 font size */
+}
+  /* Hide the content on mobile devices */
  .hide-on-mobile {
   display: none;
  }
@@ -1547,19 +1558,6 @@ export default {
   overflow-y: hidden;
  }
 
-}
-
-/* Define a media query for full-screen devices */
-@media screen and (min-width: 1024px) {
-
- /* Select the element with the class hide-on-full-screen and hide it */
- .hide-on-full-screen {
-  display: none;
- }
-}
-
-/* Media query for mobile screens */
-@media screen and (max-width: 768px) {
  #movingDiv {
   /* Adjust positioning for smaller screens */
   /* For example, center the div horizontally */

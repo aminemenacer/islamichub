@@ -24,7 +24,7 @@ export default {
   },
   computed: {
     showMoreLink() {
-      return this.information.translation.length > 100; // Adjust the length as needed
+      return this.information.translation.length > 300; // Adjust the length as needed
     }
   },
   methods: {
@@ -35,10 +35,10 @@ export default {
       }
     },
     truncateText(text) {
-      if (text.length <= 100) { // Adjust the length as needed
+      if (text.length <= 300) { // Adjust the length as needed
         return text;
       }
-      return text.substring(0, 100) + '...';
+      return text.substring(0, 300) + '...';
     }
   },
   mounted() {

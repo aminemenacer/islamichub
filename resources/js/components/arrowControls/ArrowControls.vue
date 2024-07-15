@@ -1,5 +1,5 @@
 <template>
-  <div class="icon-container pb-2">    
+  <div class="icon-container pb-2">
     <i class="bi bi-chevron-bar-left h5" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToFirstAyah" title="First verse"></i>
     <i class="bi bi-arrow-left-circle h5" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToPreviousAyah" title="Previous verse"></i>
     <i class="bi bi-arrow-right-circle h5" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToNextAyah" title="Next verse"></i>
@@ -9,23 +9,72 @@
 
 <script>
 export default {
+  props: {
+    surahs: {
+      type: Array,
+      required: true
+    },
+    selectedSurah: {
+      type: [String, Number],
+      required: true
+    },
+    ayahs: {
+      type: Array,
+      required: true
+    }
+  },
   methods: {
     goToFirstAyah() {
-      this.$emit('go-to-first-ayah');
+      if (this.ayahs && this.ayahs.length > 0) {
+        console.log('Going to the first Ayah');
+        this.selectedIndexAyah = 0;
+        this.updateAyah();
+      } else {
+        console.error('Ayahs are undefined or empty');
+      }
     },
     goToPreviousAyah() {
-      this.$emit('go-to-previous-ayah');
+      if (this.ayahs && this.ayahs.length > 0) {
+        console.log('Going to the previous Ayah');
+        if (this.selectedIndexAyah > 0) {
+          this.selectedIndexAyah--;
+        } else {
+          // Logic to navigate to previous surah if available
+        }
+        this.updateAyah();
+      } else {
+        console.error('Ayahs are undefined or empty');
+      }
     },
     goToNextAyah() {
-      this.$emit('go-to-next-ayah');
+      if (this.ayahs && this.ayahs.length > 0) {
+        console.log('Going to the next Ayah');
+        if (this.selectedIndexAyah < this.ayahs.length - 1) {
+          this.selectedIndexAyah++;
+        } else {
+          // Logic to navigate to next surah if available
+        }
+        this.updateAyah();
+      } else {
+        console.error('Ayahs are undefined or empty');
+      }
     },
     goToLastAyah() {
-      this.$emit('go-to-last-ayah');
+      if (this.ayahs && this.ayahs.length > 0) {
+        console.log('Going to the last Ayah');
+        this.selectedIndexAyah = this.ayahs.length - 1;
+        this.updateAyah();
+      } else {
+        console.error('Ayahs are undefined or empty');
+      }
+    },
+    updateAyah() {
+      // Implement logic to update selected ayah
     }
   }
 };
 </script>
 
 <style scoped>
-/* Add scoped styles if necessary */
+/* Add your custom CSS styles here if needed */
 </style>
