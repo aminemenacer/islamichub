@@ -1,14 +1,14 @@
 <template>
 <div id="app">
 
-  <div class="container text-center" v-if="!ayah && dropdownHidden">
-    <!-- quran title -->
-    <Title />
-    <!-- Search bar  -->
-    <SearchForm :surat="surat" @update-results="handleUpdateResults" @clear-results="handleClearResults" />
-    <!-- custom surah selection -->
-    <custom-surah-selection :customSurat="customSurat" v-model="surah"></custom-surah-selection>
-  </div>
+ <div class="container text-center" v-if="!ayah && dropdownHidden">
+  <!-- quran title -->
+  <Title />
+  <!-- Search bar  -->
+  <SearchForm :surahs="surahs" @update-results="handleUpdateResults" @clear-results="handleClearResults" />
+  <!-- custom surah selection -->
+  <custom-surah-selection :customSurahs="customSurahs" v-model="surah"></custom-surah-selection>
+ </div>
 
  <!-- accordion headers-->
  <div class="row container-fluid">
@@ -26,11 +26,11 @@
    <Donation />
    <!-- Surah Selection Dropdown -->
    <form class="mb-2 right-side-form " style="cursor: pointer; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px; ">
-    <select class="form-control custom-dropdown" v-model="surah" @change="getAyat()" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
+    <select class="form-control custom-dropdown" v-model="surah" @change="getAyahs()" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
      <option value="0">
       <span disabled>Select Surah</span>
      </option>
-     <option v-for="data in surat" :key="data.id" :value="data.id" @click="showCard">
+     <option v-for="data in surahs" :key="data.id" :value="data.id" @click="showCard">
       {{data.id}} : {{ data.name_en }} - {{ data.name_ar }}
      </option>
     </select>
@@ -39,9 +39,9 @@
    <div class="tab-content mb-1" id="nav-tabContent">
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
      <form @change="handleSelectionChange" style="cursor: pointer; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px; ">
-      <select class="form-control mobile-only hide-on-full-screen hide-on-tablet right-side-form" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;" @change="getTafseer(ayat[$event.target.value].id, $event.target.value)">
+      <select class="form-control mobile-only hide-on-full-screen hide-on-tablet right-side-form" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;" @change="getTafseers(ayahs[$event.target.value].id, $event.target.value)">
        <option value="0" disabled>Select Ayah</option>
-       <option v-for="(ayah, index) in ayat" :key="index" :value="index">{{ ayah.ayah_text }} : {{ayah.ayah_id}}</option>
+       <option v-for="(ayah, index) in ayahs" :key="index" :value="index">{{ ayah.ayah_text }} : {{ayah.ayah_id}}</option>
       </select>
      </form>
     </div>
@@ -67,7 +67,7 @@
 
       <div class="custom-scrollbar " style="overflow-y: auto; max-height: 600px; background: white;">
        <ul class="col-md-12 list-group container-fluid root" id="toggle" ref="ayahList" style="list-style-type: none; padding: 10px">
-        <li v-for="(ayah, index) in ayat" :key="index" @click="selectAyah(index)" :class="{ selected: selectedIndexAyah === index, highlighted: verseNumber && parseInt(verseNumber) === ayah.ayah_id }" style="padding: 10px; border-radius:10px">
+        <li v-for="(ayah, index) in ayahs" :key="index" @click="selectAyah(index)" :class="{ selected: selectedIndexAyah === index, highlighted: verseNumber && parseInt(verseNumber) === ayah.ayah_id }" style="padding: 10px; border-radius:10px">
          <h5 class="text-right" style="display: flex;"> Verse: {{ ayah.ayah_id }} </h5>
          <h5 class="text-right">{{ ayah.ayah_text }}</h5>
         </li>
@@ -82,12 +82,11 @@
 
   <div class="col-md-8 pt-2 card-hide">
 
-   
    <div class="card pt-2" style="box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;">
 
     <div class="container-fluid" v-if="information != null">
-      <!-- navigation tabs -->
-      <NavTabs />
+     <!-- navigation tabs -->
+     <NavTabs />
     </div>
 
     <div class="card-body" id="alertContainer">
@@ -124,7 +123,7 @@
            <li><a class="dropdown-item" @click="shareTextViaWhatsApp3"><i class="bi bi-whatsapp text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Share on Whatsapp" style="color: rgba(0, 191, 166);"></i>Share via WhatsApp</a></li>
            <li><a class="dropdown-item" @click="shareHeadingOnTwitter3"><i style=" color:rgb(0, 191, 166); cursor:pointer" class="mr-2 bi bi-twitter-x text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X"></i>Share via X</a></li>
            <li><a class="dropdown-item" @click="submitForm"><i class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);"></i>Bookmark Verse</a></li>
-           <li><a class="dropdown-item" @click="copyText"><i class="bi bi-clipboard-check text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Copy verse" style="color: rgba(0, 191, 166);"></i>Copy Verse</a></li>
+           <li><a class="dropdown-item" @click="copyText3"><i class="bi bi-clipboard-check text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Copy verse" style="color: rgba(0, 191, 166);"></i>Copy Verse</a></li>
            <li><a class="dropdown-item" @click="captureScreenshot3"><i class="bi bi-camera text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" style="color: rgba(0, 191, 166);"></i>Screenshot Verse</a></li>
            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#translationInfo"><i class="bi bi-info-circle text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Surah info" style="color: rgba(0, 191, 166);"></i>Surah Info</a></li>
            <li><a class="dropdown-item" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Report a bug" style="color: rgba(0, 191, 166);"></i>Report a bug</a></li>
@@ -135,7 +134,7 @@
        </div>
 
        <!-- Target Element for Screenshot -->
-       <div ref="targetElement" class="w-100 my-element" :class="{'full-screen': isFullScreen}">
+       <div ref="targetElement" class="w-100 my-element " :class="{'full-screen': isFullScreen}">
         <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
         <AyahInfo :information="information" />
         <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
@@ -146,37 +145,69 @@
         </div>
        </div>
 
-       <!-- Surah & notes modal -->
+       <!-- Features -->
        <div class="text-right pt-2">
-        <SurahInfoModal :information="information" :ayat="ayat" />
-        <div class="modal fade" id="translationNote" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true" ref="exampleModal1">
-          <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel1">Write a Note</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <!-- Note Form -->
-              <form @submit.prevent="createNote">
-              <div class="row container mt-3">
-                <h5 class="text-left pb-2 font-weight-bold">Notes & Reflections</h5>
-                <div class="col">
-                <textarea v-model="form1.ayah_notes" class="form-control container mb-3" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah." rows="8"></textarea>
-                </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-success">Submit</button>
-              </div>
-              </form>
-            </div>
-            </div>
+        <!-- Surah Info Modal -->
+        <div class="modal fade" id="translationInfo" tabindex="-1" aria-labelledby="surahInfoModalLabel" aria-hidden="true">
+         <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+           <div class="modal-header">
+            <h1 class="modal-title fs-5" id="surahInfoModalLabel"><strong>Information</strong></h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+           </div>
+           <div class="modal-body">
+            <form class="container text-left">
+             <div class="mb-3 container">
+              <label for="formGroupExampleInput" class="form-label">Surah Name (English):</label>
+              <p class="mt-2 text-dark text-left">{{ information.ayah.surah.name_en }}</p>
+             </div>
+             <div class="mb-3 container">
+              <label for="formGroupExampleInput" class="form-label text-left">Surah Information:</label>
+              <p class="text-left">
+               {{ expanded ? information.ayah.surah.text : truncatedText(information.ayah.surah.text) }}
+               <template v-if="showMoreLink">
+                <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
+               </template>
+              </p>
+             </div>
+             
+            </form>
+           </div>
+           <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+           </div>
           </div>
-          </div>
-        
-       </div>
+         </div>
+        </div>
 
+        <!-- Notes Modal -->
+        <div class="modal fade" id="translationNote" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true" ref="exampleModal1">
+         <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+           <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel1">Write a Note</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+           </div>
+           <div class="modal-body">
+            <!-- Note Form -->
+            <form @submit.prevent="createNote">
+             <div class="row container mt-3">
+              <h5 class="text-left pb-2 font-weight-bold">Notes & Reflections</h5>
+              <div class="col">
+               <textarea v-model="form1.ayah_notes" class="form-control container mb-3" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah." rows="8"></textarea>
+              </div>
+             </div>
+             <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-success">Submit</button>
+             </div>
+            </form>
+           </div>
+          </div>
+         </div>
+        </div>
+
+       </div>
       </div>
 
       <!-- Tafseer Section -->
@@ -457,7 +488,7 @@
     </div>
    </div>
   </div>
-  
+
  </div>
 </div>
 </template>
@@ -480,14 +511,11 @@ import AyahInfo from './translation/AyahInfo.vue';
 import MainAyah from './translation/MainAyah.vue';
 import EnglishTranslation from './translation/EnglishTranslation.vue';
 import Translator from './translation/Translator.vue';
-import SurahInfoModal from './translation/SurahInfoModal.vue';
-import NotesTranslationModal from './translation/NotesTranslationModal.vue';
-import WhatsAppShare from './translation/features/WhatsAppShare.vue';
-import CopyTranslateText from './translation/features/CopyTranslateText.vue';
-
 
 export default {
+
  name: 'QuranComponent',
+ props: {},
  components: {
   CustomSurahSelection,
   SurahList,
@@ -504,44 +532,47 @@ export default {
   MainAyah,
   EnglishTranslation,
   Translator,
-  SurahInfoModal,
-  NotesTranslationModal,
-  WhatsAppShare,
-  CopyTranslateText,
-  
  },
  mounted() {
-  this.getSurat(); // Ensure data dependencies are handled correctly
-  this.fetchAyah(); // Ensure data dependencies are handled correctly
-  this.getAyat();
+  this.getSurahs(); // Ensure data dependencies are handled correctly
+  this.fetchAyahs(); // Ensure data dependencies are handled correctly
  },
  data() {
   return {
-   expanded: false,
+   // define & initialize
+   data: [],
+   surahs: [],
+   ayahs: [],
+   tafseers: [],
+   surah: [],
    information: null,
-   dropdownHidden: false,
-   verseNumber: null,
+   surah: null,
+   ayah_id: null, 
+   //expand text 
+   expanded: false,
+   //full screen toggle
    isFullScreen: false,
+   //swipe gestures
    touchStartX: 0,
    touchEndX: 0,
    touchStartY: 0,
    touchEndY: 0,
    touchStartTime: 0,
    threshold: 50,
+   // auth login
    isLoggedIn: false,
+   // main search
    showClearButton: false,
-   searchTerm: '', // Search term entered by the user
-   filteredSurah: [], // Array to hold filtered surat based on search term,
+   searchTerm: '', 
+   filteredSurah: [],
+   // main card visibility
    isCardVisible: false,
+   // select ayah dropdown
    selectedIndexAyah: -1,
    selectedAyah: null,
    dropdownHidden: true,
-   surat: [],
-   surah:null,
-   ayat: [],
-   ayah_id: null,
-   id: null,
-   textContent: "",   
+   verseNumber: null,
+   //alerts
    showError: false,
    showAlertText: false,
    showAlert: false,
@@ -549,6 +580,7 @@ export default {
    showAlertTextNote: false,
    maxLength: 400,
 
+   // notes modal
    form1: new Form({
     id: "",
     surah_name: "",
@@ -558,6 +590,7 @@ export default {
     ayah_notes: "",
    }),
 
+   // correction modal
    form: new Form({
     id: "",
     name: "",
@@ -567,6 +600,7 @@ export default {
     ayah_num: "",
    }),
 
+   // search
    searchFilters: new Form({
     name_en: "",
     name_ar: ""
@@ -574,16 +608,9 @@ export default {
   };
  },
  methods: {
-  handleUpdateResults(filteredSurah) {
-    this.filteredSurah = filteredSurah;
-  },
-  handleClearResults() {
-    this.filteredSurah = [];
-  }, 
   toggleExpand() {
    this.expanded = !this.expanded;
   },
-  
   goToFirstAyah() {
    console.log("Going to the first Ayah");
    this.selectedIndexAyah = 0;
@@ -595,15 +622,15 @@ export default {
     this.selectedIndexAyah--;
    } else if (this.surah > 0) {
     this.surah--;
-    this.selectedIndexAyah = this.surat[this.surah].ayat.length - 1;
+    this.selectedIndexAyah = this.surahs[this.surah].ayahs.length - 1;
    }
    this.updateAyah();
   },
   goToNextAyah() {
    console.log("Going to the next Ayah");
-   if (this.selectedIndexAyah < this.surat[this.surah].ayat.length - 1) {
+   if (this.selectedIndexAyah < this.surahs[this.surah].ayahs.length - 1) {
     this.selectedIndexAyah++;
-   } else if (this.surah < this.surat.length - 1) {
+   } else if (this.surah < this.surahs.length - 1) {
     this.surah++;
     this.selectedIndexAyah = 0;
    }
@@ -611,7 +638,7 @@ export default {
   },
   goToLastAyah() {
    console.log("Going to the last Ayah");
-   this.selectedIndexAyah = this.surat[this.surah].ayat.length - 1;
+   this.selectedIndexAyah = this.surahs[this.surah].ayahs.length - 1;
    this.updateAyah();
   },
 
@@ -632,6 +659,15 @@ export default {
   },
   toggleFullScreen() {
    this.isFullScreen = !this.isFullScreen;
+  },
+  async fetchSurahs() {
+   try {
+    const response = await axios.get('http://localhost:3000/api/surahs');
+    this.surahs = response.data;
+    console.log('Fetched surahs:', this.surahs);
+   } catch (error) {
+    console.error('Error fetching surahs:', error);
+   }
   },
   handleTouchStart(event) {
    this.touchStartX = event.changedTouches[0].screenX;
@@ -713,7 +749,7 @@ export default {
   },
   scrollToAyah() {
    const verseNum = parseInt(this.verseNumber);
-   if (!isNaN(verseNum) && verseNum >= 1 && verseNum <= this.ayat.length) {
+   if (!isNaN(verseNum) && verseNum >= 1 && verseNum <= this.ayahs.length) {
     const ayahElement = this.$refs.ayahList.querySelectorAll("li")[verseNum - 1];
     if (ayahElement) {
      ayahElement.scrollIntoView({
@@ -754,6 +790,12 @@ export default {
      console.error(error);
      this.showAlert = false; // Hide success alert
      this.showErrorAlert = true; // Show error alert
+     //  Swal.fire({
+     //   title: "Error!",
+     //   text: "You need to be logged in to create a bookmark.",
+     //   icon: "error",
+     //   confirmButtonText: "OK"
+     //  });
      this.hideAlertAfterDelay(); // Start timer to hide alert
     });
   },
@@ -780,6 +822,12 @@ export default {
      console.error(error);
      this.showAlert = false; // Hide success alert
      this.showErrorAlert = true; // Show error alert
+     //  Swal.fire({
+     //   title: "Error!",
+     //   text: "You need to be logged in to create a bookmark.",
+     //   icon: "error",
+     //   confirmButtonText: "OK"
+     //  });
      this.hideAlertAfterDelay(); // Start timer to hide alert
     });
   },
@@ -806,6 +854,12 @@ export default {
      console.error(error);
      this.showAlert = false; // Hide success alert
      this.showErrorAlert = true; // Show error alert
+     //  Swal.fire({
+     //   title: "Error!",
+     //   text: "You need to be logged in to create a bookmark.",
+     //   icon: "error",
+     //   confirmButtonText: "OK"
+     //  });
      this.hideAlertAfterDelay(); // Start timer to hide alert
     });
   },
@@ -821,24 +875,24 @@ export default {
    this.filteredSurah = [];
    this.showClearButton = false;
   },
-  // async getAyat() {
-  //  if (this.surah > 0) {
-  //   try {
-  //    console.log(`Fetching ayat for surah ${this.surah}`);
-  //    const response = await axios.get(`/api/ayat/${this.surah}`);
-  //    this.ayat = response.data;
-  //    if (this.ayat.length > 0) {
-  //     this.selectedAyah = this.ayat[0].id;
-  //     this.selectedIndexAyah = 0;
-  //    }
-  //   } catch (error) {
-  //    console.error('Error fetching ayat:', error);
-  //   }
-  //  } else {
-  //   this.ayat = [];
-  //   this.selectedAyah = null;
-  //   this.selectedIndexAyah = null;
-  //  }
+  async getAyahs() {
+   if (this.surah > 0) {
+    try {
+     console.log(`Fetching ayahs for surah ${this.surah}`);
+     const response = await axios.get(`/api/ayahs/${this.surah}`);
+     this.ayahs = response.data;
+     if (this.ayahs.length > 0) {
+      this.selectedAyah = this.ayahs[0].id;
+      this.selectedIndexAyah = 0;
+     }
+    } catch (error) {
+     console.error('Error fetching ayahs:', error);
+    }
+   } else {
+    this.ayahs = [];
+    this.selectedAyah = null;
+    this.selectedIndexAyah = null;
+   }
   },
   search() {
    const searchTerm = this.searchTerm.trim().toLowerCase();
@@ -847,7 +901,7 @@ export default {
     this.showClearButton = false;
     return;
    }
-   this.filteredSurah = this.surat.filter(surah => {
+   this.filteredSurah = this.surahs.filter(surah => {
     const nameEn = surah.name_en.toLowerCase();
     const nameAr = surah.name_ar.toLowerCase();
     return nameEn.includes(searchTerm) || nameAr.includes(searchTerm);
@@ -860,7 +914,7 @@ export default {
   selectAyah(index) {
    this.selectedIndexAyah = index;
    this.scrollToSelectedAyah();
-   this.getTafseer(this.ayat[index].id, index);
+   this.getTafseers(this.ayahs[index].id, index);
   },
   dismissError() {
    this.showError = false; // Dismiss the error alert by setting showError to false
@@ -885,36 +939,46 @@ export default {
    });
   },
   determineNextAyah() {
-   const currentIndex = this.ayat.findIndex(ayah => ayah.id === this.selectedAyah.id);
-   if (currentIndex !== -1 && currentIndex < this.ayat.length - 1) {
-    return this.ayat[currentIndex + 1];
+   const currentIndex = this.ayahs.findIndex(ayah => ayah.id === this.selectedAyah.id);
+   if (currentIndex !== -1 && currentIndex < this.ayahs.length - 1) {
+    return this.ayahs[currentIndex + 1];
    }
    return null;
   },
   determinePreviousAyah() {
-   const currentIndex = this.ayat.findIndex(ayah => ayah.id === this.selectedAyah.id);
+   const currentIndex = this.ayahs.findIndex(ayah => ayah.id === this.selectedAyah.id);
    if (currentIndex > 0) {
-    return this.ayat[currentIndex - 1];
+    return this.ayahs[currentIndex - 1];
    }
    return null;
   },
   goToNextSurah() {
-   if (this.surah < this.surat.length - 1) {
+   if (this.surah < this.surahs.length - 1) {
     this.surah++;
    } else {
     this.surah = 0;
    }
    this.selectedIndexAyah = 0;
-   this.getAyat(this.surah);
+   this.getAyahs(this.surah);
   },
   goToPreviousSurah() {
    if (this.surah > 0) {
     this.surah--;
    } else {
-    this.surah = this.surat.length - 1;
+    this.surah = this.surahs.length - 1;
    }
    this.selectedIndexAyah = 0;
-   this.getAyat(this.surah);
+   this.getAyahs(this.surah);
+  },
+  getSurahs() {
+   axios
+    .get("/get_surahs")
+    .then(response => {
+     this.surahs = response.data;
+    })
+    .catch(error => {
+     console.error('Error fetching surahs:', error);
+    });
   },
   shareHeadingOnTwitter3() {
    try {
@@ -1022,30 +1086,30 @@ export default {
    }, 4); // 5000 milliseconds = 5 seconds
   },
 
-  fetchAyah() {
-   fetch('/api/ayat')
+  fetchAyahs() {
+   fetch('/api/ayahs')
     .then(response => response.json())
     .then(data => {
-     this.ayat = data;
+     this.ayahs = data;
     })
     .catch(error => {
-     console.error('Error fetching ayat:', error);
+     console.error('Error fetching ayahs:', error);
     });
   },
 
   selectSurah() {
-   // Example: Fetch ayat data for the selected surah (replace with actual logic)
-   // Simulate fetching ayat data for the selected surah
-   this.ayat = this.fetchAyahForSurah(this.surah); // Replace with actual logic
+   // Example: Fetch ayahs data for the selected surah (replace with actual logic)
+   // Simulate fetching ayahs data for the selected surah
+   this.ayahs = this.fetchAyahsForSurah(this.surah); // Replace with actual logic
    // Always select the first ayah when a surah is selected
-   this.selectedAyah = this.ayat.length > 0 ? '0' : '0'; // Select the first ayah
+   this.selectedAyah = this.ayahs.length > 0 ? '0' : '0'; // Select the first ayah
   },
   selectSurah(surahId) {
    this.surah = surahId;
    this.searchTerm = ''; // Clear the search term
    this.filteredSurah = []; // Clear the filtered results
    this.showClearButton = false; // Hide the clear button after clearing results
-   this.getAyat(); // Call the getAyat method with the selected Surah ID
+   this.getAyahs(); // Call the getAyahs method with the selected Surah ID
 
   },
   createNote() {
@@ -1175,9 +1239,30 @@ export default {
    this.hideAlertAfterDelay(); // Start timer to hide alert
   },
 
+  copyToClipboard(text) {
+   // Create a textarea element to copy the text
+   var textarea = document.createElement("textarea");
 
+   // Set the value of the textarea to the text to be copied
+   textarea.value = text;
 
-  getTafseer: function (id, index) {
+   // Append the textarea to the document body
+   document.body.appendChild(textarea);
+
+   // Select the text within the textarea
+   textarea.select();
+
+   // Execute the copy command to copy the selected text
+   document.execCommand("copy");
+
+   // Remove the textarea from the document body
+   document.body.removeChild(textarea);
+
+   // Log a success message
+   console.log("Text copied to clipboard:", text);
+  },
+
+  getTafseers: function (id, index) {
    this.selectedIndexAyah = index;
 
    axios.get(`/tafseer/${id}/fetch`).then(
@@ -1189,7 +1274,7 @@ export default {
    );
 
    axios
-    .get("/get_information", {
+    .get("/get_informations", {
      params: {
       id: id,
      },
@@ -1202,40 +1287,40 @@ export default {
     );
   },
 
-  getAyat: function (id) {
+  getAyahs: function (id) {
    this.dropdownHidden = false;
    this.selectedIndexAyah = id;
    axios
-    .get("/get_ayat", {
+    .get("/get_ayahs", {
      params: {
       surah_id: this.surah,
      },
     })
     .then(
      function (response) {
-      this.ayat = response.data;
+      this.ayahs = response.data;
      }.bind(this)
     );
   },
 
-  getSurat: function () {
+  getSurahs: function () {
    axios
-    .get("/get_surat", {
+    .get("/get_surahs", {
      params: {
       id: this.surah,
      },
     })
     .then(
      function (response) {
-      this.surat = response.data;
+      this.surahs = response.data;
      }.bind(this)
     );
   },
 
- 
+ },
  created() {
   // Initialize submitted status for each bookmark
-  this.ayat.forEach(ayah => {
+  this.ayahs.forEach(ayah => {
    const submitted = localStorage.getItem(`bookmarkSubmitted_${ayah.id}`);
    if (submitted) {
     this.$set(this.bookmarkSubmitted, ayah.id, true);
@@ -1244,9 +1329,13 @@ export default {
  },
 
  watch: {
-  
+  $route(to, from) {
+   // Re-fetch translation if route changes (i.e., if ID changes)
+   console.log('Route changed, fetching new translation...');
+   this.fetchTranslation();
+  },
   surah(newSurah) {
-   this.getAyat(newSurah);
+   this.getAyahs(newSurah);
   },
   'information.ayah.surah.name_ar': 'updateFileName',
   verseNumber(newVal, oldVal) {
@@ -1260,7 +1349,6 @@ export default {
 </script>
 
 <style scoped>
-
 .full-screen[data-v-2b3c2c26] {
  position: fixed;
  top: 0;
@@ -1321,7 +1409,6 @@ export default {
  display: none !important;
 }
 
-
 .flex-container i {
  color: rgb(0, 191, 166);
 }
@@ -1342,6 +1429,32 @@ export default {
 
 .mobile-only {
  display: none;
+}
+
+@media (max-width: 768px) {
+ .full-screen[data-v-2b3c2c26] {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  background: #fff;
+  padding: 20px;
+  overflow: auto;
+ }
+
+ .mobile-only {
+  display: block;
+ }
+
+ .hide-on-full-screen {
+  display: none;
+ }
+
+ .hide-on-tablet {
+  display: none;
+ }
 }
 
 .container.text-right,
@@ -1378,8 +1491,6 @@ export default {
  }
 }
 
-
-
 /* Hide on full-screen sizes */
 @media (min-width: 992px) {
  .hide-on-full-screen {
@@ -1407,7 +1518,24 @@ export default {
  }
 }
 
+@media (max-width: 768px) {
 
+ /* Hide the content on mobile devices */
+ .hide-on-mobile {
+  display: none;
+ }
+
+ .hide-on-tablet {
+  display: unset;
+ }
+
+ .custom-dropdown {
+  max-height: 200px;
+  /* Adjust the value as needed */
+  overflow-y: hidden;
+ }
+
+}
 
 /* Define a media query for full-screen devices */
 @media screen and (min-width: 1024px) {
@@ -1421,50 +1549,20 @@ export default {
 /* Media query for mobile screens */
 @media screen and (max-width: 768px) {
  #movingDiv {
+  /* Adjust positioning for smaller screens */
+  /* For example, center the div horizontally */
   transform: translateX(-50%);
+  /* You can adjust other styles as needed for mobile */
  }
 
+ /* Initially visible */
  .targetDiv {
   display: block;
  }
 
+ /* Hide when the corresponding anchor link is targeted */
  .targetDiv:target {
   display: none;
- }
-
- .full-screen[data-v-2b3c2c26] {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 9999;
-  background: #fff;
-  padding: 20px;
-  overflow: auto;
- }
-
- .mobile-only {
-  display: block;
- }
-
- .hide-on-full-screen {
-  display: none;
- }
-
- .hide-on-tablet {
-  display: none;
- }
-
- /* Hide the content on mobile devices */
- .hide-on-mobile {
-  display: none;
- }
-
- .custom-dropdown {
-  max-height: 200px;
-  /* Adjust the value as needed */
-  overflow-y: hidden;
  }
 
 }
@@ -1523,6 +1621,4 @@ export default {
  overflow: scroll;
  border: 2px solid #00BFA6;
 }
-
 </style>
-

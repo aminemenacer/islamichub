@@ -1,24 +1,9 @@
 <!-- SearchForm.vue -->
 <template>
   <form class="search-form d-flex container h2" @submit.prevent="search">
-    <input 
-      class="form-control me-2 display-3" 
-      type="search" 
-      id="search" 
-      name="search" 
-      v-model="searchTerm" 
-      placeholder="What do you want to read today?" 
-      autocomplete="off" 
-      @keyup="search"
-    >
-    <button 
-      v-if="showClearButton" 
-      class="btn btn-outline-secondary h2" 
-      @click="clearResults"
-    >
-      Clear
-    </button>
-  </form>
+      <input class="form-control me-2 display-3" type="search" id="search" name="search" v-model="searchTerm" placeholder="What do you want to read today?" autocomplete="off" @keyup="search">
+      <button v-if="showClearButton" class="btn btn-outline-secondary h2" @click="clearResults">Clear</button>
+    </form>
 </template>
 
 <script>

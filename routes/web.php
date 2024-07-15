@@ -53,13 +53,14 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('api/delete-notes/{id}',  [NotesController::class, 'deleteNotes']);
 
     Route::get('api/fetch-notes/{userId}', [NotesController::class, 'getNotes']);
+
 });
 
 //translations
 Route::get('/translation/ahmed-raza/{id}/fetch', [TranslationController::class, 'fetchAhmedRazaTranslation']);
 
 
-Route::get('/ayat', [QuranController::class, 'index']);
+Route::get('/ayahs', [QuranController::class, 'index']);
 //join us
 Route::get('/join_us', [JoinUsController::class, 'index']);
 
@@ -117,10 +118,10 @@ Route::post('/search', [AhadithController::class, 'search'])->name('search');
 // Route::get('/hadith/{id}/fetch', [AhadithController::class, 'getAhadiths']);
 
 //quran
-Route::get('/get_surat', [SurahController::class, 'getSurat']);
-Route::get('/get_ayat', [SurahController::class, 'getAyat']);
-Route::get('/get_information', [SurahController::class, 'getInformation']);
-Route::get('/tafseer/{id}/fetch', [SurahController::class, 'getTafseer']);
+Route::get('/get_surahs', [SurahController::class, 'getSurahs']);
+Route::get('/get_ayahs', [SurahController::class, 'getAyahs']);
+Route::get('/get_informations', [SurahController::class, 'getInformations']);
+Route::get('/tafseer/{id}/fetch', [SurahController::class, 'getTafseers']);
 Route::post('/search', [SurahController::class, 'search'])->name('search');
 
 
