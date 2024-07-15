@@ -5,7 +5,10 @@
   <!-- quran title -->
   <Title />
   <!-- Search bar  -->
-  <SearchForm :surahs="surahs" @update-results="handleUpdateResults" @clear-results="handleClearResults" />
+  <form class="search-form d-flex container h2" @submit.prevent="search">
+   <input class="form-control me-2 display-3" type="search" id="search" name="search" v-model="searchTerm" placeholder="What do you want to read today?" autocomplete="off" @keyup="search">
+   <button v-if="showClearButton" class="btn btn-outline-secondary h2" @click="clearResults">Clear</button>
+  </form>
   <!-- custom surah selection -->
   <custom-surah-selection :customSurahs="customSurahs" v-model="surah"></custom-surah-selection>
  </div>
@@ -573,6 +576,7 @@ export default {
    showClearButton: false,
    searchTerm: '', 
    filteredSurah: [],
+   
    // main card visibility
    isCardVisible: false,
    // select ayah dropdown
