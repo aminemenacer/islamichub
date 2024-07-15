@@ -49,6 +49,6 @@ export default {
 
 <style scoped>
 .ayah-translation {
-  line-height: 1em;
+  line-height: 0.8em;
 }
 </style>

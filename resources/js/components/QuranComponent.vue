@@ -24,9 +24,10 @@
    </ul>
    <!-- donation message -->
    <Donation />
-   <!-- Surah Selection Dropdown -->
-   <form class="mb-2 right-side-form " style="cursor: pointer; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px; ">
-    <select class="form-control custom-dropdown" v-model="surah" @change="getAyahs()" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
+   
+   <!-- Surah Selection Dropdown (mobile) -->
+    <form class="mb-2 right-side-form" style="cursor: pointer; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius: 5px;">
+        <select class="form-control custom-dropdown" v-model="surah" @change="getAyahs()" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
      <option value="0">
       <span disabled>Select Surah</span>
      </option>
@@ -34,19 +35,24 @@
       {{data.id}} : {{ data.name_en }} - {{ data.name_ar }}
      </option>
     </select>
-   </form>
-   <!-- List of Ayah Dropdown -->
-   <div class="tab-content mb-1" id="nav-tabContent">
-    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-     <form @change="handleSelectionChange" style="cursor: pointer; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px; ">
-      <select class="form-control mobile-only hide-on-full-screen hide-on-tablet right-side-form" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;" @change="getTafseers(ayahs[$event.target.value].id, $event.target.value)">
-       <option value="0" disabled>Select Ayah</option>
-       <option v-for="(ayah, index) in ayahs" :key="index" :value="index">{{ ayah.ayah_text }} : {{ayah.ayah_id}}</option>
-      </select>
-     </form>
+    </form>
+
+    <!-- Ayah Dropdown (mobile) -->
+    <div class="tab-content mb-1" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <form @change="handleSelectionChange" style="cursor: pointer; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px; ">
+              <!-- Add a class to the select element for easier targeting -->
+              <select class="form-control mobile-only hide-on-full-screen hide-on-tablet right-side-form" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;" @change="getTafseers(ayahs[$event.target.value].id, $event.target.value)">
+              <option value="0">
+                <span disabled>Select Ayah</span>
+              </option>
+              <option v-for="(ayah, index) in ayahs" :key="index" :value="index">{{ ayah.ayah_text }} : {{ayah.ayah_id}}</option>
+              </select>
+            </form>
+        </div>
     </div>
-   </div>
-   <!-- List of Ayat for Surah -->
+   
+   <!-- List of Ayat for Surah in desktop -->
    <div class="tab-content hide-on-mobile-tablet" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" v-if="ayah == null">
      <form class="d-flex pb-2 " role="search" @submit.prevent="scrollToAyah">
@@ -134,12 +140,14 @@
        </div>
 
        <!-- Target Element for Screenshot -->
-       <div ref="targetElement" class="w-100 my-element " :class="{'full-screen': isFullScreen}">
+       <div ref="targetElement" class="w-100 my-element "  :class="{'full-screen': isFullScreen}">
         <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
         <AyahInfo :information="information" />
         <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
          <MainAyah :information="information" />
-         <EnglishTranslation :information="information" />
+         <div ref="heading3">
+          <EnglishTranslation :information="information" />
+         </div>
          <Translator translator="Ahmed Ali" />
          <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
         </div>
@@ -147,6 +155,7 @@
 
        <!-- Features -->
        <div class="text-right pt-2">
+       
         <!-- Surah Info Modal -->
         <div class="modal fade" id="translationInfo" tabindex="-1" aria-labelledby="surahInfoModalLabel" aria-hidden="true">
          <div class="modal-dialog modal-lg">
@@ -258,8 +267,7 @@
        <!-- Main Content to Capture -->
        <div ref="targetElement1" class="w-100 my-element" :class="{'full-screen': isFullScreen}">
         <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
-        <h5 class="mr-2">{{ information.ayah.surah.name_en }} {{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }}</h5>
-
+        <AyahInfo :information="information" />
         <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
          <!-- main stack top -->
          <div class="btn">

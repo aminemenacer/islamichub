@@ -1,19 +1,18 @@
-<!-- SurahInfoModal.vue -->
 <template>
-  <div class="modal fade" id="translationInfo" tabindex="-1" aria-labelledby="surahInfoModalLabel" aria-hidden="true">
+  <div class="modal fade show" id="translationInfo" tabindex="-1" aria-labelledby="surahInfoModalLabel" aria-hidden="true" style="display: block;">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="surahInfoModalLabel"><strong>Information</strong></h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close" @click="closeModal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <form class="container text-left">
-            <div class="mb-3 container">
+            <div class="mb-3 container" v-if="information.ayah && information.ayah.surah">
               <label for="formGroupExampleInput" class="form-label">Surah Name (English):</label>
               <p class="mt-2 text-dark text-left">{{ information.ayah.surah.name_en }}</p>
             </div>
-            <div class="mb-3 container">
+            <div class="mb-3 container" v-if="information.ayah && information.ayah.surah">
               <label for="formGroupExampleInput" class="form-label text-left">Surah Information:</label>
               <p class="text-left">
                 {{ expanded ? information.ayah.surah.text : truncatedText(information.ayah.surah.text) }}
@@ -22,11 +21,10 @@
                 </template>
               </p>
             </div>
-            
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" @click="closeModal">Close</button>
         </div>
       </div>
     </div>
@@ -49,7 +47,6 @@ export default {
   data() {
     return {
       expanded: false,
-      ayah_id: null,
       showMoreLink: true
     };
   },
@@ -58,18 +55,21 @@ export default {
       this.expanded = !this.expanded;
     },
     truncatedText(text) {
-      if (text.length > 100) {
+      if (!text) return '';
+      if (text.length > 400) {
         this.showMoreLink = true;
-        return text.slice(0, 100) + '...';
+        return text.slice(0, 400) + '...';
       }
       this.showMoreLink = false;
       return text;
     },
-   
+    closeModal() {
+      this.$emit('close');
+    }
   }
 };
 </script>
 
 <style scoped>
-
+/* Your component-specific styles */
 </style>
