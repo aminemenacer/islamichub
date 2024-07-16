@@ -25,52 +25,25 @@ export default {
   },
   methods: {
     goToFirstAyah() {
-      if (this.ayahs && this.ayahs.length > 0) {
-        console.log('Going to the first Ayah');
-        this.selectedIndexAyah = 0;
-        this.updateAyah();
-      } else {
-        console.error('Ayahs are undefined or empty');
-      }
-    },
-    goToPreviousAyah() {
-      if (this.ayahs && this.ayahs.length > 0) {
-        console.log('Going to the previous Ayah');
-        if (this.selectedIndexAyah > 0) {
-          this.selectedIndexAyah--;
-        } else {
-          // Logic to navigate to previous surah if available
-        }
-        this.updateAyah();
-      } else {
-        console.error('Ayahs are undefined or empty');
-      }
-    },
-    goToNextAyah() {
-      if (this.ayahs && this.ayahs.length > 0) {
-        console.log('Going to the next Ayah');
-        if (this.selectedIndexAyah < this.ayahs.length - 1) {
-          this.selectedIndexAyah++;
-        } else {
-          // Logic to navigate to next surah if available
-        }
-        this.updateAyah();
-      } else {
-        console.error('Ayahs are undefined or empty');
-      }
-    },
-    goToLastAyah() {
-      if (this.ayahs && this.ayahs.length > 0) {
-        console.log('Going to the last Ayah');
-        this.selectedIndexAyah = this.ayahs.length - 1;
-        this.updateAyah();
-      } else {
-        console.error('Ayahs are undefined or empty');
-      }
-    },
-    updateAyah() {
-      // Implement logic to update selected ayah
-    }
+   this.selectAyah(0);
+  },
+  goToPreviousAyah() {
+   if (this.selectedIndexAyah > 0) {
+    this.selectAyah(this.selectedIndexAyah - 1);
+   } else {
+    this.selectAyah(this.ayahs.length - 1);
+   }
+  },
+  goToNextAyah() {
+   if (this.selectedIndexAyah < this.ayahs.length - 1) {
+    this.selectAyah(this.selectedIndexAyah + 1);
+   } else {
+    this.selectAyah(0);
+   }
+  },
+  goToLastAyah() {
+   this.selectAyah(this.ayahs.length - 1);
+  },
   }
 };
 </script>

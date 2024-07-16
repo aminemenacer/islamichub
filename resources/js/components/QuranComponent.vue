@@ -5,10 +5,7 @@
   <!-- quran title -->
   <Title />
   <!-- Search bar  -->
-  <form class="search-form d-flex container h2" @submit.prevent="search">
-   <input class="form-control me-2 display-3" type="search" id="search" name="search" v-model="searchTerm" placeholder="What do you want to read today?" autocomplete="off" @keyup="search">
-   <button v-if="showClearButton" class="btn btn-outline-secondary h2" @click="clearResults">Clear</button>
-  </form>
+  <SearchForm  />
   <!-- custom surah selection -->
   <custom-surah-selection :customSurahs="customSurahs" v-model="surah"></custom-surah-selection>
  </div>
@@ -30,8 +27,8 @@
    
    <!-- Surah Selection Dropdown (mobile) -->
     <form class="mb-2 right-side-form" style="cursor: pointer; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius: 5px;">
-      <select class="form-control custom-dropdown" v-model="surah" @change="getAyahs()" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
-        <option value="" disabled selected>Select Surah</option>
+      <select class="form-control custom-dropdown" aria-placeholder="Select Surah" v-model="surah" @change="getAyahs()" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
+        <option value="" aria-placeholder="Select Surah" disabled selected >Select Surah</option>
         <option v-for="data in surahs" :key="data.id" :value="data.id" @click="showCard">
           {{ data.id }} : {{ data.name_en }} - {{ data.name_ar }}
         </option>
@@ -53,7 +50,7 @@
       </div>
     </div>
    
-   <!-- List of Ayat for Surah in desktop -->
+   <!-- List of Ayat for Surah (desktop) -->
    <div class="tab-content hide-on-mobile-tablet" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" v-if="ayah == null">
      <form class="d-flex pb-2 " role="search" @submit.prevent="scrollToAyah">
@@ -69,13 +66,13 @@
 
      <div class="row container-fluid">
       <hr class="container" style="height: 4px; background: lightgrey;">
-
-      <AyahControls
-        :surahs="surahs"
-        :selectedSurah="surah"
-        :ayahs="getSelectedSurahAyahs()"
-        @updateAyah="handleUpdateAyah"
-      />
+      
+      <div class="icon-container pb-2">
+        <i class="bi bi-chevron-bar-left h5" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToFirstAyah" title="First verse"></i>
+        <i class="bi bi-arrow-left-circle h5" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToPreviousAyah" title="Previous verse"></i>
+        <i class="bi bi-arrow-right-circle h5" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToNextAyah" title="Next verse"></i>
+        <i class="bi bi-chevron-bar-right h5" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToLastAyah" title="Last verse"></i>
+      </div>
    
       <div class="custom-scrollbar pb-5" style="overflow-y: auto; max-height: 600px; background: white;">
        <ul class="col-md-12 list-group container-fluid root" id="toggle" ref="ayahList" style="list-style-type: none; padding: 10px">
@@ -157,9 +154,6 @@
          <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
         </div>
        </div>
-
-       <!-- Features -->
-       <div class="text-right pt-2">
        
         <!-- Surah Info Modal -->
         <div class="modal fade" id="translationInfo" tabindex="-1" aria-labelledby="surahInfoModalLabel" aria-hidden="true">
@@ -193,7 +187,6 @@
           </div>
          </div>
         </div>
-
         <!-- Notes Modal -->
         <div class="modal fade" id="translationNote" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true" ref="exampleModal1">
          <div class="modal-dialog modal-lg">
@@ -221,7 +214,6 @@
          </div>
         </div>
 
-       </div>
       </div>
 
       <!-- Tafseer Section -->
@@ -552,6 +544,9 @@ export default {
  },
  data() {
   return {
+   // ayah controls
+   surah: 0, 
+   selectedIndexAyah: 0,
    // define & initialize
    data: [],
    surahs: [],
@@ -578,7 +573,6 @@ export default {
    showClearButton: false,
    searchTerm: '', 
    filteredSurah: [],
-   
    // main card visibility
    isCardVisible: false,
    // select ayah dropdown
@@ -623,32 +617,18 @@ export default {
   };
  },
  methods: {
-  handleUpdateAyah(index) {
-    console.log("Updating selected ayah to index:", index);
-    const surahData = this.surahs.find(surah => surah.id === parseInt(this.surah));
-    if (surahData) {
-      const ayah = surahData.ayahs[index];
-      if (ayah) {
-        this.selectedAyah.id = ayah.ayah_id;
-        this.selectedAyah.index = index;
-      } else {
-        console.error(`Ayah at index ${index} not found.`);
+   getSelectedSurahAyahs() {
+      if (this.surahs[this.surah]) {
+        return this.surahs[this.surah].ayahs;
       }
-    } else {
-      console.error(`Surah with id ${this.surah} not found.`);
-    }
-  },
-  handleSelectionChange(event) {
-    const selectedIndex = event.target.value;
-    const surahData = this.surahs.find(surah => surah.id === parseInt(this.surah));
-    if (surahData) {
-      const ayah = surahData.ayahs[selectedIndex];
-      if (ayah) {
-        this.selectedAyah.id = ayah.ayah_id;
-        this.selectedAyah.index = selectedIndex;
-      }
-    }
-  },
+      return [];
+    },
+    updateAyah(newIndex) {
+      this.selectedIndexAyah = newIndex;
+      console.log(`Selected Ayah: ${newIndex}`);
+      // Add any additional logic for updating the ayah
+    },
+  
   getSelectedSurahAyahs() {
     const surahData = this.surahs.find(surah => surah.id === parseInt(this.surah));
     return surahData ? surahData.ayahs : [];
@@ -698,17 +678,20 @@ export default {
    const deltaX = this.touchEndX - this.touchStartX;
    const deltaY = this.touchEndY - this.touchStartY;
 
-   const minSwipeDistance = 50;
-   const maxTapDistance = 10;
-   const maxSwipeDuration = 500;
-   const maxTapDuration = 200;
+   const minSwipeDistance = 50; // Minimum distance in pixels to be considered a swipe
+   const maxTapDistance = 10; // Maximum distance in pixels to be considered a tap
+   const maxSwipeDuration = 500; // Maximum duration in ms to be considered a swipe
+   const maxTapDuration = 200; // Maximum duration in ms to be considered a tap
 
+   // Check if it's a tap
    if (Math.abs(deltaX) < maxTapDistance && Math.abs(deltaY) < maxTapDistance && timeDiff < maxTapDuration) {
     this.onTap();
-   } else if (
+   }
+   // Check if it's a swipe
+   else if (
     Math.abs(deltaX) > minSwipeDistance &&
     timeDiff < maxSwipeDuration &&
-    Math.abs(deltaX) > Math.abs(deltaY)
+    Math.abs(deltaX) > Math.abs(deltaY) // Ensure it's a horizontal swipe
    ) {
     if (deltaX > 0) {
      this.onSwipeRight();
@@ -720,10 +703,32 @@ export default {
   onSwipeLeft() {
    this.goToPreviousAyah();
    console.log('Swiped left');
+   // Add your logic for swiping left here
   },
   onSwipeRight() {
    this.goToNextAyah();
    console.log('Swiped right');
+   // Add your logic for swiping right here
+  },
+  goToFirstAyah() {
+   this.selectAyah(0);
+  },
+  goToPreviousAyah() {
+   if (this.selectedIndexAyah > 0) {
+    this.selectAyah(this.selectedIndexAyah - 1);
+   } else {
+    this.selectAyah(this.ayahs.length - 1);
+   }
+  },
+  goToNextAyah() {
+   if (this.selectedIndexAyah < this.ayahs.length - 1) {
+    this.selectAyah(this.selectedIndexAyah + 1);
+   } else {
+    this.selectAyah(0);
+   }
+  },
+  goToLastAyah() {
+   this.selectAyah(this.ayahs.length - 1);
   },
   truncatedText(text) {
    if (!text) return '';
@@ -884,11 +889,7 @@ export default {
     this.showErrorAlert = false;
    }, 3000);
   },
-  clearResults() {
-   this.searchTerm = '';
-   this.filteredSurah = [];
-   this.showClearButton = false;
-  },
+  
   async getAyahs() {
    if (this.surah > 0) {
     try {
@@ -908,20 +909,7 @@ export default {
     this.selectedIndexAyah = null;
    }
   },
-  search() {
-   const searchTerm = this.searchTerm.trim().toLowerCase();
-   if (searchTerm === '') {
-    this.filteredSurah = [];
-    this.showClearButton = false;
-    return;
-   }
-   this.filteredSurah = this.surahs.filter(surah => {
-    const nameEn = surah.name_en.toLowerCase();
-    const nameAr = surah.name_ar.toLowerCase();
-    return nameEn.includes(searchTerm) || nameAr.includes(searchTerm);
-   });
-   this.showClearButton = true;
-  },
+  
   showCard() {
    this.isCardVisible = true; // Show the card when button is clicked
   },
@@ -966,24 +954,7 @@ export default {
    }
    return null;
   },
-  goToNextSurah() {
-   if (this.surah < this.surahs.length - 1) {
-    this.surah++;
-   } else {
-    this.surah = 0;
-   }
-   this.selectedIndexAyah = 0;
-   this.getAyahs(this.surah);
-  },
-  goToPreviousSurah() {
-   if (this.surah > 0) {
-    this.surah--;
-   } else {
-    this.surah = this.surahs.length - 1;
-   }
-   this.selectedIndexAyah = 0;
-   this.getAyahs(this.surah);
-  },
+  
   getSurahs() {
    axios
     .get("/get_surahs")
@@ -1513,7 +1484,7 @@ export default {
 
 /* Media query for mobile screens */
 @media screen and (max-width: 768px) {
-   .full-screen[data-v-2b3c2c26] {
+ .full-screen[data-v-2b3c2c26] {
   position: fixed;
   top: 0;
   left: 0;
