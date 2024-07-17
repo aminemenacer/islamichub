@@ -26,27 +26,27 @@
    <Donation />
 
    <!-- Surah Selection Dropdown -->
-   <form class="mb-2 right-side-form " style="cursor: pointer; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px; ">
-    <select class="form-control custom-dropdown" v-model="surah" @change="getAyahs()" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
+   <form class="mb-2 right-side-form" style="cursor: pointer; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px;">
+    <select class="form-control custom-dropdown" v-model="selectedSurahId" @change="getAyat" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
      <option value="0">
       <span disabled>Select Surah</span>
      </option>
-     <option v-for="data in surahs" :key="data.id" :value="data.id" @click="showCard">
-      {{data.id}} : {{ data.name_en }} - {{ data.name_ar }}
+     <option v-for="data in surat" :key="data.id" :value="data.id">
+      {{ data.id }} : {{ data.name_en }} - {{ data.name_ar }}
      </option>
     </select>
    </form>
 
    <!-- Ayah Dropdown (mobile) -->
-   <div class="tab-content mb-1" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
+   <div class="tab-content mb-1" id="nav-tabContent" v-if="!dropdownHidden">
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-     <form @change="handleSelectionChange" style="cursor: pointer; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px; ">
+     <form style="cursor: pointer; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px;">
       <!-- Add a class to the select element for easier targeting -->
-      <select class="form-control mobile-only hide-on-full-screen hide-on-tablet right-side-form" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;" @change="getTafseers(ayahs[$event.target.value].id, $event.target.value)">
+      <select class="form-control mobile-only hide-on-full-screen hide-on-tablet right-side-form" v-model="selectedAyahId" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;" @change="handleAyahChange">
        <option value="0">
         <span disabled>Select Ayah</span>
        </option>
-       <option v-for="(ayah, index) in ayahs" :key="index" :value="index">{{ ayah.ayah_text }} : {{ayah.ayah_id}}</option>
+       <option v-for="(ayah, index) in ayat" :key="index" :value="index">{{ ayah.ayah_text }} : {{ ayah.ayah_id }}</option>
       </select>
      </form>
     </div>
@@ -78,7 +78,7 @@
 
       <div class="custom-scrollbar pb-5" style="overflow-y: auto; max-height: 600px; background: white;">
        <ul class="col-md-12 list-group container-fluid root" id="toggle" ref="ayahList" style="list-style-type: none; padding: 10px">
-        <li v-for="(ayah, index) in ayahs" :key="index" @click="selectAyah(index)" :class="{ selected: selectedIndexAyah === index, highlighted: verseNumber && parseInt(verseNumber) === ayah.ayah_id }" style="padding: 10px; border-radius:10px">
+        <li v-for="(ayah, index) in ayat" :key="index" @click="selectAyah(index)" :class="{ selected: selectedIndexAyah === index, highlighted: verseNumber && parseInt(verseNumber) === ayah.ayah_id }" style="padding: 10px; border-radius:10px">
          <h5 class="text-right" style="display: flex;"> Verse: {{ ayah.ayah_id }} </h5>
          <h5 class="text-right">{{ ayah.ayah_text }}</h5>
         </li>
@@ -144,7 +144,6 @@
        </div>
 
        <!-- Target Element for Screenshot -->
-       <SwipeableDiv :information="information" :expanded="expanded" @update:expanded="expanded = $event" />
 
        <div ref="targetElement" class="w-100 my-element " :class="{'full-screen': isFullScreen}">
         <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
@@ -544,23 +543,24 @@ export default {
   SwipeGestures
  },
  mounted() {
-  this.getSurahs(); // Ensure data dependencies are handled correctly
-  this.fetchAyahs(); // Ensure data dependencies are handled correctly
+  this.getSurat(); // Call getSurat to populate the surah list
  },
  data() {
   return {
-   // ayah controls
-   surah: 0,
-   selectedIndexAyah: 0,
-   // define & initialize
+   selectedSurahId: 0,
+   selectedAyahId: 0,
+   // initialize empty arrays
    data: [],
-   surahs: [],
-   ayahs: [],
+   surat: [],
+   ayat: [],
    tafseers: [],
-   surah: [],
+   // define as null
    information: null,
    surah: null,
    ayah_id: null,
+   // ayah controls
+   surat: 0,
+   selectedIndexAyah: 0,
    //expand text 
    expanded: false,
    //full screen toggle
@@ -631,9 +631,9 @@ export default {
   toggleExpand() {
    this.expanded = !this.expanded;
   },
-  getSelectedSurahAyahs() {
-   if (this.surahs[this.surah]) {
-    return this.surahs[this.surah].ayahs;
+  getSelectedSurahAyat() {
+   if (this.surat[this.surah]) {
+    return this.surat[this.surah].ayat;
    }
    return [];
   },
@@ -643,12 +643,9 @@ export default {
    // Add any additional logic for updating the ayah
   },
 
-  getSelectedSurahAyahs() {
-   const surahData = this.surahs.find(surah => surah.id === parseInt(this.surah));
-   return surahData ? surahData.ayahs : [];
-  },
-  toggleExpand() {
-   this.expanded = !this.expanded;
+  getSelectedSurahAyat() {
+   const surahData = this.surat.find(surah => surah.id === parseInt(this.surah));
+   return surahData ? surahData.ayat : [];
   },
   closeAlertText() {
    this.showAlertText = false;
@@ -667,15 +664,6 @@ export default {
   },
   toggleFullScreen() {
    this.isFullScreen = !this.isFullScreen;
-  },
-  async fetchSurahs() {
-   try {
-    const response = await axios.get('http://localhost:3000/api/surahs');
-    this.surahs = response.data;
-    console.log('Fetched surahs:', this.surahs);
-   } catch (error) {
-    console.error('Error fetching surahs:', error);
-   }
   },
   handleTouchStart(event) {
    this.touchStartX = event.changedTouches[0].screenX;
@@ -731,18 +719,18 @@ export default {
    if (this.selectedIndexAyah > 0) {
     this.selectAyah(this.selectedIndexAyah - 1);
    } else {
-    this.selectAyah(this.ayahs.length - 1);
+    this.selectAyah(this.ayat.length - 1);
    }
   },
   goToNextAyah() {
-   if (this.selectedIndexAyah < this.ayahs.length - 1) {
+   if (this.selectedIndexAyah < this.ayat.length - 1) {
     this.selectAyah(this.selectedIndexAyah + 1);
    } else {
     this.selectAyah(0);
    }
   },
   goToLastAyah() {
-   this.selectAyah(this.ayahs.length - 1);
+   this.selectAyah(this.ayat.length - 1);
   },
   truncatedText(text) {
    if (!text) return '';
@@ -782,7 +770,7 @@ export default {
   },
   scrollToAyah() {
    const verseNum = parseInt(this.verseNumber);
-   if (!isNaN(verseNum) && verseNum >= 1 && verseNum <= this.ayahs.length) {
+   if (!isNaN(verseNum) && verseNum >= 1 && verseNum <= this.ayat.length) {
     const ayahElement = this.$refs.ayahList.querySelectorAll("li")[verseNum - 1];
     if (ayahElement) {
      ayahElement.scrollIntoView({
@@ -823,7 +811,7 @@ export default {
      console.error(error);
      this.showAlert = false; // Hide success alert
      this.showErrorAlert = true; // Show error alert
-     
+
      this.hideAlertAfterDelay(); // Start timer to hide alert
     });
   },
@@ -887,33 +875,44 @@ export default {
    }, 3000);
   },
 
-  async getAyahs() {
-   if (this.surah > 0) {
-    try {
-     console.log(`Fetching ayahs for surah ${this.surah}`);
-     const response = await axios.get(`/api/ayahs/${this.surah}`);
-     this.ayahs = response.data;
-     if (this.ayahs.length > 0) {
-      this.selectedAyah = this.ayahs[0].id;
-      this.selectedIndexAyah = 0;
-     }
-    } catch (error) {
-     console.error('Error fetching ayahs:', error);
-    }
-   } else {
-    this.ayahs = [];
-    this.selectedAyah = null;
-    this.selectedIndexAyah = null;
+  async getSurat() {
+   try {
+    const response = await axios.get('/get_surat'); // Update the URL to match your backend
+    this.surat = response.data;
+   } catch (error) {
+    console.error('Error fetching surahs:', error);
    }
   },
-
+  async getAyat() {
+   if (this.selectedSurahId > 0) {
+    try {
+     const response = await axios.get('/get_ayat', {
+      params: {
+       surah_id: this.selectedSurahId
+      },
+     });
+     this.ayat = response.data;
+     this.dropdownHidden = false; // Show Ayah dropdown after fetching
+    } catch (error) {
+     console.error('Error fetching ayat:', error);
+    }
+   } else {
+    this.ayat = [];
+    this.dropdownHidden = true; // Hide Ayah dropdown if no Surah is selected
+   }
+  },
+  handleAyahChange(event) {
+   const selectedAyahIndex = event.target.value;
+   console.log('Selected Ayah Index:', selectedAyahIndex);
+   // Add logic here if needed
+  },
   showCard() {
    this.isCardVisible = true; // Show the card when button is clicked
   },
   selectAyah(index) {
    this.selectedIndexAyah = index;
    this.scrollToSelectedAyah();
-   this.getTafseers(this.ayahs[index].id, index);
+   this.getTafseers(this.ayat[index].id, index);
   },
   dismissError() {
    this.showError = false; // Dismiss the error alert by setting showError to false
@@ -937,29 +936,18 @@ export default {
    });
   },
   determineNextAyah() {
-   const currentIndex = this.ayahs.findIndex(ayah => ayah.id === this.selectedAyah.id);
-   if (currentIndex !== -1 && currentIndex < this.ayahs.length - 1) {
-    return this.ayahs[currentIndex + 1];
+   const currentIndex = this.ayat.findIndex(ayah => ayah.id === this.selectedAyah.id);
+   if (currentIndex !== -1 && currentIndex < this.ayat.length - 1) {
+    return this.ayat[currentIndex + 1];
    }
    return null;
   },
   determinePreviousAyah() {
-   const currentIndex = this.ayahs.findIndex(ayah => ayah.id === this.selectedAyah.id);
+   const currentIndex = this.ayat.findIndex(ayah => ayah.id === this.selectedAyah.id);
    if (currentIndex > 0) {
-    return this.ayahs[currentIndex - 1];
+    return this.ayat[currentIndex - 1];
    }
    return null;
-  },
-
-  getSurahs() {
-   axios
-    .get("/get_surahs")
-    .then(response => {
-     this.surahs = response.data;
-    })
-    .catch(error => {
-     console.error('Error fetching surahs:', error);
-    });
   },
   shareHeadingOnTwitter3() {
    try {
@@ -1067,30 +1055,19 @@ export default {
    }, 4); // 5000 milliseconds = 5 seconds
   },
 
-  fetchAyahs() {
-   fetch('/api/ayahs')
-    .then(response => response.json())
-    .then(data => {
-     this.ayahs = data;
-    })
-    .catch(error => {
-     console.error('Error fetching ayahs:', error);
-    });
-  },
-
   selectSurah() {
-   // Example: Fetch ayahs data for the selected surah (replace with actual logic)
-   // Simulate fetching ayahs data for the selected surah
-   this.ayahs = this.fetchAyahsForSurah(this.surah); // Replace with actual logic
+   // Example: Fetch ayat data for the selected surah (replace with actual logic)
+   // Simulate fetching ayat data for the selected surah
+   this.ayat = this.fetchAyatForSurah(this.surah); // Replace with actual logic
    // Always select the first ayah when a surah is selected
-   this.selectedAyah = this.ayahs.length > 0 ? '0' : '0'; // Select the first ayah
+   this.selectedAyah = this.ayat.length > 0 ? '0' : '0'; // Select the first ayah
   },
   selectSurah(surahId) {
    this.surah = surahId;
    this.searchTerm = ''; // Clear the search term
    this.filteredSurah = []; // Clear the filtered results
    this.showClearButton = false; // Hide the clear button after clearing results
-   this.getAyahs(); // Call the getAyahs method with the selected Surah ID
+   this.getAyat(); // Call the getAyat method with the selected Surah ID
 
   },
   createNote() {
@@ -1268,40 +1245,10 @@ export default {
     );
   },
 
-  getAyahs: function (id) {
-   this.dropdownHidden = false;
-   this.selectedIndexAyah = id;
-   axios
-    .get("/get_ayahs", {
-     params: {
-      surah_id: this.surah,
-     },
-    })
-    .then(
-     function (response) {
-      this.ayahs = response.data;
-     }.bind(this)
-    );
-  },
-
-  getSurahs: function () {
-   axios
-    .get("/get_surahs", {
-     params: {
-      id: this.surah,
-     },
-    })
-    .then(
-     function (response) {
-      this.surahs = response.data;
-     }.bind(this)
-    );
-  },
-
  },
  created() {
   // Initialize submitted status for each bookmark
-  this.ayahs.forEach(ayah => {
+  this.ayat.forEach(ayah => {
    const submitted = localStorage.getItem(`bookmarkSubmitted_${ayah.id}`);
    if (submitted) {
     this.$set(this.bookmarkSubmitted, ayah.id, true);
@@ -1316,7 +1263,7 @@ export default {
    this.fetchTranslation();
   },
   surah(newSurah) {
-   this.getAyahs(newSurah);
+   this.getAyat(newSurah);
   },
   'information.ayah.surah.name_ar': 'updateFileName',
   verseNumber(newVal, oldVal) {
@@ -1439,8 +1386,6 @@ export default {
   /* Equivalent to h6 font size */
  }
 }
-
-
 
 /* Define a media query for full-screen devices */
 @media screen and (min-width: 1024px) {

@@ -23,7 +23,6 @@ use App\Http\Controllers\JoinUsController;
 use App\Http\Controllers\NotesController;
 use App\Http\Controllers\UpdatesController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\TranslationController;
 
 
 // Auth routes
@@ -56,13 +55,13 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
-//translations
-Route::get('/translation/ahmed-raza/{id}/fetch', [TranslationController::class, 'fetchAhmedRazaTranslation']);
-
 
 Route::get('/ayahs', [QuranController::class, 'index']);
+
 //join us
 Route::get('/join_us', [JoinUsController::class, 'index']);
+
+
 
 // Example: Restrict access to a route to authenticated users
 Route::get('dashboard', [App\Http\Controllers\DashboardController::class, 'index'])
@@ -118,8 +117,8 @@ Route::post('/search', [AhadithController::class, 'search'])->name('search');
 // Route::get('/hadith/{id}/fetch', [AhadithController::class, 'getAhadiths']);
 
 //quran
-Route::get('/get_surahs', [SurahController::class, 'getSurahs']);
-Route::get('/get_ayahs', [SurahController::class, 'getAyahs']);
+Route::get('/get_surat', [SurahController::class, 'getSurat']);
+Route::get('/get_ayat', [SurahController::class, 'getAyat']);
 Route::get('/get_informations', [SurahController::class, 'getInformations']);
 Route::get('/tafseer/{id}/fetch', [SurahController::class, 'getTafseers']);
 Route::post('/search', [SurahController::class, 'search'])->name('search');

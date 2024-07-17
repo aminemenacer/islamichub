@@ -11,16 +11,16 @@ use Illuminate\Http\Request;
 class SurahController extends Controller
 {
     
-    public function getSurahs()
+    public function getSurat()
     {
-        $surah = Surah::get();
-        return response()->json($surah);
+        $surat = Surah::get();
+        return response()->json($surat);
     }
 
-    public function getAyahs(Request $request)
+    public function getAyat(Request $request)
     {
-        $ayah = Ayah::where('surah_id', $request->surah_id)->get();
-        return response()->json($ayah);
+        $ayat = Ayah::where('surah_id', $request->surah_id)->get();
+        return response()->json($ayat);
     }
 
     public function getInformations(Request $request)
@@ -46,4 +46,3 @@ class SurahController extends Controller
     }
 
 }
-

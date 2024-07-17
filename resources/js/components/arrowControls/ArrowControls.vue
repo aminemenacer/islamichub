@@ -10,7 +10,7 @@
 <script>
 export default {
   props: {
-    surahs: {
+    surah: {
       type: Array,
       required: true
     },
