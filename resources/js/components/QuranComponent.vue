@@ -5,7 +5,7 @@
   <!-- quran title -->
   <Title />
   <!-- Search bar  -->
-  <SearchForm  />
+  <SearchForm :surahs="surahs" @update-results="handleUpdateResults" @clear-results="handleClearResults" />
   <!-- custom surah selection -->
   <custom-surah-selection :customSurahs="customSurahs" v-model="surah"></custom-surah-selection>
  </div>
@@ -24,32 +24,34 @@
    </ul>
    <!-- donation message -->
    <Donation />
-   
-   <!-- Surah Selection Dropdown (mobile) -->
-    <form class="mb-2 right-side-form" style="cursor: pointer; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius: 5px;">
-      <select class="form-control custom-dropdown" aria-placeholder="Select Surah" v-model="surah" @change="getAyahs()" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
-        <option value="" aria-placeholder="Select Surah" disabled selected >Select Surah</option>
-        <option v-for="data in surahs" :key="data.id" :value="data.id" @click="showCard">
-          {{ data.id }} : {{ data.name_en }} - {{ data.name_ar }}
-        </option>
-      </select>
-    </form>
 
-    <!-- Ayah Dropdown (mobile) -->
-    <div class="tab-content mb-1" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
-      <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-        <form @change="handleSelectionChange" style="cursor: pointer; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px; ">
-          <!-- Add a class to the select element for easier targeting -->
-          <select class="form-control mobile-only hide-on-full-screen hide-on-tablet right-side-form" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;" @change="getTafseers(ayahs[$event.target.value].id, $event.target.value)">
-          <option value="0">
-            <span disabled>Select Ayah</span>
-          </option>
-          <option v-for="(ayah, index) in ayahs" :key="index" :value="index">{{ ayah.ayah_text }} : {{ayah.ayah_id}}</option>
-          </select>
-        </form>
-      </div>
+   <!-- Surah Selection Dropdown -->
+   <form class="mb-2 right-side-form " style="cursor: pointer; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px; ">
+    <select class="form-control custom-dropdown" v-model="surah" @change="getAyahs()" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
+     <option value="0">
+      <span disabled>Select Surah</span>
+     </option>
+     <option v-for="data in surahs" :key="data.id" :value="data.id" @click="showCard">
+      {{data.id}} : {{ data.name_en }} - {{ data.name_ar }}
+     </option>
+    </select>
+   </form>
+
+   <!-- Ayah Dropdown (mobile) -->
+   <div class="tab-content mb-1" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
+    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+     <form @change="handleSelectionChange" style="cursor: pointer; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px; ">
+      <!-- Add a class to the select element for easier targeting -->
+      <select class="form-control mobile-only hide-on-full-screen hide-on-tablet right-side-form" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;" @change="getTafseers(ayahs[$event.target.value].id, $event.target.value)">
+       <option value="0">
+        <span disabled>Select Ayah</span>
+       </option>
+       <option v-for="(ayah, index) in ayahs" :key="index" :value="index">{{ ayah.ayah_text }} : {{ayah.ayah_id}}</option>
+      </select>
+     </form>
     </div>
-   
+   </div>
+
    <!-- List of Ayat for Surah (desktop) -->
    <div class="tab-content hide-on-mobile-tablet" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" v-if="ayah == null">
@@ -66,14 +68,14 @@
 
      <div class="row container-fluid">
       <hr class="container" style="height: 4px; background: lightgrey;">
-      
+
       <div class="icon-container pb-2">
-        <i class="bi bi-chevron-bar-left h5" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToFirstAyah" title="First verse"></i>
-        <i class="bi bi-arrow-left-circle h5" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToPreviousAyah" title="Previous verse"></i>
-        <i class="bi bi-arrow-right-circle h5" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToNextAyah" title="Next verse"></i>
-        <i class="bi bi-chevron-bar-right h5" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToLastAyah" title="Last verse"></i>
+       <i class="bi bi-chevron-bar-left h5" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToFirstAyah" title="First verse"></i>
+       <i class="bi bi-arrow-left-circle h5" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToPreviousAyah" title="Previous verse"></i>
+       <i class="bi bi-arrow-right-circle h5" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToNextAyah" title="Next verse"></i>
+       <i class="bi bi-chevron-bar-right h5" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToLastAyah" title="Last verse"></i>
       </div>
-   
+
       <div class="custom-scrollbar pb-5" style="overflow-y: auto; max-height: 600px; background: white;">
        <ul class="col-md-12 list-group container-fluid root" id="toggle" ref="ayahList" style="list-style-type: none; padding: 10px">
         <li v-for="(ayah, index) in ayahs" :key="index" @click="selectAyah(index)" :class="{ selected: selectedIndexAyah === index, highlighted: verseNumber && parseInt(verseNumber) === ayah.ayah_id }" style="padding: 10px; border-radius:10px">
@@ -142,7 +144,9 @@
        </div>
 
        <!-- Target Element for Screenshot -->
-       <div ref="targetElement" class="w-100 my-element "  :class="{'full-screen': isFullScreen}">
+       <SwipeableDiv :information="information" :expanded="expanded" @update:expanded="expanded = $event" />
+
+       <div ref="targetElement" class="w-100 my-element " :class="{'full-screen': isFullScreen}">
         <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
         <AyahInfo :information="information" />
         <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
@@ -154,65 +158,65 @@
          <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
         </div>
        </div>
-       
-        <!-- Surah Info Modal -->
-        <div class="modal fade" id="translationInfo" tabindex="-1" aria-labelledby="surahInfoModalLabel" aria-hidden="true">
-         <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="surahInfoModalLabel"><strong>Information</strong></h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-           </div>
-           <div class="modal-body">
-            <form class="container text-left">
-             <div class="mb-3 container">
-              <label for="formGroupExampleInput" class="form-label">Surah Name (English):</label>
-              <p class="mt-2 text-dark text-left">{{ information.ayah.surah.name_en }}</p>
-             </div>
-             <div class="mb-3 container">
-              <label for="formGroupExampleInput" class="form-label text-left">Surah Information:</label>
-              <p class="text-left">
-               {{ expanded ? information.ayah.surah.text : truncatedText(information.ayah.surah.text) }}
-               <template v-if="showMoreLink">
-                <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
-               </template>
-              </p>
-             </div>
-             
-            </form>
-           </div>
-           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-           </div>
+
+       <!-- Surah Info Modal -->
+       <div class="modal fade" id="translationInfo" tabindex="-1" aria-labelledby="surahInfoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+         <div class="modal-content">
+          <div class="modal-header">
+           <h1 class="modal-title fs-5" id="surahInfoModalLabel"><strong>Information</strong></h1>
+           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+           <form class="container text-left">
+            <div class="mb-3 container">
+             <label for="formGroupExampleInput" class="form-label">Surah Name (English):</label>
+             <p class="mt-2 text-dark text-left">{{ information.ayah.surah.name_en }}</p>
+            </div>
+            <div class="mb-3 container">
+             <label for="formGroupExampleInput" class="form-label text-left">Surah Information:</label>
+             <p class="text-left">
+              {{ expanded ? information.ayah.surah.text : truncatedText(information.ayah.surah.text) }}
+              <template v-if="showMoreLink">
+               <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
+              </template>
+             </p>
+            </div>
+
+           </form>
+          </div>
+          <div class="modal-footer">
+           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           </div>
          </div>
         </div>
-        <!-- Notes Modal -->
-        <div class="modal fade" id="translationNote" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true" ref="exampleModal1">
-         <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel1">Write a Note</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-           </div>
-           <div class="modal-body">
-            <!-- Note Form -->
-            <form @submit.prevent="createNote">
-             <div class="row container mt-3">
-              <h5 class="text-left pb-2 font-weight-bold">Notes & Reflections</h5>
-              <div class="col">
-               <textarea v-model="form1.ayah_notes" class="form-control container mb-3" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah." rows="8"></textarea>
-              </div>
+       </div>
+       <!-- Notes Modal -->
+       <div class="modal fade" id="translationNote" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true" ref="exampleModal1">
+        <div class="modal-dialog modal-lg">
+         <div class="modal-content">
+          <div class="modal-header">
+           <h5 class="modal-title" id="exampleModalLabel1">Write a Note</h5>
+           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+           <!-- Note Form -->
+           <form @submit.prevent="createNote">
+            <div class="row container mt-3">
+             <h5 class="text-left pb-2 font-weight-bold">Notes & Reflections</h5>
+             <div class="col">
+              <textarea v-model="form1.ayah_notes" class="form-control container mb-3" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah." rows="8"></textarea>
              </div>
-             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-success">Submit</button>
-             </div>
-            </form>
-           </div>
+            </div>
+            <div class="modal-footer">
+             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+             <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+           </form>
           </div>
          </div>
         </div>
+       </div>
 
       </div>
 
@@ -516,7 +520,7 @@ import AyahInfo from './translation/AyahInfo.vue';
 import MainAyah from './translation/MainAyah.vue';
 import EnglishTranslation from './translation/EnglishTranslation.vue';
 import Translator from './translation/Translator.vue';
-
+import SwipeGestures from './swipe_gestures/SwipeGestures.vue';
 export default {
 
  name: 'QuranComponent',
@@ -537,6 +541,7 @@ export default {
   MainAyah,
   EnglishTranslation,
   Translator,
+  SwipeGestures
  },
  mounted() {
   this.getSurahs(); // Ensure data dependencies are handled correctly
@@ -545,7 +550,7 @@ export default {
  data() {
   return {
    // ayah controls
-   surah: 0, 
+   surah: 0,
    selectedIndexAyah: 0,
    // define & initialize
    data: [],
@@ -555,7 +560,7 @@ export default {
    surah: [],
    information: null,
    surah: null,
-   ayah_id: null, 
+   ayah_id: null,
    //expand text 
    expanded: false,
    //full screen toggle
@@ -571,7 +576,7 @@ export default {
    isLoggedIn: false,
    // main search
    showClearButton: false,
-   searchTerm: '', 
+   searchTerm: '',
    filteredSurah: [],
    // main card visibility
    isCardVisible: false,
@@ -617,21 +622,30 @@ export default {
   };
  },
  methods: {
-   getSelectedSurahAyahs() {
-      if (this.surahs[this.surah]) {
-        return this.surahs[this.surah].ayahs;
-      }
-      return [];
-    },
-    updateAyah(newIndex) {
-      this.selectedIndexAyah = newIndex;
-      console.log(`Selected Ayah: ${newIndex}`);
-      // Add any additional logic for updating the ayah
-    },
-  
+  handleUpdateResults(filteredSurah) {
+   this.filteredSurah = filteredSurah;
+  },
+  handleClearResults() {
+   this.filteredSurah = [];
+  },
+  toggleExpand() {
+   this.expanded = !this.expanded;
+  },
   getSelectedSurahAyahs() {
-    const surahData = this.surahs.find(surah => surah.id === parseInt(this.surah));
-    return surahData ? surahData.ayahs : [];
+   if (this.surahs[this.surah]) {
+    return this.surahs[this.surah].ayahs;
+   }
+   return [];
+  },
+  updateAyah(newIndex) {
+   this.selectedIndexAyah = newIndex;
+   console.log(`Selected Ayah: ${newIndex}`);
+   // Add any additional logic for updating the ayah
+  },
+
+  getSelectedSurahAyahs() {
+   const surahData = this.surahs.find(surah => surah.id === parseInt(this.surah));
+   return surahData ? surahData.ayahs : [];
   },
   toggleExpand() {
    this.expanded = !this.expanded;
@@ -809,12 +823,7 @@ export default {
      console.error(error);
      this.showAlert = false; // Hide success alert
      this.showErrorAlert = true; // Show error alert
-     //  Swal.fire({
-     //   title: "Error!",
-     //   text: "You need to be logged in to create a bookmark.",
-     //   icon: "error",
-     //   confirmButtonText: "OK"
-     //  });
+     
      this.hideAlertAfterDelay(); // Start timer to hide alert
     });
   },
@@ -841,12 +850,6 @@ export default {
      console.error(error);
      this.showAlert = false; // Hide success alert
      this.showErrorAlert = true; // Show error alert
-     //  Swal.fire({
-     //   title: "Error!",
-     //   text: "You need to be logged in to create a bookmark.",
-     //   icon: "error",
-     //   confirmButtonText: "OK"
-     //  });
      this.hideAlertAfterDelay(); // Start timer to hide alert
     });
   },
@@ -873,12 +876,6 @@ export default {
      console.error(error);
      this.showAlert = false; // Hide success alert
      this.showErrorAlert = true; // Show error alert
-     //  Swal.fire({
-     //   title: "Error!",
-     //   text: "You need to be logged in to create a bookmark.",
-     //   icon: "error",
-     //   confirmButtonText: "OK"
-     //  });
      this.hideAlertAfterDelay(); // Start timer to hide alert
     });
   },
@@ -889,7 +886,7 @@ export default {
     this.showErrorAlert = false;
    }, 3000);
   },
-  
+
   async getAyahs() {
    if (this.surah > 0) {
     try {
@@ -909,7 +906,7 @@ export default {
     this.selectedIndexAyah = null;
    }
   },
-  
+
   showCard() {
    this.isCardVisible = true; // Show the card when button is clicked
   },
@@ -932,7 +929,6 @@ export default {
     } else {
      // Display error alert if no ayah is selected
      this.showError = true;
-
      // Automatically dismiss the alert after 5 seconds
      setTimeout(() => {
       this.dismissError();
@@ -954,7 +950,7 @@ export default {
    }
    return null;
   },
-  
+
   getSurahs() {
    axios
     .get("/get_surahs")
@@ -1416,7 +1412,6 @@ export default {
  display: none;
 }
 
-
 @media (max-width: 576px) {
  .flex-container {
   flex-direction: column;
@@ -1445,38 +1440,10 @@ export default {
  }
 }
 
-/* Hide on full-screen sizes */
-@media (min-width: 992px) {
- .hide-on-full-screen {
-  display: none;
- }
-}
-
-@media (max-width: 991.98px) {
- .hide-on-full-screen {
-  display: none;
- }
-}
-
-@media (max-width: 575px) {
-
- /* Hide the content on mobile devices */
- .hide-on-mobile {
-  display: none;
- }
-
- .custom-dropdown {
-  max-height: 200px;
-  /* Adjust the value as needed */
-  overflow-y: auto;
- }
-}
 
 
 /* Define a media query for full-screen devices */
 @media screen and (min-width: 1024px) {
-
- /* Select the element with the class hide-on-full-screen and hide it */
  .hide-on-full-screen {
   display: none;
  }
@@ -1508,13 +1475,13 @@ export default {
   display: none;
  }
 
+ .container.text-right,
+ .container.text-left {
+  font-size: 1.25em;
+  /* Equivalent to h5 font size */
+ }
 
-.container.text-right,
-.container.text-left {
- font-size: 1.25em;
- /* Equivalent to h5 font size */
-}
-  /* Hide the content on mobile devices */
+ /* Hide the content on mobile devices */
  .hide-on-mobile {
   display: none;
  }
