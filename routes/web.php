@@ -92,7 +92,6 @@ Route::get('auth/linkedin', [LoginController::class, 'redirectToLinkedin'])->nam
 Route::get('auth/linkedin/callback', [LoginController::class, 'handleLinkedinCallback']);
 
 
-
 // stripe payment
 Route::post('payment/initiate', [CharityController::class, 'initiatePayment']);
 Route::post('payment/complete', [CharityController::class, 'completePayment']);

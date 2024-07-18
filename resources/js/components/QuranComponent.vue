@@ -38,19 +38,19 @@
    </form>
 
    <!-- Ayah Dropdown (mobile) -->
-   <div class="tab-content mb-1" id="nav-tabContent" v-if="!dropdownHidden">
-    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-     <form style="cursor: pointer; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px;">
-      <!-- Add a class to the select element for easier targeting -->
-      <select class="form-control mobile-only hide-on-full-screen hide-on-tablet right-side-form" v-model="selectedAyahId" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;" @change="handleAyahChange">
-       <option value="0">
-        <span disabled>Select Ayah</span>
-       </option>
-       <option v-for="(ayah, index) in ayat" :key="index" :value="index">{{ ayah.ayah_text }} : {{ ayah.ayah_id }}</option>
-      </select>
-     </form>
+    <div class="tab-content mb-1" id="nav-tabContent" v-if="!dropdownHidden">
+      <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+        <form style="cursor: pointer; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px;">
+          <!-- Add a class to the select element for easier targeting -->
+          <select class="form-control mobile-only hide-on-full-screen hide-on-tablet right-side-form" v-model="selectedAyahId" @change="handleAyahChange" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
+            <option value="0" disabled>
+              Select Ayah
+            </option>
+            <option v-for="(ayah, index) in ayat" :key="index" :value="index">{{ ayah.ayah_text }} : {{ ayah.ayah_id }}</option>
+          </select>
+        </form>
+      </div>
     </div>
-   </div>
 
    <!-- List of Ayat for Surah (desktop) -->
    <div class="tab-content hide-on-mobile-tablet" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
@@ -547,6 +547,7 @@ export default {
  },
  data() {
   return {
+   // track selected id
    selectedSurahId: 0,
    selectedAyahId: 0,
    // initialize empty arrays
@@ -554,8 +555,9 @@ export default {
    surat: [],
    ayat: [],
    tafseers: [],
-   // define as null
-   information: null,
+   // sorage
+   information: null, 
+   tafseer: null,
    surah: null,
    ayah_id: null,
    // ayah controls
@@ -640,7 +642,6 @@ export default {
   updateAyah(newIndex) {
    this.selectedIndexAyah = newIndex;
    console.log(`Selected Ayah: ${newIndex}`);
-   // Add any additional logic for updating the ayah
   },
 
   getSelectedSurahAyat() {
@@ -705,12 +706,10 @@ export default {
   onSwipeLeft() {
    this.goToPreviousAyah();
    console.log('Swiped left');
-   // Add your logic for swiping left here
   },
   onSwipeRight() {
    this.goToNextAyah();
    console.log('Swiped right');
-   // Add your logic for swiping right here
   },
   goToFirstAyah() {
    this.selectAyah(0);
@@ -901,10 +900,23 @@ export default {
     this.dropdownHidden = true; // Hide Ayah dropdown if no Surah is selected
    }
   },
-  handleAyahChange(event) {
-   const selectedAyahIndex = event.target.value;
-   console.log('Selected Ayah Index:', selectedAyahIndex);
-   // Add logic here if needed
+  async handleAyahChange() {
+  const selectedAyahIndex = parseInt(this.selectedAyahId);
+  const selectedAyah = this.ayat[selectedAyahIndex];
+  if (selectedAyah) {
+      const ayahId = selectedAyah.ayah_id;
+      try {
+        const tafseerResponse = await axios.get(`/tafseer/${ayahId}/fetch`);
+        this.tafseer = tafseerResponse.data;
+
+        const infoResponse = await axios.get('/get_informations', {
+          params: { id: ayahId },
+        });
+        this.information = infoResponse.data;
+      } catch (error) {
+        console.error('Error fetching information or tafseer:', error);
+      }
+    }
   },
   showCard() {
    this.isCardVisible = true; // Show the card when button is clicked
@@ -1200,22 +1212,11 @@ export default {
   copyToClipboard(text) {
    // Create a textarea element to copy the text
    var textarea = document.createElement("textarea");
-
-   // Set the value of the textarea to the text to be copied
    textarea.value = text;
-
-   // Append the textarea to the document body
    document.body.appendChild(textarea);
-
-   // Select the text within the textarea
    textarea.select();
-
-   // Execute the copy command to copy the selected text
    document.execCommand("copy");
-
-   // Remove the textarea from the document body
    document.body.removeChild(textarea);
-
    // Log a success message
    console.log("Text copied to clipboard:", text);
   },
@@ -1244,7 +1245,6 @@ export default {
      }.bind(this)
     );
   },
-
  },
  created() {
   // Initialize submitted status for each bookmark
@@ -1271,9 +1271,8 @@ export default {
     this.selectedIndexAyah = parseInt(newVal) - 1;
    }
   },
-
- }
-};
+}
+}
 </script>
 
 <style scoped>
