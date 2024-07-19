@@ -33,7 +33,7 @@ export default {
   font-weight: bold;
   text-decoration: none;
   background-color: rgba(0, 191, 166);
-  padding: 8px;
+  padding: 6px;
   color: #fff;   /*for background new colour (it worked)*/
   border-radius: 3px;
 
