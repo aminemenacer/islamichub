@@ -25,7 +25,7 @@
    <!-- donation message -->
    <Donation />
 
-   <!-- Surah Selection Dropdown -->
+   <!-- Surah Selection Dropdown 
    <form class="mb-2 right-side-form" style="cursor: pointer; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px;">
       <select class="form-control custom-dropdown" v-model="selectedSurahId" @change="getAyat" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
         <option value="0" disabled>
@@ -35,7 +35,8 @@
           {{ data.id }} : {{ data.name_en }} - {{ data.name_ar }}
         </option>
       </select>
-    </form>
+    </form>-->
+    <SurahDropdown :filteredSurah="filteredSurah" @updateInformation="updateInformation" @updateTafseer="updateTafseer" />
 
     <AyahDropdown 
       :selectedSurahId="selectedSurahId" 
@@ -43,21 +44,7 @@
       @update-information="updateInformation" 
       @update-tafseer="updateTafseer" 
     />
-   <!-- Ayah Dropdown (mobile) 
-    <div class="tab-content mb-1" id="nav-tabContent" v-if="!dropdownHidden">
-      <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-        <form style="cursor: pointer; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px;">
-          -- Add a class to the select element for easier targeting --
-          <select class="form-control mobile-only hide-on-full-screen hide-on-tablet right-side-form" v-model="selectedAyahId" @change="handleAyahChange" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
-            <option value="0" disabled>
-              Select Ayah
-            </option>
-            <option v-for="(ayah, index) in ayat" :key="index" :value="index">{{ ayah.ayah_text }} : {{ ayah.ayah_id }}</option>
-          </select>
-        </form>
-      </div>
-    </div>
-    -->
+  
 
    <!-- List of Ayat for Surah (desktop) -->
    <div class="tab-content hide-on-mobile-tablet" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
@@ -514,7 +501,6 @@ import html2canvas from 'html2canvas';
 import CustomSurahSelection from './surah_selection/CustomSurahSelection.vue'; // Ensure the path is correct
 import SearchForm from './search/SearchForm.vue';
 import SurahList from './search/SurahList.vue';
-import SurahDropdown from './search/SurahDropdown.vue';
 import ArrowControls from './arrowControls/ArrowControls.vue';
 import BookmarksAndNotes from './bookmark_and_notes_links/BookmarksAndNotes.vue';
 import AlertModal from './modals/AlertModal.vue';
@@ -531,6 +517,7 @@ import SwipeGestures from './swipe_gestures/SwipeGestures.vue';
 import AyahSearchVerseNum from './search/AyahSearchVerseNum.vue';
 import ErrorAlert from './search/ErrorAlert.vue';
 import AyahDropdown from './search/AyahDropdown.vue';
+import SurahDropdown from './search/SurahDropdown.vue';
 
 
 export default {
@@ -556,9 +543,10 @@ export default {
   AyahSearchVerseNum,
   ErrorAlert,
   AyahDropdown,
+  SurahDropdown,
  },
  mounted() {
-  this.getSurat(); // Call getSurat to populate the surah list
+  // this.getSurat(); // Call getSurat to populate the surah list
  },
  data() {
   return {
@@ -642,13 +630,12 @@ export default {
   };
  },
  methods: {
-   updateInformation(newInformation) {
-      this.information = newInformation;
-    },
-    updateTafseer(newTafseer) {
-      this.tafseer = newTafseer;
-    },
-   
+  updateInformation(newInformation) {
+    this.information = newInformation;
+  },
+  updateTafseer(newTafseer) {
+    this.tafseer = newTafseer;
+  },
   handleScrollToAyah(verseNumber) {
     this.$nextTick(() => {
       const ayahElement = this.$refs.ayahContainer.querySelector(`#ayah-${verseNumber}`);
@@ -909,50 +896,6 @@ export default {
    }, 3000);
   },
 
-  async getSurat() {
-   try {
-    const response = await axios.get('/get_surat'); // Update the URL to match your backend
-    this.surat = response.data;
-   } catch (error) {
-    console.error('Error fetching surahs:', error);
-   }
-  },
-  async getAyat() {
-   if (this.selectedSurahId > 0) {
-    try {
-     const response = await axios.get('/get_ayat', {
-      params: {
-       surah_id: this.selectedSurahId
-      },
-     });
-     this.ayat = response.data;
-     this.dropdownHidden = false; // Show Ayah dropdown after fetching
-    } catch (error) {
-     console.error('Error fetching ayat:', error);
-    }
-   } else {
-    this.ayat = [];
-    this.dropdownHidden = true; // Hide Ayah dropdown if no Surah is selected
-   }
-  },
-  async handleAyahChange() {
-    const selectedAyahIndex = parseInt(this.selectedAyahId);
-    const selectedAyah = this.ayat[selectedAyahIndex];
-    if (selectedAyah) {
-      const ayahId = selectedAyah.ayah_id;
-      try {
-        const tafseerResponse = await axios.get(`/tafseer/${ayahId}/fetch`);
-        this.tafseer = tafseerResponse.data;
-
-        const infoResponse = await axios.get('/get_informations', {
-          params: { id: ayahId },
-        });
-        this.information = infoResponse.data;
-      } catch (error) {
-        console.error('Error fetching information or tafseer:', error);
-      }
-    }
-  },
   showCard() {
    this.isCardVisible = true; // Show the card when button is clicked
   },
