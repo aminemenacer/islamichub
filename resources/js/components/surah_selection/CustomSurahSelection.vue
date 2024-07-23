@@ -1,53 +1,72 @@
 <template>
 <div class="scrollmenu">
-  <a href="#" v-for="data in localCustomSurat" :key="data.id" @click.prevent="selectSurat(data.id)">
-    <div class="flex justify-content-center mr-1">
-      <span class="badge button-33" :class="{ active: surat === data.id }">{{ data.name }}</span>
-    </div>
-  </a>
+ <a href="#" v-for="data in customSurat" :key="data.id" @click.prevent="selectSurah(data.id)">
+  <div class="flex justify-content-center mr-1">
+   <span class="badge button-33" :class="{ active: surah === data.id }">{{ data.name }}</span>
+  </div>
+ </a>
 </div>
 </template>
 
 <script>
 export default {
-  props: {
-    customSurat: {
-      type: Array,
-      default: () => []
+ props: {
+  customSurahs: Array,
+  modelValue: Number
+ },
+ data() {
+  return {
+   customSurat: [{
+     id: 1,
+     name: 'Al Fatiha'
     },
-    modelValue: {
-      type: Number,
-      default: null
+    {
+     id: 114,
+     name: 'An-Nas'
+    },
+    {
+     id: 113,
+     name: 'Al-Falak'
+    },
+    {
+     id: 67,
+     name: 'Al-Mulk'
+    },
+    {
+     id: 18,
+     name: 'Al-Kahf'
+    },
+    {
+     id: 55,
+     name: 'Al-Rahman'
+    },
+    {
+     id: 36,
+     name: 'Ya Seen'
+    },
+    {
+     id: 87,
+     name: 'Al-A\'la'
+    },
+    {
+     id: 88,
+     name: 'Al Ghashiya'
     }
-  },
-  data() {
-    return {
-      localCustomSurat: [
-        { id: 1, name: 'Al Fatiha' },
-        { id: 114, name: 'An-Nas' },
-        { id: 113, name: 'Al-Falak' },
-        { id: 67, name: 'Al-Mulk' },
-        { id: 18, name: 'Al-Kahf' },
-        { id: 55, name: 'Al-Rahman' },
-        { id: 36, name: 'Ya Seen' },
-        { id: 87, name: 'Al-A\'la' },
-        { id: 88, name: 'Al Ghashiya' }
-      ]
-    };
-  },
-  computed: {
-    surat() {
-      return this.modelValue;
-    }
-  },
-  methods: {
-    selectSurat(surahId) {
-      this.$emit('update:modelValue', surahId);
-    }
+   ],
   }
+ },
+ computed: {
+  surah() {
+   return this.modelValue;
+  }
+ },
+ methods: {
+  selectSurah(surahId) {
+   this.$emit('update:modelValue', surahId);
+  }
+ }
 };
 </script>
-
 
 <style scoped>
 .scrollmenu {

@@ -88,7 +88,8 @@ export default {
           console.error('Error fetching information or tafseer:', error);
         }
       }
-    }
+    },
+    
   }
 };
 </script>

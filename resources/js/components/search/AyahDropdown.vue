@@ -97,4 +97,3 @@ export default {
   border-radius: 5px;
 }
 </style>
-

@@ -25,7 +25,7 @@
 export default {
   name: 'SearchForm',
   props: {
-    surat: {
+    surahs: {
       type: Array,
       required: true
     }
@@ -52,7 +52,7 @@ export default {
         this.$emit('update-results', []);
         return;
       }
-      this.filteredSurah = this.surat.filter(surah => {
+      this.filteredSurah = this.surahs.filter(surah => {
         const nameEn = surah.name_en.toLowerCase();
         const nameAr = surah.name_ar.toLowerCase();
         return nameEn.includes(searchTerm) || nameAr.includes(searchTerm);
