@@ -121,7 +121,7 @@
          <i style=" color:rgb(0, 191, 166); cursor:pointer" @click="shareHeadingOnTwitter3" class="mr-2 bi bi-twitter-x text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X"></i>
          <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
          <CopyTranslationText :textToCopy="information.translation" />
-         <i class="bi bi-camera text-right mr-2 h3" @click="captureScreenshot3" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" style="color: rgba(0, 191, 166); cursor:pointer"></i>
+         <ScreenTranslationCapture :targetTranslationRef="'targetTranslationElement'" />
          <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;"></i>
          <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
          <i class="bi bi-info-circle h4" style="color: rgb(0, 191, 166);cursor:pointer" data-bs-target="#translationInfo" aria-expanded="false" data-bs-toggle="modal" data-bs-placement="top" title="Surah info"></i>
@@ -153,7 +153,7 @@
 
        <!-- Target Element for Screenshot -->
 
-       <div ref="targetElement" class="w-100 my-element " :class="{'full-screen': isFullScreen}">
+       <div ref="targetTranslationElement" class="w-100 my-element " :class="{'full-screen': isFullScreen}">
         <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
         <AyahInfo :information="information" />
         <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
@@ -165,6 +165,7 @@
          <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
         </div>
        </div>
+
 
         <!-- Surah Info Modal -->
         <div class="modal fade" id="translationInfo" tabindex="-1" aria-labelledby="surahInfoModalLabel" aria-hidden="true">
@@ -238,7 +239,7 @@
          <i style=" color:rgb(0, 191, 166); cursor:pointer" @click="shareHeadingOnTwitter1" class="mr-2 bi bi-twitter-x text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X"></i>
          <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
          <CopyTafseerText :textToCopy="tafseer" />
-         <i class="bi bi-camera text-right mr-2 h3" @click="captureScreenshot1" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" style="color: rgba(0, 191, 166); cursor:pointer"></i>
+         <ScreenTafseerCapture :targetTafseerRef="'targetTafseerElement'" />
          <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;"></i>
          <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
          <i class="bi bi-info-circle h4" style="color: rgb(0, 191, 166);cursor:pointer" data-bs-target="#tafseerInfo" aria-expanded="false" data-bs-toggle="modal" data-bs-placement="top" title="Surah info"></i>
@@ -273,7 +274,7 @@
        </div>
 
        <!-- Main Content to Capture -->
-       <div ref="targetElement1" class="w-100 my-element" :class="{'full-screen': isFullScreen}">
+       <div ref="targetTafseerElement" class="w-100 my-element" :class="{'full-screen': isFullScreen}">
         <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
         <AyahInfo :information="information" />
         <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
@@ -535,6 +536,9 @@ import AyahDropdown from './search/AyahDropdown.vue';
 import CopyTranslationText from './translation/features/copy_text/CopyTranslationText.vue';
 import CopyTafseerText from './translation/features/copy_text/CopyTranslationText.vue';
 import CopyTransliterationText from './translation/features/copy_text/CopyTransliterationText.vue';
+import ScreenTranslationCapture from './translation/features/screen_capture/ScreenTranslationCapture.vue';
+import ScreenTafseerCapture from './translation/features/screen_capture/ScreenTafseerCapture.vue';
+import ScreenTransliterationCapture from './translation/features/screen_capture/ScreenTransliterationCapture.vue';
 
 export default {
  name: 'QuranComponent',
@@ -561,7 +565,10 @@ export default {
   AyahDropdown,
   CopyTranslationText,
   CopyTafseerText,
-  CopyTransliterationText
+  CopyTransliterationText,
+  ScreenTranslationCapture,
+  ScreenTafseerCapture,
+  ScreenTransliterationCapture
  },
  mounted() {
   this.getSurat(); // Call getSurat to populate the surah list
