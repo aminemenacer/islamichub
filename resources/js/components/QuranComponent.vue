@@ -5,17 +5,17 @@
   <!-- quran title -->
   <Title />
   <!-- Search bar  -->
-  <SearchForm :surat="surat" @update-results="handleUpdateResults" @clear-results="handleClearResults" />
+    <SearchForm :surat="surat" @update-results="handleUpdateResults" @clear-results="handleClearResults" />
   <!-- custom surah selection -->
-  <CustomSurahSelection :customSurahs="customSurahs" :modelValue="modelValue" @update:modelValue="updateModelValue" />
+    <custom-surah-selection :customSurat="customSuratList" v-model="selectedSurah"></custom-surah-selection>
  </div>
 
  <!-- accordion headers-->
  <div class="row container-fluid">
   <div class="col-md-4 container">
    <!--  Surah list dropdown from search bar -->
-   <ul class="col-md-12 mt-1 scrollable-list" style="list-style-type: none; overflow-y: auto; max-height: 400px; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
-    <li v-for="item in filteredSurah" :key="item.id" @click="selectSurah(item.id)" style="cursor: pointer; padding: 5px; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius: 5px;" class="highlight-on-hover">
+   <ul class="col-md-12 mt-1 scrollable-list " style="list-style-type: none; overflow-y: auto; max-height: 400px; box-shadow: box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
+    <li v-for="item in filteredSurah" :key="item.id" @click="selectSurah(item.id)" style="cursor: pointer; padding:5px;box-shadow: box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px; " class="highlight-on-hover">
      <div style="display: flex; align-items: center;">
       <img src="/images/art.png" style="width: 23px" class="mb-1 mr-2" />
       <p style="font-size: 18px;" class="mt-2">{{ item.name_en }} - {{ item.name_ar }}</p>
@@ -25,19 +25,83 @@
    <!-- donation message -->
    <Donation />
 
-   <SurahDropdown :filteredSurah="filteredSurah" @updateInformation="updateInformation" @updateTafseer="updateTafseer" />
-   <AyahDropdown :selectedSurahId="selectedSurahId" :dropdownHidden="dropdownHidden" @update-information="updateInformation" @update-tafseer="updateTafseer" />
+   <!-- Surah Selection Dropdown -->
+   <form class="mb-2 right-side-form" style="cursor: pointer; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px;">
+      <select class="form-control custom-dropdown" v-model="selectedSurahId" @change="getAyat" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
+        <option value="0" disabled>
+          Select Surah
+        </option>
+        <option v-for="data in filteredSurah.length ? filteredSurah : surat" :key="data.id" :value="data.id">
+          {{ data.id }} : {{ data.name_en }} - {{ data.name_ar }}
+        </option>
+      </select>
+    </form>
 
+    <AyahDropdown 
+      :selectedSurahId="selectedSurahId" 
+      :dropdownHidden="dropdownHidden" 
+      @update-information="updateInformation" 
+      @update-tafseer="updateTafseer" 
+    />
+   <!-- Ayah Dropdown (mobile) 
+    <div class="tab-content mb-1" id="nav-tabContent" v-if="!dropdownHidden">
+      <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+        <form style="cursor: pointer; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px;">
+          -- Add a class to the select element for easier targeting --
+          <select class="form-control mobile-only hide-on-full-screen hide-on-tablet right-side-form" v-model="selectedAyahId" @change="handleAyahChange" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
+            <option value="0" disabled>
+              Select Ayah
+            </option>
+            <option v-for="(ayah, index) in ayat" :key="index" :value="index">{{ ayah.ayah_text }} : {{ ayah.ayah_id }}</option>
+          </select>
+        </form>
+      </div>
+    </div>
+    -->
+
+   <!-- List of Ayat for Surah (desktop) -->
    <div class="tab-content hide-on-mobile-tablet" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
-    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-     <AyahList :ayat="ayat" :selectedIndexAyah="selectedIndexAyah" :showError="showError" @scroll-to-ayah="scrollToAyah" @dismiss-error="dismissError" @select-ayah="selectAyah" @go-to-first-ayah="goToFirstAyah" @go-to-previous-ayah="goToPreviousAyah" @go-to-next-ayah="goToNextAyah" @go-to-last-ayah="goToLastAyah" />
+    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" v-if="ayah == null">
+ 
+     <form class="d-flex pb-2 " role="search" @submit.prevent="scrollToAyah">
+      <input class="form-control me-2" type="number" placeholder="Enter Verse Number" v-model="verseNumber" required>
+      <button class="btn btn-success mb-1 ml-2" type="submit">Search</button> 
+     </form>
+     
+
+     <!-- Error alert -->
+     <ErrorAlert :showError="showError" @dismiss-error="dismissError" />
+
+     
+
+     <div class="row container-fluid">
+      <hr class="container" style="height: 4px; background: lightgrey;">
+
+      <div class="icon-container pb-2">
+       <i class="bi bi-chevron-bar-left h5" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToFirstAyah" title="First verse"></i>
+       <i class="bi bi-arrow-left-circle h5" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToPreviousAyah" title="Previous verse"></i>
+       <i class="bi bi-arrow-right-circle h5" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToNextAyah" title="Next verse"></i>
+       <i class="bi bi-chevron-bar-right h5" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToLastAyah" title="Last verse"></i>
+      </div>
+
+      <div class="custom-scrollbar pb-5" style="overflow-y: auto; max-height: 600px; background: white;">
+       <ul class="col-md-12 list-group container-fluid root" id="toggle" ref="ayahList" style="list-style-type: none; padding: 10px">
+        <li v-for="(ayah, index) in ayat" :key="index" @click="selectAyah(index)" :class="{ selected: selectedIndexAyah === index, highlighted: verseNumber && parseInt(verseNumber) === ayah.ayah_id }" style="padding: 10px; border-radius:10px">
+         <h5 class="text-right" style="display: flex;"> Verse: {{ ayah.ayah_id }} </h5>
+         <h5 class="text-right">{{ ayah.ayah_text }}</h5>
+        </li>
+       </ul>
+      </div>
+     </div>
+
     </div>
    </div>
-   <ErrorAlert :showError="showError" @dismiss-error="dismissError" />
   </div>
 
   <div class="col-md-8 pt-2 card-hide">
+
    <div class="card pt-2" style="box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;">
+
     <div class="container-fluid" v-if="information != null">
      <!-- navigation tabs -->
      <NavTabs />
@@ -45,6 +109,7 @@
 
     <div class="card-body" id="alertContainer">
      <div class="tab-content text-center">
+      <!-- Intro welcome message -->
       <Welcome :information="information" />
 
       <!-- Translation Section -->
@@ -54,8 +119,8 @@
          <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#translationNote" style="color: rgba(0, 191, 166);cursor:pointer"></i>
          <i class="bi bi-whatsapp text-right mr-2 h4" @click="shareTextViaWhatsApp3" aria-expanded="false" data-bs-placement="top" title="Share on Whatsapp" style="color: rgba(0, 191, 166);cursor:pointer"></i>
          <i style=" color:rgb(0, 191, 166); cursor:pointer" @click="shareHeadingOnTwitter3" class="mr-2 bi bi-twitter-x text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X"></i>
-         <BookmarkForm :information="information" @show-alert="showAlertHandler" @show-error-alert="showErrorAlertHandler" />
-         <CopyTranslationText :textToCopy="information.translation" />
+         <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
+         <i class="bi bi-clipboard-check text-right mr-2 h4" @click="copyText3" aria-expanded="false" data-bs-placement="top" title="Copy verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
          <i class="bi bi-camera text-right mr-2 h3" @click="captureScreenshot3" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" style="color: rgba(0, 191, 166); cursor:pointer"></i>
          <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;"></i>
          <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
@@ -69,13 +134,14 @@
           <i class="bi bi-arrow-right-circle h5" style="color: rgb(0, 191, 166);" @click="goToNextAyah()" title="Next verse"></i>
           <i class="bi bi-chevron-bar-right h5" style="color: rgb(0, 191, 166);" @click="goToLastAyah()" title="End verse"></i>
           <i class="bi bi-arrows-fullscreen h6" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
+
           <i style="color:rgb(0, 191, 166); cursor:pointer" class="bi bi-three-dots-vertical h5 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></i>
           <ul class="dropdown-menu">
            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#translationNote"><i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" style="color: rgba(0, 191, 166);"></i>Write a Note</a></li>
            <li><a class="dropdown-item" @click="shareTextViaWhatsApp3"><i class="bi bi-whatsapp text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Share on Whatsapp" style="color: rgba(0, 191, 166);"></i>Share via WhatsApp</a></li>
            <li><a class="dropdown-item" @click="shareHeadingOnTwitter3"><i style=" color:rgb(0, 191, 166); cursor:pointer" class="mr-2 bi bi-twitter-x text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X"></i>Share via X</a></li>
-           <BookmarkForm :information="information" @show-alert="showAlertHandler" @show-error-alert="showErrorAlertHandler" style="cursor:pointerGive to women their dowers willingly, but if they forego part of it themselves, then use it to your advantage." />
-           <CopyTranslationText :textToCopy="information.translation" />
+           <li><a class="dropdown-item" @click="submitForm"><i class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);"></i>Bookmark Verse</a></li>
+           <li><a class="dropdown-item" @click="copyText3"><i class="bi bi-clipboard-check text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Copy verse" style="color: rgba(0, 191, 166);"></i>Copy Verse</a></li>
            <li><a class="dropdown-item" @click="captureScreenshot3"><i class="bi bi-camera text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" style="color: rgba(0, 191, 166);"></i>Screenshot Verse</a></li>
            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#translationInfo"><i class="bi bi-info-circle text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Surah info" style="color: rgba(0, 191, 166);"></i>Surah Info</a></li>
            <li><a class="dropdown-item" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Report a bug" style="color: rgba(0, 191, 166);"></i>Report a bug</a></li>
@@ -86,77 +152,78 @@
        </div>
 
        <!-- Target Element for Screenshot -->
+
        <div ref="targetElement" class="w-100 my-element " :class="{'full-screen': isFullScreen}">
         <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
         <AyahInfo :information="information" />
         <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
          <MainAyah :information="information" />
-         <div>
-          <h5 ref="heading3" class="text:right">{{ information.translation }}</h5>
+         <div ref="heading3">
+          <EnglishTranslation :information="information" />
          </div>
          <Translator translator="Ahmed Ali" />
          <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
         </div>
        </div>
 
-       <!-- Surah Info Modal -->
-       <div class="modal fade" id="translationInfo" tabindex="-1" aria-labelledby="surahInfoModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-         <div class="modal-content">
-          <div class="modal-header">
-           <h1 class="modal-title fs-5" id="surahInfoModalLabel"><strong>Information</strong></h1>
-           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-           <form class="container text-left">
-            <div class="mb-3 container">
-             <label for="formGroupExampleInput" class="form-label">Surah Name (English):</label>
-             <p class="mt-2 text-dark text-left">{{ information.ayah.surah.name_en }}</p>
+        <!-- Surah Info Modal -->
+        <div class="modal fade" id="translationInfo" tabindex="-1" aria-labelledby="surahInfoModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+            <h1 class="modal-title fs-5" id="surahInfoModalLabel"><strong>Information</strong></h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="mb-3 container">
-             <label for="formGroupExampleInput" class="form-label text-left">Surah Information:</label>
-             <p class="text-left">
-              {{ expanded ? information.ayah.surah.text : truncatedText(information.ayah.surah.text) }}
-              <template v-if="showMoreLink">
-               <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
-              </template>
-             </p>
-            </div>
+            <div class="modal-body">
+            <form class="container text-left">
+              <div class="mb-3 container">
+              <label for="formGroupExampleInput" class="form-label">Surah Name (English):</label>
+              <p class="mt-2 text-dark text-left">{{ information.ayah.surah.name_en }}</p>
+              </div>
+              <div class="mb-3 container">
+              <label for="formGroupExampleInput" class="form-label text-left">Surah Information:</label>
+              <p class="text-left">
+                {{ expanded ? information.ayah.surah.text : truncatedText(information.ayah.surah.text) }}
+                <template v-if="showMoreLink">
+                <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
+                </template>
+              </p>
+              </div>
 
-           </form>
-          </div>
-          <div class="modal-footer">
-           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          </div>
-         </div>
-        </div>
-       </div>
-       <!-- Notes Modal -->
-       <div class="modal fade" id="translationNote" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true" ref="exampleModal1">
-        <div class="modal-dialog modal-lg">
-         <div class="modal-content">
-          <div class="modal-header">
-           <h5 class="modal-title" id="exampleModalLabel1">Write a Note</h5>
-           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-           <!-- Note Form -->
-           <form @submit.prevent="createNote">
-            <div class="row container mt-3">
-             <h5 class="text-left pb-2 font-weight-bold">Notes & Reflections</h5>
-             <div class="col">
-              <textarea v-model="form1.ayah_notes" class="form-control container mb-3" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah." rows="8"></textarea>
-             </div>
+            </form>
             </div>
             <div class="modal-footer">
-             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-             <button type="submit" class="btn btn-success">Submit</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
-           </form>
           </div>
-         </div>
+          </div>
         </div>
-       </div>
+        <!-- Notes Modal -->
+        <div class="modal fade" id="translationNote" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true" ref="exampleModal1">
+          <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel1">Write a Note</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <!-- Note Form -->
+            <form @submit.prevent="createNote">
+              <div class="row container mt-3">
+              <h5 class="text-left pb-2 font-weight-bold">Notes & Reflections</h5>
+              <div class="col">
+                <textarea v-model="form1.ayah_notes" class="form-control container mb-3" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah." rows="8"></textarea>
+              </div>
+              </div>
+              <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-success">Submit</button>
+              </div>
+            </form>
+            </div>
+          </div>
+          </div>
+        </div>
 
       </div>
 
@@ -169,8 +236,8 @@
          <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#tafseerNote" style="color: rgba(0, 191, 166);cursor:pointer"></i>
          <i class="bi bi-whatsapp text-right mr-2 h4" @click="shareTextViaWhatsApp1" aria-expanded="false" data-bs-placement="top" title="Share on Whatsapp" style="color: rgba(0, 191, 166);cursor:pointer"></i>
          <i style=" color:rgb(0, 191, 166); cursor:pointer" @click="shareHeadingOnTwitter1" class="mr-2 bi bi-twitter-x text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X"></i>
-         <BookmarkForm :information="information" @show-alert="showAlertHandler" @show-error-alert="showErrorAlertHandler" />
-         <CopyTafseerText :textToCopy="tafseer" />
+         <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
+         <i class="bi bi-clipboard-check text-right mr-2 h4" @click="copyText1" aria-expanded="false" data-bs-placement="top" title="Copy verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
          <i class="bi bi-camera text-right mr-2 h3" @click="captureScreenshot1" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" style="color: rgba(0, 191, 166); cursor:pointer"></i>
          <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;"></i>
          <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
@@ -193,7 +260,7 @@
            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#tafseerNote"><i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" style="color: rgba(0, 191, 166);"></i>Write a Note</a></li>
            <li><a class="dropdown-item" @click="shareTextViaWhatsApp1"><i class="bi bi-whatsapp text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Share on Whatsapp" style="color: rgba(0, 191, 166);"></i>Share via WhatsApp</a></li>
            <li><a class="dropdown-item" @click="shareHeadingOnTwitter1"><i style="color:rgb(0, 191, 166); cursor:pointer" class="mr-2 bi bi-twitter-x text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X"></i>Share via X</a></li>
-           <BookmarkForm :information="information" @show-alert="showAlertHandler" @show-error-alert="showErrorAlertHandler" /> <i @click="copyText2" class="bi bi-clipboard-check text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Copy verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
+           <li><a class="dropdown-item" @click="submitForm"><i class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);"></i>Bookmark Verse</a></li>
            <li><a class="dropdown-item" @click="copyText1"><i class="bi bi-clipboard-check text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Copy verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>Copy Verse</a></li>
            <li><a class="dropdown-item" @click="captureScreenshot1"><i class="bi bi-camera text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" style="color: rgba(0, 191, 166);"></i>Screenshot Verse</a></li>
            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#tafseerInfo"><i class="bi bi-info-circle text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Surah info" style="color: rgba(0, 191, 166);"></i>Surah Info</a></li>
@@ -216,11 +283,13 @@
            {{ information.ayah.ayah_text }}
           </h5>
          </div>
-
-         <div>
-          <h5 ref="heading1" class="text:right">{{ tafseer }}</h5>
-         </div>
-
+         <!-- main stack below -->
+         <h5 class="text-left ayah-translation" ref="heading1" style="line-height: 1.6em">
+          {{ expanded ? tafseer : truncatedText(tafseer) }}
+          <template v-if="showMoreLink">
+           <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
+          </template>
+         </h5>
          <h6 class="text-left mt-3"><strong>Tafseer: </strong>Ibn Kathir</h6>
          <br>
          <!-- Include the AlertModal component -->
@@ -304,8 +373,8 @@
            <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#transliterationNote" style="color: rgba(0, 191, 166);cursor:pointer"></i>
            <i class="bi bi-whatsapp text-right mr-2 h4" @click="shareTextViaWhatsApp2" aria-expanded="false" data-bs-placement="top" title="Share on Whatsapp" style="color: rgba(0, 191, 166);cursor:pointer"></i>
            <i style=" color:rgb(0, 191, 166); cursor:pointer" @click="shareHeadingOnTwitter2" class="mr-2 bi bi-twitter-x text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X"></i>
-           <BookmarkForm :information="information" @show-alert="showAlertHandler" @show-error-alert="showErrorAlertHandler" />
-           <CopyTransliterationText :textToCopy="information.transliteration" />
+           <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
+           <i @click="copyText2" class="bi bi-clipboard-check text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Copy verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
            <i class="bi bi-camera text-right mr-2 h3" @click="captureScreenshot2" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" style="color: rgba(0, 191, 166); cursor:pointer"></i>
            <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;"></i>
            <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
@@ -325,8 +394,8 @@
              <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#transliterationNote"><i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" style="color: rgba(0, 191, 166);"></i>Write a Note</a></li>
              <li><a class="dropdown-item" @click="shareTextViaWhatsApp2"><i class="bi bi-whatsapp text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Share on Whatsapp" style="color: rgba(0, 191, 166);"></i>Share via WhatsApp</a></li>
              <li><a class="dropdown-item" @click="shareHeadingOnTwitter2"><i style=" color:rgb(0, 191, 166); cursor:pointer" class="bi bi-twitter-x text-right h4 mr-2" aria-expanded="false" data-bs-placement="top" title="Share via X"></i>Share via X</a></li>
-             <BookmarkForm :information="information" @show-alert="showAlertHandler" @show-error-alert="showErrorAlertHandler" /> <i @click="copyText2" class="bi bi-clipboard-check text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Copy verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
-             <CopyTransliterationText :textToCopy="information.transliteration" />
+             <li><a class="dropdown-item" @click="submitForm"><i class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);"></i>Bookmark Verse</a></li>
+             <li><a class="dropdown-item" @click="copyText2"><i class="bi bi-clipboard-check text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Copy verse" style="color: rgba(0, 191, 166);"></i>Copy Verse</a></li>
              <li><a class="dropdown-item" data-bs-toggle="modal" @click="captureScreenshot2"><i class="bi bi-camera text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" style="color: rgba(0, 191, 166);"></i>Screenshot Verse</a></li>
              <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#transliterationInfo"><i class="bi bi-info-circle text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Surah info" style="color: rgba(0, 191, 166);"></i>Surah Info</a></li>
              <li><a class="dropdown-item" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Report a bug" style="color: rgba(0, 191, 166);"></i>Report a bug</a></li>
@@ -445,6 +514,7 @@ import html2canvas from 'html2canvas';
 import CustomSurahSelection from './surah_selection/CustomSurahSelection.vue'; // Ensure the path is correct
 import SearchForm from './search/SearchForm.vue';
 import SurahList from './search/SurahList.vue';
+import SurahDropdown from './search/SurahDropdown.vue';
 import ArrowControls from './arrowControls/ArrowControls.vue';
 import BookmarksAndNotes from './bookmark_and_notes_links/BookmarksAndNotes.vue';
 import AlertModal from './modals/AlertModal.vue';
@@ -461,13 +531,7 @@ import SwipeGestures from './swipe_gestures/SwipeGestures.vue';
 import AyahSearchVerseNum from './search/AyahSearchVerseNum.vue';
 import ErrorAlert from './search/ErrorAlert.vue';
 import AyahDropdown from './search/AyahDropdown.vue';
-import SurahDropdown from './search/SurahDropdown.vue';
-import BookmarkForm from './translation/features/BookmarkForm.vue';
-import CopyTranslationText from './translation/features/copy_text/CopyTranslationText.vue';
-import CopyTafseerText from './translation/features/copy_text/CopyTranslationText.vue';
-import CopyTransliterationText from './translation/features/copy_text/CopyTransliterationText.vue';
 
-import AyahList from './search/AyahList.vue';
 
 export default {
  name: 'QuranComponent',
@@ -492,25 +556,12 @@ export default {
   AyahSearchVerseNum,
   ErrorAlert,
   AyahDropdown,
-  SurahDropdown,
-  BookmarkForm,
-  AyahList,
-  CopyTranslationText,
-  CopyTafseerText,
-  CopyTransliterationText
  },
  mounted() {
-  // this.getSurat(); // Call getSurat to populate the surah list
+  this.getSurat(); // Call getSurat to populate the surah list
  },
  data() {
   return {
-   customSurahs: [],
-   modelValue: null,
-   information: {
-    translation: '',
-    transliteration: '',
-   },    
-   tafseer: '',
    //custom surah collection
    customSuratList: [],
    selectedSurah: 1,
@@ -523,11 +574,12 @@ export default {
    ayat: [],
    tafseers: [],
    // sorage
-   information: null,
+   information: null, 
    tafseer: null,
    surah: null,
    ayah_id: null,
    // ayah controls
+   surat: 0,
    selectedIndexAyah: 0,
    //expand text 
    expanded: false,
@@ -590,52 +642,22 @@ export default {
   };
  },
  methods: {
-  updateModelValue(value) {
-   this.modelValue = value;
-  },
-  search() {
-   const searchTerm = this.searchTerm.trim().toLowerCase();
-   if (searchTerm === '') {
-    this.filteredSurat = [];
-    this.showClearButton = false;
-    return;
-   }
-   this.filteredSurat = this.surat.filter(surah => {
-    const nameEn = surah.name_en.toLowerCase();
-    const nameAr = surah.name_ar.toLowerCase();
-    return nameEn.includes(searchTerm) || nameAr.includes(searchTerm);
-   });
-   this.showClearButton = true;
-  },
-  // showAlertHandler(show) {
-  //  this.showAlert = show;
-  //  if (show) {
-  //   this.hideAlertAfterDelay();
-  //  }
-  // },
-  // showErrorAlertHandler(show) {
-  //  this.showErrorAlert = show;
-  //  if (show) {
-  //   this.hideAlertAfterDelay();
-  //  }
-  // },
-  updateInformation(newInformation) {
-   this.information = newInformation;
-  },
-  updateTafseer(newTafseer) {
-   this.tafseer = newTafseer;
-  },
+   updateInformation(newInformation) {
+      this.information = newInformation;
+    },
+    updateTafseer(newTafseer) {
+      this.tafseer = newTafseer;
+    },
+   
   handleScrollToAyah(verseNumber) {
-   this.$nextTick(() => {
-    const ayahElement = this.$refs.ayahContainer.querySelector(`#ayah-${verseNumber}`);
-    if (ayahElement) {
-     ayahElement.scrollIntoView({
-      behavior: 'smooth'
-     });
-    } else {
-     console.error('Ayah not found:', verseNumber);
-    }
-   });
+    this.$nextTick(() => {
+      const ayahElement = this.$refs.ayahContainer.querySelector(`#ayah-${verseNumber}`);
+      if (ayahElement) {
+        ayahElement.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        console.error('Ayah not found:', verseNumber);
+      }
+    });
   },
   handleUpdateResults(filteredSurah) {
    this.filteredSurah = filteredSurah;
@@ -730,11 +752,15 @@ export default {
   goToPreviousAyah() {
    if (this.selectedIndexAyah > 0) {
     this.selectAyah(this.selectedIndexAyah - 1);
+   } else {
+    this.selectAyah(this.ayat.length - 1);
    }
   },
   goToNextAyah() {
    if (this.selectedIndexAyah < this.ayat.length - 1) {
     this.selectAyah(this.selectedIndexAyah + 1);
+   } else {
+    this.selectAyah(0);
    }
   },
   goToLastAyah() {
@@ -776,8 +802,8 @@ export default {
    };
    axios.post('/submit_category', formData);
   },
-  scrollToAyah(verseNumber) {
-   const verseNum = parseInt(verseNumber);
+  scrollToAyah() {
+   const verseNum = parseInt(this.verseNumber);
    if (!isNaN(verseNum) && verseNum >= 1 && verseNum <= this.ayat.length) {
     const ayahElement = this.$refs.ayahList.querySelectorAll("li")[verseNum - 1];
     if (ayahElement) {
@@ -793,12 +819,140 @@ export default {
     }, 5000);
    }
   },
-
   dismissError() {
    this.showError = false;
   },
+  submitForm() {
+   const formData = {
+    surah_name: this.information.ayah.surah.name_en,
+    ayah_num: this.information.ayah_id,
+    ayah_verse_ar: this.information.ayah.ayah_text,
+    ayah_verse_en: this.information.translation,
+   };
 
+   axios.post('/bookmarks', formData)
+    .then(response => {
+     console.log(response.data.message);
+     // Set the submitted status for the selected bookmark
+     localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
+     // Log the updated bookmarkSubmitted object
+     console.log(this.bookmarkSubmitted);
+     this.showAlert = true; // Show success alert
+     this.showErrorAlert = false; // Hide error alert
+     this.hideAlertAfterDelay(); // Start timer to hide alert
+    })
+    .catch(error => {
+     console.error(error);
+     this.showAlert = false; // Hide success alert
+     this.showErrorAlert = true; // Show error alert
 
+     this.hideAlertAfterDelay(); // Start timer to hide alert
+    });
+  },
+  submitForm1() {
+   const formData = {
+    surah_name: this.information.ayah.surah.name_en,
+    ayah_num: this.information.ayah_id,
+    ayah_verse_ar: this.information.ayah.ayah_text,
+    ayah_verse_en: this.tafseer,
+   };
+
+   axios.post('/bookmarks', formData)
+    .then(response => {
+     console.log(response.data.message);
+     // Set the submitted status for the selected bookmark
+     localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
+     // Log the updated bookmarkSubmitted object
+     console.log(this.bookmarkSubmitted);
+     this.showAlert = true; // Show success alert
+     this.showErrorAlert = false; // Hide error alert
+     this.hideAlertAfterDelay(); // Start timer to hide alert
+    })
+    .catch(error => {
+     console.error(error);
+     this.showAlert = false; // Hide success alert
+     this.showErrorAlert = true; // Show error alert
+     this.hideAlertAfterDelay(); // Start timer to hide alert
+    });
+  },
+  submitForm2() {
+   const formData = {
+    surah_name: this.information.ayah.surah.name_en,
+    ayah_num: this.information.ayah_id,
+    ayah_verse_ar: this.information.ayah.ayah_text,
+    ayah_verse_en: this.information.transliteration,
+   };
+
+   axios.post('/bookmarks', formData)
+    .then(response => {
+     console.log(response.data.message);
+     // Set the submitted status for the selected bookmark
+     localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
+     // Log the updated bookmarkSubmitted object
+     console.log(this.bookmarkSubmitted);
+     this.showAlert = true; // Show success alert
+     this.showErrorAlert = false; // Hide error alert
+     this.hideAlertAfterDelay(); // Start timer to hide alert
+    })
+    .catch(error => {
+     console.error(error);
+     this.showAlert = false; // Hide success alert
+     this.showErrorAlert = true; // Show error alert
+     this.hideAlertAfterDelay(); // Start timer to hide alert
+    });
+  },
+  hideAlertAfterDelay() {
+   setTimeout(() => {
+    this.showAlert = false;
+    this.showAlertText = false;
+    this.showErrorAlert = false;
+   }, 3000);
+  },
+
+  async getSurat() {
+   try {
+    const response = await axios.get('/get_surat'); // Update the URL to match your backend
+    this.surat = response.data;
+   } catch (error) {
+    console.error('Error fetching surahs:', error);
+   }
+  },
+  async getAyat() {
+   if (this.selectedSurahId > 0) {
+    try {
+     const response = await axios.get('/get_ayat', {
+      params: {
+       surah_id: this.selectedSurahId
+      },
+     });
+     this.ayat = response.data;
+     this.dropdownHidden = false; // Show Ayah dropdown after fetching
+    } catch (error) {
+     console.error('Error fetching ayat:', error);
+    }
+   } else {
+    this.ayat = [];
+    this.dropdownHidden = true; // Hide Ayah dropdown if no Surah is selected
+   }
+  },
+  async handleAyahChange() {
+    const selectedAyahIndex = parseInt(this.selectedAyahId);
+    const selectedAyah = this.ayat[selectedAyahIndex];
+    if (selectedAyah) {
+      const ayahId = selectedAyah.ayah_id;
+      try {
+        const tafseerResponse = await axios.get(`/tafseer/${ayahId}/fetch`);
+        this.tafseer = tafseerResponse.data;
+
+        const infoResponse = await axios.get('/get_informations', {
+          params: { id: ayahId },
+        });
+        this.information = infoResponse.data;
+      } catch (error) {
+        console.error('Error fetching information or tafseer:', error);
+      }
+    }
+  },
   showCard() {
    this.isCardVisible = true; // Show the card when button is clicked
   },
@@ -807,6 +961,7 @@ export default {
    this.scrollToSelectedAyah();
    this.getTafseers(this.ayat[index].id, index);
   },
+  
 
   scrollToSelectedAyah() {
    this.$nextTick(() => {
@@ -839,7 +994,6 @@ export default {
    }
    return null;
   },
-
   shareHeadingOnTwitter3() {
    try {
     const headingText3 = this.$refs.targetElement.textContent.trim();
@@ -947,17 +1101,20 @@ export default {
   },
 
   selectSurah() {
+   // Example: Fetch ayat data for the selected surah (replace with actual logic)
+   // Simulate fetching ayat data for the selected surah
    this.ayat = this.fetchAyatForSurah(this.surah); // Replace with actual logic
    // Always select the first ayah when a surah is selected
    this.selectedAyah = this.ayat.length > 0 ? '0' : '0'; // Select the first ayah
   },
   selectSurah(surahId) {
-   this.selectedSurah = surahId;
+   this.surah = surahId;
    this.searchTerm = ''; // Clear the search term
    this.filteredSurah = []; // Clear the filtered results
-   this.showClearButton = false; // Hide the clear button
-  },
+   this.showClearButton = false; // Hide the clear button after clearing results
+   this.getAyat(); // Call the getAyat method with the selected Surah ID
 
+  },
   createNote() {
    const formData = {
     surah_name: this.information.ayah.surah.name_en,
@@ -1050,6 +1207,53 @@ export default {
    }
   },
 
+  copyText3() {
+   console.log(this.$refs.heading3);
+   var textToCopy3 = this.$refs.heading3.innerText;
+   console.log(textToCopy3);
+   // Copy the text to the clipboard
+   this.copyToClipboard(textToCopy3);
+   this.showAlertText = true; // Show success alert
+   this.showErrorAlert = false; // Hide error alert
+   this.hideAlertAfterDelay(); // Start timer to hide alert
+  },
+
+  copyText1() {
+   console.log(this.$refs.heading1);
+   var textToCopy1 = this.$refs.heading1.innerText;
+   console.log(textToCopy1);
+   this.copyToClipboard(textToCopy1);
+   this.showAlertText = true; // Show success alert
+   this.showErrorAlert = false; // Hide error alert
+   this.hideAlertAfterDelay(); // Start timer to hide alert
+  },
+
+  copyText2() {
+   // Log the reference to ensure it's correct
+   console.log(this.$refs.heading2);
+   // Access the text content from the reference
+   var textToCopy2 = this.$refs.heading2.innerText;
+   // Log the text content to ensure it's correct
+   console.log(textToCopy2);
+   // Copy the text to the clipboard
+   this.copyToClipboard(textToCopy2);
+   this.showAlertText = true; // Show success alert
+   this.showErrorAlert = false; // Hide error alert
+   this.hideAlertAfterDelay(); // Start timer to hide alert
+  },
+
+  copyToClipboard(text) {
+   // Create a textarea element to copy the text
+   var textarea = document.createElement("textarea");
+   textarea.value = text;
+   document.body.appendChild(textarea);
+   textarea.select();
+   document.execCommand("copy");
+   document.body.removeChild(textarea);
+   // Log a success message
+   console.log("Text copied to clipboard:", text);
+  },
+
   getTafseers: function (id, index) {
    this.selectedIndexAyah = index;
 
@@ -1086,13 +1290,21 @@ export default {
  },
 
  watch: {
+  $route(to, from) {
+   // Re-fetch translation if route changes (i.e., if ID changes)
+   console.log('Route changed, fetching new translation...');
+   this.fetchTranslation();
+  },
+  surah(newSurah) {
+   this.getAyat(newSurah);
+  },
   'information.ayah.surah.name_ar': 'updateFileName',
   verseNumber(newVal, oldVal) {
    if (newVal !== oldVal && parseInt(newVal)) {
     this.selectedIndexAyah = parseInt(newVal) - 1;
    }
   },
- }
+}
 }
 </script>
 
