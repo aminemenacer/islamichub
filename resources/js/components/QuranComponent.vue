@@ -37,28 +37,14 @@
       </select>
     </form>
 
-    <AyahDropdown 
+    <AyahDropdown
       :selectedSurahId="selectedSurahId" 
       :dropdownHidden="dropdownHidden" 
       @update-information="updateInformation" 
       @update-tafseer="updateTafseer" 
+      v-if="ayah != null"
     />
-   <!-- Ayah Dropdown (mobile) 
-    <div class="tab-content mb-1" id="nav-tabContent" v-if="!dropdownHidden">
-      <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-        <form style="cursor: pointer; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px;">
-          -- Add a class to the select element for easier targeting --
-          <select class="form-control mobile-only hide-on-full-screen hide-on-tablet right-side-form" v-model="selectedAyahId" @change="handleAyahChange" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
-            <option value="0" disabled>
-              Select Ayah
-            </option>
-            <option v-for="(ayah, index) in ayat" :key="index" :value="index">{{ ayah.ayah_text }} : {{ ayah.ayah_id }}</option>
-          </select>
-        </form>
-      </div>
-    </div>
-    -->
-
+   
    <!-- List of Ayat for Surah (desktop) -->
    <div class="tab-content hide-on-mobile-tablet" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" v-if="ayah == null">
@@ -68,11 +54,8 @@
       <button class="btn btn-success mb-1 ml-2" type="submit">Search</button> 
      </form>
      
-
      <!-- Error alert -->
      <ErrorAlert :showError="showError" @dismiss-error="dismissError" />
-
-     
 
      <div class="row container-fluid">
       <hr class="container" style="height: 4px; background: lightgrey;">
@@ -103,7 +86,6 @@
    <div class="card pt-2" style="box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;">
 
     <div class="container-fluid" v-if="information != null">
-     <!-- navigation tabs -->
      <NavTabs />
     </div>
 
@@ -168,37 +150,7 @@
 
 
         <!-- Surah Info Modal -->
-        <div class="modal fade" id="translationInfo" tabindex="-1" aria-labelledby="surahInfoModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-            <h1 class="modal-title fs-5" id="surahInfoModalLabel"><strong>Information</strong></h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-            <form class="container text-left">
-              <div class="mb-3 container">
-              <label for="formGroupExampleInput" class="form-label">Surah Name (English):</label>
-              <p class="mt-2 text-dark text-left">{{ information.ayah.surah.name_en }}</p>
-              </div>
-              <div class="mb-3 container">
-              <label for="formGroupExampleInput" class="form-label text-left">Surah Information:</label>
-              <p class="text-left">
-                {{ expanded ? information.ayah.surah.text : truncatedText(information.ayah.surah.text) }}
-                <template v-if="showMoreLink">
-                <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
-                </template>
-              </p>
-              </div>
-
-            </form>
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-          </div>
-          </div>
-        </div>
+        <SurahInfoModal :information="information" />
         <!-- Notes Modal -->
         <div class="modal fade" id="translationNote" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true" ref="exampleModal1">
           <div class="modal-dialog modal-lg">
@@ -301,36 +253,7 @@
        <!-- Features -->
        <div class="text-right pt-2">
         <!-- Surah Info Modal -->
-        <div class="modal fade" id="tafseerInfo" tabindex="-1" aria-labelledby="surahInfoModalLabel" aria-hidden="true">
-         <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="surahInfoModalLabel"><strong>Information</strong></h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-           </div>
-           <div class="modal-body">
-            <form class="container text-left">
-             <div class="mb-3 container">
-              <label for="formGroupExampleInput" class="form-label">Surah Name (English):</label>
-              <p class="mt-2 text-dark text-left">{{ information.ayah.surah.name_en }}</p>
-             </div>
-             <div class="mb-3 container">
-              <label for="formGroupExampleInput" class="form-label text-left">Surah Information:</label>
-              <p class="text-left">
-               {{ expanded ? information.ayah.surah.text : truncatedText(information.ayah.surah.text) }}
-               <template v-if="showMoreLink">
-                <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
-               </template>
-              </p>
-             </div>
-            </form>
-           </div>
-           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-           </div>
-          </div>
-         </div>
-        </div>
+        <SurahInfoModal :information="information" />
 
         <!-- Notes Modal -->
         <div class="modal fade" id="tafseerNote" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true" ref="exampleModal1">
@@ -463,36 +386,7 @@
          </div>
 
          <!-- Surah Info Modal -->
-         <div class="modal fade" id="transliterationInfo" tabindex="-1" aria-labelledby="surahInfoModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-lg">
-           <div class="modal-content">
-            <div class="modal-header">
-             <h1 class="modal-title fs-5" id="surahInfoModalLabel"><strong>Information</strong></h1>
-             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-             <form class="container text-left">
-              <div class="mb-3 container">
-               <label for="formGroupExampleInput" class="form-label">Surah Name (English):</label>
-               <p class="mt-2 text-dark text-left">{{ information.ayah.surah.name_en }}</p>
-              </div>
-              <div class="mb-3 container">
-               <label for="formGroupExampleInput" class="form-label text-left">Surah Information:</label>
-               <p class="text-left">
-                {{ expanded ? information.ayah.surah.text : truncatedText(information.ayah.surah.text) }}
-                <template v-if="showMoreLink">
-                 <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
-                </template>
-               </p>
-              </div>
-             </form>
-            </div>
-            <div class="modal-footer">
-             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-           </div>
-          </div>
-         </div>
+         <SurahInfoModal :information="information" />
 
         </div>
        </div>
@@ -539,6 +433,7 @@ import CopyTransliterationText from './translation/features/copy_text/CopyTransl
 import ScreenTranslationCapture from './translation/features/screen_capture/ScreenTranslationCapture.vue';
 import ScreenTafseerCapture from './translation/features/screen_capture/ScreenTafseerCapture.vue';
 import ScreenTransliterationCapture from './translation/features/screen_capture/ScreenTransliterationCapture.vue';
+import SurahInfoModal from './modals/SurahInfoModal.vue';
 
 export default {
  name: 'QuranComponent',
@@ -568,7 +463,8 @@ export default {
   CopyTransliterationText,
   ScreenTranslationCapture,
   ScreenTafseerCapture,
-  ScreenTransliterationCapture
+  ScreenTransliterationCapture,
+  SurahInfoModal,
  },
  mounted() {
   this.getSurat(); // Call getSurat to populate the surah list
@@ -626,7 +522,6 @@ export default {
    showErrorAlert: false,
    showAlertTextNote: false,
    maxLength: 400,
-
    // notes modal
    form1: new Form({
     id: "",
@@ -797,13 +692,10 @@ export default {
   handleNoteClick() {
    if (this.isLoggedIn) {
     this.showAlertTextNote = false;
-    this.openNoteModal();
+    $('#exampleModal1').modal('show');
    } else {
     this.showAlertTextNote = true;
    }
-  },
-  openNoteModal() {
-   $('#exampleModal1').modal('show');
   },
   submitCat() {
    const formData = {
@@ -828,13 +720,11 @@ export default {
    } else {
     this.showError = true;
     setTimeout(() => {
-     this.dismissError();
+      this.showError = false;
     }, 5000);
    }
   },
-  dismissError() {
-   this.showError = false;
-  },
+
   submitForm() {
    const formData = {
     surah_name: this.information.ayah.surah.name_en,
@@ -931,6 +821,7 @@ export default {
    }
   },
   async getAyat() {
+    
    if (this.selectedSurahId > 0) {
     try {
      const response = await axios.get('/get_ayat', {
@@ -1052,67 +943,6 @@ export default {
    const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text2)}`;
    window.open(url, '_blank');
   },
-
-  captureScreenshot3() {
-   const targetElement = this.$refs.targetElement;
-
-   // Capture screenshot for targetElement after 5 seconds
-   setTimeout(() => {
-    html2canvas(targetElement).then(canvas => {
-     const dataUrl = canvas.toDataURL('image/png');
-     this.downloadUrl = dataUrl;
-
-     // Simulate click on download link after 2 seconds
-     setTimeout(() => {
-      const downloadLink = document.createElement('a');
-      downloadLink.href = dataUrl;
-      downloadLink.download = 'screenshot.png';
-      downloadLink.click();
-     }, 4); // 2000 milliseconds = 2 seconds
-    });
-   }, 4); // 5000 milliseconds = 5 seconds
-  },
-
-  captureScreenshot1() {
-   const targetElement1 = this.$refs.targetElement1;
-
-   // Capture screenshot for targetElement after 5 seconds
-   setTimeout(() => {
-    html2canvas(targetElement1).then(canvas => {
-     const dataUrl = canvas.toDataURL('image/png');
-     this.downloadUrl = dataUrl;
-
-     // Simulate click on download link after 2 seconds
-     setTimeout(() => {
-      const downloadLink = document.createElement('a');
-      downloadLink.href = dataUrl;
-      downloadLink.download = 'screenshot.png';
-      downloadLink.click();
-     }, 4); // 2000 milliseconds = 2 seconds
-    });
-   }, 4); // 5000 milliseconds = 5 seconds
-  },
-
-  captureScreenshot2() {
-   const targetElement2 = this.$refs.targetElement2;
-
-   // Capture screenshot for targetElement after 5 seconds
-   setTimeout(() => {
-    html2canvas(targetElement2).then(canvas => {
-     const dataUrl = canvas.toDataURL('image/png');
-     this.downloadUrl = dataUrl;
-
-     // Simulate click on download link after 2 seconds
-     setTimeout(() => {
-      const downloadLink = document.createElement('a');
-      downloadLink.href = dataUrl;
-      downloadLink.download = 'screenshot.png';
-      downloadLink.click();
-     }, 4); // 2000 milliseconds = 2 seconds
-    });
-   }, 4); // 5000 milliseconds = 5 seconds
-  },
-
   selectSurah() {
    // Example: Fetch ayat data for the selected surah (replace with actual logic)
    // Simulate fetching ayat data for the selected surah
@@ -1256,11 +1086,7 @@ export default {
  },
 
  watch: {
-  $route(to, from) {
-   // Re-fetch translation if route changes (i.e., if ID changes)
-   console.log('Route changed, fetching new translation...');
-   this.fetchTranslation();
-  },
+  
   surah(newSurah) {
    this.getAyat(newSurah);
   },
