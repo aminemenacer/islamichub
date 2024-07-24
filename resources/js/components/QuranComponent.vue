@@ -237,7 +237,7 @@
          <i class="bi bi-whatsapp text-right mr-2 h4" @click="shareTextViaWhatsApp1" aria-expanded="false" data-bs-placement="top" title="Share on Whatsapp" style="color: rgba(0, 191, 166);cursor:pointer"></i>
          <i style=" color:rgb(0, 191, 166); cursor:pointer" @click="shareHeadingOnTwitter1" class="mr-2 bi bi-twitter-x text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X"></i>
          <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
-         <i class="bi bi-clipboard-check text-right mr-2 h4" @click="copyText1" aria-expanded="false" data-bs-placement="top" title="Copy verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
+         <CopyTafseerText :textToCopy="tafseer" />
          <i class="bi bi-camera text-right mr-2 h3" @click="captureScreenshot1" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" style="color: rgba(0, 191, 166); cursor:pointer"></i>
          <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;"></i>
          <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
@@ -1211,53 +1211,6 @@ export default {
    if (exampleModal2) {
     exampleModal2.hide();
    }
-  },
-
-  copyText3() {
-   console.log(this.$refs.heading3);
-   var textToCopy3 = this.$refs.heading3.innerText;
-   console.log(textToCopy3);
-   // Copy the text to the clipboard
-   this.copyToClipboard(textToCopy3);
-   this.showAlertText = true; // Show success alert
-   this.showErrorAlert = false; // Hide error alert
-   this.hideAlertAfterDelay(); // Start timer to hide alert
-  },
-
-  copyText1() {
-   console.log(this.$refs.heading1);
-   var textToCopy1 = this.$refs.heading1.innerText;
-   console.log(textToCopy1);
-   this.copyToClipboard(textToCopy1);
-   this.showAlertText = true; // Show success alert
-   this.showErrorAlert = false; // Hide error alert
-   this.hideAlertAfterDelay(); // Start timer to hide alert
-  },
-
-  copyText2() {
-   // Log the reference to ensure it's correct
-   console.log(this.$refs.heading2);
-   // Access the text content from the reference
-   var textToCopy2 = this.$refs.heading2.innerText;
-   // Log the text content to ensure it's correct
-   console.log(textToCopy2);
-   // Copy the text to the clipboard
-   this.copyToClipboard(textToCopy2);
-   this.showAlertText = true; // Show success alert
-   this.showErrorAlert = false; // Hide error alert
-   this.hideAlertAfterDelay(); // Start timer to hide alert
-  },
-
-  copyToClipboard(text) {
-   // Create a textarea element to copy the text
-   var textarea = document.createElement("textarea");
-   textarea.value = text;
-   document.body.appendChild(textarea);
-   textarea.select();
-   document.execCommand("copy");
-   document.body.removeChild(textarea);
-   // Log a success message
-   console.log("Text copied to clipboard:", text);
   },
 
   getTafseers: function (id, index) {
