@@ -99,7 +99,7 @@
        <div class="icon-container pb-3">
         <div class="icon-container w-100 hide-on-mobile pb-3">
          <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#translationNote" style="color: rgba(0, 191, 166);cursor:pointer"></i>
-         <i class="bi bi-whatsapp text-right mr-2 h4" @click="shareTextViaWhatsApp3" aria-expanded="false" data-bs-placement="top" title="Share on Whatsapp" style="color: rgba(0, 191, 166);cursor:pointer"></i>
+         <WhatsAppShareTranslation :translationToShare="information.translation"/>
          <TwitterShareTranslation :targetElementRef="'targetElement'" :translationText="information.translation"/>
          <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
          <CopyTranslationText :textToCopy="information.translation" />
@@ -190,7 +190,7 @@
         <div class="icon-container w-100 hide-on-mobile pb-3">
          <!-- Camera Icon for Screenshot -->
          <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#tafseerNote" style="color: rgba(0, 191, 166);cursor:pointer"></i>
-         <i class="bi bi-whatsapp text-right mr-2 h4" @click="shareTextViaWhatsApp1" aria-expanded="false" data-bs-placement="top" title="Share on Whatsapp" style="color: rgba(0, 191, 166);cursor:pointer"></i>
+         <WhatsAppShareTafseer :tafseerToShare="tafseer"/>
          <TwitterShareTafseer :targetElementRef="'targetElement'" :tafseerText="tafseer"/>
          <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
          <CopyTafseerText :textToCopy="tafseer" />
@@ -298,7 +298,7 @@
 
           <div class="icon-container w-100 hide-on-mobile pb-3">
            <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#transliterationNote" style="color: rgba(0, 191, 166);cursor:pointer"></i>
-           <i class="bi bi-whatsapp text-right mr-2 h4" @click="shareTextViaWhatsApp2" aria-expanded="false" data-bs-placement="top" title="Share on Whatsapp" style="color: rgba(0, 191, 166);cursor:pointer"></i>
+           <WhatsAppShareTransliteration :transliterationToShare="information.transliteration"/>
            <TwitterShareTransliteration :targetElementRef="'targetElement'" :transliterationText="information.transliteration"/>
            <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
            <CopyTransliterationText :textToCopy="information.transliteration" />
@@ -439,6 +439,9 @@ import SurahInfoModal from './modals/SurahInfoModal.vue';
 import TwitterShareTranslation from './translation/features/twitter/TwitterShareTranslation.vue';
 import TwitterShareTafseer from './translation/features/twitter/TwitterShareTafseer.vue';
 import TwitterShareTransliteration from './translation/features/twitter/TwitterShareTransliteration.vue';
+import WhatsAppShareTranslation from './translation/features/whatsapp/WhatsAppShareTranslation.vue';
+import WhatsAppShareTafseer from './translation/features/whatsapp/WhatsAppShareTafseer.vue';
+import WhatsAppShareTransliteration from './translation/features/whatsapp/WhatsAppShareTransliteration.vue';
 
 export default {
  name: 'QuranComponent',
@@ -472,14 +475,18 @@ export default {
   SurahInfoModal,
   TwitterShareTranslation,
   TwitterShareTransliteration,
-  TwitterShareTafseer
+  TwitterShareTafseer,
+  WhatsAppShareTranslation,
+  WhatsAppShareTafseer,
+  WhatsAppShareTransliteration,
+
  },
  mounted() {
   this.getSurat(); // Call getSurat to populate the surah list
  },
  data() {
   return {
-   //twitter
+   //twitter/whatsapp
    information: {
     translation: '',
     transliteration:'', // Example translated text
@@ -496,8 +503,7 @@ export default {
    surat: [],
    ayat: [],
    tafseers: [],
-   // sorage
-   
+   // storage
    information: null, 
    tafseer: null,
    surah: null,
@@ -881,7 +887,6 @@ export default {
    this.getTafseers(this.ayat[index].id, index);
   },
   
-
   scrollToSelectedAyah() {
    this.$nextTick(() => {
     const selectedAyah = this.$refs.ayahList.querySelector('.selected');
@@ -914,34 +919,16 @@ export default {
    return null;
   },
   
-  shareTextViaWhatsApp3() {
-   const text3 = this.$refs.targetElement.innerText;
-   const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text3)}`;
-   window.open(url, '_blank');
-  },
-  shareTextViaWhatsApp1() {
-   const text1 = this.$refs.targetElement1.innerText;
-   const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text1)}`;
-   window.open(url, '_blank');
-  },
-  shareTextViaWhatsApp2() {
-   const text2 = this.$refs.targetElement2.innerText;
-   const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text2)}`;
-   window.open(url, '_blank');
-  },
   selectSurah() {
-   // Example: Fetch ayat data for the selected surah (replace with actual logic)
-   // Simulate fetching ayat data for the selected surah
    this.ayat = this.fetchAyatForSurah(this.surah); // Replace with actual logic
-   // Always select the first ayah when a surah is selected
    this.selectedAyah = this.ayat.length > 0 ? '0' : '0'; // Select the first ayah
   },
   selectSurah(surahId) {
    this.surah = surahId;
-   this.searchTerm = ''; // Clear the search term
-   this.filteredSurah = []; // Clear the filtered results
-   this.showClearButton = false; // Hide the clear button after clearing results
-   this.getAyat(); // Call the getAyat method with the selected Surah ID
+   this.searchTerm = ''; 
+   this.filteredSurah = []; 
+   this.showClearButton = false; 
+   this.getAyat(); 
 
   },
   createNote() {
@@ -1072,7 +1059,6 @@ export default {
  },
 
  watch: {
-  
   surah(newSurah) {
    this.getAyat(newSurah);
   },

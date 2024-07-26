@@ -1,6 +1,6 @@
 <template>
   <i class="bi bi-whatsapp text-right mr-2 h4"
-     @click="shareTextViaWhatsApp3"
+     @click="shareTranslationViaWhatsApp"
      aria-expanded="false"
      data-bs-placement="top"
      title="Share on Whatsapp"
@@ -9,18 +9,17 @@
 
 <script>
 export default {
-  name: 'WhatsAppShare',
+  name: 'WhatsAppShareTranslation',
   props: {
-    textToShare: {
+    translationToShare: {
       type: String,
       required: true
     }
   },
   methods: {
-    shareTextViaWhatsApp3() {
-     const text3 = this.$refs.targetElement.innerText;
-     const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text3)}`;
-     window.open(url, '_blank');
+    shareTranslationViaWhatsApp() {
+      const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(this.translationToShare)}`;
+      window.open(url, '_blank');
     }
   }
 };
