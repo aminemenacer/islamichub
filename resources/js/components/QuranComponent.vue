@@ -5,9 +5,9 @@
   <!-- quran title -->
   <Title />
   <!-- Search bar  -->
-    <SearchForm :surat="surat" @update-results="handleUpdateResults" @clear-results="handleClearResults" />
+  <SearchForm :surat="surat" @update-results="handleUpdateResults" @clear-results="handleClearResults" />
   <!-- custom surah selection -->
-    <custom-surah-selection :customSurat="customSuratList" v-model="selectedSurah"></custom-surah-selection>
+  <custom-surah-selection :customSurat="customSuratList" v-model="selectedSurah"></custom-surah-selection>
  </div>
 
  <!-- accordion headers-->
@@ -27,33 +27,27 @@
 
    <!-- Surah Selection Dropdown -->
    <form class="mb-2 right-side-form" style="cursor: pointer; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px;">
-      <select class="form-control custom-dropdown" v-model="selectedSurahId" @change="getAyat" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
-        <option value="0" disabled>
-          Select Surah
-        </option>
-        <option v-for="data in filteredSurah.length ? filteredSurah : surat" :key="data.id" :value="data.id">
-          {{ data.id }} : {{ data.name_en }} - {{ data.name_ar }}
-        </option>
-      </select>
-    </form>
+    <select class="form-control custom-dropdown" v-model="selectedSurahId" @change="getAyat" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
+     <option value="0" disabled>
+      Select Surah
+     </option>
+     <option v-for="data in filteredSurah.length ? filteredSurah : surat" :key="data.id" :value="data.id">
+      {{ data.id }} : {{ data.name_en }} - {{ data.name_ar }}
+     </option>
+    </select>
+   </form>
 
-    <AyahDropdown
-      :selectedSurahId="selectedSurahId" 
-      :dropdownHidden="dropdownHidden" 
-      @update-information="updateInformation" 
-      @update-tafseer="updateTafseer" 
-      v-if="ayah != null"
-    />
-   
+   <AyahDropdown :selectedSurahId="selectedSurahId" :dropdownHidden="dropdownHidden" @update-information="updateInformation" @update-tafseer="updateTafseer" v-if="ayah != null" />
+
    <!-- List of Ayat for Surah (desktop) -->
    <div class="tab-content hide-on-mobile-tablet" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" v-if="ayah == null">
- 
+
      <form class="d-flex pb-2 " role="search" @submit.prevent="scrollToAyah">
       <input class="form-control me-2" type="number" placeholder="Enter Verse Number" v-model="verseNumber" required>
-      <button class="btn btn-success mb-1 ml-2" type="submit">Search</button> 
+      <button class="btn btn-success mb-1 ml-2" type="submit">Search</button>
      </form>
-     
+
      <!-- Error alert -->
      <ErrorAlert :showError="showError" @dismiss-error="dismissError" />
 
@@ -97,10 +91,24 @@
       <!-- Translation Section -->
       <div class="tab-pane active" id="home" role="tabpanel" v-if="information != null">
        <div class="icon-container pb-3">
+        
+    
+    
         <div class="icon-container w-100 hide-on-mobile pb-3">
-         <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#translationNote" style="color: rgba(0, 191, 166);cursor:pointer"></i>
-         <WhatsAppShareTranslation :translationToShare="information.translation"/>
-         <TwitterShareTranslation :targetElementRef="'targetElement'" :translationText="information.translation"/>
+          <i 
+            class="bi bi-file-earmark-text text-right mr-2 h4" 
+            aria-expanded="false" 
+            data-bs-placement="top" 
+            title="Write a note" 
+            @click="openModal('translationNote')" 
+            style="color: rgba(0, 191, 166);cursor:pointer">
+          </i>
+          <TranslationNote 
+            ref="translationNote" 
+            :information="information.translation" 
+          />
+         <WhatsAppShareTranslation :translationToShare="information.translation" />
+         <TwitterShareTranslation :targetElementRef="'targetElement'" :translationText="information.translation" />
          <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
          <CopyTranslationText :textToCopy="information.translation" />
          <ScreenTranslationCapture :targetTranslationRef="'targetTranslationElement'" />
@@ -116,9 +124,6 @@
           <i class="bi bi-arrow-right-circle h5" style="color: rgb(0, 191, 166);" @click="goToNextAyah()" title="Next verse"></i>
           <i class="bi bi-chevron-bar-right h5" style="color: rgb(0, 191, 166);" @click="goToLastAyah()" title="End verse"></i>
           <i class="bi bi-arrows-fullscreen h6" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
-
-
-
 
           <i style="color:rgb(0, 191, 166); cursor:pointer" class="bi bi-three-dots-vertical h5 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></i>
           <ul class="dropdown-menu">
@@ -137,7 +142,6 @@
        </div>
 
        <!-- Target Element for Screenshot -->
-
        <div ref="targetTranslationElement" class="w-100 my-element " :class="{'full-screen': isFullScreen}">
         <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
         <AyahInfo :information="information" />
@@ -150,36 +154,8 @@
          <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
         </div>
        </div>
-
-
-        <!-- Surah Info Modal -->
-        <SurahInfoModal :information="information" />
-        <!-- Notes Modal -->
-        <div class="modal fade" id="translationNote" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true" ref="exampleModal1">
-          <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel1">Write a Note</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-            <!-- Note Form -->
-            <form @submit.prevent="createNote">
-              <div class="row container mt-3">
-              <h5 class="text-left pb-2 font-weight-bold">Notes & Reflections</h5>
-              <div class="col">
-                <textarea v-model="form1.ayah_notes" class="form-control container mb-3" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah." rows="8"></textarea>
-              </div>
-              </div>
-              <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-success">Submit</button>
-              </div>
-            </form>
-            </div>
-          </div>
-          </div>
-        </div>
+       <!-- Surah Info Modal -->
+       <SurahInfoModal :information="information" />
 
       </div>
 
@@ -188,10 +164,20 @@
        <div class="icon-container pb-3">
 
         <div class="icon-container w-100 hide-on-mobile pb-3">
-         <!-- Camera Icon for Screenshot -->
-         <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#tafseerNote" style="color: rgba(0, 191, 166);cursor:pointer"></i>
-         <WhatsAppShareTafseer :tafseerToShare="tafseer"/>
-         <TwitterShareTafseer :targetElementRef="'targetElement'" :tafseerText="tafseer"/>
+         <i 
+            class="bi bi-file-earmark-text text-right mr-2 h4" 
+            aria-expanded="false" 
+            data-bs-placement="top" 
+            title="Write a note" 
+            @click="openModal('tafseerNote')" 
+            style="color: rgba(0, 191, 166);cursor:pointer">
+          </i>
+          <TafseerNote 
+            ref="tafseerNote" 
+            :information="tafseer" 
+          />
+         <WhatsAppShareTafseer :tafseerToShare="tafseer" />
+         <TwitterShareTafseer :targetElementRef="'targetElement'" :tafseerText="tafseer" />
          <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
          <CopyTafseerText :textToCopy="tafseer" />
          <ScreenTafseerCapture :targetTafseerRef="'targetTafseerElement'" />
@@ -258,33 +244,6 @@
         <!-- Surah Info Modal -->
         <SurahInfoModal :information="information" />
 
-        <!-- Notes Modal -->
-        <div class="modal fade" id="tafseerNote" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true" ref="exampleModal1">
-         <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel1">Write a Note</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-           </div>
-           <div class="modal-body">
-            <!-- Note Form -->
-            <form @submit.prevent="createNote">
-             <div class="row container mt-3">
-              <h5 class="text-left pb-2 font-weight-bold">Notes & Reflections</h5>
-              <div class="col">
-               <textarea v-model="form1.ayah_notes" class="form-control container mb-3" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah." rows="8"></textarea>
-              </div>
-             </div>
-             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-success">Submit</button>
-             </div>
-            </form>
-           </div>
-          </div>
-         </div>
-        </div>
-
        </div>
 
       </div>
@@ -297,12 +256,23 @@
          <div class="icon-container pb-3">
 
           <div class="icon-container w-100 hide-on-mobile pb-3">
-           <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#transliterationNote" style="color: rgba(0, 191, 166);cursor:pointer"></i>
-           <WhatsAppShareTransliteration :transliterationToShare="information.transliteration"/>
-           <TwitterShareTransliteration :targetElementRef="'targetElement'" :transliterationText="information.transliteration"/>
+           <i 
+            class="bi bi-file-earmark-text text-right mr-2 h4" 
+            aria-expanded="false" 
+            data-bs-placement="top" 
+            title="Write a note" 
+            @click="openModal('transliterationNote')" 
+            style="color: rgba(0, 191, 166);cursor:pointer">
+          </i>
+          <TransliterationNote 
+            ref="transliterationNote" 
+            :information="information.transliteration" 
+          />
+           <WhatsAppShareTransliteration :transliterationToShare="information.transliteration" />
+           <TwitterShareTransliteration :targetElementRef="'targetElement'" :transliterationText="information.transliteration" />
            <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
            <CopyTransliterationText :textToCopy="information.transliteration" />
-           <ScreenTafseerCapture :targetTafseerRef="'targetTafseerElement'" />
+           <ScreenTransliterationCapture :targetTransliterationRef="'targetTransliterationElement'" />
            <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;"></i>
            <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
            <i class="bi bi-info-circle h4" style="color: rgb(0, 191, 166);cursor:pointer" data-bs-target="#transliterationInfo" aria-expanded="false" data-bs-toggle="modal" data-bs-placement="top" title="Surah info"></i>
@@ -360,33 +330,6 @@
          <!-- Include the AlertModal component -->
          <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
 
-         <!-- Notes Modal -->
-         <div class="modal fade" id="transliterationNote" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true" ref="exampleModal1">
-          <div class="modal-dialog modal-lg">
-           <div class="modal-content">
-            <div class="modal-header">
-             <h5 class="modal-title" id="exampleModalLabel1">Write a Note</h5>
-             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-             <!-- Note Form -->
-             <form @submit.prevent="createNote">
-              <div class="row container mt-3">
-               <h5 class="text-left pb-2 font-weight-bold">Notes & Reflections</h5>
-               <div class="col">
-                <textarea v-model="form1.ayah_notes" class="form-control container mb-3" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah." rows="8"></textarea>
-               </div>
-              </div>
-              <div class="modal-footer">
-               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-               <button type="submit" class="btn btn-success">Submit</button>
-              </div>
-             </form>
-            </div>
-           </div>
-          </div>
-         </div>
-
          <!-- Surah Info Modal -->
          <SurahInfoModal :information="information" />
 
@@ -397,8 +340,15 @@
 
       <BookmarksAndNotes :information="information" />
       <CorrectionModal />
+      
 
      </div>
+
+     <!-- Modals -->
+      <TranslationNote ref="translationNote" :information="modalInformation" />
+      <TafseerNote ref="tafseerNote" :information="modalInformation" />
+      <TransliterationNote ref="transliterationNote" :information="modalInformation" />
+
     </div>
    </div>
   </div>
@@ -442,6 +392,9 @@ import TwitterShareTransliteration from './translation/features/twitter/TwitterS
 import WhatsAppShareTranslation from './translation/features/whatsapp/WhatsAppShareTranslation.vue';
 import WhatsAppShareTafseer from './translation/features/whatsapp/WhatsAppShareTafseer.vue';
 import WhatsAppShareTransliteration from './translation/features/whatsapp/WhatsAppShareTransliteration.vue';
+import TranslationNote from './translation/features/notes/TranslationNote.vue';
+import TafseerNote from './translation/features/notes/TafseerNote.vue';
+import TransliterationNote from './translation/features/notes/TransliterationNote.vue';
 
 export default {
  name: 'QuranComponent',
@@ -479,6 +432,9 @@ export default {
   WhatsAppShareTranslation,
   WhatsAppShareTafseer,
   WhatsAppShareTransliteration,
+  TranslationNote,
+  TafseerNote,
+  TransliterationNote,
 
  },
  mounted() {
@@ -486,12 +442,13 @@ export default {
  },
  data() {
   return {
+   
    //twitter/whatsapp
    information: {
     translation: '',
-    transliteration:'', // Example translated text
+    transliteration: '', // Example translated text
    },
-   tafseer:'',
+   tafseer: '',
    //custom surah collection
    customSuratList: [],
    selectedSurah: 1,
@@ -504,7 +461,7 @@ export default {
    ayat: [],
    tafseers: [],
    // storage
-   information: null, 
+   information: null,
    tafseer: null,
    surah: null,
    ayah_id: null,
@@ -571,22 +528,32 @@ export default {
   };
  },
  methods: {
-   updateInformation(newInformation) {
-      this.information = newInformation;
-    },
-    updateTafseer(newTafseer) {
-      this.tafseer = newTafseer;
-    },
-   
-  handleScrollToAyah(verseNumber) {
-    this.$nextTick(() => {
-      const ayahElement = this.$refs.ayahContainer.querySelector(`#ayah-${verseNumber}`);
-      if (ayahElement) {
-        ayahElement.scrollIntoView({ behavior: 'smooth' });
+  openModal(modalRef) {
+      const modalComponent = this.$refs[modalRef];
+      if (modalComponent && typeof modalComponent.showModal === 'function') {
+        modalComponent.showModal();
       } else {
-        console.error('Ayah not found:', verseNumber);
+        console.error(`Modal reference '${modalRef}' not found or showModal is not a function.`);
       }
-    });
+    },
+  updateInformation(newInformation) {
+   this.information = newInformation;
+  },
+  updateTafseer(newTafseer) {
+   this.tafseer = newTafseer;
+  },
+
+  handleScrollToAyah(verseNumber) {
+   this.$nextTick(() => {
+    const ayahElement = this.$refs.ayahContainer.querySelector(`#ayah-${verseNumber}`);
+    if (ayahElement) {
+     ayahElement.scrollIntoView({
+      behavior: 'smooth'
+     });
+    } else {
+     console.error('Ayah not found:', verseNumber);
+    }
+   });
   },
   handleUpdateResults(filteredSurah) {
    this.filteredSurah = filteredSurah;
@@ -741,7 +708,7 @@ export default {
    } else {
     this.showError = true;
     setTimeout(() => {
-      this.showError = false;
+     this.showError = false;
     }, 5000);
    }
   },
@@ -842,7 +809,7 @@ export default {
    }
   },
   async getAyat() {
-    
+
    if (this.selectedSurahId > 0) {
     try {
      const response = await axios.get('/get_ayat', {
@@ -861,22 +828,24 @@ export default {
    }
   },
   async handleAyahChange() {
-    const selectedAyahIndex = parseInt(this.selectedAyahId);
-    const selectedAyah = this.ayat[selectedAyahIndex];
-    if (selectedAyah) {
-      const ayahId = selectedAyah.ayah_id;
-      try {
-        const tafseerResponse = await axios.get(`/tafseer/${ayahId}/fetch`);
-        this.tafseer = tafseerResponse.data;
+   const selectedAyahIndex = parseInt(this.selectedAyahId);
+   const selectedAyah = this.ayat[selectedAyahIndex];
+   if (selectedAyah) {
+    const ayahId = selectedAyah.ayah_id;
+    try {
+     const tafseerResponse = await axios.get(`/tafseer/${ayahId}/fetch`);
+     this.tafseer = tafseerResponse.data;
 
-        const infoResponse = await axios.get('/get_informations', {
-          params: { id: ayahId },
-        });
-        this.information = infoResponse.data;
-      } catch (error) {
-        console.error('Error fetching information or tafseer:', error);
-      }
+     const infoResponse = await axios.get('/get_informations', {
+      params: {
+       id: ayahId
+      },
+     });
+     this.information = infoResponse.data;
+    } catch (error) {
+     console.error('Error fetching information or tafseer:', error);
     }
+   }
   },
   showCard() {
    this.isCardVisible = true; // Show the card when button is clicked
@@ -886,7 +855,7 @@ export default {
    this.scrollToSelectedAyah();
    this.getTafseers(this.ayat[index].id, index);
   },
-  
+
   scrollToSelectedAyah() {
    this.$nextTick(() => {
     const selectedAyah = this.$refs.ayahList.querySelector('.selected');
@@ -918,109 +887,18 @@ export default {
    }
    return null;
   },
-  
+
   selectSurah() {
    this.ayat = this.fetchAyatForSurah(this.surah); // Replace with actual logic
    this.selectedAyah = this.ayat.length > 0 ? '0' : '0'; // Select the first ayah
   },
   selectSurah(surahId) {
    this.surah = surahId;
-   this.searchTerm = ''; 
-   this.filteredSurah = []; 
-   this.showClearButton = false; 
-   this.getAyat(); 
+   this.searchTerm = '';
+   this.filteredSurah = [];
+   this.showClearButton = false;
+   this.getAyat();
 
-  },
-  createNote() {
-   const formData = {
-    surah_name: this.information.ayah.surah.name_en,
-    ayah_num: this.information.ayah_id,
-    ayah_verse_ar: this.information.ayah.ayah_text,
-    ayah_verse_en: this.information.translation,
-    ayah_notes: this.form1.ayah_notes
-   };
-
-   Swal.fire({
-    title: "Are you sure?",
-    text: "You want to submit note!",
-    showCancelButton: true,
-    confirmButtonColor: "green",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Submit!"
-   }).then(result => {
-    if (result.isConfirmed) {
-     axios.post("/api/submit-note", formData)
-      .then(res => {
-       if (res.data.success) {
-        Swal.fire({
-         icon: "success",
-         title: "Success!",
-         text: "Your note has been submitted.",
-         timer: 1500,
-         showConfirmButton: false
-        }).then(() => {
-         $('#exampleModal1').modal('hide');
-         this.resetNoteForm();
-         document.body.classList.remove('modal-open');
-         document.querySelectorAll('.modal-backdrop').forEach(modal => modal.remove());
-        });
-       } else {
-        Swal.fire({
-         icon: "success",
-         title: "Success!",
-         text: "Your note has been submitted.",
-         timer: 1500,
-         showConfirmButton: false
-        }).then(() => {
-         $('#exampleModal1').modal('hide');
-         this.resetNoteForm();
-         document.body.classList.remove('modal-open');
-         document.querySelectorAll('.modal-backdrop').forEach(modal => modal.remove());
-        });
-       }
-      })
-      .catch(err => {
-       console.error(err);
-       Swal.fire("Error!", "Failed to submit note. Please try again.", "error");
-      });
-    }
-   });
-  },
-  resetNoteForm() {
-   this.form1.ayah_notes = '';
-  },
-  hideNoteModal() {
-   this.$refs.noteModal.hide();
-  },
-  closeModal(modalId) {
-   const modalElement = document.getElementById(modalId);
-   const modalInstance = new bootstrap.Modal(modalElement);
-
-   modalInstance.hide();
-
-   // Remove any existing modal backdrops
-   const modalBackdrops = document.querySelectorAll('.modal-backdrop');
-   modalBackdrops.forEach(backdrop => {
-    backdrop.parentNode.removeChild(backdrop);
-   });
-
-   // Ensure modal-open class is removed from body
-   document.body.classList.remove('modal-open');
-  },
-  resetForm() {
-   this.form1.surah_name = "";
-   this.form1.ayah_num = "";
-   this.form1.ayah_text = "";
-   this.form1.ayah_notes = "";
-  },
-
-  resetForm() {
-   this.form.reset();
-   this.form1.reset();
-   const exampleModal2 = bootstrap.Modal.getInstance(this.$refs.exampleModal2);
-   if (exampleModal2) {
-    exampleModal2.hide();
-   }
   },
 
   getTafseers: function (id, index) {
@@ -1068,7 +946,7 @@ export default {
     this.selectedIndexAyah = parseInt(newVal) - 1;
    }
   },
-}
+ }
 }
 </script>
 
