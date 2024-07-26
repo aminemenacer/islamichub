@@ -1,4 +1,3 @@
-<!-- SearchForm.vue -->
 <template>
   <form class="search-form d-flex container h2" @submit.prevent="search">
     <input 
@@ -25,7 +24,7 @@
 export default {
   name: 'SearchForm',
   props: {
-    surahs: {
+    surat: {
       type: Array,
       required: true
     }
@@ -52,7 +51,7 @@ export default {
         this.$emit('update-results', []);
         return;
       }
-      this.filteredSurah = this.surahs.filter(surah => {
+      this.filteredSurah = this.surat.filter(surah => {
         const nameEn = surah.name_en.toLowerCase();
         const nameAr = surah.name_ar.toLowerCase();
         return nameEn.includes(searchTerm) || nameAr.includes(searchTerm);

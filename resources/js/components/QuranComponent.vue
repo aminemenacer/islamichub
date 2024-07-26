@@ -100,7 +100,7 @@
         <div class="icon-container w-100 hide-on-mobile pb-3">
          <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#translationNote" style="color: rgba(0, 191, 166);cursor:pointer"></i>
          <i class="bi bi-whatsapp text-right mr-2 h4" @click="shareTextViaWhatsApp3" aria-expanded="false" data-bs-placement="top" title="Share on Whatsapp" style="color: rgba(0, 191, 166);cursor:pointer"></i>
-         <i style=" color:rgb(0, 191, 166); cursor:pointer" @click="shareHeadingOnTwitter3" class="mr-2 bi bi-twitter-x text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X"></i>
+         <TwitterShareTranslation :targetElementRef="'targetElement'" :translationText="information.translation"/>
          <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
          <CopyTranslationText :textToCopy="information.translation" />
          <ScreenTranslationCapture :targetTranslationRef="'targetTranslationElement'" />
@@ -116,6 +116,9 @@
           <i class="bi bi-arrow-right-circle h5" style="color: rgb(0, 191, 166);" @click="goToNextAyah()" title="Next verse"></i>
           <i class="bi bi-chevron-bar-right h5" style="color: rgb(0, 191, 166);" @click="goToLastAyah()" title="End verse"></i>
           <i class="bi bi-arrows-fullscreen h6" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
+
+
+
 
           <i style="color:rgb(0, 191, 166); cursor:pointer" class="bi bi-three-dots-vertical h5 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></i>
           <ul class="dropdown-menu">
@@ -188,7 +191,7 @@
          <!-- Camera Icon for Screenshot -->
          <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#tafseerNote" style="color: rgba(0, 191, 166);cursor:pointer"></i>
          <i class="bi bi-whatsapp text-right mr-2 h4" @click="shareTextViaWhatsApp1" aria-expanded="false" data-bs-placement="top" title="Share on Whatsapp" style="color: rgba(0, 191, 166);cursor:pointer"></i>
-         <i style=" color:rgb(0, 191, 166); cursor:pointer" @click="shareHeadingOnTwitter1" class="mr-2 bi bi-twitter-x text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X"></i>
+         <TwitterShareTafseer :targetElementRef="'targetElement'" :tafseerText="tafseer"/>
          <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
          <CopyTafseerText :textToCopy="tafseer" />
          <ScreenTafseerCapture :targetTafseerRef="'targetTafseerElement'" />
@@ -296,11 +299,10 @@
           <div class="icon-container w-100 hide-on-mobile pb-3">
            <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" data-bs-toggle="modal" data-bs-target="#transliterationNote" style="color: rgba(0, 191, 166);cursor:pointer"></i>
            <i class="bi bi-whatsapp text-right mr-2 h4" @click="shareTextViaWhatsApp2" aria-expanded="false" data-bs-placement="top" title="Share on Whatsapp" style="color: rgba(0, 191, 166);cursor:pointer"></i>
-           <i style=" color:rgb(0, 191, 166); cursor:pointer" @click="shareHeadingOnTwitter2" class="mr-2 bi bi-twitter-x text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X"></i>
+           <TwitterShareTransliteration :targetElementRef="'targetElement'" :transliterationText="information.transliteration"/>
            <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
            <CopyTransliterationText :textToCopy="information.transliteration" />
-           
-           <i class="bi bi-camera text-right mr-2 h3" @click="captureScreenshot2" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" style="color: rgba(0, 191, 166); cursor:pointer"></i>
+           <ScreenTafseerCapture :targetTafseerRef="'targetTafseerElement'" />
            <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;"></i>
            <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
            <i class="bi bi-info-circle h4" style="color: rgb(0, 191, 166);cursor:pointer" data-bs-target="#transliterationInfo" aria-expanded="false" data-bs-toggle="modal" data-bs-placement="top" title="Surah info"></i>
@@ -434,6 +436,9 @@ import ScreenTranslationCapture from './translation/features/screen_capture/Scre
 import ScreenTafseerCapture from './translation/features/screen_capture/ScreenTafseerCapture.vue';
 import ScreenTransliterationCapture from './translation/features/screen_capture/ScreenTransliterationCapture.vue';
 import SurahInfoModal from './modals/SurahInfoModal.vue';
+import TwitterShareTranslation from './translation/features/twitter/TwitterShareTranslation.vue';
+import TwitterShareTafseer from './translation/features/twitter/TwitterShareTafseer.vue';
+import TwitterShareTransliteration from './translation/features/twitter/TwitterShareTransliteration.vue';
 
 export default {
  name: 'QuranComponent',
@@ -465,12 +470,21 @@ export default {
   ScreenTafseerCapture,
   ScreenTransliterationCapture,
   SurahInfoModal,
+  TwitterShareTranslation,
+  TwitterShareTransliteration,
+  TwitterShareTafseer
  },
  mounted() {
   this.getSurat(); // Call getSurat to populate the surah list
  },
  data() {
   return {
+   //twitter
+   information: {
+    translation: '',
+    transliteration:'', // Example translated text
+   },
+   tafseer:'',
    //custom surah collection
    customSuratList: [],
    selectedSurah: 1,
@@ -483,6 +497,7 @@ export default {
    ayat: [],
    tafseers: [],
    // sorage
+   
    information: null, 
    tafseer: null,
    surah: null,
@@ -898,36 +913,7 @@ export default {
    }
    return null;
   },
-  shareHeadingOnTwitter3() {
-   try {
-    const headingText3 = this.$refs.targetElement.textContent.trim();
-    const encodedHeading = encodeURIComponent(headingText3);
-    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodedHeading}`;
-    window.open(twitterUrl, "_blank") || console.error("Failed to open Twitter sharing dialog.");
-   } catch (error) {
-    console.error("Error:", error);
-   }
-  },
-  shareHeadingOnTwitter1() {
-   try {
-    const headingText1 = this.$refs.targetElement1.textContent.trim();
-    const encodedHeading = encodeURIComponent(headingText1);
-    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodedHeading}`;
-    window.open(twitterUrl, "_blank") || console.error("Failed to open Twitter sharing dialog.");
-   } catch (error) {
-    console.error("Error:", error);
-   }
-  },
-  shareHeadingOnTwitter2() {
-   try {
-    const headingText2 = this.$refs.targetElement2.textContent.trim();
-    const encodedHeading = encodeURIComponent(headingText2);
-    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodedHeading}`;
-    window.open(twitterUrl, "_blank") || console.error("Failed to open Twitter sharing dialog.");
-   } catch (error) {
-    console.error("Error:", error);
-   }
-  },
+  
   shareTextViaWhatsApp3() {
    const text3 = this.$refs.targetElement.innerText;
    const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text3)}`;
