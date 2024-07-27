@@ -1,6 +1,6 @@
 <!-- ChildComponent.vue -->
 <template>
-  <h1 class="card-text text-center pt-2" style="font-family: inter">
+  <h1 class="card-text text-center pt-2 pb-2">
     The Holy Quran
   </h1>
 </template>

@@ -46,11 +46,6 @@ export default {
 </script>
 
 <style scoped>
-/* Add any specific styles if necessary */
-</style>
-
-
-<style scoped>
 .mb-2 {
   margin-bottom: 1rem;
 }

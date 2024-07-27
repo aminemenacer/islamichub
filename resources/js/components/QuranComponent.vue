@@ -1,36 +1,39 @@
 <template>
 <div id="app">
+  <div class="pt-3 pb-3 text-center">
+    <!-- Search bar  -->
+    <search-form :surat="surat" @update-results="handleUpdateResults" @clear-results="handleClearResults" @select-surah="handleSelectSurah" />
 
+    <!-- custom surah selection -->
+    <custom-surah-selection :customSurat="customSuratList" v-model="selectedSurah"></custom-surah-selection>
+  </div>
  <div class="container text-center" v-if="!ayah && dropdownHidden">
   <!-- quran title -->
   <Title />
-  <!-- Search bar  -->
-  <SearchForm :surat="surat" @update-results="handleUpdateResults" @clear-results="handleClearResults" />
-  <!-- custom surah selection -->
-  <custom-surah-selection :customSurat="customSuratList" v-model="selectedSurah"></custom-surah-selection>
+
  </div>
 
  <!-- accordion headers-->
  <div class="row container-fluid">
   <div class="col-md-4 container">
    <!--  Surah list dropdown from search bar -->
-   <ul class="col-md-12 mt-1 scrollable-list " style="list-style-type: none; overflow-y: auto; max-height: 400px; box-shadow: box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
-    <li v-for="item in filteredSurah" :key="item.id" @click="selectSurah(item.id)" style="cursor: pointer; padding:5px;box-shadow: box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px; " class="highlight-on-hover">
-     <div style="display: flex; align-items: center;">
-      <img src="/images/art.png" style="width: 23px" class="mb-1 mr-2" />
-      <p style="font-size: 18px;" class="mt-2">{{ item.name_en }} - {{ item.name_ar }}</p>
-     </div>
-    </li>
-   </ul>
+   <div v-if="filteredSurah.length">
+    <ul class="col-md-12 mt-1 scrollable-list " style="list-style-type: none; overflow-y: auto; max-height: 400px; box-shadow: box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
+     <li v-for="surah in filteredSurah" :key="surah.id" @click="selectSurahFromResults(surah)" style="cursor: pointer; padding:5px;box-shadow: box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px; " class="highlight-on-hover">
+      <div style="display: flex; align-items: center;">
+       <img src="/images/art.png" style="width: 23px" class="mb-1 mr-2" />
+       <p style="font-size: 18px;" class="mt-2">{{ surah.name_en }} - {{ surah.name_ar }}</p>
+      </div>
+     </li>
+    </ul>
+   </div>
    <!-- donation message -->
    <Donation />
 
    <!-- Surah Selection Dropdown -->
    <form class="mb-2 right-side-form" style="cursor: pointer; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px;">
-    <select class="form-control custom-dropdown" v-model="selectedSurahId" @change="getAyat" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
-     <option value="0" disabled>
-      Select Surah
-     </option>
+    <select class="form-control custom-dropdown" v-model="selectedSurah" @change="getAyat" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
+     <option value="0" disabled>Select Surah</option>
      <option v-for="data in filteredSurah.length ? filteredSurah : surat" :key="data.id" :value="data.id">
       {{ data.id }} : {{ data.name_en }} - {{ data.name_ar }}
      </option>
@@ -91,22 +94,11 @@
       <!-- Translation Section -->
       <div class="tab-pane active" id="home" role="tabpanel" v-if="information != null">
        <div class="icon-container pb-3">
-        
-    
-    
+
         <div class="icon-container w-100 hide-on-mobile pb-3">
-          <i 
-            class="bi bi-file-earmark-text text-right mr-2 h4" 
-            aria-expanded="false" 
-            data-bs-placement="top" 
-            title="Write a note" 
-            @click="openModal('translationNote')" 
-            style="color: rgba(0, 191, 166);cursor:pointer">
-          </i>
-          <TranslationNote 
-            ref="translationNote" 
-            :information="information.translation" 
-          />
+         <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('translationNote')" style="color: rgba(0, 191, 166);cursor:pointer">
+         </i>
+         <TranslationNote ref="translationNote" :information="information.translation" />
          <WhatsAppShareTranslation :translationToShare="information.translation" />
          <TwitterShareTranslation :targetElementRef="'targetElement'" :translationText="information.translation" />
          <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
@@ -164,18 +156,9 @@
        <div class="icon-container pb-3">
 
         <div class="icon-container w-100 hide-on-mobile pb-3">
-         <i 
-            class="bi bi-file-earmark-text text-right mr-2 h4" 
-            aria-expanded="false" 
-            data-bs-placement="top" 
-            title="Write a note" 
-            @click="openModal('tafseerNote')" 
-            style="color: rgba(0, 191, 166);cursor:pointer">
-          </i>
-          <TafseerNote 
-            ref="tafseerNote" 
-            :information="tafseer" 
-          />
+         <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('tafseerNote')" style="color: rgba(0, 191, 166);cursor:pointer">
+         </i>
+         <TafseerNote ref="tafseerNote" :information="tafseer" />
          <WhatsAppShareTafseer :tafseerToShare="tafseer" />
          <TwitterShareTafseer :targetElementRef="'targetElement'" :tafseerText="tafseer" />
          <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
@@ -256,18 +239,9 @@
          <div class="icon-container pb-3">
 
           <div class="icon-container w-100 hide-on-mobile pb-3">
-           <i 
-            class="bi bi-file-earmark-text text-right mr-2 h4" 
-            aria-expanded="false" 
-            data-bs-placement="top" 
-            title="Write a note" 
-            @click="openModal('transliterationNote')" 
-            style="color: rgba(0, 191, 166);cursor:pointer">
-          </i>
-          <TransliterationNote 
-            ref="transliterationNote" 
-            :information="information.transliteration" 
-          />
+           <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('transliterationNote')" style="color: rgba(0, 191, 166);cursor:pointer">
+           </i>
+           <TransliterationNote ref="transliterationNote" :information="information.transliteration" />
            <WhatsAppShareTransliteration :transliterationToShare="information.transliteration" />
            <TwitterShareTransliteration :targetElementRef="'targetElement'" :transliterationText="information.transliteration" />
            <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
@@ -340,14 +314,13 @@
 
       <BookmarksAndNotes :information="information" />
       <CorrectionModal />
-      
 
      </div>
 
      <!-- Modals -->
-      <TranslationNote ref="translationNote" :information="modalInformation" />
-      <TafseerNote ref="tafseerNote" :information="modalInformation" />
-      <TransliterationNote ref="transliterationNote" :information="modalInformation" />
+     <TranslationNote ref="translationNote" :information="modalInformation" />
+     <TafseerNote ref="tafseerNote" :information="modalInformation" />
+     <TransliterationNote ref="transliterationNote" :information="modalInformation" />
 
     </div>
    </div>
@@ -528,20 +501,33 @@ export default {
  },
  methods: {
   openModal(modalRef) {
-      const modalComponent = this.$refs[modalRef];
-      if (modalComponent && typeof modalComponent.showModal === 'function') {
-        modalComponent.showModal();
-      } else {
-        console.error(`Modal reference '${modalRef}' not found or showModal is not a function.`);
-      }
-    },
+   const modalComponent = this.$refs[modalRef];
+   if (modalComponent && typeof modalComponent.showModal === 'function') {
+    modalComponent.showModal();
+   } else {
+    console.error(`Modal reference '${modalRef}' not found or showModal is not a function.`);
+   }
+  },
   updateInformation(newInformation) {
    this.information = newInformation;
   },
   updateTafseer(newTafseer) {
    this.tafseer = newTafseer;
   },
-
+  handleUpdateResults(results) {
+   this.filteredSurah = results;
+  },
+  handleClearResults() {
+   this.filteredSurah = [];
+  },
+  handleSelectSurah(surahId) {
+   this.selectedSurah = surahId;
+   this.filteredSurah = []; // Hide the search results list
+  },
+  selectSurahFromResults(surah) {
+   this.selectedSurah = surah.id;
+   this.filteredSurah = []; // Hide the search results list
+  },
   handleScrollToAyah(verseNumber) {
    this.$nextTick(() => {
     const ayahElement = this.$refs.ayahContainer.querySelector(`#ayah-${verseNumber}`);
@@ -554,12 +540,7 @@ export default {
     }
    });
   },
-  handleUpdateResults(filteredSurah) {
-   this.filteredSurah = filteredSurah;
-  },
-  handleClearResults() {
-   this.filteredSurah = [];
-  },
+
   toggleExpand() {
    this.expanded = !this.expanded;
   },
@@ -936,11 +917,11 @@ export default {
  },
 
  watch: {
-   selectedSurah(newSurah) {
-      this.selectedSurahId = newSurah;
-      this.getAyat();
-    },
-  
+  selectedSurah(newSurah) {
+   this.selectedSurahId = newSurah;
+   this.getAyat();
+  },
+
   'information.ayah.surah.name_ar': 'updateFileName',
   verseNumber(newVal, oldVal) {
    if (newVal !== oldVal && parseInt(newVal)) {
