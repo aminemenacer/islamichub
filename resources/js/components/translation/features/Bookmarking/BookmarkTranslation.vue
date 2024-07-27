@@ -18,7 +18,22 @@ export default {
   props: {
     information: {
       type: Object,
-      required: true
+      required: true,
+      default: () => ({
+        surah: { name_en: '' },
+        ayah_text: '',
+        ayah_id: null,
+        translation: ''
+      }),
+      validator(value) {
+        return (
+          value.surah &&
+          value.surah.name_en !== undefined &&
+          value.ayah_text !== undefined &&
+          value.ayah_id !== undefined &&
+          value.translation !== undefined
+        );
+      }
     }
   },
   data() {
@@ -29,23 +44,23 @@ export default {
   },
   methods: {
     submitForm() {
-      const { ayah, translation } = this.information;
-      if (!ayah || !translation) {
+      const { surah, ayah_text, ayah_id, translation } = this.information;
+      if (!surah || !ayah_text || ayah_id === null || !translation) {
         console.error('Information prop is incomplete or missing.');
         this.showErrorAlert = true;
         this.hideAlertAfterDelay();
         return;
       }
       const formData = {
-        surah_name: ayah.surah.name_en,
-        ayah_num: ayah.ayah_id,
-        ayah_verse_ar: ayah.ayah_text,
+        surah_name: surah.name_en,
+        ayah_num: ayah_id,
+        ayah_verse_ar: ayah_text,
         ayah_verse_en: translation,
       };
       axios.post('/bookmarks', formData)
         .then(response => {
           console.log(response.data.message);
-          localStorage.setItem(`bookmarkSubmitted_${ayah.ayah_id}`, true);
+          localStorage.setItem(`bookmarkSubmitted_${ayah_id}`, true);
           this.showAlert = true;
           this.showErrorAlert = false;
           this.hideAlertAfterDelay();

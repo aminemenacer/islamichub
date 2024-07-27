@@ -359,7 +359,7 @@
 
 <script>
 import html2canvas from 'html2canvas';
-import CustomSurahSelection from './surah_selection/CustomSurahSelection.vue'; // Ensure the path is correct
+import CustomSurahSelection from './surah_selection/CustomSurahSelection.vue';
 import SearchForm from './search/SearchForm.vue';
 import SurahList from './search/SurahList.vue';
 import SurahDropdown from './search/SurahDropdown.vue';
@@ -442,7 +442,6 @@ export default {
  },
  data() {
   return {
-   
    //twitter/whatsapp
    information: {
     translation: '',
@@ -937,9 +936,11 @@ export default {
  },
 
  watch: {
-  surah(newSurah) {
-   this.getAyat(newSurah);
-  },
+   selectedSurah(newSurah) {
+      this.selectedSurahId = newSurah;
+      this.getAyat();
+    },
+  
   'information.ayah.surah.name_ar': 'updateFileName',
   verseNumber(newVal, oldVal) {
    if (newVal !== oldVal && parseInt(newVal)) {

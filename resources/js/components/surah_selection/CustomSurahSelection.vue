@@ -81,11 +81,18 @@ export default {
 }
 
 .badge {
+ background-color: white;
+ color: black;
+ border: 1px solid grey;
+ border-radius: 10px;
  cursor: pointer;
 }
 
 .badge.active {
- background-color: #00bfa6;
- color: white;
+ background-color: white;
+ color: black;
+ border: 1px solid grey;
+ border-radius: 10px;
+ cursor: pointer;
 }
 </style>
