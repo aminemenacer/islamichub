@@ -1,35 +1,17 @@
 <template>
 <div id="app">
   <div class="pt-3 pb-3 text-center">
-    <!-- quran title -->
     <Title />
-    <!-- Search bar  -->
     <search-form :surat="surat" @update-results="handleUpdateResults" @clear-results="handleClearResults" @select-surah="handleSelectSurah" />
-    <!-- custom surah selection -->
     <custom-surah-selection :customSurat="customSuratList" v-model="selectedSurah"></custom-surah-selection>
   </div>
- <div class="container text-center" v-if="!ayah && dropdownHidden">
-  
-
- </div>
-
+ 
  <!-- accordion headers-->
  <div class="row container-fluid">
   <div class="col-md-4 container">
    <FilteredSurahList :filteredSurah="filteredSurah" @select-surah="selectSurahFromResults" />
-   <!-- donation message -->
    <Donation />
-
-   <!-- Surah Selection Dropdown -->
-   <form class="mb-2 right-side-form" style="cursor: pointer; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px;">
-    <select class="form-control custom-dropdown" v-model="selectedSurah" @change="getAyat" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
-     <option value="0" disabled>Select Surah</option>
-     <option v-for="data in filteredSurah.length ? filteredSurah : surat" :key="data.id" :value="data.id">
-      {{ data.id }} : {{ data.name_en }} - {{ data.name_ar }}
-     </option>
-    </select>
-   </form>
-
+   <SurahDropdown :selectedSurah="selectedSurah" :filteredSurah="filteredSurah" :surat="surat" @update:selectedSurah="updateSelectedSurah" @change="getAyat"/>
    <AyahDropdown :selectedSurahId="selectedSurahId" :dropdownHidden="dropdownHidden" @update-information="updateInformation" @update-tafseer="updateTafseer" v-if="ayah != null" />
 
    <!-- List of Ayat for Surah (desktop) -->
@@ -69,7 +51,6 @@
   </div>
 
   <div class="col-md-8 pt-2 card-hide">
-
    <div class="card pt-2" style="box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;">
 
     <div class="container-fluid" v-if="information != null">
@@ -78,7 +59,6 @@
 
     <div class="card-body" id="alertContainer">
      <div class="tab-content text-center">
-      <!-- Intro welcome message -->
       <Welcome :information="information" />
 
       <!-- Translation Section -->
@@ -373,6 +353,7 @@ export default {
  components: {
   CustomSurahSelection,
   SurahList,
+  SurahDropdown,
   ArrowControls,
   BookmarksAndNotes,
   AlertModal,
@@ -507,6 +488,9 @@ export default {
    } else {
     console.error(`Modal reference '${modalRef}' not found or showModal is not a function.`);
    }
+  },
+  updateSelectedSurah(newSurah) {
+    this.selectedSurah = newSurah;
   },
   updateInformation(newInformation) {
    this.information = newInformation;
