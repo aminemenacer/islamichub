@@ -5,7 +5,6 @@
     <Title />
     <!-- Search bar  -->
     <search-form :surat="surat" @update-results="handleUpdateResults" @clear-results="handleClearResults" @select-surah="handleSelectSurah" />
-
     <!-- custom surah selection -->
     <custom-surah-selection :customSurat="customSuratList" v-model="selectedSurah"></custom-surah-selection>
   </div>
@@ -17,17 +16,7 @@
  <!-- accordion headers-->
  <div class="row container-fluid">
   <div class="col-md-4 container">
-   <!--  Surah list dropdown from search bar -->
-   <div v-if="filteredSurah.length">
-    <ul class="col-md-12 mt-1 scrollable-list " style="list-style-type: none; overflow-y: auto; max-height: 400px; box-shadow: box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
-     <li v-for="surah in filteredSurah" :key="surah.id" @click="selectSurahFromResults(surah)" style="cursor: pointer; padding:5px;box-shadow: box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px; " class="highlight-on-hover">
-      <div style="display: flex; align-items: center;">
-       <img src="/images/art.png" style="width: 23px" class="mb-1 mr-2" />
-       <p style="font-size: 18px;" class="mt-2">{{ surah.name_en }} - {{ surah.name_ar }}</p>
-      </div>
-     </li>
-    </ul>
-   </div>
+   <FilteredSurahList :filteredSurah="filteredSurah" @select-surah="selectSurahFromResults" />
    <!-- donation message -->
    <Donation />
 
@@ -95,7 +84,7 @@
       <!-- Translation Section -->
       <div class="tab-pane active" id="home" role="tabpanel" v-if="information != null">
        <div class="icon-container pb-3">
-
+        <!-- Main features -->
         <div class="icon-container w-100 hide-on-mobile pb-3">
          <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('translationNote')" style="color: rgba(0, 191, 166);cursor:pointer">
          </i>
@@ -135,7 +124,7 @@
         </div>
        </div>
 
-       <!-- Target Element for Screenshot -->
+       <!-- Main content -->
        <div ref="targetTranslationElement" class="w-100 my-element " :class="{'full-screen': isFullScreen}">
         <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
         <AyahInfo :information="information" />
@@ -223,14 +212,14 @@
           </template>
          </h5>
          <h6 class="text-left mt-3"><strong>Tafseer: </strong>Ibn Kathir</h6>
-         <br>
+         
          <!-- Include the AlertModal component -->
          <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
         </div>
        </div>
 
        <!-- Features -->
-       <div class="text-right pt-2">
+       <div class="text-right ">
         <!-- Surah Info Modal -->
         <SurahInfoModal :information="information.transliteration" />
 
@@ -306,7 +295,7 @@
            <h6 class="text-left mt-3"><strong>Transliteration: </strong>Saheeh International</h6>
           </div>
          </div>
-         <br>
+         
 
          <!-- Include the AlertModal component -->
          <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
@@ -376,6 +365,7 @@ import TranslationNote from './translation/features/notes/TranslationNote.vue';
 import TafseerNote from './translation/features/notes/TafseerNote.vue';
 import TransliterationNote from './translation/features/notes/TransliterationNote.vue';
 import BookmarkTranslation from './translation/features/bookmarking/BookmarkTranslation.vue';
+import FilteredSurahList from './search/FilteredSurahList.vue'
 
 export default {
  name: 'QuranComponent',
@@ -417,18 +407,14 @@ export default {
   TafseerNote,
   TransliterationNote,
   BookmarkTranslation,
+  FilteredSurahList
  },
  mounted() {
   this.getSurat(); // Call getSurat to populate the surah list
  },
  data() {
   return {
-    information: {
-        surah: { name_en: 'Al-Fatiha' },
-        ayah_text: 'In the name of Allah, the Most Gracious, the Most Merciful.',
-        ayah_id: 1,
-        translation: 'In the name of Allah, the Most Gracious, the Most Merciful.'
-      },
+   filteredSurah: [],
    //twitter/whatsapp
    information: {
     translation: '',

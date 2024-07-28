@@ -37,7 +37,7 @@ export default {
       default: () => ({
         ayah: {
           surah: { name_en: '', ayah_text:'', },
-          ayah_text: ''
+          ayah_text: '', surah_name: ''
         },
         ayah_id: null,
         translation: ''
@@ -47,7 +47,8 @@ export default {
   data() {
     return {
       form: {
-        ayah_notes: ""
+        ayah_notes: "",
+        surah_name: ""
       }
     };
   },
