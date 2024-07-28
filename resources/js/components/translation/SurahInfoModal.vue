@@ -1,5 +1,5 @@
 <template>
-  <div class="modal fade show" id="translationInfo" tabindex="-1" aria-labelledby="surahInfoModalLabel" aria-hidden="true" style="display: block;">
+  <div class="modal fade show" tabindex="-1" aria-labelledby="surahInfoModalLabel" aria-hidden="true" style="display: block;" @click.self="closeModal">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
@@ -30,17 +30,12 @@
     </div>
   </div>
 </template>
-
 <script>
 export default {
   name: 'SurahInfoModal',
   props: {
     information: {
       type: Object,
-      required: true
-    },
-    ayahs: {
-      type: Array,
       required: true
     }
   },
@@ -69,7 +64,8 @@ export default {
   }
 };
 </script>
-
 <style scoped>
-/* Your component-specific styles */
+.modal.fade.show {
+  display: block;
+}
 </style>

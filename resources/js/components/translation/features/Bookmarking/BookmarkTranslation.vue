@@ -1,6 +1,13 @@
 <template>
   <div>
-    <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
+    <i 
+      @click="submitForm" 
+      class="bi bi-bookmark text-right mr-2 h4" 
+      aria-expanded="false" 
+      data-bs-placement="top" 
+      title="Bookmark verse" 
+      style="color: rgba(0, 191, 166);cursor:pointer"
+    ></i>
     <div v-if="showAlert" class="alert alert-success" role="alert">
       Bookmark saved successfully!
     </div>
@@ -42,6 +49,14 @@ export default {
       showErrorAlert: false,
     };
   },
+  created() {
+    const { ayah_id } = this.information;
+    const submitted = localStorage.getItem(`bookmarkSubmitted_${ayah_id}`);
+    if (submitted) {
+      this.showAlert = true;
+      this.hideAlertAfterDelay();
+    }
+  },
   methods: {
     submitForm() {
       const { surah, ayah_text, ayah_id, translation } = this.information;
@@ -51,12 +66,14 @@ export default {
         this.hideAlertAfterDelay();
         return;
       }
+
       const formData = {
         surah_name: surah.name_en,
         ayah_num: ayah_id,
         ayah_verse_ar: ayah_text,
         ayah_verse_en: translation,
       };
+
       axios.post('/bookmarks', formData)
         .then(response => {
           console.log(response.data.message);

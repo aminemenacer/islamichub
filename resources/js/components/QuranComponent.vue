@@ -1,6 +1,8 @@
 <template>
 <div id="app">
   <div class="pt-3 pb-3 text-center">
+    <!-- quran title -->
+    <Title />
     <!-- Search bar  -->
     <search-form :surat="surat" @update-results="handleUpdateResults" @clear-results="handleClearResults" @select-surah="handleSelectSurah" />
 
@@ -8,8 +10,7 @@
     <custom-surah-selection :customSurat="customSuratList" v-model="selectedSurah"></custom-surah-selection>
   </div>
  <div class="container text-center" v-if="!ayah && dropdownHidden">
-  <!-- quran title -->
-  <Title />
+  
 
  </div>
 
@@ -101,6 +102,7 @@
          <TranslationNote ref="translationNote" :information="information.translation" />
          <WhatsAppShareTranslation :translationToShare="information.translation" />
          <TwitterShareTranslation :targetElementRef="'targetElement'" :translationText="information.translation" />
+         <BookmarkTranslation :information="information" />
          <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
          <CopyTranslationText :textToCopy="information.translation" />
          <ScreenTranslationCapture :targetTranslationRef="'targetTranslationElement'" />
@@ -140,7 +142,12 @@
         <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
          <MainAyah :information="information" />
          <div ref="heading3">
-          <EnglishTranslation :information="information" />
+            <h5 class="text-left ayah-translation" ref="heading3" style="line-height: 1.6em">
+              {{ expanded ? information.translation : truncatedText(information.translation) }}
+              <template v-if="showMoreLink">
+              <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
+              </template>
+            </h5>
          </div>
          <Translator translator="Ahmed Ali" />
          <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
@@ -225,7 +232,7 @@
        <!-- Features -->
        <div class="text-right pt-2">
         <!-- Surah Info Modal -->
-        <SurahInfoModal :information="information" />
+        <SurahInfoModal :information="information.transliteration" />
 
        </div>
 
@@ -368,6 +375,7 @@ import WhatsAppShareTransliteration from './translation/features/whatsapp/WhatsA
 import TranslationNote from './translation/features/notes/TranslationNote.vue';
 import TafseerNote from './translation/features/notes/TafseerNote.vue';
 import TransliterationNote from './translation/features/notes/TransliterationNote.vue';
+import BookmarkTranslation from './translation/features/bookmarking/BookmarkTranslation.vue';
 
 export default {
  name: 'QuranComponent',
@@ -408,13 +416,19 @@ export default {
   TranslationNote,
   TafseerNote,
   TransliterationNote,
-
+  BookmarkTranslation,
  },
  mounted() {
   this.getSurat(); // Call getSurat to populate the surah list
  },
  data() {
   return {
+    information: {
+        surah: { name_en: 'Al-Fatiha' },
+        ayah_text: 'In the name of Allah, the Most Gracious, the Most Merciful.',
+        ayah_id: 1,
+        translation: 'In the name of Allah, the Most Gracious, the Most Merciful.'
+      },
    //twitter/whatsapp
    information: {
     translation: '',
@@ -693,85 +707,85 @@ export default {
    }
   },
 
-  submitForm() {
-   const formData = {
-    surah_name: this.information.ayah.surah.name_en,
-    ayah_num: this.information.ayah_id,
-    ayah_verse_ar: this.information.ayah.ayah_text,
-    ayah_verse_en: this.information.translation,
-   };
+  // submitForm() {
+  //  const formData = {
+  //   surah_name: this.information.ayah.surah.name_en,
+  //   ayah_num: this.information.ayah_id,
+  //   ayah_verse_ar: this.information.ayah.ayah_text,
+  //   ayah_verse_en: this.information.translation,
+  //  };
 
-   axios.post('/bookmarks', formData)
-    .then(response => {
-     console.log(response.data.message);
-     // Set the submitted status for the selected bookmark
-     localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
-     // Log the updated bookmarkSubmitted object
-     console.log(this.bookmarkSubmitted);
-     this.showAlert = true; // Show success alert
-     this.showErrorAlert = false; // Hide error alert
-     this.hideAlertAfterDelay(); // Start timer to hide alert
-    })
-    .catch(error => {
-     console.error(error);
-     this.showAlert = false; // Hide success alert
-     this.showErrorAlert = true; // Show error alert
+  //  axios.post('/bookmarks', formData)
+  //   .then(response => {
+  //    console.log(response.data.message);
+  //    // Set the submitted status for the selected bookmark
+  //    localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
+  //    // Log the updated bookmarkSubmitted object
+  //    console.log(this.bookmarkSubmitted);
+  //    this.showAlert = true; // Show success alert
+  //    this.showErrorAlert = false; // Hide error alert
+  //    this.hideAlertAfterDelay(); // Start timer to hide alert
+  //   })
+  //   .catch(error => {
+  //    console.error(error);
+  //    this.showAlert = false; // Hide success alert
+  //    this.showErrorAlert = true; // Show error alert
 
-     this.hideAlertAfterDelay(); // Start timer to hide alert
-    });
-  },
-  submitForm1() {
-   const formData = {
-    surah_name: this.information.ayah.surah.name_en,
-    ayah_num: this.information.ayah_id,
-    ayah_verse_ar: this.information.ayah.ayah_text,
-    ayah_verse_en: this.tafseer,
-   };
+  //    this.hideAlertAfterDelay(); // Start timer to hide alert
+  //   });
+  // },
+  // submitForm1() {
+  //  const formData = {
+  //   surah_name: this.information.ayah.surah.name_en,
+  //   ayah_num: this.information.ayah_id,
+  //   ayah_verse_ar: this.information.ayah.ayah_text,
+  //   ayah_verse_en: this.tafseer,
+  //  };
 
-   axios.post('/bookmarks', formData)
-    .then(response => {
-     console.log(response.data.message);
-     // Set the submitted status for the selected bookmark
-     localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
-     // Log the updated bookmarkSubmitted object
-     console.log(this.bookmarkSubmitted);
-     this.showAlert = true; // Show success alert
-     this.showErrorAlert = false; // Hide error alert
-     this.hideAlertAfterDelay(); // Start timer to hide alert
-    })
-    .catch(error => {
-     console.error(error);
-     this.showAlert = false; // Hide success alert
-     this.showErrorAlert = true; // Show error alert
-     this.hideAlertAfterDelay(); // Start timer to hide alert
-    });
-  },
-  submitForm2() {
-   const formData = {
-    surah_name: this.information.ayah.surah.name_en,
-    ayah_num: this.information.ayah_id,
-    ayah_verse_ar: this.information.ayah.ayah_text,
-    ayah_verse_en: this.information.transliteration,
-   };
+  //  axios.post('/bookmarks', formData)
+  //   .then(response => {
+  //    console.log(response.data.message);
+  //    // Set the submitted status for the selected bookmark
+  //    localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
+  //    // Log the updated bookmarkSubmitted object
+  //    console.log(this.bookmarkSubmitted);
+  //    this.showAlert = true; // Show success alert
+  //    this.showErrorAlert = false; // Hide error alert
+  //    this.hideAlertAfterDelay(); // Start timer to hide alert
+  //   })
+  //   .catch(error => {
+  //    console.error(error);
+  //    this.showAlert = false; // Hide success alert
+  //    this.showErrorAlert = true; // Show error alert
+  //    this.hideAlertAfterDelay(); // Start timer to hide alert
+  //   });
+  // },
+  // submitForm2() {
+  //  const formData = {
+  //   surah_name: this.information.ayah.surah.name_en,
+  //   ayah_num: this.information.ayah_id,
+  //   ayah_verse_ar: this.information.ayah.ayah_text,
+  //   ayah_verse_en: this.information.transliteration,
+  //  };
 
-   axios.post('/bookmarks', formData)
-    .then(response => {
-     console.log(response.data.message);
-     // Set the submitted status for the selected bookmark
-     localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
-     // Log the updated bookmarkSubmitted object
-     console.log(this.bookmarkSubmitted);
-     this.showAlert = true; // Show success alert
-     this.showErrorAlert = false; // Hide error alert
-     this.hideAlertAfterDelay(); // Start timer to hide alert
-    })
-    .catch(error => {
-     console.error(error);
-     this.showAlert = false; // Hide success alert
-     this.showErrorAlert = true; // Show error alert
-     this.hideAlertAfterDelay(); // Start timer to hide alert
-    });
-  },
+  //  axios.post('/bookmarks', formData)
+  //   .then(response => {
+  //    console.log(response.data.message);
+  //    // Set the submitted status for the selected bookmark
+  //    localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
+  //    // Log the updated bookmarkSubmitted object
+  //    console.log(this.bookmarkSubmitted);
+  //    this.showAlert = true; // Show success alert
+  //    this.showErrorAlert = false; // Hide error alert
+  //    this.hideAlertAfterDelay(); // Start timer to hide alert
+  //   })
+  //   .catch(error => {
+  //    console.error(error);
+  //    this.showAlert = false; // Hide success alert
+  //    this.showErrorAlert = true; // Show error alert
+  //    this.hideAlertAfterDelay(); // Start timer to hide alert
+  //   });
+  // },
   hideAlertAfterDelay() {
    setTimeout(() => {
     this.showAlert = false;

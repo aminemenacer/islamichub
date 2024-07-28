@@ -6,7 +6,6 @@
     </template>
   </h5>
 </template>
-
 <script>
 export default {
   name: 'AyahTranslation',
@@ -46,10 +45,9 @@ export default {
   }
 };
 </script>
-
 <style scoped>
 .ayah-translation {
-  line-height: 0.8em;
+  line-height: 1.6em;
   font-size: 1rem;
 }
 </style>
