@@ -25,50 +25,54 @@
 </template>
 
 <script>
+import AyahInfo from './translation/AyahInfo.vue';
+import MainAyah from './translation/MainAyah.vue';
+import Translator from './translation/Translator.vue';
+
 export default {
   name: 'TranslationSection',
+  components: {
+    AyahInfo,
+    MainAyah,
+    Translator,
+  },
   props: {
     information: Object,
     isFullScreen: Boolean,
     expanded: Boolean,
     showMoreLink: Boolean,
-    showAlertText: String,
+    showAlertText: Boolean,
     showAlert: Boolean,
     showErrorAlert: Boolean,
-    showAlertTextNote: String,
-    ayat: Array,
-    selectedIndexAyah: Number,
-    maxLength: Number
+    showAlertTextNote: Boolean
   },
   methods: {
     toggleFullScreen() {
       this.$emit('toggle-full-screen');
     },
     handleTouchStart(event) {
-      this.$emit('touch-start', event);
+      this.$emit('handle-touch-start', event);
     },
     handleTouchMove(event) {
-      this.$emit('touch-move', event);
+      this.$emit('handle-touch-move', event);
     },
     handleTouchEnd(event) {
-      this.$emit('touch-end', event);
+      this.$emit('handle-touch-end', event);
     },
     toggleExpand() {
       this.$emit('toggle-expand');
     },
+    truncatedText(text) {
+      // Assuming truncatedText is a method that truncates the text
+      return text.length > 100 ? text.slice(0, 100) + '...' : text;
+    },
     closeAlertText() {
       this.$emit('close-alert-text');
-    },
-    truncatedText(text) {
-      if (!text) return '';
-      return text.length > this.maxLength ? text.substring(0, this.maxLength) + '...' : text;
     }
-  },
-  components: {
-    AyahInfo: () => import('./AyahInfo.vue'),
-    MainAyah: () => import('./MainAyah.vue'),
-    Translator: () => import('./Translator.vue'),
-    AlertModal: () => import('./AlertModal.vue')
   }
 };
 </script>
+
+<style scoped>
+/* Add scoped styles if necessary */
+</style>

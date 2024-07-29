@@ -13,17 +13,13 @@
    <Donation />
    <SurahDropdown :selectedSurah="selectedSurah" :filteredSurah="filteredSurah" :surat="surat" @update:selectedSurah="updateSelectedSurah" @change="getAyat"/>
    <AyahDropdown :selectedSurahId="selectedSurahId" :dropdownHidden="dropdownHidden" @update-information="updateInformation" @update-tafseer="updateTafseer" v-if="ayah != null" />
-
-   <!-- List of Ayat for Surah (desktop) -->
    <div class="tab-content hide-on-mobile-tablet" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" v-if="ayah == null">
      <AyahSearchVerseNum :verseNumber="verseNumber" @submit="scrollToAyah" />
      <ErrorAlert :showError="showError" @dismiss-error="dismissError" />
-     <div class="row container-fluid">
-      <hr class="container" style="height: 4px; background: lightgrey;">
-      <NavigationIcons @go-to-first-ayah="goToFirstAyah" @go-to-previous-ayah="goToPreviousAyah" @go-to-next-ayah="goToNextAyah" @go-to-last-ayah="goToLastAyah"/>
-      <AyahList :ayat="ayat" :selectedIndexAyah="selectedIndexAyah" :verseNumber="verseNumber" @select-ayah="selectAyah" />
-     </div>
+     <hr>
+     <NavigationIcons @go-to-first-ayah="goToFirstAyah" @go-to-previous-ayah="goToPreviousAyah" @go-to-next-ayah="goToNextAyah" @go-to-last-ayah="goToLastAyah"/>
+     <AyahList :ayat="ayat" :selectedIndexAyah="selectedIndexAyah" :verseNumber="verseNumber" @select-ayah="selectAyah" />
     </div>
    </div>
   </div>
@@ -82,27 +78,24 @@
         </div>
        </div>
 
-       <!-- Main content -->
-       <div ref="targetTranslationElement" class="w-100 my-element " :class="{'full-screen': isFullScreen}">
-        <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
-        <AyahInfo :information="information" />
-        <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
-         <MainAyah :information="information" />
-         <div ref="heading3">
-            <h5 class="text-left ayah-translation" ref="heading3" style="line-height: 1.6em">
-              {{ expanded ? information.translation : truncatedText(information.translation) }}
-              <template v-if="showMoreLink">
-              <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
-              </template>
-            </h5>
-         </div>
-         <Translator translator="Ahmed Ali" />
-         <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
-        </div>
-       </div>
+        <TranslationSection
+          :information="information"
+          :isFullScreen="isFullScreen"
+          :expanded="expanded"
+          :showMoreLink="showMoreLink"
+          :showAlertText="showAlertText"
+          :showAlert="showAlert"
+          :showErrorAlert="showErrorAlert"
+          :showAlertTextNote="showAlertTextNote"
+          @toggle-full-screen="toggleFullScreen"
+          @handle-touch-start="handleTouchStart"
+          @handle-touch-move="handleTouchMove"
+          @handle-touch-end="handleTouchEnd"
+          @toggle-expand="toggleExpand"
+          @close-alert-text="closeAlertText"
+        />
        <!-- Surah Info Modal -->
        <SurahInfoModal :information="information" />
-
       </div>
 
       <!-- Tafseer Section -->
@@ -326,6 +319,7 @@ import BookmarkTranslation from './translation/features/bookmarking/BookmarkTran
 import FilteredSurahList from './search/FilteredSurahList.vue'
 import NavigationIcons from './search/NavigationIcons.vue'
 import AyahList from './search/AyahList.vue'
+import TranslationSection from './TranslationSection.vue'
 
 export default {
  name: 'QuranComponent',
@@ -372,6 +366,7 @@ export default {
   AyahSearchVerseNum,
   NavigationIcons,
   AyahList,
+  TranslationSection
  },
  mounted() {
   this.getSurat(); // Call getSurat to populate the surah list
@@ -408,6 +403,7 @@ export default {
    expanded: false,
    //full screen toggle
    isFullScreen: false,
+   expanded: false,
    //swipe gestures
    touchStartX: 0,
    touchEndX: 0,
