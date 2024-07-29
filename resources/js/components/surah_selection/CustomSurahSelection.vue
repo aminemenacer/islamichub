@@ -70,7 +70,6 @@ export default {
 
 <style scoped>
 .scrollmenu {
- overflow-x: hidden;
  white-space: nowrap;
 }
 

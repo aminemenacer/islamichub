@@ -6,8 +6,8 @@
     <custom-surah-selection :customSurat="customSuratList" v-model="selectedSurah"></custom-surah-selection>
   </div>
  
- <!-- accordion headers-->
  <div class="row container-fluid">
+  <!-- Search section -->
   <div class="col-md-4 container">
    <FilteredSurahList :filteredSurah="filteredSurah" @select-surah="selectSurahFromResults" />
    <Donation />
@@ -17,35 +17,13 @@
    <!-- List of Ayat for Surah (desktop) -->
    <div class="tab-content hide-on-mobile-tablet" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" v-if="ayah == null">
-
-     <form class="d-flex pb-2 " role="search" @submit.prevent="scrollToAyah">
-      <input class="form-control me-2" type="number" placeholder="Enter Verse Number" v-model="verseNumber" required>
-      <button class="btn btn-success mb-1 ml-2" type="submit">Search</button>
-     </form>
-
-     <!-- Error alert -->
+     <AyahSearchVerseNum :verseNumber="verseNumber" @submit="scrollToAyah" />
      <ErrorAlert :showError="showError" @dismiss-error="dismissError" />
-
      <div class="row container-fluid">
       <hr class="container" style="height: 4px; background: lightgrey;">
-
-      <div class="icon-container pb-2">
-       <i class="bi bi-chevron-bar-left h5" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToFirstAyah" title="First verse"></i>
-       <i class="bi bi-arrow-left-circle h5" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToPreviousAyah" title="Previous verse"></i>
-       <i class="bi bi-arrow-right-circle h5" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToNextAyah" title="Next verse"></i>
-       <i class="bi bi-chevron-bar-right h5" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToLastAyah" title="Last verse"></i>
-      </div>
-
-      <div class="custom-scrollbar pb-5" style="overflow-y: auto; max-height: 600px; background: white;">
-       <ul class="col-md-12 list-group container-fluid root" id="toggle" ref="ayahList" style="list-style-type: none; padding: 10px">
-        <li v-for="(ayah, index) in ayat" :key="index" @click="selectAyah(index)" :class="{ selected: selectedIndexAyah === index, highlighted: verseNumber && parseInt(verseNumber) === ayah.ayah_id }" style="padding: 10px; border-radius:10px">
-         <h5 class="text-right" style="display: flex;"> Verse: {{ ayah.ayah_id }} </h5>
-         <h5 class="text-right">{{ ayah.ayah_text }}</h5>
-        </li>
-       </ul>
-      </div>
+      <NavigationIcons @go-to-first-ayah="goToFirstAyah" @go-to-previous-ayah="goToPreviousAyah" @go-to-next-ayah="goToNextAyah" @go-to-last-ayah="goToLastAyah"/>
+      <AyahList :ayat="ayat" :selectedIndexAyah="selectedIndexAyah" :verseNumber="verseNumber" @select-ayah="selectAyah" />
      </div>
-
     </div>
    </div>
   </div>
@@ -346,6 +324,8 @@ import TafseerNote from './translation/features/notes/TafseerNote.vue';
 import TransliterationNote from './translation/features/notes/TransliterationNote.vue';
 import BookmarkTranslation from './translation/features/bookmarking/BookmarkTranslation.vue';
 import FilteredSurahList from './search/FilteredSurahList.vue'
+import NavigationIcons from './search/NavigationIcons.vue'
+import AyahList from './search/AyahList.vue'
 
 export default {
  name: 'QuranComponent',
@@ -388,7 +368,10 @@ export default {
   TafseerNote,
   TransliterationNote,
   BookmarkTranslation,
-  FilteredSurahList
+  FilteredSurahList,
+  AyahSearchVerseNum,
+  NavigationIcons,
+  AyahList,
  },
  mounted() {
   this.getSurat(); // Call getSurat to populate the surah list
@@ -659,7 +642,7 @@ export default {
    };
    axios.post('/submit_category', formData);
   },
-  scrollToAyah() {
+  scrollToAyah(verseNumber) {
    const verseNum = parseInt(this.verseNumber);
    if (!isNaN(verseNum) && verseNum >= 1 && verseNum <= this.ayat.length) {
     const ayahElement = this.$refs.ayahList.querySelectorAll("li")[verseNum - 1];
