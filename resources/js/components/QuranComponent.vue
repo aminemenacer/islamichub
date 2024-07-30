@@ -104,22 +104,24 @@
        </div>
 
        <!-- Main content -->
-        <TranslationSection
-          :information="information"
-          :isFullScreen="isFullScreen"
-          :expanded="expanded"
-          :showMoreLink="showMoreLink"
-          :showAlertText="showAlertText"
-          :showAlert="showAlert"
-          :showErrorAlert="showErrorAlert"
-          :showAlertTextNote="showAlertTextNote"
-          @toggle-full-screen="toggleFullScreen"
-          @handle-touch-start="handleTouchStart"
-          @handle-touch-move="handleTouchMove"
-          @handle-touch-end="handleTouchEnd"
-          @toggle-expand="toggleExpand"
-          @close-alert-text="closeAlertText"
-        />
+       <div ref="targetTranslationElement">
+          <TranslationSection
+            :information="information"
+            :isFullScreen="isFullScreen"
+            :expanded="expanded"
+            :showMoreLink="showMoreLink"
+            :showAlertText="showAlertText"
+            :showAlert="showAlert"
+            :showErrorAlert="showErrorAlert"
+            :showAlertTextNote="showAlertTextNote"
+            @toggle-full-screen="toggleFullScreen"
+            @handle-touch-start="handleTouchStart"
+            @handle-touch-move="handleTouchMove"
+            @handle-touch-end="handleTouchEnd"
+            @toggle-expand="toggleExpand"
+            @close-alert-text="closeAlertText"
+          />
+       </div>
        <SurahInfoModal :information="information" />
 
       </div>
@@ -171,27 +173,29 @@
        </div>
 
         <!-- Main content -->
-        <TafseerSection
-          :information="information"
-          :isFullScreen="isFullScreen"
-          :expanded="expanded"
-          :showMoreLink="showMoreLink"
-          :showAlertText="showAlertText"
-          :showAlert="showAlert"
-          :showErrorAlert="showErrorAlert"
-          :showAlertTextNote="showAlertTextNote"
-          @toggle-full-screen="toggleFullScreen"
-          @handle-touch-start="handleTouchStart"
-          @handle-touch-move="handleTouchMove"
-          @handle-touch-end="handleTouchEnd"
-          @toggle-expand="toggleExpand"
-          @close-alert-text="closeAlertText"
-        />
+        <div ref="targetTafseerElement">
+          <TafseerSection
+            :information="information"
+            :isFullScreen="isFullScreen"
+            :expanded="expanded"
+            :showMoreLink="showMoreLink"
+            :showAlertText="showAlertText"
+            :showAlert="showAlert"
+            :showErrorAlert="showErrorAlert"
+            :showAlertTextNote="showAlertTextNote"
+            @toggle-full-screen="toggleFullScreen"
+            @handle-touch-start="handleTouchStart"
+            @handle-touch-move="handleTouchMove"
+            @handle-touch-end="handleTouchEnd"
+            @toggle-expand="toggleExpand"
+            @close-alert-text="closeAlertText"
+          />
+        </div>
 
        <!-- Features -->
        <div class="text-right ">
         <!-- Surah Info Modal -->
-        <SurahInfoModal :information="information.transliteration" />
+        <SurahInfoModal :information="information" />
 
        </div>
 
@@ -241,22 +245,24 @@
           </div>
          </div>
 
-        <TransliterationSection
-          :information="information"
-          :isFullScreen="isFullScreen"
-          :expanded="expanded"
-          :showMoreLink="showMoreLink"
-          :showAlertText="showAlertText"
-          :showAlert="showAlert"
-          :showErrorAlert="showErrorAlert"
-          :showAlertTextNote="showAlertTextNote"
-          @toggle-full-screen="toggleFullScreen"
-          @handle-touch-start="handleTouchStart"
-          @handle-touch-move="handleTouchMove"
-          @handle-touch-end="handleTouchEnd"
-          @toggle-expand="toggleExpand"
-          @close-alert-text="closeAlertText"
-        />
+        <div ref="targetTransliterationElement">
+          <TransliterationSection
+            :information="information"
+            :isFullScreen="isFullScreen"
+            :expanded="expanded"
+            :showMoreLink="showMoreLink"
+            :showAlertText="showAlertText"
+            :showAlert="showAlert"
+            :showErrorAlert="showErrorAlert"
+            :showAlertTextNote="showAlertTextNote"
+            @toggle-full-screen="toggleFullScreen"
+            @handle-touch-start="handleTouchStart"
+            @handle-touch-move="handleTouchMove"
+            @handle-touch-end="handleTouchEnd"
+            @toggle-expand="toggleExpand"
+            @close-alert-text="closeAlertText"
+          />
+        </div>
          
 
          <!-- Include the AlertModal component -->
