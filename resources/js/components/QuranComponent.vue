@@ -71,7 +71,6 @@
          <TranslationNote ref="translationNote" :information="information.translation" />
          <WhatsAppShareTranslation :translationToShare="information.translation" />
          <TwitterShareTranslation :targetElementRef="'targetElement'" :translationText="information.translation" />
-         <BookmarkTranslation :information="information" />
          <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
          <CopyTranslationText :textToCopy="information.translation" />
          <ScreenTranslationCapture :targetTranslationRef="'targetTranslationElement'" />
@@ -161,7 +160,7 @@
            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#tafseerNote"><i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" style="color: rgba(0, 191, 166);"></i>Write a Note</a></li>
            <li><a class="dropdown-item" @click="shareTextViaWhatsApp1"><i class="bi bi-whatsapp text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Share on Whatsapp" style="color: rgba(0, 191, 166);"></i>Share via WhatsApp</a></li>
            <li><a class="dropdown-item" @click="shareHeadingOnTwitter1"><i style="color:rgb(0, 191, 166); cursor:pointer" class="mr-2 bi bi-twitter-x text-right h4" aria-expanded="false" data-bs-placement="top" title="Share via X"></i>Share via X</a></li>
-           <li><a class="dropdown-item" @click="submitForm"><i class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);"></i>Bookmark Verse</a></li>
+           <li><a class="dropdown-item" @click="submitForm1"><i class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);"></i>Bookmark Verse</a></li>
            <CopyTafseerText :textToCopy="tafseer" />
            <li><a class="dropdown-item" @click="captureScreenshot1"><i class="bi bi-camera text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" style="color: rgba(0, 191, 166);"></i>Screenshot Verse</a></li>
            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#tafseerInfo"><i class="bi bi-info-circle text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Surah info" style="color: rgba(0, 191, 166);"></i>Surah Info</a></li>
@@ -220,7 +219,7 @@
            <TransliterationNote ref="transliterationNote" :information="information.transliteration" />
            <WhatsAppShareTransliteration :transliterationToShare="information.transliteration" />
            <TwitterShareTransliteration :targetElementRef="'targetElement'" :transliterationText="information.transliteration" />
-           <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
+           <i @click="submitForm2" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
            <CopyTransliterationText :textToCopy="information.transliteration" />
            <ScreenTransliterationCapture :targetTransliterationRef="'targetTransliterationElement'" />
            <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;"></i>
@@ -676,86 +675,85 @@ export default {
     }, 5000);
    }
   },
+  submitForm() {
+   const formData = {
+    surah_name: this.information.ayah.surah.name_en,
+    ayah_num: this.information.ayah_id,
+    ayah_verse_ar: this.information.ayah.ayah_text,
+    ayah_verse_en: this.information.translation,
+   };
 
-  // submitForm() {
-  //  const formData = {
-  //   surah_name: this.information.ayah.surah.name_en,
-  //   ayah_num: this.information.ayah_id,
-  //   ayah_verse_ar: this.information.ayah.ayah_text,
-  //   ayah_verse_en: this.information.translation,
-  //  };
+   axios.post('/bookmarks', formData)
+    .then(response => {
+     console.log(response.data.message);
+     // Set the submitted status for the selected bookmark
+     localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
+     // Log the updated bookmarkSubmitted object
+     console.log(this.bookmarkSubmitted);
+     this.showAlert = true; // Show success alert
+     this.showErrorAlert = false; // Hide error alert
+     this.hideAlertAfterDelay(); // Start timer to hide alert
+    })
+    .catch(error => {
+     console.error(error);
+     this.showAlert = false; // Hide success alert
+     this.showErrorAlert = true; // Show error alert
 
-  //  axios.post('/bookmarks', formData)
-  //   .then(response => {
-  //    console.log(response.data.message);
-  //    // Set the submitted status for the selected bookmark
-  //    localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
-  //    // Log the updated bookmarkSubmitted object
-  //    console.log(this.bookmarkSubmitted);
-  //    this.showAlert = true; // Show success alert
-  //    this.showErrorAlert = false; // Hide error alert
-  //    this.hideAlertAfterDelay(); // Start timer to hide alert
-  //   })
-  //   .catch(error => {
-  //    console.error(error);
-  //    this.showAlert = false; // Hide success alert
-  //    this.showErrorAlert = true; // Show error alert
+     this.hideAlertAfterDelay(); // Start timer to hide alert
+    });
+  },
+  submitForm1() {
+   const formData = {
+    surah_name: this.information.ayah.surah.name_en,
+    ayah_num: this.information.ayah_id,
+    ayah_verse_ar: this.information.ayah.ayah_text,
+    ayah_verse_en: this.tafseer,
+   };
 
-  //    this.hideAlertAfterDelay(); // Start timer to hide alert
-  //   });
-  // },
-  // submitForm1() {
-  //  const formData = {
-  //   surah_name: this.information.ayah.surah.name_en,
-  //   ayah_num: this.information.ayah_id,
-  //   ayah_verse_ar: this.information.ayah.ayah_text,
-  //   ayah_verse_en: this.tafseer,
-  //  };
+   axios.post('/bookmarks', formData)
+    .then(response => {
+     console.log(response.data.message);
+     // Set the submitted status for the selected bookmark
+     localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
+     // Log the updated bookmarkSubmitted object
+     console.log(this.bookmarkSubmitted);
+     this.showAlert = true; // Show success alert
+     this.showErrorAlert = false; // Hide error alert
+     this.hideAlertAfterDelay(); // Start timer to hide alert
+    })
+    .catch(error => {
+     console.error(error);
+     this.showAlert = false; // Hide success alert
+     this.showErrorAlert = true; // Show error alert
+     this.hideAlertAfterDelay(); // Start timer to hide alert
+    });
+  },
+  submitForm2() {
+   const formData = {
+    surah_name: this.information.ayah.surah.name_en,
+    ayah_num: this.information.ayah_id,
+    ayah_verse_ar: this.information.ayah.ayah_text,
+    ayah_verse_en: this.information.transliteration,
+   };
 
-  //  axios.post('/bookmarks', formData)
-  //   .then(response => {
-  //    console.log(response.data.message);
-  //    // Set the submitted status for the selected bookmark
-  //    localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
-  //    // Log the updated bookmarkSubmitted object
-  //    console.log(this.bookmarkSubmitted);
-  //    this.showAlert = true; // Show success alert
-  //    this.showErrorAlert = false; // Hide error alert
-  //    this.hideAlertAfterDelay(); // Start timer to hide alert
-  //   })
-  //   .catch(error => {
-  //    console.error(error);
-  //    this.showAlert = false; // Hide success alert
-  //    this.showErrorAlert = true; // Show error alert
-  //    this.hideAlertAfterDelay(); // Start timer to hide alert
-  //   });
-  // },
-  // submitForm2() {
-  //  const formData = {
-  //   surah_name: this.information.ayah.surah.name_en,
-  //   ayah_num: this.information.ayah_id,
-  //   ayah_verse_ar: this.information.ayah.ayah_text,
-  //   ayah_verse_en: this.information.transliteration,
-  //  };
-
-  //  axios.post('/bookmarks', formData)
-  //   .then(response => {
-  //    console.log(response.data.message);
-  //    // Set the submitted status for the selected bookmark
-  //    localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
-  //    // Log the updated bookmarkSubmitted object
-  //    console.log(this.bookmarkSubmitted);
-  //    this.showAlert = true; // Show success alert
-  //    this.showErrorAlert = false; // Hide error alert
-  //    this.hideAlertAfterDelay(); // Start timer to hide alert
-  //   })
-  //   .catch(error => {
-  //    console.error(error);
-  //    this.showAlert = false; // Hide success alert
-  //    this.showErrorAlert = true; // Show error alert
-  //    this.hideAlertAfterDelay(); // Start timer to hide alert
-  //   });
-  // },
+   axios.post('/bookmarks', formData)
+    .then(response => {
+     console.log(response.data.message);
+     // Set the submitted status for the selected bookmark
+     localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
+     // Log the updated bookmarkSubmitted object
+     console.log(this.bookmarkSubmitted);
+     this.showAlert = true; // Show success alert
+     this.showErrorAlert = false; // Hide error alert
+     this.hideAlertAfterDelay(); // Start timer to hide alert
+    })
+    .catch(error => {
+     console.error(error);
+     this.showAlert = false; // Hide success alert
+     this.showErrorAlert = true; // Show error alert
+     this.hideAlertAfterDelay(); // Start timer to hide alert
+    });
+  },
   hideAlertAfterDelay() {
    setTimeout(() => {
     this.showAlert = false;
