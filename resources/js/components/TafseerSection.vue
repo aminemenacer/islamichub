@@ -3,38 +3,41 @@
     <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
     <AyahInfo :information="information" />
     <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
-      <MainAyah :information="information" />
-      <div ref="heading1">
-        <h5 class="text-left ayah-translation" ref="heading3" style="line-height: 1.6em">
-          {{ expanded ? tafseer : truncatedText(tafseer) }}
-          <template v-if="showMoreLink">
-            <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
-          </template>
+      <!-- main stack top -->
+      <div class="btn">
+        <h5 class="text-right ayah-translation" name="ayah_text" style="line-height: 1.6em">
+          {{ information.ayah.ayah_text }}
         </h5>
       </div>
+      <!-- main stack below -->
+      <h5 class="text-left ayah-translation" ref="heading1" style="line-height: 1.6em">
+        {{ tafseer }}
+        <template v-if="showMoreLink">
+          <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
+        </template>
+      </h5>
       <h6 class="text-left mt-3"><strong>Tafseer: </strong>Ibn Kathir</h6>
-      <AlertModal 
+      <!-- Include the AlertModal component -->
+      <!-- <AlertModal 
         :showAlertText="showAlertText" 
         :showAlert="showAlert" 
         :showErrorAlert="showErrorAlert" 
         :showAlertTextNote="showAlertTextNote" 
         @close-alert-text="closeAlertText" 
-      />
+      /> -->
     </div>
   </div>
 </template>
 
 <script>
 import AyahInfo from './translation/AyahInfo.vue';
-import MainAyah from './translation/MainAyah.vue';
-import Translator from './translation/Translator.vue';
+// import AlertModal from './AlertModal.vue';
 
 export default {
   name: 'TafseerSection',
   components: {
     AyahInfo,
-    MainAyah,
-    Translator,
+    // AlertModal,
   },
   props: {
     information: Object,
@@ -72,4 +75,8 @@ export default {
 };
 </script>
 
-
+<style scoped>
+.ayah-translation {
+  line-height: 1.6em;
+}
+</style>

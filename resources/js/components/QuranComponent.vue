@@ -104,24 +104,22 @@
        </div>
 
        <!-- Main content -->
-       <div ref="targetTranslationElement" class="w-100 my-element " :class="{'full-screen': isFullScreen}">
-        <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
-        <AyahInfo :information="information" />
-        <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
-         <MainAyah :information="information" />
-         <div ref="heading3">
-            <h5 class="text-left ayah-translation" ref="heading3" style="line-height: 1.6em">
-              {{ expanded ? information.translation : truncatedText(information.translation) }}
-              <template v-if="showMoreLink">
-              <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
-              </template>
-            </h5>
-         </div>
-         <Translator translator="Ahmed Ali" />
-         <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
-        </div>
-       </div>
-       <!-- Surah Info Modal -->
+        <TranslationSection
+          :information="information"
+          :isFullScreen="isFullScreen"
+          :expanded="expanded"
+          :showMoreLink="showMoreLink"
+          :showAlertText="showAlertText"
+          :showAlert="showAlert"
+          :showErrorAlert="showErrorAlert"
+          :showAlertTextNote="showAlertTextNote"
+          @toggle-full-screen="toggleFullScreen"
+          @handle-touch-start="handleTouchStart"
+          @handle-touch-move="handleTouchMove"
+          @handle-touch-end="handleTouchEnd"
+          @toggle-expand="toggleExpand"
+          @close-alert-text="closeAlertText"
+        />
        <SurahInfoModal :information="information" />
 
       </div>
@@ -172,30 +170,23 @@
         </div>
        </div>
 
-       <!-- Main Content to Capture -->
-       <div ref="targetTafseerElement" class="w-100 my-element" :class="{'full-screen': isFullScreen}">
-        <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
-        <AyahInfo :information="information" />
-        <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
-         <!-- main stack top -->
-         <div class="btn">
-          <h5 class="text-right ayah-translation" name="ayah_text" style="line-height: 1.6em">
-           {{ information.ayah.ayah_text }}
-          </h5>
-         </div>
-         <!-- main stack below -->
-         <h5 class="text-left ayah-translation" ref="heading1" style="line-height: 1.6em">
-          {{ expanded ? tafseer : truncatedText(tafseer) }}
-          <template v-if="showMoreLink">
-           <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
-          </template>
-         </h5>
-         <h6 class="text-left mt-3"><strong>Tafseer: </strong>Ibn Kathir</h6>
-         
-         <!-- Include the AlertModal component -->
-         <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
-        </div>
-       </div>
+        <!-- Main content -->
+        <TafseerSection
+          :information="information"
+          :isFullScreen="isFullScreen"
+          :expanded="expanded"
+          :showMoreLink="showMoreLink"
+          :showAlertText="showAlertText"
+          :showAlert="showAlert"
+          :showErrorAlert="showErrorAlert"
+          :showAlertTextNote="showAlertTextNote"
+          @toggle-full-screen="toggleFullScreen"
+          @handle-touch-start="handleTouchStart"
+          @handle-touch-move="handleTouchMove"
+          @handle-touch-end="handleTouchEnd"
+          @toggle-expand="toggleExpand"
+          @close-alert-text="closeAlertText"
+        />
 
        <!-- Features -->
        <div class="text-right ">
@@ -250,30 +241,22 @@
           </div>
          </div>
 
-         <div ref="targetElement2" class="w-100 my-element " :class="{'full-screen': isFullScreen}">
-          <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
-
-          <h5 class="mr-2">
-           {{ information.ayah.surah.name_en }} {{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }}
-          </h5>
-          <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
-           <!-- main stack top -->
-           <div class="btn">
-            <h5 class="text-right ayah-translation" name="ayah_text" style="line-height: 1.6em">
-             {{ information.ayah.ayah_text }}
-            </h5>
-           </div>
-
-           <!-- main stack below -->
-           <h5 class="text-left ayah-translation" ref="heading2" style="line-height: 1.6em">
-            {{ expanded ? information.transliteration : truncatedText(information.transliteration) }}
-            <template v-if="showMoreLink">
-             <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
-            </template>
-           </h5>
-           <h6 class="text-left mt-3"><strong>Transliteration: </strong>Saheeh International</h6>
-          </div>
-         </div>
+        <TransliterationSection
+          :information="information"
+          :isFullScreen="isFullScreen"
+          :expanded="expanded"
+          :showMoreLink="showMoreLink"
+          :showAlertText="showAlertText"
+          :showAlert="showAlert"
+          :showErrorAlert="showErrorAlert"
+          :showAlertTextNote="showAlertTextNote"
+          @toggle-full-screen="toggleFullScreen"
+          @handle-touch-start="handleTouchStart"
+          @handle-touch-move="handleTouchMove"
+          @handle-touch-end="handleTouchEnd"
+          @toggle-expand="toggleExpand"
+          @close-alert-text="closeAlertText"
+        />
          
 
          <!-- Include the AlertModal component -->
@@ -313,7 +296,7 @@ import SurahList from './search/SurahList.vue';
 import SurahDropdown from './search/SurahDropdown.vue';
 import ArrowControls from './arrowControls/ArrowControls.vue';
 import BookmarksAndNotes from './bookmark_and_notes_links/BookmarksAndNotes.vue';
-import AlertModal from './modals/AlertModal.vue';
+// import AlertModal from './modals/AlertModal.vue';
 import Welcome from './intro/Welcome.vue';
 import Title from './intro/Title.vue';
 import CorrectionModal from './modals/CorrectionModal.vue';
@@ -345,6 +328,9 @@ import TafseerNote from './translation/features/notes/TafseerNote.vue';
 import TransliterationNote from './translation/features/notes/TransliterationNote.vue';
 import BookmarkTranslation from './translation/features/bookmarking/BookmarkTranslation.vue';
 import FilteredSurahList from './search/FilteredSurahList.vue'
+import TafseerSection from './TafseerSection'
+import TranslationSection from './TranslationSection'
+import TransliterationSection from './TransliterationSection'
 
 export default {
  name: 'QuranComponent',
@@ -355,7 +341,7 @@ export default {
   SurahDropdown,
   ArrowControls,
   BookmarksAndNotes,
-  AlertModal,
+  // AlertModal,
   Welcome,
   CorrectionModal,
   Donation,
@@ -387,7 +373,10 @@ export default {
   TafseerNote,
   TransliterationNote,
   BookmarkTranslation,
-  FilteredSurahList
+  FilteredSurahList,
+  TafseerSection,
+  TranslationSection,
+  TransliterationSection
  },
  mounted() {
   this.getSurat(); // Call getSurat to populate the surah list

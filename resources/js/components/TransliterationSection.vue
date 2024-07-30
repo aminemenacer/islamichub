@@ -13,13 +13,13 @@
         </h5>
       </div>
       <Translator translator="Saheeh International" />
-      <AlertModal 
+      <!-- <AlertModal 
         :showAlertText="showAlertText" 
         :showAlert="showAlert" 
         :showErrorAlert="showErrorAlert" 
         :showAlertTextNote="showAlertTextNote" 
         @close-alert-text="closeAlertText" 
-      />
+      /> -->
     </div>
   </div>
 </template>
@@ -30,7 +30,7 @@ import MainAyah from './translation/MainAyah.vue';
 import Translator from './translation/Translator.vue';
 
 export default {
-  name: 'TransliterationSection',
+  name: 'AyahTransliteration',
   components: {
     AyahInfo,
     MainAyah,
