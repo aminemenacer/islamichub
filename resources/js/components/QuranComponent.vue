@@ -6,20 +6,46 @@
     <custom-surah-selection :customSurat="customSuratList" v-model="selectedSurah"></custom-surah-selection>
   </div>
  
+ <!-- accordion headers-->
  <div class="row container-fluid">
-  <!-- Search section -->
   <div class="col-md-4 container">
    <FilteredSurahList :filteredSurah="filteredSurah" @select-surah="selectSurahFromResults" />
    <Donation />
    <SurahDropdown :selectedSurah="selectedSurah" :filteredSurah="filteredSurah" :surat="surat" @update:selectedSurah="updateSelectedSurah" @change="getAyat"/>
    <AyahDropdown :selectedSurahId="selectedSurahId" :dropdownHidden="dropdownHidden" @update-information="updateInformation" @update-tafseer="updateTafseer" v-if="ayah != null" />
+
+   <!-- List of Ayat for Surah (desktop) -->
    <div class="tab-content hide-on-mobile-tablet" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" v-if="ayah == null">
-     <AyahSearchVerseNum :verseNumber="verseNumber" @submit="scrollToAyah" />
+
+     <form class="d-flex pb-2 " role="search" @submit.prevent="scrollToAyah">
+      <input class="form-control me-2" type="number" placeholder="Enter Verse Number" v-model="verseNumber" required>
+      <button class="btn btn-success mb-1 ml-2" type="submit">Search</button>
+     </form>
+
+     <!-- Error alert -->
      <ErrorAlert :showError="showError" @dismiss-error="dismissError" />
-     <hr>
-     <NavigationIcons @go-to-first-ayah="goToFirstAyah" @go-to-previous-ayah="goToPreviousAyah" @go-to-next-ayah="goToNextAyah" @go-to-last-ayah="goToLastAyah"/>
-     <AyahList :ayat="ayat" :selectedIndexAyah="selectedIndexAyah" :verseNumber="verseNumber" @select-ayah="selectAyah" />
+
+     <div class="row container-fluid">
+      <hr class="container" style="height: 4px; background: lightgrey;">
+
+      <div class="icon-container pb-2">
+       <i class="bi bi-chevron-bar-left h5" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToFirstAyah" title="First verse"></i>
+       <i class="bi bi-arrow-left-circle h5" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToPreviousAyah" title="Previous verse"></i>
+       <i class="bi bi-arrow-right-circle h5" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToNextAyah" title="Next verse"></i>
+       <i class="bi bi-chevron-bar-right h5" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToLastAyah" title="Last verse"></i>
+      </div>
+
+      <div class="custom-scrollbar pb-5" style="overflow-y: auto; max-height: 600px; background: white;">
+       <ul class="col-md-12 list-group container-fluid root" id="toggle" ref="ayahList" style="list-style-type: none; padding: 10px">
+        <li v-for="(ayah, index) in ayat" :key="index" @click="selectAyah(index)" :class="{ selected: selectedIndexAyah === index, highlighted: verseNumber && parseInt(verseNumber) === ayah.ayah_id }" style="padding: 10px; border-radius:10px">
+         <h5 class="text-right" style="display: flex;"> Verse: {{ ayah.ayah_id }} </h5>
+         <h5 class="text-right">{{ ayah.ayah_text }}</h5>
+        </li>
+       </ul>
+      </div>
+     </div>
+
     </div>
    </div>
   </div>
@@ -38,8 +64,7 @@
       <!-- Translation Section -->
       <div class="tab-pane active" id="home" role="tabpanel" v-if="information != null">
        <div class="icon-container pb-3">
-        <ActionIcons :information="information" />
-        <!-- Main features 
+        <!-- Main features -->
         <div class="icon-container w-100 hide-on-mobile pb-3">
          <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('translationNote')" style="color: rgba(0, 191, 166);cursor:pointer">
          </i>
@@ -53,7 +78,7 @@
          <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;"></i>
          <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
          <i class="bi bi-info-circle h4" style="color: rgb(0, 191, 166);cursor:pointer" data-bs-target="#translationInfo" aria-expanded="false" data-bs-toggle="modal" data-bs-placement="top" title="Surah info"></i>
-        </div>-->
+        </div>
         <!-- Dropdown Features -->
         <div class="dropdown mobile-only">
          <div class=" icon-container">
@@ -78,29 +103,34 @@
          </div>
         </div>
        </div>
-        <TranslationSection
-          :information="information"
-          :isFullScreen="isFullScreen"
-          :expanded="expanded"
-          :showMoreLink="showMoreLink"
-          :showAlertText="showAlertText"
-          :showAlert="showAlert"
-          :showErrorAlert="showErrorAlert"
-          :showAlertTextNote="showAlertTextNote"
-          @toggle-full-screen="toggleFullScreen"
-          @handle-touch-start="handleTouchStart"
-          @handle-touch-move="handleTouchMove"
-          @handle-touch-end="handleTouchEnd"
-          @toggle-expand="toggleExpand"
-          @close-alert-text="closeAlertText"
-        />
+
+       <!-- Main content -->
+       <div ref="targetTranslationElement" class="w-100 my-element " :class="{'full-screen': isFullScreen}">
+        <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
+        <AyahInfo :information="information" />
+        <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
+         <MainAyah :information="information" />
+         <div ref="heading3">
+            <h5 class="text-left ayah-translation" ref="heading3" style="line-height: 1.6em">
+              {{ expanded ? information.translation : truncatedText(information.translation) }}
+              <template v-if="showMoreLink">
+              <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
+              </template>
+            </h5>
+         </div>
+         <Translator translator="Ahmed Ali" />
+         <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
+        </div>
+       </div>
+       <!-- Surah Info Modal -->
        <SurahInfoModal :information="information" />
+
       </div>
 
       <!-- Tafseer Section -->
       <div class="tab-pane" id="profile" role="tabpanel" v-if="information != null">
        <div class="icon-container pb-3">
-        <!-- Main features -->
+
         <div class="icon-container w-100 hide-on-mobile pb-3">
          <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('tafseerNote')" style="color: rgba(0, 191, 166);cursor:pointer">
          </i>
@@ -115,6 +145,7 @@
          <i class="bi bi-info-circle h4" style="color: rgb(0, 191, 166);cursor:pointer" data-bs-target="#tafseerInfo" aria-expanded="false" data-bs-toggle="modal" data-bs-placement="top" title="Surah info"></i>
 
         </div>
+
         <!-- Dropdown Features -->
         <div class="dropdown mobile-only">
 
@@ -142,32 +173,47 @@
         </div>
        </div>
 
-       <TafseerSection
-          :information="information"
-          :isFullScreen="isFullScreen"
-          :expanded="expanded"
-          :showMoreLink="showMoreLink"
-          :showAlertText="showAlertText"
-          :showAlert="showAlert"
-          :showErrorAlert="showErrorAlert"
-          :showAlertTextNote="showAlertTextNote"
-          @toggle-full-screen="toggleFullScreen"
-          @handle-touch-start="handleTouchStart"
-          @handle-touch-move="handleTouchMove"
-          @handle-touch-end="handleTouchEnd"
-          @toggle-expand="toggleExpand"
-          @close-alert-text="closeAlertText"
-        />
-        <SurahInfoModal :information="information" />
+       <!-- Main Content to Capture -->
+       <div ref="targetTafseerElement" class="w-100 my-element" :class="{'full-screen': isFullScreen}">
+        <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
+        <AyahInfo :information="information" />
+        <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
+         <!-- main stack top -->
+         <div class="btn">
+          <h5 class="text-right ayah-translation" name="ayah_text" style="line-height: 1.6em">
+           {{ information.ayah.ayah_text }}
+          </h5>
+         </div>
+         <!-- main stack below -->
+         <h5 class="text-left ayah-translation" ref="heading1" style="line-height: 1.6em">
+          {{ expanded ? tafseer : truncatedText(tafseer) }}
+          <template v-if="showMoreLink">
+           <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
+          </template>
+         </h5>
+         <h6 class="text-left mt-3"><strong>Tafseer: </strong>Ibn Kathir</h6>
+         
+         <!-- Include the AlertModal component -->
+         <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
+        </div>
+       </div>
+
+       <!-- Features -->
+       <div class="text-right ">
+        <!-- Surah Info Modal -->
+        <SurahInfoModal :information="information.transliteration" />
+
+       </div>
+
       </div>
 
       <!-- Transliteration Section -->
       <div class="tab-pane" id="messages" role="tabpanel" v-if="information != null">
        <div class="">
         <div>
-         
+         <!-- Ayah Controls -->
          <div class="icon-container pb-3">
-         <!-- Main features -->
+
           <div class="icon-container w-100 hide-on-mobile pb-3">
            <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('transliterationNote')" style="color: rgba(0, 191, 166);cursor:pointer">
            </i>
@@ -181,6 +227,7 @@
            <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
            <i class="bi bi-info-circle h4" style="color: rgb(0, 191, 166);cursor:pointer" data-bs-target="#transliterationInfo" aria-expanded="false" data-bs-toggle="modal" data-bs-placement="top" title="Surah info"></i>
           </div>
+
           <!-- Dropdown Features -->
           <div class="dropdown mobile-only">
            <div class="icon-container">
@@ -203,23 +250,38 @@
            </div>
           </div>
          </div>
-        <TransliterationSection
-          :information="information"
-          :isFullScreen="isFullScreen"
-          :expanded="expanded"
-          :showMoreLink="showMoreLink"
-          :showAlertText="showAlertText"
-          :showAlert="showAlert"
-          :showErrorAlert="showErrorAlert"
-          :showAlertTextNote="showAlertTextNote"
-          @toggle-full-screen="toggleFullScreen"
-          @handle-touch-start="handleTouchStart"
-          @handle-touch-move="handleTouchMove"
-          @handle-touch-end="handleTouchEnd"
-          @toggle-expand="toggleExpand"
-          @close-alert-text="closeAlertText"
-        />
-        <SurahInfoModal :information="information" />
+
+         <div ref="targetElement2" class="w-100 my-element " :class="{'full-screen': isFullScreen}">
+          <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
+
+          <h5 class="mr-2">
+           {{ information.ayah.surah.name_en }} {{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }}
+          </h5>
+          <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
+           <!-- main stack top -->
+           <div class="btn">
+            <h5 class="text-right ayah-translation" name="ayah_text" style="line-height: 1.6em">
+             {{ information.ayah.ayah_text }}
+            </h5>
+           </div>
+
+           <!-- main stack below -->
+           <h5 class="text-left ayah-translation" ref="heading2" style="line-height: 1.6em">
+            {{ expanded ? information.transliteration : truncatedText(information.transliteration) }}
+            <template v-if="showMoreLink">
+             <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
+            </template>
+           </h5>
+           <h6 class="text-left mt-3"><strong>Transliteration: </strong>Saheeh International</h6>
+          </div>
+         </div>
+         
+
+         <!-- Include the AlertModal component -->
+         <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
+
+         <!-- Surah Info Modal -->
+         <SurahInfoModal :information="information" />
 
         </div>
        </div>
@@ -228,6 +290,7 @@
 
       <BookmarksAndNotes :information="information" />
       <CorrectionModal />
+
      </div>
 
      <!-- Modals -->
@@ -283,12 +346,6 @@ import TafseerNote from './translation/features/notes/TafseerNote.vue';
 import TransliterationNote from './translation/features/notes/TransliterationNote.vue';
 import BookmarkTranslation from './translation/features/bookmarking/BookmarkTranslation.vue';
 import FilteredSurahList from './search/FilteredSurahList.vue'
-import NavigationIcons from './search/NavigationIcons.vue'
-import AyahList from './search/AyahList.vue'
-import TranslationSection from './TranslationSection.vue'
-import TafseerSection from './TafseerSection.vue'
-import TransliterationSection from './TransliterationSection.vue'
-import ActionIcons from './ActionIcons.vue'
 
 export default {
  name: 'QuranComponent',
@@ -331,14 +388,7 @@ export default {
   TafseerNote,
   TransliterationNote,
   BookmarkTranslation,
-  FilteredSurahList,
-  AyahSearchVerseNum,
-  NavigationIcons,
-  AyahList,
-  TranslationSection,
-  TafseerSection,
-  TransliterationSection,
-  ActionIcons
+  FilteredSurahList
  },
  mounted() {
   this.getSurat(); // Call getSurat to populate the surah list
@@ -375,7 +425,6 @@ export default {
    expanded: false,
    //full screen toggle
    isFullScreen: false,
-   expanded: false,
    //swipe gestures
    touchStartX: 0,
    touchEndX: 0,
@@ -432,14 +481,14 @@ export default {
   };
  },
  methods: {
-  // openModal(modalRef) {
-  //  const modalComponent = this.$refs[modalRef];
-  //  if (modalComponent && typeof modalComponent.showModal === 'function') {
-  //   modalComponent.showModal();
-  //  } else {
-  //   console.error(`Modal reference '${modalRef}' not found or showModal is not a function.`);
-  //  }
-  // },
+  openModal(modalRef) {
+   const modalComponent = this.$refs[modalRef];
+   if (modalComponent && typeof modalComponent.showModal === 'function') {
+    modalComponent.showModal();
+   } else {
+    console.error(`Modal reference '${modalRef}' not found or showModal is not a function.`);
+   }
+  },
   updateSelectedSurah(newSurah) {
     this.selectedSurah = newSurah;
   },
@@ -610,7 +659,7 @@ export default {
    };
    axios.post('/submit_category', formData);
   },
-  scrollToAyah(verseNumber) {
+  scrollToAyah() {
    const verseNum = parseInt(this.verseNumber);
    if (!isNaN(verseNum) && verseNum >= 1 && verseNum <= this.ayat.length) {
     const ayahElement = this.$refs.ayahList.querySelectorAll("li")[verseNum - 1];
@@ -628,6 +677,33 @@ export default {
    }
   },
 
+  // submitForm() {
+  //  const formData = {
+  //   surah_name: this.information.ayah.surah.name_en,
+  //   ayah_num: this.information.ayah_id,
+  //   ayah_verse_ar: this.information.ayah.ayah_text,
+  //   ayah_verse_en: this.information.translation,
+  //  };
+
+  //  axios.post('/bookmarks', formData)
+  //   .then(response => {
+  //    console.log(response.data.message);
+  //    // Set the submitted status for the selected bookmark
+  //    localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
+  //    // Log the updated bookmarkSubmitted object
+  //    console.log(this.bookmarkSubmitted);
+  //    this.showAlert = true; // Show success alert
+  //    this.showErrorAlert = false; // Hide error alert
+  //    this.hideAlertAfterDelay(); // Start timer to hide alert
+  //   })
+  //   .catch(error => {
+  //    console.error(error);
+  //    this.showAlert = false; // Hide success alert
+  //    this.showErrorAlert = true; // Show error alert
+
+  //    this.hideAlertAfterDelay(); // Start timer to hide alert
+  //   });
+  // },
   // submitForm1() {
   //  const formData = {
   //   surah_name: this.information.ayah.surah.name_en,
@@ -680,6 +756,13 @@ export default {
   //    this.hideAlertAfterDelay(); // Start timer to hide alert
   //   });
   // },
+  hideAlertAfterDelay() {
+   setTimeout(() => {
+    this.showAlert = false;
+    this.showAlertText = false;
+    this.showErrorAlert = false;
+   }, 3000);
+  },
 
   async getSurat() {
    try {

@@ -1,18 +1,18 @@
 <template>
-  <div ref="targetTranslationElement" class="w-100 my-element" :class="{'full-screen': isFullScreen}">
+  <div ref="targetTransliterationElement" class="w-100 my-element" :class="{'full-screen': isFullScreen}">
     <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
     <AyahInfo :information="information" />
     <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
       <MainAyah :information="information" />
-      <div ref="heading2">
-        <h5 class="text-left ayah-transliteration" ref="heading3" style="line-height: 1.6em">
+      <div ref="heading3">
+        <h5 class="text-left ayah-translation" ref="heading3" style="line-height: 1.6em">
           {{ expanded ? information.transliteration : truncatedText(information.transliteration) }}
           <template v-if="showMoreLink">
             <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
           </template>
         </h5>
       </div>
-      <Translator translator="Ahmed Ali" />
+      <Translator translator="Saheeh International" />
       <AlertModal 
         :showAlertText="showAlertText" 
         :showAlert="showAlert" 
@@ -71,7 +71,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-/* Add scoped styles if necessary */
-</style>

@@ -63,7 +63,6 @@ export default {
       this.$emit('toggle-expand');
     },
     truncatedText(text) {
-      // Assuming truncatedText is a method that truncates the text
       return text.length > 100 ? text.slice(0, 100) + '...' : text;
     },
     closeAlertText() {
@@ -72,7 +71,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-/* Add scoped styles if necessary */
-</style>
