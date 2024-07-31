@@ -13,13 +13,13 @@
         </h5>
       </div>
       <Translator translator="Saheeh International" />
-      <!-- <AlertModal 
+      <AlertModal 
         :showAlertText="showAlertText" 
         :showAlert="showAlert" 
         :showErrorAlert="showErrorAlert" 
         :showAlertTextNote="showAlertTextNote" 
         @close-alert-text="closeAlertText" 
-      /> -->
+      />
     </div>
   </div>
 </template>

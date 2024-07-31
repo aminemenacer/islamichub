@@ -20,11 +20,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="/css/stylesheet.css?v=1" />
+    {{-- <link rel="stylesheet" type="text/css" href="/css/stylesheet.css?v=1" /> --}}
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap CSS (choose one and remove the others) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
@@ -39,7 +38,6 @@
 </head>
 <body>
     <div id="app">
-  
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm py-1">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -109,34 +107,33 @@
             </div>
         </nav>
 
-        <main >
+        <main>
             @yield('content')
         </main>
     </div>
 
-    {{-- Ensure that app.js is loaded at the end --}}
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-
-    <script src="{{ mix('js/app.js') }}" ></script>
+    <!-- Ensure that app.js is loaded at the end -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="{{ mix('js/app.js') }}"></script>
 </body>
 </html>
 
 <style>
-    .button-33 {
-        background-color: #00BFA6;
-        border-radius: 10px;
-        color: white;
-        cursor: pointer;
-        display: inline-block;
-        font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
-        padding: 7px 20px;
-        text-align: center;
-        text-decoration: none;
-        transition: all 250ms;
-        border: 0;
-        font-size: 16px;
-        user-select: none;
-        -webkit-user-select: none;
-        touch-action: manipulation;
-    }
+.button-33 {
+    background-color: #00BFA6;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
+    padding: 7px 20px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 250ms;
+    border: 0;
+    font-size: 16px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
 </style>

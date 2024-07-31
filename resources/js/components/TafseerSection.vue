@@ -10,7 +10,7 @@
         </h5>
       </div>
       <!-- main stack below -->
-      <h5 class="text-left ayah-translation" ref="heading1" style="line-height: 1.6em">
+      <h5 class="text-left ayah-translation" ref="heading3" style="line-height: 1.6em">
         {{ tafseer }}
         <template v-if="showMoreLink">
           <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
@@ -18,26 +18,28 @@
       </h5>
       <h6 class="text-left mt-3"><strong>Tafseer: </strong>Ibn Kathir</h6>
       <!-- Include the AlertModal component -->
-      <!-- <AlertModal 
+      <AlertModal 
         :showAlertText="showAlertText" 
         :showAlert="showAlert" 
         :showErrorAlert="showErrorAlert" 
         :showAlertTextNote="showAlertTextNote" 
         @close-alert-text="closeAlertText" 
-      /> -->
+      />
     </div>
   </div>
 </template>
 
 <script>
 import AyahInfo from './translation/AyahInfo.vue';
-// import AlertModal from './AlertModal.vue';
+import MainAyah from './translation/MainAyah.vue';
+import AlertModal from './modals/AlertModal.vue';
 
 export default {
   name: 'TafseerSection',
   components: {
     AyahInfo,
-    // AlertModal,
+    MainAyah,
+    AlertModal,
   },
   props: {
     information: Object,

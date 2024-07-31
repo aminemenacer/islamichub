@@ -87,13 +87,15 @@
           <i class="bi bi-arrow-right-circle h5" style="color: rgb(0, 191, 166);" @click="goToNextAyah()" title="Next verse"></i>
           <i class="bi bi-chevron-bar-right h5" style="color: rgb(0, 191, 166);" @click="goToLastAyah()" title="End verse"></i>
           <i class="bi bi-arrows-fullscreen h6" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
-
           <i style="color:rgb(0, 191, 166); cursor:pointer" class="bi bi-three-dots-vertical h5 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></i>
-          <TranslationActions 
-            :translation="information.translation"
-            @open-modal="openModal"
-            @submit-form="submitForm"
-          />
+          <ul class="dropdown-menu">
+            <TranslationActions 
+              :targetTranslationRef="'targetTranslationElement'"
+              :translation="information.translation"
+              @open-modal="openModal"
+              @submit-form="submitForm"
+            />
+          </ul>
          </div>
         </div>
        </div>
@@ -144,18 +146,20 @@
         <div class="dropdown mobile-only">
           
          <div class="icon-container">
-          <i class="bi bi-chevron-bar-left h5" style="color: rgb(0, 191, 166);" @click="goToEndAyah()" title="Last verse"></i>
+          <i class="bi bi-chevron-bar-left h5" style="color: rgb(0, 191, 166);" @click="goToFirstAyah()" title="Last verse"></i>
           <i class="bi bi-arrow-left-circle h5" style="color: rgb(0, 191, 166);" @click="goToPreviousAyah()" title="Previous verse"></i>
           <i class="bi bi-arrow-right-circle h5" style="color: rgb(0, 191, 166);" @click="goToNextAyah()" title="Next verse"></i>
           <i class="bi bi-chevron-bar-right h5" style="color: rgb(0, 191, 166);" @click="goToLastAyah()" title="End verse"></i>
           <i class="bi bi-arrows-fullscreen h6" style="color: rgb(0, 191, 166);" @click="toggleFullScreen" title="Full screen"></i>
-          <TafseerActions 
-            :tafseer="tafseer"
-            @openModal="openModal"
-            @submitForm="submitForm"
-            @toggleFullScreen="toggleFullScreen"
-          />
-          
+          <i style="color:rgb(0, 191, 166); cursor:pointer" class="bi bi-three-dots-vertical h5 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></i>
+          <ul class="dropdown-menu">
+            <TafseerActions 
+              :targetTafseerRef="'targetTafseerElement'"
+              :tafseer="tafseer"
+              @open-modal="openModal"
+              @submit-form="submitForm"
+            />
+          </ul>
          </div>
           
         </div>
@@ -207,22 +211,23 @@
           <!-- Dropdown Features -->
           <div class="dropdown mobile-only">
            <div class="icon-container">
-            <i class="bi bi-chevron-bar-left h5" style="color: rgb(0, 191, 166);" @click="goToEndAyah()" title="Last verse"></i>
+            <i class="bi bi-chevron-bar-left h5" style="color: rgb(0, 191, 166);" @click="goToFirstAyah()" title="Last verse"></i>
             <i class="bi bi-arrow-left-circle h5" style="color: rgb(0, 191, 166);" @click="goToPreviousAyah()" title="Previous verse"></i>
             <i class="bi bi-arrow-right-circle h5" style="color: rgb(0, 191, 166);" @click="goToNextAyah()" title="Next verse"></i>
             <i class="bi bi-chevron-bar-right h5" style="color: rgb(0, 191, 166);" @click="goToLastAyah()" title="End verse"></i>
+            <ScreenTransliterationCapture :targetTransliterationRef="'targetTransliterationElement'" />
             <i class="bi bi-arrows-fullscreen h6" style="color: rgb(0, 191, 166);" @click="toggleFullScreen" title="Full screen"></i>
             <i style="color:rgb(0, 191, 166); cursor:pointer" class="bi bi-three-dots-vertical h5 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></i>
             <ul class="dropdown-menu">
-             <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#transliterationNote"><i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" style="color: rgba(0, 191, 166);"></i>Write a Note</a></li>
-             <li><a class="dropdown-item" @click="shareTextViaWhatsApp2"><i class="bi bi-whatsapp text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Share on Whatsapp" style="color: rgba(0, 191, 166);"></i>Share via WhatsApp</a></li>
-             <li><a class="dropdown-item" @click="shareHeadingOnTwitter2"><i style=" color:rgb(0, 191, 166); cursor:pointer" class="bi bi-twitter-x text-right h4 mr-2" aria-expanded="false" data-bs-placement="top" title="Share via X"></i>Share via X</a></li>
-             <li><a class="dropdown-item" @click="submitForm"><i class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);"></i>Bookmark Verse</a></li>
-             <li><a class="dropdown-item" @click="copyText2"><i class="bi bi-clipboard-check text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Copy verse" style="color: rgba(0, 191, 166);"></i>Copy Verse</a></li>
-             <li><a class="dropdown-item" data-bs-toggle="modal" @click="captureScreenshot2"><i class="bi bi-camera text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" style="color: rgba(0, 191, 166);"></i>Screenshot Verse</a></li>
-             <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#transliterationInfo"><i class="bi bi-info-circle text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Surah info" style="color: rgba(0, 191, 166);"></i>Surah Info</a></li>
-             <li><a class="dropdown-item" data-bs-placement="top" title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Report a bug" style="color: rgba(0, 191, 166);"></i>Report a bug</a></li>
+             <TransliterationActions 
+                :targetTransliterationRef="'targetTransliterationElement'"
+                :transliteration="information.transliteration"
+                @open-modal="openModal"
+                @submit-form="submitForm"
+              />
             </ul>
+            
+              
            </div>
           </div>
          </div>
@@ -279,7 +284,7 @@ import SurahList from './search/SurahList.vue';
 import SurahDropdown from './search/SurahDropdown.vue';
 import ArrowControls from './arrowControls/ArrowControls.vue';
 import BookmarksAndNotes from './bookmark_and_notes_links/BookmarksAndNotes.vue';
-// import AlertModal from './modals/AlertModal.vue';
+import AlertModal from './modals/AlertModal.vue';
 import Welcome from './intro/Welcome.vue';
 import Title from './intro/Title.vue';
 import CorrectionModal from './modals/CorrectionModal.vue';
@@ -316,6 +321,8 @@ import TranslationSection from './TranslationSection'
 import TransliterationSection from './TransliterationSection'
 import TranslationActions from './TranslationActions.vue'
 import TafseerActions from './TafseerActions.vue'
+import TransliterationActions from './TransliterationActions.vue'
+
 
 export default {
  name: 'QuranComponent',
@@ -326,7 +333,7 @@ export default {
   SurahDropdown,
   ArrowControls,
   BookmarksAndNotes,
-  // AlertModal,
+  AlertModal,
   Welcome,
   CorrectionModal,
   Donation,
@@ -363,7 +370,8 @@ export default {
   TranslationSection,
   TransliterationSection,
   TranslationActions,
-  TafseerActions
+  TafseerActions,
+  TransliterationActions
  },
  mounted() {
   this.getSurat(); // Call getSurat to populate the surah list

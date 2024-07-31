@@ -13,13 +13,13 @@
         </h5>
       </div>
       <Translator translator="Ahmed Ali" />
-      <!-- <AlertModal 
+      <AlertModal 
         :showAlertText="showAlertText" 
         :showAlert="showAlert" 
         :showErrorAlert="showErrorAlert" 
         :showAlertTextNote="showAlertTextNote" 
         @close-alert-text="closeAlertText" 
-      /> -->
+      />
     </div>
   </div>
 </template>
@@ -28,6 +28,7 @@
 import AyahInfo from './translation/AyahInfo.vue';
 import MainAyah from './translation/MainAyah.vue';
 import Translator from './translation/Translator.vue';
+import AlertModal from './modals/AlertModal.vue';
 
 export default {
   name: 'TranslationSection',
@@ -35,6 +36,7 @@ export default {
     AyahInfo,
     MainAyah,
     Translator,
+    AlertModal
   },
   props: {
     information: Object,
