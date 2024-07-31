@@ -12,7 +12,7 @@
    <FilteredSurahList :filteredSurah="filteredSurah" @select-surah="selectSurahFromResults" />
    <Donation />
    <SurahDropdown :selectedSurah="selectedSurah" :filteredSurah="filteredSurah" :surat="surat" @update:selectedSurah="updateSelectedSurah" @change="getAyat"/>
-    <AyahDropdown :selectedSurahId="selectedSurahId" :dropdownHidden="dropdownHidden" @update-information="updateInformation" @update-tafseer="updateTafseer" />
+   <AyahDropdown :selectedSurahId="selectedSurahId" :dropdownHidden="dropdownHidden" @update-information="updateInformation" @update-tafseer="updateTafseer"  />
 
 
    <!-- List of Ayat for Surah (desktop) -->
@@ -67,35 +67,37 @@
        <div class="icon-container pb-3">
         <!-- Main features -->
         <div class="icon-container w-100 hide-on-mobile pb-3">
-          <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('translationNote')" style="color: rgba(0, 191, 166);cursor:pointer"></i>
-          <WhatsAppShareTranslation :translationToShare="information.translation" />
-          <TwitterShareTranslation :targetElementRef="'targetElement'" :translationText="information.translation" />
-          <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
-          <CopyTranslationText :textToCopy="information.translation" />
-          <ScreenTranslationCapture :targetTranslationRef="'targetTranslationElement'" />
-          <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;"></i>
-          <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
-          <i class="bi bi-info-circle h4" style="color: rgb(0, 191, 166);cursor:pointer" data-bs-target="#translationInfo" aria-expanded="false" data-bs-toggle="modal" data-bs-placement="top" title="Surah info"></i>
+         <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('translationNote')" style="color: rgba(0, 191, 166);cursor:pointer">
+         </i>
+         <TranslationNote ref="translationNote" :information="information.translation" />
+         <WhatsAppShareTranslation :translationToShare="information.translation" />
+         <TwitterShareTranslation :targetElementRef="'targetElement'" :translationText="information.translation" />
+         <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
+         <CopyTranslationText :textToCopy="information.translation" />
+         <ScreenTranslationCapture :targetTranslationRef="'targetTranslationElement'" />
+         <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;"></i>
+         <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
+         <i class="bi bi-info-circle h4" style="color: rgb(0, 191, 166);cursor:pointer" data-bs-target="#translationInfo" aria-expanded="false" data-bs-toggle="modal" data-bs-placement="top" title="Surah info"></i>
         </div>
         <!-- Dropdown Features -->
         <div class="dropdown mobile-only">
-          <div class="icon-container">
-            <i class="bi bi-chevron-bar-left h5" style="color: rgb(0, 191, 166);" @click="goToFirstAyah()" title="First verse"></i>
-            <i class="bi bi-arrow-left-circle h5" style="color: rgb(0, 191, 166);" @click="goToPreviousAyah()" title="Previous verse"></i>
-            <i class="bi bi-arrow-right-circle h5" style="color: rgb(0, 191, 166);" @click="goToNextAyah()" title="Next verse"></i>
-            <i class="bi bi-chevron-bar-right h5" style="color: rgb(0, 191, 166);" @click="goToLastAyah()" title="End verse"></i>
-            <ScreenTranslationCapture :targetTranslationRef="'targetTranslationElement'" />
-            <i class="bi bi-arrows-fullscreen h6" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
-            <i style="color:rgb(0, 191, 166); cursor:pointer" class="bi bi-three-dots-vertical h5 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></i>
-            <ul class="dropdown-menu">
-              <TranslationActions 
-                :targetTranslationRef="'targetTranslationElement'"
-                :translation="information.translation"
-                @open-modal="openModal"
-                @submit-form="submitForm"
-              />
-            </ul>
-          </div>
+         <div class=" icon-container">
+          <i class="bi bi-chevron-bar-left h5" style="color: rgb(0, 191, 166);" @click="goToFirstAyah()" title="First verse"></i>
+          <i class="bi bi-arrow-left-circle h5" style="color: rgb(0, 191, 166);" @click="goToPreviousAyah()" title="Previous verse"></i>
+          <i class="bi bi-arrow-right-circle h5" style="color: rgb(0, 191, 166);" @click="goToNextAyah()" title="Next verse"></i>
+          <i class="bi bi-chevron-bar-right h5" style="color: rgb(0, 191, 166);" @click="goToLastAyah()" title="End verse"></i>
+          <ScreenTranslationCapture :targetTranslationRef="'targetTranslationElement'" />
+          <i class="bi bi-arrows-fullscreen h6" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
+          <i style="color:rgb(0, 191, 166); cursor:pointer" class="bi bi-three-dots-vertical h5 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></i>
+          <ul class="dropdown-menu">
+            <TranslationActions 
+              :targetTranslationRef="'targetTranslationElement'"
+              :translation="information.translation"
+              @open-modal="openModal"
+              @submit-form="submitForm"
+            />
+          </ul>
+         </div>
         </div>
        </div>
 
@@ -465,12 +467,12 @@ export default {
  },
  methods: {
   openModal(modalRef) {
-    const modalComponent = this.$refs[modalRef];
-    if (modalComponent && typeof modalComponent.showModal === 'function') {
-      modalComponent.showModal();
-    } else {
-      console.error(`Modal reference '${modalRef}' not found or showModal is not a function.`);
-    }
+   const modalComponent = this.$refs[modalRef];
+   if (modalComponent && typeof modalComponent.showModal === 'function') {
+    modalComponent.showModal();
+   } else {
+    console.error(`Modal reference '${modalRef}' not found or showModal is not a function.`);
+   }
   },
   updateSelectedSurah(surah) {
       this.selectedSurah = surah;
@@ -483,7 +485,7 @@ export default {
    this.information = newInformation;
   },
   updateTafseer(newTafseer) {
-    this.tafseer = newTafseer;
+   this.tafseer = newTafseer;
   },
   handleUpdateResults(results) {
    this.filteredSurah = results;
@@ -801,17 +803,10 @@ export default {
    this.isCardVisible = true; // Show the card when button is clicked
   },
   selectAyah(index) {
-      this.selectedIndexAyah = index;
-      const selectedAyah = this.ayat[index];
-      if (selectedAyah) {
-        // Assuming `information` contains ayah details
-        this.information = {
-          ...this.information,
-          ...selectedAyah
-        };
-        console.log(`Selected Ayah: ${selectedAyah.ayah_id}`);
-      }
-    },
+   this.selectedIndexAyah = index;
+   this.scrollToSelectedAyah();
+   this.getTafseers(this.ayat[index].id, index);
+  },
 
   scrollToSelectedAyah() {
    this.$nextTick(() => {
