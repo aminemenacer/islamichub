@@ -23,7 +23,8 @@
     <link rel="stylesheet" type="text/css" href="/css/stylesheet.css?v=1" />
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KE6xHX+U+vmbxM51F6P3u8wvZT/K4LBCNl0f2mLS9U5M5v7qD2wncmCof0C5w8Pt" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
@@ -114,7 +115,7 @@
     </div>
 
     {{-- Ensure that app.js is loaded at the end --}}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-aQcFwoMQo7izZTiwA9VbXTFdbjv1sIeqH2A9s1NcxsNJ4O9KfU5aFPhfhj8EuXzE" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
     <script src="{{ mix('js/app.js') }}" ></script>
 </body>
@@ -139,4 +140,3 @@
         touch-action: manipulation;
     }
 </style>
-
