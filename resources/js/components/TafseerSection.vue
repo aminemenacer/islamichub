@@ -51,6 +51,11 @@ export default {
     showErrorAlert: Boolean,
     showAlertTextNote: Boolean
   },
+  information: {
+    translation: '',
+    transliteration: '', // Example translated text
+   },
+   tafseer: '',
   methods: {
     toggleFullScreen() {
       this.$emit('toggle-full-screen');

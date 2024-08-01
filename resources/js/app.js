@@ -5,6 +5,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import $ from 'jquery';
 
 
+
 import { createApp } from "vue";
 import { Form } from "vform";
 import swal from "sweetalert2";
@@ -28,6 +29,8 @@ import Fieldset from "primevue/fieldset";
 import Panel from "primevue/panel";
 import Dialog from "primevue/dialog";
 import Image from "primevue/image";
+import Editor from 'primevue/editor';
+
 
 import UsersComponent from "./components/admin_panels/UsersComponent.vue";
 import MailingListComponent from "./components/admin_panels/MailingListComponent.vue";
@@ -82,6 +85,7 @@ app.component("Fieldset", Fieldset);
 app.component("Panel", Panel);
 app.component("Dialog", Dialog);
 app.component("Image", Image);
+app.component("Editor", Editor);
 
 app.component("users-component", UsersComponent);
 app.component("mailing-list-component", MailingListComponent);

@@ -11,7 +11,8 @@
             <div class="row container mt-3">
               <h5 class="text-left pb-2 font-weight-bold">Notes & Reflections</h5>
               <div class="col">
-                <textarea v-model="form.ayah_notes" class="form-control container mb-3" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah." rows="8"></textarea>
+                <!-- <textarea v-model="form.ayah_notes" class="form-control container mb-3" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah." rows="8"></textarea> -->
+                <Editor v-model="form.ayah_notes" editorStyle="height: 320px" />
               </div>
             </div>
             <div class="modal-footer">
@@ -28,6 +29,7 @@
 <script>
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import Editor from 'primevue/editor';
 import { Modal } from 'bootstrap';
 
 export default {

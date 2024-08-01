@@ -28,9 +28,9 @@
           <div class="card" style="border-radius:8px;padding:10px; border: 2px solid rgba(0, 191, 166);">
             <div class="card-body">
               <!-- Note details -->
-              <div>
+              <!-- <div>
                 <h5><strong>Surah Name:</strong></h5> {{ note.surah_name }}
-              </div>
+              </div> -->
               <div class="mt-2">
                 <h5><strong>Note:</strong></h5> {{ truncatedText(note.ayah_notes) }}
               </div>
@@ -55,7 +55,9 @@
             <div class="modal-body">
               <form @submit.prevent="updateNotes">
                 <div class="form-group mr-2" style="display: flex">
-                  <textarea v-model="form1.ayah_notes" type="text" name="ayah_notes" placeholder="Enter notes" class="form-control" rows="5"></textarea>
+                  <!-- <textarea v-model="form1.ayah_notes" type="text" name="ayah_notes" placeholder="Enter notes" class="form-control" rows="5"></textarea> -->
+                  <Editor v-model="form1.ayah_notes" editorStyle="height: 320px" />
+
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -79,7 +81,7 @@
 
             <form class="container">
               
-              <div class="mb-3 container">
+              <!-- <div class="mb-3 container">
                 <label for="formGroupExampleInput" class="form-label"><strong>Surah Name:</strong></label>
                 <p class="mt-2 text-dark text-left">
                 {{ form1.surah_name }}
@@ -96,11 +98,11 @@
                 <p class="mt-2 text-dark text-left">
                 {{ form1.ayah_verse_en }}
                 </p>
-              </div>
+              </div> -->
               <div class="mb-3 container">
                 <label for="formGroupExampleInput" class="form-label"><strong>Notes:</strong></label>
                 <p class="mt-2 text-dark text-left">
-                {{ form1.ayah_notes }}
+                <Editor v-model="form1.ayah_notes" editorStyle="height: 320px" readonly/>
                 </p>
               </div>
               <div class="mb-3 container">
@@ -125,9 +127,15 @@
 <script>
 import axios from "axios";
 import Swal from "sweetalert2";
+import Editor from 'primevue/editor';
 import { FilterMatchMode } from "primevue/api";
 
+
+
 export default {
+  components: {
+    Editor
+  },
   mounted() {
     fetch('/api/userId')
       .then(response => {

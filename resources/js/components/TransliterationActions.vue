@@ -1,7 +1,7 @@
 <!-- TransliterationActions.vue -->
 <template>
   <ul>
-    <li style="display:flex"><i class="bi bi-file-earmark-text text-right mr-2 mt-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="$emit('open-modal', 'transliterationNote')" style="color: rgba(0, 191, 166);cursor:pointer"></i><p>Write a note</p></li>
+    <li style="display:flex"><i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="$emit('open-modal', 'transliterationNote')" style="color: rgba(0, 191, 166);cursor:pointer"></i><p>Write a note</p></li>
     <li style="display:flex"><WhatsAppShareTransliteration :transliterationToShare="transliteration" /><p>WhatsApp</p></li>
     <li style="display:flex"><TwitterShareTransliteration :targetElementRef="'targetElement'" :transliterationText="transliteration" /><p>Twitter</p></li>
     <li style="display:flex"><i @click="$emit('submit-form')" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i><p>Bookmark</p></li>

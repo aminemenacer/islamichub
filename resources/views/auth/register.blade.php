@@ -79,19 +79,19 @@
                         </div>
                       <label class="mt-3 text-center">Already have an account ? Click <a href="/login">here</a> to login.</label>
                     </div>
-                    <!--
+                    
                       <hr>
                       <div class="text-center">
                         <b>or login with:</b>
-                          <a href="{{ url('auth/facebook') }}" class="btn btn-link btn-floating" style="font-size: 22px; color:#00BFA6;">
-                              <i class="bi bi-facebook"></i>
-                          </a>
-                        -->
-                        <!--
+                          
+                        <a href="{{ url('auth/facebook') }}" class="btn btn-link btn-floating" style="font-size: 22px; color:#00BFA6;">
+                          <i class="bi bi-facebook"></i>
+                        </a>
+                      
                         <a href="{{ url('auth/google') }}" class="btn btn-link btn-floating" style="font-size: 22px; color:#00BFA6;">
                             <i class="bi bi-google"></i>
                         </a>
-                        -->
+                        
                         <!--
                           <a href="{{ url('auth/linkedin') }}" class="btn btn-link btn-floating" style="font-size: 22px; color:#00BFA6;">
                               <i class="bi bi-linkedin"></i>
