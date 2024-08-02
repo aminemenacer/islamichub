@@ -1,15 +1,36 @@
 <template>
-  <i 
-    class="bi bi-camera text-right mr-2 h3" 
-    @click="captureTransliteration" 
-    aria-expanded="false" 
-    data-bs-placement="top" 
-    title="Screenshot verse" 
-    style="color: rgba(0, 191, 166); cursor:pointer"
-  ></i>
+  <div>
+    <!-- Screenshot icon -->
+    <i 
+      class="bi bi-camera text-right mr-2 h3" 
+      @click="captureTransliteration" 
+      aria-expanded="false" 
+      data-bs-placement="top" 
+      title="Screenshot verse" 
+      style="color: rgba(0, 191, 166); cursor:pointer"
+    ></i>
+
+    <!-- Modal -->
+    <div class="modal fade" id="previewModalTransliteration" tabindex="-1" aria-labelledby="previewModalTransliterationLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="previewModalTransliterationLabel"><b>Screenshot Preview</b></h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body text-center" style="box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px; padding:15px">
+            <img v-if="downloadUrl" :src="downloadUrl" alt="Screenshot" class="img-fluid"/>
+            <div v-else>Loading...</div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-success" @click="downloadScreenshot">Download</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
-
-
 
 <script>
 import html2canvas from 'html2canvas';
@@ -21,33 +42,43 @@ export default {
       required: true
     }
   },
+  data() {
+    return {
+      downloadUrl: ''
+    };
+  },
   methods: {
     captureTransliteration() {
-      // Use $parent to access the parent's ref
       const targetTransliterationElement = this.$parent.$refs[this.targetTransliterationRef];
 
       if (!targetTransliterationElement) {
-        console.error("Invalid element provided as first argument");
+        console.error("Invalid element provided as targetTransliterationRef");
         return;
       }
 
-      // Capture screenshot for targetTransliterationElement after 5 seconds
+      // Clear any previous URL
+      this.downloadUrl = '';
+
       setTimeout(() => {
         html2canvas(targetTransliterationElement).then(canvas => {
-          const dataUrl = canvas.toDataURL('image/png');
-          this.downloadUrl = dataUrl;
+          this.downloadUrl = canvas.toDataURL('image/png');
 
-          // Simulate click on download link after 2 seconds
-          setTimeout(() => {
-            const downloadLink = document.createElement('a');
-            downloadLink.href = dataUrl;
-            downloadLink.download = 'screenshot.png';
-            downloadLink.click();
-          }, 200); // 2000 milliseconds = 2 seconds
+          // Show the modal
+          const previewModalTransliteration = new bootstrap.Modal(document.getElementById('previewModalTransliteration', {
+            backdrop: 'static',
+            keyboard: false
+          }))
+          previewModalTransliteration.show();
         }).catch(error => {
           console.error("Failed to capture screenshot:", error);
         });
-      }, 200); // 1000 milliseconds = 1 seconds
+      }, 200);
+    },
+    downloadScreenshot() {
+      const downloadLink = document.createElement('a');
+      downloadLink.href = this.downloadUrl;
+      downloadLink.download = 'screenshot.png';
+      downloadLink.click();
     }
   }
 };

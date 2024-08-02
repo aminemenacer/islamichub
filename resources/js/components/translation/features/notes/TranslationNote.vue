@@ -12,7 +12,10 @@
               <h5 class="text-left pb-2 font-weight-bold">Notes & Reflections</h5>
               <div class="col">
                 <!-- <textarea v-model="form.ayah_notes" class="form-control container mb-3" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah." rows="8"></textarea> -->
-                <Editor v-model="form.ayah_notes" editorStyle="height: 320px" />
+                <!-- <Editor v-model="form.ayah_notes" editorStyle="height: 320px" /> -->
+                <h1>Quran Speech-to-Text</h1>
+                <SpeechRecognition @transcript="handleTranscript" />
+                <textarea v-model="form.ayah_notes" placeholder="Your speech will appear here" class="textarea_speech"></textarea>
               </div>
             </div>
             <div class="modal-footer">
@@ -30,6 +33,7 @@
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import Editor from 'primevue/editor';
+import SpeechRecognition from '../speech_recognition/SpeechRecognition.vue';
 import { Modal } from 'bootstrap';
 
 export default {
@@ -46,8 +50,15 @@ export default {
       })
     }
   },
+  components:{
+    SpeechRecognition
+  },
   data() {
     return {
+      // speech to text
+      isListening: false,
+      transcript: '',
+      recognition: null,
       form: {
         ayah_notes: "",
         surah_name: ""
@@ -55,6 +66,9 @@ export default {
     };
   },
   methods: {
+    handleTranscript(transcript) {
+      this.transcript = transcript;
+    },
     createNote() {
       const { ayah } = this.information;
       if (!ayah || !ayah.surah) {

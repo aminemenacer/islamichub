@@ -8,7 +8,9 @@
           @change="handleAyahChange"
           style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;"
         >
-          <option value="0" disabled>Select Ayah</option>
+          <option value="0" disabled>
+            Select Ayah
+          </option>
           <option v-for="(ayah, index) in ayat" :key="index" :value="index">
             {{ ayah.ayah_text }} : {{ ayah.ayah_id }}
           </option>
@@ -58,7 +60,6 @@ export default {
           // Emit the information and tafseer data to the parent component
           this.$emit('update-information', this.information);
           this.$emit('update-tafseer', this.tafseer);
-          this.$emit('ayah-selected');
         } catch (error) {
           console.error('Error fetching information or tafseer:', error);
         }

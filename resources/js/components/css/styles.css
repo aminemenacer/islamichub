@@ -10,6 +10,12 @@
  overflow: auto;
 }
 
+.textarea_speech{
+  width: 100%;
+  height: 100px;
+  margin-top: 10px;
+}
+
 .hide-on-desktop {
  display: none;
 }

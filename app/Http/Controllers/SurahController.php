@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class SurahController extends Controller
 {
-    
+
     public function getSurat()
     {
         $surat = Surah::get();
@@ -25,7 +25,8 @@ class SurahController extends Controller
 
     public function getInformations(Request $request)
     {
-        $information = Information::with('ayah.surah')->where('id', $request->id)->first();
+
+        $information = Information::with('ayah.surah')->where('ayah_id', $request->id)->first();
         return response()->json($information);
     }
 
@@ -44,5 +45,4 @@ class SurahController extends Controller
             ->get();
         return response()->json($surah);
     }
-
 }
