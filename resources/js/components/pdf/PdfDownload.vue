@@ -17,7 +17,7 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
 export default {
-  // name: 'PdfDownload', 'CsvDownload',
+  name: 'PdfDownload',
   props: {
     targetTranslationRef: {
       type: String,
@@ -50,6 +50,7 @@ export default {
           console.error('Failed to capture HTML content:', error);
         });
     }, 
+    
     
   }
 };

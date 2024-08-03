@@ -12,9 +12,7 @@
       <!-- main stack below -->
       <h5 class="text-left ayah-translation" ref="heading3" style="line-height: 1.6em">
         {{ tafseer }}
-        <template v-if="showMoreLink">
-          <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
-        </template>
+        
       </h5>
       <h6 class="text-left mt-3"><strong>Tafseer: </strong>Ibn Kathir</h6>
       <!-- Include the AlertModal component -->
@@ -51,11 +49,6 @@ export default {
     showErrorAlert: Boolean,
     showAlertTextNote: Boolean
   },
-  information: {
-    translation: '',
-    transliteration: '', // Example translated text
-   },
-   tafseer: '',
   methods: {
     toggleFullScreen() {
       this.$emit('toggle-full-screen');

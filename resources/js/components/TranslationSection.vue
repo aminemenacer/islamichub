@@ -7,7 +7,7 @@
       <div ref="heading3">
         <h5 class="text-left ayah-translation" ref="heading3" style="line-height: 1.6em">
           {{ expanded ? information.translation : truncatedText(information.translation) }}
-          <template v-if="showMoreLink">
+          <template v-if="showMoreLink && information.translation.length > 100">
             <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
           </template>
         </h5>

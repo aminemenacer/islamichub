@@ -12,8 +12,8 @@
       <div class="btn">
         <h5 class="text-right ayah-translation" name="ayah_text" style="line-height: 1.6em">{{ information.ayah.ayah_text }}</h5>
       </div>
-      <h5 class="text-left ayah-translation" ref="heading3" style="line-height: 1.6em">
-        {{ expanded ? information.translation : truncatedText(information.translation) }}
+      <h5 class="text-left ayah-translation" ref="heading1" style="line-height: 1.6em">
+        {{ expanded ? tafseer : truncatedText(tafseer) }}
         <template v-if="showMoreLink">
           <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
         </template>
