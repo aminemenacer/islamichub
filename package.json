@@ -29,6 +29,7 @@
     "dependencies": {
         "@popperjs/core": "^2.11.8",
         "@stripe/stripe-js": "^2.4.0",
+        "@tinymce/tinymce-vue": "^6.0.1",
         "@vue/compiler-sfc": "^3.3.8",
         "admin-lte": "^3.2.0",
         "bootstrap-icons": "^1.11.3",
@@ -44,6 +45,7 @@
         "shetabit-laravel-vue-pagination": "^2.3.7",
         "stripe": "^14.15.0",
         "sweetalert2": "^11.9.0",
+        "tinymce": "^7.2.1",
         "vform": "^2.1.2",
         "vue-highlight-text": "^1.6.2",
         "vue-highlight-words": "^3.0.1",

@@ -2,11 +2,9 @@
   <div>
     <h2 class="pt-4 pb-3 text-center"><strong>Notes</strong></h2>
 
-
     <!-- Container visible only on mobile screens -->
     <div class="container text-center mt-3 d-md-none">
       <div class="row pb-2 text-center">
-        
         <div class="col">
           <span class="badge h3" style="width:100%;font-size:18px;border-radius:10px; color:#B70D52;background:#ead1dc">
             <a href="/bookmarks" style="text-decoration:none;color:#B70D52;background:#ead1dc">Bookmarks</a>
@@ -29,13 +27,15 @@
             <div class="card-body">
               <!-- Note details -->
               <div>
-                <h5><strong>Surah Name:</strong></h5> {{ note.surah_name }}
+                <h5><strong>Surah Name:</strong></h5>
+                <p>{{note.surah_name}}</p>
               </div>
               <div class="mt-2">
-                <h5><strong>Note:</strong></h5> {{ truncatedText(note.ayah_notes) }}
+                <h5><strong>Note:</strong></h5>
+                <div v-html="note.ayah_notes"></div>
               </div>
               <hr />
-              <!-- Icons for actions -->
+             
               <i class="bi bi-eye-fill h4" style="color:rgb(0, 191, 166); cursor:pointer" @click="viewModal(note)"></i>
               <i class="bi bi-pencil-square ml-3 h4" style="color:rgb(0, 191, 166); cursor:pointer" @click="editModal(note)"></i>
               <i class="bi bi-trash-fill h4 ml-3" style="color:rgb(0, 191, 166); cursor:pointer" @click="deleteNote(note.id)"></i>
@@ -43,78 +43,74 @@
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- Edit Note Modal -->
-      <div class="modal fade" id="editNotes" tabindex="-1" aria-labelledby="editNotesLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title text-dark" id="editNotesLabel"><strong>Edit Note</strong></h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <form @submit.prevent="updateNotes">
-                <div class="form-group mr-2" style="display: flex">
-                  <textarea v-model="form1.ayah_notes" type="text" name="ayah_notes" placeholder="Enter notes" class="form-control" rows="5"></textarea>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-success">Update</button>
-                </div>
-              </form>
-            </div>
+    <!-- Edit Note Modal -->
+    <div class="modal fade" id="editNotes" tabindex="-1" aria-labelledby="editNotesLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-dark" id="editNotesLabel"><strong>Edit Note</strong></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-        </div>
-      </div>
-
-      <!-- View Note Modal -->
-      <div class="modal fade" id="viewNotes" tabindex="-1" aria-labelledby="viewNotesLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title text-dark" id="viewNotesLabel">View Note</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-
-            <form class="container">
-              
-              <div class="mb-3 container">
-                <label for="formGroupExampleInput" class="form-label"><strong>Surah Name:</strong></label>
-                <p class="mt-2 text-dark text-left">
-                {{ form1.surah_name }}
-              </p>
-              </div>
-              <div class="mb-3 container">
-                <label for="formGroupExampleInput" class="form-label"><strong>Ayah Verse Arabic:</strong></label>
-                <p class="mt-2 text-dark text-left">
-                {{ form1.ayah_verse_ar }}
-              </p>
-              </div>
-              <div class="mb-3 container">
-                <label for="formGroupExampleInput" class="form-label"><strong>English Info:</strong></label>
-                <p class="mt-2 text-dark text-left">
-                {{ form1.ayah_verse_en }}
-                </p>
-              </div>
-              <div class="mb-3 container">
-                <label for="formGroupExampleInput" class="form-label"><strong>Notes:</strong></label>
-                <p class="mt-2 text-dark text-left">
-                {{ form1.ayah_notes }}
-                </p>
-              </div>
-              <div class="mb-3 container">
-                <label for="formGroupExampleInput" class="form-label"><strong>Date Created:</strong></label>
-                <p class="mt-2 text-dark text-left">
-                  {{ extractDate(form1.created_at) }}
-                </p>
+          <div class="modal-body">
+            <form @submit.prevent="updateNotes">
+              <div class="form-group mr-2" style="display: flex">
+                <!-- Editor Component -->
+                <Editor editorStyle="height: 320px" v-model="form.ayah_notes" name="ayah_notes"></Editor>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-success">Update</button>
               </div>
             </form>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <!-- View Note Modal -->
+    <div class="modal fade" id="viewNotes" tabindex="-1" aria-labelledby="viewNotesLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-dark" id="viewNotesLabel">View Note</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <div class="mb-3">
+                <label for="formGroupExampleInput" class="form-label"><strong>Surah Name:</strong></label>
+                <p class="mt-2 text-dark text-left">
+                  {{ form.surah_name }}
+                </p>
+              </div>
+              <div class="mb-3">
+                <label for="formGroupExampleInput" class="form-label"><strong>Ayah Verse Arabic:</strong></label>
+                <p class="mt-2 text-dark text-left">
+                  {{ form.ayah_verse_ar }}
+                </p>
+              </div>
+              <div class="mb-3">
+                <label for="formGroupExampleInput" class="form-label"><strong>English Info:</strong></label>
+                <p class="mt-2 text-dark text-left">
+                  {{ form.ayah_verse_en }}
+                </p>
+              </div>
+              <div class="mb-3">
+                <label for="formGroupExampleInput" class="form-label"><strong>Notes:</strong></label>
+                <div class="mt-2 text-dark text-left" v-html="form.ayah_notes"></div>
+              </div>
+              <div class="mb-3">
+                <label for="formGroupExampleInput" class="form-label"><strong>Date Created:</strong></label>
+                <p class="mt-2 text-dark text-left">
+                  {{ extractDate(form.created_at) }}
+                </p>
+              </div>
             </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
@@ -126,8 +122,13 @@
 import axios from "axios";
 import Swal from "sweetalert2";
 import { FilterMatchMode } from "primevue/api";
+import { Editor } from 'primevue/editor';
+
 
 export default {
+  components: {
+    Editor
+  },
   mounted() {
     fetch('/api/userId')
       .then(response => {
@@ -156,18 +157,18 @@ export default {
     return {
       notes: [],
       userId: null,
-      form1: {
+      form: {
         id: "",
         surah_name: "",
         ayah_verse_ar: "",
         ayah_verse_en: "",
         ayah_notes: "",
-        created_at:""
+        created_at: ""
       },
       maxLength: 100
     };
   },
- 
+
   methods: {
     extractDate(dateTimeString) {
       return dateTimeString.split('T')[0];
@@ -184,16 +185,19 @@ export default {
       }
     },
     viewModal(note) {
-      this.form1 = {
+      this.form = {
         ...note
-      }; // Make sure form1 is populated
+      }; // Make sure form is populated
       $('#viewNotes').modal('show');
     },
+    
     truncatedText(text) {
-      if (!text) return '';
-      return text.length > this.maxLength
-        ? text.substring(0, this.maxLength) + '...'
-        : text;
+      const maxLength = 50; // Define your desired max length here
+      if (text.length > maxLength) {
+        return text.substring(0, maxLength) + '...';
+      } else {
+        return text;
+      }
     },
     updateNotes() {
       Swal.fire({
@@ -205,7 +209,7 @@ export default {
         confirmButtonText: "Yes, update notes!",
       }).then((result) => {
         if (result.isConfirmed) {
-          axios.post(`api/update-notes/${this.form1.id}`, this.form1)
+          axios.post(`api/update-notes/${this.form.id}`, this.form)
             .then(() => {
               Swal.fire({
                 position: "top-end",
@@ -258,10 +262,16 @@ export default {
         }
       });
     },
+    openEditModal(note) {
+      this.selectedNote = note;
+      this.form.ayah_notes = note.content; // Assume the note content is stored in note.content
+      const editModal = new bootstrap.Modal(document.getElementById('editNotes'));
+      editModal.show();
+    },
     editModal(note) {
-      this.form1 = {
+      this.form = {
         ...note
-      }; // Make sure form1 is populated
+      }; // Make sure form is populated
       $('#editNotes').modal('show');
     },
   },

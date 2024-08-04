@@ -10,15 +10,15 @@
 
     <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
       <div class="btn">
-        <h5 class="text-right ayah-transliteration" name="ayah_text" style="line-height: 1.6em">{{ information.ayah.ayah_text }}</h5>
+        <h5 class="text-right " name="ayah_text" style="line-height: 1.6em">{{ information.ayah.ayah_text }}</h5>
       </div>
-      <h5 class="text-left ayah-transliteration" ref="heading3" style="line-height: 1.6em">
+      <h5 class="text-left " ref="heading2" style="line-height: 1.6em">
         {{ expanded ? information.transliteration : truncatedText(information.transliteration) }}
         <template v-if="showMoreLink">
           <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
         </template>
       </h5>
-      <h6 class="text-left mt-3"><strong>Transliteration: </strong>Saheeh International</h6>
+      <h6 class="text-left mt-3"><strong>Translation: </strong>Ahmed Ali</h6>
 
       <!-- Alerts -->
       <div v-if="showAlertText" class="alert alert-success alert-dismissible fade show mt-2" role="alert">Text copied successfully!</div>
@@ -31,7 +31,7 @@
 
 <script>
 export default {
-  name: 'AyahTransliteration',
+  name: 'AyahTranslation',
   props: {
     information: {
       type: Object,
@@ -110,9 +110,6 @@ export default {
   touch-action: pan-y;
 }
 
-.ayah-transliteration {
-  font-size: 1.2rem;
-}
 
 .btn {
   display: flex;

@@ -10,7 +10,8 @@
         </h5>
       </div>
       <!-- main stack below -->
-      <h5 class="text-left ayah-translation" ref="heading3" style="line-height: 1.6em">
+      
+      <h5 class="text-left ayah-translation" ref="heading1" style="line-height: 1.6em">
         {{ tafseer }}
         
       </h5>
@@ -66,7 +67,7 @@ export default {
       this.$emit('toggle-expand');
     },
     truncatedText(text) {
-      return text.length > 100 ? text.slice(0, 100) + '...' : text;
+      return text.length > 200 ? text.slice(0, 200) + '...' : text;
     },
     closeAlertText() {
       this.$emit('close-alert-text');
@@ -77,6 +78,6 @@ export default {
 
 <style scoped>
 .ayah-translation {
-  line-height: 1.6em;
+  line-height: 1.2em;
 }
 </style>

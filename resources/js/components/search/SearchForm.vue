@@ -63,12 +63,3 @@ export default {
 };
 </script>
 
-<style scoped>
-.search-form {
-  border-radius: 8px;
-}
-
-.form-control {
-  border-color: #ccc;
-}
-</style>

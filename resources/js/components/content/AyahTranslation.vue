@@ -10,14 +10,14 @@
 
     <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
       <div class="btn">
-        <h5 class="text-right ayah-translation" name="ayah_text" style="line-height: 1.6em">{{ information.ayah.ayah_text }}</h5>
+        <h5 class="text-right " name="ayah_text" style="line-height: 1.6em">{{ information.ayah.ayah_text }}</h5>
       </div>
-      <h5 class="text-left ayah-translation" ref="heading1" style="line-height: 1.6em">
-        {{ expanded ? tafseer : truncatedText(tafseer) }}
+      <h1 class="text-left " ref="heading3" style="line-height: 1.6em">
+        {{ expanded ? information.translation : truncatedText(information.translation) }}
         <template v-if="showMoreLink">
           <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
         </template>
-      </h5>
+      </h1>
       <h6 class="text-left mt-3"><strong>Translation: </strong>Ahmed Ali</h6>
 
       <!-- Alerts -->
@@ -110,9 +110,6 @@ export default {
   touch-action: pan-y;
 }
 
-.ayah-translation {
-  font-size: 0.8rem;
-}
 
 .btn {
   display: flex;

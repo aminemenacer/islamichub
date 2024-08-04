@@ -55,6 +55,7 @@ import NotesComponent from "./components/admin_panels/NotesComponent.vue";
 
 import CustomSurahSelection from "./components/surah_selection/CustomSurahSelection.vue";
 import Donation from "./components/intro/Donation.vue";
+import TinymceEditor from './components/tinymce/TinymceEditor.vue';
 
 import SurahList from "./components/search/SurahList.vue";
 import SearchForm from "./components/search/SearchForm.vue";
@@ -109,7 +110,8 @@ app.component("join-us-component", JoinUsComponent);
 app.component("notes-component", NotesComponent);
 app.component("search-component", CustomSurahSelection);
 app.component("surah-list-component", SurahList);
-
 app.component("donations-component", Donation);
+app.component('TinymceEditor', TinymceEditor);
+
 
 app.mount("#app");

@@ -1,4 +1,3 @@
-<!-- AyahTranslation.vue -->
 <template>
   <div v-if="information" ref="targetElement" class="w-100 my-element" :class="{'full-screen': isFullScreen}">
     <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
@@ -14,7 +13,7 @@
       </div>
       <h5 class="text-left ayah-translation" ref="heading1" style="line-height: 1.6em">
         {{ expanded ? tafseer : truncatedText(tafseer) }}
-        <template v-if="showMoreLink">
+        <template v-if="showMoreLink && tafseer.length > 200">
           <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
         </template>
       </h5>
@@ -48,7 +47,8 @@ export default {
       showErrorAlert: false,
       showAlertTextNote: false,
       touchStartX: 0,
-      touchEndX: 0
+      touchEndX: 0,
+      tafseer: 'Detailed explanation of the verse goes here.' // Replace with actual tafseer data
     };
   },
   methods: {
@@ -88,8 +88,7 @@ export default {
     goToPreviousAyah() {
       // Logic to go to the previous verse
       alert('Going to previous verse!'); // Replace with actual logic to navigate to the previous verse
-    },
-    // Additional methods can be added as needed
+    }
   }
 };
 </script>

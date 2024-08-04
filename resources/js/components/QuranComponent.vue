@@ -12,20 +12,8 @@
   <div class="col-md-4 container">
    <FilteredSurahList :filteredSurah="filteredSurah" @select-surah="selectSurahFromResults" />
    <Donation />
-   <!---
-    <SurahDropdown :selectedSurah="selectedSurah" :filteredSurah="filteredSurah" :surat="surat" @update:selectedSurah="updateSelectedSurah" @change="getAyat"/>
-   -->
-   <form class="mb-2 right-side-form" style="cursor: pointer; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px;">
-    <select class="form-control custom-dropdown" v-model="selectedSurahId" @change="getAyat" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
-     <option value="0" disabled>
-      Select Surah
-     </option>
-     <option v-for="data in filteredSurah.length ? filteredSurah : surat" :key="data.id" :value="data.id">
-      {{ data.id }} : {{ data.name_en }} - {{ data.name_ar }}
-     </option>
-    </select>
-   </form>
-
+   
+   <SurahDropdown :selectedSurah="selectedSurah" :filteredSurah="filteredSurah" :surat="surat" @update:selectedSurah="updateSelectedSurah" @change="getAyat"/>
    <AyahDropdown :selectedSurahId="selectedSurahId" :dropdownHidden="dropdownHidden" @update-information="updateInformation" @update-tafseer="updateTafseer" v-if="ayah == null && !dropdownHidden" />
 
    <!-- List of Ayat for Surah (desktop) -->
@@ -44,10 +32,10 @@
       <hr class="container" style="height: 4px; background: lightgrey;">
 
       <div class="icon-container pb-2">
-       <i class="bi bi-chevron-bar-left h5" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToFirstAyah" title="First verse"></i>
-       <i class="bi bi-arrow-left-circle h5" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToPreviousAyah" title="Previous verse"></i>
-       <i class="bi bi-arrow-right-circle h5" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToNextAyah" title="Next verse"></i>
-       <i class="bi bi-chevron-bar-right h5" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToLastAyah" title="Last verse"></i>
+       <i class="bi bi-chevron-bar-left h4" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToFirstAyah" title="First verse"></i>
+       <i class="bi bi-arrow-left-circle h4" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToPreviousAyah" title="Previous verse"></i>
+       <i class="bi bi-arrow-right-circle h4" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToNextAyah" title="Next verse"></i>
+       <i class="bi bi-chevron-bar-right h4" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToLastAyah" title="Last verse"></i>
        <i v-if="information != null" class="bi bi-info-circle-fill h3 mr-2 pl-2" style="color: rgb(0, 191, 166);cursor:pointer" data-bs-toggle="modal" data-bs-target="#translationInfo" aria-expanded="false" data-bs-placement="top" title="Surah info"></i>
       </div>
 
@@ -126,18 +114,25 @@
         </div>
        </div>
 
-      <!-- dropdown mobile content -->
-      <div ref="targetTranslationElement">
-        <TranslationSection :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
-       </div>
-        <p class="btn btn-transparent text-left" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-          Toolbar
-        </p>
-        <div class="collapse text-left" id="collapseExample">
-          <TranslationActions :targetTranslationRef="'targetTranslationElement'" :translation="information.translation" @open-modal="openModal" @submit-form="submitForm" />
+        <!-- dropdown mobile content -->
+        <div ref="targetTranslationElement">
+          <TranslationSection :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
         </div>
-      </div>
+       
+        <!--  
+          <p class="btn btn-transparent text-left" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            Toolbar
+          </p>
+          <div class="collapse text-left" id="collapseExample">
+            <TranslationActions :targetTranslationRef="'targetTranslationElement'" :translation="information.translation" @open-modal="openModal" @submit-form="submitForm" />
+          </div>
+        -->
+        
+        </div>
+        
 
+      
+      
       <!-- Tafseer Section -->
       <div class="tab-pane" id="profile" role="tabpanel" v-if="information != null">
        <div class="icon-container pb-3">
@@ -182,7 +177,6 @@
        </div>
        <SurahInfoModal :information="information" />
       </div>
-
       <!-- Transliteration Section -->
       <div class="tab-pane" id="messages" role="tabpanel" v-if="information != null">
        <div class="">

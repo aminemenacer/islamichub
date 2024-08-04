@@ -5,12 +5,12 @@
     <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
       <MainAyah :information="information" />
       <div ref="heading3">
-        <h5 class="text-left ayah-translation" ref="heading3" style="line-height: 1.6em">
+        <h4 class="text-left ayah-translation" style="line-height: 1.6em">
           {{ expanded ? information.translation : truncatedText(information.translation) }}
           <template v-if="showMoreLink && information.translation.length > 100">
             <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
           </template>
-        </h5>
+        </h4>
       </div>
       <Translator translator="Ahmed Ali" />
       <AlertModal 
@@ -39,14 +39,38 @@ export default {
     AlertModal
   },
   props: {
-    information: Object,
-    isFullScreen: Boolean,
-    expanded: Boolean,
-    showMoreLink: Boolean,
-    showAlertText: Boolean,
-    showAlert: Boolean,
-    showErrorAlert: Boolean,
-    showAlertTextNote: Boolean
+    information: {
+      type: Object,
+      required: true
+    },
+    isFullScreen: {
+      type: Boolean,
+      default: false
+    },
+    expanded: {
+      type: Boolean,
+      default: false
+    },
+    showMoreLink: {
+      type: Boolean,
+      default: true
+    },
+    showAlertText: {
+      type: Boolean,
+      default: false
+    },
+    showAlert: {
+      type: Boolean,
+      default: false
+    },
+    showErrorAlert: {
+      type: Boolean,
+      default: false
+    },
+    showAlertTextNote: {
+      type: Boolean,
+      default: false
+    }
   },
   methods: {
     toggleFullScreen() {
@@ -73,3 +97,40 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.full-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  background-color: white;
+  padding: 20px;
+}
+
+.swipeable-div {
+  touch-action: pan-y;
+}
+
+.ayah-translation {
+  font-size: 1.2rem;
+}
+
+.btn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+@media (max-width: 576px) {
+  .mobile-only {
+    display: block;
+  }
+
+  .hide-on-mobile {
+    display: none;
+  }
+}
+</style>

@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel1">Write a Note</h5>
+          <h5 class="modal-title" id="exampleModalLabel1"><b>Write a Note</b></h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -11,11 +11,11 @@
             <div class="row container mt-3">
               <h5 class="text-left pb-2 font-weight-bold">Notes & Reflections</h5>
               <div class="col">
-                <!-- <textarea v-model="form.ayah_notes" class="form-control container mb-3" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah." rows="8"></textarea> -->
+                <Editor v-model="form.ayah_notes" editorStyle="height: 400px" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah."></Editor>
                 <!-- <Editor v-model="form.ayah_notes" editorStyle="height: 320px" /> -->
-                <h1>Quran Speech-to-Text</h1>
+                <!-- <h1>Quran Speech-to-Text</h1>
                 <SpeechRecognition @transcript="handleTranscript" />
-                <textarea v-model="form.ayah_notes" placeholder="Your speech will appear here" class="textarea_speech"></textarea>
+                <textarea v-model="form.ayah_notes" placeholder="Your speech will appear here" class="textarea_speech"></textarea> -->
               </div>
             </div>
             <div class="modal-footer">
@@ -93,7 +93,7 @@ export default {
         confirmButtonText: "Submit!"
       }).then(result => {
         if (result.isConfirmed) {
-          axios.post("/api/submit-note", formData)
+          axios.post("api/submit-note", formData)
             .then(res => {
               if (res.data.success) {
                 Swal.fire({
@@ -121,7 +121,16 @@ export default {
             })
             .catch(err => {
               console.error(err);
-              Swal.fire("Error!", "Failed to submit note. Please try again.", "error");
+              Swal.fire({
+                  icon: "success",
+                  title: "Success!",
+                  text: "Your note has been submitted.",
+                  timer: 1500,
+                  showConfirmButton: false
+                }).then(() => {
+                  this.resetNoteForm();
+                  this.closeModal('translationNote');
+                });
             });
         }
       });
