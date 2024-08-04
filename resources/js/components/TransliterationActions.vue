@@ -34,5 +34,37 @@ export default {
     }
   },
   emits: ['open-modal', 'submit-form']
+  ,methods: {
+    captureTransliteration() {
+   const targetTransliterationElement = this.$parent.$refs[this.targetTransliterationRef];
+
+   if (!targetTransliterationElement) {
+    console.error("Invalid element provided as targetTransliterationRef");
+    return;
+   }
+
+   setTimeout(() => {
+    html2canvas(targetTransliterationElement).then(canvas => {
+      const dataUrl = canvas.toDataURL('image/png');
+     this.downloadUrl = canvas.toDataURL('image/png');
+
+     // Simulate click on download link after 2 seconds
+     setTimeout(() => {
+      const downloadLink = document.createElement('a');
+      downloadLink.href = dataUrl;
+      downloadLink.download = 'screenshot.png';
+      downloadLink.click();
+     }, 2); // 2000 milliseconds = 2 seconds
+    });
+   }, 2);
+  },
+
+  downloadScreenshot() {
+   const downloadLink = document.createElement('a');
+   downloadLink.href = this.downloadUrl;
+   downloadLink.download = 'screenshot.png';
+   downloadLink.click();
+  }
+  },
 }
 </script>
