@@ -121,8 +121,8 @@
        
         <!--  -->
         <div>
-          <p class="btn btn-transparent text-left" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-            Toolbar
+          <p class="btn btn-transparent text-left toolbar text-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            <b>Toolbar</b>
           </p>
           <div class="collapse text-left" id="collapseExample">
             <TranslationActions :targetTranslationRef="'targetTranslationElement'" :translation="information.translation" @open-modal="openModal" @submit-form="submitForm" />
