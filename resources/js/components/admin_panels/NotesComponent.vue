@@ -32,12 +32,13 @@
               </div>
               <div class="mt-2">
                 <h5><strong>Note:</strong></h5>
-                <div v-html="note.ayah_notes"></div>
+                <!-- Display truncated content while keeping editor styling -->
+                <div v-html="truncatedHtml(note.ayah_notes)"></div>
               </div>
               <hr />
              
               <i class="bi bi-eye-fill h4" style="color:rgb(0, 191, 166); cursor:pointer" @click="viewModal(note)"></i>
-              <i class="bi bi-pencil-square ml-3 h4" style="color:rgb(0, 191, 166); cursor:pointer" @click="editModal(note)"></i>
+              <!-- <i class="bi bi-pencil-square ml-3 h4" style="color:rgb(0, 191, 166); cursor:pointer" @click="editModal(note)"></i> -->
               <i class="bi bi-trash-fill h4 ml-3" style="color:rgb(0, 191, 166); cursor:pointer" @click="deleteNote(note.id)"></i>
             </div>
           </div>
@@ -55,9 +56,9 @@
           </div>
           <div class="modal-body">
             <form @submit.prevent="updateNotes">
-              <div class="form-group mr-2" style="display: flex">
+              <div class="form-group mr-2">
                 <!-- Editor Component -->
-                <Editor editorStyle="height: 320px" v-model="form.ayah_notes" name="ayah_notes"></Editor>
+                <Editor editorStyle="height: 320px" v-model="form.ayah_notes" name="ayah_notes" />
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -74,7 +75,7 @@
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title text-dark" id="viewNotesLabel">View Note</h5>
+            <h5 class="modal-title text-dark" id="viewNotesLabel"><b>View Note</b></h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
@@ -121,9 +122,8 @@
 <script>
 import axios from "axios";
 import Swal from "sweetalert2";
-import { FilterMatchMode } from "primevue/api";
-import { Editor } from 'primevue/editor';
-
+import { QuillEditor as Editor } from '@vueup/vue-quill';
+import '@vueup/vue-quill/dist/vue-quill.snow.css';
 
 export default {
   components: {
@@ -165,7 +165,6 @@ export default {
         ayah_notes: "",
         created_at: ""
       },
-      maxLength: 100
     };
   },
 
@@ -190,15 +189,20 @@ export default {
       }; // Make sure form is populated
       $('#viewNotes').modal('show');
     },
-    
-    truncatedText(text) {
-      const maxLength = 50; // Define your desired max length here
-      if (text.length > maxLength) {
-        return text.substring(0, maxLength) + '...';
-      } else {
-        return text;
+
+    // Method to truncate HTML content
+    truncatedHtml(html, maxLength = 150) {
+      const div = document.createElement("div");
+      div.innerHTML = html;
+      const plainText = div.textContent || div.innerText || "";
+      if (plainText.length > maxLength) {
+        const truncatedText = plainText.substring(0, maxLength) + '...';
+        div.innerHTML = truncatedText;
+        return div.innerHTML;
       }
+      return html;
     },
+
     updateNotes() {
       Swal.fire({
         title: "Are you sure you want to update?",
@@ -277,3 +281,9 @@ export default {
   },
 };
 </script>
+
+<style>
+.editor {
+  height: 320px;
+}
+</style>

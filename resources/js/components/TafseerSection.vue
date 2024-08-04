@@ -67,7 +67,7 @@ export default {
       this.$emit('toggle-expand');
     },
     truncatedText(text) {
-      return text.length > 200 ? text.slice(0, 200) + '...' : text;
+      return text.length > 300 ? text.slice(0, 300) + '...' : text;
     },
     closeAlertText() {
       this.$emit('close-alert-text');

@@ -119,7 +119,19 @@
           <TranslationSection :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
         </div>
        
-        <!--  -->
+      <div class="container mt-5">
+        <!-- <h2>Bootstrap Collapse Example</h2>
+        <button id="toggleButton" class="btn btn-primary mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            Toggle Collapse
+        </button>
+        <button id="closeButton" class="btn btn-secondary mb-3" type="button">
+            Close Collapse
+        </button>
+        <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+                This is some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+            </div>
+        </div> -->
         <div>
           <p class="btn btn-transparent text-left toolbar text-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
             <b>Toolbar</b>
@@ -127,7 +139,11 @@
           <div class="collapse text-left" id="collapseExample">
             <TranslationActions :targetTranslationRef="'targetTranslationElement'" :translation="information.translation" @open-modal="openModal" @submit-form="submitForm" />
           </div>
-        </div>
+        </div> 
+    </div>
+
+        <!-- -->
+        
         
         </div>
         
@@ -594,7 +610,7 @@ export default {
    this.selectAyah(this.ayat.length - 1);
   },
   truncatedText(text) {
-   const maxLength = 200; // Define your desired max length here
+   const maxLength = 300; // Define your desired max length here
    if (text.length > maxLength) {
     return text.substring(0, maxLength) + '...';
    } else {

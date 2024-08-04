@@ -14,8 +14,8 @@
                 <Editor v-model="form.ayah_notes" editorStyle="height: 400px" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah."></Editor>
                 <!-- <Editor v-model="form.ayah_notes" editorStyle="height: 320px" /> -->
                 <!-- <h1>Quran Speech-to-Text</h1>
-                <SpeechRecognition @transcript="handleTranscript" />
-                <textarea v-model="form.ayah_notes" placeholder="Your speech will appear here" class="textarea_speech"></textarea> -->
+                <SpeechRecognition @transcript="handleTranscript" /> -->
+                <!-- <textarea v-model="form.ayah_notes" placeholder="Your speech will appear here" class="textarea_speech"></textarea>  -->
               </div>
             </div>
             <div class="modal-footer">
@@ -51,7 +51,8 @@ export default {
     }
   },
   components:{
-    SpeechRecognition
+    SpeechRecognition,
+    Editor
   },
   data() {
     return {
