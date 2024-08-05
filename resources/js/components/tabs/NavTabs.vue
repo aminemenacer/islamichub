@@ -4,17 +4,17 @@
  <ul class="nav nav-tabs text-left justify-content-start pt-3 flex-nowrap" style="white-space: nowrap;" role="tablist">
   <li class="nav-item">
    <a class="nav-link active" data-bs-toggle="tab" href="#home" role="tab">
-    Translation
+    <b>Translation</b>
    </a>
   </li>
   <li class="nav-item">
    <a class="nav-link" data-bs-toggle="tab" href="#profile" role="tab">
-    Tafseer
+    <b>Tafseer</b>
    </a>
   </li>
   <li class="nav-item">
    <a class="nav-link" data-bs-toggle="tab" href="#messages" role="tab">
-    Transliteration
+    <b>Transliteration</b>
    </a>
   </li>
  </ul>
@@ -43,8 +43,7 @@ export default {
  margin-right: 5px;
  background-color: transparent;
  border: 1px solid transparent;
- font-size: 14px;
- padding: 11px 23px;
+ font-size: 16px;
  line-height: 1.5;
 }
 
@@ -53,12 +52,15 @@ export default {
 }
 
 .nav-tabs>.nav-item>.nav-link.active {
- background-color: #444;
- color: #ffffff;
+ background-color: rgba(0, 191, 166, 0.233);
+ color: rgb(7, 6, 6);
+ border-radius:8px;
+ padding-bottom: 8%;
+ box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
 }
 
 .nav-tabs>.nav-item>.nav-link i.now-ui-icons {
- font-size: 14px;
+ font-size: 16px;
  position: relative;
  top: 1px;
  margin-right: 3px;

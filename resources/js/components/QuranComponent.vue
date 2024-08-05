@@ -12,8 +12,8 @@
   <div class="col-md-4 container">
    <FilteredSurahList :filteredSurah="filteredSurah" @select-surah="selectSurahFromResults" />
    <Donation />
-   
-   <SurahDropdown :selectedSurah="selectedSurah" :filteredSurah="filteredSurah" :surat="surat" @update:selectedSurah="updateSelectedSurah" @change="getAyat"/>
+
+   <SurahDropdown :selectedSurah="selectedSurah" :filteredSurah="filteredSurah" :surat="surat" @update:selectedSurah="updateSelectedSurah" @change="getAyat" />
    <AyahDropdown :selectedSurahId="selectedSurahId" :dropdownHidden="dropdownHidden" @update-information="updateInformation" @update-tafseer="updateTafseer" v-if="ayah == null && !dropdownHidden" />
 
    <!-- List of Ayat for Surah (desktop) -->
@@ -114,42 +114,24 @@
         </div>
        </div>
 
-        <!-- dropdown mobile content -->
-        <div ref="targetTranslationElement">
-          <TranslationSection :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
-        </div>
-       
-      <div class="container mt-5">
-        <!-- <h2>Bootstrap Collapse Example</h2>
-        <button id="toggleButton" class="btn btn-primary mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-            Toggle Collapse
-        </button>
-        <button id="closeButton" class="btn btn-secondary mb-3" type="button">
-            Close Collapse
-        </button>
-        <div class="collapse" id="collapseExample">
-            <div class="card card-body">
-                This is some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-            </div>
-        </div> -->
+       <!-- dropdown mobile content -->
+       <div ref="targetTranslationElement">
+        <TranslationSection :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
+       </div>
+
+       <div class="container mt-5">
+
         <div>
-          <p class="btn btn-transparent text-left toolbar text-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-            <b>Toolbar</b>
-          </p>
-          <div class="collapse text-left" id="collapseExample">
-            <TranslationActions :targetTranslationRef="'targetTranslationElement'" :translation="information.translation" @open-modal="openModal" @submit-form="submitForm" />
-          </div>
-        </div> 
-    </div>
-
-        <!-- -->
-        
-        
+         <p class="btn btn-transparent text-left toolbar text-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+          <b>Toolbar</b>
+         </p>
+         <div class="collapse text-left" id="collapseExample">
+          <TranslationActions :targetTranslationRef="'targetTranslationElement'" :translation="information.translation" @open-modal="openModal" @submit-form="submitForm" />
+         </div>
         </div>
-        
+       </div>
+      </div>
 
-      
-      
       <!-- Tafseer Section -->
       <div class="tab-pane" id="profile" role="tabpanel" v-if="information != null">
        <div class="icon-container pb-3">
@@ -194,6 +176,7 @@
        </div>
        <SurahInfoModal :information="information" />
       </div>
+
       <!-- Transliteration Section -->
       <div class="tab-pane" id="messages" role="tabpanel" v-if="information != null">
        <div class="">

@@ -21,10 +21,9 @@
 
     <!-- Custom CSS -->
     {{-- <link rel="stylesheet" type="text/css" href="/css/stylesheet.css?v=1" /> --}}
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
     <!-- Bootstrap CSS (choose one and remove the others) -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRvN5q1hb5gqB1QK1/oQ2T+XdzD1NvfLp5ZTcKtft" crossorigin="anonymous">
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
@@ -113,23 +112,9 @@
         </main>
     </div>
 
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoYe4tT30A3kMiFRLvIoQZfEjnsqJPr+unROt06B5v9QFiG" crossorigin="anonymous"></script>
     <script src="{{ mix('js/app.js') }}"></script>
-    <script>
-    document.addEventListener('DOMContentLoaded', (event) => {
-        const collapseElement = document.getElementById('collapseExample');
-        collapseElement.addEventListener('show.bs.collapse', () => {
-            console.log('Collapse shown!');
-        });
-        collapseElement.addEventListener('hide.bs.collapse', () => {
-            console.log('Collapse hidden!');
-        });
-    });
-
-  
-</script>
+    
 
 </body>
 </html>
