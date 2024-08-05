@@ -35,6 +35,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 Route::get('api/userId', [UserController::class, 'getUserId']);
 
+
+
 Route::middleware(['auth'])->group(function () {
     //bookmark
     Route::post('/bookmarks', [BookmarkController::class, 'store']);
@@ -74,7 +76,6 @@ Route::get('/welcome', function () {
     return view('home');
 });
 
-Route::get('/audio-files/{id}', [ContactController::class, 'fetchAudioFile']);
 
 //updates
 Route::get('/updates', [UpdatesController::class, 'index']);
@@ -86,6 +87,7 @@ Route::get('/auth/facebook/callback', [LoginController::class, 'loginWithFaceboo
 // google sign-in
 Route::get('auth/google', [LoginController::class, 'redirectToGoogle'])->name('google-auth');
 Route::get('auth/google/callback', [LoginController::class, 'handleGoogleCallback']);
+
 
 // linked sign-in
 Route::get('auth/linkedin', [LoginController::class, 'redirectToLinkedin'])->name('linkedin-auth');

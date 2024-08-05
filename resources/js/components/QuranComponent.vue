@@ -4,7 +4,6 @@
   <Title />
   <search-form :surat="surat" @update-results="handleUpdateResults" @clear-results="handleClearResults" @select-surah="handleSelectSurah" />
   <custom-surah-selection :customSurat="customSuratList" v-model="selectedSurah"></custom-surah-selection>
-
  </div>
 
  <!-- accordion headers -->
@@ -57,7 +56,9 @@
    <div class="card pt-2">
 
     <div class="container-fluid" v-if="information != null">
-     <NavTabs />
+     <NavTabs />  
+     
+
      <!-- Surah info Modal -->
      <div class="modal fade" id="translationInfo" tabindex="-1" aria-labelledby="surahInfoModalLabel" aria-hidden="true" @click.self="closeModal">
       <div class="modal-dialog modal-lg">
@@ -119,17 +120,6 @@
         <TranslationSection :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
        </div>
 
-       <div class="container mt-5">
-
-        <div>
-         <p class="btn btn-transparent text-left toolbar text-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-          <b>Toolbar</b>
-         </p>
-         <div class="collapse text-left" id="collapseExample">
-          <TranslationActions :targetTranslationRef="'targetTranslationElement'" :translation="information.translation" @open-modal="openModal" @submit-form="submitForm" />
-         </div>
-        </div>
-       </div>
       </div>
 
       <!-- Tafseer Section -->
@@ -174,6 +164,7 @@
        <div ref="targetTafseerElement">
         <TafseerSection :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
        </div>
+
        <SurahInfoModal :information="information" />
       </div>
 
@@ -226,7 +217,8 @@
        </div>
 
       </div>
-
+      
+      <ColorPicker />
       <BookmarksAndNotes :information="information" />
       <CorrectionModal />
 
@@ -292,6 +284,7 @@ import TranslationActions from './TranslationActions.vue'
 import TafseerActions from './TafseerActions.vue'
 import TransliterationActions from './TransliterationActions.vue'
 import SpeechRecognition from './translation/features/speech_recognition/SpeechRecognition.vue';
+import ColorPicker from './color_picker/ColorPicker.vue';
 
 export default {
  name: 'QuranComponent',
@@ -341,7 +334,8 @@ export default {
   TafseerActions,
   TransliterationActions,
   PdfDownload,
-  SpeechRecognition
+  SpeechRecognition,
+  ColorPicker
  },
 
  mounted() {

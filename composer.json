@@ -8,6 +8,7 @@
         "php": "^8.0",
         "almasaeed2010/adminlte": "~3.2",
         "barryvdh/laravel-dompdf": "^2.2",
+        "google/cloud-speech": "^1.19",
         "google/cloud-storage": "^1.36",
         "guzzlehttp/guzzle": "^7.2",
         "jeroennoten/laravel-adminlte": "^3.9",
