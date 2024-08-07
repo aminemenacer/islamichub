@@ -11,11 +11,18 @@
             <div class="row container mt-3">
               <h5 class="text-left pb-2 font-weight-bold">Notes & Reflections</h5>
               <div class="col">
-                <Editor v-model="form.ayah_notes" editorStyle="height: 400px" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah."></Editor>
+                <!-- <Editor v-model="form.ayah_notes" editorStyle="height: 400px" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah."></Editor> -->
                 <!-- <Editor v-model="form.ayah_notes" editorStyle="height: 320px" /> -->
                 <!-- <h1>Quran Speech-to-Text</h1>
                 <SpeechRecognition @transcript="handleTranscript" /> -->
                 <!-- <textarea v-model="form.ayah_notes" placeholder="Your speech will appear here" class="textarea_speech"></textarea>  -->
+              <div class="speech-to-text">
+                <button @click="startListening" :disabled="listening">Start Listening</button>
+                <button @click="stopListening" :disabled="!listening">Stop Listening</button>
+                <p v-if="error" class="error">{{ error }}</p>
+                <p v-if="interimTranscript">{{ interimTranscript }}</p>
+                <p>{{ finalTranscript }}</p>
+              </div>
               </div>
             </div>
             <div class="modal-footer">
@@ -66,7 +73,51 @@ export default {
       }
     };
   },
+  mounted() {
+    if (!('webkitSpeechRecognition' in window)) {
+      this.error = 'Web Speech API is not supported by this browser. Please use Chrome or Firefox.';
+      return;
+    }
+
+    this.recognition = new webkitSpeechRecognition();
+    this.recognition.continuous = true;
+    this.recognition.interimResults = true;
+
+    this.recognition.onstart = () => {
+      this.listening = true;
+      this.error = null;
+    };
+
+    this.recognition.onerror = (event) => {
+      this.error = 'Error occurred in recognition: ' + event.error;
+      this.listening = false;
+    };
+
+    this.recognition.onend = () => {
+      this.listening = false;
+    };
+
+    this.recognition.onresult = (event) => {
+      let interimTranscript = '';
+      for (let i = event.resultIndex; i < event.results.length; ++i) {
+        if (event.results[i].isFinal) {
+          this.finalTranscript += event.results[i][0].transcript;
+        } else {
+          interimTranscript += event.results[i][0].transcript;
+        }
+      }
+      this.interimTranscript = interimTranscript;
+    };
+  },
   methods: {
+    startListening() {
+      this.finalTranscript = '';
+      this.interimTranscript = '';
+      this.recognition.start();
+    },
+    stopListening() {
+      this.recognition.stop();
+    },
     handleTranscript(transcript) {
       this.transcript = transcript;
     },
@@ -160,3 +211,17 @@ export default {
   }
 };
 </script>
+<style>
+.speech-to-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+button {
+  margin: 10px;
+}
+.error {
+  color: red;
+}
+</style>

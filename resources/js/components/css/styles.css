@@ -16,6 +16,14 @@
   border: 1px solid rgba(0, 191, 166);
 }
 
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
 
 .textarea_speech{
   width: 100%;
@@ -244,7 +252,6 @@
 .card {
  display: flex;
  border: 1px solid #00BFA6;
- padding: 10px;
  border-radius: 10px;
 }
 
@@ -257,4 +264,15 @@
  padding: 1rem;
  overflow: scroll;
  border: 2px solid #00BFA6;
+}
+
+input {
+  margin: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.app-container{
+  border-radius: 8px;
 }

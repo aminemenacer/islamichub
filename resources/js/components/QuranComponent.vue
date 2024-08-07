@@ -1,7 +1,7 @@
 <template>
 <div id="app">
- <div class="pt-3 pb-3 text-center">
-  <Title />
+ <div class="pt-3 text-center">
+  <Title v-if="information != null && !dropdownHidden" />
   <search-form :surat="surat" @update-results="handleUpdateResults" @clear-results="handleClearResults" @select-surah="handleSelectSurah" />
   <custom-surah-selection :customSurat="customSuratList" v-model="selectedSurah"></custom-surah-selection>
  </div>
@@ -52,52 +52,51 @@
    </div>
   </div>
 
-  <div class="col-md-8 pt-2 card-hide">
-   <div class="card pt-2">
+  <div class="col-md-8 card-hide">
+   <div class="card content app-container" :style="{ backgroundColor: bgColor, backgroundColor: selectedStyle.backgroundColor, color: selectedStyle.textColor, fontFamily: selectedStyle.fontStyle }">
+    <div :style="{ backgroundColor: bgColor }" class="app-container">
+      <div class="container-fluid content" v-if="information != null">
+      <NavTabs />
 
-    <div class="container-fluid" v-if="information != null">
-     <NavTabs />  
-     
-
-     <!-- Surah info Modal -->
-     <div class="modal fade" id="translationInfo" tabindex="-1" aria-labelledby="surahInfoModalLabel" aria-hidden="true" @click.self="closeModal">
-      <div class="modal-dialog modal-lg">
-       <div class="modal-content">
-        <div class="modal-header">
-         <h1 class="modal-title fs-5" id="surahInfoModalLabel"><strong>Information</strong></h1>
-         <button type="button" class="btn-close" @click="closeModal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-         <form class="container text-left">
-          <div class="mb-3 container" v-if="information.ayah && information.ayah.surah">
-           <label for="formGroupExampleInput" class="form-label">Surah Name (English):</label>
-           <p class="mt-2 text-dark text-left">{{ information.ayah.surah.name_en }}</p>
+      <!-- Surah info Modal -->
+      <div class="modal fade" id="translationInfo" tabindex="-1" aria-labelledby="surahInfoModalLabel" aria-hidden="true" @click.self="closeModal">
+        <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+          <h1 class="modal-title fs-5" id="surahInfoModalLabel"><strong>Information</strong></h1>
+          <button type="button" class="btn-close" @click="closeModal" aria-label="Close"></button>
           </div>
-          <div class="mb-3 container" v-if="information.ayah && information.ayah.surah">
-           <label for="formGroupExampleInput" class="form-label text-left">Surah Information:</label>
-           <p class="text-left">
-            {{ expanded ? information.ayah.surah.text : truncatedText(information.ayah.surah.text) }}
-            <template v-if="showMoreLink">
-             <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
-            </template>
-           </p>
+          <div class="modal-body">
+          <form class="container text-left">
+            <div class="mb-3 container" v-if="information.ayah && information.ayah.surah">
+            <label for="formGroupExampleInput" class="form-label">Surah Name (English):</label>
+            <p class="mt-2 text-dark text-left">{{ information.ayah.surah.name_en }}</p>
+            </div>
+            <div class="mb-3 container" v-if="information.ayah && information.ayah.surah">
+            <label for="formGroupExampleInput" class="form-label text-left">Surah Information:</label>
+            <p class="text-left">
+              {{ expanded ? information.ayah.surah.text : truncatedText(information.ayah.surah.text) }}
+              <template v-if="showMoreLink">
+              <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
+              </template>
+            </p>
+            </div>
+          </form>
           </div>
-         </form>
+          <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" @click="closeModal">Close</button>
+          </div>
         </div>
-        <div class="modal-footer">
-         <button type="button" class="btn btn-secondary" @click="closeModal">Close</button>
         </div>
-       </div>
       </div>
-     </div>
-    </div>
+      </div>
 
-    <div class="card-body" id="alertContainer">
+    <div class="card-body content" id="alertContainer">
      <div class="tab-content text-center">
       <Welcome :information="information" />
 
       <!-- Translation Section -->
-      <div class="tab-pane active" id="home" role="tabpanel" v-if="information != null">
+      <div class="tab-pane active content" id="home" role="tabpanel" v-if="information != null">
 
        <div class="icon-container pb-3">
         <!-- Main features -->
@@ -123,7 +122,7 @@
       </div>
 
       <!-- Tafseer Section -->
-      <div class="tab-pane" id="profile" role="tabpanel" v-if="information != null">
+      <div class="tab-pane content" id="profile" role="tabpanel" v-if="information != null">
        <div class="icon-container pb-3">
 
         <div class="icon-container w-100 hide-on-mobile pb-3">
@@ -169,7 +168,7 @@
       </div>
 
       <!-- Transliteration Section -->
-      <div class="tab-pane" id="messages" role="tabpanel" v-if="information != null">
+      <div class="tab-pane content" id="messages" role="tabpanel" v-if="information != null">
        <div class="">
         <div>
          <!-- Ayah Controls -->
@@ -215,10 +214,34 @@
 
         </div>
        </div>
-
+       <!-- Styling -->
+        <hr />
+        <div class="row">
+          <div class="col-md-2">
+            <button class="btn btn-outline-success text-left" @click="toggleVisibility">
+            {{ isVisible ? 'Select a theme' : 'Close' }}
+            </button>
+          </div>
+          <!-- background -->
+          <div v-if="!isVisible">
+            <div class="col-md-2 mt-2" style="display:flex"><strong>Default theme:</strong></div>
+            <div class="col-md-4">
+            <select class="form-control" style="border:1px solid black" v-model="selectedStyle" @change="saveSettings">
+              <option v-for="style in styles" :key="style.name" :value="style">{{ style.name }}</option>
+            </select>
+            </div>
+            <div class="col-md-4 mt-2">
+              <strong>Select custom background color:</strong>
+              <input type="color" v-model="bgColor" @input="saveColor" />
+            </div>
+          </div>
+        </div>
       </div>
       
-      <ColorPicker />
+      <div>
+
+        
+      </div>
       <BookmarksAndNotes :information="information" />
       <CorrectionModal />
 
@@ -229,12 +252,19 @@
      <TafseerNote ref="tafseerNote" :information="modalInformation" />
      <TransliterationNote ref="transliterationNote" :information="modalInformation" />
 
-    </div>
+    </div>      
+
    </div>
+  
+   </div>
+  </div>
   </div>
 
  </div>
-</div>
+ <!-- <div :style="{ backgroundColor: bgColor }">
+  <input type="color" v-model="bgColor" @input="saveColor" />
+  <h1>Hello, Vue.js 3!</h1>
+ </div> -->
 </template>
 
 <script>
@@ -285,6 +315,8 @@ import TafseerActions from './TafseerActions.vue'
 import TransliterationActions from './TransliterationActions.vue'
 import SpeechRecognition from './translation/features/speech_recognition/SpeechRecognition.vue';
 import ColorPicker from './color_picker/ColorPicker.vue';
+import FontStyleSelector from './FontStyleSelector.vue'
+import SpeechToText from './SpeechToText.vue';
 
 export default {
  name: 'QuranComponent',
@@ -335,19 +367,64 @@ export default {
   TransliterationActions,
   PdfDownload,
   SpeechRecognition,
-  ColorPicker
+  FontStyleSelector,
+  SpeechToText
  },
 
  mounted() {
   this.getSurat(); // Call getSurat to populate the surah list
+  const savedColor = localStorage.getItem('bgColor');
+  if (savedColor) {
+   this.bgColor = savedColor;
+  }
  },
  data() {
   return {
-   // speech to text
-   isListening: false,
-   transcript: '',
-   recognition: null,
-
+   styles: [{
+     name: 'Default',
+     backgroundColor: '#fff',
+     textColor: 'black',
+     fontStyle: 'Arial, sans-serif'
+    },
+    {
+     name: 'Dyslexia',
+     backgroundColor: '#FDFD96',
+     textColor: '#000080',
+     fontStyle: 'Arial, sans-serif'
+    },
+    {
+     name: 'Dysgraphia',
+     backgroundColor: '#FFFDD0',
+     textColor: '#00008B',
+     fontStyle: "'Arial, sans-serif"
+    },
+    {
+     name: 'Hyperlexia',
+     backgroundColor: '#F5F5DC',
+     textColor: '#06402B',
+     fontStyle: "''Arial, sans-serif"
+    },
+    {
+     name: 'Visual Proccesing disorder',
+     backgroundColor: '#fff',
+     textColor: 'black',
+     fontStyle: 'Arial, sans-serif'
+    },
+    {
+     name: 'ADHD',
+     backgroundColor: '#ADD8E6',
+     textColor: '#696969',
+     fontStyle: "Arial, sans-serif"
+    },
+   ],
+   selectedStyle: JSON.parse(localStorage.getItem('selectedStyle')) || {
+    name: 'White/Black/Arial',
+    backgroundColor: '#ffffff',
+    textColor: 'black',
+    fontStyle: 'Arial, sans-serif'
+   },
+   isVisible: true,
+   bgColor: localStorage.getItem('bgColor') || '#ffffff',
    filteredSurah: [],
    //twitter/whatsapp
    information: {
@@ -434,6 +511,19 @@ export default {
   };
  },
  methods: {
+  saveColor() {
+   localStorage.setItem('bgColor', this.bgColor);
+  },
+  toggleVisibility() {
+   this.isVisible = !this.isVisible;
+  },
+  saveSettings() {
+   // Your save settings logic here
+   console.log('Settings saved:', this.selectedStyle);
+  },
+  saveSettings() {
+   localStorage.setItem('selectedStyle', JSON.stringify(this.selectedStyle));
+  },
   handleTranscript(transcript) {
    this.transcript = transcript;
   },
