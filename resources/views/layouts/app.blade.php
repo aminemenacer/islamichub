@@ -38,7 +38,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm py-1">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm ">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="/images/logo_main.png" width="275" height="54" class="d-inline-block align-top" alt="">

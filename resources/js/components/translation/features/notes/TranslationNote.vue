@@ -11,18 +11,18 @@
             <div class="row container mt-3">
               <h5 class="text-left pb-2 font-weight-bold">Notes & Reflections</h5>
               <div class="col">
-                <!-- <Editor v-model="form.ayah_notes" editorStyle="height: 400px" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah."></Editor> -->
+                <Editor v-model="form.ayah_notes" editorStyle="height: 400px" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah."></Editor>
                 <!-- <Editor v-model="form.ayah_notes" editorStyle="height: 320px" /> -->
                 <!-- <h1>Quran Speech-to-Text</h1>
                 <SpeechRecognition @transcript="handleTranscript" /> -->
                 <!-- <textarea v-model="form.ayah_notes" placeholder="Your speech will appear here" class="textarea_speech"></textarea>  -->
-              <div class="speech-to-text">
+              <!-- <div class="speech-to-text">
                 <button @click="startListening" :disabled="listening">Start Listening</button>
                 <button @click="stopListening" :disabled="!listening">Stop Listening</button>
                 <p v-if="error" class="error">{{ error }}</p>
                 <p v-if="interimTranscript">{{ interimTranscript }}</p>
                 <p>{{ finalTranscript }}</p>
-              </div>
+              </div> -->
               </div>
             </div>
             <div class="modal-footer">

@@ -16,7 +16,7 @@
    <AyahDropdown :selectedSurahId="selectedSurahId" :dropdownHidden="dropdownHidden" @update-information="updateInformation" @update-tafseer="updateTafseer" v-if="ayah == null && !dropdownHidden" />
 
    <!-- List of Ayat for Surah (desktop) -->
-   <div class="tab-content hide-on-mobile-tablet" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
+   <div class="tab-content hide-on-mobile-tablet" id="nav-tabContent"  v-if="ayah == null && !dropdownHidden">
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" v-if="ayah == null">
 
      <form class="d-flex pb-2 " role="search" @submit.prevent="scrollToAyah">
@@ -38,7 +38,7 @@
        <i v-if="information != null" class="bi bi-info-circle-fill h3 mr-2 pl-2" style="color: rgb(0, 191, 166);cursor:pointer" data-bs-toggle="modal" data-bs-target="#translationInfo" aria-expanded="false" data-bs-placement="top" title="Surah info"></i>
       </div>
 
-      <div class="custom-scrollbar pb-5" style="overflow-y: auto; max-height: 600px; background: white;">
+      <div :style="{ color: selectedStyle.textColor, computedStyle, backgroundColor: selectedStyle.backgroundColor}" class="custom-scrollbar pb-5" style="overflow-y: auto; max-height: 600px; background: white;">
        <ul class="col-md-12 list-group container-fluid root" id="toggle" ref="ayahList" style="list-style-type: none; padding: 10px">
         <li v-for="(ayah, index) in ayat" :key="index" @click="selectAyah(index)" :class="{ selected: selectedIndexAyah === index, highlighted: verseNumber && parseInt(verseNumber) === ayah.ayah_id }" style="padding: 10px; border-radius:10px">
          <h5 class="text-right" style="display: flex;"> Verse: {{ ayah.ayah_id }} </h5>
@@ -53,194 +53,204 @@
   </div>
 
   <div class="col-md-8 card-hide">
-   <div class="card content app-container" :style="{ backgroundColor: bgColor, backgroundColor: selectedStyle.backgroundColor, color: selectedStyle.textColor, fontFamily: selectedStyle.fontStyle }">
-    <div :style="{ backgroundColor: bgColor }" class="app-container">
-      <div class="container-fluid content" v-if="information != null">
+   <div class="card content app-container" :style="{ color: selectedStyle.textColor, computedStyle, backgroundColor: selectedStyle.backgroundColor}">
+    <div class="app-container">
+     <div class="container-fluid content" v-if="information != null">
       <NavTabs />
 
       <!-- Surah info Modal -->
       <div class="modal fade" id="translationInfo" tabindex="-1" aria-labelledby="surahInfoModalLabel" aria-hidden="true" @click.self="closeModal">
-        <div class="modal-dialog modal-lg">
+       <div class="modal-dialog modal-lg">
         <div class="modal-content">
-          <div class="modal-header">
+         <div class="modal-header">
           <h1 class="modal-title fs-5" id="surahInfoModalLabel"><strong>Information</strong></h1>
           <button type="button" class="btn-close" @click="closeModal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
+         </div>
+         <div class="modal-body">
           <form class="container text-left">
-            <div class="mb-3 container" v-if="information.ayah && information.ayah.surah">
+           <div class="mb-3 container" v-if="information.ayah && information.ayah.surah">
             <label for="formGroupExampleInput" class="form-label">Surah Name (English):</label>
             <p class="mt-2 text-dark text-left">{{ information.ayah.surah.name_en }}</p>
-            </div>
-            <div class="mb-3 container" v-if="information.ayah && information.ayah.surah">
+           </div>
+           <div class="mb-3 container" v-if="information.ayah && information.ayah.surah">
             <label for="formGroupExampleInput" class="form-label text-left">Surah Information:</label>
             <p class="text-left">
-              {{ expanded ? information.ayah.surah.text : truncatedText(information.ayah.surah.text) }}
-              <template v-if="showMoreLink">
+             {{ expanded ? information.ayah.surah.text : truncatedText(information.ayah.surah.text) }}
+             <template v-if="showMoreLink">
               <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
-              </template>
+             </template>
             </p>
-            </div>
+           </div>
           </form>
-          </div>
-          <div class="modal-footer">
+         </div>
+         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" @click="closeModal">Close</button>
-          </div>
-        </div>
-        </div>
-      </div>
-      </div>
-
-    <div class="card-body content" id="alertContainer">
-     <div class="tab-content text-center">
-      <Welcome :information="information" />
-
-      <!-- Translation Section -->
-      <div class="tab-pane active content" id="home" role="tabpanel" v-if="information != null">
-
-       <div class="icon-container pb-3">
-        <!-- Main features -->
-        <div class="icon-container w-100 hide-on-mobile pb-3">
-         <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('translationNote')" style="color: rgba(0, 191, 166);cursor:pointer"></i>
-         <TranslationNote ref="translationNote" :information="information.translation" />
-         <WhatsAppShareTranslation :translationToShare="information.translation" />
-         <TwitterShareTranslation :targetElementRef="'targetElement'" :translationText="information.translation" />
-         <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
-         <CopyTranslationText :textToCopy="information.translation" />
-         <ScreenTranslationCapture :targetTranslationRef="'targetTranslationElement'" />
-         <PdfDownload :targetTranslationRef="'targetTranslationElement'" />
-         <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;"></i>
-         <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
+         </div>
         </div>
        </div>
-
-       <!-- dropdown mobile content -->
-       <div ref="targetTranslationElement">
-        <TranslationSection :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
-       </div>
-
       </div>
+     </div>
 
-      <!-- Tafseer Section -->
-      <div class="tab-pane content" id="profile" role="tabpanel" v-if="information != null">
-       <div class="icon-container pb-3">
+     <div class="card-body content" id="alertContainer">
+      <div class="tab-content text-center">
+       <Welcome :information="information" />
 
-        <div class="icon-container w-100 hide-on-mobile pb-3">
-         <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('tafseerNote')" style="color: rgba(0, 191, 166);cursor:pointer">
-         </i>
-         <TafseerNote ref="tafseerNote" :information="tafseer" />
-         <WhatsAppShareTafseer :tafseerToShare="tafseer" />
-         <TwitterShareTafseer :targetElementRef="'targetElement'" :tafseerText="tafseer" />
-         <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
-         <CopyTafseerText :textToCopy="tafseer" />
-         <ScreenTafseerCapture :targetTafseerRef="'targetTafseerElement'" />
-         <PdfDownload :targetTranslationRef="'targetTafseerElement'" />
-         <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;"></i>
-         <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
+       <!-- Translation Section -->
+       <div class="tab-pane active content" id="home" role="tabpanel" v-if="information != null">
 
+        <div class="icon-container pb-3">
+         <!-- Main features -->
+         <div class="icon-container w-100 hide-on-mobile pb-3">
+          <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('translationNote')" style="color: rgba(0, 191, 166);cursor:pointer"></i>
+          <TranslationNote ref="translationNote" :information="information.translation" />
+          <WhatsAppShareTranslation :translationToShare="information.translation" />
+          <TwitterShareTranslation :targetElementRef="'targetElement'" :translationText="information.translation" />
+          <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
+          <CopyTranslationText :textToCopy="information.translation" />
+          <ScreenTranslationCapture :targetTranslationRef="'targetTranslationElement'" />
+          <PdfDownload :targetTranslationRef="'targetTranslationElement'" />
+          <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;"></i>
+          <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
+         </div>
         </div>
 
-        <!-- Dropdown Features -->
-        <div class="dropdown mobile-only">
-         <div class="icon-container">
-          <i class="bi bi-chevron-bar-left h5" style="color: rgb(0, 191, 166);" @click="goToFirstAyah()" title="Last verse"></i>
-          <i class="bi bi-arrow-left-circle h5" style="color: rgb(0, 191, 166);" @click="goToPreviousAyah()" title="Previous verse"></i>
-          <i class="bi bi-arrow-right-circle h5" style="color: rgb(0, 191, 166);" @click="goToNextAyah()" title="Next verse"></i>
-          <i class="bi bi-chevron-bar-right h5" style="color: rgb(0, 191, 166);" @click="goToLastAyah()" title="End verse"></i>
-          <ScreenTranslationCapture targetTafseerElement="targetElementId" />
+        <!-- dropdown mobile content -->
+        <div ref="targetTranslationElement">
+         <TranslationSection :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
+        </div>
+
+       </div>
+
+       <!-- Tafseer Section -->
+       <div class="tab-pane content" id="profile" role="tabpanel" v-if="information != null">
+        <div class="icon-container pb-3">
+
+         <div class="icon-container w-100 hide-on-mobile pb-3">
+          <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('tafseerNote')" style="color: rgba(0, 191, 166);cursor:pointer">
+          </i>
+          <TafseerNote ref="tafseerNote" :information="tafseer" />
+          <WhatsAppShareTafseer :tafseerToShare="tafseer" />
+          <TwitterShareTafseer :targetElementRef="'targetElement'" :tafseerText="tafseer" />
+          <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
+          <CopyTafseerText :textToCopy="tafseer" />
+          <ScreenTafseerCapture :targetTafseerRef="'targetTafseerElement'" />
           <PdfDownload :targetTranslationRef="'targetTafseerElement'" />
-          <i class="bi bi-arrows-fullscreen h6" style="color: rgb(0, 191, 166);" @click="toggleFullScreen" title="Full screen"></i>
-          <ul class="dropdown-menu">
+          <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;"></i>
+          <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
 
-           <TafseerActions :targetTafseerRef="'targetTafseerElement'" :tafseer="tafseer" @open-modal="openModal" @submit-form="submitForm" />
-          </ul>
          </div>
 
-        </div>
-       </div>
+         <!-- Dropdown Features -->
+         <div class="dropdown mobile-only">
+          <div class="icon-container">
+           <i class="bi bi-chevron-bar-left h5" style="color: rgb(0, 191, 166);" @click="goToFirstAyah()" title="Last verse"></i>
+           <i class="bi bi-arrow-left-circle h5" style="color: rgb(0, 191, 166);" @click="goToPreviousAyah()" title="Previous verse"></i>
+           <i class="bi bi-arrow-right-circle h5" style="color: rgb(0, 191, 166);" @click="goToNextAyah()" title="Next verse"></i>
+           <i class="bi bi-chevron-bar-right h5" style="color: rgb(0, 191, 166);" @click="goToLastAyah()" title="End verse"></i>
+           <ScreenTranslationCapture targetTafseerElement="targetElementId" />
+           <PdfDownload :targetTranslationRef="'targetTafseerElement'" />
+           <i class="bi bi-arrows-fullscreen h6" style="color: rgb(0, 191, 166);" @click="toggleFullScreen" title="Full screen"></i>
+           <ul class="dropdown-menu">
 
-       <!-- Main content -->
-       <div ref="targetTafseerElement">
-        <TafseerSection :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
-       </div>
-
-       <SurahInfoModal :information="information" />
-      </div>
-
-      <!-- Transliteration Section -->
-      <div class="tab-pane content" id="messages" role="tabpanel" v-if="information != null">
-       <div class="">
-        <div>
-         <!-- Ayah Controls -->
-         <div class="icon-container pb-3">
-
-          <div class="icon-container w-100 hide-on-mobile pb-3">
-           <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('transliterationNote')" style="color: rgba(0, 191, 166);cursor:pointer">
-           </i>
-           <TransliterationNote ref="transliterationNote" :information="information.transliteration" />
-           <WhatsAppShareTransliteration :transliterationToShare="information.transliteration" />
-           <TwitterShareTransliteration :targetElementRef="'targetElement'" :transliterationText="information.transliteration" />
-           <i @click="submitForm2" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
-           <CopyTransliterationText :textToCopy="information.transliteration" />
-           <ScreenTransliterationCapture :targetTransliterationRef="'targetTransliterationElement'" />
-           <PdfDownload :targetTranslationRef="'targetTransliterationElement'" />
-           <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;"></i>
-           <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
+            <TafseerActions :targetTafseerRef="'targetTafseerElement'" :tafseer="tafseer" @open-modal="openModal" @submit-form="submitForm" />
+           </ul>
           </div>
 
-          <!-- Dropdown Features -->
-          <div class="dropdown mobile-only">
-           <div class="icon-container">
-            <i class="bi bi-chevron-bar-left h5" style="color: rgb(0, 191, 166);" @click="goToFirstAyah()" title="Last verse"></i>
-            <i class="bi bi-arrow-left-circle h5" style="color: rgb(0, 191, 166);" @click="goToPreviousAyah()" title="Previous verse"></i>
-            <i class="bi bi-arrow-right-circle h5" style="color: rgb(0, 191, 166);" @click="goToNextAyah()" title="Next verse"></i>
-            <i class="bi bi-chevron-bar-right h5" style="color: rgb(0, 191, 166);" @click="goToLastAyah()" title="End verse"></i>
-            <ScreenTransliterationCapture :targetTransliterationRef="'targetTransliterationElement'" />
-            <PdfDownload :targetTranslationRef="'targetTafseerElement'" />
-            <i class="bi bi-arrows-fullscreen h6" style="color: rgb(0, 191, 166);" @click="toggleFullScreen" title="Full screen"></i>
-            <ul class="dropdown-menu">
-             <TransliterationActions :targetTransliterationRef="'targetTransliterationElement'" :transliteration="information.transliteration" @open-modal="openModal" @submit-form="submitForm" />
-            </ul>
+         </div>
+        </div>
 
+        <!-- Main content -->
+        <div ref="targetTafseerElement">
+         <TafseerSection :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
+        </div>
+
+        <SurahInfoModal :information="information" />
+       </div>
+
+       <!-- Transliteration Section -->
+       <div class="tab-pane content" id="messages" role="tabpanel" v-if="information != null">
+        <div class="">
+         <div>
+          <!-- Ayah Controls -->
+          <div class="icon-container pb-3">
+
+           <div class="icon-container w-100 hide-on-mobile pb-3">
+            <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('transliterationNote')" style="color: rgba(0, 191, 166);cursor:pointer">
+            </i>
+            <TransliterationNote ref="transliterationNote" :information="information.transliteration" />
+            <WhatsAppShareTransliteration :transliterationToShare="information.transliteration" />
+            <TwitterShareTransliteration :targetElementRef="'targetElement'" :transliterationText="information.transliteration" />
+            <i @click="submitForm2" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
+            <CopyTransliterationText :textToCopy="information.transliteration" />
+            <ScreenTransliterationCapture :targetTransliterationRef="'targetTransliterationElement'" />
+            <PdfDownload :targetTranslationRef="'targetTransliterationElement'" />
+            <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;"></i>
+            <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
+           </div>
+
+           <!-- Dropdown Features -->
+           <div class="dropdown mobile-only">
+            <div class="icon-container">
+             <i class="bi bi-chevron-bar-left h5" style="color: rgb(0, 191, 166);" @click="goToFirstAyah()" title="Last verse"></i>
+             <i class="bi bi-arrow-left-circle h5" style="color: rgb(0, 191, 166);" @click="goToPreviousAyah()" title="Previous verse"></i>
+             <i class="bi bi-arrow-right-circle h5" style="color: rgb(0, 191, 166);" @click="goToNextAyah()" title="Next verse"></i>
+             <i class="bi bi-chevron-bar-right h5" style="color: rgb(0, 191, 166);" @click="goToLastAyah()" title="End verse"></i>
+             <ScreenTransliterationCapture :targetTransliterationRef="'targetTransliterationElement'" />
+             <PdfDownload :targetTranslationRef="'targetTafseerElement'" />
+             <i class="bi bi-arrows-fullscreen h6" style="color: rgb(0, 191, 166);" @click="toggleFullScreen" title="Full screen"></i>
+             <ul class="dropdown-menu">
+              <TransliterationActions :targetTransliterationRef="'targetTransliterationElement'" :transliteration="information.transliteration" @open-modal="openModal" @submit-form="submitForm" />
+             </ul>
+
+            </div>
            </div>
           </div>
+
+          <div ref="targetTransliterationElement">
+           <TransliterationSection :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
+          </div>
+          <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
+          <SurahInfoModal :information="information" />
+
+         </div>
+        </div>
+
+       </div>
+       <hr class="color:lightgrey" />
+       <!-- Styling -->
+
+       <div>
+        <!-- Button to toggle visibility of the theme selection -->
+        <button class="btn btn-secondary text-left" @click="toggleVisibility">
+         {{ isVisible ? 'Select a theme' : 'Close' }}
+        </button>
+
+        <!-- Predefined theme selection (dropdown) -->
+        <div class="row" v-if="!isVisible">
+         <div class="col-md-2 mt-2" style="display: flex;">
+          <strong >Default theme:</strong>
+         </div>
+         <div class="col-md-8">
+          <select class="form-control" style="border: 1px solid black;" v-model="selectedStyle" @change="applyTheme">
+           <option v-for="style in styles" :key="style.name" :value="style" :style="{ backgroundColor: style.backgroundColor, color: style.textColor }">
+            {{ style.name }}
+           </option>
+          </select>
          </div>
 
-         <div ref="targetTransliterationElement">
-          <TransliterationSection :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
-         </div>
-         <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
-         <SurahInfoModal :information="information" />
+         <!-- Custom background and text color selection -->
+         <div class="row">
+          <div class="col-md-12 mt-2">
+           <strong>Select custom background color:</strong>
+           <input id="bgColor" type="color" v-model="bgColor" @input="applyCustomColors" />
 
+           <strong>Select custom text color:</strong>
+           <input id="textColor" type="color" v-model="textColor" @input="applyCustomColors" />
+          </div>
+         </div>
         </div>
        </div>
-       <!-- Styling -->
-        <hr />
-        <div class="row">
-          <div class="col-md-2">
-            <button class="btn btn-outline-success text-left" @click="toggleVisibility">
-            {{ isVisible ? 'Select a theme' : 'Close' }}
-            </button>
-          </div>
-          <!-- background -->
-          <div v-if="!isVisible">
-            <div class="col-md-2 mt-2" style="display:flex"><strong>Default theme:</strong></div>
-            <div class="col-md-4">
-            <select class="form-control" style="border:1px solid black" v-model="selectedStyle" @change="saveSettings">
-              <option v-for="style in styles" :key="style.name" :value="style">{{ style.name }}</option>
-            </select>
-            </div>
-            <div class="col-md-4 mt-2">
-              <strong>Select custom background color:</strong>
-              <input type="color" v-model="bgColor" @input="saveColor" />
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div>
 
-        
       </div>
       <BookmarksAndNotes :information="information" />
       <CorrectionModal />
@@ -252,19 +262,14 @@
      <TafseerNote ref="tafseerNote" :information="modalInformation" />
      <TransliterationNote ref="transliterationNote" :information="modalInformation" />
 
-    </div>      
+    </div>
 
    </div>
-  
-   </div>
-  </div>
-  </div>
 
+  </div>
  </div>
- <!-- <div :style="{ backgroundColor: bgColor }">
-  <input type="color" v-model="bgColor" @input="saveColor" />
-  <h1>Hello, Vue.js 3!</h1>
- </div> -->
+</div>
+
 </template>
 
 <script>
@@ -368,15 +373,13 @@ export default {
   PdfDownload,
   SpeechRecognition,
   FontStyleSelector,
-  SpeechToText
+  SpeechToText,
  },
 
  mounted() {
   this.getSurat(); // Call getSurat to populate the surah list
-  const savedColor = localStorage.getItem('bgColor');
-  if (savedColor) {
-   this.bgColor = savedColor;
-  }
+  this.loadColors();
+  this.applyBackgroundColor();
  },
  data() {
   return {
@@ -418,13 +421,16 @@ export default {
     },
    ],
    selectedStyle: JSON.parse(localStorage.getItem('selectedStyle')) || {
-    name: 'White/Black/Arial',
+    name: 'Default',
     backgroundColor: '#ffffff',
     textColor: 'black',
-    fontStyle: 'Arial, sans-serif'
+    fontStyle: 'Arial, sans-serif',
    },
    isVisible: true,
-   bgColor: localStorage.getItem('bgColor') || '#ffffff',
+
+   bgColor: '#ffffff',
+   textColor: '#000000',
+
    filteredSurah: [],
    //twitter/whatsapp
    information: {
@@ -510,19 +516,59 @@ export default {
    }),
   };
  },
+ computed: {
+    computedStyle() {
+      return {
+        color: this.textColor || this.selectedStyle.textColor,
+        backgroundColor: this.bgColor || this.selectedStyle.backgroundColor,
+      };
+    },
+  },
  methods: {
-  saveColor() {
+   toggleVisibility() {
+      this.isVisible = !this.isVisible;
+    },
+    applyTheme() {
+      this.bgColor = '';
+      this.textColor = '';
+      this.saveSettings();
+    },
+    applyCustomColors() {
+      this.saveSettings();
+    },
+    saveSettings() {
+      const settings = {
+        ...this.selectedStyle,
+        bgColor: this.bgColor,
+        textColor: this.textColor,
+      };
+      localStorage.setItem('selectedStyle', JSON.stringify(settings));
+    },
+  
+  selectStyle(style) {
+   this.selectedStyle = style;
+   this.saveSettings();
+  },
+  applyBackgroundColor() {
+   const selectElement = this.$el.querySelector('select');
+   selectElement.style.backgroundColor = this.selectedStyle.backgroundColor;
+  },
+  saveColors() {
    localStorage.setItem('bgColor', this.bgColor);
+   localStorage.setItem('textColor', this.textColor);
+  },
+  loadColors() {
+   const savedBgColor = localStorage.getItem('bgColor');
+   const savedTextColor = localStorage.getItem('textColor');
+   if (savedBgColor) {
+    this.bgColor = savedBgColor;
+   }
+   if (savedTextColor) {
+    this.textColor = savedTextColor;
+   }
   },
   toggleVisibility() {
    this.isVisible = !this.isVisible;
-  },
-  saveSettings() {
-   // Your save settings logic here
-   console.log('Settings saved:', this.selectedStyle);
-  },
-  saveSettings() {
-   localStorage.setItem('selectedStyle', JSON.stringify(this.selectedStyle));
   },
   handleTranscript(transcript) {
    this.transcript = transcript;
@@ -943,6 +989,7 @@ export default {
     );
   },
  },
+
  created() {
   // Initialize submitted status for each bookmark
   this.ayat.forEach(ayah => {
@@ -953,19 +1000,23 @@ export default {
   });
  },
 
+
  watch: {
   selectedSurah(newSurah) {
    this.selectedSurahId = newSurah;
    this.getAyat();
   },
+  selectedStyle() {
+   this.applyBackgroundColor();
+  }
+ },
 
-  'information.ayah.surah.name_ar': 'updateFileName',
-  verseNumber(newVal, oldVal) {
-   if (newVal !== oldVal && parseInt(newVal)) {
-    this.selectedIndexAyah = parseInt(newVal) - 1;
-   }
-  },
- }
+ 'information.ayah.surah.name_ar': 'updateFileName',
+ verseNumber(newVal, oldVal) {
+  if (newVal !== oldVal && parseInt(newVal)) {
+   this.selectedIndexAyah = parseInt(newVal) - 1;
+  }
+ },
 }
 </script>
 

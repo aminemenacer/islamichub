@@ -23,7 +23,7 @@ use App\Http\Controllers\JoinUsController;
 use App\Http\Controllers\NotesController;
 use App\Http\Controllers\UpdatesController;
 use App\Http\Controllers\AdminController;
-
+use App\Http\Controllers\AIController;
 
 // Auth routes
 Auth::routes();
