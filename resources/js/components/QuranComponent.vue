@@ -38,7 +38,7 @@
        <i v-if="information != null" class="bi bi-info-circle-fill h3 mr-2 pl-2" style="color: rgb(0, 191, 166);cursor:pointer" data-bs-toggle="modal" data-bs-target="#translationInfo" aria-expanded="false" data-bs-placement="top" title="Surah info"></i>
       </div>
 
-      <div :style="{ color: selectedStyle.textColor, computedStyle, backgroundColor: selectedStyle.backgroundColor}" class="custom-scrollbar pb-5" style="overflow-y: auto; max-height: 600px; background: white;">
+      <div :style="{color: selectedStyle.textColor, computedStyle, backgroundColor: selectedStyle.backgroundColor}" class="custom-scrollbar pb-5" style="overflow-y: auto; max-height: 600px; background: white;">
        <ul class="col-md-12 list-group container-fluid root" id="toggle" ref="ayahList" style="list-style-type: none; padding: 10px">
         <li v-for="(ayah, index) in ayat" :key="index" @click="selectAyah(index)" :class="{ selected: selectedIndexAyah === index, highlighted: verseNumber && parseInt(verseNumber) === ayah.ayah_id }" style="padding: 10px; border-radius:10px">
          <h5 class="text-right" style="display: flex;"> Verse: {{ ayah.ayah_id }} </h5>
@@ -226,19 +226,20 @@
         </button>
 
         <!-- Predefined theme selection (dropdown) -->
-        <div class="row" v-if="!isVisible">
+        <div class="row" v-if="!isVisible"> 
          <div class="col-md-2 mt-2" style="display: flex;">
           <strong >Default theme:</strong>
          </div>
          <div class="col-md-8">
           <select class="form-control" style="border: 1px solid black;" v-model="selectedStyle" @change="applyTheme">
-           <option v-for="style in styles" :key="style.name" :value="style" :style="{ backgroundColor: style.backgroundColor, color: style.textColor }">
+            <option selected>Select a theme</option>
+            <option v-for="style in styles" :key="style.name" :value="style" :style="{ backgroundColor: style.backgroundColor, color: style.textColor }">
             {{ style.name }}
            </option>
           </select>
          </div>
 
-         <!-- Custom background and text color selection -->
+         <!-- Custom background and text color selection 
          <div class="row">
           <div class="col-md-12 mt-2">
            <strong>Select custom background color:</strong>
@@ -248,6 +249,8 @@
            <input id="textColor" type="color" v-model="textColor" @input="applyCustomColors" />
           </div>
          </div>
+         -->
+
         </div>
        </div>
 
@@ -379,7 +382,6 @@ export default {
  mounted() {
   this.getSurat(); // Call getSurat to populate the surah list
   this.loadColors();
-  this.applyBackgroundColor();
  },
  data() {
   return {
@@ -516,15 +518,8 @@ export default {
    }),
   };
  },
- computed: {
-    computedStyle() {
-      return {
-        color: this.textColor || this.selectedStyle.textColor,
-        backgroundColor: this.bgColor || this.selectedStyle.backgroundColor,
-      };
-    },
-  },
- methods: {
+ 
+ methods: {  
    toggleVisibility() {
       this.isVisible = !this.isVisible;
     },
@@ -549,10 +544,7 @@ export default {
    this.selectedStyle = style;
    this.saveSettings();
   },
-  applyBackgroundColor() {
-   const selectElement = this.$el.querySelector('select');
-   selectElement.style.backgroundColor = this.selectedStyle.backgroundColor;
-  },
+  
   saveColors() {
    localStorage.setItem('bgColor', this.bgColor);
    localStorage.setItem('textColor', this.textColor);
@@ -1006,9 +998,7 @@ export default {
    this.selectedSurahId = newSurah;
    this.getAyat();
   },
-  selectedStyle() {
-   this.applyBackgroundColor();
-  }
+  
  },
 
  'information.ayah.surah.name_ar': 'updateFileName',
