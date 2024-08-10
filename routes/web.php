@@ -23,7 +23,7 @@ use App\Http\Controllers\JoinUsController;
 use App\Http\Controllers\NotesController;
 use App\Http\Controllers\UpdatesController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\AIController;
+use App\Http\Controllers\CollectionController;
 
 // Auth routes
 Auth::routes();
@@ -43,7 +43,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/bookmarks', [BookmarkController::class, 'index']);
     Route::get('api/fetch-bookmarks', [BookmarkController::class, 'getBookmarks']);
     Route::delete('api/delete-bookmarks/{id}',  [BookmarkController::class, 'deleteBookmarks']);
-
     Route::get('api/fetch-bookmarks/{userId}', [BookmarkController::class, 'getBookmarks']);
 
     // notes
@@ -52,7 +51,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('api/submit-note', [NotesController::class, 'store']);
     Route::post('api/update-notes/{id}',  [NotesController::class, 'updateNotes']);
     Route::delete('api/delete-notes/{id}',  [NotesController::class, 'deleteNotes']);
-
     Route::get('api/fetch-notes/{userId}', [NotesController::class, 'getNotes']);
 
 });

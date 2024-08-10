@@ -29,6 +29,10 @@ class BookmarkController extends Controller
             'ayah_num' => 'required',
             'ayah_verse_ar' => 'required',
             'ayah_verse_en' => 'required',
+            'title' => 'required|string|max:255',
+            'url' => 'required|url',
+            'notes' => 'nullable|string',
+            'collection_id' => 'required|exists:collections,id',
         ]);
 
         // Create a new bookmark instance
