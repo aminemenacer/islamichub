@@ -35,7 +35,8 @@
        <i class="bi bi-arrow-left-circle h4" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToPreviousAyah" title="Previous verse"></i>
        <i class="bi bi-arrow-right-circle h4" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToNextAyah" title="Next verse"></i>
        <i class="bi bi-chevron-bar-right h4" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToLastAyah" title="Last verse"></i>
-       <i v-if="information != null" class="bi bi-info-circle-fill h3 mr-2 pl-2" style="color: rgb(0, 191, 166);cursor:pointer" data-bs-toggle="modal" data-bs-target="#translationInfo" aria-expanded="false" data-bs-placement="top" title="Surah info"></i>
+       <i @click="toggleVisibility" class="bi bi-palette-fill h4 dropdown-toggle" style="color: rgba(0, 191, 166); cursor:pointer;" type="button" data-bs-toggle="dropdown" aria-expanded="false"></i>
+       <i v-if="information != null" class="bi bi-info-circle-fill h4 mr-2 pl-2" style="color: rgb(0, 191, 166);cursor:pointer" data-bs-toggle="modal" data-bs-target="#translationInfo" aria-expanded="false" data-bs-placement="top" title="Surah info"></i>
       </div>
 
       <div :style="{color: selectedStyle.textColor, computedStyle, backgroundColor: selectedStyle.backgroundColor}" class="custom-scrollbar pb-5" style="overflow-y: auto; max-height: 600px; background: white;">
@@ -117,6 +118,7 @@
         <!-- dropdown mobile content -->
         <div ref="targetTranslationElement">
          <TranslationSection :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
+
         </div>
 
        </div>
@@ -216,16 +218,31 @@
         </div>
 
        </div>
-       <hr class="color:lightgrey" />
        <!-- Styling -->
 
        <div>
-        <!-- Button to toggle visibility of the theme selection -->
-        <button class="btn btn-secondary text-left" @click="toggleVisibility">
-         {{ isVisible ? 'Select a theme' : 'Close' }}
-        </button>
-
-        <!-- Predefined theme selection (dropdown) -->
+        <!-- Button to toggle visibility of the theme selection 
+          <i class="bi bi-palette h3" style="color: rgba(0, 191, 166); cursor:pointer;" @click="toggleVisibility">{{ isVisible ? 'Select a theme' : 'Close' }}</i>
+        
+        <div class="dropdown">
+          <i @click="toggleVisibility" class="bi bi-palette h4 dropdown-toggle" style="color: rgba(0, 191, 166); cursor:pointer;" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          </i>
+          <ul class="dropdown-menu">
+            <div class="col-md-2 mt-2" style="display: flex;">
+              <strong >Default theme:</strong>
+            </div>
+            <div class="col-md-8">
+              <select class="form-control" style="border: 1px solid black;" v-model="selectedStyle" @change="applyTheme">
+                <option selected>Select a theme</option>
+                <option v-for="style in styles" :key="style.name" :value="style" :style="{ backgroundColor: style.backgroundColor, color: style.textColor }">
+                {{ style.name }}
+              </option>
+              </select>
+            </div>
+          </ul>
+        </div>-->
+        
+        <!-- Predefined theme selection (dropdown)
         <div class="row" v-if="!isVisible"> 
          <div class="col-md-2 mt-2" style="display: flex;">
           <strong >Default theme:</strong>
@@ -239,7 +256,7 @@
           </select>
          </div>
 
-         <!-- Custom background and text color selection 
+         -- Custom background and text color selection --
          <div class="row">
           <div class="col-md-12 mt-2">
            <strong>Select custom background color:</strong>
@@ -249,9 +266,11 @@
            <input id="textColor" type="color" v-model="textColor" @input="applyCustomColors" />
           </div>
          </div>
-         -->
+         
 
-        </div>
+        </div> -->
+       
+       
        </div>
 
       </div>
