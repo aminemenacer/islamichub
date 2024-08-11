@@ -13,6 +13,9 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <!-- Admin LTE CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
 
@@ -20,15 +23,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <!-- Custom CSS -->
-    {{-- <link rel="stylesheet" type="text/css" href="/css/stylesheet.css?v=1" /> --}}
-
-    <!-- Bootstrap CSS (choose one and remove the others) -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRvN5q1hb5gqB1QK1/oQ2T+XdzD1NvfLp5ZTcKtft" crossorigin="anonymous">
-
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-    
+
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-QWLL07EBX9"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -40,7 +36,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm ">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="/images/logo_main.png" width="275" height="54" class="d-inline-block align-top" alt="">
@@ -55,16 +51,16 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav justify-content-end pr-4 flex-grow-1">
                         <li class="nav-item mt-3">
-                            <h6><a style="	color: black;" class="nav-link ml-3 pl-3" href="/quran"><b>Home</b></a></h6>
+                            <h6><a style="color: black;" class="nav-link ml-3 pl-3" href="/quran"><b>Home</b></a></h6>
                         </li>
                         <li class="nav-item mt-3">
-                            <h6><a style="	color: black;" class="nav-link ml-3 pl-3" href="/contact"><b>Contact</b></a></h6>
+                            <h6><a style="color: black;" class="nav-link ml-3 pl-3" href="/contact"><b>Contact</b></a></h6>
                         </li>
                         <li class="nav-item mt-3">
-                            <h6><a style="	color: black;" class="nav-link ml-3 pl-3" href="/about"><b>About Us</b></a></h6>
+                            <h6><a style="color: black;" class="nav-link ml-3 pl-3" href="/about"><b>About Us</b></a></h6>
                         </li>
                         <li class="nav-item mt-3">
-                            <h6><a style="	color: black;" class="nav-link ml-3 pl-3" href="/updates"><b>Updates</b></a></h6>
+                            <h6><a style="color: black;" class="nav-link ml-3 pl-3" href="/updates"><b>Updates</b></a></h6>
                         </li>
                         @guest
                         @if (Route::has('login'))
@@ -81,7 +77,7 @@
                         <li class="nav-item dropdown pl-3">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                <i class="bi bi-person-circle pr-2 " style="font-size: 1.8rem"></i>
+                                <i class="bi bi-person-circle pr-2" style="font-size: 1.8rem"></i>
                                 {{ Auth::user()->name }}
                             </a>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -99,7 +95,7 @@
                         </li>
                         @endguest
                         <li class="nav-item mt-3 pl-4">
-                            <button class="button-33"><a style="text-decoration: none;color:white"
+                            <button class="btn button-33"><a style="text-decoration: none;color:white"
                                 href="https://www.gofundme.com/f/empowerment-through-quran-support-islamic-connects-mission">Support
                                 Us</a></button>
                         </li>
@@ -114,21 +110,25 @@
         </main>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoYe4tT30A3kMiFRLvIoQZfEjnsqJPr+unROt06B5v9QFiG" crossorigin="anonymous"></script>
-    <script src="{{ mix('js/app.js') }}"></script>
-    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 
+    <!-- App JS -->
+    <script src="{{ mix('js/app.js') }}"></script>
 </body>
 </html>
 
 <style>
+
+.button-33:hover {
+    background-color: #000F;
+}
 .button-33 {
     background-color: #00BFA6;
     border-radius: 10px;
     color: white;
     cursor: pointer;
     display: inline-block;
-    font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
     padding: 7px 20px;
     text-align: center;
     text-decoration: none;

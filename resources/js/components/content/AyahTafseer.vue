@@ -110,7 +110,7 @@ export default {
 }
 
 .ayah-translation {
-  font-size: 0.8rem;
+  font-size: 1.3rem;
 }
 
 .btn {

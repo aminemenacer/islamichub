@@ -31,7 +31,7 @@ export default {
   text-align: right;
 }
 .ayah-translation {
-  font-size: 1rem;
+  font-size: 1.3rem;
   color: #333;
 }
 

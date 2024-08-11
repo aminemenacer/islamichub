@@ -172,41 +172,10 @@
   overflow-y: hidden;
  }
 
- #movingDiv {
-  /* Adjust positioning for smaller screens */
-  /* For example, center the div horizontally */
-  transform: translateX(-50%);
-  /* You can adjust other styles as needed for mobile */
- }
-
- /* Initially visible */
- .targetDiv {
-  display: block;
- }
-
- /* Hide when the corresponding anchor link is targeted */
- .targetDiv:target {
-  display: none;
- }
 
 }
 
-.button-33 {
- background-color: rgba(0, 191, 166);
- border-radius: 8px;
- color: white;
- cursor: pointer;
- display: inline-block;
- font-family: inter;
- text-align: center;
- text-decoration: none;
- transition: all 250ms;
- border: 0;
- font-size: 16px;
- user-select: none;
- -webkit-user-select: none;
- touch-action: manipulation;
-}
+
 
 .scrollmenu {
  padding-bottom: 10px;

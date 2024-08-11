@@ -10,11 +10,11 @@
         </h5>
       </div>
       <!-- main stack below -->
-      
       <h5 class="text-left ayah-translation" ref="heading1" style="line-height: 1.6em">
         {{ tafseer }}
-        
       </h5>
+
+
       <h6 class="text-left mt-3"><strong>Tafseer: </strong>Ibn Kathir</h6>
       <!-- Include the AlertModal component -->
       <AlertModal 
@@ -48,7 +48,11 @@ export default {
     showAlertText: Boolean,
     showAlert: Boolean,
     showErrorAlert: Boolean,
-    showAlertTextNote: Boolean
+    showAlertTextNote: Boolean,
+    tafseer:{
+      type: String,  // Adjust based on the actual data type
+      default: ''
+    }
   },
   methods: {
     toggleFullScreen() {
@@ -78,6 +82,6 @@ export default {
 
 <style scoped>
 .ayah-translation {
-  line-height: 1.2em;
+  line-height: 1.6em;
 }
 </style>
