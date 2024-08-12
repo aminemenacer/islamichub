@@ -128,7 +128,6 @@
     border-radius: 10px;
     color: white;
     cursor: pointer;
-    display: inline-block;
     padding: 7px 20px;
     text-align: center;
     text-decoration: none;

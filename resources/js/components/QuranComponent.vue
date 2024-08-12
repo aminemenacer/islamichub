@@ -35,20 +35,39 @@
        <i class="bi bi-arrow-left-circle h4" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToPreviousAyah" title="Previous verse"></i>
        <i class="bi bi-arrow-right-circle h4" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToNextAyah" title="Next verse"></i>
        <i class="bi bi-chevron-bar-right h4" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToLastAyah" title="Last verse"></i>
-        <div class="dropdown">
-        <i @click="toggleVisibility" class="bi bi-palette-fill h4 dropdown-toggle" style="color: rgba(0, 191, 166); cursor:pointer;" type="button" data-bs-toggle="dropdown" aria-expanded="false"></i>
-        <ul class="dropdown-menu"><p>Select style:  </p>
-          <select class="form-control" style="border: 1px solid black;" v-model="selectedStyle" @change="applyTheme">
-            <option v-for="style in styles" :key="style.name" :value="style" :style="{ backgroundColor: style.backgroundColor, color: style.textColor }">
-            {{ style.name }}
-            </option>
-          </select>
-        </ul>
-      </div>
-      <i v-if="information != null" class="bi bi-info-circle-fill h4 mr-2 pl-2" style="color: rgb(0, 191, 166);cursor:pointer" data-bs-toggle="modal" data-bs-target="#translationInfo" aria-expanded="false" data-bs-placement="top" title="Surah info"></i>
-      </div>
+       <div class="dropdown" style="display:flex">
+        <i @click="toggleVisibility" data-bs-toggle="modal" data-bs-target="#exampleModalTheme" class="bi bi-palette-fill h4 dropdown-toggle" style="color: rgba(0, 191, 166); cursor:pointer;" type="button" aria-expanded="false"></i>
 
-     
+
+        <!-- theme Modal  -->
+        <div class="modal fade" id="exampleModalTheme" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Select Pre-defined theme</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <b>Select style:</b>
+                <select class="form-control" v-model="selectedStyle">
+                  <option v-for="style in styles" :key="style.name" :value="style" :style="{ backgroundColor: style.backgroundColor, color: style.textColor }">
+                    {{ style.name }}
+                  </option>
+                </select>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" @click="saveChanges">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+       </div>
+       <i v-if="information != null" class="bi bi-info-circle-fill h4 mr-2 pl-2" style="color: rgb(0, 191, 166);cursor:pointer" data-bs-toggle="modal" data-bs-target="#translationInfo" aria-expanded="false" data-bs-placement="top" title="Surah info"></i>
+      </div>
 
       <div :style="{color: selectedStyle.textColor, computedStyle, backgroundColor: selectedStyle.backgroundColor}" class="custom-scrollbar pb-5" style="overflow-y: auto; max-height: 600px; background: white;">
        <ul class="col-md-12 list-group container-fluid root" id="toggle" ref="ayahList" style="list-style-type: none; padding: 10px">
@@ -62,8 +81,6 @@
 
     </div>
    </div>
-
-   
 
   </div>
 
@@ -233,43 +250,10 @@
        </div>
 
        <div>
-    <!--    
-        <i class="bi bi-palette h3" style="color: rgba(0, 191, 166); cursor:pointer;" @click="toggleVisibility">{{ isVisible ? 'Select a theme' : 'Close' }}</i>
-        Button to toggle visibility of the theme selection 
-        <div class="dropdown">
-         <i @click="toggleVisibility" class="bi bi-palette h4 dropdown-toggle" style="color: rgba(0, 191, 166); cursor:pointer;" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-         </i>
-         <ul class="dropdown-menu">
-          <div class="col-md-2 mt-2" style="display: flex;">
-           <strong>Default theme:</strong>
-          </div>
-          <div class="col-md-8">
-           <select class="form-control" style="border: 1px solid black;" v-model="selectedStyle" @change="applyTheme">
-            <option selected>Select a theme</option>
-            <option v-for="style in styles" :key="style.name" :value="style" :style="{ backgroundColor: style.backgroundColor, color: style.textColor }">
-             {{ style.name }}
-            </option>
-           </select>
-          </div>
-         </ul>
-        </div>-->
+       
 
-        <!-- Predefined theme selection (dropdown) 
-        <div class="row" v-if="!isVisible">
-         <div class="col-md-2 mt-2" style="display: flex;">
-          <strong>Default theme:</strong>
-         </div>
-         <div class="col-md-8">
-          <select class="form-control" style="border: 1px solid black;" v-model="selectedStyle" @change="applyTheme">
-           <option selected>Select a theme</option>
-           <option v-for="style in styles" :key="style.name" :value="style" :style="{ backgroundColor: style.backgroundColor, color: style.textColor }">
-            {{ style.name }}
-           </option>
-          </select>
-         </div>
-        -->
-
-         <!-- Custom background and text color selection 
+       
+        <!-- Custom background and text color selection 
          <div class="row">
           <div class="col-md-12 mt-2">
            <strong>Select custom background color:</strong>
@@ -280,27 +264,27 @@
           </div>
          </div>
           -->
-        </div>
-
        </div>
 
       </div>
-      <BookmarksAndNotes :information="information" />
-      <CorrectionModal />
 
      </div>
-
-     <!-- Modals -->
-     <TranslationNote ref="translationNote" :information="modalInformation" />
-     <TafseerNote ref="tafseerNote" :information="modalInformation" />
-     <TransliterationNote ref="transliterationNote" :information="modalInformation" />
+     <BookmarksAndNotes :information="information" />
+     <CorrectionModal />
 
     </div>
+
+    <!-- Modals -->
+    <TranslationNote ref="translationNote" :information="modalInformation" />
+    <TafseerNote ref="tafseerNote" :information="modalInformation" />
+    <TransliterationNote ref="transliterationNote" :information="modalInformation" />
 
    </div>
 
   </div>
+
  </div>
+</div>
 </template>
 
 <script>
@@ -548,6 +532,15 @@ export default {
  },
 
  methods: {
+   saveChanges() {
+      // Apply the selected style to the list items after form submission
+      this.appliedStyle = this.selectedStyle || {};
+
+      // Close the modal programmatically using Bootstrap's JS API
+      const modalElement = document.getElementById('exampleModalTheme');
+      const modal = bootstrap.Modal.getInstance(modalElement);
+      modal.hide();
+    },
   toggleVisibility() {
    this.isVisible = !this.isVisible;
   },
