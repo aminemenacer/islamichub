@@ -68,6 +68,21 @@
  display: none !important;
 }
 
+.content-container {
+  padding: 20px;
+}
+.theme-selector {
+  margin-bottom: 20px;
+}
+
+.dropdown-menu {
+  position: absolute;
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  z-index: 1000;
+}
+
 .flex-container i {
  color: rgb(0, 191, 166);
 }

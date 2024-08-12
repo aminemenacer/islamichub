@@ -1,7 +1,7 @@
 <template>
 <div id="app">
  <div class="pt-3 text-center">
-  <Title />
+  <Title v-if="information != null && !dropdownHidden" />
   <search-form :surat="surat" @update-results="handleUpdateResults" @clear-results="handleClearResults" @select-surah="handleSelectSurah" />
   <custom-surah-selection :customSurat="customSuratList" v-model="selectedSurah"></custom-surah-selection>
  </div>
@@ -35,38 +35,7 @@
        <i class="bi bi-arrow-left-circle h4" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToPreviousAyah" title="Previous verse"></i>
        <i class="bi bi-arrow-right-circle h4" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToNextAyah" title="Next verse"></i>
        <i class="bi bi-chevron-bar-right h4" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToLastAyah" title="Last verse"></i>
-       <div class="dropdown" style="display:flex">
-        <i @click="toggleVisibility" data-bs-toggle="modal" data-bs-target="#exampleModalTheme" class="bi bi-palette-fill h4 dropdown-toggle" style="color: rgba(0, 191, 166); cursor:pointer;" type="button" aria-expanded="false"></i>
-
-
-        <!-- theme Modal  -->
-        <div class="modal fade" id="exampleModalTheme" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Select Pre-defined theme</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <b>Select style:</b>
-                <select class="form-control" v-model="selectedStyle">
-                  <option v-for="style in styles" :key="style.name" :value="style" :style="{ backgroundColor: style.backgroundColor, color: style.textColor }">
-                    {{ style.name }}
-                  </option>
-                </select>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" @click="saveChanges">Save changes</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-
-       </div>
-       <i v-if="information != null" class="bi bi-info-circle-fill h4 mr-2 pl-2" style="color: rgb(0, 191, 166);cursor:pointer" data-bs-toggle="modal" data-bs-target="#translationInfo" aria-expanded="false" data-bs-placement="top" title="Surah info"></i>
+       <i v-if="information != null" class="bi bi-info-circle-fill h3 mr-2 pl-2" style="color: rgb(0, 191, 166);cursor:pointer" data-bs-toggle="modal" data-bs-target="#translationInfo" aria-expanded="false" data-bs-placement="top" title="Surah info"></i>
       </div>
 
       <div :style="{color: selectedStyle.textColor, computedStyle, backgroundColor: selectedStyle.backgroundColor}" class="custom-scrollbar pb-5" style="overflow-y: auto; max-height: 600px; background: white;">
@@ -81,12 +50,11 @@
 
     </div>
    </div>
-
   </div>
 
   <div class="col-md-8 card-hide">
-   <div class="card content app-container" :style="{ color: selectedStyle.textColor, computedStyle, backgroundColor: selectedStyle.backgroundColor}">
-    <div class="app-container">
+   <div class="card content" :style="{ color: selectedStyle.textColor, computedStyle, backgroundColor: selectedStyle.backgroundColor}">
+    <div>
      <div class="container-fluid content" v-if="information != null">
       <NavTabs />
 
@@ -125,7 +93,7 @@
 
      <div class="card-body content" id="alertContainer">
       <div class="tab-content text-center">
-       <Welcome :information="information" />
+       <Welcome :information="information" :style="{ color: selectedStyle.textColor, computedStyle, backgroundColor: selectedStyle.backgroundColor}" />
 
        <!-- Translation Section -->
        <div class="tab-pane active content" id="home" role="tabpanel" v-if="information != null">
@@ -248,41 +216,36 @@
         </div>
 
        </div>
-
-       <div>
-       
-
-       
-        <!-- Custom background and text color selection 
-         <div class="row">
-          <div class="col-md-12 mt-2">
-           <strong>Select custom background color:</strong>
-           <input id="bgColor" type="color" v-model="bgColor" @input="applyCustomColors" />
-
-           <strong>Select custom text color:</strong>
-           <input id="textColor" type="color" v-model="textColor" @input="applyCustomColors" />
-          </div>
-         </div>
-          -->
+       <hr class="color:lightgrey" />
+       <!-- Styling -->
+       <div :style="{ backgroundColor: selectedStyle.backgroundColor, color: selectedStyle.textColor }" class="content-container">
+        <div class="theme-selector">
+         <select class="form-control" v-model="selectedStyle" @change="applyTheme">
+          <option value="" disabled selected>Select a theme</option>
+          <option v-for="style in styles" :key="style.name" :value="style">
+           {{ style.name }}
+          </option>
+         </select>
+        </div>
+        <!-- Your other content here -->
        </div>
 
       </div>
+      <BookmarksAndNotes :information="information" />
+      <CorrectionModal />
 
      </div>
-     <BookmarksAndNotes :information="information" />
-     <CorrectionModal />
+
+     <!-- Modals -->
+     <TranslationNote ref="translationNote" :information="modalInformation" />
+     <TafseerNote ref="tafseerNote" :information="modalInformation" />
+     <TransliterationNote ref="transliterationNote" :information="modalInformation" />
 
     </div>
-
-    <!-- Modals -->
-    <TranslationNote ref="translationNote" :information="modalInformation" />
-    <TafseerNote ref="tafseerNote" :information="modalInformation" />
-    <TransliterationNote ref="transliterationNote" :information="modalInformation" />
 
    </div>
 
   </div>
-
  </div>
 </div>
 </template>
@@ -393,15 +356,13 @@ export default {
 
  mounted() {
   this.getSurat(); // Call getSurat to populate the surah list
-  this.loadColors();
  },
  data() {
   return {
    styles: [{
      name: 'Default',
-     backgroundColor: '#fff',
-     textColor: 'black',
-     fontStyle: 'Arial, sans-serif'
+     backgroundColor: '#ffffff',
+     textColor: '#000000'
     },
     {
      name: 'Dyslexia',
@@ -434,17 +395,12 @@ export default {
      fontStyle: "Arial, sans-serif"
     },
    ],
-   selectedStyle: JSON.parse(localStorage.getItem('selectedStyle')) || {
+   selectedStyle: this.getStoredStyle() || {
     name: 'Default',
     backgroundColor: '#ffffff',
-    textColor: 'black',
-    fontStyle: 'Arial, sans-serif',
+    textColor: '#000000'
    },
-   isVisible: true,
-
-   bgColor: '#ffffff',
-   textColor: '#000000',
-
+   isDropdownOpen: false,
    filteredSurah: [],
    //twitter/whatsapp
    information: {
@@ -532,53 +488,15 @@ export default {
  },
 
  methods: {
-   saveChanges() {
-      // Apply the selected style to the list items after form submission
-      this.appliedStyle = this.selectedStyle || {};
-
-      // Close the modal programmatically using Bootstrap's JS API
-      const modalElement = document.getElementById('exampleModalTheme');
-      const modal = bootstrap.Modal.getInstance(modalElement);
-      modal.hide();
-    },
-  toggleVisibility() {
-   this.isVisible = !this.isVisible;
-  },
   applyTheme() {
-   this.bgColor = '';
-   this.textColor = '';
-   this.saveSettings();
+   this.saveStyle();
   },
-  applyCustomColors() {
-   this.saveSettings();
+  saveStyle() {
+   localStorage.setItem('selectedStyle', JSON.stringify(this.selectedStyle));
   },
-  saveSettings() {
-   const settings = {
-    ...this.selectedStyle,
-    bgColor: this.bgColor,
-    textColor: this.textColor,
-   };
-   localStorage.setItem('selectedStyle', JSON.stringify(settings));
-  },
-
-  selectStyle(style) {
-   this.selectedStyle = style;
-   this.saveSettings();
-  },
-
-  saveColors() {
-   localStorage.setItem('bgColor', this.bgColor);
-   localStorage.setItem('textColor', this.textColor);
-  },
-  loadColors() {
-   const savedBgColor = localStorage.getItem('bgColor');
-   const savedTextColor = localStorage.getItem('textColor');
-   if (savedBgColor) {
-    this.bgColor = savedBgColor;
-   }
-   if (savedTextColor) {
-    this.textColor = savedTextColor;
-   }
+  getStoredStyle() {
+   const storedStyle = localStorage.getItem('selectedStyle');
+   return storedStyle ? JSON.parse(storedStyle) : null;
   },
   toggleVisibility() {
    this.isVisible = !this.isVisible;

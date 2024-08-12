@@ -1,7 +1,7 @@
 <template>
   <div v-if="information !== null">
     <hr class="container text-secondary">
-    <div class="light-grey-background" style="display: flex; gap: 10px;">
+    <div class="light-grey-background pl-2" style="display: flex; gap: 10px;">
       <p class="text-left ayah-translation text-secondary" style="line-height: 1.6em; cursor: pointer;">
         <a href="/bookmarks" class="link-darkgrey-underline">View bookmarks</a>
       </p>
