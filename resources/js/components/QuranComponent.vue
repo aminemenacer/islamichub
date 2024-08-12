@@ -279,6 +279,14 @@
          <input type="color" id="textColor" v-model="textColor" class="form-control">
         </div>
         <div class="mb-3">
+          <label for="fontFamily" class="form-label">Font Family</label>
+          <select id="fontFamily" v-model="form.fontFamily" class="form-control">
+            <option v-for="font in fontFamilies" :key="font" :value="font">
+              {{ font }}
+            </option>
+          </select>
+        </div>
+        <div class="mb-3">
          <label for="fontSize" class="form-label">Font Size (px)</label>
          <input type="number" id="fontSize" v-model.number="fontSize" class="form-control">
         </div>
@@ -294,7 +302,7 @@
       </div>
       <div class="modal-footer">
        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-       <button type="button" class="btn btn-success" @click="applyCustomStyles">Save changes</button>
+       <button type="button" class="btn btn-success" @click="applyCustomStyles">Apply Styles</button>
       </div>
      </div>
     </div>
@@ -415,6 +423,7 @@ export default {
   if (savedSettings) {
    this.bgColor = savedSettings.bgColor || '#ffffff';
    this.textColor = savedSettings.textColor || '#000000';
+   
    this.fontSize = savedSettings.fontSize || 16;
    this.fontSpacing = savedSettings.fontSpacing || 1;
   }
@@ -457,6 +466,18 @@ export default {
      fontStyle: "Arial, sans-serif"
     },
    ],
+   fontFamilies: [
+      'Arial, sans-serif',
+      'Courier New, Courier, monospace',
+      'Georgia, serif',
+      'Times New Roman, Times, serif',
+      'Verdana, sans-serif',
+      'Trebuchet MS, sans-serif',
+      'Tahoma, sans-serif',
+      'Impact, sans-serif',
+      'Comic Sans MS, cursive, sans-serif',
+      'Helvetica, Arial, sans-serif'
+    ],
    selectedStyle: this.getStoredStyle() || {
     name: 'Default',
     backgroundColor: '#ffffff',
@@ -557,6 +578,7 @@ export default {
    return {
     backgroundColor: this.bgColor,
     color: this.textColor,
+    fontFamily: this.form.fontFamily,
     fontSize: `${this.fontSize}px`,
     letterSpacing: `${this.fontSpacing}px`
    };
