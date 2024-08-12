@@ -278,7 +278,7 @@
          <label for="textColor" class="form-label">Text Color</label>
          <input type="color" id="textColor" v-model="textColor" class="form-control">
         </div>
-        <div class="mb-3">
+       <div class="mb-3">
           <label for="fontFamily" class="form-label">Font Family</label>
           <select id="fontFamily" v-model="form.fontFamily" class="form-control">
             <option v-for="font in fontFamilies" :key="font" :value="font">
@@ -286,6 +286,7 @@
             </option>
           </select>
         </div>
+
         <div class="mb-3">
          <label for="fontSize" class="form-label">Font Size (px)</label>
          <input type="number" id="fontSize" v-model.number="fontSize" class="form-control">
@@ -423,7 +424,7 @@ export default {
   if (savedSettings) {
    this.bgColor = savedSettings.bgColor || '#ffffff';
    this.textColor = savedSettings.textColor || '#000000';
-   
+   this.fontFamily = savedSettings.fontFamily || 'Arial, sans-serif';
    this.fontSize = savedSettings.fontSize || 16;
    this.fontSpacing = savedSettings.fontSpacing || 1;
   }
@@ -467,16 +468,16 @@ export default {
     },
    ],
    fontFamilies: [
-      'Arial, sans-serif',
-      'Courier New, Courier, monospace',
-      'Georgia, serif',
-      'Times New Roman, Times, serif',
-      'Verdana, sans-serif',
-      'Trebuchet MS, sans-serif',
-      'Tahoma, sans-serif',
-      'Impact, sans-serif',
-      'Comic Sans MS, cursive, sans-serif',
-      'Helvetica, Arial, sans-serif'
+    'Arial, sans-serif',
+    'Courier New, Courier, monospace',
+    'Georgia, serif',
+    'Times New Roman, Times, serif',
+    'Verdana, sans-serif',
+    'Trebuchet MS, sans-serif',
+    'Tahoma, sans-serif',
+    'Impact, sans-serif',
+    'Comic Sans MS, cursive, sans-serif',
+    'Helvetica, Arial, sans-serif'
     ],
    selectedStyle: this.getStoredStyle() || {
     name: 'Default',
@@ -489,6 +490,7 @@ export default {
    filteredSurah: [],
    fontSize: 16, // in pixels
    fontSpacing: 1, // in pixels
+   fontFamily: 'Arial, sans-serif',
    //twitter/whatsapp
    information: {
     translation: '',
@@ -578,7 +580,7 @@ export default {
    return {
     backgroundColor: this.bgColor,
     color: this.textColor,
-    fontFamily: this.form.fontFamily,
+    fontFamily: this.fontFamily,
     fontSize: `${this.fontSize}px`,
     letterSpacing: `${this.fontSpacing}px`
    };
@@ -604,6 +606,7 @@ export default {
     bgColor: this.bgColor,
     textColor: this.textColor,
     fontSize: this.fontSize,
+    fontFamily: this.fontFamily,
     fontSpacing: this.fontSpacing
    };
    localStorage.setItem('userStyles', JSON.stringify(settings));
@@ -615,6 +618,7 @@ export default {
     this.textColor = savedSettings.textColor || '#000000';
     this.fontSize = savedSettings.fontSize || 16;
     this.fontSpacing = savedSettings.fontSpacing || 1;
+    this.fontFamily = savedSettings.fontFamily || 'Arial, sans-serif';
    }
   },
   applyTheme() {
