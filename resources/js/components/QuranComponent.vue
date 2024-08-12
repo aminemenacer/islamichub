@@ -39,7 +39,7 @@
        <i v-if="information != null" class="bi bi-info-circle-fill h4 mr-2 pl-2" style="color: rgb(0, 191, 166);cursor:pointer" data-bs-toggle="modal" data-bs-target="#translationInfo" aria-expanded="false" data-bs-placement="top" title="Surah info"></i>
       </div>
 
-      <div :style="{color: selectedStyle.textColor, computedStyle, backgroundColor: selectedStyle.backgroundColor}" class="custom-scrollbar pb-5" style="overflow-y: auto; max-height: 600px; background: white;">
+      <div :style="{containerStyle, color: selectedStyle.textColor, computedStyle, backgroundColor: selectedStyle.backgroundColor}" class="custom-scrollbar pb-5" style="overflow-y: auto; max-height: 600px; background: white;border-radius:10px">
        <ul class="col-md-12 list-group container-fluid root" id="toggle" ref="ayahList" style="list-style-type: none; padding: 10px">
         <li v-for="(ayah, index) in ayat" :key="index" @click="selectAyah(index)" :class="{ selected: selectedIndexAyah === index, highlighted: verseNumber && parseInt(verseNumber) === ayah.ayah_id }" style="padding: 10px; border-radius:10px">
          <h5 class="text-right" style="display: flex;"> Verse: {{ ayah.ayah_id }} </h5>
@@ -94,14 +94,14 @@
 
      <div class="card-body content" id="alertContainer">
       <div class="tab-content text-center">
-       <Welcome :information="information" :style="containerStyle" />
+       <Welcome :information="information"  />
 
        <!-- Translation Section -->
        <div class="tab-pane active content" id="home" role="tabpanel" v-if="information != null">
 
-        <div class="icon-container pb-3">
+        <div class="icon-container pb-3" >
          <!-- Main features -->
-         <div class="icon-container w-100 hide-on-mobile pb-3">
+         <div class="icon-container w-100 hide-on-mobile pb-3" >
           <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('translationNote')" style="color: rgba(0, 191, 166);cursor:pointer"></i>
           <TranslationNote ref="translationNote" :information="information.translation" />
           <WhatsAppShareTranslation :translationToShare="information.translation" />
@@ -117,8 +117,8 @@
         </div>
 
         <!-- dropdown mobile content -->
-        <div ref="targetTranslationElement">
-         <TranslationSection :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
+        <div ref="targetTranslationElement" >
+         <TranslationSection  :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
         </div>
 
        </div>
@@ -265,7 +265,7 @@
     <div class="modal-dialog">
      <div class="modal-content">
       <div class="modal-header">
-       <h5 class="modal-title" id="styleModalLabel">Customize Your Container</h5>
+       <h5 class="modal-title" id="styleModalLabel">Customize Your Layout</h5>
        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body text-left">
@@ -297,9 +297,9 @@
         </div>
        </form>
        <!-- Success message -->
-       <div v-if="successMessage" class="alert alert-success" role="alert">
-        {{ successMessage }}
-       </div>
+        <div v-if="showSuccessMessage" class="alert alert-success" role="alert">
+          Styles have been successfully applied!
+        </div>
       </div>
       <div class="modal-footer">
        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -484,8 +484,8 @@ export default {
     backgroundColor: '#ffffff',
     textColor: '#000000'
    },
-   showMessage: false,
    showSuccessMessage: false,
+   showMessage: false,
    message: 'Theme has been applied successfully!',
    filteredSurah: [],
    fontSize: 16, // in pixels
