@@ -53,9 +53,9 @@
    </div>
   </div>
 
-  <div class="col-md-8 card-hide">
-   <div class="card content">
-    <div class="content" :style="containerStyle">
+  <div class="col-md-8 card-hide" >
+   <div class="card content" :style="containerStyle">
+    <div class="content" >
      <div class="container-fluid content" v-if="information != null">
       <NavTabs />
 
@@ -137,6 +137,7 @@
           <CopyTafseerText :textToCopy="tafseer" />
           <ScreenTafseerCapture :targetTafseerRef="'targetTafseerElement'" />
           <PdfDownload :targetTranslationRef="'targetTafseerElement'" />
+          <i class="bi bi-paint-bucket h2" style="color: rgb(0, 191, 166); cursor: pointer;" @click="showModal"></i>
           <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;"></i>
           <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
 
@@ -186,6 +187,7 @@
             <CopyTransliterationText :textToCopy="information.transliteration" />
             <ScreenTransliterationCapture :targetTransliterationRef="'targetTransliterationElement'" />
             <PdfDownload :targetTranslationRef="'targetTransliterationElement'" />
+            <i class="bi bi-paint-bucket h2" style="color: rgb(0, 191, 166); cursor: pointer;" @click="showModal"></i>
             <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;"></i>
             <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
            </div>
@@ -278,15 +280,14 @@
          <label for="textColor" class="form-label">Text Color</label>
          <input type="color" id="textColor" v-model="textColor" class="form-control">
         </div>
-       <div class="mb-3">
+        <div class="mb-3">
           <label for="fontFamily" class="form-label">Font Family</label>
-          <select id="fontFamily" v-model="form.fontFamily" class="form-control">
+          <select id="fontFamily" v-model="fontFamily" class="form-control">
             <option v-for="font in fontFamilies" :key="font" :value="font">
               {{ font }}
             </option>
           </select>
         </div>
-
         <div class="mb-3">
          <label for="fontSize" class="form-label">Font Size (px)</label>
          <input type="number" id="fontSize" v-model.number="fontSize" class="form-control">
@@ -425,7 +426,7 @@ export default {
    this.bgColor = savedSettings.bgColor || '#ffffff';
    this.textColor = savedSettings.textColor || '#000000';
    this.fontFamily = savedSettings.fontFamily || 'Arial, sans-serif';
-   this.fontSize = savedSettings.fontSize || 16;
+   this.fontSize = savedSettings.fontSize || 1;
    this.fontSpacing = savedSettings.fontSpacing || 1;
   }
  },
@@ -481,8 +482,7 @@ export default {
     ],
    selectedStyle: this.getStoredStyle() || {
     name: 'Default',
-    backgroundColor: '#ffffff',
-    textColor: '#000000'
+    
    },
    showSuccessMessage: false,
    showMessage: false,
@@ -491,6 +491,8 @@ export default {
    fontSize: 16, // in pixels
    fontSpacing: 1, // in pixels
    fontFamily: 'Arial, sans-serif',
+   backgroundColor: '#ffffff',
+    textColor: '#000000',
    //twitter/whatsapp
    information: {
     translation: '',
