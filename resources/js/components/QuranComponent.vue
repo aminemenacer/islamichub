@@ -35,7 +35,8 @@
        <i class="bi bi-arrow-left-circle h4" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToPreviousAyah" title="Previous verse"></i>
        <i class="bi bi-arrow-right-circle h4" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToNextAyah" title="Next verse"></i>
        <i class="bi bi-chevron-bar-right h4" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToLastAyah" title="Last verse"></i>
-       <i v-if="information != null" class="bi bi-info-circle-fill h3 mr-2 pl-2" style="color: rgb(0, 191, 166);cursor:pointer" data-bs-toggle="modal" data-bs-target="#translationInfo" aria-expanded="false" data-bs-placement="top" title="Surah info"></i>
+       <i class="bi bi-palette-fill h4" style="color: rgb(0, 191, 166); cursor: pointer;" data-bs-toggle="modal" data-bs-target="#themeModal"></i>
+       <i v-if="information != null" class="bi bi-info-circle-fill h4 mr-2 pl-2" style="color: rgb(0, 191, 166);cursor:pointer" data-bs-toggle="modal" data-bs-target="#translationInfo" aria-expanded="false" data-bs-placement="top" title="Surah info"></i>
       </div>
 
       <div :style="{color: selectedStyle.textColor, computedStyle, backgroundColor: selectedStyle.backgroundColor}" class="custom-scrollbar pb-5" style="overflow-y: auto; max-height: 600px; background: white;">
@@ -53,8 +54,8 @@
   </div>
 
   <div class="col-md-8 card-hide">
-   <div class="card content" :style="{ color: selectedStyle.textColor, computedStyle, backgroundColor: selectedStyle.backgroundColor}">
-    <div>
+   <div class="card content">
+    <div class="content" :style="containerStyle">
      <div class="container-fluid content" v-if="information != null">
       <NavTabs />
 
@@ -93,7 +94,7 @@
 
      <div class="card-body content" id="alertContainer">
       <div class="tab-content text-center">
-       <Welcome :information="information" :style="{ color: selectedStyle.textColor, computedStyle, backgroundColor: selectedStyle.backgroundColor}" />
+       <Welcome :information="information" :style="containerStyle" />
 
        <!-- Translation Section -->
        <div class="tab-pane active content" id="home" role="tabpanel" v-if="information != null">
@@ -109,6 +110,7 @@
           <CopyTranslationText :textToCopy="information.translation" />
           <ScreenTranslationCapture :targetTranslationRef="'targetTranslationElement'" />
           <PdfDownload :targetTranslationRef="'targetTranslationElement'" />
+          <i class="bi bi-paint-bucket h2" style="color: rgb(0, 191, 166); cursor: pointer;" @click="showModal"></i>
           <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;"></i>
           <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
          </div>
@@ -216,26 +218,12 @@
         </div>
 
        </div>
-       <hr class="color:lightgrey" />
-       <!-- Styling -->
-       <div :style="{ backgroundColor: selectedStyle.backgroundColor, color: selectedStyle.textColor }" class="content-container">
-        <div class="theme-selector">
-         <select class="form-control" v-model="selectedStyle" @change="applyTheme">
-          <option value="" disabled selected>Select a theme</option>
-          <option v-for="style in styles" :key="style.name" :value="style">
-           {{ style.name }}
-          </option>
-         </select>
-        </div>
-        <!-- Your other content here -->
-       </div>
 
       </div>
-      <BookmarksAndNotes :information="information" />
-      <CorrectionModal />
 
      </div>
-
+     <BookmarksAndNotes :information="information" />
+     <CorrectionModal />
      <!-- Modals -->
      <TranslationNote ref="translationNote" :information="modalInformation" />
      <TafseerNote ref="tafseerNote" :information="modalInformation" />
@@ -244,7 +232,73 @@
     </div>
 
    </div>
+   <!-- Bootstrap Modal for Theme Selection -->
+   <div class="modal fade" id="themeModal" tabindex="-1" aria-labelledby="themeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+     <div class="modal-content">
+      <div class="modal-header">
+       <h5 class="modal-title" id="themeModalLabel">Select a Theme</h5>
+       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       <!-- Theme Selection Dropdown -->
+       <select v-model="selectedStyle" @change="applyTheme" class="form-select">
+        <option disabled value="">Select a theme</option>
+        <option v-for="style in styles" :key="style.name" :value="style">
+         {{ style.name }}
+        </option>
+       </select>
+       <!-- Confirmation Message -->
+       <div v-if="showMessage" class="mt-3 alert alert-success">
+        {{ message }}
+       </div>
+      </div>
+      <div class="modal-footer">
+       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+     </div>
+    </div>
+   </div>
 
+   <!-- Bootstrap Modal -->
+   <div class="modal fade" id="styleModal" tabindex="-1" aria-labelledby="styleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+     <div class="modal-content">
+      <div class="modal-header">
+       <h5 class="modal-title" id="styleModalLabel">Customize Your Container</h5>
+       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-left">
+       <form>
+        <div class="mb-3">
+         <label for="bgColor" class="form-label">Background Color</label>
+         <input type="color" id="bgColor" v-model="bgColor" class="form-control">
+        </div>
+        <div class="mb-3">
+         <label for="textColor" class="form-label">Text Color</label>
+         <input type="color" id="textColor" v-model="textColor" class="form-control">
+        </div>
+        <div class="mb-3">
+         <label for="fontSize" class="form-label">Font Size (px)</label>
+         <input type="number" id="fontSize" v-model.number="fontSize" class="form-control">
+        </div>
+        <div class="mb-3">
+         <label for="fontSpacing" class="form-label">Font Spacing (px)</label>
+         <input type="number" id="fontSpacing" v-model.number="fontSpacing" class="form-control col-md-8">
+        </div>
+       </form>
+       <!-- Success message -->
+       <div v-if="successMessage" class="alert alert-success" role="alert">
+        {{ successMessage }}
+       </div>
+      </div>
+      <div class="modal-footer">
+       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+       <button type="button" class="btn btn-success" @click="applyCustomStyles">Save changes</button>
+      </div>
+     </div>
+    </div>
+   </div>
   </div>
  </div>
 </div>
@@ -356,6 +410,14 @@ export default {
 
  mounted() {
   this.getSurat(); // Call getSurat to populate the surah list
+  this.loadSettings();
+  const savedSettings = JSON.parse(localStorage.getItem('userStyles'));
+  if (savedSettings) {
+   this.bgColor = savedSettings.bgColor || '#ffffff';
+   this.textColor = savedSettings.textColor || '#000000';
+   this.fontSize = savedSettings.fontSize || 16;
+   this.fontSpacing = savedSettings.fontSpacing || 1;
+  }
  },
  data() {
   return {
@@ -400,8 +462,12 @@ export default {
     backgroundColor: '#ffffff',
     textColor: '#000000'
    },
-   isDropdownOpen: false,
+   showMessage: false,
+   showSuccessMessage: false,
+   message: 'Theme has been applied successfully!',
    filteredSurah: [],
+   fontSize: 16, // in pixels
+   fontSpacing: 1, // in pixels
    //twitter/whatsapp
    information: {
     translation: '',
@@ -486,10 +552,53 @@ export default {
    }),
   };
  },
-
+ computed: {
+  containerStyle() {
+   return {
+    backgroundColor: this.bgColor,
+    color: this.textColor,
+    fontSize: `${this.fontSize}px`,
+    letterSpacing: `${this.fontSpacing}px`
+   };
+  }
+ },
  methods: {
+  showModal() {
+   const modal = new bootstrap.Modal(document.getElementById('styleModal'));
+   modal.show();
+   this.successMessage = ''; // Reset the success message when the modal is opened
+  },
+  applyCustomStyles() {
+   this.saveSettings();
+   this.showSuccessMessage = true; // Show the success message
+   setTimeout(() => {
+    const modal = bootstrap.Modal.getInstance(document.getElementById('styleModal'));
+    this.showSuccessMessage = false; // Hide the success message before closing the modal
+    modal.hide();
+   }, 2000); // Display the success message for 2 seconds before closing the modal
+  },
+  saveSettings() {
+   const settings = {
+    bgColor: this.bgColor,
+    textColor: this.textColor,
+    fontSize: this.fontSize,
+    fontSpacing: this.fontSpacing
+   };
+   localStorage.setItem('userStyles', JSON.stringify(settings));
+  },
+  loadSettings() {
+   const savedSettings = JSON.parse(localStorage.getItem('userStyles'));
+   if (savedSettings) {
+    this.bgColor = savedSettings.bgColor || '#ffffff';
+    this.textColor = savedSettings.textColor || '#000000';
+    this.fontSize = savedSettings.fontSize || 16;
+    this.fontSpacing = savedSettings.fontSpacing || 1;
+   }
+  },
   applyTheme() {
    this.saveStyle();
+   this.showMessage = true;
+   setTimeout(() => this.showMessage = false, 3000); // Hide message after 3 seconds
   },
   saveStyle() {
    localStorage.setItem('selectedStyle', JSON.stringify(this.selectedStyle));
