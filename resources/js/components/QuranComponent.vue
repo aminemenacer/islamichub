@@ -13,7 +13,7 @@
    <Donation />
 
    <SurahDropdown :selectedSurah="selectedSurah" :filteredSurah="filteredSurah" :surat="surat" @update:selectedSurah="updateSelectedSurah" @change="getAyat" />
-   <AyahDropdown :selectedSurahId="selectedSurahId" :dropdownHidden="dropdownHidden" @update-information="updateInformation" @update-tafseer="updateTafseer" v-if="ayah == null && !dropdownHidden" />
+   <AyahDropdown class="desktop-hidden" :selectedSurahId="selectedSurahId" :dropdownHidden="dropdownHidden" @update-information="updateInformation" @update-tafseer="updateTafseer" v-if="ayah == null && !dropdownHidden" />
 
    <!-- List of Ayat for Surah (desktop) -->
    <div class="tab-content hide-on-mobile-tablet" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
@@ -102,7 +102,7 @@
         <div class="icon-container pb-3" >
          <!-- Main features -->
          <div class="icon-container w-100 hide-on-mobile pb-3" >
-          <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('translationNote')" style="color: rgba(0, 191, 166);cursor:pointer"></i>
+<i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('translationNote')" style="color: rgba(0, 191, 166);cursor:pointer"></i>
           <TranslationNote ref="translationNote" :information="information.translation" />
           <WhatsAppShareTranslation :translationToShare="information.translation" />
           <TwitterShareTranslation :targetElementRef="'targetElement'" :translationText="information.translation" />
@@ -287,17 +287,6 @@
               {{ font }}
             </option>
           </select>
-        </div>
-        <div class="mb-3">
-          <div class="form-group">
-            <label for="fontWeight">Font Weight</label>
-            <select id="fontWeight" v-model="fontWeight" class="form-control">
-              <option value="normal">Normal</option>
-              <option value="bold">Bold</option>
-              <option value="bolder">Bolder</option>
-              <option value="lighter">Lighter</option>
-            </select>
-          </div>
         </div>
         <div class="mb-3">
          <label for="fontSize" class="form-label">Font Size (px)</label>
@@ -600,11 +589,16 @@ export default {
   }
  },
  methods: {
-  showModal() {
-   const modal = new bootstrap.Modal(document.getElementById('styleModal'));
-   modal.show();
-   this.successMessage = ''; // Reset the success message when the modal is opened
+   openModal(modalId) {
+    const modalElement = this.$refs[modalId];
+    if (modalElement) {
+      const modalInstance = Modal.getInstance(modalElement) || new Modal(modalElement);
+      modalInstance.show();
+    } else {
+      console.error(`Modal reference '${modalId}' not found.`);
+    }
   },
+  
   applyCustomStyles() {
    this.saveSettings();
    this.showSuccessMessage = true; // Show the success message

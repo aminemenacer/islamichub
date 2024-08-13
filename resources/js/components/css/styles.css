@@ -10,6 +10,16 @@
  overflow: auto;
 }
 
+.desktop-hidden {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .desktop-hidden {
+    display: none;
+  }
+}
+
 .hide-on-desktop {
  display: none;
 }
