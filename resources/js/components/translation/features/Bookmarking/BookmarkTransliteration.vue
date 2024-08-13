@@ -58,7 +58,7 @@ export default {
     }
   },
   methods: {
-    submitForm() {
+    submitForm2() {
       const { surah, ayah_text, ayah_id, translation } = this.information;
       if (!surah || !ayah_text || ayah_id === null || !translation) {
         console.error('Information prop is incomplete or missing.');

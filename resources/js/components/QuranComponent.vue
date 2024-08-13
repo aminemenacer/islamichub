@@ -53,9 +53,9 @@
    </div>
   </div>
 
-  <div class="col-md-8 card-hide">
+  <div class="col-md-8 card-hide" >
    <div class="card content" :style="containerStyle">
-    <div class="content">
+    <div class="content" >
      <div class="container-fluid content" v-if="information != null">
       <NavTabs />
 
@@ -94,13 +94,14 @@
 
      <div class="card-body content" id="alertContainer">
       <div class="tab-content text-center">
-       <Welcome :information="information" />
+       <Welcome :information="information"  />
+
        <!-- Translation Section -->
        <div class="tab-pane active content" id="home" role="tabpanel" v-if="information != null">
 
-        <div class="icon-container pb-3">
+        <div class="icon-container pb-3" >
          <!-- Main features -->
-         <div class="icon-container w-100 hide-on-mobile pb-3">
+         <div class="icon-container w-100 hide-on-mobile pb-3" >
           <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('translationNote')" style="color: rgba(0, 191, 166);cursor:pointer"></i>
           <TranslationNote ref="translationNote" :information="information.translation" />
           <WhatsAppShareTranslation :translationToShare="information.translation" />
@@ -112,15 +113,12 @@
           <i class="bi bi-paint-bucket h2" style="color: rgb(0, 191, 166); cursor: pointer;" @click="showModal"></i>
           <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;"></i>
           <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
-          <TranslationNote :information="currentAyahInfo" @note-created="refreshNotes" />
-          <bookmark-translation :information="ayahInfo"></bookmark-translation>
-
          </div>
         </div>
 
         <!-- dropdown mobile content -->
-        <div ref="targetTranslationElement">
-         <TranslationSection :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
+        <div ref="targetTranslationElement" >
+         <TranslationSection  :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
         </div>
 
        </div>
@@ -236,26 +234,6 @@
     </div>
 
    </div>
-
-   <!-- Bootstrap Modal  -->
-   <div class="modal fade" id="speechModal" tabindex="-1" aria-labelledby="speechModalLabel" aria-hidden="true" ref="speechModal">
-    <div class="modal-dialog">
-     <div class="modal-content">
-      <div class="modal-header">
-       <h5 class="modal-title" id="speechModalLabel">Speech to Text</h5>
-       <button type="button" class="btn-close" @click="closeModal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-       <textarea v-model="transcribedText" class="form-control" rows="5" placeholder="Speak now..."></textarea>
-      </div>
-      <div class="modal-footer">
-       <button type="button" class="btn btn-secondary" @click="closeModal">Close</button>
-       <button type="button" class="btn btn-primary" @click="saveTranscription">Save</button>
-      </div>
-     </div>
-    </div>
-   </div>
-
    <!-- Bootstrap Modal for Theme Selection -->
    <div class="modal fade" id="themeModal" tabindex="-1" aria-labelledby="themeModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -303,12 +281,23 @@
          <input type="color" id="textColor" v-model="textColor" class="form-control">
         </div>
         <div class="mb-3">
-         <label for="fontFamily" class="form-label">Font Family</label>
-         <select id="fontFamily" v-model="fontFamily" class="form-control">
-          <option v-for="font in fontFamilies" :key="font" :value="font">
-           {{ font }}
-          </option>
-         </select>
+          <label for="fontFamily" class="form-label">Font Family</label>
+          <select id="fontFamily" v-model="fontFamily" class="form-control">
+            <option v-for="font in fontFamilies" :key="font" :value="font">
+              {{ font }}
+            </option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <div class="form-group">
+            <label for="fontWeight">Font Weight</label>
+            <select id="fontWeight" v-model="fontWeight" class="form-control">
+              <option value="normal">Normal</option>
+              <option value="bold">Bold</option>
+              <option value="bolder">Bolder</option>
+              <option value="lighter">Lighter</option>
+            </select>
+          </div>
         </div>
         <div class="mb-3">
          <label for="fontSize" class="form-label">Font Size (px)</label>
@@ -320,9 +309,9 @@
         </div>
        </form>
        <!-- Success message -->
-       <div v-if="showSuccessMessage" class="alert alert-success" role="alert">
-        Styles have been successfully applied!
-       </div>
+        <div v-if="showSuccessMessage" class="alert alert-success" role="alert">
+          Styles have been successfully applied!
+        </div>
       </div>
       <div class="modal-footer">
        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -423,6 +412,7 @@ export default {
   WhatsAppShareTranslation,
   WhatsAppShareTafseer,
   WhatsAppShareTransliteration,
+  TranslationNote,
   TafseerNote,
   TransliterationNote,
   BookmarkTranslation,
@@ -437,11 +427,9 @@ export default {
   SpeechRecognition,
   FontStyleSelector,
   SpeechToText,
-  TranslationNote,
  },
 
  mounted() {
-  this.fetchUserId();
   this.getSurat(); // Call getSurat to populate the surah list
   this.loadSettings();
   const savedSettings = JSON.parse(localStorage.getItem('userStyles'));
@@ -455,15 +443,7 @@ export default {
  },
  data() {
   return {
-    ayahInfo: {
-        surah: { name_en: 'Al-Fatiha' },
-        ayah_text: 'In the name of Allah, the Most Gracious, the Most Merciful.',
-        ayah_id: 1,
-        translation: 'In the name of God, the Compassionate, the Merciful.'
-      },
-    userId: null,
-    currentAyahInfo: {},
-    styles: [{
+   styles: [{
      name: 'Default',
      backgroundColor: '#ffffff',
      textColor: '#000000'
@@ -510,10 +490,10 @@ export default {
     'Impact, sans-serif',
     'Comic Sans MS, cursive, sans-serif',
     'Helvetica, Arial, sans-serif'
-   ],
+    ],
    selectedStyle: this.getStoredStyle() || {
     name: 'Default',
-
+    
    },
    showSuccessMessage: false,
    showMessage: false,
@@ -523,7 +503,7 @@ export default {
    fontSpacing: 1, // in pixels
    fontFamily: 'Arial, sans-serif',
    backgroundColor: '#ffffff',
-   textColor: '#000000',
+    textColor: '#000000',
    //twitter/whatsapp
    information: {
     translation: '',
@@ -620,30 +600,11 @@ export default {
   }
  },
  methods: {
-    fetchUserId() {
-      // Fetch the user ID from your backend
-      axios.get('/api/user')
-        .then(response => {
-          this.userId = response.data.id;
-        })
-        .catch(error => {
-          console.error('Error fetching user ID:', error);
-        });
-    },
-    refreshNotes() {
-      // Refresh the notes list after creating a new note
-      this.$refs.notesComponent.fetchNotes();
-    },
-    // Method to update currentAyahInfo when a new ayah is selected
-    updateCurrentAyah(ayahInfo) {
-      this.currentAyahInfo = ayahInfo;
-    },
   showModal() {
    const modal = new bootstrap.Modal(document.getElementById('styleModal'));
    modal.show();
    this.successMessage = ''; // Reset the success message when the modal is opened
   },
-
   applyCustomStyles() {
    this.saveSettings();
    this.showSuccessMessage = true; // Show the success message

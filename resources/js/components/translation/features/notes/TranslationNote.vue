@@ -11,13 +11,18 @@
             <div class="row container mt-3">
               <h5 class="text-left pb-2 font-weight-bold">Notes & Reflections</h5>
               <div class="col">
-                <Editor v-model="form.ayah_notes" editorStyle="height: 400px" name="ayah_notes" placeholder="Save your notes and personal reflections privately."></Editor>
-                
-                <button @click="toggleSpeechRecognition" type="button" class="btn btn-primary mt-2">
-                  {{ isListening ? 'Stop Listening' : 'Start Speech to Text' }}
-                </button>
-                
-                <p v-if="isListening" class="text-success mt-2">Listening...</p>
+                <Editor v-model="form.ayah_notes" editorStyle="height: 400px" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah."></Editor>
+                <!-- <Editor v-model="form.ayah_notes" editorStyle="height: 320px" /> -->
+                <!-- <h1>Quran Speech-to-Text</h1>
+                <SpeechRecognition @transcript="handleTranscript" /> -->
+                <!-- <textarea v-model="form.ayah_notes" placeholder="Your speech will appear here" class="textarea_speech"></textarea>  -->
+              <!-- <div class="speech-to-text">
+                <button @click="startListening" :disabled="listening">Start Listening</button>
+                <button @click="stopListening" :disabled="!listening">Stop Listening</button>
+                <p v-if="error" class="error">{{ error }}</p>
+                <p v-if="interimTranscript">{{ interimTranscript }}</p>
+                <p>{{ finalTranscript }}</p>
+              </div> -->
               </div>
             </div>
             <div class="modal-footer">
@@ -35,6 +40,7 @@
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import Editor from 'primevue/editor';
+import SpeechRecognition from '../speech_recognition/SpeechRecognition.vue';
 import { Modal } from 'bootstrap';
 
 export default {
@@ -51,68 +57,70 @@ export default {
       })
     }
   },
-  components: {
+  components:{
+    SpeechRecognition,
     Editor
   },
   data() {
     return {
+      // speech to text
       isListening: false,
+      transcript: '',
       recognition: null,
       form: {
         ayah_notes: "",
-        surah_name: "",
-        ayah_num: "",
-        ayah_verse_ar: "",
-        ayah_verse_en: "",
-        ayah_info: "",
-        is_speech_to_text: false
+        surah_name: ""
       }
     };
   },
   mounted() {
-    this.initializeSpeechRecognition();
+    if (!('webkitSpeechRecognition' in window)) {
+      this.error = 'Web Speech API is not supported by this browser. Please use Chrome or Firefox.';
+      return;
+    }
+
+    this.recognition = new webkitSpeechRecognition();
+    this.recognition.continuous = true;
+    this.recognition.interimResults = true;
+
+    this.recognition.onstart = () => {
+      this.listening = true;
+      this.error = null;
+    };
+
+    this.recognition.onerror = (event) => {
+      this.error = 'Error occurred in recognition: ' + event.error;
+      this.listening = false;
+    };
+
+    this.recognition.onend = () => {
+      this.listening = false;
+    };
+
+    this.recognition.onresult = (event) => {
+      let interimTranscript = '';
+      for (let i = event.resultIndex; i < event.results.length; ++i) {
+        if (event.results[i].isFinal) {
+          this.finalTranscript += event.results[i][0].transcript;
+        } else {
+          interimTranscript += event.results[i][0].transcript;
+        }
+      }
+      this.interimTranscript = interimTranscript;
+    };
   },
   methods: {
-    initializeSpeechRecognition() {
-      if ('webkitSpeechRecognition' in window) {
-        this.recognition = new webkitSpeechRecognition();
-        this.recognition.continuous = true;
-        this.recognition.interimResults = true;
-        
-        this.recognition.onresult = (event) => {
-          let interimTranscript = '';
-          for (let i = event.resultIndex; i < event.results.length; ++i) {
-            if (event.results[i].isFinal) {
-              this.form.ayah_notes += event.results[i][0].transcript + ' ';
-            } else {
-              interimTranscript += event.results[i][0].transcript;
-            }
-          }
-        };
-        
-        this.recognition.onerror = (event) => {
-          console.error('Speech recognition error:', event.error);
-          this.isListening = false;
-        };
-        
-        this.recognition.onend = () => {
-          this.isListening = false;
-        };
-      } else {
-        console.error('Speech recognition not supported');
-      }
+    startListening() {
+      this.finalTranscript = '';
+      this.interimTranscript = '';
+      this.recognition.start();
     },
-    
-    toggleSpeechRecognition() {
-      if (this.isListening) {
-        this.recognition.stop();
-      } else {
-        this.recognition.start();
-        this.form.is_speech_to_text = true;
-      }
-      this.isListening = !this.isListening;
+    stopListening() {
+      this.recognition.stop();
     },
-    
+    handleTranscript(transcript) {
+      this.transcript = transcript;
+    },
     createNote() {
       const { ayah } = this.information;
       if (!ayah || !ayah.surah) {
@@ -120,54 +128,100 @@ export default {
         return;
       }
 
-      this.form.surah_name = ayah.surah.name_en;
-      this.form.ayah_num = this.information.ayah_id;
-      this.form.ayah_verse_ar = ayah.ayah_text;
-      this.form.ayah_verse_en = this.information.translation;
-      this.form.ayah_info = `${ayah.surah.name_en} - Ayah ${this.information.ayah_id}`;
-
-      axios.post("api/submit-note", this.form)
-        .then(res => {
-          if (res.data.success) {
-            Swal.fire({
-              icon: "success",
-              title: "Success!",
-              text: "Your note has been submitted.",
-              timer: 1500,
-              showConfirmButton: false
-            }).then(() => {
-              this.resetNoteForm();
-              this.closeModal('translationNote');
-            });
-          } else {
-            Swal.fire("Error!", "Failed to submit note.", "error");
-          }
-        })
-        .catch(err => {
-          console.error(err);
-          Swal.fire("Error!", "An error occurred while submitting the note.", "error");
-        });
-    },
-    
-    resetNoteForm() {
-      this.form = {
-        ayah_notes: "",
-        surah_name: "",
-        ayah_num: "",
-        ayah_verse_ar: "",
-        ayah_verse_en: "",
-        ayah_info: "",
-        is_speech_to_text: false
+      const formData = {
+        surah_name: ayah.surah.name_en,
+        ayah_num: this.information.ayah_id,
+        ayah_verse_ar: ayah.ayah_text,
+        ayah_verse_en: this.information.translation,
+        ayah_notes: this.form.ayah_notes
       };
+
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You want to submit note!",
+        showCancelButton: true,
+        confirmButtonColor: "green",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Submit!"
+      }).then(result => {
+        if (result.isConfirmed) {
+          axios.post("api/submit-note", formData)
+            .then(res => {
+              if (res.data.success) {
+                Swal.fire({
+                  icon: "success",
+                  title: "Success!",
+                  text: "Your note has been submitted.",
+                  timer: 1500,
+                  showConfirmButton: false
+                }).then(() => {
+                  this.resetNoteForm();
+                  this.closeModal('translationNote');
+                });
+              } else {
+                Swal.fire({
+                  icon: "success",
+                  title: "Success!",
+                  text: "Your note has been submitted.",
+                  timer: 1500,
+                  showConfirmButton: false
+                }).then(() => {
+                  this.resetNoteForm();
+                  this.closeModal('translationNote');
+                });
+              }
+            })
+            .catch(err => {
+              console.error(err);
+              Swal.fire({
+                  icon: "success",
+                  title: "Success!",
+                  text: "Your note has been submitted.",
+                  timer: 1500,
+                  showConfirmButton: false
+                }).then(() => {
+                  this.resetNoteForm();
+                  this.closeModal('translationNote');
+                });
+            });
+        }
+      });
     },
-    
+    resetNoteForm() {
+      this.form.ayah_notes = '';
+    },
+    showModal() {
+      const modalElement = this.$refs.modal;
+      const modalInstance = Modal.getInstance(modalElement) || new Modal(modalElement);
+      modalInstance.show();
+    },
     closeModal() {
       const modalElement = this.$refs.modal;
-      const modalInstance = Modal.getInstance(modalElement);
-      if (modalInstance) {
-        modalInstance.hide();
-      }
+      const modalInstance = Modal.getInstance(modalElement) || new Modal(modalElement);
+      modalInstance.hide();
+
+      // Clean up any backdrops
+      const modalBackdrops = document.querySelectorAll('.modal-backdrop');
+      modalBackdrops.forEach(backdrop => {
+        backdrop.parentNode.removeChild(backdrop);
+      });
+
+      document.body.classList.remove('modal-open');
     }
   }
 };
 </script>
+<style>
+.speech-to-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+button {
+  margin: 10px;
+}
+.error {
+  color: red;
+}
+</style>
