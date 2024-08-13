@@ -17,11 +17,15 @@ class Note extends Model
         'ayah_verse_ar',
         'ayah_verse_en',
         'ayah_notes',
+        'is_speech_to_text',
+    ];
+
+    protected $casts = [
+        'is_speech_to_text' => 'boolean',
     ];
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id', 'user_id');
+        return $this->belongsTo(User::class);
     }
 }
-

@@ -24,34 +24,22 @@ class BookmarkController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'surah_name' => 'required',
-            'ayah_num' => 'required',
-            'ayah_verse_ar' => 'required',
-            'ayah_verse_en' => 'required',
-            'title' => 'required|string|max:255',
-            'url' => 'required|url',
-            'notes' => 'nullable|string',
-            'collection_id' => 'required|exists:collections,id',
+        $validatedData = $request->validate([
+            'surah_name' => 'required|string|max:255',
+            'ayah_num' => 'required|integer',
+            'ayah_verse_ar' => 'required|string',
+            'ayah_verse_en' => 'required|string',
         ]);
 
-        // Create a new bookmark instance
-        $bookmark = new Bookmark([
-            'surah_name' => $request->input('surah_name'),
-            'ayah_num' => $request->input('ayah_num'),
-            'ayah_verse_ar' => $request->input('ayah_verse_ar'),
-            'ayah_verse_en' => $request->input('ayah_verse_en'),
-            'ayah_info' => $request->input('ayah_info'),
-        ]);
-
-        // Assign the user_id to the bookmark
-        $bookmark->user_id = Auth::id();
-
-        // Save the bookmark
+        $bookmark = new Bookmark();
+        $bookmark->user_id = auth()->id(); // Assuming users are authenticated
+        $bookmark->surah_name = $validatedData['surah_name'];
+        $bookmark->ayah_num = $validatedData['ayah_num'];
+        $bookmark->ayah_verse_ar = $validatedData['ayah_verse_ar'];
+        $bookmark->ayah_verse_en = $validatedData['ayah_verse_en'];
         $bookmark->save();
 
-        // Return a success response
-        return response()->json(['message' => 'Bookmark created successfully'], 201);
+        return response()->json(['message' => 'Bookmark saved successfully!']);
     }
 
 

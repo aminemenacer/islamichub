@@ -74,7 +74,12 @@ export default {
         ayah_verse_en: translation,
       };
 
-      axios.post('/bookmarks', formData)
+      axios.post('/bookmarks', formData, {
+        withCredentials: true, // Ensure cookies are sent for session-based auth
+        headers: {
+          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        }
+      })
         .then(response => {
           console.log(response.data.message);
           localStorage.setItem(`bookmarkSubmitted_${ayah_id}`, true);

@@ -45,6 +45,7 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('api/delete-bookmarks/{id}',  [BookmarkController::class, 'deleteBookmarks']);
     Route::get('api/fetch-bookmarks/{userId}', [BookmarkController::class, 'getBookmarks']);
 
+
     // notes
     Route::get('/notes', [NotesController::class, 'index']);
     // Route::get('api/fetch-notes', [NotesController::class, 'getNotes']);
@@ -53,6 +54,11 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('api/delete-notes/{id}',  [NotesController::class, 'deleteNotes']);
     Route::get('api/fetch-notes/{userId}', [NotesController::class, 'getNotes']);
 
+    Route::get('/notes', [NotesController::class, 'index']);
+    Route::get('/api/notes/{userId}', [NotesController::class, 'getNotes']);
+    Route::post('/api/submit-note', [NotesController::class, 'store']);
+    Route::put('/api/update-note/{id}', [NotesController::class, 'updateNotes']);
+    Route::delete('/api/delete-note/{id}', [NotesController::class, 'deleteNotes']);
 });
 
 

@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateNotesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('notes', function (Blueprint $table) {
@@ -22,21 +17,15 @@ class CreateNotesTable extends Migration
             $table->text('ayah_verse_ar')->nullable();
             $table->text('ayah_verse_en')->nullable();
             $table->text('ayah_notes')->nullable();
+            $table->boolean('is_speech_to_text')->default(false);
             $table->timestamps();
 
-            // Assuming 'id' is the primary key of the users table
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('notes');
     }
 }
-
