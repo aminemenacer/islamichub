@@ -28,12 +28,12 @@
               <!-- Note details -->
               <div>
                 <h5><strong>Surah Name:</strong></h5>
-                <p>{{note.surah_name}}</p>
+                <p>{{ note.surah_name }}</p>
               </div>
               <div class="mt-2">
                 <h5><strong>Note:</strong></h5>
                 <!-- Display truncated content while keeping editor styling -->
-                <div v-html="truncatedHtml(note.ayah_notes)"></div>
+                <p>{{ note.ayah_notes }}</p>
               </div>
               <hr />
              

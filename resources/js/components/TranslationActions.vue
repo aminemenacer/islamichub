@@ -22,13 +22,9 @@
   <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;">
   </i>
  </li>
- <li style="display: flex; align-items: center; margin-right: 15px;">
-  <i class="bi bi-info-circle h4" style="color: rgb(0, 191, 166); cursor:pointer;" data-bs-target="#translationInfo" aria-expanded="false" data-bs-toggle="modal" data-bs-placement="top" title="Surah info">
-  </i>
+ <li style="display:flex">
+  <i class="bi bi-camera text-right mr-2 h3" @click="captureTranslation" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" style="color: rgba(0, 191, 166); cursor:pointer"></i>
  </li>
- <!-- Screenshot icon -->
- <i class="bi bi-camera text-right mr-2 h3" @click="captureTranslation" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" style="color: rgba(0, 191, 166); cursor:pointer"></i>
-
 </ul>
 </template>
 
@@ -78,7 +74,7 @@ export default {
 
    setTimeout(() => {
     html2canvas(targetTranslationElement).then(canvas => {
-      const dataUrl = canvas.toDataURL('image/png');
+     const dataUrl = canvas.toDataURL('image/png');
      this.downloadUrl = canvas.toDataURL('image/png');
 
      // Simulate click on download link after 2 seconds

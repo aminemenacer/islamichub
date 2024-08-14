@@ -7,7 +7,7 @@
       aria-expanded="false" 
       data-bs-placement="top" 
       title="Screenshot verse" 
-      style="color: rgba(0, 191, 166); cursor:pointer"
+      style="color: rgba(0, 191, 166); cursor:pointer;"
     ></i>
 
     <!-- Modal -->
@@ -34,6 +34,7 @@
 
 <script>
 import html2canvas from 'html2canvas';
+import { Modal } from 'bootstrap';
 
 export default {
   props: {
@@ -59,23 +60,33 @@ export default {
       // Clear any previous URL
       this.downloadUrl = '';
 
+      // Ensure the DOM is stable before capturing
       setTimeout(() => {
         html2canvas(targetTafseerElement).then(canvas => {
           this.downloadUrl = canvas.toDataURL('image/png');
 
-          // Show the modal
-          const previewModalTafseer = new bootstrap.Modal(document.getElementById('previewModalTafseer'));
-          previewModalTafseer.show();
+          // Check if modal exists and show it
+          const modalElement = document.getElementById('previewModalTafseer');
+          if (modalElement) {
+            const previewModalTafseer = new Modal(modalElement);
+            previewModalTafseer.show();
+          } else {
+            console.error("Modal element not found");
+          }
         }).catch(error => {
           console.error("Failed to capture screenshot:", error);
         });
       }, 200);
     },
     downloadScreenshot() {
-      const downloadLink = document.createElement('a');
-      downloadLink.href = this.downloadUrl;
-      downloadLink.download = 'screenshot.png';
-      downloadLink.click();
+      if (this.downloadUrl) {
+        const downloadLink = document.createElement('a');
+        downloadLink.href = this.downloadUrl;
+        downloadLink.download = 'screenshot.png';
+        downloadLink.click();
+      } else {
+        console.error("No screenshot available to download");
+      }
     }
   }
 };
