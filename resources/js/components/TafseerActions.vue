@@ -1,26 +1,28 @@
 <template>
 <div style="display:flex">
- <li style="display:flex" @click="$emit('openModal', 'tafseerNote')">
+ <li style="display:flex; align-items: center; margin-right: 5px;"  @click="$emit('openModal', 'tafseerNote')">
   <i class="bi bi-file-earmark-text text-right mr-2 h4 pl-2" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="$emit('openModal', 'tafseerNote')" style="color: rgba(0, 191, 166);cursor:pointer"></i>
  </li>
- <li style="display:flex">
+ <li style="display:flex; align-items: center; margin-right: 5px;">
   <WhatsAppShareTafseer class="pl-2" :tafseerToShare="tafseer" />
  </li>
- <li style="display:flex">
+ <li style="display:flex; align-items: center; margin-right: 5px;">
   <TwitterShareTafseer class="pl-2" :targetElementRef="'targetElement'" :tafseerText="tafseer" />
  </li>
- <li style="display:flex" @click="$emit('submitForm')">
+ <li style="display:flex; align-items: center; margin-right: 5px;" @click="$emit('submitForm')">
   <i @click="$emit('submitForm')" class="bi bi-bookmark text-right mr-2 h4 pl-2" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
  </li>
- <li style="display:flex">
-  <CopyTafseerText :textToCopy="tafseer" class="pl-2" />
+ <li style="display:flex; align-items: center; margin-right: 5px;">
+  <CopyTafseerText :textToCopy="tafseer" class="pl-2 pb-2" />
  </li>
- <li style="display:flex">
+ <li style="display:flex; align-items: center; margin-right: 5px;">
   <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4 pl-2" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;"></i>
  </li>
+ <!--
  <li style="display:flex">
   <i class="bi bi-camera text-right mr-2 h3" @click="captureTafseer" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" style="color: rgba(0, 191, 166); cursor:pointer"></i>
  </li>
+ -->
 </div>
 </template>
 

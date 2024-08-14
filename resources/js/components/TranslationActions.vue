@@ -1,31 +1,28 @@
 <template>
-<ul style="display: flex; list-style: none; padding: 0; margin: 0;">
- <li style="display: flex; align-items: center; margin-right: 15px;">
-  <i class="bi bi-file-earmark-text h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="$emit('open-modal', 'translationNote')" style="color: rgba(0, 191, 166); cursor:pointer;">
+<div style="display: flex;">
+ <li style="display: flex; align-items: center; margin-right: 5px;">
+  <i class="bi bi-file-earmark-text h4 mr-2 pl-2" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="$emit('open-modal', 'translationNote')" style="color: rgba(0, 191, 166); cursor:pointer;">
   </i>
  </li>
- <li style="display: flex; align-items: center; margin-right: 15px;">
-  <WhatsAppShareTranslation :translationToShare="translation" />
+ <li style="display: flex; align-items: center; margin-right: 5px;">
+  <WhatsAppShareTranslation class="pl-2" :translationToShare="translation" />
  </li>
- <li style="display: flex; align-items: center; margin-right: 15px;">
-  <TwitterShareTranslation :targetElementRef="'targetElement'" :translationText="translation" />
+ <li style="display: flex; align-items: center; margin-right: 5px;">
+  <TwitterShareTranslation class="pl-2" :targetElementRef="'targetElement'" :translationText="translation" />
  </li>
- <li style="display: flex; align-items: center; margin-right: 15px;">
-  <i @click="$emit('submit-form')" class="bi bi-bookmark h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166); cursor:pointer;">
+ <li style="display: flex; align-items: center; margin-right: 5px;">
+  <i @click="$emit('submit-form')" class="bi bi-bookmark mr-2 h4 pl-2" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166); cursor:pointer;">
   </i>
  </li>
- <li style="display: flex; align-items: center; margin-right: 15px;">
-  <CopyTranslationText :textToCopy="translation" />
+ <li style="display: flex; align-items: center; margin-right: 5px;">
+  <CopyTranslationText class="pl-2 pb-2" :textToCopy="translation" />
  </li>
- <PdfDownload :targetTranslationRef="'targetTranslationElement'" />
- <li style="display: flex; align-items: center; margin-right: 15px;">
-  <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;">
+ <li style="display:flex; align-items: center; margin-right: 5px;" >
+  <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug h4 pl-1" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;">
   </i>
  </li>
- <li style="display:flex">
-  <i class="bi bi-camera text-right mr-2 h3" @click="captureTranslation" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" style="color: rgba(0, 191, 166); cursor:pointer"></i>
- </li>
-</ul>
+
+</div>
 </template>
 
 <script>

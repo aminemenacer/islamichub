@@ -99,7 +99,7 @@
        <!-- Translation Section -->
        <div class="tab-pane active content" id="home" role="tabpanel" v-if="information != null">
 
-        <div class="icon-container pb-3">
+        <div class="icon-container">
          <!-- Main features desktop -->
          <div class="icon-container w-100 hide-on-mobile pb-3">
           <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('translationNote')" style="color: rgba(0, 191, 166);cursor:pointer"></i>
@@ -108,17 +108,20 @@
           <TwitterShareTranslation :targetElementRef="'targetElement'" :translationText="information.translation" />
           <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
           <CopyTranslationText :textToCopy="information.translation" />
+          <!--
           <ScreenTranslationCapture :targetTranslationRef="'targetTranslationElement'" />
+          -->
           <PdfDownload :targetTranslationRef="'targetTranslationElement'" />
+          <!--
           <i class="bi bi-paint-bucket h2" style="color: rgb(0, 191, 166); cursor: pointer;" @click="showModal"></i>
+          -->
           <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;"></i>
           <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
          </div>
         </div>
 
-
         <!-- mobile top Features  ---->
-         <div class="dropdown mobile-only">
+         <div class="dropdown mobile-only pb-2">
           <div class="icon-container">
            <i class="bi bi-chevron-bar-left h4" style="color: rgb(0, 191, 166);" @click="goToFirstAyah()" title="Last verse"></i>
            <i class="bi bi-arrow-left-circle h4" style="color: rgb(0, 191, 166);" @click="goToPreviousAyah()" title="Previous verse"></i>
@@ -130,7 +133,7 @@
          <!-- end mobile top Features ---->
 
         <!-- dropdown mobile content -->
-        <div ref="targetTranslationElement">
+        <div class="pt-2" ref="targetTranslationElement">
          <TranslationSection :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
         </div>
 
@@ -157,7 +160,7 @@
        <div class="tab-pane content" id="profile" role="tabpanel" v-if="information != null">
         <div class="icon-container ">
 
-         <div class="icon-container w-100 hide-on-mobile ">
+         <div class="icon-container w-100 hide-on-mobile pb-2">
           <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('tafseerNote')" style="color: rgba(0, 191, 166);cursor:pointer">
           </i>
           <TafseerNote ref="tafseerNote" :information="tafseer" />
@@ -175,7 +178,7 @@
 
          <!-- mobile top Features  ---->
          <div class="dropdown mobile-only">
-          <div class="icon-container">
+          <div class="icon-container pb-2">
            <i class="bi bi-chevron-bar-left h4" style="color: rgb(0, 191, 166);" @click="goToFirstAyah()" title="Last verse"></i>
            <i class="bi bi-arrow-left-circle h4" style="color: rgb(0, 191, 166);" @click="goToPreviousAyah()" title="Previous verse"></i>
            <i class="bi bi-arrow-right-circle h4" style="color: rgb(0, 191, 166);" @click="goToNextAyah()" title="Next verse"></i>
@@ -187,7 +190,7 @@
         </div>
 
         <!-- Main content  -->
-        <div ref="targetTafseerElement">
+        <div class="pt-2" ref="targetTafseerElement">
          <TafseerSection :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
         </div>
         <!-- end main content -->
@@ -218,7 +221,7 @@
           <!-- Ayah Controls -->
           <div class="icon-container pb-3">
 
-           <div class="icon-container w-100 hide-on-mobile pb-3">
+           <div class="icon-container w-100 hide-on-mobile">
             <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('transliterationNote')" style="color: rgba(0, 191, 166);cursor:pointer">
             </i>
             <TransliterationNote ref="transliterationNote" :information="information.transliteration" />
@@ -226,9 +229,13 @@
             <TwitterShareTransliteration :targetElementRef="'targetElement'" :transliterationText="information.transliteration" />
             <i @click="submitForm2" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
             <CopyTransliterationText :textToCopy="information.transliteration" />
+            <!--
             <ScreenTransliterationCapture :targetTransliterationRef="'targetTransliterationElement'" />
+            -->
             <PdfDownload :targetTranslationRef="'targetTransliterationElement'" />
+            <!--
             <i class="bi bi-paint-bucket h2" style="color: rgb(0, 191, 166); cursor: pointer;" @click="showModal"></i>
+            -->
             <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;"></i>
             <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
            </div>
@@ -236,17 +243,11 @@
            <!-- Dropdown Features -->
            <div class="dropdown mobile-only">
             <div class="icon-container">
-             <i class="bi bi-chevron-bar-left h5" style="color: rgb(0, 191, 166);" @click="goToFirstAyah()" title="Last verse"></i>
-             <i class="bi bi-arrow-left-circle h5" style="color: rgb(0, 191, 166);" @click="goToPreviousAyah()" title="Previous verse"></i>
-             <i class="bi bi-arrow-right-circle h5" style="color: rgb(0, 191, 166);" @click="goToNextAyah()" title="Next verse"></i>
-             <i class="bi bi-chevron-bar-right h5" style="color: rgb(0, 191, 166);" @click="goToLastAyah()" title="End verse"></i>
-             <ScreenTransliterationCapture :targetTransliterationRef="'targetTransliterationElement'" />
-             <PdfDownload :targetTranslationRef="'targetTafseerElement'" />
+             <i class="bi bi-chevron-bar-left h4" style="color: rgb(0, 191, 166);" @click="goToFirstAyah()" title="Last verse"></i>
+             <i class="bi bi-arrow-left-circle h4" style="color: rgb(0, 191, 166);" @click="goToPreviousAyah()" title="Previous verse"></i>
+             <i class="bi bi-arrow-right-circle h4" style="color: rgb(0, 191, 166);" @click="goToNextAyah()" title="Next verse"></i>
+             <i class="bi bi-chevron-bar-right h4" style="color: rgb(0, 191, 166);" @click="goToLastAyah()" title="End verse"></i>
              <i class="bi bi-arrows-fullscreen h6" style="color: rgb(0, 191, 166);" @click="toggleFullScreen" title="Full screen"></i>
-             <ul class="dropdown-menu">
-              <TransliterationActions :targetTransliterationRef="'targetTransliterationElement'" :transliteration="information.transliteration" @open-modal="openModal" @submit-form="submitForm" />
-             </ul>
-
             </div>
            </div>
           </div>
@@ -254,6 +255,23 @@
           <div ref="targetTransliterationElement">
            <TransliterationSection :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
           </div>
+
+           <!-- Button to toggle content -->
+            <button @click="toggleContent" class="button-33 text-center mobile-only">
+              {{ isOpen ? 'Close Toolbar' : 'Open Toolbar' }}
+            </button>
+
+            <!-- toolbar mobile -->
+            <div v-if="isOpen" class="collapse-content mobile-only">
+              <div class="card card-body">
+                <!-- Your content here -->
+                <TransliterationActions class="" :targetTransliterationRef="'targetTransliterationElement'" :transliteration="transliteration" @open-modal="openModal" @submit-form="submitForm" />
+                <PdfDownload class="pl-2 pb-2 mt-2 text-left" :targetTransliterationRef="'targetTransliterationElement'" />
+              </div>
+            </div>
+            <!-- end toolbar mobile -->
+
+          
           <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
           <SurahInfoModal :information="information" />
 
