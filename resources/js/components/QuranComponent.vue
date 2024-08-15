@@ -143,11 +143,11 @@
         </button>
 
         <!-- toolbar mobile -->
-        <div v-if="isOpen" class="collapse-content mobile-only">
-          <div class="card card-body">
+        <div v-if="isOpen" class="collapse-content mobile-only" style="background:background-color: rgba(0, 191, 166, 0.452);">
+          <div class="card card-body" >
             <!-- Your content here -->
             <TranslationActions class="" :targetTranslationRef="'targetTranslationElement'" :translation="translation" @open-modal="openModal" @submit-form="submitForm" />
-            <PdfDownload class="pl-2 pb-2 mt-2 text-left" :targetTranslationRef="'targetTranslationElement'" />
+            <PdfDownload class="pl-1 pb-2 mt-2 text-left" :targetTranslationRef="'targetTranslationElement'" />
           </div>
         </div>
         <!-- end toolbar mobile -->
@@ -168,7 +168,7 @@
           <TwitterShareTafseer :targetElementRef="'targetElement'" :tafseerText="tafseer" />
           <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
           <CopyTafseerText :textToCopy="tafseer" />
-          <PdfDownload class="pb-2" :targetTranslationRef="'targetTafseerElement'" />
+          <PdfDownload class="pl-1 pb-2 mt-2 text-left" :targetTranslationRef="'targetTafseerElement'" />
           <!--
           <i class="bi bi-paint-bucket h2" style="color: rgb(0, 191, 166); cursor: pointer;" @click="showModal"></i>
           -->
@@ -204,8 +204,8 @@
         <div v-if="isOpen" class="collapse-content mobile-only">
           <div class="card card-body">
             <!-- Your content here -->
-            <TafseerActions class="" :targetTafseerRef="'targetTafseerElement'" :tafseer="tafseer" @open-modal="openModal" @submit-form="submitForm" />
-            <PdfDownload class="pl-2 pb-2 mt-2 text-left" :targetTranslationRef="'targetTafseerElement'" />
+            <TafseerActions :targetTafseerRef="'targetTafseerElement'" :tafseer="tafseer" @open-modal="openModal" @submit-form="submitForm" />
+            <PdfDownload class="pl-1 pb-2 mt-2 text-left" :targetTranslationRef="'targetTafseerElement'" />
           </div>
         </div>
         <!-- end toolbar mobile -->
@@ -265,7 +265,7 @@
             <div v-if="isOpen" class="collapse-content mobile-only">
               <div class="card card-body">
                 <!-- Your content here -->
-                <TransliterationActions class="" :targetTransliterationRef="'targetTransliterationElement'" :transliteration="transliteration" @open-modal="openModal" @submit-form="submitForm" />
+                <TransliterationActions :targetTransliterationRef="'targetTransliterationElement'" :transliteration="transliteration" @open-modal="openModal" @submit-form="submitForm" />
                 <PdfDownload class="pl-2 pb-2 mt-2 text-left" :targetTransliterationRef="'targetTransliterationElement'" />
               </div>
             </div>
