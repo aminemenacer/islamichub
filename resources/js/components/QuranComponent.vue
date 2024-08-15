@@ -192,17 +192,23 @@
         <!-- Main content  -->
         <div class="pt-2" ref="targetTafseerElement">
          <TafseerSection :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
+        
+        
         </div>
         <!-- end main content -->
 
-        <!-- Button to toggle content -->
-        <button @click="toggleContent" class="button-33 text-center mobile-only">
-          {{ isOpen ? 'Close Toolbar' : 'Open Toolbar' }}
-        </button>
+        <div class="row">
+          <!-- Button to toggle content -->
+            <div>
+              <button @click="toggleContent" class="button-33 text-center mobile-only">
+                {{ isOpen ? 'Close Toolbar' : 'Open Toolbar' }}
+              </button>
+            </div>
+        </div>
 
         <!-- toolbar mobile -->
         <div v-if="isOpen" class="collapse-content mobile-only">
-          <div class="card card-body">
+          <div class="card card-body" style="background-color: rgba(0, 191, 166, 0.2);">
             <!-- Your content here -->
             <TafseerActions :targetTafseerRef="'targetTafseerElement'" :tafseer="tafseer" @open-modal="openModal" @submit-form="submitForm" />
             <PdfDownload class="pl-1 pb-2 mt-2 text-left" :targetTranslationRef="'targetTafseerElement'" />
@@ -769,6 +775,8 @@ export default {
    this.expanded = !this.expanded;
   },
   getSelectedSurahAyat() {
+    const surahData = this.surat.find(surah => surah.id === parseInt(this.surah));
+   return surahData ? surahData.ayat : [];
    if (this.surat[this.surah]) {
     return this.surat[this.surah].ayat;
    }
@@ -779,10 +787,6 @@ export default {
    console.log(`Selected Ayah: ${newIndex}`);
   },
 
-  getSelectedSurahAyat() {
-   const surahData = this.surat.find(surah => surah.id === parseInt(this.surah));
-   return surahData ? surahData.ayat : [];
-  },
   closeAlertText() {
    this.showAlertText = false;
   },
@@ -1094,7 +1098,6 @@ export default {
    }
    return null;
   },
-
   selectSurah() {
    this.ayat = this.fetchAyatForSurah(this.surah); // Replace with actual logic
    this.selectedAyah = this.ayat.length > 0 ? '0' : '0'; // Select the first ayah
@@ -1150,13 +1153,12 @@ export default {
    this.getAyat();
   },
 
- },
-
- 'information.ayah.surah.name_ar': 'updateFileName',
- verseNumber(newVal, oldVal) {
-  if (newVal !== oldVal && parseInt(newVal)) {
-   this.selectedIndexAyah = parseInt(newVal) - 1;
-  }
+  'information.ayah.surah.name_ar': 'updateFileName',
+  verseNumber(newVal, oldVal) {
+   if (newVal !== oldVal && parseInt(newVal)) {
+    this.selectedIndexAyah = parseInt(newVal) - 1;
+   }
+  },
  },
 }
 </script>
