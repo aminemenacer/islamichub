@@ -19,8 +19,12 @@
   </div>
  </div>
 
+
  <!-- Bookmarks Container -->
- <div class="container mt-3">
+ <div class="container ">
+  <h3 class="pb-3 text-center">
+    <strong>You have:</strong> <b style="color:rgb(0, 191, 166)">{{ bookmarks.length }}</b> <strong>bookmarks</strong>
+  </h3>
   <div class="row">
    <div class="col-md-4 mb-4" v-for="bookmark in bookmarks" :key="bookmark.id">
     <!-- Bookmark Card -->

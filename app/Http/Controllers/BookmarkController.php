@@ -18,7 +18,7 @@ class BookmarkController extends Controller
 
     public function getBookmarks($userId)
     {
-        $bookmark = Bookmark::where('user_id', $userId)->get();
+        $bookmark = Bookmark::where('user_id', $userId)->orderBy('created_at', 'desc')->get();
         return response()->json($bookmark);
     }
 

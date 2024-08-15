@@ -19,7 +19,10 @@
     </div>
 
     <!-- Notes Container -->
-    <div class="container mt-3">
+    <div class="container ">
+    <h3 class=" pb-3 text-center">
+      <strong>You have:</strong> <b style="color:rgb(0, 191, 166)">{{ notes.length }}</b> <strong>notes</strong>
+    </h3>
       <div class="row">
         <div class="col-md-4 mb-4" v-for="note in notes" :key="note.id">
           <!-- Note Card -->

@@ -14,7 +14,7 @@ class NotesController extends Controller
 
     public function getNotes($userId)
     {
-        $notes = Note::where('user_id', $userId)->get();
+        $notes = Note::where('user_id', $userId)->orderBy('created_at', 'desc')->get();
         return response()->json($notes);
     }
 
