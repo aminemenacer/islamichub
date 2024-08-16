@@ -247,7 +247,7 @@
   color: #FFFFFF;
   display: flex;
   font-family: Phantomsans, sans-serif;
-  font-size: 17px;
+  font-size: 15px;
   justify-content: center;
   line-height: 1em;
   padding: 15px;
@@ -264,9 +264,38 @@
   outline: 0;
 }
 
+.shadow-selector {
+  margin: 20px;
+}
+
+#shadow-dropdown {
+  margin: 10px 0;
+}
+
+p {
+  margin-top: 20px;
+}
+
 @media (min-width: 768px) {
   .button-63 {
     font-size: 24px;
     min-width: 196px;
   }
+
+  .button-63:hover {
+    outline: 0;
+  }
+  
+  .shadow-selector {
+    margin: 20px;
+  }
+  
+  #shadow-dropdown {
+    margin: 10px 0;
+  }
+  
+  p {
+    margin-top: 20px;
+  }
+  
 }

@@ -57,7 +57,7 @@
 
   <div class="col-md-8 card-hide">
    <div class="card content" :style="containerStyle">
-    <div class="content">
+    <div class="content" :style="shadowStyle">
      <div class="container-fluid content" v-if="information != null">
       <NavTabs />
 
@@ -127,6 +127,7 @@
            <i class="bi bi-arrow-left-circle h4" style="color: rgb(0, 191, 166);" @click="goToPreviousAyah()" title="Previous verse"></i>
            <i class="bi bi-arrow-right-circle h4" style="color: rgb(0, 191, 166);" @click="goToNextAyah()" title="Next verse"></i>
            <i class="bi bi-chevron-bar-right h4" style="color: rgb(0, 191, 166);" @click="goToLastAyah()" title="End verse"></i>
+           <i class="bi bi-paint-bucket h2" style="color: rgb(0, 191, 166); cursor: pointer;" @click="showModal"></i>
            <i class="bi bi-arrows-fullscreen h6" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
           </div>
          </div>
@@ -137,7 +138,7 @@
          <TranslationSection :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
         </div>
         
-        <div class="container-fluid text-center">
+        <div class="container-fluid text-center mobile-only">
           <div class="row">
             <div class="col">
             </div>
@@ -159,7 +160,7 @@
             <!-- Your content here -->
             <TranslationActions class="" :targetTranslationRef="'targetTranslationElement'" :translation="translation" @open-modal="openModal" @submit-form="submitForm" />
             <PdfDownload class="pl-1 pb-2 mt-2 text-left" :targetTranslationRef="'targetTranslationElement'" />
-            <i class="bi bi-paint-bucket h2" style="color: rgb(0, 191, 166); cursor: pointer;" @click="showModal"></i>
+            
           </div>
         </div>
         <!-- end toolbar mobile -->
@@ -193,6 +194,7 @@
            <i class="bi bi-arrow-left-circle h4" style="color: rgb(0, 191, 166);" @click="goToPreviousAyah()" title="Previous verse"></i>
            <i class="bi bi-arrow-right-circle h4" style="color: rgb(0, 191, 166);" @click="goToNextAyah()" title="Next verse"></i>
            <i class="bi bi-chevron-bar-right h4" style="color: rgb(0, 191, 166);" @click="goToLastAyah()" title="End verse"></i>
+           <i class="bi bi-paint-bucket h2" style="color: rgb(0, 191, 166); cursor: pointer;" @click="showModal"></i>
            <i class="bi bi-arrows-fullscreen h6" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
           </div>
          </div>
@@ -202,9 +204,12 @@
         <!-- Main content  -->
         <div class="pt-2" ref="targetTafseerElement">
          <TafseerSection :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
+        
+        
         </div>
         <!-- end main content -->
-        <div class="container-fluid text-center">
+
+        <div class="container-fluid text-center mobile-only">
           <div class="row">
             <div class="col">
             </div>
@@ -224,7 +229,7 @@
             <!-- Your content here -->
             <TafseerActions :targetTafseerRef="'targetTafseerElement'" :tafseer="tafseer" @open-modal="openModal" @submit-form="submitForm" />
             <PdfDownload class="pl-1 pb-2 mt-2 text-left" :targetTranslationRef="'targetTafseerElement'" />
-            <i class="bi bi-paint-bucket h2" style="color: rgb(0, 191, 166); cursor: pointer;" @click="showModal"></i>
+            
           </div>
         </div>
         <!-- end toolbar mobile -->
@@ -264,6 +269,7 @@
              <i class="bi bi-arrow-left-circle h4" style="color: rgb(0, 191, 166);" @click="goToPreviousAyah()" title="Previous verse"></i>
              <i class="bi bi-arrow-right-circle h4" style="color: rgb(0, 191, 166);" @click="goToNextAyah()" title="Next verse"></i>
              <i class="bi bi-chevron-bar-right h4" style="color: rgb(0, 191, 166);" @click="goToLastAyah()" title="End verse"></i>
+             <i class="bi bi-paint-bucket h2" style="color: rgb(0, 191, 166); cursor: pointer;" @click="showModal"></i>
              <i class="bi bi-arrows-fullscreen h6" style="color: rgb(0, 191, 166);" @click="toggleFullScreen" title="Full screen"></i>
             </div>
            </div>
@@ -273,7 +279,7 @@
            <TransliterationSection :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
           </div>
 
-          <div class="container-fluid text-center">
+          <div class="container-fluid text-center mobile-only">
             <div class="row">
               <div class="col">
               </div>
@@ -294,7 +300,6 @@
                 <!-- Your content here -->
                 <TransliterationActions :targetTransliterationRef="'targetTransliterationElement'" :transliteration="transliteration" @open-modal="openModal" @submit-form="submitForm" />
                 <PdfDownload class="pl-2 pb-2 mt-2 text-left" :targetTransliterationRef="'targetTransliterationElement'" />
-                <i class="bi bi-paint-bucket h2" style="color: rgb(0, 191, 166); cursor: pointer;" @click="showModal"></i>
               </div>
             </div>
             <!-- end toolbar mobile -->
@@ -374,6 +379,14 @@
            {{ font }}
           </option>
          </select>
+        </div>
+        <div class="mb-3">
+          <label for="fontFamily" class="form-label">Shadow Style</label>
+          <select v-model="selectedShadow" id="shadow-dropdown" class="form-control">
+            <option v-for="shadow in shadows" :key="shadow.name" :value="shadow.style">
+              {{ shadow.name }}
+            </option>
+          </select>
         </div>
         <div class="mb-3">
          <label for="fontSize" class="form-label">Font Size (px)</label>
@@ -520,6 +533,7 @@ export default {
  data() {
   return {
     isOpen: false,
+    
     styles: [{
      name: 'Default',
      backgroundColor: '#ffffff',
@@ -568,6 +582,16 @@ export default {
     'Comic Sans MS, cursive, sans-serif',
     'Helvetica, Arial, sans-serif'
    ],
+   // List of shadow options
+    shadows: [
+      { name: 'None', style: 'none' },
+      { name: 'Small Shadow', style: '1px 1px 2px rgba(0, 0, 0, 0.5)' },
+      { name: 'Medium Shadow', style: '2px 2px 4px rgba(0, 0, 0, 0.5)' },
+      { name: 'Large Shadow', style: '4px 4px 8px rgba(0, 0, 0, 0.5)' },
+      { name: 'Deep Shadow', style: '6px 6px 12px rgba(0, 0, 0, 0.7)' },
+      { name: 'Soft Glow', style: '0px 0px 10px rgba(255, 255, 255, 0.7)' },
+      { name: 'Dark Glow', style: '0px 0px 10px rgba(0, 0, 0, 0.9)' },
+    ],
    selectedStyle: this.getStoredStyle() || {
     name: 'Default',
 
@@ -577,6 +601,7 @@ export default {
    showMessage: false,
    message: 'Theme has been applied successfully!',
    filteredSurah: [],
+   selectedShadow: 'none',
    fontSize: 16, // in pixels
    fontSpacing: 0, // in pixels
    fontFamily: 'Arial, sans-serif',
@@ -675,7 +700,15 @@ export default {
     fontSize: `${this.fontSize}px`,
     letterSpacing: `${this.fontSpacing}px`
    };
-  }
+  },
+  shadowStyle() {
+    return {
+      textShadow: this.selectedShadow,
+      fontSize: '16px',
+      fontWeight: 'bold',
+      color: '#333',
+    };
+  },
  },
  methods: {
    toggleContent() {
