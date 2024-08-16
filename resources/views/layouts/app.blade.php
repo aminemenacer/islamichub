@@ -13,16 +13,16 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Admin LTE CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
 
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    <!-- Custom CSS -->
+  
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-QWLL07EBX9"></script>
@@ -36,7 +36,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm py-1">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="/images/logo_main.png" width="275" height="54" class="d-inline-block align-top" alt="">
@@ -77,7 +77,7 @@
                         <li class="nav-item dropdown pl-3">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                <i class="bi bi-person-circle pr-2" style="font-size: 1.8rem"></i>
+                                <i class="bi bi-person-circle pr-2 " style="font-size: 1.8rem"></i>
                                 {{ Auth::user()->name }}
                             </a>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -95,12 +95,14 @@
                         </li>
                         @endguest
                         <li class="nav-item mt-3 pl-4">
-                            <button class="btn button-33"><a style="text-decoration: none;color:white"
-                                href="https://www.gofundme.com/f/empowerment-through-quran-support-islamic-connects-mission">Support
-                                Us</a></button>
+                            <button class="button-33">
+                                <a style="text-decoration: none;color:white"
+                                href="https://www.gofundme.com/f/empowerment-through-quran-support-islamic-connects-mission">
+                                Support Us
+                                </a>
+                            </button>
                         </li>
                     </ul>
-                    
                 </div>
             </div>
         </nav>
@@ -110,24 +112,24 @@
         </main>
     </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-
-    <!-- App JS -->
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <!-- Your application's JavaScript -->
     <script src="{{ mix('js/app.js') }}"></script>
 </body>
 </html>
 
+<!-- Custom Styles -->
 <style>
-
-.button-33:hover {
-    background-color: #000F;
-}
 .button-33 {
     background-color: #00BFA6;
     border-radius: 10px;
     color: white;
     cursor: pointer;
+    display: inline-block;
+    font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
     padding: 7px 20px;
     text-align: center;
     text-decoration: none;

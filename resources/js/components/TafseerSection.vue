@@ -7,8 +7,8 @@
    <MainAyah :information="information" />
       <div ref="heading1">
         <h4 class="text-left ayah-translation" style="line-height: 1.6em">
-          {{ expanded ? tafseer : truncatedText(tafseer) }}
-          <template v-if="showMoreLink && tafseer.length > 100">
+        {{ expanded ? tafseer : truncatedText(information.tafseer) }}
+          <template v-if="showMoreLink && information.tafseer.length > 100">
             <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
           </template>
         </h4>
@@ -53,6 +53,11 @@ export default {
       default: ''
     }
   },
+  information: {
+      type: Object,
+      required: true
+    },
+    tafseer:'',
   methods: {
     toggleFullScreen() {
       this.$emit('toggle-full-screen');

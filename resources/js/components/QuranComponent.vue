@@ -1,7 +1,7 @@
 <template>
 <div id="app">
  <div class="pt-3 text-center">
-  <Title v-if="information != null && !dropdownHidden" />
+  <Title v-if="information == null && dropdownHidden" />
   <search-form :surat="surat" @update-results="handleUpdateResults" @clear-results="handleClearResults" @select-surah="handleSelectSurah" />
   <custom-surah-selection :customSurat="customSuratList" v-model="selectedSurah"></custom-surah-selection>
  </div>
@@ -35,7 +35,9 @@
        <i class="bi bi-arrow-left-circle h4" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToPreviousAyah" title="Previous verse"></i>
        <i class="bi bi-arrow-right-circle h4" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToNextAyah" title="Next verse"></i>
        <i class="bi bi-chevron-bar-right h4" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToLastAyah" title="Last verse"></i>
+       <!--
        <i class="bi bi-palette-fill h4" style="color: rgb(0, 191, 166); cursor: pointer;" data-bs-toggle="modal" data-bs-target="#themeModal"></i>
+       -->
        <i v-if="information != null" class="bi bi-info-circle-fill h4 mr-2 pl-2" style="color: rgb(0, 191, 166);cursor:pointer" data-bs-toggle="modal" data-bs-target="#translationInfo" aria-expanded="false" data-bs-placement="top" title="Surah info"></i>
       </div>
 
@@ -112,9 +114,7 @@
           <ScreenTranslationCapture :targetTranslationRef="'targetTranslationElement'" />
           -->
           <PdfDownload :targetTranslationRef="'targetTranslationElement'" />
-          <!--
           <i class="bi bi-paint-bucket h2" style="color: rgb(0, 191, 166); cursor: pointer;" @click="showModal"></i>
-          -->
           <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;"></i>
           <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
          </div>
@@ -136,18 +136,30 @@
         <div class="pt-2" ref="targetTranslationElement">
          <TranslationSection :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
         </div>
-
-         <!-- Button to toggle content -->
-        <button @click="toggleContent" class="button-33 text-center mobile-only">
-          {{ isOpen ? 'Close Toolbar' : 'Open Toolbar' }}
-        </button>
+        
+        <div class="container-fluid text-center">
+          <div class="row">
+            <div class="col">
+            </div>
+            <div class="col">
+              <button @click="toggleContent" class="button-63 text-center mobile-only">
+                {{ isOpen ? 'Close Toolbar' : 'Open Toolbar' }}
+              </button>
+            </div>
+            <div class="col">
+            </div>
+          </div>
+        </div>
+        
+        
 
         <!-- toolbar mobile -->
         <div v-if="isOpen" class="collapse-content mobile-only" style="background:background-color: rgba(0, 191, 166, 0.452);">
-          <div class="card card-body" >
+          <div class="card text-bg-light card-body" >
             <!-- Your content here -->
             <TranslationActions class="" :targetTranslationRef="'targetTranslationElement'" :translation="translation" @open-modal="openModal" @submit-form="submitForm" />
             <PdfDownload class="pl-1 pb-2 mt-2 text-left" :targetTranslationRef="'targetTranslationElement'" />
+            <i class="bi bi-paint-bucket h2" style="color: rgb(0, 191, 166); cursor: pointer;" @click="showModal"></i>
           </div>
         </div>
         <!-- end toolbar mobile -->
@@ -169,9 +181,7 @@
           <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
           <CopyTafseerText :textToCopy="tafseer" />
           <PdfDownload class="pl-1 pb-2 mt-2 text-left" :targetTranslationRef="'targetTafseerElement'" />
-          <!--
           <i class="bi bi-paint-bucket h2" style="color: rgb(0, 191, 166); cursor: pointer;" @click="showModal"></i>
-          -->
           <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h3" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;"></i>
           <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
          </div>
@@ -192,26 +202,29 @@
         <!-- Main content  -->
         <div class="pt-2" ref="targetTafseerElement">
          <TafseerSection :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
-        
-        
         </div>
         <!-- end main content -->
-
-        <div class="row">
-          <!-- Button to toggle content -->
-            <div>
-              <button @click="toggleContent" class="button-33 text-center mobile-only">
+        <div class="container-fluid text-center">
+          <div class="row">
+            <div class="col">
+            </div>
+            <div class="col">
+              <button @click="toggleContent" class="button-63 text-center mobile-only">
                 {{ isOpen ? 'Close Toolbar' : 'Open Toolbar' }}
               </button>
             </div>
+            <div class="col">
+            </div>
+          </div>
         </div>
 
         <!-- toolbar mobile -->
         <div v-if="isOpen" class="collapse-content mobile-only">
-          <div class="card card-body" style="background-color: rgba(0, 191, 166, 0.2);">
+          <div class="card text-bg-light card-body" >
             <!-- Your content here -->
             <TafseerActions :targetTafseerRef="'targetTafseerElement'" :tafseer="tafseer" @open-modal="openModal" @submit-form="submitForm" />
             <PdfDownload class="pl-1 pb-2 mt-2 text-left" :targetTranslationRef="'targetTafseerElement'" />
+            <i class="bi bi-paint-bucket h2" style="color: rgb(0, 191, 166); cursor: pointer;" @click="showModal"></i>
           </div>
         </div>
         <!-- end toolbar mobile -->
@@ -239,9 +252,7 @@
             <ScreenTransliterationCapture :targetTransliterationRef="'targetTransliterationElement'" />
             -->
             <PdfDownload :targetTranslationRef="'targetTransliterationElement'" />
-            <!--
             <i class="bi bi-paint-bucket h2" style="color: rgb(0, 191, 166); cursor: pointer;" @click="showModal"></i>
-            -->
             <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;"></i>
             <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
            </div>
@@ -262,17 +273,28 @@
            <TransliterationSection :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
           </div>
 
-           <!-- Button to toggle content -->
-            <button @click="toggleContent" class="button-33 text-center mobile-only">
-              {{ isOpen ? 'Close Toolbar' : 'Open Toolbar' }}
-            </button>
+          <div class="container-fluid text-center">
+            <div class="row">
+              <div class="col">
+              </div>
+              <div class="col">
+                <button @click="toggleContent" class="button-63 text-center mobile-only">
+                  {{ isOpen ? 'Close Toolbar' : 'Open Toolbar' }}
+                </button>
+              </div>
+              <div class="col">
+              </div>
+            </div>
+          </div>
+            
 
             <!-- toolbar mobile -->
             <div v-if="isOpen" class="collapse-content mobile-only">
-              <div class="card card-body">
+              <div class="card text-bg-light card-body">
                 <!-- Your content here -->
                 <TransliterationActions :targetTransliterationRef="'targetTransliterationElement'" :transliteration="transliteration" @open-modal="openModal" @submit-form="submitForm" />
                 <PdfDownload class="pl-2 pb-2 mt-2 text-left" :targetTransliterationRef="'targetTransliterationElement'" />
+                <i class="bi bi-paint-bucket h2" style="color: rgb(0, 191, 166); cursor: pointer;" @click="showModal"></i>
               </div>
             </div>
             <!-- end toolbar mobile -->
@@ -498,7 +520,7 @@ export default {
  data() {
   return {
     isOpen: false,
-   styles: [{
+    styles: [{
      name: 'Default',
      backgroundColor: '#ffffff',
      textColor: '#000000'
@@ -556,7 +578,7 @@ export default {
    message: 'Theme has been applied successfully!',
    filteredSurah: [],
    fontSize: 16, // in pixels
-   fontSpacing: 1, // in pixels
+   fontSpacing: 0, // in pixels
    fontFamily: 'Arial, sans-serif',
    backgroundColor: '#ffffff',
    textColor: '#000000',
@@ -1038,6 +1060,8 @@ export default {
     this.dropdownHidden = true; // Hide Ayah dropdown if no Surah is selected
    }
   },
+
+
   async handleAyahChange() {
    const selectedAyahIndex = parseInt(this.selectedAyahId);
    const selectedAyah = this.ayat[selectedAyahIndex];

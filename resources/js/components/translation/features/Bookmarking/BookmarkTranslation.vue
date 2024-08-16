@@ -58,7 +58,7 @@ export default {
     }
   },
   methods: {
-    submitForm() {
+    submitForm2() {
       const { surah, ayah_text, ayah_id, translation } = this.information;
       if (!surah || !ayah_text || ayah_id === null || !translation) {
         console.error('Information prop is incomplete or missing.');
@@ -74,12 +74,7 @@ export default {
         ayah_verse_en: translation,
       };
 
-      axios.post('/bookmarks', formData, {
-        withCredentials: true, // Ensure cookies are sent for session-based auth
-        headers: {
-          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-        }
-      })
+      axios.post('/bookmarks', formData)
         .then(response => {
           console.log(response.data.message);
           localStorage.setItem(`bookmarkSubmitted_${ayah_id}`, true);

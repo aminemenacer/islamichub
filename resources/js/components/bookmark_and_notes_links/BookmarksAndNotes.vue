@@ -21,9 +21,7 @@ export default {
       default: null
     }
   },
-  methods: {
-    // Any methods or event handlers can be defined here if needed
-  }
+  
 };
 </script>
 

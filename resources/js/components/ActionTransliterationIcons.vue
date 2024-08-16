@@ -4,7 +4,7 @@
       <TransliterationNote ref="transliterationNote" :information="information.transliteration" />
       <WhatsAppShareTransliteration :transliterationToShare="information.transliteration" />
       <TwitterShareTransliteration :targetElementRef="'targetElement'" :transliterationText="information.transliteration" />
-      <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
+      <i @click="submitForm2" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
       <CopyTransliterationText :textToCopy="information.transliteration" />
       <ScreenTransliterationCapture :targetTransliterationRef="'targetTransliterationElement'" />
       <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;"></i>

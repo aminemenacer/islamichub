@@ -62,6 +62,9 @@ export default {
 
 <style scoped>
 .alert {
-  margin-top: 10px;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
 }
 </style>
