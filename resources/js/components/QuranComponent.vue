@@ -564,22 +564,9 @@ export default {
  mounted() {
   this.getSurat(); // Call getSurat to populate the surah list
   this.initRecognition();
-  this.loadSettings();
-  const savedSettings = JSON.parse(localStorage.getItem('userStyles'));
-  if (savedSettings) {
-   this.bgColor = savedSettings.bgColor || '#ffffff';
-   this.textColor = savedSettings.textColor || '#000000';
-   this.fontFamily = savedSettings.fontFamily || 'Arial, sans-serif';
-   this.textShadow = selectedShadow.textShadow || 'none';
-   this.fontSize = savedSettings.fontSize || 1;
-   this.fontSpacing = savedSettings.fontSpacing || 1;
-   this.fontWeight = savedSettings.fontWeight || 'none'
-  }
+  this.loadSavedStyles();
  },
  data() {
-  // let fontWeight = this.isLight ? '300' : this.isBold ? 'bold' : 'normal';
-  // let fontStyle = this.isItalic ? 'italic' : 'normal';
-  // let textDecoration = this.isUnderline ? 'underline' : this.isStrikethrough ? 'line-through' : 'none';
 
   return {
     isOpen: false,
@@ -644,30 +631,17 @@ export default {
       { name: 'Soft Glow', style: '0px 0px 10px rgba(255, 255, 255, 0.7)' },
       { name: 'Dark Glow', style: '0px 0px 10px rgba(0, 0, 0, 0.9)' },
     ],
-   // List of shadow options
-    shadows: [
-      { name: 'None', style: 'none' },
-      { name: 'Small Shadow', style: '1px 1px 2px rgba(0, 0, 0, 0.5)' },
-      { name: 'Medium Shadow', style: '2px 2px 4px rgba(0, 0, 0, 0.5)' },
-      { name: 'Large Shadow', style: '4px 4px 8px rgba(0, 0, 0, 0.5)' },
-      { name: 'Deep Shadow', style: '6px 6px 12px rgba(0, 0, 0, 0.7)' },
-      { name: 'Soft Glow', style: '0px 0px 10px rgba(255, 255, 255, 0.7)' },
-      { name: 'Dark Glow', style: '0px 0px 10px rgba(0, 0, 0, 0.9)' },
-    ],
    selectedStyle: {
       textColor: '#000',
       backgroundColor: '#fff',
     },
-   
-   isCollapsed: false,
-   showSuccessMessage: false,
-   showMessage: false,
-   message: 'Theme has been applied successfully!',
-   filteredSurah: [],
-   selectedShadow: 'none',
-   fontSize: 16, // in pixels
-   fontSpacing: 0, // in pixels
-   fontFamily: 'Arial, sans-serif',
+    // Initial styles
+    bgColor: '#f5f5f5',
+    textColor: '#000000',
+    fontFamily: 'Arial, sans-serif',
+    fontSize: 16,
+    fontSpacing: 0,
+    selectedShadow: 'none',
     // Font style options
     isBold: false,
     isItalic: false,
@@ -677,6 +651,16 @@ export default {
     // Text transformation and alignment
     textTransform: 'none',
     textAlign: 'left',
+    // For showing success message
+    showSuccessMessage: false,
+
+   
+   isCollapsed: false,
+   showSuccessMessage: false,
+   showMessage: false,
+   message: 'Theme has been applied successfully!',
+   filteredSurah: [],
+   
    //twitter/whatsapp
    information: {
     translation: '',
@@ -762,21 +746,23 @@ export default {
   };
  },
  computed: {
-  containerStyle() {
-   return {
-    backgroundColor: this.bgColor,
-    color: this.textColor,
-    fontFamily: this.fontFamily,
-    fontSize: `${this.fontSize}px`,
-    letterSpacing: `${this.fontSpacing}px`,
-    fontWeight: this.fontWeight,
-    fontStyle: this.fontStyle,
-    textDecoration: this.textDecoration,
-    textTransform: this.textTransform,
-    textAlign: this.textAlign,
-   };
-  }
- },
+    // Combined container style
+    containerStyle() {
+      return {
+        backgroundColor: this.bgColor,
+        color: this.textColor,
+        fontFamily: this.fontFamily,
+        fontSize: `${this.fontSize}px`,
+        letterSpacing: `${this.fontSpacing}px`,
+        fontWeight: this.isBold ? 'bold' : this.isLight ? '300' : 'normal',
+        fontStyle: this.isItalic ? 'italic' : 'normal',
+        textShadow: this.selectedShadow,
+        textDecoration: this.isUnderline ? 'underline' : this.isStrikethrough ? 'line-through' : 'none',
+        textTransform: this.textTransform,
+        textAlign: this.textAlign,
+      };
+    },
+  },
  methods: {
    initRecognition() {
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -839,39 +825,50 @@ export default {
    this.successMessage = ''; // Reset the success message when the modal is opened
   },
   applyCustomStyles() {
-   this.saveSettings();
-   this.showSuccessMessage = true; // Show the success message
-   setTimeout(() => {
-    const modal = bootstrap.Modal.getInstance(document.getElementById('styleModal'));
-    this.showSuccessMessage = false; // Hide the success message before closing the modal
-    modal.hide();
-   }, 2000); // Display the success message for 2 seconds before closing the modal
+    // Save settings to localStorage
+    const settings = {
+      bgColor: this.bgColor,
+      textColor: this.textColor,
+      fontFamily: this.fontFamily,
+      fontSize: this.fontSize,
+      fontSpacing: this.fontSpacing,
+      selectedShadow: this.selectedShadow,
+      isBold: this.isBold,
+      isItalic: this.isItalic,
+      isLight: this.isLight,
+      isUnderline: this.isUnderline,
+      isStrikethrough: this.isStrikethrough,
+      textTransform: this.textTransform,
+      textAlign: this.textAlign,
+    };
+    localStorage.setItem('textStyles', JSON.stringify(settings));
+
+    // Show success message for a short duration
+    this.showSuccessMessage = true;
+    setTimeout(() => {
+      this.showSuccessMessage = false;
+    }, 3000);
   },
-  saveSettings() {
-   const settings = {
-    bgColor: this.bgColor,
-    textColor: this.textColor,
-    fontSize: this.fontSize,
-    fontFamily: this.fontFamily,
-    fontSpacing: this.fontSpacing
-   };
-   localStorage.setItem('userStyles', JSON.stringify(settings));
-  },
-  loadSettings() {
-   const savedSettings = JSON.parse(localStorage.getItem('userStyles'));
-   if (savedSettings) {
-    this.bgColor = savedSettings.bgColor || '#ffffff';
-    this.textColor = savedSettings.textColor || '#000000';
-    this.fontSize = savedSettings.fontSize || 16;
-    this.fontSpacing = savedSettings.fontSpacing || 1;
-    this.fontFamily = savedSettings.fontFamily || 'Arial, sans-serif';
-   }
-  },
-  applyTheme() {
-   this.saveStyle();
-   this.showMessage = true;
-   setTimeout(() => this.showMessage = false, 3000); // Hide message after 3 seconds
-  },
+  loadSavedStyles() {
+      const savedSettings = JSON.parse(localStorage.getItem('textStyles'));
+      if (savedSettings) {
+        this.bgColor = savedSettings.bgColor || this.bgColor;
+        this.textColor = savedSettings.textColor || this.textColor;
+        this.fontFamily = savedSettings.fontFamily || this.fontFamily;
+        this.fontSize = savedSettings.fontSize || this.fontSize;
+        this.fontSpacing = savedSettings.fontSpacing || this.fontSpacing;
+        this.selectedShadow = savedSettings.selectedShadow || this.selectedShadow;
+        this.isBold = savedSettings.isBold || this.isBold;
+        this.isItalic = savedSettings.isItalic || this.isItalic;
+        this.isLight = savedSettings.isLight || this.isLight;
+        this.isUnderline = savedSettings.isUnderline || this.isUnderline;
+        this.isStrikethrough = savedSettings.isStrikethrough || this.isStrikethrough;
+        this.textTransform = savedSettings.textTransform || this.textTransform;
+        this.textAlign = savedSettings.textAlign || this.textAlign;
+      }
+    },
+  
+  
   saveStyle() {
    localStorage.setItem('selectedStyle', JSON.stringify(this.selectedStyle));
   },
