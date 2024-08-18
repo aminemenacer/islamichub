@@ -41,7 +41,7 @@
        <i v-if="information != null" class="bi bi-info-circle-fill h4 mr-2 pl-2" style="color: rgb(0, 191, 166);cursor:pointer" data-bs-toggle="modal" data-bs-target="#translationInfo" aria-expanded="false" data-bs-placement="top" title="Surah info"></i>
       </div>
 
-      <div :style="{containerStyle, color: selectedStyle.textColor, computedStyle, backgroundColor: selectedStyle.backgroundColor}" class="custom-scrollbar pb-5" style="overflow-y: auto; max-height: 600px; background: white;border-radius:10px">
+      <div class="custom-scrollbar pb-5" style="overflow-y: auto; max-height: 600px; background: white;border-radius:10px">
        <ul class="col-md-12 list-group container-fluid root" id="toggle" ref="ayahList" style="list-style-type: none; padding: 10px">
         <li v-for="(ayah, index) in ayat" :key="index" @click="selectAyah(index)" :class="{ selected: selectedIndexAyah === index, highlighted: verseNumber && parseInt(verseNumber) === ayah.ayah_id }" style="padding: 10px; border-radius:10px">
          <h5 class="text-right" style="display: flex;"> Verse: {{ ayah.ayah_id }} </h5>
@@ -56,8 +56,8 @@
   </div>
 
   <div class="col-md-8 card-hide">
-   <div class="card content" :style="containerStyle">
-    <div class="content" :style="shadowStyle">
+  <div class="card content" :style="containerStyle">
+    <div class="content" >
      <div class="container-fluid content" v-if="information != null">
       <NavTabs />
 
@@ -97,7 +97,7 @@
      <div class="card-body content" id="alertContainer">
       <div class="tab-content text-center">
        <Welcome :information="information" />
-
+       
        <!-- Translation Section -->
        <div class="tab-pane active content" id="home" role="tabpanel" v-if="information != null">
 
@@ -112,8 +112,8 @@
           <CopyTranslationText :textToCopy="information.translation" />
           <!--
           <ScreenTranslationCapture :targetTranslationRef="'targetTranslationElement'" />
-          -->
           <PdfDownload :targetTranslationRef="'targetTranslationElement'" />
+          -->
           <i class="bi bi-paint-bucket h2" style="color: rgb(0, 191, 166); cursor: pointer;" @click="showModal"></i>
           <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;"></i>
           <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
@@ -159,15 +159,14 @@
           <div class="card text-bg-light card-body" >
             <!-- Your content here -->
             <TranslationActions class="" :targetTranslationRef="'targetTranslationElement'" :translation="translation" @open-modal="openModal" @submit-form="submitForm" />
+            <!--
             <PdfDownload class="pl-1 pb-2 mt-2 text-left" :targetTranslationRef="'targetTranslationElement'" />
-            
+            -->
           </div>
         </div>
         <!-- end toolbar mobile -->
 
        </div>
-
-       
 
        <!-- Tafseer Section -->
        <div class="tab-pane content" id="profile" role="tabpanel" v-if="information != null">
@@ -181,7 +180,9 @@
           <TwitterShareTafseer :targetElementRef="'targetElement'" :tafseerText="tafseer" />
           <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
           <CopyTafseerText :textToCopy="tafseer" />
+          <!--
           <PdfDownload class="pl-1 pb-2 mt-2 text-left" :targetTranslationRef="'targetTafseerElement'" />
+          -->
           <i class="bi bi-paint-bucket h2" style="color: rgb(0, 191, 166); cursor: pointer;" @click="showModal"></i>
           <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h3" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;"></i>
           <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
@@ -204,8 +205,6 @@
         <!-- Main content  -->
         <div class="pt-2" ref="targetTafseerElement">
          <TafseerSection :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
-        
-        
         </div>
         <!-- end main content -->
 
@@ -228,12 +227,12 @@
           <div class="card text-bg-light card-body" >
             <!-- Your content here -->
             <TafseerActions :targetTafseerRef="'targetTafseerElement'" :tafseer="tafseer" @open-modal="openModal" @submit-form="submitForm" />
+            <!--
             <PdfDownload class="pl-1 pb-2 mt-2 text-left" :targetTranslationRef="'targetTafseerElement'" />
-            
+            -->
           </div>
         </div>
         <!-- end toolbar mobile -->
-
 
         <SurahInfoModal :information="information" />
        </div>
@@ -255,8 +254,8 @@
             <CopyTransliterationText :textToCopy="information.transliteration" />
             <!--
             <ScreenTransliterationCapture :targetTransliterationRef="'targetTransliterationElement'" />
-            -->
             <PdfDownload :targetTranslationRef="'targetTransliterationElement'" />
+            -->
             <i class="bi bi-paint-bucket h2" style="color: rgb(0, 191, 166); cursor: pointer;" @click="showModal"></i>
             <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;"></i>
             <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
@@ -299,7 +298,9 @@
               <div class="card text-bg-light card-body">
                 <!-- Your content here -->
                 <TransliterationActions :targetTransliterationRef="'targetTransliterationElement'" :transliteration="transliteration" @open-modal="openModal" @submit-form="submitForm" />
+                <!--
                 <PdfDownload class="pl-2 pb-2 mt-2 text-left" :targetTransliterationRef="'targetTransliterationElement'" />
+                -->
               </div>
             </div>
             <!-- end toolbar mobile -->
@@ -355,60 +356,102 @@
    </div>
 
    <!-- Bootstrap Modal -->
-   <div class="modal fade" id="styleModal" tabindex="-1" aria-labelledby="styleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-     <div class="modal-content">
-      <div class="modal-header">
-       <h5 class="modal-title" id="styleModalLabel">Customize Your Layout</h5>
-       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div class="modal fade" id="styleModal" tabindex="-1" aria-labelledby="styleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="styleModalLabel">Customize Your Layout</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body text-left">
+            <form>
+              <div class="mb-3">
+                <label for="bgColor" class="form-label">Background Color</label>
+                <input type="color" id="bgColor" v-model="bgColor" class="form-control">
+              </div>
+              <div class="mb-3">
+                <label for="textColor" class="form-label">Text Color</label>
+                <input type="color" id="textColor" v-model="textColor" class="form-control">
+              </div>
+              <div class="mb-3">
+                <label for="fontFamily" class="form-label">Font Family</label>
+                <select id="fontFamily" v-model="fontFamily" class="form-control">
+                  <option v-for="font in fontFamilies" :key="font" :value="font">
+                    {{ font }}
+                  </option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="shadow-dropdown" class="form-label">Shadow Style</label>
+                <select v-model="selectedShadow" id="shadow-dropdown" class="form-control">
+                  <option v-for="shadow in shadows" :key="shadow.name" :value="shadow.style">
+                    {{ shadow.name }}
+                  </option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Font Style</label>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="boldCheckbox" v-model="isBold">
+                  <label class="form-check-label" for="boldCheckbox">
+                    Bold
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="italicCheckbox" v-model="isItalic">
+                  <label class="form-check-label" for="italicCheckbox">
+                    Italic
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="lightCheckbox" v-model="isLight">
+                  <label class="form-check-label" for="lightCheckbox">
+                    Light
+                  </label>
+                </div>
+              </div>
+              <!-- Text Transformation -->
+              <div class="mb-3">
+                <label class="form-label">Text Transformation</label>
+                <select v-model="textTransform" class="form-control">
+                  <option value="none">None</option>
+                  <option value="uppercase">Uppercase</option>
+                  <option value="lowercase">Lowercase</option>
+                  <option value="capitalize">Capitalize</option>
+                </select>
+              </div>
+
+              <!-- Text Alignment -->
+              <div class="mb-3">
+                <label class="form-label">Text Alignment</label>
+                <select v-model="textAlign" class="form-control">
+                  <option value="left">Left</option>
+                  <option value="center">Center</option>
+                  <option value="right">Right</option>
+                  <option value="justify">Justify</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="fontSize" class="form-label">Font Size (px)</label>
+                <input type="number" id="fontSize" v-model.number="fontSize" class="form-control">
+              </div>
+              <div class="mb-3">
+                <label for="fontSpacing" class="form-label">Font Spacing (px)</label>
+                <input type="number" id="fontSpacing" v-model.number="fontSpacing" class="form-control col-md-8">
+              </div>
+            </form>
+            <!-- Success message -->
+            <div v-if="showSuccessMessage" class="alert alert-success" role="alert">
+              Styles have been successfully applied!
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-success" @click="applyCustomStyles">Apply Styles</button>
+          </div>
+        </div>
       </div>
-      <div class="modal-body text-left">
-       <form>
-        <div class="mb-3">
-         <label for="bgColor" class="form-label">Background Color</label>
-         <input type="color" id="bgColor" v-model="bgColor" class="form-control">
-        </div>
-        <div class="mb-3">
-         <label for="textColor" class="form-label">Text Color</label>
-         <input type="color" id="textColor" v-model="textColor" class="form-control">
-        </div>
-        <div class="mb-3">
-         <label for="fontFamily" class="form-label">Font Family</label>
-         <select id="fontFamily" v-model="fontFamily" class="form-control">
-          <option v-for="font in fontFamilies" :key="font" :value="font">
-           {{ font }}
-          </option>
-         </select>
-        </div>
-        <div class="mb-3">
-          <label for="fontFamily" class="form-label">Shadow Style</label>
-          <select v-model="selectedShadow" id="shadow-dropdown" class="form-control">
-            <option v-for="shadow in shadows" :key="shadow.name" :value="shadow.style">
-              {{ shadow.name }}
-            </option>
-          </select>
-        </div>
-        <div class="mb-3">
-         <label for="fontSize" class="form-label">Font Size (px)</label>
-         <input type="number" id="fontSize" v-model.number="fontSize" class="form-control">
-        </div>
-        <div class="mb-3">
-         <label for="fontSpacing" class="form-label">Font Spacing (px)</label>
-         <input type="number" id="fontSpacing" v-model.number="fontSpacing" class="form-control col-md-8">
-        </div>
-       </form>
-       <!-- Success message -->
-       <div v-if="showSuccessMessage" class="alert alert-success" role="alert">
-        Styles have been successfully applied!
-       </div>
-      </div>
-      <div class="modal-footer">
-       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-       <button type="button" class="btn btn-success" @click="applyCustomStyles">Apply Styles</button>
-      </div>
-     </div>
     </div>
-   </div>
   </div>
  </div>
 </div>
@@ -520,56 +563,65 @@ export default {
 
  mounted() {
   this.getSurat(); // Call getSurat to populate the surah list
+  this.initRecognition();
   this.loadSettings();
   const savedSettings = JSON.parse(localStorage.getItem('userStyles'));
   if (savedSettings) {
    this.bgColor = savedSettings.bgColor || '#ffffff';
    this.textColor = savedSettings.textColor || '#000000';
    this.fontFamily = savedSettings.fontFamily || 'Arial, sans-serif';
+   this.textShadow = selectedShadow.textShadow || 'none';
    this.fontSize = savedSettings.fontSize || 1;
    this.fontSpacing = savedSettings.fontSpacing || 1;
+   this.fontWeight = savedSettings.fontWeight || 'none'
   }
  },
  data() {
+  // let fontWeight = this.isLight ? '300' : this.isBold ? 'bold' : 'normal';
+  // let fontStyle = this.isItalic ? 'italic' : 'normal';
+  // let textDecoration = this.isUnderline ? 'underline' : this.isStrikethrough ? 'line-through' : 'none';
+
   return {
     isOpen: false,
-    
-    styles: [{
-     name: 'Default',
-     backgroundColor: '#ffffff',
-     textColor: '#000000'
-    },
-    {
-     name: 'Dyslexia',
-     backgroundColor: '#FDFD96',
-     textColor: '#000080',
-     fontStyle: 'Arial, sans-serif'
-    },
-    {
-     name: 'Dysgraphia',
-     backgroundColor: '#FFFDD0',
-     textColor: '#00008B',
-     fontStyle: "'Arial, sans-serif"
-    },
-    {
-     name: 'Hyperlexia',
-     backgroundColor: '#F5F5DC',
-     textColor: '#06402B',
-     fontStyle: "''Arial, sans-serif"
-    },
-    {
-     name: 'Visual Proccesing disorder',
-     backgroundColor: '#fff',
-     textColor: 'black',
-     fontStyle: 'Arial, sans-serif'
-    },
-    {
-     name: 'ADHD',
-     backgroundColor: '#ADD8E6',
-     textColor: '#696969',
-     fontStyle: "Arial, sans-serif"
-    },
-   ],
+    recognition: null,
+    isListening: false,
+    transcript: '',
+    //  styles: [{
+      //    name: 'Default',
+      //    backgroundColor: '#ffffff',
+      //    textColor: '#000000'
+      //   },
+      //   {
+      //    name: 'Dyslexia',
+      //    backgroundColor: '#FDFD96',
+      //    textColor: '#000080',
+      //    fontStyle: 'Arial, sans-serif'
+      //   },
+      //   {
+      //    name: 'Dysgraphia',
+      //    backgroundColor: '#FFFDD0',
+      //    textColor: '#00008B',
+      //    fontStyle: "'Arial, sans-serif"
+      //   },
+      //   {
+      //    name: 'Hyperlexia',
+      //    backgroundColor: '#F5F5DC',
+      //    textColor: '#06402B',
+      //    fontStyle: "''Arial, sans-serif"
+      //   },
+      //   {
+      //    name: 'Visual Proccesing disorder',
+      //    backgroundColor: '#fff',
+      //    textColor: 'black',
+      //    fontStyle: 'Arial, sans-serif'
+      //   },
+      //   {
+      //    name: 'ADHD',
+      //    backgroundColor: '#ADD8E6',
+      //    textColor: '#696969',
+      //    fontStyle: "Arial, sans-serif"
+      //   },
+      //  ],
    fontFamilies: [
     'Arial, sans-serif',
     'Courier New, Courier, monospace',
@@ -582,6 +634,16 @@ export default {
     'Comic Sans MS, cursive, sans-serif',
     'Helvetica, Arial, sans-serif'
    ],
+    // List of shadow options
+    shadows: [
+      { name: 'None', style: 'none' },
+      { name: 'Small Shadow', style: '1px 1px 2px rgba(0, 0, 0, 0.5)' },
+      { name: 'Medium Shadow', style: '2px 2px 4px rgba(0, 0, 0, 0.5)' },
+      { name: 'Large Shadow', style: '4px 4px 8px rgba(0, 0, 0, 0.5)' },
+      { name: 'Deep Shadow', style: '6px 6px 12px rgba(0, 0, 0, 0.7)' },
+      { name: 'Soft Glow', style: '0px 0px 10px rgba(255, 255, 255, 0.7)' },
+      { name: 'Dark Glow', style: '0px 0px 10px rgba(0, 0, 0, 0.9)' },
+    ],
    // List of shadow options
     shadows: [
       { name: 'None', style: 'none' },
@@ -592,10 +654,11 @@ export default {
       { name: 'Soft Glow', style: '0px 0px 10px rgba(255, 255, 255, 0.7)' },
       { name: 'Dark Glow', style: '0px 0px 10px rgba(0, 0, 0, 0.9)' },
     ],
-   selectedStyle: this.getStoredStyle() || {
-    name: 'Default',
-
-   },
+   selectedStyle: {
+      textColor: '#000',
+      backgroundColor: '#fff',
+    },
+   
    isCollapsed: false,
    showSuccessMessage: false,
    showMessage: false,
@@ -605,8 +668,15 @@ export default {
    fontSize: 16, // in pixels
    fontSpacing: 0, // in pixels
    fontFamily: 'Arial, sans-serif',
-   backgroundColor: '#ffffff',
-   textColor: '#000000',
+    // Font style options
+    isBold: false,
+    isItalic: false,
+    isLight: false,
+    isUnderline: false,
+    isStrikethrough: false,
+    // Text transformation and alignment
+    textTransform: 'none',
+    textAlign: 'left',
    //twitter/whatsapp
    information: {
     translation: '',
@@ -698,19 +768,56 @@ export default {
     color: this.textColor,
     fontFamily: this.fontFamily,
     fontSize: `${this.fontSize}px`,
-    letterSpacing: `${this.fontSpacing}px`
+    letterSpacing: `${this.fontSpacing}px`,
+    fontWeight: this.fontWeight,
+    fontStyle: this.fontStyle,
+    textDecoration: this.textDecoration,
+    textTransform: this.textTransform,
+    textAlign: this.textAlign,
    };
-  },
-  shadowStyle() {
-    return {
-      textShadow: this.selectedShadow,
-      fontSize: '16px',
-      fontWeight: 'bold',
-      color: '#333',
-    };
-  },
+  }
  },
  methods: {
+   initRecognition() {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+      if (!SpeechRecognition) {
+        alert('Your browser does not support Speech Recognition.');
+        return;
+      }
+
+      this.recognition = new SpeechRecognition();
+      this.recognition.lang = 'en-US';
+      this.recognition.interimResults = false;
+      this.recognition.maxAlternatives = 1;
+
+      this.recognition.onresult = (event) => {
+        const result = event.results[0][0].transcript;
+        this.transcript += result + '\n';
+      };
+
+      this.recognition.onerror = (event) => {
+        console.error('Speech Recognition Error:', event.error);
+      };
+
+      this.recognition.onend = () => {
+        this.isListening = false;
+      };
+    },
+    startRecognition() {
+      if (!this.recognition) {
+        this.initRecognition();
+      }
+      this.transcript = ''; // Clear previous transcript
+      this.recognition.start();
+      this.isListening = true;
+    },
+    stopRecognition() {
+      if (this.recognition && this.isListening) {
+        this.recognition.stop();
+        this.isListening = false;
+      }
+    },
    toggleContent() {
       this.isOpen = !this.isOpen; // Toggle the content's visibility
     },

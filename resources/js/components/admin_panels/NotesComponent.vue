@@ -19,10 +19,10 @@
     </div>
 
     <!-- Notes Container -->
-    <div class="container ">
-    <h3 class=" pb-3 text-center">
-      <strong>You have:</strong> <b style="color:rgb(0, 191, 166)">{{ notes.length }}</b> <strong>notes</strong>
-    </h3>
+    <div class="container">
+      <h3 class="pb-3 text-center">
+        <strong>You have:</strong> <b style="color:rgb(0, 191, 166)">{{ notes.length }}</b> <strong>notes</strong>
+      </h3>
       <div class="row">
         <div class="col-md-4 mb-4" v-for="note in notes" :key="note.id">
           <!-- Note Card -->
@@ -35,13 +35,10 @@
               </div>
               <div class="mt-2">
                 <h5><strong>Note:</strong></h5>
-                <!-- Display truncated content while keeping editor styling -->
-                <p>{{ note.ayah_notes }}</p>
+                <p>{{ truncatedHtml(note.ayah_notes) }}</p>
               </div>
               <hr />
-             
               <i class="bi bi-eye-fill h4" style="color:rgb(0, 191, 166); cursor:pointer" @click="viewModal(note)"></i>
-              <!-- <i class="bi bi-pencil-square ml-3 h4" style="color:rgb(0, 191, 166); cursor:pointer" @click="editModal(note)"></i> -->
               <i class="bi bi-trash-fill h4 ml-3" style="color:rgb(0, 191, 166); cursor:pointer" @click="deleteNote(note.id)"></i>
             </div>
           </div>
@@ -60,8 +57,9 @@
           <div class="modal-body">
             <form @submit.prevent="updateNotes">
               <div class="form-group mr-2">
-                <!-- Editor Component -->
+              <!--
                 <Editor editorStyle="height: 320px" v-model="form.ayah_notes" name="ayah_notes" />
+                -->
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -84,32 +82,24 @@
           <div class="modal-body">
             <div class="container">
               <div class="mb-3">
-                <label for="formGroupExampleInput" class="form-label"><strong>Surah Name:</strong></label>
-                <p class="mt-2 text-dark text-left">
-                  {{ form.surah_name }}
-                </p>
+                <label class="form-label"><strong>Surah Name:</strong></label>
+                <p class="mt-2 text-dark text-left">{{ form.surah_name }}</p>
               </div>
               <div class="mb-3">
-                <label for="formGroupExampleInput" class="form-label"><strong>Ayah Verse Arabic:</strong></label>
-                <p class="mt-2 text-dark text-left">
-                  {{ form.ayah_verse_ar }}
-                </p>
+                <label class="form-label"><strong>Ayah Verse Arabic:</strong></label>
+                <p class="mt-2 text-dark text-left">{{ form.ayah_verse_ar }}</p>
               </div>
               <div class="mb-3">
-                <label for="formGroupExampleInput" class="form-label"><strong>English Info:</strong></label>
-                <p class="mt-2 text-dark text-left">
-                  {{ form.ayah_verse_en }}
-                </p>
+                <label class="form-label"><strong>English Info:</strong></label>
+                <p class="mt-2 text-dark text-left">{{ form.ayah_verse_en }}</p>
               </div>
               <div class="mb-3">
-                <label for="formGroupExampleInput" class="form-label"><strong>Notes:</strong></label>
+                <label class="form-label"><strong>Notes:</strong></label>
                 <div class="mt-2 text-dark text-left" v-html="form.ayah_notes"></div>
               </div>
               <div class="mb-3">
-                <label for="formGroupExampleInput" class="form-label"><strong>Date Created:</strong></label>
-                <p class="mt-2 text-dark text-left">
-                  {{ extractDate(form.created_at) }}
-                </p>
+                <label class="form-label"><strong>Date Created:</strong></label>
+                <p class="mt-2 text-dark text-left">{{ extractDate(form.created_at) }}</p>
               </div>
             </div>
           </div>
@@ -119,12 +109,15 @@
         </div>
       </div>
     </div>
+
+
+    
   </div>
 </template>
 
 <script>
-import axios from "axios";
-import Swal from "sweetalert2";
+import axios from 'axios';
+import Swal from 'sweetalert2';
 import { QuillEditor as Editor } from '@vueup/vue-quill';
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
 
@@ -132,30 +125,6 @@ export default {
   components: {
     Editor
   },
-  mounted() {
-    fetch('/api/userId')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Failed to fetch user ID');
-        }
-        return response.json();
-      })
-      .then(data => {
-        const userId = data.userId; // Assuming the API returns the user ID in a field called userId
-        console.log('UserId:', userId);
-
-        if (userId) {
-          this.userId = userId;
-          this.fetchNotes(this.userId);
-        } else {
-          console.error('User ID not found');
-        }
-      })
-      .catch(error => {
-        console.error('Error fetching user ID:', error);
-      });
-  },
-
   data() {
     return {
       notes: [],
@@ -168,9 +137,31 @@ export default {
         ayah_notes: "",
         created_at: ""
       },
+      
     };
   },
-
+  mounted() {
+    fetch('/api/userId')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch user ID');
+        }
+        return response.json();
+      })
+      .then(data => {
+        const userId = data.userId;
+        console.log('UserId:', userId);
+        if (userId) {
+          this.userId = userId;
+          this.fetchNotes(this.userId);
+        } else {
+          console.error('User ID not found');
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching user ID:', error);
+      });
+  },
   methods: {
     extractDate(dateTimeString) {
       return dateTimeString.split('T')[0];
@@ -187,13 +178,9 @@ export default {
       }
     },
     viewModal(note) {
-      this.form = {
-        ...note
-      }; // Make sure form is populated
+      this.form = { ...note };
       $('#viewNotes').modal('show');
     },
-
-    // Method to truncate HTML content
     truncatedHtml(html, maxLength = 150) {
       const div = document.createElement("div");
       div.innerHTML = html;
@@ -205,7 +192,6 @@ export default {
       }
       return html;
     },
-
     updateNotes() {
       Swal.fire({
         title: "Are you sure you want to update?",
@@ -230,7 +216,6 @@ export default {
               if (editNotesModal) {
                 editNotesModal.hide();
               }
-              // Ensure any modal overlay is removed
               document.body.classList.remove('modal-open');
               const modals = document.querySelectorAll('.modal-backdrop');
               modals.forEach(modal => modal.remove());
@@ -269,19 +254,8 @@ export default {
         }
       });
     },
-    openEditModal(note) {
-      this.selectedNote = note;
-      this.form.ayah_notes = note.content; // Assume the note content is stored in note.content
-      const editModal = new bootstrap.Modal(document.getElementById('editNotes'));
-      editModal.show();
-    },
-    editModal(note) {
-      this.form = {
-        ...note
-      }; // Make sure form is populated
-      $('#editNotes').modal('show');
-    },
-  },
+    
+  }
 };
 </script>
 

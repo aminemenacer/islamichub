@@ -11,8 +11,13 @@
             <div class="row container mt-3">
               <h5 class="text-left pb-2 font-weight-bold">Notes & Reflections</h5>
               <div class="col">
+                <h1>Speech to Text</h1>
+                <button @click="startRecognition">Start Recognition</button>
+                <button @click="stopRecognition">Stop Recognition</button>
+                <p v-if="isListening">Listening...</p>
+                <textarea v-model="form.ayah_notes" placeholder="Your speech will appear here..."></textarea>
                 <!-- <Editor v-model="form.ayah_notes" editorStyle="height: 400px" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah."></Editor> -->
-                <textarea v-model="form.ayah_notes" class="form-control container mb-3" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah." rows="8"></textarea>
+                <!-- <textarea v-model="form.ayah_notes" class="form-control container mb-3" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah." rows="8"></textarea> -->
               </div>
             </div>
             <div class="modal-footer">
@@ -20,6 +25,7 @@
               <button type="submit" class="btn btn-success">Submit</button>
             </div>
           </form>
+          
         </div>
       </div>
     </div>
@@ -50,8 +56,13 @@ export default {
   components:{
     Editor
   },
+  mounted() {
+    this.initRecognition();
+  },
   data() {
     return {
+      recognition: null,
+      transcript: '',
       form: {
         ayah_notes: "",
         surah_name: ""
@@ -59,6 +70,46 @@ export default {
     };
   },
   methods: {
+    initRecognition() {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+      if (!SpeechRecognition) {
+        alert('Your browser does not support Speech Recognition.');
+        return;
+      }
+
+      this.recognition = new SpeechRecognition();
+      this.recognition.lang = 'en-US';
+      this.recognition.interimResults = false;
+      this.recognition.maxAlternatives = 1;
+
+      this.recognition.onresult = (event) => {
+        const result = event.results[0][0].transcript;
+        this.transcript += result + '\n';
+      };
+
+      this.recognition.onerror = (event) => {
+        console.error('Speech Recognition Error:', event.error);
+      };
+
+      this.recognition.onend = () => {
+        this.isListening = false;
+      };
+    },
+    startRecognition() {
+      if (!this.recognition) {
+        this.initRecognition();
+      }
+      this.transcript = ''; // Clear previous transcript
+      this.recognition.start();
+      this.isListening = true;
+    },
+    stopRecognition() {
+      if (this.recognition && this.isListening) {
+        this.recognition.stop();
+        this.isListening = false;
+      }
+    },
     createNote() {
       const { ayah } = this.information;
       if (!ayah || !ayah.surah) {
