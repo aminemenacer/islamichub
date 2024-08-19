@@ -437,20 +437,16 @@
                     </select>
                   </div>
                 </div>
-                <!--
                 <div class="col-md-6">
                   <div class="mb-3">
-                    <label class="form-label">Text Alignment</label>
-                    <select v-model="textAlign" class="form-control">
-                      <option value="left">Left</option>
-                      <option value="center">Center</option>
-                      <option value="right">Right</option>
-                      <option value="justify">Justify</option>
+                    <label for="fontFamily" class="form-label">Font Family</label>
+                    <select id="fontFamily" v-model="fontFamily" class="form-control">
+                      <option v-for="font in fontFamilies" :key="font" :value="font">
+                        {{ font }}
+                      </option>
                     </select>
                   </div>
                 </div>
-                -->
-
                 <!-- Row 5: Font Size and Font Spacing -->
                 <div class="col-md-6">
                   <div class="mb-3">

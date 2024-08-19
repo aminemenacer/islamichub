@@ -3,14 +3,31 @@
  <div class="modal-dialog modal-lg">
   <div class="modal-content">
    <div class="modal-header">
-    <h5 class="modal-title" id="exampleModalLabel1"><b>Write a Note</b></h5>
+    <h5 class="modal-title" id="exampleModalLabel1"><b>Notes & Reflections</b></h5>
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
    </div>
    <div class="modal-body">
+    <p class="text-secondary">Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah.</p>
     <form @submit.prevent="createNote">
-     <div class="row container mt-3">
-      <h5 class="text-left pb-2 font-weight-bold">Notes & Reflections</h5>
-      <div class="col">
+     <div class="row">
+      <div class="form-check col-md-6">
+       <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" @click="toggleEditor" checked>
+       <label class="form-check-label" for="exampleRadios1">
+        Audio Note Recording
+       </label>
+      </div>
+      <div class="form-check col-md-6">
+       <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" @click="toggleEditor" value="option2">
+       <label class="form-check-label" for="exampleRadios2">
+        Keyboard
+       </label>
+      </div>
+     </div>
+
+     <!-- Conditional Rendering of Editor or Textarea -->
+     <div class="mt-3">
+      <!-- Recording Buttons and Status -->
+      <div class="col mt-3" v-if="!isEditorActive">
        <button type="button" class="btn btn-success" @click="startRecognition" :disabled="isListening">
         Start Recording
        </button>
@@ -18,9 +35,11 @@
         Stop Recording
        </button>
        <p v-if="isListening">Listening...</p>
-       <textarea v-model="form.ayah_notes" class="form-control" rows="5" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah."></textarea>
+       <textarea v-if="!isEditorActive" v-model="form.ayah_notes" class="form-control pb-2" rows="5" placeholder="Your speech will appear here..."></textarea>
       </div>
+      <Editor v-if="isEditorActive" v-model="form.ayah_notes" editorStyle="height: 400px" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah."></Editor>
      </div>
+
      <div class="modal-footer">
       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       <button type="submit" class="btn btn-success">Submit</button>
@@ -35,6 +54,8 @@
 <script>
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import Editor from 'primevue/editor';
+
 import {
  Modal
 } from 'bootstrap';
@@ -42,6 +63,7 @@ import {
 export default {
  data() {
   return {
+   isEditorActive: false,
    recognition: null,
    isListening: false,
    form: {
@@ -49,10 +71,16 @@ export default {
    }
   };
  },
+ components: {
+  Editor
+ },
  mounted() {
   this.initRecognition();
  },
  methods: {
+  toggleEditor() {
+   this.isEditorActive = !this.isEditorActive;
+  },
   initRecognition() {
    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
