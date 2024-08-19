@@ -355,7 +355,7 @@
     </div>
    </div>
 
-   <!-- Bootstrap Modal -->
+    <!-- Bootstrap Modal -->
     <div class="modal fade" id="styleModal" tabindex="-1" aria-labelledby="styleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -365,83 +365,118 @@
           </div>
           <div class="modal-body text-left">
             <form>
-              <div class="mb-3">
-                <label for="styleSelect" class="form-label">Select Default Style</label>
-                <select id="styleSelect" v-model="selectedStyle" @change="applyStyle" class="form-control">
-                  <option v-for="style in defaultStyles" :key="style.name" :value="style">
-                    {{ style.name }}
-                  </option>
-                </select>
-              </div>
-              <hr>
-              <div class="mb-3">
-                <label for="bgColor" class="form-label">Background Color</label>
-                <input type="color" id="bgColor" v-model="bgColor" class="form-control">
-              </div>
-              <div class="mb-3">
-                <label for="textColor" class="form-label">Text Color</label>
-                <input type="color" id="textColor" v-model="textColor" class="form-control">
-              </div>
-              
-              <div class="mb-3">
-                <label for="shadow-dropdown" class="form-label">Shadow Style</label>
-                <select v-model="selectedShadow" id="shadow-dropdown" class="form-control">
-                  <option v-for="shadow in shadows" :key="shadow.name" :value="shadow.style">
-                    {{ shadow.name }}
-                  </option>
-                </select>
-              </div>
-              <div class="mb-3">
-                <label class="form-label">Font Style</label>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="boldCheckbox" v-model="isBold">
-                  <label class="form-check-label" for="boldCheckbox">
-                    Bold
-                  </label>
+              <div class="row">
+                <!-- Row 1: Select Default Style and Background Color -->
+                <div class="col-md-12">
+                  <div class="mb-3">
+                    <label for="styleSelect" class="form-label">Select Default Style</label>
+                    <select
+                      id="styleSelect"
+                      v-model="selectedStyle"
+                      @change="applyStyle"
+                      class="form-control"
+                    >
+                      <option v-for="style in defaultStyles" :key="style.name" :value="style">
+                        {{ style.name }}
+                      </option>
+                    </select>
+                  </div>
                 </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="italicCheckbox" v-model="isItalic">
-                  <label class="form-check-label" for="italicCheckbox">
-                    Italic
-                  </label>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="bgColor" class="form-label">Background Color</label>
+                    <input type="color" id="bgColor" v-model="bgColor" class="form-control" />
+                  </div>
                 </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="lightCheckbox" v-model="isLight">
-                  <label class="form-check-label" for="lightCheckbox">
-                    Light
-                  </label>
-                </div>
-              </div>
-              <!-- Text Transformation -->
-              <div class="mb-3">
-                <label class="form-label">Text Transformation</label>
-                <select v-model="textTransform" class="form-control">
-                  <option value="none">None</option>
-                  <option value="uppercase">Uppercase</option>
-                  <option value="lowercase">Lowercase</option>
-                  <option value="capitalize">Capitalize</option>
-                </select>
-              </div>
 
-              <!-- Text Alignment -->
-              <div class="mb-3">
-                <label class="form-label">Text Alignment</label>
-                <select v-model="textAlign" class="form-control">
-                  <option value="left">Left</option>
-                  <option value="center">Center</option>
-                  <option value="right">Right</option>
-                  <option value="justify">Justify</option>
-                </select>
-              </div>
-              <div class="mb-3">
-                <label for="fontSize" class="form-label">Font Size (px)</label>
-                <input type="number" id="fontSize" v-model.number="fontSize" class="form-control">
-              </div>
-              <div class="mb-3">
-                <label for="fontSpacing" class="form-label">Font Spacing (px)</label>
-                <input type="number" id="fontSpacing" v-model.number="fontSpacing" class="form-control col-md-8">
+                <!-- Row 2: Text Color and Shadow Style -->
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="textColor" class="form-label">Text Color</label>
+                    <input type="color" id="textColor" v-model="textColor" class="form-control" />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="shadow-dropdown" class="form-label">Shadow Style</label>
+                    <select v-model="selectedShadow" id="shadow-dropdown" class="form-control">
+                      <option v-for="shadow in shadows" :key="shadow.name" :value="shadow.style">
+                        {{ shadow.name }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Row 3: Font Style Checkboxes -->
+                <div class="col-md-6">
+                  <div class="mb-3" >
+                    <label class="form-label">Font Style</label>
+                    <div class="form-check" style="display:flex">
+                      <input class="form-check-input" type="checkbox" id="boldCheckbox" v-model="isBold" />
+                      <label class="form-check-label" for="boldCheckbox">Bold</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="italicCheckbox" v-model="isItalic" />
+                      <label class="form-check-label" for="italicCheckbox">Italic</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="lightCheckbox" v-model="isLight" />
+                      <label class="form-check-label" for="lightCheckbox">Light</label>
+                    </div>
+                  </div>
+                </div>
+                <!-- Row 4: Text Transformation and Text Alignment -->
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label class="form-label">Text Transformation</label>
+                    <select v-model="textTransform" class="form-control">
+                      <option value="none">None</option>
+                      <option value="uppercase">Uppercase</option>
+                      <option value="lowercase">Lowercase</option>
+                      <option value="capitalize">Capitalize</option>
+                    </select>
+                  </div>
+                </div>
+                <!--
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label class="form-label">Text Alignment</label>
+                    <select v-model="textAlign" class="form-control">
+                      <option value="left">Left</option>
+                      <option value="center">Center</option>
+                      <option value="right">Right</option>
+                      <option value="justify">Justify</option>
+                    </select>
+                  </div>
+                </div>
+                -->
+
+                <!-- Row 5: Font Size and Font Spacing -->
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="fontSize" class="form-label">Font Size (px)</label>
+                    <input
+                      type="number"
+                      id="fontSize"
+                      v-model.number="fontSize"
+                      class="form-control"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="fontSpacing" class="form-label">Font Spacing (px)</label>
+                    <input
+                      type="number"
+                      id="fontSpacing"
+                      v-model.number="fontSpacing"
+                      class="form-control"
+                    />
+                  </div>
+                </div>
               </div>
             </form>
+
             <!-- Success message -->
             <div v-if="showSuccessMessage" class="alert alert-success" role="alert">
               Styles have been successfully applied!
@@ -581,6 +616,7 @@ export default {
     transcript: '',
     selectedStyle: null,
     defaultStyles: [
+      
       {
         name: 'Default',
         backgroundColor: '#ffffff',
@@ -859,10 +895,18 @@ export default {
       defaultStyles: this.defaultStyles
     };
     localStorage.setItem('textStyles', JSON.stringify(settings));
-    // Show success message for a short duration
+
+    // Show success message
     this.showSuccessMessage = true;
+
+    // Hide the success message and close the modal after 3 seconds
     setTimeout(() => {
       this.showSuccessMessage = false;
+
+      // Close the modal using Bootstrap's JavaScript API
+      const modalElement = document.getElementById('styleModal');
+      const modalInstance = bootstrap.Modal.getInstance(modalElement);
+      modalInstance.hide();
     }, 3000);
   },
   loadSavedStyles() {
