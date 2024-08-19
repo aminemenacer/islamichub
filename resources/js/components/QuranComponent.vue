@@ -357,7 +357,7 @@
 
    <!-- Bootstrap Modal -->
     <div class="modal fade" id="styleModal" tabindex="-1" aria-labelledby="styleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
+      <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="styleModalLabel">Customize Your Layout</h5>
@@ -366,6 +366,15 @@
           <div class="modal-body text-left">
             <form>
               <div class="mb-3">
+                <label for="styleSelect" class="form-label">Select Default Style</label>
+                <select id="styleSelect" v-model="selectedStyle" @change="applyStyle" class="form-control">
+                  <option v-for="style in defaultStyles" :key="style.name" :value="style">
+                    {{ style.name }}
+                  </option>
+                </select>
+              </div>
+              <hr>
+              <div class="mb-3">
                 <label for="bgColor" class="form-label">Background Color</label>
                 <input type="color" id="bgColor" v-model="bgColor" class="form-control">
               </div>
@@ -373,14 +382,7 @@
                 <label for="textColor" class="form-label">Text Color</label>
                 <input type="color" id="textColor" v-model="textColor" class="form-control">
               </div>
-              <div class="mb-3">
-                <label for="fontFamily" class="form-label">Font Family</label>
-                <select id="fontFamily" v-model="fontFamily" class="form-control">
-                  <option v-for="font in fontFamilies" :key="font" :value="font">
-                    {{ font }}
-                  </option>
-                </select>
-              </div>
+              
               <div class="mb-3">
                 <label for="shadow-dropdown" class="form-label">Shadow Style</label>
                 <select v-model="selectedShadow" id="shadow-dropdown" class="form-control">
@@ -565,6 +567,10 @@ export default {
   this.getSurat(); // Call getSurat to populate the surah list
   this.initRecognition();
   this.loadSavedStyles();
+  if (this.defaultStyles.length > 0) {
+    this.selectedStyle = this.defaultStyles[0];
+    this.applyStyle();
+  }
  },
  data() {
 
@@ -573,42 +579,44 @@ export default {
     recognition: null,
     isListening: false,
     transcript: '',
-    //  styles: [{
-      //    name: 'Default',
-      //    backgroundColor: '#ffffff',
-      //    textColor: '#000000'
-      //   },
-      //   {
-      //    name: 'Dyslexia',
-      //    backgroundColor: '#FDFD96',
-      //    textColor: '#000080',
-      //    fontStyle: 'Arial, sans-serif'
-      //   },
-      //   {
-      //    name: 'Dysgraphia',
-      //    backgroundColor: '#FFFDD0',
-      //    textColor: '#00008B',
-      //    fontStyle: "'Arial, sans-serif"
-      //   },
-      //   {
-      //    name: 'Hyperlexia',
-      //    backgroundColor: '#F5F5DC',
-      //    textColor: '#06402B',
-      //    fontStyle: "''Arial, sans-serif"
-      //   },
-      //   {
-      //    name: 'Visual Proccesing disorder',
-      //    backgroundColor: '#fff',
-      //    textColor: 'black',
-      //    fontStyle: 'Arial, sans-serif'
-      //   },
-      //   {
-      //    name: 'ADHD',
-      //    backgroundColor: '#ADD8E6',
-      //    textColor: '#696969',
-      //    fontStyle: "Arial, sans-serif"
-      //   },
-      //  ],
+    selectedStyle: null,
+    defaultStyles: [
+      {
+        name: 'Default',
+        backgroundColor: '#ffffff',
+        textColor: '#000000'
+      },
+      {
+        name: 'Dyslexia',
+        backgroundColor: '#FDFD96',
+        textColor: '#000080',
+        fontStyle: 'Arial, sans-serif'
+      },
+      {
+        name: 'Dysgraphia',
+        backgroundColor: '#FFFDD0',
+        textColor: '#00008B',
+        fontStyle: "'Arial, sans-serif"
+      },
+      {
+        name: 'Hyperlexia',
+        backgroundColor: '#F5F5DC',
+        textColor: '#06402B',
+        fontStyle: "''Arial, sans-serif"
+      },
+      {
+        name: 'Visual Proccesing disorder',
+        backgroundColor: '#fff',
+        textColor: 'black',
+        fontStyle: 'Arial, sans-serif'
+      },
+      {
+        name: 'ADHD',
+        backgroundColor: '#ADD8E6',
+        textColor: '#696969',
+        fontStyle: "Arial, sans-serif"
+      },
+    ],
    fontFamilies: [
     'Arial, sans-serif',
     'Courier New, Courier, monospace',
@@ -760,6 +768,7 @@ export default {
         textDecoration: this.isUnderline ? 'underline' : this.isStrikethrough ? 'line-through' : 'none',
         textTransform: this.textTransform,
         textAlign: this.textAlign,
+        defaultStyles: this.defaultStyles
       };
     },
   },
@@ -824,6 +833,13 @@ export default {
    modal.show();
    this.successMessage = ''; // Reset the success message when the modal is opened
   },
+  applyStyle() {
+    if (this.selectedStyle) {
+      this.bgColor = this.selectedStyle.backgroundColor || this.bgColor;
+      this.textColor = this.selectedStyle.textColor || this.textColor;
+      this.fontFamily = this.selectedStyle.fontStyle || this.fontFamily;
+    }
+  },
   applyCustomStyles() {
     // Save settings to localStorage
     const settings = {
@@ -840,9 +856,9 @@ export default {
       isStrikethrough: this.isStrikethrough,
       textTransform: this.textTransform,
       textAlign: this.textAlign,
+      defaultStyles: this.defaultStyles
     };
     localStorage.setItem('textStyles', JSON.stringify(settings));
-
     // Show success message for a short duration
     this.showSuccessMessage = true;
     setTimeout(() => {
@@ -865,6 +881,7 @@ export default {
         this.isStrikethrough = savedSettings.isStrikethrough || this.isStrikethrough;
         this.textTransform = savedSettings.textTransform || this.textTransform;
         this.textAlign = savedSettings.textAlign || this.textAlign;
+        this.defaultStyles = savedSettings.defaultStyles || this.defaultStyles;
       }
     },
   

@@ -6,8 +6,6 @@
    <p class="text-left ayah-translation text-secondary" style="line-height: 1.6em; cursor: pointer;">
     <a href="/bookmarks" class="link-darkgrey-underline">View bookmarks</a>
    </p>
-  </div>
-  <div class="col-md-4">
    <p class="text-left ayah-translation text-secondary" style="line-height: 1.6em; cursor: pointer;">
     <a href="/notes" class="link-darkgrey-underline">View Notes</a>
    </p>
