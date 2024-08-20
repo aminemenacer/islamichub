@@ -3,6 +3,7 @@
  <div class="pt-3 text-center">
   <Title v-if="information == null && dropdownHidden" />
   <search-form :surat="surat" @update-results="handleUpdateResults" @clear-results="handleClearResults" @select-surah="handleSelectSurah" />
+  <VerseModal />
   <custom-surah-selection :customSurat="customSuratList" v-model="selectedSurah"></custom-surah-selection>
  </div>
 
@@ -14,7 +15,7 @@
 
    <SurahDropdown :selectedSurah="selectedSurah" :filteredSurah="filteredSurah" :surat="surat" @update:selectedSurah="updateSelectedSurah" @change="getAyat" />
    <AyahDropdown class="desktop-hidden" :selectedSurahId="selectedSurahId" :dropdownHidden="dropdownHidden" @update-information="updateInformation" @update-tafseer="updateTafseer" v-if="ayah == null && !dropdownHidden" />
-
+   
    <!-- List of Ayat for Surah (desktop) -->
    <div class="tab-content hide-on-mobile-tablet" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" v-if="ayah == null">
@@ -155,7 +156,7 @@
         
 
         <!-- toolbar mobile -->
-        <div v-if="isOpen" class="collapse-content mobile-only" style="background:background-color: rgba(0, 191, 166, 0.452);">
+        <div v-if="isOpen" class="collapse-content mobile-only" style="background-color: rgba(0, 191, 166, 0.452);">
           <div class="card text-bg-light card-body" >
             <!-- Your content here -->
             <TranslationActions class="" :targetTranslationRef="'targetTranslationElement'" :translation="translation" @open-modal="openModal" @submit-form="submitForm" />
@@ -538,8 +539,9 @@ import TransliterationActions from './TransliterationActions.vue'
 import SpeechRecognition from './translation/features/speech_recognition/SpeechRecognition.vue';
 import ColorPicker from './color_picker/ColorPicker.vue';
 import FontStyleSelector from './FontStyleSelector.vue'
-import SpeechToText from './SpeechToText.vue';
+import SpeechToText from './SpeechToText.vue'
 import PdfDownload from './pdf/PdfDownload.vue'
+import VerseModal from './translation/VerseModal.vue'
 
 export default {
  name: 'QuranComponent',
@@ -591,7 +593,8 @@ export default {
   SpeechRecognition,
   FontStyleSelector,
   SpeechToText,
-  PdfDownload
+  PdfDownload,
+  VerseModal,
  },
 
  mounted() {
@@ -612,7 +615,6 @@ export default {
     transcript: '',
     selectedStyle: null,
     defaultStyles: [
-      
       {
         name: 'Default',
         backgroundColor: '#ffffff',
