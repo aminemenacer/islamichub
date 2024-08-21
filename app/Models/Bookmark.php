@@ -3,12 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Bookmark extends Model
 {
     protected $fillable = [
-        'title', 'url', 'surah_name', 'ayah_num', 
-        'ayah_verse_ar', 'ayah_verse_en', 'folder_id', 'user_id'
+        'surah_name', 'ayah_num', 'ayah_verse_ar', 'ayah_verse_en', 'folder_id', 'user_id'
     ];
 
     public function folder()
@@ -21,4 +21,5 @@ class Bookmark extends Model
         return $this->belongsTo(User::class);
     }
 }
+
 

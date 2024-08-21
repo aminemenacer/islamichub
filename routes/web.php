@@ -40,11 +40,12 @@ Route::get('api/userId', [UserController::class, 'getUserId']);
 
 Route::middleware(['auth'])->group(function () {
     //bookmark
-    Route::post('/bookmarks', [BookmarkController::class, 'store']);
     Route::get('/bookmarks', [BookmarkController::class, 'index']);
-    Route::get('api/fetch-bookmarks', [BookmarkController::class, 'getBookmarks']);
-    Route::delete('api/delete-bookmarks/{id}',  [BookmarkController::class, 'deleteBookmarks']);
+    Route::post('/bookmarks', [BookmarkController::class, 'store']);
     Route::get('api/fetch-bookmarks/{userId}', [BookmarkController::class, 'getBookmarks']);
+    Route::get('api/fetch-bookmarks/folder/{folderId}', [BookmarkController::class, 'getBookmarksByFolder']);
+    Route::delete('api/delete-bookmarks/{id}', [BookmarkController::class, 'deleteBookmarks']);
+    Route::get('/folders/{folderId}/bookmarks', [FolderController::class, 'getBookmarksByFolder']);
 
 
     // notes
@@ -85,8 +86,8 @@ Route::get('/welcome', function () {
 Route::get('/folders', [FolderController::class, 'index']);
 Route::post('/folders', [FolderController::class, 'store']);
 Route::put('/folders/{id}', [FolderController::class, 'update']);
-Route::delete('/folders/{id}', [FolderController::class, 'destroy']);
-
+Route::delete('/folders/{id}', [FolderController::class, 'delete']);
+Route::get('/folders/{folderId}/bookmarks', [BookmarkController::class, 'getBookmarksByFolder']);
 
 // Route for fetching verses
 Route::get('/verses', [VerseController::class, 'getVerses']);

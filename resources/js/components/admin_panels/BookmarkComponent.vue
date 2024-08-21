@@ -2,51 +2,63 @@
 <div id="app">
  <h2 class="pt-4 pb-3 text-center"><strong>Bookmarks</strong></h2>
 
- <!-- Container visible only on mobile screens -->
- <div class="container text-center mt-3 d-md-none">
-  <div class="row pb-2  text-center">
-   <div class="col">
-    <span class="badge h3" style="width:100%;font-size:18px;border-radius:10px; color:#3D8F67;background:#d1f4d0">
-     <a href="/notes" style="text-decoration:none;color:#3D8F67;background:#d1f4d0">Notes</a>
-    </span>
-   </div>
-   
-   <div class="col">
-    <span class="badge h3" style="width:100%;font-size:18px;border-radius:10px; color:#0263FF;background:#c2d8fb">
-     <a href="/home" style="text-decoration:none;color:#0263FF;background:#c2d8fb">Home</a>
-    </span>
+ <!-- Create Folder Modal -->
+ <div class="modal fade" id="createFolderModal" tabindex="-1" aria-labelledby="createFolderModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+   <div class="modal-content">
+    <div class="modal-header">
+     <h5 class="modal-title" id="createFolderModalLabel">Create New Folder</h5>
+     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+     <form @submit.prevent="createFolder">
+      <div class="mb-3">
+       <label for="folderName" class="form-label">Folder Name</label>
+       <input type="text" id="folderName" v-model="newFolderName" class="form-control" required />
+      </div>
+      <button type="submit" class="btn btn-primary">Create Folder</button>
+     </form>
+    </div>
    </div>
   </div>
  </div>
 
+ <!-- Folder Selection -->
+ <button class="btn btn-success" @click="openCreateFolderModal">Create New Folder</button>
+ <button class="btn btn-info" @click="fetchFolders">Refresh Folders</button>
 
- <!-- Bookmarks Container -->
- <div class="container ">
-  <h3 class="pb-3 text-center">
-    <strong>You have:</strong> <b style="color:rgb(0, 191, 166)">{{ bookmarks.length }}</b> <strong>bookmarks</strong>
-  </h3>
+ <div class="mt-3">
+  <h3>Select a Folder</h3>
+  <ul class="list-group">
+   <li class="list-group-item d-flex justify-content-between align-items-center" v-for="folder in folders" :key="folder.id">
+    <button class="btn btn-link" @click="selectFolder(folder.id)">
+     {{ folder.name }}
+    </button>
+    <button class="btn btn-danger btn-sm" @click="confirmDeleteFolder(folder.id)">
+     Delete
+    </button>
+   </li>
+  </ul>
+ </div>
+
+ <!-- Display Bookmarks -->
+ <div v-if="selectedFolderId">
+  <h3 class="pt-3">Bookmarks in Selected Folder</h3>
   <div class="row">
    <div class="col-md-4 mb-4" v-for="bookmark in bookmarks" :key="bookmark.id">
-    <!-- Bookmark Card -->
     <div class="card" style="border-radius:8px;padding:10px; border: 2px solid rgba(0, 191, 166);">
      <div class="card-body">
-      <!-- Bookmark details -->
-      <!-- Truncated text example -->
       <div class="truncate">
-       <h5> <strong>Surah Name:</strong></h5>
-       {{ truncatedText (bookmark.surah_name) }}
+       <h5><strong>Surah Name:</strong></h5>
+       {{ truncatedText(bookmark.surah_name) }}
       </div>
-      <!-- End of truncated text -->
       <div class="mt-2">
        <h5><strong>Information:</strong></h5>
-       {{ truncatedText (bookmark.ayah_verse_en) }}
+       {{ truncatedText(bookmark.ayah_verse_en) }}
       </div>
       <hr />
-      <!-- Icons for actions -->
-      <i class="bi bi-eye-fill h4 " style="color:rgb(0, 191, 166); cursor:pointer" data-bs-toggle="modal" data-bs-target="#viewBookmark" @click="viewModal(bookmark)">
-      </i>
-      <i class="bi bi-trash-fill h4 ml-3" style="color:rgb(0, 191, 166); cursor:pointer" @click="deleteBookmark(bookmark.id)">
-      </i>
+      <i class="bi bi-eye-fill h4" style="color:rgb(0, 191, 166); cursor:pointer" @click="viewModal(bookmark)"></i>
+      <i class="bi bi-trash-fill h4 ml-3" style="color:rgb(0, 191, 166); cursor:pointer" @click="deleteBookmark(bookmark.id)"></i>
      </div>
     </div>
    </div>
@@ -54,185 +66,126 @@
  </div>
 
  <!-- View Bookmark Modal -->
- <div class="modal fade" id="viewBookmark" tabindex="-1" aria-labelledby="viewBookmarkLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-   <div class="modal-content">
-    <div class="modal-header">
-     <h5 class="modal-title" id="viewBookmarkLabel">View Bookmark</h5>
-     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-    </div>
-    <div class="modal-body">
-     <form class="container">
-      <div class="mb-3 container">
-        <label for="formGroupExampleInput" class="form-label"><strong>Surah Name:</strong></label>
-        <p class="mt-2 text-dark text-left">
-        {{ form.surah_name }}
-       </p>
-      </div>
-      <div class="mb-3 container">
-        <label for="formGroupExampleInput" class="form-label"><strong>Arabic Verse:</strong></label>
-        <p class="mt-2 text-dark text-left">
-        {{ form.ayah_verse_ar }}
-       </p>
-      </div>
-      <div class="mb-3 container">
-        <label for="formGroupExampleInput" class="form-label"><strong>English Info:</strong></label>
-        <p class="mt-2 text-dark text-left">
-        {{ form.ayah_verse_en }}
-       </p>
-      </div>
-      <div class="mb-3 container">
-        <label for="formGroupExampleInput" class="form-label"><strong>Date Created:</strong></label>
-        <p class="mt-2 text-dark text-left">
-          {{ extractDate(form.created_at) }}
-        </p>
-      </div>
-     </form>
-    </div>
-    <div class="modal-footer">
-     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-    </div>
-   </div>
-  </div>
- </div>
+ <!-- (Your existing view modal code) -->
 </div>
 </template>
 
 <script>
-import axios from "axios";
-import {
- FilterMatchMode
-} from "primevue/api";
+import axios from 'axios';
 
 export default {
- mounted() {
-  fetch("/api/userId")
-   .then((response) => {
-    if (!response.ok) {
-     throw new Error("Failed to fetch user ID");
-    }
-    return response.json();
-   })
-   .then((data) => {
-    const userId = data.userId; // Assuming the API returns the user ID in a field called userId
-    console.log("UserId:", userId);
-
-    if (userId) {
-     this.userId = userId;
-     this.fetchBookmarks(this.userId);
-    } else {
-     console.error("User ID not found");
-    }
-   })
-   .catch((error) => {
-    console.error("Error fetching user ID:", error);
-   });
- },
  data() {
   return {
+   folders: [],
    bookmarks: [],
-   form: new Form({
-    id: "",
-    ayah_num: "",
-    ayah_text: "",
-    created_at: "",
-    surah_name: "",
-    ayah_num: "",
-    ayah_verse_ar: "",
-    ayah_verse_en: "",
-    ayah_notes: "",
-    created_at: ""
-   }),
-   maxLength: 70, // Set your desired max length
+   selectedFolderId: null,
+   newFolderName: ''
   };
  },
- 
+
+ mounted() {
+  this.fetchFolders();
+ },
+
  methods: {
-   extractDate(dateTimeString) {
-      return dateTimeString.split('T')[0];
-    },
-  async fetchBookmarks(userId) {
+  async fetchFolders() {
    try {
-    const response = await fetch(`/api/fetch-bookmarks/${userId}`);
-    if (!response.ok) {
-     throw new Error("Network response was not ok");
-    }
-    this.bookmarks = await response.json();
+    const response = await axios.get('/folders');
+    this.folders = response.data.folders;
    } catch (error) {
-    console.error(
-     "There was a problem with the fetch operation:",
-     error
-    );
+    console.error('Error fetching folders:', error);
    }
   },
-  truncatedText(text) {
-    if (!text) return '';
-    return text.length > this.maxLength
-      ? text.substring(0, this.maxLength) + '...'
-      : text;
+
+  async createFolder() {
+   try {
+    const response = await axios.post('/folders', {
+     name: this.newFolderName
+    });
+    this.folders.push(response.data.folder);
+    this.newFolderName = '';
+    const modal = bootstrap.Modal.getInstance(document.getElementById('createFolderModal'));
+    if (modal) {
+     modal.hide();
+    }
+   } catch (error) {
+    console.error('Error creating folder:', error);
+   }
   },
+
+  async selectFolder(folderId) {
+   this.selectedFolderId = folderId;
+   this.fetchBookmarksByFolder(folderId);
+  },
+
+  async fetchBookmarksByFolder(folderId) {
+   console.log('Fetching bookmarks for folder ID:', folderId);
+   try {
+    const response = await axios.get(`/folders/${folderId}/bookmarks`);
+    console.log('Fetched bookmarks:', response.data.bookmarks);
+    this.bookmarks = response.data.bookmarks;
+   } catch (error) {
+    console.error('Error fetching bookmarks by folder:', error);
+   }
+  },
+
+  async confirmDeleteFolder(folderId) {
+   const result = await Swal.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!'
+   });
+
+   if (result.isConfirmed) {
+    this.deleteFolder(folderId);
+   }
+  },
+
+  async deleteFolder(folderId) {
+   try {
+    await axios.delete(`/folders/${folderId}`);
+    this.folders = this.folders.filter(folder => folder.id !== folderId);
+    if (this.selectedFolderId === folderId) {
+     this.selectedFolderId = null;
+     this.bookmarks = [];
+    }
+    Swal.fire('Deleted!', 'The folder has been deleted.', 'success');
+   } catch (error) {
+    console.error('Error deleting folder:', error);
+    Swal.fire('Error!', 'There was an issue deleting the folder.', 'error');
+   }
+  },
+
+  openCreateFolderModal() {
+   const modal = new bootstrap.Modal(document.getElementById('createFolderModal'));
+   modal.show();
+  },
+
+  truncatedText(text) {
+   const maxLength = 70;
+   return text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
+  },
+
   viewModal(bookmark) {
-   this.form1 = {
+   this.form = {
     ...bookmark
-   }; // Make sure form1 is populated
-   const viewBookmarksModal = new bootstrap.Modal(
-    document.getElementById("viewBookmarks")
-   );
+   };
+   const viewBookmarksModal = new bootstrap.Modal(document.getElementById('viewBookmark'));
    viewBookmarksModal.show();
   },
-  loadBookmark() {
-   axios.get("api/fetch-bookmarks").then((data) => {
-    this.bookmarks = data.data;
-   });
-  },
-  deleteBookmark(id) {
-   Swal.fire({
-    title: "Are you sure?",
-    text: "You won't be able to revert this!",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Yes, delete bookmark!",
-   }).then((result) => {
-    if (result.isConfirmed) {
-     axios.delete(`/api/delete-bookmarks/${id}`);
-     Swal.fire({
-      position: "top-end",
-      icon: "success",
-      title: "Bookmark deleted successfully ",
-      showConfirmButton: false,
-      timer: 1500,
-     });
-     this.fetchBookmarks(this.userId);
-     self.close();
-    }
-   });
-  },
-  viewModal(bookmarks) {
-   this.form.reset();
-   $("#view").modal("show");
-   this.form.fill(bookmarks);
-  },
-  //edit user modal
-  editModal(bookmarks) {
-   this.editmode = true;
-   this.form.reset();
-   this.form.fill(bookmarks);
-  },
- },
+
+  async deleteBookmark(id) {
+   try {
+    await axios.delete(`/api/delete-bookmarks/${id}`);
+    this.fetchBookmarksByFolder(this.selectedFolderId); // Refresh bookmarks
+   } catch (error) {
+    console.error('Error deleting bookmark:', error);
+   }
+  }
+ }
 };
 </script>
-
-<!-- <style scoped>
-.truncate {
- white-space: nowrap;
- overflow: hidden;
- text-overflow: ellipsis;
-}
-
-.card {
- padding-bottom: 5px;
- border: 1px solid #00BFA6;
-}
-</style> -->

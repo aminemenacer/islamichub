@@ -1149,32 +1149,39 @@ export default {
    }
   },
   submitForm() {
-   const formData = {
-    surah_name: this.information.ayah.surah.name_en,
-    ayah_num: this.information.ayah_id,
-    ayah_verse_ar: this.information.ayah.ayah_text,
-    ayah_verse_en: this.information.translation,
-   };
+  // Ensure the folder_id is set (you should get this from the user's selection)
+  if (!this.selectedFolderId) {
+    console.error("Folder ID is required.");
+    this.showErrorAlert = true;
+    this.hideAlertAfterDelay();
+    return;
+  }
 
-   axios.post('/bookmarks', formData)
+  // Prepare the form data including the folder_id
+  const formData = {
+    folder_id: this.selectedFolderId,
+    surah_name: this.information.surah.name_en,
+    ayah_num: this.information.ayah_id,
+    ayah_verse_ar: this.information.ayah_text,
+    ayah_verse_en: this.information.translation,
+  };
+
+  axios.post('/bookmarks', formData)
     .then(response => {
-     console.log(response.data.message);
-     // Set the submitted status for the selected bookmark
-     localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
-     // Log the updated bookmarkSubmitted object
-     console.log(this.bookmarkSubmitted);
-     this.showAlert = true; // Show success alert
-     this.showErrorAlert = false; // Hide error alert
-     this.hideAlertAfterDelay(); // Start timer to hide alert
+      console.log(response.data.message);
+      localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
+      this.showAlert = true;
+      this.showErrorAlert = false;
+      this.hideAlertAfterDelay();
     })
     .catch(error => {
-     console.error(error);
-     this.showAlert = false; // Hide success alert
-     this.showErrorAlert = true; // Show error alert
-
-     this.hideAlertAfterDelay(); // Start timer to hide alert
+      console.error(error);
+      this.showAlert = false;
+      this.showErrorAlert = true;
+      this.hideAlertAfterDelay();
     });
-  },
+},
+
   submitForm1() {
    const formData = {
     surah_name: this.information.ayah.surah.name_en,
