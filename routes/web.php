@@ -23,7 +23,8 @@ use App\Http\Controllers\JoinUsController;
 use App\Http\Controllers\NotesController;
 use App\Http\Controllers\UpdatesController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\CollectionController;
+use App\Http\Controllers\FolderController;
+use App\Http\Controllers\VerseController;
 
 // Auth routes
 Auth::routes();
@@ -80,6 +81,18 @@ Route::get('/welcome', function () {
     return view('home');
 });
 
+// Folders
+Route::get('/folders', [FolderController::class, 'index']);
+Route::post('/folders', [FolderController::class, 'store']);
+Route::put('/folders/{id}', [FolderController::class, 'update']);
+Route::delete('/folders/{id}', [FolderController::class, 'destroy']);
+
+
+// Route for fetching verses
+Route::get('/verses', [VerseController::class, 'getVerses']);
+// Route for fetching translations
+Route::get('/translations', [VerseController::class, 'getTranslations']);
+
 
 //updates
 Route::get('/updates', [UpdatesController::class, 'index']);
@@ -133,7 +146,7 @@ Route::post('/search', [SurahController::class, 'search'])->name('search');
 
 // mailing list
 Route::get('/mailing_list', [MailingListController::class, 'index'])->name('mailing_list');
-Route::get('api/fetch-mail', [MailingListController::class, 'getMail'])->name('mailing_list');
+Route::get('api/fetch-mail', [MailingListController::class, 'getMail'])->name('mailing_list_get_mail');
 Route::post('api/subscribe', [MailingListController::class, 'create']);
 Route::post('api/submit-mail', [MailingListController::class, 'submitMail']);
 
@@ -146,7 +159,7 @@ Route::delete('api/delete-correction/{id}',  [CorrectionController::class, 'dele
 // dashboard
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-Route::get('api/fetch-dashboard', [DashboardController::class, 'getDashboard'])->name('dashboard');
+Route::get('api/fetch-dashboard', [DashboardController::class, 'getDashboard'])->name('fetch_dashboard');
 
 // feedback
 Route::get('/feedback', [FeedbackController::class, 'index']);

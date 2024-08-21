@@ -3,7 +3,6 @@
  <div class="pt-3 text-center">
   <Title v-if="information == null && dropdownHidden" />
   <search-form :surat="surat" @update-results="handleUpdateResults" @clear-results="handleClearResults" @select-surah="handleSelectSurah" />
-  <VerseModal />
   <custom-surah-selection :customSurat="customSuratList" v-model="selectedSurah"></custom-surah-selection>
  </div>
 
@@ -12,8 +11,13 @@
   <div class="col-md-4 container">
    <FilteredSurahList :filteredSurah="filteredSurah" @select-surah="selectSurahFromResults" />
    <Donation />
-
-   <SurahDropdown :selectedSurah="selectedSurah" :filteredSurah="filteredSurah" :surat="surat" @update:selectedSurah="updateSelectedSurah" @change="getAyat" />
+   <div style="display:flex" class="row">
+    <SurahDropdown class="col-md-10" :selectedSurah="selectedSurah" :filteredSurah="filteredSurah" :surat="surat" @update:selectedSurah="updateSelectedSurah" @change="getAyat" />
+    <VerseModal class="col-md-2"/>
+    
+    <AddBookmark />
+    
+   </div>
    <AyahDropdown class="desktop-hidden" :selectedSurahId="selectedSurahId" :dropdownHidden="dropdownHidden" @update-information="updateInformation" @update-tafseer="updateTafseer" v-if="ayah == null && !dropdownHidden" />
    
    <!-- List of Ayat for Surah (desktop) -->
@@ -542,6 +546,7 @@ import FontStyleSelector from './FontStyleSelector.vue'
 import SpeechToText from './SpeechToText.vue'
 import PdfDownload from './pdf/PdfDownload.vue'
 import VerseModal from './translation/VerseModal.vue'
+import AddBookmark from './folder_manager/AddBookmark.vue';
 
 export default {
  name: 'QuranComponent',
@@ -595,6 +600,7 @@ export default {
   SpeechToText,
   PdfDownload,
   VerseModal,
+  AddBookmark
  },
 
  mounted() {

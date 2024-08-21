@@ -15,16 +15,16 @@ return new class extends Migration
     {
         Schema::create('bookmarks', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('folder_id')->constrained('folders')->onDelete('cascade');
+            $table->string('url');
+            $table->string('title');
             $table->text('surah_name')->nullable();
             $table->text('ayah_num')->nullable();
             $table->text('ayah_info')->nullable();
             $table->text('ayah_verse_ar')->nullable();
-            $table->text('ayah_verse_en')->nullable();       
+            $table->text('ayah_verse_en')->nullable();
             $table->timestamps();
-
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-
         });
     }
 

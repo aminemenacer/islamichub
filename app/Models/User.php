@@ -43,4 +43,14 @@ class User extends Authenticatable
     {
         return $this->role === 'admin';
     }
+
+    public function folders()
+    {
+        return $this->hasMany(Folder::class);
+    }
+
+    public function bookmarks()
+    {
+        return $this->hasMany(Bookmark::class);
+    }
 }

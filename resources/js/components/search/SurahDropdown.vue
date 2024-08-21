@@ -3,7 +3,6 @@
         class="mb-2 right-side-form"
         style="
             cursor: pointer;
-            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
             border-radius: 5px;
         "
     >
@@ -11,7 +10,6 @@
             class="form-control custom-dropdown"
             v-model="selectedSurahLocal"
             @change="handleChange"
-            style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"
         >
             <option value="0" disabled>Select Surah</option>
             <option
