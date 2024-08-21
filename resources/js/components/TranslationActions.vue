@@ -12,8 +12,8 @@
    <TwitterShareTranslation :targetElementRef="'targetElement'" :translationText="translation" />
   </div>
   <div class="col-2">
-   <i @click="$emit('submit-form')" class="bi bi-bookmark mr-2 h4 " aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166); cursor:pointer;">
-   </i>
+   <i @click="submitForm" class="bi bi-bookmark" title="Bookmark verse" style="cursor:pointer;">
+</i>
   </div>
   <div class="col-2">
    <CopyTranslationText :textToCopy="translation" />

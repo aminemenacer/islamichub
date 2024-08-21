@@ -87,7 +87,7 @@ Route::get('/folders', [FolderController::class, 'index']);
 Route::post('/folders', [FolderController::class, 'store']);
 Route::put('/folders/{id}', [FolderController::class, 'update']);
 Route::delete('/folders/{id}', [FolderController::class, 'delete']);
-Route::get('/folders/{folderId}/bookmarks', [BookmarkController::class, 'getBookmarksByFolder']);
+Route::get('/folders/{folderId}/bookmarks', [FolderController::class, 'getBookmarksByFolder']);
 
 // Route for fetching verses
 Route::get('/verses', [VerseController::class, 'getVerses']);

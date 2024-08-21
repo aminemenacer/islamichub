@@ -15,12 +15,23 @@ class FolderController extends Controller
         return response()->json(['folders' => $folders]);
     }
 
+    // In your FolderController or a dedicated BookmarkController
     public function getBookmarksByFolder($folderId)
     {
-        $folder = Auth::user()->folders()->findOrFail($folderId);
+        // Fetch the folder by ID
+        $folder = Folder::findOrFail($folderId);
+
+        // Ensure the folder belongs to the authenticated user
+        if ($folder->user_id !== Auth::id()) {
+            return response()->json(['error' => 'Unauthorized'], 403);
+        }
+
+        // Retrieve the bookmarks associated with this folder
         $bookmarks = $folder->bookmarks()->get();
-        return response()->json(['bookmarks' => $bookmarks]);
+
+        return response()->json(['bookmarks' => $bookmarks], 200);
     }
+
 
 
     public function store(Request $request)

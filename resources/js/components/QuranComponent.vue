@@ -152,6 +152,12 @@
                 {{ isOpen ? 'Close Toolbar' : 'Open Toolbar' }}
               </button>
             </div>
+            <select v-model="selectedFolderId" class="form-control">
+              <option disabled value="">Select Folder</option>
+              <option v-for="folder in folders" :key="folder.id" :value="folder.id">
+                {{ folder.name }}
+              </option>
+            </select>
             <div class="col">
             </div>
           </div>
@@ -1149,38 +1155,28 @@ export default {
    }
   },
   submitForm() {
-  // Ensure the folder_id is set (you should get this from the user's selection)
-  if (!this.selectedFolderId) {
-    console.error("Folder ID is required.");
-    this.showErrorAlert = true;
-    this.hideAlertAfterDelay();
-    return;
-  }
+    if (!this.selectedFolderId) {
+      alert("Please select a folder.");
+      return;
+    }
 
-  // Prepare the form data including the folder_id
-  const formData = {
-    folder_id: this.selectedFolderId,
-    surah_name: this.information.surah.name_en,
-    ayah_num: this.information.ayah_id,
-    ayah_verse_ar: this.information.ayah_text,
-    ayah_verse_en: this.information.translation,
-  };
+    const formData = {
+      folder_id: this.selectedFolderId,
+      surah_name: this.information.surah.name_en,
+      ayah_num: this.information.ayah_id,
+      ayah_verse_ar: this.information.ayah_text,
+      ayah_verse_en: this.information.translation,
+    };
 
-  axios.post('/bookmarks', formData)
-    .then(response => {
-      console.log(response.data.message);
-      localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
-      this.showAlert = true;
-      this.showErrorAlert = false;
-      this.hideAlertAfterDelay();
-    })
-    .catch(error => {
-      console.error(error);
-      this.showAlert = false;
-      this.showErrorAlert = true;
-      this.hideAlertAfterDelay();
-    });
-},
+    axios.post('/bookmarks', formData)
+      .then(response => {
+        alert("Bookmark added successfully!");
+      })
+      .catch(error => {
+        console.error(error);
+        alert("Error adding bookmark.");
+      });
+  },
 
   submitForm1() {
    const formData = {
