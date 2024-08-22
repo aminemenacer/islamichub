@@ -2,7 +2,7 @@
   <div>
     <!-- Button to trigger folder selection modal -->
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#folderSelectionModal">
-      Select Folder
+      Select Folder 
     </button>
 
     <!-- Folder Selection Modal -->
@@ -11,29 +11,33 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="folderSelectionModalLabel">Select Folder</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <button class="btn btn-primary dropdown-toggle" type="button" id="folderDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-              Select Folder
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="folderDropdown">
-              <li v-for="folder in folders" :key="folder.id">
-                <a class="dropdown-item" href="#" @click="selectFolder(folder.id)">
-                  {{ folder.name }}
-                </a>
+            <!-- List of folders -->
+            <ul class="list-group ">
+              <li 
+                v-for="folder in folders" 
+                :key="folder.id" 
+                class="list-group-item button-33"
+                style="padding:5px" 
+                @click="selectFolder(folder.id)">
+                {{ folder.name }}
               </li>
             </ul>
+                    <span class="badge button-33" :class="{ active: surah === data.id }">{{ data.name }}</span>
+
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-primary" @click="confirmSelection" data-bs-dismiss="modal">Confirm</button>
+            <button type="button" class="btn btn-primary" @click="confirmSelection">Confirm</button>
           </div>
         </div>
       </div>
     </div>
   </div>
 </template>
+
 
 <script>
 import axios from 'axios';
@@ -54,7 +58,6 @@ export default {
   },
   mounted() {
     this.fetchFolders();
-    new bootstrap.Dropdown(document.getElementById('folderDropdown'));
   },
   methods: {
     async fetchFolders() {
@@ -69,22 +72,23 @@ export default {
       this.selectedFolderId = folderId;
     },
     async confirmSelection() {
-      if (!this.selectedFolderId) {
-        console.error('No folder selected');
-        alert('Please select a folder.');
-        return;
-      }
+     console.log('Information:', this.information);
 
-      // Validate bookmark data fields
-      if (!this.information.surah_name || !this.information.ayah_num ||
-        !this.information.ayah_verse_ar || !this.information.ayah_verse_en) {
-        console.error('Bookmark data is incomplete:', this.information);
-        alert('Please fill in all bookmark details before saving.');
-        return;
-      }
+     if (!this.selectedFolderId) {
+      console.error('No folder selected');
+      alert('Please select a folder.');
+      return;
+     }
+
+     // Validate bookmark data fields
+     if (!this.information.surah_name || !this.information.ayah_num ||
+      !this.information.ayah_verse_ar || !this.information.ayah_verse_en) {
+      console.error('Bookmark data is incomplete:', this.information);
+      alert('Please fill in all bookmark details before saving.');
+      return;
+     }
 
       // Prepare the form data
-      
       const formData = {
         folder_id: this.selectedFolderId,
         surah_name: this.information.surah_name,
@@ -97,7 +101,7 @@ export default {
         // Make the POST request to save the bookmark
         const response = await axios.post('/bookmarks', formData);
         console.log('Bookmark saved:', response.data.message);
-        
+
         // Emit an event to notify parent component
         this.$emit('folder-selected', response.data.bookmark);
 
@@ -123,3 +127,27 @@ export default {
   }
 }
 </script>
+<style scoped >
+.button-33 {
+  background-color: rgba(0, 191, 166, 0.2);
+  color: rgb(5, 32, 29);
+  border: 1px solid rgba(0, 191, 166);
+}
+
+.scrollmenu {
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+.scrollmenu a {
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+}
+
+.badge.active {
+  background-color: rgba(0, 191, 166, 0.2);
+  color: rgb(5, 32, 29);
+  border: 1px solid rgba(0, 191, 166);
+}
+</style>

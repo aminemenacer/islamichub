@@ -13,7 +13,7 @@
    
    <div class="col">
     <span class="badge h3" style="width:100%;font-size:18px;border-radius:10px; color:#0263FF;background:#c2d8fb">
-     <a href="/home" style="text-decoration:none;color:#0263FF;background:#c2d8fb">Home</a>
+     <a href="/collection" style="text-decoration:none;color:#0263FF;background:#c2d8fb">Collections</a>
     </span>
    </div>
   </div>

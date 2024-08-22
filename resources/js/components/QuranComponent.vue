@@ -13,13 +13,13 @@
    <Donation />
    <div style="display:flex" class="row">
     <SurahDropdown class="col-md-10" :selectedSurah="selectedSurah" :filteredSurah="filteredSurah" :surat="surat" @update:selectedSurah="updateSelectedSurah" @change="getAyat" />
-    <VerseModal class="col-md-2"/>
-    
+    <VerseModal class="col-md-2" />
+
     <AddBookmark />
-    
+
    </div>
    <AyahDropdown class="desktop-hidden" :selectedSurahId="selectedSurahId" :dropdownHidden="dropdownHidden" @update-information="updateInformation" @update-tafseer="updateTafseer" v-if="ayah == null && !dropdownHidden" />
-   
+
    <!-- List of Ayat for Surah (desktop) -->
    <div class="tab-content hide-on-mobile-tablet" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" v-if="ayah == null">
@@ -61,8 +61,8 @@
   </div>
 
   <div class="col-md-8 card-hide">
-  <div class="card content" :style="containerStyle">
-    <div class="content" >
+   <div class="card content" :style="containerStyle">
+    <div class="content">
      <div class="container-fluid content" v-if="information != null">
       <NavTabs />
 
@@ -102,7 +102,7 @@
      <div class="card-body content" id="alertContainer">
       <div class="tab-content text-center">
        <Welcome :information="information" />
-       
+
        <!-- Translation Section -->
        <div class="tab-pane active content" id="home" role="tabpanel" v-if="information != null">
 
@@ -126,49 +126,53 @@
         </div>
 
         <!-- mobile top Features  ---->
-         <div class="dropdown mobile-only pb-2">
-          <div class="icon-container">
-           <i class="bi bi-chevron-bar-left h4" style="color: rgb(0, 191, 166);" @click="goToFirstAyah()" title="Last verse"></i>
-           <i class="bi bi-arrow-left-circle h4" style="color: rgb(0, 191, 166);" @click="goToPreviousAyah()" title="Previous verse"></i>
-           <i class="bi bi-arrow-right-circle h4" style="color: rgb(0, 191, 166);" @click="goToNextAyah()" title="Next verse"></i>
-           <i class="bi bi-chevron-bar-right h4" style="color: rgb(0, 191, 166);" @click="goToLastAyah()" title="End verse"></i>
-           <i class="bi bi-paint-bucket h2" style="color: rgb(0, 191, 166); cursor: pointer;" @click="showModal"></i>
-           <i class="bi bi-arrows-fullscreen h6" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
-          </div>
+        <div class="dropdown mobile-only pb-2">
+         <div class="icon-container">
+          <i class="bi bi-chevron-bar-left h4" style="color: rgb(0, 191, 166);" @click="goToFirstAyah()" title="Last verse"></i>
+          <i class="bi bi-arrow-left-circle h4" style="color: rgb(0, 191, 166);" @click="goToPreviousAyah()" title="Previous verse"></i>
+          <i class="bi bi-arrow-right-circle h4" style="color: rgb(0, 191, 166);" @click="goToNextAyah()" title="Next verse"></i>
+          <i class="bi bi-chevron-bar-right h4" style="color: rgb(0, 191, 166);" @click="goToLastAyah()" title="End verse"></i>
+          <i class="bi bi-paint-bucket h2" style="color: rgb(0, 191, 166); cursor: pointer;" @click="showModal"></i>
+          <i class="bi bi-arrows-fullscreen h6" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
          </div>
-         <!-- end mobile top Features ---->
+        </div>
+        <!-- end mobile top Features ---->
 
         <!-- dropdown mobile content -->
         <div class="pt-2" ref="targetTranslationElement">
          <TranslationSection :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
         </div>
-        
+
         <div class="container-fluid text-center mobile-only">
-          <div class="row">
-            <div class="col">
-            </div>
-            <div class="col">
-              <button @click="toggleContent" class="button-63 text-center mobile-only">
-                {{ isOpen ? 'Close Toolbar' : 'Open Toolbar' }}
-              </button>
-            </div>
-            <div class="col"></div>
+         <div class="row">
+          <div class="col">
           </div>
+          <div class="col">
+           <button @click="toggleContent" class="button-63 text-center mobile-only">
+            {{ isOpen ? 'Close Toolbar' : 'Open Toolbar' }}
+           </button>
+          </div>
+          <div class="col"></div>
+         </div>
         </div>
-        
-        
 
         <!-- toolbar mobile -->
         <div v-if="isOpen" class="collapse-content mobile-only" style="background-color: rgba(0, 191, 166, 0.452);">
-          <div class="card text-bg-light card-body" >
-            <!-- Your content here -->
-            <TranslationActions class="" :targetTranslationRef="'targetTranslationElement'" :translation="translation" @open-modal="openModal" @submit-form="submitForm" />
-              <FolderSelectionModal :information="bookmarkData" />
+         <div class="card text-bg-light card-body">
+          <!-- Your content here -->
+          <TranslationActions class="" :targetTranslationRef="'targetTranslationElement'" :translation="translation" @open-modal="openModal" @submit-form="submitForm" />
+          <FolderSelectionModal 
+            :information="{
+              surah_name: surahName,
+              ayah_num: ayahNum,
+              ayah_verse_ar: ayahVerseAr,
+              ayah_verse_en: ayahVerseEn
+            }" @folder-selected="onFolderSelected" />
 
-            <!--
+          <!--
             <PdfDownload class="pl-1 pb-2 mt-2 text-left" :targetTranslationRef="'targetTranslationElement'" />
             -->
-          </div>
+         </div>
         </div>
         <!-- end toolbar mobile -->
 
@@ -215,28 +219,28 @@
         <!-- end main content -->
 
         <div class="container-fluid text-center mobile-only">
-          <div class="row">
-            <div class="col">
-            </div>
-            <div class="col">
-              <button @click="toggleContent" class="button-63 text-center mobile-only">
-                {{ isOpen ? 'Close Toolbar' : 'Open Toolbar' }}
-              </button>
-            </div>
-            <div class="col">
-            </div>
+         <div class="row">
+          <div class="col">
           </div>
+          <div class="col">
+           <button @click="toggleContent" class="button-63 text-center mobile-only">
+            {{ isOpen ? 'Close Toolbar' : 'Open Toolbar' }}
+           </button>
+          </div>
+          <div class="col">
+          </div>
+         </div>
         </div>
 
         <!-- toolbar mobile -->
         <div v-if="isOpen" class="collapse-content mobile-only">
-          <div class="card text-bg-light card-body" >
-            <!-- Your content here -->
-            <TafseerActions :targetTafseerRef="'targetTafseerElement'" :tafseer="tafseer" @open-modal="openModal" @submit-form="submitForm" />
-            <!--
+         <div class="card text-bg-light card-body">
+          <!-- Your content here -->
+          <TafseerActions :targetTafseerRef="'targetTafseerElement'" :tafseer="tafseer" @open-modal="openModal" @submit-form="submitForm" />
+          <!--
             <PdfDownload class="pl-1 pb-2 mt-2 text-left" :targetTranslationRef="'targetTafseerElement'" />
             -->
-          </div>
+         </div>
         </div>
         <!-- end toolbar mobile -->
 
@@ -285,33 +289,31 @@
           </div>
 
           <div class="container-fluid text-center mobile-only">
-            <div class="row">
-              <div class="col">
-              </div>
-              <div class="col">
-                <button @click="toggleContent" class="button-63 text-center mobile-only">
-                  {{ isOpen ? 'Close Toolbar' : 'Open Toolbar' }}
-                </button>
-              </div>
-              <div class="col">
-              </div>
+           <div class="row">
+            <div class="col">
             </div>
+            <div class="col">
+             <button @click="toggleContent" class="button-63 text-center mobile-only">
+              {{ isOpen ? 'Close Toolbar' : 'Open Toolbar' }}
+             </button>
+            </div>
+            <div class="col">
+            </div>
+           </div>
           </div>
-            
 
-            <!-- toolbar mobile -->
-            <div v-if="isOpen" class="collapse-content mobile-only">
-              <div class="card text-bg-light card-body">
-                <!-- Your content here -->
-                <TransliterationActions :targetTransliterationRef="'targetTransliterationElement'" :transliteration="transliteration" @open-modal="openModal" @submit-form="submitForm" />
-                <!--
+          <!-- toolbar mobile -->
+          <div v-if="isOpen" class="collapse-content mobile-only">
+           <div class="card text-bg-light card-body">
+            <!-- Your content here -->
+            <TransliterationActions :targetTransliterationRef="'targetTransliterationElement'" :transliteration="transliteration" @open-modal="openModal" @submit-form="submitForm" />
+            <!--
                 <PdfDownload class="pl-2 pb-2 mt-2 text-left" :targetTransliterationRef="'targetTransliterationElement'" />
                 -->
-              </div>
-            </div>
-            <!-- end toolbar mobile -->
+           </div>
+          </div>
+          <!-- end toolbar mobile -->
 
-          
           <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
           <SurahInfoModal :information="information" />
 
@@ -361,136 +363,121 @@
     </div>
    </div>
 
-    <!-- Bootstrap Modal -->
-    <div class="modal fade" id="styleModal" tabindex="-1" aria-labelledby="styleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="styleModalLabel">Customize Your Layout</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body text-left">
-            <form>
-              <div class="row">
-                <!-- Row 1: Select Default Style and Background Color -->
-                <div class="col-md-12">
-                  <div class="mb-3">
-                    <label for="styleSelect" class="form-label">Select Default Style</label>
-                    <select
-                      id="styleSelect"
-                      v-model="selectedStyle"
-                      @change="applyStyle"
-                      class="form-control"
-                    >
-                      <option v-for="style in defaultStyles" :key="style.name" :value="style">
-                        {{ style.name }}
-                      </option>
-                    </select>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="mb-3">
-                    <label for="bgColor" class="form-label">Background Color</label>
-                    <input type="color" id="bgColor" v-model="bgColor" class="form-control" />
-                  </div>
-                </div>
-
-                <!-- Row 2: Text Color and Shadow Style -->
-                <div class="col-md-6">
-                  <div class="mb-3">
-                    <label for="textColor" class="form-label">Text Color</label>
-                    <input type="color" id="textColor" v-model="textColor" class="form-control" />
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="mb-3">
-                    <label for="shadow-dropdown" class="form-label">Shadow Style</label>
-                    <select v-model="selectedShadow" id="shadow-dropdown" class="form-control">
-                      <option v-for="shadow in shadows" :key="shadow.name" :value="shadow.style">
-                        {{ shadow.name }}
-                      </option>
-                    </select>
-                  </div>
-                </div>
-
-                <!-- Row 3: Font Style Checkboxes -->
-                <div class="col-md-6">
-                  <div class="mb-3" >
-                    <label class="form-label">Font Style</label>
-                    <div class="form-check" style="display:flex">
-                      <input class="form-check-input" type="checkbox" id="boldCheckbox" v-model="isBold" />
-                      <label class="form-check-label" for="boldCheckbox">Bold</label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="italicCheckbox" v-model="isItalic" />
-                      <label class="form-check-label" for="italicCheckbox">Italic</label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="lightCheckbox" v-model="isLight" />
-                      <label class="form-check-label" for="lightCheckbox">Light</label>
-                    </div>
-                  </div>
-                </div>
-                <!-- Row 4: Text Transformation and Text Alignment -->
-                <div class="col-md-6">
-                  <div class="mb-3">
-                    <label class="form-label">Text Transformation</label>
-                    <select v-model="textTransform" class="form-control">
-                      <option value="none">None</option>
-                      <option value="uppercase">Uppercase</option>
-                      <option value="lowercase">Lowercase</option>
-                      <option value="capitalize">Capitalize</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="mb-3">
-                    <label for="fontFamily" class="form-label">Font Family</label>
-                    <select id="fontFamily" v-model="fontFamily" class="form-control">
-                      <option v-for="font in fontFamilies" :key="font" :value="font">
-                        {{ font }}
-                      </option>
-                    </select>
-                  </div>
-                </div>
-                <!-- Row 5: Font Size and Font Spacing -->
-                <div class="col-md-6">
-                  <div class="mb-3">
-                    <label for="fontSize" class="form-label">Font Size (px)</label>
-                    <input
-                      type="number"
-                      id="fontSize"
-                      v-model.number="fontSize"
-                      class="form-control"
-                    />
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="mb-3">
-                    <label for="fontSpacing" class="form-label">Font Spacing (px)</label>
-                    <input
-                      type="number"
-                      id="fontSpacing"
-                      v-model.number="fontSpacing"
-                      class="form-control"
-                    />
-                  </div>
-                </div>
-              </div>
-            </form>
-
-            <!-- Success message -->
-            <div v-if="showSuccessMessage" class="alert alert-success" role="alert">
-              Styles have been successfully applied!
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-success" @click="applyCustomStyles">Apply Styles</button>
-          </div>
-        </div>
+   <!-- Bootstrap Modal -->
+   <div class="modal fade" id="styleModal" tabindex="-1" aria-labelledby="styleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+     <div class="modal-content">
+      <div class="modal-header">
+       <h5 class="modal-title" id="styleModalLabel">Customize Your Layout</h5>
+       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+      <div class="modal-body text-left">
+       <form>
+        <div class="row">
+         <!-- Row 1: Select Default Style and Background Color -->
+         <div class="col-md-12">
+          <div class="mb-3">
+           <label for="styleSelect" class="form-label">Select Default Style</label>
+           <select id="styleSelect" v-model="selectedStyle" @change="applyStyle" class="form-control">
+            <option v-for="style in defaultStyles" :key="style.name" :value="style">
+             {{ style.name }}
+            </option>
+           </select>
+          </div>
+         </div>
+         <div class="col-md-6">
+          <div class="mb-3">
+           <label for="bgColor" class="form-label">Background Color</label>
+           <input type="color" id="bgColor" v-model="bgColor" class="form-control" />
+          </div>
+         </div>
+
+         <!-- Row 2: Text Color and Shadow Style -->
+         <div class="col-md-6">
+          <div class="mb-3">
+           <label for="textColor" class="form-label">Text Color</label>
+           <input type="color" id="textColor" v-model="textColor" class="form-control" />
+          </div>
+         </div>
+         <div class="col-md-6">
+          <div class="mb-3">
+           <label for="shadow-dropdown" class="form-label">Shadow Style</label>
+           <select v-model="selectedShadow" id="shadow-dropdown" class="form-control">
+            <option v-for="shadow in shadows" :key="shadow.name" :value="shadow.style">
+             {{ shadow.name }}
+            </option>
+           </select>
+          </div>
+         </div>
+
+         <!-- Row 3: Font Style Checkboxes -->
+         <div class="col-md-6">
+          <div class="mb-3">
+           <label class="form-label">Font Style</label>
+           <div class="form-check" style="display:flex">
+            <input class="form-check-input" type="checkbox" id="boldCheckbox" v-model="isBold" />
+            <label class="form-check-label" for="boldCheckbox">Bold</label>
+           </div>
+           <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="italicCheckbox" v-model="isItalic" />
+            <label class="form-check-label" for="italicCheckbox">Italic</label>
+           </div>
+           <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="lightCheckbox" v-model="isLight" />
+            <label class="form-check-label" for="lightCheckbox">Light</label>
+           </div>
+          </div>
+         </div>
+         <!-- Row 4: Text Transformation and Text Alignment -->
+         <div class="col-md-6">
+          <div class="mb-3">
+           <label class="form-label">Text Transformation</label>
+           <select v-model="textTransform" class="form-control">
+            <option value="none">None</option>
+            <option value="uppercase">Uppercase</option>
+            <option value="lowercase">Lowercase</option>
+            <option value="capitalize">Capitalize</option>
+           </select>
+          </div>
+         </div>
+         <div class="col-md-6">
+          <div class="mb-3">
+           <label for="fontFamily" class="form-label">Font Family</label>
+           <select id="fontFamily" v-model="fontFamily" class="form-control">
+            <option v-for="font in fontFamilies" :key="font" :value="font">
+             {{ font }}
+            </option>
+           </select>
+          </div>
+         </div>
+         <!-- Row 5: Font Size and Font Spacing -->
+         <div class="col-md-6">
+          <div class="mb-3">
+           <label for="fontSize" class="form-label">Font Size (px)</label>
+           <input type="number" id="fontSize" v-model.number="fontSize" class="form-control" />
+          </div>
+         </div>
+         <div class="col-md-6">
+          <div class="mb-3">
+           <label for="fontSpacing" class="form-label">Font Spacing (px)</label>
+           <input type="number" id="fontSpacing" v-model.number="fontSpacing" class="form-control" />
+          </div>
+         </div>
+        </div>
+       </form>
+
+       <!-- Success message -->
+       <div v-if="showSuccessMessage" class="alert alert-success" role="alert">
+        Styles have been successfully applied!
+       </div>
+      </div>
+      <div class="modal-footer">
+       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+       <button type="button" class="btn btn-success" @click="applyCustomStyles">Apply Styles</button>
+      </div>
+     </div>
     </div>
+   </div>
   </div>
  </div>
 </div>
@@ -609,55 +596,54 @@ export default {
   this.initRecognition();
   this.loadSavedStyles();
   if (this.defaultStyles.length > 0) {
-    this.selectedStyle = this.defaultStyles[0];
-    this.applyStyle();
+   this.selectedStyle = this.defaultStyles[0];
+   this.applyStyle();
   }
  },
  data() {
 
   return {
-    isOpen: false,
-    recognition: null,
-    isListening: false,
-    transcript: '',
-    selectedStyle: null,
-    defaultStyles: [
-      {
-        name: 'Default',
-        backgroundColor: '#ffffff',
-        textColor: '#000000'
-      },
-      {
-        name: 'Dyslexia',
-        backgroundColor: '#FDFD96',
-        textColor: '#000080',
-        fontStyle: 'Arial, sans-serif'
-      },
-      {
-        name: 'Dysgraphia',
-        backgroundColor: '#FFFDD0',
-        textColor: '#00008B',
-        fontStyle: "'Arial, sans-serif"
-      },
-      {
-        name: 'Hyperlexia',
-        backgroundColor: '#F5F5DC',
-        textColor: '#06402B',
-        fontStyle: "''Arial, sans-serif"
-      },
-      {
-        name: 'Visual Proccesing disorder',
-        backgroundColor: '#fff',
-        textColor: 'black',
-        fontStyle: 'Arial, sans-serif'
-      },
-      {
-        name: 'ADHD',
-        backgroundColor: '#ADD8E6',
-        textColor: '#696969',
-        fontStyle: "Arial, sans-serif"
-      },
-    ],
+   isOpen: false,
+   recognition: null,
+   isListening: false,
+   transcript: '',
+   selectedStyle: null,
+   defaultStyles: [{
+     name: 'Default',
+     backgroundColor: '#ffffff',
+     textColor: '#000000'
+    },
+    {
+     name: 'Dyslexia',
+     backgroundColor: '#FDFD96',
+     textColor: '#000080',
+     fontStyle: 'Arial, sans-serif'
+    },
+    {
+     name: 'Dysgraphia',
+     backgroundColor: '#FFFDD0',
+     textColor: '#00008B',
+     fontStyle: "'Arial, sans-serif"
+    },
+    {
+     name: 'Hyperlexia',
+     backgroundColor: '#F5F5DC',
+     textColor: '#06402B',
+     fontStyle: "''Arial, sans-serif"
+    },
+    {
+     name: 'Visual Proccesing disorder',
+     backgroundColor: '#fff',
+     textColor: 'black',
+     fontStyle: 'Arial, sans-serif'
+    },
+    {
+     name: 'ADHD',
+     backgroundColor: '#ADD8E6',
+     textColor: '#696969',
+     fontStyle: "Arial, sans-serif"
+    },
+   ],
    fontFamilies: [
     'Arial, sans-serif',
     'Courier New, Courier, monospace',
@@ -670,57 +656,76 @@ export default {
     'Comic Sans MS, cursive, sans-serif',
     'Helvetica, Arial, sans-serif'
    ],
-    // List of shadow options
-    shadows: [
-      { name: 'None', style: 'none' },
-      { name: 'Small Shadow', style: '1px 1px 2px rgba(0, 0, 0, 0.5)' },
-      { name: 'Medium Shadow', style: '2px 2px 4px rgba(0, 0, 0, 0.5)' },
-      { name: 'Large Shadow', style: '4px 4px 8px rgba(0, 0, 0, 0.5)' },
-      { name: 'Deep Shadow', style: '6px 6px 12px rgba(0, 0, 0, 0.7)' },
-      { name: 'Soft Glow', style: '0px 0px 10px rgba(255, 255, 255, 0.7)' },
-      { name: 'Dark Glow', style: '0px 0px 10px rgba(0, 0, 0, 0.9)' },
-    ],
-   selectedStyle: {
-      textColor: '#000',
-      backgroundColor: '#fff',
+   // List of shadow options
+   shadows: [{
+     name: 'None',
+     style: 'none'
     },
-    // Initial styles
-    bgColor: '#f5f5f5',
-    textColor: '#000000',
-    fontFamily: 'Arial, sans-serif',
-    fontSize: 16,
-    fontSpacing: 0,
-    selectedShadow: 'none',
-    // Font style options
-    isBold: false,
-    isItalic: false,
-    isLight: false,
-    isUnderline: false,
-    isStrikethrough: false,
-    // Text transformation and alignment
-    textTransform: 'none',
-    textAlign: 'left',
-    // For showing success message
-    showSuccessMessage: false,
+    {
+     name: 'Small Shadow',
+     style: '1px 1px 2px rgba(0, 0, 0, 0.5)'
+    },
+    {
+     name: 'Medium Shadow',
+     style: '2px 2px 4px rgba(0, 0, 0, 0.5)'
+    },
+    {
+     name: 'Large Shadow',
+     style: '4px 4px 8px rgba(0, 0, 0, 0.5)'
+    },
+    {
+     name: 'Deep Shadow',
+     style: '6px 6px 12px rgba(0, 0, 0, 0.7)'
+    },
+    {
+     name: 'Soft Glow',
+     style: '0px 0px 10px rgba(255, 255, 255, 0.7)'
+    },
+    {
+     name: 'Dark Glow',
+     style: '0px 0px 10px rgba(0, 0, 0, 0.9)'
+    },
+   ],
+   selectedStyle: {
+    textColor: '#000',
+    backgroundColor: '#fff',
+   },
+   // Initial styles
+   bgColor: '#f5f5f5',
+   textColor: '#000000',
+   fontFamily: 'Arial, sans-serif',
+   fontSize: 16,
+   fontSpacing: 0,
+   selectedShadow: 'none',
+   // Font style options
+   isBold: false,
+   isItalic: false,
+   isLight: false,
+   isUnderline: false,
+   isStrikethrough: false,
+   // Text transformation and alignment
+   textTransform: 'none',
+   textAlign: 'left',
+   // For showing success message
+   showSuccessMessage: false,
 
-   
    isCollapsed: false,
    showSuccessMessage: false,
    showMessage: false,
    message: 'Theme has been applied successfully!',
    filteredSurah: [],
-   
+
    //twitter/whatsapp
    information: {
     translation: '',
     transliteration: '', // Example translated text
    },
    bookmarkData: {
-        surah_name: '',
-        ayah_num: '',
-        ayah_verse_ar: '',
-        ayah_verse_en: ''
-      },
+    surah_name: '',
+    ayah_num: '',
+    ayah_verse_ar: '',
+    ayah_verse_en: ''
+   },
    tafseer: '',
    //custom surah collection
    customSuratList: [],
@@ -801,70 +806,70 @@ export default {
   };
  },
  computed: {
-    // Combined container style
-    containerStyle() {
-      return {
-        backgroundColor: this.bgColor,
-        color: this.textColor,
-        fontFamily: this.fontFamily,
-        fontSize: `${this.fontSize}px`,
-        letterSpacing: `${this.fontSpacing}px`,
-        fontWeight: this.isBold ? 'bold' : this.isLight ? '300' : 'normal',
-        fontStyle: this.isItalic ? 'italic' : 'normal',
-        textShadow: this.selectedShadow,
-        textDecoration: this.isUnderline ? 'underline' : this.isStrikethrough ? 'line-through' : 'none',
-        textTransform: this.textTransform,
-        textAlign: this.textAlign,
-        defaultStyles: this.defaultStyles
-      };
-    },
+  // Combined container style
+  containerStyle() {
+   return {
+    backgroundColor: this.bgColor,
+    color: this.textColor,
+    fontFamily: this.fontFamily,
+    fontSize: `${this.fontSize}px`,
+    letterSpacing: `${this.fontSpacing}px`,
+    fontWeight: this.isBold ? 'bold' : this.isLight ? '300' : 'normal',
+    fontStyle: this.isItalic ? 'italic' : 'normal',
+    textShadow: this.selectedShadow,
+    textDecoration: this.isUnderline ? 'underline' : this.isStrikethrough ? 'line-through' : 'none',
+    textTransform: this.textTransform,
+    textAlign: this.textAlign,
+    defaultStyles: this.defaultStyles
+   };
   },
+ },
  methods: {
-   initRecognition() {
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  initRecognition() {
+   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-      if (!SpeechRecognition) {
-        alert('Your browser does not support Speech Recognition.');
-        return;
-      }
+   if (!SpeechRecognition) {
+    alert('Your browser does not support Speech Recognition.');
+    return;
+   }
 
-      this.recognition = new SpeechRecognition();
-      this.recognition.lang = 'en-US';
-      this.recognition.interimResults = false;
-      this.recognition.maxAlternatives = 1;
+   this.recognition = new SpeechRecognition();
+   this.recognition.lang = 'en-US';
+   this.recognition.interimResults = false;
+   this.recognition.maxAlternatives = 1;
 
-      this.recognition.onresult = (event) => {
-        const result = event.results[0][0].transcript;
-        this.transcript += result + '\n';
-      };
+   this.recognition.onresult = (event) => {
+    const result = event.results[0][0].transcript;
+    this.transcript += result + '\n';
+   };
 
-      this.recognition.onerror = (event) => {
-        console.error('Speech Recognition Error:', event.error);
-      };
+   this.recognition.onerror = (event) => {
+    console.error('Speech Recognition Error:', event.error);
+   };
 
-      this.recognition.onend = () => {
-        this.isListening = false;
-      };
-    },
-    startRecognition() {
-      if (!this.recognition) {
-        this.initRecognition();
-      }
-      this.transcript = ''; // Clear previous transcript
-      this.recognition.start();
-      this.isListening = true;
-    },
-    stopRecognition() {
-      if (this.recognition && this.isListening) {
-        this.recognition.stop();
-        this.isListening = false;
-      }
-    },
-   toggleContent() {
-      this.isOpen = !this.isOpen; // Toggle the content's visibility
-    },
+   this.recognition.onend = () => {
+    this.isListening = false;
+   };
+  },
+  startRecognition() {
+   if (!this.recognition) {
+    this.initRecognition();
+   }
+   this.transcript = ''; // Clear previous transcript
+   this.recognition.start();
+   this.isListening = true;
+  },
+  stopRecognition() {
+   if (this.recognition && this.isListening) {
+    this.recognition.stop();
+    this.isListening = false;
+   }
+  },
+  toggleContent() {
+   this.isOpen = !this.isOpen; // Toggle the content's visibility
+  },
   toggleCollapse() {
-    this.isCollapsed = !this.isCollapsed;
+   this.isCollapsed = !this.isCollapsed;
   },
   openModal(modalId) {
    const modalElement = this.$refs[modalId];
@@ -881,66 +886,65 @@ export default {
    this.successMessage = ''; // Reset the success message when the modal is opened
   },
   applyStyle() {
-    if (this.selectedStyle) {
-      this.bgColor = this.selectedStyle.backgroundColor || this.bgColor;
-      this.textColor = this.selectedStyle.textColor || this.textColor;
-      this.fontFamily = this.selectedStyle.fontStyle || this.fontFamily;
-    }
+   if (this.selectedStyle) {
+    this.bgColor = this.selectedStyle.backgroundColor || this.bgColor;
+    this.textColor = this.selectedStyle.textColor || this.textColor;
+    this.fontFamily = this.selectedStyle.fontStyle || this.fontFamily;
+   }
   },
   applyCustomStyles() {
-    // Save settings to localStorage
-    const settings = {
-      bgColor: this.bgColor,
-      textColor: this.textColor,
-      fontFamily: this.fontFamily,
-      fontSize: this.fontSize,
-      fontSpacing: this.fontSpacing,
-      selectedShadow: this.selectedShadow,
-      isBold: this.isBold,
-      isItalic: this.isItalic,
-      isLight: this.isLight,
-      isUnderline: this.isUnderline,
-      isStrikethrough: this.isStrikethrough,
-      textTransform: this.textTransform,
-      textAlign: this.textAlign,
-      defaultStyles: this.defaultStyles
-    };
-    localStorage.setItem('textStyles', JSON.stringify(settings));
+   // Save settings to localStorage
+   const settings = {
+    bgColor: this.bgColor,
+    textColor: this.textColor,
+    fontFamily: this.fontFamily,
+    fontSize: this.fontSize,
+    fontSpacing: this.fontSpacing,
+    selectedShadow: this.selectedShadow,
+    isBold: this.isBold,
+    isItalic: this.isItalic,
+    isLight: this.isLight,
+    isUnderline: this.isUnderline,
+    isStrikethrough: this.isStrikethrough,
+    textTransform: this.textTransform,
+    textAlign: this.textAlign,
+    defaultStyles: this.defaultStyles
+   };
+   localStorage.setItem('textStyles', JSON.stringify(settings));
 
-    // Show success message
-    this.showSuccessMessage = true;
+   // Show success message
+   this.showSuccessMessage = true;
 
-    // Hide the success message and close the modal after 3 seconds
-    setTimeout(() => {
-      this.showSuccessMessage = false;
+   // Hide the success message and close the modal after 3 seconds
+   setTimeout(() => {
+    this.showSuccessMessage = false;
 
-      // Close the modal using Bootstrap's JavaScript API
-      const modalElement = document.getElementById('styleModal');
-      const modalInstance = bootstrap.Modal.getInstance(modalElement);
-      modalInstance.hide();
-    }, 3000);
+    // Close the modal using Bootstrap's JavaScript API
+    const modalElement = document.getElementById('styleModal');
+    const modalInstance = bootstrap.Modal.getInstance(modalElement);
+    modalInstance.hide();
+   }, 3000);
   },
   loadSavedStyles() {
-      const savedSettings = JSON.parse(localStorage.getItem('textStyles'));
-      if (savedSettings) {
-        this.bgColor = savedSettings.bgColor || this.bgColor;
-        this.textColor = savedSettings.textColor || this.textColor;
-        this.fontFamily = savedSettings.fontFamily || this.fontFamily;
-        this.fontSize = savedSettings.fontSize || this.fontSize;
-        this.fontSpacing = savedSettings.fontSpacing || this.fontSpacing;
-        this.selectedShadow = savedSettings.selectedShadow || this.selectedShadow;
-        this.isBold = savedSettings.isBold || this.isBold;
-        this.isItalic = savedSettings.isItalic || this.isItalic;
-        this.isLight = savedSettings.isLight || this.isLight;
-        this.isUnderline = savedSettings.isUnderline || this.isUnderline;
-        this.isStrikethrough = savedSettings.isStrikethrough || this.isStrikethrough;
-        this.textTransform = savedSettings.textTransform || this.textTransform;
-        this.textAlign = savedSettings.textAlign || this.textAlign;
-        this.defaultStyles = savedSettings.defaultStyles || this.defaultStyles;
-      }
-    },
-  
-  
+   const savedSettings = JSON.parse(localStorage.getItem('textStyles'));
+   if (savedSettings) {
+    this.bgColor = savedSettings.bgColor || this.bgColor;
+    this.textColor = savedSettings.textColor || this.textColor;
+    this.fontFamily = savedSettings.fontFamily || this.fontFamily;
+    this.fontSize = savedSettings.fontSize || this.fontSize;
+    this.fontSpacing = savedSettings.fontSpacing || this.fontSpacing;
+    this.selectedShadow = savedSettings.selectedShadow || this.selectedShadow;
+    this.isBold = savedSettings.isBold || this.isBold;
+    this.isItalic = savedSettings.isItalic || this.isItalic;
+    this.isLight = savedSettings.isLight || this.isLight;
+    this.isUnderline = savedSettings.isUnderline || this.isUnderline;
+    this.isStrikethrough = savedSettings.isStrikethrough || this.isStrikethrough;
+    this.textTransform = savedSettings.textTransform || this.textTransform;
+    this.textAlign = savedSettings.textAlign || this.textAlign;
+    this.defaultStyles = savedSettings.defaultStyles || this.defaultStyles;
+   }
+  },
+
   saveStyle() {
    localStorage.setItem('selectedStyle', JSON.stringify(this.selectedStyle));
   },
@@ -1006,7 +1010,7 @@ export default {
    this.expanded = !this.expanded;
   },
   getSelectedSurahAyat() {
-    const surahData = this.surat.find(surah => surah.id === parseInt(this.surah));
+   const surahData = this.surat.find(surah => surah.id === parseInt(this.surah));
    return surahData ? surahData.ayat : [];
    if (this.surat[this.surah]) {
     return this.surat[this.surah].ayat;
@@ -1156,37 +1160,37 @@ export default {
    }
   },
   submitForm() {
-    // Ensure the folder_id is set (from the folder selection modal)
-    if (!this.selectedFolderId) {
-      console.error("Folder ID is required.");
-      this.showErrorAlert = true;
-      this.hideAlertAfterDelay();
-      return;
-    }
+   // Ensure the folder_id is set (from the folder selection modal)
+   if (!this.selectedFolderId) {
+    console.error("Folder ID is required.");
+    this.showErrorAlert = true;
+    this.hideAlertAfterDelay();
+    return;
+   }
 
-    // Prepare the form data including the folder_id
-    const formData = {
-      folder_id: this.selectedFolderId,
-      surah_name: this.information.ayah.surah.name_en,
-      ayah_num: this.information.ayah_id,
-      ayah_verse_ar: this.information.ayah.ayah_text,
-      ayah_verse_en: this.information.translation,
-    };
+   // Prepare the form data including the folder_id
+   const formData = {
+    folder_id: this.selectedFolderId,
+    surah_name: this.information.ayah.surah.name_en,
+    ayah_num: this.information.ayah_id,
+    ayah_verse_ar: this.information.ayah.ayah_text,
+    ayah_verse_en: this.information.translation,
+   };
 
-    axios.post('/bookmarks', formData)
-      .then(response => {
-        console.log(response.data.message);
-        localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
-        this.showAlert = true;
-        this.showErrorAlert = false;
-        this.hideAlertAfterDelay();
-      })
-      .catch(error => {
-        console.error(error);
-        this.showAlert = false;
-        this.showErrorAlert = true;
-        this.hideAlertAfterDelay();
-      });
+   axios.post('/bookmarks', formData)
+    .then(response => {
+     console.log(response.data.message);
+     localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
+     this.showAlert = true;
+     this.showErrorAlert = false;
+     this.hideAlertAfterDelay();
+    })
+    .catch(error => {
+     console.error(error);
+     this.showAlert = false;
+     this.showErrorAlert = true;
+     this.hideAlertAfterDelay();
+    });
   },
 
   submitForm1() {
@@ -1276,7 +1280,6 @@ export default {
     this.dropdownHidden = true; // Hide Ayah dropdown if no Surah is selected
    }
   },
-
 
   async handleAyahChange() {
    const selectedAyahIndex = parseInt(this.selectedAyahId);
@@ -1403,10 +1406,10 @@ export default {
 }
 </script>
 
-<style scoped src="./css/styles.css">
+<style scoped>
 .button-33 {
-  background-color: rgba(0, 191, 166, 0.2);
-  color: rgb(5, 32, 29);
-  border: 1px solid rgba(0, 191, 166);
+ background-color: rgba(0, 191, 166, 0.2);
+ color: rgb(5, 32, 29);
+ border: 1px solid rgba(0, 191, 166);
 }
 </style>
