@@ -32,16 +32,15 @@ class FolderController extends Controller
         return response()->json(['bookmarks' => $bookmarks], 200);
     }
 
-
-
+    // Method to store a new folder
     public function store(Request $request)
     {
-        // Validate request
+        // Validate the request data
         $validated = $request->validate([
             'name' => 'required|string|max:255',
         ]);
 
-        // Create folder
+        // Create a new folder
         $folder = Folder::create([
             'name' => $validated['name'],
             'user_id' => Auth::id(),
@@ -50,12 +49,14 @@ class FolderController extends Controller
         return response()->json(['message' => 'Folder created successfully!', 'folder' => $folder], 201);
     }
 
+    // Method to get all folders for the authenticated user
     public function getFolders()
     {
-        // Retrieve folders for the authenticated user
         $folders = Auth::user()->folders()->get();
         return response()->json(['folders' => $folders]);
     }
+
+    
 
     public function update(Request $request, $id)
     {

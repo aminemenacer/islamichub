@@ -55,6 +55,12 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a href="/collection" class="nav-link">
+                            <i class="bi bi-bookmark-dash-fill mr-1"></i>
+                            <p>Collections</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="/notes" class="nav-link">
                             <i class="bi bi-file-earmark-text-fill mr-1"></i>
                             <p>Notes</p>

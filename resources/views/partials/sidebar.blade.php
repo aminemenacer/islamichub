@@ -53,6 +53,12 @@
      </a>
     </li>
     <li class="nav-item">
+     <a href="/collection" class="nav-link">
+      <i class="bi bi-bookmark-dash-fill mr-3"></i>
+      <p>Collections</p>
+     </a>
+    </li>
+    <li class="nav-item">
      <a href="/notes" class="nav-link">
       <i class="bi bi-file-earmark-text-fill mr-3"></i>
       <p>Notes</p>
@@ -62,7 +68,7 @@
      <a class="nav-link" href="{{ route('logout') }}"
       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
       <i class="bi bi-plug-fill" style="font-size: 22px"></i>
-      <p class="mb-4">{{ __('Logout') }}</p>
+      <p class="mr-3 mb-4">{{ __('Logout') }}</p>
      </a>
      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
       @csrf

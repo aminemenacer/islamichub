@@ -152,14 +152,7 @@
                 {{ isOpen ? 'Close Toolbar' : 'Open Toolbar' }}
               </button>
             </div>
-            <select v-model="selectedFolderId" class="form-control">
-              <option disabled value="">Select Folder</option>
-              <option v-for="folder in folders" :key="folder.id" :value="folder.id">
-                {{ folder.name }}
-              </option>
-            </select>
-            <div class="col">
-            </div>
+            <div class="col"></div>
           </div>
         </div>
         
@@ -170,6 +163,8 @@
           <div class="card text-bg-light card-body" >
             <!-- Your content here -->
             <TranslationActions class="" :targetTranslationRef="'targetTranslationElement'" :translation="translation" @open-modal="openModal" @submit-form="submitForm" />
+              <FolderSelectionModal :information="bookmarkData" />
+
             <!--
             <PdfDownload class="pl-1 pb-2 mt-2 text-left" :targetTranslationRef="'targetTranslationElement'" />
             -->
@@ -720,6 +715,12 @@ export default {
     translation: '',
     transliteration: '', // Example translated text
    },
+   bookmarkData: {
+        surah_name: '',
+        ayah_num: '',
+        ayah_verse_ar: '',
+        ayah_verse_en: ''
+      },
    tafseer: '',
    //custom surah collection
    customSuratList: [],
@@ -1155,26 +1156,36 @@ export default {
    }
   },
   submitForm() {
+    // Ensure the folder_id is set (from the folder selection modal)
     if (!this.selectedFolderId) {
-      alert("Please select a folder.");
+      console.error("Folder ID is required.");
+      this.showErrorAlert = true;
+      this.hideAlertAfterDelay();
       return;
     }
 
+    // Prepare the form data including the folder_id
     const formData = {
       folder_id: this.selectedFolderId,
-      surah_name: this.information.surah.name_en,
+      surah_name: this.information.ayah.surah.name_en,
       ayah_num: this.information.ayah_id,
-      ayah_verse_ar: this.information.ayah_text,
+      ayah_verse_ar: this.information.ayah.ayah_text,
       ayah_verse_en: this.information.translation,
     };
 
     axios.post('/bookmarks', formData)
       .then(response => {
-        alert("Bookmark added successfully!");
+        console.log(response.data.message);
+        localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
+        this.showAlert = true;
+        this.showErrorAlert = false;
+        this.hideAlertAfterDelay();
       })
       .catch(error => {
         console.error(error);
-        alert("Error adding bookmark.");
+        this.showAlert = false;
+        this.showErrorAlert = true;
+        this.hideAlertAfterDelay();
       });
   },
 

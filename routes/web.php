@@ -25,6 +25,7 @@ use App\Http\Controllers\UpdatesController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\FolderController;
 use App\Http\Controllers\VerseController;
+use App\Http\Controllers\CollectionController;
 
 // Auth routes
 Auth::routes();
@@ -46,6 +47,15 @@ Route::middleware(['auth'])->group(function () {
     Route::get('api/fetch-bookmarks/folder/{folderId}', [BookmarkController::class, 'getBookmarksByFolder']);
     Route::delete('api/delete-bookmarks/{id}', [BookmarkController::class, 'deleteBookmarks']);
     Route::get('/folders/{folderId}/bookmarks', [FolderController::class, 'getBookmarksByFolder']);
+
+    Route::get('/bookmarks/{userId}', [BookmarkController::class, 'getBookmarks']);
+    Route::delete('/bookmarks/{id}', [BookmarkController::class, 'deleteBookmarks']);
+    Route::get('/folders/bookmarks', [BookmarkController::class, 'getBookmarksByFolder']);
+
+    Route::get('/folders', [FolderController::class, 'getFolders']);
+    Route::post('/folders', [FolderController::class, 'store']);
+    Route::post('/bookmarks', [BookmarkController::class, 'store']);
+
 
 
     // notes
@@ -187,3 +197,5 @@ Route::get('/charity', [CharityController::class, 'index'])->name('charity');
 Route::get('/volunteer', [VolunteerController::class, 'index'])->name('volunteer');
 // about
 Route::get('/about', [AboutController::class, 'index'])->name('about');
+// collection
+Route::get('/collection', [CollectionController::class, 'index'])->name('collection');

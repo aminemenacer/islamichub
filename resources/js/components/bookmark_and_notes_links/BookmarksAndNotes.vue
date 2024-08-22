@@ -3,11 +3,15 @@
  <hr class="container text-secondary">
  <div class="row mobile-only" style="padding:10px">
   <div class="col-md-4">
-   <p class="text-left ayah-translation text-secondary" style="line-height: 1.6em; cursor: pointer;">
-    <a href="/bookmarks" class="link-darkgrey-underline">View bookmarks</a>
+   <p class="text-left ayah-translation button-63" style="line-height: 1.6em; cursor: pointer;">
+    <a href="/bookmarks" >View bookmarks</a>
    </p>
-   <p class="text-left ayah-translation text-secondary" style="line-height: 1.6em; cursor: pointer;">
-    <a href="/notes" class="link-darkgrey-underline">View Notes</a>
+   <p class="text-left ayah-translation button-63" style="line-height: 1.6em; cursor: pointer;">
+    <a href="/notes" >View Notes</a>
+   </p>
+   <p class="text-left ayah-translation button-63" style="line-height: 1.6em; cursor: pointer;">
+    <i class="bi bi-collection-fill"></i>
+    <a href="/collection" style="color:white; tex-decoration:none">View Collections</a>
    </p>
   </div>
   <div class="col-md-4"></div>

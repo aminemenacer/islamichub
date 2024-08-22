@@ -50,6 +50,7 @@ import BookmarkComponent from "./components/admin_panels/BookmarkComponent.vue";
 import UpdatesComponent from "./components/UpdatesComponent.vue";
 import JoinUsComponent from "./components/JoinUsComponent.vue";
 import NotesComponent from "./components/admin_panels/NotesComponent.vue";
+import CollectionComponent from "./components/admin_panels/CollectionComponent.vue";
 
 import CustomSurahSelection from "./components/surah_selection/CustomSurahSelection.vue";
 import Donation from "./components/intro/Donation.vue";
@@ -109,6 +110,7 @@ app.component("notes-component", NotesComponent);
 app.component("search-component", CustomSurahSelection);
 app.component("surah-list-component", SurahList);
 app.component("donations-component", Donation);
+app.component("collection-component", CollectionComponent);
 app.component('TinymceEditor', TinymceEditor);
 
 
