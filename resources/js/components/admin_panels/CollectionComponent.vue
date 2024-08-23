@@ -41,22 +41,33 @@
  </div>
 
  <!-- Folder Selection -->
- <div class="button-63 container" @click="openCreateFolderModal"><b>Create New Collection</b></div>
  <h3 class="pb-3 mt-3 text-center">
   <strong>You have:</strong> <b style="color:rgb(0, 191, 166)">{{ folders.length }}</b> <strong>Collections</strong>
  </h3>
- <div class="mt-3">
-
-  <div class="row">
-   <div class="col">
-    <a href="#" v-for="folder in folders" :key="folder.id" @click.prevent="selectFolder(folder.id)">
-     <div class="flex justify-content-center mr-1">
-      <button class="button-33" :class="{ active: folder === folder.id }">{{ folder.name }}</button>
-     </div>
-    </a>
+ <div class="row">
+  <div class="col-md-3">
+   <div class="button-63 " @click="openCreateFolderModal">
+    <b>Create New Collection</b>
    </div>
   </div>
  </div>
+
+<div class="pt-5 pb-3">
+  <h3>List of collections:</h3>
+  <div class="container scrollmenu">
+    <a href="#" v-for="folder in folders" :key="folder.id" @click.prevent="selectFolder(folder.id)">
+      <div class="flex justify-content-center mr-1">
+        <button 
+          class="btn btn-success" 
+          :class="{ active: selectedFolderId === folder.id }"
+        >
+          {{ folder.name }}
+        </button>
+      </div>
+    </a>
+  </div>
+</div>
+
 
  <!-- Display Bookmarks -->
  <div v-if="selectedFolderId">
@@ -170,6 +181,9 @@ export default {
     console.error("Error creating folder:", error);
    }
   },
+  selectFolder(folderId) {
+      this.selectedFolderId = folderId; // Set the selected folder ID
+    },
 
   async selectFolder(folderId) {
    this.selectedFolderId = folderId;
@@ -252,7 +266,7 @@ export default {
 <style>
 .scrollmenu {
  white-space: nowrap;
- overflow-x: auto;
+ overflow-y: auto;
 }
 
 .scrollmenu a {
@@ -261,11 +275,12 @@ export default {
  text-decoration: none;
 }
 
-.badge.active:after {
- background-color: rgba(0, 191, 166, 0.2);
- color: rgb(5, 32, 29);
- border: 1px solid rgba(0, 191, 166);
+.btn-success.active {
+  background-color: #007bff; /* Change to the desired color */
+  border-color: #007bff; /* Change to the desired color */
+  color: white;
 }
+
 
 @media (min-width: 768px) {
  .button-78 {
@@ -283,16 +298,12 @@ export default {
  color: #FFFFFF;
  display: flex;
  font-family: Phantomsans, sans-serif;
- font-size: 20px;
+ font-size: 15px;
  justify-content: center;
  line-height: 1em;
- max-width: 100%;
  padding: 13px 27px;
  text-decoration: none;
- user-select: none;
- -webkit-user-select: none;
- touch-action: manipulation;
- white-space: nowrap;
+
  cursor: pointer;
 }
 
@@ -308,20 +319,27 @@ export default {
  }
 }
 
-.scrollmenu {
- white-space: nowrap;
- overflow-x: auto;
-}
-
-.scrollmenu a {
+.button-33 {
+ background-color: #c2fbd7;
+ border-radius: 100px;
+ box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset, rgba(44, 187, 99, .15) 0 1px 2px, rgba(44, 187, 99, .15) 0 2px 4px, rgba(44, 187, 99, .15) 0 4px 8px, rgba(44, 187, 99, .15) 0 8px 16px, rgba(44, 187, 99, .15) 0 16px 32px;
+ color: green;
+ cursor: pointer;
  display: inline-block;
+ font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
+ padding: 7px 20px;
  text-align: center;
  text-decoration: none;
+ transition: all 250ms;
+ border: 0;
+ font-size: 16px;
+ user-select: none;
+ -webkit-user-select: none;
+ touch-action: manipulation;
 }
 
-.badge.active {
- background-color: rgba(0, 191, 166, 0.2);
- color: rgb(5, 32, 29);
- border: 1px solid rgba(0, 191, 166);
+.button-33:hover {
+ box-shadow: rgba(44, 187, 99, .35) 0 -25px 18px -14px inset, rgba(44, 187, 99, .25) 0 1px 2px, rgba(44, 187, 99, .25) 0 2px 4px, rgba(44, 187, 99, .25) 0 4px 8px, rgba(44, 187, 99, .25) 0 8px 16px, rgba(44, 187, 99, .25) 0 16px 32px;
+ transform: scale(1.05) rotate(-1deg);
 }
 </style>

@@ -15,7 +15,7 @@
           </div>
           <div class="modal-body">
             <!-- List of folders -->
-            <ul class="list-group ">
+            <ul class="list-group">
               <li 
                 v-for="folder in folders" 
                 :key="folder.id" 
@@ -25,8 +25,7 @@
                 {{ folder.name }}
               </li>
             </ul>
-                    <span class="badge button-33" :class="{ active: surah === data.id }">{{ data.name }}</span>
-
+            
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -128,26 +127,5 @@ export default {
 }
 </script>
 <style scoped >
-.button-33 {
-  background-color: rgba(0, 191, 166, 0.2);
-  color: rgb(5, 32, 29);
-  border: 1px solid rgba(0, 191, 166);
-}
 
-.scrollmenu {
-  white-space: nowrap;
-  overflow-x: auto;
-}
-
-.scrollmenu a {
-  display: inline-block;
-  text-align: center;
-  text-decoration: none;
-}
-
-.badge.active {
-  background-color: rgba(0, 191, 166, 0.2);
-  color: rgb(5, 32, 29);
-  border: 1px solid rgba(0, 191, 166);
-}
 </style>
