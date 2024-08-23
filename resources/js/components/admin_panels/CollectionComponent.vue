@@ -45,7 +45,7 @@
   <strong>You have:</strong> <b style="color:rgb(0, 191, 166)">{{ folders.length }}</b> <strong>Collections</strong>
  </h3>
  <div class="row">
-  <div class="col-md-3">
+  <div class="col-md-4">
    <div class="button-63 " @click="openCreateFolderModal">
     <b>Create New Collection</b>
    </div>
@@ -53,15 +53,18 @@
  </div>
 
 <div class="pt-5 pb-3">
-  <h3>List of collections:</h3>
+  <h2>Collections:</h2>
   <div class="container scrollmenu">
     <a href="#" v-for="folder in folders" :key="folder.id" @click.prevent="selectFolder(folder.id)">
       <div class="flex justify-content-center mr-1">
         <button 
-          class="btn btn-success" 
-          :class="{ active: selectedFolderId === folder.id }"
-        >
-          {{ folder.name }}
+          :class="['btn', 'btn-success', { 'highlight': highlightedIndex === index }]" 
+          @click="highlight(index)"
+          style="linear-gradient(144deg, #AF40FF, #5B42F3 50%, #00DDEB);"
+         >
+          {{ folder.name }}        
+          <i class="bi bi-trash" @click.prevent="confirmDeleteFolder(folder.id)"></i>
+
         </button>
       </div>
     </a>
@@ -142,6 +145,7 @@ import axios from "axios";
 export default {
  data() {
   return {
+   isHighlighted: false,
    folders: [],
    bookmarks: [],
    selectedFolderId: null,
@@ -155,6 +159,9 @@ export default {
  },
 
  methods: {
+  highlight(index) {
+   this.highlightedIndex = index; // Set the highlighted button's index
+  },
   async fetchFolders() {
    try {
     const response = await axios.get("/folders");
@@ -264,6 +271,16 @@ export default {
 </script>
 
 <style>
+
+.btn {
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.highlight {
+  background-color: rgb(0, 191, 166);;
+  color: rgb(255, 255, 255);
+}
+
 .scrollmenu {
  white-space: nowrap;
  overflow-y: auto;
@@ -298,10 +315,11 @@ export default {
  color: #FFFFFF;
  display: flex;
  font-family: Phantomsans, sans-serif;
- font-size: 15px;
+ font-size: 8px;
  justify-content: center;
  line-height: 1em;
- padding: 13px 27px;
+ font-size: 18px;
+ padding: 9px 27px;
  text-decoration: none;
 
  cursor: pointer;

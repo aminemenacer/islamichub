@@ -1,35 +1,108 @@
 <template>
   <div>
-    <!-- Button to trigger folder selection modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#folderSelectionModal">
-      Select Folder 
-    </button>
-
     <!-- Folder Selection Modal -->
-    <div class="modal fade" id="folderSelectionModal" tabindex="-1" aria-labelledby="folderSelectionModalLabel" aria-hidden="true">
+    <div
+      class="modal fade"
+      id="folderSelectionModal"
+      tabindex="-1"
+      aria-labelledby="folderSelectionModalLabel"
+      aria-hidden="true"
+      ref="folderSelectionModal"
+    >
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="folderSelectionModalLabel">Select Folder</h5>
-            <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
+            <h5 class="modal-title" id="folderSelectionModalLabel">
+              Select Folder
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
           </div>
           <div class="modal-body">
             <!-- List of folders -->
             <ul class="list-group">
-              <li 
-                v-for="folder in folders" 
-                :key="folder.id" 
-                class="list-group-item button-33"
-                style="padding:5px" 
-                @click="selectFolder(folder.id)">
-                {{ folder.name }}
+              <li
+                v-for="folder in folders"
+                :key="folder.id"
+                class="list-group-item d-flex justify-content-between align-items-center"
+              >
+                <span @click="selectFolder(folder.id)" style="cursor: pointer;">
+                  {{ folder.name }}
+                </span>
+                <button 
+                  type="button"
+                  class="btn btn-danger btn-sm"
+                  @click="confirmDeleteFolder(folder.id)"
+                >
+                  Delete
+                </button>
               </li>
             </ul>
-            
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-primary" @click="confirmSelection">Confirm</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              @click="confirmSelection"
+            >
+              Confirm
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div
+      class="modal fade"
+      id="deleteConfirmationModal"
+      tabindex="-1"
+      aria-labelledby="deleteConfirmationModalLabel"
+      aria-hidden="true"
+      ref="deleteConfirmationModal"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="deleteConfirmationModalLabel">
+              Confirm Delete
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            Are you sure you want to delete this folder?
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              @click="deleteFolder"
+            >
+              Delete
+            </button>
           </div>
         </div>
       </div>
@@ -37,22 +110,16 @@
   </div>
 </template>
 
-
 <script>
 import axios from 'axios';
 
 export default {
   name: 'FolderSelectionModal',
-  props: {
-    information: {
-      type: Object,
-      required: true
-    }
-  },
   data() {
     return {
       folders: [],
-      selectedFolderId: null
+      selectedFolderId: null,
+      folderIdToDelete: null, // To store the folder ID to be deleted
     };
   },
   mounted() {
@@ -71,61 +138,54 @@ export default {
       this.selectedFolderId = folderId;
     },
     async confirmSelection() {
-     console.log('Information:', this.information);
+      if (!this.selectedFolderId) {
+        alert('Please select a folder.');
+        return;
+      }
 
-     if (!this.selectedFolderId) {
-      console.error('No folder selected');
-      alert('Please select a folder.');
-      return;
-     }
-
-     // Validate bookmark data fields
-     if (!this.information.surah_name || !this.information.ayah_num ||
-      !this.information.ayah_verse_ar || !this.information.ayah_verse_en) {
-      console.error('Bookmark data is incomplete:', this.information);
-      alert('Please fill in all bookmark details before saving.');
-      return;
-     }
-
-      // Prepare the form data
-      const formData = {
-        folder_id: this.selectedFolderId,
-        surah_name: this.information.surah_name,
-        ayah_num: this.information.ayah_num,
-        ayah_verse_ar: this.information.ayah_verse_ar,
-        ayah_verse_en: this.information.ayah_verse_en
-      };
+      const formData = { folder_id: this.selectedFolderId };
 
       try {
-        // Make the POST request to save the bookmark
         const response = await axios.post('/bookmarks', formData);
-        console.log('Bookmark saved:', response.data.message);
-
-        // Emit an event to notify parent component
         this.$emit('folder-selected', response.data.bookmark);
-
-        // Reset form data
-        this.$emit('update:information', {
-          surah_name: '',
-          ayah_num: '',
-          ayah_verse_ar: '',
-          ayah_verse_en: ''
-        });
         this.selectedFolderId = null;
-
-        // Hide the modal
-        const modal = bootstrap.Modal.getInstance(document.getElementById('folderSelectionModal'));
-        if (modal) {
-          modal.hide();
-        }
+        this.closeFolderSelectionModal();
       } catch (error) {
         console.error('Error saving bookmark:', error.response?.data?.message || error.message);
-        alert('Failed to add bookmark! Please check the details and try again.');
+        alert('Failed to add bookmark! Please try again.');
       }
-    }
-  }
-}
-</script>
-<style scoped >
+    },
+    openFolderSelectionModal() {
+      const modal = new bootstrap.Modal(this.$refs.folderSelectionModal);
+      modal.show();
+    },
+    closeFolderSelectionModal() {
+      const modal = bootstrap.Modal.getInstance(this.$refs.folderSelectionModal);
+      if (modal) modal.hide();
+    },
+    confirmDeleteFolder(folderId) {
+      this.folderIdToDelete = folderId;
+      const modal = new bootstrap.Modal(this.$refs.deleteConfirmationModal);
+      modal.show();
+    },
+    async deleteFolder() {
+      if (!this.folderIdToDelete) return;
 
+      try {
+        await axios.delete(`/folders/${this.folderIdToDelete}`);
+        this.folders = this.folders.filter(folder => folder.id !== this.folderIdToDelete);
+        this.folderIdToDelete = null;
+        const modal = bootstrap.Modal.getInstance(this.$refs.deleteConfirmationModal);
+        if (modal) modal.hide();
+      } catch (error) {
+        console.error('Error deleting folder:', error.response?.data?.message || error.message);
+        alert('Failed to delete folder! Please try again.');
+      }
+    },
+  },
+};
+</script>
+
+<style scoped>
+/* Add any custom styles for the modal here */
 </style>

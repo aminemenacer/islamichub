@@ -16,6 +16,7 @@
     <!--
     <VerseModal class="col-md-2"/>
     -->
+    
     <AddBookmark />
     
    </div>
@@ -156,16 +157,13 @@
             <div class="col"></div>
           </div>
         </div>
-        
-        
 
         <!-- toolbar mobile -->
         <div v-if="isOpen" class="collapse-content mobile-only" style="background-color: rgba(0, 191, 166, 0.452);">
           <div class="card text-bg-light card-body" >
             <!-- Your content here -->
             <TranslationActions class="" :targetTranslationRef="'targetTranslationElement'" :translation="translation" @open-modal="openModal" @submit-form="submitForm" />
-              <FolderSelectionModal :information="bookmarkData" />
-
+        
             <!--
             <PdfDownload class="pl-1 pb-2 mt-2 text-left" :targetTranslationRef="'targetTranslationElement'" />
             -->
@@ -549,6 +547,8 @@ import SpeechToText from './SpeechToText.vue'
 import PdfDownload from './pdf/PdfDownload.vue'
 import VerseModal from './translation/VerseModal.vue'
 import AddBookmark from './folder_manager/AddBookmark.vue';
+import FolderSelectionModal from './folder_manager/FolderSelectionModal.vue';
+
 
 export default {
  name: 'QuranComponent',
@@ -602,7 +602,8 @@ export default {
   SpeechToText,
   PdfDownload,
   VerseModal,
-  AddBookmark
+  AddBookmark,
+  FolderSelectionModal
  },
 
  mounted() {
@@ -716,12 +717,7 @@ export default {
     translation: '',
     transliteration: '', // Example translated text
    },
-   bookmarkData: {
-        surah_name: '',
-        ayah_num: '',
-        ayah_verse_ar: '',
-        ayah_verse_en: ''
-      },
+   
    tafseer: '',
    //custom surah collection
    customSuratList: [],
@@ -821,6 +817,19 @@ export default {
     },
   },
  methods: {
+   openModal(modalName) {
+      if (modalName === 'folderSelection') {
+        const folderSelectionModal = this.$refs.folderSelectionModal;
+        if (folderSelectionModal) {
+          const bootstrapModal = new bootstrap.Modal(folderSelectionModal.$el);
+          bootstrapModal.show();
+        } else {
+          console.error('Folder selection modal not found');
+        }
+      } else {
+        console.error('Unknown modal:', modalName);
+      }
+    },
    initRecognition() {
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
@@ -1156,92 +1165,87 @@ export default {
     }, 5000);
    }
   },
-  submitForm() {
-    // Ensure the folder_id is set (from the folder selection modal)
-    if (!this.selectedFolderId) {
-      console.error("Folder ID is required.");
-      this.showErrorAlert = true;
-      this.hideAlertAfterDelay();
-      return;
-    }
-
-    // Prepare the form data including the folder_id
-    const formData = {
-      folder_id: this.selectedFolderId,
-      surah_name: this.information.ayah.surah.name_en,
-      ayah_num: this.information.ayah_id,
-      ayah_verse_ar: this.information.ayah.ayah_text,
-      ayah_verse_en: this.information.translation,
-    };
-
-    axios.post('/bookmarks', formData)
-      .then(response => {
-        console.log(response.data.message);
-        localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
-        this.showAlert = true;
-        this.showErrorAlert = false;
-        this.hideAlertAfterDelay();
-      })
-      .catch(error => {
-        console.error(error);
-        this.showAlert = false;
+  ubmitForm() {
+      // Ensure the folder_id is set (from the folder selection modal)
+      if (!this.selectedFolderId) {
+        console.error("Folder ID is required.");
         this.showErrorAlert = true;
         this.hideAlertAfterDelay();
-      });
-  },
+        return;
+      }
 
-  submitForm1() {
-   const formData = {
-    surah_name: this.information.ayah.surah.name_en,
-    ayah_num: this.information.ayah_id,
-    ayah_verse_ar: this.information.ayah.ayah_text,
-    ayah_verse_en: this.tafseer,
-   };
+      // Prepare the form data including the folder_id
+      const formData = {
+        folder_id: this.selectedFolderId,
+        surah_name: this.information.ayah.surah.name_en,
+        ayah_num: this.information.ayah_id,
+        ayah_verse_ar: this.information.ayah.ayah_text,
+        ayah_verse_en: this.information.translation,
+      };
 
-   axios.post('/bookmarks', formData)
-    .then(response => {
-     console.log(response.data.message);
-     // Set the submitted status for the selected bookmark
-     localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
-     // Log the updated bookmarkSubmitted object
-     console.log(this.bookmarkSubmitted);
-     this.showAlert = true; // Show success alert
-     this.showErrorAlert = false; // Hide error alert
-     this.hideAlertAfterDelay(); // Start timer to hide alert
-    })
-    .catch(error => {
-     console.error(error);
-     this.showAlert = false; // Hide success alert
-     this.showErrorAlert = true; // Show error alert
-     this.hideAlertAfterDelay(); // Start timer to hide alert
-    });
-  },
-  submitForm2() {
-   const formData = {
-    surah_name: this.information.ayah.surah.name_en,
-    ayah_num: this.information.ayah_id,
-    ayah_verse_ar: this.information.ayah.ayah_text,
-    ayah_verse_en: this.information.transliteration,
-   };
+      axios.post('/bookmarks', formData)
+        .then(response => {
+          console.log(response.data.message);
+          localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
+          this.showAlert = true;
+          this.showErrorAlert = false;
+          this.hideAlertAfterDelay();
+        })
+        .catch(error => {
+          console.error(error);
+          this.showAlert = false;
+          this.showErrorAlert = true;
+          this.hideAlertAfterDelay();
+        });
+    },
 
-   axios.post('/bookmarks', formData)
-    .then(response => {
-     console.log(response.data.message);
-     // Set the submitted status for the selected bookmark
-     localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
-     // Log the updated bookmarkSubmitted object
-     console.log(this.bookmarkSubmitted);
-     this.showAlert = true; // Show success alert
-     this.showErrorAlert = false; // Hide error alert
-     this.hideAlertAfterDelay(); // Start timer to hide alert
-    })
-    .catch(error => {
-     console.error(error);
-     this.showAlert = false; // Hide success alert
-     this.showErrorAlert = true; // Show error alert
-     this.hideAlertAfterDelay(); // Start timer to hide alert
-    });
-  },
+    submitForm1() {
+      const formData = {
+        surah_name: this.information.ayah.surah.name_en,
+        ayah_num: this.information.ayah_id,
+        ayah_verse_ar: this.information.ayah.ayah_text,
+        ayah_verse_en: this.tafseer,
+      };
+
+      axios.post('/bookmarks', formData)
+        .then(response => {
+          console.log(response.data.message);
+          localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
+          this.showAlert = true;
+          this.showErrorAlert = false;
+          this.hideAlertAfterDelay();
+        })
+        .catch(error => {
+          console.error(error);
+          this.showAlert = false;
+          this.showErrorAlert = true;
+          this.hideAlertAfterDelay();
+        });
+    },
+
+    submitForm2() {
+      const formData = {
+        surah_name: this.information.ayah.surah.name_en,
+        ayah_num: this.information.ayah_id,
+        ayah_verse_ar: this.information.ayah.ayah_text,
+        ayah_verse_en: this.information.transliteration,
+      };
+
+      axios.post('/bookmarks', formData)
+        .then(response => {
+          console.log(response.data.message);
+          localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
+          this.showAlert = true;
+          this.showErrorAlert = false;
+          this.hideAlertAfterDelay();
+        })
+        .catch(error => {
+          console.error(error);
+          this.showAlert = false;
+          this.showErrorAlert = true;
+          this.hideAlertAfterDelay();
+        });
+    },
   hideAlertAfterDelay() {
    setTimeout(() => {
     this.showAlert = false;
