@@ -45,11 +45,16 @@
   <strong>You have:</strong> <b style="color:rgb(0, 191, 166)">{{ folders.length }}</b> <strong>Collections</strong>
  </h3>
  <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-2">
    <div class="button-63 " @click="openCreateFolderModal">
     <b>Create New Collection</b>
    </div>
   </div>
+  <div class="col-md-2"></div>
+  <div class="col-md-2"></div>
+  <div class="col-md-2"></div>
+  <div class="col-md-2"></div>
+  <div class="col-md-2"></div>
  </div>
 
 <div class="pt-5 pb-3">
@@ -315,13 +320,10 @@ export default {
  color: #FFFFFF;
  display: flex;
  font-family: Phantomsans, sans-serif;
- font-size: 8px;
  justify-content: center;
  line-height: 1em;
- font-size: 18px;
- padding: 9px 27px;
+ padding: 9px 17px;
  text-decoration: none;
-
  cursor: pointer;
 }
 
@@ -332,7 +334,7 @@ export default {
 
 @media (min-width: 768px) {
  .button-63 {
-  font-size: 24px;
+  font-size: 18px;
   min-width: 196px;
  }
 }
