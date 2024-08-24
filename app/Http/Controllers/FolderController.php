@@ -73,6 +73,10 @@ class FolderController extends Controller
     {
         // Find the folder by ID and ensure it belongs to the authenticated user
         $folder = Auth::user()->folders()->findOrFail($id);
+        
+        // Optionally, delete associated bookmarks or handle folder-related logic
+        // $folder->bookmarks()->delete();
+
         // Delete the folder
         $folder->delete();
 

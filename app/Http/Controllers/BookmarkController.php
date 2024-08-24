@@ -24,29 +24,23 @@ class BookmarkController extends Controller
     }
 
     
-    public function store(Request $request)
-    {
-        $validated = $request->validate([
+    public function store(Request $request) {
+        $validatedData = $request->validate([
             'surah_name' => 'required|string|max:255',
             'ayah_num' => 'required|integer',
             'ayah_verse_ar' => 'required|string',
             'ayah_verse_en' => 'required|string',
-            'folder_id' => 'required|exists:folders,id',
+            'folder_id' => 'required|integer|exists:folders,id',
         ]);
-
-        $bookmark = Bookmark::create([
-            'surah_name' => $validated['surah_name'],
-            'ayah_num' => $validated['ayah_num'],
-            'ayah_verse_ar' => $validated['ayah_verse_ar'],
-            'ayah_verse_en' => $validated['ayah_verse_en'],
-            'folder_id' => $validated['folder_id'],
-            'user_id' => Auth::id(),
-        ]);
-
-        return response()->json(['message' => 'Bookmark added successfully!', 'bookmark' => $bookmark], 201);
+    
+        try {
+            $bookmark = Bookmark::create($validatedData);
+            return response()->json(['success' => true, 'message' => 'Bookmark saved successfully.', 'bookmark' => $bookmark], 200);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => 'Failed to save bookmark: ' . $e->getMessage()], 500);
+        }
     }
-
-
+    
 
     public function getBookmarksByFolder()
     {

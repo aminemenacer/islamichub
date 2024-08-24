@@ -54,7 +54,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/folders', [FolderController::class, 'getFolders']);
     Route::post('/folders', [FolderController::class, 'store']);
-    Route::post('/bookmarks', [BookmarkController::class, 'store']);
 
 
 

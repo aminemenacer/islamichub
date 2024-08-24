@@ -160,13 +160,8 @@
 
         <!-- toolbar mobile -->
         <div v-if="isOpen" class="collapse-content mobile-only" style="background-color: rgba(0, 191, 166, 0.452);">
-          <div class="card text-bg-light card-body" >
-            <!-- Your content here -->
-            <TranslationActions class="" :targetTranslationRef="'targetTranslationElement'" :translation="translation" @open-modal="openModal" @submit-form="submitForm" />
-        
-            <!--
-            <PdfDownload class="pl-1 pb-2 mt-2 text-left" :targetTranslationRef="'targetTranslationElement'" />
-            -->
+          <div class="card text-bg-light card-body">
+            <TranslationActions :targetTranslationRef="'targetTranslationElement'" :information="information" :translation="translation" @open-modal="openModal" @submit-form="submitForm" />
           </div>
         </div>
         <!-- end toolbar mobile -->
@@ -1165,7 +1160,7 @@ export default {
     }, 5000);
    }
   },
-  ubmitForm() {
+  submitForm() {
       // Ensure the folder_id is set (from the folder selection modal)
       if (!this.selectedFolderId) {
         console.error("Folder ID is required.");
