@@ -16,6 +16,7 @@
     <!--
     <VerseModal class="col-md-2"/>
     -->
+
     
     <AddBookmark />
     
@@ -161,7 +162,7 @@
         <!-- toolbar mobile -->
         <div v-if="isOpen" class="collapse-content mobile-only" style="background-color: rgba(0, 191, 166, 0.452);">
           <div class="card text-bg-light card-body">
-            <TranslationActions :targetTranslationRef="'targetTranslationElement'" :information="information" :translation="translation" @open-modal="openModal" @submit-form="submitForm" />
+            <TranslationActions :targetTranslationRef="'targetTranslationElement'" :translation="translation" @open-modal="openModal" @submit-form="submitForm" />
           </div>
         </div>
         <!-- end toolbar mobile -->
@@ -540,7 +541,6 @@ import ColorPicker from './color_picker/ColorPicker.vue';
 import FontStyleSelector from './FontStyleSelector.vue'
 import SpeechToText from './SpeechToText.vue'
 import PdfDownload from './pdf/PdfDownload.vue'
-import VerseModal from './translation/VerseModal.vue'
 import AddBookmark from './folder_manager/AddBookmark.vue';
 import FolderSelectionModal from './folder_manager/FolderSelectionModal.vue';
 
@@ -596,7 +596,6 @@ export default {
   FontStyleSelector,
   SpeechToText,
   PdfDownload,
-  VerseModal,
   AddBookmark,
   FolderSelectionModal
  },
@@ -613,6 +612,7 @@ export default {
  data() {
 
   return {
+    isVisible1: false,
     isOpen: false,
     recognition: null,
     isListening: false,
@@ -812,6 +812,9 @@ export default {
     },
   },
  methods: {
+   toggleContent1() {
+      this.isVisible1 = !this.isVisible1; // Toggle the visibility
+    },
    openModal(modalName) {
       if (modalName === 'folderSelection') {
         const folderSelectionModal = this.$refs.folderSelectionModal;
