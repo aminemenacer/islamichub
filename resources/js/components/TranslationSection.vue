@@ -3,13 +3,9 @@
  <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
  <AyahInfo :information="information" />
  <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
-  <span class="badge" @click="toggleContent1">
-   <i :class="isVisible1 ? 'bi bi-dash-circle' : 'bi bi-plus-circle'"></i>
-  </span>
-  <MainAyah :information="information" v-if="isVisible1" />
-  
-  <div ref="heading3">
-   <h4 class="text-left ayah-translation" style="line-height: 1.6em">
+  <MainAyah :information="information"  />
+  <div ref="heading3" class="text-left">
+   <h4 class="text-left ayah-translation" style="line-height: 1.6em" >
     {{ expanded ? information.translation : truncatedText(information.translation) }}
     <template v-if="showMoreLink && information.translation.length > 100">
      <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
@@ -17,7 +13,6 @@
    </h4>
   </div>
   <div>
-
   </div>
   <Translator translator="Ahmed Ali" />
   <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
@@ -32,7 +27,7 @@ import Translator from './translation/Translator.vue';
 import AlertModal from './modals/AlertModal.vue';
 
 export default {
- name: 'TranslationSection',
+ name: 'TranslationSection', 
  components: {
   AyahInfo,
   MainAyah,
@@ -76,13 +71,10 @@ export default {
 
  data() {
   return {
-   isVisible1: true,
   }
  },
  methods: {
-  toggleContent1() {
-   this.isVisible1 = !this.isVisible1; // Toggle the visibility
-  },
+  
   toggleFullScreen() {
    this.$emit('toggle-full-screen');
   },
@@ -109,13 +101,6 @@ export default {
 </script>
 
 <style scoped>
-
-.badge{
-  background-color: rgba(0, 191, 166, 0.2);
-  color: rgb(5, 32, 29);
-  border: 1px solid rgba(0, 191, 166);
-}
-
 .full-screen {
  position: fixed;
  top: 0;

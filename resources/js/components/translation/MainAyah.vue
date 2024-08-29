@@ -1,6 +1,6 @@
 <template>
   <div class="btn">
-    <h5 class="text-right ayah-translation" name="ayah_text" :style="styleObject">{{ information.ayah.ayah_text }}</h5>
+    <div class="text-right ayah-translation" name="ayah_text" :style="styleObject">{{ information.ayah.ayah_text }}</div>
   </div>
 </template>
 
@@ -31,7 +31,7 @@ export default {
   text-align: right;
 }
 .ayah-translation {
-  font-size: 1.2rem;
+  font-size: 2rem;
   color: #333;
 }
 
