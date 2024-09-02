@@ -100,11 +100,11 @@
                             </div>
                         </li>
                         @endguest
-                        <li class="nav-item mt-3 pl-4">
-                            <button class="button-63">
+                        <li class="nav-item mt-2 pl-4">
+                            <button class="button-63" style="padding: 12px">
                                 <a style="text-decoration: none;color:white"
                                 href="https://www.gofundme.com/f/empowerment-through-quran-support-islamic-connects-mission">
-                                Support Us
+                                <strong>Donate Here</strong>
                                 </a>
                             </button>
                         </li>

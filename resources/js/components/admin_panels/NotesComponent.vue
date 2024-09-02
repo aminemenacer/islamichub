@@ -25,24 +25,25 @@
       </h3>
       <div class="row">
         <div class="col-md-4 mb-4" v-for="note in notes" :key="note.id">
-          <!-- Note Card -->
-          <div class="card" style="border-radius:8px;padding:10px; border: 2px solid rgba(0, 191, 166);">
-            <div class="card-body">
-              <!-- Note details -->
-              <div>
-                <h5><strong>Surah Name:</strong></h5>
-                <p>{{ note.surah_name }}</p>
-              </div>
-              <div class="mt-2">
-                <h5><strong>Note:</strong></h5>
-                <p>{{ truncatedHtml(note.ayah_notes) }}</p>
-              </div>
-              <hr />
-              <i class="bi bi-eye-fill h4" style="color:rgb(0, 191, 166); cursor:pointer" @click="viewModal(note)"></i>
-              <i class="bi bi-trash-fill h4 ml-3" style="color:rgb(0, 191, 166); cursor:pointer" @click="deleteNote(note.id)"></i>
-            </div>
+      <!-- Note Card -->
+      <div class="card" style="border-radius:8px;padding:10px; border: 2px solid rgba(0, 191, 166);">
+        <div class="card-body">
+          <!-- Note details -->
+          <div>
+            <h5><strong>Surah Name:</strong></h5>
+            <p>{{ note.surah_name }}</p>
           </div>
+          <div class="mt-2">
+            <h5><strong>Note:</strong></h5>
+            <p v-html="truncatedHtml(note.ayah_notes)"></p>
+          </div>
+          <hr />
+          <i class="bi bi-eye-fill h4" style="color:rgb(0, 191, 166); cursor:pointer" @click="viewModal(note)"></i>
+          <i class="bi bi-trash-fill h4 ml-3" style="color:rgb(0, 191, 166); cursor:pointer" @click="deleteNote(note.id)"></i>
         </div>
+      </div>
+    </div>
+
       </div>
     </div>
 
@@ -130,12 +131,11 @@ export default {
       notes: [],
       userId: null,
       form: {
-        id: "",
-        surah_name: "",
-        ayah_verse_ar: "",
-        ayah_verse_en: "",
-        ayah_notes: "",
-        created_at: ""
+        surah_name: '',
+        ayah_verse_ar: '',
+        ayah_verse_en: '',
+        ayah_notes: '',
+        created_at: '',
       },
       
     };
@@ -163,6 +163,20 @@ export default {
       });
   },
   methods: {
+    viewModal(note) {
+      // Populate the form object with the note's data
+      this.form = {
+        surah_name: note.surah_name,
+        ayah_verse_ar: note.ayah_verse_ar,
+        ayah_verse_en: note.ayah_verse_en,
+        ayah_notes: note.ayah_notes,
+        created_at: note.created_at,
+      };
+
+      // Open the modal (Bootstrap 5 way)
+      const viewNotesModal = new bootstrap.Modal(document.getElementById('viewNotes'));
+      viewNotesModal.show();
+    },
     extractDate(dateTimeString) {
       return dateTimeString.split('T')[0];
     },
