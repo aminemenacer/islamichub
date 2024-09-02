@@ -12,7 +12,7 @@
    <FilteredSurahList :filteredSurah="filteredSurah" @select-surah="selectSurahFromResults" />
    <Donation />
    <div style="display:flex" class="row">
-    <SurahDropdown class="col-md-10" :selectedSurah="selectedSurah" :filteredSurah="filteredSurah" :surat="surat" @update:selectedSurah="updateSelectedSurah" @change="getAyat" />
+    <SurahDropdown class="col-md-12" :selectedSurah="selectedSurah" :filteredSurah="filteredSurah" :surat="surat" @update:selectedSurah="updateSelectedSurah" @change="getAyat" />
     <!--
     <VerseModal class="col-md-2"/>
     -->
@@ -315,7 +315,7 @@
 
        </div>
 
-       <!-- Group Section -->
+       <!-- overview Section -->
        <div class="tab-pane content" id="data" role="tabpanel" v-if="information != null">
         <div class="">
          <div>
@@ -338,6 +338,7 @@
             <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;"></i>
             <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
            </div>
+
            <!-- Dropdown Features -->
            <div class="dropdown mobile-only">
             <div class="icon-container">
@@ -374,7 +375,7 @@
             <div v-if="isOpen" class="collapse-content mobile-only">
               <div class="card text-bg-light card-body">
                 <!-- Your content here -->
-                <TransliterationActions :targetTransliterationRef="'targetTransliterationElement'" :transliteration="transliteration" @open-modal="openModal" @submit-form="submitForm" />
+                <GroupActions :targetGroupRef="'targetGroupElement'" :transliteration="transliteration" @open-modal="openModal" @submit-form="submitForm" />
                 <!--
                 <PdfDownload class="pl-2 pb-2 mt-2 text-left" :targetTransliterationRef="'targetTransliterationElement'" />
                 -->
@@ -394,7 +395,9 @@
       </div>
 
      </div>
+     <!--
      <BookmarksAndNotes :information="information" />
+     -->
      <CorrectionModal />
      <!-- Modals -->
      <TranslationNote ref="translationNote" :information="modalInformation" />
@@ -405,33 +408,32 @@
 
    </div>
    <!-- Bootstrap Modal for Theme Selection -->
-    <div class="modal fade" id="themeModal" tabindex="-1" aria-labelledby="themeModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="themeModalLabel">Select a Theme</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <!-- Theme Selection Dropdown -->
-            <select v-model="selectedStyle" @change="applyTheme" class="form-select">
-              <option disabled value="">Select a theme</option>
-              <option v-for="style in styles" :key="style.name" :value="style">
-                {{ style.name }}
-              </option>
-            </select>
-            <!-- Confirmation Message -->
-            <div v-if="showMessage" class="mt-3 alert alert-success">
-              {{ message }}
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          </div>
-        </div>
+   <div class="modal fade" id="themeModal" tabindex="-1" aria-labelledby="themeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+     <div class="modal-content">
+      <div class="modal-header">
+       <h5 class="modal-title" id="themeModalLabel">Select a Theme</h5>
+       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+      <div class="modal-body">
+       <!-- Theme Selection Dropdown -->
+       <select v-model="selectedStyle" @change="applyTheme" class="form-select">
+        <option disabled value="">Select a theme</option>
+        <option v-for="style in styles" :key="style.name" :value="style">
+         {{ style.name }}
+        </option>
+       </select>
+       <!-- Confirmation Message -->
+       <div v-if="showMessage" class="mt-3 alert alert-success">
+        {{ message }}
+       </div>
+      </div>
+      <div class="modal-footer">
+       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+     </div>
     </div>
-
+   </div>
 
     <!-- Bootstrap Modal -->
     <div class="modal fade" id="styleModal" tabindex="-1" aria-labelledby="styleModalLabel" aria-hidden="true">
@@ -460,13 +462,19 @@
                     </select>
                   </div>
                 </div>
-                <div class="col-md-6 mb-3">
-                  <label for="bgColor" class="form-label">Background Color</label>
-                  <input type="color" id="bgColor" v-model="bgColor" class="form-control" />
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="bgColor" class="form-label">Background Color</label>
+                    <input type="color" id="bgColor" v-model="bgColor" class="form-control" />
+                  </div>
                 </div>
-                <div class="col-md-6 mb-3">
-                  <label for="textColor" class="form-label">Text Color</label>
-                  <input type="color" id="textColor" v-model="textColor" class="form-control" />
+
+                <!-- Row 2: Text Color and Shadow Style -->
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="textColor" class="form-label">Text Color</label>
+                    <input type="color" id="textColor" v-model="textColor" class="form-control" />
+                  </div>
                 </div>
                 <div class="col-md-6">
                   <div class="mb-3">
@@ -614,7 +622,6 @@ import SpeechToText from './SpeechToText.vue'
 import PdfDownload from './pdf/PdfDownload.vue'
 import AddBookmark from './folder_manager/AddBookmark.vue';
 import FolderSelectionModal from './folder_manager/FolderSelectionModal.vue';
-import GroupSection from './GroupSection.vue';
 
 
 export default {
@@ -669,8 +676,7 @@ export default {
   SpeechToText,
   PdfDownload,
   AddBookmark,
-  FolderSelectionModal,
-  GroupSection
+  FolderSelectionModal
  },
 
  mounted() {
@@ -685,22 +691,6 @@ export default {
  data() {
 
   return {
-    bgColor: '#ffffff',
-      textColor: '#000000',
-      fontFamily: 'Arial, sans-serif',
-      fontSize: 16,
-      fontSpacing: 1,
-      selectedShadow: 'none',
-      isBold: false,
-      isItalic: false,
-      isLight: false,
-      isUnderline: false,
-      isStrikethrough: false,
-      textTransform: 'none',
-      textAlign: 'left',
-      defaultStyles: false,
-      showSuccessMessage: false,
-      
     isVisible1: false,
     isOpen: false,
     recognition: null,
@@ -882,6 +872,7 @@ export default {
   };
  },
  computed: {
+    // Combined container style
     containerStyle() {
       return {
         backgroundColor: this.bgColor,
@@ -895,11 +886,14 @@ export default {
         textDecoration: this.isUnderline ? 'underline' : this.isStrikethrough ? 'line-through' : 'none',
         textTransform: this.textTransform,
         textAlign: this.textAlign,
+        defaultStyles: this.defaultStyles
       };
-    }
+    },
   },
  methods: {
-  
+   toggleContent1() {
+      this.isVisible1 = !this.isVisible1; // Toggle the visibility
+    },
    openModal(modalName) {
       if (modalName === 'folderSelection') {
         const folderSelectionModal = this.$refs.folderSelectionModal;
@@ -996,6 +990,7 @@ export default {
       isStrikethrough: this.isStrikethrough,
       textTransform: this.textTransform,
       textAlign: this.textAlign,
+      defaultStyles: this.defaultStyles
     };
     localStorage.setItem('textStyles', JSON.stringify(settings));
 
@@ -1028,6 +1023,7 @@ export default {
         this.isStrikethrough = savedSettings.isStrikethrough || this.isStrikethrough;
         this.textTransform = savedSettings.textTransform || this.textTransform;
         this.textAlign = savedSettings.textAlign || this.textAlign;
+        this.defaultStyles = savedSettings.defaultStyles || this.defaultStyles;
       }
     },
   

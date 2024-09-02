@@ -1,5 +1,5 @@
 <template>
-  <form class="d-flex pb-2" role="search" @submit.prevent="onSubmit">
+  <form class="d-flex pb-2 card" role="search" @submit.prevent="onSubmit">
     <input class="form-control me-2" type="number" placeholder="Enter Verse Number" v-model.number="localVerseNumber" required>
     <button class="btn btn-success mb-1 ml-2" type="submit">Search</button>
   </form>
@@ -35,5 +35,9 @@ export default {
 </script>
 
 <style scoped>
-/* Add scoped styles if necessary */
+.card {
+ display: flex;
+ border: 3px solid #00BFA6;
+ border-radius: 10px;
+}
 </style>

@@ -1,20 +1,31 @@
 <template>
-<div class="newsletter-subscribe">
- <div class="container mt-3" style="padding:10px">
-  <div class="intro container">
-   <h1 class="text-center newsletter-title ">Subscribe to our Mailing List</h1>
-   <div><img src="/images/mail3.png" style="width: 100%;" /></div>
-
-   <p class="text-center" style="line-height: 1.7em;">Stay up-to-date with the latest news and updates by joining our mailing list! Be the first to know about new releases, product updates, and important announcements straight to your inbox. Joining our mailing list is the easiest way to stay connected and informed about everything happening in our community. Don't miss out on the latest developments – sign up now!</p>
-  </div>
-
-  <form class="form-inline" @reset="reset" @submit.prevent="submitMail()">
-   <div class="form-group"><input class="form-control" style="border:1px solid grey; border-radius:10px" v-model="form.name" type="text" name="name" placeholder="Name"></div>
-   <div class="form-group"><input class="form-control" style="border:1px solid grey; border-radius:10px" v-model="form.email" type="email" name="email" placeholder="Email Address"></div><br>
-   <div class="form-group"><button class="btn" style="background:#00BFA6;color:white" type="submit">Subscribe </button></div>
-  </form>
- </div>
-</div>
+<section class="py-5 my-md-5">
+	<div class="container">
+		<div class="text-center">
+			<div class="row justify-content-center">
+				<div class="col-lg-8">
+					<h2 class="display-5 fw-bold">Subscribe to our Mailing list</h2>
+					<p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam feugiat erat quis pulvinar semper. Cras commodo vitae libero ut consequat.</p>
+					<div class="mx-auto mt-3">
+						<form class="row g-3" @reset="reset" @submit.prevent="submitMail()">
+							<div class="col-md-4">
+								<input class="form-control bg-light" v-model="form.name" placeholder="Full name" type="text">
+							</div>
+							<div class="col-md-4">
+								<input class="form-control bg-light" v-model="form.email" placeholder="Email address" type="text">
+							</div>
+							<div class="col-md-4">
+								<div class="d-grid">
+									<button class="form-control" style="background:#00BFA6; color:white" type="submit">Subscribe</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 </template>
 
 <script>
@@ -73,82 +84,9 @@ export default {
 </script>
 
 <style scoped>
-.newsletter-subscribe {
-  font-family: inter;
-  color: #313437;
-}
+.button-631 {
+  color: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
+ }
+ 
 
-.newsletter-subscribe p {
- color: #7d8285;
- line-height: 1.5;
- font-family: inter;
-}
-
-.newsletter-subscribe h2 {
- font-size: 24px;
- font-weight: bold;
- margin-bottom: 25px;
- line-height: 1.5;
- padding-top: 0;
- margin-top: 0;
- color: inherit;
-}
-
-.newsletter-subscribe .intro {
- font-size: 16px;
- max-width: 500px;
-}
-
-.newsletter-subscribe .intro p {
- margin-bottom: 35px;
-}
-
-.newsletter-subscribe form {
- justify-content: center;
-}
-
-.newsletter-subscribe form .form-control {
- border: none;
- border-radius: 3px;
- box-shadow: none;
- outline: none;
- color: inherit;
- text-indent: 9px;
- height: 45px;
- margin-right: 10px;
- min-width: 250px;
-}
-
-.newsletter-subscribe form .btn {
- padding: 16px 32px;
- border: none;
- background: none;
- box-shadow: none;
- text-shadow: none;
- opacity: 0.9;
- text-transform: uppercase;
- font-weight: bold;
- font-size: 13px;
- letter-spacing: 0.4px;
- line-height: 1;
-}
-
-.newsletter-subscribe form .btn:hover {
- opacity: 1;
-}
-
-.newsletter-subscribe form .btn:active {
- transform: translateY(1px);
-}
-
-.newsletter-subscribe form .btn-primary {
- background-color: green !important;
- color: #fff;
- outline: none !important;
-}
-
-
-.newsletter {
- color: black !important;
-}
 </style>

@@ -26,6 +26,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\FolderController;
 use App\Http\Controllers\VerseController;
 use App\Http\Controllers\CollectionController;
+use App\Http\Controllers\FaqController;
 
 // Auth routes
 Auth::routes();
@@ -198,3 +199,7 @@ Route::get('/volunteer', [VolunteerController::class, 'index'])->name('volunteer
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 // collection
 Route::get('/collection', [CollectionController::class, 'index'])->name('collection');
+// faq
+Route::get('/faq', [FaqController::class, 'index'])->name('faq');
+// join us
+Route::get('/join_us', [JoinUsController::class, 'index'])->name('join_us');

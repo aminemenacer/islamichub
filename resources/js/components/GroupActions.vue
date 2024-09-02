@@ -7,16 +7,16 @@
                     aria-expanded="false"
                     data-bs-placement="top"
                     title="Write a note"
-                    @click="$emit('open-modal', 'translationNote')"
+                    @click="$emit('open-modal', 'groupNote')"
                     style="color: rgba(0, 191, 166); cursor: pointer"
                 ></i>
             </div>
             <div class="col-2">
-                <WhatsAppShareTranslation :translationToShare="translation" />
+                <WhatsAppShareGroup :translationToShare="translation" />
             </div>
             <div class="col-2">
-                <TwitterShareTranslation
-                    :targetElementRef="targetTranslationRef"
+                <TwitterShareGroup
+                    :targetElementRef="targetGroupRef"
                     :translationText="translation"
                 />
             </div>
@@ -35,7 +35,7 @@
             />
 
             <div class="col-2">
-                <CopyTranslationText :textToCopy="translation" />
+                <CopyGroupText :textToCopy="translation" />
             </div>
             <div class="col-2">
                 <i
@@ -53,23 +53,23 @@
 </template>
 
 <script>
-import TranslationNote from "./translation/features/notes/TranslationNote";
-import WhatsAppShareTranslation from "./translation/features/whatsapp/WhatsAppShareTranslation.vue";
+import GroupNote from "./translation/features/notes/GroupNote";
+import WhatsAppShareGroup from "./translation/features/whatsapp/WhatsAppShareGroup.vue";
 import WhatsAppShareTafseer from "./translation/features/whatsapp/WhatsAppShareTafseer.vue";
-import TwitterShareTranslation from "./translation/features/twitter/TwitterShareTranslation.vue";
-import CopyTranslationText from "./translation/features/copy_text/CopyTranslationText.vue";
+import TwitterShareGroup from "./translation/features/twitter/TwitterShareGroup.vue";
+import CopyGroupText from "./translation/features/copy_text/CopyGroupText.vue";
 import FolderSelectionModal from "./folder_manager/FolderSelectionModal.vue";
 
 import html2canvas from "html2canvas";
 
 export default {
-    name: "TranslationActions",
+    name: "GroupActions",
     components: {
-        TranslationNote,
-        WhatsAppShareTranslation,
+        GroupNote,
+        WhatsAppShareGroup,
         WhatsAppShareTafseer,
-        TwitterShareTranslation,
-        CopyTranslationText,
+        TwitterShareGroup,
+        CopyGroupText,
         FolderSelectionModal,
     },
     props: {
@@ -77,7 +77,7 @@ export default {
             type: String,
             required: true,
         },
-        targetTranslationRef: {
+        targetGroupRef: {
             type: String,
             required: true,
         },
@@ -110,19 +110,19 @@ export default {
             console.log("Folder selected and bookmark created:", bookmark);
             this.$emit("submit-form", bookmark);
         },
-        captureTranslation() {
-            const targetTranslationElement =
-                this.$parent.$refs[this.targetTranslationRef];
+        captureGroup() {
+            const targetGroupElement =
+                this.$parent.$refs[this.targetGroupRef];
 
-            if (!targetTranslationElement) {
+            if (!targetGroupElement) {
                 console.error(
-                    "Invalid element provided as targetTranslationRef"
+                    "Invalid element provided as targetGroupRef"
                 );
                 return;
             }
 
             setTimeout(() => {
-                html2canvas(targetTranslationElement).then((canvas) => {
+                html2canvas(targetGroupElement).then((canvas) => {
                     const dataUrl = canvas.toDataURL("image/png");
                     this.downloadUrl = dataUrl;
 

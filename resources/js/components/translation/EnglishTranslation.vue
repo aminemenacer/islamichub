@@ -47,7 +47,7 @@ export default {
 </script>
 <style scoped>
 .ayah-translation {
-  line-height: 1.6em;
+  line-height: 1.8em;
   font-size: 1.2rem;
 }
 </style>

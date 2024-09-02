@@ -3,7 +3,7 @@
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
       <form style="cursor: pointer; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius:5px;">
         <select
-          class="form-control mobile-only hide-on-full-screen hide-on-tablet right-side-form"
+          class="form-control mobile-only hide-on-full-screen hide-on-tablet right-side-form card"
           v-model="selectedAyahId"
           @change="handleAyahChange"
           style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;"

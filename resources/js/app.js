@@ -51,6 +51,7 @@ import UpdatesComponent from "./components/UpdatesComponent.vue";
 import JoinUsComponent from "./components/JoinUsComponent.vue";
 import NotesComponent from "./components/admin_panels/NotesComponent.vue";
 import CollectionComponent from "./components/admin_panels/CollectionComponent.vue";
+import FaqComponent from "./components/FaqComponent.vue";
 
 import CustomSurahSelection from "./components/surah_selection/CustomSurahSelection.vue";
 import Donation from "./components/intro/Donation.vue";
@@ -105,13 +106,14 @@ app.component("quran-component", QuranComponent);
 app.component("about-component", AboutComponent);
 app.component("bookmark-component", BookmarkComponent);
 app.component("updates-component", UpdatesComponent);
-app.component("join-us-component", JoinUsComponent);
+app.component("join_us-component", JoinUsComponent);
 app.component("notes-component", NotesComponent);
 app.component("search-component", CustomSurahSelection);
 app.component("surah-list-component", SurahList);
 app.component("donations-component", Donation);
 app.component("collection-component", CollectionComponent);
 app.component('TinymceEditor', TinymceEditor);
+app.component('faq-component', FaqComponent);
 
 
 app.mount("#app");

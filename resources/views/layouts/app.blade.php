@@ -60,6 +60,12 @@
                             <h6><a style="color: black;" class="nav-link ml-3 pl-3" href="/about"><b>About Us</b></a></h6>
                         </li>
                         <li class="nav-item mt-3">
+                            <h6><a style="color: black;" class="nav-link ml-3 pl-3" href="/faq"><b>FAQ's</b></a></h6>
+                        </li>
+                        <li class="nav-item mt-3">
+                            <h6><a style="color: black;" class="nav-link ml-3 pl-3" href="/join_us"><b>Mailing List</b></a></h6>
+                        </li>
+                        <li class="nav-item mt-3">
                             <h6><a style="color: black;" class="nav-link ml-3 pl-3" href="/updates"><b>Updates</b></a></h6>
                         </li>
                         @guest
@@ -95,7 +101,7 @@
                         </li>
                         @endguest
                         <li class="nav-item mt-3 pl-4">
-                            <button class="button-33">
+                            <button class="button-63">
                                 <a style="text-decoration: none;color:white"
                                 href="https://www.gofundme.com/f/empowerment-through-quran-support-islamic-connects-mission">
                                 Support Us

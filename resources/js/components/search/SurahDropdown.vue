@@ -1,13 +1,13 @@
 <template>
     <form
-        class="mb-2 right-side-form"
+        class="mb-2 right-side-form "
         style="
             cursor: pointer;
             border-radius: 5px;
         "
     >
         <select
-            class="form-control custom-dropdown"
+            class="form-control custom-dropdown card"
             v-model="selectedSurahLocal"
             @change="handleChange"
         >
@@ -51,5 +51,9 @@ export default {
 </script>
 
 <style scoped>
-/* Add scoped styles if necessary */
+.card {
+ display: flex;
+ border: 3px solid #00BFA6;
+ border-radius: 10px;
+}
 </style>
