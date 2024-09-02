@@ -1,6 +1,6 @@
 <template>
     <form
-        class="mb-2 right-side-form "
+        class="right-side-form "
         style="
             cursor: pointer;
             border-radius: 5px;
