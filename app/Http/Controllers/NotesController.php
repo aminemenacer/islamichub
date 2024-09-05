@@ -9,13 +9,26 @@ class NotesController extends Controller
 {
     public function index()
     {
-        return view('notes');
+        return view('group_notes');
     }
 
     public function getNotes($userId)
     {
         $notes = Note::where('user_id', $userId)->orderBy('created_at', 'desc')->get();
         return response()->json($notes);
+    }
+
+    public function fetchNotes()
+    {
+        // Fetch public notes (option = 0)
+        $publicNotes = Note::where('option', 0)->get();
+
+        // Check if the query returns notes
+        if ($publicNotes->isEmpty()) {
+            return response()->json(['message' => 'No public notes found'], 404);
+        }
+
+        return response()->json($publicNotes);
     }
 
     public function store(Request $request)
@@ -27,12 +40,13 @@ class NotesController extends Controller
             'ayah_verse_en' => 'nullable|string',
             'ayah_info' => 'nullable|string',
             'ayah_notes' => 'required|string',
+            'option' => 'required|integer|in:0,1',  // 0 for public, 1 for private
             'is_speech_to_text' => 'boolean',
         ]);
 
-        $validatedData['user_id'] = auth()->id();
+        $validatedData['user_id'] = auth()->id();  // Automatically set the user ID
 
-        $note = Note::create($validatedData);
+        $note = Note::create($validatedData);  // Create the note
 
         return response()->json(['message' => 'Note created successfully', 'note' => $note], 201);
     }
@@ -46,6 +60,7 @@ class NotesController extends Controller
             'ayah_verse_en' => 'nullable|string',
             'ayah_info' => 'nullable|string',
             'ayah_notes' => 'required|string',
+            'option' => 'required|integer|in:0,1',  // 0 for public, 1 for private
             'is_speech_to_text' => 'boolean',
         ]);
 

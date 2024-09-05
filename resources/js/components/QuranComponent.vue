@@ -844,15 +844,7 @@ export default {
    showErrorAlert: false,
    showAlertTextNote: false,
    maxLength: 400,
-   // notes modal
-   form1: new Form({
-    id: "",
-    surah_name: "",
-    ayah_num: "",
-    ayah_verse_ar: "",
-    ayah_verse_en: "",
-    ayah_notes: "",
-   }),
+  
 
    // correction modal
    form: new Form({

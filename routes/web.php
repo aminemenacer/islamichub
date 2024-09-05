@@ -58,7 +58,13 @@ Route::middleware(['auth'])->group(function () {
 
 
 
-    // notes
+  // In routes/web.php
+    Route::get('/group_notes', [NotesController::class, 'index']);
+
+    // In routes/api.php
+    Route::get('/fetch-notes', [NotesController::class, 'fetchNotes']);
+
+
     Route::get('/notes', [NotesController::class, 'index']);
     // Route::get('api/fetch-notes', [NotesController::class, 'getNotes']);
     Route::post('api/submit-note', [NotesController::class, 'store']);

@@ -18,6 +18,7 @@ class Note extends Model
         'ayah_verse_en',
         'ayah_notes',
         'is_speech_to_text',
+        'option'
     ];
 
     protected $casts = [
