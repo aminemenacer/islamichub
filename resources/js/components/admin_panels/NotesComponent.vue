@@ -1,6 +1,6 @@
 <template>
 <div>
- <h2 class="pt-4 pb-3 text-center"><strong>Notes & Reflection's Board</strong></h2>
+ <h2 class="pt-4 pb-3 text-center"><strong>Notes</strong></h2>
 
  <!-- Container visible only on mobile screens -->
  <div class="container text-center mt-3 d-md-none">

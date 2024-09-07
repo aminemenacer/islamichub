@@ -1,15 +1,9 @@
 @extends('layouts.app')
-
 @section('content')
 <div id="app" class="container-fluid">
     <div class="row">
-        <div class="col-md-2">
-            @include('partials.sidebar')
-        </div>
-        <div class="col-md-10">
-            <group-notes-component></group-notes-component>
-            {{-- @include('layouts.footer') --}}
-        </div>
+        <group-notes-component></group-notes-component>
+        {{-- @include('layouts.footer') --}}
     </div>
 </div>
 @endsection

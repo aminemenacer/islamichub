@@ -1,6 +1,6 @@
 <template>
 <div class="modal fade" id="translationNote" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true" ref="modal">
- <div class="modal-dialog modal-xl">
+ <div class="modal-dialog modal-lg">
   <div class="modal-content">
    <div class="modal-header">
     <h5 class="modal-title" id="exampleModalLabel1"><b>Notes & Reflections</b></h5>
@@ -50,7 +50,7 @@
      </div>
 
      <div class="pt-3 pb-2" style="display: flex; align-items: center;">
-      <b style="margin-right: 10px;" class="pr-2">Make note private or public: </b>
+      <b style="margin-right: 10px;" class="pr-2">Make your note either:</b>
       <div style="display: flex; align-items: center;">
        <div class="form-check form-check-inline" style="margin-right: 15px;">
         <input class="form-check-input" type="radio" name="option" v-model="option" id="public" value="0">

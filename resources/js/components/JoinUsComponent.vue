@@ -5,7 +5,7 @@
 			<div class="row justify-content-center">
 				<div class="col-lg-8">
 					<h2 class="display-5 fw-bold">Subscribe to our Mailing list</h2>
-					<p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam feugiat erat quis pulvinar semper. Cras commodo vitae libero ut consequat.</p>
+					<p class="lead">Subscribe to our mailing list and be the first to receive updates and special offers directly in your inbox. Don't miss out on what’s new—join our community today!</p>
 					<div class="mx-auto mt-3">
 						<form class="row g-3" @reset="reset" @submit.prevent="submitMail()">
 							<div class="col-md-4">

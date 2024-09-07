@@ -4,7 +4,7 @@
 		<div class="row justify-content-center text-center">
 			<div class="col-lg-8 col-xxl-7">
 				<h2 class="display-5 fw-bold mb-3">Contact Us</h2>
-				<p class="lead">Lorem ipsum dolor, sit amet elit Quamnitm veniam dicta, quos nemo minima nulla ducimus officii nulla ducimus officiis! Lorem ipsum dolor, sit amet elit Quamnitm.</p>
+				<p class="lead">I'd love to hear from you! Whether you have a question, feedback, or just want to say hello, feel free to reach out. You can contact me through the form below. I’ll get back to you as soon as possible!</p>
 			</div>
 		</div>
 		<div class="row justify-content-center">
