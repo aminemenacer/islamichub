@@ -24,7 +24,7 @@
    <strong>You have:</strong> <b style="color:rgb(0, 191, 166)">{{ notes.length }}</b> <strong>notes</strong>
   </h3>
   <div class="row">
-   <div class="col-md-4 mb-4" v-for="note in notes" :key="note.id">
+   <div class="col-md-4 mb-4 collage-item" v-for="note in notes" :key="note.id">
     <!-- Note Card -->
     <div class="card" style="border-radius:8px;padding:10px; border: 2px solid rgba(0, 191, 166);">
      <div class="card-body">
@@ -279,6 +279,17 @@ export default {
 </script>
 
 <style>
+.collage {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.collage-item{
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
 .editor {
  height: 320px;
 }
