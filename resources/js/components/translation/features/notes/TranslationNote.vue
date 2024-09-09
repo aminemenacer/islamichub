@@ -54,13 +54,12 @@
       <div style="display: flex; align-items: center;">
        <div class="form-check form-check-inline" style="margin-right: 15px;">
         <input class="form-check-input" type="radio"  name="option" v-model="option" id="public" value="0">
-        <label class="form-check-label" for="public" style="margin-left: 5px;">Public</label>
+        <label class="form-check-label" for="public" style="margin-left: 5px;"><b>Public</b></label>
        </div>
        <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" name="option" v-model="option" id="private" value="1">
-        <label class="form-check-label" for="private" style="margin-left: 5px;">Private</label>
+        <label class="form-check-label" for="private" style="margin-left: 5px;"><b>Private</b></label>
        </div>
-       <i class="bi bi-bell" id="icon" style="font-size: 2rem; cursor: pointer;"></i>
 
       </div>
      </div>

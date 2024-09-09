@@ -21,7 +21,8 @@
  <!-- Notes Container -->
  <div class="container">
   <h3 class="pb-3 text-center">
-   <strong>You have:</strong> <b style="color:rgb(0, 191, 166)">{{ notes.length }}</b> <strong>notes</strong>
+    <strong>You have:</strong> <b style="color:rgb(0, 191, 166)">{{ notes.length }}</b> <strong>notes</strong>
+
   </h3>
   <div class="row">
    <div class="col-md-4 mb-4 collage-item" v-for="note in notes" :key="note.id">
@@ -36,6 +37,9 @@
       <div class="mt-2">
        <h5><strong>Note:</strong></h5>
        <p v-html="truncatedHtml(note.ayah_notes)"></p>
+      </div>
+      <div>
+        <b>This note is: <b style="color:rgba(0, 191, 166);">{{note.option}}</b></b>
       </div>
       <hr />
       <i class="bi bi-eye-fill h4" style="color:rgb(0, 191, 166); cursor:pointer" @click="viewModal(note)"></i>
@@ -279,17 +283,7 @@ export default {
 </script>
 
 <style>
-.collage {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 10px;
-}
 
-.collage-item{
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-}
 .editor {
  height: 320px;
 }

@@ -9,7 +9,7 @@ class NotesController extends Controller
 {
     public function index()
     {
-        return view('group_notes');
+        return view('notes');
     }
 
     public function getNotes($userId)
@@ -21,7 +21,7 @@ class NotesController extends Controller
     public function fetchNotes()
     {
         // Fetch public notes (option = 0)
-        $publicNotes = Note::where('option', 0)->get();
+        $publicNotes = Note::where('option', 'public')->get();
 
         // Check if the query returns notes
         if ($publicNotes->isEmpty()) {

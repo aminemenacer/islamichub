@@ -1,113 +1,83 @@
 <template>
 <div id="app" class="container-fluid pt-3">
-  <h2 class="text-center"><strong>Pricings</strong></h2>
-  <p class="text-center container  text-left pt-3">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here,</p>
-  <table class="table table-hover mb-5 table-bordered" style="text-align:center; padding-top:100px">
-    <thead style="background:lightgrey">
-      <tr class="active">
-        <th  >
-          <center></center>
-        </th>
-        <th>
-          <center>
-            <h3><strong>Basic</strong></h3>
-          </center>
-        </th>
-        <th>
-          <center>
-            <h3><strong>Standard</strong></h3>
-          </center>
-        </th>
-        <th>
-          <center>
-            <h3><strong>Business</strong></h3>
-          </center>
-        </th>
+ <section class="py-5">
+  <div class="container">
+   <div class="row justify-content-center text-center mb-2 mb-lg-4">
+    <div class="col-12 col-lg-10 col-xxl-7 text-center mx-auto">
+     <h2 class="display-5 fw-bold">Our Pricing</h2>
+     <p class="lead">We offer flexible pricing plans tailored to meet your goals. Whether you're just starting out or need advanced features, select the plan that works best for you and get started today.</p>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-4">
+     <div class="card text-light text-center border-0 mb-3 mb-md-0">
+      <div class="card-body bg-light py-5" style="border: 3px solid rgba(0, 191, 166); border-radius:8px">
 
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><b>Price</b></td>
-        <td>
-          <p><strong>£0/Month</strong></p>
-        </td>
-        <td>
-          <p><strong>£5/Month</strong></p>
-        </td>
-        <td>
-          <p><strong>£15/Month</strong></p>
-        </td>
-      </tr>
-      <tr>
-        <td><b>Standard Islamic Content</b></td>
-        <td><i style="color:limegreen" class="fa fa-check fa-lg"></i></td>
-        <td><i style="color:limegreen" class="fa fa-check fa-lg"></i></td>
-        <td><i style="color:limegreen" class="fa fa-check fa-lg"></i></td>
-      </tr>
-      <tr>
-        <td><b>Responsive design</b></td>
-        <td><i style="color:limegreen" class="fa fa-check fa-lg"></i></td>
-        <td><i style="color:limegreen" class="fa fa-check fa-lg"></i></td>
-        <td><i style="color:limegreen" class="fa fa-check fa-lg"></i></td>
-      </tr>
-      <tr>
-        <td><b>Modern and clean UI/UX</b></td>
-        <td><i style="color:limegreen" class="fa fa-check fa-lg"></i></td>
-        <td><i style="color:limegreen" class="fa fa-check fa-lg"></i></td>
-        <td><i style="color:limegreen" class="fa fa-check fa-lg"></i></td>
-      </tr>
-      <tr>
-        <td><b>Scales to all devices</b></td>
-        <td><i style="color:limegreen" class="fa fa-check fa-lg"></i></td>
-        <td><i style="color:limegreen" class="fa fa-check fa-lg"></i></td>
-        <td><i style="color:limegreen" class="fa fa-check fa-lg"></i></td>
-      </tr>
-      <tr>
-        <td><b>Powerful Analytics</b></td>
-        <td><i style="color:limegreen" class="fa fa-check fa-lg"></i></td>
-        <td><i style="color:limegreen" class="fa fa-check fa-lg"></i></td>
-        <td><i style="color:limegreen" class="fa fa-check fa-lg"></i></td>
-      </tr>
-      <tr>
-        <td><b>Remove Ads</b></td>
-        <td>-</td>
-        <td><i style="color:limegreen" class="fa fa-check fa-lg"></i></td>
-        <td><i style="color:limegreen" class="fa fa-check fa-lg"></i></td>
-      </tr>
-      <tr>
-        <td><b>Video Content</b></td>
-        <td>-</td>
-        <td><i style="color:limegreen" class="fa fa-check fa-lg"></i></td>
-        <td><i style="color:limegreen" class="fa fa-check fa-lg"></i></td>
-      </tr>
-      <tr>
-        <td><b>Video/Audio Podcasts</b></td>
-        <td>-</td>
-        <td>-</td>
-        <td><i style="color:limegreen" class="fa fa-check fa-lg"></i></td>
-      </tr>
-      <tr>
-        <td><b>Chat Collection</b></td>
-        <td>-</td>
-        <td>-</td>
-        <td><i style="color:limegreen" class="fa fa-check fa-lg"></i></td>
-      </tr>
-      <tr>
-        <td><b>Saved items</b></td>
-        <td>-</td>
-        <td><b>40</b></td>
-        <td><b>Unlimited</b></td>
-      </tr>
-      <tr>
+       <h3 class="fw-bold">Basic</h3>
+       <div class="display-3 fw-bold mt-4" style="color:rgba(0, 191, 166)">
+        $0
+       </div>
+       <div class="fw-bold">
+        Free
+       </div>
+       <ul class="list-unstyled mt-4">
+        <li class="mb-3">5 free screenshots per week</li>
+        <li class="mb-3">5 free notes per week</li>
+        <li class="mb-3">3 folders & store up to 5 bookmarks or notes</li>
+        <li class="mb-3">5 pdf downloads per week</li>
+        <li class="mb-3">3 voice notes per week</li>
+       </ul>
+      </div>
+     </div>
+    </div>
+    <div class="col-md-4">
+     <div class="card text-center border-0 mb-3 mb-md-0" style="background:white">
+      <div class="card-body bg-light py-5" style="border: 3px solid rgba(0, 191, 166); border-radius:8px; ">
 
-        <td></td>
-        <td><Button label="Select Package" style="background:rgba(34,179,127,255)" rounded /></td>
-        <td><Button label="Select Package" style="background:rgba(34,179,127,255)" rounded raised /></td>
-        <td><Button label="Select Package" style="background:rgba(34,179,127,255)" rounded raised /></td>
-      </tr>
-    </tbody>
-  </table>
+       <h3 class="fw-bold">Premium</h3>
+       <div class="display-3 fw-bold mt-4" style="color:rgba(0, 191, 166)">
+        $2.99
+       </div>
+       <div class="fw-bold">
+        Monthly
+       </div>
+       <ul class="list-unstyled mt-4">
+        <li class="mb-3">15 free screenshots per week</li>
+        <li class="mb-3">Unlimited notes per week</li>
+        <li class="mb-3">5 folders & store up to 10 bookmarks or notes</li>
+        <li class="mb-3">15 pdf downloads per week</li>
+        <li class="mb-3">Custom and Default styling</li>
+        <li class="mb-3">10 speech to text notes</li>
+       </ul>
+      </div>
+     </div>
+    </div>
+    <div class="col-md-4">
+     <div class="card text-center border-0 mb-3 mb-md-0" >
+      <div class="card-body bg-light py-5" style="border: 3px solid rgba(0, 191, 166); border-radius:8px">
+
+       <h3 class="fw-bold">Premium Plus</h3>
+       <div class="display-3 fw-bold mt-4" style="color:rgba(0, 191, 166)">
+        $4.99
+       </div>
+       <div class="fw-bold">
+        Monthly
+       </div>
+       <ul class="list-unstyled mt-4">
+        <li class="mb-3">Unlimited screenshots</li>
+        <li class="mb-3">Unlimited notes</li>
+        <li class="mb-3">Unlimited folders & storage</li>
+        <li class="mb-3">Unlimited pdf downloads</li>
+        <li class="mb-3">Custom and Default styling</li>
+        <li class="mb-3">TinyMce Editor</li>
+        <li class="mb-3">Unlimited speech to text notes</li>
+       </ul>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </section>
 </div>
 </template>
 
@@ -118,18 +88,5 @@ export default {
 </script>
 
 <style>
-table {
-  table-layout: fixed;
-  word-wrap: break-word;
-  margin-top: auto;
-  margin-bottom: auto;
-}
 
-.text-sm {
-  font-size: 12px;
-}
-
-.price {
-  font-size: 3em;
-}
 </style>
