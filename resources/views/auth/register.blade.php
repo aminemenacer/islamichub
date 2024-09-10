@@ -77,7 +77,7 @@
                       <div class="pt-1 mb-2">
                           <button type="submit" class="btn btn-lg btn-block text-white" style="background: #00BFA6" type="button">Submit</button>
                         </div>
-                      <label class="mt-3 text-center">Already have an account ? Click <a href="/login">here</a> to login.</label>
+                      <p class="mt-3 text-center">Already have an account ? Click <a href="/login">here</a> to login.</p>
                     </div>
                     
                       <hr>

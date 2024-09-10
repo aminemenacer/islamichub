@@ -39,11 +39,11 @@
                                 </div>
                                 <div class="text-center">
                                     @if (Route::has('password.request'))
-                                        <a class="btn btn-link" href="{{ route('password.request') }}">
+                                        <a class="btn btn-link" style="text-decoration: none" href="{{ route('password.request') }}">
                                             {{ __('Forgot Your Password?') }}
                                         </a>
                                     @endif
-                                    <p class="mb-3 pb-lg-2" style="color: #000000;">Don't have an account? <a href="/register" style="color: #00BFA6;">Register here</a></p>
+                                    <p class="mb-3 pb-lg-2" style="color: #000000;">Don't have an account? <a style="text-decoration: none" href="/register" style="color: #00BFA6;">Register here</a></p>
                                 </div>
                                 
                                     
@@ -59,6 +59,7 @@
 @endsection
 
 <style>
+
     @media (max-width: 575px) {
         .hide-on-mobile {
             display: none;
