@@ -334,6 +334,7 @@ export default {
 
 @media (min-width: 768px) {
  .button-63 {
+  color: #FFF;
   font-size: 18px;
   min-width: 196px;
  }

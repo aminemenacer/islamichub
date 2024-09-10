@@ -72,20 +72,6 @@
  <!-- profile section -->
  <div class="container">
   <div class="row ">
-   <!-- <div class="col-lg-4">
-    <div class="card mb-4">
-     <div class="card-body text-center">
-      <i class="bi bi-person-circle" style="font-size: 4rem"></i>
-      <h5 class="my-3">{{ user.name }} {{ user.lastname }}</h5>
-      <p class="text-muted mb-3">{{ user.email }}</p>
-      <div class="d-flex justify-content-center mb-2 mt-2">
-       <button data-bs-toggle="modal" data-bs-target="#editNew" type="button" class="btn text-white user-btn mr-2 bg-secondary" @click="editModal(user)">
-        Edit Profile
-       </button>
-      </div>
-     </div>
-    </div>
-   </div> -->
    <div class="col-lg-8">
     <div class="card mb-4">
      <div class="card-body">
@@ -128,6 +114,20 @@
      </div>
     </div>
    </div>
+   <div class="col-lg-4">
+    <div class="card mb-4">
+     <div class="card-body text-center">
+      <i class="bi bi-person-circle" style="font-size: 4rem"></i>
+      <h5 class="my-3">{{ user.name }} {{ user.lastname }}</h5>
+      <p class="text-muted mb-3">{{ user.email }}</p>
+      <div class="d-flex justify-content-center mb-2 mt-2">
+       <button data-bs-toggle="modal" data-bs-target="#editNew" type="button" class="btn text-white user-btn mr-2 bg-secondary" @click="editModal(user)">
+        Edit Profile
+       </button>
+      </div>
+     </div>
+    </div>
+   </div> 
   </div>
  </div>
 

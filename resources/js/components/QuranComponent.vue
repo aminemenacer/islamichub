@@ -396,7 +396,7 @@
 
      </div>
      <!-- -->
-     <BookmarksAndNotes />
+     <BookmarksAndNotes :information="information" />
      
      <CorrectionModal />
      <!-- Modals -->
@@ -1480,7 +1480,7 @@ export default {
 <style scoped src="./css/styles.css">
 .button-33 {
   background-color: rgba(0, 191, 166, 0.2);
-  color: rgb(5, 32, 29);
+  color: rgb(255, 255, 255);
   border: 1px solid rgba(0, 191, 166);
 }
 </style>

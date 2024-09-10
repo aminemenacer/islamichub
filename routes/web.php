@@ -57,15 +57,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/folders', [FolderController::class, 'store']);
 
 
-
-  // In routes/web.php
-    Route::get('/group_notes', [NotesController::class, 'index']);
-
-    // In routes/api.php
     Route::get('/fetch-notes', [NotesController::class, 'fetchNotes']);
 
-
-    Route::get('/notes', [NotesController::class, 'index']);
+    // Route::get('/notes', [NotesController::class, 'index']);
     // Route::get('api/fetch-notes', [NotesController::class, 'getNotes']);
     Route::post('api/submit-note', [NotesController::class, 'store']);
     Route::post('api/update-notes/{id}',  [NotesController::class, 'updateNotes']);
@@ -79,6 +73,7 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/api/delete-note/{id}', [NotesController::class, 'deleteNotes']);
 });
 
+Route::get('/group_notes', [NotesController::class, 'index']);
 
 Route::get('/ayahs', [QuranController::class, 'index']);
 

@@ -36,7 +36,7 @@
       </div>
       <div class="mt-2">
        <h5><strong>Note:</strong></h5>
-       <p v-html="truncatedHtml(note.ayah_notes)"></p>
+       <p>{{ note.ayah_notes }}</p>
       </div>
       <div>
         <b>This note is: <b style="color:rgba(0, 191, 166);">{{note.option}}</b></b>
