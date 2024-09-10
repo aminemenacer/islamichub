@@ -353,7 +353,22 @@
           </div>
 
           <div ref="targetGroupElement">
-           <GroupSection :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
+            <GroupSection 
+              :information="information"
+              :isFullScreen="isFullScreen"
+              :expanded="expanded"
+              :showMoreLink="showMoreLink"
+              :showAlertText="showAlertText"
+              :showAlert="showAlert"
+              :showErrorAlert="showErrorAlert"
+              :showAlertTextNote="showAlertTextNote"
+              @toggle-full-screen="toggleFullScreen"
+              @handle-touch-start="handleTouchStart"
+              @handle-touch-move="handleTouchMove"
+              @handle-touch-end="handleTouchEnd"
+              @toggle-expand="toggleExpand"
+              @close-alert-text="closeAlertText"
+            />
           </div>
 
           <div class="container-fluid text-center mobile-only">
@@ -622,6 +637,7 @@ import SpeechToText from './SpeechToText.vue'
 import PdfDownload from './pdf/PdfDownload.vue'
 import AddBookmark from './folder_manager/AddBookmark.vue';
 import FolderSelectionModal from './folder_manager/FolderSelectionModal.vue';
+import GroupSection from './GroupSection.vue';
 
 
 export default {
@@ -676,7 +692,8 @@ export default {
   SpeechToText,
   PdfDownload,
   AddBookmark,
-  FolderSelectionModal
+  FolderSelectionModal,
+  GroupSection
  },
 
  mounted() {
