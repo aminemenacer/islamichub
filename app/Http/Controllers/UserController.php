@@ -6,10 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
-use Illuminate\Support\Facades\File;
-use App\MarkdownContent;
-use App\Models\Information;
-
 class UserController extends Controller
 {
     public function index()

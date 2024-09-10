@@ -100,6 +100,9 @@ Route::put('/folders/{id}', [FolderController::class, 'update']);
 Route::delete('/folders/{id}', [FolderController::class, 'delete']);
 Route::get('/folders/{folderId}/bookmarks', [FolderController::class, 'getBookmarksByFolder']);
 
+Route::get('/fetch-folders', [FolderController::class, 'fetchFolders']);
+
+
 // Route for fetching verses
 Route::get('/verses', [VerseController::class, 'getVerses']);
 // Route for fetching translations

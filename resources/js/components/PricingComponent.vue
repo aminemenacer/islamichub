@@ -14,7 +14,7 @@
 					<div class="col-md-3">
 						<h5 class="fw-bold mb-0">Basic</h5>
 						<div class="display-3 fw-bold mt-1">
-							$19
+							$0
 						</div>
 						<div>
 							Monthly
@@ -47,7 +47,7 @@
 					<div class="col-md-3">
 						<h5 class="fw-bold mb-0">Standard</h5>
 						<div class="display-3 fw-bold mt-1" style="color:rgba(0, 191, 166)">
-							$26
+							$2
 						</div>
 						<div>
 							Monthly
@@ -79,7 +79,7 @@
 					<div class="col-md-3">
 						<h5 class="fw-bold mb-0">Pro</h5>
 						<div class="display-3 fw-bold mt-1">
-							$34
+							$4
 						</div>
 						<div>
 							Monthly

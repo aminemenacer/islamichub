@@ -18,24 +18,24 @@
      <form @submit.prevent="updateUser()">
 
       <div class="mb-3">
-        <label for="formGroupExampleInput" class="form-label"><strong>Firstname:</strong></label>
-        <input v-model="form.name" type="text" name="name" placeholder="Enter name" class="form-control" />
+       <label for="formGroupExampleInput" class="form-label"><strong>Firstname:</strong></label>
+       <input v-model="form.name" type="text" name="name" placeholder="Enter name" class="form-control" />
       </div>
       <div class="mb-3">
-        <label for="formGroupExampleInput2" class="form-label"><strong>Lastname:</strong></label>
-        <input v-model="form.lastname" type="text" name="lastname" placeholder="Enter lastname" class="form-control" />
+       <label for="formGroupExampleInput2" class="form-label"><strong>Lastname:</strong></label>
+       <input v-model="form.lastname" type="text" name="lastname" placeholder="Enter lastname" class="form-control" />
       </div>
       <div class="mb-3">
-        <label for="formGroupExampleInput" class="form-label"><strong>Email address:</strong></label>
-        <input v-model="form.email" name="email" id="email" placeholder="email" class="form-control" />
+       <label for="formGroupExampleInput" class="form-label"><strong>Email address:</strong></label>
+       <input v-model="form.email" name="email" id="email" placeholder="email" class="form-control" />
       </div>
       <div class="mb-3">
-        <label for="formGroupExampleInput" class="form-label"><strong>Phone number:</strong></label>
-        <input v-model="form.phone" type="text" name="phone" placeholder="Enter mobile number" class="form-control" />
+       <label for="formGroupExampleInput" class="form-label"><strong>Phone number:</strong></label>
+       <input v-model="form.phone" type="text" name="phone" placeholder="Enter mobile number" class="form-control" />
       </div>
       <div class="mb-3">
-        <label for="formGroupExampleInput" class="form-label"><strong>Password:</strong></label>
-        <input v-model="form.password" id="password" type="text" name="password" placeholder="Enter password" class="form-control" />
+       <label for="formGroupExampleInput" class="form-label"><strong>Password:</strong></label>
+       <input v-model="form.password" id="password" type="text" name="password" placeholder="Enter password" class="form-control" />
       </div>
       <div class="modal-footer">
        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
@@ -45,7 +45,7 @@
         Update
        </button>
       </div>
-    
+
      </form>
     </div>
    </div>
@@ -74,7 +74,7 @@
   <div class="row ">
    <div class="col-lg-8">
     <div class="card mb-4">
-     <div class="card-body">
+     <div class="card-body" style="border:2px solid rgba(0, 191, 166); border-radius:8px">
       <div class="row">
        <div class="text-center">
         <h3 class="mb-3 text-left"><strong>Personal Information:</strong></h3>
@@ -108,26 +108,41 @@
        </div>
       </div>
       <hr>
-       <button data-bs-toggle="modal" data-bs-target="#editNew" type="button" class="btn text-white text-right user-btn mr-2 bg-secondary" @click="editModal(user)">
-        Edit Profile
-       </button>
+      <button data-bs-toggle="modal" data-bs-target="#editNew" type="button" class="btn text-white text-right user-btn mr-2 bg-secondary" @click="editModal(user)">
+       Edit Profile
+      </button>
      </div>
     </div>
    </div>
+
    <div class="col-lg-4">
     <div class="card mb-4">
-     <div class="card-body text-center">
-      <i class="bi bi-person-circle" style="font-size: 4rem"></i>
-      <h5 class="my-3">{{ user.name }} {{ user.lastname }}</h5>
-      <p class="text-muted mb-3">{{ user.email }}</p>
-      <div class="d-flex justify-content-center mb-2 mt-2">
-       <button data-bs-toggle="modal" data-bs-target="#editNew" type="button" class="btn text-white user-btn mr-2 bg-secondary" @click="editModal(user)">
-        Edit Profile
-       </button>
+     <div class="card-body text-center" style="border:2px solid rgba(0, 191, 166); border-radius:8px">
+      <div class="row">
+       <div class="text-center">
+        <h3 class="mb-3 text-left"><strong>Statistics:</strong></h3>
+       </div>
       </div>
+      <ul class="list-group list-group-flush">
+       <li class="list-group-item d-flex justify-content-between align-items-center">
+        <i class="bi bi-file-earmark-fill h4 links"></i>
+        <b class="text-left">Notes</b>
+        <span class="badge rounded-pill" style="background: rgba(0, 191, 166)">{{ notes.length }}</span>
+       </li>
+       <li class="list-group-item d-flex justify-content-between align-items-center">
+       <i class="bi bi-bookmark-fill h4 links"></i>
+        <b class="text-left">Bookmarks</b>
+        <span class="badge rounded-pill h4" style="background: rgba(0, 191, 166)">{{ bookmarks.length }}</span>
+       </li>
+       <li class="list-group-item d-flex justify-content-between align-items-center">
+       <i class="bi bi-collection-fill h4 links"></i>
+        <b class="text-left">Collections</b>
+        <span class="badge rounded-pill" style="background: rgba(0, 191, 166)">{{ folders.length }}</span>
+       </li>
+      </ul>
      </div>
     </div>
-   </div> 
+   </div>
   </div>
  </div>
 
@@ -137,11 +152,25 @@
 <script>
 import axios from "axios";
 export default {
-
+  props: {
+  information: { // Assuming information is passed as a prop
+   type: Object,
+   default: null
+  }
+ },
+ mounted() {
+  this.fetchUserIdAndNotes();
+  this.fetchUserIdAndBookmarks();
+  this.fetchUserIdAndFolders();
+ },
  props: ["user"],
  data() {
   return {
    users: {},
+   userId: null,
+   notes: [],
+   bookmarks: [],
+   folders: [],
    editmode: false,
    form: new Form({
     id: "",
@@ -155,6 +184,94 @@ export default {
   };
  },
  methods: {
+  async fetchUserIdAndNotes() {
+    try {
+      const response = await fetch('/api/userId');
+      if (!response.ok) {
+        throw new Error('Failed to fetch user ID');
+      }
+      const data = await response.json();
+      this.userId = data.userId;
+      
+      if (this.userId) {
+        await this.fetchNotes(this.userId);
+      } else {
+        console.error('User ID not found');
+      }
+    } catch (error) {
+      console.error('Error fetching user ID or notes:', error);
+    }
+  },
+  async fetchUserIdAndBookmarks() {
+    try {
+      const response = await fetch('/api/userId');
+      if (!response.ok) {
+        throw new Error('Failed to fetch user ID');
+      }
+      const data = await response.json();
+      this.userId = data.userId;
+      
+      if (this.userId) {
+        await this.fetchBookmarks(this.userId);
+      } else {
+        console.error('User ID not found');
+      }
+    } catch (error) {
+      console.error('Error fetching user ID or bookmarks:', error);
+    }
+  },
+  async fetchUserIdAndFolders() {
+    try {
+      const response = await fetch('/api/userId');
+      if (!response.ok) {
+        throw new Error('Failed to fetch user ID');
+      }
+      const data = await response.json();
+      this.userId = data.userId;
+      
+      if (this.userId) {
+        await this.fetchFolders(this.userId);
+      } else {
+        console.error('User ID not found');
+      }
+    } catch (error) {
+      console.error('Error fetching user ID or folders:', error);
+    }
+  },
+  async fetchFolders(userId) {
+    try {
+      const response = await fetch(`/api/fetch-folders/${userId}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch folders');
+      }
+      this.folders = await response.json(); // Correctly updating folders
+    } catch (error) {
+      console.error('Error fetching folders:', error);
+    }
+  },
+  async fetchNotes(userId) {
+    try {
+      const response = await fetch(`/api/fetch-notes/${userId}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch notes');
+      }
+      this.notes = await response.json();
+    } catch (error) {
+      console.error('Error fetching notes:', error);
+    }
+  },
+  async fetchBookmarks(userId) {
+    try {
+      const response = await fetch(`/api/fetch-bookmarks/${userId}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch bookmarks');
+      }
+      this.bookmarks = await response.json();
+    } catch (error) {
+      console.error('Error fetching bookmarks:', error);
+    }
+  },
+  
   loadUsers() {
    axios.get("api/fetch-users").then((data) => {
     this.users = data.data;
@@ -187,7 +304,7 @@ export default {
     }
    });
   },
-
+  
   // add new modal
   newModal(user) {
    this.form.reset();
@@ -209,5 +326,10 @@ export default {
 </script>
 
 <style>
-
+.links {
+ /*for text new colour (not worked)*/
+ 
+ color: rgb(119, 119, 119);
+ transition: opacity .9s, margin-left .5s, margin-right .5s;
+}
 </style>

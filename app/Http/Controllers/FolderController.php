@@ -15,6 +15,13 @@ class FolderController extends Controller
         return response()->json(['folders' => $folders]);
     }
 
+    public function fetchFolders()
+    {
+        $folders = Folder::get();
+        return response()->json($folders);
+    }
+
+
     // In your FolderController or a dedicated BookmarkController
     public function getBookmarksByFolder($folderId)
     {
