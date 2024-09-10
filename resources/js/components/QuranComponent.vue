@@ -395,9 +395,9 @@
       </div>
 
      </div>
-     <!--
-     <BookmarksAndNotes :information="information" />
-     -->
+     <!-- -->
+     <BookmarksAndNotes />
+     
      <CorrectionModal />
      <!-- Modals -->
      <TranslationNote ref="translationNote" :information="modalInformation" />
