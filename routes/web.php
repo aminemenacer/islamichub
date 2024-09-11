@@ -27,6 +27,7 @@ use App\Http\Controllers\FolderController;
 use App\Http\Controllers\VerseController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\FaqController;
+use App\Http\Controllers\LikeController;
 
 // Auth routes
 Auth::routes();
@@ -99,8 +100,11 @@ Route::post('/folders', [FolderController::class, 'store']);
 Route::put('/folders/{id}', [FolderController::class, 'update']);
 Route::delete('/folders/{id}', [FolderController::class, 'delete']);
 Route::get('/folders/{folderId}/bookmarks', [FolderController::class, 'getBookmarksByFolder']);
-
 Route::get('/fetch-folders', [FolderController::class, 'fetchFolders']);
+
+Route::post('/notes/{note}/like', [LikeController::class, 'like'])->middleware('auth');
+Route::post('/notes/{note}/unlike', [LikeController::class, 'unlike'])->middleware('auth');
+
 
 
 // Route for fetching verses

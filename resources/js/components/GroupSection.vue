@@ -9,7 +9,7 @@
       <!-- Translation Section -->
       <i :class="isVisibleTranslation ? 'bi bi-dash-circle' : 'bi bi-plus-circle'" @click="toggleContentTranslation"></i>
       <div ref="heading3" class="text-left">
-        <b class="text-left pb-2">Translation:</b>
+        <h4 class="text-left pb-2"><b>Translation:</b></h4>
         <p class="text-left ayah-translation" style="line-height: 1.6em" v-if="isVisibleTranslation">
           {{ expanded ? information.translation : truncatedText(information.translation) }}
           <template v-if="showMoreLink && information.translation.length > 100">
@@ -23,7 +23,7 @@
       <!-- Tafseer Section -->
       <i :class="isVisibleTafseer ? 'bi bi-dash-circle' : 'bi bi-plus-circle'" @click="toggleContentTafseer"></i>
       <div ref="heading3" class="text-left">
-        <b class="text-left pb-2">Tafseer:</b>
+        <h4 class="text-left pb-2"><b>Tafseer:</b></h4>
         <p class="ayah-translation" style="line-height: 1.6em" v-if="isVisibleTafseer">
           {{ expanded ? information.tafseer : truncatedText(information.tafseer) }}
           <template v-if="showMoreLink && information.tafseer.length > 100">
@@ -37,7 +37,7 @@
       <!-- Transliteration Section -->
       <i :class="isVisibleTransliteration ? 'bi bi-dash-circle' : 'bi bi-plus-circle'" @click="toggleContentTransliteration"></i>
       <div ref="heading3" class="text-left">
-        <b class="text-left pb-2">Transliteration:</b>
+        <h4 class="text-left pb-2"><b>Transliteration:</b></h4>
         <p class="text-left ayah-translation" style="line-height: 1.6em" v-if="isVisibleTransliteration">
           {{ expanded ? information.transliteration : truncatedText(information.transliteration) }}
           <template v-if="showMoreLink && information.transliteration.length > 100">

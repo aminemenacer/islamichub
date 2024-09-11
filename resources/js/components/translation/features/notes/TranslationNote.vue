@@ -60,21 +60,33 @@
         <input class="form-check-input" type="radio" name="option" v-model="option" id="private" value="1">
         <label class="form-check-label" for="private" style="margin-left: 5px;">Private</label>
        </div>
-
       </div>
+
+      <i class="pl-5 bi bi-info-circle-fill" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
+
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Launch demo modal
+      </button>
      </div>
+
+     
 
      <div class="modal-footer">
       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       <button type="submit" class="btn btn-success">Submit</button>
      </div>
+
+     
     </form>
 
    
    </div>
   </div>
+  
  </div>
+ 
 </div>
+
 </template>
 
 <script>

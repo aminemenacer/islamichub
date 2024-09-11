@@ -42,7 +42,17 @@
         <p v-html="truncatedHtml(note.ayah_notes)"></p>
        </div>
        <hr />
-       <i class="bi bi-eye-fill h4" style="color:rgb(0, 191, 166); cursor:pointer" @click="viewModal(note)"></i>
+       <!-- Eye Icon for Viewing Modal -->
+       <i class="bi bi-eye-fill h4 me-3" style="color: rgb(0, 191, 166); cursor: pointer;" @click="viewModal(note)"></i>
+
+       <!-- Like Button with Icon -->
+       <button class="btn btn-light" @click="toggleLike(note.id, note.liked)">
+        <i :class="getIconClass(note.liked)"></i>
+       </button>
+
+       <!-- Like Count -->
+       <span class="ms-2">{{ note.likeCount }}</span>
+
       </div>
      </div>
     </div>
@@ -58,7 +68,7 @@
       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
      </div>
      <div class="modal-body">
-      <div >
+      <div>
        <div class="mb-3">
         <label class="form-label"><strong>Surah Name:</strong></label>
         <p class="mt-2 text-dark text-left">{{ form.surah_name }}</p>
@@ -122,12 +132,27 @@
   column-count: 1;
  }
 }
+
+.like-section {
+ display: flex;
+ align-items: center;
+}
+
+.bi-heart {
+ font-size: 1.5rem;
+}
+
+.bi-heart-fill {
+ font-size: 1.5rem;
+}
 </style>
 
 <script>
 export default {
+
  data() {
   return {
+
    notes: [],
    form: {
     surah_name: "",
@@ -138,10 +163,39 @@ export default {
    },
   };
  },
- mounted() {
-  this.fetchNotes();
+
+ async mounted() {
+  await this.fetchNotes();
  },
+
  methods: {
+  getIconClass(liked) {
+   return liked ? 'bi bi-heart-fill' : 'bi bi-heart';
+  },
+  async toggleLike(noteId, currentlyLiked) {
+   try {
+    const url = currentlyLiked ? `/notes/${noteId}/unlike` : `/notes/${noteId}/like`;
+    const response = await fetch(url, {
+     method: 'POST',
+     headers: {
+      'X-Requested-With': 'XMLHttpRequest',
+      'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+     },
+    });
+
+    const data = await response.json();
+    if (data.success) {
+     // Update the local state
+     const note = this.notes.find(n => n.id === noteId);
+     if (note) {
+      note.liked = !currentlyLiked;
+      note.likeCount = data.count;
+     }
+    }
+   } catch (error) {
+    console.error('Error:', error);
+   }
+  },
   async fetchNotes() {
    try {
     const response = await fetch(`/fetch-notes`);
@@ -178,6 +232,6 @@ export default {
    }
    return plainText;
   },
- },
+ }
 };
 </script>
