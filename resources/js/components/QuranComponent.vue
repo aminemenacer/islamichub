@@ -64,7 +64,7 @@
   </div>
 
   <div class="col-md-8 card-hide">
-  <div class="card content" :style="containerStyle">
+  <div class="card content" >
     <div class="content" >
      <div class="container-fluid content" v-if="information != null">
       <NavTabs />
@@ -116,7 +116,7 @@
             <i :class="isOpen ? 'bi bi-x-circle-fill' : 'bi bi-plus-circle-fill'"></i>
           </button>
         </div>
-<div v-if="isOpen" class="icon-container w-100 hide-on-mobile pb-3">
+              <div v-if="isOpen" class="icon-container w-100 hide-on-mobile pb-3">
               <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('translationNote')" style="color: rgba(0, 191, 166);cursor:pointer"></i>
               <TranslationNote ref="translationNote" :information="information.translation" />
               <WhatsAppShareTranslation :translationToShare="information.translation" />
@@ -703,14 +703,15 @@ export default {
  },
 
  mounted() {
+  this.loadSavedStyles();
+  this.applyStylesToCards(); // Ensure styles are applied to cards initially
   this.getSurat(); // Call getSurat to populate the surah list
   this.initRecognition();
-  this.loadSavedStyles();
   if (this.defaultStyles.length > 0) {
     this.selectedStyle = this.defaultStyles[0];
     this.applyStyle();
   }
- },
+},
  data() {
 
   return {
@@ -886,25 +887,23 @@ export default {
    }),
   };
  },
- computed: {
-    // Combined container style
-    containerStyle() {
-      return {
-        backgroundColor: this.bgColor,
-        color: this.textColor,
-        fontFamily: this.fontFamily,
-        fontSize: `${this.fontSize}px`,
-        letterSpacing: `${this.fontSpacing}px`,
-        fontWeight: this.isBold ? 'bold' : this.isLight ? '300' : 'normal',
-        fontStyle: this.isItalic ? 'italic' : 'normal',
-        textShadow: this.selectedShadow,
-        textDecoration: this.isUnderline ? 'underline' : this.isStrikethrough ? 'line-through' : 'none',
-        textTransform: this.textTransform,
-        textAlign: this.textAlign,
-        defaultStyles: this.defaultStyles
-      };
-    },
-  },
+computed: {
+  containerStyle() {
+    return {
+      backgroundColor: this.bgColor,
+      color: this.textColor,
+      fontFamily: this.fontFamily,
+      fontSize: `${this.fontSize}px`,
+      letterSpacing: `${this.fontSpacing}px`,
+      fontWeight: this.isBold ? 'bold' : this.isLight ? '300' : 'normal',
+      fontStyle: this.isItalic ? 'italic' : 'normal',
+      textShadow: this.selectedShadow,
+      textDecoration: this.isUnderline ? 'underline' : this.isStrikethrough ? 'line-through' : 'none',
+      textTransform: this.textTransform,
+      textAlign: this.textAlign
+    };
+  }
+},
  methods: {
    toggleContent1() {
       this.isVisible1 = !this.isVisible1; // Toggle the visibility
@@ -990,58 +989,74 @@ export default {
     }
   },
   applyCustomStyles() {
-    // Save settings to localStorage
-    const settings = {
-      bgColor: this.bgColor,
-      textColor: this.textColor,
-      fontFamily: this.fontFamily,
-      fontSize: this.fontSize,
-      fontSpacing: this.fontSpacing,
-      selectedShadow: this.selectedShadow,
-      isBold: this.isBold,
-      isItalic: this.isItalic,
-      isLight: this.isLight,
-      isUnderline: this.isUnderline,
-      isStrikethrough: this.isStrikethrough,
-      textTransform: this.textTransform,
-      textAlign: this.textAlign,
-      defaultStyles: this.defaultStyles
-    };
-    localStorage.setItem('textStyles', JSON.stringify(settings));
+  const settings = {
+    bgColor: this.bgColor,
+    textColor: this.textColor,
+    fontFamily: this.fontFamily,
+    fontSize: this.fontSize,
+    fontSpacing: this.fontSpacing,
+    selectedShadow: this.selectedShadow,
+    isBold: this.isBold,
+    isItalic: this.isItalic,
+    isLight: this.isLight,
+    isUnderline: this.isUnderline,
+    isStrikethrough: this.isStrikethrough,
+    textTransform: this.textTransform,
+    textAlign: this.textAlign
+  };
+  localStorage.setItem('textStyles', JSON.stringify(settings));
+  console.log("Settings saved:", settings); // Debug line
 
-    // Show success message
-    this.showSuccessMessage = true;
+  // Apply styles to the card content
+  this.applyStylesToCards(); // Ensure this method is defined and applied
 
-    // Hide the success message and close the modal after 3 seconds
-    setTimeout(() => {
-      this.showSuccessMessage = false;
-
-      // Close the modal using Bootstrap's JavaScript API
-      const modalElement = document.getElementById('styleModal');
-      const modalInstance = bootstrap.Modal.getInstance(modalElement);
-      modalInstance.hide();
-    }, 3000);
-  },
+  this.showSuccessMessage = true;
+  setTimeout(() => {
+    this.showSuccessMessage = false;
+    const modalElement = document.getElementById('styleModal');
+    const modalInstance = bootstrap.Modal.getInstance(modalElement);
+    modalInstance.hide();
+  }, 3000);
+},
+  applyStylesToCards() {
+  // Example of applying styles to card elements
+  const cards = document.querySelectorAll('.card');
+  cards.forEach(card => {
+    card.style.backgroundColor = this.bgColor;
+    card.style.color = this.textColor;
+    card.style.fontFamily = this.fontFamily;
+    card.style.fontSize = `${this.fontSize}px`;
+    card.style.letterSpacing = `${this.fontSpacing}px`;
+    card.style.fontWeight = this.isBold ? 'bold' : this.isLight ? '300' : 'normal';
+    card.style.fontStyle = this.isItalic ? 'italic' : 'normal';
+    card.style.textShadow = this.selectedShadow;
+    card.style.textDecoration = this.isUnderline ? 'underline' : this.isStrikethrough ? 'line-through' : 'none';
+    card.style.textTransform = this.textTransform;
+    card.style.textAlign = this.textAlign;
+  });
+}
+,
   loadSavedStyles() {
-      const savedSettings = JSON.parse(localStorage.getItem('textStyles'));
-      if (savedSettings) {
-        this.bgColor = savedSettings.bgColor || this.bgColor;
-        this.textColor = savedSettings.textColor || this.textColor;
-        this.fontFamily = savedSettings.fontFamily || this.fontFamily;
-        this.fontSize = savedSettings.fontSize || this.fontSize;
-        this.fontSpacing = savedSettings.fontSpacing || this.fontSpacing;
-        this.selectedShadow = savedSettings.selectedShadow || this.selectedShadow;
-        this.isBold = savedSettings.isBold || this.isBold;
-        this.isItalic = savedSettings.isItalic || this.isItalic;
-        this.isLight = savedSettings.isLight || this.isLight;
-        this.isUnderline = savedSettings.isUnderline || this.isUnderline;
-        this.isStrikethrough = savedSettings.isStrikethrough || this.isStrikethrough;
-        this.textTransform = savedSettings.textTransform || this.textTransform;
-        this.textAlign = savedSettings.textAlign || this.textAlign;
-        this.defaultStyles = savedSettings.defaultStyles || this.defaultStyles;
-      }
-    },
-  
+  const savedSettings = JSON.parse(localStorage.getItem('textStyles'));
+  if (savedSettings) {
+    this.bgColor = savedSettings.bgColor || this.bgColor;
+    this.textColor = savedSettings.textColor || this.textColor;
+    this.fontFamily = savedSettings.fontFamily || this.fontFamily;
+    this.fontSize = savedSettings.fontSize || this.fontSize;
+    this.fontSpacing = savedSettings.fontSpacing || this.fontSpacing;
+    this.selectedShadow = savedSettings.selectedShadow || this.selectedShadow;
+    this.isBold = savedSettings.isBold || this.isBold;
+    this.isItalic = savedSettings.isItalic || this.isItalic;
+    this.isLight = savedSettings.isLight || this.isLight;
+    this.isUnderline = savedSettings.isUnderline || this.isUnderline;
+    this.isStrikethrough = savedSettings.isStrikethrough || this.isStrikethrough;
+    this.textTransform = savedSettings.textTransform || this.textTransform;
+    this.textAlign = savedSettings.textAlign || this.textAlign;
+
+    // Apply the loaded styles to the container
+    this.applyCustomStyles(); // Ensure this applies the styles to the container
+  }
+},
   
   saveStyle() {
    localStorage.setItem('selectedStyle', JSON.stringify(this.selectedStyle));

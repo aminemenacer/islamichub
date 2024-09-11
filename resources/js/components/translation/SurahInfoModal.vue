@@ -50,13 +50,12 @@ export default {
       this.expanded = !this.expanded;
     },
     truncatedText(text) {
-      if (!text) return '';
-      if (text.length > 400) {
-        this.showMoreLink = true;
-        return text.slice(0, 400) + '...';
+      const maxLength = 300; // Define your desired max length here
+      if (text.length > maxLength) {
+        return text.substring(0, maxLength) + '...';
+      } else {
+        return text;
       }
-      this.showMoreLink = false;
-      return text;
     },
     closeModal() {
       this.$emit('close');

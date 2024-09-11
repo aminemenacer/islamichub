@@ -39,7 +39,7 @@
        <p>{{ note.ayah_notes }}</p>
       </div>
       <div>
-        <b>This note is: <b style="color:rgba(0, 191, 166);">{{note.option}}</b></b>
+        <b>This note is: <b style="color:rgba(0, 191, 166);">{{ parseInt(note.option) === 0 ? 'public' : 'private' }}</b></b>
       </div>
       <hr />
       <i class="bi bi-eye-fill h4" style="color:rgb(0, 191, 166); cursor:pointer" @click="viewModal(note)"></i>
