@@ -64,9 +64,7 @@
 
       <i class="pl-5 bi bi-info-circle-fill" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
 
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Launch demo modal
-      </button>
+     
      </div>
 
      
@@ -101,7 +99,7 @@ export default {
  data() {
   return {
    inputMode: 'basic',
-   option: 'public',
+   option: 0,
    recognition: null,
    isListening: false,
    form: {

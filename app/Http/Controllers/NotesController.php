@@ -10,7 +10,7 @@ class NotesController extends Controller
 {
     public function index()
     {
-        return view('group_notes');
+        return view('notes');
     }
 
     public function getNotes($userId)

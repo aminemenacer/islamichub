@@ -110,22 +110,28 @@
        <div class="tab-pane active content" id="home" role="tabpanel" v-if="information != null">
 
         <div class="icon-container">
-         <!-- Main features desktop -->
-         <div class="icon-container w-100 hide-on-mobile pb-3">
-          <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('translationNote')" style="color: rgba(0, 191, 166);cursor:pointer"></i>
-          <TranslationNote ref="translationNote" :information="information.translation" />
-          <WhatsAppShareTranslation :translationToShare="information.translation" />
-          <TwitterShareTranslation :targetElementRef="'targetElement'" :translationText="information.translation" />
-          <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
-          <CopyTranslationText :textToCopy="information.translation" />
-          <!--
-          <ScreenTranslationCapture :targetTranslationRef="'targetTranslationElement'" />
-          <PdfDownload :targetTranslationRef="'targetTranslationElement'" />
-          -->
-          <i class="bi bi-paint-bucket h2" style="color: rgb(0, 191, 166); cursor: pointer;" @click="showModal"></i>
-          <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;"></i>
-          <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
-         </div>
+        
+         <div class="col">
+          <button @click="toggleContent" class="button-63 text-center hide-on-mobile">
+            <i :class="isOpen ? 'bi bi-x-circle-fill' : 'bi bi-plus-circle-fill'"></i>
+          </button>
+        </div>
+<div v-if="isOpen" class="icon-container w-100 hide-on-mobile pb-3">
+              <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('translationNote')" style="color: rgba(0, 191, 166);cursor:pointer"></i>
+              <TranslationNote ref="translationNote" :information="information.translation" />
+              <WhatsAppShareTranslation :translationToShare="information.translation" />
+              <TwitterShareTranslation :targetElementRef="'targetElement'" :translationText="information.translation" />
+              <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
+              <CopyTranslationText :textToCopy="information.translation" />
+              <!--
+              <ScreenTranslationCapture :targetTranslationRef="'targetTranslationElement'" />
+              <PdfDownload :targetTranslationRef="'targetTranslationElement'" />
+              -->
+              <i class="bi bi-paint-bucket h2" style="color: rgb(0, 191, 166); cursor: pointer;" @click="showModal"></i>
+              <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;"></i>
+              <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
+            </div>
+
         </div>
 
         <!-- mobile top Features  ---->
