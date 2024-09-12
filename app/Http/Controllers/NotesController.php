@@ -8,9 +8,14 @@ use Illuminate\Http\Request;
 
 class NotesController extends Controller
 {
-    public function index()
+    public function showNotes()
     {
         return view('notes');
+    }
+
+    public function showGroupNotes()
+    {
+        return view('group_notes');
     }
 
     public function getNotes($userId)

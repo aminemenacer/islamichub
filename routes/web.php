@@ -74,7 +74,8 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/api/delete-note/{id}', [NotesController::class, 'deleteNotes']);
 });
 
-Route::get('/group_notes', [NotesController::class, 'index']);
+Route::get('/notes', [NotesController::class, 'showNotes']);
+Route::get('/group_notes', [NotesController::class, 'showGroupNotes']);
 
 Route::get('/ayahs', [QuranController::class, 'index']);
 

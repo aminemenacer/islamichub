@@ -86,10 +86,7 @@
            <div class="mb-3 container" v-if="information.ayah && information.ayah.surah">
             <label for="formGroupExampleInput" class="form-label text-left">Surah Information:</label>
             <p class="text-left">
-             {{ expanded ? information.ayah.surah.text : truncatedText(information.ayah.surah.text) }}
-             <template v-if="showMoreLink">
-              <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
-             </template>
+             {{ information.ayah.surah.text }}
             </p>
            </div>
           </form>
@@ -109,14 +106,12 @@
        <!-- Translation Section -->
        <div class="tab-pane active content" id="home" role="tabpanel" v-if="information != null">
 
-        <div class="icon-container">
-        
-         <div class="col">
-          <button @click="toggleContent" class="button-63 text-center hide-on-mobile">
-            <i :class="isOpen ? 'bi bi-x-circle-fill' : 'bi bi-plus-circle-fill'"></i>
-          </button>
-        </div>
-              <div v-if="isOpen" class="icon-container w-100 hide-on-mobile pb-3">
+          <div class="">
+            <div class="col icon-container">
+              <i :class="isOpen ? 'bi bi-x-circle' : 'bi bi-plus-circle-fill'" class="top-toolbar-btn text-left hide-on-mobile h4" @click="toggleContent"></i>
+             
+            </div>
+            <div v-if="isOpen" class="icon-container hide-on-mobile pb-3">
               <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('translationNote')" style="color: rgba(0, 191, 166);cursor:pointer"></i>
               <TranslationNote ref="translationNote" :information="information.translation" />
               <WhatsAppShareTranslation :translationToShare="information.translation" />
@@ -131,8 +126,7 @@
               <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;"></i>
               <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
             </div>
-
-        </div>
+          </div>
 
         <!-- mobile top Features  ---->
          <div class="dropdown mobile-only pb-2">
@@ -154,14 +148,12 @@
         
         <div class="container-fluid text-center mobile-only">
           <div class="row">
+           
             <div class="col">
+              
+                <i :class="isOpen ? 'bi bi-x-circle' : 'bi bi-plus-circle-fill'" class="text-center mobile-only h3 pt-3" @click="toggleContent"></i>
+              
             </div>
-            <div class="col">
-              <button @click="toggleContent" class="button-63 text-center mobile-only">
-                {{ isOpen ? 'Close Toolbar' : 'Open Toolbar' }}
-              </button>
-            </div>
-            <div class="col"></div>
           </div>
         </div>
 
@@ -465,6 +457,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body text-left">
+          
             <form>
               <div class="row">
                 <!-- Row 1: Select Default Style and Background Color -->
@@ -483,6 +476,8 @@
                     </select>
                   </div>
                 </div>
+
+                <hr class="container">
                 <div class="col-md-6">
                   <div class="mb-3">
                     <label for="bgColor" class="form-label">Background Color</label>
@@ -725,37 +720,44 @@ export default {
       {
         name: 'Default',
         backgroundColor: '#ffffff',
-        textColor: '#000000'
+        textColor: '#000000',
+        fontStyle: 'Arial, sans-serif',
+        textShadow: 'None'
       },
       {
         name: 'Dyslexia',
         backgroundColor: '#FDFD96',
         textColor: '#000080',
-        fontStyle: 'Arial, sans-serif'
+        fontStyle: 'Arial, sans-serif',
+        textShadow: 'None'
       },
       {
         name: 'Dysgraphia',
         backgroundColor: '#FFFDD0',
         textColor: '#00008B',
-        fontStyle: "'Arial, sans-serif"
+        fontStyle: 'Arial, sans-serif',
+        textShadow: 'None'
       },
       {
         name: 'Hyperlexia',
         backgroundColor: '#F5F5DC',
         textColor: '#06402B',
-        fontStyle: "''Arial, sans-serif"
+        fontStyle: 'Arial, sans-serif',
+        textShadow: 'None'
       },
       {
         name: 'Visual Proccesing disorder',
         backgroundColor: '#fff',
         textColor: 'black',
-        fontStyle: 'Arial, sans-serif'
+        fontStyle: 'Arial, sans-serif',
+        textShadow: 'None'
       },
       {
         name: 'ADHD',
         backgroundColor: '#ADD8E6',
         textColor: '#696969',
-        fontStyle: "Arial, sans-serif"
+        fontStyle: "Arial, sans-serif",
+        textShadow: 'None'
       },
     ],
    fontFamilies: [
@@ -1005,7 +1007,6 @@ computed: {
     textAlign: this.textAlign
   };
   localStorage.setItem('textStyles', JSON.stringify(settings));
-  console.log("Settings saved:", settings); // Debug line
 
   // Apply styles to the card content
   this.applyStylesToCards(); // Ensure this method is defined and applied
@@ -1520,5 +1521,10 @@ computed: {
   background-color: rgba(0, 191, 166, 0.2);
   color: rgb(255, 255, 255);
   border: 1px solid rgba(0, 191, 166);
+}
+
+.top-toolbar-btn{
+  background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
+
 }
 </style>
