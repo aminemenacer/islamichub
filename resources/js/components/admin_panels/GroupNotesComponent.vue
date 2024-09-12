@@ -24,16 +24,26 @@
     </div>
    </div>
   </div>
-
-  <select v-model="selectedFilter" class="mb-4 p-2 border rounded">
-   <option value="all">All Notes</option>
-   <option value="today">Today</option>
-   <option value="lastWeek">Last Week</option>
-   <option value="lastMonth">Last Month</option>
-  </select>
-
+<!-- Filter Buttons -->
+  <div class="row">
+   <div class="col-md-8 container-fluid mb-4">
+      <span v-for="option in filterOptions" 
+            :key="option.value"
+            @click="selectedFilter = option.value"
+            class="badge button-33 rounded-pill me-2 mb-2 p-2 h3"
+            :class="[
+              selectedFilter === option.value 
+                ? 'bg-success text-white' 
+                : 'bg-light text-success'
+            ]"
+            style="cursor: pointer; user-select: none;">
+        {{ option.label }}
+      </span>
+    </div>
+  </div>
   <!-- Notes Container -->
   <div class="container container-notes">
+   
    <div class="row collage">
     <div class="collage-item mb-4" v-for="note in filteredNotes" :key="note.id">
      <!-- Note Card -->
@@ -151,6 +161,12 @@
 .bi-heart-fill {
  font-size: 1.5rem;
 }
+
+.badge.active {
+  background-color: rgba(0, 191, 166, 0.2);
+  color: rgb(5, 32, 29);
+  border: 1px solid rgba(0, 191, 166);
+}
 </style>
 
 <script>
@@ -164,6 +180,23 @@ export default {
  data() {
   return {
    selectedFilter: "all", // Default filter is "All"
+   filterOptions: [{
+     value: 'all',
+     label: 'All Notes'
+    },
+    {
+     value: 'today',
+     label: 'Today'
+    },
+    {
+     value: 'lastWeek',
+     label: 'Last Week'
+    },
+    {
+     value: 'lastMonth',
+     label: 'Last Month'
+    }
+   ],
    notes: [],
    form: {
     surah_name: "",
