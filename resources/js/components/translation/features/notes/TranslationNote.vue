@@ -9,7 +9,7 @@
    <div class="modal-body">
     <form @submit.prevent="createNote">
      <div class="row">
-      <div class="form-check col-md-4">
+      <div class="form-check  col-md-4">
        <input class="form-check-input" type="radio" name="inputMode" id="basicMode" value="basic" v-model="inputMode">
        <label class="form-check-label" for="basicMode">
         Basic
@@ -95,6 +95,7 @@ import {
 export default {
  data() {
   return {
+    
    inputMode: 'basic',
    option: 0,
    recognition: null,

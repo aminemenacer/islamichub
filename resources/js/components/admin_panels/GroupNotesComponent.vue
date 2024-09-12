@@ -25,12 +25,19 @@
    </div>
   </div>
 
+  <select v-model="selectedFilter" class="mb-4 p-2 border rounded">
+   <option value="all">All Notes</option>
+   <option value="today">Today</option>
+   <option value="lastWeek">Last Week</option>
+   <option value="lastMonth">Last Month</option>
+  </select>
+
   <!-- Notes Container -->
   <div class="container container-notes">
-   <div class=" row collage">
-    <div class="collage-item mb-4 " v-for="note in notes" :key="note.id">
+   <div class="row collage">
+    <div class="collage-item mb-4" v-for="note in filteredNotes" :key="note.id">
      <!-- Note Card -->
-     <div class="card" style="border-radius:8px; padding:4px;background:white; border: 2px solid rgba(0, 191, 166);">
+     <div class="card" style="border-radius:8px; padding:4px; background:white; border: 2px solid rgba(0, 191, 166);">
       <div class="card-body">
        <!-- Note details -->
        <div>
@@ -41,18 +48,17 @@
         <h5><strong>Note:</strong></h5>
         <p v-html="truncatedHtml(note.ayah_notes)"></p>
        </div>
+       <h5><strong>Date created:</strong></h5>
+       <p>{{ formatDate(note.created_at) }}</p>
        <hr />
        <!-- Eye Icon for Viewing Modal -->
        <i class="bi bi-eye-fill h4 me-3" style="color: rgb(0, 191, 166); cursor: pointer;" @click="viewModal(note)"></i>
-
        <!-- Like Button with Icon -->
        <button class="btn btn-light" @click="toggleLike(note.id, note.liked)">
         <i :class="getIconClass(note.liked)"></i>
        </button>
-
        <!-- Like Count -->
        <span class="ms-2">{{ note.likeCount }}</span>
-
       </div>
      </div>
     </div>
@@ -149,10 +155,15 @@
 
 <script>
 export default {
-
+ props: {
+  notes: {
+   type: Array,
+   required: true
+  }
+ },
  data() {
   return {
-
+   selectedFilter: "all", // Default filter is "All"
    notes: [],
    form: {
     surah_name: "",
@@ -167,7 +178,28 @@ export default {
  async mounted() {
   await this.fetchNotes();
  },
+ computed: {
+  filteredNotes() {
+   const today = new Date();
+   const oneDayInMs = 24 * 60 * 60 * 1000;
+   const oneWeekInMs = 7 * oneDayInMs;
+   const oneMonthAgo = new Date(today.getTime() - 30 * oneDayInMs);
 
+   return this.notes.filter(note => {
+    const noteDate = new Date(note.created_at);
+    switch (this.selectedFilter) {
+     case "today":
+      return noteDate.toDateString() === today.toDateString();
+     case "lastWeek":
+      return noteDate >= new Date(today.getTime() - oneWeekInMs);
+     case "lastMonth":
+      return noteDate >= oneMonthAgo;
+     default:
+      return true;
+    }
+   });
+  }
+ },
  methods: {
   getIconClass(liked) {
    return liked ? 'bi bi-heart-fill' : 'bi bi-heart';
@@ -232,6 +264,25 @@ export default {
    }
    return plainText;
   },
+  formatDate(dateString) {
+   const options = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+   };
+   return new Date(dateString).toLocaleDateString(undefined, options);
+  }
+ },
+ watch: {
+  selectedFilter(newValue) {
+   console.log("Selected filter changed:", newValue);
+  },
+  filteredNotes: {
+   handler(newValue) {
+    console.log("Filtered notes:", newValue);
+   },
+   deep: true
+  }
  }
 };
 </script>
