@@ -106,12 +106,12 @@
        <!-- Translation Section -->
        <div class="tab-pane active content" id="home" role="tabpanel" v-if="information != null">
 
-          <div class="">
+          <div >
             <div class="col icon-container">
               <i :class="isOpen ? 'bi bi-x-circle' : 'bi bi-plus-circle-fill'" class="top-toolbar-btn text-left hide-on-mobile h4" @click="toggleContent"></i>
              
             </div>
-            <div v-if="isOpen" class="icon-container hide-on-mobile pb-3">
+            <div v-if="isOpen" class="icon-container hide-on-mobile ">
               <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('translationNote')" style="color: rgba(0, 191, 166);cursor:pointer"></i>
               <TranslationNote ref="translationNote" :information="information.translation" />
               <WhatsAppShareTranslation :translationToShare="information.translation" />
@@ -125,7 +125,8 @@
               <i class="bi bi-paint-bucket h2" style="color: rgb(0, 191, 166); cursor: pointer;" @click="showModal"></i>
               <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;"></i>
               <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
-            </div>
+            </div>                      
+            <hr style="border: 2px solid #333;">
           </div>
 
         <!-- mobile top Features  ---->
