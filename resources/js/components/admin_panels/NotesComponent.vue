@@ -42,9 +42,19 @@
        <b>This note is: <b style="color:rgba(0, 191, 166);">{{ parseInt(note.option) === 0 ? 'public' : 'private' }}</b></b>
       </div>
       <hr />
-      <i class="bi bi-eye-fill h4" style="color:rgb(0, 191, 166); cursor:pointer" @click="viewModal(note)"></i>
-      <i class="bi bi-pencil-square ml-3 h4" style="color:rgb(0, 191, 166); cursor:pointer" @click="editModal(note)"></i>
-      <i class="bi bi-trash-fill h4 ml-3" style="color:rgb(0, 191, 166); cursor:pointer" @click="deleteNote(note.id)"></i>
+      <div class="container-fluid text-center">
+       <div class="row">
+        <div class="col">
+         <i class="bi bi-eye h4" style="color:rgb(0, 191, 166); cursor:pointer" @click="viewModal(note)"></i>
+        </div>
+        <div class="col">
+         <i class="bi bi-pencil-square ml-3 h4" style="color:rgb(0, 191, 166); cursor:pointer" @click="editModal(note)"></i>
+        </div>
+        <div class="col">
+         <i class="bi bi-x-circle h4 ml-3" style="color:rgb(0, 191, 166); cursor:pointer" @click="deleteNote(note.id)"></i>
+        </div>
+       </div>
+      </div>
      </div>
     </div>
    </div>
@@ -66,7 +76,7 @@
       <div class="row mb-3">
        <b style="margin-right: 10px;" class="pr-2 pb-2">Ayah notes:</b>
        <div style="display: flex; align-items: center;" class="pt-2">
-        <textarea v-model="form.ayah_notes"  class="form-control pb-2" rows="5"></textarea>
+        <textarea v-model="form.ayah_notes" class="form-control pb-2" rows="5"></textarea>
        </div>
       </div>
 
@@ -74,13 +84,13 @@
        <b style="margin-right: 10px;" class="pr-2">Make your note either:</b>
        <div style="display: flex; align-items: center;">
         <div class="form-check form-check-inline" style="margin-right: 15px;">
-        <input class="form-check-input" type="radio"  name="option" v-model="form.option" id="public" value="0">
-        <label class="form-check-label" for="public" style="margin-left: 5px;">Public</label>
-       </div>
-       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="option" v-model="form.option" id="private" value="1">
-        <label class="form-check-label" for="private" style="margin-left: 5px;">Private</label>
-       </div>
+         <input class="form-check-input" type="radio" name="option" v-model="form.option" id="public" value="0">
+         <label class="form-check-label" for="public" style="margin-left: 5px;">Public</label>
+        </div>
+        <div class="form-check form-check-inline">
+         <input class="form-check-input" type="radio" name="option" v-model="form.option" id="private" value="1">
+         <label class="form-check-label" for="private" style="margin-left: 5px;">Private</label>
+        </div>
        </div>
       </div>
 
@@ -244,43 +254,43 @@ export default {
    return html;
   },
   updateNotes() {
-  Swal.fire({
+   Swal.fire({
     title: "Are you sure you want to update?",
     icon: "warning",
     showCancelButton: true,
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",
     confirmButtonText: "Yes, update notes!",
-  }).then((result) => {
+   }).then((result) => {
     if (result.isConfirmed) {
-      axios
-        .post(`api/update-notes/${this.form.id}`, this.form)
-        .then(() => {
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Note updated successfully",
-            showConfirmButton: false,
-            timer: 1500,
-          }).then(() => {
-            this.fetchNotes(this.userId);
+     axios
+      .post(`api/update-notes/${this.form.id}`, this.form)
+      .then(() => {
+       Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Note updated successfully",
+        showConfirmButton: false,
+        timer: 1500,
+       }).then(() => {
+        this.fetchNotes(this.userId);
 
-            // Re-initialize and close the modal properly
-            const editNotesModal = bootstrap.Modal.getInstance(document.getElementById('editNotes'));
-            if (editNotesModal) {
-              editNotesModal.hide(); // Close the modal
-            } else {
-              const modalInstance = new bootstrap.Modal(document.getElementById('editNotes'));
-              modalInstance.hide();
-            }
-          });
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+        // Re-initialize and close the modal properly
+        const editNotesModal = bootstrap.Modal.getInstance(document.getElementById('editNotes'));
+        if (editNotesModal) {
+         editNotesModal.hide(); // Close the modal
+        } else {
+         const modalInstance = new bootstrap.Modal(document.getElementById('editNotes'));
+         modalInstance.hide();
+        }
+       });
+      })
+      .catch((error) => {
+       console.error(error);
+      });
     }
-  });
-},
+   });
+  },
   deleteNote(id) {
    Swal.fire({
     title: "Are you sure?",
@@ -310,11 +320,11 @@ export default {
    });
   },
   openEditModal(note) {
-    this.selectedNote = note;
-    this.form.ayah_notes = note.content;
-    // Initialize the modal if not already done
-    const editModal = new bootstrap.Modal(document.getElementById('editNotes'));
-    editModal.show();
+   this.selectedNote = note;
+   this.form.ayah_notes = note.content;
+   // Initialize the modal if not already done
+   const editModal = new bootstrap.Modal(document.getElementById('editNotes'));
+   editModal.show();
   },
   editModal(note) {
    this.form = {
@@ -322,8 +332,6 @@ export default {
    }; // Make sure form is populated
    $('#editNotes').modal('show');
   },
-  
-  
 
  }
 };
