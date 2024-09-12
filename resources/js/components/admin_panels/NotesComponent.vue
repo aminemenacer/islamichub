@@ -61,12 +61,19 @@
      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
     <div class="modal-body">
+
      <form @submit.prevent="updateNotes">
-      <div class="form-group mr-2">
-       <!-- Editor Component -->
-       <textarea class="form-control" v-model="form.ayah_notes" name="ayah_notes" />
+      <div class="row mb-3">
+       <b style="margin-right: 10px;" class="pr-2 pb-2">Ayah notes:</b>
+       <div style="display: flex; align-items: center;" class="pt-2">
+        <textarea v-model="form.ayah_notes"  class="form-control pb-2" rows="5"></textarea>
+       </div>
+      </div>
+
+      <div class="pt-3 pb-2" style="display: flex; align-items: center;">
+       <b style="margin-right: 10px;" class="pr-2">Make your note either:</b>
        <div style="display: flex; align-items: center;">
-       <div class="form-check form-check-inline" style="margin-right: 15px;">
+        <div class="form-check form-check-inline" style="margin-right: 15px;">
         <input class="form-check-input" type="radio"  name="option" v-model="form.option" id="public" value="0">
         <label class="form-check-label" for="public" style="margin-left: 5px;">Public</label>
        </div>
@@ -74,64 +81,66 @@
         <input class="form-check-input" type="radio" name="option" v-model="form.option" id="private" value="1">
         <label class="form-check-label" for="private" style="margin-left: 5px;">Private</label>
        </div>
-      </div>
        </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-success">Update</button>
-          </div>
-          </form>
-        </div>
       </div>
+
+      <div class="modal-footer">
+       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+       <button type="submit" class="btn btn-success">Update</button>
+      </div>
+     </form>
+
     </div>
+   </div>
   </div>
+ </div>
 
  <!-- View Note Modal -->
-    <div class="modal fade" id="viewNotes" tabindex="-1" aria-labelledby="viewNotesLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title text-dark" id="viewNotesLabel"><b>View Note</b></h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <div class="container">
-              <div class="mb-3">
-                <label for="formGroupExampleInput" class="form-label"><strong>Surah Name:</strong></label>
-                <p class="mt-2 text-dark text-left">
-                  {{ form.surah_name }}
-                </p>
-              </div>
-              <div class="mb-3">
-                <label for="formGroupExampleInput" class="form-label"><strong>Ayah Verse Arabic:</strong></label>
-                <p class="mt-2 text-dark text-left">
-                  {{ form.ayah_verse_ar }}
-                </p>
-              </div>
-              <div class="mb-3">
-                <label for="formGroupExampleInput" class="form-label"><strong>English Info:</strong></label>
-                <p class="mt-2 text-dark text-left">
-                  {{ form.ayah_verse_en }}
-                </p>
-              </div>
-              <div class="mb-3">
-                <label for="formGroupExampleInput" class="form-label"><strong>Notes:</strong></label>
-                <div class="mt-2 text-dark text-left" v-html="form.ayah_notes"></div>
-              </div>
-              <div class="mb-3">
-                <label for="formGroupExampleInput" class="form-label"><strong>Date Created:</strong></label>
-                <p class="mt-2 text-dark text-left">
-                  {{ extractDate(form.created_at) }}
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
+ <div class="modal fade" id="viewNotes" tabindex="-1" aria-labelledby="viewNotesLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+   <div class="modal-content">
+    <div class="modal-header">
+     <h5 class="modal-title text-dark" id="viewNotesLabel"><b>View Note</b></h5>
+     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
+    <div class="modal-body">
+     <div class="container">
+      <div class="mb-3">
+       <label for="formGroupExampleInput" class="form-label"><strong>Surah Name:</strong></label>
+       <p class="mt-2 text-dark text-left">
+        {{ form.surah_name }}
+       </p>
+      </div>
+      <div class="mb-3">
+       <label for="formGroupExampleInput" class="form-label"><strong>Ayah Verse Arabic:</strong></label>
+       <p class="mt-2 text-dark text-left">
+        {{ form.ayah_verse_ar }}
+       </p>
+      </div>
+      <div class="mb-3">
+       <label for="formGroupExampleInput" class="form-label"><strong>English Info:</strong></label>
+       <p class="mt-2 text-dark text-left">
+        {{ form.ayah_verse_en }}
+       </p>
+      </div>
+      <div class="mb-3">
+       <label for="formGroupExampleInput" class="form-label"><strong>Notes:</strong></label>
+       <div class="mt-2 text-dark text-left" v-html="form.ayah_notes"></div>
+      </div>
+      <div class="mb-3">
+       <label for="formGroupExampleInput" class="form-label"><strong>Date Created:</strong></label>
+       <p class="mt-2 text-dark text-left">
+        {{ extractDate(form.created_at) }}
+       </p>
+      </div>
+     </div>
+    </div>
+    <div class="modal-footer">
+     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    </div>
+   </div>
+  </div>
+ </div>
 
 </div>
 </template>
@@ -235,39 +244,43 @@ export default {
    return html;
   },
   updateNotes() {
-   Swal.fire({
+  Swal.fire({
     title: "Are you sure you want to update?",
     icon: "warning",
     showCancelButton: true,
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",
     confirmButtonText: "Yes, update notes!",
-   }).then((result) => {
+  }).then((result) => {
     if (result.isConfirmed) {
-     axios.post(`api/update-notes/${this.form.id}`, this.form)
-      .then(() => {
-       Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "Note updated successfully",
-        showConfirmButton: false,
-        timer: 1500,
-       });
-       this.fetchNotes(this.userId);
-       const editNotesModal = bootstrap.Modal.getInstance(document.getElementById('editNotes'));
-       if (editNotesModal) {
-        editNotesModal.hide();
-       }
-       document.body.classList.remove('modal-open');
-       const modals = document.querySelectorAll('.modal-backdrop');
-       modals.forEach(modal => modal.remove());
-      })
-      .catch((error) => {
-       console.error(error);
-      });
+      axios
+        .post(`api/update-notes/${this.form.id}`, this.form)
+        .then(() => {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Note updated successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          }).then(() => {
+            this.fetchNotes(this.userId);
+
+            // Re-initialize and close the modal properly
+            const editNotesModal = bootstrap.Modal.getInstance(document.getElementById('editNotes'));
+            if (editNotesModal) {
+              editNotesModal.hide(); // Close the modal
+            } else {
+              const modalInstance = new bootstrap.Modal(document.getElementById('editNotes'));
+              modalInstance.hide();
+            }
+          });
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     }
-   });
-  },
+  });
+},
   deleteNote(id) {
    Swal.fire({
     title: "Are you sure?",
@@ -297,10 +310,11 @@ export default {
    });
   },
   openEditModal(note) {
-   this.selectedNote = note;
-   this.form.ayah_notes = note.content; // Assume the note content is stored in note.content
-   const editModal = new bootstrap.Modal(document.getElementById('editNotes'));
-   editModal.show();
+    this.selectedNote = note;
+    this.form.ayah_notes = note.content;
+    // Initialize the modal if not already done
+    const editModal = new bootstrap.Modal(document.getElementById('editNotes'));
+    editModal.show();
   },
   editModal(note) {
    this.form = {
@@ -308,6 +322,8 @@ export default {
    }; // Make sure form is populated
    $('#editNotes').modal('show');
   },
+  
+  
 
  }
 };
