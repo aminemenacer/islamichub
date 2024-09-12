@@ -21,7 +21,7 @@
  <!-- Notes Container -->
  <div class="container">
   <h3 class="pb-3 text-center">
-    <strong>You have:</strong> <b style="color:rgb(0, 191, 166)">{{ notes.length }}</b> <strong>notes</strong>
+   <strong>You have:</strong> <b style="color:rgb(0, 191, 166)">{{ notes.length }}</b> <strong>notes</strong>
 
   </h3>
   <div class="row">
@@ -39,10 +39,11 @@
        <p>{{ note.ayah_notes }}</p>
       </div>
       <div>
-        <b>This note is: <b style="color:rgba(0, 191, 166);">{{ parseInt(note.option) === 0 ? 'public' : 'private' }}</b></b>
+       <b>This note is: <b style="color:rgba(0, 191, 166);">{{ parseInt(note.option) === 0 ? 'public' : 'private' }}</b></b>
       </div>
       <hr />
       <i class="bi bi-eye-fill h4" style="color:rgb(0, 191, 166); cursor:pointer" @click="viewModal(note)"></i>
+      <i class="bi bi-pencil-square ml-3 h4" style="color:rgb(0, 191, 166); cursor:pointer" @click="editModal(note)"></i>
       <i class="bi bi-trash-fill h4 ml-3" style="color:rgb(0, 191, 166); cursor:pointer" @click="deleteNote(note.id)"></i>
      </div>
     </div>
@@ -62,58 +63,75 @@
     <div class="modal-body">
      <form @submit.prevent="updateNotes">
       <div class="form-group mr-2">
-       <!--
-                <Editor editorStyle="height: 320px" v-model="form.ayah_notes" name="ayah_notes" />
-                -->
+       <!-- Editor Component -->
+       <textarea class="form-control" v-model="form.ayah_notes" name="ayah_notes" />
+       <div style="display: flex; align-items: center;">
+       <div class="form-check form-check-inline" style="margin-right: 15px;">
+        <input class="form-check-input" type="radio"  name="option" v-model="form.option" id="public" value="0">
+        <label class="form-check-label" for="public" style="margin-left: 5px;">Public</label>
+       </div>
+       <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="option" v-model="form.option" id="private" value="1">
+        <label class="form-check-label" for="private" style="margin-left: 5px;">Private</label>
+       </div>
       </div>
-      <div class="modal-footer">
-       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-       <button type="submit" class="btn btn-success">Update</button>
+       </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-success">Update</button>
+          </div>
+          </form>
+        </div>
       </div>
-     </form>
     </div>
-   </div>
   </div>
- </div>
 
  <!-- View Note Modal -->
- <div class="modal fade" id="viewNotes" tabindex="-1" aria-labelledby="viewNotesLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-   <div class="modal-content">
-    <div class="modal-header">
-     <h5 class="modal-title text-dark" id="viewNotesLabel"><b>View Note</b></h5>
-     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div class="modal fade" id="viewNotes" tabindex="-1" aria-labelledby="viewNotesLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-dark" id="viewNotesLabel"><b>View Note</b></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <div class="mb-3">
+                <label for="formGroupExampleInput" class="form-label"><strong>Surah Name:</strong></label>
+                <p class="mt-2 text-dark text-left">
+                  {{ form.surah_name }}
+                </p>
+              </div>
+              <div class="mb-3">
+                <label for="formGroupExampleInput" class="form-label"><strong>Ayah Verse Arabic:</strong></label>
+                <p class="mt-2 text-dark text-left">
+                  {{ form.ayah_verse_ar }}
+                </p>
+              </div>
+              <div class="mb-3">
+                <label for="formGroupExampleInput" class="form-label"><strong>English Info:</strong></label>
+                <p class="mt-2 text-dark text-left">
+                  {{ form.ayah_verse_en }}
+                </p>
+              </div>
+              <div class="mb-3">
+                <label for="formGroupExampleInput" class="form-label"><strong>Notes:</strong></label>
+                <div class="mt-2 text-dark text-left" v-html="form.ayah_notes"></div>
+              </div>
+              <div class="mb-3">
+                <label for="formGroupExampleInput" class="form-label"><strong>Date Created:</strong></label>
+                <p class="mt-2 text-dark text-left">
+                  {{ extractDate(form.created_at) }}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="modal-body">
-     <div class="container">
-      <div class="mb-3">
-       <label class="form-label"><strong>Surah Name:</strong></label>
-       <p class="mt-2 text-dark text-left">{{ form.surah_name }}</p>
-      </div>
-      <div class="mb-3">
-       <label class="form-label"><strong>Ayah Verse Arabic:</strong></label>
-       <p class="mt-2 text-dark text-left">{{ form.ayah_verse_ar }}</p>
-      </div>
-      <div class="mb-3">
-       <label class="form-label"><strong>English Info:</strong></label>
-       <p class="mt-2 text-dark text-left">{{ form.ayah_verse_en }}</p>
-      </div>
-      <div class="mb-3">
-       <label class="form-label"><strong>Notes:</strong></label>
-       <div class="mt-2 text-dark text-left" v-html="form.ayah_notes"></div>
-      </div>
-      <div class="mb-3">
-       <label class="form-label"><strong>Date Created:</strong></label>
-       <p class="mt-2 text-dark text-left">{{ extractDate(form.created_at) }}</p>
-      </div>
-     </div>
-    </div>
-    <div class="modal-footer">
-     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-    </div>
-   </div>
-  </div>
- </div>
 
 </div>
 </template>
@@ -133,6 +151,7 @@ export default {
  data() {
   return {
    notes: [],
+   option: 0,
    userId: null,
    form: {
     surah_name: '',
@@ -277,13 +296,24 @@ export default {
     }
    });
   },
+  openEditModal(note) {
+   this.selectedNote = note;
+   this.form.ayah_notes = note.content; // Assume the note content is stored in note.content
+   const editModal = new bootstrap.Modal(document.getElementById('editNotes'));
+   editModal.show();
+  },
+  editModal(note) {
+   this.form = {
+    ...note
+   }; // Make sure form is populated
+   $('#editNotes').modal('show');
+  },
 
  }
 };
 </script>
 
 <style>
-
 .editor {
  height: 320px;
 }

@@ -61,10 +61,7 @@
         <label class="form-check-label" for="private" style="margin-left: 5px;">Private</label>
        </div>
       </div>
-
       <i class="pl-5 bi bi-info-circle-fill" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
-
-     
      </div>
 
      
@@ -104,6 +101,7 @@ export default {
    isListening: false,
    form: {
     ayah_notes: "",
+    surah_name: ""
    }
   };
  },
@@ -164,7 +162,6 @@ export default {
     ayah_info: this.form.ayah_info,
     ayah_notes: this.form.ayah_notes,
     option: this.option, // Ensure the option field is sent
-    is_speech_to_text: this.is_speech_to_text
    };
 
    Swal.fire({
@@ -198,6 +195,7 @@ export default {
   },
   resetNoteForm() {
    this.form.ayah_notes = '';
+   this.form.surah_name = '';
   },
   showModal() {
    const modalElement = this.$refs.modal;

@@ -1142,9 +1142,7 @@ computed: {
   },
   triggerBookmarkSuccess() {
    this.showAlert = true;
-   setTimeout(() => {
-    this.showAlert = false;
-   }, 3000);
+   
   },
   triggerLoginError() {
    this.showErrorAlert = true;
