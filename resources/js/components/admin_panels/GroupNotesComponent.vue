@@ -27,18 +27,20 @@
 <!-- Filter Buttons -->
   <div class="row">
    <div class="col-md-8 container-fluid mb-4">
-      <span v-for="option in filterOptions" 
-            :key="option.value"
-            @click="selectedFilter = option.value"
-            class="badge button-33 rounded-pill me-2 mb-2 p-2 h3"
-            :class="[
-              selectedFilter === option.value 
-                ? 'bg-success text-white' 
-                : 'bg-light text-success'
-            ]"
-            style="cursor: pointer; user-select: none;">
-        {{ option.label }}
-      </span>
+   <h5><span 
+      v-for="option in filterOptions" 
+      :key="option.value"
+      @click="selectedFilter = option.value"
+      class="badge me-2 mb-2 p-2 "
+      :class="[
+        selectedFilter === option.value 
+          ? 'bg-primary-whatsapp text-white' 
+          : 'bg-secondary-whatsapp text-white'
+      ]"
+      style="cursor: pointer; user-select: none;">
+      {{ option.label }}
+    </span></h5>
+
     </div>
   </div>
   <!-- Notes Container -->
@@ -118,6 +120,21 @@
 </template>
 
 <style scoped>
+.bg-primary-whatsapp {
+  background-color: rgb(78, 204, 124); /* WhatsApp green */
+}
+
+.bg-secondary-whatsapp {
+  background-color: #075E54; /* WhatsApp dark green */
+}
+
+.text-green {
+  color: #25D366; /* WhatsApp green */
+}
+
+.text-white {
+  color: #FFFFFF;
+}
 .container-notes {
  column-count: 4;
  max-width: 1500px;
