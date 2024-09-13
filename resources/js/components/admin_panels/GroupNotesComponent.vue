@@ -42,6 +42,10 @@
     </h5>
    </div>
 
+    <div class="row">
+      <input type="text" v-model="searchTerm" placeholder="Search notes..." class="form-control mb-4" />
+    </div>
+
    <!-- Date Filter Section -->
    <div class="col-md-6">
     <div class="row align-items-end">
@@ -64,7 +68,6 @@
 
   <!-- Notes Container -->
   <div class="container container-notes">
-
    <div class="row collage">
     <div class="collage-item mb-4" v-for="note in filteredNotes" :key="note.id">
      <!-- Note Card -->
@@ -73,11 +76,11 @@
        <!-- Note details -->
        <div>
         <h5><strong>Surah Name:</strong></h5>
-        <p>{{ note.surah_name }}</p>
+        <p v-html="highlightText(note.surah_name)"></p>
        </div>
        <div class="mt-2">
         <h5><strong>Note:</strong></h5>
-        <p v-html="truncatedHtml(note.ayah_notes)"></p>
+        <p v-html="highlightText(truncatedHtml(note.ayah_notes))"></p>
        </div>
        <h5><strong>Date created:</strong></h5>
        <p>{{ formatDate(note.created_at) }}</p>
@@ -162,6 +165,7 @@ export default {
  },
  data() {
   return {
+   searchTerm: "",
    startDate: '',
    endDate: '',
    selectedFilter: "all", // Default filter is "All"
@@ -202,43 +206,68 @@ export default {
  },
  computed: {
   filteredNotes() {
-   const today = new Date();
-   const oneDayInMs = 24 * 60 * 60 * 1000;
-   const yesterday = new Date(today.getTime() - oneDayInMs);
-   const oneWeekInMs = 7 * oneDayInMs;
-   const oneMonthAgo = new Date(today.getTime() - 30 * oneDayInMs);
+    const today = new Date();
+    const oneDayInMs = 24 * 60 * 60 * 1000;
+    const yesterday = new Date(today.getTime() - oneDayInMs);
+    const oneWeekInMs = 7 * oneDayInMs;
+    const oneMonthAgo = new Date(today.getTime() - 30 * oneDayInMs);
 
-   const start = new Date(this.startDate);
-   const end = new Date(this.endDate);
+    const start = this.startDate ? new Date(this.startDate) : null;
+    const end = this.endDate ? new Date(this.endDate) : null;
+    const keyword = this.searchTerm ? this.searchTerm.toLowerCase() : null;
 
-   // Check if both start and end dates are provided
-   if (this.startDate && this.endDate) {
     return this.notes.filter(note => {
-     const noteDate = new Date(note.created_at);
-     return noteDate >= start && noteDate <= end;
+      const noteDate = new Date(note.created_at);
+
+      // 1. Search term filtering
+      let matchesSearch = true;
+      if (keyword) {
+        const surahName = note.surah_name ? note.surah_name.toLowerCase() : "";
+        const ayahNotes = note.ayah_notes ? note.ayah_notes.toLowerCase() : "";
+        matchesSearch = surahName.includes(keyword) || ayahNotes.includes(keyword);
+      }
+
+      // 2. Date range filtering (start and end date)
+      let matchesDateRange = true;
+      if (start && end) {
+        matchesDateRange = noteDate >= start && noteDate <= end;
+      }
+
+      // 3. Time period filtering (today, yesterday, last week, last month)
+      let matchesPeriod = true;
+      if (this.selectedFilter) {
+        switch (this.selectedFilter) {
+          case "today":
+            matchesPeriod = noteDate.toDateString() === today.toDateString();
+            break;
+          case "yesterday":
+            matchesPeriod = noteDate.toDateString() === yesterday.toDateString();
+            break;
+          case "lastWeek":
+            matchesPeriod = noteDate >= new Date(today.getTime() - oneWeekInMs);
+            break;
+          case "lastMonth":
+            matchesPeriod = noteDate >= oneMonthAgo;
+            break;
+          default:
+            matchesPeriod = true;
+        }
+      }
+
+      // Return true only if the note matches all criteria
+      return matchesSearch && matchesDateRange && matchesPeriod;
     });
-   }
-
-   return this.notes.filter(note => {
-    const noteDate = new Date(note.created_at);
-    switch (this.selectedFilter) {
-     case "today":
-      return noteDate.toDateString() === today.toDateString();
-     case "yesterday":
-      return noteDate.toDateString() === yesterday.toDateString();
-     case "lastWeek":
-      return noteDate >= new Date(today.getTime() - oneWeekInMs);
-     case "lastMonth":
-      return noteDate >= oneMonthAgo;
-     default:
-      return true;
-    }
-   });
-
-   return this.notes;
   }
- },
+},
  methods: {
+  highlightText(text) {
+    if (!this.searchTerm || !text) {
+      return text;
+    }
+    const keyword = this.searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // Escape special chars
+    const regex = new RegExp(`(${keyword})`, 'gi');
+    return text.replace(regex, '<span class="highlight">$1</span>');
+  },
   getIconClass(liked) {
    return liked ? 'bi bi-hand-thumbs-up-fill' : 'bi bi-hand-thumbs-up';
   },
@@ -269,18 +298,24 @@ export default {
   async fetchNotes() {
    try {
     const response = await fetch(`/fetch-notes`);
+    console.log("Raw response:", response); // Log full response
+
     if (!response.ok) {
      throw new Error("Network response was not ok");
     }
+
+    // Log the response type (ensure it's JSON)
+    const contentType = response.headers.get("content-type");
+    if (!contentType || !contentType.includes("application/json")) {
+     throw new TypeError("Expected JSON but received " + contentType);
+    }
+
     const data = await response.json();
     console.log("Fetched notes:", data); // Add this line to see what data is returned
 
     this.notes = data;
    } catch (error) {
-    console.error(
-     "There was a problem with the fetch operation:",
-     error
-    );
+    console.error("There was a problem with the fetch operation:", error);
    }
   },
   viewModal(note) {
@@ -326,6 +361,9 @@ export default {
 </script>
 
 <style scoped>
+.highlight {
+  background-color: yellow;
+}
 .bg-primary-whatsapp {
  background-color: rgb(78, 204, 124);
  /* WhatsApp green */
