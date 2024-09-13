@@ -144,7 +144,13 @@ export default {
         },
       },
       searchValue: "",
-      columns: [{
+      columns: [
+        {
+          field: "id",
+          header: "ID",
+          sortable: true,
+        },
+        {
           field: "name",
           header: "Name",
           sortable: true,

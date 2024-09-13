@@ -24,28 +24,47 @@
     </div>
    </div>
   </div>
-<!-- Filter Buttons -->
-  <div class="row">
-   <div class="col-md-8 container-fluid mb-4">
-   <h5><span 
-      v-for="option in filterOptions" 
-      :key="option.value"
-      @click="selectedFilter = option.value"
-      class="badge me-2 mb-2 p-2 "
-      :class="[
-        selectedFilter === option.value 
-          ? 'bg-primary-whatsapp text-white' 
-          : 'bg-secondary-whatsapp text-white'
-      ]"
-      style="cursor: pointer; user-select: none;">
+  <!-- Filter Buttons and Date Filter Section -->
+  <div class="row mb-4 align-items-center">
+   <!-- Filter Buttons -->
+
+   <div class="col-md-6">
+
+    <h5>
+     <span v-for="option in filterOptions" :key="option.value" @click="selectedFilter = option.value" class="badge me-2 mb-2 p-2" :class="[
+              selectedFilter === option.value 
+                ? 'bg-primary-whatsapp text-white' 
+                : 'bg-secondary-whatsapp text-white'
+            ]" style="cursor: pointer; user-select: none;">
       {{ option.label }}
-    </span></h5>
+     </span> <strong>The total amount of notes:</strong> <b style="color:rgb(0, 191, 166)">{{ notes.length }}</b>
+
+    </h5>
+   </div>
+
+   <!-- Date Filter Section -->
+   <div class="col-md-6">
+    <div class="row align-items-end">
+     <div class="col-md-5">
+      <div class="form-group">
+       <label for="startDate" class="form-label"><strong>Start Date:</strong></label>
+       <input type="date" id="startDate" v-model="startDate" class="form-control" />
+      </div>
+     </div>
+     <div class="col-md-5">
+      <div class="form-group">
+       <label for="endDate" class="form-label"><strong>End Date:</strong></label>
+       <input type="date" id="endDate" v-model="endDate" class="form-control" />
+      </div>
+     </div>
 
     </div>
+   </div>
   </div>
+
   <!-- Notes Container -->
   <div class="container container-notes">
-   
+
    <div class="row collage">
     <div class="collage-item mb-4" v-for="note in filteredNotes" :key="note.id">
      <!-- Note Card -->
@@ -63,14 +82,28 @@
        <h5><strong>Date created:</strong></h5>
        <p>{{ formatDate(note.created_at) }}</p>
        <hr />
-       <!-- Eye Icon for Viewing Modal -->
-       <i class="bi bi-eye-fill h4 me-3" style="color: rgb(0, 191, 166); cursor: pointer;" @click="viewModal(note)"></i>
-       <!-- Like Button with Icon -->
-       <button class="btn btn-light" @click="toggleLike(note.id, note.liked)">
-        <i :class="getIconClass(note.liked)"></i>
-       </button>
-       <!-- Like Count -->
-       <span class="ms-2">{{ note.likeCount }}</span>
+       <div class="container text-center">
+        <div class="row">
+         <!--
+         <div class="col">
+          <i class="bi bi-eye h3" style="cursor: pointer;" @click="viewModal(note)"></i>
+         </div>
+         -->
+         <div class="col">
+          <i class="h4" :class="getIconClass(note.liked)" @click="toggleLike(note.id, note.liked)"></i>
+          <span class="ms-2">{{ note.likeCount }}</span>
+         </div>
+         <div class="col">
+          <i class="bi bi-whatsapp h4 me-3 text-center" style="cursor: pointer;"></i>
+
+         </div>
+         <div class="col">
+          <i class="bi bi-flag h4 me-3" style="cursor: pointer;"></i>
+
+         </div>
+        </div>
+       </div>
+
       </div>
      </div>
     </div>
@@ -119,73 +152,6 @@
 </div>
 </template>
 
-<style scoped>
-.bg-primary-whatsapp {
-  background-color: rgb(78, 204, 124); /* WhatsApp green */
-}
-
-.bg-secondary-whatsapp {
-  background-color: #075E54; /* WhatsApp dark green */
-}
-
-.text-green {
-  color: #25D366; /* WhatsApp green */
-}
-
-.text-white {
-  color: #FFFFFF;
-}
-.container-notes {
- column-count: 4;
- max-width: 1500px;
-}
-
-.row.collage {
- display: block;
-}
-
-.collage-item {
- break-inside: avoid;
-}
-
-.card {
- background-color: #ffffff;
- padding: 1em;
- margin-bottom: 1.5em;
-}
-
-@media (max-width: 992px) {
- .container {
-  column-count: 2;
- }
-}
-
-@media (max-width: 576px) {
- .container {
-  column-count: 1;
- }
-}
-
-.like-section {
- display: flex;
- align-items: center;
-}
-
-.bi-heart {
- font-size: 1.5rem;
-}
-
-.bi-heart-fill {
- font-size: 1.5rem;
-}
-
-.badge.active {
-  background-color: rgba(0, 191, 166, 0.2);
-  color: rgb(5, 32, 29);
-  border: 1px solid rgba(0, 191, 166);
-}
-</style>
-
 <script>
 export default {
  props: {
@@ -196,6 +162,8 @@ export default {
  },
  data() {
   return {
+   startDate: '',
+   endDate: '',
    selectedFilter: "all", // Default filter is "All"
    filterOptions: [{
      value: 'all',
@@ -204,6 +172,10 @@ export default {
     {
      value: 'today',
      label: 'Today'
+    },
+    {
+     value: 'yesterday',
+     label: 'Yesterday'
     },
     {
      value: 'lastWeek',
@@ -232,14 +204,28 @@ export default {
   filteredNotes() {
    const today = new Date();
    const oneDayInMs = 24 * 60 * 60 * 1000;
+   const yesterday = new Date(today.getTime() - oneDayInMs);
    const oneWeekInMs = 7 * oneDayInMs;
    const oneMonthAgo = new Date(today.getTime() - 30 * oneDayInMs);
+
+   const start = new Date(this.startDate);
+   const end = new Date(this.endDate);
+
+   // Check if both start and end dates are provided
+   if (this.startDate && this.endDate) {
+    return this.notes.filter(note => {
+     const noteDate = new Date(note.created_at);
+     return noteDate >= start && noteDate <= end;
+    });
+   }
 
    return this.notes.filter(note => {
     const noteDate = new Date(note.created_at);
     switch (this.selectedFilter) {
      case "today":
       return noteDate.toDateString() === today.toDateString();
+     case "yesterday":
+      return noteDate.toDateString() === yesterday.toDateString();
      case "lastWeek":
       return noteDate >= new Date(today.getTime() - oneWeekInMs);
      case "lastMonth":
@@ -248,11 +234,13 @@ export default {
       return true;
     }
    });
+
+   return this.notes;
   }
  },
  methods: {
   getIconClass(liked) {
-   return liked ? 'bi bi-heart-fill' : 'bi bi-heart';
+   return liked ? 'bi bi-hand-thumbs-up-fill' : 'bi bi-hand-thumbs-up';
   },
   async toggleLike(noteId, currentlyLiked) {
    try {
@@ -336,3 +324,74 @@ export default {
  }
 };
 </script>
+
+<style scoped>
+.bg-primary-whatsapp {
+ background-color: rgb(78, 204, 124);
+ /* WhatsApp green */
+}
+
+.bg-secondary-whatsapp {
+ background-color: #075E54;
+ /* WhatsApp dark green */
+}
+
+.text-green {
+ color: #25D366;
+ /* WhatsApp green */
+}
+
+.text-white {
+ color: #FFFFFF;
+}
+
+.container-notes {
+ column-count: 4;
+ max-width: 1500px;
+}
+
+.row.collage {
+ display: block;
+}
+
+.collage-item {
+ break-inside: avoid;
+}
+
+.card {
+ background-color: #ffffff;
+ padding: 1em;
+ margin-bottom: 1.5em;
+}
+
+@media (max-width: 992px) {
+ .container {
+  column-count: 2;
+ }
+}
+
+@media (max-width: 576px) {
+ .container {
+  column-count: 1;
+ }
+}
+
+.like-section {
+ display: flex;
+ align-items: center;
+}
+
+.bi-heart {
+ font-size: 1.5rem;
+}
+
+.bi-heart-fill {
+ font-size: 1.5rem;
+}
+
+.badge.active {
+ background-color: rgba(0, 191, 166, 0.2);
+ color: rgb(5, 32, 29);
+ border: 1px solid rgba(0, 191, 166);
+}
+</style>
