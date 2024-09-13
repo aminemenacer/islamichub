@@ -43,7 +43,7 @@
    </div>
 
     <div class="row">
-      <input type="text" v-model="searchTerm" placeholder="Search notes..." class="form-control mb-4" />
+      <input type="text" v-model="searchTerm" placeholder="Search notes keyword..." class="form-control mb-4" />
     </div>
 
    <!-- Date Filter Section -->
@@ -87,17 +87,18 @@
        <hr />
        <div class="container text-center">
         <div class="row">
-         <!--
+         
          <div class="col">
           <i class="bi bi-eye h3" style="cursor: pointer;" @click="viewModal(note)"></i>
          </div>
-         -->
+         
          <div class="col">
           <i class="h4" :class="getIconClass(note.liked)" @click="toggleLike(note.id, note.liked)"></i>
           <span class="ms-2">{{ note.likeCount }}</span>
          </div>
          <div class="col">
-          <i class="bi bi-whatsapp h4 me-3 text-center" style="cursor: pointer;"></i>
+
+            <i class="bi bi-whatsapp h4 me-3 text-center" style="cursor: pointer;" @click="shareViaWhatsapp(note)"></i>
 
          </div>
          <div class="col">
@@ -260,6 +261,12 @@ export default {
   }
 },
  methods: {
+   shareViaWhatsapp(note) {
+    const message = `Surah Name: ${note.surah_name}\nNote: ${note.ayah_notes}\nDate Created: ${this.formatDate(note.created_at)}`;
+    const encodedMessage = encodeURIComponent(message); // Encode special characters
+    const whatsappUrl = `https://wa.me/?text=${encodedMessage}`;
+    window.open(whatsappUrl, '_blank');
+  },
   highlightText(text) {
     if (!this.searchTerm || !text) {
       return text;
