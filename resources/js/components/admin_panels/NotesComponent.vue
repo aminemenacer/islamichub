@@ -34,9 +34,9 @@
        <h5><strong>Surah Name:</strong></h5>
        <p>{{ note.surah_name }}</p>
       </div>
-      <div class="mt-2">
+      <div class="mt-2 pb-2">
        <h5><strong>Note:</strong></h5>
-       <p>{{ note.ayah_notes }}</p>
+       <div class="mt-2 text-dark text-left" v-text="stripHtmlTags(note.ayah_notes)"></div>
       </div>
       <div>
        <b>This note is: <b style="color:rgba(0, 191, 166);">{{ parseInt(note.option) === 0 ? 'public' : 'private' }}</b></b>
@@ -76,7 +76,7 @@
       <div class="row mb-3">
        <b style="margin-right: 10px;" class="pr-2 pb-2">Ayah notes:</b>
        <div style="display: flex; align-items: center;" class="pt-2">
-        <textarea v-model="form.ayah_notes" class="form-control pb-2" rows="5"></textarea>
+        <textarea v-model="form.ayah_notes"  class="form-control pb-2" rows="5"></textarea>
        </div>
       </div>
 
@@ -206,6 +206,15 @@ export default {
    });
  },
  methods: {
+   sanitizeInput(input) {
+    // Create a temporary element to strip HTML tags
+    let tempDiv = document.createElement("div");
+    tempDiv.innerHTML = input;
+    return tempDiv.textContent || tempDiv.innerText || "";
+  },
+   stripHtmlTags(text) {
+      return text ? text.replace(/<\/?[^>]+(>|$)/g, "") : '';
+    },
   viewModal(note) {
    // Populate the form object with the note's data
    console.log("Note Data:", note);
@@ -322,6 +331,7 @@ export default {
   openEditModal(note) {
    this.selectedNote = note;
    this.form.ayah_notes = note.content;
+   this.form.ayah_notes = this.sanitizeInput(this.form.ayah_notes);
    // Initialize the modal if not already done
    const editModal = new bootstrap.Modal(document.getElementById('editNotes'));
    editModal.show();

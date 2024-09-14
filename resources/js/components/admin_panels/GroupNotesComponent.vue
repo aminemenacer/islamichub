@@ -1,6 +1,6 @@
 <template>
 <div>
- <h2 class="pt-4 pb-3 text-center"><strong>Note's & Reflection's Board</strong></h2>
+ <h2 class="pt-4 pb-3 text-center"><strong>Notes & Reflections Board</strong></h2>
  <p class="lead container">This page is a space to share your personal Islamic reflections and insights with others. Together, we can inspire, learn, and grow in our faith, helping each other on our spiritual journeys through shared thoughts and reflections.</p>
 
  <div>
@@ -25,44 +25,44 @@
    </div>
   </div>
 
-<div class="container text-center">
-  <div class="row">
-    
-    <div class="col-md-6">
-      <h5>
-     <span v-for="option in filterOptions" :key="option.value" @click="selectedFilter = option.value" class="badge me-2 mb-2 p-2" :class="[
-              selectedFilter === option.value 
-                ? 'bg-primary-whatsapp text-white' 
-                : 'bg-secondary-whatsapp text-white'
-            ]" style="cursor: pointer; user-select: none;">
-      {{ option.label }}
-     </span> 
-     <!--
-      <strong>The total amount of notes:</strong> <b style="color:rgb(0, 191, 166)">{{ notes.length }}</b>
+  <div class="container text-center">
+    <div class="row">
+      
+      <div class="col-md-6">
+        <h5>
+      <span v-for="option in filterOptions" :key="option.value" @click="selectedFilter = option.value" class="badge me-2 mb-2 p-2" :class="[
+                selectedFilter === option.value 
+                  ? 'bg-primary-whatsapp text-white' 
+                  : 'bg-secondary-whatsapp text-white'
+              ]" style="cursor: pointer; user-select: none;">
+        {{ option.label }}
+      </span> 
+      <!--
+        <strong>The total amount of notes:</strong> <b style="color:rgb(0, 191, 166)">{{ notes.length }}</b>
+        -->
+      </h5>
+      </div>
+      <div class="col-md-6">
+      <div class="row" >
+        <input type="text" style="border: 1px solid #075E54" v-model="searchTerm" placeholder="Search notes keyword..." class="form-control mb-4" />
+      </div>
+      <!--
+        <div class="row align-items-end">
+      <div class="col-md-5">
+        <div class="form-group">
+        <input type="date" id="startDate" v-model="startDate" class="form-control" />
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="form-group">
+        <input type="date" id="endDate" v-model="endDate" class="form-control" />
+        </div>
+      </div>
+      </div>
       -->
-    </h5>
-    </div>
-    <div class="col-md-6">
-    <div class="row" >
-      <input type="text" style="border: 1px solid #075E54" v-model="searchTerm" placeholder="Search notes keyword..." class="form-control mb-4" />
-    </div>
-    <!--
-      <div class="row align-items-end">
-     <div class="col-md-5">
-      <div class="form-group">
-       <input type="date" id="startDate" v-model="startDate" class="form-control" />
       </div>
-     </div>
-     <div class="col-md-5">
-      <div class="form-group">
-       <input type="date" id="endDate" v-model="endDate" class="form-control" />
-      </div>
-     </div>
-    </div>
-    -->
     </div>
   </div>
-</div>
 
   <!-- Notes Container -->
   <div class="container container-notes">

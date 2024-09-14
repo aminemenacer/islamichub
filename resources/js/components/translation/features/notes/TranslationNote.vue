@@ -9,7 +9,7 @@
    <div class="modal-body">
     <form @submit.prevent="createNote">
      <div class="row">
-      <div class="form-check  col-md-4">
+      <div class="form-check col-md-4">
        <input class="form-check-input" type="radio" name="inputMode" id="basicMode" value="basic" v-model="inputMode">
        <label class="form-check-label" for="basicMode">
         Basic
@@ -61,7 +61,6 @@
         <label class="form-check-label" for="private" style="margin-left: 5px;">Private</label>
        </div>
       </div>
-      <i class="pl-5 bi bi-info-circle-fill" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
      </div>
 
      
