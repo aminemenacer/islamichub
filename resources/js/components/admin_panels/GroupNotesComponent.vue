@@ -24,47 +24,45 @@
     </div>
    </div>
   </div>
-  <!-- Filter Buttons and Date Filter Section -->
-  <div class="row mb-4 align-items-center">
-   <!-- Filter Buttons -->
 
-   <div class="col-md-6">
-
-    <h5>
+<div class="container text-center">
+  <div class="row">
+    
+    <div class="col-md-6">
+      <h5>
      <span v-for="option in filterOptions" :key="option.value" @click="selectedFilter = option.value" class="badge me-2 mb-2 p-2" :class="[
               selectedFilter === option.value 
                 ? 'bg-primary-whatsapp text-white' 
                 : 'bg-secondary-whatsapp text-white'
             ]" style="cursor: pointer; user-select: none;">
       {{ option.label }}
-     </span> <strong>The total amount of notes:</strong> <b style="color:rgb(0, 191, 166)">{{ notes.length }}</b>
-
+     </span> 
+     <!--
+      <strong>The total amount of notes:</strong> <b style="color:rgb(0, 191, 166)">{{ notes.length }}</b>
+      -->
     </h5>
-   </div>
-
-    <div class="row">
-      <input type="text" v-model="searchTerm" placeholder="Search notes keyword..." class="form-control mb-4" />
     </div>
-
-   <!-- Date Filter Section -->
-   <div class="col-md-6">
-    <div class="row align-items-end">
+    <div class="col-md-6">
+    <div class="row" >
+      <input type="text" style="border: 1px solid #075E54" v-model="searchTerm" placeholder="Search notes keyword..." class="form-control mb-4" />
+    </div>
+    <!--
+      <div class="row align-items-end">
      <div class="col-md-5">
       <div class="form-group">
-       <label for="startDate" class="form-label"><strong>Start Date:</strong></label>
        <input type="date" id="startDate" v-model="startDate" class="form-control" />
       </div>
      </div>
      <div class="col-md-5">
       <div class="form-group">
-       <label for="endDate" class="form-label"><strong>End Date:</strong></label>
        <input type="date" id="endDate" v-model="endDate" class="form-control" />
       </div>
      </div>
-
     </div>
-   </div>
+    -->
+    </div>
   </div>
+</div>
 
   <!-- Notes Container -->
   <div class="container container-notes">
@@ -97,13 +95,7 @@
           <span class="ms-2">{{ note.likeCount }}</span>
          </div>
          <div class="col">
-
-            <i class="bi bi-whatsapp h4 me-3 text-center" style="cursor: pointer;" @click="shareViaWhatsapp(note)"></i>
-
-         </div>
-         <div class="col">
-          <i class="bi bi-flag h4 me-3" style="cursor: pointer;"></i>
-
+          <i class="bi bi-whatsapp h4 me-3 text-center" style="cursor: pointer;" @click="shareViaWhatsapp(note)"></i>
          </div>
         </div>
        </div>
@@ -152,6 +144,8 @@
     </div>
    </div>
   </div>
+
+ 
  </div>
 </div>
 </template>
@@ -166,6 +160,7 @@ export default {
  },
  data() {
   return {
+    
    searchTerm: "",
    startDate: '',
    endDate: '',
@@ -368,11 +363,30 @@ export default {
 </script>
 
 <style scoped>
+
+i {
+  color: #000; /* Default color of the icon */
+  transition: color 0.3s ease; /* Smooth color transition on hover */
+}
+
+/* Change color on hover */
+i:hover {
+  color: #00bfa6; /* Change to your desired color */
+}
+
+.modal-backdrop {
+  z-index: 1040 !important;
+}
+
+.modal {
+  z-index: 1050 !important;
+}
+
 .highlight {
   background-color: yellow;
 }
 .bg-primary-whatsapp {
- background-color: rgb(78, 204, 124);
+ background-color: #00bfa6;
  /* WhatsApp green */
 }
 
@@ -438,5 +452,34 @@ export default {
  background-color: rgba(0, 191, 166, 0.2);
  color: rgb(5, 32, 29);
  border: 1px solid rgba(0, 191, 166);
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  width: 400px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content {
+  padding: 20px;
+}
+
+.close {
+  float: right;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
 }
 </style>
