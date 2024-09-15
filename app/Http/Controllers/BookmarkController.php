@@ -32,6 +32,8 @@ class BookmarkController extends Controller
             'ayah_verse_en' => 'required|string',
             'folder_id' => 'required|integer|exists:folders,id',
         ]);
+
+        
     
         try {
             $bookmark = Bookmark::create($validatedData);

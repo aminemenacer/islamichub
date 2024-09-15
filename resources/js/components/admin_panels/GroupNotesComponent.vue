@@ -87,7 +87,7 @@
         <div class="row">
          
          <div class="col">
-          <i class="bi bi-eye h3" style="cursor: pointer;" @click="viewModal(note)"></i>
+          <i class="bi bi-eye h3" style="cursor: pointer;" @click="viewModal(note)" data-bs-toggle="modal" data-bs-target="#viewNotes"></i>
          </div>
          
          <div class="col">
@@ -107,43 +107,44 @@
   </div>
 
   <!-- View Note Modal -->
-  <div class="modal fade" id="viewNotes" tabindex="-1" aria-labelledby="viewNotesLabel" aria-hidden="true">
-   <div class="modal-dialog modal-lg">
+<div class="modal fade" id="viewNotes" tabindex="-1" aria-labelledby="viewNotesLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
-     <div class="modal-header">
-      <h5 class="modal-title text-dark" id="viewNotesLabel"><b>View Note</b></h5>
-      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-     </div>
-     <div class="modal-body">
-      <div>
-       <div class="mb-3">
-        <label class="form-label"><strong>Surah Name:</strong></label>
-        <p class="mt-2 text-dark text-left">{{ form.surah_name }}</p>
-       </div>
-       <div class="mb-3">
-        <label class="form-label"><strong>Ayah Verse Arabic:</strong></label>
-        <p class="mt-2 text-dark text-left">{{ form.ayah_verse_ar }}</p>
-       </div>
-       <div class="mb-3">
-        <label class="form-label"><strong>English Info:</strong></label>
-        <p class="mt-2 text-dark text-left">{{ form.ayah_verse_en }}</p>
-       </div>
-       <div class="mb-3">
-        <label class="form-label"><strong>Notes:</strong></label>
-        <div class="mt-2 text-dark text-left" v-html="form.ayah_notes"></div>
-       </div>
-       <div class="mb-3">
-        <label class="form-label"><strong>Date Created:</strong></label>
-        <p class="mt-2 text-dark text-left">{{ extractDate(form.created_at) }}</p>
-       </div>
+      <div class="modal-header">
+        <h5 class="modal-title text-dark" id="viewNotesLabel"><b>View Note</b></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-     </div>
-     <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-     </div>
+      <div class="modal-body">
+        <div>
+          <div class="mb-3">
+            <label class="form-label"><strong>Surah Name:</strong></label>
+            <p class="mt-2 text-dark text-left">{{ form.surah_name }}</p>
+          </div>
+          <div class="mb-3">
+            <label class="form-label"><strong>Ayah Verse Arabic:</strong></label>
+            <p class="mt-2 text-dark text-left">{{ form.ayah_verse_ar }}</p>
+          </div>
+          <div class="mb-3">
+            <label class="form-label"><strong>English Info:</strong></label>
+            <p class="mt-2 text-dark text-left">{{ form.ayah_verse_en }}</p>
+          </div>
+          <div class="mb-3">
+            <label class="form-label"><strong>Notes:</strong></label>
+            <div class="mt-2 text-dark text-left" v-html="form.ayah_notes"></div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label"><strong>Date Created:</strong></label>
+            <p class="mt-2 text-dark text-left">{{ extractDate(form.created_at) }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
     </div>
-   </div>
   </div>
+</div>
+
 
  
  </div>
@@ -321,10 +322,12 @@ export default {
    }
   },
   viewModal(note) {
-   this.form = {
-    ...note
-   };
-   $("#viewNotes").modal("show"); // Show the Bootstrap modal
+    // Populate the form data with the selected note's data
+    this.form.surah_name = note.surah_name;
+    this.form.ayah_verse_ar = note.ayah_verse_ar;
+    this.form.ayah_verse_en = note.ayah_verse_en;
+    this.form.ayah_notes = note.ayah_notes;
+    this.form.created_at = note.created_at;
   },
   extractDate(dateTimeString) {
    return dateTimeString.split('T')[0];

@@ -117,10 +117,12 @@
               <WhatsAppShareTranslation :translationToShare="information.translation" />
               <TwitterShareTranslation :targetElementRef="'targetElement'" :translationText="information.translation" />
               <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
+
               <CopyTranslationText :textToCopy="information.translation" />
-              <!--
+
+              
               <ScreenTranslationCapture :targetTranslationRef="'targetTranslationElement'" />
-              <PdfDownload :targetTranslationRef="'targetTranslationElement'" />
+              <!--<PdfDownload :targetTranslationRef="'targetTranslationElement'" />
               -->
               <i class="bi bi-paint-bucket h2" style="color: rgb(0, 191, 166); cursor: pointer;" @click="showModal"></i>
               <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;"></i>
@@ -128,6 +130,7 @@
             </div>                      
             <hr style="border: 2px solid #333;">
           </div>
+          
 
         <!-- mobile top Features  ---->
          <div class="dropdown mobile-only pb-2">
@@ -180,6 +183,8 @@
           <TwitterShareTafseer :targetElementRef="'targetElement'" :tafseerText="tafseer" />
           <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
           <CopyTafseerText :textToCopy="tafseer" />
+          <ScreenTafseerCapture :targetTafseerRef="'targetTafseerElement'" />
+
           <!--
           <PdfDownload class="pl-1 pb-2 mt-2 text-left" :targetTranslationRef="'targetTafseerElement'" />
           -->
@@ -252,9 +257,9 @@
             <TwitterShareTransliteration :targetElementRef="'targetElement'" :transliterationText="information.transliteration" />
             <i @click="submitForm2" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
             <CopyTransliterationText :textToCopy="information.transliteration" />
-            <!--
+            
             <ScreenTransliterationCapture :targetTransliterationRef="'targetTransliterationElement'" />
-            <PdfDownload :targetTranslationRef="'targetTransliterationElement'" />
+            <!--<PdfDownload :targetTranslationRef="'targetTransliterationElement'" />
             -->
             <i class="bi bi-paint-bucket h2" style="color: rgb(0, 191, 166); cursor: pointer;" @click="showModal"></i>
             <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;"></i>
@@ -708,9 +713,13 @@ export default {
     this.applyStyle();
   }
 },
+props: ['information', 'selectedFolderId'],
  data() {
 
   return {
+bookmarkSubmitted: false, // Set initial state
+      selectedFolderId: null,
+
     isVisible1: false,
     isOpen: false,
     recognition: null,
@@ -1273,7 +1282,6 @@ computed: {
    }
   },
   submitForm() {
-      // Ensure the folder_id is set (from the folder selection modal)
       if (!this.selectedFolderId) {
         console.error("Folder ID is required.");
         this.showErrorAlert = true;
@@ -1281,7 +1289,6 @@ computed: {
         return;
       }
 
-      // Prepare the form data including the folder_id
       const formData = {
         folder_id: this.selectedFolderId,
         surah_name: this.information.ayah.surah.name_en,
@@ -1297,6 +1304,8 @@ computed: {
           this.showAlert = true;
           this.showErrorAlert = false;
           this.hideAlertAfterDelay();
+          // Display a confirmation message with the bookmarked ayah and folder
+          this.$refs.bookmarkConfirmation.textContent = `Successfully bookmarked ayah ${this.information.ayah_id} to folder "${this.selectedFolderId}"`;
         })
         .catch(error => {
           console.error(error);
@@ -1304,6 +1313,12 @@ computed: {
           this.showErrorAlert = true;
           this.hideAlertAfterDelay();
         });
+    },
+    hideAlertAfterDelay() {
+      setTimeout(() => {
+        this.showAlert = false;
+        this.showErrorAlert = false;
+      }, 3000); // Hide alerts after 3 seconds
     },
 
     submitForm1() {
@@ -1490,6 +1505,7 @@ computed: {
  },
 
  created() {
+   
   // Initialize submitted status for each bookmark
   this.ayat.forEach(ayah => {
    const submitted = localStorage.getItem(`bookmarkSubmitted_${ayah.id}`);

@@ -48,7 +48,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('api/fetch-bookmarks/{userId}', [BookmarkController::class, 'getBookmarks']);
     Route::get('api/fetch-bookmarks/folder/{folderId}', [BookmarkController::class, 'getBookmarksByFolder']);
     Route::delete('api/delete-bookmarks/{id}', [BookmarkController::class, 'deleteBookmarks']);
-    Route::get('/folders/{folderId}/bookmarks', [FolderController::class, 'getBookmarksByFolder']);
 
     Route::get('/bookmarks/{userId}', [BookmarkController::class, 'getBookmarks']);
     Route::delete('/bookmarks/{id}', [BookmarkController::class, 'deleteBookmarks']);

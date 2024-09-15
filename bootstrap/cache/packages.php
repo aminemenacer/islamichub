@@ -114,6 +114,13 @@
       'Analytics' => 'Spatie\\Analytics\\AnalyticsFacade',
     ),
   ),
+  'spatie/laravel-honeypot' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Spatie\\Honeypot\\HoneypotServiceProvider',
+    ),
+  ),
   'spatie/laravel-ignition' => 
   array (
     'providers' => 

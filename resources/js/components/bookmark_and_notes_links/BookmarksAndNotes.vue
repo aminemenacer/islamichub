@@ -1,14 +1,14 @@
 <template>
 <div v-if="information !== null">
- <div class="row mobile-only" style="padding:10px">
+ <div class="row " style="padding:10px">
 
   <div class="text-center">
-   <div class="row mobile-only settings container">
    <hr>
+   <div class="row ">
     <div class="col"><a style="text-decoration:none;color:grey;cursor:pointer" href="/bookmarks" class="links h4"><i style="cursor:pointer" class="bi bi-bookmark links h4"></i></a></div>
     <div class="col"><a style="text-decoration:none;color:grey;cursor:pointer" href="/notes" class="links h4 "><i style="cursor:pointer" class="bi bi-file-earmark-text  h4 links" href="/notes"></i></a></div>
     <div class="col"><a style="text-decoration:none;color:grey;cursor:pointer" href="/collection" class="links h4"><i style="cursor:pointer" class="bi bi-collection  h4 links" href="/collection"></i></a></div>
-    <div class="col"><a style="text-decoration:none;color:grey;cursor:pointer" href="/profile" class="links h2"><i style="cursor:pointer" class="bi bi-person h2 mb-2 links" href="/profile"></i></a></div>
+    <div class="col"><a style="text-decoration:none;color:grey;cursor:pointer" href="/profile" class="links h2"><i style="cursor:pointer" class="bi bi-person h2  links" href="/profile"></i></a></div>
    </div>
 
   </div>
