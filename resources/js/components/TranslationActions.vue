@@ -8,16 +8,17 @@
                     data-bs-placement="top"
                     title="Write a note"
                     @click="$emit('open-modal', 'translationNote')"
-                    style="color: rgba(0, 191, 166); cursor: pointer"
+                    :style="{ iconColor: iconColor, cursor: 'pointer' }"
                 ></i>
             </div>
             <div class="col-2">
-                <WhatsAppShareTranslation :translationToShare="translation" />
+                <WhatsAppShareTranslation :translationToShare="translation" :iconColor="iconColor"/>
             </div>
             <div class="col-2">
                 <TwitterShareTranslation
                     :targetElementRef="targetTranslationRef"
                     :translationText="translation"
+                    :iconColor="iconColor"
                 />
             </div>
             <div class="col-2">
@@ -25,7 +26,7 @@
                     @click="openFolderSelectionModal"
                     class="bi bi-bookmark h4"
                     title="Select Folder to Bookmark"
-                    style="cursor: pointer"
+                    :style="{ iconColor: iconColor, cursor: 'pointer' }"
                 ></i>
             </div>
             <FolderSelectionModal
@@ -35,7 +36,7 @@
             />
 
             <div class="col-2">
-                <CopyTranslationText :textToCopy="translation" />
+                <CopyTranslationText :textToCopy="translation" :iconColor="iconColor" />
             </div>
             <div class="col-2">
                 <i
@@ -45,7 +46,7 @@
                     class="bi bi-bug h4"
                     aria-expanded="false"
                     data-bs-placement="top"
-                    style="color: rgba(0, 191, 166); cursor: pointer"
+                    :style="{ iconColor: iconColor, cursor: 'pointer' }"
                 ></i>
             </div>
         </div>
@@ -89,6 +90,10 @@ export default {
             type: Object,
             required: true,
         },
+        iconColor: {
+            type: String,
+            default: 'rgba(0, 191, 166)'
+        }
     },
     emits: ["open-modal", "submit-form"],
     data() {

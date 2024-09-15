@@ -1,11 +1,11 @@
 <template>
   <i
-    style="color:rgb(0, 191, 166); cursor:pointer"
     @click="shareTranslationOnTwitter"
     class="mr-2 bi bi-twitter-x text-right h4"
     aria-expanded="false"
     data-bs-placement="top"
     title="Share via X"
+    :style="{ iconColor: iconColor, cursor: 'pointer' }"
   ></i>
 </template>
 

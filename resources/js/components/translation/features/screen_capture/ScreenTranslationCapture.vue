@@ -7,7 +7,7 @@
       aria-expanded="false" 
       data-bs-placement="top" 
       title="Screenshot verse" 
-      style="color: rgba(0, 191, 166); cursor:pointer"
+      :style="{ iconColor: iconColor, cursor: 'pointer' }"
     ></i>
 
     <!-- Modal -->

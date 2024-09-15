@@ -49,43 +49,49 @@ export default {
     };
   },
   methods: {
-    captureTransliteration() {
-      const targetTransliterationElement = this.$parent.$refs[this.targetTransliterationRef];
+  captureTransliteration() {
+    const targetTransliterationElement = this.$parent.$refs[this.targetTransliterationRef];
 
-      if (!targetTransliterationElement) {
-        console.error("Invalid element provided as targetTransliterationRef");
-        return;
-      }
-
-      this.previewImage = null;
-
-      setTimeout(() => {
-        html2canvas(targetTransliterationElement).then(canvas => {
-          this.previewImage = canvas.toDataURL('image/png');
-
-          // Show the modal
-          const previewModal = new bootstrap.Modal(document.getElementById('previewModal'));
-          previewModal.show();
-        }).catch(error => {
-          console.error("Failed to capture screenshot:", error);
-        });
-      }, 200);
-    },
-    downloadImage(format) {
-      if (!this.previewImage) return;
-
-      const link = document.createElement('a');
-      link.download = `screenshot.${format}`;
-      
-      if (format === 'jpg') {
-        const jpgDataUrl = this.previewImage.replace('image/png', 'image/jpeg');
-        link.href = jpgDataUrl;
-      } else {
-        link.href = this.previewImage;
-      }
-      
-      link.click();
+    if (!targetTransliterationElement) {
+      console.error("Invalid element provided as targetTransliterationRef");
+      return;
     }
+
+    this.previewImage = null;
+
+    setTimeout(() => {
+      html2canvas(targetTransliterationElement).then(canvas => {
+        this.previewImage = canvas.toDataURL('image/png');
+
+        // Show the modal after ensuring it exists
+        const modalElement = document.getElementById('previewModal');
+        if (modalElement) {
+          const previewModal = new bootstrap.Modal(modalElement);
+          previewModal.show();
+        } else {
+          console.error('Modal element not found!');
+        }
+      }).catch(error => {
+        console.error("Failed to capture screenshot:", error);
+      });
+    }, 200);
+  },
+  downloadImage(format) {
+    if (!this.previewImage) return;
+
+    const link = document.createElement('a');
+    link.download = `screenshot.${format}`;
+
+    if (format === 'jpg') {
+      const jpgDataUrl = this.previewImage.replace('image/png', 'image/jpeg');
+      link.href = jpgDataUrl;
+    } else {
+      link.href = this.previewImage;
+    }
+
+    link.click();
   }
+}
+
 };
 </script>

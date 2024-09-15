@@ -112,11 +112,11 @@
              
             </div>
             <div v-if="isOpen" class="icon-container hide-on-mobile ">
-              <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('translationNote')" style="color: rgba(0, 191, 166);cursor:pointer"></i>
-              <TranslationNote ref="translationNote" :information="information.translation" />
+              <i  class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('translationNote')" ></i>
+              <TranslationNote  ref="translationNote" :information="information.translation" />
               <WhatsAppShareTranslation :translationToShare="information.translation" />
               <TwitterShareTranslation :targetElementRef="'targetElement'" :translationText="information.translation" />
-              <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
+              <i @click="submitForm"  class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" ></i>
 
               <CopyTranslationText :textToCopy="information.translation" />
 
@@ -124,9 +124,9 @@
               <ScreenTranslationCapture :targetTranslationRef="'targetTranslationElement'" />
               <!--<PdfDownload :targetTranslationRef="'targetTranslationElement'" />
               -->
-              <i class="bi bi-paint-bucket h2" style="color: rgb(0, 191, 166); cursor: pointer;" @click="showModal"></i>
-              <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;"></i>
-              <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
+              <i  class="bi bi-paint-bucket h2"  @click="showModal"></i>
+              <i  title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" ></i>
+              <i  class="bi bi-arrows-fullscreen h4"  @click="toggleFullScreen" title="Full screen"></i>
             </div>                      
             <hr style="border: 2px solid #333;">
           </div>
@@ -147,7 +147,7 @@
 
         <!-- dropdown mobile content -->
         <div class="pt-2" ref="targetTranslationElement">
-         <TranslationSection :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
+         <TranslationSection :iconColor="iconColor" :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
         </div>
         
         <div class="container-fluid text-center mobile-only">
@@ -490,6 +490,12 @@
                     <input type="color" id="bgColor" v-model="bgColor" class="form-control" />
                   </div>
                 </div>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="iconColor" class="form-label">Icons Color</label>
+                    <input type="color" id="iconColor" v-model="iconColor" class="form-control" />
+                  </div>
+                </div>
 
                 <!-- Row 2: Text Color and Shadow Style -->
                 <div class="col-md-6">
@@ -499,15 +505,15 @@
                   </div>
                 </div>
                 <div class="col-md-6">
-                  <div class="mb-3">
-                    <label for="shadow-dropdown" class="form-label">Shadow Style</label>
-                    <select v-model="selectedShadow" id="shadow-dropdown" class="form-control">
-                      <option v-for="shadow in shadows" :key="shadow.name" :value="shadow.style">
-                        {{ shadow.name }}
-                      </option>
-                    </select>
-                  </div>
+                <div class="mb-3">
+                  <label for="shadow-dropdown" class="form-label">Shadow Style</label>
+                  <select v-model="selectedShadow" id="shadow-dropdown" class="form-control">
+                    <option v-for="shadow in shadows" :key="shadow.name" :value="shadow.style">
+                      {{ shadow.name }}
+                    </option>
+                  </select>
                 </div>
+              </div>
 
                 <!-- Row 3: Font Style Checkboxes -->
                 <div class="col-md-6">
@@ -712,6 +718,7 @@ export default {
     this.selectedStyle = this.defaultStyles[0];
     this.applyStyle();
   }
+  this.loadBackgroundColor();
 },
 props: ['information', 'selectedFolderId'],
  data() {
@@ -792,13 +799,12 @@ bookmarkSubmitted: false, // Set initial state
       { name: 'Soft Glow', style: '0px 0px 10px rgba(255, 255, 255, 0.7)' },
       { name: 'Dark Glow', style: '0px 0px 10px rgba(0, 0, 0, 0.9)' },
     ],
-   selectedStyle: {
+    selectedStyle: {
       textColor: '#000',
       backgroundColor: '#fff',
+      iconColor: '#000',
     },
     // Initial styles
-    bgColor: '#f5f5f5',
-    textColor: '#000000',
     fontFamily: 'Arial, sans-serif',
     fontSize: 16,
     fontSpacing: 0,
@@ -812,6 +818,7 @@ bookmarkSubmitted: false, // Set initial state
     // Text transformation and alignment
     textTransform: 'none',
     textAlign: 'left',
+    iconColor: 'rgba(0, 191, 166)',
     // For showing success message
     showSuccessMessage: false,
 
@@ -912,7 +919,9 @@ computed: {
       textShadow: this.selectedShadow,
       textDecoration: this.isUnderline ? 'underline' : this.isStrikethrough ? 'line-through' : 'none',
       textTransform: this.textTransform,
-      textAlign: this.textAlign
+      textAlign: this.textAlign,
+      icon: this.iconColor,
+
     };
   }
 },
@@ -1000,6 +1009,15 @@ computed: {
       this.fontFamily = this.selectedStyle.fontStyle || this.fontFamily;
     }
   },
+  loadBackgroundColor() {
+      // Check if a background color is saved in localStorage
+      const savedBgColor = localStorage.getItem('bgColor');
+      const savedtextColor = localStorage.getItem('textColor');
+      if (savedBgColor) {
+        this.bgColor = savedBgColor; // Set the color picker to the saved color
+        this.textColor = savedtextColor;
+      }
+    },
   applyCustomStyles() {
   const settings = {
     bgColor: this.bgColor,
@@ -1014,9 +1032,12 @@ computed: {
     isUnderline: this.isUnderline,
     isStrikethrough: this.isStrikethrough,
     textTransform: this.textTransform,
-    textAlign: this.textAlign
+    textAlign: this.textAlign,
+    iconColor: this.iconColor
   };
   localStorage.setItem('textStyles', JSON.stringify(settings));
+    localStorage.setItem('bgColor', this.bgColor);
+    localStorage.setItem('textColor', this.textColor);
 
   // Apply styles to the card content
   this.applyStylesToCards(); // Ensure this method is defined and applied
@@ -1044,6 +1065,7 @@ computed: {
     card.style.textDecoration = this.isUnderline ? 'underline' : this.isStrikethrough ? 'line-through' : 'none';
     card.style.textTransform = this.textTransform;
     card.style.textAlign = this.textAlign;
+    card.style.icon = this.iconColor;
   });
 }
 ,
@@ -1063,6 +1085,7 @@ computed: {
     this.isStrikethrough = savedSettings.isStrikethrough || this.isStrikethrough;
     this.textTransform = savedSettings.textTransform || this.textTransform;
     this.textAlign = savedSettings.textAlign || this.textAlign;
+    this.icon = savedSettings.iconColor || this.iconColor
 
     // Apply the loaded styles to the container
     this.applyCustomStyles(); // Ensure this applies the styles to the container
