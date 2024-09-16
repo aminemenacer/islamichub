@@ -105,34 +105,32 @@
        
        <!-- Translation Section -->
        <div class="tab-pane active content" id="home" role="tabpanel" v-if="information != null">
-
-          <div >
-            <div class="col icon-container">
-              <i :class="isOpen ? 'bi bi-x-circle' : 'bi bi-plus-circle-fill'" class="top-toolbar-btn text-left hide-on-mobile h4" @click="toggleContent"></i>
-             
+  
+          <!-- desktop top features -->
+          <div>
+            <div class="col pb-2 icon-container">
+              <i  :class="isOpen ? 'bi bi-x-circle-fill' : 'bi bi-plus-circle-fill'" class="top-toolbar-btn text-left hide-on-mobile h4" @click="toggleContent"></i>
             </div>
             <div v-if="isOpen" class="icon-container hide-on-mobile ">
-              <i  class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('translationNote')" ></i>
-              <TranslationNote  ref="translationNote" :information="information.translation" />
-              <WhatsAppShareTranslation :translationToShare="information.translation" />
-              <TwitterShareTranslation :targetElementRef="'targetElement'" :translationText="information.translation" />
-              <i @click="submitForm"  class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" ></i>
-
-              <CopyTranslationText :textToCopy="information.translation" />
-
-              
-              <ScreenTranslationCapture :targetTranslationRef="'targetTranslationElement'" />
-              <!--<PdfDownload :targetTranslationRef="'targetTranslationElement'" />
-              -->
-              <i  class="bi bi-paint-bucket h2"  @click="showModal"></i>
-              <i  title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" ></i>
-              <i  class="bi bi-arrows-fullscreen h4"  @click="toggleFullScreen" title="Full screen"></i>
+              <div class="container text-center">
+                <div :style="iconStyle" class="row pt-2">
+                  <div class="col"><i  class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('translationNote')" ></i></div>
+                  <div class="col"><WhatsAppShareTranslation :translationToShare="information.translation" /></div>
+                  <div class="col"><TwitterShareTranslation  :targetElementRef="'targetElement'" :translationText="information.translation" /></div>
+                  <div class="col"><i @click="submitForm"  class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" ></i></div>
+                  <div class="col"><CopyTranslationText  :textToCopy="information.translation" /></div>
+                  <div class="col"><ScreenTranslationCapture  :targetTranslationRef="'targetTranslationElement'" /></div>
+                  <div class="col"><PdfDownload  :targetTranslationRef="'targetTranslationElement'" /></div>
+                  <div class="col"><i class="bi bi-paint-bucket h2"  @click="showModal"></i></div>
+                  <div class="col"><i title="Report a bug"  data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" ></i></div>
+                  <div class="col"><i class="bi bi-arrows-fullscreen h4" @click="toggleFullScreen" title="Full screen"></i></div>
+                  
+                </div>
+              </div>               
             </div>                      
-            <hr style="border: 2px solid #333;">
-          </div>
+          </div><hr style="border: 2px solid #333;">
           
-
-        <!-- mobile top Features  ---->
+         <!-- mobile top Features  ---->
          <div class="dropdown mobile-only pb-2">
           <div class="icon-container">
            <i class="bi bi-chevron-bar-left h4" style="color: rgb(0, 191, 166);" @click="goToFirstAyah()" title="Last verse"></i>
@@ -143,20 +141,16 @@
            <i class="bi bi-arrows-fullscreen h6" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
           </div>
          </div>
-         <!-- end mobile top Features ---->
 
         <!-- dropdown mobile content -->
         <div class="pt-2" ref="targetTranslationElement">
-         <TranslationSection :iconColor="iconColor" :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
+         <TranslationSection :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
         </div>
         
         <div class="container-fluid text-center mobile-only">
           <div class="row">
-           
             <div class="col">
-              
-                <i :class="isOpen ? 'bi bi-x-circle' : 'bi bi-plus-circle-fill'" class="text-center mobile-only h3 pt-3" @click="toggleContent"></i>
-              
+              <i :class="isOpen ? 'bi bi-x-circle' : 'bi bi-plus-circle-fill'" class="text-center mobile-only h3 pt-3" @click="toggleContent"></i>
             </div>
           </div>
         </div>
@@ -426,33 +420,7 @@
     </div>
 
    </div>
-   <!-- Bootstrap Modal for Theme Selection -->
-   <div class="modal fade" id="themeModal" tabindex="-1" aria-labelledby="themeModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-     <div class="modal-content">
-      <div class="modal-header">
-       <h5 class="modal-title" id="themeModalLabel">Select a Theme</h5>
-       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-       <!-- Theme Selection Dropdown -->
-       <select v-model="selectedStyle" @change="applyTheme" class="form-select">
-        <option disabled value="">Select a theme</option>
-        <option v-for="style in styles" :key="style.name" :value="style">
-         {{ style.name }}
-        </option>
-       </select>
-       <!-- Confirmation Message -->
-       <div v-if="showMessage" class="mt-3 alert alert-success">
-        {{ message }}
-       </div>
-      </div>
-      <div class="modal-footer">
-       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
-     </div>
-    </div>
-   </div>
+ 
 
     <!-- Bootstrap Modal -->
     <div class="modal fade" id="styleModal" tabindex="-1" aria-labelledby="styleModalLabel" aria-hidden="true">
@@ -505,15 +473,15 @@
                   </div>
                 </div>
                 <div class="col-md-6">
-                <div class="mb-3">
-                  <label for="shadow-dropdown" class="form-label">Shadow Style</label>
-                  <select v-model="selectedShadow" id="shadow-dropdown" class="form-control">
-                    <option v-for="shadow in shadows" :key="shadow.name" :value="shadow.style">
-                      {{ shadow.name }}
-                    </option>
-                  </select>
+                  <div class="mb-3">
+                    <label for="shadow-dropdown" class="form-label">Shadow Style</label>
+                    <select v-model="selectedShadow" id="shadow-dropdown" class="form-control">
+                      <option v-for="shadow in shadows" :key="shadow.name" :value="shadow.style">
+                        {{ shadow.name }}
+                      </option>
+                    </select>
+                  </div>
                 </div>
-              </div>
 
                 <!-- Row 3: Font Style Checkboxes -->
                 <div class="col-md-6">
@@ -724,9 +692,8 @@ props: ['information', 'selectedFolderId'],
  data() {
 
   return {
-bookmarkSubmitted: false, // Set initial state
-      selectedFolderId: null,
-
+    bookmarkSubmitted: false, // Set initial state
+    selectedFolderId: null,
     isVisible1: false,
     isOpen: false,
     recognition: null,
@@ -737,6 +704,7 @@ bookmarkSubmitted: false, // Set initial state
       {
         name: 'Default',
         backgroundColor: '#ffffff',
+        iconColor: '#000000',
         textColor: '#000000',
         fontStyle: 'Arial, sans-serif',
         textShadow: 'None'
@@ -744,6 +712,7 @@ bookmarkSubmitted: false, // Set initial state
       {
         name: 'Dyslexia',
         backgroundColor: '#FDFD96',
+        iconColor: '#000000',
         textColor: '#000080',
         fontStyle: 'Arial, sans-serif',
         textShadow: 'None'
@@ -751,6 +720,7 @@ bookmarkSubmitted: false, // Set initial state
       {
         name: 'Dysgraphia',
         backgroundColor: '#FFFDD0',
+        iconColor: '#000000',
         textColor: '#00008B',
         fontStyle: 'Arial, sans-serif',
         textShadow: 'None'
@@ -758,6 +728,7 @@ bookmarkSubmitted: false, // Set initial state
       {
         name: 'Hyperlexia',
         backgroundColor: '#F5F5DC',
+        iconColor: '#000000',
         textColor: '#06402B',
         fontStyle: 'Arial, sans-serif',
         textShadow: 'None'
@@ -765,6 +736,7 @@ bookmarkSubmitted: false, // Set initial state
       {
         name: 'Visual Proccesing disorder',
         backgroundColor: '#fff',
+        iconColor: '#000000',
         textColor: 'black',
         fontStyle: 'Arial, sans-serif',
         textShadow: 'None'
@@ -772,6 +744,7 @@ bookmarkSubmitted: false, // Set initial state
       {
         name: 'ADHD',
         backgroundColor: '#ADD8E6',
+        iconColor: '#000000',
         textColor: '#696969',
         fontStyle: "Arial, sans-serif",
         textShadow: 'None'
@@ -802,7 +775,7 @@ bookmarkSubmitted: false, // Set initial state
     selectedStyle: {
       textColor: '#000',
       backgroundColor: '#fff',
-      iconColor: '#000',
+      iconColor: '#000000',
     },
     // Initial styles
     fontFamily: 'Arial, sans-serif',
@@ -818,11 +791,8 @@ bookmarkSubmitted: false, // Set initial state
     // Text transformation and alignment
     textTransform: 'none',
     textAlign: 'left',
-    iconColor: 'rgba(0, 191, 166)',
     // For showing success message
-    showSuccessMessage: false,
-
-   
+    showSuccessMessage: false,   
    isCollapsed: false,
    showSuccessMessage: false,
    showMessage: false,
@@ -920,10 +890,19 @@ computed: {
       textDecoration: this.isUnderline ? 'underline' : this.isStrikethrough ? 'line-through' : 'none',
       textTransform: this.textTransform,
       textAlign: this.textAlign,
-      icon: this.iconColor,
-
     };
-  }
+  },
+  iconStyle() {
+      return {
+        color: this.iconColor,
+        fill: this.iconColor, // Add this line for SVG icons
+      };
+    },
+    textStyle() {
+      return {
+        color: this.textColor,
+      };
+    }
 },
  methods: {
    toggleContent1() {
@@ -1006,6 +985,7 @@ computed: {
     if (this.selectedStyle) {
       this.bgColor = this.selectedStyle.backgroundColor || this.bgColor;
       this.textColor = this.selectedStyle.textColor || this.textColor;
+      this.iconColor = this.selectedStyle.iconColor || this.iconColor;
       this.fontFamily = this.selectedStyle.fontStyle || this.fontFamily;
     }
   },
@@ -1013,43 +993,58 @@ computed: {
       // Check if a background color is saved in localStorage
       const savedBgColor = localStorage.getItem('bgColor');
       const savedtextColor = localStorage.getItem('textColor');
+      const savediconColor = localStorage.getItem('iconColor');
       if (savedBgColor) {
         this.bgColor = savedBgColor; // Set the color picker to the saved color
         this.textColor = savedtextColor;
+        this.iconColor = savediconColor;
       }
     },
   applyCustomStyles() {
-  const settings = {
-    bgColor: this.bgColor,
-    textColor: this.textColor,
-    fontFamily: this.fontFamily,
-    fontSize: this.fontSize,
-    fontSpacing: this.fontSpacing,
-    selectedShadow: this.selectedShadow,
-    isBold: this.isBold,
-    isItalic: this.isItalic,
-    isLight: this.isLight,
-    isUnderline: this.isUnderline,
-    isStrikethrough: this.isStrikethrough,
-    textTransform: this.textTransform,
-    textAlign: this.textAlign,
-    iconColor: this.iconColor
-  };
-  localStorage.setItem('textStyles', JSON.stringify(settings));
+    const settings = {
+      bgColor: this.bgColor,
+      textColor: this.textColor,
+      fontFamily: this.fontFamily,
+      fontSize: this.fontSize,
+      fontSpacing: this.fontSpacing,
+      selectedShadow: this.selectedShadow,
+      isBold: this.isBold,
+      isItalic: this.isItalic,
+      isLight: this.isLight,
+      isUnderline: this.isUnderline,
+      isStrikethrough: this.isStrikethrough,
+      textTransform: this.textTransform,
+      textAlign: this.textAlign,
+      iconColor: this.iconColor
+    };
+    localStorage.setItem('textStyles', JSON.stringify(settings));
     localStorage.setItem('bgColor', this.bgColor);
     localStorage.setItem('textColor', this.textColor);
+    localStorage.setItem('iconColor', this.iconColor);
 
-  // Apply styles to the card content
-  this.applyStylesToCards(); // Ensure this method is defined and applied
+    // Apply styles to the container
+    Object.assign(this.$el.style, this.containerStyle);
 
-  this.showSuccessMessage = true;
-  setTimeout(() => {
-    this.showSuccessMessage = false;
-    const modalElement = document.getElementById('styleModal');
-    const modalInstance = bootstrap.Modal.getInstance(modalElement);
-    modalInstance.hide();
-  }, 3000);
-},
+    // Apply icon color to all icons
+    const icons = this.$el.querySelectorAll('i');
+    icons.forEach(icon => {
+      icon.style.color = this.iconColor;
+    });
+
+    // Save settings to localStorage
+    localStorage.setItem('textStyles', JSON.stringify(settings));
+
+    // Apply styles to the card content
+    this.applyStylesToCards(); // Ensure this method is defined and applied
+
+    this.showSuccessMessage = true;
+    setTimeout(() => {
+      this.showSuccessMessage = false;
+      const modalElement = document.getElementById('styleModal');
+      const modalInstance = bootstrap.Modal.getInstance(modalElement);
+      modalInstance.hide();
+    }, 3000);
+  },
   applyStylesToCards() {
   // Example of applying styles to card elements
   const cards = document.querySelectorAll('.card');
@@ -1065,11 +1060,11 @@ computed: {
     card.style.textDecoration = this.isUnderline ? 'underline' : this.isStrikethrough ? 'line-through' : 'none';
     card.style.textTransform = this.textTransform;
     card.style.textAlign = this.textAlign;
-    card.style.icon = this.iconColor;
+    card.style.iconColor = this.iconColor;
   });
 }
 ,
-  loadSavedStyles() {
+loadSavedStyles() {
   const savedSettings = JSON.parse(localStorage.getItem('textStyles'));
   if (savedSettings) {
     this.bgColor = savedSettings.bgColor || this.bgColor;
@@ -1085,7 +1080,7 @@ computed: {
     this.isStrikethrough = savedSettings.isStrikethrough || this.isStrikethrough;
     this.textTransform = savedSettings.textTransform || this.textTransform;
     this.textAlign = savedSettings.textAlign || this.textAlign;
-    this.icon = savedSettings.iconColor || this.iconColor
+    this.iconColor = savedSettings.iconColor || this.iconColor;
 
     // Apply the loaded styles to the container
     this.applyCustomStyles(); // Ensure this applies the styles to the container
@@ -1565,4 +1560,6 @@ computed: {
   background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
 
 }
+
+
 </style>

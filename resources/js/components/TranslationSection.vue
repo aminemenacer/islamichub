@@ -5,7 +5,7 @@
  <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
   <MainAyah :information="information"  />
   <div ref="heading3" class="text-left">
-   <h4 class="text-left ayah-translation" style="line-height: 1.6em" >
+   <h4 class="text-left ayah-translation">
     {{ expanded ? information.translation : truncatedText(information.translation) }}
     <template v-if="showMoreLink && information.translation.length > 100">
      <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
@@ -35,6 +35,10 @@ export default {
   AlertModal
  },
  props: {
+  iconColor: {
+            type: String,
+            default: 'rgba(0, 191, 166)'
+        },
   information: {
    type: Object,
    required: true

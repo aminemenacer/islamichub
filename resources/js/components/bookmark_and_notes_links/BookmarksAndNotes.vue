@@ -4,11 +4,11 @@
 
   <div class="text-center">
    <hr>
-   <div class="row ">
-    <div class="col"><a  href="/bookmarks" class=" h4"><i class="bi bi-bookmark  h4"></i></a></div>
+   <div :style="iconStyle" class="row ">
+    <div class="col"><a  href="/bookmarks" class=" h4"><i  class="bi bi-bookmark  h4"></i></a></div>
     <div class="col"><a  href="/notes" class=" h4 "><i  class="bi bi-file-earmark-text  h4 " href="/notes"></i></a></div>
     <div class="col"><a  href="/collection" class=" h4"><i  class="bi bi-collection  h4 " href="/collection"></i></a></div>
-    <div class="col"><a  href="/profile" class=" h2"><i class="bi bi-person h2  " href="/profile"></i></a></div>
+    <div class="col"><a  href="/profile" class=" h2"><i  class="bi bi-person h2  " href="/profile"></i></a></div>
    </div>
 
   </div>

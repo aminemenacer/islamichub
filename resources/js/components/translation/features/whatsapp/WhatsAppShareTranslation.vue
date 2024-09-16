@@ -4,7 +4,7 @@
      aria-expanded="false"
      data-bs-placement="top"
      title="Share on Whatsapp"
-     :style="{ icon: iconColor, cursor: 'pointer' }"></i>
+     ></i>
 </template>
 
 <script>

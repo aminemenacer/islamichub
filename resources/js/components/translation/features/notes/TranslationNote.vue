@@ -8,24 +8,26 @@
    </div>
    <div class="modal-body">
     <form @submit.prevent="createNote">
-     <div class="row">
-      <div class="form-check col-md-4">
-       <input class="form-check-input" type="radio" name="inputMode" id="basicMode" value="basic" v-model="inputMode">
-       <label class="form-check-label" for="basicMode">
-        Basic
-       </label>
-      </div>
-      <div class="form-check col-md-4">
-       <input class="form-check-input" type="radio" name="inputMode" id="audioMode" value="audio" v-model="inputMode">
-       <label class="form-check-label" for="audioMode">
-        Audio Note Recording
-       </label>
-      </div>
-      <div class="form-check col-md-4">
-       <input class="form-check-input" type="radio" name="inputMode" id="editorMode" value="editor" v-model="inputMode">
-       <label class="form-check-label" for="editorMode">
-        Editor Keyboard
-       </label>
+     <div class="container text-center">
+      <div class="row">
+       <div class="col">
+        <input class="form-check-input" type="radio" name="inputMode" id="basicMode" value="basic" v-model="inputMode">
+        <label class="form-check-label" for="basicMode">
+         Basic
+        </label>
+       </div>
+       <div class="col">
+        <input class="form-check-input" type="radio" name="inputMode" id="audioMode" value="audio" v-model="inputMode">
+        <label class="form-check-label" for="audioMode">
+         Audio Note Recording
+        </label>
+       </div>
+       <div class="col">
+        <input class="form-check-input" type="radio" name="inputMode" id="editorMode" value="editor" v-model="inputMode">
+        <label class="form-check-label" for="editorMode">
+         Editor Keyboard
+        </label>
+       </div>
       </div>
      </div>
 
@@ -53,7 +55,7 @@
       <b style="margin-right: 10px;" class="pr-2">Make your note either:</b>
       <div style="display: flex; align-items: center;">
        <div class="form-check form-check-inline" style="margin-right: 15px;">
-        <input class="form-check-input" type="radio"  name="option" v-model="option" id="public" value="0">
+        <input class="form-check-input" type="radio" name="option" v-model="option" id="public" value="0">
         <label class="form-check-label" for="public" style="margin-left: 5px;">Public</label>
        </div>
        <div class="form-check form-check-inline">
@@ -63,24 +65,19 @@
       </div>
      </div>
 
-     
-
      <div class="modal-footer">
       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       <button type="submit" class="btn btn-success">Submit</button>
      </div>
 
-     
     </form>
 
-   
    </div>
   </div>
-  
- </div>
- 
-</div>
 
+ </div>
+
+</div>
 </template>
 
 <script>
@@ -94,7 +91,7 @@ import {
 export default {
  data() {
   return {
-    
+
    inputMode: 'basic',
    option: 0,
    recognition: null,

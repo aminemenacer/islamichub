@@ -65,9 +65,9 @@
                         <li class="nav-item mt-3">
                             <h6><a style="color: black;" class="nav-link ml-3 pl-3" href="/join_us"><b>Mailing List</b></a></h6>
                         </li>
-                        <li class="nav-item mt-3">
+                        {{-- <li class="nav-item mt-3">
                             <h6><a style="color: black;" class="nav-link ml-3 pl-3" href="/pricing"><b>Pricings</b></a></h6>
-                        </li>
+                        </li> --}}
                         <li class="nav-item mt-3">
                             <h6><a style="color: black;" class="nav-link ml-3 pl-3" href="/updates"><b>Updates</b></a></h6>
                         </li>

@@ -61,7 +61,6 @@
       data-bs-placement="top"
       title="Bookmark verse"
       style="color: rgba(0, 191, 166);cursor:pointer"
-      :style="{ iconColor: iconColor, cursor: 'pointer' }"
     ></i>
     
     <!-- Success and Error Alerts -->
