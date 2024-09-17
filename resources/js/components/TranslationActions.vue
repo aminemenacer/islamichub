@@ -8,7 +8,7 @@
                     data-bs-placement="top"
                     title="Write a note"
                     @click="$emit('open-modal', 'translationNote')"
-                    :style="{ iconColor: iconColor, cursor: 'pointer' }"
+                    
                 ></i>
             </div>
             <div class="col-2">
@@ -26,7 +26,7 @@
                     @click="openFolderSelectionModal"
                     class="bi bi-bookmark h4"
                     title="Select Folder to Bookmark"
-                    :style="{ iconColor: iconColor, cursor: 'pointer' }"
+                    
                 ></i>
             </div>
             <FolderSelectionModal
@@ -46,7 +46,7 @@
                     class="bi bi-bug h4"
                     aria-expanded="false"
                     data-bs-placement="top"
-                    :style="{ iconColor: iconColor, cursor: 'pointer' }"
+                    
                 ></i>
             </div>
         </div>

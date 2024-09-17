@@ -38,15 +38,15 @@
      <div class="row container-fluid">
       <hr class="container" style="height: 4px; background: lightgrey;">
 
-      <div class="icon-container pb-2">
-       <i class="bi bi-chevron-bar-left h4" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToFirstAyah" title="First verse"></i>
-       <i class="bi bi-arrow-left-circle h4" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToPreviousAyah" title="Previous verse"></i>
-       <i class="bi bi-arrow-right-circle h4" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToNextAyah" title="Next verse"></i>
-       <i class="bi bi-chevron-bar-right h4" style="color: rgb(0, 191, 166); cursor: pointer;" @click="goToLastAyah" title="Last verse"></i>
+      <div :style="iconStyle" class="icon-container pb-2">
+       <i class="bi bi-chevron-bar-left h4"  @click="goToFirstAyah" title="First verse"></i>
+       <i class="bi bi-arrow-left-circle h4"  @click="goToPreviousAyah" title="Previous verse"></i>
+       <i class="bi bi-arrow-right-circle h4"  @click="goToNextAyah" title="Next verse"></i>
+       <i class="bi bi-chevron-bar-right h4"  @click="goToLastAyah" title="Last verse"></i>
        <!--
        <i class="bi bi-palette-fill h4" style="color: rgb(0, 191, 166); cursor: pointer;" data-bs-toggle="modal" data-bs-target="#themeModal"></i>
        -->
-       <i v-if="information != null" class="bi bi-info-circle-fill h4 mr-2 pl-2" style="color: rgb(0, 191, 166);cursor:pointer" data-bs-toggle="modal" data-bs-target="#translationInfo" aria-expanded="false" data-bs-placement="top" title="Surah info"></i>
+       <i v-if="information != null" class="bi bi-info-circle-fill h4 mr-2 pl-2"  data-bs-toggle="modal" data-bs-target="#translationInfo" aria-expanded="false" data-bs-placement="top" title="Surah info"></i>
       </div>
 
       <div class="custom-scrollbar pb-5" style="overflow-y: auto; max-height: 600px; background: white;border-radius:10px">
@@ -107,13 +107,13 @@
        <div class="tab-pane active content" id="home" role="tabpanel" v-if="information != null">
   
           <!-- desktop top features -->
-          <div>
+          <div :style="iconStyle">
             <div class="col pb-2 icon-container">
               <i  :class="isOpen ? 'bi bi-x-circle-fill' : 'bi bi-plus-circle-fill'" class="top-toolbar-btn text-left hide-on-mobile h4" @click="toggleContent"></i>
             </div>
             <div v-if="isOpen" class="icon-container hide-on-mobile ">
               <div class="container text-center">
-                <div :style="iconStyle" class="row pt-2">
+                <div  class="row pt-2">
                   <div class="col"><i  class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('translationNote')" ></i></div>
                   <div class="col"><WhatsAppShareTranslation :translationToShare="information.translation" /></div>
                   <div class="col"><TwitterShareTranslation  :targetElementRef="'targetElement'" :translationText="information.translation" /></div>
@@ -132,36 +132,36 @@
           
          <!-- mobile top Features  ---->
          <div class="dropdown mobile-only pb-2">
-          <div class="icon-container">
-           <i class="bi bi-chevron-bar-left h4" style="color: rgb(0, 191, 166);" @click="goToFirstAyah()" title="Last verse"></i>
-           <i class="bi bi-arrow-left-circle h4" style="color: rgb(0, 191, 166);" @click="goToPreviousAyah()" title="Previous verse"></i>
-           <i class="bi bi-arrow-right-circle h4" style="color: rgb(0, 191, 166);" @click="goToNextAyah()" title="Next verse"></i>
-           <i class="bi bi-chevron-bar-right h4" style="color: rgb(0, 191, 166);" @click="goToLastAyah()" title="End verse"></i>
-           <i class="bi bi-paint-bucket h2" style="color: rgb(0, 191, 166); cursor: pointer;" @click="showModal"></i>
-           <i class="bi bi-arrows-fullscreen h6" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
+          <div :style="iconStyle" class="icon-container">
+           <i class="bi bi-chevron-bar-left h4"  @click="goToFirstAyah()" title="Last verse"></i>
+           <i class="bi bi-arrow-left-circle h4"  @click="goToPreviousAyah()" title="Previous verse"></i>
+           <i class="bi bi-arrow-right-circle h4" @click="goToNextAyah()" title="Next verse"></i>
+           <i class="bi bi-chevron-bar-right h4" @click="goToLastAyah()" title="End verse"></i>
+           <i class="bi bi-paint-bucket h2"  @click="showModal"></i>
+           <i class="bi bi-arrows-fullscreen h6" @click="toggleFullScreen" title="Full screen"></i>
           </div>
          </div>
 
         <!-- dropdown mobile content -->
-        <div class="pt-2" ref="targetTranslationElement">
-         <TranslationSection :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
-        </div>
-        
-        <div class="container-fluid text-center mobile-only">
-          <div class="row">
-            <div class="col">
-              <i :class="isOpen ? 'bi bi-x-circle' : 'bi bi-plus-circle-fill'" class="text-center mobile-only h3 pt-3" @click="toggleContent"></i>
+        <div>
+          <div class="pt-2" ref="targetTranslationElement" >
+          <TranslationSection  :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
+          </div>
+          
+          <div class="container-fluid text-center mobile-only">
+            <div class="row">
+              <div class="col">
+                <i :class="isOpen ? 'bi bi-x-circle' : 'bi bi-plus-circle-fill'" class="text-center mobile-only h3 pt-3" @click="toggleContent"></i>
+              </div>
+            </div>
+          </div>
+          <!-- toolbar mobile -->
+          <div v-if="isOpen" class="collapse-content mobile-only" style="background-color: rgba(0, 191, 166, 0.452);">
+            <div class="card text-bg-light card-body">
+              <TranslationActions :targetTranslationRef="'targetTranslationElement'" :translation="translation" @open-modal="openModal" @submit-form="submitForm" />
             </div>
           </div>
         </div>
-
-        <!-- toolbar mobile -->
-        <div v-if="isOpen" class="collapse-content mobile-only" style="background-color: rgba(0, 191, 166, 0.452);">
-          <div class="card text-bg-light card-body">
-            <TranslationActions :targetTranslationRef="'targetTranslationElement'" :translation="translation" @open-modal="openModal" @submit-form="submitForm" />
-          </div>
-        </div>
-        <!-- end toolbar mobile -->
 
        </div>
 
@@ -409,7 +409,9 @@
 
      </div>
      <!-- -->
-     <BookmarksAndNotes :information="information" />
+     <div >
+      <BookmarksAndNotes :information="information" :iconColor="iconColor" />
+     </div>
      
      <CorrectionModal />
      <!-- Modals -->
@@ -561,6 +563,8 @@
         </div>
       </div>
     </div>
+
+
   </div>
  </div>
 </div>
@@ -1023,7 +1027,7 @@ computed: {
     localStorage.setItem('iconColor', this.iconColor);
 
     // Apply styles to the container
-    Object.assign(this.$el.style, this.containerStyle);
+    // Object.assign(this.$el.style, this.containerStyle);
 
     // Apply icon color to all icons
     const icons = this.$el.querySelectorAll('i');
