@@ -108,11 +108,11 @@
   
           <!-- desktop top features -->
           <div :style="iconStyle">
-            <div class="col pb-2 icon-container">
+            <div class="col pb-2 ">
               <i  :class="isOpen ? 'bi bi-x-circle-fill' : 'bi bi-plus-circle-fill'" class="top-toolbar-btn text-left hide-on-mobile h4" @click="toggleContent"></i>
             </div>
-            <div v-if="isOpen" class="icon-container hide-on-mobile ">
-              <div class="container text-center">
+            <div v-if="isOpen" class=" hide-on-mobile ">
+              <div class="text-center">
                 <div  class="row pt-2">
                   <div class="col"><i  class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('translationNote')" ></i></div>
                   <div class="col"><WhatsAppShareTranslation :translationToShare="information.translation" /></div>
@@ -124,11 +124,11 @@
                   <div class="col"><i class="bi bi-paint-bucket h2"  @click="showModal"></i></div>
                   <div class="col"><i title="Report a bug"  data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" ></i></div>
                   <div class="col"><i class="bi bi-arrows-fullscreen h4" @click="toggleFullScreen" title="Full screen"></i></div>
-                  
                 </div>
               </div>               
             </div>                      
-          </div><hr style="border: 2px solid #333;">
+          </div>
+          <hr style="border: 2px solid #333;">
           
          <!-- mobile top Features  ---->
          <div class="dropdown mobile-only pb-2">
@@ -167,8 +167,8 @@
 
        <!-- Tafseer Section -->
        <div class="tab-pane content" id="profile" role="tabpanel" v-if="information != null">
-        <div class="icon-container ">
-
+        <div >
+        <!--
          <div class="icon-container w-100 hide-on-mobile pb-2">
           <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('tafseerNote')" style="color: rgba(0, 191, 166);cursor:pointer">
           </i>
@@ -179,59 +179,69 @@
           <CopyTafseerText :textToCopy="tafseer" />
           <ScreenTafseerCapture :targetTafseerRef="'targetTafseerElement'" />
 
-          <!--
-          <PdfDownload class="pl-1 pb-2 mt-2 text-left" :targetTranslationRef="'targetTafseerElement'" />
-          -->
           <i class="bi bi-paint-bucket h2" style="color: rgb(0, 191, 166); cursor: pointer;" @click="showModal"></i>
           <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h3" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;"></i>
           <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
          </div>
+        -->
+         <!-- desktop top features -->
+          <div :style="iconStyle">
+            <div class="col pb-2">
+              <i  :class="isOpen ? 'bi bi-x-circle-fill' : 'bi bi-plus-circle-fill'" class="top-toolbar-btn text-left hide-on-mobile h4" @click="toggleContent"></i>
+            </div>
+            <div v-if="isOpen" class="icon-container-fluid hide-on-mobile ">
+              <div class=" text-center">
+                <div  class="row pt-2">
+                  <div class="col"><i  class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('tafseerNote')" ></i></div>
+                  <div class="col"><WhatsAppShareTafseer :tafseerToShare="information.tafseer" /></div>
+                  <div class="col"><TwitterShareTafseer  :targetElementRef="'targetElement'" :tafseerText="information.tafseer" /></div>
+                  <div class="col"><i @click="submitForm"  class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" ></i></div>
+                  <div class="col"><CopyTafseerText  :textToCopy="information.tafseer" /></div>
+                  <div class="col"><ScreenTafseerCapture  :targetTafseerRef="'targetTafseerElement'" /></div>
+                  <div class="col"><PdfDownloadTafsser  :targetTafseerRef="'targetTafseerElement'" class="h3"/></div>
+                  <div class="col"><i class="bi bi-paint-bucket h2"  @click="showModal"></i></div>
+                  <div class="col"><i title="Report a bug"  data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" ></i></div>
+                  <div class="col"><i class="bi bi-arrows-fullscreen h4" @click="toggleFullScreen" title="Full screen"></i></div>
+                </div>
+              </div>               
+            </div>                      
+          </div>
+          <hr style="border: 2px solid #333;">
+
 
          <!-- mobile top Features  ---->
          <div class="dropdown mobile-only">
-          <div class="icon-container pb-2">
-           <i class="bi bi-chevron-bar-left h4" style="color: rgb(0, 191, 166);" @click="goToFirstAyah()" title="Last verse"></i>
-           <i class="bi bi-arrow-left-circle h4" style="color: rgb(0, 191, 166);" @click="goToPreviousAyah()" title="Previous verse"></i>
-           <i class="bi bi-arrow-right-circle h4" style="color: rgb(0, 191, 166);" @click="goToNextAyah()" title="Next verse"></i>
-           <i class="bi bi-chevron-bar-right h4" style="color: rgb(0, 191, 166);" @click="goToLastAyah()" title="End verse"></i>
-           <i class="bi bi-paint-bucket h2" style="color: rgb(0, 191, 166); cursor: pointer;" @click="showModal"></i>
-           <i class="bi bi-arrows-fullscreen h6" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
+          <div :style="iconStyle" class="icon-container pb-2">
+           <i class="bi bi-chevron-bar-left h4"  @click="goToFirstAyah()" title="Last verse"></i>
+           <i class="bi bi-arrow-left-circle h4"  @click="goToPreviousAyah()" title="Previous verse"></i>
+           <i class="bi bi-arrow-right-circle h4"  @click="goToNextAyah()" title="Next verse"></i>
+           <i class="bi bi-chevron-bar-right h4"  @click="goToLastAyah()" title="End verse"></i>
+           <i class="bi bi-paint-bucket h2"  @click="showModal"></i>
+           <i class="bi bi-arrows-fullscreen h6"  @click="toggleFullScreen" title="Full screen"></i>
           </div>
          </div>
-         <!-- end mobile top Features ---->
         </div>
 
         <!-- Main content  -->
         <div class="pt-2" ref="targetTafseerElement">
          <TafseerSection :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
         </div>
-        <!-- end main content -->
 
         <div class="container-fluid text-center mobile-only">
           <div class="row">
             <div class="col">
+              <i :class="isOpen ? 'bi bi-x-circle' : 'bi bi-plus-circle-fill'" class="text-center mobile-only h3 pt-3" @click="toggleContent"></i>
             </div>
-            <div class="col">
-              <button @click="toggleContent" class="button-63 text-center mobile-only">
-                {{ isOpen ? 'Close Toolbar' : 'Open Toolbar' }}
-              </button>
-            </div>
-            <div class="col">
-            </div>
+          </div>
+        </div>
+        
+        <!-- toolbar mobile -->
+        <div v-if="isOpen" class="collapse-content mobile-only" style="background-color: rgba(0, 191, 166, 0.452);">
+          <div class="card text-bg-light card-body">
+            <TafseerActions :targetTafseerRef="'targetTafseerElement'" :tafseer="tafseer" @open-modal="openModal" @submit-form="submitForm" />
           </div>
         </div>
 
-        <!-- toolbar mobile -->
-        <div v-if="isOpen" class="collapse-content mobile-only">
-          <div class="card text-bg-light card-body" >
-            <!-- Your content here -->
-            <TafseerActions :targetTafseerRef="'targetTafseerElement'" :tafseer="tafseer" @open-modal="openModal" @submit-form="submitForm" />
-            <!--
-            <PdfDownload class="pl-1 pb-2 mt-2 text-left" :targetTranslationRef="'targetTafseerElement'" />
-            -->
-          </div>
-        </div>
-        <!-- end toolbar mobile -->
 
         <SurahInfoModal :information="information" />
        </div>
@@ -241,24 +251,31 @@
         <div class="">
          <div>
           <!-- Ayah Controls -->
-          <div class="icon-container pb-3">
+          <div class=" pb-3">
 
-           <div class="icon-container w-100 hide-on-mobile">
-            <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('transliterationNote')" style="color: rgba(0, 191, 166);cursor:pointer">
-            </i>
-            <TransliterationNote ref="transliterationNote" :information="information.transliteration" />
-            <WhatsAppShareTransliteration :transliterationToShare="information.transliteration" />
-            <TwitterShareTransliteration :targetElementRef="'targetElement'" :transliterationText="information.transliteration" />
-            <i @click="submitForm2" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
-            <CopyTransliterationText :textToCopy="information.transliteration" />
-            
-            <ScreenTransliterationCapture :targetTransliterationRef="'targetTransliterationElement'" />
-            <!--<PdfDownload :targetTranslationRef="'targetTransliterationElement'" />
-            -->
-            <i class="bi bi-paint-bucket h2" style="color: rgb(0, 191, 166); cursor: pointer;" @click="showModal"></i>
-            <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;"></i>
-            <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
-           </div>
+            <!-- desktop top features -->
+          <div :style="iconStyle">
+            <div class="col pb-2 ">
+              <i  :class="isOpen ? 'bi bi-x-circle-fill' : 'bi bi-plus-circle-fill'" class="top-toolbar-btn text-left hide-on-mobile h4" @click="toggleContent"></i>
+            </div>
+            <div v-if="isOpen" class=" hide-on-mobile ">
+              <div class="text-center">
+                <div  class="row pt-2">
+                  <div class="col"><i  class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('transliterationNote')" ></i></div>
+                  <div class="col"><WhatsAppShareTransliteration :transliterationToShare="information.transliteration" /></div>
+                  <div class="col"><TwitterShareTransliteration  :targetElementRef="'targetElement'" :transliterationText="information.transliteration" /></div>
+                  <div class="col"><i @click="submitForm"  class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" ></i></div>
+                  <div class="col"><CopyTransliterationText  :textToCopy="information.transliteration" /></div>
+                  <div class="col"><ScreenTransliterationCapture  :targetTransliterationRef="'targetTransliterationElement'" /></div>
+                  <div class="col"><PdfDownloadTransliteration  :targetTransliterationRef="'targetTransliterationElement'" /></div>
+                  <div class="col"><i class="bi bi-paint-bucket h2"  @click="showModal"></i></div>
+                  <div class="col"><i title="Report a bug"  data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" ></i></div>
+                  <div class="col"><i class="bi bi-arrows-fullscreen h4" @click="toggleFullScreen" title="Full screen"></i></div>
+                </div>
+              </div>               
+            </div>                      
+          </div>
+          <hr style="border: 2px solid #333;">
 
            <!-- Dropdown Features -->
            <div class="dropdown mobile-only">
@@ -620,6 +637,9 @@ import ColorPicker from './color_picker/ColorPicker.vue';
 import FontStyleSelector from './FontStyleSelector.vue'
 import SpeechToText from './SpeechToText.vue'
 import PdfDownload from './pdf/PdfDownload.vue'
+import PdfDownloadTafsser from './pdf/PdfDownloadTafsser.vue'
+import PdfDownloadTransliteration from './pdf/PdfDownloadTransliteration.vue'
+
 import AddBookmark from './folder_manager/AddBookmark.vue';
 import FolderSelectionModal from './folder_manager/FolderSelectionModal.vue';
 import GroupSection from './GroupSection.vue';
@@ -678,7 +698,9 @@ export default {
   PdfDownload,
   AddBookmark,
   FolderSelectionModal,
-  GroupSection
+  GroupSection,
+  PdfDownloadTransliteration,
+  PdfDownloadTafsser
  },
 
  mounted() {

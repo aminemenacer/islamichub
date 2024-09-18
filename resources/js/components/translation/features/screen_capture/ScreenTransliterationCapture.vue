@@ -7,15 +7,15 @@
       aria-expanded="false" 
       data-bs-placement="top" 
       title="Screenshot verse" 
-      style="color: rgba(0, 191, 166); cursor:pointer"
+      
     ></i>
 
     <!-- Modal -->
-    <div class="modal fade" id="previewModal" tabindex="-1" aria-labelledby="previewModalLabel" aria-hidden="true">
+    <div class="modal fade" id="previewTransliterationModal" tabindex="-1" aria-labelledby="previewTransliterationModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-xl modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title" id="previewModalLabel"><b>Screenshot Preview</b></h4>
+            <h4 class="modal-title" id="previewTransliterationModalLabel"><b>Screenshot Preview</b></h4>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body text-center" style="box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px; padding:15px">
@@ -64,10 +64,10 @@ export default {
         this.previewImage = canvas.toDataURL('image/png');
 
         // Show the modal after ensuring it exists
-        const modalElement = document.getElementById('previewModal');
+        const modalElement = document.getElementById('previewTransliterationModal');
         if (modalElement) {
-          const previewModal = new bootstrap.Modal(modalElement);
-          previewModal.show();
+          const previewTransliterationModal = new bootstrap.Modal(modalElement);
+          previewTransliterationModal.show();
         } else {
           console.error('Modal element not found!');
         }

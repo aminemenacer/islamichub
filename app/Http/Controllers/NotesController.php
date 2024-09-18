@@ -18,11 +18,20 @@ class NotesController extends Controller
         return view('group_notes');
     }
 
-    public function getNotes($userId)
+    public function getNotes()
     {
-        $notes = Note::where('user_id', $userId)->orderBy('created_at', 'desc')->get();
-        return response()->json($notes);
+        $notes = Note::withCount('likes')->get()->map(function($note) {
+            return [
+                'id' => $note->id,
+                'title' => $note->title,
+                'liked' => $note->likes()->where('user_id', auth()->id())->exists(),
+                'likeCount' => $note->likes_count,
+            ];
+        });
+
+        return response()->json(['notes' => $notes]);
     }
+
 
     public function fetchNotes()
     {

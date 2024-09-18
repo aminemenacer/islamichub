@@ -1,23 +1,23 @@
 <template>
- <div class="row">
-  <div style="padding:5px; display:flex">
+<div class="row">
+ <div style="padding:5px; display:flex">
   <div class="col-2">
-   <i class="bi bi-file-earmark-text text-right h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="$emit('openModal', 'tafseerNote')" style="color: rgba(0, 191, 166);cursor:pointer"></i>
+   <i class="bi bi-file-earmark-text text-right h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="$emit('openModal', 'tafseerNote')"></i>
   </div>
   <div class="col-2">
-   <WhatsAppShareTafseer :tafseerToShare="tafseer" />
+   <WhatsAppShareTafseer :tafseerToShare="tafseer" :iconColor="iconColor" />
   </div>
   <div class="col-2">
-   <TwitterShareTafseer :targetElementRef="'targetElement'" :tafseerText="tafseer" />
+   <TwitterShareTafseer :targetElementRef="'targetElement'" :tafseerText="tafseer" :iconColor="iconColor" />
   </div>
   <div class="col-2">
-   <i @click="$emit('submitForm')" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
+   <i @click="$emit('submitForm')" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse"></i>
   </div>
   <div class="col-2">
    <CopyTafseerText :textToCopy="tafseer" />
   </div>
   <div class="col-2">
-   <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;"></i>
+   <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right h4" aria-expanded="false" data-bs-placement="top"></i>
   </div>
  </div>
 </div>

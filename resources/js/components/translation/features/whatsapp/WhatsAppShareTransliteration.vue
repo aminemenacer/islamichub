@@ -3,8 +3,7 @@
      @click="shareTransliterationViaWhatsApp"
      aria-expanded="false"
      data-bs-placement="top"
-     title="Share on Whatsapp"
-     style="color: rgba(0, 191, 166); cursor: pointer;"></i>
+     title="Share on Whatsapp"></i>
 </template>
 
 <script>

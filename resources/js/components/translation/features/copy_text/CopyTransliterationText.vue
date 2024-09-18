@@ -6,7 +6,7 @@
       aria-expanded="false"
       data-bs-placement="top"
       title="Copy verse"
-      style="color: rgba(0, 191, 166); cursor: pointer"
+      
     ></i>
  
     <div v-if="showAlertText" class="alert alert-success" role="alert">

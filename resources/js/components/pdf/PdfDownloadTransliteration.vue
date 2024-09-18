@@ -7,7 +7,7 @@
       aria-expanded="false" 
       data-bs-placement="top" 
       title="Download PDF" 
-      style="color: rgba(0, 191, 166); cursor:pointer"
+      
     ></i>    
   </div>
 </template>

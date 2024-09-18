@@ -17,8 +17,8 @@ class LikeController extends Controller
 
         return response()->json([
             'success' => true,
-            'liked' => $like->wasRecentlyCreated,
-            'count' => Like::where('note_id', $noteId)->count(),
+            'liked' => $like->wasRecentlyCreated, // Whether the user just liked it
+            'count' => Like::where('note_id', $noteId)->count(), // Total like count
         ]);
     }
 
@@ -34,8 +34,9 @@ class LikeController extends Controller
         }
 
         return response()->json([
-            'success' => $like !== null,
-            'count' => Like::where('note_id', $noteId)->count(),
+            'success' => $like !== null, // Whether the unlike action was successful
+            'count' => Like::where('note_id', $noteId)->count(), // Total like count
         ]);
     }
+
 }

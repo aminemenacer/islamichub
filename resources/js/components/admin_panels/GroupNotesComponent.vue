@@ -30,17 +30,23 @@
       
       <div class="col-md-6">
         <h5>
-      <span v-for="option in filterOptions" :key="option.value" @click="selectedFilter = option.value" class="badge me-2 mb-2 p-2" :class="[
-                selectedFilter === option.value 
-                  ? 'bg-primary-whatsapp text-white' 
-                  : 'bg-secondary-whatsapp text-white'
-              ]" style="cursor: pointer; user-select: none;">
-        {{ option.label }}
-      </span> 
-      <!--
-        <strong>The total amount of notes:</strong> <b style="color:rgb(0, 191, 166)">{{ notes.length }}</b>
-        -->
-      </h5>
+          <span
+            v-for="option in filterOptions"
+            :key="option.value"
+            @click="handleFilterClick(option.value)"
+            class="badge me-2 mb-2 p-2"
+            :class="[
+              selectedFilter === option.value 
+                ? 'bg-primary-whatsapp text-white' 
+                : 'bg-secondary-whatsapp text-white'
+            ]"
+            style="cursor: pointer; user-select: none;"
+          >
+            {{ option.label }}
+          </span>
+          <strong>The total amount of notes:</strong>
+          <b style="color:rgb(0, 191, 166)">{{ notes.length }}</b>
+        </h5>
       </div>
       <div class="col-md-6">
       <div class="row" >
@@ -48,17 +54,17 @@
       </div>
       <!--
         <div class="row align-items-end">
-      <div class="col-md-5">
-        <div class="form-group">
-        <input type="date" id="startDate" v-model="startDate" class="form-control" />
+          <div class="col-md-5">
+            <div class="form-group">
+            <input type="date" id="startDate" v-model="startDate" class="form-control" />
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="form-group">
+            <input type="date" id="endDate" v-model="endDate" class="form-control" />
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="col-md-5">
-        <div class="form-group">
-        <input type="date" id="endDate" v-model="endDate" class="form-control" />
-        </div>
-      </div>
-      </div>
       -->
       </div>
     </div>
@@ -161,7 +167,7 @@ export default {
  },
  data() {
   return {
-    
+  selectedFilter: this.getStoredFilter() || '',
    searchTerm: "",
    startDate: '',
    endDate: '',
@@ -202,6 +208,7 @@ export default {
   await this.fetchNotes();
  },
  computed: {
+   
   filteredNotes() {
     const today = new Date();
     const oneDayInMs = 24 * 60 * 60 * 1000;
@@ -257,6 +264,13 @@ export default {
   }
 },
  methods: {
+   handleFilterClick(value) {
+      this.selectedFilter = value;
+      localStorage.setItem('selectedFilter', value);
+    },
+    getStoredFilter() {
+      return localStorage.getItem('selectedFilter');
+    },
    shareViaWhatsapp(note) {
     const message = `Surah Name: ${note.surah_name}\nNote: ${note.ayah_notes}\nDate Created: ${this.formatDate(note.created_at)}`;
     const encodedMessage = encodeURIComponent(message); // Encode special characters
@@ -272,31 +286,30 @@ export default {
     return text.replace(regex, '<span class="highlight">$1</span>');
   },
   getIconClass(liked) {
-   return liked ? 'bi bi-hand-thumbs-up-fill' : 'bi bi-hand-thumbs-up';
+    return liked ? 'bi bi-hand-thumbs-up-fill' : 'bi bi-hand-thumbs-up';
   },
   async toggleLike(noteId, currentlyLiked) {
-   try {
-    const url = currentlyLiked ? `/notes/${noteId}/unlike` : `/notes/${noteId}/like`;
-    const response = await fetch(url, {
-     method: 'POST',
-     headers: {
-      'X-Requested-With': 'XMLHttpRequest',
-      'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-     },
-    });
+    try {
+      const url = currentlyLiked ? `/notes/${noteId}/unlike` : `/notes/${noteId}/like`;
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+        },
+      });
 
-    const data = await response.json();
-    if (data.success) {
-     // Update the local state
-     const note = this.notes.find(n => n.id === noteId);
-     if (note) {
-      note.liked = !currentlyLiked;
-      note.likeCount = data.count;
-     }
+      const data = await response.json();
+      if (data.success) {
+        const note = this.notes.find(n => n.id === noteId);
+        if (note) {
+          note.liked = !currentlyLiked;
+          note.likeCount = data.count; // Update the like count in the UI
+        }
+      }
+    } catch (error) {
+      console.error('Error:', error);
     }
-   } catch (error) {
-    console.error('Error:', error);
-   }
   },
   async fetchNotes() {
    try {

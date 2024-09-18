@@ -56,7 +56,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/folders', [FolderController::class, 'getFolders']);
     Route::post('/folders', [FolderController::class, 'store']);
 
-
+    Route::post('/notes/{noteId}/like', [LikeController::class, 'like']);
+    Route::post('/notes/{noteId}/unlike', [LikeController::class, 'unlike']);
+    
     Route::get('/fetch-notes', [NotesController::class, 'fetchNotes']);
 
     // Route::get('/notes', [NotesController::class, 'index']);

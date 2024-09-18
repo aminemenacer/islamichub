@@ -1,6 +1,5 @@
 <template>
   <i
-    style="color:rgb(0, 191, 166); cursor:pointer"
     @click="shareTransliterationOnTwitter"
     class="mr-2 bi bi-twitter-x text-right h4"
     aria-expanded="false"
