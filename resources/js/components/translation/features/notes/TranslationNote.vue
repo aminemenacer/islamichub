@@ -34,14 +34,25 @@
      <div class="mt-3">
       <!-- Audio Recording Mode -->
       <div v-if="inputMode === 'audio'">
+       <!-- Start Button -->
        <button type="button" class="btn btn-success" @click="startRecognition" :disabled="isListening">
         Start Recording
        </button>
-       <button type="button" class="btn btn-secondary" @click="stopRecognition" :disabled="!isListening">
+
+       <!-- Pause Button -->
+       <button type="button" class="btn btn-warning" @click="pauseRecognition" :disabled="!isListening">
+        Pause Recording
+       </button>
+
+       <!-- Stop Button -->
+       <button type="button" class="btn btn-secondary" @click="stopRecognition" :disabled="!isListening && !isPaused">
         Stop Recording
        </button>
+       <!-- Status -->
        <p v-if="isListening">Listening...</p>
-       <textarea v-model="form.ayah_notes" class="form-control pb-2" rows="5" placeholder="Your speech will appear here..." :readonly="isListening"></textarea>
+       <p v-if="isPaused">Paused...</p>
+
+       <textarea v-model="form.ayah_notes" class="form-control pb-2" rows="5" placeholder="Your speech will appear here..." :readonly="isListening || isPaused"></textarea>
       </div>
 
       <!-- Rich Text Editor Mode -->
@@ -94,8 +105,9 @@ export default {
 
    inputMode: 'basic',
    option: 0,
-   recognition: null,
    isListening: false,
+   isPaused: false,
+   recognition: null,
    form: {
     ayah_notes: "",
     surah_name: ""
@@ -133,21 +145,37 @@ export default {
    };
 
    this.recognition.onend = () => {
-    this.isListening = false;
+    if (!this.isPaused) {
+     this.isListening = false;
+    }
    };
   },
   startRecognition() {
    if (!this.recognition) {
     this.initRecognition();
    }
-   this.form.ayah_notes = ''; // Clear previous transcript
-   this.recognition.start();
-   this.isListening = true;
+   if (this.isPaused) {
+    this.isPaused = false;
+    this.isListening = true;
+    this.recognition.start();
+   } else {
+    this.form.ayah_notes = ''; // Clear previous transcript only on fresh start
+    this.recognition.start();
+    this.isListening = true;
+   }
   },
-  stopRecognition() {
+  pauseRecognition() {
    if (this.recognition && this.isListening) {
     this.recognition.stop();
     this.isListening = false;
+    this.isPaused = true;
+   }
+  },
+  stopRecognition() {
+   if (this.recognition && (this.isListening || this.isPaused)) {
+    this.recognition.abort(); // Abort instead of stop to completely stop and reset recognition
+    this.isListening = false;
+    this.isPaused = false;
    }
   },
   createNote() {

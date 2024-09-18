@@ -1,6 +1,6 @@
 <template>
   <div class="btn">
-    <div class="text-right ayah-translation" name="ayah_text" :style="styleObject">{{ information.ayah.ayah_text }}</div>
+    <div class="text-right ayah-translation" name="ayah_text" :style="styleObject"><b>{{ information.ayah.ayah_text }}</b></div>
   </div>
 </template>
 

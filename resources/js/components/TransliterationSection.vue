@@ -12,7 +12,6 @@
           </template>
         </h4>
       </div>
-      <Translator translator="Ahmed Ali" />
       <AlertModal 
         :showAlertText="showAlertText" 
         :showAlert="showAlert" 
@@ -115,7 +114,7 @@ export default {
 }
 
 .ayah-translation {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
 }
 
 .btn {

@@ -17,11 +17,11 @@
     <b>Transliteration</b>
    </a>
   </li>
-  <li class="nav-item">
+  <!-- <li class="nav-item">
    <a class="nav-link" data-bs-toggle="tab" href="#data" role="tab">
     <b>Overview</b>
    </a>
-  </li>
+  </li> -->
  </ul>
 </div>
 </template>

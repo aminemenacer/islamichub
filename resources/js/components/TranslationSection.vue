@@ -36,9 +36,9 @@ export default {
  },
  props: {
   iconColor: {
-            type: String,
-            default: 'rgba(0, 191, 166)'
-        },
+    type: String,
+    default: 'rgba(0, 191, 166)'
+  },
   information: {
    type: Object,
    required: true
@@ -121,7 +121,7 @@ export default {
 }
 
 .ayah-translation {
- font-size: 1.4rem;
+ font-size: 1.2rem;
 }
 
 .btn {

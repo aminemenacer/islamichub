@@ -39,14 +39,14 @@
       <hr class="container" style="height: 4px; background: lightgrey;">
 
       <div :style="iconStyle" class="icon-container pb-2">
-       <i class="bi bi-chevron-bar-left h4"  @click="goToFirstAyah" title="First verse"></i>
-       <i class="bi bi-arrow-left-circle h4"  @click="goToPreviousAyah" title="Previous verse"></i>
-       <i class="bi bi-arrow-right-circle h4"  @click="goToNextAyah" title="Next verse"></i>
-       <i class="bi bi-chevron-bar-right h4"  @click="goToLastAyah" title="Last verse"></i>
+       <i class="bi bi-chevron-bar-left h4" style="color:#00BFA6" @click="goToFirstAyah" title="First verse"></i>
+       <i class="bi bi-arrow-left-circle h4" style="color:#00BFA6" @click="goToPreviousAyah" title="Previous verse"></i>
+       <i class="bi bi-arrow-right-circle h4" style="color:#00BFA6" @click="goToNextAyah" title="Next verse"></i>
+       <i class="bi bi-chevron-bar-right h4" style="color:#00BFA6" @click="goToLastAyah" title="Last verse"></i>
        <!--
        <i class="bi bi-palette-fill h4" style="color: rgb(0, 191, 166); cursor: pointer;" data-bs-toggle="modal" data-bs-target="#themeModal"></i>
        -->
-       <i v-if="information != null" class="bi bi-info-circle-fill h4 mr-2 pl-2"  data-bs-toggle="modal" data-bs-target="#translationInfo" aria-expanded="false" data-bs-placement="top" title="Surah info"></i>
+       <i v-if="information != null" class="bi bi-info-circle-fill h4 mr-2 pl-2" style="color:#00BFA6" data-bs-toggle="modal" data-bs-target="#translationInfo" aria-expanded="false" data-bs-placement="top" title="Surah info"></i>
       </div>
 
       <div class="custom-scrollbar pb-5" style="overflow-y: auto; max-height: 600px; background: white;border-radius:10px">
@@ -125,10 +125,10 @@
                   <div class="col"><i title="Report a bug"  data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" ></i></div>
                   <div class="col"><i class="bi bi-arrows-fullscreen h4" @click="toggleFullScreen" title="Full screen"></i></div>
                 </div>
-              </div>               
+              </div>
+              <hr style="border: 2px solid #333;">           
             </div>                      
           </div>
-          <hr style="border: 2px solid #333;">
           
          <!-- mobile top Features  ---->
          <div class="dropdown mobile-only pb-2">
@@ -203,11 +203,10 @@
                   <div class="col"><i title="Report a bug"  data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" ></i></div>
                   <div class="col"><i class="bi bi-arrows-fullscreen h4" @click="toggleFullScreen" title="Full screen"></i></div>
                 </div>
-              </div>               
+              </div>
+              <hr style="border: 2px solid #333;">               
             </div>                      
           </div>
-          <hr style="border: 2px solid #333;">
-
 
          <!-- mobile top Features  ---->
          <div class="dropdown mobile-only">
@@ -272,10 +271,10 @@
                   <div class="col"><i title="Report a bug"  data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" ></i></div>
                   <div class="col"><i class="bi bi-arrows-fullscreen h4" @click="toggleFullScreen" title="Full screen"></i></div>
                 </div>
-              </div>               
+              </div>
+              <hr style="border: 2px solid #333;">                
             </div>                      
           </div>
-          <hr style="border: 2px solid #333;">
 
            <!-- Dropdown Features -->
            <div class="dropdown mobile-only">
@@ -309,17 +308,15 @@
           </div>
             
 
-            <!-- toolbar mobile -->
-            <div v-if="isOpen" class="collapse-content mobile-only">
-              <div class="card text-bg-light card-body">
-                <!-- Your content here -->
-                <TransliterationActions :targetTransliterationRef="'targetTransliterationElement'" :transliteration="transliteration" @open-modal="openModal" @submit-form="submitForm" />
-                <!--
-                <PdfDownload class="pl-2 pb-2 mt-2 text-left" :targetTransliterationRef="'targetTransliterationElement'" />
-                -->
-              </div>
+          <!-- toolbar mobile -->
+          <div v-if="isOpen" class="collapse-content mobile-only">
+            <div class="card text-bg-light card-body">
+              <!-- Your content here -->
+              <TransliterationActions :targetTransliterationRef="'targetTransliterationElement'" :transliteration="transliteration" @open-modal="openModal" @submit-form="submitForm" />
+              <PdfDownload class="pl-2 pb-2 mt-2 text-left" :targetTransliterationRef="'targetTransliterationElement'" />
             </div>
-            <!-- end toolbar mobile -->
+          </div>
+          <!-- end toolbar mobile -->
 
           
           <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />

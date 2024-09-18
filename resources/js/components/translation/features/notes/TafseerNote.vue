@@ -7,47 +7,87 @@
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
    </div>
    <div class="modal-body">
-    <p class="text-secondary">Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah.</p>
     <form @submit.prevent="createNote">
-     <div class="row">
-      <div class="form-check col-md-6">
-       <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" @click="toggleEditor" checked>
-       <label class="form-check-label" for="exampleRadios1">
-        Audio Note Recording
-       </label>
-      </div>
-      <div class="form-check col-md-6">
-       <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" @click="toggleEditor" value="option2">
-       <label class="form-check-label" for="exampleRadios2">
-        Keyboard
-       </label>
+     <div class="container text-center">
+      <div class="row">
+       <div class="col">
+        <input class="form-check-input" type="radio" name="inputMode" id="basicMode" value="basic" v-model="inputMode">
+        <label class="form-check-label" for="basicMode">
+         Basic
+        </label>
+       </div>
+       <div class="col">
+        <input class="form-check-input" type="radio" name="inputMode" id="audioMode" value="audio" v-model="inputMode">
+        <label class="form-check-label" for="audioMode">
+         Audio Note Recording
+        </label>
+       </div>
+       <div class="col">
+        <input class="form-check-input" type="radio" name="inputMode" id="editorMode" value="editor" v-model="inputMode">
+        <label class="form-check-label" for="editorMode">
+         Editor Keyboard
+        </label>
+       </div>
       </div>
      </div>
 
-     <!-- Conditional Rendering of Editor or Textarea -->
      <div class="mt-3">
-      <!-- Recording Buttons and Status -->
-      <div class="col mt-3" v-if="!isEditorActive">
+      <!-- Audio Recording Mode -->
+      <div v-if="inputMode === 'audio'">
+       <!-- Start Button -->
        <button type="button" class="btn btn-success" @click="startRecognition" :disabled="isListening">
         Start Recording
        </button>
-       <button type="button" class="btn btn-secondary" @click="stopRecognition" :disabled="!isListening">
+
+       <!-- Pause Button -->
+       <button type="button" class="btn btn-warning" @click="pauseRecognition" :disabled="!isListening">
+        Pause Recording
+       </button>
+
+       <!-- Stop Button -->
+       <button type="button" class="btn btn-secondary" @click="stopRecognition" :disabled="!isListening && !isPaused">
         Stop Recording
        </button>
+       <!-- Status -->
        <p v-if="isListening">Listening...</p>
-       <textarea v-if="!isEditorActive" v-model="form.ayah_notes" class="form-control pb-2" rows="5" placeholder="Your speech will appear here..."></textarea>
+       <p v-if="isPaused">Paused...</p>
+
+       <textarea v-model="form.ayah_notes" class="form-control pb-2" rows="5" placeholder="Your speech will appear here..." :readonly="isListening || isPaused"></textarea>
       </div>
-      <Editor v-if="isEditorActive" v-model="form.ayah_notes" editorStyle="height: 400px" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah."></Editor>
+
+      <!-- Rich Text Editor Mode -->
+      <Editor v-if="inputMode === 'editor'" v-model="form.ayah_notes" editorStyle="height: 400px" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah."></Editor>
+
+      <!-- Basic Mode -->
+      <textarea v-if="inputMode === 'basic'" v-model="form.ayah_notes" class="form-control pb-2" rows="5" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah."></textarea>
+     </div>
+
+     <div class="pt-3 pb-2" style="display: flex; align-items: center;">
+      <b style="margin-right: 10px;" class="pr-2">Make your note either:</b>
+      <div style="display: flex; align-items: center;">
+       <div class="form-check form-check-inline" style="margin-right: 15px;">
+        <input class="form-check-input" type="radio" name="option" v-model="option" id="public" value="0">
+        <label class="form-check-label" for="public" style="margin-left: 5px;">Public</label>
+       </div>
+       <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="option" v-model="option" id="private" value="1">
+        <label class="form-check-label" for="private" style="margin-left: 5px;">Private</label>
+       </div>
+      </div>
      </div>
 
      <div class="modal-footer">
       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       <button type="submit" class="btn btn-success">Submit</button>
      </div>
+
     </form>
+
    </div>
   </div>
+
  </div>
+
 </div>
 </template>
 
@@ -55,7 +95,6 @@
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import Editor from 'primevue/editor';
-
 import {
  Modal
 } from 'bootstrap';
@@ -63,11 +102,15 @@ import {
 export default {
  data() {
   return {
-   isEditorActive: false,
-   recognition: null,
+
+   inputMode: 'basic',
+   option: 0,
    isListening: false,
+   isPaused: false,
+   recognition: null,
    form: {
-    ayah_notes: ""
+    ayah_notes: "",
+    surah_name: ""
    }
   };
  },
@@ -78,9 +121,7 @@ export default {
   this.initRecognition();
  },
  methods: {
-  toggleEditor() {
-   this.isEditorActive = !this.isEditorActive;
-  },
+
   initRecognition() {
    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
@@ -104,27 +145,48 @@ export default {
    };
 
    this.recognition.onend = () => {
-    this.isListening = false;
+    if (!this.isPaused) {
+     this.isListening = false;
+    }
    };
   },
   startRecognition() {
    if (!this.recognition) {
     this.initRecognition();
    }
-   this.form.ayah_notes = ''; // Clear previous transcript
-   this.recognition.start();
-   this.isListening = true;
+   if (this.isPaused) {
+    this.isPaused = false;
+    this.isListening = true;
+    this.recognition.start();
+   } else {
+    this.form.ayah_notes = ''; // Clear previous transcript only on fresh start
+    this.recognition.start();
+    this.isListening = true;
+   }
   },
-  stopRecognition() {
+  pauseRecognition() {
    if (this.recognition && this.isListening) {
     this.recognition.stop();
     this.isListening = false;
+    this.isPaused = true;
+   }
+  },
+  stopRecognition() {
+   if (this.recognition && (this.isListening || this.isPaused)) {
+    this.recognition.abort(); // Abort instead of stop to completely stop and reset recognition
+    this.isListening = false;
+    this.isPaused = false;
    }
   },
   createNote() {
    const formData = {
+    surah_name: this.form.surah_name,
+    ayah_num: this.form.ayah_num,
+    ayah_verse_ar: this.form.ayah_verse_ar,
+    ayah_verse_en: this.form.ayah_verse_en,
+    ayah_info: this.form.ayah_info,
     ayah_notes: this.form.ayah_notes,
-    // Add any other required fields here
+    option: this.option, // Ensure the option field is sent
    };
 
    Swal.fire({
@@ -138,29 +200,16 @@ export default {
     if (result.isConfirmed) {
      axios.post("api/submit-note", formData)
       .then(res => {
-       if (res.data.success) {
-        Swal.fire({
-         icon: "success",
-         title: "Success!",
-         text: "Your note has been submitted.",
-         timer: 1500,
-         showConfirmButton: false
-        }).then(() => {
-         this.resetNoteForm();
-         this.closeModal();
-        });
-       } else {
-        Swal.fire({
-         icon: "success",
-         title: "Success!",
-         text: "Your note has been submitted.",
-         timer: 1500,
-         showConfirmButton: false
-        }).then(() => {
-         this.resetNoteForm();
-         this.closeModal();
-        });
-       }
+       Swal.fire({
+        icon: "success",
+        title: "Success!",
+        text: "Your note has been submitted.",
+        timer: 1500,
+        showConfirmButton: false
+       }).then(() => {
+        this.resetNoteForm();
+        this.closeModal();
+       });
       })
       .catch(err => {
        console.error(err);
@@ -171,6 +220,7 @@ export default {
   },
   resetNoteForm() {
    this.form.ayah_notes = '';
+   this.form.surah_name = '';
   },
   showModal() {
    const modalElement = this.$refs.modal;
