@@ -1,56 +1,55 @@
 <template>
-    <div class="row">
-        <div class="d-flex flex-wrap" style="padding: 5px">
-            <div class="col-2">
-                <i
-                    class="bi bi-file-earmark-text h4"
-                    aria-expanded="false"
-                    data-bs-placement="top"
-                    title="Write a note"
-                    @click="$emit('open-modal', 'translationNote')"
-                    
-                ></i>
-            </div>
-            <div class="col-2">
-                <WhatsAppShareTranslation :translationToShare="translation" :iconColor="iconColor"/>
-            </div>
-            <div class="col-2">
-                <TwitterShareTranslation
-                    :targetElementRef="targetTranslationRef"
-                    :translationText="translation"
-                    :iconColor="iconColor"
-                />
-            </div>
-            <div class="col-2">
-                <i
-                    @click="openFolderSelectionModal"
-                    class="bi bi-bookmark h4"
-                    title="Select Folder to Bookmark"
-                    
-                ></i>
-            </div>
-            <FolderSelectionModal
-                ref="folderSelectionModal"
-                :information="information"
-                @folder-selected="handleFolderSelected"
-            />
-
-            <div class="col-2">
-                <CopyTranslationText :textToCopy="translation" :iconColor="iconColor" />
-            </div>
-            <div class="col-2">
-                <i
-                    title="Report a bug"
-                    data-bs-toggle="modal"
-                    data-bs-target="#exampleModal"
-                    class="bi bi-bug h4"
-                    aria-expanded="false"
-                    data-bs-placement="top"
-                    
-                ></i>
-            </div>
-        </div>
+  <div class="row">
+    <div class="d-flex flex-wrap justify-content-between align-items-center" >
+      <div class="">
+        <i
+          class="bi bi-file-earmark-text h4"
+          aria-expanded="false"
+          data-bs-placement="top"
+          title="Write a note"
+          @click="$emit('open-modal', 'translationNote')"
+          
+        ></i>
+      </div>
+      <div class="icon-container">
+        <WhatsAppShareTranslation :translationToShare="translation" :iconColor="iconColor" />
+      </div>
+      <div class="icon-container">
+        <TwitterShareTranslation
+          :targetElementRef="targetTranslationRef"
+          :translationText="translation"
+          :iconColor="iconColor"
+        />
+      </div>
+      <div class="icon-container">
+        <i
+          @click="openFolderSelectionModal"
+          class="bi bi-bookmark h4"
+          title="Select Folder to Bookmark"
+          
+        ></i>
+      </div>
+      <FolderSelectionModal
+        ref="folderSelectionModal"
+        :information="information"
+        @folder-selected="handleFolderSelected"
+      />
+      <div class="icon-container">
+        <CopyTranslationText :textToCopy="translation" :iconColor="iconColor" />
+      </div>
+      <div class="icon-container">
+        <i
+          title="Report a bug"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+          class="bi bi-bug h4"
+          aria-expanded="false"
+          data-bs-placement="top"
+          
+        ></i>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>

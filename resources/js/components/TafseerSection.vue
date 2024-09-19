@@ -5,9 +5,9 @@
     <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
    
    <MainAyah :information="information" />
-      <div ref="heading1">
+      <div >
         <h4 class="text-left ayah-translation" style="line-height: 1.6em">
-        {{ expanded ? information.tafseer : truncatedText(information.tafseer) }}
+        {{ expanded ? information.translation : truncatedText(information.tafseer) }}
           <template v-if="showMoreLink && information.translation.length > 100">
             <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
           </template>

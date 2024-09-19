@@ -1,27 +1,56 @@
 <!-- TransliterationActions.vue -->
 <template>
 <div class="row">
- <div style="padding:5px; display:flex">
-  <div class="col-2">
-   <i class="bi bi-file-earmark-text h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="$emit('open-modal', 'transliterationNote')" style="color: rgba(0, 191, 166);cursor:pointer"></i>
+    <div class="d-flex flex-wrap justify-content-between align-items-center" >
+      <div class="">
+        <i
+          class="bi bi-file-earmark-text h4"
+          aria-expanded="false"
+          data-bs-placement="top"
+          title="Write a note"
+          @click="$emit('open-modal', 'transliterationNote')"
+          
+        ></i>
+      </div>
+      <div class="icon-container">
+        <WhatsAppShareTransliteration :transliterationToShare="transliteration" :iconColor="iconColor" />
+      </div>
+      <div class="icon-container">
+        <TwitterShareTransliteration
+          :targetElementRef="targetTransliterationRef"
+          :transliterationText="transliteration"
+          :iconColor="iconColor"
+        />
+      </div>
+      <div class="icon-container">
+        <i
+          @click="openFolderSelectionModal"
+          class="bi bi-bookmark h4"
+          title="Select Folder to Bookmark"
+          
+        ></i>
+      </div>
+      <FolderSelectionModal
+        ref="folderSelectionModal"
+        :information="information"
+        @folder-selected="handleFolderSelected"
+      />
+      <div class="icon-container">
+        <CopyTransliterationText :textToCopy="transliteration" :iconColor="iconColor" />
+      </div>
+      <div class="icon-container">
+        <i
+          title="Report a bug"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+          class="bi bi-bug h4"
+          aria-expanded="false"
+          data-bs-placement="top"
+          
+        ></i>
+      </div>
+    </div>
   </div>
-  <div class="col-2">
-   <WhatsAppShareTransliteration :transliterationToShare="transliteration" />
-  </div>
-  <div class="col-2">
-   <TwitterShareTransliteration :targetElementRef="'targetElement'" :transliterationText="transliteration" />
-  </div>
-  <div class="col-2">
-   <i @click="$emit('submit-form')" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
-  </div>
-  <div class="col-2">
-   <CopyTransliterationText :textToCopy="transliteration" />
-  </div>
-  <div class="col-2">
-   <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;"></i>
-  </div>
- </div>
-</div>
 </template>
 
 <script>

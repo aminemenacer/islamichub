@@ -53,7 +53,7 @@ export default {
 <style scoped>
 .card {
  display: flex;
- border: 3px solid #00BFA6;
+ border: 1px solid #00BFA6;
  border-radius: 10px;
 }
 </style>

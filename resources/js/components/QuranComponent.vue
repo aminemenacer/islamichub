@@ -156,7 +156,7 @@
             </div>
           </div>
           <!-- toolbar mobile -->
-          <div v-if="isOpen" class="collapse-content mobile-only" style="background-color: rgba(0, 191, 166, 0.452);">
+          <div v-if="isOpen" class="collapse-content mobile-only">
             <div class="card text-bg-light card-body">
               <TranslationActions :targetTranslationRef="'targetTranslationElement'" :translation="translation" @open-modal="openModal" @submit-form="submitForm" />
             </div>
@@ -166,7 +166,7 @@
        </div>
 
        <!-- Tafseer Section -->
-       <div class="tab-pane content" id="profile" role="tabpanel" v-if="information != null">
+      <div class="tab-pane content" id="profile" role="tabpanel" v-if="information != null">
         <div >
         <!--
          <div class="icon-container w-100 hide-on-mobile pb-2">
@@ -235,7 +235,7 @@
         </div>
         
         <!-- toolbar mobile -->
-        <div v-if="isOpen" class="collapse-content mobile-only" style="background-color: rgba(0, 191, 166, 0.452);">
+        <div v-if="isOpen" class="collapse-content mobile-only" >
           <div class="card text-bg-light card-body">
             <TafseerActions :targetTafseerRef="'targetTafseerElement'" :tafseer="tafseer" @open-modal="openModal" @submit-form="submitForm" />
           </div>
@@ -243,7 +243,7 @@
 
 
         <SurahInfoModal :information="information" />
-       </div>
+      </div>
 
        <!-- Transliteration Section -->
        <div class="tab-pane content" id="messages" role="tabpanel" v-if="information != null">
@@ -278,13 +278,13 @@
 
            <!-- Dropdown Features -->
            <div class="dropdown mobile-only">
-            <div class="icon-container">
-             <i class="bi bi-chevron-bar-left h4" style="color: rgb(0, 191, 166);" @click="goToFirstAyah()" title="Last verse"></i>
-             <i class="bi bi-arrow-left-circle h4" style="color: rgb(0, 191, 166);" @click="goToPreviousAyah()" title="Previous verse"></i>
-             <i class="bi bi-arrow-right-circle h4" style="color: rgb(0, 191, 166);" @click="goToNextAyah()" title="Next verse"></i>
-             <i class="bi bi-chevron-bar-right h4" style="color: rgb(0, 191, 166);" @click="goToLastAyah()" title="End verse"></i>
-             <i class="bi bi-paint-bucket h2" style="color: rgb(0, 191, 166); cursor: pointer;" @click="showModal"></i>
-             <i class="bi bi-arrows-fullscreen h6" style="color: rgb(0, 191, 166);" @click="toggleFullScreen" title="Full screen"></i>
+            <div :style="iconStyle" class="icon-container">
+             <i class="bi bi-chevron-bar-left h4" @click="goToFirstAyah()" title="Last verse"></i>
+             <i class="bi bi-arrow-left-circle h4" @click="goToPreviousAyah()" title="Previous verse"></i>
+             <i class="bi bi-arrow-right-circle h4" @click="goToNextAyah()" title="Next verse"></i>
+             <i class="bi bi-chevron-bar-right h4" @click="goToLastAyah()" title="End verse"></i>
+             <i class="bi bi-paint-bucket h2" @click="showModal"></i>
+             <i class="bi bi-arrows-fullscreen h6" @click="toggleFullScreen" title="Full screen"></i>
             </div>
            </div>
           </div>
@@ -296,24 +296,15 @@
           <div class="container-fluid text-center mobile-only">
             <div class="row">
               <div class="col">
-              </div>
-              <div class="col">
-                <button @click="toggleContent" class="button-63 text-center mobile-only">
-                  {{ isOpen ? 'Close Toolbar' : 'Open Toolbar' }}
-                </button>
-              </div>
-              <div class="col">
+                <i :class="isOpen ? 'bi bi-x-circle' : 'bi bi-plus-circle-fill'" class="text-center mobile-only h3 pt-3" @click="toggleContent"></i>
               </div>
             </div>
           </div>
-            
 
           <!-- toolbar mobile -->
-          <div v-if="isOpen" class="collapse-content mobile-only">
+          <div v-if="isOpen" class="collapse-content mobile-only" >
             <div class="card text-bg-light card-body">
-              <!-- Your content here -->
               <TransliterationActions :targetTransliterationRef="'targetTransliterationElement'" :transliteration="transliteration" @open-modal="openModal" @submit-form="submitForm" />
-              <PdfDownload class="pl-2 pb-2 mt-2 text-left" :targetTransliterationRef="'targetTransliterationElement'" />
             </div>
           </div>
           <!-- end toolbar mobile -->

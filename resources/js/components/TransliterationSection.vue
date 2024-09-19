@@ -12,6 +12,7 @@
           </template>
         </h4>
       </div>
+      <h6 class="text-left mt-3"><strong>Transliteration: </strong>Ibn Kathir</h6>
       <AlertModal 
         :showAlertText="showAlertText" 
         :showAlert="showAlert" 
