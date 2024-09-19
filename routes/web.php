@@ -77,9 +77,13 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
+Route::post('/notes/store', [NotesController::class, 'store'])->middleware('auth');
+
+
+Route::get('/fetch_notes', [NotesController::class, 'fetchNotes']); // Publicly fetch notes
+
 Route::get('/notes', [NotesController::class, 'showNotes']);
 Route::get('/group_notes', [NotesController::class, 'showGroupNotes']);
-
 Route::get('/ayahs', [QuranController::class, 'index']);
 
 //join us

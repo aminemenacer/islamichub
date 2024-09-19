@@ -44,28 +44,17 @@
           >
             {{ option.label }}
           </span>
+          <!--
           <strong>The total amount of notes:</strong>
           <b style="color:rgb(0, 191, 166)">{{ notes.length }}</b>
+          -->
         </h5>
       </div>
       <div class="col-md-6">
       <div class="row" >
         <input type="text" style="border: 1px solid #075E54" v-model="searchTerm" placeholder="Search notes keyword..." class="form-control mb-4" />
       </div>
-      <!--
-        <div class="row align-items-end">
-          <div class="col-md-5">
-            <div class="form-group">
-            <input type="date" id="startDate" v-model="startDate" class="form-control" />
-            </div>
-          </div>
-          <div class="col-md-5">
-            <div class="form-group">
-            <input type="date" id="endDate" v-model="endDate" class="form-control" />
-            </div>
-          </div>
-        </div>
-      -->
+      
       </div>
     </div>
   </div>
@@ -303,8 +292,9 @@ export default {
       if (data.success) {
         const note = this.notes.find(n => n.id === noteId);
         if (note) {
+          // Update the local state for the like
           note.liked = !currentlyLiked;
-          note.likeCount = data.count; // Update the like count in the UI
+          note.likeCount = data.count;
         }
       }
     } catch (error) {

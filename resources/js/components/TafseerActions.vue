@@ -8,7 +8,6 @@
           data-bs-placement="top"
           title="Write a note"
           @click="$emit('open-modal', 'tafseerNote')"
-          
         ></i>
       </div>
       <div class="icon-container">
@@ -35,7 +34,7 @@
         @folder-selected="handleFolderSelected"
       />
       <div class="icon-container">
-        <CopyTafseerText :textToCopy="tafseer" />
+        <CopyTafseerText :textToCopy="tafseer" :iconColor="iconColor"/>
       </div>
       <div class="icon-container">
         <i

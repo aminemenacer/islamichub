@@ -12,8 +12,12 @@
         ></i>
       </div>
       <div class="icon-container">
-        <WhatsAppShareTranslation :translationToShare="translation" :iconColor="iconColor" />
-      </div>
+        <WhatsAppShareTranslation 
+            :translationToShare="translation" 
+            :iconColor="iconColor" 
+            
+        />
+        </div>
       <div class="icon-container">
         <TwitterShareTranslation
           :targetElementRef="targetTranslationRef"
@@ -67,7 +71,6 @@ export default {
     components: {
         TranslationNote,
         WhatsAppShareTranslation,
-        WhatsAppShareTafseer,
         TwitterShareTranslation,
         CopyTranslationText,
         FolderSelectionModal,
@@ -77,31 +80,20 @@ export default {
             type: String,
             required: true,
         },
-        targetTranslationRef: {
-            type: String,
-            required: true,
-        },
-        tafseer: {
-            type: String,
-            required: true,
-        },
-        information: {
-            type: Object,
-            required: true,
-        },
-        iconColor: {
-            type: String,
-            default: 'rgba(0, 191, 166)'
-        }
+        
     },
-    emits: ["open-modal", "submit-form"],
+    emits: ['openModal', 'submitForm', 'toggleFullScreen'],
     data() {
         return {
             downloadUrl: "",
             selectedFolderId: null,
+            targetTranslationElement:null,
         };
     },
     methods: {
+        shareTextViaWhatsApp() {
+            this.$emit("share-whatsapp", this.translation);
+        },
         openFolderSelectionModal() {
             // Reference the modal via ref and call its method
             if (this.$refs.folderSelectionModal) {
@@ -124,7 +116,6 @@ export default {
                 );
                 return;
             }
-
             setTimeout(() => {
                 html2canvas(targetTranslationElement).then((canvas) => {
                     const dataUrl = canvas.toDataURL("image/png");
@@ -147,9 +138,6 @@ export default {
         },
         handleFolderSelected(folderId) {
             console.log("Folder selected:", folderId);
-        },
-        shareTextViaWhatsApp() {
-            this.$emit("share-whatsapp");
         },
         shareHeadingOnTwitter() {
             this.$emit("share-twitter");

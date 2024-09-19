@@ -15,7 +15,21 @@ class NotesController extends Controller
 
     public function showGroupNotes()
     {
-        return view('group_notes');
+        $allNotes = Note::all();
+        $groupNotes = Note::where('option', 0)->get(); 
+        return view('group_notes', ['notes' => $groupNotes]);
+
+         // Add debugging information
+         $debug = [
+            'allNotesCount' => $allNotes->count(),
+            'groupNotesCount' => $groupNotes->count(),
+            'firstGroupNote' => $groupNotes->first(),
+        ];
+
+        return view('group_notes', [
+            'notes' => $groupNotes,
+            'debug' => $debug,
+        ]);
     }
 
     public function getNotes()
@@ -32,13 +46,13 @@ class NotesController extends Controller
         return response()->json(['notes' => $notes]);
     }
 
+    
 
     public function fetchNotes()
     {
         // Fetch public notes (option = 0)
         $publicNotes = Note::where('option', 0)->get();
 
-        // Check if the query returns notes
         if ($publicNotes->isEmpty()) {
             return response()->json(['message' => 'No public notes found'], 404);
         }
