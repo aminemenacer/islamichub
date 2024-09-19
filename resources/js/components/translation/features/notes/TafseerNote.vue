@@ -35,22 +35,40 @@
       <!-- Audio Recording Mode -->
       <div v-if="inputMode === 'audio'">
        <!-- Start Button -->
-       <button type="button" class="btn btn-success" @click="startRecognition" :disabled="isListening">
-        Start Recording
-       </button>
+        <button
+          type="button"
+          class="btn btn-success me-2"
+          @click="startRecognition"
+          :disabled="isListening"
+        >
+          <i class="bi bi-play-circle"></i> Start Recording
+        </button>
 
        <!-- Pause Button -->
-       <button type="button" class="btn btn-warning" @click="pauseRecognition" :disabled="!isListening">
-        Pause Recording
-       </button>
+        <button
+          type="button"
+          class="btn btn-warning me-2"
+          @click="pauseRecognition"
+          :disabled="!isListening"
+        >
+          <i class="bi bi-pause-circle"></i> Pause Recording
+        </button>
 
        <!-- Stop Button -->
-       <button type="button" class="btn btn-secondary" @click="stopRecognition" :disabled="!isListening && !isPaused">
-        Stop Recording
-       </button>
-       <!-- Status -->
-       <p v-if="isListening">Listening...</p>
-       <p v-if="isPaused">Paused...</p>
+        <button
+          type="button"
+          class="btn btn-danger"
+          @click="stopRecognition"
+          :disabled="!isListening && !isPaused"
+        >
+          <i class="bi bi-stop-circle"></i> Stop Recording
+        </button>
+
+        <!-- Status -->
+      <div class="mt-3">
+        <p v-if="isListening" class="text-success">Listening...</p>
+        <p v-if="isPaused" class="text-warning">Paused...</p>
+      </div>
 
        <textarea v-model="form.ayah_notes" class="form-control pb-2" rows="5" placeholder="Your speech will appear here..." :readonly="isListening || isPaused"></textarea>
       </div>
@@ -121,62 +139,63 @@ export default {
   this.initRecognition();
  },
  methods: {
-
   initRecognition() {
-   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-   if (!SpeechRecognition) {
-    alert('Your browser does not support Speech Recognition.');
-    return;
-   }
-
-   this.recognition = new SpeechRecognition();
-   this.recognition.lang = 'en-US';
-   this.recognition.interimResults = false;
-   this.recognition.maxAlternatives = 1;
-
-   this.recognition.onresult = (event) => {
-    const result = event.results[0][0].transcript;
-    this.form.ayah_notes += result + '\n';
-   };
-
-   this.recognition.onerror = (event) => {
-    console.error('Speech Recognition Error:', event.error);
-   };
-
-   this.recognition.onend = () => {
-    if (!this.isPaused) {
-     this.isListening = false;
+    if (!SpeechRecognition) {
+      alert('Your browser does not support Speech Recognition.');
+      return;
     }
-   };
+
+    this.recognition = new SpeechRecognition();
+    this.recognition.lang = 'en-US';
+    this.recognition.interimResults = false;
+    this.recognition.maxAlternatives = 1;
+
+    this.recognition.onresult = (event) => {
+      const result = event.results[0][0].transcript;
+      this.form.ayah_notes += result + '\n';
+    };
+
+    this.recognition.onerror = (event) => {
+      console.error('Speech Recognition Error:', event.error);
+    };
+
+    this.recognition.onend = () => {
+      if (!this.isPaused) {
+        this.isListening = false;
+      }
+    };
   },
   startRecognition() {
-   if (!this.recognition) {
-    this.initRecognition();
-   }
-   if (this.isPaused) {
-    this.isPaused = false;
-    this.isListening = true;
-    this.recognition.start();
-   } else {
-    this.form.ayah_notes = ''; // Clear previous transcript only on fresh start
-    this.recognition.start();
-    this.isListening = true;
-   }
+    if (!this.recognition) {
+      this.initRecognition();
+    }
+    if (this.isPaused) {
+      this.isPaused = false;
+      this.isListening = true;
+      this.recognition.start();
+    } else {
+      this.form.ayah_notes = ''; // Clear previous transcript only on fresh start
+      this.recognition.start();
+      this.isListening = true;
+    }
   },
+
   pauseRecognition() {
-   if (this.recognition && this.isListening) {
-    this.recognition.stop();
-    this.isListening = false;
-    this.isPaused = true;
-   }
+    if (this.recognition && this.isListening) {
+      this.recognition.stop(); // Just stop recognition, don't clear the text
+      this.isListening = false;
+      this.isPaused = true;
+    }
   },
+
   stopRecognition() {
-   if (this.recognition && (this.isListening || this.isPaused)) {
-    this.recognition.abort(); // Abort instead of stop to completely stop and reset recognition
-    this.isListening = false;
-    this.isPaused = false;
-   }
+    if (this.recognition && (this.isListening || this.isPaused)) {
+      this.recognition.abort(); // Abort instead of stop to completely stop and reset recognition
+      this.isListening = false;
+      this.isPaused = false;
+    }
   },
   createNote() {
    const formData = {

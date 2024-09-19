@@ -15,14 +15,13 @@
         <WhatsAppShareTranslation 
             :translationToShare="translation" 
             :iconColor="iconColor" 
-            
         />
         </div>
-      <div class="icon-container">
+        <div class="icon-container">
         <TwitterShareTranslation
-          :targetElementRef="targetTranslationRef"
-          :translationText="translation"
-          :iconColor="iconColor"
+            :targetElementRef="targetTranslationRef"
+            :translationText="translation"
+            :iconColor="iconColor"
         />
       </div>
       <div class="icon-container">
@@ -92,7 +91,7 @@ export default {
     },
     methods: {
         shareTextViaWhatsApp() {
-            this.$emit("share-whatsapp", this.translation);
+            this.$emit('share-whatsapp');
         },
         openFolderSelectionModal() {
             // Reference the modal via ref and call its method

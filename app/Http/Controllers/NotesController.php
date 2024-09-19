@@ -15,50 +15,24 @@ class NotesController extends Controller
 
     public function showGroupNotes()
     {
-        $allNotes = Note::all();
-        $groupNotes = Note::where('option', 0)->get(); 
-        return view('group_notes', ['notes' => $groupNotes]);
-
-         // Add debugging information
-         $debug = [
-            'allNotesCount' => $allNotes->count(),
-            'groupNotesCount' => $groupNotes->count(),
-            'firstGroupNote' => $groupNotes->first(),
-        ];
-
-        return view('group_notes', [
-            'notes' => $groupNotes,
-            'debug' => $debug,
-        ]);
+        return view('group_notes');
     }
 
-    public function getNotes()
+    public function getNotes($userId)
     {
-        $notes = Note::withCount('likes')->get()->map(function($note) {
-            return [
-                'id' => $note->id,
-                'title' => $note->title,
-                'liked' => $note->likes()->where('user_id', auth()->id())->exists(),
-                'likeCount' => $note->likes_count,
-            ];
-        });
-
-        return response()->json(['notes' => $notes]);
+        $notes = Note::where('user_id', $userId)->orderBy('created_at', 'desc')->get();
+        return response()->json($notes);
     }
-
-    
 
     public function fetchNotes()
     {
-        // Fetch public notes (option = 0)
-        $publicNotes = Note::where('option', 0)->get();
-
-        if ($publicNotes->isEmpty()) {
-            return response()->json(['message' => 'No public notes found'], 404);
-        }
+        $publicNotes = Note::where('option', 0)->orderBy('created_at', 'desc')->get();
 
         return response()->json($publicNotes);
     }
+
+
+
 
     public function store(Request $request)
     {

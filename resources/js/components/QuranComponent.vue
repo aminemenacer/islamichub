@@ -168,22 +168,7 @@
        <!-- Tafseer Section -->
       <div class="tab-pane content" id="profile" role="tabpanel" v-if="information != null">
         <div >
-        <!--
-         <div class="icon-container w-100 hide-on-mobile pb-2">
-          <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('tafseerNote')" style="color: rgba(0, 191, 166);cursor:pointer">
-          </i>
-          <TafseerNote ref="tafseerNote" :information="tafseer" />
-          <WhatsAppShareTafseer :tafseerToShare="tafseer" />
-          <TwitterShareTafseer :targetElementRef="'targetElement'" :tafseerText="tafseer" />
-          <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
-          <CopyTafseerText :textToCopy="tafseer" />
-          <ScreenTafseerCapture :targetTafseerRef="'targetTafseerElement'" />
-
-          <i class="bi bi-paint-bucket h2" style="color: rgb(0, 191, 166); cursor: pointer;" @click="showModal"></i>
-          <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h3" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;"></i>
-          <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
-         </div>
-        -->
+     
          <!-- desktop top features -->
           <div :style="iconStyle">
             <div class="col pb-2">
@@ -192,10 +177,22 @@
             <div v-if="isOpen" class="icon-container-fluid hide-on-mobile ">
               <div class=" text-center">
                 <div  class="row pt-2">
-                  <div class="col"><i  class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('tafseerNote')" ></i></div>
-                  <div class="col"><WhatsAppShareTafseer :tafseerToShare="information.tafseer" /></div>
-                  <div class="col"><TwitterShareTafseer  :targetElementRef="'targetElement'" :tafseerText="information.tafseer" /></div>
-                  <div class="col"><i @click="submitForm"  class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" ></i></div>
+                  <div class="col">
+                  <i  class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('tafseerNote')" ></i></div>
+                  <div class="col">
+                    <WhatsAppShareTranslation 
+                      :targetElementRef="'targetElement'" 
+                      :translationToShare="information.translation" 
+                    />
+                  </div>
+                  <div class="col">
+                    <TwitterShareTranslation  
+                      :targetElementRef="'targetElement'" 
+                      :translationText="information.translation" 
+                    />
+                  </div>                
+                <div class="col">
+                  <i @click="submitForm"  class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" ></i></div>
                   <div class="col"><CopyTafseerText  :textToCopy="information.tafseer" /></div>
                   <div class="col"><ScreenTafseerCapture  :targetTafseerRef="'targetTafseerElement'" /></div>
                   <div class="col"><PdfDownloadTafsser  :targetTafseerRef="'targetTafseerElement'" class="h3"/></div>

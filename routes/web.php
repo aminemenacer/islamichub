@@ -80,10 +80,26 @@ Route::middleware(['auth'])->group(function () {
 Route::post('/notes/store', [NotesController::class, 'store'])->middleware('auth');
 
 
-Route::get('/fetch_notes', [NotesController::class, 'fetchNotes']); // Publicly fetch notes
+Route::get('/fetch-notes', [NotesController::class, 'fetchNotes']); // Publicly fetch notes
 
 Route::get('/notes', [NotesController::class, 'showNotes']);
 Route::get('/group_notes', [NotesController::class, 'showGroupNotes']);
+Route::get('/fetch-notes', [NotesController::class, 'fetchNotes']); // Ensure this is also open
+
+
+
+Route::get('/test-fetch-notes', function () {
+    $publicNotes = App\Models\Note::where('option', 0)->orderBy('created_at', 'desc')->get();
+    return response()->json($publicNotes);
+});
+
+
+
+
+
+
+
+
 Route::get('/ayahs', [QuranController::class, 'index']);
 
 //join us

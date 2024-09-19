@@ -61,45 +61,42 @@
 
   <!-- Notes Container -->
   <div class="container container-notes">
-   <div class="row collage">
-    <div class="collage-item mb-4" v-for="note in filteredNotes" :key="note.id">
-     <!-- Note Card -->
-     <div class="card" style="border-radius:8px; padding:4px; background:white; border: 2px solid rgba(0, 191, 166);">
-      <div class="card-body">
-       <!-- Note details -->
-       <div>
-        <h5><strong>Surah Name:</strong></h5>
-        <p v-html="highlightText(note.surah_name)"></p>
-       </div>
-       <div class="mt-2">
-        <h5><strong>Note:</strong></h5>
-        <p v-html="highlightText(truncatedHtml(note.ayah_notes))"></p>
-       </div>
-       <h5><strong>Date created:</strong></h5>
-       <p>{{ formatDate(note.created_at) }}</p>
-       <hr />
-       <div class="container text-center">
-        <div class="row">
-         
-         <div class="col">
-          <i class="bi bi-eye h3" style="cursor: pointer;" @click="viewModal(note)" data-bs-toggle="modal" data-bs-target="#viewNotes"></i>
-         </div>
-         
-         <div class="col">
-          <i class="h4" :class="getIconClass(note.liked)" @click="toggleLike(note.id, note.liked)"></i>
-          <span class="ms-2">{{ note.likeCount }}</span>
-         </div>
-         <div class="col">
-          <i class="bi bi-whatsapp h4 me-3 text-center" style="cursor: pointer;" @click="shareViaWhatsapp(note)"></i>
-         </div>
+    <div class="row collage">
+      <div class="collage-item mb-4" v-for="note in filteredNotes" :key="note.id">
+        <!-- Note Card -->
+        <div class="card" style="border-radius:8px; padding:4px; background:white; border: 2px solid rgba(0, 191, 166);">
+          <div class="card-body">
+            <div>
+              <h5><strong>Surah Name:</strong></h5>
+              <p v-html="highlightText(note.surah_name)"></p>
+            </div>
+            <div class="mt-2">
+              <h5><strong>Note:</strong></h5>
+              <p v-html="highlightText(truncatedHtml(note.ayah_notes))"></p>
+            </div>
+            <h5><strong>Date created:</strong></h5>
+            <p>{{ formatDate(note.created_at) }}</p>
+            <hr />
+            <div class="container text-center">
+              <div class="row">
+                <div class="col">
+                  <i class="bi bi-eye h3" style="cursor: pointer;" @click="viewModal(note)" data-bs-toggle="modal" data-bs-target="#viewNotes"></i>
+                </div>
+                <div class="col">
+                  <i class="h4" :class="getIconClass(note.liked)" @click="toggleLike(note.id, note.liked)"></i>
+                  <span class="ms-2">{{ note.likeCount }}</span>
+                </div>
+                <div class="col">
+                  <i class="bi bi-whatsapp h4 me-3 text-center" style="cursor: pointer;" @click="shareViaWhatsapp(note)"></i>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-       </div>
-
       </div>
-     </div>
     </div>
-   </div>
   </div>
+
 
   <!-- View Note Modal -->
 <div class="modal fade" id="viewNotes" tabindex="-1" aria-labelledby="viewNotesLabel" aria-hidden="true">
@@ -156,7 +153,8 @@ export default {
  },
  data() {
   return {
-  selectedFilter: this.getStoredFilter() || '',
+   notes: [],
+   selectedFilter: this.getStoredFilter() || '',
    searchTerm: "",
    startDate: '',
    endDate: '',
@@ -302,28 +300,21 @@ export default {
     }
   },
   async fetchNotes() {
-   try {
-    const response = await fetch(`/fetch-notes`);
-    console.log("Raw response:", response); // Log full response
+      try {
+        const response = await fetch(`/fetch-notes`);
 
-    if (!response.ok) {
-     throw new Error("Network response was not ok");
-    }
+        if (!response.ok) {
+          throw new Error("Failed to fetch notes");
+        }
 
-    // Log the response type (ensure it's JSON)
-    const contentType = response.headers.get("content-type");
-    if (!contentType || !contentType.includes("application/json")) {
-     throw new TypeError("Expected JSON but received " + contentType);
-    }
+        const data = await response.json();
+        console.log("Fetched notes:", data); // Check data in the console
 
-    const data = await response.json();
-    console.log("Fetched notes:", data); // Add this line to see what data is returned
-
-    this.notes = data;
-   } catch (error) {
-    console.error("There was a problem with the fetch operation:", error);
-   }
-  },
+        this.notes = data; // Bind the fetched data to the 'notes' property
+      } catch (error) {
+        console.error("Error fetching notes:", error);
+      }
+    },
   viewModal(note) {
     // Populate the form data with the selected note's data
     this.form.surah_name = note.surah_name;
