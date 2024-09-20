@@ -12,16 +12,7 @@
           
         ></i>
       </div>
-      <div class="icon-container">
-        <WhatsAppShareTransliteration :transliterationToShare="transliteration" :iconColor="iconColor" />
-      </div>
-      <div class="icon-container">
-        <TwitterShareTransliteration
-          :targetElementRef="targetTransliterationRef"
-          :transliterationText="transliteration"
-          :iconColor="iconColor"
-        />
-      </div>
+      
       <div class="icon-container">
         <i
           @click="openFolderSelectionModal"

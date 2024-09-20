@@ -31,9 +31,6 @@ class NotesController extends Controller
         return response()->json($publicNotes);
     }
 
-
-
-
     public function store(Request $request)
     {
         $validatedData = $request->validate([

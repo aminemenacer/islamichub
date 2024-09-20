@@ -11,16 +11,6 @@
         ></i>
       </div>
       <div class="icon-container">
-        <WhatsAppShareTafseer :tafseerToShare="tafseer" :iconColor="iconColor" />
-      </div>
-      <div class="icon-container">
-        <TwitterShareTafseer
-          :targetElementRef="targetTafseerRef"
-          :tafseerText="tafseer"
-          :iconColor="iconColor"
-        />
-      </div>
-      <div class="icon-container">
         <i
           @click="openFolderSelectionModal"
           class="bi bi-bookmark h4"
@@ -34,7 +24,7 @@
         @folder-selected="handleFolderSelected"
       />
       <div class="icon-container">
-        <CopyTafseerText :textToCopy="tafseer" :iconColor="iconColor"/>
+        <CopyTafseerText :textToCopy="tafseer" />
       </div>
       <div class="icon-container">
         <i
@@ -65,8 +55,7 @@ export default {
  name: 'TafseerActions',
  components: {
   TafseerNote,
-  WhatsAppShareTafseer,
-  TwitterShareTafseer,
+  
   CopyTafseerText,
   ScreenTafseerCapture,
   PdfDownload
@@ -109,12 +98,7 @@ export default {
     });
    }, 2);
   },
-  shareTextViaWhatsApp() {
-   this.$emit('share-whatsapp');
-  },
-  shareHeadingOnTwitter() {
-   this.$emit('share-twitter');
-  },
+  
   submitForm() {
    this.$emit('bookmark');
   },

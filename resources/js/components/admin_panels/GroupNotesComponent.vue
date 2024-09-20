@@ -300,21 +300,21 @@ export default {
     }
   },
   async fetchNotes() {
-      try {
-        const response = await fetch(`/fetch-notes`);
+    try {
+      const response = await fetch(`/fetch-notes`);
 
-        if (!response.ok) {
-          throw new Error("Failed to fetch notes");
-        }
-
-        const data = await response.json();
-        console.log("Fetched notes:", data); // Check data in the console
-
-        this.notes = data; // Bind the fetched data to the 'notes' property
-      } catch (error) {
-        console.error("Error fetching notes:", error);
+      if (!response.ok) {
+        throw new Error("Failed to fetch notes");
       }
-    },
+
+      const data = await response.json();
+      console.log("Fetched notes:", data); // Check data in the console
+
+      this.notes = data; // Bind the fetched data to the 'notes' property
+    } catch (error) {
+      console.error("Error fetching notes:", error);
+    }
+  },
   viewModal(note) {
     // Populate the form data with the selected note's data
     this.form.surah_name = note.surah_name;

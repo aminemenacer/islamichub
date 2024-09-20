@@ -130,7 +130,7 @@
             </div>                      
           </div>
           
-         <!-- mobile top Features  ---->
+         <!-- mobile navigation  ---->
          <div class="dropdown mobile-only pb-2">
           <div :style="iconStyle" class="icon-container">
            <i class="bi bi-chevron-bar-left h4"  @click="goToFirstAyah()" title="Last verse"></i>
@@ -916,6 +916,8 @@ computed: {
     }
 },
  methods: {
+  
+
    toggleContent1() {
       this.isVisible1 = !this.isVisible1; // Toggle the visibility
     },

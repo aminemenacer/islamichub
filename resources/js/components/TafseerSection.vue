@@ -6,8 +6,8 @@
     <MainAyah :information="information" />
       <div ref="heading1" class="text-left">
         <h4 class="text-left ayah-translation" style="line-height: 1.6em">
-          {{ expanded ? information.translation : truncatedText(information.translation) }}
-          <template v-if="information.translation.length > 100">
+          {{ expanded ? information.tafseer : truncatedText(information.tafseer) }}
+          <template v-if="information.tafseer.length > 100">
             <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
           </template>
         </h4>
@@ -20,6 +20,21 @@
         :showAlertTextNote="showAlertTextNote" 
         @close-alert-text="closeAlertText" 
       />
+    </div>
+    <!-- WhatsApp Share Button -->
+    <div class="row mobile-only">
+      <div class="col-6 pr-2"> <!-- Add right padding to create space between the buttons -->
+        <button @click="shareOnWhatsApp" class="btn btn-sm btn-success w-100 d-flex align-items-center justify-content-center">
+          <i style="color:white" class="bi bi-whatsapp h4"></i>
+          <span>Share via WhatsApp</span>
+        </button>
+      </div>
+      <div class="col-6 pl-2"> <!-- Add left padding to create space between the buttons -->
+        <button @click="shareOnTwitter" class="btn btn-sm btn-dark w-100 d-flex align-items-center justify-content-center">
+          <i style="color:white" class="bi bi-twitter-x mr-2 h4"></i>
+          <span>Share via X</span>
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -50,6 +65,30 @@ export default {
     };
   },
   methods: {
+  shareOnWhatsApp() {
+    // const ayahInfo = this.tafseer.ayahInfo || "No Ayah Info available"; // Fallback message
+    const mainAyah = this.tafseer.mainAyah || "No Main Ayah available"; // Fallback message
+    const ayahTafseer = this.expanded ? this.information.tafseer : this.truncatedText(this.information.tafseer);
+    
+    const message = `
+      Tafseer: ${ayahTafseer}
+    `;
+    
+    const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+  },
+  shareOnTwitter() {
+    // const ayahInfo = this.information.ayahInfo || "No Ayah Info available"; // Fallback message
+    // const mainAyah = this.information.mainAyah || "No Main Ayah available"; // Fallback message
+    const ayahTafseer = this.expanded ? this.information.tafseer : this.truncatedText(this.information.tafseer);
+    
+    const message = `
+      Tafseer: ${ayahTafseer}
+    `;
+    
+    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+  },
     toggleFullScreen() {
       this.$emit('toggle-full-screen');
     },
@@ -96,14 +135,25 @@ export default {
 }
 
 .btn {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+ display: flex;
+ justify-content: flex-end;
+ align-items: center;
+}
+
+.mobile-only {
+  display: none; /* Hide by default */
+}
+
+@media (max-width: 768px) { /* Adjust this width as needed for your breakpoint */
+  .mobile-only {
+    display: flex; /* Show only on mobile */
+  }
 }
 
 @media (max-width: 576px) {
  .mobile-only {
   display: block;
+  display: flex; 
  }
 
  .hide-on-mobile {

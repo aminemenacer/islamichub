@@ -21,6 +21,21 @@
         @close-alert-text="closeAlertText" 
       />
     </div>
+    <!-- WhatsApp Share Button -->
+    <div class="row mobile-only">
+      <div class="col-6 pr-2"> <!-- Add right padding to create space between the buttons -->
+        <button @click="shareOnWhatsApp" class="btn btn-sm btn-success w-100 d-flex align-items-center justify-content-center">
+          <i style="color:white" class="bi bi-whatsapp h4"></i>
+          <span>Share via WhatsApp</span>
+        </button>
+      </div>
+      <div class="col-6 pl-2"> <!-- Add left padding to create space between the buttons -->
+        <button @click="shareOnTwitter" class="btn btn-sm btn-dark w-100 d-flex align-items-center justify-content-center">
+          <i style="color:white" class="bi bi-twitter-x mr-2 h4"></i>
+          <span>Share via X</span>
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -73,6 +88,34 @@ export default {
     }
   },
   methods: {
+    shareOnWhatsApp() {
+      const ayahInfo = this.information.ayahInfo || "No Ayah Info available"; // Fallback message
+      const mainAyah = this.information.mainAyah || "No Main Ayah available"; // Fallback message
+      const ayahTransliteration = this.expanded ? this.information.transliteration : this.truncatedText(this.information.transliteration);
+      
+      const message = `
+        Ayah Info: ${ayahInfo}
+        Main Ayah: ${mainAyah}
+        Transliteration: ${ayahTransliteration}
+      `;
+      
+      const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank');
+    },
+    shareOnTwitter() {
+      const ayahInfo = this.information.ayahInfo || "No Ayah Info available"; // Fallback message
+      const mainAyah = this.information.mainAyah || "No Main Ayah available"; // Fallback message
+      const ayahTransliteration = this.expanded ? this.information.transliteration : this.truncatedText(this.information.transliteration);
+      
+      const message = `
+        Ayah Info: ${ayahInfo}
+        Main Ayah: ${mainAyah}
+        Transliteration: ${ayahTransliteration}
+      `;
+      
+      const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank');
+    },
     toggleFullScreen() {
       this.$emit('toggle-full-screen');
     },
@@ -119,18 +162,29 @@ export default {
 }
 
 .btn {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+ display: flex;
+ justify-content: flex-end;
+ align-items: center;
+}
+
+.mobile-only {
+  display: none; /* Hide by default */
+}
+
+@media (max-width: 768px) { /* Adjust this width as needed for your breakpoint */
+  .mobile-only {
+    display: flex; /* Show only on mobile */
+  }
 }
 
 @media (max-width: 576px) {
-  .mobile-only {
-    display: block;
-  }
+ .mobile-only {
+  display: block;
+  display: flex; 
+ }
 
-  .hide-on-mobile {
-    display: none;
-  }
+ .hide-on-mobile {
+  display: none;
+ }
 }
 </style>

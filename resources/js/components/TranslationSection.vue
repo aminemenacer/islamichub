@@ -17,6 +17,22 @@
   <Translator translator="Ahmed Ali" />
   <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
  </div>
+  <!-- WhatsApp Share Button -->
+  <div class="row mobile-only">
+    <div class="col-6 pr-2"> <!-- Add right padding to create space between the buttons -->
+      <button @click="shareOnWhatsApp" class="btn btn-sm btn-success w-100 d-flex align-items-center justify-content-center">
+        <i style="color:white" class="bi bi-whatsapp h4"></i>
+        <span>Share via WhatsApp</span>
+      </button>
+    </div>
+    <div class="col-6 pl-2"> <!-- Add left padding to create space between the buttons -->
+      <button @click="shareOnTwitter" class="btn btn-sm btn-dark w-100 d-flex align-items-center justify-content-center">
+        <i style="color:white" class="bi bi-twitter-x mr-2 h4"></i>
+        <span>Share via X</span>
+      </button>
+    </div>
+  </div>
+  
 </div>
 </template>
 
@@ -43,6 +59,7 @@ export default {
    type: Object,
    required: true
   },
+  
   isFullScreen: {
    type: Boolean,
    default: false
@@ -78,7 +95,37 @@ export default {
   }
  },
  methods: {
-  
+   setAyahText(text) {
+      this.ayahText = text; // Capture the ayah text from the child component
+    },
+  shareOnWhatsApp() {
+    const ayahInfo = this.information.ayahInfo || "No Ayah Info available"; // Fallback message
+    const mainAyah = this.information.mainAyah || "No Main Ayah available"; // Fallback message
+    const ayahTranslation = this.expanded ? this.information.translation : this.truncatedText(this.information.translation);
+    
+    const message = `
+      Ayah Info: ${ayahInfo}
+      Main Ayah: ${mainAyah}
+      Translation: ${ayahTranslation}
+    `;
+    
+    const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+  },
+  shareOnTwitter() {
+    const ayahInfo = this.information.ayahInfo || "No Ayah Info available"; // Fallback message
+    const mainAyah = this.information.mainAyah || "No Main Ayah available"; // Fallback message
+    const ayahTranslation = this.expanded ? this.information.translation : this.truncatedText(this.information.translation);
+    
+    const message = `
+      Ayah Info: ${ayahInfo}
+      Main Ayah: ${mainAyah}
+      Translation: ${ayahTranslation}
+    `;
+    
+    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+  },
   toggleFullScreen() {
    this.$emit('toggle-full-screen');
   },
@@ -131,9 +178,20 @@ export default {
  align-items: center;
 }
 
+.mobile-only {
+  display: none; /* Hide by default */
+}
+
+@media (max-width: 768px) { /* Adjust this width as needed for your breakpoint */
+  .mobile-only {
+    display: flex; /* Show only on mobile */
+  }
+}
+
 @media (max-width: 576px) {
  .mobile-only {
   display: block;
+  display: flex; 
  }
 
  .hide-on-mobile {

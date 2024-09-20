@@ -11,7 +11,11 @@ export default {
     information: {
       type: Object,
       required: true
-    }
+    },
+    styleObject: Object
+  },
+  mounted() {
+    this.$emit('ayah-text', this.information.ayah.ayah_text);
   },
   computed: {
     styleObject() {
