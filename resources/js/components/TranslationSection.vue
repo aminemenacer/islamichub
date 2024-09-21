@@ -1,6 +1,8 @@
 <template>
-<div ref="targetTranslationElement" class="w-100 my-element" :class="{'full-screen': isFullScreen}">
+<div class="w-100 my-element" :class="{'full-screen': isFullScreen}">
+<div >
  <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
+ <div ref="targetTranslationElement">
  <AyahInfo :information="information" />
  <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
   <MainAyah :information="information"  />
@@ -17,22 +19,23 @@
   <Translator translator="Ahmed Ali" />
   <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
  </div>
+ </div>
+</div>
   <!-- WhatsApp Share Button -->
-  <div class="row mobile-only">
+  <div class="row mobile-only" style="color:white">
     <div class="col-6 pr-2"> <!-- Add right padding to create space between the buttons -->
       <button @click="shareOnWhatsApp" class="btn btn-sm btn-success w-100 d-flex align-items-center justify-content-center">
-        <i style="color:white" class="bi bi-whatsapp h4"></i>
-        <span>Share via WhatsApp</span>
+        <i class="bi bi-whatsapp pt-2 h3"></i>
+        <div style="font-size:13px">Share via WhatsApp</div>
       </button>
     </div>
     <div class="col-6 pl-2"> <!-- Add left padding to create space between the buttons -->
       <button @click="shareOnTwitter" class="btn btn-sm btn-dark w-100 d-flex align-items-center justify-content-center">
-        <i style="color:white" class="bi bi-twitter-x mr-2 h4"></i>
-        <span>Share via X</span>
+        <i class="bi bi-twitter-x pt-2 mr-2 h3"></i>
+        <span style="font-size:13px">Share via X</span>
       </button>
     </div>
   </div>
-  
 </div>
 </template>
 

@@ -67,6 +67,16 @@
   <div class="card content" >
     <div class="content" >
      <div class="container-fluid content" v-if="information != null">
+
+      <button @click="surpriseMe">Surprise Me</button>
+      <div v-if="selectedSurah">
+        <h2>{{ selectedSurah.name_en }}</h2>
+        <p>{{ selectedAyah ? selectedAyah.ayah_text : 'Loading...' }}</p>
+        <p>{{ information.translation || 'Translation not available' }}</p>
+        <p>{{ information.transliteration || 'Transliteration not available' }}</p>
+      </div>
+
+
       <NavTabs />
 
       <!-- Surah info Modal -->
@@ -703,6 +713,13 @@ props: ['information', 'selectedFolderId'],
  data() {
 
   return {
+    surat: [], // Holds all Surah data
+    ayat: [], // Holds all Ayah data
+    tafseers: [], // Holds all Tafseer data
+    selectedSurah: null,
+    selectedAyah: null,
+    selectedTafseer: null,
+
     bookmarkSubmitted: false, // Set initial state
     selectedFolderId: null,
     isVisible1: false,
@@ -815,6 +832,7 @@ props: ['information', 'selectedFolderId'],
     translation: '',
     transliteration: '', // Example translated text
    },
+   selectedSurahIndex: null,
    
    tafseer: '',
    //custom surah collection
@@ -828,6 +846,9 @@ props: ['information', 'selectedFolderId'],
    surat: [],
    ayat: [],
    tafseers: [],
+   currentSurah: null,
+  currentVerse: null,
+   currentTafseer: '',
    // storage
    information: null,
    tafseer: null,
@@ -868,6 +889,9 @@ props: ['information', 'selectedFolderId'],
    showErrorAlert: false,
    showAlertTextNote: false,
    maxLength: 400,
+
+   
+
   
 
    // correction modal
@@ -916,8 +940,81 @@ computed: {
     }
 },
  methods: {
-  
+   async surpriseMe() {
+    if (this.surat.length === 0) {
+      console.error("Surah list is empty.");
+      return; // Exit if there are no surahs
+    }
 
+    const randomIndex = Math.floor(Math.random() * this.surat.length);
+    this.selectedSurah = this.surat[randomIndex];
+
+   // Fetch the Ayahs for the selected Surah
+    const response = await axios.get(`/surahs/${this.selectedSurah.id}/ayahs`);
+    
+    // Get a random ayah
+    if (response.data.length > 0) {
+      const randomAyahIndex = Math.floor(Math.random() * response.data.length);
+      this.selectedAyah = response.data[randomAyahIndex]; // Get a random ayah
+
+      // Fetch the translation for the selected Ayah
+      const translationResponse = await axios.get(`/surahs/${this.selectedSurah.id}/translations`); // Ensure this route exists
+
+      // Check if translations are available
+      if (translationResponse.data && translationResponse.data.length > 0) {
+        this.information.translation = translationResponse.data[0].translation || ''; // Get the first translation
+        this.information.transliteration = translationResponse.data[0].transliteration || ''; // Get the first transliteration
+      } else {
+        console.error("No translations found for the selected Ayah.");
+        this.information.translation = 'Translation not available';
+        this.information.transliteration = 'Transliteration not available';
+      }
+
+    } else {
+      console.error("No Ayahs found for the selected Surah.");
+      this.selectedAyah = null; // Set to null or handle as needed
+    }
+
+    // Fetch the translations
+    const translationResponse = await axios.get(`/ayahs/${this.selectedAyah.id}/translations`);
+    
+    // Check if translations are available
+    if (translationResponse.data && translationResponse.data.length > 0) {
+      // Select a random translation
+      const randomTranslationIndex = Math.floor(Math.random() * translationResponse.data.length);
+      this.information.translation = translationResponse.data[randomTranslationIndex].translation || '';
+      this.information.transliteration = translationResponse.data[randomTranslationIndex].transliteration || '';
+    } else {
+      console.error("No translations found for the selected Surah.");
+      this.information.translation = 'Translation not available';
+      this.information.transliteration = 'Transliteration not available';
+    }
+  },
+    async fetchSurahs() {
+      try {
+        const response = await fetch('/get_surat'); // Adjust the API endpoint as needed
+        this.surat = await response.json();
+      } catch (error) {
+        console.error('Error fetching surahs:', error);
+      }
+    },
+    async fetchRandomSurah() {
+      if (this.surat.length === 0) {
+        console.error('No surahs available');
+        return;
+      }
+
+      const randomIndex = Math.floor(Math.random() * this.surat.length);
+      this.selectedSurah = this.surat[randomIndex];
+
+      try {
+        const response = await fetch(`/api/ayah/${this.selectedSurah.id}`); // Fetch ayahs for the selected surah
+        const ayahs = await response.json();
+        this.selectedAyah = ayahs[Math.floor(Math.random() * ayahs.length)].ayah_text; // Randomly select an ayah
+      } catch (error) {
+        console.error('Error fetching ayahs:', error);
+      }
+    },
    toggleContent1() {
       this.isVisible1 = !this.isVisible1; // Toggle the visibility
     },

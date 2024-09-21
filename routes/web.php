@@ -184,6 +184,11 @@ Route::get('/get_informations', [SurahController::class, 'getInformations']);
 Route::get('/tafseer/{id}/fetch', [SurahController::class, 'getTafseers']);
 Route::post('/search', [SurahController::class, 'search'])->name('search');
 
+Route::get('/surahs/{id}/ayahs', [SurahController::class, 'getAyahsBySurah']);
+Route::get('/surahs/{id}/translations', [SurahController::class, 'getTranslationBySurah']); // Ensure this controller and method exist
+Route::get('/get_translation/{id}', [SurahController::class, 'getTranslationBySurah']);
+
+Route::get('/ayahs/{ayahId}/translations', [SurahController::class, 'getTranslationByAyah']);
 
 
 

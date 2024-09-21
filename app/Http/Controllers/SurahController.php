@@ -17,6 +17,62 @@ class SurahController extends Controller
         return response()->json($surat);
     }
 
+    public function getAyahsBySurah($surahId)
+    {
+        $surah = Surah::with('ayahs')->find($surahId); // Eager load the ayahs
+
+        if (!$surah) {
+            return response()->json(['error' => 'Surah not found'], 404);
+        }
+
+        return response()->json($surah->ayahs); // Return the ayahs
+    }
+
+    public function getTranslationBySurah($surahId)
+    {
+        // Fetch the Surah by ID
+        $surah = Surah::with('ayahs')->find($surahId);
+
+        if (!$surah) {
+            return response()->json(['error' => 'Surah not found'], 404);
+        }
+
+        // Assuming you want to get the translation and transliteration
+        return response()->json([
+            'translation' => $surah->translation, // Adjust based on your actual field names
+            'transliteration' => $surah->transliteration,
+            'ayahs' => $surah->ayahs,
+        ]);
+    }
+
+    public function getTranslationsForAyah($ayahId)
+    {
+        $ayah = Ayah::with('translations')->find($ayahId); // Ensure that 'translations' is a defined relationship in your Ayah model
+
+        if (!$ayah) {
+            return response()->json(['message' => 'Ayah not found'], 404);
+        }
+
+        return response()->json($ayah->translations);
+    }
+
+    public function getTranslationByAyah($ayahId)
+    {
+        $ayah = Ayah::find($ayahId);
+
+        if (!$ayah) {
+            return response()->json(['message' => 'Ayah not found'], 404);
+        }
+
+        // Assuming you have a Translation model linked to Ayah
+        $translation = $ayah->translations; // Adjust according to your actual relationship
+
+        return response()->json($translation);
+    }
+
+
+
+
     public function getAyat(Request $request)
     {
         $ayat = Ayah::where('surah_id', $request->surah_id)->get();

@@ -21,6 +21,7 @@
           
         ></i>
       </div>
+      
       <FolderSelectionModal
         ref="folderSelectionModal"
         :information="information"

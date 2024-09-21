@@ -21,7 +21,13 @@ class Surah extends Model
 
     public function ayat()
     {
-        return $this->hasMany(Ayah::class);
+        return $this->hasMany(Ayah::class, 'surah_id');
+    }
+
+    // Define the relationship
+    public function ayahs()
+    {
+        return $this->hasMany(Ayah::class, 'surah_id'); // Make sure 'surah_id' is the correct foreign key
     }
 
     public function surah()
