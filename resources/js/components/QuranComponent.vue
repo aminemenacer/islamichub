@@ -3,6 +3,9 @@
  <div class="pt-3 text-center">
   <Title v-if="information == null && dropdownHidden" />
   <search-form :surat="surat" @update-results="handleUpdateResults" @clear-results="handleClearResults" @select-surah="handleSelectSurah" />
+  <button @click="surpriseMe" v-if="information != null" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#example1Modal">
+    Suprise Me
+  </button>
   <custom-surah-selection :customSurat="customSuratList" v-model="selectedSurah"></custom-surah-selection>
  </div>
 
@@ -13,6 +16,9 @@
    <Donation />
    <div style="display:flex" class="row">
     <SurahDropdown class="col-md-12" :selectedSurah="selectedSurah" :filteredSurah="filteredSurah" :surat="surat" @update:selectedSurah="updateSelectedSurah" @change="getAyat" />
+    
+    
+    
     <!--
     <VerseModal class="col-md-2"/>
     -->
@@ -68,14 +74,28 @@
     <div class="content" >
      <div class="container-fluid content" v-if="information != null">
 
-      <button @click="surpriseMe">Surprise Me</button>
-      <div v-if="selectedSurah">
-        <h2>{{ selectedSurah.name_en }}</h2>
-        <p>{{ selectedAyah ? selectedAyah.ayah_text : 'Loading...' }}</p>
-        <p>{{ information.translation || 'Translation not available' }}</p>
-        <p>{{ information.transliteration || 'Transliteration not available' }}</p>
+     <!-- Modal -->
+<div class="modal fade" id="example1Modal" tabindex="-1" aria-labelledby="example1ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="example1ModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-
+      <div class="modal-body">
+        <div v-if="selectedSurah">
+          <h2>{{ selectedSurah.name_en }}</h2>
+          <p>{{ selectedAyah ? selectedAyah.ayah_text : 'Loading...' }}</p>
+          <p>{{ information.translation || 'Translation not available' }}</p>
+          <p>{{ information.transliteration || 'Transliteration not available' }}</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
       <NavTabs />
 
@@ -141,21 +161,36 @@
           </div>
           
          <!-- mobile navigation  ---->
-         <div class="dropdown mobile-only pb-2">
+        <div class="dropdown mobile-only pb-2">
           <div :style="iconStyle" class="icon-container">
-           <i class="bi bi-chevron-bar-left h4"  @click="goToFirstAyah()" title="Last verse"></i>
-           <i class="bi bi-arrow-left-circle h4"  @click="goToPreviousAyah()" title="Previous verse"></i>
-           <i class="bi bi-arrow-right-circle h4" @click="goToNextAyah()" title="Next verse"></i>
-           <i class="bi bi-chevron-bar-right h4" @click="goToLastAyah()" title="End verse"></i>
-           <i class="bi bi-paint-bucket h2"  @click="showModal"></i>
-           <i class="bi bi-arrows-fullscreen h6" @click="toggleFullScreen" title="Full screen"></i>
+            <i class="bi bi-chevron-bar-left h4" @click="goToFirstAyah()" title="Last verse"></i>
+            <i class="bi bi-arrow-left-circle h4" @click="goToPreviousAyah()" title="Previous verse"></i>
+            <i class="bi bi-arrow-right-circle h4" @click="goToNextAyah()" title="Next verse"></i>
+            <i class="bi bi-chevron-bar-right h4" @click="goToLastAyah()" title="End verse"></i>
+            <i class="bi bi-paint-bucket h2" @click="showModal"></i>
+            <i class="bi bi-arrows-fullscreen h6" @click="toggleFullScreen" title="Full screen"></i>
           </div>
-         </div>
+        </div>
 
         <!-- dropdown mobile content -->
         <div>
           <div class="pt-2" ref="targetTranslationElement" >
-          <TranslationSection  :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
+            <TranslationSection  
+              :information="information" 
+              :isFullScreen="isFullScreen" 
+              :expanded="expanded" 
+              :showMoreLink="showMoreLink" 
+              :showAlertText="showAlertText" 
+              :showAlert="showAlert" 
+              :showErrorAlert="showErrorAlert" 
+              :showAlertTextNote="showAlertTextNote" 
+              @toggle-full-screen="toggleFullScreen" 
+              @handle-touch-start="handleTouchStart" 
+              @handle-touch-move="handleTouchMove" 
+              @handle-touch-end="handleTouchEnd" 
+              @toggle-expand="toggleExpand" 
+              @close-alert-text="closeAlertText" 
+            />          
           </div>
           
           <div class="container-fluid text-center mobile-only">
