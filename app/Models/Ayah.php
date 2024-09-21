@@ -29,6 +29,11 @@ class Ayah extends Model
         return $this->hasMany(Information::class); // Adjust based on your database schema
     }
 
+    public function translation()
+    {
+        return $this->hasOne(Translation::class);
+    }
+
     public function ayah()
     {
         return $this->BelongsTo(Information::class,'ayah_id','id');

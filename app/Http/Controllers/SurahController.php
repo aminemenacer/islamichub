@@ -92,6 +92,14 @@ class SurahController extends Controller
         return response()->json($tafseer->tafseer);
     }
 
+    public function searchTranslations(Request $request)
+    {
+        $query = $request->input('query');
+        $results = Surah::where('text', 'like', '%' . $query . '%')->get();
+
+        return response()->json($results);
+    }
+
 
     public function search(Request $request)
     {

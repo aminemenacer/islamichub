@@ -190,6 +190,8 @@ Route::get('/get_translation/{id}', [SurahController::class, 'getTranslationBySu
 
 Route::get('/ayahs/{ayahId}/translations', [SurahController::class, 'getTranslationByAyah']);
 
+Route::get('/search-translations', [SurahController::class, 'searchTranslations']);
+
 
 
 // mailing list

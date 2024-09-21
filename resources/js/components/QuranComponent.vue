@@ -6,8 +6,12 @@
   <button @click="surpriseMe" v-if="information != null" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#example1Modal">
     Suprise Me
   </button>
+  
+
+   
   <custom-surah-selection :customSurat="customSuratList" v-model="selectedSurah"></custom-surah-selection>
- </div>
+ </div> 
+    
 
  <!-- accordion headers -->
  <div class="row container-fluid">
@@ -16,13 +20,6 @@
    <Donation />
    <div style="display:flex" class="row">
     <SurahDropdown class="col-md-12" :selectedSurah="selectedSurah" :filteredSurah="filteredSurah" :surat="surat" @update:selectedSurah="updateSelectedSurah" @change="getAyat" />
-    
-    
-    
-    <!--
-    <VerseModal class="col-md-2"/>
-    -->
-
     
     <AddBookmark />
     
@@ -74,28 +71,55 @@
     <div class="content" >
      <div class="container-fluid content" v-if="information != null">
 
-     <!-- Modal -->
-<div class="modal fade" id="example1Modal" tabindex="-1" aria-labelledby="example1ModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="example1ModalLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div v-if="selectedSurah">
-          <h2>{{ selectedSurah.name_en }}</h2>
-          <p>{{ selectedAyah ? selectedAyah.ayah_text : 'Loading...' }}</p>
-          <p>{{ information.translation || 'Translation not available' }}</p>
-          <p>{{ information.transliteration || 'Transliteration not available' }}</p>
+     <input 
+      type="text" 
+      v-model="searchTerm" 
+      placeholder="Type to search for translation..." 
+      @input="searchWord" 
+      class="form-control"
+    />
+
+      <!-- Bootstrap Offcanvas -->
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasResults">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasTitle">Search Results</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <div v-if="filteredResults.length">
+            <div v-for="result in filteredResults" :key="result.id" class="result-item">
+              <!-- <h5>{{ result.ayah.surah.name_en }} - Ayah {{ result.ayah.ayah_number }}</h5> -->
+              <p v-html="highlightSearch(result.text)"></p>
+            </div>
+          </div>
+          <div v-else>
+            <p>No results found.</p>
+          </div>
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+     <!-- Modal -->
+      <div class="modal fade" id="example1Modal" tabindex="-1" aria-labelledby="example1ModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="example1ModalLabel">Modal title</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div v-if="selectedSurah">
+                <h2>{{ selectedSurah.name_en }}</h2>
+                <p>{{ selectedAyah ? selectedAyah.ayah_text : 'Loading...' }}</p>
+                <p>{{ information.translation || 'Translation not available' }}</p>
+                <p>{{ information.transliteration || 'Transliteration not available' }}</p>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</div>
 
       <NavTabs />
 
@@ -748,6 +772,10 @@ props: ['information', 'selectedFolderId'],
  data() {
 
   return {
+
+    searchTerm: "",
+    results:[],
+    filteredResults: [],
     surat: [], // Holds all Surah data
     ayat: [], // Holds all Ayah data
     tafseers: [], // Holds all Tafseer data
@@ -975,6 +1003,32 @@ computed: {
     }
 },
  methods: {
+searchWord() {
+  if (this.searchTerm.length > 0) {
+    axios
+      .get("/search-translations", {
+        params: { query: this.searchTerm }
+      })
+      .then(response => {
+        this.filteredResults = response.data;
+        this.showOffcanvas();
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  } else {
+    this.filteredResults = [];
+  }
+},
+highlightSearch(text) {
+      const regex = new RegExp(`(${this.searchTerm})`, 'gi');
+      return text.replace(regex, "<span class='highlight'>$1</span>");
+    },
+    showOffcanvas() {
+      const offcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasResults'));
+      offcanvas.show();
+    },
+
    async surpriseMe() {
     if (this.surat.length === 0) {
       console.error("Surah list is empty.");
@@ -1050,6 +1104,7 @@ computed: {
         console.error('Error fetching ayahs:', error);
       }
     },
+    
    toggleContent1() {
       this.isVisible1 = !this.isVisible1; // Toggle the visibility
     },
@@ -1695,6 +1750,15 @@ loadSavedStyles() {
 </script>
 
 <style scoped src="./css/styles.css">
+.highlight {
+  background-color: yellow;
+  font-weight: bold;
+}
+.result-item {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
 .button-33 {
   background-color: rgba(0, 191, 166, 0.2);
   color: rgb(255, 255, 255);
