@@ -5,7 +5,7 @@
    <div style="display:flex" class="container align-items-center">
     <search-form  :surat="surat" @update-results="handleUpdateResults" @clear-results="handleClearResults" @select-surah="handleSelectSurah" />
     <!-- Toggle Button for Advanced Search -->
-    <i @click="toggleAdvancedSearch" :class="isAdvancedSearchVisible ? 'bi bi-dash-circle' : 'bi bi-plus-circle'" class="toggle-icon h3"></i>
+    <i @click="toggleAdvancedSearch" :class="isAdvancedSearchVisible ? 'bi bi-dash-circle' : 'bi bi-plus-circle-fill'" class="toggle-icon h3"></i>
   </div>
   <AdvancedSearch v-if="isAdvancedSearchVisible" @input-change="handleInputChange" />
    
@@ -118,7 +118,13 @@
                 <div class="col"><i  class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('translationNote')" ></i></div>
                 <div class="col"><WhatsAppShareTranslation :translationToShare="information.translation" /></div>
                 <div class="col"><TwitterShareTranslation  :targetElementRef="'targetElement'" :translationText="information.translation" /></div>
-                <div class="col"><i @click="submitForm"  class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" ></i></div>
+                <div class="col"><i 
+                  @click="submitForm" 
+                  class="bi bi-bookmark text-right mr-2 h4" 
+                  aria-expanded="false" 
+                  title="Bookmark verse"
+                ></i>
+                </div>
                 <div class="col"><CopyTranslationText  :textToCopy="information.translation" /></div>
                 <div class="col"><ScreenTranslationCapture  :targetTranslationRef="'targetTranslationElement'" /></div>
                 <div class="col"><PdfDownload  :targetTranslationRef="'targetTranslationElement'" /></div>
@@ -127,7 +133,8 @@
                 <div class="col"><i class="bi bi-arrows-fullscreen h4" @click="toggleFullScreen" title="Full screen"></i></div>
               </div>
             </div>
-            <hr style="border: 2px solid #333;">           
+            <hr style="border: 2px solid #333;"> 
+                   
           </div>                      
         </div>
           
@@ -207,9 +214,16 @@
                       :targetElementRef="'targetElement'" 
                       :translationText="information.translation" 
                     />
-                  </div>                
-                <div class="col">
-                  <i @click="submitForm"  class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" ></i></div>
+                  </div>
+                              
+                  <div class="col"><i 
+                    @click="submitFormTafseer()" 
+                    class="bi bi-bookmark text-right mr-2 h4" 
+                    aria-expanded="false" 
+                    data-bs-placement="top" 
+                    title="Bookmark verse"
+                  ></i>
+                  </div>   
                   <div class="col"><CopyTafseerText  :textToCopy="information.tafseer" /></div>
                   <div class="col"><ScreenTafseerCapture  :targetTafseerRef="'targetTafseerElement'" /></div>
                   <div class="col"><PdfDownloadTafsser  :targetTafseerRef="'targetTafseerElement'" class="h3"/></div>
@@ -222,7 +236,7 @@
             </div>                      
           </div>
 
-         <!-- mobile top Features  ---->
+         <!-- mobile navigation  ---->
          <div class="dropdown mobile-only">
           <div :style="iconStyle" class="icon-container pb-2">
            <i class="bi bi-chevron-bar-left h4"  @click="goToFirstAyah()" title="Last verse"></i>
@@ -277,7 +291,12 @@
                   <div class="col"><i  class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('transliterationNote')" ></i></div>
                   <div class="col"><WhatsAppShareTransliteration :transliterationToShare="information.transliteration" /></div>
                   <div class="col"><TwitterShareTransliteration  :targetElementRef="'targetElement'" :transliterationText="information.transliteration" /></div>
-                  <div class="col"><i @click="submitForm"  class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" ></i></div>
+                  <div class="col"><i 
+                    @click="submitFormTransliteration" 
+                    class="bi bi-bookmark text-right mr-2 h4" 
+                    aria-expanded="false" 
+                    title="Bookmark verse"
+                  ></i></div>
                   <div class="col"><CopyTransliterationText  :textToCopy="information.transliteration" /></div>
                   <div class="col"><ScreenTransliterationCapture  :targetTransliterationRef="'targetTransliterationElement'" /></div>
                   <div class="col"><PdfDownloadTransliteration  :targetTransliterationRef="'targetTransliterationElement'" /></div>
@@ -290,7 +309,7 @@
             </div>                      
           </div>
 
-           <!-- Dropdown Features -->
+           <!-- mobile navigation -->
            <div class="dropdown mobile-only">
             <div :style="iconStyle" class="icon-container">
              <i class="bi bi-chevron-bar-left h4" @click="goToFirstAyah()" title="Last verse"></i>
@@ -324,7 +343,6 @@
           <!-- end toolbar mobile -->
 
           
-          <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
           <SurahInfoModal :information="information" />
 
          </div>
@@ -731,7 +749,7 @@ props: ['information', 'selectedFolderId'],
     selectedSurah: null,
     selectedAyah: null,
     selectedTafseer: null,
-
+    userId: null,
     bookmarkSubmitted: false, // Set initial state
     selectedFolderId: null,
     isVisible1: false,
@@ -857,7 +875,7 @@ props: ['information', 'selectedFolderId'],
    ayat: [],
    tafseers: [],
    currentSurah: null,
-  currentVerse: null,
+   currentVerse: null,
    currentTafseer: '',
    // storage
    information: null,
@@ -946,6 +964,84 @@ computed: {
     }
 },
 methods: {
+  submitForm() {
+    // if (!this.selectedFolderId) {
+      //   console.error("Folder ID is required.");
+      //   this.showErrorAlert = true;
+      //   this.hideAlertAfterDelay();
+      //   return;
+      // }
+    const formData = {
+      // folder_id: this.selectedFolderId,
+      surah_name: this.information.ayah.surah.name_en,
+      ayah_num: this.information.ayah_id,
+      ayah_verse_ar: this.information.ayah.ayah_text,
+      ayah_verse_en: this.information.translation,
+      user_id: this.userId,
+    };
+
+    axios.post('/bookmarks', formData)
+      .then(response => {
+        console.log(response.data.message);
+        localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
+        this.showAlert = true;
+        this.showErrorAlert = false;
+        this.hideAlertAfterDelay();
+        // Display a confirmation message with the bookmarked ayah and folder
+        // this.$refs.bookmarkConfirmation.textContent = 
+        //   `Successfully bookmarked ayah ${this.information.ayah_id} to folder "${this.selectedFolderId}"`;
+      })
+    },
+    submitFormTafseer() {
+      const formData = {
+        // folder_id: this.selectedFolderId,
+        surah_name: this.information.ayah.surah.name_en,
+        ayah_num: this.information.ayah_id,
+        ayah_verse_ar: this.information.ayah.ayah_text,
+        ayah_verse_en: this.information.translation,
+        user_id: this.userId,
+      };
+      axios.post('/bookmarks', formData)
+        .then(response => {
+          console.log(response.data.message);
+          localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
+          this.showAlert = true;
+          this.showErrorAlert = false;
+          this.hideAlertAfterDelay();
+          // Display a confirmation message with the bookmarked ayah and folder
+          // this.$refs.bookmarkConfirmation.textContent = 
+          //   `Successfully bookmarked ayah ${this.information.ayah_id} to folder "${this.selectedFolderId}"`;
+        })
+    
+      },
+      submitFormTransliteration() {
+        const formData = {
+          // folder_id: this.selectedFolderId,
+          surah_name: this.information.ayah.surah.name_en,
+          ayah_num: this.information.ayah_id,
+          ayah_verse_ar: this.information.ayah.ayah_text,
+          ayah_verse_en: this.information.translation,
+          user_id: this.userId,
+        };
+        axios.post('/bookmarks', formData)
+          .then(response => {
+            console.log(response.data.message);
+            localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
+            this.showAlert = true;
+            this.showErrorAlert = false;
+            this.hideAlertAfterDelay();
+            // Display a confirmation message with the bookmarked ayah and folder
+            // this.$refs.bookmarkConfirmation.textContent = 
+            //   `Successfully bookmarked ayah ${this.information.ayah_id} to folder "${this.selectedFolderId}"`;
+          })
+          
+      },
+    hideAlertAfterDelay() {
+      setTimeout(() => {
+        this.showAlert = false;
+        this.showErrorAlert = false;
+      }, 3000); // Hide alerts after 3 seconds
+    },
   toggleAdvancedSearch() {
     this.isAdvancedSearchVisible = !this.isAdvancedSearchVisible; // Toggle the visibility
   },
@@ -1395,100 +1491,8 @@ loadSavedStyles() {
     }, 5000);
    }
   },
-  submitForm() {
-      if (!this.selectedFolderId) {
-        console.error("Folder ID is required.");
-        this.showErrorAlert = true;
-        this.hideAlertAfterDelay();
-        return;
-      }
+  
 
-      const formData = {
-        folder_id: this.selectedFolderId,
-        surah_name: this.information.ayah.surah.name_en,
-        ayah_num: this.information.ayah_id,
-        ayah_verse_ar: this.information.ayah.ayah_text,
-        ayah_verse_en: this.information.translation,
-      };
-
-      axios.post('/bookmarks', formData)
-        .then(response => {
-          console.log(response.data.message);
-          localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
-          this.showAlert = true;
-          this.showErrorAlert = false;
-          this.hideAlertAfterDelay();
-          // Display a confirmation message with the bookmarked ayah and folder
-          this.$refs.bookmarkConfirmation.textContent = `Successfully bookmarked ayah ${this.information.ayah_id} to folder "${this.selectedFolderId}"`;
-        })
-        .catch(error => {
-          console.error(error);
-          this.showAlert = false;
-          this.showErrorAlert = true;
-          this.hideAlertAfterDelay();
-        });
-    },
-    hideAlertAfterDelay() {
-      setTimeout(() => {
-        this.showAlert = false;
-        this.showErrorAlert = false;
-      }, 3000); // Hide alerts after 3 seconds
-    },
-
-    submitForm1() {
-      const formData = {
-        surah_name: this.information.ayah.surah.name_en,
-        ayah_num: this.information.ayah_id,
-        ayah_verse_ar: this.information.ayah.ayah_text,
-        ayah_verse_en: this.tafseer,
-      };
-
-      axios.post('/bookmarks', formData)
-        .then(response => {
-          console.log(response.data.message);
-          localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
-          this.showAlert = true;
-          this.showErrorAlert = false;
-          this.hideAlertAfterDelay();
-        })
-        .catch(error => {
-          console.error(error);
-          this.showAlert = false;
-          this.showErrorAlert = true;
-          this.hideAlertAfterDelay();
-        });
-    },
-
-    submitForm2() {
-      const formData = {
-        surah_name: this.information.ayah.surah.name_en,
-        ayah_num: this.information.ayah_id,
-        ayah_verse_ar: this.information.ayah.ayah_text,
-        ayah_verse_en: this.information.transliteration,
-      };
-
-      axios.post('/bookmarks', formData)
-        .then(response => {
-          console.log(response.data.message);
-          localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
-          this.showAlert = true;
-          this.showErrorAlert = false;
-          this.hideAlertAfterDelay();
-        })
-        .catch(error => {
-          console.error(error);
-          this.showAlert = false;
-          this.showErrorAlert = true;
-          this.hideAlertAfterDelay();
-        });
-    },
-  hideAlertAfterDelay() {
-   setTimeout(() => {
-    this.showAlert = false;
-    this.showAlertText = false;
-    this.showErrorAlert = false;
-   }, 3000);
-  },
 
   async getSurat() {
    try {
@@ -1619,14 +1623,7 @@ loadSavedStyles() {
  },
 
  created() {
-   
-  // Initialize submitted status for each bookmark
-  this.ayat.forEach(ayah => {
-   const submitted = localStorage.getItem(`bookmarkSubmitted_${ayah.id}`);
-   if (submitted) {
-    this.$set(this.bookmarkSubmitted, ayah.id, true);
-   }
-  });
+  
  },
 
  watch: {

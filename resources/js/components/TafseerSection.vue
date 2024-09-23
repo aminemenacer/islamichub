@@ -1,6 +1,7 @@
 <template>
-  <div ref="targetTafseerElement" class="w-100 my-element" :class="{'full-screen': isFullScreen}">
+  <div class="w-100 my-element" :class="{'full-screen': isFullScreen}">
     <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
+    <div ref="targetTafseerElement">
     <AyahInfo :information="information" />
     <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
     <MainAyah :information="information" />

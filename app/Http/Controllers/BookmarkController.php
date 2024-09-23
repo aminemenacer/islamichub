@@ -12,35 +12,43 @@ class BookmarkController extends Controller
     public function index()
     {
         // Retrieves bookmarks associated with the authenticated user
-        $bookmarks = Auth::user()->bookmarks()->get();
+        $bookmarks = Auth::user()->bookmarks()->orderBy('created_at', 'desc')->get();
         return view('bookmark', compact('bookmarks'));
     }
 
     public function getBookmarks($userId)
     {
-        $bookmarks = Bookmark::where('user_id', $userId)->get();
+        $bookmarks = Bookmark::where('user_id', $userId)->orderBy('created_at', 'desc')->get();
 
         return response()->json($bookmarks);
     }
 
     
-    public function store(Request $request) {
-        $validatedData = $request->validate([
+    public function store(Request $request)
+    {
+        // Validate the incoming data
+        $request->validate([
+            // 'folder_id' => 'required|integer',
             'surah_name' => 'required|string|max:255',
             'ayah_num' => 'required|integer',
             'ayah_verse_ar' => 'required|string',
             'ayah_verse_en' => 'required|string',
-            'folder_id' => 'required|integer|exists:folders,id',
         ]);
 
-        
-    
-        try {
-            $bookmark = Bookmark::create($validatedData);
-            return response()->json(['success' => true, 'message' => 'Bookmark saved successfully.', 'bookmark' => $bookmark], 200);
-        } catch (\Exception $e) {
-            return response()->json(['success' => false, 'message' => 'Failed to save bookmark: ' . $e->getMessage()], 500);
-        }
+        // Create the bookmark
+        $bookmark = Bookmark::create([
+            // 'folder_id' => $request->input('folder_id'),
+            'surah_name' => $request->input('surah_name'),
+            'ayah_num' => $request->input('ayah_num'),
+            'ayah_verse_ar' => $request->input('ayah_verse_ar'),
+            'ayah_verse_en' => $request->input('ayah_verse_en'),
+            'user_id' => Auth::id(),
+        ]);
+
+        return response()->json([
+            'message' => 'Bookmark successfully saved!',
+            'bookmark' => $bookmark,
+        ], 201);
     }
     
 

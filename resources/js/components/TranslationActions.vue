@@ -8,7 +8,13 @@
 
       <!-- Bookmark Icon -->
       <div class="icon-container">
-        <i @click="openFolderSelectionModal" class="bi bi-bookmark h4" title="Select Folder to Bookmark"></i>
+        <i 
+                  @click="submitForm" 
+                  class="bi bi-bookmark text-right mr-2 h4" 
+                  aria-expanded="false" 
+                  data-bs-placement="top" 
+                  title="Bookmark verse"
+                ></i>
       </div>
 
       <!-- Screenshot Icon -->
@@ -66,6 +72,14 @@ export default {
   },
   data() {
     return {
+      surat: [],
+      ayat: [],
+      tafseers: [],
+      ayah_id: null, 
+      information: {
+        translation: '', // Example translated text
+        transliteration: '', // Example transliteration text
+      },
     };
   },
   methods: {
@@ -76,7 +90,6 @@ export default {
         console.error("Invalid element provided as targetTranslationRef");
         return;
       }
-
       setTimeout(() => {
         html2canvas(targetTranslationElement)
           .then((canvas) => {
@@ -93,6 +106,48 @@ export default {
           });
       }, 200);
     },
+
+    submitForm() {
+      console.log('Information object:', this.information); // Log information object to debug
+
+      if (!this.information.ayah || !this.information.ayah.surah.name_en || !this.information.ayah_id) {
+        console.error("Ayah information is incomplete.");
+        this.showErrorAlert = true;
+        this.hideAlertAfterDelay();
+        return;
+      }
+
+      const formData = {
+        surah_name: this.information.ayah.surah.name_en,
+        ayah_num: this.information.ayah_id,
+        ayah_verse_ar: this.information.ayah.ayah_text,
+        ayah_verse_en: this.information.translation,
+        user_id: this.userId,
+      };
+
+      axios.post('/bookmarks', formData)
+        .then(response => {
+          console.log(response.data.message);
+          localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
+          this.showAlert = true;
+          this.showErrorAlert = false;
+          this.hideAlertAfterDelay();
+        })
+        .catch(error => {
+          console.error(error);
+          this.showAlert = false;
+          this.showErrorAlert = true;
+          this.hideAlertAfterDelay();
+        });
+    },
+
+    hideAlertAfterDelay() {
+      setTimeout(() => {
+        this.showAlert = false;
+        this.showErrorAlert = false;
+      }, 3000); // Hide alerts after 3 seconds
+    },
+
 
     downloadTranslationPdf() {
       const targetTranslationElement = this.$parent.$refs[this.targetTranslationRef];

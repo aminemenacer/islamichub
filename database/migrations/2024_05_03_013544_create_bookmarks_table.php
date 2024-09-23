@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('bookmarks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('folder_id')->constrained('folders')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade')->nullable();
+            // $table->foreignId('folder_id')->constrained('folders')->onDelete('cascade')->nullable();
             $table->string('url')->nullable();
             $table->string('title')->nullable();
             $table->text('surah_name')->nullable();

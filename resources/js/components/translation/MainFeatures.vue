@@ -13,14 +13,6 @@
       <WhatsAppShareTranslation :translationToShare="information.translation" />
       <TwitterShareTranslation :targetElementRef="'targetElement'" :translationText="information.translation" />
       <BookmarkTranslation :information="information" />
-      <i
-        @click="submitForm"
-        class="bi bi-bookmark text-right mr-2 h4"
-        aria-expanded="false"
-        data-bs-placement="top"
-        title="Bookmark verse"
-        style="color: rgba(0, 191, 166); cursor: pointer"
-      ></i>
       <CopyTranslationText :textToCopy="information.translation" />
       <ScreenTranslationCapture :targetTranslationRef="'targetTranslationElement'" />
       <i

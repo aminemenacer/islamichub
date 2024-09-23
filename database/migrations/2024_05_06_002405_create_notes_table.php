@@ -10,7 +10,7 @@ class CreateNotesTable extends Migration
     {
         Schema::create('notes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->text('surah_name')->nullable();
             $table->text('ayah_num')->nullable();
             $table->text('ayah_info')->nullable();

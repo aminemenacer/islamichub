@@ -1,41 +1,41 @@
 <template>
 <div class="w-100 my-element" :class="{'full-screen': isFullScreen}">
-<div >
  <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
  <div ref="targetTranslationElement">
- <AyahInfo :information="information" />
- <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
-  <MainAyah :information="information"  />
-  <div ref="heading3" class="text-left">
-   <h4 class="text-left ayah-translation" style="line-height: 1.6em">
-    {{ expanded ? information.translation : truncatedText(information.translation) }}
-    <template v-if="showMoreLink && information.translation.length > 100">
-     <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
-    </template>
-   </h4>
+  <AyahInfo :information="information" />
+  <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
+   <MainAyah :information="information" />
+   <div ref="heading3" class="text-left">
+    <h4 class="text-left ayah-translation" style="line-height: 1.6em">
+     {{ expanded ? information.translation : truncatedText(information.translation) }}
+     <template v-if="showMoreLink && information.translation.length > 100">
+      <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
+     </template>
+    </h4>
+   </div>
+   <div>
+   </div>
+   <Translator translator="Ahmed Ali" />
+   <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
   </div>
-  <div>
-  </div>
-  <Translator translator="Ahmed Ali" />
-  <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
  </div>
- </div>
-</div>
-  <!-- WhatsApp Share Button -->
-  <div class="row mobile-only" style="color:white">
-    <div class="col-6 pr-2"> <!-- Add right padding to create space between the buttons -->
-      <button @click="shareOnWhatsApp" class="btn btn-sm btn-success w-100 d-flex align-items-center justify-content-center">
-        <i class="bi bi-whatsapp pt-2 h3"></i>
-        <div style="font-size:13px">Share via WhatsApp</div>
-      </button>
-    </div>
-    <div class="col-6 pl-2"> <!-- Add left padding to create space between the buttons -->
-      <button @click="shareOnTwitter" class="btn btn-sm btn-dark w-100 d-flex align-items-center justify-content-center">
-        <i class="bi bi-twitter-x pt-2 mr-2 h3"></i>
-        <span style="font-size:13px">Share via X</span>
-      </button>
-    </div>
+ <!-- WhatsApp Share Button -->
+ <div class="row mobile-only" style="color:white">
+  <div class="col-6 pr-2">
+   <!-- Add right padding to create space between the buttons -->
+   <button @click="shareOnWhatsApp" class="btn btn-sm btn-success w-100 d-flex align-items-center justify-content-center">
+    <i class="bi bi-whatsapp pt-2 h3"></i>
+    <div style="font-size:13px">Share via WhatsApp</div>
+   </button>
   </div>
+  <div class="col-6 pl-2">
+   <!-- Add left padding to create space between the buttons -->
+   <button @click="shareOnTwitter" class="btn btn-sm btn-dark w-100 d-flex align-items-center justify-content-center">
+    <i class="bi bi-twitter-x pt-2 mr-2 h3"></i>
+    <span style="font-size:13px">Share via X</span>
+   </button>
+  </div>
+ </div>
 </div>
 </template>
 
@@ -46,7 +46,7 @@ import Translator from './translation/Translator.vue';
 import AlertModal from './modals/AlertModal.vue';
 
 export default {
- name: 'TranslationSection', 
+ name: 'TranslationSection',
  components: {
   AyahInfo,
   MainAyah,
@@ -55,14 +55,14 @@ export default {
  },
  props: {
   iconColor: {
-    type: String,
-    default: 'rgba(0, 191, 166)'
+   type: String,
+   default: 'rgba(0, 191, 166)'
   },
   information: {
    type: Object,
    required: true
   },
-  
+
   isFullScreen: {
    type: Boolean,
    default: false
@@ -94,40 +94,39 @@ export default {
  },
 
  data() {
-  return {
-  }
+  return {}
  },
  methods: {
-   setAyahText(text) {
-      this.ayahText = text; // Capture the ayah text from the child component
-    },
+  setAyahText(text) {
+   this.ayahText = text; // Capture the ayah text from the child component
+  },
   shareOnWhatsApp() {
-    const ayahInfo = this.information.ayahInfo || "No Ayah Info available"; // Fallback message
-    const mainAyah = this.information.mainAyah || "No Main Ayah available"; // Fallback message
-    const ayahTranslation = this.expanded ? this.information.translation : this.truncatedText(this.information.translation);
-    
-    const message = `
+   const ayahInfo = this.information.ayahInfo || "No Ayah Info available"; // Fallback message
+   const mainAyah = this.information.mainAyah || "No Main Ayah available"; // Fallback message
+   const ayahTranslation = this.expanded ? this.information.translation : this.truncatedText(this.information.translation);
+
+   const message = `
       Ayah Info: ${ayahInfo}
       Main Ayah: ${mainAyah}
       Translation: ${ayahTranslation}
     `;
-    
-    const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
-    window.open(url, '_blank');
+
+   const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
+   window.open(url, '_blank');
   },
   shareOnTwitter() {
-    const ayahInfo = this.information.ayahInfo || "No Ayah Info available"; // Fallback message
-    const mainAyah = this.information.mainAyah || "No Main Ayah available"; // Fallback message
-    const ayahTranslation = this.expanded ? this.information.translation : this.truncatedText(this.information.translation);
-    
-    const message = `
+   const ayahInfo = this.information.ayahInfo || "No Ayah Info available"; // Fallback message
+   const mainAyah = this.information.mainAyah || "No Main Ayah available"; // Fallback message
+   const ayahTranslation = this.expanded ? this.information.translation : this.truncatedText(this.information.translation);
+
+   const message = `
       Ayah Info: ${ayahInfo}
       Main Ayah: ${mainAyah}
       Translation: ${ayahTranslation}
     `;
-    
-    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(message)}`;
-    window.open(url, '_blank');
+
+   const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(message)}`;
+   window.open(url, '_blank');
   },
   toggleFullScreen() {
    this.$emit('toggle-full-screen');
@@ -172,7 +171,7 @@ export default {
 
 .ayah-translation {
  font-size: 1.2rem;
- 
+
 }
 
 .btn {
@@ -182,19 +181,23 @@ export default {
 }
 
 .mobile-only {
-  display: none; /* Hide by default */
+ display: none;
+ /* Hide by default */
 }
 
-@media (max-width: 768px) { /* Adjust this width as needed for your breakpoint */
-  .mobile-only {
-    display: flex; /* Show only on mobile */
-  }
+@media (max-width: 768px) {
+
+ /* Adjust this width as needed for your breakpoint */
+ .mobile-only {
+  display: flex;
+  /* Show only on mobile */
+ }
 }
 
 @media (max-width: 576px) {
  .mobile-only {
   display: block;
-  display: flex; 
+  display: flex;
  }
 
  .hide-on-mobile {
