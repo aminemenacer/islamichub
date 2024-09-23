@@ -107,29 +107,29 @@
        <!-- Translation Section -->
        <div class="tab-pane active content" id="home" role="tabpanel" v-if="information != null">
   
-          <!-- desktop top features -->
-          <div :style="iconStyle">
-            <div class="col pb-2 ">
-              <i  :class="isOpen ? 'bi bi-x-circle-fill' : 'bi bi-plus-circle-fill'" class="top-toolbar-btn text-left hide-on-mobile h4" @click="toggleContent"></i>
-            </div>
-            <div v-if="isOpen" class=" hide-on-mobile ">
-              <div class="text-center">
-                <div  class="row pt-2">
-                  <div class="col"><i  class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('translationNote')" ></i></div>
-                  <div class="col"><WhatsAppShareTranslation :translationToShare="information.translation" /></div>
-                  <div class="col"><TwitterShareTranslation  :targetElementRef="'targetElement'" :translationText="information.translation" /></div>
-                  <div class="col"><i @click="submitForm"  class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" ></i></div>
-                  <div class="col"><CopyTranslationText  :textToCopy="information.translation" /></div>
-                  <div class="col"><ScreenTranslationCapture  :targetTranslationRef="'targetTranslationElement'" /></div>
-                  <div class="col"><PdfDownload  :targetTranslationRef="'targetTranslationElement'" /></div>
-                  <div class="col"><i class="bi bi-paint-bucket h2"  @click="showModal"></i></div>
-                  <div class="col"><i title="Report a bug"  data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" ></i></div>
-                  <div class="col"><i class="bi bi-arrows-fullscreen h4" @click="toggleFullScreen" title="Full screen"></i></div>
-                </div>
-              </div>
-              <hr style="border: 2px solid #333;">           
-            </div>                      
+        <!-- desktop top features -->
+        <div :style="iconStyle">
+          <div class="col pb-2 ">
+            <i  :class="isOpen ? 'bi bi-x-circle-fill' : 'bi bi-plus-circle-fill'" class="top-toolbar-btn text-left hide-on-mobile h4" @click="toggleContent"></i>
           </div>
+          <div v-if="isOpen" class=" hide-on-mobile ">
+            <div class="text-center">
+              <div  class="row pt-2">
+                <div class="col"><i  class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('translationNote')" ></i></div>
+                <div class="col"><WhatsAppShareTranslation :translationToShare="information.translation" /></div>
+                <div class="col"><TwitterShareTranslation  :targetElementRef="'targetElement'" :translationText="information.translation" /></div>
+                <div class="col"><i @click="submitForm"  class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" ></i></div>
+                <div class="col"><CopyTranslationText  :textToCopy="information.translation" /></div>
+                <div class="col"><ScreenTranslationCapture  :targetTranslationRef="'targetTranslationElement'" /></div>
+                <div class="col"><PdfDownload  :targetTranslationRef="'targetTranslationElement'" /></div>
+                <div class="col"><i class="bi bi-paint-bucket h2"  @click="showModal"></i></div>
+                <div class="col"><i title="Report a bug"  data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" ></i></div>
+                <div class="col"><i class="bi bi-arrows-fullscreen h4" @click="toggleFullScreen" title="Full screen"></i></div>
+              </div>
+            </div>
+            <hr style="border: 2px solid #333;">           
+          </div>                      
+        </div>
           
          <!-- mobile navigation  ---->
         <div class="dropdown mobile-only pb-2">
@@ -164,6 +164,7 @@
             />          
           </div>
           
+          <!-- open toolbar -->
           <div class="container-fluid text-center mobile-only">
             <div class="row">
               <div class="col">
