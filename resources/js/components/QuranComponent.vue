@@ -2,12 +2,12 @@
 <div id="app">
  <div class="pt-3 text-center">
   <Title v-if="information == null && dropdownHidden" />
-  <search-form :surat="surat" @update-results="handleUpdateResults" @clear-results="handleClearResults" @select-surah="handleSelectSurah" />
-  <button @click="surpriseMe" v-if="information != null" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#example1Modal">
-    Suprise Me
-  </button>
-  
-
+   <div style="display:flex" class="container align-items-center">
+    <search-form  :surat="surat" @update-results="handleUpdateResults" @clear-results="handleClearResults" @select-surah="handleSelectSurah" />
+    <!-- Toggle Button for Advanced Search -->
+    <i @click="toggleAdvancedSearch" :class="isAdvancedSearchVisible ? 'bi bi-dash-circle' : 'bi bi-plus-circle'" class="toggle-icon h3"></i>
+  </div>
+  <AdvancedSearch v-if="isAdvancedSearchVisible" @input-change="handleInputChange" />
    
   <custom-surah-selection :customSurat="customSuratList" v-model="selectedSurah"></custom-surah-selection>
  </div> 
@@ -46,9 +46,6 @@
        <i class="bi bi-arrow-left-circle h4" style="color:#00BFA6" @click="goToPreviousAyah" title="Previous verse"></i>
        <i class="bi bi-arrow-right-circle h4" style="color:#00BFA6" @click="goToNextAyah" title="Next verse"></i>
        <i class="bi bi-chevron-bar-right h4" style="color:#00BFA6" @click="goToLastAyah" title="Last verse"></i>
-       <!--
-       <i class="bi bi-palette-fill h4" style="color: rgb(0, 191, 166); cursor: pointer;" data-bs-toggle="modal" data-bs-target="#themeModal"></i>
-       -->
        <i v-if="information != null" class="bi bi-info-circle-fill h4 mr-2 pl-2" style="color:#00BFA6" data-bs-toggle="modal" data-bs-target="#translationInfo" aria-expanded="false" data-bs-placement="top" title="Surah info"></i>
       </div>
 
@@ -70,56 +67,6 @@
   <div class="card content" >
     <div class="content" >
      <div class="container-fluid content" v-if="information != null">
-
-     <input 
-      type="text" 
-      v-model="searchTerm" 
-      placeholder="Type to search for translation..." 
-      @input="searchWord" 
-      class="form-control"
-    />
-
-      <!-- Bootstrap Offcanvas -->
-      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasResults">
-        <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasTitle">Search Results</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-          <div v-if="filteredResults.length">
-            <div v-for="result in filteredResults" :key="result.id" class="result-item">
-              <!-- <h5>{{ result.ayah.surah.name_en }} - Ayah {{ result.ayah.ayah_number }}</h5> -->
-              <p v-html="highlightSearch(result.text)"></p>
-            </div>
-          </div>
-          <div v-else>
-            <p>No results found.</p>
-          </div>
-        </div>
-      </div>
-
-     <!-- Modal -->
-      <div class="modal fade" id="example1Modal" tabindex="-1" aria-labelledby="example1ModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="example1ModalLabel">Modal title</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <div v-if="selectedSurah">
-                <h2>{{ selectedSurah.name_en }}</h2>
-                <p>{{ selectedAyah ? selectedAyah.ayah_text : 'Loading...' }}</p>
-                <p>{{ information.translation || 'Translation not available' }}</p>
-                <p>{{ information.transliteration || 'Transliteration not available' }}</p>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-          </div>
-        </div>
-      </div>
 
       <NavTabs />
 
@@ -495,7 +442,7 @@
    </div>
  
 
-    <!-- Bootstrap Modal -->
+    <!-- Bootstrap theme Modal -->
     <div class="modal fade" id="styleModal" tabindex="-1" aria-labelledby="styleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -693,6 +640,7 @@ import SpeechToText from './SpeechToText.vue'
 import PdfDownload from './pdf/PdfDownload.vue'
 import PdfDownloadTafsser from './pdf/PdfDownloadTafsser.vue'
 import PdfDownloadTransliteration from './pdf/PdfDownloadTransliteration.vue'
+import AdvancedSearch from './search/AdvancedSearch.vue'
 
 import AddBookmark from './folder_manager/AddBookmark.vue';
 import FolderSelectionModal from './folder_manager/FolderSelectionModal.vue';
@@ -754,7 +702,8 @@ export default {
   FolderSelectionModal,
   GroupSection,
   PdfDownloadTransliteration,
-  PdfDownloadTafsser
+  PdfDownloadTafsser,
+  AdvancedSearch
  },
 
  mounted() {
@@ -770,9 +719,8 @@ export default {
 },
 props: ['information', 'selectedFolderId'],
  data() {
-
   return {
-
+    isAdvancedSearchVisible: false, // Controls the visibility of AdvancedSearch
     searchTerm: "",
     results:[],
     filteredResults: [],
@@ -884,19 +832,17 @@ props: ['information', 'selectedFolderId'],
     textAlign: 'left',
     // For showing success message
     showSuccessMessage: false,   
-   isCollapsed: false,
-   showSuccessMessage: false,
-   showMessage: false,
-   message: 'Theme has been applied successfully!',
-   filteredSurah: [],
-   
+    isCollapsed: false,
+    showSuccessMessage: false,
+    showMessage: false,
+    message: 'Theme has been applied successfully!',
+    filteredSurah: [],
    //twitter/whatsapp
    information: {
     translation: '',
     transliteration: '', // Example translated text
    },
    selectedSurahIndex: null,
-   
    tafseer: '',
    //custom surah collection
    customSuratList: [],
@@ -953,10 +899,6 @@ props: ['information', 'selectedFolderId'],
    showAlertTextNote: false,
    maxLength: 400,
 
-   
-
-  
-
    // correction modal
    form: new Form({
     id: "",
@@ -1002,7 +944,10 @@ computed: {
       };
     }
 },
- methods: {
+methods: {
+  toggleAdvancedSearch() {
+    this.isAdvancedSearchVisible = !this.isAdvancedSearchVisible; // Toggle the visibility
+  },
 searchWord() {
   if (this.searchTerm.length > 0) {
     axios
@@ -1020,7 +965,7 @@ searchWord() {
     this.filteredResults = [];
   }
 },
-highlightSearch(text) {
+  highlightSearch(text) {
       const regex = new RegExp(`(${this.searchTerm})`, 'gi');
       return text.replace(regex, "<span class='highlight'>$1</span>");
     },
@@ -1029,56 +974,6 @@ highlightSearch(text) {
       offcanvas.show();
     },
 
-   async surpriseMe() {
-    if (this.surat.length === 0) {
-      console.error("Surah list is empty.");
-      return; // Exit if there are no surahs
-    }
-
-    const randomIndex = Math.floor(Math.random() * this.surat.length);
-    this.selectedSurah = this.surat[randomIndex];
-
-   // Fetch the Ayahs for the selected Surah
-    const response = await axios.get(`/surahs/${this.selectedSurah.id}/ayahs`);
-    
-    // Get a random ayah
-    if (response.data.length > 0) {
-      const randomAyahIndex = Math.floor(Math.random() * response.data.length);
-      this.selectedAyah = response.data[randomAyahIndex]; // Get a random ayah
-
-      // Fetch the translation for the selected Ayah
-      const translationResponse = await axios.get(`/surahs/${this.selectedSurah.id}/translations`); // Ensure this route exists
-
-      // Check if translations are available
-      if (translationResponse.data && translationResponse.data.length > 0) {
-        this.information.translation = translationResponse.data[0].translation || ''; // Get the first translation
-        this.information.transliteration = translationResponse.data[0].transliteration || ''; // Get the first transliteration
-      } else {
-        console.error("No translations found for the selected Ayah.");
-        this.information.translation = 'Translation not available';
-        this.information.transliteration = 'Transliteration not available';
-      }
-
-    } else {
-      console.error("No Ayahs found for the selected Surah.");
-      this.selectedAyah = null; // Set to null or handle as needed
-    }
-
-    // Fetch the translations
-    const translationResponse = await axios.get(`/ayahs/${this.selectedAyah.id}/translations`);
-    
-    // Check if translations are available
-    if (translationResponse.data && translationResponse.data.length > 0) {
-      // Select a random translation
-      const randomTranslationIndex = Math.floor(Math.random() * translationResponse.data.length);
-      this.information.translation = translationResponse.data[randomTranslationIndex].translation || '';
-      this.information.transliteration = translationResponse.data[randomTranslationIndex].transliteration || '';
-    } else {
-      console.error("No translations found for the selected Surah.");
-      this.information.translation = 'Translation not available';
-      this.information.transliteration = 'Transliteration not available';
-    }
-  },
     async fetchSurahs() {
       try {
         const response = await fetch('/get_surat'); // Adjust the API endpoint as needed

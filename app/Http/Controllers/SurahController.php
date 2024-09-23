@@ -95,10 +95,15 @@ class SurahController extends Controller
     public function searchTranslations(Request $request)
     {
         $query = $request->input('query');
-        $results = Surah::where('text', 'like', '%' . $query . '%')->get();
-
+    
+        // Search within the translation text
+        $results = Information::where('translation', 'like', '%' . $query . '%')
+            ->with(['ayah.surah']) 
+            ->get();
+    
         return response()->json($results);
     }
+    
 
 
     public function search(Request $request)

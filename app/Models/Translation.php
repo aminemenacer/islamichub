@@ -13,4 +13,9 @@ class Translation extends Model
     {
         return $this->belongsTo(Ayah::class);
     }
+
+    public function translations()
+    {
+        return $this->hasMany(Translation::class);
+    }
 }
