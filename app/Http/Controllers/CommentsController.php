@@ -10,13 +10,29 @@ use App\Models\Note;
 class CommentsController extends Controller
 {
 
+    public function show(Note $note)
+    {
+        // This will automatically resolve the Note instance
+        return response()->json($note);
+    }
+
     public function getComments(Note $note)
     {
-        // Retrieve all comments for the note, including the associated note info
         $comments = $note->comments()->get();
-
-        return response()->json($comments, 200); // Return comments in JSON format
+        return response()->json($comments);
     }
+
+    public function getNoteById($noteId)
+    {
+        $note = Note::find($noteId);
+
+        if (!$note) {
+            return response()->json(['error' => 'Note not found'], 404);
+        }
+
+        return response()->json($note);
+    }
+
 
     public function store(Request $request)
     {

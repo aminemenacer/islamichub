@@ -41,8 +41,11 @@ Route::middleware(['auth', 'admin'])->group(function () {
 Route::get('api/userId', [UserController::class, 'getUserId']);
 
 // comment
-Route::get('/notes/{note}/comments', [CommentController::class, 'getComments']);
+Route::get('/notes/{note}/comments', [CommentsController::class, 'getComments']);
 Route::post('/comments', [CommentsController::class, 'store']);
+Route::get('/notes/{note}', [NoteController::class, 'show']);
+Route::get('/notes/{note}/comments', [CommentController::class, 'getComments']);
+
 
 
 Route::middleware(['auth'])->group(function () {
@@ -68,6 +71,8 @@ Route::middleware(['auth'])->group(function () {
     // Route::get('/notes', [NotesController::class, 'index']);
     // Route::get('api/fetch-notes', [NotesController::class, 'getNotes']);
     Route::post('api/submit-note', [NotesController::class, 'store']);
+    Route::post('/submit-note', [NotesController::class, 'store']);
+
     Route::post('api/update-notes/{id}',  [NotesController::class, 'updateNotes']);
     Route::delete('api/delete-notes/{id}',  [NotesController::class, 'deleteNotes']);
     Route::get('api/fetch-notes/{userId}', [NotesController::class, 'getNotes']);

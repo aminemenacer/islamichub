@@ -78,21 +78,29 @@
             <p>{{ formatDate(note.created_at) }}</p>
             <hr />
             <div class="container text-center">
-              <div class="row">
-                <div class="col">
-                  <i class="bi bi-eye h3" style="cursor: pointer;" @click="viewModal(note)" data-bs-toggle="modal" data-bs-target="#viewNotes"></i>
+              <form @submit.prevent="createNote">
+                <div class="row">
+                  <div class="col">
+                    <i class="bi bi-eye h3" style="cursor: pointer;" @click="viewModal(note)" data-bs-toggle="modal" data-bs-target="#viewNotes"></i>
+                  </div>
+                  <!-- <div class="col">
+                    <i class="h4" :class="getIconClass(note.liked)" @click="toggleLike(note.id, note.liked)"></i>
+                    <span class="ms-2">{{ note.likeCount }}</span>
+                  </div> -->
+                  <div class="col">
+                    <i class="bi bi-chat-left-text h4 me-3 text-center" style="cursor: pointer;" @click="toggleComments(note.id)"></i>
+                  </div>
+                  <div class="col">
+                    <i class="bi bi-whatsapp h4 me-3 text-center" style="cursor: pointer;" @click="shareViaWhatsapp(note)"></i>
+                  </div>
+                  <div class="col">
+                    <i class="bi bi-download h4 me-3 text-center" style="cursor: pointer;" @click="createNote"></i>
+                  </div>
+                  <button class="btn btn-primary" @click="createNote">Save Note</button>
+
+
                 </div>
-                <!-- <div class="col">
-                  <i class="h4" :class="getIconClass(note.liked)" @click="toggleLike(note.id, note.liked)"></i>
-                  <span class="ms-2">{{ note.likeCount }}</span>
-                </div> -->
-                <div class="col">
-                  <i class="bi bi-chat-left-text h4 me-3 text-center" style="cursor: pointer;" @click="toggleComments(note.id)"></i>
-                </div>
-                <div class="col">
-                  <i class="bi bi-whatsapp h4 me-3 text-center" style="cursor: pointer;" @click="shareViaWhatsapp(note)"></i>
-                </div>
-              </div>
+              </form>
             </div>
             <!-- Comments Section, toggle visibility using v-show -->
             <div class="comments-section mt-4" v-show="note.showComments">
@@ -199,21 +207,32 @@ export default {
      label: 'Last Month'
     }
    ],
-   notes: [],
    form: {
     surah_name: "",
-    ayah_verse_ar: "",
-    ayah_verse_en: "",
     ayah_notes: "",
     created_at: "",
    },
   };
  },
-  mounted() {
-    this.fetchAllComments();
-  },
- async mounted() {
-  await this.fetchNotes();
+  
+ mounted() {
+   axios.get('/api/get-note')
+      .then(response => {
+         this.note = response.data.note;
+
+         // Load ayah_notes into the form for submission
+         this.form.surah_name = this.note.surah_name;
+         this.form.ayah_num = this.note.ayah_num;
+         this.form.ayah_verse_ar = this.note.ayah_verse_ar;
+         this.form.ayah_verse_en = this.note.ayah_verse_en;
+         this.form.ayah_info = this.note.ayah_info;
+         this.form.ayah_notes = this.note.ayah_notes;  // Make sure this is loaded
+         this.option = this.note.option;  // Make sure this is loaded if applicable
+      })
+      .catch(error => {
+         console.error("Error fetching the note:", error);
+      });
+  this.fetchNotes();
  },
  computed: {
    
@@ -272,6 +291,69 @@ export default {
   }
 },
  methods: {
+   createNote(){
+    const { surah_name, ayah_notes } = this.form;
+    const created_at = this.form.created_at || new Date();  // Assuming it's either in the form or using the current date
+
+    const htmlContent = `
+        <div>
+          <h5><strong>Surah Name:</strong></h5>
+          <p>${this.highlightText(surah_name)}</p>
+          <h5><strong>Note:</strong></h5>
+          <p>${this.highlightText(this.truncatedHtml(ayah_notes))}</p>
+          <h5><strong>Date created:</strong></h5>
+          <p>${this.formatDate(created_at)}</p>
+        </div>
+    `;
+
+      const formData = { 
+        // surah_name, 
+        // ayah_num, 
+        // ayah_verse_ar, 
+        // ayah_verse_en, 
+        // ayah_info, 
+        ayah_notes, 
+        option: this.option, 
+        htmlContent 
+      };
+
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You want to submit this note!",
+        showCancelButton: true,
+        confirmButtonColor: "green",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Submit!"
+    }).then(result => {
+        if (result.isConfirmed) {
+          axios.post("/submit-note", formData)
+          .then(response => {
+            this.note = response.data.note;
+            this.form.ayah_notes = this.note.ayah_notes;  // Load ayah_notes into the form field
+            this.form.surah_name = this.note.surah_name;
+            this.form.ayah_num = this.note.ayah_num;
+            this.form.ayah_verse_ar = this.note.ayah_verse_ar;
+            this.form.ayah_verse_en = this.note.ayah_verse_en;
+            this.form.ayah_info = this.note.ayah_info;
+            this.option = this.note.option; // Load option if applicable
+            Swal.fire({
+                  icon: "success",
+                  title: "Success!",
+                  text: "Your note has been submitted.",
+                  timer: 1500,
+                  showConfirmButton: false
+                }).then(() => {
+                  this.resetNoteForm();
+                  this.closeModal();
+                });
+          })
+            .catch(err => {
+                console.error(err);
+                Swal.fire("Error", "There was an error submitting your note.", "error");
+            });
+          }
+        });
+   },
    // Toggle the comments visibility
     toggleComments(noteId) {
       const note = this.filteredNotes.find(n => n.id === noteId);
@@ -280,65 +362,73 @@ export default {
       }
     },
    // Fetch comments for a specific note
-  async fetchComments(noteId) {
-    try {
-      const response = await axios.get(`/api/notes/${noteId}/comments`);
-      const note = this.filteredNotes.find(n => n.id === noteId);
-      
-      // Store the fetched comments in the note's comments array
-      note.comments = response.data;
-    } catch (error) {
-      console.error('Error fetching comments:', error);
-    }
-  },
+    async fetchComments(noteId) {
+      try {
+        const response = await axios.get(`/notes/${noteId}/comments`);
+        const note = this.filteredNotes.find(n => n.id === noteId);
+        
+        if (note) {
+          // Store the fetched comments in the note's comments array
+          note.comments = response.data;
+          note.showComments = true; // Automatically show comments when fetched
+        }
+      } catch (error) {
+        console.error('Error fetching comments:', error);
+      }
+    },
 
-  // Fetch all notes and their comments
-  async fetchNotesAndComments() {
-    try {
-      // Fetch all notes
-      const response = await axios.get('/notes'); // Adjust the endpoint accordingly
-      this.filteredNotes = response.data;
-
-      // After fetching notes, fetch comments for each note
+    // Fetch comments for all notes
+    async fetchAllComments() {
       for (const note of this.filteredNotes) {
-        await this.fetchComments(note.id);
+        await this.fetchComments(note.id); // Fetch comments for each note
       }
-    } catch (error) {
-      console.error('Error fetching notes and comments:', error);
-    }
-  },
+    },
 
-  // Fetch comments for all notes
-  async fetchAllComments() {
-    for (const note of this.filteredNotes) {
-      await this.fetchComments(note.id);
-    }
-  },
-   // Method to add a new comment
-  async addComment(noteId) {
-    if (!this.newComment[noteId]) return; // Don't add empty comments
+    // Load notes with their comments
+    async loadNotesWithComments() {
+      try {
+        // Fetch notes
+        const response = await axios.get('/notes');
+        this.filteredNotes = response.data;
 
-    try {
-      // Send the comment to the API
-      const response = await axios.post('/comments', {
-        note_id: noteId,
-        comment: this.newComment[noteId],
-      });
-
-      // If successful, push the new comment into the note's comments array
-      const note = this.filteredNotes.find(n => n.id === noteId);
-
-      if (!note.comments) {
-        note.comments = [];
+        // Fetch comments for all notes
+        await this.fetchAllComments();
+      } catch (error) {
+        console.error('Error loading notes with comments:', error);
       }
+    },
 
-      note.comments.push(response.data); // Add the new comment
-      this.newComment[noteId] = ''; // Reset the input field
-    } catch (error) {
-      console.error('Error adding comment:', error);
-    }
-  },
-  handleFilterClick(value) {
+    // Add a new comment to a note
+    async addComment(noteId) {
+      if (!this.newComment[noteId]) return; // Do not allow empty comments
+
+      try {
+        // Post the new comment to the backend
+        const response = await axios.post('/comments', {
+          note_id: noteId,
+          comment: this.newComment[noteId],
+        });
+
+        // Find the note and add the comment to its comments array
+        const note = this.filteredNotes.find(n => n.id === noteId);
+        
+        if (note) {
+          if (!note.comments) {
+            note.comments = [];
+          }
+          
+          // Add the new comment to the comments array
+          note.comments.push(response.data);
+          note.showComments = true; // Automatically show the comments if not already shown
+          
+          this.newComment[noteId] = ''; // Clear the input field
+        }
+      } catch (error) {
+        console.error('Error adding comment:', error);
+      }
+    },
+
+    handleFilterClick(value) {
       this.selectedFilter = value;
       localStorage.setItem('selectedFilter', value);
     },
@@ -432,9 +522,7 @@ export default {
    return new Date(dateString).toLocaleDateString(undefined, options);
   }
  },
- async created() {
-  await this.fetchNotesAndComments();
-  },
+ 
  watch: {
   selectedFilter(newValue) {
    console.log("Selected filter changed:", newValue);
