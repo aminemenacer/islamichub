@@ -28,6 +28,7 @@ use App\Http\Controllers\VerseController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\CommentsController;
 
 // Auth routes
 Auth::routes();
@@ -39,6 +40,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 Route::get('api/userId', [UserController::class, 'getUserId']);
 
+// comment
+Route::get('/notes/{note}/comments', [CommentController::class, 'getComments']);
+Route::post('/comments', [CommentsController::class, 'store']);
 
 
 Route::middleware(['auth'])->group(function () {

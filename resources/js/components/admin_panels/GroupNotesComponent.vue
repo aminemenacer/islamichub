@@ -82,15 +82,39 @@
                 <div class="col">
                   <i class="bi bi-eye h3" style="cursor: pointer;" @click="viewModal(note)" data-bs-toggle="modal" data-bs-target="#viewNotes"></i>
                 </div>
-                <div class="col">
+                <!-- <div class="col">
                   <i class="h4" :class="getIconClass(note.liked)" @click="toggleLike(note.id, note.liked)"></i>
                   <span class="ms-2">{{ note.likeCount }}</span>
+                </div> -->
+                <div class="col">
+                  <i class="bi bi-chat-left-text h4 me-3 text-center" style="cursor: pointer;" @click="toggleComments(note.id)"></i>
                 </div>
                 <div class="col">
                   <i class="bi bi-whatsapp h4 me-3 text-center" style="cursor: pointer;" @click="shareViaWhatsapp(note)"></i>
                 </div>
               </div>
             </div>
+            <!-- Comments Section, toggle visibility using v-show -->
+            <div class="comments-section mt-4" v-show="note.showComments">
+              <h6><strong>Comments:</strong></h6>
+              <!-- Display comments for this note -->
+              <div v-if="note.comments && note.comments.length > 0">
+                <div v-for="comment in note.comments" :key="comment.id" class="comment pb-2">
+                  <div class="pb-2" style="padding:6px; border-radius:8px; background:#ededed; color:black">
+                    <p class="pb-2">{{ comment.comment }}</p>
+                  </div>
+                </div>
+              </div>
+              <div v-else>
+                <p>No comments yet.</p>
+              </div>
+
+              <!-- Add new comment input -->
+              <input v-model="newComment[note.id]" type="text" class="form-control mt-2" placeholder="Add a comment..." />
+              <button class="btn btn-primary mt-2" @click="addComment(note.id)">Submit</button>
+            </div>
+          </div>
+
           </div>
         </div>
       </div>
@@ -140,19 +164,14 @@
 
  
  </div>
-</div>
 </template>
 
 <script>
 export default {
-//  props: {
-//   notes: {
-//    type: Array,
-//    required: true
-//   }
-//  },
+
  data() {
   return {
+   newComment: {},
    notes: [],
    selectedFilter: this.getStoredFilter() || '',
    searchTerm: "",
@@ -190,7 +209,9 @@ export default {
    },
   };
  },
-
+  mounted() {
+    this.fetchAllComments();
+  },
  async mounted() {
   await this.fetchNotes();
  },
@@ -251,7 +272,73 @@ export default {
   }
 },
  methods: {
-   handleFilterClick(value) {
+   // Toggle the comments visibility
+    toggleComments(noteId) {
+      const note = this.filteredNotes.find(n => n.id === noteId);
+      if (note) {
+        note.showComments = !note.showComments;
+      }
+    },
+   // Fetch comments for a specific note
+  async fetchComments(noteId) {
+    try {
+      const response = await axios.get(`/api/notes/${noteId}/comments`);
+      const note = this.filteredNotes.find(n => n.id === noteId);
+      
+      // Store the fetched comments in the note's comments array
+      note.comments = response.data;
+    } catch (error) {
+      console.error('Error fetching comments:', error);
+    }
+  },
+
+  // Fetch all notes and their comments
+  async fetchNotesAndComments() {
+    try {
+      // Fetch all notes
+      const response = await axios.get('/notes'); // Adjust the endpoint accordingly
+      this.filteredNotes = response.data;
+
+      // After fetching notes, fetch comments for each note
+      for (const note of this.filteredNotes) {
+        await this.fetchComments(note.id);
+      }
+    } catch (error) {
+      console.error('Error fetching notes and comments:', error);
+    }
+  },
+
+  // Fetch comments for all notes
+  async fetchAllComments() {
+    for (const note of this.filteredNotes) {
+      await this.fetchComments(note.id);
+    }
+  },
+   // Method to add a new comment
+  async addComment(noteId) {
+    if (!this.newComment[noteId]) return; // Don't add empty comments
+
+    try {
+      // Send the comment to the API
+      const response = await axios.post('/comments', {
+        note_id: noteId,
+        comment: this.newComment[noteId],
+      });
+
+      // If successful, push the new comment into the note's comments array
+      const note = this.filteredNotes.find(n => n.id === noteId);
+
+      if (!note.comments) {
+        note.comments = [];
+      }
+
+      note.comments.push(response.data); // Add the new comment
+      this.newComment[noteId] = ''; // Reset the input field
+    } catch (error) {
+      console.error('Error adding comment:', error);
+    }
+  },
+  handleFilterClick(value) {
       this.selectedFilter = value;
       localStorage.setItem('selectedFilter', value);
     },
@@ -345,6 +432,9 @@ export default {
    return new Date(dateString).toLocaleDateString(undefined, options);
   }
  },
+ async created() {
+  await this.fetchNotesAndComments();
+  },
  watch: {
   selectedFilter(newValue) {
    console.log("Selected filter changed:", newValue);
