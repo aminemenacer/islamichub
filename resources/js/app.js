@@ -2,7 +2,6 @@ require("./bootstrap");
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import $ from 'jquery';
-import 'bootstrap';
 
 import { createApp } from "vue";
 import { Form } from "vform";

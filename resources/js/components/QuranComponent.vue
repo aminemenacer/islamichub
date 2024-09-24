@@ -5,7 +5,7 @@
    <div style="display:flex" class="container align-items-center">
     <search-form  :surat="surat" @update-results="handleUpdateResults" @clear-results="handleClearResults" @select-surah="handleSelectSurah" />
     <!-- Toggle Button for Advanced Search -->
-    <i @click="toggleAdvancedSearch" :class="isAdvancedSearchVisible ? 'bi bi-dash-circle' : 'bi bi-plus-circle-fill'" class="toggle-icon h3"></i>
+    <i @click="toggleAdvancedSearch" :class="isAdvancedSearchVisible ? 'bi bi-dash-circle' : 'bi bi-arrow-down-circle-fill'" class="toggle-icon h3"></i>
   </div>
   <AdvancedSearch v-if="isAdvancedSearchVisible" @input-change="handleInputChange" />
    
@@ -743,9 +743,6 @@ props: ['information', 'selectedFolderId'],
     searchTerm: "",
     results:[],
     filteredResults: [],
-    surat: [], // Holds all Surah data
-    ayat: [], // Holds all Ayah data
-    tafseers: [], // Holds all Tafseer data
     selectedSurah: null,
     selectedAyah: null,
     selectedTafseer: null,
@@ -979,7 +976,6 @@ methods: {
       ayah_verse_en: this.information.translation,
       user_id: this.userId,
     };
-
     axios.post('/bookmarks', formData)
       .then(response => {
         console.log(response.data.message);
@@ -992,170 +988,141 @@ methods: {
         //   `Successfully bookmarked ayah ${this.information.ayah_id} to folder "${this.selectedFolderId}"`;
       })
     },
-    submitFormTafseer() {
-      const formData = {
-        // folder_id: this.selectedFolderId,
-        surah_name: this.information.ayah.surah.name_en,
-        ayah_num: this.information.ayah_id,
-        ayah_verse_ar: this.information.ayah.ayah_text,
-        ayah_verse_en: this.information.translation,
-        user_id: this.userId,
-      };
-      axios.post('/bookmarks', formData)
-        .then(response => {
-          console.log(response.data.message);
-          localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
-          this.showAlert = true;
-          this.showErrorAlert = false;
-          this.hideAlertAfterDelay();
-          // Display a confirmation message with the bookmarked ayah and folder
-          // this.$refs.bookmarkConfirmation.textContent = 
-          //   `Successfully bookmarked ayah ${this.information.ayah_id} to folder "${this.selectedFolderId}"`;
-        })
-    
-      },
-      submitFormTransliteration() {
-        const formData = {
-          // folder_id: this.selectedFolderId,
-          surah_name: this.information.ayah.surah.name_en,
-          ayah_num: this.information.ayah_id,
-          ayah_verse_ar: this.information.ayah.ayah_text,
-          ayah_verse_en: this.information.translation,
-          user_id: this.userId,
-        };
-        axios.post('/bookmarks', formData)
-          .then(response => {
-            console.log(response.data.message);
-            localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
-            this.showAlert = true;
-            this.showErrorAlert = false;
-            this.hideAlertAfterDelay();
-            // Display a confirmation message with the bookmarked ayah and folder
-            // this.$refs.bookmarkConfirmation.textContent = 
-            //   `Successfully bookmarked ayah ${this.information.ayah_id} to folder "${this.selectedFolderId}"`;
-          })
-          
-      },
-    hideAlertAfterDelay() {
-      setTimeout(() => {
-        this.showAlert = false;
+  submitFormTafseer() {
+    const formData = {
+      // folder_id: this.selectedFolderId,
+      surah_name: this.information.ayah.surah.name_en,
+      ayah_num: this.information.ayah_id,
+      ayah_verse_ar: this.information.ayah.ayah_text,
+      ayah_verse_en: this.information.translation,
+      user_id: this.userId,
+    };
+    axios.post('/bookmarks', formData)
+      .then(response => {
+        console.log(response.data.message);
+        localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
+        this.showAlert = true;
         this.showErrorAlert = false;
-      }, 3000); // Hide alerts after 3 seconds
+        this.hideAlertAfterDelay();
+        // Display a confirmation message with the bookmarked ayah and folder
+        // this.$refs.bookmarkConfirmation.textContent = 
+        //   `Successfully bookmarked ayah ${this.information.ayah_id} to folder "${this.selectedFolderId}"`;
+      })
     },
+  submitFormTransliteration() {
+    const formData = {
+      // folder_id: this.selectedFolderId,
+      surah_name: this.information.ayah.surah.name_en,
+      ayah_num: this.information.ayah_id,
+      ayah_verse_ar: this.information.ayah.ayah_text,
+      ayah_verse_en: this.information.translation,
+      user_id: this.userId,
+    };
+    axios.post('/bookmarks', formData)
+      .then(response => {
+        console.log(response.data.message);
+        localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
+        this.showAlert = true;
+        this.showErrorAlert = false;
+        this.hideAlertAfterDelay();
+        // Display a confirmation message with the bookmarked ayah and folder
+        // this.$refs.bookmarkConfirmation.textContent = 
+        //   `Successfully bookmarked ayah ${this.information.ayah_id} to folder "${this.selectedFolderId}"`;
+      })
+    },
+  hideAlertAfterDelay() {
+    setTimeout(() => {
+      this.showAlert = false;
+      this.showErrorAlert = false;
+    }, 3000); // Hide alerts after 3 seconds
+  },
   toggleAdvancedSearch() {
     this.isAdvancedSearchVisible = !this.isAdvancedSearchVisible; // Toggle the visibility
   },
-searchWord() {
-  if (this.searchTerm.length > 0) {
-    axios
-      .get("/search-translations", {
-        params: { query: this.searchTerm }
-      })
-      .then(response => {
-        this.filteredResults = response.data;
-        this.showOffcanvas();
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  } else {
-    this.filteredResults = [];
-  }
-},
-  highlightSearch(text) {
-      const regex = new RegExp(`(${this.searchTerm})`, 'gi');
-      return text.replace(regex, "<span class='highlight'>$1</span>");
-    },
-    showOffcanvas() {
-      const offcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasResults'));
-      offcanvas.show();
-    },
+  async fetchSurahs() {
+    try {
+      const response = await fetch('/get_surat'); // Adjust the API endpoint as needed
+      this.surat = await response.json();
+    } catch (error) {
+      console.error('Error fetching surahs:', error);
+    }
+  },
+  async fetchRandomSurah() {
+    if (this.surat.length === 0) {
+      console.error('No surahs available');
+      return;
+    }
 
-    async fetchSurahs() {
-      try {
-        const response = await fetch('/get_surat'); // Adjust the API endpoint as needed
-        this.surat = await response.json();
-      } catch (error) {
-        console.error('Error fetching surahs:', error);
-      }
-    },
-    async fetchRandomSurah() {
-      if (this.surat.length === 0) {
-        console.error('No surahs available');
-        return;
-      }
+    const randomIndex = Math.floor(Math.random() * this.surat.length);
+    this.selectedSurah = this.surat[randomIndex];
 
-      const randomIndex = Math.floor(Math.random() * this.surat.length);
-      this.selectedSurah = this.surat[randomIndex];
-
-      try {
-        const response = await fetch(`/api/ayah/${this.selectedSurah.id}`); // Fetch ayahs for the selected surah
-        const ayahs = await response.json();
-        this.selectedAyah = ayahs[Math.floor(Math.random() * ayahs.length)].ayah_text; // Randomly select an ayah
-      } catch (error) {
-        console.error('Error fetching ayahs:', error);
-      }
-    },
-    
-   toggleContent1() {
-      this.isVisible1 = !this.isVisible1; // Toggle the visibility
-    },
-   openModal(modalName) {
-      if (modalName === 'folderSelection') {
-        const folderSelectionModal = this.$refs.folderSelectionModal;
-        if (folderSelectionModal) {
-          const bootstrapModal = new bootstrap.Modal(folderSelectionModal.$el);
-          bootstrapModal.show();
-        } else {
-          console.error('Folder selection modal not found');
-        }
+    try {
+      const response = await fetch(`/api/ayah/${this.selectedSurah.id}`); // Fetch ayahs for the selected surah
+      const ayahs = await response.json();
+      this.selectedAyah = ayahs[Math.floor(Math.random() * ayahs.length)].ayah_text; // Randomly select an ayah
+    } catch (error) {
+      console.error('Error fetching ayahs:', error);
+    }
+  },
+  toggleContent1() {
+    this.isVisible1 = !this.isVisible1; // Toggle the visibility
+  },
+  openModal(modalName) {
+    if (modalName === 'folderSelection') {
+      const folderSelectionModal = this.$refs.folderSelectionModal;
+      if (folderSelectionModal) {
+        const bootstrapModal = new bootstrap.Modal(folderSelectionModal.$el);
+        bootstrapModal.show();
       } else {
-        console.error('Unknown modal:', modalName);
+        console.error('Folder selection modal not found');
       }
-    },
-   initRecognition() {
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    } else {
+      console.error('Unknown modal:', modalName);
+    }
+  },
+  initRecognition() {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-      if (!SpeechRecognition) {
-        alert('Your browser does not support Speech Recognition.');
-        return;
-      }
+    if (!SpeechRecognition) {
+      alert('Your browser does not support Speech Recognition.');
+      return;
+    }
 
-      this.recognition = new SpeechRecognition();
-      this.recognition.lang = 'en-US';
-      this.recognition.interimResults = false;
-      this.recognition.maxAlternatives = 1;
+    this.recognition = new SpeechRecognition();
+    this.recognition.lang = 'en-US';
+    this.recognition.interimResults = false;
+    this.recognition.maxAlternatives = 1;
 
-      this.recognition.onresult = (event) => {
-        const result = event.results[0][0].transcript;
-        this.transcript += result + '\n';
-      };
+    this.recognition.onresult = (event) => {
+      const result = event.results[0][0].transcript;
+      this.transcript += result + '\n';
+    };
 
-      this.recognition.onerror = (event) => {
-        console.error('Speech Recognition Error:', event.error);
-      };
+    this.recognition.onerror = (event) => {
+      console.error('Speech Recognition Error:', event.error);
+    };
 
-      this.recognition.onend = () => {
-        this.isListening = false;
-      };
-    },
-    startRecognition() {
-      if (!this.recognition) {
-        this.initRecognition();
-      }
-      this.transcript = ''; // Clear previous transcript
-      this.recognition.start();
-      this.isListening = true;
-    },
-    stopRecognition() {
-      if (this.recognition && this.isListening) {
-        this.recognition.stop();
-        this.isListening = false;
-      }
-    },
-   toggleContent() {
-      this.isOpen = !this.isOpen; // Toggle the content's visibility
-    },
+    this.recognition.onend = () => {
+      this.isListening = false;
+    };
+  },
+  startRecognition() {
+    if (!this.recognition) {
+      this.initRecognition();
+    }
+    this.transcript = ''; // Clear previous transcript
+    this.recognition.start();
+    this.isListening = true;
+  },
+  stopRecognition() {
+    if (this.recognition && this.isListening) {
+      this.recognition.stop();
+      this.isListening = false;
+    }
+  },
+  toggleContent() {
+    this.isOpen = !this.isOpen; // Toggle the content's visibility
+  },
   toggleCollapse() {
     this.isCollapsed = !this.isCollapsed;
   },
@@ -1238,47 +1205,45 @@ searchWord() {
     }, 3000);
   },
   applyStylesToCards() {
-  // Example of applying styles to card elements
-  const cards = document.querySelectorAll('.card');
-  cards.forEach(card => {
-    card.style.backgroundColor = this.bgColor;
-    card.style.color = this.textColor;
-    card.style.fontFamily = this.fontFamily;
-    card.style.fontSize = `${this.fontSize}px`;
-    card.style.letterSpacing = `${this.fontSpacing}px`;
-    card.style.fontWeight = this.isBold ? 'bold' : this.isLight ? '300' : 'normal';
-    card.style.fontStyle = this.isItalic ? 'italic' : 'normal';
-    card.style.textShadow = this.selectedShadow;
-    card.style.textDecoration = this.isUnderline ? 'underline' : this.isStrikethrough ? 'line-through' : 'none';
-    card.style.textTransform = this.textTransform;
-    card.style.textAlign = this.textAlign;
-    card.style.iconColor = this.iconColor;
-  });
-}
-,
-loadSavedStyles() {
-  const savedSettings = JSON.parse(localStorage.getItem('textStyles'));
-  if (savedSettings) {
-    this.bgColor = savedSettings.bgColor || this.bgColor;
-    this.textColor = savedSettings.textColor || this.textColor;
-    this.fontFamily = savedSettings.fontFamily || this.fontFamily;
-    this.fontSize = savedSettings.fontSize || this.fontSize;
-    this.fontSpacing = savedSettings.fontSpacing || this.fontSpacing;
-    this.selectedShadow = savedSettings.selectedShadow || this.selectedShadow;
-    this.isBold = savedSettings.isBold || this.isBold;
-    this.isItalic = savedSettings.isItalic || this.isItalic;
-    this.isLight = savedSettings.isLight || this.isLight;
-    this.isUnderline = savedSettings.isUnderline || this.isUnderline;
-    this.isStrikethrough = savedSettings.isStrikethrough || this.isStrikethrough;
-    this.textTransform = savedSettings.textTransform || this.textTransform;
-    this.textAlign = savedSettings.textAlign || this.textAlign;
-    this.iconColor = savedSettings.iconColor || this.iconColor;
+    // Example of applying styles to card elements
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+      card.style.backgroundColor = this.bgColor;
+      card.style.color = this.textColor;
+      card.style.fontFamily = this.fontFamily;
+      card.style.fontSize = `${this.fontSize}px`;
+      card.style.letterSpacing = `${this.fontSpacing}px`;
+      card.style.fontWeight = this.isBold ? 'bold' : this.isLight ? '300' : 'normal';
+      card.style.fontStyle = this.isItalic ? 'italic' : 'normal';
+      card.style.textShadow = this.selectedShadow;
+      card.style.textDecoration = this.isUnderline ? 'underline' : this.isStrikethrough ? 'line-through' : 'none';
+      card.style.textTransform = this.textTransform;
+      card.style.textAlign = this.textAlign;
+      card.style.iconColor = this.iconColor;
+    });
+  },
+  loadSavedStyles() {
+    const savedSettings = JSON.parse(localStorage.getItem('textStyles'));
+    if (savedSettings) {
+      this.bgColor = savedSettings.bgColor || this.bgColor;
+      this.textColor = savedSettings.textColor || this.textColor;
+      this.fontFamily = savedSettings.fontFamily || this.fontFamily;
+      this.fontSize = savedSettings.fontSize || this.fontSize;
+      this.fontSpacing = savedSettings.fontSpacing || this.fontSpacing;
+      this.selectedShadow = savedSettings.selectedShadow || this.selectedShadow;
+      this.isBold = savedSettings.isBold || this.isBold;
+      this.isItalic = savedSettings.isItalic || this.isItalic;
+      this.isLight = savedSettings.isLight || this.isLight;
+      this.isUnderline = savedSettings.isUnderline || this.isUnderline;
+      this.isStrikethrough = savedSettings.isStrikethrough || this.isStrikethrough;
+      this.textTransform = savedSettings.textTransform || this.textTransform;
+      this.textAlign = savedSettings.textAlign || this.textAlign;
+      this.iconColor = savedSettings.iconColor || this.iconColor;
 
-    // Apply the loaded styles to the container
-    this.applyCustomStyles(); // Ensure this applies the styles to the container
-  }
-},
-  
+      // Apply the loaded styles to the container
+      this.applyCustomStyles(); // Ensure this applies the styles to the container
+    }
+  },
   saveStyle() {
    localStorage.setItem('selectedStyle', JSON.stringify(this.selectedStyle));
   },
@@ -1339,7 +1304,6 @@ loadSavedStyles() {
     }
    });
   },
-
   toggleExpand() {
    this.expanded = !this.expanded;
   },
@@ -1355,7 +1319,6 @@ loadSavedStyles() {
    this.selectedIndexAyah = newIndex;
    console.log(`Selected Ayah: ${newIndex}`);
   },
-
   closeAlertText() {
    this.showAlertText = false;
   },
@@ -1491,9 +1454,6 @@ loadSavedStyles() {
     }, 5000);
    }
   },
-  
-
-
   async getSurat() {
    try {
     const response = await axios.get('/get_surat'); // Update the URL to match your backend
@@ -1503,7 +1463,6 @@ loadSavedStyles() {
    }
   },
   async getAyat() {
-
    if (this.selectedSurahId > 0) {
     try {
      const response = await axios.get('/get_ayat', {
@@ -1521,8 +1480,6 @@ loadSavedStyles() {
     this.dropdownHidden = true; // Hide Ayah dropdown if no Surah is selected
    }
   },
-
-
   async handleAyahChange() {
    const selectedAyahIndex = parseInt(this.selectedAyahId);
    const selectedAyah = this.ayat[selectedAyahIndex];
@@ -1551,7 +1508,6 @@ loadSavedStyles() {
    this.scrollToSelectedAyah();
    this.getTafseers(this.ayat[index].id, index);
   },
-
   scrollToSelectedAyah() {
    this.$nextTick(() => {
     const selectedAyah = this.$refs.ayahList.querySelector('.selected');
@@ -1593,12 +1549,9 @@ loadSavedStyles() {
    this.filteredSurah = [];
    this.showClearButton = false;
    this.getAyat();
-
   },
-
   getTafseers: function (id, index) {
    this.selectedIndexAyah = index;
-
    axios.get(`/tafseer/${id}/fetch`).then(
     function (response) {
      console.log(response);
@@ -1606,7 +1559,6 @@ loadSavedStyles() {
      this.tafseer = response.data;
     }.bind(this)
    );
-
    axios
     .get("/get_informations", {
      params: {
@@ -1621,17 +1573,11 @@ loadSavedStyles() {
     );
   },
  },
-
- created() {
-  
- },
-
  watch: {
   selectedSurah(newSurah) {
    this.selectedSurahId = newSurah;
    this.getAyat();
   },
-
   'information.ayah.surah.name_ar': 'updateFileName',
   verseNumber(newVal, oldVal) {
    if (newVal !== oldVal && parseInt(newVal)) {
@@ -1643,6 +1589,7 @@ loadSavedStyles() {
 </script>
 
 <style scoped src="./css/styles.css">
+
 .highlight {
   background-color: yellow;
   font-weight: bold;
@@ -1662,6 +1609,4 @@ loadSavedStyles() {
   background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
 
 }
-
-
 </style>
