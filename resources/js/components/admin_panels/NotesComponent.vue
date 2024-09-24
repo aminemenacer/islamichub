@@ -228,8 +228,8 @@ export default {
    };
 
    // Open the modal using Bootstrap 5
-   const viewNotesModal = new bootstrap.Modal(document.getElementById('viewNotes'));
-   viewNotesModal.show();
+  //  const viewNotesModal = new bootstrap.Modal(document.getElementById('viewNotes'));
+  //  viewNotesModal.show();
   },
   extractDate(dateTimeString) {
    return dateTimeString.split('T')[0];

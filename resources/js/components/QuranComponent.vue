@@ -1455,51 +1455,53 @@ methods: {
    }
   },
   async getSurat() {
-   try {
-    const response = await axios.get('/get_surat'); // Update the URL to match your backend
-    this.surat = response.data;
-   } catch (error) {
-    console.error('Error fetching surahs:', error);
-   }
+    try {
+      const response = await axios.get('/get_surat'); // Ensure this URL is correct
+      this.surat = response.data;
+    } catch (error) {
+      console.error('Error fetching surahs:', error);
+    }
   },
   async getAyat() {
-   if (this.selectedSurahId > 0) {
-    try {
-     const response = await axios.get('/get_ayat', {
-      params: {
-       surah_id: this.selectedSurahId
-      },
-     });
-     this.ayat = response.data;
-     this.dropdownHidden = false; // Show Ayah dropdown after fetching
-    } catch (error) {
-     console.error('Error fetching ayat:', error);
+    if (this.selectedSurahId > 0) {
+      try {
+        const response = await axios.get('/get_ayat', {
+          params: {
+            surah_id: this.selectedSurahId,
+          },
+        });
+        this.ayat = response.data;
+        this.dropdownHidden = false; // Show Ayah dropdown after fetching
+      } catch (error) {
+        console.error('Error fetching ayat:', error);
+        this.ayat = []; // Clear ayat on error
+        this.dropdownHidden = true; // Hide Ayah dropdown
+      }
+    } else {
+      this.ayat = [];
+      this.dropdownHidden = true; // Hide Ayah dropdown if no Surah is selected
     }
-   } else {
-    this.ayat = [];
-    this.dropdownHidden = true; // Hide Ayah dropdown if no Surah is selected
-   }
   },
   async handleAyahChange() {
-   const selectedAyahIndex = parseInt(this.selectedAyahId);
-   const selectedAyah = this.ayat[selectedAyahIndex];
-   if (selectedAyah) {
-    const ayahId = selectedAyah.ayah_id;
-    try {
-     const tafseerResponse = await axios.get(`/tafseer/${ayahId}/fetch`);
-     this.tafseer = tafseerResponse.data;
+      const selectedAyahIndex = parseInt(this.selectedAyahId);
+      const selectedAyah = this.ayat[selectedAyahIndex];
+      if (selectedAyah) {
+        const ayahId = selectedAyah.id; // Assuming ayah has 'id' field, adjust if necessary
+        try {
+          const tafseerResponse = await axios.get(`/tafseer/${ayahId}/fetch`);
+          this.tafseer = tafseerResponse.data;
 
-     const infoResponse = await axios.get('/get_informations', {
-      params: {
-       id: ayahId
-      },
-     });
-     this.information = infoResponse.data;
-    } catch (error) {
-     console.error('Error fetching information or tafseer:', error);
-    }
-   }
-  },
+          const infoResponse = await axios.get('/get_informations', {
+            params: {
+              id: ayahId
+            },
+          });
+          this.information = infoResponse.data;
+        } catch (error) {
+          console.error('Error fetching information or tafseer:', error);
+        }
+      }
+    },
   showCard() {
    this.isCardVisible = true; // Show the card when button is clicked
   },

@@ -145,12 +145,12 @@
 
 <script>
 export default {
- props: {
-  notes: {
-   type: Array,
-   required: true
-  }
- },
+//  props: {
+//   notes: {
+//    type: Array,
+//    required: true
+//   }
+//  },
  data() {
   return {
    notes: [],
@@ -371,13 +371,6 @@ i:hover {
   color: #00bfa6; /* Change to your desired color */
 }
 
-.modal-backdrop {
-  z-index: 1040 !important;
-}
-
-.modal {
-  z-index: 1050 !important;
-}
 
 .highlight {
   background-color: yellow;
@@ -451,21 +444,7 @@ i:hover {
  border: 1px solid rgba(0, 191, 166);
 }
 
-.modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1000;
-  width: 400px;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
 
-.modal-content {
-  padding: 20px;
-}
 
 .close {
   float: right;
