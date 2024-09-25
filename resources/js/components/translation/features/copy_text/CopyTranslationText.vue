@@ -60,11 +60,3 @@ export default {
 };
 </script>
 
-<style scoped>
-.alert {
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  z-index: 1000;
-}
-</style>

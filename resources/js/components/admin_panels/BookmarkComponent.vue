@@ -47,6 +47,13 @@
                 style="color:rgb(0, 191, 166); cursor:pointer"
                 data-bs-toggle="modal"
                 data-bs-target="#viewBookmark"
+                @click="redirectToBookmark(bookmark.url)"
+              ></i>
+              <i
+                class="bi bi-eye-fill h4"
+                style="color:rgb(0, 191, 166); cursor:pointer"
+                data-bs-toggle="modal"
+                data-bs-target="#viewBookmark"
                 @click="viewModal(bookmark)"
               ></i>
               <i
@@ -67,7 +74,7 @@
       tabindex="-1"
       aria-labelledby="viewBookmarkLabel"
       aria-hidden="true"
-    >
+     >
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
@@ -163,6 +170,9 @@ export default {
     };
   },
   methods: {
+    redirectToBookmark(url) {
+      window.location.href = url;
+    },
     extractDate(dateTimeString) {
       if (!dateTimeString) return '';
       return dateTimeString.split('T')[0];
