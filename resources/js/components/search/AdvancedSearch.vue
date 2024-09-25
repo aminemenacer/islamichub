@@ -30,14 +30,10 @@
             <i class="bi bi-file-earmark-pdf h4 me-3 text-center" style="cursor: pointer;" @click="downloadPDF(result)"></i>
           </div> 
           <div class="col">
-            <i class="bi bi-clipboard-check h4 me-3 text-center" style="cursor: pointer;" @click="copyTranslationText(result)"></i>
+            <i class="bi bi-clipboard-check h4 me-3 text-center" style="cursor: pointer;" @click="copyTranslationText(result.translation)"></i>
           </div>
-
           <div class="col">
             <i class="bi bi-whatsapp h4 me-3 text-center" style="cursor: pointer;" @click="shareViaWhatsapp(result)"></i>
-          </div>
-          <div class="col">
-            <i class="bi bi-download h4 me-3 text-center" style="cursor: pointer;" ></i>
           </div>
         </div>
 
@@ -146,7 +142,12 @@ export default {
     alert('Text copied to clipboard');
   },
   shareViaWhatsapp(result) {
-    const message = `Ayah Info: ${result.ayah.surah_id} ${result.ayah.ayah_id}, Ayah: ${result.ayah.ayah_text}, Ayah Translation: ${result.ayah.ayah_text}\nNote: ${result.translation}`;
+    const surahInfo = `${result.ayah.surah_id}:${result.ayah.ayah_id}`;
+    const ayahText = `Ayah: ${result.ayah.ayah_text}`;
+    const ayahTranslation = `Ayah Translation: ${result.ayah.ayah_text}`;
+    const note = `Note: ${result.translation}`;
+
+    const message = `${surahInfo}\n${ayahText}\n${ayahTranslation}\n${note}`;
     const encodedMessage = encodeURIComponent(message); // Encode special characters
     const whatsappUrl = `https://wa.me/?text=${encodedMessage}`;
     window.open(whatsappUrl, '_blank');
