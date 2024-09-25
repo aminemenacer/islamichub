@@ -44,8 +44,17 @@ Route::get('api/userId', [UserController::class, 'getUserId']);
 Route::get('/notes/{note}/comments', [CommentsController::class, 'getComments']);
 Route::post('/comments', [CommentsController::class, 'store']);
 Route::get('/notes/{note}', [NoteController::class, 'show']);
-Route::get('/notes/{note}/comments', [CommentController::class, 'getComments']);
+Route::get('/notes/{note}/comments', [CommentsController::class, 'getComments']);
+Route::post('/add-comment', [CommentsController::class, 'addComment'])->name('add-comment');
 
+// Route to get comments for a specific note
+Route::get('/get-comments/{noteId}', [CommentsController::class, 'getComments']);
+
+// Route to add a comment to a specific note
+Route::post('/add-comment', [CommentsController::class, 'store']);
+
+// Route to get all notes (and their comments)
+Route::get('/get-notes', [NoteController::class, 'getNotesWithComments']);
 
 
 Route::middleware(['auth'])->group(function () {

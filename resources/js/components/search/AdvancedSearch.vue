@@ -15,10 +15,35 @@
    <div class="offcanvas-body text-left custom-offcanvas">
      <div v-if="filteredResults.length">
        <div v-for="result in filteredResults" :key="result.id" class="result-item">
-         <b><h6>{{ result.ayah.surah_id }} : {{ result.ayah.ayah_id }} - {{ result.ayah.surah.name_ar }}</h6></b>
+         <b><h6>{{ result.ayah.surah_id }} : {{ result.ayah.ayah_id }} <b> {{ result.ayah.surah.name_ar }}</b></h6></b>
+         <p>{{result.ayah.ayah_text}}</p>         
          <p v-html="highlightSearch(result.translation)"></p>
-         <hr>
+         
+          
+          <div class="row">
+            <div class="col">
+              <i class="bi bi-eye h3 me-3 " style="cursor: pointer;"  data-bs-toggle="modal" ></i>
+            </div>
+            
+            <div class="col">
+             <!-- <i class="h4" :class="getIconClass(note.liked)" @click="toggleLike(note.id, note.liked)"></i>
+              <span class="ms-2">{{ note.likeCount }}</span> -->
+              <i class="bi bi-chat-left-text h4 me-3 text-center" style="cursor: pointer;" ></i>
+            </div> 
+            <div class="col">
+              <i class="bi bi-chat-left-text h4 me-3 text-center" style="cursor: pointer;" ></i>
+            </div>
+            <div class="col">
+              <i class="bi bi-whatsapp h4 me-3 text-center" style="cursor: pointer;" ></i>
+            </div>
+            <div class="col">
+              <i class="bi bi-download h4 me-3 text-center" style="cursor: pointer;" ></i>
+            </div>
+          </div>
+  
+        <hr>
        </div>
+       
      </div>
      <div v-else>
        <p>No results found.</p>
@@ -49,6 +74,7 @@ export default {
    filteredResults: []
   };
  },
+
  methods: {
   searchWord() {
    if (this.searchTerm.length > 0) {

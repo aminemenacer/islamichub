@@ -81,22 +81,21 @@
               <form @submit.prevent="createNote">
                 <div class="row">
                   <div class="col">
-                    <i class="bi bi-eye h3" style="cursor: pointer;" @click="viewModal(note)" data-bs-toggle="modal" data-bs-target="#viewNotes"></i>
+                    <i class="bi bi-eye me-3 h3" style="cursor: pointer;" @click="viewModal(note)" data-bs-toggle="modal" data-bs-target="#viewNotes"></i>
                   </div>
                   <!-- <div class="col">
                     <i class="h4" :class="getIconClass(note.liked)" @click="toggleLike(note.id, note.liked)"></i>
                     <span class="ms-2">{{ note.likeCount }}</span>
-                  </div> -->
+                  </div> 
                   <div class="col">
                     <i class="bi bi-chat-left-text h4 me-3 text-center" style="cursor: pointer;" @click="toggleComments(note.id)"></i>
-                  </div>
+                  </div> -->
                   <div class="col">
                     <i class="bi bi-whatsapp h4 me-3 text-center" style="cursor: pointer;" @click="shareViaWhatsapp(note)"></i>
                   </div>
                   <div class="col">
                     <i class="bi bi-download h4 me-3 text-center" style="cursor: pointer;" @click="createNote"></i>
                   </div>
-                  <button class="btn btn-primary" @click="createNote">Save Note</button>
 
 
                 </div>
@@ -108,7 +107,7 @@
               <!-- Display comments for this note -->
               <div v-if="note.comments && note.comments.length > 0">
                 <div v-for="comment in note.comments" :key="comment.id" class="comment pb-2">
-                  <div class="pb-2" style="padding:6px; border-radius:8px; background:#ededed; color:black">
+                  <div  class="pb-2" style="padding:6px; border-radius:8px; background:#ededed; color:black">
                     <p class="pb-2">{{ comment.comment }}</p>
                   </div>
                 </div>
@@ -176,7 +175,11 @@
 
 <script>
 export default {
-
+  props: ["note"],
+  mounted() {
+    // Fetch comments when the component is mounted
+    this.loadComments(this.note.id);
+  },
  data() {
   return {
    newComment: {},
@@ -215,24 +218,8 @@ export default {
   };
  },
   
- mounted() {
-   axios.get('/api/get-note')
-      .then(response => {
-         this.note = response.data.note;
-
-         // Load ayah_notes into the form for submission
-         this.form.surah_name = this.note.surah_name;
-         this.form.ayah_num = this.note.ayah_num;
-         this.form.ayah_verse_ar = this.note.ayah_verse_ar;
-         this.form.ayah_verse_en = this.note.ayah_verse_en;
-         this.form.ayah_info = this.note.ayah_info;
-         this.form.ayah_notes = this.note.ayah_notes;  // Make sure this is loaded
-         this.option = this.note.option;  // Make sure this is loaded if applicable
-      })
-      .catch(error => {
-         console.error("Error fetching the note:", error);
-      });
-  this.fetchNotes();
+ async mounted() {
+  await this.fetchNotes();
  },
  computed: {
    
@@ -291,151 +278,72 @@ export default {
   }
 },
  methods: {
-   createNote(){
-    const { surah_name, ayah_notes } = this.form;
-    const created_at = this.form.created_at || new Date();  // Assuming it's either in the form or using the current date
+  loadComments(noteId) {
+    axios.get(`/api/get-comments/${noteId}`)
+      .then(response => {
+        this.$set(this.notes.find(note => note.id === noteId), 'comments', response.data.comments);
+      })
+      .catch(err => {
+        console.error("Error loading comments:", err);
+      });
+  },
 
-    const htmlContent = `
-        <div>
-          <h5><strong>Surah Name:</strong></h5>
-          <p>${this.highlightText(surah_name)}</p>
-          <h5><strong>Note:</strong></h5>
-          <p>${this.highlightText(this.truncatedHtml(ayah_notes))}</p>
-          <h5><strong>Date created:</strong></h5>
-          <p>${this.formatDate(created_at)}</p>
-        </div>
-    `;
-
-      const formData = { 
-        // surah_name, 
-        // ayah_num, 
-        // ayah_verse_ar, 
-        // ayah_verse_en, 
-        // ayah_info, 
-        ayah_notes, 
-        option: this.option, 
-        htmlContent 
-      };
-
-      Swal.fire({
-        title: "Are you sure?",
-        text: "You want to submit this note!",
-        showCancelButton: true,
-        confirmButtonColor: "green",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Submit!"
-    }).then(result => {
-        if (result.isConfirmed) {
-          axios.post("/submit-note", formData)
-          .then(response => {
-            this.note = response.data.note;
-            this.form.ayah_notes = this.note.ayah_notes;  // Load ayah_notes into the form field
-            this.form.surah_name = this.note.surah_name;
-            this.form.ayah_num = this.note.ayah_num;
-            this.form.ayah_verse_ar = this.note.ayah_verse_ar;
-            this.form.ayah_verse_en = this.note.ayah_verse_en;
-            this.form.ayah_info = this.note.ayah_info;
-            this.option = this.note.option; // Load option if applicable
-            Swal.fire({
-                  icon: "success",
-                  title: "Success!",
-                  text: "Your note has been submitted.",
-                  timer: 1500,
-                  showConfirmButton: false
-                }).then(() => {
-                  this.resetNoteForm();
-                  this.closeModal();
-                });
-          })
-            .catch(err => {
-                console.error(err);
-                Swal.fire("Error", "There was an error submitting your note.", "error");
-            });
-          }
-        });
-   },
-   // Toggle the comments visibility
-    toggleComments(noteId) {
+  // Toggle the comments visibility
+  toggleComments(noteId) {
+    const note = this.filteredNotes.find(n => n.id === noteId);
+    if (note) {
+      note.showComments = !note.showComments;
+    }
+  },
+  
+  // Fetch comments for a specific note
+  async fetchComments(noteId) {
+    try {
+      const response = await axios.get(`/notes/${noteId}/comments`);
       const note = this.filteredNotes.find(n => n.id === noteId);
+      
       if (note) {
-        note.showComments = !note.showComments;
+        // Store the fetched comments in the note's comments array
+        note.comments = response.data;
+        note.showComments = true; // Automatically show comments when fetched
       }
-    },
-   // Fetch comments for a specific note
-    async fetchComments(noteId) {
-      try {
-        const response = await axios.get(`/notes/${noteId}/comments`);
-        const note = this.filteredNotes.find(n => n.id === noteId);
-        
-        if (note) {
-          // Store the fetched comments in the note's comments array
-          note.comments = response.data;
-          note.showComments = true; // Automatically show comments when fetched
-        }
-      } catch (error) {
-        console.error('Error fetching comments:', error);
-      }
-    },
+    } catch (error) {
+      console.error('Error fetching comments:', error);
+    }
+  },
 
-    // Fetch comments for all notes
-    async fetchAllComments() {
-      for (const note of this.filteredNotes) {
-        await this.fetchComments(note.id); // Fetch comments for each note
-      }
-    },
+  // Fetch comments for all notes
+  async fetchAllComments() {
+    for (const note of this.filteredNotes) {
+      await this.fetchComments(note.id); // Fetch comments for each note
+    }
+  },
 
-    // Load notes with their comments
-    async loadNotesWithComments() {
-      try {
-        // Fetch notes
-        const response = await axios.get('/notes');
-        this.filteredNotes = response.data;
+  // Add a new comment
+  addComment(noteId) {
+    const commentData = {
+      note_id: noteId,
+      comment: this.newComment[noteId],
+    };
 
-        // Fetch comments for all notes
-        await this.fetchAllComments();
-      } catch (error) {
-        console.error('Error loading notes with comments:', error);
-      }
-    },
+    axios.post("/add-comment", commentData)
+      .then(response => {
+        this.notes.find(note => note.id === noteId).comments.push(response.data); // Add the new comment to the comments array
+        this.newComment[noteId] = ''; // Clear input field after submission
+      })
+      .catch(err => {
+        console.error("Error adding comment:", err);
+      });
+  },
 
-    // Add a new comment to a note
-    async addComment(noteId) {
-      if (!this.newComment[noteId]) return; // Do not allow empty comments
-
-      try {
-        // Post the new comment to the backend
-        const response = await axios.post('/comments', {
-          note_id: noteId,
-          comment: this.newComment[noteId],
-        });
-
-        // Find the note and add the comment to its comments array
-        const note = this.filteredNotes.find(n => n.id === noteId);
-        
-        if (note) {
-          if (!note.comments) {
-            note.comments = [];
-          }
-          
-          // Add the new comment to the comments array
-          note.comments.push(response.data);
-          note.showComments = true; // Automatically show the comments if not already shown
-          
-          this.newComment[noteId] = ''; // Clear the input field
-        }
-      } catch (error) {
-        console.error('Error adding comment:', error);
-      }
-    },
-
-    handleFilterClick(value) {
-      this.selectedFilter = value;
-      localStorage.setItem('selectedFilter', value);
-    },
-    getStoredFilter() {
-      return localStorage.getItem('selectedFilter');
-    },
-   shareViaWhatsapp(note) {
+  handleFilterClick(value) {
+    this.selectedFilter = value;
+    localStorage.setItem('selectedFilter', value);
+  },
+  getStoredFilter() {
+    return localStorage.getItem('selectedFilter');
+  },
+  shareViaWhatsapp(note) {
     const message = `Surah Name: ${note.surah_name}\nNote: ${note.ayah_notes}\nDate Created: ${this.formatDate(note.created_at)}`;
     const encodedMessage = encodeURIComponent(message); // Encode special characters
     const whatsappUrl = `https://wa.me/?text=${encodedMessage}`;

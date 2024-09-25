@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Note;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
 
@@ -23,6 +24,24 @@ class NotesController extends Controller
         $notes = Note::where('user_id', $userId)->orderBy('created_at', 'desc')->get();
         return response()->json($notes);
     }
+
+    public function getNotesWithComments()
+    {
+        $notes = Note::with('comments')->get(); // Eager load comments with notes
+        return response()->json(['notes' => $notes], 200);
+    }
+
+    public function submitNote(Request $request) {
+        $notes = $request->validate([
+            'ayah_notes' => 'required|string',
+            'option' => 'required|string',
+        ]);
+    
+        // Save note or handle the request here...
+    
+        return response()->json(['note' => $notes], 200);
+    }
+    
 
     public function fetchNotes()
     {
