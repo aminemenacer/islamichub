@@ -1,7 +1,7 @@
 <template>
 <div id="app">
  <div class="pt-3 text-center">
-  <Title v-if="information == null && dropdownHidden" />
+  <Title />
    <div style="display:flex" class="container align-items-center">
     <search-form  :surat="surat" @update-results="handleUpdateResults" @clear-results="handleClearResults" @select-surah="handleSelectSurah" />
     <!-- Toggle Button for Advanced Search -->

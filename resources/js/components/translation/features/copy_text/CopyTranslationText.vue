@@ -9,6 +9,12 @@
       :style="{ color: iconColor, cursor: 'pointer' }"
     ></i>
  
+    <div v-if="showAlertText" class="alert alert-success" role="alert">
+      Text copied successfully!
+    </div>
+    <div v-if="showErrorAlert" class="alert alert-danger" role="alert">
+      Failed to copy text!
+    </div>
     
   </div>
 </template>

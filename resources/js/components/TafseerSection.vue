@@ -64,7 +64,7 @@ export default {
   };
  },
  methods: {
-    shareOnWhatsApp() {
+  shareOnWhatsApp() {
    const ayahInfo = this.information.ayahInfo || "No Ayah Info available"; // Fallback message
    const mainAyah = this.information.mainAyah || "No Main Ayah available"; // Fallback message
    const ayahTafseer = this.expanded ? this.information.tafseer : this.truncatedText(this.information.tafseer);
