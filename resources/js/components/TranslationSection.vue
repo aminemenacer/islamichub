@@ -15,25 +15,26 @@
    </div>
    <div>
    </div>
-   <Translator translator="Ahmed Ali" />
-   <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
+   <Translator translator="Ahmed Ali"  />
+    <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
   </div>
  </div>
  <!-- WhatsApp Share Button -->
- <div class="row mobile-only" style="color:white">
-  <div class="col-6 pr-2">
-   <!-- Add right padding to create space between the buttons -->
-   <button @click="shareOnWhatsApp" class="btn btn-sm btn-success w-100 d-flex align-items-center justify-content-center">
-    <i class="bi bi-whatsapp pt-2 h3"></i>
-    <div style="font-size:13px">Share via WhatsApp</div>
-   </button>
+ <div class="row mobile-only pt-3" style="color:white">
+  <div class="col-6 ">
+    <!-- Add right padding to create space between the buttons -->
+    <div @click="shareOnWhatsApp" style="cursor: pointer;">
+      <i class="bi bi-whatsapp  h3" style="color:black"></i>
+      <p style="font-size: 13px; margin: 0;color:black" class="pt-2">Share via WhatsApp</p>
+    </div>
   </div>
-  <div class="col-6 pl-2">
-   <!-- Add left padding to create space between the buttons -->
-   <button @click="shareOnTwitter" class="btn btn-sm btn-dark w-100 d-flex align-items-center justify-content-center">
-    <i class="bi bi-twitter-x pt-2 mr-2 h3"></i>
-    <span style="font-size:13px">Share via X</span>
-   </button>
+
+  <div class="col-6 pr-2">
+    <!-- Add right padding to create space between the buttons -->
+    <div @click="shareOnTwitter" style="cursor: pointer;">
+      <i class="bi bi-twitter-x  h3" style="color:black"></i>
+      <p style="font-size: 13px; margin: 0;color:black" class="pt-2">Share via X</p>
+    </div>
   </div>
  </div>
 </div>
@@ -100,6 +101,8 @@ export default {
   setAyahText(text) {
    this.ayahText = text; // Capture the ayah text from the child component
   },
+
+ 
   shareOnWhatsApp() {
    const ayahInfo = this.information.ayahInfo || "No Ayah Info available"; // Fallback message
    const mainAyah = this.information.mainAyah || "No Main Ayah available"; // Fallback message

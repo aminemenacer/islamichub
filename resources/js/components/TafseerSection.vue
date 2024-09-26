@@ -13,26 +13,27 @@
      </template>
     </h4>
    </div>
-   <h6 class="text-left mt-3"><strong>Tafseer: </strong>Ibn Kathir</h6>
+   <h6 class="text-left "><strong>Tafseer: </strong>Ibn Kathir</h6>
    <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
   </div>
   <!-- WhatsApp Share Button -->
-  <div class="row mobile-only">
-   <div class="col-6 pr-2">
+ <div class="row mobile-only pt-3" style="color:white">
+  <div class="col-6 ">
     <!-- Add right padding to create space between the buttons -->
-    <button @click="shareOnWhatsApp" class="btn btn-sm btn-success w-100 d-flex align-items-center justify-content-center">
-     <i style="color:white" class="bi bi-whatsapp h4"></i>
-     <span>Share via WhatsApp</span>
-    </button>
-   </div>
-   <div class="col-6 pl-2">
-    <!-- Add left padding to create space between the buttons -->
-    <button @click="shareOnTwitter" class="btn btn-sm btn-dark w-100 d-flex align-items-center justify-content-center">
-     <i style="color:white" class="bi bi-twitter-x mr-2 h4"></i>
-     <span>Share via X</span>
-    </button>
-   </div>
+    <div @click="shareOnWhatsApp" style="cursor: pointer;">
+      <i class="bi bi-whatsapp  h3" style="color:black"></i>
+      <p style="font-size: 13px; margin: 0;color:black" class="pt-2">Share via WhatsApp</p>
+    </div>
   </div>
+
+  <div class="col-6 pr-2">
+    <!-- Add right padding to create space between the buttons -->
+    <div @click="shareOnTwitter" style="cursor: pointer;">
+      <i class="bi bi-twitter-x  h3" style="color:black"></i>
+      <p style="font-size: 13px; margin: 0;color:black" class="pt-2">Share via X</p>
+    </div>
+  </div>
+ </div>
  </div>
 </div>
 </template>
@@ -63,12 +64,14 @@ export default {
   };
  },
  methods: {
-  shareOnWhatsApp() {
-   // const ayahInfo = this.tafseer.ayahInfo || "No Ayah Info available"; // Fallback message
-   const mainAyah = this.tafseer.mainAyah || "No Main Ayah available"; // Fallback message
+    shareOnWhatsApp() {
+   const ayahInfo = this.information.ayahInfo || "No Ayah Info available"; // Fallback message
+   const mainAyah = this.information.mainAyah || "No Main Ayah available"; // Fallback message
    const ayahTafseer = this.expanded ? this.information.tafseer : this.truncatedText(this.information.tafseer);
 
    const message = `
+      Ayah Info: ${ayahInfo}
+      Main Ayah: ${mainAyah}
       Tafseer: ${ayahTafseer}
     `;
 

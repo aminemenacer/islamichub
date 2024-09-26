@@ -16,6 +16,8 @@
    <i class="bi bi-camera text-right mr-2 h4" @click="captureTranslation" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" :style="{ cursor: 'pointer' }"></i>
   </div>
 
+  
+
   <!-- PDF Download Icon -->
   <div class="icon-container">
    <i class="bi bi-file-earmark-pdf text-right mr-2 h4" @click="downloadTranslationPdf" aria-expanded="false" data-bs-placement="top" title="Download PDF" :style="{ cursor: 'pointer' }"></i>
@@ -25,6 +27,7 @@
   <div class="icon-container">
    <CopyTranslationText :textToCopy="translation" />
   </div>
+
 
   <!-- Bug Report Icon -->
   <div class="icon-container">
@@ -41,7 +44,6 @@
 import CopyTranslationText from "./translation/features/copy_text/CopyTranslationText.vue";
 import FolderSelectionModal from "./folder_manager/FolderSelectionModal.vue";
 import ScreenTranslationCapture from './translation/features/screen_capture/ScreenTranslationCapture.vue';
-
 import html2canvas from "html2canvas";
 import jsPDF from 'jspdf';
 
@@ -61,6 +63,7 @@ export default {
    type: String,
    default: 'targetTranslationElement',
   },
+ 
  },
  data() {
   return {
@@ -86,6 +89,7 @@ export default {
 
  },
  methods: {
+ 
   captureTranslation() {
    const targetTranslationElement = this.$parent.$refs[this.targetTranslationRef];
 
