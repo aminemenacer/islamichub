@@ -1551,6 +1551,17 @@ methods: {
    this.filteredSurah = [];
    this.showClearButton = false;
    this.getAyat();
+
+   this.$nextTick(() => {
+      this.autoHighlightFirstAyah();
+    });
+  },
+  autoHighlightFirstAyah() {
+    if (this.ayat.length > 0) {
+      this.selectedIndexAyah = 0; // Select the first Ayah
+      this.scrollToSelectedAyah(); // Scroll to the first Ayah (optional)
+      this.getTafseers(this.ayat[0].id, 0); // Fetch Tafseer, translation, etc. for the first Ayah
+    }
   },
   getTafseers: function (id, index) {
    this.selectedIndexAyah = index;
