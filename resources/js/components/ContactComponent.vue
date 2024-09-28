@@ -4,7 +4,7 @@
 		<div class="row justify-content-center text-center">
 			<div class="col-lg-8 col-xxl-7">
 				<h2 class="display-5 fw-bold mb-3">Contact Us</h2>
-				<p class="lead">I'd love to hear from you! Whether you have a question, feedback, or just want to say hello, feel free to reach out. You can contact me through the form below. I’ll get back to you as soon as possible!</p>
+				<p class="lead">Have questions or need assistance? We're here to help! Reach out to Islamic Connect via email or social media for support, feedback, or inquiries about our content and services. Let us be your companion on your journey of learning.</p>
 			</div>
 		</div>
 		<div class="row justify-content-center">

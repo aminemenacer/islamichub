@@ -5,7 +5,7 @@
 			<div class="row justify-content-center">
 				<div class="col-lg-8">
 					<h2 class="display-5 fw-bold">Subscribe to our Mailing list</h2>
-					<p class="lead">Subscribe to our mailing list and be the first to receive updates and special offers directly in your inbox. Don't miss out on what’s new—join our community today!</p>
+					<p class="lead">Sign up for our mailing list to receive the latest updates, content, and educational resources directly in your inbox. By joining, you'll be part of a growing community dedicated to understanding the Quran and Islam through accessible, high-quality content.</p>
 					<div class="mx-auto mt-3">
 						<form class="row g-3" @reset="reset" @submit.prevent="submitMail()">
 							<div class="col-md-4">

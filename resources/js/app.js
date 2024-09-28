@@ -38,6 +38,7 @@ import ProfileComponent from "./components/admin_panels/ProfileComponent.vue";
 import DashboardComponent from "./components/admin_panels/DashboardComponent.vue";
 import HomepageComponent from "./components/HomepageComponent.vue";
 import PricingComponent from "./components/PricingComponent.vue";
+import SupportComponent from "./components/SupportComponent.vue";
 import ContactComponent from "./components/ContactComponent.vue";
 import CharityComponent from "./components/CharityComponent.vue";
 import VolunteerComponent from "./components/VolunteerComponent.vue";
@@ -116,6 +117,7 @@ app.component("donations-component", Donation);
 app.component("collection-component", CollectionComponent);
 app.component('TinymceEditor', TinymceEditor);
 app.component('faq-component', FaqComponent);
+app.component('support-component', SupportComponent);
 
 
 app.mount("#app");

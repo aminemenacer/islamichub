@@ -29,6 +29,7 @@ use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\CommentsController;
+use App\Http\Controllers\SupportController;
 
 // Auth routes
 Auth::routes();
@@ -260,3 +261,5 @@ Route::get('/collection', [CollectionController::class, 'index'])->name('collect
 Route::get('/faq', [FaqController::class, 'index'])->name('faq');
 // join us
 Route::get('/join_us', [JoinUsController::class, 'index'])->name('join_us');
+// support
+Route::get('/support', [SupportController::class, 'index'])->name('support');

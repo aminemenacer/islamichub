@@ -1505,8 +1505,18 @@ methods: {
   showCard() {
    this.isCardVisible = true; // Show the card when button is clicked
   },
+
+  updateCardSection(ayah) {
+    // Assuming you have properties like 'ayahTranslation', 'ayahTafseer', etc. bound to the card section
+    this.ayahTranslation = ayah.translation;
+    this.ayahTafseer = ayah.tafseer;
+    this.ayahTransliteration = ayah.transliteration;
+    // Add any additional data you want to show in the card section
+  },
+
   selectAyah(index) {
    this.selectedIndexAyah = index;
+   this.updateCardSection(this.ayat[index]);
    this.scrollToSelectedAyah();
    this.getTafseers(this.ayat[index].id, index);
   },
@@ -1561,6 +1571,7 @@ methods: {
       this.selectedIndexAyah = 0; // Select the first Ayah
       this.scrollToSelectedAyah(); // Scroll to the first Ayah (optional)
       this.getTafseers(this.ayat[0].id, 0); // Fetch Tafseer, translation, etc. for the first Ayah
+      this.updateCardSection(this.ayat[0]); // Update card with first Ayah data
     }
   },
   getTafseers: function (id, index) {
@@ -1570,6 +1581,7 @@ methods: {
      console.log(response);
      this.selectedAyah = id;
      this.tafseer = response.data;
+     this.updateCardSection(this.ayat[index]);
     }.bind(this)
    );
    axios
