@@ -7,7 +7,7 @@
     <!-- Toggle Button for Advanced Search -->
     <i @click="toggleAdvancedSearch" :class="isAdvancedSearchVisible ? 'bi bi-dash-circle' : 'bi bi-arrow-down-circle-fill'" class="toggle-icon h3"></i>
   </div>
-  <AdvancedSearch v-if="isAdvancedSearchVisible" @input-change="handleInputChange" />
+  <AdvancedSearch  @input-change="handleInputChange" />
    
   <custom-surah-selection :customSurat="customSuratList" v-model="selectedSurah"></custom-surah-selection>
  </div> 
@@ -106,6 +106,15 @@
        
        <!-- Translation Section -->
        <div class="tab-pane active content" id="home" role="tabpanel" v-if="information != null">
+
+
+        <!-- Audio Player Section -->
+        <div v-if="selectedAudio">
+          <audio ref="audioPlayer" controls>
+            <source :src="selectedAudio" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </div>
   
         <!-- desktop top features -->
         <div :style="iconStyle">
@@ -726,6 +735,7 @@ export default {
  },
 
  mounted() {
+  this.fetchAyatData();
   this.loadSavedStyles();
   this.applyStylesToCards(); // Ensure styles are applied to cards initially
   this.getSurat(); // Call getSurat to populate the surah list
@@ -739,6 +749,10 @@ export default {
 props: ['information', 'selectedFolderId'],
  data() {
   return {
+    selectedAudio: '', // This will store the selected audio link
+    selectedIndexAyah: null, // To keep track of the selected Ayah index
+    audioList: [], // Array to hold audio data
+    selectedAudio: '', // Selected audio link
     isAdvancedSearchVisible: false, // Controls the visibility of AdvancedSearch
     searchTerm: "",
     results:[],
@@ -961,6 +975,27 @@ computed: {
     }
 },
 methods: {
+  selectAyah(ayah) {
+      this.selectedIndexAyah = ayah.ayah_id; // Set selected Ayah ID
+      this.selectedAudio = ayah.audio_links; // Set the audio link for the selected Ayah
+
+      // Optionally, you can also play the audio immediately
+      this.$nextTick(() => {
+        const audioPlayer = this.$refs.audioPlayer;
+        if (audioPlayer) {
+          audioPlayer.load(); // Load the new audio
+          audioPlayer.play(); // Play the audio
+        }
+      });
+    },
+    fetchAyatData() {
+      fetch('./audio_links') // Replace with your actual API endpoint
+        .then(response => response.json())
+        .then(data => {
+          this.ayat = data; // Assign fetched data to ayat
+        })
+        .catch(error => console.error('Error fetching ayat data:', error));
+    },
   submitForm() {
     // if (!this.selectedFolderId) {
       //   console.error("Folder ID is required.");

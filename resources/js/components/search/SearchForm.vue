@@ -1,5 +1,6 @@
 <template>
 <form class="search-form d-flex container h1" style="border-radius: 6px;" @submit.prevent="search">
+ 
  <input style="border: 3px solid #00bfa6" class="form-control me-2 display-3" type="search" id="search" name="search" v-model="searchTerm" placeholder="What Surah do you want to read today?" autocomplete="off" @keyup="search">
  <button v-if="showClearButton" class="btn btn-outline-secondary h2" @click="clearResults">
   Clear
