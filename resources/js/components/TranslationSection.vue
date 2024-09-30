@@ -7,15 +7,42 @@
    <MainAyah :information="information" />
    <div ref="heading3" class="text-left">
     <h4 class="text-left ayah-translation" style="line-height: 1.6em">
-     {{ expanded ? information.translation : truncatedText(information.translation) }}
+     {{ expanded ? information.translation : truncatedText(information.translation) }}<i @click="readTextAloud" style="cursor:pointer;" class="bi ml-2 mr-2 h3 bi-play-circle-fill mic"></i>
      <template v-if="showMoreLink && information.translation.length > 100">
       <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
      </template>
     </h4>
+    <Translator translator="Ahmed Ali"  />
+    
+    <!--
+    <hr>
+    <div>
+      <label for="voice-select">Choose a voice to read translation:</label>
+      <select class="form-control" id="voice-select" v-model="selectedVoice" @change="setVoice">
+        <option v-for="(voice, index) in voices" :key="index" :value="index">
+          {{ voice.name }} ({{ voice.lang }})
+        </option>
+      </select>
+      <div class="row" style="padding:10px">
+        <div class="col-md-4">
+          <div type="button" class="btn btn-success text-center" @click="readTextAloud">
+            Read Aloud
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div type="button" class="btn btn-secondary text-left" @click="stopReading" :disabled="!isReading">
+            Stop Reading
+          </div>
+        </div>
+        <div class="col-md-4">
+          
+        </div>
+      </div>
+    </div>
+    -->
    </div>
    <div>
    </div>
-   <Translator translator="Ahmed Ali"  />
     <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
   </div>
  </div>
@@ -45,6 +72,7 @@ import AyahInfo from './translation/AyahInfo.vue';
 import MainAyah from './translation/MainAyah.vue';
 import Translator from './translation/Translator.vue';
 import AlertModal from './modals/AlertModal.vue';
+import ScreenReader from './accesibility/ScreenReader.vue';
 
 export default {
  name: 'TranslationSection',
@@ -52,7 +80,8 @@ export default {
   AyahInfo,
   MainAyah,
   Translator,
-  AlertModal
+  AlertModal,
+  ScreenReader
  },
  props: {
   iconColor: {
@@ -95,14 +124,40 @@ export default {
  },
 
  data() {
-  return {}
+  return {
+    isReading: false,
+    utterance: null,
+    voices: [],
+    selectedVoice: null,
+  }
  },
  methods: {
+  // Read the displayed text aloud
+  readTextAloud() {
+    const text = this.expanded ? this.information.translation : this.truncatedText(this.information.translation);
+    this.utterance = new SpeechSynthesisUtterance(text);
+
+    if (this.voices.length > 0 && this.selectedVoice !== null) {
+      this.utterance.voice = this.voices[this.selectedVoice];
+    }
+
+    // Handle end of speech event
+    this.utterance.onend = () => {
+      this.isReading = false;
+    };
+
+    // Start speaking
+    this.isReading = true;
+    window.speechSynthesis.speak(this.utterance);
+  },
+  // Stop reading
+  stopReading() {
+    window.speechSynthesis.cancel();
+    this.isReading = false;
+  },
   setAyahText(text) {
    this.ayahText = text; // Capture the ayah text from the child component
   },
-
- 
   shareOnWhatsApp() {
    const ayahInfo = this.information.ayahInfo || "No Ayah Info available"; // Fallback message
    const mainAyah = this.information.mainAyah || "No Main Ayah available"; // Fallback message
@@ -131,6 +186,15 @@ export default {
    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(message)}`;
    window.open(url, '_blank');
   },
+  getVoices() {
+    this.voices = window.speechSynthesis.getVoices();
+    if (this.voices.length > 0) {
+      this.selectedVoice = 0; // Default to the first voice in the list
+    }
+  },
+  setVoice() {
+    this.selectedVoice = parseInt(this.selectedVoice);
+  },
   toggleFullScreen() {
    this.$emit('toggle-full-screen');
   },
@@ -152,7 +216,11 @@ export default {
   closeAlertText() {
    this.$emit('close-alert-text');
   }
- }
+ },
+ created() {
+   this.getVoices();
+   window.speechSynthesis.onvoiceschanged = this.getVoices;
+ },
 };
 </script>
 
@@ -174,8 +242,8 @@ export default {
 
 .ayah-translation {
  font-size: 1.2rem;
-
 }
+
 
 .btn {
  display: flex;
@@ -207,4 +275,5 @@ export default {
   display: none;
  }
 }
+
 </style>

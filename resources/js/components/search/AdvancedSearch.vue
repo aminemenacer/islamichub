@@ -2,30 +2,30 @@
 <div>
  <!-- Search Input Group -->
  <div>
-  <div class="container input-group">
-   <input type="text" v-model="searchTerm" placeholder="Type any word to search for ayah translation..." class="form-control pr-5" />
+  <div class="container input-group" style="align-items:center">
+   <input type="text" style="border:2px solid lightgrey; border-radius:8px" @keyup="onType" v-model="searchTerm" placeholder="How can I assist you in understanding the meanings of the Holy Quran ?" class="form-control mr-3" />
+
+   
 
    <div class="form-check form-check-inline">
-    <input class="form-check-input" type="checkbox" v-model="filters.translation" id="translationCheckbox">
-    <label class="form-check-label" for="translationCheckbox">Translation</label>
+    <input class="form-check-input mt-1" type="checkbox" v-model="filters.translation" id="translationCheckbox">
+    <b class="form-check-label" for="translationCheckbox">Translation</b>
    </div>
 
    <div class="form-check form-check-inline">
-    <input class="form-check-input" type="checkbox" v-model="filters.tafseer" id="tafseerCheckbox">
-    <label class="form-check-label" for="tafseerCheckbox">Tafseer</label>
+    <input class="form-check-input mt-1" type="checkbox" v-model="filters.tafseer" id="tafseerCheckbox">
+    <b class="form-check-label" for="tafseerCheckbox">Tafseer</b>
    </div>
 
    <div class="form-check form-check-inline">
-    <input class="form-check-input" type="checkbox" v-model="filters.transliteration" id="transliterationCheckbox">
-    <label class="form-check-label" for="transliterationCheckbox">Transliteration</label>
+    <input class="form-check-input mt-1" type="checkbox" v-model="filters.transliteration" id="transliterationCheckbox">
+    <b class="form-check-label" for="transliterationCheckbox">Transliteration</b>
    </div>
 
    <button class="btn btn-success" @click="searchWord">Search</button>
 
-   
   </div>
-
- </div>
+ </div> 
 
  <div class="offcanvas offcanvas-end custom-offcanvas" tabindex="-1" id="offcanvasResults" style="width: 60%;">
   <div class="offcanvas-header">
@@ -34,12 +34,6 @@
   </div>
   <div class="offcanvas-body text-left custom-offcanvas">
 
-  <!-- Loading Spinner -->
-  <div v-if="loading" class="text-center">
-    <div class="spinner-border" role="status">
-      <span class="visually-hidden">Loading...</span>
-    </div>
-  </div>
    <div v-if="filteredResults.length">
     <div v-for="result in filteredResults" :key="result.id" class="result-item" >
     
@@ -138,6 +132,20 @@
  margin-top: 10px;
  /* Add spacing above the translation */
 }
+.suggestions-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.suggestions-list li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.suggestions-list li:hover {
+  background-color: #f1f1f1;
+}
 </style>
 
 <script>
@@ -149,6 +157,7 @@ export default {
   return {
    searchTerm: '',
    filteredResults: [],
+   suggestions: [],
    filters: {
     translation: true, // Default filter for translation enabled
     tafseer: false, // Default filter for tafseer disabled
@@ -160,6 +169,13 @@ export default {
   result: Object
  },
  methods: {
+  onType() {
+    if (this.searchTerm.length >= 3) {
+      this.fetchSuggestions();
+    } else {
+      this.suggestions = []; // Clear suggestions if less than 3 characters
+    }
+  },
   downloadPDF(result) {
    const element = document.getElementById(`result-${result.id}`);
 
@@ -221,6 +237,28 @@ export default {
    } else {
     this.filteredResults = [];
    }
+  },
+  fetchSuggestions() {
+    this.loading = true;
+    axios
+      .get("/search-translations", {
+        params: {
+          query: this.searchTerm,
+        },
+      })
+      .then((response) => {
+        this.suggestions = response.data.suggestions || [];
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+      .finally(() => {
+        this.loading = false;
+      });
+  },
+  selectSuggestion(suggestion) {
+    this.searchTerm = suggestion.translation; // Update searchTerm with the selected suggestion
+    this.suggestions = []; // Clear suggestions after selection
   },
   highlightSearch(translation) {
    if (!translation) {

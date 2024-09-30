@@ -70,9 +70,6 @@ class SurahController extends Controller
         return response()->json($translation);
     }
 
-
-
-
     public function getAyat(Request $request)
     {
         $ayat = Ayah::where('surah_id', $request->surah_id)->get();
@@ -95,26 +92,32 @@ class SurahController extends Controller
     public function searchTranslations(Request $request)
     {
         $query = $request->input('query');
-        $filters = $request->input('filters');
-
+        $filters = $request->input('filters') ?? []; // Default empty array if filters not provided
+    
         $resultsQuery = Information::query();
-
+    
         // Apply filters based on the user's checkbox selection
-        if ($filters['translation']) {
+        if (isset($filters['translation']) && $filters['translation']) {
             $resultsQuery->orWhere('translation', 'like', '%' . $query . '%');
         }
-        if ($filters['tafseer']) {
+        if (isset($filters['tafseer']) && $filters['tafseer']) {
             $resultsQuery->orWhere('tafseer', 'like', '%' . $query . '%');
         }
-        if ($filters['transliteration']) {
+        if (isset($filters['transliteration']) && $filters['transliteration']) {
             $resultsQuery->orWhere('transliteration', 'like', '%' . $query . '%');
         }
-
-        // Eager load related ayah and surah
+    
+        // Execute the query and get the results
         $results = $resultsQuery->with(['ayah.surah'])->get();
-
+    
+        // Check if the results are empty
+        if ($results->isEmpty()) {
+            return response()->json(['message' => 'No results found.']);
+        }
+    
         return response()->json($results);
     }
+    
     
 
     public function search(Request $request)

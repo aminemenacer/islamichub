@@ -3,21 +3,29 @@
  <div class="pt-3 text-center">
   <Title />
    <div style="display:flex" class="container align-items-center">
+    <!--
     <search-form  :surat="surat" @update-results="handleUpdateResults" @clear-results="handleClearResults" @select-surah="handleSelectSurah" />
-    <!-- Toggle Button for Advanced Search -->
+    -->
+    <!-- Toggle Button for Advanced Search 
     <i @click="toggleAdvancedSearch" :class="isAdvancedSearchVisible ? 'bi bi-dash-circle' : 'bi bi-arrow-down-circle-fill'" class="toggle-icon h3"></i>
+    -->
   </div>
   <AdvancedSearch  @input-change="handleInputChange" />
    
   <custom-surah-selection :customSurat="customSuratList" v-model="selectedSurah"></custom-surah-selection>
  </div> 
     
+ 
+  <KeyboardNavigation :items="menuItems" @item-selected="handleItemSelected" />
+
 
  <!-- accordion headers -->
- <div class="row container-fluid">
+ <div class="row mt-2 container-fluid">
   <div class="col-md-4 container">
    <FilteredSurahList :filteredSurah="filteredSurah" @select-surah="selectSurahFromResults" />
-   <Donation />
+   <!--
+    <Donation />
+   -->
    <div style="display:flex" class="row">
     <SurahDropdown class="col-md-12" :selectedSurah="selectedSurah" :filteredSurah="filteredSurah" :surat="surat" @update:selectedSurah="updateSelectedSurah" @change="getAyat" />
     
@@ -106,16 +114,9 @@
        
        <!-- Translation Section -->
        <div class="tab-pane active content" id="home" role="tabpanel" v-if="information != null">
-
-
-        <!-- Audio Player Section -->
-        <div v-if="selectedAudio">
-          <audio ref="audioPlayer" controls>
-            <source :src="selectedAudio" type="audio/mpeg" />
-            Your browser does not support the audio element.
-          </audio>
-        </div>
   
+     
+ 
         <!-- desktop top features -->
         <div :style="iconStyle">
           <div class="col pb-2 ">
@@ -137,7 +138,9 @@
                 <div class="col"><CopyTranslationText  :textToCopy="information.translation" /></div>
                 <div class="col"><ScreenTranslationCapture  :targetTranslationRef="'targetTranslationElement'" /></div>
                 <div class="col"><PdfDownload  :targetTranslationRef="'targetTranslationElement'" /></div>
-                <div class="col"><i class="bi bi-paint-bucket h2"  @click="showModal"></i></div>
+                <div class="col">
+                  <i class="bi bi-paint-bucket h2" data-bs-toggle="offcanvas" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i>
+                </div>
                 <div class="col"><i title="Report a bug"  data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" ></i></div>
                 <div class="col"><i class="bi bi-arrows-fullscreen h4" @click="toggleFullScreen" title="Full screen"></i></div>
               </div>
@@ -469,146 +472,148 @@
 
    </div>
  
+ <!-- theme styles -->
+  <div class="offcanvas offcanvas-end " tabindex="-1" id="styleOffcanvas" aria-labelledby="styleOffcanvasLabel" style="width: 40%;">
+    <div class="offcanvas-header">
+      <h4 class="offcanvas-title" id="styleOffcanvasLabel">Customize Your Layout</h4>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+  <div class="offcanvas-body ">
+    <form>
+      <div class="row">
+        <!-- Success message -->
+        <div v-if="showSuccessMessage" class="alert alert-success" role="alert">
+          Styles have been successfully applied!
+        </div>
 
-    <!-- Bootstrap theme Modal -->
-    <div class="modal fade" id="styleModal" tabindex="-1" aria-labelledby="styleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="styleModalLabel">Customize Your Layout</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body text-left">
-          
-            <form>
-              <div class="row">
-                <!-- Row 1: Select Default Style and Background Color -->
-                <div class="col-md-12">
-                  <div class="mb-3">
-                    <label for="styleSelect" class="form-label">Select Default Style</label>
-                    <select
-                      id="styleSelect"
-                      v-model="selectedStyle"
-                      @change="applyStyle"
-                      class="form-control"
-                    >
-                      <option v-for="style in defaultStyles" :key="style.name" :value="style">
-                        {{ style.name }}
-                      </option>
-                    </select>
-                  </div>
-                </div>
+        <!-- Row: Select Default Style -->
+        <div class="col-md-12 mb-3">
+          <label for="styleSelect" class="form-label">Select Default Style</label>
+          <select id="styleSelect" v-model="selectedStyle" @change="applyStyle" class="form-control">
+            <option v-for="style in defaultStyles" :key="style.name" :value="style">
+              {{ style.name }}
+            </option>
+          </select>
+        </div>
 
-                <hr class="container">
-                <div class="col-md-6">
-                  <div class="mb-3">
-                    <label for="bgColor" class="form-label">Background Color</label>
-                    <input type="color" id="bgColor" v-model="bgColor" class="form-control" />
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="mb-3">
-                    <label for="iconColor" class="form-label">Icons Color</label>
-                    <input type="color" id="iconColor" v-model="iconColor" class="form-control" />
-                  </div>
-                </div>
+        
+        <hr class="container">
+        <!-- Row: Background Color -->
+        <div class="col-md-12 mb-3">
+          <label for="bgColor" class="form-label">Background Color:</label>
+          <input type="color" id="bgColor" v-model="bgColor" class="form-control" />
+        </div>
 
-                <!-- Row 2: Text Color and Shadow Style -->
-                <div class="col-md-6">
-                  <div class="mb-3">
-                    <label for="textColor" class="form-label">Text Color</label>
-                    <input type="color" id="textColor" v-model="textColor" class="form-control" />
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="mb-3">
-                    <label for="shadow-dropdown" class="form-label">Shadow Style</label>
-                    <select v-model="selectedShadow" id="shadow-dropdown" class="form-control">
-                      <option v-for="shadow in shadows" :key="shadow.name" :value="shadow.style">
-                        {{ shadow.name }}
-                      </option>
-                    </select>
-                  </div>
-                </div>
+        <!-- Row: Icon Color -->
+        <div class="col-md-12 mb-3">
+          <label for="iconColor" class="form-label">Icons Color:</label>
+          <input type="color" id="iconColor" v-model="iconColor" class="form-control" />
+        </div>
 
-                <!-- Row 3: Font Style Checkboxes -->
-                <div class="col-md-6">
-                  <div class="mb-3" >
-                    <label class="form-label">Font Style</label>
-                    <div class="form-check" style="display:flex">
-                      <input class="form-check-input" type="checkbox" id="boldCheckbox" v-model="isBold" />
-                      <label class="form-check-label" for="boldCheckbox">Bold</label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="italicCheckbox" v-model="isItalic" />
-                      <label class="form-check-label" for="italicCheckbox">Italic</label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="lightCheckbox" v-model="isLight" />
-                      <label class="form-check-label" for="lightCheckbox">Light</label>
-                    </div>
-                  </div>
-                </div>
-                <!-- Row 4: Text Transformation and Text Alignment -->
-                <div class="col-md-6">
-                  <div class="mb-3">
-                    <label class="form-label">Text Transformation</label>
-                    <select v-model="textTransform" class="form-control">
-                      <option value="none">None</option>
-                      <option value="uppercase">Uppercase</option>
-                      <option value="lowercase">Lowercase</option>
-                      <option value="capitalize">Capitalize</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="mb-3">
-                    <label for="fontFamily" class="form-label">Font Family</label>
-                    <select id="fontFamily" v-model="fontFamily" class="form-control">
-                      <option v-for="font in fontFamilies" :key="font" :value="font">
-                        {{ font }}
-                      </option>
-                    </select>
-                  </div>
-                </div>
-                <!-- Row 5: Font Size and Font Spacing -->
-                <div class="col-md-6">
-                  <div class="mb-3">
-                    <label for="fontSize" class="form-label">Font Size (px)</label>
-                    <input
-                      type="number"
-                      id="fontSize"
-                      v-model.number="fontSize"
-                      class="form-control"
-                    />
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="mb-3">
-                    <label for="fontSpacing" class="form-label">Font Spacing (px)</label>
-                    <input
-                      type="number"
-                      id="fontSpacing"
-                      v-model.number="fontSpacing"
-                      class="form-control"
-                    />
-                  </div>
-                </div>
-              </div>
-            </form>
+        <!-- Row: Text Color -->
+        <div class="col-md-12 mb-3">
+          <label for="textColor" class="form-label">Text Color:</label>
+          <input type="color" id="textColor" v-model="textColor" class="form-control" />
+        </div>
 
-            <!-- Success message -->
-            <div v-if="showSuccessMessage" class="alert alert-success" role="alert">
-              Styles have been successfully applied!
+        <!-- Row: Shadow Style -->
+        <div class="col-md-12 mb-3">
+          <label for="shadow-dropdown" class="form-label">Shadow Style</label>
+          <select v-model="selectedShadow" id="shadow-dropdown" class="form-control">
+            <option v-for="shadow in shadows" :key="shadow.name" :value="shadow.style">
+              {{ shadow.name }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Row: Font Family -->
+        <div class="col-md-12 mb-3">
+          <label for="fontFamily" class="form-label">Font Family</label>
+          <select id="fontFamily" v-model="fontFamily" class="form-control">
+            <option v-for="font in fontFamilies" :key="font" :value="font">
+              {{ font }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Row: Font Style Checkboxes -->
+        <div class="col-md-12 mb-3">
+          <label class="form-label">Font Style</label>
+          <div class="d-flex gap-3">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="boldCheckbox" v-model="isBold" />
+              <label class="form-check-label" for="boldCheckbox">Bold</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="italicCheckbox" v-model="isItalic" />
+              <label class="form-check-label" for="italicCheckbox">Italic</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="lightCheckbox" v-model="isLight" />
+              <label class="form-check-label" for="lightCheckbox">Light</label>
             </div>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-success" @click="applyCustomStyles">Apply Styles</button>
-          </div>
         </div>
+
+
+        <!-- Row: Text Transformation -->
+        <div class="col-md-12 mb-3">
+          <label class="form-label">Text Transformation</label>
+          <select v-model="textTransform" class="form-control">
+            <option value="none">None</option>
+            <option value="uppercase">Uppercase</option>
+            <option value="lowercase">Lowercase</option>
+            <option value="capitalize">Capitalize</option>
+          </select>
+        </div>
+
+        <!-- Row: Font Size -->
+        <div class="col-md-12 mb-3">
+          <label for="fontSize" class="form-label">Font Size (px)</label>
+          <input type="number" id="fontSize" v-model.number="fontSize" class="form-control" />
+        </div>
+
+        <!-- Row: Font Spacing -->
+        <div class="col-md-12 mb-3">
+          <label for="fontSpacing" class="form-label">Font Spacing (px)</label>
+          <input type="number" id="fontSpacing" v-model.number="fontSpacing" class="form-control" />
+        </div>
+
+        <!-- Input to save the theme with a name -->
+      <div class="col-md-12 mb-3">
+        <label for="themeName" class="form-label">Save Theme As</label>
+        <input type="text" v-model="newThemeName" class="form-control" id="themeName" placeholder="Custom Theme Name" />
       </div>
+
+      <div class="col-md-12 mb-3 d-flex gap-3">
+        <button type="button" class="btn btn-secondary flex-grow-1" data-bs-dismiss="offcanvas">Close</button>
+        <button type="button" class="btn btn-success flex-grow-1" @click="saveCustomTheme">Save Theme</button>
+      </div>
+        
+      <div class="col-md-12 mb-3 d-flex gap-3">
+        <button type="button" class="btn btn-secondary flex-grow-1" data-bs-dismiss="offcanvas">Close</button>
+        <button type="button" class="btn btn-success flex-grow-1" @click="applyCustomStyles">Apply Styles</button>
+      </div>
+        
+      </div> 
+     
+    </form>
+
+    <!-- Dropdown to Select and Apply a Saved Theme -->
+    <div class="col-md-12 mb-3">
+      <label for="themeSelect" class="form-label">Select Saved Theme</label>
+      <select id="themeSelect" v-model="selectedThemeIndex" class="form-control" @change="applyTheme">
+        <option value="" disabled>Select a theme</option>
+        <option v-for="(theme, index) in savedThemes" :key="index" :value="index">
+          {{ theme.name }}
+        </option>
+      </select>
     </div>
+   
+  </div>
+
+  
+</div>
 
 
   </div>
@@ -669,10 +674,11 @@ import PdfDownload from './pdf/PdfDownload.vue'
 import PdfDownloadTafsser from './pdf/PdfDownloadTafsser.vue'
 import PdfDownloadTransliteration from './pdf/PdfDownloadTransliteration.vue'
 import AdvancedSearch from './search/AdvancedSearch.vue'
-
+import KeyboardNavigation from './accesibility/KeyboardNavigation.vue'
 import AddBookmark from './folder_manager/AddBookmark.vue';
 import FolderSelectionModal from './folder_manager/FolderSelectionModal.vue';
 import GroupSection from './GroupSection.vue';
+import ScreenReader from './accesibility/ScreenReader.vue';
 
 
 export default {
@@ -731,11 +737,16 @@ export default {
   GroupSection,
   PdfDownloadTransliteration,
   PdfDownloadTafsser,
-  AdvancedSearch
+  AdvancedSearch,
+  KeyboardNavigation,
+  ScreenReader
  },
 
  mounted() {
-  this.fetchAyatData();
+  const themesFromStorage = localStorage.getItem('savedThemes');
+  if (themesFromStorage) {
+    this.savedThemes = JSON.parse(themesFromStorage);
+  }
   this.loadSavedStyles();
   this.applyStylesToCards(); // Ensure styles are applied to cards initially
   this.getSurat(); // Call getSurat to populate the surah list
@@ -749,10 +760,10 @@ export default {
 props: ['information', 'selectedFolderId'],
  data() {
   return {
-    selectedAudio: '', // This will store the selected audio link
-    selectedIndexAyah: null, // To keep track of the selected Ayah index
-    audioList: [], // Array to hold audio data
-    selectedAudio: '', // Selected audio link
+    menuItems: ["Home", "About", "Services", "Contact"],
+    newThemeName: "",
+    savedThemes: [],
+    selectedTheme:null,
     isAdvancedSearchVisible: false, // Controls the visibility of AdvancedSearch
     searchTerm: "",
     results:[],
@@ -776,7 +787,8 @@ props: ['information', 'selectedFolderId'],
         iconColor: '#000000',
         textColor: '#000000',
         fontStyle: 'Arial, sans-serif',
-        textShadow: 'None'
+        textShadow: 'None',
+        shadow: 'none'
       },
       {
         name: 'Dyslexia',
@@ -784,7 +796,8 @@ props: ['information', 'selectedFolderId'],
         iconColor: '#000000',
         textColor: '#000080',
         fontStyle: 'Arial, sans-serif',
-        textShadow: 'None'
+        textShadow: 'None',
+        shadow: 'none'
       },
       {
         name: 'Dysgraphia',
@@ -792,7 +805,8 @@ props: ['information', 'selectedFolderId'],
         iconColor: '#000000',
         textColor: '#00008B',
         fontStyle: 'Arial, sans-serif',
-        textShadow: 'None'
+        textShadow: 'None',
+        shadow: 'none'
       },
       {
         name: 'Hyperlexia',
@@ -800,7 +814,8 @@ props: ['information', 'selectedFolderId'],
         iconColor: '#000000',
         textColor: '#06402B',
         fontStyle: 'Arial, sans-serif',
-        textShadow: 'None'
+        textShadow: 'None',
+        shadow: 'none'
       },
       {
         name: 'Visual Proccesing disorder',
@@ -808,7 +823,8 @@ props: ['information', 'selectedFolderId'],
         iconColor: '#000000',
         textColor: 'black',
         fontStyle: 'Arial, sans-serif',
-        textShadow: 'None'
+        textShadow: 'None',
+        shadow: 'none'
       },
       {
         name: 'ADHD',
@@ -816,7 +832,8 @@ props: ['information', 'selectedFolderId'],
         iconColor: '#000000',
         textColor: '#696969',
         fontStyle: "Arial, sans-serif",
-        textShadow: 'None'
+        textShadow: 'None',
+        shadow: 'none'
       },
     ],
    fontFamilies: [
@@ -975,34 +992,39 @@ computed: {
     }
 },
 methods: {
-  selectAyah(ayah) {
-      this.selectedIndexAyah = ayah.ayah_id; // Set selected Ayah ID
-      this.selectedAudio = ayah.audio_links; // Set the audio link for the selected Ayah
+  handleItemSelected(selectedItem) {
+    alert(`Selected item: ${selectedItem}`);
+  },
+  // Save a new theme
+  saveCustomTheme() {
+    if (this.newThemeName) {
+      // Save the current layout with the new theme name
+      const newTheme = {
+        name: this.newThemeName,
+        layout: { ...this.currentLayout },
+      };
+      this.savedThemes.push(newTheme); // Add to the array of saved themes
 
-      // Optionally, you can also play the audio immediately
-      this.$nextTick(() => {
-        const audioPlayer = this.$refs.audioPlayer;
-        if (audioPlayer) {
-          audioPlayer.load(); // Load the new audio
-          audioPlayer.play(); // Play the audio
-        }
-      });
-    },
-    fetchAyatData() {
-      fetch('./audio_links') // Replace with your actual API endpoint
-        .then(response => response.json())
-        .then(data => {
-          this.ayat = data; // Assign fetched data to ayat
-        })
-        .catch(error => console.error('Error fetching ayat data:', error));
-    },
+      // Update localStorage with the new array of themes
+      localStorage.setItem('savedThemes', JSON.stringify(this.savedThemes));
+
+      this.newThemeName = ""; // Clear the input field
+      alert('Theme saved successfully!');
+    } else {
+      alert('Please enter a theme name!');
+    }
+  },
+  applyTheme() {
+    if (this.selectedThemeIndex !== null) {
+      const theme = this.savedThemes[this.selectedThemeIndex];
+      if (theme) {
+        // Apply the saved theme settings to the current layout
+        this.currentLayout = { ...theme.layout };
+        this.applyCustomStyles(); // Apply the styles to the page
+      }
+    }
+  },
   submitForm() {
-    // if (!this.selectedFolderId) {
-      //   console.error("Folder ID is required.");
-      //   this.showErrorAlert = true;
-      //   this.hideAlertAfterDelay();
-      //   return;
-      // }
     const formData = {
       // folder_id: this.selectedFolderId,
       surah_name: this.information.ayah.surah.name_en,
