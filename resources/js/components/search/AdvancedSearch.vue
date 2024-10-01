@@ -3,11 +3,9 @@
  <!-- Search Input Group -->
  <div>
   <div class="container input-group" style="align-items:center">
-    <div class="input-group mb-3">
-      <input type="text" class="form-control" @keyup="onType" v-model="searchTerm" placeholder="How can I assist you in understanding the meanings of the Holy Quran ?">
-      <span class="input-group-text"><div @click="searchWord" style="cursor:pointer">Search</div></span>
-      <span class="input-group-text"><div @click="toggleVoiceRecognition" style="cursor:pointer">🎤 {{ isListening ? 'Stop' : 'Speak' }}</div></span>
-    </div>
+   <input type="text" style="border:2px solid lightgrey; border-radius:8px" @keyup="onType" v-model="searchTerm" placeholder="How can I assist you in understanding the meanings of the Holy Quran ?" class="form-control mr-3" />
+
+   
 
    <div class="form-check form-check-inline">
     <input class="form-check-input mt-1" type="checkbox" v-model="filters.translation" id="translationCheckbox">
@@ -24,7 +22,7 @@
     <b class="form-check-label" for="transliterationCheckbox">Transliteration</b>
    </div>
 
-
+  
     
     <!-- Optional: You can show a message when recording starts -->
     <p v-if="isListening">Listening...</p>
@@ -158,24 +156,6 @@ import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 
 export default {
-  mounted() {
-    // Initialize SpeechRecognition instance
-    this.recognition = new window.SpeechRecognition();
-    this.recognition.lang = 'en-US';
-    this.recognition.continuous = true; // Keep listening until stopped
-
-    // Handle result from speech recognition
-    this.recognition.onresult = (event) => {
-      const transcript = event.results[0][0].transcript;
-      this.searchTerm = transcript; // Update searchTerm with the voice input
-      this.searchWord(); // Trigger search after receiving voice input
-    };
-
-    // Stop listening when recognition ends
-    this.recognition.onend = () => {
-      this.isListening = false; // Update state when recognition ends
-    };
-  },
  data() {
   return {
    searchTerm: '',
@@ -194,21 +174,46 @@ export default {
   result: Object
  },
  methods: {
-  toggleVoiceRecognition() {
-      if (!this.isListening) {
-        this.startVoiceRecognition();
-      } else {
-        this.stopVoiceRecognition();
-      }
-    },
-    startVoiceRecognition() {
-      this.isListening = true; // Set listening state to true
-      this.recognition.start(); // Start voice recognition
-    },
-    stopVoiceRecognition() {
-      this.isListening = false; // Set listening state to false
-      this.recognition.stop(); // Stop voice recognition
-    },
+  startVoiceRecognition() {
+    this.isListening = true;
+
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    if (!SpeechRecognition) {
+      alert('Speech Recognition is not supported in this browser. Please use Google Chrome or a compatible browser.');
+      this.isListening = false;
+      return;
+    }
+
+    this.recognition = new SpeechRecognition();
+    this.recognition.lang = 'en-US';
+    this.recognition.continuous = true;
+
+    this.recognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript;
+      this.searchTerm = transcript;
+      this.isListening = false;
+      this.searchWord();
+    };
+
+    this.recognition.onend = () => {
+      this.isListening = false;
+    };
+
+    this.recognition.onerror = (event) => {
+      console.error('Speech recognition error:', event.error);
+      this.isListening = false;
+    };
+
+    this.recognition.start();
+  },
+
+  stopVoiceRecognition() {
+    if (this.recognition) {
+      this.recognition.stop(); // Stop the recognition
+      this.isListening = false;
+    }
+  },
   onType() {
     if (this.searchTerm.length >= 3) {
       this.fetchSuggestions();
