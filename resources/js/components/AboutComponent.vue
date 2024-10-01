@@ -26,7 +26,7 @@
    <div class="col-md-7 order-2 order-md-1">
     <div class="mt-3 mt-md-0">
      <h2 class="display-5 fw-bold">Our Vision for the Future</h2>
-     <p class="lead">But I’m not stopping here; I have big dreams for Islamic Connect! I envision expanding our offerings to include even more in-depth resources, collaborating with scholars and educators who can enrich our content.</p>
+     <p class="lead">I have big dreams for Islamic Connect! I envision expanding our offerings to include even more in-depth resources, collaborating with scholars and educators who can enrich our content.</p>
      <p class="lead">I want to introduce premium features that provide personalized learning experiences and exclusive materials for our registered users. Moreover, I’m committed to partnering with Islamic institutes and organizations to support their educational missions and outreach efforts.</p>
     </div>
    </div>

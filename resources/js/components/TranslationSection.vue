@@ -3,15 +3,21 @@
  <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
  <div ref="targetTranslationElement">
   <AyahInfo :information="information" />
-  <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
+  <div  @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
    <MainAyah :information="information" />
-   <div ref="heading3" class="text-left">
-    <h4 class="text-left ayah-translation" style="line-height: 1.6em">
-     {{ expanded ? information.translation : truncatedText(information.translation) }}<i @click="readTextAloud" style="cursor:pointer;" class="bi ml-2 mr-2 h3 bi-play-circle-fill mic"></i>
+   <div ref="heading3"  class="row text-left">
+    <h4 :style="{ fontSize: currentFontSize + 'px' }" class="text-left ayah-translation col-md-11" style="line-height: 1.6em">
+     {{ expanded ? information.translation : truncatedText(information.translation) }}
      <template v-if="showMoreLink && information.translation.length > 100">
       <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
      </template>
     </h4>
+    <div class="col-md-1 mt-2" style="cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: space-between; height: 150px;">
+      <i @click="toggleSpeech" style="cursor: pointer;" :class="isReading ? 'bi-pause-circle-fill' : 'bi-play-circle-fill'" class="bi ml-2 mr-2 h3 mic"></i>
+      <i class="bi bi-plus-circle-fill h3" @click="increaseFontSize"></i>
+      <i class="bi bi-dash-circle-fill h3" @click="decreaseFontSize"></i>
+      <i class="bi bi-filter-circle-fill h3" @click="resetFontSize"></i>
+    </div>
     <Translator translator="Ahmed Ali"  />
     
     <!--
@@ -75,6 +81,12 @@ import AlertModal from './modals/AlertModal.vue';
 import ScreenReader from './accesibility/ScreenReader.vue';
 
 export default {
+  mounted() {
+    const savedFontSize = localStorage.getItem('fontSize');
+    if (savedFontSize) {
+      this.currentFontSize = parseInt(savedFontSize, 10); // Set the font size from localStorage
+    }
+  },
  name: 'TranslationSection',
  components: {
   AyahInfo,
@@ -129,9 +141,35 @@ export default {
     utterance: null,
     voices: [],
     selectedVoice: null,
+    currentFontSize: 22,
   }
  },
  methods: {
+   increaseFontSize() {
+      this.currentFontSize += 2; // Increase font size by 2px
+      this.saveFontSize();
+    },
+    decreaseFontSize() {
+      if (this.currentFontSize > 10) {
+        this.currentFontSize -= 2; // Decrease font size by 2px, limit to 10px minimum
+        this.saveFontSize();
+      }
+    },
+    resetFontSize() {
+      this.currentFontSize = 22; // Reset to default font size
+      this.saveFontSize();
+    },
+    saveFontSize() {
+      // Save the current font size to localStorage
+      localStorage.setItem('fontSize', this.currentFontSize);
+    },
+  toggleSpeech() {
+    if (this.isReading) {
+      this.stopReading();
+    } else {
+      this.readTextAloud();
+    }
+  },
   // Read the displayed text aloud
   readTextAloud() {
     const text = this.expanded ? this.information.translation : this.truncatedText(this.information.translation);

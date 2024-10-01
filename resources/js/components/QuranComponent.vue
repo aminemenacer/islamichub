@@ -73,6 +73,7 @@
 
   <div class="col-md-8 card-hide">
   <div class="card content" >
+    <Magnifier />
     <div class="content" >
      <div class="container-fluid content" v-if="information != null">
 
@@ -679,12 +680,13 @@ import AddBookmark from './folder_manager/AddBookmark.vue';
 import FolderSelectionModal from './folder_manager/FolderSelectionModal.vue';
 import GroupSection from './GroupSection.vue';
 import ScreenReader from './accesibility/ScreenReader.vue';
-
+import Magnifier from './accesibility/Magnifier.vue'
 
 export default {
  name: 'QuranComponent',
  props: {},
  components: {
+  Magnifier,
   CustomSurahSelection,
   SurahList,
   SurahDropdown,
