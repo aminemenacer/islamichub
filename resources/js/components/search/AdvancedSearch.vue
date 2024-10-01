@@ -3,8 +3,14 @@
  <!-- Search Input Group -->
  <div>
   <div class="container input-group" style="align-items:center">
-   <input type="text" style="border:2px solid lightgrey; border-radius:8px" @keyup="onType" v-model="searchTerm" placeholder="How can I assist you in understanding the meanings of the Holy Quran ?" class="form-control mr-3" />
-
+    <input type="text" 
+      style="border:2px solid lightgrey; border-radius:8px; width:100%; padding: 10px;" 
+      @focus="showSearchHistory" 
+      @blur="hideSearchHistory" 
+      @keyup="onType" 
+      v-model="searchTerm" 
+      placeholder="How can I assist you in understanding the meanings of the Holy Quran ?" 
+      class="form-control mr-3" />
    
 
    <div class="form-check form-check-inline">
@@ -22,10 +28,74 @@
     <b class="form-check-label" for="transliterationCheckbox">Transliteration</b>
    </div>
 
-  
+   <button class="btn btn-success" @click="searchWord">Search</button>
+
+   <!-- Voice input button -->
+   <button class="btn btn-primary" @click="isListening ? stopVoiceRecognition() : startVoiceRecognition()">
+      🎤 {{ isListening ? 'Stop' : 'Speak' }}
+    </button>
     
     <!-- Optional: You can show a message when recording starts -->
     <p v-if="isListening">Listening...</p>
+    
+    <div v-if="searchHistoryVisible && searchHistory.length" class="dropdown-menu" style="display: block; width:100%;">
+
+    <!-- Dropdown for search history -->
+    <div v-if="searchHistoryDropdown && searchHistory.length" 
+     class="dropdown-menu" 
+     style="display: block; width:100%; position: absolute; z-index: 1000;">
+
+      <div v-if="filteredSearchHistory.today.length">
+        <span>Today</span>
+        <ul>
+          <li v-for="(term, index) in filteredSearchHistory.today" 
+              :key="'today-' + index" 
+              @click="selectFromHistory(term.term)" 
+              style="cursor:pointer; color:black">
+            {{ term.term }}
+          </li>
+        </ul>
+      </div>
+
+      <div v-if="filteredSearchHistory.yesterday.length">
+        <span>Yesterday</span>
+        <ul>
+          <li v-for="(term, index) in filteredSearchHistory.yesterday" 
+              :key="'yesterday-' + index" 
+              @click="selectFromHistory(term.term)" 
+              style="cursor:pointer">
+            {{ term.term }}
+          </li>
+        </ul>
+      </div>
+
+      <div v-if="filteredSearchHistory.lastWeek.length">
+        <span>Last Week</span>
+        <ul>
+          <li v-for="(term, index) in filteredSearchHistory.lastWeek" 
+              :key="'lastWeek-' + index" 
+              @click="selectFromHistory(term.term)" 
+              style="cursor:pointer">
+            {{ term.term }}
+          </li>
+        </ul>
+      </div>
+
+      <div v-if="filteredSearchHistory.lastMonth.length">
+        <span>Last Month</span>
+        <ul>
+          <li v-for="(term, index) in filteredSearchHistory.lastMonth" 
+              :key="'lastMonth-' + index" 
+              @click="selectFromHistory(term.term)" 
+              style="cursor:pointer">
+            {{ term.term }}
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+
+   
 
   </div>
  </div> 
@@ -37,7 +107,15 @@
   </div>
   <div class="offcanvas-body text-left custom-offcanvas">
 
-   <div v-if="filteredResults.length">
+    <!-- Loading Spinner -->
+    <div v-if="loading" class="text-center">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <p>Loading results...</p>
+    </div>
+
+   <div v-if="filteredResults.length && !loading">
     <div v-for="result in filteredResults" :key="result.id" class="result-item" >
     
      <div :id="'result-' + result.id" >
@@ -85,11 +163,30 @@
 
   </div>
  </div>
-
+ </div>
 </div>
 </template>
 
 <style scoped>
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+}
+
+.form-control {
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 1rem;
+  }
+  .dropdown-menu {
+    background-color: white;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+  }
+  .list-group-item {
+    border: none;
+  }
+
 .alert-container {
  position: absolute;
  /* Position it absolutely */
@@ -158,9 +255,17 @@ import html2canvas from 'html2canvas';
 export default {
  data() {
   return {
+   searchHistoryDropdown: false,
+   searchHistory: [],
+   filteredSearchHistory: {
+    today: [],
+    yesterday: [],
+    lastWeek: [],
+    lastMonth: []
+   },
+   loading: false,
    searchTerm: '',
    filteredResults: [],
-   suggestions: [],
    filters: {
     translation: true, // Default filter for translation enabled
     tafseer: false, // Default filter for tafseer disabled
@@ -216,10 +321,7 @@ export default {
   },
   onType() {
     if (this.searchTerm.length >= 3) {
-      this.fetchSuggestions();
-    } else {
-      this.suggestions = []; // Clear suggestions if less than 3 characters
-    }
+    } 
   },
   downloadPDF(result) {
    const element = document.getElementById(`result-${result.id}`);
@@ -264,46 +366,80 @@ export default {
    window.open(whatsappUrl, '_blank');
   },
   searchWord() {
-   if (this.searchTerm.length > 0) {
-    axios
-     .get("/search-translations", {
-      params: {
-       query: this.searchTerm,
-       filters: this.filters
+    this.loading = true; // Set loading state to true before fetching data
+
+    if (this.searchTerm.length > 0) {
+      axios
+        .get("/search-translations", {
+          params: {
+            query: this.searchTerm,
+            filters: this.filters
+          }
+        })
+        .then(response => {
+          this.filteredResults = response.data;
+          this.showOffcanvas(); // Show search results
+          this.addToSearchHistory(this.searchTerm);
+        })
+        .catch(error => {
+          console.error("Error fetching search results:", error);
+        })
+        .finally(() => {
+          this.loading = false; // Reset loading state
+        });
+    } else {
+      this.filteredResults = [];
+      this.loading = false; // Reset loading state if searchTerm is empty
+    }
+  },
+  selectFromHistory(term){
+    this.searchTerm = term;
+    this.searchHistoryDropdown = false;
+    this.searchWord();
+  },
+  addToSearchHistory(term) {
+    const newSearch = {
+      term: term,
+      timestamp: new Date()
+    };
+    this.searchHistory.push(newSearch);
+    this.filterSearchHistory();
+  },
+  filterSearchHistory() {
+    const today = new Date();
+    const oneDay = 24 * 60 * 60 * 1000;
+    const oneWeek = oneDay * 7;
+    const oneMonth = oneDay * 30;
+
+    this.filteredSearchHistory = {
+      today: [],
+      yesterday: [],
+      lastWeek: [],
+      lastMonth: []
+    };
+
+    this.searchHistory.forEach((item) => {
+      const timeDiff = today - new Date(item.timestamp);
+      
+      if (timeDiff < oneDay) {
+        this.filteredSearchHistory.today.push(item);
+      } else if (timeDiff < 2 * oneDay) {
+        this.filteredSearchHistory.yesterday.push(item);
+      } else if (timeDiff < oneWeek) {
+        this.filteredSearchHistory.lastWeek.push(item);
+      } else if (timeDiff < oneMonth) {
+        this.filteredSearchHistory.lastMonth.push(item);
       }
-     })
-     .then(response => {
-      this.filteredResults = response.data;
-      this.showOffcanvas();
-     })
-     .catch(error => {
-      console.error(error);
-     });
-   } else {
-    this.filteredResults = [];
-   }
+    });
   },
-  fetchSuggestions() {
-    this.loading = true;
-    axios
-      .get("/search-translations", {
-        params: {
-          query: this.searchTerm,
-        },
-      })
-      .then((response) => {
-        this.suggestions = response.data.suggestions || [];
-      })
-      .catch((error) => {
-        console.error(error);
-      })
-      .finally(() => {
-        this.loading = false;
-      });
+  showSearchHistory(){
+    this.filterSearchHistory();    
+    this.searchHistoryDropdown = true;
   },
-  selectSuggestion(suggestion) {
-    this.searchTerm = suggestion.translation; // Update searchTerm with the selected suggestion
-    this.suggestions = []; // Clear suggestions after selection
+  hideSearchHistory(){
+    setTimeout(() => {
+      this.searchHistoryDropdown = false;
+    }, 150);
   },
   highlightSearch(translation) {
    if (!translation) {
@@ -313,28 +449,7 @@ export default {
    const regex = new RegExp(`(${this.searchTerm})`, 'gi');
    return translation.replace(regex, "<span class='highlight'>$1</span>");
   },
-  copyTranslationText(text) {
-   this.copyToClipboard(text)
-    .then(() => {
-     this.showAlertText = true;
-     this.showErrorAlert = false;
-     this.hideAlertAfterDelay();
-    })
-    .catch(() => {
-     this.showAlertText = false;
-     this.showErrorAlert = true;
-     this.hideAlertAfterDelay();
-    });
-  },
-  copyToClipboard(text) {
-   return navigator.clipboard.writeText(text);
-  },
-  hideAlertAfterDelay() {
-   setTimeout(() => {
-    this.showAlertText = false;
-    this.showErrorAlert = false;
-   }, 2000);
-  },
+  
   showOffcanvas() {
    const offcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasResults'));
    offcanvas.show();
@@ -342,6 +457,12 @@ export default {
   onInputChange() {
    this.searchWord(); // Automatically search as you type
   }
- }
+ },
+ created() {
+   const savedHistory = localStorage.getItem('searchHistory');
+   if(savedHistory){
+     this.searchHistory = JSON.parse(savedHistory);
+   }
+ },
 };
 </script>
