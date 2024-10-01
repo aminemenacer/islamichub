@@ -134,35 +134,36 @@ export default {
    default: false
   }
  },
-
  data() {
   return {
+    resetDisabled: true,
     isReading: false,
     utterance: null,
     voices: [],
     selectedVoice: null,
-    currentFontSize: 22,
+    currentFontSize: 20,
   }
  },
  methods: {
-   increaseFontSize() {
-      this.currentFontSize += 2; // Increase font size by 2px
+  increaseFontSize() {
+    this.currentFontSize += 2; // Increase font size by 2px
+    this.saveFontSize();
+  },
+  decreaseFontSize() {
+    if (this.currentFontSize > 10) {
+      this.currentFontSize -= 2; // Decrease font size by 2px, limit to 10px minimum
       this.saveFontSize();
-    },
-    decreaseFontSize() {
-      if (this.currentFontSize > 10) {
-        this.currentFontSize -= 2; // Decrease font size by 2px, limit to 10px minimum
-        this.saveFontSize();
-      }
-    },
-    resetFontSize() {
-      this.currentFontSize = 22; // Reset to default font size
-      this.saveFontSize();
-    },
-    saveFontSize() {
-      // Save the current font size to localStorage
-      localStorage.setItem('fontSize', this.currentFontSize);
-    },
+    }
+  },
+  resetFontSize() {
+    this.currentFontSize = 20; // Reset to default font size
+    this.saveFontSize(); // Save the font size (e.g., to local storage or any other mechanism)
+    this.resetDisabled = true; // Disable the reset button after resetting the font size
+  },
+  saveFontSize() {
+    // Save the current font size to localStorage
+    localStorage.setItem('fontSize', this.currentFontSize);
+  },
   toggleSpeech() {
     if (this.isReading) {
       this.stopReading();
@@ -263,6 +264,9 @@ export default {
 </script>
 
 <style scoped>
+.text-muted {
+  color: lightgrey;
+}
 .full-screen {
  position: fixed;
  top: 0;
