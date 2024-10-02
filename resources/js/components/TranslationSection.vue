@@ -12,14 +12,15 @@
       <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
      </template>
     </h4>
-    <div class="col-md-1 mt-2" style="cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: space-between; height: 150px;">
+    <div class="col-md-1 mt-4" style="cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: space-between; height: 150px;">
       <i @click="toggleSpeech" style="cursor: pointer;" aria-placeholder="Play translation audio" :class="isReading ? 'bi-pause-circle-fill' : 'bi-play-circle-fill'" class="bi ml-2 mr-2 h3 mic"></i>
       <i class="bi bi-plus-circle-fill h3" aria-placeholder="Increase text size" @click="increaseFontSize"></i>
       <i class="bi bi-dash-circle-fill h3" aria-placeholder="Decrease text size" @click="decreaseFontSize"></i>
+      <!--
       <i class="bi bi-filter-circle-fill h3" aria-placeholder="Reset text size" @click="resetFontSize"></i>
+      -->
     </div>
     <Translator translator="Ahmed Ali"  />
-    
     <!--
     <hr>
     <div>
@@ -93,7 +94,7 @@ export default {
   MainAyah,
   Translator,
   AlertModal,
-  ScreenReader
+  ScreenReader,
  },
  props: {
   iconColor: {
@@ -139,9 +140,9 @@ export default {
     resetDisabled: true,
     isReading: false,
     utterance: null,
-    voices: [],
-    selectedVoice: null,
     currentFontSize: 20,
+    title: 'Welcome to our Audio Player Demo',
+    content: 'This is the text that will be read aloud when you click the play button.'
   }
  },
  methods: {
@@ -155,11 +156,11 @@ export default {
       this.saveFontSize();
     }
   },
-  resetFontSize() {
-    this.currentFontSize = 20; // Reset to default font size
-    this.saveFontSize(); // Save the font size (e.g., to local storage or any other mechanism)
-    this.resetDisabled = true; // Disable the reset button after resetting the font size
-  },
+  // resetFontSize() {
+  //   this.currentFontSize = 20; // Reset to default font size
+  //   this.saveFontSize(); // Save the font size (e.g., to local storage or any other mechanism)
+  //   this.resetDisabled = true; // Disable the reset button after resetting the font size
+  // },
   saveFontSize() {
     // Save the current font size to localStorage
     localStorage.setItem('fontSize', this.currentFontSize);

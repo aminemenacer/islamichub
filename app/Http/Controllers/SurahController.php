@@ -97,28 +97,22 @@ class SurahController extends Controller
         $resultsQuery = Information::query();
     
         // Apply filters based on the user's checkbox selection
-        if (isset($filters['translation']) && $filters['translation']) {
+        if (!empty($filters['translation']) && $filters['translation']) {
             $resultsQuery->orWhere('translation', 'like', '%' . $query . '%');
         }
-        if (isset($filters['tafseer']) && $filters['tafseer']) {
+        if (!empty($filters['tafseer']) && $filters['tafseer']) {
             $resultsQuery->orWhere('tafseer', 'like', '%' . $query . '%');
         }
-        if (isset($filters['transliteration']) && $filters['transliteration']) {
+        if (!empty($filters['transliteration']) && $filters['transliteration']) {
             $resultsQuery->orWhere('transliteration', 'like', '%' . $query . '%');
         }
     
         // Execute the query and get the results
         $results = $resultsQuery->with(['ayah.surah'])->get();
     
-        // Check if the results are empty
-        if ($results->isEmpty()) {
-            return response()->json(['message' => 'No results found.']);
-        }
-    
-        return response()->json($results);
+        return response()->json($results->isEmpty() ? ['message' => 'No results found.'] : $results);
+        
     }
-    
-    
 
     public function search(Request $request)
     {

@@ -3,189 +3,167 @@
  <!-- Search Input Group -->
  <div>
   <div class="container input-group" style="align-items:center">
-    <input type="text" 
-      style="border:2px solid lightgrey; border-radius:8px; width:100%; padding: 10px;" 
-      @focus="showSearchHistory" 
-      @blur="hideSearchHistory" 
-      @keyup="onType" 
-      v-model="searchTerm" 
-      placeholder="How can I assist you in understanding the meanings of the Holy Quran ?" 
-      class="form-control mr-3" />
-   
+   <input type="text" @focus="showSearchHistory" @blur="hideSearchHistory" @keyup="debouncedSearch" v-model="searchTerm" placeholder="How can I assist you in understanding the meanings of the Holy Quran?" class="form-control mr-3 main-search" />
 
-   <div class="form-check form-check-inline">
-    <input class="form-check-input mt-1" type="checkbox" v-model="filters.translation" id="translationCheckbox">
-    <b class="form-check-label" for="translationCheckbox">Translation</b>
-   </div>
-
-   <div class="form-check form-check-inline">
-    <input class="form-check-input mt-1" type="checkbox" v-model="filters.tafseer" id="tafseerCheckbox">
-    <b class="form-check-label" for="tafseerCheckbox">Tafseer</b>
-   </div>
-
-   <div class="form-check form-check-inline">
-    <input class="form-check-input mt-1" type="checkbox" v-model="filters.transliteration" id="transliterationCheckbox">
-    <b class="form-check-label" for="transliterationCheckbox">Transliteration</b>
+   <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    </button>
+    <ul class="dropdown-menu">
+     <li>
+      <a class="dropdown-item" href="#">
+       <div class="form-check form-check-inline">
+        <input class="form-check-input mt-1" type="checkbox" v-model="filters.translation" id="translationCheckbox">
+        <p class="form-check-label" for="translationCheckbox">Translation</p>
+       </div>
+      </a>
+     </li>
+     <li>
+      <a class="dropdown-item" href="#">
+       <div class="form-check form-check-inline">
+        <input class="form-check-input mt-1" type="checkbox" v-model="filters.tafseer" id="tafseerCheckbox">
+        <span class="form-check-label" for="tafseerCheckbox">Tafseer</span>
+       </div>
+      </a>
+     </li>
+     <li>
+      <a class="dropdown-item" href="#">
+       <div class="form-check form-check-inline">
+        <input class="form-check-input mt-1" type="checkbox" v-model="filters.transliteration" id="transliterationCheckbox">
+        <p class="form-check-label" for="transliterationCheckbox">Transliteration</p>
+       </div>
+      </a>
+     </li>
+    </ul>
    </div>
 
    <button class="btn btn-success" @click="searchWord">Search</button>
 
    <!-- Voice input button -->
    <button class="btn btn-primary" @click="isListening ? stopVoiceRecognition() : startVoiceRecognition()">
-      🎤 {{ isListening ? 'Stop' : 'Speak' }}
-    </button>
-    
-    <!-- Optional: You can show a message when recording starts -->
-    <p v-if="isListening">Listening...</p>
-    
-    <div v-if="searchHistoryVisible && searchHistory.length" class="dropdown-menu" style="display: block; width:100%;">
+    {{ isListening ? 'Stop' : 'Speak' }}
+   </button>
+
+   <!-- Optional: You can show a message when recording starts -->
+   <p v-if="isListening">Listening...</p>
+
+   <div v-if="searchHistoryVisible && searchHistory.length" class="dropdown-menu" style="display: block; width:100%;">
 
     <!-- Dropdown for search history -->
-    <div v-if="searchHistoryDropdown && searchHistory.length" 
-     class="dropdown-menu" 
-     style="display: block; width:100%; position: absolute; z-index: 1000;">
+    <div v-if="searchHistoryDropdown && searchHistory.length" class="dropdown-menu" style="display: block; width:100%; position: absolute; z-index: 1000;">
 
-      <div v-if="filteredSearchHistory.today.length">
-        <span>Today</span>
-        <ul>
-          <li v-for="(term, index) in filteredSearchHistory.today" 
-              :key="'today-' + index" 
-              @click="selectFromHistory(term.term)" 
-              style="cursor:pointer; color:black">
-            {{ term.term }}
-          </li>
-        </ul>
-      </div>
+     <div v-if="filteredSearchHistory.today.length">
+      <span>Today</span>
+      <ul>
+       <li v-for="(term, index) in filteredSearchHistory.today" :key="'today-' + index" @click="selectFromHistory(term.term)" style="cursor:pointer; color:black">
+        {{ term.term }}
+       </li>
+      </ul>
+     </div>
 
-      <div v-if="filteredSearchHistory.yesterday.length">
-        <span>Yesterday</span>
-        <ul>
-          <li v-for="(term, index) in filteredSearchHistory.yesterday" 
-              :key="'yesterday-' + index" 
-              @click="selectFromHistory(term.term)" 
-              style="cursor:pointer">
-            {{ term.term }}
-          </li>
-        </ul>
-      </div>
+     <div v-if="filteredSearchHistory.yesterday.length">
+      <span>Yesterday</span>
+      <ul>
+       <li v-for="(term, index) in filteredSearchHistory.yesterday" :key="'yesterday-' + index" @click="selectFromHistory(term.term)" style="cursor:pointer">
+        {{ term.term }}
+       </li>
+      </ul>
+     </div>
 
-      <div v-if="filteredSearchHistory.lastWeek.length">
-        <span>Last Week</span>
-        <ul>
-          <li v-for="(term, index) in filteredSearchHistory.lastWeek" 
-              :key="'lastWeek-' + index" 
-              @click="selectFromHistory(term.term)" 
-              style="cursor:pointer">
-            {{ term.term }}
-          </li>
-        </ul>
-      </div>
+     <div v-if="filteredSearchHistory.lastWeek.length">
+      <span>Last Week</span>
+      <ul>
+       <li v-for="(term, index) in filteredSearchHistory.lastWeek" :key="'lastWeek-' + index" @click="selectFromHistory(term.term)" style="cursor:pointer">
+        {{ term.term }}
+       </li>
+      </ul>
+     </div>
 
-      <div v-if="filteredSearchHistory.lastMonth.length">
-        <span>Last Month</span>
-        <ul>
-          <li v-for="(term, index) in filteredSearchHistory.lastMonth" 
-              :key="'lastMonth-' + index" 
-              @click="selectFromHistory(term.term)" 
-              style="cursor:pointer">
-            {{ term.term }}
-          </li>
-        </ul>
-      </div>
+     <div v-if="filteredSearchHistory.lastMonth.length">
+      <span>Last Month</span>
+      <ul>
+       <li v-for="(term, index) in filteredSearchHistory.lastMonth" :key="'lastMonth-' + index" @click="selectFromHistory(term.term)" style="cursor:pointer">
+        {{ term.term }}
+       </li>
+      </ul>
+     </div>
     </div>
-    
 
-   
-
+   </div>
   </div>
- </div> 
 
- <div class="offcanvas offcanvas-end custom-offcanvas" tabindex="-1" id="offcanvasResults" style="width: 60%;">
-  <div class="offcanvas-header">
-   <h5 class="offcanvas-title">Search Results</h5>
-   <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
-  </div>
-  <div class="offcanvas-body text-left custom-offcanvas">
+  <div class="offcanvas offcanvas-end custom-offcanvas" tabindex="-1" id="offcanvasResults" style="width: 60%;">
+   <div class="offcanvas-header">
+    <h5 class="offcanvas-title">Search Results</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+   </div>
+   <div class="offcanvas-body text-left custom-offcanvas">
 
     <!-- Loading Spinner -->
     <div v-if="loading" class="text-center">
-      <div class="spinner-border" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
-      <p>Loading results...</p>
+     <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+     </div>
+     <p>Loading results...</p>
     </div>
 
-   <div v-if="filteredResults.length && !loading">
-    <div v-for="result in filteredResults" :key="result.id" class="result-item" >
-    
-     <div :id="'result-' + result.id" >
-      <!-- Display Surah ID and Ayah ID -->
-      <div class="text-left pb-2">
-       <h4>{{ result.ayah.surah_id }} : {{ result.ayah.ayah_id }}</h4>
-      </div>
-      <!-- Display Ayah Text -->
-      <h3 class="text-right">{{ result.ayah.ayah_text }}</h3>
-      <!-- Display Translated Text -->
-      <div v-if="filters.translation">
+    <div v-if="filteredResults.length && !loading">
+     <div v-for="result in filteredResults" :key="result.id" class="result-item">
+
+      <div :id="'result-' + result.id">
+       <!-- Display Surah ID and Ayah ID -->
+       <div class="text-left pb-2">
+        <h4>{{ result.ayah.surah_id }} : {{ result.ayah.ayah_id }}</h4>
+       </div>
+       <!-- Display Ayah Text -->
+       <h3 class="text-right">{{ result.ayah.ayah_text }}</h3>
+       <!-- Display Translated Text -->
+       <div v-if="filters.translation">
         <b>Translation:</b>
         <p v-html="highlightSearch(result.translation)"></p>
-      </div>
-      <div v-if="filters.tafseer">
+       </div>
+       <div v-if="filters.tafseer">
         <b>Tafseer:</b>
         <p v-html="highlightSearch(result.tafseer)"></p>
-      </div>
-      <div v-if="filters.transliteration">
+       </div>
+       <div v-if="filters.transliteration">
         <b>Transliteration:</b>
         <p v-html="highlightSearch(result.transliteration)"></p>
+       </div>
       </div>
+      <hr>
      </div>
-
-     <!--
-        <div class="container pt-2 row text-center">
-          <div class="col">
-            <i class="bi bi-file-earmark-pdf h4 me-3 text-center" style="cursor: pointer;" @click="downloadPDF(result)"></i>
-          </div> 
-          <div class="col">
-            <i class="bi bi-clipboard-check h4 me-3 text-center" style="cursor: pointer;" @click="copyTranslationText(result.translation)"></i>
-          </div>
-          <div class="col">
-            <i class="bi bi-whatsapp h4 me-3 text-center" style="cursor: pointer;" @click="shareViaWhatsapp(result)"></i>
-          </div>
-        </div>
-      -->
-
-     <hr>
     </div>
-   </div>
     <div v-else-if="!loading" class="text-center">
-      <h5>No search results found.</h5>
+     <h5>No search results found.</h5>
     </div>
 
+   </div>
   </div>
- </div>
  </div>
 </div>
 </template>
 
 <style scoped>
 .spinner-border {
-  width: 3rem;
-  height: 3rem;
+ width: 3rem;
+ height: 3rem;
 }
 
 .form-control {
-    box-sizing: border-box;
-    padding: 10px;
-    font-size: 1rem;
-  }
-  .dropdown-menu {
-    background-color: white;
-    border: 1px solid lightgrey;
-    border-radius: 5px;
-  }
-  .list-group-item {
-    border: none;
-  }
+ box-sizing: border-box;
+ padding: 10px;
+ font-size: 1rem;
+}
+
+.dropdown-menu {
+ background-color: white;
+ border: 1px solid lightgrey;
+ border-radius: 5px;
+}
+
+.list-group-item {
+ border: none;
+}
 
 .alert-container {
  position: absolute;
@@ -232,19 +210,20 @@
  margin-top: 10px;
  /* Add spacing above the translation */
 }
+
 .suggestions-list {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
+ list-style-type: none;
+ padding: 0;
+ margin: 0;
 }
 
 .suggestions-list li {
-  padding: 10px;
-  cursor: pointer;
+ padding: 10px;
+ cursor: pointer;
 }
 
 .suggestions-list li:hover {
-  background-color: #f1f1f1;
+ background-color: #f1f1f1;
 }
 </style>
 
@@ -275,53 +254,53 @@ export default {
    recognition: null,
   };
  },
+ 
  props: {
   result: Object
  },
  methods: {
   startVoiceRecognition() {
-    this.isListening = true;
+   this.isListening = true;
 
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-    if (!SpeechRecognition) {
-      alert('Speech Recognition is not supported in this browser. Please use Google Chrome or a compatible browser.');
-      this.isListening = false;
-      return;
-    }
+   if (!SpeechRecognition) {
+    alert('Speech Recognition is not supported in this browser. Please use Google Chrome or a compatible browser.');
+    this.isListening = false;
+    return;
+   }
 
-    this.recognition = new SpeechRecognition();
-    this.recognition.lang = 'en-US';
-    this.recognition.continuous = true;
+   this.recognition = new SpeechRecognition();
+   this.recognition.lang = 'en-US';
+   this.recognition.continuous = true;
 
-    this.recognition.onresult = (event) => {
-      const transcript = event.results[0][0].transcript;
-      this.searchTerm = transcript;
-      this.isListening = false;
-      this.searchWord();
-    };
+   this.recognition.onresult = (event) => {
+    const transcript = event.results[0][0].transcript;
+    this.searchTerm = transcript;
+    this.isListening = false;
+    this.searchWord();
+   };
 
-    this.recognition.onend = () => {
-      this.isListening = false;
-    };
+   this.recognition.onend = () => {
+    this.isListening = false;
+   };
 
-    this.recognition.onerror = (event) => {
-      console.error('Speech recognition error:', event.error);
-      this.isListening = false;
-    };
+   this.recognition.onerror = (event) => {
+    console.error('Speech recognition error:', event.error);
+    this.isListening = false;
+   };
 
-    this.recognition.start();
+   this.recognition.start();
   },
 
   stopVoiceRecognition() {
-    if (this.recognition) {
-      this.recognition.stop(); // Stop the recognition
-      this.isListening = false;
-    }
+   if (this.recognition) {
+    this.recognition.stop(); // Stop the recognition
+    this.isListening = false;
+   }
   },
   onType() {
-    if (this.searchTerm.length >= 3) {
-    } 
+   if (this.searchTerm.length >= 3) {}
   },
   downloadPDF(result) {
    const element = document.getElementById(`result-${result.id}`);
@@ -366,81 +345,32 @@ export default {
    window.open(whatsappUrl, '_blank');
   },
   searchWord() {
-    this.loading = true; // Set loading state to true before fetching data
+   this.loading = true; // Set loading state to true before fetching data
 
-    if (this.searchTerm.length > 0) {
-      axios
-        .get("/search-translations", {
-          params: {
-            query: this.searchTerm,
-            filters: this.filters
-          }
-        })
-        .then(response => {
-          this.filteredResults = response.data;
-          this.showOffcanvas(); // Show search results
-          this.addToSearchHistory(this.searchTerm);
-        })
-        .catch(error => {
-          console.error("Error fetching search results:", error);
-        })
-        .finally(() => {
-          this.loading = false; // Reset loading state
-        });
-    } else {
-      this.filteredResults = [];
-      this.loading = false; // Reset loading state if searchTerm is empty
-    }
-  },
-  selectFromHistory(term){
-    this.searchTerm = term;
-    this.searchHistoryDropdown = false;
-    this.searchWord();
-  },
-  addToSearchHistory(term) {
-    const newSearch = {
-      term: term,
-      timestamp: new Date()
-    };
-    this.searchHistory.push(newSearch);
-    this.filterSearchHistory();
-  },
-  filterSearchHistory() {
-    const today = new Date();
-    const oneDay = 24 * 60 * 60 * 1000;
-    const oneWeek = oneDay * 7;
-    const oneMonth = oneDay * 30;
-
-    this.filteredSearchHistory = {
-      today: [],
-      yesterday: [],
-      lastWeek: [],
-      lastMonth: []
-    };
-
-    this.searchHistory.forEach((item) => {
-      const timeDiff = today - new Date(item.timestamp);
-      
-      if (timeDiff < oneDay) {
-        this.filteredSearchHistory.today.push(item);
-      } else if (timeDiff < 2 * oneDay) {
-        this.filteredSearchHistory.yesterday.push(item);
-      } else if (timeDiff < oneWeek) {
-        this.filteredSearchHistory.lastWeek.push(item);
-      } else if (timeDiff < oneMonth) {
-        this.filteredSearchHistory.lastMonth.push(item);
+   if (this.searchTerm.length > 0) {
+    axios
+     .get("/search-translations", {
+      params: {
+       query: this.searchTerm,
+       filters: this.filters
       }
-    });
+     })
+     .then(response => {
+      this.filteredResults = response.data;
+      this.showOffcanvas(); // Show search results
+     })
+     .catch(error => {
+      console.error("Error fetching search results:", error);
+     })
+     .finally(() => {
+      this.loading = false; // Reset loading state
+     });
+   } else {
+    this.filteredResults = [];
+    this.loading = false; // Reset loading state if searchTerm is empty
+   }
   },
-  showSearchHistory(){
-    this.filterSearchHistory();    
-    this.searchHistoryDropdown = true;
-  },
-  hideSearchHistory(){
-    setTimeout(() => {
-      this.searchHistoryDropdown = false;
-    }, 150);
-  },
+
   highlightSearch(translation) {
    if (!translation) {
     console.warn("The translation is undefined or null for this result:", translation);
@@ -449,20 +379,13 @@ export default {
    const regex = new RegExp(`(${this.searchTerm})`, 'gi');
    return translation.replace(regex, "<span class='highlight'>$1</span>");
   },
-  
+
   showOffcanvas() {
    const offcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasResults'));
    offcanvas.show();
   },
-  onInputChange() {
-   this.searchWord(); // Automatically search as you type
-  }
+  
  },
- created() {
-   const savedHistory = localStorage.getItem('searchHistory');
-   if(savedHistory){
-     this.searchHistory = JSON.parse(savedHistory);
-   }
- },
+
 };
 </script>
