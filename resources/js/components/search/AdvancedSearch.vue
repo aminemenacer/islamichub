@@ -4,117 +4,421 @@
  <div>
   <div class="container input-group" style="align-items:center">
 
-    <div class="input-group mb-3">
-			<input type="text" class="form-control" v-model="searchTerm" placeholder="How can I assist you in understanding the meanings of the Holy Quran?" >
-			<div class="input-group-append">
-      <!--
-      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-      </button>
-      -->
-      <div class="btn btn-primary" @click="isListening ? stopVoiceRecognition() : startVoiceRecognition()">
-        {{ isListening ? 'Stop' : 'Speak' }}
+   <div class="input-group mb-3">
+    <input type="text" class="form-control search-input"  @input="filterSuggestions" v-model="searchTerm" placeholder="How can I assist you in understanding the meanings of the Holy Quran?">
+    <div class="input-group-append">
+      <!-- filters on search (translation, tafseer, transliteration) -->
+     <div class="dropdown"> 
+      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+        <ul class="dropdown-menu">
+          <li>
+            <a class="dropdown-item" href="#">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input mt-1" type="checkbox" v-model="filters.translation" id="translationCheckbox">
+              <p class="form-check-label" for="translationCheckbox">Translation</p>
+            </div>
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input mt-1" type="checkbox" v-model="filters.tafseer" id="tafseerCheckbox">
+              <span class="form-check-label" for="tafseerCheckbox">Tafseer</span>
+            </div>
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input mt-1" type="checkbox" v-model="filters.transliteration" id="transliterationCheckbox">
+              <p class="form-check-label" for="transliterationCheckbox">Transliteration</p>
+            </div>
+            </a>
+          </li>
+        </ul>
       </div>
-      <button class="btn btn-primary" @click="searchWord">Search</button></div>
-		</div>
-
-   <div class="dropdown">
-    <ul class="dropdown-menu">
-     <li>
-      <a class="dropdown-item" href="#">
-       <div class="form-check form-check-inline">
-        <input class="form-check-input mt-1" type="checkbox" v-model="filters.translation" id="translationCheckbox">
-        <p class="form-check-label" for="translationCheckbox">Translation</p>
-       </div>
-      </a>
-     </li>
-     <li>
-      <a class="dropdown-item" href="#">
-       <div class="form-check form-check-inline">
-        <input class="form-check-input mt-1" type="checkbox" v-model="filters.tafseer" id="tafseerCheckbox">
-        <span class="form-check-label" for="tafseerCheckbox">Tafseer</span>
-       </div>
-      </a>
-     </li>
-     <li>
-      <a class="dropdown-item" href="#">
-       <div class="form-check form-check-inline">
-        <input class="form-check-input mt-1" type="checkbox" v-model="filters.transliteration" id="transliterationCheckbox">
-        <p class="form-check-label" for="transliterationCheckbox">Transliteration</p>
-       </div>
-      </a>
-     </li>
-    </ul>
+     <div class="btn btn-primary" @click="isListening ? stopVoiceRecognition() : startVoiceRecognition()">
+      {{ isListening ? 'Stop' : 'Speak' }}
+     </div>
+     <button class="btn btn-primary" @click="searchWord">Search</button>
+    </div>  
    </div>
-
-   <!-- Optional: You can show a message when recording starts -->
+    <ul class="list-group" v-if="showSuggestions && recentSearches.length" style="width: 100%;">
+      <li v-for="(search, index) in recentSearches" :key="index" @click="selectRecentSearch(search)" class="list-group-item list-group-item-success">{{ search }}</li>
+    </ul>
+   <!-- show a message when recording starts -->
    <p v-if="isListening">Listening...</p>
 
-   </div>
-  </div>
-
-  <div class="offcanvas offcanvas-end custom-offcanvas" tabindex="-1" id="offcanvasResults" style="width: 60%;">
-   <div class="offcanvas-header">
-    <h5 class="offcanvas-title">Search Results</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
-   </div>
-   <div class="offcanvas-body text-left custom-offcanvas">
-
-   
-    <div v-if="filteredResults.length && !loading">
-     <div v-for="result in filteredResults" :key="result.id" class="result-item">
-
-      <div :id="'result-' + result.id">
-       <!-- Display Surah ID and Ayah ID -->
-       <div class="text-left pb-2">
-        <h4>{{ result.ayah.surah_id }} : {{ result.ayah.ayah_id }}</h4>
-       </div>
-       <!-- Display Ayah Text -->
-       <h3 class="text-right">{{ result.ayah.ayah_text }}</h3>
-       <!-- Display Translated Text -->
-       <div v-if="filters.translation">
-        <b>Translation:</b>
-        <p v-html="highlightSearch(result.translation)"></p>
-       </div>
-       <div v-if="filters.tafseer">
-        <b>Tafseer:</b>
-        <p v-html="highlightSearch(result.tafseer)"></p>
-       </div>
-       <div v-if="filters.transliteration">
-        <b>Transliteration:</b>
-        <p v-html="highlightSearch(result.transliteration)"></p>
-       </div>
-      </div>
-      <hr>
-     </div>
-    </div>
-    <div v-else-if="!loading" class="text-center">
-     <h5>No search results found.</h5>
+    <div>
+    <!-- Dropdown for displaying current search results -->
+    <ul v-if="showSuggestions && filteredResults.length">
+      <li v-for="result in filteredResults" :key="result.ayah_id" @click="selectResult(result)">
+      {{ result.content }}
+      </li>
+    </ul>
+    <!-- Button to clear all recent searches -->
+      <button @click="clearRecentSearches" v-if="recentSearches.length">Clear Recent Searches</button>
     </div>
 
-   </div>
   </div>
  </div>
+
+ <div class="offcanvas offcanvas-end custom-offcanvas" tabindex="-1" id="offcanvasResults" style="width: 60%;">
+  <div class="offcanvas-header">
+   <h5 class="offcanvas-title">Search Results</h5>
+   <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body text-left custom-offcanvas">
+
+   <div v-if="filteredResults.length && !loading">
+    <div v-for="result in filteredResults" :key="result.id" class="result-item">
+
+     <div :id="'result-' + result.id">
+      <!-- Display Surah ID and Ayah ID -->
+      <div class="text-left pb-2">
+       <h4>{{ result.ayah.surah_id }} : {{ result.ayah.ayah_id }}</h4>
+      </div>
+      <!-- Display Ayah Text -->
+      <h3 class="text-right">{{ result.ayah.ayah_text }}</h3>
+      <!-- Display Translated Text -->
+      <div v-if="filters.translation">
+       <b>Translation:</b>
+       <p v-html="highlightSearch(result.translation)"></p>
+      </div>
+      <div v-if="filters.tafseer">
+       <b>Tafseer:</b>
+       <p v-html="highlightSearch(result.tafseer)"></p>
+      </div>
+      <div v-if="filters.transliteration">
+       <b>Transliteration:</b>
+       <p v-html="highlightSearch(result.transliteration)"></p>
+      </div>
+     </div>
+     <hr>
+    </div>
+   </div>
+   <div v-else-if="!loading" class="text-center">
+    <h5>No search results found.</h5>
+   </div>
+
+  </div>
+ </div>
+</div>
 </template>
 
+<script>
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
+
+export default {
+ mounted() {
+  const savedSearches = JSON.parse(localStorage.getItem('recentSearches')) || [];
+  this.recentSearches = savedSearches;
+  const dropdown = document.querySelector('.dropdown');
+  if (dropdown) {
+   dropdown.addEventListener('click', this.toggleDropdown);
+  }
+ },
+ data() {
+  return {
+   recentSearches: [],
+   showSuggestions: false,
+   searchHistoryDropdown: false,
+   searchHistory: [],
+   recentSearches: [],
+   data: [],
+   loading: false,
+   searchTerm: '',
+   filteredResults: [],
+   filters: {
+    translation: true, // Default filter for translation enabled
+    tafseer: false, // Default filter for tafseer disabled
+    transliteration: false // Default filter for transliteration disabled
+   },
+   isListening: false,
+   recognition: null,
+  };
+ },
+
+ props: {
+  result: Object
+ },
+ methods: {
+  clearRecentSearches() {
+    // Clear recent searches in state and localStorage
+    this.recentSearches = [];
+    localStorage.removeItem('recentSearches');
+  },
+  autoSave() {
+    this.autoSaveStatus = true;
+    setTimeout(() => {
+      this.autoSaveStatus = false; // Hide auto-save status after 2 seconds
+    }, 20000);
+  },
+  loadRecentSearches() {
+   const searches = localStorage.getItem('recentSearches');
+   this.recentSearches = searches ? JSON.parse(searches) : [];
+  },
+  saveSearch(search) {
+   if (!this.recentSearches.includes(search)) {
+    this.recentSearches.unshift(search);
+    if (this.recentSearches.length > 10) {
+     this.recentSearches.pop();
+    }
+    localStorage.setItem('recentSearches', JSON.stringify(this.recentSearches));
+   }
+  },
+  submitSearch() {
+    const query = this.searchTerm.toLowerCase();
+    // Save the search term in recent searches if not already saved
+    if (query && !this.recentSearches.includes(query)) {
+      this.recentSearches.push(query);
+      localStorage.setItem('recentSearches', JSON.stringify(this.recentSearches));
+    }
+
+    // Perform the search or filter based on input
+    this.searchWord();
+  },
+  filterSuggestions() {
+   const query = this.searchTerm.toLowerCase();
+
+   // Save the current search term in recent searches
+   if (query && !this.recentSearches.includes(query)) {
+    this.recentSearches.push(query);
+    localStorage.setItem('recentSearches', JSON.stringify(this.recentSearches));
+   }
+
+   // Filter results based on active filters
+   this.filteredResults = this.data.filter(item => {
+    return (this.filters.translation && item.translation.toLowerCase().includes(query)) ||
+     (this.filters.tafseer && item.tafseer.toLowerCase().includes(query)) ||
+     (this.filters.transliteration && item.transliteration.toLowerCase().includes(query));
+   }).map(item => {
+    return {
+     ayah_id: item.ayah_id,
+     content: this.filters.translation ? item.translation : this.filters.tafseer ? item.tafseer : item.transliteration
+    };
+   });
+
+   this.showSuggestions = this.filteredResults.length > 0 || this.recentSearches.length > 0;
+  },
+  selectResult(result) {
+   this.searchTerm = search;
+   this.filterSuggestions();
+  },
+  submitSearch() {
+      const query = this.searchTerm.toLowerCase();
+
+      // Save the search term in recent searches if not already saved
+      if (query && !this.recentSearches.includes(query)) {
+        this.recentSearches.push(query);
+        localStorage.setItem('recentSearches', JSON.stringify(this.recentSearches));
+      }
+
+      // Perform the search or filter based on input
+      this.filterSuggestions();
+    },
+    showRecentSearches() {
+      // Show recent searches when input is focused
+      this.showSuggestions = true;
+    },
+    selectRecentSearch(search) {
+      this.searchTerm = search; // Set searchTerm to the selected recent search
+      this.filterSuggestions(); // Filter based on the selected recent search
+    },
+    handleBlur() {
+      setTimeout(() => { this.showSuggestions = false; }, 100); // Delay hiding suggestions to allow click
+    },
+  
+  startVoiceRecognition() {
+    
+   this.isListening = true;
+
+   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+   if (!SpeechRecognition) {
+    alert('Speech Recognition is not supported in this browser. Please use Google Chrome or a compatible browser.');
+    this.isListening = false;
+    return;
+   }
+
+   this.recognition = new SpeechRecognition();
+   this.recognition.lang = 'en-US';
+   this.recognition.continuous = true;
+
+   this.recognition.onresult = (event) => {
+    const transcript = event.results[0][0].transcript;
+    this.searchTerm = transcript;
+    this.isListening = false;
+    this.searchWord();
+   };
+
+   this.recognition.onend = () => {
+    this.isListening = false;
+   };
+
+   this.recognition.onerror = (event) => {
+    console.error('Speech recognition error:', event.error);
+    this.isListening = false;
+   };
+
+   this.recognition.start();
+  },
+
+  stopVoiceRecognition() {
+   if (this.recognition) {
+    this.autoSave();
+    this.recognition.stop(); // Stop the recognition
+    this.isListening = false;
+   }
+  },
+  onType() {
+   if (this.searchTerm.length >= 3) {}
+  },
+  downloadPDF(result) {
+   const element = document.getElementById(`result-${result.id}`);
+
+   // Ensure the text is visible before capturing
+   element.style.color = 'black'; // Set text color to black for visibility
+
+   html2canvas(element).then((canvas) => {
+    const imgData = canvas.toDataURL('image/png');
+    const pdf = new jsPDF({
+     orientation: 'portrait',
+     unit: 'mm',
+     format: 'a4',
+    });
+    const fileName = `Surah_${result.ayah.surah_id}_Ayah_${result.ayah.ayah_id}.pdf`;
+
+    pdf.addImage(imgData, 'PNG', 10, 10, 190, 0); // Adjust the dimensions as needed
+    // Save the PDF with a dynamic name
+    pdf.save(fileName);
+
+    // Reset text color back to original after capture
+    element.style.color = ''; // Reset to original or any preferred color
+   }).catch((error) => {
+    console.error('Error capturing the element:', error);
+   });
+  },
+  copyText(result) {
+   // Logic to copy the text from the result
+   const textToCopy = `${result.ayah.surah_id}:${result.ayah.ayah_id} - ${result.ayah.ayah_text}\n${result.translation}`;
+   navigator.clipboard.writeText(textToCopy);
+   alert('Text copied to clipboard');
+  },
+  shareViaWhatsapp(result) {
+   const surahInfo = `${result.ayah.surah_id}:${result.ayah.ayah_id}`;
+   const ayahText = `Ayah: ${result.ayah.ayah_text}`;
+   const ayahTranslation = `Ayah Translation: ${result.ayah.ayah_text}`;
+   const note = `Note: ${result.translation}`;
+
+   const message = `${surahInfo}\n${ayahText}\n${ayahTranslation}\n${note}`;
+   const encodedMessage = encodeURIComponent(message); // Encode special characters
+   const whatsappUrl = `https://wa.me/?text=${encodedMessage}`;
+   window.open(whatsappUrl, '_blank');
+  },
+  searchWord() {
+    this.loading = true; // Set loading state to true before fetching data
+    if (this.searchTerm.length > 0) {
+      axios
+        .get("/search-translations", {
+          params: {
+            query: this.searchTerm,
+            filters: this.filters
+          }
+        })
+        .then(response => {
+          this.filteredResults = response.data;
+          this.showOffcanvas(); // Show search results (you can replace this with showing search results within a dropdown)
+        })
+        .catch(error => {
+          console.error("Error fetching search results:", error);
+        })
+        .finally(() => {
+          this.loading = false; // Reset loading state
+        });
+    } else {
+      this.filteredResults = [];
+      this.loading = false; // Reset loading state if searchTerm is empty
+    }
+  },
+
+  highlightSearch(translation) {
+   if (!translation) {
+    console.warn("The translation is undefined or null for this result:", translation);
+    return '';
+   }
+   const regex = new RegExp(`(${this.searchTerm})`, 'gi');
+   return translation.replace(regex, "<span class='highlight'>$1</span>");
+  },
+
+  showOffcanvas() {
+   const offcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasResults'));
+   offcanvas.show();
+  },
+
+ },
+
+};
+</script>
+
 <style scoped>
-
-
-
-.btn-primary{
-	background-color: #00BFA6 !important;
-	border-radius: 10px;
-}
-.btn-primary:focus{
-	box-shadow: none;
-}
-.text{
-	font-size: 13px;
+.recent-searches {
+ position: relative;
+ width: 300px;
+ /* Adjust the width as needed */
 }
 
-.flex-row{
-	border: 1px solid #F2F2F4;
-	border-radius: 10px; 
-	margin: 0 1px 0;
+.search-input {
+ width: 100%;
+ padding: 10px;
+ font-size: 16px;
+ border: 1px solid #ccc;
+ border-radius: 4px;
+}
+
+.suggestions {
+ position: absolute;
+ background: white;
+ border: 1px solid #ccc;
+ border-radius: 4px;
+ margin-top: 5px;
+ width: 100%;
+ max-height: 150px;
+ /* Limit dropdown height */
+ overflow-y: auto;
+ /* Enable scrolling */
+ z-index: 10;
+ /* Ensure dropdown appears above other content */
+}
+
+.suggestions li {
+ padding: 8px;
+ cursor: pointer;
+}
+
+.suggestions li:hover {
+ background-color: #f0f0f0;
+ /* Highlight on hover */
+}
+
+.btn-primary {
+ background-color: #00BFA6 !important;
+ border-radius: 10px;
+}
+
+.btn-primary:focus {
+ box-shadow: none;
+}
+
+.text {
+ font-size: 13px;
+}
+
+.flex-row {
+ border: 1px solid #F2F2F4;
+ border-radius: 10px;
+ margin: 0 1px 0;
 }
 
 .form-control {
@@ -194,172 +498,3 @@
  background-color: #f1f1f1;
 }
 </style>
-
-<script>
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
-
-export default {
-  mounted() {
-    const dropdown = document.querySelector('.dropdown');
-    if (dropdown) {
-        dropdown.addEventListener('click', this.toggleDropdown);
-    }
-  },
- data() {
-  return {
-   searchHistoryDropdown: false,
-   searchHistory: [],
-   filteredSearchHistory: {
-    today: [],
-    yesterday: [],
-    lastWeek: [],
-    lastMonth: []
-   },
-   loading: false,
-   searchTerm: '',
-   filteredResults: [],
-   filters: {
-    translation: true, // Default filter for translation enabled
-    tafseer: false, // Default filter for tafseer disabled
-    transliteration: false // Default filter for transliteration disabled
-   },
-   isListening: false,
-   recognition: null,
-  };
- },
- 
- props: {
-  result: Object
- },
- methods: {
-  startVoiceRecognition() {
-   this.isListening = true;
-
-   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-
-   if (!SpeechRecognition) {
-    alert('Speech Recognition is not supported in this browser. Please use Google Chrome or a compatible browser.');
-    this.isListening = false;
-    return;
-   }
-
-   this.recognition = new SpeechRecognition();
-   this.recognition.lang = 'en-US';
-   this.recognition.continuous = true;
-
-   this.recognition.onresult = (event) => {
-    const transcript = event.results[0][0].transcript;
-    this.searchTerm = transcript;
-    this.isListening = false;
-    this.searchWord();
-   };
-
-   this.recognition.onend = () => {
-    this.isListening = false;
-   };
-
-   this.recognition.onerror = (event) => {
-    console.error('Speech recognition error:', event.error);
-    this.isListening = false;
-   };
-
-   this.recognition.start();
-  },
-
-  stopVoiceRecognition() {
-   if (this.recognition) {
-    this.recognition.stop(); // Stop the recognition
-    this.isListening = false;
-   }
-  },
-  onType() {
-   if (this.searchTerm.length >= 3) {}
-  },
-  downloadPDF(result) {
-   const element = document.getElementById(`result-${result.id}`);
-
-   // Ensure the text is visible before capturing
-   element.style.color = 'black'; // Set text color to black for visibility
-
-   html2canvas(element).then((canvas) => {
-    const imgData = canvas.toDataURL('image/png');
-    const pdf = new jsPDF({
-     orientation: 'portrait',
-     unit: 'mm',
-     format: 'a4',
-    });
-    const fileName = `Surah_${result.ayah.surah_id}_Ayah_${result.ayah.ayah_id}.pdf`;
-
-    pdf.addImage(imgData, 'PNG', 10, 10, 190, 0); // Adjust the dimensions as needed
-    // Save the PDF with a dynamic name
-    pdf.save(fileName);
-
-    // Reset text color back to original after capture
-    element.style.color = ''; // Reset to original or any preferred color
-   }).catch((error) => {
-    console.error('Error capturing the element:', error);
-   });
-  },
-  copyText(result) {
-   // Logic to copy the text from the result
-   const textToCopy = `${result.ayah.surah_id}:${result.ayah.ayah_id} - ${result.ayah.ayah_text}\n${result.translation}`;
-   navigator.clipboard.writeText(textToCopy);
-   alert('Text copied to clipboard');
-  },
-  shareViaWhatsapp(result) {
-   const surahInfo = `${result.ayah.surah_id}:${result.ayah.ayah_id}`;
-   const ayahText = `Ayah: ${result.ayah.ayah_text}`;
-   const ayahTranslation = `Ayah Translation: ${result.ayah.ayah_text}`;
-   const note = `Note: ${result.translation}`;
-
-   const message = `${surahInfo}\n${ayahText}\n${ayahTranslation}\n${note}`;
-   const encodedMessage = encodeURIComponent(message); // Encode special characters
-   const whatsappUrl = `https://wa.me/?text=${encodedMessage}`;
-   window.open(whatsappUrl, '_blank');
-  },
-  searchWord() {
-   this.loading = true; // Set loading state to true before fetching data
-
-   if (this.searchTerm.length > 0) {
-    axios
-     .get("/search-translations", {
-      params: {
-       query: this.searchTerm,
-       filters: this.filters
-      }
-     })
-     .then(response => {
-      this.filteredResults = response.data;
-      this.showOffcanvas(); // Show search results
-     })
-     .catch(error => {
-      console.error("Error fetching search results:", error);
-     })
-     .finally(() => {
-      this.loading = false; // Reset loading state
-     });
-   } else {
-    this.filteredResults = [];
-    this.loading = false; // Reset loading state if searchTerm is empty
-   }
-  },
-
-  highlightSearch(translation) {
-   if (!translation) {
-    console.warn("The translation is undefined or null for this result:", translation);
-    return '';
-   }
-   const regex = new RegExp(`(${this.searchTerm})`, 'gi');
-   return translation.replace(regex, "<span class='highlight'>$1</span>");
-  },
-
-  showOffcanvas() {
-   const offcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasResults'));
-   offcanvas.show();
-  },
-  
- },
-
-};
-</script>
