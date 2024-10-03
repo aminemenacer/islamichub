@@ -74,18 +74,8 @@
       </div>
 
       <!-- Rich Text Editor Mode -->
-      <Editor
-        v-if="inputMode === 'editor'"
-        v-model="form.ayah_notes"  
-        :style="{ height: '400px' }" 
-        :toolbarOptions="[
-          ['bold', 'italic', 'underline'], 
-          [{ 'header': [1, 2, 3, false] }], 
-          [{ 'list': 'ordered' }, { 'list': 'bullet' }], 
-          ['link', 'image']  
-        ]"
-        placeholder="Save your notes and personal reflections privately."
-      ></Editor>
+      <Editor v-if="inputMode === 'editor'" v-model="form.ayah_notes" editorStyle="height: 400px" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah."></Editor>
+
       <!-- Basic Mode -->
       <textarea v-if="inputMode === 'basic'" v-model="form.ayah_notes" class="form-control pb-2" rows="5" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah."></textarea>
      

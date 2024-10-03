@@ -70,6 +70,11 @@ export default {
     return {
     };
   },
+  computed: {
+    combinedText() {
+      return `Transliteration: ${this.information.transliteration}`;
+    }
+  },
   methods: {
     captureTransliteration() {
       const targetTransliterationElement = this.$parent.$refs[this.targetTransliterationRef];

@@ -61,6 +61,11 @@ export default {
   return {
   };
  },
+ computed: {
+    combinedText() {
+      return `Tafseer: ${this.information.tafseer}`;
+    }
+  },
  methods: {
   captureTafseer() {
    const targetTafseerElement = this.$parent.$refs[this.targetTafseerRef];

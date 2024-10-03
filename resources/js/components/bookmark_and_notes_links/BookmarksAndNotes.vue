@@ -1,5 +1,5 @@
 <template>
-  <div v-if="information !== null">
+  <div v-if="isLoggedIn && information !== null">
     <div class="row" style="padding:10px">
       <div class="text-center">
         <hr>
@@ -49,6 +49,12 @@ export default {
       default: '',
     },
   },
+  data() {
+    return {
+      isLoggedIn: false,
+    }
+  },
+  
 };
 </script>
 

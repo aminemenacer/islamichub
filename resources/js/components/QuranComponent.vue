@@ -136,7 +136,7 @@
                   title="Bookmark verse"
                 ></i>
                 </div>
-                <div class="col"><CopyTranslationText  :textToCopy="information.translation" /></div>
+                <div class="col"><CopyTranslationText  :textToCopy="combinedText" /></div>
                 <div class="col"><ScreenTranslationCapture  :targetTranslationRef="'targetTranslationElement'" /></div>
                 <div class="col"><PdfDownload  :targetTranslationRef="'targetTranslationElement'" /></div>
                 <div class="col">
@@ -473,19 +473,16 @@
 
    </div>
  
- <!-- theme styles -->
+  <!-- theme styles -->
   <div class="offcanvas offcanvas-end " tabindex="-1" id="styleOffcanvas" aria-labelledby="styleOffcanvasLabel" style="width: 40%;">
     <div class="offcanvas-header">
       <h4 class="offcanvas-title" id="styleOffcanvasLabel">Customize Your Layout</h4>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
-  <div class="offcanvas-body ">
+   <div class="offcanvas-body ">
     <form>
       <div class="row">
-        <!-- Success message -->
-        <div v-if="showSuccessMessage" class="alert alert-success" role="alert">
-          Styles have been successfully applied!
-        </div>
+        
 
         <!-- Row: Select Default Style -->
         <div class="col-md-12 mb-3">
@@ -580,16 +577,12 @@
           <input type="number" id="fontSpacing" v-model.number="fontSpacing" class="form-control" />
         </div>
 
-        <!-- Input to save the theme with a name -->
-      <div class="col-md-12 mb-3">
-        <label for="themeName" class="form-label">Save Theme As</label>
-        <input type="text" v-model="newThemeName" class="form-control" id="themeName" placeholder="Custom Theme Name" />
-      </div>
+        <!-- Success message -->
+        <div v-if="showSuccessMessage" class="alert alert-success" role="alert">
+          Styles have been successfully applied!
+        </div>
 
-      <div class="col-md-12 mb-3 d-flex gap-3">
-        <button type="button" class="btn btn-secondary flex-grow-1" data-bs-dismiss="offcanvas">Close</button>
-        <button type="button" class="btn btn-success flex-grow-1" @click="saveCustomTheme">Save Theme</button>
-      </div>
+  
         
       <div class="col-md-12 mb-3 d-flex gap-3">
         <button type="button" class="btn btn-secondary flex-grow-1" data-bs-dismiss="offcanvas">Close</button>
@@ -600,16 +593,7 @@
      
     </form>
 
-    <!-- Dropdown to Select and Apply a Saved Theme -->
-    <div class="col-md-12 mb-3">
-      <label for="themeSelect" class="form-label">Select Saved Theme</label>
-      <select id="themeSelect" v-model="selectedThemeIndex" class="form-control" @change="applyTheme">
-        <option value="" disabled>Select a theme</option>
-        <option v-for="(theme, index) in savedThemes" :key="index" :value="index">
-          {{ theme.name }}
-        </option>
-      </select>
-    </div>
+    
    
   </div>
 
@@ -758,7 +742,10 @@ export default {
   }
   this.loadBackgroundColor();
 },
-props: ['information', 'selectedFolderId'],
+props: ['information', 'selectedFolderId'], information: {
+      type: Object,
+      required: true
+    },
  data() {
   return {
     menuItems: ["Home", "About", "Services", "Contact"],
@@ -965,6 +952,12 @@ props: ['information', 'selectedFolderId'],
   };
  },
 computed: {
+  combinedText() {
+    // Check if ayah_text and translation have nested structure
+    const translation = typeof this.information.translation === 'object' ? this.information.translation.text : this.information.translation;
+
+    return `Translation: ${translation}`;
+  },
   containerStyle() {
     return {
       backgroundColor: this.bgColor,

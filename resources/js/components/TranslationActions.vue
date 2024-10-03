@@ -25,7 +25,7 @@
 
   <!-- Copy Translation Text Icon -->
   <div class="icon-container">
-   <CopyTranslationText :textToCopy="translation" />
+    <CopyTranslationText :textToCopy="combinedText" />
   </div>
 
 
@@ -59,6 +59,10 @@ export default {
    type: String,
    required: true,
   },
+  information: {
+    type: Object,
+    required: true
+  },
   targetTranslationRef: {
    type: String,
    default: 'targetTranslationElement',
@@ -88,6 +92,11 @@ export default {
   };
 
  },
+ computed: {
+    combinedText() {
+      return `Translation: ${this.information.translation}`;
+    }
+  },
  methods: {
  
   captureTranslation() {

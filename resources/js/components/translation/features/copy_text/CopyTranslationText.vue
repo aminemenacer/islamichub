@@ -1,6 +1,7 @@
 <template>
-  <div>
-    <i
+<div>
+ <div>
+ <i
       class="bi bi-clipboard-check text-right mr-2 h4"
       @click="copyTranslationText"
       aria-expanded="false"
@@ -8,34 +9,33 @@
       title="Copy verse"
       :style="{ color: iconColor, cursor: 'pointer' }"
     ></i>
- 
-    <div v-if="showAlertText" class="alert alert-success" role="alert">
-      Text copied successfully!
-    </div>
-    <div v-if="showErrorAlert" class="alert alert-danger" role="alert">
-      Failed to copy text!
-    </div>
-    
-  </div>
+ </div>
+ <div v-if="showAlertText" class="alert alert-success" role="alert">
+  Text copied successfully!
+ </div>
+ <div v-if="showErrorAlert" class="alert alert-danger" role="alert">
+  Failed to copy text!
+ </div>
+</div>
 </template>
 
 <script>
 export default {
-  name: "copyTranslationText",
-  props: {
-    textToCopy: {
-      type: String,
-      required: true
-    }
-  },
-  data() {
-    return {
-      showAlertText: false,
-      showErrorAlert: false
-    };
-  },
-  methods: {
-    copyTranslationText() {
+ name: "CopyTranslationText",
+ props: {
+  textToCopy: {
+   type: String,
+   required: true
+  }
+ },
+ data() {
+  return {
+   showAlertText: false,
+   showErrorAlert: false
+  };
+ },
+ methods: {
+  copyTranslationText() {
       this.copyToClipboard(this.textToCopy)
         .then(() => {
           this.showAlertText = true;
@@ -57,7 +57,6 @@ export default {
         this.showErrorAlert = false;
       }, 2000);
     }
-  }
+ }
 };
 </script>
-

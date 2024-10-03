@@ -5,7 +5,7 @@
   <AyahInfo :information="information" />
   <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
    <MainAyah :information="information" />
-   <div ref="heading3">
+   <div ref="heading2">
     <h4 class="text-left ayah-translation" style="line-height: 1.6em">
      {{ expanded ? information.transliteration : truncatedText(information.transliteration) }}
      <template v-if="showMoreLink && information.transliteration.length > 100">
@@ -20,19 +20,19 @@
  <!-- WhatsApp Share Button -->
  <div class="row mobile-only pt-3" style="color:white">
   <div class="col-6 ">
-    <!-- Add right padding to create space between the buttons -->
-    <div @click="shareOnWhatsApp" style="cursor: pointer;">
-      <i class="bi bi-whatsapp  h3" style="color:black"></i>
-      <p style="font-size: 13px; margin: 0;color:black" class="pt-2">Share via WhatsApp</p>
-    </div>
+   <!-- Add right padding to create space between the buttons -->
+   <div @click="shareOnWhatsApp" style="cursor: pointer;">
+    <i class="bi bi-whatsapp  h3" style="color:black"></i>
+    <p style="font-size: 13px; margin: 0;color:black" class="pt-2">Share via WhatsApp</p>
+   </div>
   </div>
 
   <div class="col-6 pr-2">
-    <!-- Add right padding to create space between the buttons -->
-    <div @click="shareOnTwitter" style="cursor: pointer;">
-      <i class="bi bi-twitter-x  h3" style="color:black"></i>
-      <p style="font-size: 13px; margin: 0;color:black" class="pt-2">Share via X</p>
-    </div>
+   <!-- Add right padding to create space between the buttons -->
+   <div @click="shareOnTwitter" style="cursor: pointer;">
+    <i class="bi bi-twitter-x  h3" style="color:black"></i>
+    <p style="font-size: 13px; margin: 0;color:black" class="pt-2">Share via X</p>
+   </div>
   </div>
  </div>
 </div>
@@ -60,25 +60,26 @@ export default {
   showErrorAlert: Boolean,
   showAlertTextNote: Boolean,
  },
- data(){
-   return{
-    expanded: false,  // Local state to track expand/collapse
-   }
+ data() {
+  return {
+   expanded: false, // Local state to track expand/collapse
+   showMoreLink: true,
+  }
  },
  methods: {
   shareOnWhatsApp() {
-    const ayahInfo = this.information.ayahInfo || "No Ayah Info available"; // Fallback message
-    const mainAyah = this.information.mainAyah || "No Main Ayah available"; // Fallback message
-    const ayahTransliteration = this.expanded ? this.information.transliteration : this.truncatedText(this.information.transliteration);
+   const ayahInfo = this.information.ayahInfo || "No Ayah Info available"; // Fallback message
+   const mainAyah = this.information.mainAyah || "No Main Ayah available"; // Fallback message
+   const ayahTransliteration = this.expanded ? this.information.transliteration : this.truncatedText(this.information.transliteration);
 
-    const message = `
+   const message = `
         Ayah Info: ${ayahInfo}
         Main Ayah: ${mainAyah}
         Transliteration: ${ayahTransliteration}
       `;
 
-    const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
-    window.open(url, '_blank');
+   const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
+   window.open(url, '_blank');
   },
   shareOnTwitter() {
    const ayahInfo = this.information.ayahInfo || "No Ayah Info available"; // Fallback message
@@ -114,7 +115,10 @@ export default {
   },
   closeAlertText() {
    this.$emit('close-alert-text');
-  }
+  },
+  toggleExpand() {
+    this.expanded = !this.expanded;
+  },
  }
 };
 </script>

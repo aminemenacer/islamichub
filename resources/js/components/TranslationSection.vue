@@ -1,57 +1,51 @@
 <template>
 <div class="w-100 my-element" :class="{'full-screen': isFullScreen}">
  <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
- <div ref="targetTranslationElement">
-  <AyahInfo :information="information" />
-  <div  @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
-   <MainAyah :information="information" />
-   <div ref="heading3"  class="row text-left">
-    <h4 :style="{ fontSize: currentFontSize + 'px' }" class="text-left ayah-translation col-md-11" style="line-height: 1.6em">
-     {{ expanded ? information.translation : truncatedText(information.translation) }}
-     <template v-if="showMoreLink && information.translation.length > 100">
-      <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
-     </template>
-    </h4>
-    <div class="col-md-1 mt-4" style="cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: space-between; height: 150px;">
-      <i @click="toggleSpeech" style="cursor: pointer;" aria-placeholder="Play translation audio" :class="isReading ? 'bi-pause-circle-fill' : 'bi-play-circle-fill'" class="bi ml-2 mr-2 h3 mic"></i>
-      <i class="bi bi-plus-circle-fill h3" aria-placeholder="Increase text size" @click="increaseFontSize"></i>
-      <i class="bi bi-dash-circle-fill h3" aria-placeholder="Decrease text size" @click="decreaseFontSize"></i>
-      <!--
-      <i class="bi bi-filter-circle-fill h3" aria-placeholder="Reset text size" @click="resetFontSize"></i>
-      -->
-    </div>
-    <Translator translator="Ahmed Ali"  />
-    <!--
-    <hr>
-    <div>
-      <label for="voice-select">Choose a voice to read translation:</label>
-      <select class="form-control" id="voice-select" v-model="selectedVoice" @change="setVoice">
-        <option v-for="(voice, index) in voices" :key="index" :value="index">
-          {{ voice.name }} ({{ voice.lang }})
-        </option>
-      </select>
-      <div class="row" style="padding:10px">
-        <div class="col-md-4">
-          <div type="button" class="btn btn-success text-center" @click="readTextAloud">
-            Read Aloud
-          </div>
+<div ref="targetTranslationElement">
+    <AyahInfo :information="information" />
+    <div
+      @touchstart="handleTouchStart"
+      @touchmove="handleTouchMove"
+      @touchend="handleTouchEnd"
+      class="swipeable-div w-100"
+    >
+      <MainAyah :information="information" />
+      <div ref="heading3" class="row text-left">
+        <h4
+          :style="{ fontSize: currentFontSize + 'px' }"
+          class="text-left ayah-translation col-md-11"
+          style="line-height: 1.6em"
+        >
+          {{ expanded ? information.translation : truncatedText(information.translation) }}
+          <template v-if="showMoreLink && information.translation.length > 100">
+            <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
+          </template>
+        </h4>
+        <div
+          class="col-md-1 mt-4"
+          style="cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: space-between; height: 150px;"
+        >
+        <CopyTranslationText :textToCopy="combinedText" />
+          <i
+            @click="toggleSpeech"
+            style="cursor: pointer;"
+            aria-placeholder="Play translation audio"
+            :class="isReading ? 'bi-pause-circle-fill' : 'bi-play-circle-fill'"
+            class="bi ml-2 mr-2 h3 mic"
+          ></i>
+          <i class="bi bi-plus-circle-fill h3" aria-placeholder="Increase text size" @click="increaseFontSize"></i>
+          <i class="bi bi-dash-circle-fill h3" aria-placeholder="Decrease text size" @click="decreaseFontSize"></i>
         </div>
-        <div class="col-md-4">
-          <div type="button" class="btn btn-secondary text-left" @click="stopReading" :disabled="!isReading">
-            Stop Reading
-          </div>
-        </div>
-        <div class="col-md-4">
-          
-        </div>
+        <Translator translator="Ahmed Ali" />
       </div>
-    </div>
-    -->
-   </div>
-   <div>
-   </div>
-    <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
-  </div>
+      <AlertModal
+        :showAlertText="showAlertText"
+        :showAlert="showAlert"
+        :showErrorAlert="showErrorAlert"
+        :showAlertTextNote="showAlertTextNote"
+        @close-alert-text="closeAlertText"
+      />
+    
  </div>
  <!-- WhatsApp Share Button -->
  <div class="row mobile-only pt-3" style="color:white">
@@ -72,6 +66,8 @@
   </div>
  </div>
 </div>
+</div>
+
 </template>
 
 <script>
@@ -133,6 +129,17 @@ export default {
   showAlertTextNote: {
    type: Boolean,
    default: false
+  }
+ },
+ computed:{
+  combinedText() {
+    // Get the ayah_text from information
+    const ayahText = typeof this.information.ayah_text === 'object'
+      ? this.information.ayah_text.text
+      : this.information.ayah_text;
+
+    // Return the formatted string
+    return `Translation: ${this.ayah_text}`;
   }
  },
  data() {

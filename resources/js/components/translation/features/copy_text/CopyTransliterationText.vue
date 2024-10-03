@@ -8,7 +8,6 @@
       title="Copy verse"
       
     ></i>
- 
     <div v-if="showAlertText" class="alert alert-success" role="alert">
       Text copied successfully!
     </div>
