@@ -74,10 +74,21 @@
       </div>
 
       <!-- Rich Text Editor Mode -->
-      <Editor v-if="inputMode === 'editor'" v-model="form.ayah_notes" editorStyle="height: 400px" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah."></Editor>
-
+      <Editor
+        v-if="inputMode === 'editor'"
+        v-model="form.ayah_notes"  
+        :style="{ height: '400px' }" 
+        :toolbarOptions="[
+          ['bold', 'italic', 'underline'], 
+          [{ 'header': [1, 2, 3, false] }], 
+          [{ 'list': 'ordered' }, { 'list': 'bullet' }], 
+          ['link', 'image']  
+        ]"
+        placeholder="Save your notes and personal reflections privately."
+      ></Editor>
       <!-- Basic Mode -->
       <textarea v-if="inputMode === 'basic'" v-model="form.ayah_notes" class="form-control pb-2" rows="5" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah."></textarea>
+     
      </div>
 
      <div class="pt-3 pb-2" style="display: flex; align-items: center;">
@@ -113,6 +124,7 @@
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import Editor from 'primevue/editor';
+
 import {
  Modal
 } from 'bootstrap';
@@ -264,6 +276,11 @@ export default {
 </script>
 
 <style scoped>
+.editor-container {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+}
 button {
  margin: 10px;
 }

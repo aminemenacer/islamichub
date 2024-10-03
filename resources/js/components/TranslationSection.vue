@@ -138,11 +138,8 @@ export default {
  data() {
   return {
     resetDisabled: true,
-    isReading: false,
     utterance: null,
     currentFontSize: 20,
-    title: 'Welcome to our Audio Player Demo',
-    content: 'This is the text that will be read aloud when you click the play button.'
   }
  },
  methods: {
@@ -177,10 +174,7 @@ export default {
     const text = this.expanded ? this.information.translation : this.truncatedText(this.information.translation);
     this.utterance = new SpeechSynthesisUtterance(text);
 
-    if (this.voices.length > 0 && this.selectedVoice !== null) {
-      this.utterance.voice = this.voices[this.selectedVoice];
-    }
-
+    
     // Handle end of speech event
     this.utterance.onend = () => {
       this.isReading = false;
@@ -226,15 +220,7 @@ export default {
    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(message)}`;
    window.open(url, '_blank');
   },
-  getVoices() {
-    this.voices = window.speechSynthesis.getVoices();
-    if (this.voices.length > 0) {
-      this.selectedVoice = 0; // Default to the first voice in the list
-    }
-  },
-  setVoice() {
-    this.selectedVoice = parseInt(this.selectedVoice);
-  },
+  
   toggleFullScreen() {
    this.$emit('toggle-full-screen');
   },
@@ -257,10 +243,7 @@ export default {
    this.$emit('close-alert-text');
   }
  },
- created() {
-   this.getVoices();
-   window.speechSynthesis.onvoiceschanged = this.getVoices;
- },
+ 
 };
 </script>
 

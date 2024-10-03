@@ -3,11 +3,21 @@
  <!-- Search Input Group -->
  <div>
   <div class="container input-group" style="align-items:center">
-   <input type="text" @focus="showSearchHistory" @blur="hideSearchHistory" @keyup="debouncedSearch" v-model="searchTerm" placeholder="How can I assist you in understanding the meanings of the Holy Quran?" class="form-control mr-3 main-search" />
+
+    <div class="input-group mb-3">
+			<input type="text" class="form-control" v-model="searchTerm" placeholder="How can I assist you in understanding the meanings of the Holy Quran?" >
+			<div class="input-group-append">
+      <!--
+      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      </button>
+      -->
+      <div class="btn btn-primary" @click="isListening ? stopVoiceRecognition() : startVoiceRecognition()">
+        {{ isListening ? 'Stop' : 'Speak' }}
+      </div>
+      <button class="btn btn-primary" @click="searchWord">Search</button></div>
+		</div>
 
    <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-    </button>
     <ul class="dropdown-menu">
      <li>
       <a class="dropdown-item" href="#">
@@ -36,57 +46,8 @@
     </ul>
    </div>
 
-   <button class="btn btn-success" @click="searchWord">Search</button>
-
-   <!-- Voice input button -->
-   <button class="btn btn-primary" @click="isListening ? stopVoiceRecognition() : startVoiceRecognition()">
-    {{ isListening ? 'Stop' : 'Speak' }}
-   </button>
-
    <!-- Optional: You can show a message when recording starts -->
    <p v-if="isListening">Listening...</p>
-
-   <div v-if="searchHistoryVisible && searchHistory.length" class="dropdown-menu" style="display: block; width:100%;">
-
-    <!-- Dropdown for search history -->
-    <div v-if="searchHistoryDropdown && searchHistory.length" class="dropdown-menu" style="display: block; width:100%; position: absolute; z-index: 1000;">
-
-     <div v-if="filteredSearchHistory.today.length">
-      <span>Today</span>
-      <ul>
-       <li v-for="(term, index) in filteredSearchHistory.today" :key="'today-' + index" @click="selectFromHistory(term.term)" style="cursor:pointer; color:black">
-        {{ term.term }}
-       </li>
-      </ul>
-     </div>
-
-     <div v-if="filteredSearchHistory.yesterday.length">
-      <span>Yesterday</span>
-      <ul>
-       <li v-for="(term, index) in filteredSearchHistory.yesterday" :key="'yesterday-' + index" @click="selectFromHistory(term.term)" style="cursor:pointer">
-        {{ term.term }}
-       </li>
-      </ul>
-     </div>
-
-     <div v-if="filteredSearchHistory.lastWeek.length">
-      <span>Last Week</span>
-      <ul>
-       <li v-for="(term, index) in filteredSearchHistory.lastWeek" :key="'lastWeek-' + index" @click="selectFromHistory(term.term)" style="cursor:pointer">
-        {{ term.term }}
-       </li>
-      </ul>
-     </div>
-
-     <div v-if="filteredSearchHistory.lastMonth.length">
-      <span>Last Month</span>
-      <ul>
-       <li v-for="(term, index) in filteredSearchHistory.lastMonth" :key="'lastMonth-' + index" @click="selectFromHistory(term.term)" style="cursor:pointer">
-        {{ term.term }}
-       </li>
-      </ul>
-     </div>
-    </div>
 
    </div>
   </div>
@@ -98,14 +59,7 @@
    </div>
    <div class="offcanvas-body text-left custom-offcanvas">
 
-    <!-- Loading Spinner -->
-    <div v-if="loading" class="text-center">
-     <div class="spinner-border" role="status">
-      <span class="visually-hidden">Loading...</span>
-     </div>
-     <p>Loading results...</p>
-    </div>
-
+   
     <div v-if="filteredResults.length && !loading">
      <div v-for="result in filteredResults" :key="result.id" class="result-item">
 
@@ -140,13 +94,27 @@
    </div>
   </div>
  </div>
-</div>
 </template>
 
 <style scoped>
-.spinner-border {
- width: 3rem;
- height: 3rem;
+
+
+
+.btn-primary{
+	background-color: #00BFA6 !important;
+	border-radius: 10px;
+}
+.btn-primary:focus{
+	box-shadow: none;
+}
+.text{
+	font-size: 13px;
+}
+
+.flex-row{
+	border: 1px solid #F2F2F4;
+	border-radius: 10px; 
+	margin: 0 1px 0;
 }
 
 .form-control {
@@ -232,6 +200,12 @@ import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 
 export default {
+  mounted() {
+    const dropdown = document.querySelector('.dropdown');
+    if (dropdown) {
+        dropdown.addEventListener('click', this.toggleDropdown);
+    }
+  },
  data() {
   return {
    searchHistoryDropdown: false,

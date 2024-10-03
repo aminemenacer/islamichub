@@ -1,14 +1,14 @@
 <template>
 <div class="w-100 my-element" :class="{'full-screen': isFullScreen}">
  <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
- <div ref="targetTranslationElement">
+ <div ref="targetTransliterationElement">
   <AyahInfo :information="information" />
   <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
    <MainAyah :information="information" />
    <div ref="heading3">
     <h4 class="text-left ayah-translation" style="line-height: 1.6em">
      {{ expanded ? information.transliteration : truncatedText(information.transliteration) }}
-     <template v-if="showMoreLink && information.translation.length > 100">
+     <template v-if="showMoreLink && information.transliteration.length > 100">
       <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
      </template>
     </h4>

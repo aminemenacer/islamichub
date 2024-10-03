@@ -752,7 +752,6 @@ export default {
   this.loadSavedStyles();
   this.applyStylesToCards(); // Ensure styles are applied to cards initially
   this.getSurat(); // Call getSurat to populate the surah list
-  this.initRecognition();
   if (this.defaultStyles.length > 0) {
     this.selectedStyle = this.defaultStyles[0];
     this.applyStyle();
@@ -1139,46 +1138,7 @@ methods: {
       console.error('Unknown modal:', modalName);
     }
   },
-  initRecognition() {
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-
-    if (!SpeechRecognition) {
-      alert('Your browser does not support Speech Recognition.');
-      return;
-    }
-
-    this.recognition = new SpeechRecognition();
-    this.recognition.lang = 'en-US';
-    this.recognition.interimResults = false;
-    this.recognition.maxAlternatives = 1;
-
-    this.recognition.onresult = (event) => {
-      const result = event.results[0][0].transcript;
-      this.transcript += result + '\n';
-    };
-
-    this.recognition.onerror = (event) => {
-      console.error('Speech Recognition Error:', event.error);
-    };
-
-    this.recognition.onend = () => {
-      this.isListening = false;
-    };
-  },
-  startRecognition() {
-    if (!this.recognition) {
-      this.initRecognition();
-    }
-    this.transcript = ''; // Clear previous transcript
-    this.recognition.start();
-    this.isListening = true;
-  },
-  stopRecognition() {
-    if (this.recognition && this.isListening) {
-      this.recognition.stop();
-      this.isListening = false;
-    }
-  },
+  
   toggleContent() {
     this.isOpen = !this.isOpen; // Toggle the content's visibility
   },

@@ -201,6 +201,7 @@ Route::get('/get_surat', [SurahController::class, 'getSurat']);
 Route::get('/get_ayat', [SurahController::class, 'getAyat']);
 Route::get('/get_informations', [SurahController::class, 'getInformations']);
 Route::get('/tafseer/{id}/fetch', [SurahController::class, 'getTafseers']);
+
 Route::post('/search', [SurahController::class, 'search'])->name('search');
 
 Route::get('/surahs/{id}/ayahs', [SurahController::class, 'getAyahsBySurah']);
