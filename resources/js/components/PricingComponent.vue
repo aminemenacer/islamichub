@@ -1,6 +1,6 @@
 <template>
 <div id="app" class="container-fluid pt-3">
- <section class="py-5">
+ <section class="py-3">
 	<div class="container">
 		<div class="row justify-content-center text-center mb-2 mb-lg-4">
 			<div class="col-12 col-lg-8 col-xxl-7 text-center mx-auto">
@@ -23,9 +23,9 @@
 					<div class="col-md-3">
 						<ul class="list-unstyled mt-4 mt-md-3">
 							<li class="mb-3">5 free screenshots per week</li>
-              <li class="mb-3">5 free notes per week</li>
-              <li class="mb-3">5 pdf downloads per week</li>
-              <li class="mb-3">3 voice notes per week</li>
+							<li class="mb-3">5 free notes per week</li>
+							<li class="mb-3">5 pdf downloads per week</li>
+							<li class="mb-3">3 voice notes per week</li>
 						</ul>
 					</div>
 					<div class="col-md-3">

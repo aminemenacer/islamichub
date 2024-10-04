@@ -4,61 +4,49 @@
  <div>
   <div class="container input-group" style="align-items:center">
 
-   <div class="input-group mb-3">
-    <input type="text" class="form-control search-input"  @input="filterSuggestions" v-model="searchTerm" placeholder="How can I assist you in understanding the meanings of the Holy Quran?">
-    <div class="input-group-append">
-      <!-- filters on search (translation, tafseer, transliteration) -->
-     <div class="dropdown"> 
-      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
-        <ul class="dropdown-menu">
-          <li>
-            <a class="dropdown-item" href="#">
-            <div class="form-check form-check-inline">
-              <input class="form-check-input mt-1" type="checkbox" v-model="filters.translation" id="translationCheckbox">
-              <p class="form-check-label" for="translationCheckbox">Translation</p>
-            </div>
-            </a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="#">
-            <div class="form-check form-check-inline">
-              <input class="form-check-input mt-1" type="checkbox" v-model="filters.tafseer" id="tafseerCheckbox">
-              <span class="form-check-label" for="tafseerCheckbox">Tafseer</span>
-            </div>
-            </a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="#">
-            <div class="form-check form-check-inline">
-              <input class="form-check-input mt-1" type="checkbox" v-model="filters.transliteration" id="transliterationCheckbox">
-              <p class="form-check-label" for="transliterationCheckbox">Transliteration</p>
-            </div>
-            </a>
-          </li>
-        </ul>
-      </div>
-     <div class="btn btn-primary" @click="isListening ? stopVoiceRecognition() : startVoiceRecognition()">
-      {{ isListening ? 'Stop' : 'Speak' }}
-     </div>
-     <button class="btn btn-primary" @click="searchWord">Search</button>
-    </div>  
-   </div>
-    <ul class="list-group" v-if="showSuggestions && recentSearches.length" style="width: 100%;">
-      <li v-for="(search, index) in recentSearches" :key="index" @click="selectRecentSearch(search)" class="list-group-item list-group-item-success">{{ search }}</li>
-    </ul>
-   <!-- show a message when recording starts -->
-   <p v-if="isListening">Listening...</p>
-
-    <div>
-    <!-- Dropdown for displaying current search results -->
-    <ul v-if="showSuggestions && filteredResults.length">
-      <li v-for="result in filteredResults" :key="result.ayah_id" @click="selectResult(result)">
-      {{ result.content }}
+   <div class="container input-group" style="align-items:center">
+    <input type="text" @keyup="debouncedSearch" v-model="searchTerm" placeholder="How can I assist you in understanding the meanings of the Holy Quran?" class="form-control mr-3 main-search" />
+    <div class="dropdown">
+     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+     </button>
+     <ul class="dropdown-menu">
+      <li>
+       <a class="dropdown-item" href="#">
+        <div class="form-check form-check-inline">
+         <input class="form-check-input mt-1" type="checkbox" v-model="filters.translation" id="translationCheckbox">
+         <p class="form-check-label" for="translationCheckbox">Translation</p>
+        </div>
+       </a>
       </li>
-    </ul>
-    <!-- Button to clear all recent searches -->
-      <button @click="clearRecentSearches" v-if="recentSearches.length">Clear Recent Searches</button>
+      <li>
+       <a class="dropdown-item" href="#">
+        <div class="form-check form-check-inline">
+         <input class="form-check-input mt-1" type="checkbox" v-model="filters.tafseer" id="tafseerCheckbox">
+         <span class="form-check-label" for="tafseerCheckbox">Tafseer</span>
+        </div>
+       </a>
+      </li>
+      <li>
+       <a class="dropdown-item" href="#">
+        <div class="form-check form-check-inline">
+         <input class="form-check-input mt-1" type="checkbox" v-model="filters.transliteration" id="transliterationCheckbox">
+         <p class="form-check-label" for="transliterationCheckbox">Transliteration</p>
+        </div>
+       </a>
+      </li>
+     </ul>
     </div>
+
+    <button class="btn btn-primary" @click="searchWord">Search</button>
+
+    <!-- Voice input button -->
+    <button class="btn btn-primary" @click="isListening ? stopVoiceRecognition() : startVoiceRecognition()">
+     {{ isListening ? 'Stop' : 'Speak' }}
+    </button>
+
+   </div>
+
+   
 
   </div>
  </div>
@@ -112,8 +100,6 @@ import html2canvas from 'html2canvas';
 
 export default {
  mounted() {
-  const savedSearches = JSON.parse(localStorage.getItem('recentSearches')) || [];
-  this.recentSearches = savedSearches;
   const dropdown = document.querySelector('.dropdown');
   if (dropdown) {
    dropdown.addEventListener('click', this.toggleDropdown);
@@ -121,11 +107,6 @@ export default {
  },
  data() {
   return {
-   recentSearches: [],
-   showSuggestions: false,
-   searchHistoryDropdown: false,
-   searchHistory: [],
-   recentSearches: [],
    data: [],
    loading: false,
    searchTerm: '',
@@ -144,94 +125,39 @@ export default {
   result: Object
  },
  methods: {
-  clearRecentSearches() {
-    // Clear recent searches in state and localStorage
-    this.recentSearches = [];
-    localStorage.removeItem('recentSearches');
-  },
-  autoSave() {
-    this.autoSaveStatus = true;
-    setTimeout(() => {
-      this.autoSaveStatus = false; // Hide auto-save status after 2 seconds
-    }, 20000);
-  },
-  loadRecentSearches() {
-   const searches = localStorage.getItem('recentSearches');
-   this.recentSearches = searches ? JSON.parse(searches) : [];
-  },
-  saveSearch(search) {
-   if (!this.recentSearches.includes(search)) {
-    this.recentSearches.unshift(search);
-    if (this.recentSearches.length > 10) {
-     this.recentSearches.pop();
+  saveSearch(searchTerm) {
+    if (!this.recentSearches.includes(searchTerm)) {
+      this.recentSearches.unshift(searchTerm);  // Add new search term
+      if (this.recentSearches.length > 10) {
+        this.recentSearches.pop();  // Limit to 10 searches
+      }
+      localStorage.setItem('recentSearches', JSON.stringify(this.recentSearches));  // Save in localStorage
     }
-    localStorage.setItem('recentSearches', JSON.stringify(this.recentSearches));
-   }
+  },
+  // Selects a search result
+  selectResult(result) {
+   this.searchTerm = result.content; // Update searchTerm with the result content
+   this.filteredResults = []; // Clear search results
+   this.showSuggestions = false; // Hide suggestions
+   this.saveSearch(result.content); // Save the search term
   },
   submitSearch() {
     const query = this.searchTerm.toLowerCase();
-    // Save the search term in recent searches if not already saved
     if (query && !this.recentSearches.includes(query)) {
       this.recentSearches.push(query);
       localStorage.setItem('recentSearches', JSON.stringify(this.recentSearches));
     }
-
-    // Perform the search or filter based on input
-    this.searchWord();
-  },
-  filterSuggestions() {
-   const query = this.searchTerm.toLowerCase();
-
-   // Save the current search term in recent searches
-   if (query && !this.recentSearches.includes(query)) {
-    this.recentSearches.push(query);
-    localStorage.setItem('recentSearches', JSON.stringify(this.recentSearches));
-   }
-
-   // Filter results based on active filters
-   this.filteredResults = this.data.filter(item => {
-    return (this.filters.translation && item.translation.toLowerCase().includes(query)) ||
-     (this.filters.tafseer && item.tafseer.toLowerCase().includes(query)) ||
-     (this.filters.transliteration && item.transliteration.toLowerCase().includes(query));
-   }).map(item => {
-    return {
-     ayah_id: item.ayah_id,
-     content: this.filters.translation ? item.translation : this.filters.tafseer ? item.tafseer : item.transliteration
-    };
-   });
-
-   this.showSuggestions = this.filteredResults.length > 0 || this.recentSearches.length > 0;
+    this.filterSuggestions();
   },
   selectResult(result) {
-   this.searchTerm = search;
-   this.filterSuggestions();
+    this.searchTerm = result.content;
+    this.filteredResults = [];   // Clear search results
+    this.showSuggestions = false;
+    this.saveSearch(result.content);  // Save the search term
   },
-  submitSearch() {
-      const query = this.searchTerm.toLowerCase();
 
-      // Save the search term in recent searches if not already saved
-      if (query && !this.recentSearches.includes(query)) {
-        this.recentSearches.push(query);
-        localStorage.setItem('recentSearches', JSON.stringify(this.recentSearches));
-      }
-
-      // Perform the search or filter based on input
-      this.filterSuggestions();
-    },
-    showRecentSearches() {
-      // Show recent searches when input is focused
-      this.showSuggestions = true;
-    },
-    selectRecentSearch(search) {
-      this.searchTerm = search; // Set searchTerm to the selected recent search
-      this.filterSuggestions(); // Filter based on the selected recent search
-    },
-    handleBlur() {
-      setTimeout(() => { this.showSuggestions = false; }, 100); // Delay hiding suggestions to allow click
-    },
-  
   startVoiceRecognition() {
-    
+
    this.isListening = true;
 
    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -318,29 +244,29 @@ export default {
    window.open(whatsappUrl, '_blank');
   },
   searchWord() {
-    this.loading = true; // Set loading state to true before fetching data
-    if (this.searchTerm.length > 0) {
-      axios
-        .get("/search-translations", {
-          params: {
-            query: this.searchTerm,
-            filters: this.filters
-          }
-        })
-        .then(response => {
-          this.filteredResults = response.data;
-          this.showOffcanvas(); // Show search results (you can replace this with showing search results within a dropdown)
-        })
-        .catch(error => {
-          console.error("Error fetching search results:", error);
-        })
-        .finally(() => {
-          this.loading = false; // Reset loading state
-        });
-    } else {
-      this.filteredResults = [];
-      this.loading = false; // Reset loading state if searchTerm is empty
-    }
+   this.loading = true; // Set loading state to true before fetching data
+   if (this.searchTerm.length > 0) {
+    axios
+     .get("/search-translations", {
+      params: {
+       query: this.searchTerm,
+       filters: this.filters
+      }
+     })
+     .then(response => {
+      this.filteredResults = response.data;
+      this.showOffcanvas(); // Show search results (you can replace this with showing search results within a dropdown)
+     })
+     .catch(error => {
+      console.error("Error fetching search results:", error);
+     })
+     .finally(() => {
+      this.loading = false; // Reset loading state
+     });
+   } else {
+    this.filteredResults = [];
+    this.loading = false; // Reset loading state if searchTerm is empty
+   }
   },
 
   highlightSearch(translation) {

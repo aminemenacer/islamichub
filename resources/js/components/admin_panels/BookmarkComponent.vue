@@ -47,13 +47,6 @@
                 style="color:rgb(0, 191, 166); cursor:pointer"
                 data-bs-toggle="modal"
                 data-bs-target="#viewBookmark"
-                @click="redirectToBookmark(bookmark.url)"
-              ></i>
-              <i
-                class="bi bi-eye-fill h4"
-                style="color:rgb(0, 191, 166); cursor:pointer"
-                data-bs-toggle="modal"
-                data-bs-target="#viewBookmark"
                 @click="viewModal(bookmark)"
               ></i>
               <i

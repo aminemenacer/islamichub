@@ -31,10 +31,10 @@
             style="cursor: pointer;"
             aria-placeholder="Play translation audio"
             :class="isReading ? 'bi-pause-circle-fill' : 'bi-play-circle-fill'"
-            class="bi ml-2 mr-2 h3 mic"
+            class="bi ml-2 mr-2 h3 custom-icon-play"
           ></i>
-          <i class="bi bi-plus-circle-fill h3" aria-placeholder="Increase text size" @click="increaseFontSize"></i>
-          <i class="bi bi-dash-circle-fill h3" aria-placeholder="Decrease text size" @click="decreaseFontSize"></i>
+          <i class="bi bi-plus-circle-fill h3 custom-icon-increase" aria-placeholder="Increase text size" @click="increaseFontSize"></i>
+          <i class="bi bi-dash-circle-fill h3 custom-icon-decrease" aria-placeholder="Decrease text size" @click="decreaseFontSize"></i>
         </div>
         <Translator translator="Ahmed Ali" />
       </div>
@@ -255,6 +255,19 @@ export default {
 </script>
 
 <style scoped>
+
+.custom-icon-play:hover{
+  color: rgb(13, 182, 145); /* Default color */
+  transition: color 0.3s ease; /* Smooth transition */
+}
+.custom-icon-increase:hover{
+  color: rgb(13, 182, 145); /* Default color */
+  transition: color 0.3s ease; /* Smooth transition */
+}
+.custom-icon-decrease:hover{
+  color: rgb(13, 182, 145); /* Default color */
+  transition: color 0.3s ease; /* Smooth transition */
+}
 .text-muted {
   color: lightgrey;
 }

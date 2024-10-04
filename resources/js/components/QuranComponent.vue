@@ -50,11 +50,11 @@
       <hr class="container" style="height: 4px; background: lightgrey;">
 
       <div :style="iconStyle" class="icon-container pb-2">
-       <i class="bi bi-chevron-bar-left h4" style="color:#00BFA6" @click="goToFirstAyah" title="First verse"></i>
-       <i class="bi bi-arrow-left-circle h4" style="color:#00BFA6" @click="goToPreviousAyah" title="Previous verse"></i>
-       <i class="bi bi-arrow-right-circle h4" style="color:#00BFA6" @click="goToNextAyah" title="Next verse"></i>
-       <i class="bi bi-chevron-bar-right h4" style="color:#00BFA6" @click="goToLastAyah" title="Last verse"></i>
-       <i v-if="information != null" class="bi bi-info-circle-fill h4 mr-2 pl-2" style="color:#00BFA6" data-bs-toggle="modal" data-bs-target="#translationInfo" aria-expanded="false" data-bs-placement="top" title="Surah info"></i>
+       <i class="bi bi-chevron-bar-left h4 custom-first-verse"  @click="goToFirstAyah" title="First verse"></i>
+       <i class="bi bi-arrow-left-circle h4 custom-prev-ayah" @click="goToPreviousAyah" title="Previous verse"></i>
+       <i class="bi bi-arrow-right-circle h4 custom-next-ayah" @click="goToNextAyah" title="Next verse"></i>
+       <i class="bi bi-chevron-bar-right h4 custom-last-verse" @click="goToLastAyah" title="Last verse"></i>
+       <i v-if="information != null" class="bi bi-info-circle-fill h4 mr-2 pl-2" data-bs-toggle="modal" data-bs-target="#translationInfo" aria-expanded="false" data-bs-placement="top" title="Surah info"></i>
       </div>
 
       <div class="custom-scrollbar pb-5" style="overflow-y: auto; max-height: 600px; background: white;border-radius:10px">
@@ -1626,7 +1626,23 @@ methods: {
 </script>
 
 <style scoped src="./css/styles.css">
+.custom-first-verse:hover{
+  color: #00BFA6;/* Default color */
+  transition: color 0.3s ease; /* Smooth transition */
+}
 
+.custom-prev-ayah:hover{
+  color: black;/* Default color */
+  transition: color 0.3s ease; /* Smooth transition */
+}
+.custom-prev-ayah:hover{
+  color: black;/* Default color */
+  transition: color 0.3s ease; /* Smooth transition */
+}
+.custom-last-verse:hover{
+  color: black;/* Default color */
+  transition: color 0.3s ease; /* Smooth transition */
+}
 .highlight {
   background-color: yellow;
   font-weight: bold;
