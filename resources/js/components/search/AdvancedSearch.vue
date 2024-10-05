@@ -2,41 +2,66 @@
 <div>
  <!-- Search Input Group -->
  <div>
-  <div class="container input-group" style="align-items:center">
 
    <div class="container input-group" style="align-items:center">
-    <input type="text" @keyup="debouncedSearch" v-model="searchTerm" placeholder="How can I assist you in understanding the meanings of the Holy Quran?" class="form-control mr-3 main-search" />
-    <div class="dropdown">
-     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-     </button>
-     <ul class="dropdown-menu">
-      <li>
-       <a class="dropdown-item" href="#">
-        <div class="form-check form-check-inline">
-         <input class="form-check-input mt-1" type="checkbox" v-model="filters.translation" id="translationCheckbox">
-         <p class="form-check-label" for="translationCheckbox">Translation</p>
-        </div>
-       </a>
-      </li>
-      <li>
-       <a class="dropdown-item" href="#">
-        <div class="form-check form-check-inline">
-         <input class="form-check-input mt-1" type="checkbox" v-model="filters.tafseer" id="tafseerCheckbox">
-         <span class="form-check-label" for="tafseerCheckbox">Tafseer</span>
-        </div>
-       </a>
-      </li>
-      <li>
-       <a class="dropdown-item" href="#">
-        <div class="form-check form-check-inline">
-         <input class="form-check-input mt-1" type="checkbox" v-model="filters.transliteration" id="transliterationCheckbox">
-         <p class="form-check-label" for="transliterationCheckbox">Transliteration</p>
-        </div>
-       </a>
-      </li>
-     </ul>
-    </div>
+    <input
+      type="text"
+      @keyup="debouncedSearch"
+      v-model="searchTerm"
+      @input="onInput"
+      placeholder="Search..."
+      class="form-control mr-3 main-search"
+    />
 
+    <div class="dropdown">
+      <button
+        class="btn btn-secondary dropdown-toggle"
+        type="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      ></button>
+      <ul class="dropdown-menu">
+        <li>
+          <a class="dropdown-item" href="#">
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input mt-1"
+                type="checkbox"
+                v-model="filters.translation"
+                id="translationCheckbox"
+              />
+              <p class="form-check-label" for="translationCheckbox">Translation</p>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input mt-1"
+                type="checkbox"
+                v-model="filters.tafseer"
+                id="tafseerCheckbox"
+              />
+              <span class="form-check-label" for="tafseerCheckbox">Tafseer</span>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input mt-1"
+                type="checkbox"
+                v-model="filters.transliteration"
+                id="transliterationCheckbox"
+              />
+              <p class="form-check-label" for="transliterationCheckbox">Transliteration</p>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
     <button class="btn btn-primary" @click="searchWord">Search</button>
 
     <!-- Voice input button -->
@@ -44,59 +69,69 @@
      {{ isListening ? 'Stop' : 'Speak' }}
     </button>
 
-   </div>
-
-   
+    <!-- search results -->
+    <ol v-if="suggestions.length" class="list-group suggestions">
+      <li
+        class="list-group-item"
+        v-for="(suggestion, index) in suggestions"
+        :key="index"
+        @click="selectSuggestion(suggestion)">
+        {{ suggestion }}
+      </li>
+    </ol>
 
   </div>
  </div>
 
- <div class="offcanvas offcanvas-end custom-offcanvas" tabindex="-1" id="offcanvasResults" style="width: 60%;">
-  <div class="offcanvas-header">
-   <h5 class="offcanvas-title">Search Results</h5>
-   <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
-  </div>
-  <div class="offcanvas-body text-left custom-offcanvas">
-
-   <div v-if="filteredResults.length && !loading">
-    <div v-for="result in filteredResults" :key="result.id" class="result-item">
-
-     <div :id="'result-' + result.id">
-      <!-- Display Surah ID and Ayah ID -->
-      <div class="text-left pb-2">
-       <h4>{{ result.ayah.surah_id }} : {{ result.ayah.ayah_id }}</h4>
-      </div>
-      <!-- Display Ayah Text -->
-      <h3 class="text-right">{{ result.ayah.ayah_text }}</h3>
-      <!-- Display Translated Text -->
-      <div v-if="filters.translation">
-       <b>Translation:</b>
-       <p v-html="highlightSearch(result.translation)"></p>
-      </div>
-      <div v-if="filters.tafseer">
-       <b>Tafseer:</b>
-       <p v-html="highlightSearch(result.tafseer)"></p>
-      </div>
-      <div v-if="filters.transliteration">
-       <b>Transliteration:</b>
-       <p v-html="highlightSearch(result.transliteration)"></p>
-      </div>
-     </div>
-     <hr>
+  <div class="offcanvas offcanvas-end custom-offcanvas" tabindex="-1" id="offcanvasResults">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title">Search Results</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
     </div>
-   </div>
-   <div v-else-if="!loading" class="text-center">
-    <h5>No search results found.</h5>
-   </div>
-
+    <div class="offcanvas-body text-left custom-offcanvas">
+      <!-- Display Results -->
+      <div v-if="filteredResults.length && !loading">
+        <div v-for="(result, index) in filteredResults" :key="index" class="result-item">
+          <div :id="'result-' + result.id">
+            <div class="text-left pb-2">
+              <h4>{{ result.ayah.surah_id }} : {{ result.ayah.ayah_id }}</h4>
+            </div>
+            <h3 class="text-right">{{ result.ayah.ayah_text }}</h3>
+            <div v-if="filters.translation">
+              <b>Translation:</b>
+              <p v-html="highlightSearch(result.translation)"></p>
+            </div>
+            <div v-if="filters.tafseer">
+              <b>Tafseer:</b>
+              <p v-html="highlightSearch(result.tafseer)"></p>
+            </div>
+            <div v-if="filters.transliteration">
+              <b>Transliteration:</b>
+              <p v-html="highlightSearch(result.transliteration)"></p>
+            </div>
+          </div>
+          <hr>
+        </div>
+      </div>
+      <!-- No Results Found -->
+      <div v-else-if="!loading" class="text-center">
+        <h5>No search results found.</h5>
+      </div>
+      <div v-if="loading" class="text-center">
+        <h5>Loading...</h5>
+      </div>
+    </div>
   </div>
- </div>
+
 </div>
 </template>
 
 <script>
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import { debounce } from 'lodash';
+import axios from 'axios';
+
 
 export default {
  mounted() {
@@ -110,6 +145,7 @@ export default {
    data: [],
    loading: false,
    searchTerm: '',
+   suggestions: [],
    filteredResults: [],
    filters: {
     translation: true, // Default filter for translation enabled
@@ -125,14 +161,55 @@ export default {
   result: Object
  },
  methods: {
-  saveSearch(searchTerm) {
-    if (!this.recentSearches.includes(searchTerm)) {
-      this.recentSearches.unshift(searchTerm);  // Add new search term
-      if (this.recentSearches.length > 10) {
-        this.recentSearches.pop();  // Limit to 10 searches
-      }
-      localStorage.setItem('recentSearches', JSON.stringify(this.recentSearches));  // Save in localStorage
+  debouncedSearch() {
+      this.loading = true;
+      // Trigger the search function after a delay to prevent excessive requests
+      setTimeout(this.fetchSuggestions, 500); // 500ms debounce time
+    },
+  onInput() {
+    if (this.searchTerm.length > 2) {
+      this.fetchSuggestions();
+    } else {
+      this.suggestions = [];
+      this.filteredResults = [];
     }
+  },
+  fetchSuggestions() {
+    const params = {
+      query: this.searchTerm,
+      filters: this.filters,
+    };
+    
+    this.loading = true;
+    axios.get('/search-translations', { params })
+      .then((response) => {
+      this.suggestions = response.data.suggestions;
+      this.filteredResults = response.data.results;
+      this.loading = false;
+      if (this.filteredResults.length > 0) {
+        this.showOffcanvas();
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+      this.suggestions = [];
+      this.filteredResults = [];
+      this.loading = false;
+    });
+  },
+  selectSuggestion(suggestion) {
+    this.searchTerm = suggestion;
+    this.suggestions = [];
+    this.fetchSuggestions();
+  },
+  saveSearch(searchTerm) {
+   if (!this.recentSearches.includes(searchTerm)) {
+    this.recentSearches.unshift(searchTerm); // Add new search term
+    if (this.recentSearches.length > 10) {
+     this.recentSearches.pop(); // Limit to 10 searches
+    }
+    localStorage.setItem('recentSearches', JSON.stringify(this.recentSearches)); // Save in localStorage
+   }
   },
   // Selects a search result
   selectResult(result) {
@@ -142,20 +219,13 @@ export default {
    this.saveSearch(result.content); // Save the search term
   },
   submitSearch() {
-    const query = this.searchTerm.toLowerCase();
-    if (query && !this.recentSearches.includes(query)) {
-      this.recentSearches.push(query);
-      localStorage.setItem('recentSearches', JSON.stringify(this.recentSearches));
-    }
-    this.filterSuggestions();
+   const query = this.searchTerm.toLowerCase();
+   if (query && !this.recentSearches.includes(query)) {
+    this.recentSearches.push(query);
+    localStorage.setItem('recentSearches', JSON.stringify(this.recentSearches));
+   }
+   this.filterSuggestions();
   },
-  selectResult(result) {
-    this.searchTerm = result.content;
-    this.filteredResults = [];   // Clear search results
-    this.showSuggestions = false;
-    this.saveSearch(result.content);  // Save the search term
-  },
-
   startVoiceRecognition() {
 
    this.isListening = true;
@@ -198,8 +268,12 @@ export default {
     this.isListening = false;
    }
   },
-  onType() {
-   if (this.searchTerm.length >= 3) {}
+  
+  highlightSuggestion(suggestion) {
+    // Function to highlight matching letters in the suggestion
+    const searchTerm = this.searchTerm.toLowerCase();
+    const regex = new RegExp(`(${searchTerm})`, 'gi');
+    return suggestion.replace(regex, '<strong>$1</strong>'); // Highlight matching letters
   },
   downloadPDF(result) {
    const element = document.getElementById(`result-${result.id}`);
@@ -269,19 +343,18 @@ export default {
    }
   },
 
-  highlightSearch(translation) {
-   if (!translation) {
-    console.warn("The translation is undefined or null for this result:", translation);
-    return '';
-   }
-   const regex = new RegExp(`(${this.searchTerm})`, 'gi');
-   return translation.replace(regex, "<span class='highlight'>$1</span>");
+  highlightSearch(text) {
+    const query = this.searchTerm;
+    const regex = new RegExp(`(${query})`, 'gi');
+    return text.replace(regex, '<span class="highlight">$1</span>');
   },
-
   showOffcanvas() {
-   const offcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasResults'));
-   offcanvas.show();
+    const offcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasResults'));
+    offcanvas.show();
   },
+  debouncedSearch: _.debounce(function() {
+    this.fetchSuggestions();
+  }, 300)
 
  },
 
@@ -289,6 +362,14 @@ export default {
 </script>
 
 <style scoped>
+
+.custom-offcanvas {
+  width: 60%;
+}
+
+.highlight {
+  background-color: yellow;
+}
 .recent-searches {
  position: relative;
  width: 300px;

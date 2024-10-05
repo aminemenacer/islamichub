@@ -89,30 +89,48 @@ class SurahController extends Controller
         return response()->json($tafseer->tafseer);
     }
 
+    
     public function searchTranslations(Request $request)
     {
         $query = $request->input('query');
-        $filters = $request->input('filters') ?? []; // Default empty array if filters not provided
-    
+        $filters = $request->input('filters', []);
+
         $resultsQuery = Information::query();
-    
-        // Apply filters based on the user's checkbox selection
-        if (!empty($filters['translation']) && $filters['translation']) {
+
+        if (!empty($filters['translation'])) {
             $resultsQuery->orWhere('translation', 'like', '%' . $query . '%');
         }
-        if (!empty($filters['tafseer']) && $filters['tafseer']) {
+        if (!empty($filters['tafseer'])) {
             $resultsQuery->orWhere('tafseer', 'like', '%' . $query . '%');
         }
-        if (!empty($filters['transliteration']) && $filters['transliteration']) {
+        if (!empty($filters['transliteration'])) {
             $resultsQuery->orWhere('transliteration', 'like', '%' . $query . '%');
         }
-    
-        // Execute the query and get the results
+
         $results = $resultsQuery->with(['ayah.surah'])->get();
-    
-        return response()->json($results->isEmpty() ? ['message' => 'No results found.'] : $results);
-        
+
+        $suggestions = $results->flatMap(function($item) use ($query) {
+            $words = [];
+            $fields = ['translation', 'tafseer', 'transliteration'];
+            
+            foreach ($fields as $field) {
+                if (isset($item->$field)) {
+                    preg_match_all('/\b\w*' . preg_quote($query, '/') . '\w*\b/i', $item->$field, $matches);
+                    $words = array_merge($words, $matches[0]);
+                }
+            }
+
+            return $words;
+        })->unique()->values();
+
+        return response()->json([
+            'results' => $results,
+            'suggestions' => $suggestions,
+        ]);
     }
+
+
+
 
     public function search(Request $request)
     {

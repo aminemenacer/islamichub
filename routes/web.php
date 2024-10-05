@@ -214,6 +214,7 @@ Route::get('/search-translations', [SurahController::class, 'searchTranslations'
 
 
 
+
 // mailing list
 Route::get('/mailing_list', [MailingListController::class, 'index'])->name('mailing_list');
 Route::get('api/fetch-mail', [MailingListController::class, 'getMail'])->name('mailing_list_get_mail');
