@@ -68,17 +68,17 @@
                             <h6><a style="color: black;" class="nav-link ml-3 pl-3" href="/pricing"><b>Pricings</b></a></h6>
                         </li>
                         <li class="nav-item mt-3">
-                            <h6><a style="color: black;" class="nav-link ml-3 pl-3" href="/support"><b>Donation</b></a></h6>
-                        </li>
-                        <li class="nav-item mt-3">
                             <h6><a style="color: black;" class="nav-link ml-3 pl-3" href="/updates"><b>Updates</b></a></h6>
                         </li>
                         <li class="nav-item mt-3">
                             <h6><a style="color: black;" class="nav-link ml-3 pl-3" href="/group_notes"><b>The Board</b></a></h6>
                         </li>
+                        <li class="nav-item mt-3">
+                            <h6><a style="color: black;" class="nav-link ml-3 pl-3" href="/support"><b>Donation</b></a></h6>
+                        </li>
                         @guest
                         @if (Route::has('login'))
-                        <li class="nav-item pl-3 mt-3">
+                        <li class="nav-item pr-3 pl-3 mt-3">
                             <h6><a class="nav-link" href="{{ route('login') }}"><b>{{ __('Login') }}</b></a></h6>
                         </li>
                         @endif
@@ -108,14 +108,14 @@
                             </div>
                         </li>
                         @endguest
-                        <li class="nav-item mt-2 pl-4">
+                        {{-- <li class="nav-item mt-2 pl-4">
                             <button class="button-63" style="padding: 12px">
                                 <a style="text-decoration: none;color:white"
                                 href="https://www.gofundme.com/f/empowerment-through-quran-support-islamic-connects-mission">
                                 <strong>Donate Here</strong>
                                 </a>
                             </button>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
             </div>
