@@ -16,8 +16,6 @@
    <i class="bi bi-camera text-right mr-2 h4" @click="captureTranslation" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" :style="{ cursor: 'pointer' }"></i>
   </div>
 
-  
-
   <!-- PDF Download Icon -->
   <div class="icon-container">
    <i class="bi bi-file-earmark-pdf text-right mr-2 h4" @click="downloadTranslationPdf" aria-expanded="false" data-bs-placement="top" title="Download PDF" :style="{ cursor: 'pointer' }"></i>

@@ -3,15 +3,22 @@
  <!-- Search Input Group -->
  <div>
 
-   <div class="container input-group" style="align-items:center">
+   <div class="container input-group" style="position: relative; width: 100%;">
     <input
       type="text"
       @keyup="debouncedSearch"
       v-model="searchTerm"
-      @input="onInput"
+      
       placeholder="Search..."
       class="form-control mr-3 main-search"
+      ref="searchBar"
     />
+    
+    <ul v-if="suggestions.length" class="list-group suggestions" style=" top: 0; left: 0; width: 100%; z-index: 1000; max-height: 600px; overflow-y: auto;">
+      <li class="list-group-item text-left list-group-item-success" v-for="(suggestion, index) in suggestions" :key="index" @click="selectSuggestion(suggestion)">
+        {{ suggestion }}
+      </li>
+    </ul>
 
     <div class="dropdown">
       <button
@@ -62,36 +69,28 @@
         </li>
       </ul>
     </div>
-    <button class="btn btn-primary" @click="searchWord">Search</button>
+    
 
     <!-- Voice input button -->
     <button class="btn btn-primary" @click="isListening ? stopVoiceRecognition() : startVoiceRecognition()">
      {{ isListening ? 'Stop' : 'Speak' }}
     </button>
 
-    <!-- search results -->
-    <ol v-if="suggestions.length" class="list-group suggestions">
-      <li
-        class="list-group-item"
-        v-for="(suggestion, index) in suggestions"
-        :key="index"
-        @click="selectSuggestion(suggestion)">
-        {{ suggestion }}
-      </li>
-    </ol>
+    <button class="btn btn-primary" @click="searchWord">Search</button>
 
   </div>
  </div>
 
-  <div class="offcanvas offcanvas-end custom-offcanvas" tabindex="-1" id="offcanvasResults">
+  <!-- Offcanvas for Search Results -->
+  <div class="offcanvas offcanvas-end custom-offcanvas" tabindex="-1" id="offcanvasResults" style="width: 60%;">
     <div class="offcanvas-header">
       <h5 class="offcanvas-title">Search Results</h5>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
     </div>
-    <div class="offcanvas-body text-left custom-offcanvas">
+    <div class="offcanvas-body text-left ">
       <!-- Display Results -->
       <div v-if="filteredResults.length && !loading">
-        <div v-for="(result, index) in filteredResults" :key="index" class="result-item">
+        <div v-for="result in filteredResults" :key="result.id" class="result-item">
           <div :id="'result-' + result.id">
             <div class="text-left pb-2">
               <h4>{{ result.ayah.surah_id }} : {{ result.ayah.ayah_id }}</h4>
@@ -110,7 +109,7 @@
               <p v-html="highlightSearch(result.transliteration)"></p>
             </div>
           </div>
-          <hr>
+          <hr />
         </div>
       </div>
       <!-- No Results Found -->
@@ -140,12 +139,14 @@ export default {
    dropdown.addEventListener('click', this.toggleDropdown);
   }
  },
+ 
  data() {
   return {
    data: [],
    loading: false,
    searchTerm: '',
    suggestions: [],
+   
    filteredResults: [],
    filters: {
     translation: true, // Default filter for translation enabled
@@ -161,11 +162,22 @@ export default {
   result: Object
  },
  methods: {
-  debouncedSearch() {
-      this.loading = true;
-      // Trigger the search function after a delay to prevent excessive requests
-      setTimeout(this.fetchSuggestions, 500); // 500ms debounce time
-    },
+  // Opens the offcanvas when the search bar is clicked
+  // openOffcanvas() {
+  //   const offcanvasElement = document.getElementById('offcanvasResults');
+  //   const bsOffcanvas = new bootstrap.Offcanvas(offcanvasElement);
+  //   bsOffcanvas.show(); // Open the offcanvas
+  // },
+  // Your debounced search logic
+  // debouncedSearch() {
+  //   // Your search logic here to populate filteredResults
+  //   this.loading = true;
+  //   // Simulate an async search call
+  //   setTimeout(() => {
+  //     this.filteredResults = []; // Populate with actual search results
+  //     this.loading = false;
+  //   }, 1000);
+  // },
   onInput() {
     if (this.searchTerm.length > 2) {
       this.fetchSuggestions();
@@ -363,12 +375,27 @@ export default {
 
 <style scoped>
 
-.custom-offcanvas {
-  width: 60%;
+.search-container {
+  position: relative;
+}
+.suggestions {
+ position: relative;
+ background: white;
+ border: 1px solid #ccc;
+ border-radius: 4px;
+ margin-top: 5px;
+ width: 100%;
+ max-height: 150px;
+ /* Limit dropdown height */
+ overflow-y: auto;
+ /* Enable scrolling */
+ z-index: 10;
+ /* Ensure dropdown appears above other content */
 }
 
 .highlight {
   background-color: yellow;
+  font-weight: bold;
 }
 .recent-searches {
  position: relative;

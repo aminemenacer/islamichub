@@ -55,6 +55,8 @@
        <i class="bi bi-arrow-right-circle h4 custom-next-ayah" @click="goToNextAyah" title="Next verse"></i>
        <i class="bi bi-chevron-bar-right h4 custom-last-verse" @click="goToLastAyah" title="Last verse"></i>
        <i v-if="information != null" class="bi bi-info-circle-fill h4 mr-2 pl-2" data-bs-toggle="modal" data-bs-target="#translationInfo" aria-expanded="false" data-bs-placement="top" title="Surah info"></i>
+       <i v-if="information != null" title="Report a bug"  data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug-fill text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" ></i>
+
       </div>
 
       <div class="custom-scrollbar pb-5" style="overflow-y: auto; max-height: 600px; background: white;border-radius:10px">
@@ -128,7 +130,7 @@
               <div  class="row pt-2">
                 <div class="col"><i  class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('translationNote')" ></i></div>
                 <div class="col"><WhatsAppShareTranslation :translationToShare="information.translation" /></div>
-                <div class="col"><TwitterShareTranslation  :targetElementRef="'targetElement'" :translationText="information.translation" /></div>
+                <!-- <div class="col"><TwitterShareTranslation  :targetElementRef="'targetElement'" :translationText="information.translation" /></div> -->
                 <div class="col"><i 
                   @click="submitForm" 
                   class="bi bi-bookmark text-right mr-2 h4" 
@@ -136,13 +138,12 @@
                   title="Bookmark verse"
                 ></i>
                 </div>
-                <div class="col"><CopyTranslationText  :textToCopy="combinedText" /></div>
+                <!-- <div class="col"><CopyTranslationText  :textToCopy="combinedText" /></div> -->
                 <div class="col"><ScreenTranslationCapture  :targetTranslationRef="'targetTranslationElement'" /></div>
                 <div class="col"><PdfDownload  :targetTranslationRef="'targetTranslationElement'" /></div>
                 <div class="col">
                   <i class="bi bi-paint-bucket h2" data-bs-toggle="offcanvas" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i>
                 </div>
-                <div class="col"><i title="Report a bug"  data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" ></i></div>
                 <div class="col"><i class="bi bi-arrows-fullscreen h4" @click="toggleFullScreen" title="Full screen"></i></div>
               </div>
             </div>
@@ -222,12 +223,14 @@
                       :translationToShare="information.translation" 
                     />
                   </div>
+                  <!--
                   <div class="col">
                     <TwitterShareTranslation  
                       :targetElementRef="'targetElement'" 
                       :translationText="information.translation" 
                     />
                   </div>
+                  -->
                               
                   <div class="col"><i 
                     @click="submitFormTafseer()" 
@@ -237,12 +240,12 @@
                     title="Bookmark verse"
                   ></i>
                   </div>   
-                  <div class="col"><CopyTafseerText  :textToCopy="information.tafseer" /></div>
+                  <!-- <div class="col"><CopyTafseerText  :textToCopy="information.tafseer" /></div> -->
                   <div class="col"><ScreenTafseerCapture  :targetTafseerRef="'targetTafseerElement'" /></div>
-                  <div class="col"><PdfDownloadTafsser  :targetTafseerRef="'targetTafseerElement'" class="h3"/></div>
+                  <div class="col"><PdfDownloadTafsser  :targetTafseerRef="'targetTafseerElement'" /></div>
                   <div class="col"><i class="bi bi-paint-bucket h2"  @click="showModal"></i></div>
-                  <div class="col"><i title="Report a bug"  data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" ></i></div>
                   <div class="col"><i class="bi bi-arrows-fullscreen h4" @click="toggleFullScreen" title="Full screen"></i></div>
+
                 </div>
               </div>
               <hr style="border: 2px solid #333;">               
@@ -303,18 +306,12 @@
                 <div  class="row pt-2">
                   <div class="col"><i  class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('transliterationNote')" ></i></div>
                   <div class="col"><WhatsAppShareTransliteration :transliterationToShare="information.transliteration" /></div>
-                  <div class="col"><TwitterShareTransliteration  :targetElementRef="'targetElement'" :transliterationText="information.transliteration" /></div>
-                  <div class="col"><i 
-                    @click="submitFormTransliteration" 
-                    class="bi bi-bookmark text-right mr-2 h4" 
-                    aria-expanded="false" 
-                    title="Bookmark verse"
-                  ></i></div>
-                  <div class="col"><CopyTransliterationText  :textToCopy="information.transliteration" /></div>
+                  <!-- <div class="col"><TwitterShareTransliteration  :targetElementRef="'targetElement'" :transliterationText="information.transliteration" /></div> -->
+                  <div class="col"><i @click="submitFormTransliteration" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" title="Bookmark verse"></i></div>
+                  <!-- <div class="col"><CopyTransliterationText  :textToCopy="information.transliteration" /></div> -->
                   <div class="col"><ScreenTransliterationCapture  :targetTransliterationRef="'targetTransliterationElement'" /></div>
                   <div class="col"><PdfDownloadTransliteration  :targetTransliterationRef="'targetTransliterationElement'" /></div>
                   <div class="col"><i class="bi bi-paint-bucket h2"  @click="showModal"></i></div>
-                  <div class="col"><i title="Report a bug"  data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" ></i></div>
                   <div class="col"><i class="bi bi-arrows-fullscreen h4" @click="toggleFullScreen" title="Full screen"></i></div>
                 </div>
               </div>
