@@ -128,7 +128,10 @@
           <div v-if="isOpen" class=" hide-on-mobile ">
             <div class="text-center">
               <div  class="row pt-2">
-                <div class="col"><i  class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('translationNote')" ></i></div>
+                <div class="col">
+                  <i  class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('translationNote')" ></i>
+                </div>
+
                 <div class="col"><WhatsAppShareTranslation :translationToShare="information.translation" /></div>
                 <!-- <div class="col"><TwitterShareTranslation  :targetElementRef="'targetElement'" :translationText="information.translation" /></div> -->
                 <div class="col"><i 
@@ -233,7 +236,7 @@
                   -->
                               
                   <div class="col"><i 
-                    @click="submitFormTafseer()" 
+                    @click="submitFormTafseer" 
                     class="bi bi-bookmark text-right mr-2 h4" 
                     aria-expanded="false" 
                     data-bs-placement="top" 
@@ -595,7 +598,7 @@
   </div>
 
   
-</div>
+ </div>
 
 
   </div>
@@ -1037,15 +1040,15 @@ methods: {
       })
     },
   submitFormTafseer() {
-    const formData = {
+    const formData1 = {
       // folder_id: this.selectedFolderId,
       surah_name: this.information.ayah.surah.name_en,
       ayah_num: this.information.ayah_id,
       ayah_verse_ar: this.information.ayah.ayah_text,
-      ayah_verse_en: this.information.translation,
+      ayah_verse_en: this.information.tafseer,
       user_id: this.userId,
     };
-    axios.post('/bookmarks', formData)
+    axios.post('/bookmarks', formData1)
       .then(response => {
         console.log(response.data.message);
         localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
@@ -1058,15 +1061,15 @@ methods: {
       })
     },
   submitFormTransliteration() {
-    const formData = {
+    const formData2 = {
       // folder_id: this.selectedFolderId,
       surah_name: this.information.ayah.surah.name_en,
       ayah_num: this.information.ayah_id,
       ayah_verse_ar: this.information.ayah.ayah_text,
-      ayah_verse_en: this.information.translation,
+      ayah_verse_en: this.information.transliteration,
       user_id: this.userId,
     };
-    axios.post('/bookmarks', formData)
+    axios.post('/bookmarks', formData2)
       .then(response => {
         console.log(response.data.message);
         localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);

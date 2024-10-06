@@ -5,7 +5,7 @@
   <AyahInfo :information="information" />
   <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
    <MainAyah :information="information" />
-   <div ref="heading1" class="text-left">
+   <div ref="targetTafseerElement" class="text-left">
     <h4 class="text-left ayah-translation" style="line-height: 1.6em">
      {{ expanded ? information.tafseer : truncatedText(information.tafseer) }}
      <template v-if="information.tafseer.length > 100">

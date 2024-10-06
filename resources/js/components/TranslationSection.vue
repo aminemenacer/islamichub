@@ -1,11 +1,11 @@
 <template>
 <div class="w-100 my-element" :class="{'full-screen': isFullScreen}">
  <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
- <div ref="targetTranslationElement">
+ <div>
   <AyahInfo :information="information" />
   <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
    <MainAyah :information="information" />
-   <div ref="heading3" class="row text-left">
+   <div ref="targetTranslationElement" class="row text-left">
     <h4 :style="{ fontSize: currentFontSize + 'px' }" class="text-left ayah-translation col-md-11" style="line-height: 1.6em">
      {{ expanded ? information.translation : truncatedText(information.translation) }}
      <template v-if="showMoreLink && information.translation.length > 100">
@@ -44,25 +44,25 @@
     </div>
 
    </div>
-   <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
-
   </div>
-  <!-- WhatsApp Share Button -->
-  <div class="row mobile-only pt-3" style="color:white">
-   <div class="col-6 ">
-    <!-- Add right padding to create space between the buttons -->
-    <div @click="shareOnWhatsApp" style="cursor: pointer;">
-     <i class="bi bi-whatsapp  h3" style="color:black"></i>
-     <p style="font-size: 13px; margin: 0;color:black" class="pt-2">Share via WhatsApp</p>
-    </div>
-   </div>
+  <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
 
-   <div class="col-6 pr-2">
-    <!-- Add right padding to create space between the buttons -->
-    <div @click="shareOnTwitter" style="cursor: pointer;">
-     <i class="bi bi-twitter-x  h3" style="color:black"></i>
-     <p style="font-size: 13px; margin: 0;color:black" class="pt-2">Share via X</p>
-    </div>
+ </div>
+ <!-- WhatsApp Share Button -->
+ <div class="row mobile-only pt-3" style="color:white">
+  <div class="col-6 ">
+   <!-- Add right padding to create space between the buttons -->
+   <div @click="shareOnWhatsApp" style="cursor: pointer;">
+    <i class="bi bi-whatsapp  h3" style="color:black"></i>
+    <p style="font-size: 13px; margin: 0;color:black" class="pt-2">Share via WhatsApp</p>
+   </div>
+  </div>
+
+  <div class="col-6 pr-2">
+   <!-- Add right padding to create space between the buttons -->
+   <div @click="shareOnTwitter" style="cursor: pointer;">
+    <i class="bi bi-twitter-x  h3" style="color:black"></i>
+    <p style="font-size: 13px; margin: 0;color:black" class="pt-2">Share via X</p>
    </div>
   </div>
  </div>
@@ -145,6 +145,7 @@ export default {
    selectedVoiceName: '',
    rate: 1,
    pitch: 1,
+   surahUrl: '',
    voices: []
   }
  },
@@ -159,6 +160,20 @@ export default {
   }
  },
  methods: {
+  shareOnWhatsApp(translation, url) {
+   // Check if translation or URL is missing
+   if (!translation || !url) {
+    console.error('Translation or URL is missing');
+    return;
+   }
+
+   // Encode the message for sharing
+   const encodedMessage = encodeURIComponent(`${translation} ${url}`);
+   const whatsappUrl = `https://api.whatsapp.com/send?text=${encodedMessage}`;
+
+   // Open WhatsApp in a new tab
+   window.open(whatsappUrl, '_blank');
+  },
   loadVoices() {
    this.voices = speechSynthesis.getVoices();
    if (this.voices.length > 0) {
@@ -262,35 +277,6 @@ export default {
   setAyahText(text) {
    this.ayahText = text; // Capture the ayah text from the child component
   },
-  shareOnWhatsApp() {
-   const ayahInfo = this.information.ayahInfo || "No Ayah Info available"; // Fallback message
-   const mainAyah = this.information.mainAyah || "No Main Ayah available"; // Fallback message
-   const ayahTranslation = this.expanded ? this.information.translation : this.truncatedText(this.information.translation);
-
-   const message = `
-      Ayah Info: ${ayahInfo}
-      Main Ayah: ${mainAyah}
-      Translation: ${ayahTranslation}
-    `;
-
-   const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
-   window.open(url, '_blank');
-  },
-  shareOnTwitter() {
-   const ayahInfo = this.information.ayahInfo || "No Ayah Info available"; // Fallback message
-   const mainAyah = this.information.mainAyah || "No Main Ayah available"; // Fallback message
-   const ayahTranslation = this.expanded ? this.information.translation : this.truncatedText(this.information.translation);
-
-   const message = `
-      Ayah Info: ${ayahInfo}
-      Main Ayah: ${mainAyah}
-      Translation: ${ayahTranslation}
-    `;
-
-   const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(message)}`;
-   window.open(url, '_blank');
-  },
-
   toggleFullScreen() {
    this.$emit('toggle-full-screen');
   },

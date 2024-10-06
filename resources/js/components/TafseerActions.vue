@@ -8,7 +8,7 @@
 
   <!-- Bookmark Icon -->
   <div class="icon-container">
-   <i @click="openFolderSelectionModal" class="bi bi-bookmark h4" title="Select Folder to Bookmark"></i>
+   <i @click="submitFormTafseer" class="bi bi-bookmark h4" title="Select Folder to Bookmark"></i>
   </div>
 
   <!-- Screenshot Icon -->
@@ -52,6 +52,10 @@ export default {
    type: String,
    required: true,
   },
+  information: {
+   type: Object,
+   required: true
+  },
   targetTafseerRef: {
    type: String,
    default: 'targetTafseerElement',
@@ -59,14 +63,66 @@ export default {
  },
  data() {
   return {
+   surat: [],
+   ayat: [],
+   tafseers: [],
   };
  },
  computed: {
-    combinedText() {
-      return `Tafseer: ${this.information.tafseer}`;
-    }
-  },
+  combinedText() {
+   return `Tafseer: ${this.information.tafseer}`;
+  }
+ },
  methods: {
+  submitFormTafseer() {
+   // Debug log to check current information
+   console.log('Current information:', this.information);
+
+   // Check if ayah information is present
+   if (!this.information || !this.information.ayah) {
+    console.error("Ayah information is missing.");
+    this.showErrorAlert = true;
+    this.hideAlertAfterDelay();
+    return; // Exit if required data is missing
+   }
+
+   // Prepare form data for submission
+   const formData1 = {
+    surah_name: this.information.ayah.surah.name_en,
+    ayah_num: this.information.ayah_id,
+    ayah_verse_ar: this.information.ayah.ayah_text,
+    ayah_verse_en: this.information.tafseer,
+    user_id: this.userId,
+   };
+
+   // Check if all required fields are filled
+   if (!formData1.surah_name || !formData1.ayah_num || !formData1.ayah_verse_ar || !formData1.ayah_verse_en || !formData1.user_id) {
+    console.error("Form data is incomplete:", formData1);
+    this.showErrorAlert = true;
+    this.hideAlertAfterDelay();
+    return; // Exit if validation fails
+   }
+
+   // Submit the form using Axios
+   this.isSubmitting = true;
+   axios.post('/bookmarks', formData1)
+    .then(response => {
+     console.log(response.data.message);
+     // Mark bookmark as submitted in localStorage
+     localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
+     this.showAlert = true;
+     this.showErrorAlert = false;
+     this.hideAlertAfterDelay();
+    })
+    .catch(error => {
+     console.error("Error submitting bookmark:", error);
+     this.showErrorAlert = true;
+     this.hideAlertAfterDelay();
+    })
+    .finally(() => {
+     this.isSubmitting = false; // Re-enable submit button
+    });
+  },
   captureTafseer() {
    const targetTafseerElement = this.$parent.$refs[this.targetTafseerRef];
 
@@ -79,22 +135,20 @@ export default {
 
    setTimeout(() => {
     html2canvas(targetTafseerElement)
-      .then((canvas) => {
-        const dataUrl = canvas.toDataURL("image/png");
+     .then((canvas) => {
+      const dataUrl = canvas.toDataURL("image/png");
 
-        // Automatically trigger download of the image
-        const link = document.createElement("a");
-        link.href = dataUrl;
-        link.download = "screenshot.png";
-        link.click();
-      })
-      .catch((error) => {
-        console.error("Failed to capture screenshot:", error);
-      });
-    }, 200);
+      // Automatically trigger download of the image
+      const link = document.createElement("a");
+      link.href = dataUrl;
+      link.download = "screenshot.png";
+      link.click();
+     })
+     .catch((error) => {
+      console.error("Failed to capture screenshot:", error);
+     });
+   }, 200);
   },
-
-  
 
   downloadTafseerPdf() {
    const targetTafseerElement = this.$parent.$refs[this.targetTafseerRef];

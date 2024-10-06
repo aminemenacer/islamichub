@@ -76,6 +76,61 @@ export default {
     }
   },
   methods: {
+    submitFormTransliteration() {
+   // Debug log to check current information
+   console.log('Current information:', this.information);
+
+   // Check if ayah information is present
+   if (!this.information || !this.information.ayah) {
+    console.error("Ayah information is missing.");
+    this.showErrorAlert = true;
+    this.hideAlertAfterDelay();
+    return; // Exit if required data is missing
+   }
+
+   // Prepare form data for submission
+   const formData2 = {
+    surah_name: this.information.ayah.surah.name_en,
+    ayah_num: this.information.ayah_id,
+    ayah_verse_ar: this.information.ayah.ayah_text,
+    ayah_verse_en: this.information.transliteration,
+    user_id: this.userId,
+   };
+
+   // Check if all required fields are filled
+   if (!formData2.surah_name || !formData2.ayah_num || !formData2.ayah_verse_ar || !formData2.ayah_verse_en || !formData2.user_id) {
+    console.error("Form data is incomplete:", formData2);
+    this.showErrorAlert = true;
+    this.hideAlertAfterDelay();
+    return; // Exit if validation fails
+   }
+
+   // Submit the form using Axios
+   this.isSubmitting = true;
+   axios.post('/bookmarks', formData2)
+    .then(response => {
+     console.log(response.data.message);
+     // Mark bookmark as submitted in localStorage
+     localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
+     this.showAlert = true;
+     this.showErrorAlert = false;
+     this.hideAlertAfterDelay();
+    })
+    .catch(error => {
+     console.error("Error submitting bookmark:", error);
+     this.showErrorAlert = true;
+     this.hideAlertAfterDelay();
+    })
+    .finally(() => {
+     this.isSubmitting = false; // Re-enable submit button
+    });
+  },
+  hideAlertAfterDelay() {
+   setTimeout(() => {
+    this.showAlert = false;
+    this.showErrorAlert = false;
+   }, 3000); // Hide alerts after 3 seconds
+  },
     captureTransliteration() {
       const targetTransliterationElement = this.$parent.$refs[this.targetTransliterationRef];
 
