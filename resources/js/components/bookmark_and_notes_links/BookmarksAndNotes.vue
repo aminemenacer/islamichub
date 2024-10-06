@@ -1,15 +1,13 @@
 <template>
-  <div v-if="isLoggedIn && information !== null">
+  <div v-if="information !== null">
     <div class="row" style="padding:10px">
       <div class="text-center">
         <hr>
-        <!-- Apply the icon color to this section -->
         <div :style="{ color: iconColor }">
           <h3>{{ information.title }}</h3>
           <p>{{ information.content }}</p>
         </div>
         <div class="row">
-          <!-- Applying :style="iconStyle" to each icon -->
           <div class="col">
             <a href="/bookmarks" class="h4">
               <i :style="{ color: iconColor }" class="bi bi-bookmark h4"></i>
@@ -48,13 +46,11 @@ export default {
       type: String,
       default: '',
     },
+    isLoggedIn: {
+      type: Boolean,
+      required: true,
+    },
   },
-  data() {
-    return {
-      isLoggedIn: false,
-    }
-  },
-  
 };
 </script>
 

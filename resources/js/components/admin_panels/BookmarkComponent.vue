@@ -108,7 +108,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary" @click="closeModal" data-bs-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
@@ -187,12 +187,11 @@ export default {
         ? text.substring(0, this.maxLength) + '...'
         : text;
     },
+    
     viewModal(bookmark) {
-      this.form = { ...bookmark };
-      const viewBookmarksModal = new bootstrap.Modal(
-        document.getElementById("viewBookmark")
-      );
-      viewBookmarksModal.show();
+      this.form = bookmark;
+      const modalElement = new bootstrap.Modal(document.getElementById('viewBookmark'));
+      modalElement.show();
     },
     deleteBookmark(id) {
       Swal.fire({
@@ -216,6 +215,18 @@ export default {
           this.fetchBookmarks(this.userId);
         }
       });
+    },
+    closeModal() {
+      const modalElement = document.getElementById('viewBookmark');
+      const bootstrapModal = bootstrap.Modal.getInstance(modalElement);
+      if (bootstrapModal) {
+        bootstrapModal.hide();
+      }
+
+      const backdrop = document.querySelector('.modal-backdrop');
+      if (backdrop) {
+        backdrop.remove();
+      }
     },
   },
 };

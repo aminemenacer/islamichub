@@ -748,6 +748,7 @@ props: ['information', 'selectedFolderId'], information: {
     },
  data() {
   return {
+    userIsLoggedIn: true,
     menuItems: ["Home", "About", "Services", "Contact"],
     newThemeName: "",
     savedThemes: [],
@@ -986,6 +987,7 @@ computed: {
     }
 },
 methods: {
+  
   handleItemSelected(selectedItem) {
     alert(`Selected item: ${selectedItem}`);
   },
