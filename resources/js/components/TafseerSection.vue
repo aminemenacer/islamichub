@@ -9,7 +9,7 @@
     <h4 class="text-left ayah-translation" style="line-height: 1.6em">
      {{ expanded ? information.tafseer : truncatedText(information.tafseer) }}
      <template v-if="information.tafseer.length > 100">
-      <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
+      <a class="href" href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
      </template>
     </h4>
    </div>
@@ -61,20 +61,22 @@ export default {
  data() {
   return {
    expanded: false, // Local state to track expand/collapse
+   surahUrl: '',
   };
  },
  methods: {
-  shareOnWhatsApp() {
-   const ayahTafseer = this.expanded ? this.information.tafseer : this.truncatedText(this.information.tafseer);
+  shareOnWhatsApp(tafseer, url) {
+   // Check if translation or URL is missing
+   if (!tafseer || !url) {
+    console.error('Translation or URL is missing');
+    return;
+   }
+   // Encode the message for sharing
+   const encodedMessage = encodeURIComponent(`${tafseer} ${url}`);
+   const whatsappUrl = `https://api.whatsapp.com/send?text=${encodedMessage}`;
 
-   const message = `
-      Ayah Info: ${ayahInfo}
-      Main Ayah: ${mainAyah}
-      Tafseer: ${ayahTafseer}
-    `;
-
-   const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
-   window.open(url, '_blank');
+   // Open WhatsApp in a new tab
+   window.open(whatsappUrl, '_blank');
   },
   shareOnTwitter() {
    const ayahTafseer = this.expanded ? this.information.tafseer : this.truncatedText(this.information.tafseer);

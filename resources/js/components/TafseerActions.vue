@@ -66,6 +66,17 @@ export default {
    surat: [],
    ayat: [],
    tafseers: [],
+   information: {
+    ayah: {
+     surah: {
+      name_en: '', // Initialize as required
+     },
+     ayah_text: '', // Example ayah text
+    },
+    translation: '', // Example translation
+    transliteration: '', // Example transliteration
+    tafseer: ''
+   },
   };
  },
  computed: {

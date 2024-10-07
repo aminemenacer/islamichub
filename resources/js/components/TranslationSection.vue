@@ -9,7 +9,7 @@
     <h4 :style="{ fontSize: currentFontSize + 'px' }" class="text-left ayah-translation col-md-11" style="line-height: 1.6em">
      {{ expanded ? information.translation : truncatedText(information.translation) }}
      <template v-if="showMoreLink && information.translation.length > 100">
-      <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
+      <a class="href" href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
      </template>
     </h4>
     <div class="col-md-1 mt-4" style="cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: space-between; height: 150px;">
@@ -21,7 +21,7 @@
 
     <Translator translator="Ahmed Ali" />
 
-    <div class="container text-center pt-2">
+    <div class="container text-center pt-2">   
      <div class="row">
       <div class="col-md-6">
        <select class="form-control container" v-model="selectedVoice" @change="changeVoice($event.target.value)">
@@ -30,14 +30,14 @@
         </option>
        </select>
       </div>
-      <div class="col-md-3 pt-2">
+      <div class="col-md-3 pt-2 bar">
        <label>
-        Rate: <input type="range" min="0.5" max="2" step="0.1" v-model="rate" @input="adjustRate($event.target.value)">
+        Rate: <input class="rate" type="range" min="0.5" max="2" step="0.1" v-model="rate" @input="adjustRate($event.target.value)">
        </label>
       </div>
-      <div class="col-md-3 pt-2">
+      <div class="col-md-3 pt-2 bar">
        <label>
-        Pitch: <input type="range" min="0.5" max="2" step="0.1" v-model="pitch" @input="adjustPitch($event.target.value)">
+        Pitch: <input class="pitch" type="range" min="0.5" max="2" step="0.1" v-model="pitch" @input="adjustPitch($event.target.value)">
        </label>
       </div>
      </div>

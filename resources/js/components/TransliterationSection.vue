@@ -9,7 +9,7 @@
     <h4 class="text-left ayah-translation" style="line-height: 1.6em">
      {{ expanded ? information.transliteration : truncatedText(information.transliteration) }}
      <template v-if="showMoreLink && information.transliteration.length > 100">
-      <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
+      <a class="href" href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
      </template>
     </h4>
    </div>

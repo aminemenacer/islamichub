@@ -50,27 +50,41 @@ export default {
   },
   methods: {
     captureTranslation() {
-      const targetTranslationElement = this.$parent.$refs[this.targetTranslationRef];
+  const targetTranslationElement = this.$parent.$refs[this.targetTranslationRef];
 
-      if (!targetTranslationElement) {
-        console.error("Invalid element provided as targetTranslationRef");
-        return;
-      }
+  if (!targetTranslationElement) {
+    console.error("Invalid element provided as targetTranslationRef");
+    return;
+  }
 
-      this.previewImage = null;
+  // Select all the elements you want to hide
+  const unwantedElements = document.querySelectorAll(
+    '.icon-container, .href, .mobile-only, .bar, .pitch, .rate, .container.text-center, .custom-icon-play, .custom-icon-increase, .custom-icon-decrease'
+  );
 
-      setTimeout(() => {
-        html2canvas(targetTranslationElement).then(canvas => {
-          this.previewImage = canvas.toDataURL('image/png');
+  // Hide the unwanted elements
+  unwantedElements.forEach(el => el.style.display = 'none');
 
-          // Show the modal
-          const previewModal = new bootstrap.Modal(document.getElementById('previewModal'));
-          previewModal.show();
-        }).catch(error => {
-          console.error("Failed to capture screenshot:", error);
-        });
-      }, 200);
-    },
+  setTimeout(() => {
+    html2canvas(targetTranslationElement, {
+      allowTaint: true,  // Capture cross-origin content if necessary
+      useCORS: true,     // Allow cross-origin images
+    }).then((canvas) => {
+      const dataUrl = canvas.toDataURL("image/png");
+
+      // Automatically trigger download of the image
+      const link = document.createElement("a");
+      link.href = dataUrl;
+      link.download = "screenshot.png";
+      link.click();
+
+      // Restore the visibility of unwanted elements
+      unwantedElements.forEach(el => el.style.display = '');
+    }).catch((error) => {
+      console.error("Failed to capture screenshot:", error);
+    });
+  }, 200);
+},
     downloadImage(format) {
       if (!this.previewImage) return;
 

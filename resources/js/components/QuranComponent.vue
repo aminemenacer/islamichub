@@ -245,7 +245,7 @@
                   </div>   
                   <!-- <div class="col"><CopyTafseerText  :textToCopy="information.tafseer" /></div> -->
                   <div class="col"><ScreenTafseerCapture  :targetTafseerRef="'targetTafseerElement'" /></div>
-                  <div class="col"><PdfDownloadTafsser  :targetTafseerRef="'targetTafseerElement'" /></div>
+                  <div class="col"><PdfDownloadTafsser  :targetTafseerRef="'targetTafseerElement'"/></div>
                   <div class="col"><i class="bi bi-paint-bucket h2"  @click="showModal"></i></div>
                   <div class="col"><i class="bi bi-arrows-fullscreen h4" @click="toggleFullScreen" title="Full screen"></i></div>
 

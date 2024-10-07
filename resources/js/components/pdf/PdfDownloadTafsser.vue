@@ -1,7 +1,7 @@
 <template>
   <div>
     <i 
-      class="bi bi-file-earmark-pdf text-right mr-2 h5" 
+      class="bi bi-file-earmark-pdf text-right mr-2 h3" 
       @click="downloadPdfTafseer" 
       aria-expanded="false" 
       data-bs-placement="top" 
