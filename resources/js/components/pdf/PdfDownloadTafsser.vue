@@ -33,6 +33,14 @@ export default {
         return;
       }
 
+      // Select all the elements you want to hide
+      const unwantedElements = document.querySelectorAll(
+        '.icon-container, .href, .mobile-only, .bar, .pitch, .rate, .container.text-center, .custom-icon-play, .custom-icon-increase, .custom-icon-decrease'
+      );
+
+      // Hide the unwanted elements
+      unwantedElements.forEach(el => el.style.display = 'none');
+
       html2canvas(targetTafseerElement)
         .then(canvas => {
           const imgData = canvas.toDataURL('image/png');
@@ -45,6 +53,7 @@ export default {
           // Add the image to the PDF
           pdf.addImage(imgData, 'PNG', 10, 10, 190, 0); // Adjust the dimensions as needed
           pdf.save('download.pdf');
+          unwantedElements.forEach(el => el.style.display = '');
         })
         .catch(error => {
           console.error('Failed to capture HTML content:', error);
