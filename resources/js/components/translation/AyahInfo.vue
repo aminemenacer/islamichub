@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h5 class="mr-2 container">
-      <p class="container"> {{ information.ayah.surah.name_en }} {{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }} {{ information.ayah.surah.name_ar}}</p>
+      <b class="container"> {{ information.ayah.surah.name_en }} {{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }}</b>
     </h5>
   </div>
 </template>

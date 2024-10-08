@@ -116,8 +116,6 @@
        
        <!-- Translation Section -->
        <div class="tab-pane active content" id="home" role="tabpanel" v-if="information != null">
-  
-     
  
         <!-- desktop top features -->
         <div :style="iconStyle">
@@ -151,10 +149,8 @@
                    
           </div>                      
         </div>
-
-
-          
-         <!-- mobile navigation  ---->
+  
+        <!-- mobile navigation  ---->
         <div class="dropdown mobile-only pb-2">
           <div :style="iconStyle" class="icon-container">
             <i class="bi bi-chevron-bar-left h4" @click="goToFirstAyah()" title="Last verse"></i>
@@ -165,7 +161,6 @@
             <i class="bi bi-arrows-fullscreen h6" @click="toggleFullScreen" title="Full screen"></i>
           </div>
         </div>
-
         <!-- dropdown mobile content -->
         <div>
           <div class="pt-2" ref="targetTranslationElement" >
@@ -187,7 +182,7 @@
             />          
           </div>
 
-          <!-- Speech -->>
+          
           
           <!-- open toolbar -->
           <div class="container-fluid text-center mobile-only">
@@ -200,7 +195,7 @@
           <!-- toolbar mobile -->
           <div v-if="isOpen" class="collapse-content mobile-only">
             <div class="card text-bg-light card-body">
-              <img src="/images/art.png" class="pr-2" width="30px" alt="lamp" /><TranslationActions :targetTranslationRef="'targetTranslationElement'" :translation="translation" @open-modal="openModal" @submit-form="submitForm" />
+              <TranslationActions :targetTranslationRef="'targetTranslationElement'" :translation="translation" @open-modal="openModal" @submit-form="submitForm" />
             </div>
           </div>
         </div>

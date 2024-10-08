@@ -12,18 +12,27 @@
       <a class="href" href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
      </template>
     </h4>
-    <div class="col-md-1 mt-4" style="cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: space-between; height: 150px;">
-     <i @click="toggleSpeech" style="cursor: pointer;" aria-placeholder="Play translation audio" :class="isReading ? 'bi-pause-circle-fill' : 'bi-play-circle-fill'" class="bi ml-2 mr-2 h3 custom-icon-play"></i>
-     <i class="bi bi-plus-circle-fill h3 custom-icon-increase" aria-placeholder="Increase text size" @click="increaseFontSize"></i>
-     <i class="bi bi-dash-circle-fill h3 custom-icon-decrease" aria-placeholder="Decrease text size" @click="decreaseFontSize"></i>
+    <Translator translator="Ahmed Ali" />
+    <!-- Speech icons mobile only-->
+    <div style="cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: space-between;" class="container text-center mobile-only">
+     <div class="row">
+      <div class="col">
+       <i class="bi bi-plus-circle-fill h3 custom-icon-increase" aria-placeholder="Increase text size" @click="increaseFontSize"></i>
+      </div>
+      <div class="col">
+       <i @click="toggleSpeech" style="cursor: pointer;" aria-placeholder="Play translation audio" :class="isReading ? 'bi-pause-circle-fill' : 'bi-play-circle-fill'" class="bi ml-2 mr-2 h3 custom-icon-play"></i>
+      </div>
+      <div class="col">
+       <i class="bi bi-dash-circle-fill h3 custom-icon-decrease" aria-placeholder="Decrease text size" @click="decreaseFontSize"></i>
+      </div>
+     </div>
     </div>
 
-    <Translator translator="Ahmed Ali" />
-
-    <div class="container text-center pt-2">   
+    <!-- speech recognition (mobile) -->
+    <div class="text-center pt-2">
      <div class="row">
       <div class="col-md-6">
-       <select class="form-control container" v-model="selectedVoice" @change="changeVoice($event.target.value)">
+       <select class="form-control" v-model="selectedVoice" @change="changeVoice($event.target.value)">
         <option v-for="voice in voices" :key="voice.name" :value="voice">
          {{ voice.name }} ({{ voice.lang }})
         </option>
@@ -41,6 +50,7 @@
       </div>
      </div>
     </div>
+
 
    </div>
   </div>
