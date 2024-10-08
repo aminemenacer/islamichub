@@ -132,7 +132,6 @@
                 </div>
 
                 <div class="col"><WhatsAppShareTranslation :translationToShare="information.translation" /></div>
-                <!-- <div class="col"><TwitterShareTranslation  :targetElementRef="'targetElement'" :translationText="information.translation" /></div> -->
                 <div class="col"><i 
                   @click="submitForm" 
                   class="bi bi-bookmark text-right mr-2 h4" 
@@ -140,7 +139,6 @@
                   title="Bookmark verse"
                 ></i>
                 </div>
-                <!-- <div class="col"><CopyTranslationText  :textToCopy="combinedText" /></div> -->
                 <div class="col"><ScreenTranslationCapture  :targetTranslationRef="'targetTranslationElement'" /></div>
                 <div class="col"><PdfDownload  :targetTranslationRef="'targetTranslationElement'" /></div>
                 <div class="col">
@@ -153,6 +151,8 @@
                    
           </div>                      
         </div>
+
+
           
          <!-- mobile navigation  ---->
         <div class="dropdown mobile-only pb-2">
@@ -186,6 +186,8 @@
               @close-alert-text="closeAlertText" 
             />          
           </div>
+
+          <!-- Speech -->>
           
           <!-- open toolbar -->
           <div class="container-fluid text-center mobile-only">
@@ -198,7 +200,7 @@
           <!-- toolbar mobile -->
           <div v-if="isOpen" class="collapse-content mobile-only">
             <div class="card text-bg-light card-body">
-              <TranslationActions :targetTranslationRef="'targetTranslationElement'" :translation="translation" @open-modal="openModal" @submit-form="submitForm" />
+              <img src="/images/art.png" class="pr-2" width="30px" alt="lamp" /><TranslationActions :targetTranslationRef="'targetTranslationElement'" :translation="translation" @open-modal="openModal" @submit-form="submitForm" />
             </div>
           </div>
         </div>
@@ -242,7 +244,6 @@
                     title="Bookmark verse"
                   ></i>
                   </div>   
-                  <!-- <div class="col"><CopyTafseerText  :textToCopy="information.tafseer" /></div> -->
                   <div class="col"><ScreenTafseerCapture  :targetTafseerRef="'targetTafseerElement'" /></div>
                   <div class="col"><PdfDownloadTafsser  :targetTafseerRef="'targetTafseerElement'"/></div>
                   <div class="col"><i class="bi bi-paint-bucket h2"  @click="showModal"></i></div>
@@ -308,9 +309,7 @@
                 <div  class="row pt-2">
                   <div class="col"><i  class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('transliterationNote')" ></i></div>
                   <div class="col"><WhatsAppShareTransliteration :transliterationToShare="information.transliteration" /></div>
-                  <!-- <div class="col"><TwitterShareTransliteration  :targetElementRef="'targetElement'" :transliterationText="information.transliteration" /></div> -->
                   <div class="col"><i @click="submitFormTransliteration" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" title="Bookmark verse"></i></div>
-                  <!-- <div class="col"><CopyTransliterationText  :textToCopy="information.transliteration" /></div> -->
                   <div class="col"><ScreenTransliterationCapture  :targetTransliterationRef="'targetTransliterationElement'" /></div>
                   <div class="col"><PdfDownloadTransliteration  :targetTransliterationRef="'targetTransliterationElement'" /></div>
                   <div class="col"><i class="bi bi-paint-bucket h2"  @click="showModal"></i></div>
@@ -376,7 +375,6 @@
             <WhatsAppShareTransliteration :transliterationToShare="information.transliteration" />
             <TwitterShareTransliteration :targetElementRef="'targetElement'" :transliterationText="information.transliteration" />
             <i @click="submitForm2" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
-            <CopyTransliterationText :textToCopy="information.transliteration" />
             <!--
             <ScreenTransliterationCapture :targetTransliterationRef="'targetTransliterationElement'" />
             <PdfDownload :targetTranslationRef="'targetTransliterationElement'" />
@@ -626,9 +624,6 @@ import SwipeGestures from './swipe_gestures/SwipeGestures.vue';
 import AyahSearchVerseNum from './search/AyahSearchVerseNum.vue';
 import ErrorAlert from './search/ErrorAlert.vue';
 import AyahDropdown from './search/AyahDropdown.vue';
-import CopyTranslationText from './translation/features/copy_text/CopyTranslationText.vue';
-import CopyTafseerText from './translation/features/copy_text/CopyTranslationText.vue';
-import CopyTransliterationText from './translation/features/copy_text/CopyTransliterationText.vue';
 import ScreenTranslationCapture from './translation/features/screen_capture/ScreenTranslationCapture.vue';
 import ScreenTafseerCapture from './translation/features/screen_capture/ScreenTafseerCapture.vue';
 import ScreenTransliterationCapture from './translation/features/screen_capture/ScreenTransliterationCapture.vue';
@@ -689,9 +684,7 @@ export default {
   AyahSearchVerseNum,
   ErrorAlert,
   AyahDropdown,
-  CopyTranslationText,
-  CopyTafseerText,
-  CopyTransliterationText,
+  
   ScreenTranslationCapture,
   ScreenTafseerCapture,
   ScreenTransliterationCapture,

@@ -13,28 +13,11 @@
      </template>
     </h4>
    </div>
-   <h6 class="text-left "><strong>Transliteration: </strong>Saheeh International</h6>
+   <h6 class="text-left "><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" /><strong>Transliteration: </strong>Saheeh International</h6>
    <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
   </div>
  </div>
- <!-- WhatsApp Share Button -->
- <div class="row mobile-only pt-3" style="color:white">
-  <div class="col-6 ">
-   <!-- Add right padding to create space between the buttons -->
-   <div @click="shareOnWhatsApp" style="cursor: pointer;">
-    <i class="bi bi-whatsapp  h3" style="color:black"></i>
-    <p style="font-size: 13px; margin: 0;color:black" class="pt-2">Share via WhatsApp</p>
-   </div>
-  </div>
-
-  <div class="col-6 pr-2">
-   <!-- Add right padding to create space between the buttons -->
-   <div @click="shareOnTwitter" style="cursor: pointer;">
-    <i class="bi bi-twitter-x  h3" style="color:black"></i>
-    <p style="font-size: 13px; margin: 0;color:black" class="pt-2">Share via X</p>
-   </div>
-  </div>
- </div>
+ 
 </div>
 </template>
 

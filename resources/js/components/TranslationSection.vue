@@ -13,7 +13,6 @@
      </template>
     </h4>
     <div class="col-md-1 mt-4" style="cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: space-between; height: 150px;">
-     <CopyTranslationText :textToCopy="combinedText" />
      <i @click="toggleSpeech" style="cursor: pointer;" aria-placeholder="Play translation audio" :class="isReading ? 'bi-pause-circle-fill' : 'bi-play-circle-fill'" class="bi ml-2 mr-2 h3 custom-icon-play"></i>
      <i class="bi bi-plus-circle-fill h3 custom-icon-increase" aria-placeholder="Increase text size" @click="increaseFontSize"></i>
      <i class="bi bi-dash-circle-fill h3 custom-icon-decrease" aria-placeholder="Decrease text size" @click="decreaseFontSize"></i>
@@ -47,24 +46,6 @@
   </div>
   <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
 
- </div>
- <!-- WhatsApp Share Button -->
- <div class="row mobile-only pt-3" style="color:white">
-  <div class="col-6 ">
-   <!-- Add right padding to create space between the buttons -->
-   <div @click="shareOnWhatsApp" style="cursor: pointer;">
-    <i class="bi bi-whatsapp  h3" style="color:black"></i>
-    <p style="font-size: 13px; margin: 0;color:black" class="pt-2">Share via WhatsApp</p>
-   </div>
-  </div>
-
-  <div class="col-6 pr-2">
-   <!-- Add right padding to create space between the buttons -->
-   <div @click="shareOnTwitter" style="cursor: pointer;">
-    <i class="bi bi-twitter-x  h3" style="color:black"></i>
-    <p style="font-size: 13px; margin: 0;color:black" class="pt-2">Share via X</p>
-   </div>
-  </div>
  </div>
 </div>
 </template>

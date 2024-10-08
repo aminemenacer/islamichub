@@ -21,11 +21,6 @@
    <i class="bi bi-file-earmark-pdf text-right mr-2 h3" @click="downloadTafseerPdf" aria-expanded="false" data-bs-placement="top" title="Download PDF" :style="{ cursor: 'pointer' }"></i>
   </div>
 
-  <!-- Copy Tafseer Text Component -->
-  <div class="icon-container">
-   <CopyTafseerText :textToCopy="tafseer" />
-  </div>
-
   <!-- Bug Report Icon -->
   <div class="icon-container">
    <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug h4" aria-expanded="false" data-bs-placement="top"></i>
@@ -36,7 +31,6 @@
 </template>
 
 <script>
-import CopyTafseerText from './translation/features/copy_text/CopyTafseerText.vue';
 import FolderSelectionModal from './folder_manager/FolderSelectionModal.vue';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
@@ -44,7 +38,6 @@ import jsPDF from 'jspdf';
 export default {
  name: 'TafseerActions',
  components: {
-  CopyTafseerText,
   FolderSelectionModal,
  },
  props: {

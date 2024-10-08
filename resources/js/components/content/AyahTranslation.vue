@@ -4,7 +4,7 @@
     <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
     <div class="container">
       <h5 class="mr-2">
-        <p>{{ information.ayah.surah.name_en }} {{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }} {{ information.ayah.surah.name_ar }}</p>
+        <p>{{ information.ayah.surah.name_en }} {{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }}</p>
       </h5>
     </div>
 
@@ -18,7 +18,7 @@
           <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
         </template>
       </h1>
-      <h6 class="text-left mt-3"><strong>Translation: </strong>Ahmed Ali</h6>
+      <img src="/images/art.png" class="pr-2" width="30px" alt="lamp" /><h6 class="text-left mt-3"><strong>Translation: </strong>Ahmed Ali</h6>
 
       <!-- Alerts -->
       <div v-if="showAlertText" class="alert alert-success alert-dismissible fade show mt-2" role="alert">Text copied successfully!</div>

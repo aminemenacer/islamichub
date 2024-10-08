@@ -21,11 +21,6 @@
    <i class="bi bi-file-earmark-pdf text-right mr-2 h3" @click="downloadTranslationPdf" aria-expanded="false" data-bs-placement="top" title="Download PDF" :style="{ cursor: 'pointer' }"></i>
   </div>
 
-  <!-- Copy Translation Text Icon 
-  <div class="icon-container">
-    <CopyTranslationText :textToCopy="combinedText" />
-  </div>
-  -->
 
   <!-- Bug Report Icon -->
   <div class="icon-container">
@@ -39,7 +34,6 @@
 </template>
 
 <script>
-import CopyTranslationText from "./translation/features/copy_text/CopyTranslationText.vue";
 import FolderSelectionModal from "./folder_manager/FolderSelectionModal.vue";
 import ScreenTranslationCapture from './translation/features/screen_capture/ScreenTranslationCapture.vue';
 import html2canvas from "html2canvas";
@@ -48,7 +42,6 @@ import jsPDF from 'jspdf';
 export default {
  name: "TranslationActions",
  components: {
-  CopyTranslationText,
   FolderSelectionModal,
   ScreenTranslationCapture
  },

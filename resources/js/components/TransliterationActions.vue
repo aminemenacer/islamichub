@@ -21,11 +21,6 @@
         <i class="bi bi-file-earmark-pdf text-right mr-2 h4" @click="downloadTransliterationPdf" aria-expanded="false" data-bs-placement="top" title="Download PDF" :style="{ cursor: 'pointer' }"></i>
       </div>
 
-      <!-- Copy Translation Text Icon -->
-      <div class="icon-container">
-        <CopyTransliterationText :textToCopy="transliteration" />
-      </div>
-
       <!-- Bug Report Icon -->
       <div class="icon-container">
         <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug h4" aria-expanded="false" data-bs-placement="top"></i>
@@ -42,7 +37,6 @@
 import TransliterationNote from './translation/features/notes/TransliterationNote';
 import WhatsAppShareTransliteration from './translation/features/whatsapp/WhatsAppShareTransliteration.vue';
 import TwitterShareTransliteration from './translation/features/twitter/TwitterShareTransliteration.vue';
-import CopyTransliterationText from './translation/features/copy_text/CopyTransliterationText.vue';
 import ScreenTransliterationCapture from './translation/features/screen_capture/ScreenTransliterationCapture.vue';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
@@ -53,7 +47,6 @@ export default {
     TransliterationNote,
     WhatsAppShareTransliteration,
     TwitterShareTransliteration,
-    CopyTransliterationText,
     ScreenTransliterationCapture
   },
   props: {

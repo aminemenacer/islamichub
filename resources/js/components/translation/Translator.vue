@@ -1,5 +1,5 @@
 <template>
-  <h6 class="text-left mt-3"><strong>Translation:</strong> {{ translator }}</h6>
+  <h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" /><strong>Translation:</strong> {{ translator }}</h6>
 </template>
 
 <script>
