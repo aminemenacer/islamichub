@@ -139,9 +139,7 @@
                 </div>
                 <div class="col"><ScreenTranslationCapture  :targetTranslationRef="'targetTranslationElement'" /></div>
                 <div class="col"><PdfDownload  :targetTranslationRef="'targetTranslationElement'" /></div>
-                <div class="col">
-                  <i class="bi bi-paint-bucket h2" data-bs-toggle="offcanvas" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i>
-                </div>
+                <div class="col"><i class="bi bi-paint-bucket h2" data-bs-toggle="offcanvas" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i></div>
                 <div class="col"><i class="bi bi-arrows-fullscreen h4" @click="toggleFullScreen" title="Full screen"></i></div>
               </div>
             </div>
@@ -157,7 +155,7 @@
             <i class="bi bi-arrow-left-circle h4" @click="goToPreviousAyah()" title="Previous verse"></i>
             <i class="bi bi-arrow-right-circle h4" @click="goToNextAyah()" title="Next verse"></i>
             <i class="bi bi-chevron-bar-right h4" @click="goToLastAyah()" title="End verse"></i>
-            <i class="bi bi-paint-bucket h2" @click="showModal"></i>
+            <div class="col"><i class="bi bi-paint-bucket h2" data-bs-toggle="offcanvas" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i></div>
             <i class="bi bi-arrows-fullscreen h6" @click="toggleFullScreen" title="Full screen"></i>
           </div>
         </div>
@@ -222,15 +220,7 @@
                       :translationToShare="information.translation" 
                     />
                   </div>
-                  <!--
-                  <div class="col">
-                    <TwitterShareTranslation  
-                      :targetElementRef="'targetElement'" 
-                      :translationText="information.translation" 
-                    />
-                  </div>
-                  -->
-                              
+                  
                   <div class="col"><i 
                     @click="submitFormTafseer" 
                     class="bi bi-bookmark text-right mr-2 h4" 
@@ -241,7 +231,7 @@
                   </div>   
                   <div class="col"><ScreenTafseerCapture  :targetTafseerRef="'targetTafseerElement'" /></div>
                   <div class="col"><PdfDownloadTafsser  :targetTafseerRef="'targetTafseerElement'"/></div>
-                  <div class="col"><i class="bi bi-paint-bucket h2"  @click="showModal"></i></div>
+                  <div class="col"><i class="bi bi-paint-bucket h2" data-bs-toggle="offcanvas" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i></div>
                   <div class="col"><i class="bi bi-arrows-fullscreen h4" @click="toggleFullScreen" title="Full screen"></i></div>
 
                 </div>
@@ -257,7 +247,7 @@
            <i class="bi bi-arrow-left-circle h4"  @click="goToPreviousAyah()" title="Previous verse"></i>
            <i class="bi bi-arrow-right-circle h4"  @click="goToNextAyah()" title="Next verse"></i>
            <i class="bi bi-chevron-bar-right h4"  @click="goToLastAyah()" title="End verse"></i>
-           <i class="bi bi-paint-bucket h2"  @click="showModal"></i>
+           <i class="bi bi-paint-bucket h2" data-bs-toggle="offcanvas" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i>
            <i class="bi bi-arrows-fullscreen h6"  @click="toggleFullScreen" title="Full screen"></i>
           </div>
          </div>
@@ -283,7 +273,6 @@
           </div>
         </div>
 
-
         <SurahInfoModal :information="information" />
       </div>
 
@@ -307,7 +296,7 @@
                   <div class="col"><i @click="submitFormTransliteration" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" title="Bookmark verse"></i></div>
                   <div class="col"><ScreenTransliterationCapture  :targetTransliterationRef="'targetTransliterationElement'" /></div>
                   <div class="col"><PdfDownloadTransliteration  :targetTransliterationRef="'targetTransliterationElement'" /></div>
-                  <div class="col"><i class="bi bi-paint-bucket h2"  @click="showModal"></i></div>
+                  <div class="col"><i class="bi bi-paint-bucket h2" data-bs-toggle="offcanvas" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i></div>
                   <div class="col"><i class="bi bi-arrows-fullscreen h4" @click="toggleFullScreen" title="Full screen"></i></div>
                 </div>
               </div>
@@ -322,7 +311,7 @@
              <i class="bi bi-arrow-left-circle h4" @click="goToPreviousAyah()" title="Previous verse"></i>
              <i class="bi bi-arrow-right-circle h4" @click="goToNextAyah()" title="Next verse"></i>
              <i class="bi bi-chevron-bar-right h4" @click="goToLastAyah()" title="End verse"></i>
-             <i class="bi bi-paint-bucket h2" @click="showModal"></i>
+             <i class="bi bi-paint-bucket h2" data-bs-toggle="offcanvas" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i>
              <i class="bi bi-arrows-fullscreen h6" @click="toggleFullScreen" title="Full screen"></i>
             </div>
            </div>
@@ -466,7 +455,7 @@
    </div>
  
   <!-- theme styles -->
-  <div class="offcanvas offcanvas-end " tabindex="-1" id="styleOffcanvas" aria-labelledby="styleOffcanvasLabel" style="width: 40%;">
+  <div class="offcanvas offcanvas-end " tabindex="-1" id="styleOffcanvas" aria-labelledby="styleOffcanvasLabel" >
     <div class="offcanvas-header">
       <h4 class="offcanvas-title" id="styleOffcanvasLabel">Customize Your Layout</h4>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -491,7 +480,7 @@
         <!-- Row: Background Color -->
         <div class="col-md-12 mb-3">
           <label for="bgColor" class="form-label">Background Color:</label>
-          <input type="color" id="bgColor" v-model="bgColor" class="form-control" />
+          <input type="color" id="bgColor" v-model="bgColor" class="form-control color-input" />
         </div>
 
         <!-- Row: Icon Color -->
@@ -1615,6 +1604,15 @@ methods: {
 </script>
 
 <style scoped src="./css/styles.css">
+
+.color-input {
+  width: 50px; /* Adjust the width */
+  height: 50px; /* Adjust the height */
+  border-radius: 8px; /* Make the color picker round or with curved edges */
+  border: 2px solid rgb(235, 8, 8); /* Add a custom border */
+  cursor: pointer; /* Change cursor to pointer */
+}
+
 .custom-first-verse:hover{
   color: #00BFA6;/* Default color */
   transition: color 0.3s ease; /* Smooth transition */
