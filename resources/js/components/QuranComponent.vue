@@ -75,7 +75,6 @@
 
   <div class="col-md-8 card-hide">
   <div class="card content" >
-    <Magnifier />
     <div class="content" >
      <div class="container-fluid content" v-if="information != null">
 

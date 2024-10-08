@@ -3,7 +3,7 @@
   <div class="tab-pane active" id="home" role="tabpanel" v-if="!information">
     <h4 class="text-center"><strong>Welcome to Islamic Connect</strong></h4>
     <p class="text-center ayah-translation" style="line-height: 1.6em;">
-      Islamic Connect is a revolutionary platform committed to making the profound teachings of the Noble Quran accessible to all. It transcends being just a website; it's a Sadaqah Jariyah perpetual charity that enriches individuals and communities for generations to come.
+      Welcome to Islamic Connect, a platform built on the belief that knowledge leads to understanding, and understanding fosters acceptance.
     </p>
   </div>
 </template>

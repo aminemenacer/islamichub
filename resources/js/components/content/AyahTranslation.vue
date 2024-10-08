@@ -4,7 +4,7 @@
     <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
     <div class="container">
       <h5 class="mr-2">
-        <p>{{ information.ayah.surah.name_en }} {{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }}</p>
+        <p>{{ information.ayah.surah.name_en }} {{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }} {{ information.ayah.surah.name_ar }}</p>
       </h5>
     </div>
 
