@@ -4,7 +4,7 @@
  <div>
 
   <div class="container input-group" style="position: relative; width: 100%;">
-   <input type="text" @keyup="debouncedSearch" v-model="searchTerm" placeholder="Search..." class="form-control mr-3 main-search" ref="searchBar" />
+   <input type="text" @keyup="debouncedSearch" v-model="searchTerm" placeholder="How can I help you understand the Quran?" class="form-control mr-3 mobile-only" />
 
    <ul v-if="suggestions.length" class="list-group suggestions" style=" top: 0; left: 0; width: 100%; z-index: 1000; max-height: 600px; overflow-y: auto;">
     <li class="list-group-item text-left list-group-item-success" v-for="(suggestion, index) in suggestions" :key="index" @click="selectSuggestion(suggestion)">
@@ -42,20 +42,20 @@
     </ul>
    </div>
 
-   <!-- Voice input button -->
-   <button class="btn btn-primary" @click="isListening ? stopVoiceRecognition() : startVoiceRecognition()">
-    {{ isListening ? 'Stop' : 'Speak' }}
-   </button>
+    <!-- Voice input button -->
+    <button class="btn btn-primary" @click="isListening ? stopVoiceRecognition() : startVoiceRecognition()">
+      <i class="bi text-white h4" :class="isListening ? 'bi-stop-fill' : 'bi-mic-fill'" aria-hidden="true"></i>
+    </button>
 
-   <button class="btn btn-primary" @click="searchWord">Search</button>
+    <button class="btn btn-primary text-white" @click="searchWord"><i class="bi bi-search h4 text-white"></i></button>
 
   </div>
  </div>
  <!-- show a message when recording starts -->
- <p v-if="isListening">Listening...</p>
+ <b v-if="isListening">Listening...</b>
 
  <!-- Offcanvas for Search Results -->
- <div class="offcanvas offcanvas-end custom-offcanvas" tabindex="-1" id="offcanvasResults" style="width: 60%;">
+ <div class="offcanvas offcanvas-end custom-offcanvas" tabindex="-1" id="offcanvasResults" >
   <div class="offcanvas-header">
    <h5 class="offcanvas-title">Search Results</h5>
    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
@@ -343,6 +343,18 @@ export default {
 </script>
 
 <style scoped>
+
+@media (max-width: 576px) {
+ .mobile-only {
+  display: block;
+  display: flex;
+  width: 100%;
+ }
+ .hide-on-mobile {
+  display: none;
+ }
+}
+
 .search-container {
  position: relative;
 }

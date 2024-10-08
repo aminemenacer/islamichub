@@ -21,7 +21,6 @@
    <i class="bi bi-file-earmark-pdf text-right mr-2 h3" @click="downloadTranslationPdf" aria-expanded="false" data-bs-placement="top" title="Download PDF" :style="{ cursor: 'pointer' }"></i>
   </div>
 
-
   <!-- Bug Report Icon -->
   <div class="icon-container">
    <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug h4" aria-expanded="false" data-bs-placement="top"></i>
@@ -89,7 +88,27 @@ export default {
   }
  },
  methods: {
-
+  submitForm() {
+   const formData = {
+    // folder_id: this.selectedFolderId,
+    surah_name: this.information.ayah.surah.name_en,
+    ayah_num: this.information.ayah_id,
+    ayah_verse_ar: this.information.ayah.ayah_text,
+    ayah_verse_en: this.information.translation,
+    user_id: this.userId,
+   };
+   axios.post('/bookmarks', formData)
+    .then(response => {
+     console.log(response.data.message);
+     localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
+     this.showAlert = true;
+     this.showErrorAlert = false;
+     this.hideAlertAfterDelay();
+     // Display a confirmation message with the bookmarked ayah and folder
+     // this.$refs.bookmarkConfirmation.textContent = 
+     //   `Successfully bookmarked ayah ${this.information.ayah_id} to folder "${this.selectedFolderId}"`;
+    })
+  },
   captureTranslation() {
    const targetTranslationElement = this.$parent.$refs[this.targetTranslationRef];
 

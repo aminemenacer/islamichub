@@ -455,7 +455,7 @@
    </div>
  
   <!-- theme styles -->
-  <div class="offcanvas offcanvas-end " tabindex="-1" id="styleOffcanvas" aria-labelledby="styleOffcanvasLabel" >
+  <div class="offcanvas offcanvas-end " tabindex="-1" id="styleOffcanvas" aria-labelledby="styleOffcanvasLabel">
     <div class="offcanvas-header">
       <h4 class="offcanvas-title" id="styleOffcanvasLabel">Customize Your Layout</h4>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
