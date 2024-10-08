@@ -95,26 +95,28 @@ class SurahController extends Controller
         $query = $request->input('query');
         $filters = $request->input('filters', []);
 
-        $resultsQuery = Information::query();
+        // Build the query for the filtered search
+        $resultsQuery = Information::when(isset($filters['translation']) && $filters['translation'], function ($q) use ($query) {
+            $q->where('translation', 'LIKE', '%' . $query . '%');
+        })
+        ->when(isset($filters['tafseer']) && $filters['tafseer'], function ($q) use ($query) {
+            $q->orWhere('tafseer', 'LIKE', '%' . $query . '%');
+        })
+        ->when(isset($filters['transliteration']) && $filters['transliteration'], function ($q) use ($query) {
+            $q->orWhere('transliteration', 'LIKE', '%' . $query . '%');
+        });
 
-        if (!empty($filters['translation'])) {
-            $resultsQuery->orWhere('translation', 'like', '%' . $query . '%');
-        }
-        if (!empty($filters['tafseer'])) {
-            $resultsQuery->orWhere('tafseer', 'like', '%' . $query . '%');
-        }
-        if (!empty($filters['transliteration'])) {
-            $resultsQuery->orWhere('transliteration', 'like', '%' . $query . '%');
-        }
-
+        // Eager load related ayah and surah
         $results = $resultsQuery->with(['ayah.surah'])->get();
 
+        // Generate suggestions
         $suggestions = $results->flatMap(function($item) use ($query) {
             $words = [];
             $fields = ['translation', 'tafseer', 'transliteration'];
             
             foreach ($fields as $field) {
                 if (isset($item->$field)) {
+                    // Use regex to find words containing the search query
                     preg_match_all('/\b\w*' . preg_quote($query, '/') . '\w*\b/i', $item->$field, $matches);
                     $words = array_merge($words, $matches[0]);
                 }
@@ -123,11 +125,13 @@ class SurahController extends Controller
             return $words;
         })->unique()->values();
 
+        // Return both the results and suggestions as JSON
         return response()->json([
             'results' => $results,
             'suggestions' => $suggestions,
         ]);
     }
+
 
 
 

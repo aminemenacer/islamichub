@@ -7,25 +7,27 @@
   </div>
 
   <!-- Bookmark Icon -->
-  <div class="icon-container"><i @click="submitFormTafseer" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" title="Bookmark verse"></i>
-
-   <!-- Screenshot Icon -->
-   <div class="icon-container">
-    <i class="bi bi-camera text-right mr-2 h3" @click="captureTafseer" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" :style="{ cursor: 'pointer' }"></i>
-   </div>
-
-   <!-- PDF Download Icon -->
-   <div class="icon-container">
-    <i class="bi bi-file-earmark-pdf text-right mr-2 h3" @click="downloadTafseerPdf" aria-expanded="false" data-bs-placement="top" title="Download PDF" :style="{ cursor: 'pointer' }"></i>
-   </div>
-
-   <!-- Bug Report Icon -->
-   <div class="icon-container">
-    <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug h4" aria-expanded="false" data-bs-placement="top"></i>
-   </div>
+  <div class="icon-container">
+   <i @click="submitFormTafseer" class="bi bi-bookmark h4" title="Select Folder to Bookmark"></i>
   </div>
 
+  <!-- Screenshot Icon -->
+  <div class="icon-container">
+   <i class="bi bi-camera text-right mr-2 h3" @click="captureTafseer" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" :style="{ cursor: 'pointer' }"></i>
+  </div>
+
+  <!-- PDF Download Icon -->
+  <div class="icon-container">
+   <i class="bi bi-file-earmark-pdf text-right mr-2 h3" @click="downloadTafseerPdf" aria-expanded="false" data-bs-placement="top" title="Download PDF" :style="{ cursor: 'pointer' }"></i>
+  </div>
+
+  <!-- Bug Report Icon -->
+  <div class="icon-container">
+   <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug h4" aria-expanded="false" data-bs-placement="top"></i>
+  </div>
  </div>
+
+</div>
 </template>
 
 <script>

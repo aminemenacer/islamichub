@@ -43,11 +43,11 @@
    </div>
 
     <!-- Voice input button -->
-    <button class="btn btn-primary" @click="isListening ? stopVoiceRecognition() : startVoiceRecognition()">
+    <button class="btn btn-info" @click="isListening ? stopVoiceRecognition() : startVoiceRecognition()">
       <i class="bi text-white h4" :class="isListening ? 'bi-stop-fill' : 'bi-mic-fill'" aria-hidden="true"></i>
     </button>
 
-    <button class="btn btn-primary text-white" @click="searchWord"><i class="bi bi-search h4 text-white"></i></button>
+    <button class="btn btn-info text-white" @click="searchWord"><i class="bi bi-search h4 text-white"></i></button>
 
   </div>
  </div>
@@ -71,7 +71,7 @@
       <h3 class="text-right">{{ result.ayah.ayah_text }}</h3>
       <div v-if="filters.translation">
        <b>Translation:</b>
-       <p v-html="highlightSearch(result.translation)"></p>
+       <span v-html="highlightSearch(result.translation)"></span>
       </div>
       <div v-if="filters.tafseer">
        <b>Tafseer:</b>
@@ -136,208 +136,230 @@ export default {
   result: Object
  },
  methods: {
-
+  // Trigger suggestions based on input length
   onInput() {
-   if (this.searchTerm.length > 2) {
-    this.fetchSuggestions();
-   } else {
-    this.suggestions = [];
-    this.filteredResults = [];
-   }
-  },
-  fetchSuggestions() {
-   const params = {
-    query: this.searchTerm,
-    filters: this.filters,
-   };
-
-   this.loading = true;
-   axios.get('/search-translations', {
-     params
-    })
-    .then((response) => {
-     this.suggestions = response.data.suggestions;
-     this.filteredResults = response.data.results;
-     this.loading = false;
-     if (this.filteredResults.length > 0) {
-      this.showOffcanvas();
-     }
-    })
-    .catch((error) => {
-     console.error(error);
-     this.suggestions = [];
-     this.filteredResults = [];
-     this.loading = false;
-    });
-  },
-  selectSuggestion(suggestion) {
-   this.searchTerm = suggestion;
-   this.suggestions = [];
-   this.fetchSuggestions();
-  },
-  saveSearch(searchTerm) {
-   if (!this.recentSearches.includes(searchTerm)) {
-    this.recentSearches.unshift(searchTerm); // Add new search term
-    if (this.recentSearches.length > 10) {
-     this.recentSearches.pop(); // Limit to 10 searches
+    if (this.searchTerm.length > 2) {
+      this.fetchSuggestions();
+    } else {
+      this.suggestions = [];
+      this.filteredResults = [];
     }
-    localStorage.setItem('recentSearches', JSON.stringify(this.recentSearches)); // Save in localStorage
-   }
-  },
-  // Selects a search result
-  selectResult(result) {
-   this.searchTerm = result.content; // Update searchTerm with the result content
-   this.filteredResults = []; // Clear search results
-   this.showSuggestions = false; // Hide suggestions
-   this.saveSearch(result.content); // Save the search term
-  },
-  submitSearch() {
-   const query = this.searchTerm.toLowerCase();
-   if (query && !this.recentSearches.includes(query)) {
-    this.recentSearches.push(query);
-    localStorage.setItem('recentSearches', JSON.stringify(this.recentSearches));
-   }
-   this.filterSuggestions();
-  },
-  startVoiceRecognition() {
-   this.isListening = true;
-   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-
-   if (!SpeechRecognition) {
-    alert('Speech Recognition is not supported in this browser. Please use Google Chrome or a compatible browser.');
-    this.isListening = false;
-    return;
-   }
-
-   this.recognition = new SpeechRecognition();
-   this.recognition.lang = 'en-US';
-   this.recognition.continuous = false;
-
-   this.recognition.onresult = (event) => {
-    const transcript = event.results[0][0].transcript;
-    this.searchTerm = transcript;
-    this.isListening = false;
-    this.searchWord();
-   };
-
-   this.recognition.onend = () => {
-    this.isListening = false;
-   };
-
-   this.recognition.onerror = (event) => {
-    console.error('Speech recognition error:', event.error);
-    this.isListening = false;
-   };
-
-   this.recognition.start();
   },
 
-  stopVoiceRecognition() {
-   if (this.recognition) {
-    this.recognition.stop();
-    this.isListening = false;
-   }
-  },
-  fetchResults(term) {
-   // Mocking a search operation
-   return new Promise((resolve) => {
-    setTimeout(() => {
-     // Replace with actual data fetching logic
-     const results = this.mockData.filter(result =>
-      result.ayah.ayah_text.toLowerCase().includes(term.toLowerCase())
-     );
-     resolve(results);
-    }, 1000);
-   });
-  },
+  // Fetch suggestions based on the search term
+  fetchSuggestions() {
+    const params = {
+      query: this.searchTerm,
+      filters: this.filters,
+    };
 
-  highlightSearch(text) {
-   const searchTerm = this.searchTerm.toLowerCase();
-   const regex = new RegExp(`(${searchTerm})`, 'gi');
-   return text.replace(regex, '<strong>$1</strong>');
-  },
-  downloadPDF(result) {
-   const element = document.getElementById(`result-${result.id}`);
-
-   // Ensure the text is visible before capturing
-   element.style.color = 'black'; // Set text color to black for visibility
-
-   html2canvas(element).then((canvas) => {
-    const imgData = canvas.toDataURL('image/png');
-    const pdf = new jsPDF({
-     orientation: 'portrait',
-     unit: 'mm',
-     format: 'a4',
-    });
-    const fileName = `Surah_${result.ayah.surah_id}_Ayah_${result.ayah.ayah_id}.pdf`;
-
-    pdf.addImage(imgData, 'PNG', 10, 10, 190, 0); // Adjust the dimensions as needed
-    // Save the PDF with a dynamic name
-    pdf.save(fileName);
-
-    // Reset text color back to original after capture
-    element.style.color = ''; // Reset to original or any preferred color
-   }).catch((error) => {
-    console.error('Error capturing the element:', error);
-   });
-  },
-  copyText(result) {
-   // Logic to copy the text from the result
-   const textToCopy = `${result.ayah.surah_id}:${result.ayah.ayah_id} - ${result.ayah.ayah_text}\n${result.translation}`;
-   navigator.clipboard.writeText(textToCopy);
-   alert('Text copied to clipboard');
-  },
-  shareViaWhatsapp(result) {
-   const surahInfo = `${result.ayah.surah_id}:${result.ayah.ayah_id}`;
-   const ayahText = `Ayah: ${result.ayah.ayah_text}`;
-   const ayahTranslation = `Ayah Translation: ${result.ayah.ayah_text}`;
-   const note = `Note: ${result.translation}`;
-
-   const message = `${surahInfo}\n${ayahText}\n${ayahTranslation}\n${note}`;
-   const encodedMessage = encodeURIComponent(message); // Encode special characters
-   const whatsappUrl = `https://wa.me/?text=${encodedMessage}`;
-   window.open(whatsappUrl, '_blank');
-  },
-  searchWord() {
-   this.loading = true; // Set loading state to true before fetching data
-   if (this.searchTerm.length > 0) {
+    this.loading = true;
     axios
-     .get("/search-translations", {
-      params: {
-       query: this.searchTerm,
-       filters: this.filters
+      .get('/search-translations', { params })
+      .then((response) => {
+        this.suggestions = response.data.suggestions || []; // Fallback to empty array
+        this.filteredResults = response.data.results || []; // Fallback to empty array
+        this.loading = false;
+
+        if (this.filteredResults.length > 0) {
+          this.showOffcanvas();
+        }
+      })
+      .catch((error) => {
+        console.error('Error fetching suggestions:', error);
+        this.suggestions = [];
+        this.filteredResults = [];
+      })
+      .finally(() => {
+        this.loading = false;
+      });
+  },
+
+  // Select a suggestion and fetch its results
+  selectSuggestion(suggestion) {
+    this.searchTerm = suggestion;
+    this.suggestions = [];
+    this.fetchSuggestions(); // Fetch results based on selected suggestion
+  },
+
+  // Save the recent search term in local storage
+  saveSearch(searchTerm) {
+    if (!this.recentSearches.includes(searchTerm)) {
+      this.recentSearches.unshift(searchTerm); // Add new search term
+      if (this.recentSearches.length > 10) {
+        this.recentSearches.pop(); // Limit to 10 searches
       }
-     })
-     .then(response => {
-      this.filteredResults = response.data;
-      this.showOffcanvas(); // Show search results (you can replace this with showing search results within a dropdown)
-     })
-     .catch(error => {
-      console.error("Error fetching search results:", error);
-     })
-     .finally(() => {
-      this.loading = false; // Reset loading state
-     });
-   } else {
-    this.filteredResults = [];
-    this.loading = false; // Reset loading state if searchTerm is empty
-   }
+      localStorage.setItem('recentSearches', JSON.stringify(this.recentSearches)); // Save in localStorage
+    }
   },
 
+  // Select a search result
+  selectResult(result) {
+    this.searchTerm = result.content; // Update searchTerm with the result content
+    this.filteredResults = []; // Clear search results
+    this.suggestions = []; // Clear suggestions
+    this.saveSearch(result.content); // Save the search term
+  },
+
+  // Submit search and save term if not already present
+  submitSearch() {
+    const query = this.searchTerm.toLowerCase();
+    if (query && !this.recentSearches.includes(query)) {
+      this.recentSearches.push(query);
+      localStorage.setItem('recentSearches', JSON.stringify(this.recentSearches));
+    }
+    this.filterSuggestions(); // Trigger suggestions based on updated searchTerm
+  },
+
+  // Start voice recognition
+  startVoiceRecognition() {
+    this.isListening = true;
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    if (!SpeechRecognition) {
+      alert('Speech Recognition is not supported in this browser. Please use Google Chrome or a compatible browser.');
+      this.isListening = false;
+      return;
+    }
+
+    this.recognition = new SpeechRecognition();
+    this.recognition.lang = 'en-US';
+    this.recognition.continuous = false;
+
+    this.recognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript;
+      this.searchTerm = transcript;
+      this.isListening = false;
+      this.fetchSuggestions(); // Fetch suggestions immediately after speech input
+    };
+
+    this.recognition.onend = () => {
+      this.isListening = false;
+    };
+
+    this.recognition.onerror = (event) => {
+      console.error('Speech recognition error:', event.error);
+      this.isListening = false;
+    };
+
+    this.recognition.start();
+  },
+
+  // Stop voice recognition
+  stopVoiceRecognition() {
+    if (this.recognition) {
+      this.recognition.stop();
+      this.isListening = false;
+    }
+  },
+
+  // Fetch results based on search term (mock implementation)
+  fetchResults(term) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        const results = this.mockData.filter(result =>
+          result.ayah.ayah_text.toLowerCase().includes(term.toLowerCase())
+        );
+        resolve(results);
+      }, 1000);
+    });
+  },
+
+  // Highlight the search term in the text
   highlightSearch(text) {
-   const query = this.searchTerm;
-   const regex = new RegExp(`(${query})`, 'gi');
-   return text.replace(regex, '<span class="highlight">$1</span>');
-  },
-  showOffcanvas() {
-   const offcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasResults'));
-   offcanvas.show();
-  },
-  debouncedSearch: _.debounce(function () {
-   this.fetchSuggestions();
-  }, 300)
+    const searchTerm = this.searchTerm.trim();
+    if (!searchTerm) return text;
 
- },
+    const regex = new RegExp(`(${searchTerm})`, 'gi');
+    return text.replace(regex, '<strong style="background-color: #3EB489;">$1</strong>');
+  },
+
+  // Download a PDF of the result
+  downloadPDF(result) {
+    const element = document.getElementById(`result-${result.id}`);
+    element.style.color = 'black'; // Ensure visibility
+
+    html2canvas(element).then((canvas) => {
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF({
+        orientation: 'portrait',
+        unit: 'mm',
+        format: 'a4',
+      });
+      const fileName = `Surah_${result.ayah.surah_id}_Ayah_${result.ayah.ayah_id}.pdf`;
+
+      pdf.addImage(imgData, 'PNG', 10, 10, 190, 0); // Adjust the dimensions as needed
+      pdf.save(fileName);
+      element.style.color = ''; // Reset to original or preferred color
+    }).catch((error) => {
+      console.error('Error capturing the element:', error);
+    });
+  },
+
+  // Copy text to clipboard
+  copyText(result) {
+    const textToCopy = `${result.ayah.surah_id}:${result.ayah.ayah_id} - ${result.ayah.ayah_text}\n${result.translation}`;
+    navigator.clipboard.writeText(textToCopy)
+      .then(() => {
+        alert('Text copied to clipboard');
+      })
+      .catch((error) => {
+        console.error('Error copying text:', error);
+      });
+  },
+
+  // Share via WhatsApp
+  shareViaWhatsapp(result) {
+    const surahInfo = `${result.ayah.surah_id}:${result.ayah.ayah_id}`;
+    const ayahText = `Ayah: ${result.ayah.ayah_text}`;
+    const ayahTranslation = `Ayah Translation: ${result.translation}`;
+    const note = `Note: ${result.translation}`;
+
+    const message = `${surahInfo}\n${ayahText}\n${ayahTranslation}\n${note}`;
+    const encodedMessage = encodeURIComponent(message); // Encode special characters
+    const whatsappUrl = `https://wa.me/?text=${encodedMessage}`;
+    window.open(whatsappUrl, '_blank');
+  },
+
+  // Search for translations
+  searchWord() {
+    this.loading = true; // Set loading state to true before fetching data
+    if (this.searchTerm.length > 0) {
+      axios
+        .get("/search-translations", {
+          params: {
+            query: this.searchTerm,
+            filters: this.filters
+          }
+        })
+        .then(response => {
+          this.filteredResults = response.data || []; // Ensure valid data
+          this.showOffcanvas(); // Show search results
+        })
+        .catch(error => {
+          console.error("Error fetching search results:", error);
+        })
+        .finally(() => {
+          this.loading = false; // Reset loading state
+        });
+    } else {
+      this.filteredResults = [];
+      this.loading = false; // Reset loading state if searchTerm is empty
+    }
+  },
+
+  // Show the offcanvas component for results
+  showOffcanvas() {
+    const offcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasResults'));
+    offcanvas.show();
+  },
+
+  // Debounced search to limit the number of fetch calls
+  debouncedSearch: _.debounce(function () {
+    this.fetchSuggestions();
+  }, 300)
+}
+
 
 };
 </script>
@@ -375,7 +397,7 @@ export default {
 }
 
 .highlight {
- background-color: yellow;
+ background-color: #3EB489;
  font-weight: bold;
 }
 
