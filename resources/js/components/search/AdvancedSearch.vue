@@ -43,12 +43,12 @@
    </div>
 
     <!-- Voice input button -->
-    <button class="btn btn-info" @click="isListening ? stopVoiceRecognition() : startVoiceRecognition()">
-      <i class="bi text-white h4" :class="isListening ? 'bi-stop-fill' : 'bi-mic-fill'" aria-hidden="true"></i>
+    <button class="btn btn-success" @click="isListening ? stopVoiceRecognition() : startVoiceRecognition()">
+      <i class="bi text-white " :class="isListening ? 'bi-stop-fill' : 'bi-mic-fill'" aria-hidden="true"></i>
     </button>
-
+    <!--
     <button class="btn btn-info text-white" @click="searchWord"><i class="bi bi-search h4 text-white"></i></button>
-
+    -->
   </div>
  </div>
  <!-- show a message when recording starts -->
@@ -70,15 +70,15 @@
       </div>
       <h3 class="text-right">{{ result.ayah.ayah_text }}</h3>
       <div v-if="filters.translation">
-       <b>Translation:</b>
+       <b>Translation: </b>
        <span v-html="highlightSearch(result.translation)"></span>
       </div>
       <div v-if="filters.tafseer">
-       <b>Tafseer:</b>
+       <b>Tafseer: </b>
        <p v-html="highlightSearch(result.tafseer)"></p>
       </div>
       <div v-if="filters.transliteration">
-       <b>Transliteration:</b>
+       <b>Transliteration: </b>
        <p v-html="highlightSearch(result.transliteration)"></p>
       </div>
      </div>
@@ -161,9 +161,7 @@ export default {
         this.filteredResults = response.data.results || []; // Fallback to empty array
         this.loading = false;
 
-        if (this.filteredResults.length > 0) {
-          this.showOffcanvas();
-        }
+        
       })
       .catch((error) => {
         console.error('Error fetching suggestions:', error);
@@ -179,20 +177,11 @@ export default {
   selectSuggestion(suggestion) {
     this.searchTerm = suggestion;
     this.suggestions = [];
-    this.fetchSuggestions(); // Fetch results based on selected suggestion
+    this.fetchResults(suggestion); // Fetch results based on selected suggestion
+    this.showOffcanvas();
   },
 
-  // Save the recent search term in local storage
-  saveSearch(searchTerm) {
-    if (!this.recentSearches.includes(searchTerm)) {
-      this.recentSearches.unshift(searchTerm); // Add new search term
-      if (this.recentSearches.length > 10) {
-        this.recentSearches.pop(); // Limit to 10 searches
-      }
-      localStorage.setItem('recentSearches', JSON.stringify(this.recentSearches)); // Save in localStorage
-    }
-  },
-
+  
   // Select a search result
   selectResult(result) {
     this.searchTerm = result.content; // Update searchTerm with the result content
@@ -254,16 +243,23 @@ export default {
   },
 
   // Fetch results based on search term (mock implementation)
-  fetchResults(term) {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        const results = this.mockData.filter(result =>
-          result.ayah.ayah_text.toLowerCase().includes(term.toLowerCase())
-        );
-        resolve(results);
-      }, 1000);
-    });
+  fetchResults(suggestion) {
+    const params = {
+      query: suggestion,
+      filters: this.filters,
+    };
+
+    axios.get('/search-translations', { params })
+      .then((response) => {
+        this.filteredResults = response.data.results || [];
+        console.log('Filtered results:', this.filteredResults); // Log filtered results for debugging
+      })
+      .catch((error) => {
+        console.error('Error fetching results:', error);
+        this.filteredResults = [];
+      });
   },
+
 
   // Highlight the search term in the text
   highlightSearch(text) {
@@ -273,6 +269,7 @@ export default {
     const regex = new RegExp(`(${searchTerm})`, 'gi');
     return text.replace(regex, '<strong style="background-color: #3EB489;">$1</strong>');
   },
+
 
   // Download a PDF of the result
   downloadPDF(result) {
