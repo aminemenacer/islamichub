@@ -6,8 +6,21 @@
   <div class="container input-group" style="position: relative; width: 100%;">
    <input type="text" @keyup="debouncedSearch" v-model="searchTerm" placeholder="How can I help you understand the Quran?" class="form-control mr-3 mobile-only" />
 
-   <ul v-if="suggestions.length" class="list-group suggestions" style=" top: 0; left: 0; width: 100%; z-index: 1000; max-height: 600px; overflow-y: auto;">
-    <li class="list-group-item text-left list-group-item-success" v-for="(suggestion, index) in suggestions" :key="index" @click="selectSuggestion(suggestion)">
+   <ul v-if="suggestions.length" class="list-group suggestions" style="
+      position: absolute; 
+      top: 100%; 
+      left: 0; 
+      width: 95%; 
+      z-index: 1000; 
+      max-height: 600px; 
+      overflow-y: auto;
+      border-top-left-radius: 0; /* To align with the input */
+      border-top-right-radius: 0; /* To align with the input */
+      border-bottom-left-radius: 4px; /* Same as input */
+      border-bottom-right-radius: 4px; /* Same as input */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    ">
+    <li class="list-group-item text-left list-group-item-success" v-for="(suggestion, index) in suggestions" :key="index" @click="selectSuggestion(suggestion)" style="cursor: pointer;">
      {{ suggestion }}
     </li>
    </ul>
@@ -42,11 +55,11 @@
     </ul>
    </div>
 
-    <!-- Voice input button -->
-    <button class="btn btn-success" @click="isListening ? stopVoiceRecognition() : startVoiceRecognition()">
-      <i class="bi text-white " :class="isListening ? 'bi-stop-fill' : 'bi-mic-fill'" aria-hidden="true"></i>
-    </button>
-    <!--
+   <!-- Voice input button -->
+   <button class="btn btn-success" @click="isListening ? stopVoiceRecognition() : startVoiceRecognition()">
+    <i class="bi text-white " :class="isListening ? 'bi-stop-fill' : 'bi-mic-fill'" aria-hidden="true"></i>
+   </button>
+   <!--
     <button class="btn btn-info text-white" @click="searchWord"><i class="bi bi-search h4 text-white"></i></button>
     -->
   </div>
@@ -55,7 +68,7 @@
  <b v-if="isListening">Listening...</b>
 
  <!-- Offcanvas for Search Results -->
- <div class="offcanvas offcanvas-end custom-offcanvas" tabindex="-1" id="offcanvasResults" >
+ <div class="offcanvas offcanvas-end custom-offcanvas" tabindex="-1" id="offcanvasResults">
   <div class="offcanvas-header">
    <h5 class="offcanvas-title">Search Results</h5>
    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
@@ -138,259 +151,264 @@ export default {
  methods: {
   // Trigger suggestions based on input length
   onInput() {
-    if (this.searchTerm.length > 2) {
-      this.fetchSuggestions();
-    } else {
-      this.suggestions = [];
-      this.filteredResults = [];
-    }
+   if (this.searchTerm.length > 2) {
+    this.fetchSuggestions();
+   } else {
+    this.suggestions = [];
+    this.filteredResults = [];
+   }
   },
 
   // Fetch suggestions based on the search term
   fetchSuggestions() {
-    const params = {
-      query: this.searchTerm,
-      filters: this.filters,
-    };
+   const params = {
+    query: this.searchTerm,
+    filters: this.filters,
+   };
 
-    this.loading = true;
-    axios
-      .get('/search-translations', { params })
-      .then((response) => {
-        this.suggestions = response.data.suggestions || []; // Fallback to empty array
-        this.filteredResults = response.data.results || []; // Fallback to empty array
-        this.loading = false;
+   this.loading = true;
+   axios
+    .get('/search-translations', {
+     params
+    })
+    .then((response) => {
+     this.suggestions = response.data.suggestions || []; // Fallback to empty array
+     this.filteredResults = response.data.results || []; // Fallback to empty array
+     this.loading = false;
 
-        
-      })
-      .catch((error) => {
-        console.error('Error fetching suggestions:', error);
-        this.suggestions = [];
-        this.filteredResults = [];
-      })
-      .finally(() => {
-        this.loading = false;
-      });
+    })
+    .catch((error) => {
+     console.error('Error fetching suggestions:', error);
+     this.suggestions = [];
+     this.filteredResults = [];
+    })
+    .finally(() => {
+     this.loading = false;
+    });
   },
 
   // Select a suggestion and fetch its results
   selectSuggestion(suggestion) {
-    this.searchTerm = suggestion;
-    this.suggestions = [];
-    this.fetchResults(suggestion); // Fetch results based on selected suggestion
-    this.showOffcanvas();
+   this.searchTerm = suggestion;
+   this.suggestions = [];
+   this.fetchResults(suggestion); // Fetch results based on selected suggestion
+   this.showOffcanvas();
   },
 
-  
   // Select a search result
   selectResult(result) {
-    this.searchTerm = result.content; // Update searchTerm with the result content
-    this.filteredResults = []; // Clear search results
-    this.suggestions = []; // Clear suggestions
-    this.saveSearch(result.content); // Save the search term
+   this.searchTerm = result.content; // Update searchTerm with the result content
+   this.filteredResults = []; // Clear search results
+   this.suggestions = []; // Clear suggestions
+   this.saveSearch(result.content); // Save the search term
   },
 
   // Submit search and save term if not already present
   submitSearch() {
-    const query = this.searchTerm.toLowerCase();
-    if (query && !this.recentSearches.includes(query)) {
-      this.recentSearches.push(query);
-      localStorage.setItem('recentSearches', JSON.stringify(this.recentSearches));
-    }
-    this.filterSuggestions(); // Trigger suggestions based on updated searchTerm
+   const query = this.searchTerm.toLowerCase();
+   if (query && !this.recentSearches.includes(query)) {
+    this.recentSearches.push(query);
+    localStorage.setItem('recentSearches', JSON.stringify(this.recentSearches));
+   }
+   this.filterSuggestions(); // Trigger suggestions based on updated searchTerm
   },
 
   // Start voice recognition
   startVoiceRecognition() {
-    this.isListening = true;
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+   this.isListening = true;
+   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-    if (!SpeechRecognition) {
-      alert('Speech Recognition is not supported in this browser. Please use Google Chrome or a compatible browser.');
-      this.isListening = false;
-      return;
-    }
+   if (!SpeechRecognition) {
+    alert('Speech Recognition is not supported in this browser. Please use Google Chrome or a compatible browser.');
+    this.isListening = false;
+    return;
+   }
 
-    this.recognition = new SpeechRecognition();
-    this.recognition.lang = 'en-US';
-    this.recognition.continuous = false;
+   this.recognition = new SpeechRecognition();
+   this.recognition.lang = 'en-US';
+   this.recognition.continuous = false;
 
-    this.recognition.onresult = (event) => {
-      const transcript = event.results[0][0].transcript;
-      this.searchTerm = transcript;
-      this.isListening = false;
-      this.fetchSuggestions(); // Fetch suggestions immediately after speech input
-    };
+   this.recognition.onresult = (event) => {
+    const transcript = event.results[0][0].transcript;
+    this.searchTerm = transcript;
+    this.isListening = false;
+    this.fetchSuggestions(); // Fetch suggestions immediately after speech input
+   };
 
-    this.recognition.onend = () => {
-      this.isListening = false;
-    };
+   this.recognition.onend = () => {
+    this.isListening = false;
+   };
 
-    this.recognition.onerror = (event) => {
-      console.error('Speech recognition error:', event.error);
-      this.isListening = false;
-    };
+   this.recognition.onerror = (event) => {
+    console.error('Speech recognition error:', event.error);
+    this.isListening = false;
+   };
 
-    this.recognition.start();
+   this.recognition.start();
   },
 
   // Stop voice recognition
   stopVoiceRecognition() {
-    if (this.recognition) {
-      this.recognition.stop();
-      this.isListening = false;
-    }
+   if (this.recognition) {
+    this.recognition.stop();
+    this.isListening = false;
+   }
   },
 
   // Fetch results based on search term (mock implementation)
   fetchResults(suggestion) {
-    const params = {
-      query: suggestion,
-      filters: this.filters,
-    };
+   const params = {
+    query: suggestion,
+    filters: this.filters,
+   };
 
-    axios.get('/search-translations', { params })
-      .then((response) => {
-        this.filteredResults = response.data.results || [];
-        console.log('Filtered results:', this.filteredResults); // Log filtered results for debugging
-      })
-      .catch((error) => {
-        console.error('Error fetching results:', error);
-        this.filteredResults = [];
-      });
+   axios.get('/search-translations', {
+     params
+    })
+    .then((response) => {
+     this.filteredResults = response.data.results || [];
+     console.log('Filtered results:', this.filteredResults); // Log filtered results for debugging
+    })
+    .catch((error) => {
+     console.error('Error fetching results:', error);
+     this.filteredResults = [];
+    });
   },
-
 
   // Highlight the search term in the text
   highlightSearch(text) {
-    const searchTerm = this.searchTerm.trim();
-    if (!searchTerm) return text;
+   const searchTerm = this.searchTerm.trim();
+   if (!searchTerm) return text;
 
-    const regex = new RegExp(`(${searchTerm})`, 'gi');
-    return text.replace(regex, '<strong style="background-color: #3EB489;">$1</strong>');
+   const regex = new RegExp(`(${searchTerm})`, 'gi');
+   return text.replace(regex, '<strong style="background-color: #3EB489;">$1</strong>');
   },
-
 
   // Download a PDF of the result
   downloadPDF(result) {
-    const element = document.getElementById(`result-${result.id}`);
-    element.style.color = 'black'; // Ensure visibility
+   const element = document.getElementById(`result-${result.id}`);
+   element.style.color = 'black'; // Ensure visibility
 
-    html2canvas(element).then((canvas) => {
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF({
-        orientation: 'portrait',
-        unit: 'mm',
-        format: 'a4',
-      });
-      const fileName = `Surah_${result.ayah.surah_id}_Ayah_${result.ayah.ayah_id}.pdf`;
-
-      pdf.addImage(imgData, 'PNG', 10, 10, 190, 0); // Adjust the dimensions as needed
-      pdf.save(fileName);
-      element.style.color = ''; // Reset to original or preferred color
-    }).catch((error) => {
-      console.error('Error capturing the element:', error);
+   html2canvas(element).then((canvas) => {
+    const imgData = canvas.toDataURL('image/png');
+    const pdf = new jsPDF({
+     orientation: 'portrait',
+     unit: 'mm',
+     format: 'a4',
     });
+    const fileName = `Surah_${result.ayah.surah_id}_Ayah_${result.ayah.ayah_id}.pdf`;
+
+    pdf.addImage(imgData, 'PNG', 10, 10, 190, 0); // Adjust the dimensions as needed
+    pdf.save(fileName);
+    element.style.color = ''; // Reset to original or preferred color
+   }).catch((error) => {
+    console.error('Error capturing the element:', error);
+   });
   },
 
   // Copy text to clipboard
   copyText(result) {
-    const textToCopy = `${result.ayah.surah_id}:${result.ayah.ayah_id} - ${result.ayah.ayah_text}\n${result.translation}`;
-    navigator.clipboard.writeText(textToCopy)
-      .then(() => {
-        alert('Text copied to clipboard');
-      })
-      .catch((error) => {
-        console.error('Error copying text:', error);
-      });
+   const textToCopy = `${result.ayah.surah_id}:${result.ayah.ayah_id} - ${result.ayah.ayah_text}\n${result.translation}`;
+   navigator.clipboard.writeText(textToCopy)
+    .then(() => {
+     alert('Text copied to clipboard');
+    })
+    .catch((error) => {
+     console.error('Error copying text:', error);
+    });
   },
 
   // Share via WhatsApp
   shareViaWhatsapp(result) {
-    const surahInfo = `${result.ayah.surah_id}:${result.ayah.ayah_id}`;
-    const ayahText = `Ayah: ${result.ayah.ayah_text}`;
-    const ayahTranslation = `Ayah Translation: ${result.translation}`;
-    const note = `Note: ${result.translation}`;
+   const surahInfo = `${result.ayah.surah_id}:${result.ayah.ayah_id}`;
+   const ayahText = `Ayah: ${result.ayah.ayah_text}`;
+   const ayahTranslation = `Ayah Translation: ${result.translation}`;
+   const note = `Note: ${result.translation}`;
 
-    const message = `${surahInfo}\n${ayahText}\n${ayahTranslation}\n${note}`;
-    const encodedMessage = encodeURIComponent(message); // Encode special characters
-    const whatsappUrl = `https://wa.me/?text=${encodedMessage}`;
-    window.open(whatsappUrl, '_blank');
+   const message = `${surahInfo}\n${ayahText}\n${ayahTranslation}\n${note}`;
+   const encodedMessage = encodeURIComponent(message); // Encode special characters
+   const whatsappUrl = `https://wa.me/?text=${encodedMessage}`;
+   window.open(whatsappUrl, '_blank');
   },
 
   // Search for translations
   searchWord() {
-    this.loading = true; // Set loading state to true before fetching data
-    if (this.searchTerm.length > 0) {
-      axios
-        .get("/search-translations", {
-          params: {
-            query: this.searchTerm,
-            filters: this.filters
-          }
-        })
-        .then(response => {
-          this.filteredResults = response.data || []; // Ensure valid data
-          this.showOffcanvas(); // Show search results
-        })
-        .catch(error => {
-          console.error("Error fetching search results:", error);
-        })
-        .finally(() => {
-          this.loading = false; // Reset loading state
-        });
-    } else {
-      this.filteredResults = [];
-      this.loading = false; // Reset loading state if searchTerm is empty
-    }
+   this.loading = true; // Set loading state to true before fetching data
+   if (this.searchTerm.length > 0) {
+    axios
+     .get("/search-translations", {
+      params: {
+       query: this.searchTerm,
+       filters: this.filters
+      }
+     })
+     .then(response => {
+      this.filteredResults = response.data || []; // Ensure valid data
+      this.showOffcanvas(); // Show search results
+     })
+     .catch(error => {
+      console.error("Error fetching search results:", error);
+     })
+     .finally(() => {
+      this.loading = false; // Reset loading state
+     });
+   } else {
+    this.filteredResults = [];
+    this.loading = false; // Reset loading state if searchTerm is empty
+   }
   },
 
   // Show the offcanvas component for results
   showOffcanvas() {
-    const offcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasResults'));
-    offcanvas.show();
+   const offcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasResults'));
+   offcanvas.show();
   },
 
   // Debounced search to limit the number of fetch calls
   debouncedSearch: _.debounce(function () {
-    this.fetchSuggestions();
+   this.fetchSuggestions();
   }, 300)
-}
-
+ }
 
 };
 </script>
 
 <style scoped>
-
 @media (max-width: 576px) {
  .mobile-only {
   display: block;
   display: flex;
   width: 100%;
  }
+
  .hide-on-mobile {
   display: none;
  }
 }
 
 .search-container {
- position: relative;
+  position: relative;
+  width: 100%;
+}
+
+.search-input {
+  width: 100%;
+  border-radius: 4px;
 }
 
 .suggestions {
- position: relative;
- background: white;
- border: 1px solid #ccc;
- border-radius: 4px;
- margin-top: 5px;
- width: 100%;
- max-height: 150px;
- /* Limit dropdown height */
- overflow-y: auto;
- /* Enable scrolling */
- z-index: 10;
- /* Ensure dropdown appears above other content */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 80%;
+  z-index: 1000;
+  max-height: 600px;
+  overflow-y: auto;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .highlight {
