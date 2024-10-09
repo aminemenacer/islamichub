@@ -59,7 +59,7 @@
                             <h6><a style="color: black;" class="nav-link ml-3 pl-3" href="/about"><b>About Us</b></a></h6>
                         </li>
                         <li class="nav-item mt-3">
-                            <h6><a style="color: black;" class="nav-link ml-3 pl-3" href="/join_us"><b>Our Mission</b></a></h6>
+                            <h6><a style="color: black;" class="nav-link ml-3 pl-3" href="/mission"><b>Our Mission</b></a></h6>
                         </li>
                         <li class="nav-item mt-3">
                             <h6><a style="color: black;" class="nav-link ml-3 pl-3" href="/faq"><b>FAQ's</b></a></h6>

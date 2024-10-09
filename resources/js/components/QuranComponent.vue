@@ -455,12 +455,12 @@
    </div>
  
   <!-- theme styles -->
-  <div class="offcanvas offcanvas-end " tabindex="-1" id="styleOffcanvas" aria-labelledby="styleOffcanvasLabel">
+  <div class="offcanvas offcanvas-end custom-offcanvas" tabindex="-1" id="styleOffcanvas" aria-labelledby="styleOffcanvasLabel">
     <div class="offcanvas-header">
-      <h4 class="offcanvas-title" id="styleOffcanvasLabel">Customize Your Layout</h4>
+      <h4 class="offcanvas-title" style="color:white" id="styleOffcanvasLabel">Customize Your Layout</h4>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
-   <div class="offcanvas-body ">
+   <div class="offcanvas-body" style="color:white">
     <form>
       <div class="row">
         
@@ -1605,18 +1605,7 @@ methods: {
 
 <style scoped src="./css/styles.css">
 
-.color-input {
-  width: 50px; /* Adjust the width */
-  height: 50px; /* Adjust the height */
-  border-radius: 8px; /* Make the color picker round or with curved edges */
-  border: 2px solid rgb(235, 8, 8); /* Add a custom border */
-  cursor: pointer; /* Change cursor to pointer */
-}
 
-.custom-first-verse:hover{
-  color: #00BFA6;/* Default color */
-  transition: color 0.3s ease; /* Smooth transition */
-}
 
 .custom-prev-ayah:hover{
   color: black;/* Default color */

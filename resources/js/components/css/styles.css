@@ -25,7 +25,8 @@
 }
 
 .custom-offcanvas {
-  background-color: #21ddc7;
+  background-color: #10584f;
+  color: white;
   color: rgb(0, 0, 0);
  }
  
@@ -137,6 +138,13 @@
  .icon-row i {
   flex: 1;
   text-align: center;
+ }
+
+ .custom-offcanvas {
+  background-color: #10584f;
+  color: white;
+  color: rgb(0, 0, 0);
+  width: 70%;
  }
 
 }

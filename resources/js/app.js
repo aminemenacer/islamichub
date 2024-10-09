@@ -53,6 +53,7 @@ import NotesComponent from "./components/admin_panels/NotesComponent.vue";
 import CollectionComponent from "./components/admin_panels/CollectionComponent.vue";
 import FaqComponent from "./components/FaqComponent.vue";
 import GroupNotesComponent from "./components/admin_panels/GroupNotesComponent.vue";
+import MissionComponent from "./components/MissionComponent.vue";
 
 import CustomSurahSelection from "./components/surah_selection/CustomSurahSelection.vue";
 import Donation from "./components/intro/Donation.vue";
@@ -110,6 +111,7 @@ app.component("updates-component", UpdatesComponent);
 app.component("join_us-component", JoinUsComponent);
 app.component("notes-component", NotesComponent);
 app.component("group-notes-component", GroupNotesComponent);
+app.component("mission-component", MissionComponent);
 
 app.component("search-component", CustomSurahSelection);
 app.component("surah-list-component", SurahList);

@@ -30,6 +30,7 @@ use App\Http\Controllers\FaqController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\SupportController;
+use App\Http\Controllers\MissionController;
 
 // Auth routes
 Auth::routes();
@@ -265,3 +266,5 @@ Route::get('/faq', [FaqController::class, 'index'])->name('faq');
 Route::get('/join_us', [JoinUsController::class, 'index'])->name('join_us');
 // support
 Route::get('/support', [SupportController::class, 'index'])->name('support');
+// mission
+Route::get('/mission', [MissionController::class, 'index'])->name('mission');
