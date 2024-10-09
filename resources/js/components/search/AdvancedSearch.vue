@@ -6,32 +6,22 @@
   <div class="container input-group" style="position: relative; width: 100%;">
    <input type="text" @keyup="debouncedSearch" v-model="searchTerm" placeholder="How can I help you understand the Quran?" class="form-control mr-3 mobile-only" />
 
-   <ul v-if="suggestions.length" class="list-group suggestions" style="
-      position: absolute; 
-      top: 100%; 
-      left: 0; 
-      width: 95%; 
-      z-index: 1000; 
-      max-height: 600px; 
-      overflow-y: auto;
-      border-top-left-radius: 0; /* To align with the input */
-      border-top-right-radius: 0; /* To align with the input */
-      border-bottom-left-radius: 4px; /* Same as input */
-      border-bottom-right-radius: 4px; /* Same as input */
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    ">
-    <li class="list-group-item text-left list-group-item-success" v-for="(suggestion, index) in suggestions" :key="index" @click="selectSuggestion(suggestion)" style="cursor: pointer;">
+   <!-- Suggestions Dropdown -->
+   <ul v-if="suggestions.length" class="list-group suggestions" style="position: absolute; top: 100%; left: 0; width: 95%; z-index: 1000; max-height: 600px; overflow-y: auto;">
+    <li class="list-group-item text-left list-group-item-success" v-for="(suggestion, index) in suggestions" :key="index" @click="selectSuggestion(suggestion)">
      {{ suggestion }}
     </li>
    </ul>
+   
 
+   <!-- Dropdown for Filter Selection -->
    <div class="dropdown">
     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
     <ul class="dropdown-menu">
      <li>
       <a class="dropdown-item" href="#">
        <div class="form-check form-check-inline">
-        <input class="form-check-input mt-1" type="checkbox" v-model="filters.translation" id="translationCheckbox" />
+        <input class="form-check-input mt-1" type="checkbox" v-model="filters.translation" id="translationCheckbox" @change="updateSuggestions" />
         <p class="form-check-label" for="translationCheckbox">Translation</p>
        </div>
       </a>
@@ -39,21 +29,23 @@
      <li>
       <a class="dropdown-item" href="#">
        <div class="form-check form-check-inline">
-        <input class="form-check-input mt-1" type="checkbox" v-model="filters.tafseer" id="tafseerCheckbox" />
-        <span class="form-check-label" for="tafseerCheckbox">Tafseer</span>
+        <input class="form-check-input mt-1" type="checkbox" v-model="filters.tafseer" id="tafseerCheckbox" @change="updateSuggestions" />
+        <p class="form-check-label" for="tafseerCheckbox">Tafseer</p>
        </div>
       </a>
      </li>
      <li>
       <a class="dropdown-item" href="#">
        <div class="form-check form-check-inline">
-        <input class="form-check-input mt-1" type="checkbox" v-model="filters.transliteration" id="transliterationCheckbox" />
+        <input class="form-check-input mt-1" type="checkbox" v-model="filters.transliteration" id="transliterationCheckbox" @change="updateSuggestions" />
         <p class="form-check-label" for="transliterationCheckbox">Transliteration</p>
        </div>
       </a>
      </li>
     </ul>
    </div>
+    
+    
 
    <!-- Voice input button -->
    <button class="btn btn-success" @click="isListening ? stopVoiceRecognition() : startVoiceRecognition()">
@@ -64,6 +56,10 @@
     -->
   </div>
  </div>
+ <!-- No Results Found -->
+  <div v-if="!loading && searchTerm && suggestions.length === 0" class="alert alert-danger text-center container mt-2">
+    <h5>No search results found. Please try a different search.</h5>
+  </div>
  <!-- show a message when recording starts -->
  <b v-if="isListening">Listening...</b>
 
@@ -73,7 +69,7 @@
    <h5 class="offcanvas-title">Search Results</h5>
    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
   </div>
-  <div class="offcanvas-body text-left ">
+  <div class="offcanvas-body text-left">
    <!-- Display Results -->
    <div v-if="filteredResults.length && !loading">
     <div v-for="result in filteredResults" :key="result.id" class="result-item">
@@ -98,7 +94,6 @@
      <hr />
     </div>
    </div>
-   <!-- No Results Found -->
    <div v-else-if="!loading" class="text-center">
     <h5>No search results found.</h5>
    </div>
@@ -142,6 +137,7 @@ export default {
    },
    isListening: false,
    recognition: null,
+   timer: null,
   };
  },
 
@@ -159,31 +155,48 @@ export default {
    }
   },
 
-  // Fetch suggestions based on the search term
   fetchSuggestions() {
    const params = {
     query: this.searchTerm,
     filters: this.filters,
    };
 
-   this.loading = true;
-   axios
-    .get('/search-translations', {
+   this.loading = true; // Start loading
+
+   axios.get('/search-translations', {
      params
     })
     .then((response) => {
      this.suggestions = response.data.suggestions || []; // Fallback to empty array
      this.filteredResults = response.data.results || []; // Fallback to empty array
-     this.loading = false;
-
     })
     .catch((error) => {
      console.error('Error fetching suggestions:', error);
-     this.suggestions = [];
-     this.filteredResults = [];
+     this.suggestions = []; // Reset suggestions on error
+     this.filteredResults = []; // Reset filtered results on error
     })
     .finally(() => {
-     this.loading = false;
+     this.loading = false; // Stop loading
+    });
+  },
+
+  updateSuggestions() {
+   if (!this.searchTerm) {
+    this.filteredSuggestions = []; // Clear suggestions if search term is empty
+    return;
+   }
+   // Filter suggestions based on active filters
+   const activeFilters = Object.keys(this.filters).filter(key => this.filters[key]);
+   // Call an API or use a local method to get filtered suggestions based on active filters
+   axios.post('/suggestions', {
+     searchTerm: this.searchTerm,
+     filters: activeFilters
+    })
+    .then(response => {
+     this.filteredSuggestions = response.data; // Set filtered suggestions
+    })
+    .catch(error => {
+     console.error('Error fetching suggestions:', error);
     });
   },
 
@@ -255,23 +268,23 @@ export default {
    }
   },
 
-  // Fetch results based on search term (mock implementation)
   fetchResults(suggestion) {
    const params = {
     query: suggestion,
     filters: this.filters,
    };
 
+   // Use POST if you prefer sending larger payloads, otherwise keep GET
    axios.get('/search-translations', {
      params
     })
     .then((response) => {
-     this.filteredResults = response.data.results || [];
+     this.filteredResults = response.data.results || []; // Ensure fallback
      console.log('Filtered results:', this.filteredResults); // Log filtered results for debugging
     })
     .catch((error) => {
      console.error('Error fetching results:', error);
-     this.filteredResults = [];
+     this.filteredResults = []; // Reset filtered results on error
     });
   },
 
@@ -331,31 +344,32 @@ export default {
    window.open(whatsappUrl, '_blank');
   },
 
-  // Search for translations
   searchWord() {
-   this.loading = true; // Set loading state to true before fetching data
-   if (this.searchTerm.length > 0) {
-    axios
-     .get("/search-translations", {
-      params: {
-       query: this.searchTerm,
-       filters: this.filters
-      }
-     })
-     .then(response => {
-      this.filteredResults = response.data || []; // Ensure valid data
-      this.showOffcanvas(); // Show search results
-     })
-     .catch(error => {
-      console.error("Error fetching search results:", error);
-     })
-     .finally(() => {
-      this.loading = false; // Reset loading state
-     });
-   } else {
-    this.filteredResults = [];
-    this.loading = false; // Reset loading state if searchTerm is empty
-   }
+   this.loading = true;
+
+   // Get the active filters
+   const activeFilters = {
+    translation: this.filters.translation,
+    tafseer: this.filters.tafseer,
+    transliteration: this.filters.transliteration,
+   };
+
+   // Prepare the request payload
+   const payload = {
+    query: this.searchTerm, // Use 'query' instead of 'searchTerm'
+    filters: activeFilters
+   };
+
+   // Fetch results from the backend based on selected filters and searchTerm
+   axios.post('/search-translations', payload)
+    .then(response => {
+     this.filteredResults = response.data; // Adjust to match your response structure
+     this.loading = false;
+    })
+    .catch(error => {
+     console.error('Error fetching search results:', error);
+     this.loading = false;
+    });
   },
 
   // Show the offcanvas component for results
@@ -366,8 +380,12 @@ export default {
 
   // Debounced search to limit the number of fetch calls
   debouncedSearch: _.debounce(function () {
+  clearTimeout(this.timer); // Clear previous timer
+  this.loading = true; // Show loading indicator
+        this.timer = setTimeout(this.fetchSuggestions, 4000);
+
    this.fetchSuggestions();
-  }, 300)
+  }, )
  }
 
 };
@@ -387,28 +405,28 @@ export default {
 }
 
 .search-container {
-  position: relative;
-  width: 100%;
+ position: relative;
+ width: 100%;
 }
 
 .search-input {
-  width: 100%;
-  border-radius: 4px;
+ width: 100%;
+ border-radius: 4px;
 }
 
 .suggestions {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 80%;
-  z-index: 1000;
-  max-height: 600px;
-  overflow-y: auto;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+ position: absolute;
+ top: 100%;
+ left: 0;
+ width: 80%;
+ z-index: 1000;
+ max-height: 600px;
+ overflow-y: auto;
+ border-top-left-radius: 0;
+ border-top-right-radius: 0;
+ border-bottom-left-radius: 4px;
+ border-bottom-right-radius: 4px;
+ box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .highlight {

@@ -25,10 +25,51 @@
       <div class="col">
        <i class="bi bi-plus-circle-fill h3 custom-icon-increase" aria-placeholder="Increase text size" @click="increaseFontSize"></i>
       </div>
+      <div class="col text-center">
+       <i class="bi bi-gear-fill h2 mb-1 custom-icon-increase" data-bs-toggle="modal" data-bs-target="#speechModal" aria-placeholder="settings"></i>
+      </div>
      </div>
     </div>
 
-    <!-- speech recognition (mobile) -->
+    <!-- speech modal -->
+    <div class="modal fade" id="speechModal" tabindex="-1" aria-labelledby="speechModalLabel" aria-hidden="true">
+     <div class="modal-dialog">
+      <div class="modal-content">
+       <div class="modal-header">
+        <h1 class="modal-title fs-5" id="speechModalLabel">Speech Settings</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+       </div>
+       <div class="modal-body">
+        <div class="mb-3">
+         <label for="formGroupExampleInput" class="form-label">Voices:</label>
+         <select class="form-control" v-model="selectedVoice" @change="changeVoice($event.target.value)">
+          <option v-for="voice in voices" :key="voice.name" :value="voice">
+           {{ voice.name }} ({{ voice.lang }})
+          </option>
+         </select>
+        </div>
+
+        <div class="row">
+         <div class="col">
+          <label>
+           Rate: <input class="rate" type="range" min="0.5" max="2" step="0.1" v-model="rate" @input="adjustRate($event.target.value)">
+          </label>
+         </div>
+         <div class="col">
+          <label>
+           Pitch: <input class="pitch" type="range" min="0.5" max="2" step="0.1" v-model="pitch" @input="adjustPitch($event.target.value)">
+          </label>
+         </div>
+        </div>
+       </div>
+       <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+       </div>
+      </div>
+     </div>
+    </div>
+
+    <!-- speech recognition (mobile) 
     <div class="text-center pt-2">
      <div class="row">
       <div class="col-md-6">
@@ -49,8 +90,7 @@
        </label>
       </div>
      </div>
-    </div>
-
+    </div>-->
 
    </div>
   </div>

@@ -3,17 +3,17 @@
     <div class="d-flex flex-wrap justify-content-between align-items-center">
       <!-- Note Icon -->
       <div class="icon-container">
-        <i class="bi bi-file-earmark-text h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="$emit('open-modal', 'transliterationNote')"></i>
+        <i class="bi bi-file-earmark-text h3" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="$emit('open-modal', 'transliterationNote')"></i>
       </div>
 
       <!-- Bookmark Icon -->
       <div class="icon-container">
-        <i @click="openFolderSelectionModal" class="bi bi-bookmark h4" title="Select Folder to Bookmark"></i>
+        <i @click="openFolderSelectionModal" class="bi bi-bookmark h3" title="Select Folder to Bookmark"></i>
       </div>
 
       <!-- Screenshot Icon -->
       <div class="icon-container">
-        <i class="bi bi-camera text-right mr-2 h4" @click="captureTransliteration" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" :style="{ cursor: 'pointer' }"></i>
+        <i class="bi bi-camera text-right mr-2 h3" @click="captureTransliteration" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" :style="{ cursor: 'pointer' }"></i>
       </div>
 
       <!-- PDF Download Icon -->
