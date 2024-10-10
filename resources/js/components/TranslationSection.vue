@@ -14,7 +14,7 @@
     </h4>
     <Translator translator="Ahmed Ali" />
     <!-- Speech icons mobile only-->
-    <div style="cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: space-between;" class="container text-center mobile-only">
+    <div style="cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: space-between;" class="container pb-2 text-center mobile-only">
      <div class="row">
       <div class="col">
        <i class="bi bi-dash-circle-fill h3 custom-icon-decrease" aria-placeholder="Decrease text size" @click="decreaseFontSize"></i>
@@ -26,10 +26,11 @@
        <i class="bi bi-plus-circle-fill h3 custom-icon-increase" aria-placeholder="Increase text size" @click="increaseFontSize"></i>
       </div>
       <div class="col text-center">
-       <i class="bi bi-gear-fill h2 mb-1 custom-icon-increase" data-bs-toggle="modal" data-bs-target="#speechModal" aria-placeholder="settings"></i>
+       <i class="bi bi-wrench-adjustable-circle-fill h3 custom-icon-increase" data-bs-toggle="modal" data-bs-target="#speechModal" aria-placeholder="settings"></i>
       </div>
      </div>
     </div>
+    <hr>
 
     <!-- speech modal -->
     <div class="modal fade" id="speechModal" tabindex="-1" aria-labelledby="speechModalLabel" aria-hidden="true">
@@ -37,7 +38,7 @@
       <div class="modal-content">
        <div class="modal-header">
         <h1 class="modal-title fs-5" id="speechModalLabel">Speech Settings</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" @click="closeModal"></button>
        </div>
        <div class="modal-body">
         <div class="mb-3">
@@ -61,36 +62,20 @@
           </label>
          </div>
         </div>
+
+        <!-- Success message alert (hidden by default) -->
+        <div v-if="successMessage" class="alert alert-success" role="alert">
+         Settings saved successfully!
+        </div>
+
        </div>
        <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="closeModal">Close</button>
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal" @click="saveSettings">Save changes</button>
        </div>
       </div>
      </div>
     </div>
-
-    <!-- speech recognition (mobile) 
-    <div class="text-center pt-2">
-     <div class="row">
-      <div class="col-md-6">
-       <select class="form-control" v-model="selectedVoice" @change="changeVoice($event.target.value)">
-        <option v-for="voice in voices" :key="voice.name" :value="voice">
-         {{ voice.name }} ({{ voice.lang }})
-        </option>
-       </select>
-      </div>
-      <div class="col-md-3 pt-2 bar">
-       <label>
-        Rate: <input class="rate" type="range" min="0.5" max="2" step="0.1" v-model="rate" @input="adjustRate($event.target.value)">
-       </label>
-      </div>
-      <div class="col-md-3 pt-2 bar">
-       <label>
-        Pitch: <input class="pitch" type="range" min="0.5" max="2" step="0.1" v-model="pitch" @input="adjustPitch($event.target.value)">
-       </label>
-      </div>
-     </div>
-    </div>-->
 
    </div>
   </div>
@@ -174,6 +159,8 @@ export default {
    utterance: null,
    currentFontSize: 20,
    selectedVoiceName: '',
+   selectedVoice: null,
+   successMessage: false,
    rate: 1,
    pitch: 1,
    surahUrl: '',
@@ -181,6 +168,15 @@ export default {
   }
  },
  mounted() {
+  // Load saved settings from local storage on page load
+  const savedVoice = localStorage.getItem('selectedVoice');
+  const savedRate = localStorage.getItem('rate');
+  const savedPitch = localStorage.getItem('pitch');
+
+  if (savedVoice) this.selectedVoice = JSON.parse(savedVoice);
+  if (savedRate) this.rate = parseFloat(savedRate);
+  if (savedPitch) this.pitch = parseFloat(savedPitch);
+
   const savedFontSize = localStorage.getItem('fontSize');
   if (savedFontSize) {
    this.currentFontSize = parseInt(savedFontSize, 10); // Set the font size from localStorage
@@ -191,6 +187,38 @@ export default {
   }
  },
  methods: {
+  saveSettings() {
+    // Save settings to local storage
+    localStorage.setItem('selectedVoice', JSON.stringify(this.selectedVoice));
+    localStorage.setItem('rate', this.rate);
+    localStorage.setItem('pitch', this.pitch);
+
+    // Show success message
+    this.successMessage = true;
+
+    // Close the modal after a short delay
+    setTimeout(() => {
+      this.successMessage = false;
+      const modalElement = document.getElementById('speechModal');
+      const modalInstance = bootstrap.Modal.getInstance(modalElement);
+
+      if (modalInstance) {
+        modalInstance.hide();
+        // Dispose of the modal to remove the grey background
+        modalInstance.dispose();
+      }
+    }, 1000);
+  },
+  closeModal() {
+    const modalElement = document.getElementById('speechModal');
+    const modalInstance = bootstrap.Modal.getInstance(modalElement);
+
+    if (modalInstance) {
+      modalInstance.hide();
+      // Dispose of the modal to remove the grey background
+      modalInstance.dispose();
+    }
+  },
   shareOnWhatsApp(translation, url) {
    // Check if translation or URL is missing
    if (!translation || !url) {

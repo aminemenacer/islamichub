@@ -4,7 +4,7 @@
  <div>
 
   <div class="container input-group" style="position: relative; width: 100%;">
-   <input type="text" @keyup="debouncedSearch" v-model="searchTerm" placeholder="How can I help you understand the Quran?" class="form-control mr-3 mobile-only" />
+   <input type="text" @keyup="debouncedSearch" v-model="searchTerm" placeholder="Explore the Quran..." class="form-control mr-3 mobile-only" style="flex: 1;"/>
 
    <!-- Suggestions Dropdown -->
    <ul v-if="suggestions.length" class="list-group suggestions" style="position: absolute; top: 100%; left: 0; width: 95%; z-index: 1000; max-height: 600px; overflow-y: auto;">
@@ -15,51 +15,50 @@
    
 
    <!-- Dropdown for Filter Selection -->
-   <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+  <div class="dropdown me-2">
+    <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    </button>
     <ul class="dropdown-menu">
-     <li>
-      <a class="dropdown-item" href="#">
-       <div class="form-check form-check-inline">
-        <input class="form-check-input mt-1" type="checkbox" v-model="filters.translation" id="translationCheckbox" @change="updateSuggestions" />
-        <p class="form-check-label" for="translationCheckbox">Translation</p>
-       </div>
-      </a>
-     </li>
-     <li>
-      <a class="dropdown-item" href="#">
-       <div class="form-check form-check-inline">
-        <input class="form-check-input mt-1" type="checkbox" v-model="filters.tafseer" id="tafseerCheckbox" @change="updateSuggestions" />
-        <p class="form-check-label" for="tafseerCheckbox">Tafseer</p>
-       </div>
-      </a>
-     </li>
-     <li>
-      <a class="dropdown-item" href="#">
-       <div class="form-check form-check-inline">
-        <input class="form-check-input mt-1" type="checkbox" v-model="filters.transliteration" id="transliterationCheckbox" @change="updateSuggestions" />
-        <p class="form-check-label" for="transliterationCheckbox">Transliteration</p>
-       </div>
-      </a>
-     </li>
+      <li>
+        <a class="dropdown-item" href="#">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" v-model="filters.translation" id="translationCheckbox" @change="updateSuggestions" />
+            <label class="form-check-label" for="translationCheckbox">Translation</label>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a class="dropdown-item" href="#">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" v-model="filters.tafseer" id="tafseerCheckbox" @change="updateSuggestions" />
+            <label class="form-check-label" for="tafseerCheckbox">Tafseer</label>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a class="dropdown-item" href="#">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" v-model="filters.transliteration" id="transliterationCheckbox" @change="updateSuggestions" />
+            <label class="form-check-label" for="transliterationCheckbox">Transliteration</label>
+          </div>
+        </a>
+      </li>
     </ul>
-   </div>
+  </div>
     
     
 
    <!-- Voice input button -->
-   <button class="btn btn-success" @click="isListening ? stopVoiceRecognition() : startVoiceRecognition()">
-    <i class="bi text-white " :class="isListening ? 'bi-stop-fill' : 'bi-mic-fill'" aria-hidden="true"></i>
+   <button type="button" class="btn" @click="isListening ? stopVoiceRecognition() : startVoiceRecognition()" style="background:#00BFA6">
+    <i class=" bi text-white " :class="isListening ? 'bi-stop-fill' : 'bi-mic-fill'" aria-hidden="true"></i><span style="color:white">Speak</span>
    </button>
    <!--
     <button class="btn btn-info text-white" @click="searchWord"><i class="bi bi-search h4 text-white"></i></button>
     -->
   </div>
  </div>
- <!-- No Results Found -->
-  <div v-if="!loading && searchTerm && suggestions.length === 0" class="alert alert-danger text-center container mt-2">
-    <h5>No search results found. Please try a different search.</h5>
-  </div>
+ 
+ 
  <!-- show a message when recording starts -->
  <b v-if="isListening">Listening...</b>
 
@@ -180,25 +179,25 @@ export default {
     });
   },
 
-  updateSuggestions() {
-   if (!this.searchTerm) {
-    this.filteredSuggestions = []; // Clear suggestions if search term is empty
-    return;
-   }
-   // Filter suggestions based on active filters
-   const activeFilters = Object.keys(this.filters).filter(key => this.filters[key]);
-   // Call an API or use a local method to get filtered suggestions based on active filters
-   axios.post('/suggestions', {
-     searchTerm: this.searchTerm,
-     filters: activeFilters
-    })
-    .then(response => {
-     this.filteredSuggestions = response.data; // Set filtered suggestions
-    })
-    .catch(error => {
-     console.error('Error fetching suggestions:', error);
-    });
-  },
+  // updateSuggestions() {
+  //  if (!this.searchTerm) {
+  //   this.filteredSuggestions = []; // Clear suggestions if search term is empty
+  //   return;
+  //  }
+  //  // Filter suggestions based on active filters
+  //  const activeFilters = Object.keys(this.filters).filter(key => this.filters[key]);
+  //  // Call an API or use a local method to get filtered suggestions based on active filters
+  //  axios.post('/suggestions', {
+  //    searchTerm: this.searchTerm,
+  //    filters: activeFilters
+  //   })
+  //   .then(response => {
+  //    this.filteredSuggestions = response.data; // Set filtered suggestions
+  //   })
+  //   .catch(error => {
+  //    console.error('Error fetching suggestions:', error);
+  //   });
+  // },
 
   // Select a suggestion and fetch its results
   selectSuggestion(suggestion) {

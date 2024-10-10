@@ -2,9 +2,9 @@
   <div>
     <div class="container pt-3">
       <div class="row gx-4  align-items-center justify-content-between">
-        <div class="col-md-7 order-2 order-md-1">
+        <div class="col-md-6 order-2 order-md-1">
           <div class="mt-3 mt-md-0">
-            <h2 class="display-5 fw-bold">Support Us</h2>
+            <h2 class="display-5 fw-bold pb-3">Support Us</h2>
             <p class="lead">
               Support Islamic Connect: Build a Bridge to Islamic Knowledge. 
               At Islamic Connect, we are committed to providing free, easy-to-access Islamic resources to people worldwide.
@@ -16,12 +16,10 @@
               fostering understanding and peace. Join us in making Islamic knowledge more accessible and impactful. 
               Every donation, big or small, is a step toward a more enlightened world.
             </p>
-
-            <!-- GoFundMe Embed -->
-            <div class="gfm-embed" data-url="https://www.gofundme.com/f/empowerment-through-quran-support-islamic-connects-mission/widget/large?sharesheet=CAMPAIGN_PAGE&attribution_id=undefined"></div>
-            <!-- End of GoFundMe Embed -->
-
           </div>
+        </div>
+        <div class="col-md-6 order-2 pt-3">
+          <img src="/images/money1.png" width="100%">
         </div>
       </div>
     </div>
