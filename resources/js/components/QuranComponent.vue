@@ -63,7 +63,7 @@
   </div>
 
   <div class="col-md-8 card-hide">
-  <div class="card content" >
+  <div class="card content" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;">
     <div class="content" >
      <div class="container-fluid content" v-if="information != null">
 
