@@ -6,13 +6,14 @@
   <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
    <MainAyah :information="information" />
    <div ref="targetTafseerElement" class="text-left">
-    <h4 class="text-left ayah-translation" style="line-height: 1.6em">
+    <h4 :style="{ fontSize: currentFontSize + 'px' }" class="text-left ayah-translation" style="line-height: 1.6em">
      {{ expanded ? information.tafseer : truncatedText(information.tafseer) }}
      <template v-if="information.tafseer.length > 100">
       <a class="href" href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
      </template>
     </h4>
    </div>
+   
    <h6 class="text-left "><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" /><strong>Tafseer: </strong>Ibn Kathir</h6>
    <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
   </div>

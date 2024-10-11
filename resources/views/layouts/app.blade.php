@@ -55,54 +55,40 @@
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <!-- Left Side Of Navbar -->
-                        <ul class="navbar-nav justify-content-end pr-4 flex-grow-1">
+                        <ul class="navbar-nav justify-content-end pr-4 flex-grow-1" style="color: black">
                             <li class="nav-item mt-3">
-                                <h6><a style="color: black;" class="nav-link display-5 ml-3 pl-3"
-                                        href="/quran"><b>Home</b></a></h6>
+                                <h6><a class="nav-link display-5 ml-3 pl-3" href="/quran"><b>Home</b></a></h6>
                             </li>
                             <li class="nav-item mt-3">
-                                <h6><a style="color: black;" class="nav-link display-5  ml-3 pl-3"
-                                        href="/contact"><b>Contact</b></a></h6>
+                                <h6><a class="nav-link display-5 ml-3 pl-3" href="/contact"><b>Contact</b></a></h6>
                             </li>
                             <li class="nav-item mt-3">
-                                <h6><a style="color: black;" class="nav-link display-5  ml-3 pl-3"
-                                        href="/about"><b>About Us</b></a></h6>
+                                <h6><a class="nav-link display-5 ml-3 pl-3" href="/about"><b>About Us</b></a></h6>
                             </li>
                             <li class="nav-item mt-3">
-                                <h6><a style="color: black;" class="nav-link display-5  ml-3 pl-3"
-                                        href="/mission"><b>Our Mission</b></a></h6>
+                                <h6><a class="nav-link display-5 ml-3 pl-3" href="/mission"><b>Our Mission</b></a></h6>
                             </li>
                             <li class="nav-item mt-3">
-                                <h6><a style="color: black;" class="nav-link display-5  ml-3 pl-3"
-                                        href="/faq"><b>FAQ's</b></a></h6>
+                                <h6><a class="nav-link display-5 ml-3 pl-3" href="/faq"><b>FAQ's</b></a></h6>
                             </li>
                             <li class="nav-item mt-3">
-                                <h6><a style="color: black;" class="nav-link display-5  ml-3 pl-3"
-                                        href="/join_us"><b>Mailing List</b></a></h6>
+                                <h6><a class="nav-link display-5 ml-3 pl-3" href="/join_us"><b>Mailing List</b></a></h6>
                             </li>
-                            {{-- <li class="nav-item mt-3">
-                            <h6><a style="color: black;" class="nav-link ml-3 pl-3" href="/pricing"><b>Pricings</b></a></h6>
-                        </li> --}}
                             <li class="nav-item mt-3">
-                                <h6><a style="color: black;" class="nav-link display-5  ml-3 pl-3"
-                                        href="/updates"><b>Updates</b></a></h6>
+                                <h6><a class="nav-link display-5 ml-3 pl-3" href="/updates"><b>Updates</b></a></h6>
                             </li>
-                            {{-- <li class="nav-item mt-3">
-                            <h6><a style="color: black;" class="nav-link ml-3 pl-3" href="/group_notes"><b>The Board</b></a></h6>
-                        </li> --}}
                             <li class="nav-item mt-3">
-                                <h6><a style="color: black;" class="nav-link display-5  ml-3 pl-3"
-                                        href="/support"><b>Donation</b></a></h6>
-                            </li>
+                                <h6><a class="nav-link display-5 ml-3 pl-3" href="/support"><b>Donation</b></a></h6>
+                            </li>                            
                             @guest
                             @if (Route::has('login'))
                             <li class="nav-item display-5  pl-3 mt-3">
-                                <h6><a class="nav-link" href="{{ route('login') }}"><b>{{ __('Login') }}</b></a></h6>
+                                <h6><a class=" nav-link" href="{{ route('login') }}"><b>{{ __('Login') }}</b></a></h6>
                             </li>
                             @endif
                             @if (Route::has('register'))
                             <li class="nav-item display-5  pl-3 mt-3">
-                                <h6><a class="nav-link" href="{{ route('register') }}"><b>{{ __('Register') }}</b></a>
+                                <h6><a class=" nav-link" href="{{ route('register') }}"><b>{{ __('Register') }}</b></a>
                                 </h6>
                             </li>
                             @endif
@@ -110,7 +96,7 @@
                             <li class="nav-item dropdown pl-3">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    <i class="bi bi-person-circle pr-2 " style="font-size: 1.8rem"></i>
+                                    <i class=" bi bi-person-circle pr-2 " style="font-size: 1.8rem"></i>
                                     {{ Auth::user()->name }}
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -157,6 +143,14 @@
 
 <!-- Custom Styles -->
 <style>
+    .nav-link {
+        color: black;
+        text-decoration: none;
+    }
+
+    .nav-link:hover {
+        color: #00BFA6;
+    }
     .button-33 {
         background-color: #00BFA6;
         border-radius: 10px;

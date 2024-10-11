@@ -1628,8 +1628,6 @@ methods: {
 
 <style scoped src="./css/styles.css">
 
-
-
 .custom-prev-ayah:hover{
   color: black;/* Default color */
   transition: color 0.3s ease; /* Smooth transition */

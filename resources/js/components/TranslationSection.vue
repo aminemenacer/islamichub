@@ -187,7 +187,9 @@ export default {
   }
  },
  methods: {
-  
+  shareTextViaWhatsApp1() {
+   this.$emit('shareTextViaWhatsApp');
+  },
   saveSettings() {
     // Save settings to local storage
     localStorage.setItem('selectedVoice', JSON.stringify(this.selectedVoice));
@@ -220,7 +222,20 @@ export default {
       modalInstance.dispose();
     }
   },
-  
+  shareOnWhatsApp(translation, url) {
+   // Check if translation or URL is missing
+   if (!translation || !url) {
+    console.error('Translation or URL is missing');
+    return;
+   }
+
+   // Encode the message for sharing
+   const encodedMessage = encodeURIComponent(`${translation} ${url}`);
+   const whatsappUrl = `https://api.whatsapp.com/send?text=${encodedMessage}`;
+
+   // Open WhatsApp in a new tab
+   window.open(whatsappUrl, '_blank');
+  },
   loadVoices() {
    this.voices = speechSynthesis.getVoices();
    if (this.voices.length > 0) {
@@ -280,6 +295,12 @@ export default {
    this.pitch = parseFloat(value);
   },
 
+  stopSpeech() {
+   if (this.isReading) {
+    window.speechSynthesis.cancel();
+    this.isReading = false;
+   }
+  },
   toggleSpeech() {
    if (this.isReading) {
     this.stopSpeech();
