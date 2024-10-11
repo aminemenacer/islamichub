@@ -62,9 +62,9 @@
    <div class="col">
     <span class="badge h3" style="width:100%;font-size:18px;border-radius:10px; color:#B70D52;background:#ead1dc"><a href="/bookmarks" style="text-decoration:none;color:#B70D52;background:#ead1dc">Bookmarks</a></span>
    </div>
-   <div class="col">
+   <!-- <div class="col">
     <span class="badge h3" style="width:100%;font-size:18px;border-radius:10px; color:#0263FF;background:#c2d8fb"><a href="/collections" style="text-decoration:none;color:#0263FF;background:#c2d8fb">Collections</a></span>
-   </div>
+   </div> -->
 
   </div>
  </div>
@@ -126,19 +126,19 @@
       <ul class="list-group list-group-flush">
        <li class="list-group-item d-flex justify-content-between align-items-center">
         <i class="bi bi-file-earmark-fill h4 links"></i>
-        <b class="text-left">Notes</b>
+        <b class="text-left"><a href="/notes" style="text-decoration:none; color:black">Notes</a></b>
         <span class="badge rounded-pill" style="background: rgba(0, 191, 166)">{{ notes.length }}</span>
        </li>
        <li class="list-group-item d-flex justify-content-between align-items-center">
        <i class="bi bi-bookmark-fill h4 links"></i>
-        <b class="text-left">Bookmarks</b>
+        <b class="text-left"><a href="/bookmarks" style="text-decoration:none; color:black">Bookmarks</a></b>
         <span class="badge rounded-pill h4" style="background: rgba(0, 191, 166)">{{ bookmarks.length }}</span>
        </li>
-       <li class="list-group-item d-flex justify-content-between align-items-center">
+       <!-- <li class="list-group-item d-flex justify-content-between align-items-center">
        <i class="bi bi-collection-fill h4 links"></i>
         <b class="text-left">Collections</b>
         <span class="badge rounded-pill" style="background: rgba(0, 191, 166)">{{ folders.length }}</span>
-       </li>
+       </li> -->
       </ul>
      </div>
     </div>
@@ -170,7 +170,7 @@ export default {
    userId: null,
    notes: [],
    bookmarks: [],
-   folders: [],
+  //  folders: [],
    editmode: false,
    form: new Form({
     id: "",
@@ -220,35 +220,35 @@ export default {
       console.error('Error fetching user ID or bookmarks:', error);
     }
   },
-  async fetchUserIdAndFolders() {
-    try {
-      const response = await fetch('/api/userId');
-      if (!response.ok) {
-        throw new Error('Failed to fetch user ID');
-      }
-      const data = await response.json();
-      this.userId = data.userId;
+  // async fetchUserIdAndFolders() {
+  //   try {
+  //     const response = await fetch('/api/userId');
+  //     if (!response.ok) {
+  //       throw new Error('Failed to fetch user ID');
+  //     }
+  //     const data = await response.json();
+  //     this.userId = data.userId;
       
-      if (this.userId) {
-        await this.fetchFolders(this.userId);
-      } else {
-        console.error('User ID not found');
-      }
-    } catch (error) {
-      console.error('Error fetching user ID or folders:', error);
-    }
-  },
-  async fetchFolders(userId) {
-    try {
-      const response = await fetch(`/api/fetch-folders/${userId}`);
-      if (!response.ok) {
-        throw new Error('Failed to fetch folders');
-      }
-      this.folders = await response.json(); // Correctly updating folders
-    } catch (error) {
-      console.error('Error fetching folders:', error);
-    }
-  },
+  //     if (this.userId) {
+  //       await this.fetchFolders(this.userId);
+  //     } else {
+  //       console.error('User ID not found');
+  //     }
+  //   } catch (error) {
+  //     console.error('Error fetching user ID or folders:', error);
+  //   }
+  // },
+  // async fetchFolders(userId) {
+  //   try {
+  //     const response = await fetch(`/api/fetch-folders/${userId}`);
+  //     if (!response.ok) {
+  //       throw new Error('Failed to fetch folders');
+  //     }
+  //     this.folders = await response.json(); // Correctly updating folders
+  //   } catch (error) {
+  //     console.error('Error fetching folders:', error);
+  //   }
+  // },
   async fetchNotes(userId) {
     try {
       const response = await fetch(`/api/fetch-notes/${userId}`);
