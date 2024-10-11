@@ -11,6 +11,16 @@
    <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h3" aria-expanded="false" data-bs-placement="top" title="Bookmark verse"></i>
   </div>
 
+  <!-- WhatsApp Icons -->
+<div class="icon-container">
+  <i 
+    @click="shareTextViaWhatsApp1" 
+    class="bi bi-whatsapp text-right mr-2 h4" 
+    aria-expanded="false" 
+    title="Share via WhatsApp"
+  ></i>
+</div>
+
   <!-- Screenshot Icon -->
   <div class="icon-container">
    <i class="bi bi-camera text-right mr-2 h3" @click="captureTranslation" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" :style="{ cursor: 'pointer' }"></i>
@@ -88,6 +98,9 @@ export default {
   }
  },
  methods: {
+  shareTextViaWhatsApp1() {
+    this.$emit('shareTextViaWhatsApp');
+  },
   submitForm() {
    const formData = {
     // folder_id: this.selectedFolderId,

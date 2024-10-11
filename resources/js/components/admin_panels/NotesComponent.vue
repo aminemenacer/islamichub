@@ -30,10 +30,10 @@
     <div class="card" style="border-radius:8px;padding:10px; border: 2px solid rgba(0, 191, 166);">
      <div class="card-body">
       <!-- Note details -->
-      <div>
+      <!-- <div>
        <h5><strong>Surah Name:</strong></h5>
        <p>{{ note.surah_name }}</p>
-      </div>
+      </div> -->
       <div class="mt-2 pb-2">
        <h5><strong>Note:</strong></h5>
        <div class="mt-2 text-dark text-left" v-text="stripHtmlTags(note.ayah_notes)"></div>
