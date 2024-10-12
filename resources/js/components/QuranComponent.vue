@@ -2,6 +2,7 @@
 <div id="app">
   <div class="pt-3 text-center">
     <Title />
+    
     <div style="display:flex" class="container align-items-center">
   </div>
     <AdvancedSearch  @input-change="handleInputChange" />

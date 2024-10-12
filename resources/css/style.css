@@ -1,5 +1,7 @@
 
 :root {
+  --background-color: white;
+  --text-color: black;
   --blue: #007bff;
   --indigo: #6610f2;
   --purple: #6f42c1;
@@ -31,6 +33,10 @@
 
 *,
 
+.dark-mode {
+  --background-color: black;
+  --text-color: white;
+}
 
 html {
   font-family: sans-serif;
@@ -42,6 +48,10 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block; }
 
 body {
+
+  background-color: var(--background-color);
+  color: var(--text-color);
+
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 1rem;
@@ -49,7 +59,7 @@ body {
   line-height: 1.5;
   color: #212529;
   text-align: left;
-  background-color: #fff; }
+   }
 
 [tabindex="-1"]:focus {
   outline: 0 !important; }
