@@ -16,7 +16,7 @@
               fostering understanding and peace. Join us in making Islamic knowledge more accessible and impactful. 
               Every donation, big or small, is a step toward a more enlightened world.
             </p>
-            <button class="button-37" role="button"><a style="text-decoration:none;color:white" href="https://www.gofundme.com/f/empowerment-through-quran-support-islamic-connects-mission">Donate Here</a></button>
+            <button class="donate" role="button"><a style="text-decoration:none;color:white" href="https://www.gofundme.com/f/empowerment-through-quran-support-islamic-connects-mission">Donate Here</a></button>
           </div>
         </div>
         <div class="col-md-6 order-2 ">
@@ -40,7 +40,7 @@ export default {
 </script>
 
 <style>
-.button-37 {
+.donate {
   background-color: #00BFA6;
   border-radius: 8px;
   box-sizing: border-box;

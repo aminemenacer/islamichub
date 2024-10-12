@@ -28,9 +28,51 @@
       <div class="col text-center">
        <i class="bi bi-wrench-adjustable-circle-fill h3 custom-icon-increase" data-bs-toggle="modal" data-bs-target="#speechModal" aria-placeholder="settings"></i>
       </div>
+      
      </div>
+     <button type="button" class="btn btn-success" @click="downloadAsCSV">Download as CSV</button>
+      <button type="button" class="btn btn-success" @click="downloadAsWord">Download as Word</button>
     </div>
-    
+
+    <!-- <div class="row">
+ <div class="d-flex flex-wrap justify-content-between align-items-center">
+  <-- Note Icon --
+  <div class="icon-container">
+   <i class="bi bi-file-earmark-text h3" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="$emit('open-modal', 'translationNote')"></i>
+  </div>
+
+  <-- Bookmark Icon --
+  <div class="icon-container">
+   <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h3" aria-expanded="false" data-bs-placement="top" title="Bookmark verse"></i>
+  </div>
+
+  <-- WhatsApp Icons --
+  <div class="icon-container">
+   <i @click="shareTextViaWhatsApp1" class="bi bi-whatsapp text-right mr-2 h4" aria-expanded="false" title="Share via WhatsApp"></i>
+  </div>
+
+  <-- Screenshot Icon --
+  <div class="icon-container">
+   <i class="bi bi-camera text-right mr-2 h3" @click="captureTranslation" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" :style="{ cursor: 'pointer' }"></i>
+  </div>
+
+  <-- PDF Download Icon --
+  <div class="icon-container">
+   <i class="bi bi-file-earmark-pdf text-right mr-2 h3" @click="downloadTranslationPdf" aria-expanded="false" data-bs-placement="top" title="Download PDF" :style="{ cursor: 'pointer' }"></i>
+  </div>
+
+  <-- <button type="button" class="btn btn-success" @click="downloadAsCSV">Download as CSV</button>
+  <button type="button" class="btn btn-success" @click="downloadAsWord">Download as Word</button> --
+
+  <- Bug Report Icon --
+  <div class="icon-container">
+   <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug h4" aria-expanded="false" data-bs-placement="top"></i>
+  </div>
+ </div>
+
+ -- Folder Selection Modal --
+ -- <FolderSelectionModal ref="folderSelectionModal" /> 
+</div> -->
 
     <!-- speech modal -->
     <div class="modal fade" id="speechModal" tabindex="-1" aria-labelledby="speechModalLabel" aria-hidden="true">
@@ -91,6 +133,17 @@ import MainAyah from './translation/MainAyah.vue';
 import Translator from './translation/Translator.vue';
 import AlertModal from './modals/AlertModal.vue';
 import ScreenReader from './accesibility/ScreenReader.vue';
+import ScreenTranslationCapture from './translation/features/screen_capture/ScreenTranslationCapture.vue';
+import html2canvas from "html2canvas";
+import jsPDF from 'jspdf';
+import { saveAs } from 'file-saver';
+import Papa from 'papaparse';
+import {
+ Document,
+ Packer,
+ Paragraph,
+ TextRun
+} from 'docx'
 
 export default {
 
@@ -107,11 +160,18 @@ export default {
    type: String,
    default: 'rgba(0, 191, 166)'
   },
+  translation: {
+   type: String,
+   required: true,
+  },
   information: {
    type: Object,
    required: true
   },
-
+  targetTranslationRef: {
+   type: String,
+   default: 'targetTranslationElement',
+  },
   isFullScreen: {
    type: Boolean,
    default: false
@@ -187,40 +247,155 @@ export default {
   }
  },
  methods: {
+   submitForm() {
+   const formData = {
+    // folder_id: this.selectedFolderId,
+    surah_name: this.information.ayah.surah.name_en,
+    ayah_num: this.information.ayah_id,
+    ayah_verse_ar: this.information.ayah.ayah_text,
+    ayah_verse_en: this.information.translation,
+    user_id: this.userId,
+   };
+   axios.post('/bookmarks', formData)
+    .then(response => {
+     console.log(response.data.message);
+     localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
+     this.showAlert = true;
+     this.showErrorAlert = false;
+     this.hideAlertAfterDelay();
+     // Display a confirmation message with the bookmarked ayah and folder
+     // this.$refs.bookmarkConfirmation.textContent = 
+     //   `Successfully bookmarked ayah ${this.information.ayah_id} to folder "${this.selectedFolderId}"`;
+    })
+  },
+  downloadTranslationPdf() {
+   const targetTranslationElement = this.$parent.$refs[this.targetTranslationRef];
+
+   if (!targetTranslationElement) {
+    console.error("Invalid element provided as targetTranslationRef");
+    return;
+   }
+
+   // Select all the elements you want to hide
+   const unwantedElements = [
+    '.icon-container', // All icons (bookmark, screenshot, etc.)
+    '.mobile-only', // WhatsApp and Twitter share buttons
+    '.container.text-center', // Voice, Rate, and Pitch controls
+    '.custom-icon-play', // Play button
+    '.custom-icon-increase', // Increase text size button
+    '.custom-icon-decrease' // Decrease text size button
+   ];
+
+   // Function to hide elements
+   const hideElements = (selectorArray) => {
+    selectorArray.forEach(selector => {
+     const elements = document.querySelectorAll(selector);
+     elements.forEach(el => {
+      el.style.display = 'none';
+     });
+    });
+   };
+
+   // Function to show elements
+   const showElements = (selectorArray) => {
+    selectorArray.forEach(selector => {
+     const elements = document.querySelectorAll(selector);
+     elements.forEach(el => {
+      el.style.display = '';
+     });
+    });
+   };
+
+   // Hide unwanted elements
+   hideElements(unwantedElements);
+
+   setTimeout(() => {
+    html2canvas(targetTranslationElement)
+     .then((canvas) => {
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF({
+       orientation: 'portrait',
+       unit: 'mm',
+       format: 'a4',
+      });
+
+      pdf.addImage(imgData, 'PNG', 10, 10, 190, 0);
+      pdf.save('download.pdf');
+
+      // Restore the visibility of unwanted elements after capturing the screenshot
+      showElements(unwantedElements);
+     })
+     .catch((error) => {
+      console.error('Failed to capture HTML content:', error);
+      // Restore the visibility even if there's an error
+      showElements(unwantedElements);
+     });
+   }, 200);
+  },
+  captureTranslation() {
+   const targetTranslationElement = this.$parent.$refs[this.targetTranslationRef];
+
+   if (!targetTranslationElement) {
+    console.error("Invalid element provided as targetTranslationRef");
+    return;
+   }
+
+   html2canvas(targetTranslationElement)
+    .then((canvas) => {
+     const dataUrl = canvas.toDataURL("image/png");
+
+     // Use Tesseract.js to extract text
+     Tesseract.recognize(dataUrl, 'eng', { // Update 'eng' with your desired language code
+       tessedit_char_whitelist: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!"#$%&()*+,-./:;<=>?@[\\]^_`{|}~ ' // Restrict character recognition (optional)
+      })
+      .then((result) => {
+       const extractedText = result.text;
+       console.log("Extracted Text:", extractedText);
+       // Display the extracted text in an element (replace with your logic)
+       document.getElementById('extracted-text').textContent = extractedText;
+      })
+      .catch((error) => {
+       console.error("OCR error:", error);
+      });
+    })
+    .catch((error) => {
+     console.error("Failed to capture screenshot:", error);
+    });
+  },
   shareTextViaWhatsApp1() {
    this.$emit('shareTextViaWhatsApp');
   },
   saveSettings() {
-    // Save settings to local storage
-    localStorage.setItem('selectedVoice', JSON.stringify(this.selectedVoice));
-    localStorage.setItem('rate', this.rate);
-    localStorage.setItem('pitch', this.pitch);
+   // Save settings to local storage
+   localStorage.setItem('selectedVoice', JSON.stringify(this.selectedVoice));
+   localStorage.setItem('rate', this.rate);
+   localStorage.setItem('pitch', this.pitch);
 
-    // Show success message
-    this.successMessage = true;
+   // Show success message
+   this.successMessage = true;
 
-    // Close the modal after a short delay
-    setTimeout(() => {
-      this.successMessage = false;
-      const modalElement = document.getElementById('speechModal');
-      const modalInstance = bootstrap.Modal.getInstance(modalElement);
-
-      if (modalInstance) {
-        modalInstance.hide();
-        // Dispose of the modal to remove the grey background
-        modalInstance.dispose();
-      }
-    }, 1000);
-  },
-  closeModal() {
+   // Close the modal after a short delay
+   setTimeout(() => {
+    this.successMessage = false;
     const modalElement = document.getElementById('speechModal');
     const modalInstance = bootstrap.Modal.getInstance(modalElement);
 
     if (modalInstance) {
-      modalInstance.hide();
-      // Dispose of the modal to remove the grey background
-      modalInstance.dispose();
+     modalInstance.hide();
+     // Dispose of the modal to remove the grey background
+     modalInstance.dispose();
     }
+   }, 1000);
+  },
+  closeModal() {
+   const modalElement = document.getElementById('speechModal');
+   const modalInstance = bootstrap.Modal.getInstance(modalElement);
+
+   if (modalInstance) {
+    modalInstance.hide();
+    // Dispose of the modal to remove the grey background
+    modalInstance.dispose();
+   }
   },
   shareOnWhatsApp(translation, url) {
    // Check if translation or URL is missing
@@ -295,6 +470,48 @@ export default {
    this.pitch = parseFloat(value);
   },
 
+  truncatedText(text) {
+   return text.length > 100 ? text.substring(0, 100) + '...' : text;
+  },
+  downloadAsCSV() {
+   const data = [{
+    Translation: this.information.translation,
+    Translator: "Ahmed Ali"
+   }];
+   const csv = Papa.unparse(data);
+   const blob = new Blob([csv], {
+    type: "text/csv;charset=utf-8;"
+   });
+   saveAs(blob, "translation.csv")
+  },
+  async downloadAsWord() {
+   const doc = new Document({
+    sections: [{
+     children: [
+      new Paragraph({
+       children: [
+        new TextRun("Translation:"),
+        new TextRun({
+         text: this.information.translation,
+         bold: true,
+        }),
+       ],
+      }),
+      new Paragraph({
+       children: [
+        new TextRun("Translator:"),
+        new TextRun({
+         text: "Ahmed Ali",
+         italics: true,
+        }),
+       ],
+      }),
+     ],
+    }, ],
+   });
+   const blob = await Packer.toBlob(doc);
+   saveAs(blob, "translation.docx")
+  },
   stopSpeech() {
    if (this.isReading) {
     window.speechSynthesis.cancel();

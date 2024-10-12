@@ -187,7 +187,7 @@
           <!-- toolbar mobile -->
           <div v-if="isOpen" class="collapse-content mobile-only">
             <div class="card text-bg-light card-body">
-              <TranslationActions :targetTranslationRef="'targetTranslationElement'" :translation="translation" @open-modal="openModal"  />
+              <TranslationSection :targetTranslationRef="'targetTranslationElement'" :translation="translation" @open-modal="openModal"  />
             </div>
           </div>
         </div>
