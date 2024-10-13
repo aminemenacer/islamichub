@@ -89,21 +89,21 @@ class SurahController extends Controller
         return response()->json($tafseer->tafseer);
     }
 
-    public function summarizeText(Request $request)
-    {
-        $text = $request->input('text');
+    // public function summarizeText(Request $request)
+    // {
+    //     $text = $request->input('text');
 
-        // Check for empty input
-        if (empty($text)) {
-            return response()->json(['error' => 'No text provided for summarization.'], 400);
-        }
+    //     // Check for empty input
+    //     if (empty($text)) {
+    //         return response()->json(['error' => 'No text provided for summarization.'], 400);
+    //     }
 
-        // A very simple summary approach: just return the first two sentences
-        $sentences = preg_split('/(?<=[.!?])\s+/', $text);
-        $summary = implode(' ', array_slice($sentences, 0, 2)); // Take the first two sentences
+    //     // A very simple summary approach: just return the first two sentences
+    //     $sentences = preg_split('/(?<=[.!?])\s+/', $text);
+    //     $summary = implode(' ', array_slice($sentences, 0, 2)); // Take the first two sentences
 
-        return response()->json(['summary' => trim($summary)]);
-    }
+    //     return response()->json(['summary' => trim($summary)]);
+    // }
 
     
 

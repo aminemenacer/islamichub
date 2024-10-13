@@ -9,6 +9,7 @@
         "almasaeed2010/adminlte": "~3.2",
         "barryvdh/laravel-dompdf": "^2.2",
         "fruitcake/laravel-cors": "^3.0",
+        "google/cloud": "^0.263.0",
         "google/cloud-speech": "^1.19",
         "google/cloud-storage": "^1.36",
         "guzzlehttp/guzzle": "^7.9",

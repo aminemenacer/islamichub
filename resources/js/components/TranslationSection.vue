@@ -34,14 +34,14 @@
      <button type="button" class="btn btn-success" @click="downloadAsWord">Download as Word</button>
     </div>
 
-    <div >
+    <!-- <div >
      <h2>Text Summarization</h2>
      <button @click="summarize">Summarize</button>
      <div v-if="summary">
       <h3>Summary:</h3>
       <p>{{ summary }}</p>
      </div>
-    </div>
+    </div> -->
 
     <!-- <div class="row">
       <div class="d-flex flex-wrap justify-content-between align-items-center">
@@ -261,48 +261,48 @@ export default {
   }
  },
  methods: {
-  summarize() {
-      const textToSummarize = this.information.translation;
+  // summarize() {
+  //     const textToSummarize = this.information.translation;
 
-      // Split text into sentences
-      const sentences = textToSummarize.match(/[^.!?]+[.!?]+/g) || [];
+  //     // Split text into sentences
+  //     const sentences = textToSummarize.match(/[^.!?]+[.!?]+/g) || [];
 
-      // Normalize and split text into words
-      const words = textToSummarize
-        .toLowerCase()
-        .replace(/[^a-z\s]/g, '') // Remove punctuation
-        .split(/\s+/) // Split into words
-        .filter(Boolean); // Remove empty strings
+  //     // Normalize and split text into words
+  //     const words = textToSummarize
+  //       .toLowerCase()
+  //       .replace(/[^a-z\s]/g, '') // Remove punctuation
+  //       .split(/\s+/) // Split into words
+  //       .filter(Boolean); // Remove empty strings
 
-      // Count the frequency of each word
-      const wordFrequency = {};
-      words.forEach(word => {
-        wordFrequency[word] = (wordFrequency[word] || 0) + 1;
-      });
+  //     // Count the frequency of each word
+  //     const wordFrequency = {};
+  //     words.forEach(word => {
+  //       wordFrequency[word] = (wordFrequency[word] || 0) + 1;
+  //     });
 
-      // Determine sentence importance based on frequency
-      const sentenceScores = sentences.map(sentence => {
-        const sentenceWords = sentence.toLowerCase().replace(/[^a-z\s]/g, '').split(/\s+/);
-        const score = sentenceWords.reduce((sum, word) => {
-          return sum + (wordFrequency[word] || 0);
-        }, 0);
-        return { sentence, score, length: sentence.length };
-      });
+  //     // Determine sentence importance based on frequency
+  //     const sentenceScores = sentences.map(sentence => {
+  //       const sentenceWords = sentence.toLowerCase().replace(/[^a-z\s]/g, '').split(/\s+/);
+  //       const score = sentenceWords.reduce((sum, word) => {
+  //         return sum + (wordFrequency[word] || 0);
+  //       }, 0);
+  //       return { sentence, score, length: sentence.length };
+  //     });
 
-      // Calculate average score to filter out less important sentences
-      const averageScore = sentenceScores.reduce((sum, item) => sum + item.score, 0) / sentenceScores.length;
+  //     // Calculate average score to filter out less important sentences
+  //     const averageScore = sentenceScores.reduce((sum, item) => sum + item.score, 0) / sentenceScores.length;
 
-      // Select sentences that have a score above the average and are not too short
-      const topSentences = sentenceScores
-        .filter(item => item.score > averageScore && item.length > 15) // Customize minimum length as needed
-        .sort((a, b) => b.score - a.score) // Sort by score
-        .slice(0, Math.ceil(sentences.length / 3)) // Select top third of sentences
-        .map(item => item.sentence.trim()) // Get sentences
-        .join(' '); // Join sentences into a summary
+  //     // Select sentences that have a score above the average and are not too short
+  //     const topSentences = sentenceScores
+  //       .filter(item => item.score > averageScore && item.length > 15) // Customize minimum length as needed
+  //       .sort((a, b) => b.score - a.score) // Sort by score
+  //       .slice(0, Math.ceil(sentences.length / 3)) // Select top third of sentences
+  //       .map(item => item.sentence.trim()) // Get sentences
+  //       .join(' '); // Join sentences into a summary
 
-      // Set the summary
-      this.summary = topSentences.length ? topSentences : 'No summary available.';
-    },
+  //     // Set the summary
+  //     this.summary = topSentences.length ? topSentences : 'No summary available.';
+  //   },
   toggleExpand() {
     this.expanded = !this.expanded;
   },

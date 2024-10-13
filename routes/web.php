@@ -31,6 +31,7 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\SupportController;
 use App\Http\Controllers\MissionController;
+use App\Http\Controllers\AiController;
 
 // Auth routes
 Auth::routes();
@@ -269,3 +270,5 @@ Route::get('/join_us', [JoinUsController::class, 'index'])->name('join_us');
 Route::get('/support', [SupportController::class, 'index'])->name('support');
 // mission
 Route::get('/mission', [MissionController::class, 'index'])->name('mission');
+// ai
+Route::get('/ai', [AiController::class, 'index'])->name('ai');

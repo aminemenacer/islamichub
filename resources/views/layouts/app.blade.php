@@ -69,6 +69,9 @@
                                 <h6><a class="nav-link display-5 ml-3 pl-3" href="/mission"><b>Our Mission</b></a></h6>
                             </li>
                             <li class="nav-item mt-3">
+                                <h6><a class="nav-link display-5 ml-3 pl-3" href="/ai"><b>AI Tools</b></a></h6>
+                            </li>
+                            <li class="nav-item mt-3">
                                 <h6><a class="nav-link display-5 ml-3 pl-3" href="/faq"><b>FAQ's</b></a></h6>
                             </li>
                             <li class="nav-item mt-3">
