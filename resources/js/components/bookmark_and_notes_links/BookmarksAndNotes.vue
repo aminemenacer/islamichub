@@ -18,11 +18,11 @@
               <i :style="{ color: iconColor }" class="bi bi-file-earmark-text h4"></i>
             </a>
           </div>
-          <!-- <div class="col">
-            <a href="/collection" class="h4">
-              <i :style="{ color: iconColor }" class="bi bi-collection h4"></i>
+          <div class="col">
+            <a href="/group_notes" class="h4">
+              <i :style="{ color: iconColor }" class="bi bi-boxes h3"></i>
             </a>
-          </div> -->
+          </div>
           <div class="col">
             <a href="/profile" class="h2">
               <i :style="{ color: iconColor }" class="bi bi-person h2"></i>

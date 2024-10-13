@@ -4,49 +4,60 @@
  <div>
 
   <div class="container input-group" style="position: relative; width: 100%;">
-   <input type="text" @keyup="debouncedSearch" v-model="searchTerm" placeholder="Explore the Quran..." class="form-control mr-3 mobile-only" style="flex: 1;"/>
+   <input type="text" @keyup="debouncedSearch" v-model="searchTerm" placeholder="Explore the Quran..." class="form-control mr-3 mobile-only" style="flex: 1;" />
 
    <!-- Suggestions Dropdown -->
-   <ul v-if="suggestions.length" class="list-group suggestions" style="position: absolute; top: 100%; left: 0; width: 95%; z-index: 1000; max-height: 600px; overflow-y: auto;">
-    <li class="list-group-item text-left list-group-item-success" v-for="(suggestion, index) in suggestions" :key="index" @click="selectSuggestion(suggestion)">
+
+   <ul v-if="suggestions.length" class="list-group suggestions" style="
+      position: absolute; 
+      top: 100%; 
+      left: 0; 
+      width: 95%; 
+      z-index: 1000; 
+      max-height: 600px; 
+      overflow-y: auto;
+      border-top-left-radius: 0; /* To align with the input */
+      border-top-right-radius: 0; /* To align with the input */
+      border-bottom-left-radius: 4px; /* Same as input */
+      border-bottom-right-radius: 4px; /* Same as input */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      ">
+    <li class="list-group-item text-left list-group-item-success" v-for="(suggestion, index) in suggestions" :key="index" @click="selectSuggestion(suggestion)" style="cursor: pointer;">
      {{ suggestion }}
     </li>
    </ul>
-   
 
    <!-- Dropdown for Filter Selection -->
-  <div class="dropdown me-2">
+   <div class="dropdown me-2">
     <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
     </button>
     <ul class="dropdown-menu">
-      <li>
-        <a class="dropdown-item" href="#">
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" v-model="filters.translation" id="translationCheckbox" @change="updateSuggestions" />
-            <label class="form-check-label" for="translationCheckbox">Translation</label>
-          </div>
-        </a>
-      </li>
-      <li>
-        <a class="dropdown-item" href="#">
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" v-model="filters.tafseer" id="tafseerCheckbox" @change="updateSuggestions" />
-            <label class="form-check-label" for="tafseerCheckbox">Tafseer</label>
-          </div>
-        </a>
-      </li>
-      <li>
-        <a class="dropdown-item" href="#">
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" v-model="filters.transliteration" id="transliterationCheckbox" @change="updateSuggestions" />
-            <label class="form-check-label" for="transliterationCheckbox">Transliteration</label>
-          </div>
-        </a>
-      </li>
+     <li>
+      <a class="dropdown-item" href="#">
+       <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" v-model="filters.translation" id="translationCheckbox" @change="updateSuggestions" />
+        <label class="form-check-label" for="translationCheckbox">Translation</label>
+       </div>
+      </a>
+     </li>
+     <li>
+      <a class="dropdown-item" href="#">
+       <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" v-model="filters.tafseer" id="tafseerCheckbox" @change="updateSuggestions" />
+        <label class="form-check-label" for="tafseerCheckbox">Tafseer</label>
+       </div>
+      </a>
+     </li>
+     <li>
+      <a class="dropdown-item" href="#">
+       <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" v-model="filters.transliteration" id="transliterationCheckbox" @change="updateSuggestions" />
+        <label class="form-check-label" for="transliterationCheckbox">Transliteration</label>
+       </div>
+      </a>
+     </li>
     </ul>
-  </div>
-    
-    
+   </div>
 
    <!-- Voice input button -->
    <button type="button" class="btn" @click="isListening ? stopVoiceRecognition() : startVoiceRecognition()" style="background:#00BFA6">
@@ -57,8 +68,7 @@
     -->
   </div>
  </div>
- 
- 
+
  <!-- show a message when recording starts -->
  <b v-if="isListening">Listening...</b>
 
@@ -160,22 +170,24 @@ export default {
     filters: this.filters,
    };
 
-   this.loading = true; // Start loading
-
-   axios.get('/search-translations', {
+   this.loading = true;
+   axios
+    .get('/search-translations', {
      params
     })
     .then((response) => {
      this.suggestions = response.data.suggestions || []; // Fallback to empty array
      this.filteredResults = response.data.results || []; // Fallback to empty array
+     this.loading = false;
+
     })
     .catch((error) => {
      console.error('Error fetching suggestions:', error);
-     this.suggestions = []; // Reset suggestions on error
-     this.filteredResults = []; // Reset filtered results on error
+     this.suggestions = [];
+     this.filteredResults = [];
     })
     .finally(() => {
-     this.loading = false; // Stop loading
+     this.loading = false;
     });
   },
 
@@ -273,17 +285,16 @@ export default {
     filters: this.filters,
    };
 
-   // Use POST if you prefer sending larger payloads, otherwise keep GET
    axios.get('/search-translations', {
      params
     })
     .then((response) => {
-     this.filteredResults = response.data.results || []; // Ensure fallback
+     this.filteredResults = response.data.results || [];
      console.log('Filtered results:', this.filteredResults); // Log filtered results for debugging
     })
     .catch((error) => {
      console.error('Error fetching results:', error);
-     this.filteredResults = []; // Reset filtered results on error
+     this.filteredResults = [];
     });
   },
 
@@ -344,31 +355,29 @@ export default {
   },
 
   searchWord() {
-   this.loading = true;
-
-   // Get the active filters
-   const activeFilters = {
-    translation: this.filters.translation,
-    tafseer: this.filters.tafseer,
-    transliteration: this.filters.transliteration,
-   };
-
-   // Prepare the request payload
-   const payload = {
-    query: this.searchTerm, // Use 'query' instead of 'searchTerm'
-    filters: activeFilters
-   };
-
-   // Fetch results from the backend based on selected filters and searchTerm
-   axios.post('/search-translations', payload)
-    .then(response => {
-     this.filteredResults = response.data; // Adjust to match your response structure
-     this.loading = false;
-    })
-    .catch(error => {
-     console.error('Error fetching search results:', error);
-     this.loading = false;
-    });
+   this.loading = true; // Set loading state to true before fetching data
+   if (this.searchTerm.length > 0) {
+    axios
+     .get("/search-translations", {
+      params: {
+       query: this.searchTerm,
+       filters: this.filters
+      }
+     })
+     .then(response => {
+      this.filteredResults = response.data || []; // Ensure valid data
+      this.showOffcanvas(); // Show search results
+     })
+     .catch(error => {
+      console.error("Error fetching search results:", error);
+     })
+     .finally(() => {
+      this.loading = false; // Reset loading state
+     });
+   } else {
+    this.filteredResults = [];
+    this.loading = false; // Reset loading state if searchTerm is empty
+   }
   },
 
   // Show the offcanvas component for results
@@ -379,9 +388,9 @@ export default {
 
   // Debounced search to limit the number of fetch calls
   debouncedSearch: _.debounce(function () {
-  clearTimeout(this.timer); // Clear previous timer
-  this.loading = true; // Show loading indicator
-        this.timer = setTimeout(this.fetchSuggestions, 4000);
+   clearTimeout(this.timer); // Clear previous timer
+   this.loading = true; // Show loading indicator
+   this.timer = setTimeout(this.fetchSuggestions, 4000);
 
    this.fetchSuggestions();
   }, )

@@ -12,6 +12,12 @@
       <a class="href" href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
      </template>
     </h4>
+    <!-- Display each word with a span for highlighting -->
+    <div v-if="information.translation">
+      <span v-for="(word, index) in words" :key="index" :class="{ highlight: index === currentWordIndex }">
+        {{ word }}
+      </span>
+    </div>
     <Translator translator="Ahmed Ali" />
     <!-- Speech icons mobile only-->
     <div style="cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: space-between;" class="container pb-2 text-center mobile-only">
@@ -30,18 +36,13 @@
       </div>
 
      </div>
+     <!--
      <button type="button" class="btn btn-success" @click="downloadAsCSV">Download as CSV</button>
      <button type="button" class="btn btn-success" @click="downloadAsWord">Download as Word</button>
+     -->
     </div>
 
-    <!-- <div >
-     <h2>Text Summarization</h2>
-     <button @click="summarize">Summarize</button>
-     <div v-if="summary">
-      <h3>Summary:</h3>
-      <p>{{ summary }}</p>
-     </div>
-    </div> -->
+    
 
     <!-- <div class="row">
       <div class="d-flex flex-wrap justify-content-between align-items-center">
@@ -145,7 +146,6 @@ import ScreenReader from './accesibility/ScreenReader.vue';
 import ScreenTranslationCapture from './translation/features/screen_capture/ScreenTranslationCapture.vue';
 import html2canvas from "html2canvas";
 import jsPDF from 'jspdf';
-import nlp from 'compromise';
 import {
  saveAs
 } from 'file-saver';
@@ -238,6 +238,8 @@ export default {
    surahUrl: '',
    voices: [],
    summary: '',
+   words: [],
+   currentWordIndex: 0,
    
   }
  },
@@ -261,48 +263,7 @@ export default {
   }
  },
  methods: {
-  // summarize() {
-  //     const textToSummarize = this.information.translation;
-
-  //     // Split text into sentences
-  //     const sentences = textToSummarize.match(/[^.!?]+[.!?]+/g) || [];
-
-  //     // Normalize and split text into words
-  //     const words = textToSummarize
-  //       .toLowerCase()
-  //       .replace(/[^a-z\s]/g, '') // Remove punctuation
-  //       .split(/\s+/) // Split into words
-  //       .filter(Boolean); // Remove empty strings
-
-  //     // Count the frequency of each word
-  //     const wordFrequency = {};
-  //     words.forEach(word => {
-  //       wordFrequency[word] = (wordFrequency[word] || 0) + 1;
-  //     });
-
-  //     // Determine sentence importance based on frequency
-  //     const sentenceScores = sentences.map(sentence => {
-  //       const sentenceWords = sentence.toLowerCase().replace(/[^a-z\s]/g, '').split(/\s+/);
-  //       const score = sentenceWords.reduce((sum, word) => {
-  //         return sum + (wordFrequency[word] || 0);
-  //       }, 0);
-  //       return { sentence, score, length: sentence.length };
-  //     });
-
-  //     // Calculate average score to filter out less important sentences
-  //     const averageScore = sentenceScores.reduce((sum, item) => sum + item.score, 0) / sentenceScores.length;
-
-  //     // Select sentences that have a score above the average and are not too short
-  //     const topSentences = sentenceScores
-  //       .filter(item => item.score > averageScore && item.length > 15) // Customize minimum length as needed
-  //       .sort((a, b) => b.score - a.score) // Sort by score
-  //       .slice(0, Math.ceil(sentences.length / 3)) // Select top third of sentences
-  //       .map(item => item.sentence.trim()) // Get sentences
-  //       .join(' '); // Join sentences into a summary
-
-  //     // Set the summary
-  //     this.summary = topSentences.length ? topSentences : 'No summary available.';
-  //   },
+  
   toggleExpand() {
     this.expanded = !this.expanded;
   },
@@ -578,34 +539,66 @@ export default {
    }
   },
   toggleSpeech() {
-   if (this.isReading) {
-    this.stopSpeech();
-   } else {
-    this.readTextAloud();
-   }
-  },
+      if (this.isReading) {
+        window.speechSynthesis.cancel(); // Stop reading if already playing
+        this.isReading = false;
+      } else {
+        this.readTextAloud(); // Start reading
+      }
+    },
   // Read the displayed text aloud
   readTextAloud() {
-   const text = this.expanded ? this.information.translation : this.truncatedText(this.information.translation);
-   this.utterance = new SpeechSynthesisUtterance(text);
+      const text = this.information.translation;
+      
+      // Split the text into an array of words
+      this.words = text.split(' ');
 
-   const selectedVoice = this.voices.find(voice => voice.name === this.selectedVoiceName);
-   if (this.selectedVoice) {
-    this.utterance.voice = this.selectedVoice;
-   }
+      // Create a new SpeechSynthesisUtterance object
+      this.utterance = new SpeechSynthesisUtterance(text);
 
-   this.utterance.rate = this.rate;
-   this.utterance.pitch = this.pitch;
+      // Select the desired voice
+      const selectedVoice = this.voices.find(voice => voice.name === this.selectedVoiceName);
+      if (selectedVoice) {
+        this.utterance.voice = selectedVoice;
+      }
 
-   // Handle end of speech event
-   this.utterance.onend = () => {
-    this.isReading = false;
-   };
+      // Set rate and pitch
+      this.utterance.rate = this.rate;
+      this.utterance.pitch = this.pitch;
 
-   // Start speaking
-   this.isReading = true;
-   window.speechSynthesis.speak(this.utterance);
-  },
+      // Reset word index
+      this.currentWordIndex = 0;
+
+      // Start speaking
+      this.isReading = true;
+      window.speechSynthesis.speak(this.utterance);
+
+      // Highlight words as the speech progresses
+      this.utterance.onboundary = (event) => {
+        if (event.name === 'word') {
+          // Update the current word index based on event.charIndex
+          const charIndex = event.charIndex;
+          this.currentWordIndex = this.getCurrentWordIndex(charIndex);
+        }
+      };
+
+      // Handle end of speech event
+      this.utterance.onend = () => {
+        this.isReading = false;
+        this.currentWordIndex = 0; // Reset the word index when done
+      };
+    },
+    getCurrentWordIndex(charIndex) {
+      let cumulativeLength = 0;
+      for (let i = 0; i < this.words.length; i++) {
+        cumulativeLength += this.words[i].length + 1; // Account for spaces between words
+        if (charIndex < cumulativeLength) {
+          return i;
+        }
+      }
+      return 0;
+    },
+
   stopSpeech() {
    if (this.isReading) {
     window.speechSynthesis.cancel();

@@ -61,72 +61,39 @@
 
   <!-- Notes Container -->
   <div class="container container-notes">
-    <div class="row collage">
-      <div class="collage-item mb-4" v-for="note in filteredNotes" :key="note.id">
-        <!-- Note Card -->
-        <div class="card" style="border-radius:8px; padding:4px; background:white; border: 2px solid rgba(0, 191, 166);">
-          <div class="card-body">
-            <div>
-              <h5><strong>Surah Name:</strong></h5>
-              <p v-html="highlightText(note.surah_name)"></p>
-            </div>
-            <div class="mt-2">
-              <h5><strong>Note:</strong></h5>
-              <p v-html="highlightText(truncatedHtml(note.ayah_notes))"></p>
-            </div>
-            <h5><strong>Date created:</strong></h5>
-            <p>{{ formatDate(note.created_at) }}</p>
-            <hr />
-            <div class="container text-center">
-              <form @submit.prevent="createNote">
-                <div class="row">
-                  <div class="col">
-                    <i class="bi bi-eye me-3 h3" style="cursor: pointer;" @click="viewModal(note)" data-bs-toggle="modal" data-bs-target="#viewNotes"></i>
-                  </div>
-                  <!-- <div class="col">
-                    <i class="h4" :class="getIconClass(note.liked)" @click="toggleLike(note.id, note.liked)"></i>
-                    <span class="ms-2">{{ note.likeCount }}</span>
-                  </div> 
-                  <div class="col">
-                    <i class="bi bi-chat-left-text h4 me-3 text-center" style="cursor: pointer;" @click="toggleComments(note.id)"></i>
-                  </div> -->
-                  <div class="col">
-                    <i class="bi bi-whatsapp h4 me-3 text-center" style="cursor: pointer;" @click="shareViaWhatsapp(note)"></i>
-                  </div>
-                  <div class="col">
-                    <i class="bi bi-download h4 me-3 text-center" style="cursor: pointer;" @click="createNote"></i>
-                  </div>
-
-
+    <div ref="targetTranslationElement" class="row collage">
+        <div class="collage-item mb-4" v-for="(note, index) in filteredNotes" :key="note.id">
+            <!-- Note Card -->
+            <div class="card" style="border-radius:8px; padding:4px; background:white; border: 2px solid rgba(0, 191, 166);">
+                <div class="card-body">
+                    <div class="mt-2">
+                        <h5><strong>Note:</strong></h5>
+                        <p :ref="'targetElement-' + index" v-html="highlightText(truncatedHtml(note.ayah_notes))"></p> <!-- Dynamic ref -->
+                    </div>
+                    <h5><strong>Date created:</strong></h5>
+                    <p>{{ formatDate(note.created_at) }}</p>
+                    <hr />
+                    <div class="container text-center">
+                        <form @submit.prevent="createNote">
+                            <div class="row">
+                                <div class="col">
+                                    <i class="bi bi-eye me-3 h3" style="cursor: pointer;" @click="viewModal(note)" data-bs-toggle="modal" data-bs-target="#viewNotes"></i>
+                                </div>
+                                <div class="col">
+                                    <i class="bi bi-whatsapp h4 me-3 text-center" style="cursor: pointer;" @click="shareTextViaWhatsApp3(index)"></i> <!-- Pass index -->
+                                </div>
+                                <div class="col">
+                                    <i class="bi bi-file-earmark-text h4 me-3 text-center" style="cursor: pointer;" @click="createNote"></i>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-              </form>
             </div>
-            <!-- Comments Section, toggle visibility using v-show -->
-            <div class="comments-section mt-4" v-show="note.showComments">
-              <h6><strong>Comments:</strong></h6>
-              <!-- Display comments for this note -->
-              <div v-if="note.comments && note.comments.length > 0">
-                <div v-for="comment in note.comments" :key="comment.id" class="comment pb-2">
-                  <div  class="pb-2" style="padding:6px; border-radius:8px; background:#ededed; color:black">
-                    <p class="pb-2">{{ comment.comment }}</p>
-                  </div>
-                </div>
-              </div>
-              <div v-else>
-                <p>No comments yet.</p>
-              </div>
-
-              <!-- Add new comment input -->
-              <input v-model="newComment[note.id]" type="text" class="form-control mt-2" placeholder="Add a comment..." />
-              <button class="btn btn-primary mt-2" @click="addComment(note.id)">Submit</button>
-            </div>
-          </div>
-
-          </div>
         </div>
-      </div>
     </div>
   </div>
+
 
 
   <!-- View Note Modal -->
@@ -168,21 +135,22 @@
   </div>
 </div>
 
-
+ </div>
  
  </div>
 </template>
 
 <script>
+import jsPDF from 'jspdf';
+import html2canvas from "html2canvas";
+
+["note"]
 export default {
-  props: ["note"],
-  mounted() {
-    // Fetch comments when the component is mounted
-    this.loadComments(this.note.id);
-  },
+  
  data() {
   return {
-   newComment: {},
+   targetTranslationRef: 'targetTranslationElement',
+   selectedNote: null,
    notes: [],
    selectedFilter: this.getStoredFilter() || '',
    searchTerm: "",
@@ -217,7 +185,12 @@ export default {
    },
   };
  },
-  
+  props:{
+    targetTranslationRef: {
+   type: String,
+   default: 'targetTranslationElement'
+    },
+  },
  async mounted() {
   await this.fetchNotes();
  },
@@ -278,64 +251,18 @@ export default {
   }
 },
  methods: {
-  loadComments(noteId) {
-    axios.get(`/api/get-comments/${noteId}`)
-      .then(response => {
-        this.$set(this.notes.find(note => note.id === noteId), 'comments', response.data.comments);
-      })
-      .catch(err => {
-        console.error("Error loading comments:", err);
-      });
-  },
-
-  // Toggle the comments visibility
-  toggleComments(noteId) {
-    const note = this.filteredNotes.find(n => n.id === noteId);
-    if (note) {
-      note.showComments = !note.showComments;
+  shareTextViaWhatsApp3(note) {
+    const targetElement = this.$refs[`targetElement-${index}`];
+    if (!targetElement) {
+      console.error("Target element for WhatsApp sharing not found.");
+      return;
     }
-  },
-  
-  // Fetch comments for a specific note
-  async fetchComments(noteId) {
-    try {
-      const response = await axios.get(`/notes/${noteId}/comments`);
-      const note = this.filteredNotes.find(n => n.id === noteId);
-      
-      if (note) {
-        // Store the fetched comments in the note's comments array
-        note.comments = response.data;
-        note.showComments = true; // Automatically show comments when fetched
-      }
-    } catch (error) {
-      console.error('Error fetching comments:', error);
-    }
-  },
 
-  // Fetch comments for all notes
-  async fetchAllComments() {
-    for (const note of this.filteredNotes) {
-      await this.fetchComments(note.id); // Fetch comments for each note
-    }
+    const text3 = targetElement.innerText;
+    const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text3)}`;
+    // Open WhatsApp sharing URL
+    window.open(url, '_blank');
   },
-
-  // Add a new comment
-  addComment(noteId) {
-    const commentData = {
-      note_id: noteId,
-      comment: this.newComment[noteId],
-    };
-
-    axios.post("/add-comment", commentData)
-      .then(response => {
-        this.notes.find(note => note.id === noteId).comments.push(response.data); // Add the new comment to the comments array
-        this.newComment[noteId] = ''; // Clear input field after submission
-      })
-      .catch(err => {
-        console.error("Error adding comment:", err);
-      });
-  },
-
   handleFilterClick(value) {
     this.selectedFilter = value;
     localStorage.setItem('selectedFilter', value);
@@ -357,33 +284,7 @@ export default {
     const regex = new RegExp(`(${keyword})`, 'gi');
     return text.replace(regex, '<span class="highlight">$1</span>');
   },
-  getIconClass(liked) {
-    return liked ? 'bi bi-hand-thumbs-up-fill' : 'bi bi-hand-thumbs-up';
-  },
-  async toggleLike(noteId, currentlyLiked) {
-    try {
-      const url = currentlyLiked ? `/notes/${noteId}/unlike` : `/notes/${noteId}/like`;
-      const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-          'X-Requested-With': 'XMLHttpRequest',
-          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-        },
-      });
-
-      const data = await response.json();
-      if (data.success) {
-        const note = this.notes.find(n => n.id === noteId);
-        if (note) {
-          // Update the local state for the like
-          note.liked = !currentlyLiked;
-          note.likeCount = data.count;
-        }
-      }
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  },
+  
   async fetchNotes() {
     try {
       const response = await fetch(`/fetch-notes`);
@@ -401,6 +302,7 @@ export default {
     }
   },
   viewModal(note) {
+    this.selectedNote = note; 
     // Populate the form data with the selected note's data
     this.form.surah_name = note.surah_name;
     this.form.ayah_verse_ar = note.ayah_verse_ar;
@@ -430,7 +332,6 @@ export default {
    return new Date(dateString).toLocaleDateString(undefined, options);
   }
  },
- 
  watch: {
   selectedFilter(newValue) {
    console.log("Selected filter changed:", newValue);
