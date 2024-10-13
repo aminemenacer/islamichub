@@ -190,27 +190,6 @@ export default {
      this.loading = false;
     });
   },
-
-  // updateSuggestions() {
-  //  if (!this.searchTerm) {
-  //   this.filteredSuggestions = []; // Clear suggestions if search term is empty
-  //   return;
-  //  }
-  //  // Filter suggestions based on active filters
-  //  const activeFilters = Object.keys(this.filters).filter(key => this.filters[key]);
-  //  // Call an API or use a local method to get filtered suggestions based on active filters
-  //  axios.post('/suggestions', {
-  //    searchTerm: this.searchTerm,
-  //    filters: activeFilters
-  //   })
-  //   .then(response => {
-  //    this.filteredSuggestions = response.data; // Set filtered suggestions
-  //   })
-  //   .catch(error => {
-  //    console.error('Error fetching suggestions:', error);
-  //   });
-  // },
-
   // Select a suggestion and fetch its results
   selectSuggestion(suggestion) {
    this.searchTerm = suggestion;

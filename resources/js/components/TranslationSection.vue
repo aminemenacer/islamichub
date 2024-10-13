@@ -1,7 +1,7 @@
 <template>
 <div class="w-100 my-element" :class="{'full-screen': isFullScreen}">
  <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
- <div >
+ <div>
   <AyahInfo :information="information" />
   <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
    <MainAyah :information="information" />
@@ -13,11 +13,11 @@
      </template>
     </h4>
     <!-- Display each word with a span for highlighting -->
-    <div v-if="information.translation">
+    <!-- <div v-if="information.translation">
       <span v-for="(word, index) in words" :key="index" :class="{ highlight: index === currentWordIndex }">
         {{ word }}
       </span>
-    </div>
+    </div> -->
     <Translator translator="Ahmed Ali" />
     <!-- Speech icons mobile only-->
     <div style="cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: space-between;" class="container pb-2 text-center mobile-only">
@@ -34,55 +34,13 @@
       <div class="col text-center">
        <i class="bi bi-wrench-adjustable-circle-fill h3 custom-icon-increase" data-bs-toggle="modal" data-bs-target="#speechModal" aria-placeholder="settings"></i>
       </div>
-
      </div>
-     <!--
+    </div>
+    <!--
      <button type="button" class="btn btn-success" @click="downloadAsCSV">Download as CSV</button>
      <button type="button" class="btn btn-success" @click="downloadAsWord">Download as Word</button>
      -->
-    </div>
 
-    
-
-    <!-- <div class="row">
-      <div class="d-flex flex-wrap justify-content-between align-items-center">
-        <-- Note Icon --
-        <div class="icon-container">
-        <i class="bi bi-file-earmark-text h3" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="$emit('open-modal', 'translationNote')"></i>
-        </div>
-
-        <-- Bookmark Icon --
-        <div class="icon-container">
-        <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h3" aria-expanded="false" data-bs-placement="top" title="Bookmark verse"></i>
-        </div>
-
-        <-- WhatsApp Icons --
-        <div class="icon-container">
-        <i @click="shareTextViaWhatsApp1" class="bi bi-whatsapp text-right mr-2 h4" aria-expanded="false" title="Share via WhatsApp"></i>
-        </div>
-
-        <-- Screenshot Icon --
-        <div class="icon-container">
-        <i class="bi bi-camera text-right mr-2 h3" @click="captureTranslation" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" :style="{ cursor: 'pointer' }"></i>
-        </div>
-
-        <-- PDF Download Icon --
-        <div class="icon-container">
-        <i class="bi bi-file-earmark-pdf text-right mr-2 h3" @click="downloadTranslationPdf" aria-expanded="false" data-bs-placement="top" title="Download PDF" :style="{ cursor: 'pointer' }"></i>
-        </div>
-
-        <-- <button type="button" class="btn btn-success" @click="downloadAsCSV">Download as CSV</button>
-        <button type="button" class="btn btn-success" @click="downloadAsWord">Download as Word</button> --
-
-        <- Bug Report Icon --
-        <div class="icon-container">
-        <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug h4" aria-expanded="false" data-bs-placement="top"></i>
-        </div>
-      </div>
-
-      -- Folder Selection Modal --
-      -- <FolderSelectionModal ref="folderSelectionModal" /> 
-      </div> -->
 
     <!-- speech modal -->
     <div class="modal fade" id="speechModal" tabindex="-1" aria-labelledby="speechModalLabel" aria-hidden="true">
@@ -146,19 +104,11 @@ import ScreenReader from './accesibility/ScreenReader.vue';
 import ScreenTranslationCapture from './translation/features/screen_capture/ScreenTranslationCapture.vue';
 import html2canvas from "html2canvas";
 import jsPDF from 'jspdf';
-import {
- saveAs
-} from 'file-saver';
+import { saveAs } from 'file-saver';
 import Papa from 'papaparse';
-import {
- Document,
- Packer,
- Paragraph,
- TextRun
-} from 'docx'
+import { Document, Packer, Paragraph, TextRun } from 'docx'
 
 export default {
-
  name: 'TranslationSection',
  components: {
   AyahInfo,
@@ -240,7 +190,7 @@ export default {
    summary: '',
    words: [],
    currentWordIndex: 0,
-   
+
   }
  },
  mounted() {
@@ -263,9 +213,9 @@ export default {
   }
  },
  methods: {
-  
+
   toggleExpand() {
-    this.expanded = !this.expanded;
+   this.expanded = !this.expanded;
   },
   submitForm() {
    const formData = {
@@ -539,65 +489,87 @@ export default {
    }
   },
   toggleSpeech() {
-      if (this.isReading) {
-        window.speechSynthesis.cancel(); // Stop reading if already playing
-        this.isReading = false;
-      } else {
-        this.readTextAloud(); // Start reading
-      }
-    },
+   if (this.isReading) {
+    window.speechSynthesis.cancel(); // Stop reading if already playing
+    this.isReading = false;
+   } else {
+    this.readTextAloud(); // Start reading
+   }
+  },
   // Read the displayed text aloud
+
   readTextAloud() {
-      const text = this.information.translation;
-      
-      // Split the text into an array of words
-      this.words = text.split(' ');
+   const text = this.expanded ? this.information.translation : this.truncatedText(this.information.translation);
+   this.utterance = new SpeechSynthesisUtterance(text);
 
-      // Create a new SpeechSynthesisUtterance object
-      this.utterance = new SpeechSynthesisUtterance(text);
+   const selectedVoice = this.voices.find(voice => voice.name === this.selectedVoiceName);
+   if (this.selectedVoice) {
+    this.utterance.voice = this.selectedVoice;
+   }
 
-      // Select the desired voice
-      const selectedVoice = this.voices.find(voice => voice.name === this.selectedVoiceName);
-      if (selectedVoice) {
-        this.utterance.voice = selectedVoice;
-      }
+   this.utterance.rate = this.rate;
+   this.utterance.pitch = this.pitch;
 
-      // Set rate and pitch
-      this.utterance.rate = this.rate;
-      this.utterance.pitch = this.pitch;
+   // Handle end of speech event
+   this.utterance.onend = () => {
+    this.isReading = false;
+   };
 
-      // Reset word index
-      this.currentWordIndex = 0;
+   // Start speaking
+   this.isReading = true;
+   window.speechSynthesis.speak(this.utterance);
+  },
+  // readTextAloud() {
+  //  const text = this.information.translation;
 
-      // Start speaking
-      this.isReading = true;
-      window.speechSynthesis.speak(this.utterance);
+  //  // Split the text into an array of words
+  //  this.words = text.split(' ');
 
-      // Highlight words as the speech progresses
-      this.utterance.onboundary = (event) => {
-        if (event.name === 'word') {
-          // Update the current word index based on event.charIndex
-          const charIndex = event.charIndex;
-          this.currentWordIndex = this.getCurrentWordIndex(charIndex);
-        }
-      };
+  //  // Create a new SpeechSynthesisUtterance object
+  //  this.utterance = new SpeechSynthesisUtterance(text);
 
-      // Handle end of speech event
-      this.utterance.onend = () => {
-        this.isReading = false;
-        this.currentWordIndex = 0; // Reset the word index when done
-      };
-    },
-    getCurrentWordIndex(charIndex) {
-      let cumulativeLength = 0;
-      for (let i = 0; i < this.words.length; i++) {
-        cumulativeLength += this.words[i].length + 1; // Account for spaces between words
-        if (charIndex < cumulativeLength) {
-          return i;
-        }
-      }
-      return 0;
-    },
+  //  // Select the desired voice
+  //  const selectedVoice = this.voices.find(voice => voice.name === this.selectedVoiceName);
+  //  if (selectedVoice) {
+  //   this.utterance.voice = selectedVoice;
+  //  }
+
+  //  // Set rate and pitch
+  //  this.utterance.rate = this.rate;
+  //  this.utterance.pitch = this.pitch;
+
+  //  // Reset word index
+  //  this.currentWordIndex = 0;
+
+  //  // Start speaking
+  //  this.isReading = true;
+  //  window.speechSynthesis.speak(this.utterance);
+
+  //  // Highlight words as the speech progresses
+  //  this.utterance.onboundary = (event) => {
+  //   if (event.name === 'word') {
+  //    // Update the current word index based on event.charIndex
+  //    const charIndex = event.charIndex;
+  //    this.currentWordIndex = this.getCurrentWordIndex(charIndex);
+  //   }
+  //  };
+
+  //  // Handle end of speech event
+  //  this.utterance.onend = () => {
+  //   this.isReading = false;
+  //   this.currentWordIndex = 0; // Reset the word index when done
+  //  };
+  // },
+  getCurrentWordIndex(charIndex) {
+   let cumulativeLength = 0;
+   for (let i = 0; i < this.words.length; i++) {
+    cumulativeLength += this.words[i].length + 1; // Account for spaces between words
+    if (charIndex < cumulativeLength) {
+     return i;
+    }
+   }
+   return 0;
+  },
 
   stopSpeech() {
    if (this.isReading) {
@@ -635,18 +607,6 @@ export default {
 </script>
 
 <style scoped>
-.summary-container {
- margin: 20px;
-}
-
-button {
- padding: 10px 20px;
- background-color: rgb(13, 182, 145);
- color: white;
- border: none;
- cursor: pointer;
-}
-
 .custom-icon-play:hover {
  color: rgb(13, 182, 145);
  /* Default color */
