@@ -1,7 +1,7 @@
 <template>
 <div class="w-100 my-element" :class="{'full-screen': isFullScreen}">
  <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
- <div>
+ <div >
   <AyahInfo :information="information" />
   <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
    <MainAyah :information="information" />
@@ -32,57 +32,55 @@
        <i class="bi bi-plus-circle-fill h3 custom-icon-increase" aria-placeholder="Increase text size" @click="increaseFontSize"></i>
       </div>
       <div class="col text-center">
-       <i class="bi bi-wrench-adjustable-circle-fill h3 custom-icon-increase" data-bs-toggle="modal" data-bs-target="#speechModal" aria-placeholder="settings"></i>
+       <i class="bi bi-wrench-adjustable-circle-fill h3 custom-icon-increase" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-placeholder="settings"></i>
       </div>
+
      </div>
+
     </div>
     <!--
      <button type="button" class="btn btn-success" @click="downloadAsCSV">Download as CSV</button>
      <button type="button" class="btn btn-success" @click="downloadAsWord">Download as Word</button>
      -->
 
+    <!-- Speech Off-canvas -->
+    <div class="offcanvas offcanvas-end custom-offcanvas" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+     <div class="offcanvas-header">
+      <h5><b>Speech Settings</b></h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+     </div>
+     <div class="offcanvas-body">
+      <div class="mb-3">
+       <label for="formGroupExampleInput" class="form-label">Voices:</label>
+       <select class="form-control" v-model="selectedVoice" @change="changeVoice($event.target.value)">
+        <option v-for="voice in voices" :key="voice.name" :value="voice">
+         {{ voice.name }} ({{ voice.lang }})
+        </option>
+       </select>
+      </div>
 
-    <!-- speech modal -->
-    <div class="modal fade" id="speechModal" tabindex="-1" aria-labelledby="speechModalLabel" aria-hidden="true">
-     <div class="modal-dialog">
-      <div class="modal-content">
-       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="speechModalLabel">Speech Settings</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" @click="closeModal"></button>
+      <div class="row">
+       <div class="col">
+        <label>
+         Rate: <input class="rate" type="range" min="0.5" max="2" step="0.1" v-model="rate" @input="adjustRate($event.target.value)">
+        </label>
        </div>
-       <div class="modal-body">
-        <div class="mb-3">
-         <label for="formGroupExampleInput" class="form-label">Voices:</label>
-         <select class="form-control" v-model="selectedVoice" @change="changeVoice($event.target.value)">
-          <option v-for="voice in voices" :key="voice.name" :value="voice">
-           {{ voice.name }} ({{ voice.lang }})
-          </option>
-         </select>
-        </div>
-
-        <div class="row">
-         <div class="col">
-          <label>
-           Rate: <input class="rate" type="range" min="0.5" max="2" step="0.1" v-model="rate" @input="adjustRate($event.target.value)">
-          </label>
-         </div>
-         <div class="col">
-          <label>
-           Pitch: <input class="pitch" type="range" min="0.5" max="2" step="0.1" v-model="pitch" @input="adjustPitch($event.target.value)">
-          </label>
-         </div>
-        </div>
-
-        <!-- Success message alert (hidden by default) -->
-        <div v-if="successMessage" class="alert alert-success" role="alert">
-         Settings saved successfully!
-        </div>
-
+       <div class="col">
+        <label>
+         Pitch: <input class="pitch" type="range" min="0.5" max="2" step="0.1" v-model="pitch" @input="adjustPitch($event.target.value)">
+        </label>
        </div>
-       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="closeModal">Close</button>
-        <button type="button" class="btn btn-success" data-bs-dismiss="modal" @click="saveSettings">Save changes</button>
-       </div>
+      </div>
+
+      <!-- Success message alert (hidden by default) -->
+      <div v-if="successMessage" class="alert alert-success" role="alert">
+       Settings saved successfully!
+      </div>
+
+      <!-- Buttons to save or cancel changes -->
+      <div class="d-flex justify-content-end mt-3">
+       <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="offcanvas" aria-label="Close">Cancel</button>
+       <button type="button" class="btn btn-success" @click="saveSettings">Save Sttings</button>
       </div>
      </div>
     </div>
@@ -102,11 +100,20 @@ import Translator from './translation/Translator.vue';
 import AlertModal from './modals/AlertModal.vue';
 import ScreenReader from './accesibility/ScreenReader.vue';
 import ScreenTranslationCapture from './translation/features/screen_capture/ScreenTranslationCapture.vue';
+import Magnifier from './search/Magnifier.vue';
+
 import html2canvas from "html2canvas";
 import jsPDF from 'jspdf';
-import { saveAs } from 'file-saver';
+import {
+ saveAs
+} from 'file-saver';
 import Papa from 'papaparse';
-import { Document, Packer, Paragraph, TextRun } from 'docx'
+import {
+ Document,
+ Packer,
+ Paragraph,
+ TextRun
+} from 'docx'
 
 export default {
  name: 'TranslationSection',
@@ -116,6 +123,7 @@ export default {
   Translator,
   AlertModal,
   ScreenReader,
+  Magnifier
  },
  props: {
   iconColor: {
@@ -213,7 +221,38 @@ export default {
   }
  },
  methods: {
+  toggleMagnifier() {
+   // Toggle magnifying glass on/off
+   this.isMagnifying = !this.isMagnifying;
+  },
+  magnify(event) {
+   if (!this.isMagnifying) return; // Don't magnify unless enabled
 
+   const lens = this.$el.querySelector('.magnifier-lens');
+   const preview = this.$el.querySelector('.magnifier-preview');
+
+   const {
+    offsetX,
+    offsetY
+   } = event;
+
+   this.lensPosition.x = offsetX - this.lensSize / 2;
+   this.lensPosition.y = offsetY - this.lensSize / 2;
+
+   lens.style.left = `${this.lensPosition.x}px`;
+   lens.style.top = `${this.lensPosition.y}px`;
+
+   const zoomLevel = 2; // Adjust zoom level as needed
+   preview.style.backgroundImage = `url(${this.imageSrc})`;
+   preview.style.backgroundSize = `${this.$el.offsetWidth * zoomLevel}px ${this.$el.offsetHeight * zoomLevel}px`;
+   preview.style.left = `${offsetX + 10}px`; // Offset preview
+   preview.style.top = `${offsetY + 10}px`; // Offset preview
+   preview.style.backgroundPosition = `-${offsetX * zoomLevel}px -${offsetY * zoomLevel}px`;
+  },
+  hideMagnifier() {
+   if (!this.isMagnifying) return;
+   // Reset any magnification effects
+  },
   toggleExpand() {
    this.expanded = !this.expanded;
   },
@@ -355,7 +394,7 @@ export default {
      // Dispose of the modal to remove the grey background
      modalInstance.dispose();
     }
-   }, 1000);
+   }, 3000);
   },
   closeModal() {
    const modalElement = document.getElementById('speechModal');
@@ -519,47 +558,6 @@ export default {
    this.isReading = true;
    window.speechSynthesis.speak(this.utterance);
   },
-  // readTextAloud() {
-  //  const text = this.information.translation;
-
-  //  // Split the text into an array of words
-  //  this.words = text.split(' ');
-
-  //  // Create a new SpeechSynthesisUtterance object
-  //  this.utterance = new SpeechSynthesisUtterance(text);
-
-  //  // Select the desired voice
-  //  const selectedVoice = this.voices.find(voice => voice.name === this.selectedVoiceName);
-  //  if (selectedVoice) {
-  //   this.utterance.voice = selectedVoice;
-  //  }
-
-  //  // Set rate and pitch
-  //  this.utterance.rate = this.rate;
-  //  this.utterance.pitch = this.pitch;
-
-  //  // Reset word index
-  //  this.currentWordIndex = 0;
-
-  //  // Start speaking
-  //  this.isReading = true;
-  //  window.speechSynthesis.speak(this.utterance);
-
-  //  // Highlight words as the speech progresses
-  //  this.utterance.onboundary = (event) => {
-  //   if (event.name === 'word') {
-  //    // Update the current word index based on event.charIndex
-  //    const charIndex = event.charIndex;
-  //    this.currentWordIndex = this.getCurrentWordIndex(charIndex);
-  //   }
-  //  };
-
-  //  // Handle end of speech event
-  //  this.utterance.onend = () => {
-  //   this.isReading = false;
-  //   this.currentWordIndex = 0; // Reset the word index when done
-  //  };
-  // },
   getCurrentWordIndex(charIndex) {
    let cumulativeLength = 0;
    for (let i = 0; i < this.words.length; i++) {
@@ -570,7 +568,6 @@ export default {
    }
    return 0;
   },
-
   stopSpeech() {
    if (this.isReading) {
     window.speechSynthesis.cancel();
@@ -607,6 +604,11 @@ export default {
 </script>
 
 <style scoped>
+.custom-offcanvas {
+ background-color: #10584f;
+ color: white;
+}
+
 .custom-icon-play:hover {
  color: rgb(13, 182, 145);
  /* Default color */

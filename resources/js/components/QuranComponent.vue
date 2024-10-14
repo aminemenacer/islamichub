@@ -30,7 +30,7 @@
 
      <form class="d-flex pb-2 " role="search" @submit.prevent="scrollToAyah">
       <input class="form-control me-2" type="number" placeholder="Enter Verse Number" v-model="verseNumber" required>
-      <button class="btn btn-success mb-1 ml-2" type="submit">Search</button>
+      <button class="btn btn-success mb-1 ml-2" style="background:#00BFA6" type="submit">Search</button>
      </form>
 
      <!-- Error alert -->
@@ -110,7 +110,7 @@
         <!-- desktop top features -->
         <div :style="iconStyle">
           <div class="col pb-2 ">
-            <i  :class="isOpen ? 'bi bi-x-circle-fill' : 'bi bi-plus-circle-fill'" class="top-toolbar-btn text-left hide-on-mobile h4" @click="toggleContent"></i>
+            <i  :class="isOpen ? 'bi bi-x-circle-fill' : 'bi bi-plus-circle-fill'" class="text-left hide-on-mobile h4" @click="toggleContent"></i>
           </div>
           <div v-if="isOpen" class=" hide-on-mobile ">
             <div class="text-center">
@@ -177,20 +177,8 @@
             />          
           </div>
 
-          <!-- open toolbar -->
-          <div class="container-fluid text-center mobile-only">
-            <div class="row">
-              <div class="col">
-                <i :class="isOpen ? 'bi bi-x-circle' : 'bi bi-plus-circle-fill'" class="text-center mobile-only h3 pt-3" @click="toggleContent"></i>
-              </div>
-            </div>
-          </div>
-          <!-- toolbar mobile -->
-          <div v-if="isOpen" class="collapse-content mobile-only">
-            <div class="card text-bg-light card-body">
-              <TranslationSection :targetTranslationRef="'targetTranslationElement'" :translation="translation" @open-modal="openModal"  />
-            </div>
-          </div>
+          <TranslationAction @open-modal="openModal" />
+          
         </div>
 
        </div>
@@ -719,7 +707,6 @@ props: ['information', 'selectedFolderId'], information: {
  data() {
   return {
     userIsLoggedIn: true,
-    menuItems: ["Home", "About", "Services", "Contact"],
     newThemeName: "",
     savedThemes: [],
     selectedTheme:null,
@@ -957,37 +944,7 @@ computed: {
     }
 },
 methods: {
-  // shareTextViaWhatsApp3() {
-  //  const text3 = this.$refs.targetElement.innerText;
-  //  const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text3)}`;
-  //  window.open(url, '_blank');
-  // },
-  shareTextViaWhatsApp1() {
-    // Use a class selector to get the element
-    const targetElement = document.querySelector('.share-text');
-
-    if (targetElement) {
-      const text1 = targetElement.innerText || 'Default text to share';
-      
-      // Create the WhatsApp sharing URL
-      const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text1)}`;
-      
-      // Open WhatsApp share window
-      window.open(url, '_blank');
-    } else {
-      console.error('Target element not found!');
-    }
-  },
-  // shareTextViaWhatsApp1() {
-  //  const text1 = this.$refs.targetElement1.innerText;
-  //  const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text1)}`;
-  //  window.open(url, '_blank');
-  // },
-  // shareTextViaWhatsApp2() {
-  //  const text2 = this.$refs.targetElement2.innerText;
-  //  const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text2)}`;
-  //  window.open(url, '_blank');
-  // },
+  
   handleItemSelected(selectedItem) {
     alert(`Selected item: ${selectedItem}`);
   },

@@ -215,6 +215,39 @@
 
 }
 
+
+.custom-prev-ayah:hover{
+  color: black;/* Default color */
+  transition: color 0.3s ease; /* Smooth transition */
+}
+.custom-prev-ayah:hover{
+  color: black;/* Default color */
+  transition: color 0.3s ease; /* Smooth transition */
+}
+.custom-last-verse:hover{
+  color: black;/* Default color */
+  transition: color 0.3s ease; /* Smooth transition */
+}
+.highlight {
+  background-color: yellow;
+  font-weight: bold;
+}
+.result-item {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.button-33 {
+  background-color: rgba(0, 191, 166, 0.2);
+  color: rgb(255, 255, 255);
+  border: 1px solid rgba(0, 191, 166);
+}
+
+.top-toolbar-btn{
+  background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
+
+}
+
 .scrollmenu {
  padding-bottom: 10px;
  padding-top: 10px;

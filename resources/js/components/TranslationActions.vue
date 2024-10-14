@@ -11,10 +11,7 @@
    <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h3" aria-expanded="false" data-bs-placement="top" title="Bookmark verse"></i>
   </div>
 
-  <!-- WhatsApp Icons -->
-  <div class="icon-container">
-   <i @click="shareTextViaWhatsApp1" class="bi bi-whatsapp text-right mr-2 h4" aria-expanded="false" title="Share via WhatsApp"></i>
-  </div>
+  
 
   <!-- Screenshot Icon -->
   <div class="icon-container">
@@ -26,9 +23,6 @@
    <i class="bi bi-file-earmark-pdf text-right mr-2 h3" @click="downloadTranslationPdf" aria-expanded="false" data-bs-placement="top" title="Download PDF" :style="{ cursor: 'pointer' }"></i>
   </div>
 
-  <button type="button" class="btn btn-success" @click="downloadAsCSV">Download as CSV</button>
-  <button type="button" class="btn btn-success" @click="downloadAsWord">Download as Word</button>
-
   <!-- Bug Report Icon -->
   <div class="icon-container">
    <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug h4" aria-expanded="false" data-bs-placement="top"></i>
@@ -36,7 +30,7 @@
  </div>
 
  <!-- Folder Selection Modal -->
- <!-- <FolderSelectionModal ref="folderSelectionModal" /> -->
+ <FolderSelectionModal ref="folderSelectionModal" />
 </div>
 </template>
 
@@ -45,16 +39,6 @@ import FolderSelectionModal from "./folder_manager/FolderSelectionModal.vue";
 import ScreenTranslationCapture from './translation/features/screen_capture/ScreenTranslationCapture.vue';
 import html2canvas from "html2canvas";
 import jsPDF from 'jspdf';
-import {
- saveAs
-} from 'file-saver';
-import Papa from 'papaparse';
-import {
- Document,
- Packer,
- Paragraph,
- TextRun
-} from 'docx'
 
 export default {
  name: "TranslationActions",
@@ -106,48 +90,6 @@ export default {
   }
  },
  methods: {
-  downloadAsCSV() {
-   const data = [{
-    Translation: this.information.translation,
-    Translator: "Ahmed Ali"
-   }];
-   const csv = Papa.unparse(data);
-   const blob = new Blob([csv], {
-    type: "text/csv;charset=utf-8;"
-   });
-   saveAs(blob, "translation.csv")
-  },
-  async downloadAsWord() {
-   const doc = new Document({
-    sections: [{
-     children: [
-      new Paragraph({
-       children: [
-        new TextRun("Translation:"),
-        new TextRun({
-         text: this.information.translation,
-         bold: true,
-        }),
-       ],
-      }),
-      new Paragraph({
-       children: [
-        new TextRun("Translator:"),
-        new TextRun({
-         text: "Ahmed Ali",
-         italics: true,
-        }),
-       ],
-      }),
-     ],
-    }, ],
-   });
-   const blob = await Packer.toBlob(doc);
-   saveAs(blob, "translation.docx")
-  },
-  shareTextViaWhatsApp1() {
-   this.$emit('shareTextViaWhatsApp');
-  },
   submitForm() {
    const formData = {
     // folder_id: this.selectedFolderId,
