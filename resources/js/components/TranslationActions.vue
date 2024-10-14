@@ -112,27 +112,23 @@ export default {
     return;
    }
 
-   html2canvas(targetTranslationElement)
-    .then((canvas) => {
-     const dataUrl = canvas.toDataURL("image/png");
+   this.previewImage = null;
 
-     // Use Tesseract.js to extract text
-     Tesseract.recognize(dataUrl, 'eng', { // Update 'eng' with your desired language code
-       tessedit_char_whitelist: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!"#$%&()*+,-./:;<=>?@[\\]^_`{|}~ ' // Restrict character recognition (optional)
-      })
-      .then((result) => {
-       const extractedText = result.text;
-       console.log("Extracted Text:", extractedText);
-       // Display the extracted text in an element (replace with your logic)
-       document.getElementById('extracted-text').textContent = extractedText;
-      })
-      .catch((error) => {
-       console.error("OCR error:", error);
-      });
-    })
-    .catch((error) => {
-     console.error("Failed to capture screenshot:", error);
-    });
+   setTimeout(() => {
+    html2canvas(targetTranslationElement)
+     .then((canvas) => {
+      const dataUrl = canvas.toDataURL("image/png");
+
+      // Automatically trigger download of the image
+      const link = document.createElement("a");
+      link.href = dataUrl;
+      link.download = "screenshot.png";
+      link.click();
+     })
+     .catch((error) => {
+      console.error("Failed to capture screenshot:", error);
+     });
+   }, 200);
   },
 
   submitForm() {
@@ -206,7 +202,8 @@ export default {
     '.container.text-center', // Voice, Rate, and Pitch controls
     '.custom-icon-play', // Play button
     '.custom-icon-increase', // Increase text size button
-    '.custom-icon-decrease' // Decrease text size button
+    '.custom-icon-decrease',
+    '.href' // Decrease text size button
    ];
 
    // Function to hide elements

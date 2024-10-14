@@ -186,7 +186,7 @@
           <!-- toolbar mobile -->
         <div v-if="isOpen" class="collapse-content mobile-only" >
           <div class="card text-bg-light card-body">
-            <TranslationAction :targetTranslationRef="'targetTranslationElement'" :translation="translation" @open-modal="openModal" @submit-form="submitForm" />
+            <TranslationActions :targetTranslationRef="'targetTranslationElement'" :translation="translation" @open-modal="openModal" @submit-form="submitForm" />
           </div>
         </div>
 
@@ -238,10 +238,11 @@
            <i class="bi bi-arrow-left-circle h4" style="cursor:pointer" @click="goToPreviousAyah()" title="Previous verse"></i>
            <i class="bi bi-arrow-right-circle h4" style="cursor:pointer" @click="goToNextAyah()" title="Next verse"></i>
            <i class="bi bi-chevron-bar-right h4" style="cursor:pointer"  @click="goToLastAyah()" title="End verse"></i>
-           <i class="bi bi-paint-bucket h2" style="cursor:pointer" data-bs-toggle="offcanvas" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i>
+           <i class="bi bi-paint-bucket h1" style="cursor:pointer" data-bs-toggle="offcanvas" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i>
            <i @click="submitFormTafseer" class="bi bi-bookmark text-right mr-2 mb-2 h3" aria-expanded="false" data-bs-placement="top" title="Bookmark verse"></i>
-
-           <i class="bi bi-arrows-fullscreen h6" style="cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
+            <!--
+            <i class="bi bi-arrows-fullscreen h6" style="cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
+            -->
           </div>
          </div>
         </div>
@@ -288,7 +289,7 @@
                   <div class="col"><i @click="submitFormTransliteration" style="cursor:pointer" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" title="Bookmark verse"></i></div>
                   <div class="col"><ScreenTransliterationCapture style="cursor:pointer"  :targetTransliterationRef="'targetTransliterationElement'" /></div>
                   <div class="col"><PdfDownloadTransliteration style="cursor:pointer"  :targetTransliterationRef="'targetTransliterationElement'" /></div>
-                  <div class="col"><i class="bi bi-paint-bucket h2" style="cursor:pointer" data-bs-toggle="offcanvas" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i></div>
+                  <div class="col"><i class="bi bi-paint-bucket h1" style="cursor:pointer" data-bs-toggle="offcanvas" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i></div>
                   <div class="col"><i class="bi bi-arrows-fullscreen h4" style="cursor:pointer" @click="toggleFullScreen" title="Full screen"></i></div>
                 </div>
               </div>
@@ -303,8 +304,8 @@
              <i class="bi bi-arrow-left-circle h4" style="cursor:pointer" @click="goToPreviousAyah()" title="Previous verse"></i>
              <i class="bi bi-arrow-right-circle h4"  style="cursor:pointer" @click="goToNextAyah()" title="Next verse"></i>
              <i class="bi bi-chevron-bar-right h4" style="cursor:pointer" @click="goToLastAyah()" title="End verse"></i>
-            <i @click="submitFormTransliteration" class="bi bi-bookmark text-right mr-2 mb-2 h3" aria-expanded="false" data-bs-placement="top" title="Bookmark verse"></i>
-             <i class="bi bi-paint-bucket h2" style="cursor:pointer" data-bs-toggle="offcanvas" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i>
+             <i class="bi bi-paint-bucket h1" style="cursor:pointer" data-bs-toggle="offcanvas" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i>
+             <i @click="submitFormTransliteration" class="bi bi-bookmark text-right mr-2 mb-2 h3" aria-expanded="false" data-bs-placement="top" title="Bookmark verse"></i>
              <!--
              <i class="bi bi-arrows-fullscreen h6" style="cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
               -->
