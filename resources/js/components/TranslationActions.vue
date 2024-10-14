@@ -6,13 +6,6 @@
    <i class="bi bi-file-earmark-text h3" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="$emit('open-modal', 'translationNote')"></i>
   </div>
 
-  <!-- Bookmark Icon -->
-  <div class="icon-container">
-   <i @click="submitForm" class="bi bi-bookmark text-right mr-2 h3" aria-expanded="false" data-bs-placement="top" title="Bookmark verse"></i>
-  </div>
-
-  
-
   <!-- Screenshot Icon -->
   <div class="icon-container">
    <i class="bi bi-camera text-right mr-2 h3" @click="captureTranslation" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" :style="{ cursor: 'pointer' }"></i>
@@ -30,7 +23,7 @@
  </div>
 
  <!-- Folder Selection Modal -->
- <FolderSelectionModal ref="folderSelectionModal" />
+ <!-- <FolderSelectionModal ref="folderSelectionModal" /> -->
 </div>
 </template>
 

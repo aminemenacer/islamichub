@@ -118,14 +118,6 @@
                 <div class="col">
                   <i  class="bi bi-file-earmark-text text-right mr-2 h4" style="cursor:pointer" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('translationNote')" ></i>
                 </div>
-
-                <div class="col"><i 
-                  @click="shareTextViaWhatsApp1"
-                  style="cursor:pointer"
-                  class="bi bi-whatsapp text-right mr-2 h4" 
-                  aria-expanded="false" 
-                  title="Bookmark verse"
-                ></i></div>
                 <div class="col"><i 
                   @click="submitForm" 
                   style="cursor:pointer"
@@ -137,7 +129,9 @@
                 <div class="col"><ScreenTranslationCapture style="cursor:pointer"  :targetTranslationRef="'targetTranslationElement'" /></div>
                 <div class="col"><PdfDownload style="cursor:pointer" :targetTranslationRef="'targetTranslationElement'" /></div>
                 <div class="col"><i class="bi bi-paint-bucket h2" data-bs-toggle="offcanvas" style="cursor:pointer" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i></div>
+                
                 <div class="col"><i class="bi bi-arrows-fullscreen h4" style="cursor:pointer" @click="toggleFullScreen" title="Full screen"></i></div>
+                
               </div>
             </div>
             <hr style="border: 2px solid #333;"> 
@@ -152,8 +146,12 @@
             <i class="bi bi-arrow-left-circle h4" style="cursor:pointer" @click="goToPreviousAyah()" title="Previous verse"></i>
             <i class="bi bi-arrow-right-circle h4" style="cursor:pointer" @click="goToNextAyah()" title="Next verse"></i>
             <i class="bi bi-chevron-bar-right h4" style="cursor:pointer" @click="goToLastAyah()" title="End verse"></i>
-            <div class="col"><i class="bi bi-paint-bucket h2" style="cursor:pointer" data-bs-toggle="offcanvas" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i></div>
+            <div class="col"><i class="bi bi-paint-bucket h1" style="cursor:pointer" data-bs-toggle="offcanvas" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i></div>
+            <div class="col"><i @click="submitForm" class="bi bi-bookmark text-right mr-2 mb-2 h3" aria-expanded="false" data-bs-placement="top" title="Bookmark verse"></i></div>
+
+            <!--
             <i class="bi bi-arrows-fullscreen h6" style="cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
+            -->
           </div>
         </div>
         <!-- dropdown mobile content -->
@@ -177,6 +175,21 @@
             />          
           </div>
 
+          <div class="container-fluid text-center mobile-only">
+            <div class="row">
+              <div class="col">
+                <i :class="isOpen ? 'bi bi-x-circle' : 'bi bi-plus-circle-fill'" class="text-center mobile-only h3 pt-3" @click="toggleContent"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- toolbar mobile -->
+        <div v-if="isOpen" class="collapse-content mobile-only" >
+          <div class="card text-bg-light card-body">
+            <TranslationAction :targetTranslationRef="'targetTranslationElement'" :translation="translation" @open-modal="openModal" @submit-form="submitForm" />
+          </div>
+        </div>
+
           <TranslationAction @open-modal="openModal" />
           
         </div>
@@ -190,21 +203,13 @@
          <!-- desktop top features -->
           <div :style="iconStyle">
             <div class="col pb-2">
-              <i  :class="isOpen ? 'bi bi-x-circle-fill' : 'bi bi-plus-circle-fill'" class="top-toolbar-btn text-left hide-on-mobile h4" @click="toggleContent"></i>
+              <i  :class="isOpen ? 'bi bi-x-circle-fill' : 'bi bi-plus-circle-fill'" class=" text-left hide-on-mobile h4" @click="toggleContent"></i>
             </div>
             <div v-if="isOpen" class="icon-container-fluid hide-on-mobile ">
               <div class=" text-center">
                 <div  class="row pt-2">
                   <div class="col">
                   <i style="cursor:pointer" class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('tafseerNote')" ></i></div>
-                  <div class="col">
-                    <WhatsAppShareTranslation 
-                      style="cursor:pointer"
-                      :targetElementRef="'targetElement'" 
-                      :translationToShare="information.translation" 
-                    />
-                  </div>
-                  
                   <div class="col"><i 
                     @click="submitFormTafseer" 
                     style="cursor:pointer"
@@ -217,6 +222,7 @@
                   <div class="col"><ScreenTafseerCapture style="cursor:pointer"  :targetTafseerRef="'targetTafseerElement'" /></div>
                   <div class="col"><PdfDownloadTafsser style="cursor:pointer"  :targetTafseerRef="'targetTafseerElement'"/></div>
                   <div class="col"><i class="bi bi-paint-bucket h2" style="cursor:pointer" data-bs-toggle="offcanvas" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i></div>
+                  <div class="col"><i @click="submitForm" class="bi bi-bookmark text-right mr-2 mb-2 h3" aria-expanded="false" data-bs-placement="top" title="Bookmark verse"></i></div>
                   <div class="col"><i class="bi bi-arrows-fullscreen h4" style="cursor:pointer" @click="toggleFullScreen" title="Full screen"></i></div>
 
                 </div>
@@ -233,6 +239,8 @@
            <i class="bi bi-arrow-right-circle h4" style="cursor:pointer" @click="goToNextAyah()" title="Next verse"></i>
            <i class="bi bi-chevron-bar-right h4" style="cursor:pointer"  @click="goToLastAyah()" title="End verse"></i>
            <i class="bi bi-paint-bucket h2" style="cursor:pointer" data-bs-toggle="offcanvas" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i>
+           <i @click="submitFormTafseer" class="bi bi-bookmark text-right mr-2 mb-2 h3" aria-expanded="false" data-bs-placement="top" title="Bookmark verse"></i>
+
            <i class="bi bi-arrows-fullscreen h6" style="cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
           </div>
          </div>
@@ -271,13 +279,12 @@
             <!-- desktop top features -->
           <div :style="iconStyle">
             <div class="col pb-2 ">
-              <i  :class="isOpen ? 'bi bi-x-circle-fill' : 'bi bi-plus-circle-fill'" class="top-toolbar-btn text-left hide-on-mobile h4" @click="toggleContent"></i>
+              <i  :class="isOpen ? 'bi bi-x-circle-fill' : 'bi bi-plus-circle-fill'" class=" text-left hide-on-mobile h4" @click="toggleContent"></i>
             </div>
             <div v-if="isOpen" class=" hide-on-mobile ">
               <div class="text-center">
                 <div  class="row pt-2">
                   <div class="col"><i style="cursor:pointer"  class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('transliterationNote')" ></i></div>
-                  <div class="col"><WhatsAppShareTransliteration style="cursor:pointer" :transliterationToShare="information.transliteration" /></div>
                   <div class="col"><i @click="submitFormTransliteration" style="cursor:pointer" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" title="Bookmark verse"></i></div>
                   <div class="col"><ScreenTransliterationCapture style="cursor:pointer"  :targetTransliterationRef="'targetTransliterationElement'" /></div>
                   <div class="col"><PdfDownloadTransliteration style="cursor:pointer"  :targetTransliterationRef="'targetTransliterationElement'" /></div>
@@ -296,8 +303,11 @@
              <i class="bi bi-arrow-left-circle h4" style="cursor:pointer" @click="goToPreviousAyah()" title="Previous verse"></i>
              <i class="bi bi-arrow-right-circle h4"  style="cursor:pointer" @click="goToNextAyah()" title="Next verse"></i>
              <i class="bi bi-chevron-bar-right h4" style="cursor:pointer" @click="goToLastAyah()" title="End verse"></i>
+            <i @click="submitFormTransliteration" class="bi bi-bookmark text-right mr-2 mb-2 h3" aria-expanded="false" data-bs-placement="top" title="Bookmark verse"></i>
              <i class="bi bi-paint-bucket h2" style="cursor:pointer" data-bs-toggle="offcanvas" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i>
+             <!--
              <i class="bi bi-arrows-fullscreen h6" style="cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
+              -->
             </div>
            </div>
           </div>
