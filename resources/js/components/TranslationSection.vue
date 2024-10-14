@@ -80,7 +80,7 @@
       <!-- Buttons to save or cancel changes -->
       <div class="d-flex justify-content-end mt-3">
        <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="offcanvas" aria-label="Close">Cancel</button>
-       <button type="button" class="btn btn-success" @click="saveSettings">Save Sttings</button>
+       <button type="button" class="btn btn-success" @click="saveSettings">Save changes</button>
       </div>
      </div>
     </div>
@@ -221,38 +221,7 @@ export default {
   }
  },
  methods: {
-  toggleMagnifier() {
-   // Toggle magnifying glass on/off
-   this.isMagnifying = !this.isMagnifying;
-  },
-  magnify(event) {
-   if (!this.isMagnifying) return; // Don't magnify unless enabled
-
-   const lens = this.$el.querySelector('.magnifier-lens');
-   const preview = this.$el.querySelector('.magnifier-preview');
-
-   const {
-    offsetX,
-    offsetY
-   } = event;
-
-   this.lensPosition.x = offsetX - this.lensSize / 2;
-   this.lensPosition.y = offsetY - this.lensSize / 2;
-
-   lens.style.left = `${this.lensPosition.x}px`;
-   lens.style.top = `${this.lensPosition.y}px`;
-
-   const zoomLevel = 2; // Adjust zoom level as needed
-   preview.style.backgroundImage = `url(${this.imageSrc})`;
-   preview.style.backgroundSize = `${this.$el.offsetWidth * zoomLevel}px ${this.$el.offsetHeight * zoomLevel}px`;
-   preview.style.left = `${offsetX + 10}px`; // Offset preview
-   preview.style.top = `${offsetY + 10}px`; // Offset preview
-   preview.style.backgroundPosition = `-${offsetX * zoomLevel}px -${offsetY * zoomLevel}px`;
-  },
-  hideMagnifier() {
-   if (!this.isMagnifying) return;
-   // Reset any magnification effects
-  },
+  
   toggleExpand() {
    this.expanded = !this.expanded;
   },
@@ -277,103 +246,8 @@ export default {
      //   `Successfully bookmarked ayah ${this.information.ayah_id} to folder "${this.selectedFolderId}"`;
     })
   },
-  downloadTranslationPdf() {
-   const targetTranslationElement = this.$parent.$refs[this.targetTranslationRef];
-
-   if (!targetTranslationElement) {
-    console.error("Invalid element provided as targetTranslationRef");
-    return;
-   }
-
-   // Select all the elements you want to hide
-   const unwantedElements = [
-    '.icon-container', // All icons (bookmark, screenshot, etc.)
-    '.mobile-only', // WhatsApp and Twitter share buttons
-    '.container.text-center', // Voice, Rate, and Pitch controls
-    '.custom-icon-play', // Play button
-    '.custom-icon-increase', // Increase text size button
-    '.custom-icon-decrease' // Decrease text size button
-   ];
-
-   // Function to hide elements
-   const hideElements = (selectorArray) => {
-    selectorArray.forEach(selector => {
-     const elements = document.querySelectorAll(selector);
-     elements.forEach(el => {
-      el.style.display = 'none';
-     });
-    });
-   };
-
-   // Function to show elements
-   const showElements = (selectorArray) => {
-    selectorArray.forEach(selector => {
-     const elements = document.querySelectorAll(selector);
-     elements.forEach(el => {
-      el.style.display = '';
-     });
-    });
-   };
-
-   // Hide unwanted elements
-   hideElements(unwantedElements);
-
-   setTimeout(() => {
-    html2canvas(targetTranslationElement)
-     .then((canvas) => {
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF({
-       orientation: 'portrait',
-       unit: 'mm',
-       format: 'a4',
-      });
-
-      pdf.addImage(imgData, 'PNG', 10, 10, 190, 0);
-      pdf.save('download.pdf');
-
-      // Restore the visibility of unwanted elements after capturing the screenshot
-      showElements(unwantedElements);
-     })
-     .catch((error) => {
-      console.error('Failed to capture HTML content:', error);
-      // Restore the visibility even if there's an error
-      showElements(unwantedElements);
-     });
-   }, 200);
-  },
-  captureTranslation() {
-   const targetTranslationElement = this.$parent.$refs[this.targetTranslationRef];
-
-   if (!targetTranslationElement) {
-    console.error("Invalid element provided as targetTranslationRef");
-    return;
-   }
-
-   html2canvas(targetTranslationElement)
-    .then((canvas) => {
-     const dataUrl = canvas.toDataURL("image/png");
-
-     // Use Tesseract.js to extract text
-     Tesseract.recognize(dataUrl, 'eng', { // Update 'eng' with your desired language code
-       tessedit_char_whitelist: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!"#$%&()*+,-./:;<=>?@[\\]^_`{|}~ ' // Restrict character recognition (optional)
-      })
-      .then((result) => {
-       const extractedText = result.text;
-       console.log("Extracted Text:", extractedText);
-       // Display the extracted text in an element (replace with your logic)
-       document.getElementById('extracted-text').textContent = extractedText;
-      })
-      .catch((error) => {
-       console.error("OCR error:", error);
-      });
-    })
-    .catch((error) => {
-     console.error("Failed to capture screenshot:", error);
-    });
-  },
-  shareTextViaWhatsApp1() {
-   this.$emit('shareTextViaWhatsApp');
-  },
+  
+  
   saveSettings() {
    // Save settings to local storage
    localStorage.setItem('selectedVoice', JSON.stringify(this.selectedVoice));
@@ -406,20 +280,7 @@ export default {
     modalInstance.dispose();
    }
   },
-  shareOnWhatsApp(translation, url) {
-   // Check if translation or URL is missing
-   if (!translation || !url) {
-    console.error('Translation or URL is missing');
-    return;
-   }
-
-   // Encode the message for sharing
-   const encodedMessage = encodeURIComponent(`${translation} ${url}`);
-   const whatsappUrl = `https://api.whatsapp.com/send?text=${encodedMessage}`;
-
-   // Open WhatsApp in a new tab
-   window.open(whatsappUrl, '_blank');
-  },
+  
   loadVoices() {
    this.voices = speechSynthesis.getVoices();
    if (this.voices.length > 0) {

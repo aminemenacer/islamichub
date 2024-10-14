@@ -50,34 +50,7 @@ export default {
   }
  },
  methods: {
-  shareOnWhatsApp() {
-   const ayahInfo = this.information.ayahInfo || "No Ayah Info available"; // Fallback message
-   const mainAyah = this.information.mainAyah || "No Main Ayah available"; // Fallback message
-   const ayahTransliteration = this.expanded ? this.information.transliteration : this.truncatedText(this.information.transliteration);
-
-   const message = `
-        Ayah Info: ${ayahInfo}
-        Main Ayah: ${mainAyah}
-        Transliteration: ${ayahTransliteration}
-      `;
-
-   const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
-   window.open(url, '_blank');
-  },
-  shareOnTwitter() {
-   const ayahInfo = this.information.ayahInfo || "No Ayah Info available"; // Fallback message
-   const mainAyah = this.information.mainAyah || "No Main Ayah available"; // Fallback message
-   const ayahTransliteration = this.expanded ? this.information.transliteration : this.truncatedText(this.information.transliteration);
-
-   const message = `
-        Ayah Info: ${ayahInfo}
-        Main Ayah: ${mainAyah}
-        Transliteration: ${ayahTransliteration}
-      `;
-
-   const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(message)}`;
-   window.open(url, '_blank');
-  },
+  
   toggleFullScreen() {
    this.$emit('toggle-full-screen');
   },

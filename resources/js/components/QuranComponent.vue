@@ -1,9 +1,9 @@
 <template>
 <div id="app">
   <div class="pt-3 text-center">
-    <Title />
+  <Title />
     
-    <div style="display:flex" class="container align-items-center">
+  <div style="display:flex" class="container align-items-center">
   </div>
     <AdvancedSearch  @input-change="handleInputChange" />
     <custom-surah-selection :customSurat="customSuratList" v-model="selectedSurah"></custom-surah-selection>
@@ -93,7 +93,7 @@
           </form>
          </div>
          <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" @click="closeModal">Close</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="closeModal">Close</button>
          </div>
         </div>
        </div>

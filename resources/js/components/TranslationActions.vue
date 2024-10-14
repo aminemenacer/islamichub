@@ -112,7 +112,41 @@ export default {
     return;
    }
 
-   this.previewImage = null;
+   // Select all the elements you want to hide
+   const unwantedElements = [
+    '.icon-container', // All icons (bookmark, screenshot, etc.)
+    '.mobile-only', // WhatsApp and Twitter share buttons
+    '.container.text-center', // Voice, Rate, and Pitch controls
+    '.custom-icon-play', // Play button
+    '.custom-icon-increase', // Increase text size button
+    '.custom-icon-decrease',
+    '.href' // Decrease text size button
+   ];
+
+   // Function to hide elements
+   const hideElements = (selectorArray) => {
+    selectorArray.forEach(selector => {
+     const elements = document.querySelectorAll(selector);
+     elements.forEach(el => {
+      el.style.display = 'none';
+     });
+    });
+   };
+
+   // Function to show elements
+   const showElements = (selectorArray) => {
+    selectorArray.forEach(selector => {
+     const elements = document.querySelectorAll(selector);
+     elements.forEach(el => {
+      el.style.display = '';
+     });
+    });
+   };
+
+   // Hide unwanted elements
+   hideElements(unwantedElements);
+
+   
 
    setTimeout(() => {
     html2canvas(targetTranslationElement)
@@ -124,9 +158,11 @@ export default {
       link.href = dataUrl;
       link.download = "screenshot.png";
       link.click();
+      showElements(unwantedElements);
      })
      .catch((error) => {
       console.error("Failed to capture screenshot:", error);
+      showElements(unwantedElements);
      });
    }, 200);
   },

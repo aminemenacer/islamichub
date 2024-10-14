@@ -49,29 +49,7 @@ export default {
   };
  },
  methods: {
-  shareOnWhatsApp(tafseer, url) {
-   // Check if translation or URL is missing
-   if (!tafseer || !url) {
-    console.error('Translation or URL is missing');
-    return;
-   }
-   // Encode the message for sharing
-   const encodedMessage = encodeURIComponent(`${tafseer} ${url}`);
-   const whatsappUrl = `https://api.whatsapp.com/send?text=${encodedMessage}`;
-
-   // Open WhatsApp in a new tab
-   window.open(whatsappUrl, '_blank');
-  },
-  shareOnTwitter() {
-   const ayahTafseer = this.expanded ? this.information.tafseer : this.truncatedText(this.information.tafseer);
-
-   const message = `
-      Tafseer: ${ayahTafseer}
-    `;
-
-   const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(message)}`;
-   window.open(url, '_blank');
-  },
+  
   toggleFullScreen() {
    this.$emit('toggle-full-screen');
   },

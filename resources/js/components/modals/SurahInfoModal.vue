@@ -9,11 +9,11 @@
         <div class="modal-body">
           <form class="container text-left">
             <div class="mb-3 container" v-if="information.ayah && information.ayah.surah">
-              <label for="formGroupExampleInput" class="form-label">Surah Name (English):</label>
+              <h2 for="formGroupExampleInput" class="form-label">Surah Name (English):</h2>
               <p class="mt-2 text-dark text-left">{{ information.ayah.surah.name_en }}</p>
             </div>
             <div class="mb-3 container" v-if="information.ayah && information.ayah.surah">
-              <label for="formGroupExampleInput" class="form-label text-left">Surah Information:</label>
+              <h2 for="formGroupExampleInput" class="form-label text-left">Surah Information:</h2>
               <p class="text-left">
                 {{ expanded ? information.ayah.surah.text : truncatedText(information.ayah.surah.text) }}
                 <template v-if="showMoreLink">

@@ -64,55 +64,55 @@ export default {
     }
   },
   methods: {
-    submitFormTransliteration() {
-   // Debug log to check current information
-   console.log('Current information:', this.information);
+  submitFormTransliteration() {
+    // Debug log to check current information
+    console.log('Current information:', this.information);
 
-   // Check if ayah information is present
-   if (!this.information || !this.information.ayah) {
-    console.error("Ayah information is missing.");
-    this.showErrorAlert = true;
-    this.hideAlertAfterDelay();
-    return; // Exit if required data is missing
-   }
+    // Check if ayah information is present
+    if (!this.information || !this.information.ayah) {
+      console.error("Ayah information is missing.");
+      this.showErrorAlert = true;
+      this.hideAlertAfterDelay();
+      return; // Exit if required data is missing
+    }
 
-   // Prepare form data for submission
-   const formData2 = {
-    surah_name: this.information.ayah.surah.name_en,
-    ayah_num: this.information.ayah_id,
-    ayah_verse_ar: this.information.ayah.ayah_text,
-    ayah_verse_en: this.information.transliteration,
-    user_id: this.userId,
-   };
+    // Prepare form data for submission
+    const formData2 = {
+      surah_name: this.information.ayah.surah.name_en,
+      ayah_num: this.information.ayah_id,
+      ayah_verse_ar: this.information.ayah.ayah_text,
+      ayah_verse_en: this.information.transliteration,
+      user_id: this.userId,
+    };
 
-   // Check if all required fields are filled
-   if (!formData2.surah_name || !formData2.ayah_num || !formData2.ayah_verse_ar || !formData2.ayah_verse_en || !formData2.user_id) {
-    console.error("Form data is incomplete:", formData2);
-    this.showErrorAlert = true;
-    this.hideAlertAfterDelay();
-    return; // Exit if validation fails
-   }
+    // Check if all required fields are filled
+    if (!formData2.surah_name || !formData2.ayah_num || !formData2.ayah_verse_ar || !formData2.ayah_verse_en || !formData2.user_id) {
+      console.error("Form data is incomplete:", formData2);
+      this.showErrorAlert = true;
+      this.hideAlertAfterDelay();
+      return; // Exit if validation fails
+    }
 
-   // Submit the form using Axios
-   this.isSubmitting = true;
-   axios.post('/bookmarks', formData2)
-    .then(response => {
-     console.log(response.data.message);
-     // Mark bookmark as submitted in localStorage
-     localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
-     this.showAlert = true;
-     this.showErrorAlert = false;
-     this.hideAlertAfterDelay();
-    })
-    .catch(error => {
-     console.error("Error submitting bookmark:", error);
-     this.showErrorAlert = true;
-     this.hideAlertAfterDelay();
-    })
-    .finally(() => {
-     this.isSubmitting = false; // Re-enable submit button
-    });
-  },
+    // Submit the form using Axios
+    this.isSubmitting = true;
+    axios.post('/bookmarks', formData2)
+      .then(response => {
+      console.log(response.data.message);
+      // Mark bookmark as submitted in localStorage
+      localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
+      this.showAlert = true;
+      this.showErrorAlert = false;
+      this.hideAlertAfterDelay();
+      })
+      .catch(error => {
+      console.error("Error submitting bookmark:", error);
+      this.showErrorAlert = true;
+      this.hideAlertAfterDelay();
+      })
+      .finally(() => {
+      this.isSubmitting = false; // Re-enable submit button
+      });
+    },
   hideAlertAfterDelay() {
    setTimeout(() => {
     this.showAlert = false;
@@ -127,6 +127,40 @@ export default {
         return;
       }
 
+      // Select all the elements you want to hide
+      const unwantedElements = [
+        '.icon-container', // All icons (bookmark, screenshot, etc.)
+        '.mobile-only', // WhatsApp and Twitter share buttons
+        '.container.text-center', // Voice, Rate, and Pitch controls
+        '.custom-icon-play', // Play button
+        '.custom-icon-increase', // Increase text size button
+        '.custom-icon-decrease',
+        '.href' // Decrease text size button
+      ];
+
+      // Function to hide elements
+      const hideElements = (selectorArray) => {
+        selectorArray.forEach(selector => {
+        const elements = document.querySelectorAll(selector);
+        elements.forEach(el => {
+          el.style.display = 'none';
+        });
+        });
+      };
+
+      // Function to show elements
+      const showElements = (selectorArray) => {
+        selectorArray.forEach(selector => {
+        const elements = document.querySelectorAll(selector);
+        elements.forEach(el => {
+          el.style.display = '';
+        });
+        });
+      };
+
+      // Hide unwanted elements
+      hideElements(unwantedElements);
+
       setTimeout(() => {
         html2canvas(targetTransliterationElement)
           .then((canvas) => {
@@ -137,9 +171,11 @@ export default {
             link.href = dataUrl;
             link.download = "screenshot.png";
             link.click();
+            showElements(unwantedElements);
           })
           .catch((error) => {
             console.error("Failed to capture screenshot:", error);
+            showElements(unwantedElements);
           });
       }, 200);
     },
@@ -152,6 +188,40 @@ export default {
         return;
       }
 
+      // Select all the elements you want to hide
+      const unwantedElements = [
+        '.icon-container', // All icons (bookmark, screenshot, etc.)
+        '.mobile-only', // WhatsApp and Twitter share buttons
+        '.container.text-center', // Voice, Rate, and Pitch controls
+        '.custom-icon-play', // Play button
+        '.custom-icon-increase', // Increase text size button
+        '.custom-icon-decrease',
+        '.href' // Decrease text size button
+      ];
+
+      // Function to hide elements
+      const hideElements = (selectorArray) => {
+        selectorArray.forEach(selector => {
+        const elements = document.querySelectorAll(selector);
+        elements.forEach(el => {
+          el.style.display = 'none';
+        });
+        });
+      };
+
+      // Function to show elements
+      const showElements = (selectorArray) => {
+        selectorArray.forEach(selector => {
+        const elements = document.querySelectorAll(selector);
+        elements.forEach(el => {
+          el.style.display = '';
+        });
+        });
+      };
+
+      // Hide unwanted elements
+      hideElements(unwantedElements);
+
       html2canvas(targetTransliterationElement)
         .then((canvas) => {
           const imgData = canvas.toDataURL('image/png');
@@ -162,10 +232,12 @@ export default {
           });
 
           pdf.addImage(imgData, 'PNG', 10, 10, 190, 0);
-          pdf.save('screenshot.pdf');
+          pdf.save('download.pdf');
+          showElements(unwantedElements);
         })
         .catch((error) => {
           console.error('Failed to capture HTML content:', error);
+          showElements(unwantedElements);
         });
     }
   }
