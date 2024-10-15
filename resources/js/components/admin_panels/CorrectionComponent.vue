@@ -8,7 +8,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title text-dark" id="addNew">
-            View correction data 
+            <b>View feedback</b>
           </h5>
           <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -22,31 +22,11 @@
                 {{ form.id }}
               </p>
             </div>
-            <!-- <div class="mr-2" style="display: flex">
-              <label class="mt-2 mr-2 col-sm-3">Name:</label>
-              <p class="mt-2 text-dark">
-                {{ form.name }}
-              </p>
-            </div>
-
+            
             <div class="mr-2" style="display: flex">
-              <label class="mt-2 mr-2 col-sm-3">Email:</label>
+              <label class="mt-2 mr-2 col-sm-3">Rating:</label>
               <p class="mt-2 text-dark">
-                {{ form.email }}
-              </p>
-            </div>
-
-            <div class="mr-2" style="display: flex">
-              <label class="mt-2 mr-2 col-sm-3">Ayah Number:</label>
-              <p class="mt-2 text-dark">
-                {{ form.ayah_num }}
-              </p>
-            </div> -->
-
-            <div class="mr-2" style="display: flex">
-              <label class="mt-2 mr-2 col-sm-3">Mistake type:</label>
-              <p class="mt-2 text-dark">
-                {{ form.mistake_type }}
+                {{ form.rating }}
               </p>
             </div>
 
@@ -88,11 +68,11 @@
       <template #body="slotProps">
         <div class="wrapper text-center" style="display:flex">
           <Button data-bs-toggle="modal" data-bs-target="#editNewCorrection" type="button" class="btn user-btn text-white text-center mr-2 action btn1" style="background-color: #1e88e5; display:flex;display:inline-block" @click="editModal(slotProps.data)">
-            <i class="pi pi-eye mr-2"></i>
+            <i class="bi bi-eye mr-2"></i>
             View
           </Button>
           <button class="btn text-white user-btn" style="background-color: #b71c1c" @click="deleteCorrection(slotProps.data.id)">
-            <i class="pi pi-trash"></i>
+            <i class="bi bi-trash"></i>
             Delete
           </button>
         </div>
@@ -128,24 +108,10 @@ export default {
           header: "ID",
           sortable: true,
         }, 
-        // {
-        //   field: "name",
-        //   header: "Firstname",
-        //   sortable: true,
-        // },
-        // {
-        //   field: "email",
-        //   header: "Email Address",
-        //   sortable: true,
-        // },
-        // {
-        //   field: "ayah_num",
-        //   header: "Ayah Num",
-        //   sortable: true,
-        // },
+        
         {
-          field: "mistake_type",
-          header: "Mistake type",
+          field: "ratinge",
+          header: "Rating",
           sortable: true,
         },
         {
@@ -158,17 +124,14 @@ export default {
       sortDesc: false,
       form: new Form({
         id: "",
-        name: "",
-        email: "",
-        mistake_type: "",
-        ayah_num: "",
+        rating: "",
         added_notes: "",
       }),
     }
   },
   methods: {
     loadCorrections() {
-      axios.get("api/fetch-corrections").then((data) => {
+      axios.get("/fetch-corrections").then((data) => {
         this.corrections = data.data;
       });
     },
@@ -183,7 +146,7 @@ export default {
         confirmButtonText: "Yes, delete correction!",
       }).then((result) => {
         if (result.isConfirmed) {
-          axios.delete("api/delete-correction/" + id);
+          axios.delete("/delete-correction/" + id);
           Swal.fire({
             position: "top-end",
             icon: "success",

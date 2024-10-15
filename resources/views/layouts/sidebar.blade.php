@@ -24,12 +24,12 @@
                             <p>Feedback</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a href="/payments" class="nav-link">
                             <i class="bi bi-currency-exchange mr-1"></i>
                             <p>Donations</p>
                         </a>
-                    </li>
+                    </li> --}}
                     <li class="nav-item">
                         <a href="/mailing_list" class="nav-link">
                             <i class="bi bi-envelope-at-fill mr-1"></i>

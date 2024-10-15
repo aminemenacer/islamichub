@@ -226,10 +226,10 @@ Route::post('api/subscribe', [MailingListController::class, 'create']);
 Route::post('api/submit-mail', [MailingListController::class, 'submitMail']);
 
 // correction
-Route::post('api/submit-correction', [CorrectionController::class, 'submit']);
+Route::post('/submit-correction', [CorrectionController::class, 'submit']);
 Route::get('/correction', [CorrectionController::class, 'index']);
-Route::get('api/fetch-corrections', [CorrectionController::class, 'getCorrections']);
-Route::delete('api/delete-correction/{id}',  [CorrectionController::class, 'deleteCorrections']);
+Route::get('/fetch-corrections', [CorrectionController::class, 'getCorrections']);
+Route::delete('/delete-correction/{id}',  [CorrectionController::class, 'deleteCorrections']);
 
 // dashboard
 Route::get('/home', [HomeController::class, 'index'])->name('home');

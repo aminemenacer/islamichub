@@ -17,47 +17,47 @@
      </a>
     </li>
     <li class="nav-item">
-     <a href="/feedback" class="nav-link">
+     <a href="/correction" class="nav-link">
       <i class="bi bi-chat-left-text-fill mr-3"></i>
       <p>Feedback</p>
      </a>
     </li>
-    <li class="nav-item">
+    {{-- <li class="nav-item">
      <a href="/payments" class="nav-link">
       <i class="bi bi-currency-exchange mr-3"></i>
       <p>Donations</p>
      </a>
-    </li>
-    <li class="nav-item">
+    </li> --}}
+    {{-- <li class="nav-item">
      <a href="/mailing_list" class="nav-link">
       <i class="bi bi-envelope-at-fill mr-3"></i>
       <p>Mailing List</p>
      </a>
-    </li>
+    </li> --}}
     <li class="nav-item">
      <a href="/profile" class="nav-link">
       <i class="bi bi-people-fill mr-3"></i>
       <p>Profile</p>
      </a>
     </li>
-    <li class="nav-item">
+    {{-- <li class="nav-item">
      <a href="/correction" class="nav-link">
       <i class="bi bi-bug-fill mr-3"></i>
       <p>Correction</p>
      </a>
-    </li>
+    </li> --}}
     <li class="nav-item">
      <a href="/bookmarks" class="nav-link">
       <i class="bi bi-bookmark-dash-fill mr-3"></i>
       <p>Bookmarks</p>
      </a>
     </li>
-    <li class="nav-item">
+    {{-- <li class="nav-item">
      <a href="/collection" class="nav-link">
       <i class="bi bi-bookmark-dash-fill mr-3"></i>
       <p>Collections</p>
      </a>
-    </li>
+    </li> --}}
     <li class="nav-item">
      <a href="/notes" class="nav-link">
       <i class="bi bi-file-earmark-text-fill mr-3"></i>

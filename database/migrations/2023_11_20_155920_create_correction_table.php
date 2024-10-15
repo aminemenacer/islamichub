@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('mistake_type')->nullable();
             $table->string('hadith_num')->nullable();
             $table->longText('added_notes')->nullable();
+            $table->integer('rating')->nullable();
             $table->timestamps();
         });
     }

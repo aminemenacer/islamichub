@@ -17,6 +17,13 @@
         <div class="modal-body">
           <form>
             <div class="mr-2" style="display: flex">
+              <label class="mt-2 mr-2 col-sm-3">ID:</label>
+              <p class="mt-2 text-dark">
+                {{ form.id }}
+              </p>
+            </div>
+
+            <div class="mr-2" style="display: flex">
               <label class="mt-2 mr-2 col-sm-3">Firstname:</label>
               <p class="mt-2 text-dark">
                 {{ form.name }}
@@ -225,15 +232,15 @@
 
           <div class="text-center">
             <Button data-bs-toggle="modal" data-bs-target="#editNewUser" type="button" class="btn user-btn text-white text-center mr-2 action btn1" style="background-color: #1e88e5; display:flex;display:inline-block" @click="editModal(slotProps.data)">
-              <i class="pi pi-eye mr-2"></i>
+              <i class="bi bi-eye mr-2"></i>
               View
             </Button>
             <button data-bs-toggle="modal" data-bs-target="#editNew" type="button" class="btn text-white user-btn mr-2" style="background-color: #43a047;display:inline" @click="editModal(slotProps.data)">
-              <i class="pi pi-user-edit"></i>
+              <i class="bi bi-pencil"></i>
               Edit
             </button>
             <button class="btn text-white user-btn" style="background-color: #b71c1c" @click="deleteUser(slotProps.data.id)">
-              <i class="pi pi-trash"></i>
+              <i class="bi bi-trash"></i>
               Delete
             </button>
 
@@ -274,7 +281,11 @@ export default {
       totalUsers: 0,
 
       columns: [
-        
+        {
+          field: "id",
+          header: "ID",
+          sortable: true,
+        },
         {
           field: "name",
           header: "Firstname",
@@ -313,6 +324,7 @@ export default {
   methods: {
 
     InitializeForm() {
+      this.form.id = "";
       this.form.name = "";
       this.form.lastname = "";
       this.form.email = "";
@@ -322,6 +334,7 @@ export default {
     Reset(event) {
       event.preventDefault();
       // Reset our form values
+      this.form.id = "";
       this.form.name = "";
       this.form.lastname = "";
       this.form.user_type = "";
@@ -346,7 +359,7 @@ export default {
       }).then((result) => {
         if (result.isConfirmed) {
           axios
-            .post("/api/create-users", this.form)
+            .post("api/create-users", this.form)
             .then((res) => {
               if (!res.data.success) {
                 Swal.fire({
