@@ -222,7 +222,6 @@
                   <div class="col"><ScreenTafseerCapture style="cursor:pointer"  :targetTafseerRef="'targetTafseerElement'" /></div>
                   <div class="col"><PdfDownloadTafsser style="cursor:pointer"  :targetTafseerRef="'targetTafseerElement'"/></div>
                   <div class="col"><i class="bi bi-paint-bucket h2" style="cursor:pointer" data-bs-toggle="offcanvas" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i></div>
-                  <div class="col"><i @click="submitForm" class="bi bi-bookmark text-right mr-2 mb-2 h3" aria-expanded="false" data-bs-placement="top" title="Bookmark verse"></i></div>
                   <div class="col"><i class="bi bi-arrows-fullscreen h4" style="cursor:pointer" @click="toggleFullScreen" title="Full screen"></i></div>
 
                 </div>
@@ -289,7 +288,7 @@
                   <div class="col"><i @click="submitFormTransliteration" style="cursor:pointer" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" title="Bookmark verse"></i></div>
                   <div class="col"><ScreenTransliterationCapture style="cursor:pointer"  :targetTransliterationRef="'targetTransliterationElement'" /></div>
                   <div class="col"><PdfDownloadTransliteration style="cursor:pointer"  :targetTransliterationRef="'targetTransliterationElement'" /></div>
-                  <div class="col"><i class="bi bi-paint-bucket h1" style="cursor:pointer" data-bs-toggle="offcanvas" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i></div>
+                  <div class="col"><i class="bi bi-paint-bucket h2" style="cursor:pointer" data-bs-toggle="offcanvas" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i></div>
                   <div class="col"><i class="bi bi-arrows-fullscreen h4" style="cursor:pointer" @click="toggleFullScreen" title="Full screen"></i></div>
                 </div>
               </div>
@@ -616,6 +615,9 @@ import TranslationActions from './TranslationActions.vue'
 import TafseerActions from './TafseerActions.vue'
 import TransliterationActions from './TransliterationActions.vue'
 import SpeechRecognition from './translation/features/speech_recognition/SpeechRecognition.vue';
+import PdfDownload from './pdf/PdfDownload.vue'
+import PdfDownloadTafsser from './pdf/PdfDownloadTafsser.vue'
+import PdfDownloadTransliteration from './pdf/PdfDownloadTransliteration.vue'
 import AdvancedSearch from './search/AdvancedSearch.vue'
 import KeyboardNavigation from './accesibility/KeyboardNavigation.vue'
 import FolderSelectionModal from './folder_manager/FolderSelectionModal.vue';
@@ -647,6 +649,7 @@ export default {
   ScreenTafseerCapture,
   ScreenTransliterationCapture,
   SurahInfoModal,
+  
   TranslationNote,
   TafseerNote,
   TransliterationNote,
@@ -659,7 +662,10 @@ export default {
   TafseerActions,
   TransliterationActions,
   SpeechRecognition,
+  PdfDownload,
   FolderSelectionModal,
+  PdfDownloadTransliteration,
+  PdfDownloadTafsser,
   AdvancedSearch,
   KeyboardNavigation,
   ScreenReader
@@ -685,26 +691,26 @@ props: ['information', 'selectedFolderId'], information: {
     },
  data() {
   return {
-    // user logins
     userIsLoggedIn: true,
-    userId: null,
-    // advanced search bar
-    isAdvancedSearchVisible: false, 
+    newThemeName: "",
+    savedThemes: [],
+    selectedTheme:null,
+    isAdvancedSearchVisible: false, // Controls the visibility of AdvancedSearch
     searchTerm: "",
     results:[],
     filteredResults: [],
     selectedSurah: null,
     selectedAyah: null,
     selectedTafseer: null,
+    userId: null,
+    bookmarkSubmitted: false, // Set initial state
+    selectedFolderId: null,
     isVisible1: false,
     isOpen: false,
-    // bookmark 
-    bookmarkSubmitted: false, 
-    // speech
     recognition: null,
     isListening: false,
     transcript: '',
-    // theme style
+    selectedStyle: null,
     defaultStyles: [
       {
         name: 'Default',
@@ -789,9 +795,6 @@ props: ['information', 'selectedFolderId'], information: {
       iconColor: '#000000',
     },
     // Initial styles
-    selectedTheme:null,
-    selectedStyle: null,
-    savedThemes: [],
     fontFamily: 'Arial, sans-serif',
     fontSize: 16,
     fontSpacing: 0,
@@ -812,6 +815,7 @@ props: ['information', 'selectedFolderId'], information: {
     showMessage: false,
     message: 'Theme has been applied successfully!',
     filteredSurah: [],
+   //twitter/whatsapp
    information: {
     translation: '',
     transliteration: '', // Example translated text
@@ -932,12 +936,16 @@ methods: {
   // Save a new theme
   saveCustomTheme() {
     if (this.newThemeName) {
+      // Save the current layout with the new theme name
       const newTheme = {
         name: this.newThemeName,
         layout: { ...this.currentLayout },
       };
       this.savedThemes.push(newTheme); // Add to the array of saved themes
+
+      // Update localStorage with the new array of themes
       localStorage.setItem('savedThemes', JSON.stringify(this.savedThemes));
+
       this.newThemeName = ""; // Clear the input field
       alert('Theme saved successfully!');
     } else {
@@ -948,6 +956,7 @@ methods: {
     if (this.selectedThemeIndex !== null) {
       const theme = this.savedThemes[this.selectedThemeIndex];
       if (theme) {
+        // Apply the saved theme settings to the current layout
         this.currentLayout = { ...theme.layout };
         this.applyCustomStyles(); // Apply the styles to the page
       }
@@ -969,7 +978,10 @@ methods: {
         this.showAlert = true;
         this.showErrorAlert = false;
         this.hideAlertAfterDelay();
-              })
+        // Display a confirmation message with the bookmarked ayah and folder
+        // this.$refs.bookmarkConfirmation.textContent = 
+        //   `Successfully bookmarked ayah ${this.information.ayah_id} to folder "${this.selectedFolderId}"`;
+      })
     },
   submitFormTafseer() {
     const formData1 = {
@@ -987,6 +999,9 @@ methods: {
         this.showAlert = true;
         this.showErrorAlert = false;
         this.hideAlertAfterDelay();
+        // Display a confirmation message with the bookmarked ayah and folder
+        // this.$refs.bookmarkConfirmation.textContent = 
+        //   `Successfully bookmarked ayah ${this.information.ayah_id} to folder "${this.selectedFolderId}"`;
       })
     },
   submitFormTransliteration() {
@@ -1005,16 +1020,19 @@ methods: {
         this.showAlert = true;
         this.showErrorAlert = false;
         this.hideAlertAfterDelay();
+        // Display a confirmation message with the bookmarked ayah and folder
+        // this.$refs.bookmarkConfirmation.textContent = 
+        //   `Successfully bookmarked ayah ${this.information.ayah_id} to folder "${this.selectedFolderId}"`;
       })
     },
   hideAlertAfterDelay() {
     setTimeout(() => {
       this.showAlert = false;
       this.showErrorAlert = false;
-    }, 3000); 
+    }, 3000); // Hide alerts after 3 seconds
   },
   toggleAdvancedSearch() {
-    this.isAdvancedSearchVisible = !this.isAdvancedSearchVisible; 
+    this.isAdvancedSearchVisible = !this.isAdvancedSearchVisible; // Toggle the visibility
   },
   async fetchSurahs() {
     try {
@@ -1119,6 +1137,10 @@ methods: {
     localStorage.setItem('textColor', this.textColor);
     localStorage.setItem('iconColor', this.iconColor);
 
+    // Apply styles to the container
+    // Object.assign(this.$el.style, this.containerStyle);
+
+    // Apply icon color to all icons
     const icons = this.$el.querySelectorAll('i');
     icons.forEach(icon => {
       icon.style.color = this.iconColor;
@@ -1361,6 +1383,16 @@ methods: {
     this.showAlertTextNote = true;
    }
   },
+  submitCat() {
+   const formData = {
+    surah_name: this.information.ayah.surah.name_en,
+    ayah_num: this.information.ayah_id,
+    ayah_verse_ar: this.information.ayah.ayah_text,
+    ayah_verse_en: this.information.translation,
+    category_id: this.selectedCategory
+   };
+   axios.post('/submit_category', formData);
+  },
   scrollToAyah() {
    const verseNum = parseInt(this.verseNumber);
    if (!isNaN(verseNum) && verseNum >= 1 && verseNum <= this.ayat.length) {
@@ -1429,6 +1461,7 @@ methods: {
   showCard() {
    this.isCardVisible = true; // Show the card when button is clicked
   },
+
   updateCardSection(ayah) {
     // Assuming you have properties like 'ayahTranslation', 'ayahTafseer', etc. bound to the card section
     this.ayahTranslation = ayah.translation;
@@ -1436,6 +1469,7 @@ methods: {
     this.ayahTransliteration = ayah.transliteration;
     // Add any additional data you want to show in the card section
   },
+
   selectAyah(index) {
    this.selectedIndexAyah = index;
    this.updateCardSection(this.ayat[index]);
@@ -1537,7 +1571,35 @@ methods: {
 
 <style scoped src="./css/styles.css">
 
+.custom-prev-ayah:hover{
+  color: black;/* Default color */
+  transition: color 0.3s ease; /* Smooth transition */
+}
+.custom-prev-ayah:hover{
+  color: black;/* Default color */
+  transition: color 0.3s ease; /* Smooth transition */
+}
+.custom-last-verse:hover{
+  color: black;/* Default color */
+  transition: color 0.3s ease; /* Smooth transition */
+}
+.highlight {
+  background-color: yellow;
+  font-weight: bold;
+}
+.result-item {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
 
+.button-33 {
+  background-color: rgba(0, 191, 166, 0.2);
+  color: rgb(255, 255, 255);
+  border: 1px solid rgba(0, 191, 166);
+}
 
+.top-toolbar-btn{
+  background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
 
+}
 </style>

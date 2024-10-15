@@ -24,10 +24,7 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
 
     <!-- Google Analytics -->
@@ -142,11 +139,20 @@
 
         {{-- Ensure that app.js is loaded at the end --}}
         <!-- Bootstrap JS and Popper.js (for Bootstrap 5.x) -->
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const navbarToggler = document.querySelector('.navbar-toggler');
+                const navbarCollapse = document.getElementById('navbarNav');
 
-
-
+                if (navbarToggler && navbarCollapse) {
+                    navbarToggler.addEventListener('click', function () {
+                        const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+                        bsCollapse.toggle();
+                    });
+                }
+            });
+        </script>
         <script src="{{ mix('js/app.js') }}"></script>
     </body>
 
