@@ -72,19 +72,19 @@
                     </div>
                     <h5><strong>Date created:</strong></h5>
                     <p>{{ formatDate(note.created_at) }}</p>
-                    <hr />
+                    <!-- <hr /> -->
                     <div class="container text-center">
                         <form @submit.prevent="createNote">
                             <div class="row">
-                                <div class="col">
+                                <!-- <div class="col">
                                     <i class="bi bi-eye me-3 h3" style="cursor: pointer;" @click="viewModal(note)" data-bs-toggle="modal" data-bs-target="#viewNotes"></i>
-                                </div>
-                                <div class="col">
-                                    <i class="bi bi-whatsapp h4 me-3 text-center" style="cursor: pointer;" @click="shareTextViaWhatsApp3(index)"></i> <!-- Pass index -->
-                                </div>
-                                <div class="col">
+                                </div> -->
+                                <!-- <div class="col">
+                                    <i class="bi bi-whatsapp h4 me-3 text-center" style="cursor: pointer;" @click="shareTextViaWhatsApp3(index)"></i> 
+                                </div> -->
+                                <!-- <div class="col">
                                     <i class="bi bi-file-earmark-text h4 me-3 text-center" style="cursor: pointer;" @click="createNote"></i>
-                                </div>
+                                </div> -->
                             </div>
                         </form>
                     </div>
@@ -106,7 +106,7 @@
       </div>
       <div class="modal-body">
         <div>
-          <div class="mb-3">
+          <!-- <div class="mb-3">
             <label class="form-label"><strong>Surah Name:</strong></label>
             <p class="mt-2 text-dark text-left">{{ form.surah_name }}</p>
           </div>
@@ -117,7 +117,7 @@
           <div class="mb-3">
             <label class="form-label"><strong>English Info:</strong></label>
             <p class="mt-2 text-dark text-left">{{ form.ayah_verse_en }}</p>
-          </div>
+          </div> -->
           <div class="mb-3">
             <label class="form-label"><strong>Notes:</strong></label>
             <div class="mt-2 text-dark text-left" v-html="form.ayah_notes"></div>
@@ -251,18 +251,7 @@ export default {
   }
 },
  methods: {
-  shareTextViaWhatsApp3(note) {
-    const targetElement = this.$refs[`targetElement-${index}`];
-    if (!targetElement) {
-      console.error("Target element for WhatsApp sharing not found.");
-      return;
-    }
-
-    const text3 = targetElement.innerText;
-    const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text3)}`;
-    // Open WhatsApp sharing URL
-    window.open(url, '_blank');
-  },
+  
   handleFilterClick(value) {
     this.selectedFilter = value;
     localStorage.setItem('selectedFilter', value);
@@ -270,12 +259,7 @@ export default {
   getStoredFilter() {
     return localStorage.getItem('selectedFilter');
   },
-  shareViaWhatsapp(note) {
-    const message = `Surah Name: ${note.surah_name}\nNote: ${note.ayah_notes}\nDate Created: ${this.formatDate(note.created_at)}`;
-    const encodedMessage = encodeURIComponent(message); // Encode special characters
-    const whatsappUrl = `https://wa.me/?text=${encodedMessage}`;
-    window.open(whatsappUrl, '_blank');
-  },
+  
   highlightText(text) {
     if (!this.searchTerm || !text) {
       return text;

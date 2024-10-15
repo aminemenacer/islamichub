@@ -12,12 +12,7 @@
       <a class="href" href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
      </template>
     </h4>
-    <!-- Display each word with a span for highlighting -->
-    <!-- <div v-if="information.translation">
-      <span v-for="(word, index) in words" :key="index" :class="{ highlight: index === currentWordIndex }">
-        {{ word }}
-      </span>
-    </div> -->
+    
     <Translator translator="Ahmed Ali" />
     <!-- Speech icons mobile only-->
     <div style="cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: space-between;" class="container pb-2 text-center mobile-only">

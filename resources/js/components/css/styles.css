@@ -20,6 +20,30 @@
   }
 }
 
+.custom-prev-ayah:hover{
+  color: black;/* Default color */
+  transition: color 0.3s ease; /* Smooth transition */
+}
+.custom-prev-ayah:hover{
+  color: black;/* Default color */
+  transition: color 0.3s ease; /* Smooth transition */
+}
+.custom-last-verse:hover{
+  color: black;/* Default color */
+  transition: color 0.3s ease; /* Smooth transition */
+}
+
+.result-item {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.button-33 {
+  background-color: rgba(0, 191, 166, 0.2);
+  color: rgb(255, 255, 255);
+  border: 1px solid rgba(0, 191, 166);
+}
+
 .hide-on-desktop {
  display: none;
 }
