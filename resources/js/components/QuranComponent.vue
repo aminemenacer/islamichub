@@ -36,21 +36,20 @@
      <!-- Error alert -->
      <ErrorAlert :showError="showError" @dismiss-error="dismissError" />
 
-     <div class="row container-fluid">
+     <div class="row container-fluid" >
       <hr class="container" style="height: 4px; background: lightgrey;">
 
-      <div :style="iconStyle" class="icon-container pb-2">
+      <div :style="iconStyle" class="icon-container pb-2" >
        <i class="bi bi-chevron-bar-left h4 custom-first-verse"  @click="goToFirstAyah" title="First verse"></i>
        <i class="bi bi-arrow-left-circle h4 custom-prev-ayah" @click="goToPreviousAyah" title="Previous verse"></i>
        <i class="bi bi-arrow-right-circle h4 custom-next-ayah" @click="goToNextAyah" title="Next verse"></i>
        <i class="bi bi-chevron-bar-right h4 custom-last-verse" @click="goToLastAyah" title="Last verse"></i>
        <i v-if="information != null" class="bi bi-info-circle-fill h4 mr-2 pl-2" data-bs-toggle="modal" data-bs-target="#translationInfo" aria-expanded="false" data-bs-placement="top" title="Surah info"></i>
        <i v-if="information != null" title="Report a bug"  data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-bug-fill text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" ></i>
-
       </div>
 
-      <div class="custom-scrollbar pb-5" style="overflow-y: auto; max-height: 600px; background: white;border-radius:10px">
-       <ul class="col-md-12 list-group container-fluid root" id="toggle" ref="ayahList" style="list-style-type: none; padding: 10px">
+      <div class="custom-scrollbar pb-5" style="overflow-y: auto; max-height: 600px; background: white;border-radius:10px;box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;">
+       <ul class="col-md-12 list-group container-fluid root" id="toggle" ref="ayahList" style="list-style-type: none; padding: 8px">
         <li v-for="(ayah, index) in ayat" :key="index" @click="selectAyah(index)" :class="{ selected: selectedIndexAyah === index, highlighted: verseNumber && parseInt(verseNumber) === ayah.ayah_id }" style="padding: 10px; border-radius:10px">
          <h5 class="text-right" style="display: flex;"> Verse: {{ ayah.ayah_id }} </h5>
          <h5 class="text-right">{{ ayah.ayah_text }}</h5>
