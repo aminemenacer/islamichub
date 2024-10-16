@@ -23,7 +23,6 @@
                         style="line-height: 1.6em"
                     >
                         <!-- {{ expanded ? tafseer : truncatedText(tafseer) }} -->
-
                         {{ tafseer }}
                         <!-- <template v-if="tafseer.length > 0">
                             <a
@@ -78,11 +77,33 @@ export default {
     },
     data() {
         return {
+            tafseer: "", // Store tafseer data here
             expanded: false, // Local state to track expand/collapse
-            surahUrl: "",
         };
     },
+    watch: {
+        // Watch for changes to `information.ayah.id`
+        "information.ayah.id": {
+            immediate: true, // Run on initial component mount as well
+            handler(newId, oldId) {
+                if (newId !== oldId) {
+                    this.fetchTafseer(newId); // Refetch tafseer when ayah ID changes
+                }
+            },
+        },
+    },
     methods: {
+        async fetchTafseer(ayahId) {
+            try {
+                console.log("Fetching tafseer for ayah id: " + ayahId);
+                const tafseerResponse = await axios.get(
+                    `/tafseer/${ayahId}/fetch`
+                );
+                this.tafseer = tafseerResponse.data; // Assign the fetched data to the local state
+            } catch (error) {
+                console.error("Error fetching tafseer:", error);
+            }
+        },
         toggleFullScreen() {
             this.$emit("toggle-full-screen");
         },
@@ -104,6 +125,12 @@ export default {
         closeAlertText() {
             this.$emit("close-alert-text");
         },
+    },
+    mounted() {
+        // Optionally, fetch the tafseer immediately when the component mounts
+        if (this.information?.ayah?.id) {
+            this.fetchTafseer(this.information.ayah.id);
+        }
     },
 };
 </script>
