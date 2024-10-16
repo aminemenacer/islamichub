@@ -10,10 +10,14 @@
           <form @submit.prevent="createCorrection" id="reportForm">
             <!-- Rating -->
             <label for="rating" class="form-label text-left">Your Rating</label>
-            <div class="star-rating">
-              <span v-for="star in 5" :key="star" @click="setRating(star)" :class="{ 'active': star <= form.rating }">
-                &#9733;
-              </span>
+            <div class="text-center">
+              <div class="row star-rating">
+                <div class="col container-fluid text-left">
+                  <span v-for="star in 5" :key="star" @click="setRating(star)" :class="{ 'active': star <= form.rating }">
+                    &#9733;
+                  </span>
+                </div>
+              </div> 
             </div>
             <!-- Notes -->
             <div class="mb-3 mt-3 text-left">
@@ -24,7 +28,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" form="reportForm" class="btn btn-success">Save changes</button>
+          <button type="submit" form="reportForm" class="btn btn-success">Submit</button>
         </div>
       </div>
     </div>
@@ -117,7 +121,7 @@ export default {
 
 <style scoped>
 .star-rating {
-  font-size: 24px;
+  font-size: 38px;
   color: #ddd;
 }
 .star-rating span {
