@@ -2,7 +2,7 @@
 <div class="container">
 
 <div class="row ml-4 mt-3 container-fluid">
-  <h3 class="text-left mt-3 mb-2 container" style="line-height: 1.7em; tafseer; "><img src="/images/art.png" style="width: 40px;" class="mb-1 mr-2 display-4" />Access Your Bookmarks and Notes</h3>
+  <h2 class="text-left mt-3 mb-2 container" style="line-height: 1.7em; tafseer; "><img src="/images/art.png" style="width: 40px;" class="mb-1 mr-2 display-4" /><b>Access Your Bookmarks and Notes</b></h2>
   <div class="col-md-6">
    <h5 class="text-left text-dark" width="80%" style="line-height: 1.7em; tafseer">July 7th, 2024</h5>
    <div>
@@ -18,7 +18,7 @@
  <hr>
 
 <div class="row ml-4 mt-3 container-fluid">
-  <h3 class="text-left mt-3 mb-2 container" style="line-height: 1.7em; tafseer; "><img src="/images/art.png" style="width: 40px;" class="mb-1 mr-2" />Revamp of New UI with Enhanced Features</h3>
+  <h2 class="text-left mt-3 mb-2 container" style="line-height: 1.7em; tafseer; "><img src="/images/art.png" style="width: 40px;" class="mb-1 mr-2" /><b>Revamp of New UI with Enhanced Features</b></h2>
   <div class="col-md-6">
    <h5 class="text-left text-dark" width="80%" style="line-height: 1.7em; tafseer">June 30th, 2024</h5>
    <div>
@@ -39,7 +39,7 @@
  <hr>
 
 <div class="row ml-4 mt-3 container-fluid">
-  <h3 class="text-left mt-3 mb-2 container" style="line-height: 1.7em; tafseer; "><img src="/images/art.png" style="width: 40px;" class="mb-1 mr-2" />Introducing Ayah (verse) sharing</h3>
+  <h2 class="text-left mt-3 mb-2 container" style="line-height: 1.7em; tafseer; "><img src="/images/art.png" style="width: 40px;" class="mb-1 mr-2" /><b>Introducing Ayah (verse) sharing</b></h2>
   <div class="col-md-6">
    <h5 class="text-left text-dark" width="80%" style="line-height: 1.7em; tafseer">July 4th, 2024</h5>
    <div>
@@ -55,7 +55,7 @@
  <hr>
 
 <div class="row ml-4 mt-3 container-fluid">
-  <h3 class="text-left mt-3 mb-2 container" style="line-height: 1.7em; tafseer; "><img src="/images/art.png" style="width: 40px;" class="mb-1 mr-2" />Revamp of New UI with Enhanced Features</h3>
+  <h2 class="text-left mt-3 mb-2 container" style="line-height: 1.7em; tafseer; "><img src="/images/art.png" style="width: 40px;" class="mb-1 mr-2" /><b>Revamp of New UI with Enhanced Features</b></h2>
   <div class="col-md-6">
    <h5 class="text-left text-dark" width="80%" style="line-height: 1.7em; tafseer">June 30th, 2024</h5>
    <div>
@@ -76,7 +76,7 @@
  <hr>
 
 <div class="row ml-4 mt-3 container-fluid">
-  <h3 class="text-left mt-3 mb-2 container" style="line-height: 1.7em; tafseer; "><img src="/images/art.png" style="width: 40px;" class="mb-1 mr-2" />Release our newest feature "Bookmarking"</h3>
+  <h2 class="text-left mt-3 mb-2 container" style="line-height: 1.7em; tafseer; "><img src="/images/art.png" style="width: 40px;" class="mb-1 mr-2" /><b>Release our newest feature "Bookmarking"</b></h2>
   <div class="col-md-6">
    <h5 class="text-left text-dark" width="80%" style="line-height: 1.7em; tafseer">June 26th, 2024</h5>
    <div>
@@ -94,7 +94,7 @@
  <hr>
 
 <div class="row ml-4 mt-3 container-fluid">
-  <h3 class="text-left mt-3 mb-2 container" style="line-height: 1.7em; tafseer; "><img src="/images/art.png" style="width: 40px;" class="mb-1 mr-2" />Announcing our latest feature "Notes and Reflections"</h3>
+  <h2 class="text-left mt-3 mb-2 container" style="line-height: 1.7em; tafseer; "><img src="/images/art.png" style="width: 40px;" class="mb-1 mr-2" /><b>Announcing our latest feature "Notes and Reflections"</b></h2>
   <div class="col-md-6">
    <h5 class="text-left text-dark" width="80%" style="line-height: 1.7em; tafseer">June 19th, 2024</h5>
    <div>
@@ -109,7 +109,7 @@
 
  <hr>
 <div class="row ml-4 mt-3 container-fluid">
-  <h3 class="text-left mt-3 mb-2 container" style="line-height: 1.7em; tafseer; "><img src="/images/art.png" style="width: 40px;" class="mb-1 mr-2" />Introducing "Featured Reading"</h3>
+  <h2 class="text-left mt-3 mb-2 container" style="line-height: 1.7em; tafseer; "><img src="/images/art.png" style="width: 40px;" class="mb-1 mr-2" /><b>Introducing "Featured Reading"</b></h2>
   <div class="col-md-6">
    <h5 class="text-left text-dark" width="80%" style="line-height: 1.7em; tafseer">June 17th, 2024</h5>
    <div>
@@ -132,7 +132,7 @@
  <hr>
 
 <div class="row ml-4 mt-3 container-fluid">
-  <h3 class="text-left mt-3 mb-2 container" style="line-height: 1.7em; tafseer; "><img src="/images/art.png" style="width: 40px;" class="mb-1 mr-2" />Introducing "Swipe Gestures"</h3>
+  <h2 class="text-left mt-3 mb-2 container" style="line-height: 1.7em; tafseer; "><img src="/images/art.png" style="width: 40px;" class="mb-1 mr-2" /><b>Introducing "Swipe Gestures"</b></h2>
   <div class="col-md-6">
    <h5 class="text-left text-dark" width="80%" style="line-height: 1.7em; tafseer">June 11th, 2024</h5>
    <div>
@@ -156,7 +156,7 @@
  <hr>
 
  <div class="row ml-4 mt-3 container-fluid">
-  <h3 class="text-left mt-3 mb-2 container" style="line-height: 1.7em; tafseer; "><img src="/images/art.png" style="width: 40px;" class="mb-1 mr-2" /> Discover Our Updated Features for an Enhanced Quranic Journey</h3>
+  <h2 class="text-left mt-3 mb-2 container" style="line-height: 1.7em; tafseer; "><img src="/images/art.png" style="width: 40px;" class="mb-1 mr-2" /><b>Discover Our Updated Features for an Enhanced Quranic Journey</b></h2>
   <div class="col-md-6">
    <h5 class="text-left text-dark" width="80%" style="line-height: 1.7em; tafseer">June 8th, 2024</h5>
    <p class="text-left text-dark " style="line-height: 1.7em; tafseer">Welcome everyone! I'm excited to share with you the latest updates and features we've added to our website. Our team has been working diligently to enhance your user experience and provide you with the best possible tools and resources. Here’s a rundown of what’s new:</p>
@@ -178,7 +178,7 @@
 
  <div class="row ml-4 mt-3 container-fluid">
 
-  <h3 class="text-left mt-3 mb-2 container" style="line-height: 1.7em; tafseer; "><img src="/images/art.png" style="width: 40px;" class="mb-1 mr-2" /> Unlock Your Quranic Journey with Ayah Controls</h3>
+  <h2 class="text-left mt-3 mb-2 container" style="line-height: 1.7em; tafseer; "><img src="/images/art.png" style="width: 40px;" class="mb-1 mr-2" /><b>Unlock Your Quranic Journey with Ayah Controls</b></h2>
   <div class="col-md-6">
    <h5 class="text-left text-dark" width="80%" style="line-height: 1.7em; tafseer">June 4th, 2024</h5>
    <p class="text-left text-dark " style="line-height: 1.7em; tafseer">We are introducing the Ayah controls feature on our website, specifically designed for Quranic study and recitation, offering several benefits.</p>
@@ -198,7 +198,7 @@
 
  <div class="row ml-4 mt-3 container">
 
-  <h3 class="text-left mt-3 container" style="line-height: 1.7em; tafseer; "><img src="/images/art.png" style="width: 40px;" class="mb-1 mr-2" /> Welcome to the Islamic Connect Beta Version</h3>
+  <h2 class="text-left mt-3 container" style="line-height: 1.7em; tafseer; "><img src="/images/art.png" style="width: 40px;" class="mb-1 mr-2" /><b>Welcome to the Islamic Connect Beta Version</b></h2>
   <div class="col-md-6">
    <h5 class="text-left text-dark" width="80%" style="line-height: 1.7em; tafseer">May 27th, 2024</h5>
    <p class="text-left text-dark " style="line-height: 1.7em; tafseer">Islamic Connect Beta Version provides an exciting preview of our inclusive online Islamic community. Engage with our evolving platform, designed to foster meaningful connections and enhance your spiritual journey. We invite you to join us in shaping the future of Islamic Connect through your valuable feedback and active participation". We offer many features such as:</p>

@@ -22,16 +22,16 @@
                         class="text-left ayah-translation"
                         style="line-height: 1.6em"
                     >
-                        <!-- {{ expanded ? tafseer : truncatedText(tafseer) }} -->
-                        {{ tafseer }}
-                        <!-- <template v-if="tafseer.length > 0">
+                        {{ expanded ? tafseer : truncatedText(tafseer) }}
+                        <!-- {{ tafseer }} -->
+                        <template v-if="tafseer.length > 0">
                             <a
                                 class="href"
                                 href="#"
                                 @click.prevent="toggleExpand"
                                 >{{ expanded ? "Show Less" : "Show More" }}</a
                             >
-                        </template> -->
+                        </template>
                     </h4>
                 </div>
 
@@ -61,77 +61,75 @@ import MainAyah from "./translation/MainAyah.vue";
 import AlertModal from "./modals/AlertModal.vue";
 
 export default {
-    name: "TafseerSection",
-    components: {
-        AyahInfo,
-        MainAyah,
-        AlertModal,
-    },
-    props: {
-        information: Object,
-        isFullScreen: Boolean,
-        showAlertText: Boolean,
-        showAlert: Boolean,
-        showErrorAlert: Boolean,
-        showAlertTextNote: Boolean,
-    },
-    data() {
-        return {
-            tafseer: "", // Store tafseer data here
-            expanded: false, // Local state to track expand/collapse
-        };
-    },
-    watch: {
-        // Watch for changes to `information.ayah.id`
-        "information.ayah.id": {
-            immediate: true, // Run on initial component mount as well
-            handler(newId, oldId) {
-                if (newId !== oldId) {
-                    this.fetchTafseer(newId); // Refetch tafseer when ayah ID changes
-                }
-            },
-        },
-    },
-    methods: {
-        async fetchTafseer(ayahId) {
-            try {
-                console.log("Fetching tafseer for ayah id: " + ayahId);
-                const tafseerResponse = await axios.get(
-                    `/tafseer/${ayahId}/fetch`
-                );
-                this.tafseer = tafseerResponse.data; // Assign the fetched data to the local state
-            } catch (error) {
-                console.error("Error fetching tafseer:", error);
-            }
-        },
-        toggleFullScreen() {
-            this.$emit("toggle-full-screen");
-        },
-        handleTouchStart(event) {
-            this.$emit("handle-touch-start", event);
-        },
-        handleTouchMove(event) {
-            this.$emit("handle-touch-move", event);
-        },
-        handleTouchEnd(event) {
-            this.$emit("handle-touch-end", event);
-        },
-        toggleExpand() {
-            this.expanded = !this.expanded; // Toggle expanded state locally
-        },
-        truncatedText(text) {
-            return text.length > 100 ? text.slice(0, 100) + "..." : text;
-        },
-        closeAlertText() {
-            this.$emit("close-alert-text");
-        },
-    },
-    mounted() {
-        // Optionally, fetch the tafseer immediately when the component mounts
-        if (this.information?.ayah?.id) {
-            this.fetchTafseer(this.information.ayah.id);
-        }
-    },
+ name: "TafseerSection",
+ components: {
+  AyahInfo,
+  MainAyah,
+  AlertModal,
+ },
+ props: {
+  information: Object,
+  isFullScreen: Boolean,
+  showAlertText: Boolean,
+  showAlert: Boolean,
+  showErrorAlert: Boolean,
+  showAlertTextNote: Boolean,
+ },
+ data() {
+  return {
+   tafseer: "", // Store tafseer data here
+   expanded: false, // Local state to track expand/collapse
+  };
+ },
+ watch: {
+  // Watch for changes to `information.ayah.id`
+  "information.ayah.id": {
+   immediate: true, // Run on initial component mount as well
+   handler(newId, oldId) {
+    if (newId !== oldId) {
+     this.fetchTafseer(newId); // Refetch tafseer when ayah ID changes
+    }
+   },
+  },
+ },
+ methods: {
+  async fetchTafseer(ayahId) {
+   try {
+    const tafseerResponse = await axios.get(
+        `/tafseer/${ayahId}/fetch`
+    );
+    this.tafseer = tafseerResponse.data; // Assign the fetched data to the local state
+   } catch (error) {
+    console.error("Error fetching tafseer:", error);
+   }
+  },
+  toggleFullScreen() {
+      this.$emit("toggle-full-screen");
+  },
+  handleTouchStart(event) {
+      this.$emit("handle-touch-start", event);
+  },
+  handleTouchMove(event) {
+      this.$emit("handle-touch-move", event);
+  },
+  handleTouchEnd(event) {
+      this.$emit("handle-touch-end", event);
+  },
+  toggleExpand() {
+      this.expanded = !this.expanded; // Toggle expanded state locally
+  },
+  truncatedText(text) {
+      return text.length > 100 ? text.slice(0, 100) + "..." : text;
+  },
+  closeAlertText() {
+      this.$emit("close-alert-text");
+  },
+ },
+ mounted() {
+  if (this.information?.ayah?.id) {
+      this.fetchTafseer(this.information.ayah.id);
+  }
+ },
 };
 </script>
 

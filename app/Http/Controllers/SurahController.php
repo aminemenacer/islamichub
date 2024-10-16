@@ -108,81 +108,80 @@ class SurahController extends Controller
     
 
     public function searchTranslations(Request $request)
-    {
-        $query = $request->input('query');
-        $filters = $request->input('filters', []);
+{
+    $query = $request->input('query');
+    $filters = $request->input('filters', []);
 
-        // Initialize the results query
-        $resultsQuery = Information::query();
+    // Initialize the results query
+    $resultsQuery = Information::query();
 
-        // Ensure the query is not empty
-        if (empty($query)) {
-            return response()->json([
-                'results' => [],
-                'suggestions' => [],
-            ]);
-        }
-
-        // Build the query for the filtered search
-        $filterApplied = false;
-
-        if (!empty($filters['translation'])) {
-            $resultsQuery->where('translation', 'LIKE', '%' . $query . '%');
-            $filterApplied = true;
-        }
-
-        if (!empty($filters['tafseer'])) {
-            $resultsQuery->orWhere('tafseer', 'LIKE', '%' . $query . '%');
-            $filterApplied = true;
-        }
-
-        if (!empty($filters['transliteration'])) {
-            $resultsQuery->orWhere('transliteration', 'LIKE', '%' . $query . '%');
-            $filterApplied = true;
-        }
-
-        // If no filter is applied, return empty results
-        if (!$filterApplied) {
-            return response()->json([
-                'results' => [],
-                'suggestions' => [],
-            ]);
-        }
-
-        // Eager load related ayah and surah
-        $results = $resultsQuery->with(['ayah.surah'])->get();
-
-        // Generate suggestions based on selected filters
-        $suggestions = collect();
-
-        // Check each result and generate suggestions based on the filters
-        foreach ($results as $item) {
-            if (!empty($filters['translation']) && isset($item->translation)) {
-                preg_match_all('/\b\w*' . preg_quote($query, '/') . '\w*\b/i', $item->translation, $matches);
-                $suggestions = $suggestions->merge($matches[0]);
-            }
-
-            if (!empty($filters['tafseer']) && isset($item->tafseer)) {
-                preg_match_all('/\b\w*' . preg_quote($query, '/') . '\w*\b/i', $item->tafseer, $matches);
-                $suggestions = $suggestions->merge($matches[0]);
-            }
-
-            if (!empty($filters['transliteration']) && isset($item->transliteration)) {
-                preg_match_all('/\b\w*' . preg_quote($query, '/') . '\w*\b/i', $item->transliteration, $matches);
-                $suggestions = $suggestions->merge($matches[0]);
-            }
-        }
-
-        // Ensure suggestions are unique and indexed correctly
-        $suggestions = $suggestions->unique()->values();
-
-        // Return both the results and suggestions as JSON
+    // Ensure the query is not empty
+    if (empty($query)) {
         return response()->json([
-            'results' => $results,
-            'suggestions' => $suggestions,
+            'results' => [],
+            'suggestions' => [],
         ]);
     }
 
+    // Build the query for the filtered search
+    $filterApplied = false;
 
+    // Use 'orWhere' for all filters but only if the filter is applied
+    if (!empty($filters['translation'])) {
+        $resultsQuery->where('translation', 'LIKE', '%' . $query . '%');
+        $filterApplied = true;
+    }
+
+    if (!empty($filters['tafseer'])) {
+        $resultsQuery->orWhere('tafseer', 'LIKE', '%' . $query . '%');
+        $filterApplied = true;
+    }
+
+    if (!empty($filters['transliteration'])) {
+        $resultsQuery->orWhere('transliteration', 'LIKE', '%' . $query . '%');
+        $filterApplied = true;
+    }
+
+    // If no filter is applied, return empty results
+    if (!$filterApplied) {
+        return response()->json([
+            'results' => [],
+            'suggestions' => [],
+        ]);
+    }
+
+    // Eager load related ayah and surah
+    $results = $resultsQuery->with(['ayah.surah'])->get();
+
+    // Generate suggestions based on selected filters
+    $suggestions = collect();
+
+    // Check each result and generate suggestions based on the filters
+    foreach ($results as $item) {
+        if (!empty($filters['translation']) && isset($item->translation)) {
+            preg_match_all('/\b\w*' . preg_quote($query, '/') . '\w*\b/i', $item->translation, $matches);
+            $suggestions = $suggestions->merge($matches[0]);
+        }
+
+        if (!empty($filters['tafseer']) && isset($item->tafseer)) {
+            preg_match_all('/\b\w*' . preg_quote($query, '/') . '\w*\b/i', $item->tafseer, $matches);
+            $suggestions = $suggestions->merge($matches[0]);
+        }
+
+        if (!empty($filters['transliteration']) && isset($item->transliteration)) {
+            preg_match_all('/\b\w*' . preg_quote($query, '/') . '\w*\b/i', $item->transliteration, $matches);
+            $suggestions = $suggestions->merge($matches[0]);
+        }
+    }
+
+    // Ensure suggestions are unique and indexed correctly
+    $suggestions = $suggestions->unique()->values();
+
+    // Return both the results and suggestions as JSON
+    return response()->json([
+        'results' => $results,
+        'suggestions' => $suggestions,
+    ]);
+}
 
 }

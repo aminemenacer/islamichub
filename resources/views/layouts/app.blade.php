@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
 
     <!-- Google Analytics -->
@@ -84,7 +84,7 @@
                                 <h6><a class="nav-link display-5 ml-3 pl-3" href="/updates"><b>Updates</b></a></h6>
                             </li>
                             <li class="nav-item mt-3">
-                                <h6><a class="nav-link display-5 ml-3 pl-3 pr-5" href="/support"><b>Donation</b></a></h6>
+                                <h6><a class="nav-link display-5 ml-3 pl-3 pr-3" href="/support"><b>Donation</b></a></h6>
                             </li>                            
                             @guest
                             @if (Route::has('login'))
@@ -139,7 +139,7 @@
 
         {{-- Ensure that app.js is loaded at the end --}}
         <!-- Bootstrap JS and Popper.js (for Bootstrap 5.x) -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 const navbarToggler = document.querySelector('.navbar-toggler');

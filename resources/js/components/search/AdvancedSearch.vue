@@ -15,7 +15,7 @@
    
 
    <!-- Dropdown for Filter Selection -->
-  <div class="dropdown me-2">
+  <!-- <div class="dropdown me-2">
     <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
     </button>
     <ul class="dropdown-menu">
@@ -44,13 +44,13 @@
         </a>
       </li>
     </ul>
-  </div>
+  </div> -->
     
     
 
    <!-- Voice input button -->
    <button type="button" class="btn" @click="isListening ? stopVoiceRecognition() : startVoiceRecognition()" style="background:#00BFA6">
-    <i class=" bi text-white " :class="isListening ? 'bi-stop-fill' : 'bi-mic-fill'" aria-hidden="true"></i><span style="color:white">Speak</span>
+    <i class=" bi text-white pr-1" :class="isListening ? 'bi-stop-fill' : 'bi-mic-fill'" aria-hidden="true"></i><span style="color:white"><b>Speak</b></span>
    </button>
    <!--
     <button class="btn btn-info text-white" @click="searchWord"><i class="bi bi-search h4 text-white"></i></button>
@@ -77,15 +77,15 @@
        <h4>{{ result.ayah.surah_id }} : {{ result.ayah.ayah_id }}</h4>
       </div>
       <h3 class="text-right">{{ result.ayah.ayah_text }}</h3>
-      <div v-if="filters.translation">
+      <div >
        <b>Translation: </b>
        <span v-html="highlightSearch(result.translation)"></span>
       </div>
-      <div v-if="filters.tafseer">
+      <div >
        <b>Tafseer: </b>
        <p v-html="highlightSearch(result.tafseer)"></p>
       </div>
-      <div v-if="filters.transliteration">
+      <div >
        <b>Transliteration: </b>
        <p v-html="highlightSearch(result.transliteration)"></p>
       </div>
