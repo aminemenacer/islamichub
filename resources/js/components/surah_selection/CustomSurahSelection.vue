@@ -18,14 +18,15 @@ export default {
     return {
       customSurat: [
         { id: 1, name: 'Al Fatiha' },
-        { id: 114, name: 'An-Nas' },
-        { id: 113, name: 'Al-Falak' },
-        { id: 67, name: 'Al-Mulk' },
+        { id: 2, name: 'An-Baqarah' },
         { id: 18, name: 'Al-Kahf' },
-        { id: 55, name: 'Al-Rahman' },
+        { id: 67, name: 'Al-Mulk' },
+        { id: 108, name: 'Al-Kawthar' },
         { id: 36, name: 'Ya Seen' },
-        { id: 87, name: 'Al-A\'la' },
-        { id: 88, name: 'Al Ghashiya' }
+        { id: 109, name: 'Al-Kafiroon' },
+        { id: 112, name: 'Al Ikhlas' },
+        { id: 113, name: 'Al Falaq' },
+        { id: 114, name: 'Al Nas' },
       ],
     };
   },

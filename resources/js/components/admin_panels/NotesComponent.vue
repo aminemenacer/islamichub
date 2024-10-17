@@ -80,6 +80,7 @@
        </div>
       </div>
 
+      <!--
       <div class="pt-3 pb-2" style="display: flex; align-items: center;">
        <b style="margin-right: 10px;" class="pr-2">Make your note either:</b>
        <div style="display: flex; align-items: center;">
@@ -93,6 +94,7 @@
         </div>
        </div>
       </div>
+      -->
 
       <div class="modal-footer">
        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

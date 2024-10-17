@@ -16,7 +16,7 @@
                                 <h2 class="fw-normal mt-4 pb-3" style="font-family:inter"><b>Login to your account</b></h2>
                                 <div class="row">
                                     <div class="form-outline mb-4">
-                                        <label class="form-label" style="font-weight:bold">Email address</label>
+                                        <label class="form-label text-left" style="font-weight:bold">Email address</label>
                                         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                                         @error('email')
                                             <span class="invalid-feedback" role="alert">
@@ -25,7 +25,7 @@
                                         @enderror
                                     </div>
                                     <div class="form-outline mb-4">
-                                        <label class="form-label" for="form2Example27">Password</label>
+                                        <label class="form-label text-left" for="form2Example27">Password</label>
                                         <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
                                         @error('password')
                                             <span class="invalid-feedback" role="alert">

@@ -457,8 +457,8 @@
         
 
         <!-- Row: Select Default Style -->
-        <div class="col-md-12 mb-3">
-          <label for="styleSelect" class="form-label">Select Custom Style Theme </label>
+        <!-- <div class="col-md-12 mb-3"> -->
+          <!-- <label for="styleSelect" class="form-label">Select Custom Style Theme </label>
           <select id="styleSelect" v-model="selectedStyle" @change="applyStyle" class="form-control">
             <option v-for="style in defaultStyles" :key="style.name" :value="style">
               {{ style.name }}
@@ -467,7 +467,7 @@
         </div>
 
         
-        <hr class="container">
+        <hr class="container"> -->
         <!-- Row: Background Color -->
         <div class="col-md-12 mb-3">
           <label for="bgColor" class="form-label">Background Color:</label>
