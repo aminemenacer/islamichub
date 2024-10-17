@@ -60,7 +60,7 @@
  
  
  <!-- show a message when recording starts -->
- <h3 v-if="isListening" class="pt-2"><img src="/images/microphone.png" width="60px" class="pr-2 pt-2"/><b class="pt-2">Listening...</b></h3>
+ <h3 v-if="isListening" class="pt-2"><img src="/images/microphone.png" width="60px" class="pr-2 pt-2"/><b class="pt-3">Listening...</b></h3>
 
  <!-- Offcanvas for Search Results -->
  <div class="offcanvas offcanvas-end custom-offcanvas" tabindex="-1" id="offcanvasResults">
@@ -72,27 +72,36 @@
    <!-- Display Results -->
    <div v-if="filteredResults.length && !loading">
     <div v-for="result in filteredResults" :key="result.id" class="result-item">
-     <div :id="'result-' + result.id">
-      <div class="text-left pb-2">
-       <h4>{{ result.ayah.surah_id }} : {{ result.ayah.ayah_id }}</h4>
+      <div :id="'result-' + result.id">
+        <div class="text-left pb-2">
+          <h4>{{ result.ayah.surah_id }} : {{ result.ayah.ayah_id }}</h4>
+        </div>
+        <h3 class="text-right">{{ result.ayah.ayah_text }}</h3>
+        <div>
+          <b>Translation: </b>
+          <span v-html="highlightSearch(expanded ? result.translation : truncatedText(result.translation))"></span>
+          <template v-if="showMoreLink && result.translation.length > 200">
+            <a class="href" href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
+          </template>
+        </div>
+        <div>
+          <b>Tafseer: </b>
+          <span v-html="highlightSearch(expanded ? result.tafseer : truncatedText(result.tafseer))"></span>
+          <template v-if="showMoreLink && result.tafseer.length > 200">
+            <a class="href" href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
+          </template>
+        </div>
+        <div>
+          <b>Transliteration: </b>
+          <span v-html="highlightSearch(expanded ? result.transliteration : truncatedText(result.transliteration))"></span>
+          <template v-if="showMoreLink && result.transliteration.length > 200">
+            <a class="href" href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
+          </template>
+        </div>
       </div>
-      <h3 class="text-right">{{ result.ayah.ayah_text }}</h3>
-      <div >
-       <b>Translation: </b>
-       <span v-html="highlightSearch(result.translation)"></span>
-      </div>
-      <div >
-       <b>Tafseer: </b>
-       <p v-html="highlightSearch(result.tafseer)"></p>
-      </div>
-      <div >
-       <b>Transliteration: </b>
-       <p v-html="highlightSearch(result.transliteration)"></p>
-      </div>
-     </div>
-     <hr />
+      <hr />
     </div>
-   </div>
+  </div>
    <div v-else-if="!loading" class="text-center">
     <h5>No search results found.</h5>
    </div>
@@ -116,6 +125,9 @@ import axios from 'axios';
 export default {
  mounted() {
   const dropdown = document.querySelector('.dropdown');
+  if (this.information?.ayah?.id) {
+      this.fetchTafseer(this.information.ayah.id);
+  }
   if (dropdown) {
    dropdown.addEventListener('click', this.toggleDropdown);
   }
@@ -127,8 +139,10 @@ export default {
    loading: false,
    searchTerm: '',
    suggestions: [],
-
+   tafseer: "",
    filteredResults: [],
+   expanded: false,
+   showMoreLink: true,
    filters: {
     translation: true, // Default filter for translation enabled
     tafseer: false, // Default filter for tafseer disabled
@@ -139,19 +153,52 @@ export default {
    timer: null,
   };
  },
-
+ watch: {
+  // Watch for changes to `information.ayah.id`
+  "information.ayah.id": {
+   immediate: true, // Run on initial component mount as well
+   handler(newId, oldId) {
+    if (newId !== oldId) {
+     this.fetchTafseer(newId); // Refetch tafseer when ayah ID changes
+    }
+   },
+  },
+ },
  props: {
-  result: Object
+  result: Object,
+  information: Object,
  },
  methods: {
+  async fetchTafseer(ayahId) {
+    try {
+      const tafseerResponse = await axios.get(
+          `/tafseer/${ayahId}/fetch`
+      );
+      this.tafseer = tafseerResponse.data; // Assign the fetched data to the local state
+    } catch (error) {
+      console.error("Error fetching tafseer:", error);
+    }
+  },
+  
+    toggleExpand() {
+      this.expanded = !this.expanded; // Toggle the expanded state
+    },
+    highlightSearch(text) {
+      // Your logic for highlighting search terms
+      return text; // Return the text with highlights
+    },
   // Trigger suggestions based on input length
   onInput() {
-   if (this.searchTerm.length > 2) {
+   if (this.searchTerm.length > 3) {
     this.fetchSuggestions();
    } else {
     this.suggestions = [];
     this.filteredResults = [];
    }
+  },
+
+  truncatedText(text) {
+   return text.length > 200 ? text.substring(0, 200) + '...' : text;
   },
 
   fetchSuggestions() {
@@ -178,26 +225,6 @@ export default {
      this.loading = false; // Stop loading
     });
   },
-
-  // updateSuggestions() {
-  //  if (!this.searchTerm) {
-  //   this.filteredSuggestions = []; // Clear suggestions if search term is empty
-  //   return;
-  //  }
-  //  // Filter suggestions based on active filters
-  //  const activeFilters = Object.keys(this.filters).filter(key => this.filters[key]);
-  //  // Call an API or use a local method to get filtered suggestions based on active filters
-  //  axios.post('/suggestions', {
-  //    searchTerm: this.searchTerm,
-  //    filters: activeFilters
-  //   })
-  //   .then(response => {
-  //    this.filteredSuggestions = response.data; // Set filtered suggestions
-  //   })
-  //   .catch(error => {
-  //    console.error('Error fetching suggestions:', error);
-  //   });
-  // },
 
   // Select a suggestion and fetch its results
   selectSuggestion(suggestion) {
@@ -523,9 +550,8 @@ export default {
  /* Add some spacing between alerts */
 }
 
-.custom-offcanvas {
- background-color: #10584f;
- color: white;
+.custom-offcanvas{
+
 }
 
 .custom-offcanvas .result-item {

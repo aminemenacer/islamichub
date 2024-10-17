@@ -16,6 +16,13 @@
             <a href="/profile" style="text-decoration:none;color:#0263FF;background:#c2d8fb">Profile</a>
           </span>
         </div>
+
+        <div class="col">
+          <span class="badge h3" style="width:100%;font-size:18px;border-radius:10px; color:#0263FF;background:#ead1dc">
+            <a href="/home" style="text-decoration:none;color:#B70D52;background:#ead1dc">Home</a>
+          </span>
+        </div>
+
       </div>
     </div>
 

@@ -29,7 +29,6 @@
       <div class="col text-center">
        <i class="bi bi-wrench-adjustable-circle-fill h3 custom-icon-increase" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-placeholder="settings"></i>
       </div>
-
      </div>
 
     </div>
@@ -334,10 +333,6 @@ export default {
   adjustPitch(value) {
    this.pitch = parseFloat(value);
   },
-
-  truncatedText(text) {
-   return text.length > 100 ? text.substring(0, 100) + '...' : text;
-  },
   downloadAsCSV() {
    const data = [{
     Translation: this.information.translation,
@@ -449,7 +444,7 @@ export default {
    this.$emit('toggle-expand');
   },
   truncatedText(text) {
-   return text.length > 100 ? text.slice(0, 100) + '...' : text;
+   return text.length > 200 ? text.slice(0, 200) + '...' : text;
   },
   closeAlertText() {
    this.$emit('close-alert-text');
@@ -462,7 +457,7 @@ export default {
 <style scoped>
 .custom-offcanvas {
  background-color: #10584f;
- color: white;
+  color: white;
 }
 
 .custom-icon-play:hover {

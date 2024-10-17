@@ -62,9 +62,9 @@
    <div class="col">
     <span class="badge h3" style="width:100%;font-size:18px;border-radius:10px; color:#B70D52;background:#ead1dc"><a href="/bookmarks" style="text-decoration:none;color:#B70D52;background:#ead1dc">Bookmarks</a></span>
    </div>
-   <!-- <div class="col">
-    <span class="badge h3" style="width:100%;font-size:18px;border-radius:10px; color:#0263FF;background:#c2d8fb"><a href="/collections" style="text-decoration:none;color:#0263FF;background:#c2d8fb">Collections</a></span>
-   </div> -->
+   <div class="col">
+    <span class="badge h3" style="width:100%;font-size:18px;border-radius:10px; color:#0263FF;background:#c2d8fb"><a href="/home" style="text-decoration:none;color:#0263FF;background:#c2d8fb">Home</a></span>
+   </div>
 
   </div>
  </div>
