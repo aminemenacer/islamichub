@@ -446,7 +446,7 @@
    </div>
  
   <!-- theme styles -->
-  <div class="offcanvas offcanvas-end custom-offcanvas" tabindex="-1" id="styleOffcanvas" aria-labelledby="styleOffcanvasLabel">
+  <div class="offcanvas offcanvas-end custom-offcanvas " tabindex="-1" id="styleOffcanvas" aria-labelledby="styleOffcanvasLabel">
     <div class="offcanvas-header">
       <h4 class="offcanvas-title" style="color:white" id="styleOffcanvasLabel">Customize Your Layout</h4>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -1569,7 +1569,11 @@ methods: {
 </script>
 
 <style scoped src="./css/styles.css">
-
+.custom-offcanvas {
+ background-color: #10584f;
+ color: white;
+ width: 100%;
+}
 .custom-prev-ayah:hover{
   color: black;/* Default color */
   transition: color 0.3s ease; /* Smooth transition */
