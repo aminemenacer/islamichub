@@ -15,41 +15,41 @@
    
 
    <!-- Dropdown for Filter Selection -->
-  <!-- <div class="dropdown me-2">
-    <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-    </button>
-    <ul class="dropdown-menu">
-      <li>
-        <a class="dropdown-item" href="#">
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" v-model="filters.translation" id="translationCheckbox" @change="updateSuggestions" />
-            <label class="form-check-label" for="translationCheckbox">Translation</label>
-          </div>
-        </a>
-      </li>
-      <li>
-        <a class="dropdown-item" href="#">
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" v-model="filters.tafseer" id="tafseerCheckbox" @change="updateSuggestions" />
-            <label class="form-check-label" for="tafseerCheckbox">Tafseer</label>
-          </div>
-        </a>
-      </li>
-      <li>
-        <a class="dropdown-item" href="#">
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" v-model="filters.transliteration" id="transliterationCheckbox" @change="updateSuggestions" />
-            <label class="form-check-label" for="transliterationCheckbox">Transliteration</label>
-          </div>
-        </a>
-      </li>
-    </ul>
-  </div> -->
+    <!-- <div class="dropdown me-2">
+      <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      </button>
+      <ul class="dropdown-menu">
+        <li>
+          <a class="dropdown-item" href="#">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" v-model="filters.translation" id="translationCheckbox" @change="updateSuggestions" />
+              <label class="form-check-label" for="translationCheckbox">Translation</label>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" v-model="filters.tafseer" id="tafseerCheckbox" @change="updateSuggestions" />
+              <label class="form-check-label" for="tafseerCheckbox">Tafseer</label>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" v-model="filters.transliteration" id="transliterationCheckbox" @change="updateSuggestions" />
+              <label class="form-check-label" for="transliterationCheckbox">Transliteration</label>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div> -->
     
     
 
    <!-- Voice input button -->
-   <button type="button" class="btn" @click="isListening ? stopVoiceRecognition() : startVoiceRecognition()" style="background:#00BFA6">
+   <button type="button" class="btn" @click="isListening ? stopVoiceRecognition() : startVoiceRecognition()" style="background:#00BFA6; border: 1px solid black">
     <i class=" bi text-white pr-1" :class="isListening ? 'bi-stop-fill' : 'bi-mic-fill'" aria-hidden="true"></i><span style="color:white"><b>Speak</b></span>
    </button>
    <!--
@@ -60,7 +60,7 @@
  
  
  <!-- show a message when recording starts -->
- <b v-if="isListening">Listening...</b>
+ <h3 v-if="isListening" class="pt-2"><img src="/images/microphone.png" width="60px" class="pr-2 pt-2"/><b class="pt-2">Listening...</b></h3>
 
  <!-- Offcanvas for Search Results -->
  <div class="offcanvas offcanvas-end custom-offcanvas" tabindex="-1" id="offcanvasResults">
