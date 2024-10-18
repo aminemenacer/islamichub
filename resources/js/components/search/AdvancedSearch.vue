@@ -3,8 +3,8 @@
  <!-- Search Input Group -->
  <div>
 
-  <div class="container input-group" style="position: relative; width: 100%;">
-   <input type="text" @keyup="debouncedSearch" v-model="searchTerm" placeholder="Explore the Quran..." class="form-control mr-3 mb-2 mobile-only" style="flex: 1;box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;"/>
+  <div class="container input-group pb-3" style="position: relative; width: 100%;">
+   <input type="text" @keyup="debouncedSearch" v-model="searchTerm" placeholder="Explore the Quran..." class="form-control mr-3 pb-2 mobile-only" style="flex: 1;box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;"/>
 
    <!-- Suggestions Dropdown -->
    <ul v-if="suggestions.length" class="list-group suggestions" style="position: absolute; top: 100%; left: 0; width: 95%; z-index: 1000; max-height: 600px; overflow-y: auto;">
@@ -49,7 +49,7 @@
     
 
    <!-- Voice input button -->
-   <button type="button" class="btn" @click="isListening ? stopVoiceRecognition() : startVoiceRecognition()" style="background:#00BFA6; border: 2px solid green;box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;">
+   <button type="button" class="btn" @click="isListening ? stopVoiceRecognition() : startVoiceRecognition()" style="background:linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB); ">
     <i class=" bi text-white pr-1" :class="isListening ? 'bi-stop-fill' : 'bi-mic-fill'" aria-hidden="true"></i><span style="color:white"><b>Speak</b></span>
    </button>
    <!--
@@ -60,15 +60,15 @@
  
  
  <!-- show a message when recording starts -->
- <h3 v-if="isListening" class="pt-2"><b class="pt-3">Listening...</b></h3>
+ <h3 v-if="isListening" class="pt-1"><b class="pt-1">Listening...</b></h3>
 
  <!-- Offcanvas for Search Results -->
- <div class="offcanvas offcanvas-end custom-offcanvas" tabindex="-1" id="offcanvasResults">
+<div class="offcanvas offcanvas-end custom-offcanvas" tabindex="-1" id="offcanvasResults">
   <div class="offcanvas-header">
    <h5 class="offcanvas-title">Search Results</h5>
    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
   </div>
-  <div class="offcanvas-body text-left">
+  <div ref="targetTafseerElement" class="offcanvas-body text-left">
    <!-- Display Results -->
    <div v-if="filteredResults.length && !loading">
     <div v-for="result in filteredResults" :key="result.id" class="result-item">
@@ -78,21 +78,21 @@
         </div>
         <h3 class="text-right">{{ result.ayah.ayah_text }}</h3>
         <div>
-          <b>Translation: </b>
+          <h4><b>Translation: </b></h4>
           <span v-html="highlightSearch(expanded ? result.translation : truncatedText(result.translation))"></span>
           <template v-if="showMoreLink && result.translation.length > 200">
             <a class="href" href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
           </template>
         </div>
         <div>
-          <b>Tafseer: </b>
+          <h4><b>Tafseer: </b></h4>
           <span v-html="highlightSearch(expanded ? result.tafseer : truncatedText(result.tafseer))"></span>
           <template v-if="showMoreLink && result.tafseer.length > 200">
             <a class="href" href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
           </template>
         </div>
         <div>
-          <b>Transliteration: </b>
+          <h4><b>Transliteration: </b></h4>
           <span v-html="highlightSearch(expanded ? result.transliteration : truncatedText(result.transliteration))"></span>
           <template v-if="showMoreLink && result.transliteration.length > 200">
             <a class="href" href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
@@ -121,6 +121,7 @@ import {
  debounce
 } from 'lodash';
 import axios from 'axios';
+
 
 export default {
  mounted() {
@@ -179,14 +180,13 @@ export default {
       console.error("Error fetching tafseer:", error);
     }
   },
-  
-    toggleExpand() {
-      this.expanded = !this.expanded; // Toggle the expanded state
-    },
-    highlightSearch(text) {
-      // Your logic for highlighting search terms
-      return text; // Return the text with highlights
-    },
+  toggleExpand() {
+    this.expanded = !this.expanded; // Toggle the expanded state
+  },
+  highlightSearch(text) {
+    // Your logic for highlighting search terms
+    return text; // Return the text with highlights
+  },
   // Trigger suggestions based on input length
   onInput() {
    if (this.searchTerm.length > 3) {
@@ -291,6 +291,8 @@ export default {
    if (this.recognition) {
     this.recognition.stop();
     this.isListening = false;
+    this.searchWord();
+    this.showOffcanvas();
    }
   },
 
@@ -345,31 +347,6 @@ export default {
    });
   },
 
-  // Copy text to clipboard
-  copyText(result) {
-   const textToCopy = `${result.ayah.surah_id}:${result.ayah.ayah_id} - ${result.ayah.ayah_text}\n${result.translation}`;
-   navigator.clipboard.writeText(textToCopy)
-    .then(() => {
-     alert('Text copied to clipboard');
-    })
-    .catch((error) => {
-     console.error('Error copying text:', error);
-    });
-  },
-
-  // Share via WhatsApp
-  shareViaWhatsapp(result) {
-   const surahInfo = `${result.ayah.surah_id}:${result.ayah.ayah_id}`;
-   const ayahText = `Ayah: ${result.ayah.ayah_text}`;
-   const ayahTranslation = `Ayah Translation: ${result.translation}`;
-   const note = `Note: ${result.translation}`;
-
-   const message = `${surahInfo}\n${ayahText}\n${ayahTranslation}\n${note}`;
-   const encodedMessage = encodeURIComponent(message); // Encode special characters
-   const whatsappUrl = `https://wa.me/?text=${encodedMessage}`;
-   window.open(whatsappUrl, '_blank');
-  },
-
   searchWord() {
    this.loading = true;
 
@@ -391,6 +368,7 @@ export default {
     .then(response => {
      this.filteredResults = response.data; // Adjust to match your response structure
      this.loading = false;
+     this.showOffcanvas(); 
     })
     .catch(error => {
      console.error('Error fetching search results:', error);
@@ -400,8 +378,10 @@ export default {
 
   // Show the offcanvas component for results
   showOffcanvas() {
-   const offcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasResults'));
-   offcanvas.show();
+    // Use Bootstrap JS to programmatically open the offcanvas
+    let offcanvasElement = document.getElementById('offcanvasResults');
+    let offcanvas = new bootstrap.Offcanvas(offcanvasElement);
+    offcanvas.show();
   },
 
   // Debounced search to limit the number of fetch calls
@@ -553,7 +533,6 @@ export default {
 .custom-offcanvas {
  background-color: #10584f;
  color: white;
- width: 40%;
 }
 
 .custom-offcanvas .result-item {

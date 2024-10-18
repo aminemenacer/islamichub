@@ -20,19 +20,17 @@
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-QWLL07EBX9"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag() {
-            dataLayer.push(arguments);
-        }
+        function gtag(){ dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', 'G-QWLL07EBX9');
     </script>
@@ -82,19 +80,20 @@
                         @guest
                         @if (Route::has('login'))
                         <li class="nav-item display-5  pl-3 mt-3">
-                            <h6><a class="nav-link" href="{{ route('login') }}"><b>{{ __('Login') }}</b></a></h6>
+                            <h6><a class=" nav-link" href="{{ route('login') }}"><b>{{ __('Login') }}</b></a></h6>
                         </li>
                         @endif
                         @if (Route::has('register'))
-                        <li class="nav-item display-5 pl-3 mt-3">
-                            <h6><a class="nav-link" href="{{ route('register') }}"><b>{{ __('Register') }}</b></a></h6>
+                        <li class="nav-item display-5  mt-3">
+                            <h6><a class=" nav-link" href="{{ route('register') }}"><b>{{ __('Register') }}</b></a>
+                            </h6>
                         </li>
                         @endif
                         @else
                         <li class="nav-item dropdown pl-3">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                <i class="bi bi-person-circle pr-2" style="font-size: 1.8rem"></i>
+                                <i class=" bi bi-person-circle pr-2 " style="font-size: 1.8rem"></i>
                                 {{ Auth::user()->name }}
                             </a>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -122,9 +121,7 @@
     </div>
 
     <!-- Bootstrap JS and Popper.js (for Bootstrap 5.x) -->
-    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script> --}}
-
-    <!-- Your Custom JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ mix('js/app.js') }}"></script>
 </body>
 
