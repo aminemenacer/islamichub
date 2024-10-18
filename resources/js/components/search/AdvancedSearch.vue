@@ -4,7 +4,7 @@
  <div>
 
   <div class="container input-group" style="position: relative; width: 100%;">
-   <input type="text" @keyup="debouncedSearch" v-model="searchTerm" placeholder="Explore the Quran..." class="form-control mr-3 mobile-only" style="flex: 1;"/>
+   <input type="text" @keyup="debouncedSearch" v-model="searchTerm" placeholder="Explore the Quran..." class="form-control mr-3 mb-2 mobile-only" style="flex: 1;box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;"/>
 
    <!-- Suggestions Dropdown -->
    <ul v-if="suggestions.length" class="list-group suggestions" style="position: absolute; top: 100%; left: 0; width: 95%; z-index: 1000; max-height: 600px; overflow-y: auto;">
@@ -49,7 +49,7 @@
     
 
    <!-- Voice input button -->
-   <button type="button" class="btn" @click="isListening ? stopVoiceRecognition() : startVoiceRecognition()" style="background:#00BFA6; border: 1px solid black">
+   <button type="button" class="btn" @click="isListening ? stopVoiceRecognition() : startVoiceRecognition()" style="background:#00BFA6; border: 2px solid green;box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;">
     <i class=" bi text-white pr-1" :class="isListening ? 'bi-stop-fill' : 'bi-mic-fill'" aria-hidden="true"></i><span style="color:white"><b>Speak</b></span>
    </button>
    <!--
