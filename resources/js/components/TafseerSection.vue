@@ -43,6 +43,7 @@
                         alt="lamp"
                     /><strong>Tafseer: </strong>Ibn Kathir
                 </h6>
+                
                 <AlertModal
                     :showAlertText="showAlertText"
                     :showAlert="showAlert"

@@ -432,9 +432,9 @@
       </div>
      </div>
 
-     <div>
+     <!-- <div>
       <BookmarksAndNotes :information="information" :iconColor="iconColor" />
-     </div>
+     </div> -->
      <CorrectionModal />
      <!-- Modals -->
      <TranslationNote ref="translationNote" :information="modalInformation" />
