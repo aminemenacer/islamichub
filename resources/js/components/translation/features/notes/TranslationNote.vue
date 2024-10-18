@@ -34,41 +34,34 @@
      <div class="mt-3">
       <!-- Audio Recording Mode -->
       <div v-if="inputMode === 'audio'">
-       <!-- Start Button -->
-        <button
-          type="button"
-          class="btn btn-success me-2"
-          @click="startRecognition"
-          :disabled="isListening"
-        >
-          <i class="bi bi-play-circle"></i> Start Recording
-        </button>
+       <div class="container text-center">
+        <div class="row">
+         <div class="col">
+          <!-- Start Button -->
+          <button type="button" class="btn btn-success me-2" @click="startRecognition" :disabled="isListening">
+           <i class="bi bi-play-circle"></i> Start Recording
+          </button>
+         </div>
+         <div class="col">
+          <!-- Pause Button -->
+          <button type="button" class="btn btn-warning me-2" @click="pauseRecognition" :disabled="!isListening">
+           <i class="bi bi-pause-circle"></i> Pause Recording
+          </button>
+         </div>
+         <div class="col">
+          <!-- Stop Button -->
+          <button type="button" class="btn btn-danger" @click="stopRecognition" :disabled="!isListening && !isPaused">
+           <i class="bi bi-stop-circle"></i> Stop Recording
+          </button>
+         </div>
+        </div>
+       </div>
 
-       <!-- Pause Button -->
-        <button
-          type="button"
-          class="btn btn-warning me-2"
-          @click="pauseRecognition"
-          :disabled="!isListening"
-        >
-          <i class="bi bi-pause-circle"></i> Pause Recording
-        </button>
-
-       <!-- Stop Button -->
-        <button
-          type="button"
-          class="btn btn-danger"
-          @click="stopRecognition"
-          :disabled="!isListening && !isPaused"
-        >
-          <i class="bi bi-stop-circle"></i> Stop Recording
-        </button>
-
-        <!-- Status -->
-      <div class="mt-3">
-        <p v-if="isListening" class="text-success">Listening...</p>
-        <p v-if="isPaused" class="text-warning">Paused...</p>
-      </div>
+       <!-- Status -->
+       <div class="mt-3">
+        <h3 v-if="isListening" class="text-success"><b class="pt-3">Listening...</b></h3>
+        <h3 v-if="isPaused" class="text-warning"><b class="pt-3">Paused...</b></h3>
+       </div>
 
        <textarea v-model="form.ayah_notes" class="form-control pb-2" rows="5" placeholder="Your speech will appear here..." :readonly="isListening || isPaused"></textarea>
       </div>
@@ -78,7 +71,7 @@
 
       <!-- Basic Mode -->
       <textarea v-if="inputMode === 'basic'" v-model="form.ayah_notes" class="form-control pb-2" rows="5" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah."></textarea>
-     
+
      </div>
 
      <div class="pt-3 pb-2" style="display: flex; align-items: center;">
@@ -142,62 +135,62 @@ export default {
  },
  methods: {
   initRecognition() {
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-    if (!SpeechRecognition) {
-      alert('Your browser does not support Speech Recognition.');
-      return;
+   if (!SpeechRecognition) {
+    alert('Your browser does not support Speech Recognition.');
+    return;
+   }
+
+   this.recognition = new SpeechRecognition();
+   this.recognition.lang = 'en-US';
+   this.recognition.interimResults = false;
+   this.recognition.maxAlternatives = 1;
+
+   this.recognition.onresult = (event) => {
+    const result = event.results[0][0].transcript;
+    this.form.ayah_notes += result + '\n';
+   };
+
+   this.recognition.onerror = (event) => {
+    console.error('Speech Recognition Error:', event.error);
+   };
+
+   this.recognition.onend = () => {
+    if (!this.isPaused) {
+     this.isListening = false;
     }
-
-    this.recognition = new SpeechRecognition();
-    this.recognition.lang = 'en-US';
-    this.recognition.interimResults = false;
-    this.recognition.maxAlternatives = 1;
-
-    this.recognition.onresult = (event) => {
-      const result = event.results[0][0].transcript;
-      this.form.ayah_notes += result + '\n';
-    };
-
-    this.recognition.onerror = (event) => {
-      console.error('Speech Recognition Error:', event.error);
-    };
-
-    this.recognition.onend = () => {
-      if (!this.isPaused) {
-        this.isListening = false;
-      }
-    };
+   };
   },
   startRecognition() {
-    if (!this.recognition) {
-      this.initRecognition();
-    }
-    if (this.isPaused) {
-      this.isPaused = false;
-      this.isListening = true;
-      this.recognition.start();
-    } else {
-      this.form.ayah_notes = ''; // Clear previous transcript only on fresh start
-      this.recognition.start();
-      this.isListening = true;
-    }
+   if (!this.recognition) {
+    this.initRecognition();
+   }
+   if (this.isPaused) {
+    this.isPaused = false;
+    this.isListening = true;
+    this.recognition.start();
+   } else {
+    this.form.ayah_notes = ''; // Clear previous transcript only on fresh start
+    this.recognition.start();
+    this.isListening = true;
+   }
   },
 
   pauseRecognition() {
-    if (this.recognition && this.isListening) {
-      this.recognition.stop(); // Just stop recognition, don't clear the text
-      this.isListening = false;
-      this.isPaused = true;
-    }
+   if (this.recognition && this.isListening) {
+    this.recognition.stop(); // Just stop recognition, don't clear the text
+    this.isListening = false;
+    this.isPaused = true;
+   }
   },
 
   stopRecognition() {
-    if (this.recognition && (this.isListening || this.isPaused)) {
-      this.recognition.abort(); // Abort instead of stop to completely stop and reset recognition
-      this.isListening = false;
-      this.isPaused = false;
-    }
+   if (this.recognition && (this.isListening || this.isPaused)) {
+    this.recognition.abort(); // Abort instead of stop to completely stop and reset recognition
+    this.isListening = false;
+    this.isPaused = false;
+   }
   },
   createNote() {
    const formData = {
@@ -267,10 +260,11 @@ export default {
 
 <style scoped>
 .editor-container {
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 10px;
+ border: 1px solid #ddd;
+ border-radius: 5px;
+ padding: 10px;
 }
+
 button {
  margin: 10px;
 }

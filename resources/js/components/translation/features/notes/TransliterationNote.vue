@@ -34,41 +34,34 @@
      <div class="mt-3">
       <!-- Audio Recording Mode -->
       <div v-if="inputMode === 'audio'">
-       <!-- Start Button -->
-        <button
-          type="button"
-          class="btn btn-success me-2"
-          @click="startRecognition"
-          :disabled="isListening"
-        >
-          <i class="bi bi-play-circle"></i> Start Recording
-        </button>
+       <div class="container text-center">
+        <div class="row">
+         <div class="col">
+          <!-- Start Button -->
+          <button type="button" class="btn btn-success me-2" @click="startRecognition" :disabled="isListening">
+           <i class="bi bi-play-circle"></i> Start Recording
+          </button>
+         </div>
+         <div class="col">
+          <!-- Pause Button -->
+          <button type="button" class="btn btn-warning me-2" @click="pauseRecognition" :disabled="!isListening">
+           <i class="bi bi-pause-circle"></i> Pause Recording
+          </button>
+         </div>
+         <div class="col">
+          <!-- Stop Button -->
+          <button type="button" class="btn btn-danger" @click="stopRecognition" :disabled="!isListening && !isPaused">
+           <i class="bi bi-stop-circle"></i> Stop Recording
+          </button>
+         </div>
+        </div>
+       </div>
 
-       <!-- Pause Button -->
-        <button
-          type="button"
-          class="btn btn-warning me-2"
-          @click="pauseRecognition"
-          :disabled="!isListening"
-        >
-          <i class="bi bi-pause-circle"></i> Pause Recording
-        </button>
-
-       <!-- Stop Button -->
-        <button
-          type="button"
-          class="btn btn-danger"
-          @click="stopRecognition"
-          :disabled="!isListening && !isPaused"
-        >
-          <i class="bi bi-stop-circle"></i> Stop Recording
-        </button>
-
-        <!-- Status -->
-      <div class="mt-3">
-        <p v-if="isListening" class="text-success">Listening...</p>
-        <p v-if="isPaused" class="text-warning">Paused...</p>
-      </div>
+       <!-- Status -->
+       <div class="mt-3">
+        <h3 v-if="isListening" class="text-success"><b class="pt-3">Listening...</b></h3>
+        <h3 v-if="isPaused" class="text-warning"><b class="pt-3">Paused...</b></h3>
+       </div>
 
        <textarea v-model="form.ayah_notes" class="form-control pb-2" rows="5" placeholder="Your speech will appear here..." :readonly="isListening || isPaused"></textarea>
       </div>

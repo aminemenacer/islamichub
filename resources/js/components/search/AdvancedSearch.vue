@@ -60,7 +60,7 @@
  
  
  <!-- show a message when recording starts -->
- <h3 v-if="isListening" class="pt-2"><img src="/images/microphone.png" width="60px" class="pr-2 pt-2"/><b class="pt-3">Listening...</b></h3>
+ <h3 v-if="isListening" class="pt-2"><b class="pt-3">Listening...</b></h3>
 
  <!-- Offcanvas for Search Results -->
  <div class="offcanvas offcanvas-end custom-offcanvas" tabindex="-1" id="offcanvasResults">
@@ -550,8 +550,10 @@ export default {
  /* Add some spacing between alerts */
 }
 
-.custom-offcanvas{
-
+.custom-offcanvas {
+ background-color: #10584f;
+ color: white;
+ width: 40%;
 }
 
 .custom-offcanvas .result-item {
