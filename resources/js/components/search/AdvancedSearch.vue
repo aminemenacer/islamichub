@@ -78,24 +78,24 @@
         </div>
         <h3 class="text-right">{{ result.ayah.ayah_text }}</h3>
         <div>
-          <h4><b>Translation: </b></h4>
+          <h5 ><b>Translation: </b></h5>
           <span v-html="highlightSearch(expanded ? result.translation : truncatedText(result.translation))"></span>
-          <template v-if="showMoreLink && result.translation.length > 200">
-            <a class="href" href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
+          <template  v-if="showMoreLink && result.translation.length > 200">
+            <a class="href pb-2" href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
           </template>
         </div>
         <div>
-          <h4><b>Tafseer: </b></h4>
+          <h5 class="pt-2"><b>Tafseer: </b></h5>
           <span v-html="highlightSearch(expanded ? result.tafseer : truncatedText(result.tafseer))"></span>
-          <template v-if="showMoreLink && result.tafseer.length > 200">
-            <a class="href" href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
+          <template class="pb-2" v-if="showMoreLink && result.tafseer.length > 200">
+            <a class="href pb-2" href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
           </template>
         </div>
         <div>
-          <h4><b>Transliteration: </b></h4>
+          <h5 class="pt-2"><b>Transliteration: </b></h5>
           <span v-html="highlightSearch(expanded ? result.transliteration : truncatedText(result.transliteration))"></span>
-          <template v-if="showMoreLink && result.transliteration.length > 200">
-            <a class="href" href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
+          <template class="pb-2" v-if="showMoreLink && result.transliteration.length > 200">
+            <a class="href pb-2" href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
           </template>
         </div>
       </div>
