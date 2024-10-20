@@ -215,9 +215,6 @@ Route::get('/ayahs/{ayahId}/translations', [SurahController::class, 'getTranslat
 
 Route::get('/search-translations', [SurahController::class, 'searchTranslations']);
 
-Route::post('/summarize', [SurahController::class, 'summarizeText']);
-
-
 
 // mailing list
 Route::get('/mailing_list', [MailingListController::class, 'index'])->name('mailing_list');

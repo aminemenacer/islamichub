@@ -126,9 +126,9 @@
                 ></i>
                 </div>
                 <div class="col"><ScreenTranslationCapture style="cursor:pointer"  :targetTranslationRef="'targetTranslationElement'" /></div>
-                <div class="col"><PdfDownload style="cursor:pointer" :targetTranslationRef="'targetTranslationElement'" /></div>
+                <div class="col"><PdfDownload style="cursor:pointer" :targetTranslationRef="'targetTranslationElement'" /></div>                
+                <div class="col"><VideoModal  @save-video-data="handleSave" /><i class="bi bi-play-circle h3" style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#videoModal"></i></div>
                 <div class="col"><i class="bi bi-paint-bucket h2" data-bs-toggle="offcanvas" style="cursor:pointer" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i></div>
-                
                 <div class="col"><i class="bi bi-arrows-fullscreen h4" style="cursor:pointer" @click="toggleFullScreen" title="Full screen"></i></div>
                 
               </div>
@@ -220,6 +220,7 @@
                   </div>   
                   <div class="col"><ScreenTafseerCapture style="cursor:pointer"  :targetTafseerRef="'targetTafseerElement'" /></div>
                   <div class="col"><PdfDownloadTafsser style="cursor:pointer"  :targetTafseerRef="'targetTafseerElement'"/></div>
+                  <div class="col"><VideoModal  @save-video-data="handleSave" /><i class="bi bi-play-circle h3" style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#videoModal"></i></div>
                   <div class="col"><i class="bi bi-paint-bucket h2" style="cursor:pointer" data-bs-toggle="offcanvas" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i></div>
                   <div class="col"><i class="bi bi-arrows-fullscreen h4" style="cursor:pointer" @click="toggleFullScreen" title="Full screen"></i></div>
 
@@ -287,6 +288,7 @@
                   <div class="col"><i @click="submitFormTransliteration" style="cursor:pointer" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" title="Bookmark verse"></i></div>
                   <div class="col"><ScreenTransliterationCapture style="cursor:pointer"  :targetTransliterationRef="'targetTransliterationElement'" /></div>
                   <div class="col"><PdfDownloadTransliteration style="cursor:pointer"  :targetTransliterationRef="'targetTransliterationElement'" /></div>
+                  <div class="col"><VideoModal  @save-video-data="handleSave" /><i class="bi bi-play-circle h3" style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#videoModal"></i></div>
                   <div class="col"><i class="bi bi-paint-bucket h2" style="cursor:pointer" data-bs-toggle="offcanvas" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i></div>
                   <div class="col"><i class="bi bi-arrows-fullscreen h4" style="cursor:pointer" @click="toggleFullScreen" title="Full screen"></i></div>
                 </div>
@@ -436,6 +438,7 @@
       <BookmarksAndNotes :information="information" :iconColor="iconColor" />
      </div> -->
      <CorrectionModal />
+     
      <!-- Modals -->
      <TranslationNote ref="translationNote" :information="modalInformation" />
      <TafseerNote ref="tafseerNote" :information="modalInformation" />
@@ -621,6 +624,8 @@ import AdvancedSearch from './search/AdvancedSearch.vue'
 import KeyboardNavigation from './accesibility/KeyboardNavigation.vue'
 import FolderSelectionModal from './folder_manager/FolderSelectionModal.vue';
 import ScreenReader from './accesibility/ScreenReader.vue';
+import VideoModal from './modals/VideoModal.vue';
+
 
 export default {
  name: 'QuranComponent',
@@ -648,7 +653,7 @@ export default {
   ScreenTafseerCapture,
   ScreenTransliterationCapture,
   SurahInfoModal,
-  
+  VideoModal,
   TranslationNote,
   TafseerNote,
   TransliterationNote,
@@ -928,7 +933,11 @@ computed: {
     }
 },
 methods: {
-  
+  handleSave(message) {
+    // This method is called when the child emits the event
+    console.log(message); // Output: 'Video data saved!'
+    // Handle the save action here (e.g., update a state or send data to the backend)
+  },
   handleItemSelected(selectedItem) {
     alert(`Selected item: ${selectedItem}`);
   },

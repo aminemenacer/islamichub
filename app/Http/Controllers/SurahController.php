@@ -89,7 +89,7 @@ class SurahController extends Controller
         return response()->json($tafseer->tafseer);
     }
 
-    
+
 
     public function searchTranslations(Request $request)
     {
@@ -126,6 +126,7 @@ class SurahController extends Controller
             $filterApplied = true;
         }
 
+
         // If no filter is applied, return empty results
         if (!$filterApplied) {
             return response()->json([
@@ -136,6 +137,9 @@ class SurahController extends Controller
 
         // Eager load related ayah and surah
         $results = $resultsQuery->with(['ayah.surah'])->get();
+        foreach ($results as $translation) {
+            $translation->originalTafseer = Tafseer::whereId($translation->ayah->id)->first()->tafseer;
+        }
 
         // Generate suggestions based on selected filters
         $suggestions = collect();
@@ -167,5 +171,4 @@ class SurahController extends Controller
             'suggestions' => $suggestions,
         ]);
     }
-
 }

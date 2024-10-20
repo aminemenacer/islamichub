@@ -23,7 +23,7 @@
      
      <div class="mb-3 mt-3 text-left">
       <label for="added_notes" class="form-label text-left">What could we improve on ?</label>
-      <textarea v-model="form.added_notes" class="form-control h4" name="added_notes" placeholder="Enter you message here..." id="added_comments" rows="5" required></textarea>
+      <!-- <textarea v-model="form.added_notes" class="form-control h4" name="added_notes" placeholder="Enter you message here..." id="added_comments" rows="5" required></textarea> -->
      </div>
 
      <!-- Audio Recording Mode -->
