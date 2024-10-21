@@ -7,10 +7,8 @@
    <MainAyah :information="information" />
    <div ref="targetTranslationElement" class="row text-left">
     <h4 :style="{ fontSize: currentFontSize + 'px' }" class="text-left ayah-translation col-md-11" style="line-height: 1.6em">
-     {{ expanded ? information.translation : truncatedText(information.translation) }}
-     <template v-if="showMoreLink && information.translation.length > 100">
-      <a class="href" href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
-     </template>
+     {{ expanded ? information.translation : information.translation }}
+     
     </h4>
 
     
@@ -21,11 +19,18 @@
     <div style="cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: space-between;" class="container pb-2 text-center mobile-only">
      <div class="row">
       <div class="col">
+       <i @click="toggleSpeech" style="cursor: pointer;" aria-placeholder="Start translation audio"  class="bi bi-rewind-circle-fill ml-2 mr-2 h3 custom-icon-play"></i>
+      </div>
+      <div class="col">
        <i @click="toggleSpeech" style="cursor: pointer;" aria-placeholder="Play translation audio" :class="isReading ? 'bi-pause-circle-fill' : 'bi-play-circle-fill'" class="bi ml-2 mr-2 h3 custom-icon-play"></i>
       </div>
       <div class="col">
-       <i @click="stopSpeech" style="cursor: pointer;" aria-placeholder="Stop translation audio" :class="isReading ? 'bi-play-circle-fill' : 'bi-stop-circle-fill'" class="bi ml-2 mr-2 h3 custom-icon-play"></i>
+       <i @click="stopSpeech" style="cursor: pointer;" aria-placeholder="Stop translation audio" class="bi bi-stop-circle-fill ml-2 mr-2 h3 custom-icon-play"></i>
       </div>
+      <div class="col">
+       <i @click="stopSpeech" style="cursor: pointer;" aria-placeholder="Next ayah translation audio" class="bi bi-fast-forward-circle-fill ml-2 mr-2 h3 custom-icon-play"></i>
+      </div>
+      
       <div class="col text-center">
        <i class="bi bi-wrench-adjustable-circle-fill h3 custom-icon-increase" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-placeholder="settings"></i>
       </div>
@@ -204,9 +209,15 @@ export default {
    surat: [],
    ayat: [],
    tafseers: [],
-   
   }
  },
+ watch: {
+  translation(newVal) {
+    // Watch for changes to the translation and start reading it
+    if (newVal) {
+      this.readTextAloud();
+    }
+  },
  mounted() {
   // Load saved settings from local storage on page load
   const savedVoice = localStorage.getItem('selectedVoice');
@@ -401,7 +412,7 @@ export default {
   // Read the displayed text aloud
 
   readTextAloud() {
-   const text = this.expanded ? this.information.translation : this.truncatedText(this.information.translation);
+   const text = this.expanded ? this.information.translation : this.information.translation;
    this.utterance = new SpeechSynthesisUtterance(text);
 
    const selectedVoice = this.voices.find(voice => voice.name === this.selectedVoiceName);
@@ -414,6 +425,10 @@ export default {
 
    this.utterance.onend = () => {
     window.speechSynthesis.speak(this.utterance); // Automatically replay the speech when it ends
+   };
+
+   this.utterance.onend = () => {
+    this.isReading = false;
    };
 
    // Start speaking
@@ -454,14 +469,11 @@ export default {
   toggleExpand() {
    this.$emit('toggle-expand');
   },
-  truncatedText(text) {
-   return text.length > 200 ? text.slice(0, 200) + '...' : text;
-  },
   closeAlertText() {
    this.$emit('close-alert-text');
   }
  },
-
+ }
 };
 </script>
 
@@ -479,9 +491,11 @@ export default {
 .ayah-audio {
   margin-bottom: 20px;
 }
+
 .custom-offcanvas {
  background-color: #10584f;
-  color: white;
+ color: white;
+ width: 40%;
 }
 
 .custom-icon-play:hover {
@@ -546,6 +560,11 @@ export default {
   display: flex;
   /* Show only on mobile */
  }
+ .custom-offcanvas {
+ background-color: #10584f;
+ color: white;
+ width: 100%;
+}
 }
 
 @media (max-width: 576px) {
@@ -553,6 +572,12 @@ export default {
   display: block;
   display: flex;
  }
+
+ .custom-offcanvas {
+  background-color: #10584f;
+  color: white;
+  width: 100%;
+  }
 
  .hide-on-mobile {
   display: none;

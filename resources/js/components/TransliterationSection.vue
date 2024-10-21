@@ -7,10 +7,7 @@
    <MainAyah :information="information" />
    <div ref="heading2">
     <h4 class="text-left ayah-translation" style="line-height: 1.6em">
-     {{ expanded ? information.transliteration : truncatedText(information.transliteration) }}
-     <template v-if="showMoreLink && information.transliteration.length > 100">
-      <a class="href" href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
-     </template>
+     {{ expanded ? information.transliteration : information.transliteration }}
     </h4>
    </div>
    <h6 class="text-left "><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" /><strong>Transliteration: </strong>Saheeh International</h6>
@@ -65,9 +62,6 @@ export default {
   },
   toggleExpand() {
    this.$emit('toggle-expand');
-  },
-  truncatedText(text) {
-   return text.length > 200 ? text.slice(0, 200) + '...' : text;
   },
   closeAlertText() {
    this.$emit('close-alert-text');

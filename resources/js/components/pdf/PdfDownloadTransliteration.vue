@@ -35,7 +35,7 @@ export default {
 
       // Select all the elements you want to hide
       const unwantedElements = document.querySelectorAll(
-        '.icon-container, .href, .mobile-only, .bar, .pitch, .rate, .container.text-center, .custom-icon-play, .custom-icon-increase, .custom-icon-decrease'
+        '.icon-container, .href, .mobile-only, .bar, .pitch, .rate, '
       );
 
       // Hide the unwanted elements

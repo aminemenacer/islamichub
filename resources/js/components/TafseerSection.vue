@@ -22,16 +22,9 @@
                         class="text-left ayah-translation"
                         style="line-height: 1.6em"
                     >
-                        {{ expanded ? tafseer : truncatedText(tafseer) }}
+                        {{ expanded ? tafseer : tafseer }}
                         <!-- {{ tafseer }} -->
-                        <template v-if="tafseer.length > 0">
-                            <a
-                                class="href"
-                                href="#"
-                                @click.prevent="toggleExpand"
-                                >{{ expanded ? "Show Less" : "Show More" }}</a
-                            >
-                        </template>
+                        
                     </h4>
                 </div>
 
@@ -118,9 +111,6 @@ export default {
   },
   toggleExpand() {
       this.expanded = !this.expanded; // Toggle expanded state locally
-  },
-  truncatedText(text) {
-      return text.length > 100 ? text.slice(0, 200) + "..." : text;
   },
   closeAlertText() {
       this.$emit("close-alert-text");

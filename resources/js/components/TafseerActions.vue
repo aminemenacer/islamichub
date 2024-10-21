@@ -135,9 +135,6 @@ export default {
     '.icon-container', // All icons (bookmark, screenshot, etc.)
     '.mobile-only', // WhatsApp and Twitter share buttons
     '.container.text-center', // Voice, Rate, and Pitch controls
-    '.custom-icon-play', // Play button
-    '.custom-icon-increase', // Increase text size button
-    '.custom-icon-decrease',
     '.href' // Decrease text size button
    ];
 
@@ -196,9 +193,6 @@ export default {
     '.icon-container', // All icons (bookmark, screenshot, etc.)
     '.mobile-only', // WhatsApp and Twitter share buttons
     '.container.text-center', // Voice, Rate, and Pitch controls
-    '.custom-icon-play', // Play button
-    '.custom-icon-increase', // Increase text size button
-    '.custom-icon-decrease',
     '.href' // Decrease text size button
    ];
 

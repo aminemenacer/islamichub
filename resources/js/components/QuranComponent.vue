@@ -961,39 +961,23 @@ methods: {
       console.error('Error fetching surahs:', error);
     }
   },
-  async fetchRandomSurah() {
-    if (this.surat.length === 0) {
-      console.error('No surahs available');
-      return;
-    }
-
-    const randomIndex = Math.floor(Math.random() * this.surat.length);
-    this.selectedSurah = this.surat[randomIndex];
-
-    try {
-      const response = await fetch(`/api/ayah/${this.selectedSurah.id}`); // Fetch ayahs for the selected surah
-      const ayahs = await response.json();
-      this.selectedAyah = ayahs[Math.floor(Math.random() * ayahs.length)].ayah_text; // Randomly select an ayah
-    } catch (error) {
-      console.error('Error fetching ayahs:', error);
-    }
-  },
+  
   toggleContent1() {
     this.isVisible1 = !this.isVisible1; // Toggle the visibility
   },
-  openModal(modalName) {
-    if (modalName === 'folderSelection') {
-      const folderSelectionModal = this.$refs.folderSelectionModal;
-      if (folderSelectionModal) {
-        const bootstrapModal = new bootstrap.Modal(folderSelectionModal.$el);
-        bootstrapModal.show();
-      } else {
-        console.error('Folder selection modal not found');
-      }
-    } else {
-      console.error('Unknown modal:', modalName);
-    }
-  },
+  // openModal(modalName) {
+  //   if (modalName === 'folderSelection') {
+  //     const folderSelectionModal = this.$refs.folderSelectionModal;
+  //     if (folderSelectionModal) {
+  //       const bootstrapModal = new bootstrap.Modal(folderSelectionModal.$el);
+  //       bootstrapModal.show();
+  //     } else {
+  //       console.error('Folder selection modal not found');
+  //     }
+  //   } else {
+  //     console.error('Unknown modal:', modalName);
+  //   }
+  // },
   
   toggleContent() {
     this.isOpen = !this.isOpen; // Toggle the content's visibility
@@ -1498,7 +1482,7 @@ methods: {
 .custom-offcanvas {
  background-color: #10584f;
  color: white;
- width: 100%;
+ width: 40%;
 }
 .custom-prev-ayah:hover{
   color: black;/* Default color */

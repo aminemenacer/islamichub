@@ -68,40 +68,42 @@
    <h5 class="offcanvas-title">Search Results</h5>
    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
   </div>
-  <div ref="targetTafseerElement" class="offcanvas-body text-left">
-   <!-- Display Results -->
-   <div v-if="filteredResults.length && !loading">
-    <div v-for="result in filteredResults" :key="result.id" class="result-item">
-      <div :id="'result-' + result.id">
-        <div class="text-left pb-2">
-          <h4>{{ result.ayah.surah_id }} : {{ result.ayah.ayah_id }}</h4>
-        </div>
-        <h3 class="text-right">{{ result.ayah.ayah_text }}</h3>
-        <div>
-          <h5 ><b>Translation: </b></h5>
-          <span v-html="highlightSearch(expanded ? result.translation : truncatedText(result.translation))"></span>
-          <template  v-if="showMoreLink && result.translation.length > 200">
-            <a class="custom-link pb-2" href="#" style="font-weight:bold" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
-          </template>
-        </div>
-        <div>
-          <h5 class="pt-2"><b>Tafseer: </b></h5>
-          <span v-html="highlightSearch(expanded ? result.originalTafseer : truncatedText(result.originalTafseer))"></span>
-          <template class="pb-2" v-if="showMoreLink && result.originalTafseer.length > 200">
-            <a class="custom-link pb-2" href="#" style="font-weight:bold" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
-          </template>
-        </div>
-        <div>
-          <h5 class="pt-2"><b>Transliteration: </b></h5>
-          <span v-html="highlightSearch(expanded ? result.transliteration : truncatedText(result.transliteration))"></span>
-          <template class="pb-2" v-if="showMoreLink && result.transliteration.length > 200">
-            <a class="custom-link pb-2" href="#" style="font-weight:bold" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
-          </template>
-        </div>
+    <div ref="targetTafseerElement" class="offcanvas-body text-left">
+    <!-- Display Results -->
+    
+
+    <div v-if="filteredResults.length && !loading">
+      <div>
+        <h5>Total Number of Surat: {{ totalSurahs }}</h5>
+        <h5>Total Number of Ayat: {{ totalAyahs }}</h5>
       </div>
-      <hr />
-    </div>]
-  </div>
+      <hr>
+      <div v-for="result in filteredResults" :key="result.id" class="result-item">
+        
+        <div :id="'result-' + result.id">
+          <div class="text-left pb-2">
+            <h4>{{ result.ayah.surah_id }} : {{ result.ayah.ayah_id }}</h4>
+          </div>
+          <h3 class="text-right">{{ result.ayah.ayah_text }}</h3>
+          <div>
+            <h5 ><b>Translation: </b></h5>
+            <span v-html="highlightSearch(expanded ? result.translation : result.translation)"></span>
+        
+          </div>
+          <div>
+            <h5 class="pt-2"><b>Tafseer: </b></h5>
+            <span v-html="highlightSearch(expanded ? result.originalTafseer : result.originalTafseer)"></span>
+            
+          </div>
+          <div>
+            <h5 class="pt-2"><b>Transliteration: </b></h5>
+            <span v-html="highlightSearch(expanded ? result.transliteration : result.transliteration)"></span>
+            
+          </div>
+        </div>
+        <hr />
+      </div>
+    </div>
    <div v-else-if="!loading" class="text-center">
     <h5>No search results found.</h5>
    </div>
@@ -133,6 +135,7 @@ export default {
    dropdown.addEventListener('click', this.toggleDropdown);
   }
  },
+ 
 
  data() {
   return {
@@ -154,6 +157,16 @@ export default {
    timer: null,
   };
  },
+  computed: {
+    totalSurahs() {
+      const surahIds = this.filteredResults.map(result => result.ayah.surah_id);
+      return new Set(surahIds).size; // Calculate unique surahs
+    },
+    totalAyahs() {
+      return this.filteredResults.length; // Calculate total ayahs
+    }
+  },
+ 
  watch: {
   // Watch for changes to `information.ayah.id`
   "information.ayah.id": {
@@ -170,6 +183,13 @@ export default {
   information: Object,
  },
  methods: {
+  totalSurahs() {
+    const surahIds = this.filteredResults.map(result => result.ayah.surah_id);
+    return new Set(surahIds).size; // Unique surahs
+  },
+  totalAyahs() {
+    return this.filteredResults.length; // Total ayahs
+  },
   async fetchTafseer(ayahId) {
     try {
       const tafseerResponse = await axios.get(
@@ -392,7 +412,9 @@ export default {
 
    this.fetchSuggestions();
   }, )
- }
+ },
+ 
+
 
 };
 </script>
@@ -406,6 +428,12 @@ export default {
  .mobile-only {
   display: block;
   display: flex;
+  width: 100%;
+ }
+
+ .custom-offcanvas {
+  background-color: #10584f;
+  color: white;
   width: 100%;
  }
 
@@ -537,6 +565,7 @@ export default {
 .custom-offcanvas {
  background-color: #10584f;
  color: white;
+ width: 40%;
 }
 
 .custom-offcanvas .result-item {
