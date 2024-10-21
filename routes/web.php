@@ -215,6 +215,9 @@ Route::get('/ayahs/{ayahId}/translations', [SurahController::class, 'getTranslat
 
 Route::get('/search-translations', [SurahController::class, 'searchTranslations']);
 
+// audio
+Route::get('surah/{id}/ayat', [SurahController::class, 'getAudioAyat']);
+
 
 // mailing list
 Route::get('/mailing_list', [MailingListController::class, 'index'])->name('mailing_list');

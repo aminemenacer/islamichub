@@ -54,6 +54,11 @@
          <h5 class="text-right" style="display: flex;"> Verse: {{ ayah.ayah_id }} </h5>
          <h5 class="text-right">{{ ayah.ayah_text }}</h5>
         </li>
+        <!-- <div class="ayah-audio">
+          <audio v-if="ayah.audio" :src="ayah.audio" :ref="'audio-' + ayah.id" controls>
+            Your browser does not support the audio tag.
+          </audio>
+        </div> -->
        </ul>
       </div>
      </div>
@@ -127,7 +132,7 @@
                 </div>
                 <div class="col"><ScreenTranslationCapture style="cursor:pointer"  :targetTranslationRef="'targetTranslationElement'" /></div>
                 <div class="col"><PdfDownload style="cursor:pointer" :targetTranslationRef="'targetTranslationElement'" /></div>                
-                <div class="col"><VideoModal  @save-video-data="handleSave" /><i class="bi bi-play-circle h3" style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#videoModal"></i></div>
+                <!-- <div class="col"><VideoModal  @save-video-data="handleSave" /><i class="bi bi-play-circle h3" style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#videoModal"></i></div> -->
                 <div class="col"><i class="bi bi-paint-bucket h2" data-bs-toggle="offcanvas" style="cursor:pointer" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i></div>
                 <div class="col"><i class="bi bi-arrows-fullscreen h4" style="cursor:pointer" @click="toggleFullScreen" title="Full screen"></i></div>
                 
@@ -220,7 +225,7 @@
                   </div>   
                   <div class="col"><ScreenTafseerCapture style="cursor:pointer"  :targetTafseerRef="'targetTafseerElement'" /></div>
                   <div class="col"><PdfDownloadTafsser style="cursor:pointer"  :targetTafseerRef="'targetTafseerElement'"/></div>
-                  <div class="col"><VideoModal  @save-video-data="handleSave" /><i class="bi bi-play-circle h3" style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#videoModal"></i></div>
+                  <!-- <div class="col"><VideoModal  @save-video-data="handleSave" /><i class="bi bi-play-circle h3" style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#videoModal"></i></div> -->
                   <div class="col"><i class="bi bi-paint-bucket h2" style="cursor:pointer" data-bs-toggle="offcanvas" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i></div>
                   <div class="col"><i class="bi bi-arrows-fullscreen h4" style="cursor:pointer" @click="toggleFullScreen" title="Full screen"></i></div>
 
@@ -288,7 +293,7 @@
                   <div class="col"><i @click="submitFormTransliteration" style="cursor:pointer" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" title="Bookmark verse"></i></div>
                   <div class="col"><ScreenTransliterationCapture style="cursor:pointer"  :targetTransliterationRef="'targetTransliterationElement'" /></div>
                   <div class="col"><PdfDownloadTransliteration style="cursor:pointer"  :targetTransliterationRef="'targetTransliterationElement'" /></div>
-                  <div class="col"><VideoModal  @save-video-data="handleSave" /><i class="bi bi-play-circle h3" style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#videoModal"></i></div>
+                  <!-- <div class="col"><VideoModal  @save-video-data="handleSave" /><i class="bi bi-play-circle h3" style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#videoModal"></i></div> -->
                   <div class="col"><i class="bi bi-paint-bucket h2" style="cursor:pointer" data-bs-toggle="offcanvas" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i></div>
                   <div class="col"><i class="bi bi-arrows-fullscreen h4" style="cursor:pointer" @click="toggleFullScreen" title="Full screen"></i></div>
                 </div>
@@ -341,96 +346,7 @@
 
        </div>
 
-       <!-- overview Section -->
-       <div class="tab-pane content" id="data" role="tabpanel" v-if="information != null">
-        <div class="">
-         <div>
-          <!-- Ayah Controls -->
-          <div class="icon-container pb-3">
-
-           <div class="icon-container w-100 hide-on-mobile">
-            <i class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('transliterationNote')" style="color: rgba(0, 191, 166);cursor:pointer">
-            </i>
-            <TransliterationNote ref="transliterationNote" :information="information.transliteration" />
-            <WhatsAppShareTransliteration :transliterationToShare="information.transliteration" />
-            <TwitterShareTransliteration :targetElementRef="'targetElement'" :transliterationText="information.transliteration" />
-            <i @click="submitForm2" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse" style="color: rgba(0, 191, 166);cursor:pointer"></i>
-            <!--
-            <ScreenTransliterationCapture :targetTransliterationRef="'targetTransliterationElement'" />
-            <PdfDownload :targetTranslationRef="'targetTransliterationElement'" />
-            -->
-            <i class="bi bi-paint-bucket h2" style="color: rgb(0, 191, 166); cursor: pointer;" @click="showModal"></i>
-            <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-chat-left-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" style="color: rgba(0, 191, 166); cursor: pointer;"></i>
-            <i class="bi bi-arrows-fullscreen h4" style="color: rgb(0, 191, 166);cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
-           </div>
-
-           <!-- Dropdown Features -->
-           <div class="dropdown mobile-only">
-            <div class="icon-container">
-             <i class="bi bi-chevron-bar-left h4" style="color: rgb(0, 191, 166);" @click="goToFirstAyah()" title="Last verse"></i>
-             <i class="bi bi-arrow-left-circle h4" style="color: rgb(0, 191, 166);" @click="goToPreviousAyah()" title="Previous verse"></i>
-             <i class="bi bi-arrow-right-circle h4" style="color: rgb(0, 191, 166);" @click="goToNextAyah()" title="Next verse"></i>
-             <i class="bi bi-chevron-bar-right h4" style="color: rgb(0, 191, 166);" @click="goToLastAyah()" title="End verse"></i>
-             <i class="bi bi-paint-bucket h2" style="color: rgb(0, 191, 166); cursor: pointer;" @click="showModal"></i>
-             <i class="bi bi-arrows-fullscreen h6" style="color: rgb(0, 191, 166);" @click="toggleFullScreen" title="Full screen"></i>
-            </div>
-           </div>
-          </div>
-
-          <div ref="targetGroupElement">
-            <GroupSection 
-              :information="information"
-              :isFullScreen="isFullScreen"
-              :expanded="expanded"
-              :showMoreLink="showMoreLink"
-              :showAlertText="showAlertText"
-              :showAlert="showAlert"
-              :showErrorAlert="showErrorAlert"
-              :showAlertTextNote="showAlertTextNote"
-              @toggle-full-screen="toggleFullScreen"
-              @handle-touch-start="handleTouchStart"
-              @handle-touch-move="handleTouchMove"
-              @handle-touch-end="handleTouchEnd"
-              @toggle-expand="toggleExpand"
-              @close-alert-text="closeAlertText"
-            />
-          </div>
-
-          <div class="container-fluid text-center mobile-only">
-            <div class="row">
-              <div class="col">
-              </div>
-              <div class="col">
-                <button @click="toggleContent" class="button-63 text-center mobile-only">
-                  {{ isOpen ? 'Close Toolbar' : 'Open Toolbar' }}
-                </button>
-              </div>
-              <div class="col">
-              </div>
-            </div>
-          </div>
-            
-
-            <!-- toolbar mobile -->
-            <div v-if="isOpen" class="collapse-content mobile-only">
-              <div class="card text-bg-light card-body">
-                <!-- Your content here -->
-                <GroupActions :targetGroupRef="'targetGroupElement'" :transliteration="transliteration" @open-modal="openModal" @submit-form="submitForm" />
-                <!--
-                <PdfDownload class="pl-2 pb-2 mt-2 text-left" :targetTransliterationRef="'targetTransliterationElement'" />
-                -->
-              </div>
-            </div>
-            <!-- end toolbar mobile -->
-
-          
-          <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
-          <SurahInfoModal :information="information" />
-
-         </div>
-        </div>
-
-       </div>
+       
       </div>
      </div>
 
@@ -902,7 +818,6 @@ computed: {
   combinedText() {
     // Check if ayah_text and translation have nested structure
     const translation = typeof this.information.translation === 'object' ? this.information.translation.text : this.information.translation;
-
     return `Translation: ${translation}`;
   },
   containerStyle() {
@@ -933,11 +848,7 @@ computed: {
     }
 },
 methods: {
-  handleSave(message) {
-    // This method is called when the child emits the event
-    console.log(message); // Output: 'Video data saved!'
-    // Handle the save action here (e.g., update a state or send data to the backend)
-  },
+ 
   handleItemSelected(selectedItem) {
     alert(`Selected item: ${selectedItem}`);
   },
@@ -1578,6 +1489,12 @@ methods: {
 </script>
 
 <style scoped src="./css/styles.css">
+.selected {
+  background-color: #d1e7dd; /* Change this to your selected color */
+}
+.highlighted {
+  border: 2px solid #0d6efd; /* Change this to your highlight color */
+}
 .custom-offcanvas {
  background-color: #10584f;
  color: white;

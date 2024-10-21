@@ -17,6 +17,21 @@ class SurahController extends Controller
         return response()->json($surat);
     }
 
+    public function getAudioAyat($id)
+    {
+        // Fetch ayahs for the given surah ID
+        $ayahs = Ayah::where('surah_id', $id)->get();
+        
+
+        // Check if any ayahs were found
+        if ($ayahs->isEmpty()) {
+            return response()->json(['message' => 'No ayahs found for this surah'], 404);
+        }
+
+        // Return the ayahs in JSON format
+        return response()->json($ayahs);
+    }
+
     public function getAyahsBySurah($surahId)
     {
         $surah = Surah::with('ayahs')->find($surahId); // Eager load the ayahs

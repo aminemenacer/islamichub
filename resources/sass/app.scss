@@ -1,11 +1,6 @@
+@import 'admin-lte/dist/css/adminlte.css';
+@import url("https://fonts.bunny.net/css?family=Nunito");
 
-// Fonts
-@import url('https://fonts.bunny.net/css?family=Nunito');
-
-// Variables
-@import 'variables';
-@import "~sweetalert2/src/sweetalert2.scss";
-
-
-// Bootstrap
-@import '~admin-lte/dist/css/adminlte.css';
+.swal2-popup.swal2-toast {
+  box-sizing: border-box;
+}

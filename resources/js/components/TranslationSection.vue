@@ -12,19 +12,19 @@
       <a class="href" href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
      </template>
     </h4>
+
+    
+
     
     <Translator translator="Ahmed Ali" />
     <!-- Speech icons mobile only-->
     <div style="cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: space-between;" class="container pb-2 text-center mobile-only">
      <div class="row">
       <div class="col">
-       <i class="bi bi-dash-circle-fill h3 custom-icon-decrease" aria-placeholder="Decrease text size" @click="decreaseFontSize"></i>
-      </div>
-      <div class="col">
        <i @click="toggleSpeech" style="cursor: pointer;" aria-placeholder="Play translation audio" :class="isReading ? 'bi-pause-circle-fill' : 'bi-play-circle-fill'" class="bi ml-2 mr-2 h3 custom-icon-play"></i>
       </div>
       <div class="col">
-       <i class="bi bi-plus-circle-fill h3 custom-icon-increase" aria-placeholder="Increase text size" @click="increaseFontSize"></i>
+       <i @click="stopSpeech" style="cursor: pointer;" aria-placeholder="Stop translation audio" :class="isReading ? 'bi-play-circle-fill' : 'bi-stop-circle-fill'" class="bi ml-2 mr-2 h3 custom-icon-play"></i>
       </div>
       <div class="col text-center">
        <i class="bi bi-wrench-adjustable-circle-fill h3 custom-icon-increase" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-placeholder="settings"></i>
@@ -63,6 +63,12 @@
         <label>
          Pitch: <input class="pitch" type="range" min="0.5" max="2" step="0.1" v-model="pitch" @input="adjustPitch($event.target.value)">
         </label>
+       </div>
+       <div class="col">
+        Increase Text size: <i class="bi bi-plus-circle-fill h3 custom-icon-increase" aria-placeholder="Increase text size" @click="increaseFontSize"></i>
+       </div>
+       <div class="col">
+        Decrease Text size: <i class="bi bi-dash-circle-fill h3 custom-icon-decrease" aria-placeholder="Decrease text size" @click="decreaseFontSize"></i>
        </div>
       </div>
 
@@ -192,7 +198,13 @@ export default {
    summary: '',
    words: [],
    currentWordIndex: 0,
-
+   ayahAudio: null, // Store the audio URL
+   ayahId: 1,       // Example ayah ID
+   data: [],
+   surat: [],
+   ayat: [],
+   tafseers: [],
+   
   }
  },
  mounted() {
@@ -400,9 +412,8 @@ export default {
    this.utterance.rate = this.rate;
    this.utterance.pitch = this.pitch;
 
-   // Handle end of speech event
    this.utterance.onend = () => {
-    this.isReading = false;
+    window.speechSynthesis.speak(this.utterance); // Automatically replay the speech when it ends
    };
 
    // Start speaking
@@ -455,6 +466,19 @@ export default {
 </script>
 
 <style scoped>
+
+.ayah-container {
+  margin-bottom: 20px;
+}
+
+.ayah-text {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.ayah-audio {
+  margin-bottom: 20px;
+}
 .custom-offcanvas {
  background-color: #10584f;
   color: white;

@@ -133,4 +133,3 @@ app.component('support-component', SupportComponent);
 
 
 app.mount("#app");
-
