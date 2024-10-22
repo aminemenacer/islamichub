@@ -40,12 +40,11 @@
       <hr class="container" style="height: 4px; background: lightgrey;">
 
       <div :style="iconStyle" class="icon-container pb-2" >
-       <i class="bi bi-chevron-bar-left h4 custom-first-verse"  @click="goToFirstAyah" title="First verse"></i>
-       <i class="bi bi-arrow-left-circle h4 custom-prev-ayah" @click="goToPreviousAyah" title="Previous verse"></i>
-       <i class="bi bi-arrow-right-circle h4 custom-next-ayah" @click="goToNextAyah" title="Next verse"></i>
-       <i class="bi bi-chevron-bar-right h4 custom-last-verse" @click="goToLastAyah" title="Last verse"></i>
-       <i v-if="information != null" class="bi bi-info-circle h4 mr-2 pl-2" data-bs-toggle="modal" data-bs-target="#translationInfo" aria-expanded="false" data-bs-placement="top" title="Surah info"></i>
-       <i v-if="information != null" title="Give feedback" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-chat-left-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" ></i>
+       <i class="bi bi-chevron-bar-left h4 custom-first-verse" style="cursor:pointer" @click="goToFirstAyah" title="First verse"></i>
+       <i class="bi bi-arrow-left-circle h4 custom-prev-ayah" style="cursor:pointer" @click="goToPreviousAyah" title="Previous verse"></i>
+       <i class="bi bi-arrow-right-circle h4 custom-next-ayah" style="cursor:pointer" @click="goToNextAyah" title="Next verse"></i>
+       <i class="bi bi-chevron-bar-right h4 custom-last-verse" style="cursor:pointer" @click="goToLastAyah" title="Last verse"></i>
+       <i class="bi bi-gear h3" v-if="information != null" style="cursor:pointer" title="Settings" @click="showSettingsOffcanvas"></i>
       </div>
 
       <div class="custom-scrollbar pb-5" style="overflow-y: auto; max-height: 600px; background: white;border-radius:10px;box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;">
@@ -136,7 +135,8 @@
                 <div class="col"><PdfDownload style="cursor:pointer" :targetTranslationRef="'targetTranslationElement'" /></div>                
                 <!-- <div class="col"><VideoModal  @save-video-data="handleSave" /><i class="bi bi-play-circle h3" style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#videoModal"></i></div> -->
                 <!-- <div class="col"><i class="bi bi-paint-bucket h2" data-bs-toggle="offcanvas" style="cursor:pointer" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i></div> -->
-                <div class="col"><i class="bi bi-gear h3" style="cursor:pointer" title="Settings" @click="showSettingsOffcanvas"></i></div>
+                <div class="col"><i style="cursor:pointer" class="bi bi-info-circle h4 mr-2 pl-2" data-bs-toggle="modal" data-bs-target="#translationInfo" aria-expanded="false" data-bs-placement="top" title="Surah info"></i></div>
+                <div class="col"><i title="Give feedback" style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-chat-left-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" ></i></div>
                 <div class="col"><i class="bi bi-arrows-fullscreen h4" style="cursor:pointer" @click="toggleFullScreen" title="Full screen"></i></div>
                 
               </div>
@@ -154,8 +154,10 @@
             <i class="bi bi-arrow-left-circle h4" style="cursor:pointer" @click="goToPreviousAyah()" title="Previous verse"></i>
             <i class="bi bi-arrow-right-circle h4" style="cursor:pointer" @click="goToNextAyah()" title="Next verse"></i>
             <i class="bi bi-chevron-bar-right h4" style="cursor:pointer" @click="goToLastAyah()" title="End verse"></i>
+            <i class="bi bi-gear text-right mr-2 h3" @click="showSettingsOffcanvas" aria-expanded="false" data-bs-placement="top" title="Settings" :style="{ cursor: 'pointer' }"></i>
+            <i class="bi bi-arrows-fullscreen h6" style="cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
+
             <!-- <i class="bi bi-paint-bucket h1" style="cursor:pointer" data-bs-toggle="offcanvas" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i> -->  
-            <!-- <i class="bi bi-arrows-fullscreen h6" style="cursor:pointer" @click="toggleFullScreen" title="Full screen"></i> -->
           
           </div>
         </div>
@@ -226,7 +228,9 @@
                   </div>   
                   <!-- <div class="col"><ScreenTafseerCapture style="cursor:pointer"  :targetTafseerRef="'targetTafseerElement'" /></div> -->
                   <div class="col"><PdfDownloadTafsser style="cursor:pointer"  :targetTafseerRef="'targetTafseerElement'"/></div>
-                  <div class="col"><i class="bi bi-gear h3" style="cursor:pointer" title="Settings" @click="showSettingsOffcanvasTafseer"></i></div>
+                  <div class="col"><i style="cursor:pointer" class="bi bi-info-circle h4 mr-2 pl-2" data-bs-toggle="modal" data-bs-target="#translationInfo" aria-expanded="false" data-bs-placement="top" title="Surah info"></i></div>
+                  <div class="col"><i title="Give feedback" style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-chat-left-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" ></i></div>
+ 
                   <!-- <div class="col"><VideoModal  @save-video-data="handleSave" /><i class="bi bi-play-circle h3" style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#videoModal"></i></div> -->
                   <!-- <div class="col"><i class="bi bi-paint-bucket h2" style="cursor:pointer" data-bs-toggle="offcanvas" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i></div> -->
                   <div class="col"><i class="bi bi-arrows-fullscreen h4" style="cursor:pointer" @click="toggleFullScreen" title="Full screen"></i></div>
@@ -246,6 +250,7 @@
            <i class="bi bi-arrow-right-circle h4" style="cursor:pointer" @click="goToNextAyah()" title="Next verse"></i>
            <i class="bi bi-chevron-bar-right h4" style="cursor:pointer"  @click="goToLastAyah()" title="End verse"></i>
            <!-- <i class="bi bi-paint-bucket h1" style="cursor:pointer" data-bs-toggle="offcanvas" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i> -->
+           <i class="bi bi-gear text-right mr-2 h3" @click="showSettingsOffcanvas" aria-expanded="false" data-bs-placement="top" title="Settings" :style="{ cursor: 'pointer' }"></i>
            <i class="bi bi-arrows-fullscreen h6" style="cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
           </div>
          </div>
@@ -293,7 +298,9 @@
                   <div class="col"><i @click="submitFormTransliteration" style="cursor:pointer" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" title="Bookmark verse"></i></div>
                   <!-- <div class="col"><ScreenTransliterationCapture style="cursor:pointer"  :targetTransliterationRef="'targetTransliterationElement'" /></div> -->
                   <div class="col"><PdfDownloadTransliteration style="cursor:pointer"  :targetTransliterationRef="'targetTransliterationElement'" /></div>
-                  <div class="col"><i class="bi bi-gear h3" style="cursor:pointer" title="Settings" @click="showSettingsOffcanvas"></i></div>
+                  <div class="col"><i style="cursor:pointer" class="bi bi-info-circle h4 mr-2 pl-2" data-bs-toggle="modal" data-bs-target="#translationInfo" aria-expanded="false" data-bs-placement="top" title="Surah info"></i></div>
+                  <div class="col"><i title="Give feedback" style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-chat-left-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" ></i></div>
+ 
                   <!-- <div class="col"><VideoModal  @save-video-data="handleSave" /><i class="bi bi-play-circle h3" style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#videoModal"></i></div> -->
                   <!-- <div class="col"><i class="bi bi-paint-bucket h2" style="cursor:pointer" data-bs-toggle="offcanvas" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i></div> -->
                   <div class="col"><i class="bi bi-arrows-fullscreen h4" style="cursor:pointer" @click="toggleFullScreen" title="Full screen"></i></div>
@@ -312,7 +319,8 @@
              <i class="bi bi-arrow-right-circle h4"  style="cursor:pointer" @click="goToNextAyah()" title="Next verse"></i>
              <i class="bi bi-chevron-bar-right h4" style="cursor:pointer" @click="goToLastAyah()" title="End verse"></i>
              <!-- <i class="bi bi-paint-bucket h1" style="cursor:pointer" data-bs-toggle="offcanvas" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i> -->
-             <!-- <i class="bi bi-arrows-fullscreen h6" style="cursor:pointer" @click="toggleFullScreen" title="Full screen"></i> -->
+             <i class="bi bi-gear text-right mr-2 h3" @click="showSettingsOffcanvas" aria-expanded="false" data-bs-placement="top" title="Settings" :style="{ cursor: 'pointer' }"></i>
+             <i class="bi bi-arrows-fullscreen h6" style="cursor:pointer" @click="toggleFullScreen" title="Full screen"></i> 
             </div>
            </div>
           </div>

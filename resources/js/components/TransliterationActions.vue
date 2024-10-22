@@ -17,9 +17,9 @@
    <i class="bi bi-file-earmark-pdf text-right mr-2 h3" @click="downloadTransliterationPdf" aria-expanded="false" data-bs-placement="top" title="Download PDF" :style="{ cursor: 'pointer' }"></i>
   </div>
 
-  <!-- settings -->
+  <!-- surah info -->
   <div class="icon-container">
-   <i class="bi bi-gear text-right mr-2 h3" @click="showSettingsOffcanvas" aria-expanded="false" data-bs-placement="top" title="Settings" :style="{ cursor: 'pointer' }"></i>
+   <i style="cursor:pointer" class="bi bi-info-circle h4 mr-2 pl-2" data-bs-toggle="modal" data-bs-target="#translationInfo" aria-expanded="false" data-bs-placement="top" title="Surah info" :style="{ cursor: 'pointer' }"></i>
   </div>
 
   <!-- Bug Report Icon -->

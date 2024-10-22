@@ -22,7 +22,7 @@ class CorrectionController extends Controller
     public function submit(Request $request)
     {
         $this->validate($request, [
-            'added_notes' => 'required|string|min:5',
+            'added_notes' => 'required|string',
             'rating' => 'required|integer|min:1|max:5'
 
         ]);
