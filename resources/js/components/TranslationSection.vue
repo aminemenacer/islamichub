@@ -1,36 +1,30 @@
 <template>
 <div class="w-100 my-element" :class="{'full-screen': isFullScreen}">
  <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
- <div >
+ <div>
   <AyahInfo :information="information" />
   <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
    <MainAyah :information="information" />
    <div ref="targetTranslationElement" class="row text-left">
     <h4 :style="{ fontSize: currentFontSize + 'px' }" class="text-left ayah-translation col-md-11" style="line-height: 1.6em">
      {{ expanded ? information.translation : information.translation }}
-     
+
     </h4>
 
-    
-
-    
     <Translator translator="Ahmed Ali" />
     <!-- Speech icons mobile only-->
     <div style="cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: space-between;" class="container pb-2 text-center mobile-only">
      <div class="row">
       <div class="col">
-       <i @click="toggleSpeech" style="cursor: pointer;" aria-placeholder="Start translation audio"  class="bi bi-rewind-circle-fill ml-2 mr-2 h3 custom-icon-play"></i>
+       <i @click="rewindSpeech" style="cursor: pointer;" aria-label="Rewind translation audio" class="bi bi-rewind-circle-fill ml-2 mr-2 h3 custom-icon-play"></i>
       </div>
       <div class="col">
-       <i @click="toggleSpeech" style="cursor: pointer;" aria-placeholder="Play translation audio" :class="isReading ? 'bi-pause-circle-fill' : 'bi-play-circle-fill'" class="bi ml-2 mr-2 h3 custom-icon-play"></i>
+       <i @click="toggleSpeech" style="cursor: pointer;" aria-label="Play or pause translation audio" :class="isReading ? 'bi-pause-circle-fill' : 'bi-play-circle-fill'" class="bi ml-2 mr-2 h3 custom-icon-play"></i>
       </div>
       <div class="col">
-       <i @click="stopSpeech" style="cursor: pointer;" aria-placeholder="Stop translation audio" class="bi bi-stop-circle-fill ml-2 mr-2 h3 custom-icon-play"></i>
+       <i @click="stopReading" style="cursor: pointer;" aria-label="Stop translation audio" class="bi bi-stop-circle-fill ml-2 mr-2 h3 custom-icon-play"></i>
       </div>
-      <div class="col">
-       <i @click="stopSpeech" style="cursor: pointer;" aria-placeholder="Next ayah translation audio" class="bi bi-fast-forward-circle-fill ml-2 mr-2 h3 custom-icon-play"></i>
-      </div>
-      
+
       <div class="col text-center">
        <i class="bi bi-wrench-adjustable-circle-fill h3 custom-icon-increase" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-placeholder="settings"></i>
       </div>
@@ -45,48 +39,72 @@
     <!-- Speech Off-canvas -->
     <div class="offcanvas offcanvas-end custom-offcanvas" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
      <div class="offcanvas-header">
-      <h5><b>Speech Settings</b></h5>
+      <h2><b>Settings</b></h2>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
      </div>
      <div class="offcanvas-body">
-      <div class="mb-3">
-       <label for="formGroupExampleInput" class="form-label">Voices:</label>
-       <select class="form-control" v-model="selectedVoice" @change="changeVoice($event.target.value)">
-        <option v-for="voice in voices" :key="voice.name" :value="voice">
-         {{ voice.name }} ({{ voice.lang }})
-        </option>
-       </select>
+
+      <!-- Tabs navigation -->
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+       <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="tab1-tab" data-bs-toggle="tab" data-bs-target="#tab1" type="button" role="tab" aria-controls="tab1" aria-selected="true"><span><b>Speech Settings</b></span></button>
+       </li>
+       <li class="nav-item" role="presentation">
+        <button class="nav-link" id="tab2-tab" data-bs-toggle="tab" data-bs-target="#tab2" type="button" role="tab" aria-controls="tab2" aria-selected="false"><span><b>Custom Styling</b></span></button>
+       </li>
+      </ul>
+
+      <!-- Tab content -->
+      <div class="tab-content mt-3" id="myTabContent">
+       <!-- Tab 1 Content -->
+       <div class="tab-pane fade show active" id="Speech Settings" role="tabpanel" aria-labelledby="tab1-tab">
+        <div class="mb-3">
+         <label for="formGroupExampleInput" class="form-label">Voices:</label>
+         <select class="form-control" v-model="selectedVoice" @change="changeVoice($event.target.value)">
+          <option v-for="voice in voices" :key="voice.name" :value="voice">
+           {{ voice.name }} ({{ voice.lang }})
+          </option>
+         </select>
+        </div>
+
+        <div class="row">
+         <div class="col">
+          <label>
+           Rate: <input class="rate" type="range" min="0.5" max="2" step="0.1" v-model="rate" @input="adjustRate($event.target.value)">
+          </label>
+         </div>
+         <div class="col">
+          <label>
+           Pitch: <input class="pitch" type="range" min="0.5" max="2" step="0.1" v-model="pitch" @input="adjustPitch($event.target.value)">
+          </label>
+         </div>
+         <div class="col">
+          Increase Text size: <i class="bi bi-plus-circle-fill h3 custom-icon-increase" aria-placeholder="Increase text size" @click="increaseFontSize"></i>
+         </div>
+         <div class="col">
+          Decrease Text size: <i class="bi bi-dash-circle-fill h3 custom-icon-decrease" aria-placeholder="Decrease text size" @click="decreaseFontSize"></i>
+         </div>
+        </div>
+
+        <!-- Success message alert (hidden by default) -->
+        <div v-if="successMessage" class="alert alert-success" role="alert">
+         Settings saved successfully!
+        </div>
+
+        <!-- Buttons to save or cancel changes -->
+        <div class="d-flex justify-content-end mt-3">
+         <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="offcanvas" aria-label="Close">Cancel</button>
+         <button type="button" class="btn btn-success" @click="saveSettings">Save changes</button>
+        </div>
+       </div>
+
+       <!-- Tab 2 Content -->
+       <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
+        <h3>Content for Tab 2</h3>
+        <p>This is the content that is displayed when Tab 2 is active.</p>
+       </div>
       </div>
 
-      <div class="row">
-       <div class="col">
-        <label>
-         Rate: <input class="rate" type="range" min="0.5" max="2" step="0.1" v-model="rate" @input="adjustRate($event.target.value)">
-        </label>
-       </div>
-       <div class="col">
-        <label>
-         Pitch: <input class="pitch" type="range" min="0.5" max="2" step="0.1" v-model="pitch" @input="adjustPitch($event.target.value)">
-        </label>
-       </div>
-       <div class="col">
-        Increase Text size: <i class="bi bi-plus-circle-fill h3 custom-icon-increase" aria-placeholder="Increase text size" @click="increaseFontSize"></i>
-       </div>
-       <div class="col">
-        Decrease Text size: <i class="bi bi-dash-circle-fill h3 custom-icon-decrease" aria-placeholder="Decrease text size" @click="decreaseFontSize"></i>
-       </div>
-      </div>
-
-      <!-- Success message alert (hidden by default) -->
-      <div v-if="successMessage" class="alert alert-success" role="alert">
-       Settings saved successfully!
-      </div>
-
-      <!-- Buttons to save or cancel changes -->
-      <div class="d-flex justify-content-end mt-3">
-       <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="offcanvas" aria-label="Close">Cancel</button>
-       <button type="button" class="btn btn-success" @click="saveSettings">Save changes</button>
-      </div>
      </div>
     </div>
 
@@ -204,20 +222,14 @@ export default {
    words: [],
    currentWordIndex: 0,
    ayahAudio: null, // Store the audio URL
-   ayahId: 1,       // Example ayah ID
+   ayahId: 1, // Example ayah ID
    data: [],
    surat: [],
    ayat: [],
    tafseers: [],
   }
  },
- watch: {
-  translation(newVal) {
-    // Watch for changes to the translation and start reading it
-    if (newVal) {
-      this.readTextAloud();
-    }
-  },
+
  mounted() {
   // Load saved settings from local storage on page load
   const savedVoice = localStorage.getItem('selectedVoice');
@@ -233,12 +245,13 @@ export default {
    this.currentFontSize = parseInt(savedFontSize, 10); // Set the font size from localStorage
   }
   this.loadVoices();
-  if (speechSynthesis.onvoiceschanged !== undefined) {
-   speechSynthesis.onvoiceschanged = this.loadVoices;
-  }
+  // Listen for voiceschanged event to reload voices
+  window.speechSynthesis.onvoiceschanged = () => {
+    this.loadVoices();
+  };
  },
  methods: {
-  
+
   toggleExpand() {
    this.expanded = !this.expanded;
   },
@@ -263,8 +276,7 @@ export default {
      //   `Successfully bookmarked ayah ${this.information.ayah_id} to folder "${this.selectedFolderId}"`;
     })
   },
-  
-  
+
   saveSettings() {
    // Save settings to local storage
    localStorage.setItem('selectedVoice', JSON.stringify(this.selectedVoice));
@@ -297,12 +309,10 @@ export default {
     modalInstance.dispose();
    }
   },
-  
+
   loadVoices() {
    this.voices = speechSynthesis.getVoices();
-   if (this.voices.length > 0) {
-    this.selectBestVoice();
-   }
+   
   },
   increaseFontSize() {
    this.currentFontSize += 2; // Increase font size by 2px
@@ -314,11 +324,11 @@ export default {
     this.saveFontSize();
    }
   },
-  // resetFontSize() {
-  //   this.currentFontSize = 20; // Reset to default font size
-  //   this.saveFontSize(); // Save the font size (e.g., to local storage or any other mechanism)
-  //   this.resetDisabled = true; // Disable the reset button after resetting the font size
-  // },
+  resetFontSize() {
+   this.currentFontSize = 20; // Reset to default font size
+   this.saveFontSize(); // Save the font size (e.g., to local storage or any other mechanism)
+   this.resetDisabled = true; // Disable the reset button after resetting the font size
+  },
   saveFontSize() {
    // Save the current font size to localStorage
    localStorage.setItem('fontSize', this.currentFontSize);
@@ -395,64 +405,45 @@ export default {
    const blob = await Packer.toBlob(doc);
    saveAs(blob, "translation.docx")
   },
-  stopSpeech() {
-   if (this.isReading) {
-    window.speechSynthesis.cancel();
-    this.isReading = false;
-   }
-  },
   toggleSpeech() {
    if (this.isReading) {
-    window.speechSynthesis.cancel(); // Stop reading if already playing
-    this.isReading = false;
+    this.stopReading();
    } else {
-    this.readTextAloud(); // Start reading
+    this.readTextAloud();
    }
   },
   // Read the displayed text aloud
-
   readTextAloud() {
    const text = this.expanded ? this.information.translation : this.information.translation;
    this.utterance = new SpeechSynthesisUtterance(text);
 
+   // Find selected voice if available
    const selectedVoice = this.voices.find(voice => voice.name === this.selectedVoiceName);
-   if (this.selectedVoice) {
-    this.utterance.voice = this.selectedVoice;
+   if (selectedVoice) {
+    this.utterance.voice = selectedVoice;
    }
 
+   // Set speech rate and pitch
    this.utterance.rate = this.rate;
    this.utterance.pitch = this.pitch;
 
+   // Handle the end of speech event
    this.utterance.onend = () => {
-    window.speechSynthesis.speak(this.utterance); // Automatically replay the speech when it ends
-   };
-
-   this.utterance.onend = () => {
-    this.isReading = false;
+    this.isReading = false; // Update state when speech ends
    };
 
    // Start speaking
    this.isReading = true;
    window.speechSynthesis.speak(this.utterance);
   },
-  getCurrentWordIndex(charIndex) {
-   let cumulativeLength = 0;
-   for (let i = 0; i < this.words.length; i++) {
-    cumulativeLength += this.words[i].length + 1; // Account for spaces between words
-    if (charIndex < cumulativeLength) {
-     return i;
-    }
-   }
-   return 0;
+  // Stop reading
+  stopReading() {
+   window.speechSynthesis.cancel();
+   this.isReading = false;
   },
-  stopSpeech() {
-   if (this.isReading) {
-    window.speechSynthesis.cancel();
-    this.isReading = false;
-   }
-  },
-  setAyahText(text) {
-   this.ayahText = text; // Capture the ayah text from the child component
+  rewindSpeech() {
+   this.stopReading();
+   this.readTextAloud(); // Replay the current ayah
   },
   toggleFullScreen() {
    this.$emit('toggle-full-screen');
@@ -473,23 +464,21 @@ export default {
    this.$emit('close-alert-text');
   }
  },
- }
 };
 </script>
 
 <style scoped>
-
 .ayah-container {
-  margin-bottom: 20px;
+ margin-bottom: 20px;
 }
 
 .ayah-text {
-  font-size: 18px;
-  margin-bottom: 10px;
+ font-size: 18px;
+ margin-bottom: 10px;
 }
 
 .ayah-audio {
-  margin-bottom: 20px;
+ margin-bottom: 20px;
 }
 
 .custom-offcanvas {
@@ -560,11 +549,12 @@ export default {
   display: flex;
   /* Show only on mobile */
  }
+
  .custom-offcanvas {
- background-color: #10584f;
- color: white;
- width: 100%;
-}
+  background-color: #10584f;
+  color: white;
+  width: 100%;
+ }
 }
 
 @media (max-width: 576px) {
@@ -577,7 +567,7 @@ export default {
   background-color: #10584f;
   color: white;
   width: 100%;
-  }
+ }
 
  .hide-on-mobile {
   display: none;

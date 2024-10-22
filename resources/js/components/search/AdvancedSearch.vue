@@ -216,11 +216,6 @@ export default {
     this.filteredResults = [];
    }
   },
-
-  truncatedText(text) {
-   return text.length > 200 ? text.substring(0, 200) + '...' : text;
-  },
-
   fetchSuggestions() {
    const params = {
     query: this.searchTerm,

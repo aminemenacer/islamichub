@@ -1259,14 +1259,7 @@ methods: {
   goToLastAyah() {
    this.selectAyah(this.ayat.length - 1);
   },
-  truncatedText(text) {
-   const maxLength = 300; // Define your desired max length here
-   if (text.length > maxLength) {
-    return text.substring(0, maxLength) + '...';
-   } else {
-    return text;
-   }
-  },
+  
   detectSwipe() {
    const swipeDistance = this.touchStartX - this.touchEndX;
    console.log('Swipe distance:', swipeDistance);
