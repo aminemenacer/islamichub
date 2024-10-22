@@ -6,14 +6,20 @@
    <i class="bi bi-file-earmark-text h3" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="$emit('openModal', 'tafseerNote')"></i>
   </div>
 
-  <!-- Screenshot Icon -->
+  <!-- Screenshot Icon 
   <div class="icon-container">
    <i class="bi bi-camera text-right mr-2 h3" @click="captureTafseer" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" :style="{ cursor: 'pointer' }"></i>
   </div>
+  -->
 
   <!-- PDF Download Icon -->
   <div class="icon-container">
    <i class="bi bi-file-earmark-pdf text-right mr-2 h3" @click="downloadTafseerPdf" aria-expanded="false" data-bs-placement="top" title="Download PDF" :style="{ cursor: 'pointer' }"></i>
+  </div>
+
+  <!-- settings -->
+  <div class="icon-container">
+   <i class="bi bi-gear text-right mr-2 h3" @click="showSettingsOffcanvasTafseer" aria-expanded="false" data-bs-placement="top" title="Settings" :style="{ cursor: 'pointer' }"></i>
   </div>
 
   <!-- Bug Report Icon -->
@@ -121,6 +127,11 @@ export default {
     .finally(() => {
      this.isSubmitting = false; // Re-enable submit button
     });
+  },
+  showSettingsOffcanvasTafseer() {
+   // Use Bootstrap Offcanvas show method to open the panel
+   let offcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasRight'));
+   offcanvas.show();
   },
   captureTafseer() {
    const targetTafseerElement = this.$parent.$refs[this.targetTafseerRef];

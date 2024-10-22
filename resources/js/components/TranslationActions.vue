@@ -6,16 +6,21 @@
    <i class="bi bi-file-earmark-text h3" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="$emit('open-modal', 'translationNote')"></i>
   </div>
 
-  <!-- Screenshot Icon -->
+  <!-- Screenshot Icon 
   <div class="icon-container">
    <i class="bi bi-camera text-right mr-2 h3" @click="captureTranslation" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" :style="{ cursor: 'pointer' }"></i>
   </div>
-
+  -->
+  
   <!-- PDF Download Icon -->
   <div class="icon-container">
    <i class="bi bi-file-earmark-pdf text-right mr-2 h3" @click="downloadTranslationPdf" aria-expanded="false" data-bs-placement="top" title="Download PDF" :style="{ cursor: 'pointer' }"></i>
   </div>
-  
+
+  <!-- settings -->
+  <div class="icon-container">
+   <i class="bi bi-gear text-right mr-2 h3" @click="showSettingsOffcanvas" aria-expanded="false" data-bs-placement="top" title="Settings" :style="{ cursor: 'pointer' }"></i>
+  </div>
 
   <!-- Bug Report Icon -->
   <div class="icon-container">
@@ -164,7 +169,11 @@ export default {
      });
    }, 200);
   },
-
+  showSettingsOffcanvas() {
+    // Use Bootstrap Offcanvas show method to open the panel
+    let offcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasRight'));
+    offcanvas.show();
+  },
   submitForm() {
    // Debug log to check current information
    console.log('Current information:', this.information);

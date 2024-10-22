@@ -24,12 +24,10 @@
       <div class="col">
        <i @click="stopReading" style="cursor: pointer;" aria-label="Stop translation audio" class="bi bi-stop-circle-fill ml-2 mr-2 h3 custom-icon-play"></i>
       </div>
-
-      <div class="col text-center">
-       <i class="bi bi-wrench-adjustable-circle-fill h3 custom-icon-increase" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-placeholder="settings"></i>
+      <div class="col">
+       <i style="cursor: pointer;" aria-label="Stop translation audio" class="bi bi-fast-forward-circle-fill ml-2 mr-2 h3 custom-icon-play"></i>
       </div>
      </div>
-
     </div>
     <!--
      <button type="button" class="btn btn-success" @click="downloadAsCSV">Download as CSV</button>
@@ -39,29 +37,18 @@
     <!-- Speech Off-canvas -->
     <div class="offcanvas offcanvas-end custom-offcanvas" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
      <div class="offcanvas-header">
-      <h2><b>Settings</b></h2>
+      <h2><b>Speech Settings</b></h2>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
      </div>
      <div class="offcanvas-body">
 
-      <!-- Tabs navigation -->
-      <ul class="nav nav-tabs" id="myTab" role="tablist">
-       <li class="nav-item" role="presentation">
-        <button class="nav-link active" id="tab1-tab" data-bs-toggle="tab" data-bs-target="#tab1" type="button" role="tab" aria-controls="tab1" aria-selected="true"><span><b>Speech Settings</b></span></button>
-       </li>
-       <li class="nav-item" role="presentation">
-        <button class="nav-link" id="tab2-tab" data-bs-toggle="tab" data-bs-target="#tab2" type="button" role="tab" aria-controls="tab2" aria-selected="false"><span><b>Custom Styling</b></span></button>
-       </li>
-      </ul>
-
       <!-- Tab content -->
       <div class="tab-content mt-3" id="myTabContent">
-       <!-- Tab 1 Content -->
        <div class="tab-pane fade show active" id="Speech Settings" role="tabpanel" aria-labelledby="tab1-tab">
-        <div class="mb-3">
+        <div class="row mb-3">
          <label for="formGroupExampleInput" class="form-label">Voices:</label>
-         <select class="form-control" v-model="selectedVoice" @change="changeVoice($event.target.value)">
-          <option v-for="voice in voices" :key="voice.name" :value="voice">
+         <select class="form-control" v-model="selectedVoiceName">
+          <option v-for="voice in voices" :key="voice.name" :value="voice.name">
            {{ voice.name }} ({{ voice.lang }})
           </option>
          </select>
@@ -78,11 +65,16 @@
            Pitch: <input class="pitch" type="range" min="0.5" max="2" step="0.1" v-model="pitch" @input="adjustPitch($event.target.value)">
           </label>
          </div>
+
          <div class="col">
-          Increase Text size: <i class="bi bi-plus-circle-fill h3 custom-icon-increase" aria-placeholder="Increase text size" @click="increaseFontSize"></i>
+          <label>
+           Increase size: <i class="bi bi-plus-circle-fill h3 custom-icon-increase" aria-placeholder="Increase text size" @click="increaseFontSize"></i>
+          </label>
          </div>
          <div class="col">
-          Decrease Text size: <i class="bi bi-dash-circle-fill h3 custom-icon-decrease" aria-placeholder="Decrease text size" @click="decreaseFontSize"></i>
+          <label>
+           Decrease size: <i class="bi bi-dash-circle-fill h3 custom-icon-decrease" aria-placeholder="Decrease text size" @click="decreaseFontSize"></i>
+          </label>
          </div>
         </div>
 
@@ -92,17 +84,12 @@
         </div>
 
         <!-- Buttons to save or cancel changes -->
-        <div class="d-flex justify-content-end mt-3">
+        <div class="d-flex w-100 justify-content-end mt-3">
          <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="offcanvas" aria-label="Close">Cancel</button>
          <button type="button" class="btn btn-success" @click="saveSettings">Save changes</button>
         </div>
        </div>
 
-       <!-- Tab 2 Content -->
-       <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
-        <h3>Content for Tab 2</h3>
-        <p>This is the content that is displayed when Tab 2 is active.</p>
-       </div>
       </div>
 
      </div>
@@ -247,7 +234,7 @@ export default {
   this.loadVoices();
   // Listen for voiceschanged event to reload voices
   window.speechSynthesis.onvoiceschanged = () => {
-    this.loadVoices();
+   this.loadVoices();
   };
  },
  methods: {
@@ -309,10 +296,8 @@ export default {
     modalInstance.dispose();
    }
   },
-
   loadVoices() {
    this.voices = speechSynthesis.getVoices();
-   
   },
   increaseFontSize() {
    this.currentFontSize += 2; // Increase font size by 2px
@@ -349,11 +334,9 @@ export default {
      return;
     }
    }
-
    if (this.voices.length > 0) {
     this.selectedVoiceName = this.voices[0].name;
    }
-
    // If no preferred voice is found, choose the first available voice
    this.selectedVoice = this.voices[0];
   },
@@ -422,16 +405,13 @@ export default {
    if (selectedVoice) {
     this.utterance.voice = selectedVoice;
    }
-
    // Set speech rate and pitch
    this.utterance.rate = this.rate;
    this.utterance.pitch = this.pitch;
-
    // Handle the end of speech event
    this.utterance.onend = () => {
     this.isReading = false; // Update state when speech ends
    };
-
    // Start speaking
    this.isReading = true;
    window.speechSynthesis.speak(this.utterance);

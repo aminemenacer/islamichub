@@ -79,10 +79,14 @@
       </div>
       <hr>
       <div v-for="result in filteredResults" :key="result.id" class="result-item">
-        
-        <div :id="'result-' + result.id">
+        <div :id="'result-' + result.id">        
+          
+
           <div class="text-left pb-2">
             <h4>{{ result.ayah.surah_id }} : {{ result.ayah.ayah_id }}</h4>
+          </div>
+          <div class="container pt-3 pb-3">
+            <button type="button" class=" w-100 btn btn-light"><b>Go To Ayah</b></button>
           </div>
           <h3 class="text-right">{{ result.ayah.ayah_text }}</h3>
           <div>
@@ -429,7 +433,6 @@ export default {
  .custom-offcanvas {
   background-color: #10584f;
   color: white;
-  width: 100%;
  }
 
  .hide-on-mobile {
