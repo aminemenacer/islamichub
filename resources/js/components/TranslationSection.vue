@@ -217,26 +217,25 @@ export default {
   }
  },
 
- mounted() {
-  // Load saved settings from local storage on page load
-  const savedVoice = localStorage.getItem('selectedVoice');
-  const savedRate = localStorage.getItem('rate');
-  const savedPitch = localStorage.getItem('pitch');
+  mounted() {
+    // Load saved settings from local storage on page load
+    const savedVoiceName = localStorage.getItem('selectedVoice');
+    const savedRate = localStorage.getItem('rate');
+    const savedPitch = localStorage.getItem('pitch');
 
-  if (savedVoice) this.selectedVoice = JSON.parse(savedVoice);
-  if (savedRate) this.rate = parseFloat(savedRate);
-  if (savedPitch) this.pitch = parseFloat(savedPitch);
+    if (savedVoiceName) this.selectedVoiceName = JSON.parse(savedVoiceName); // Use selectedVoiceName instead of selectedVoice
+    if (savedRate) this.rate = parseFloat(savedRate);
+    if (savedPitch) this.pitch = parseFloat(savedPitch);
 
-  const savedFontSize = localStorage.getItem('fontSize');
-  if (savedFontSize) {
-   this.currentFontSize = parseInt(savedFontSize, 10); // Set the font size from localStorage
-  }
-  this.loadVoices();
-  // Listen for voiceschanged event to reload voices
-  window.speechSynthesis.onvoiceschanged = () => {
-   this.loadVoices();
-  };
- },
+    // Load voices initially
+    this.loadVoices();
+
+    // Listen for voiceschanged event to reload voices
+    window.speechSynthesis.onvoiceschanged = () => {
+        this.loadVoices();
+    };
+  },
+
  methods: {
 
   toggleExpand() {
@@ -263,28 +262,22 @@ export default {
      //   `Successfully bookmarked ayah ${this.information.ayah_id} to folder "${this.selectedFolderId}"`;
     })
   },
-
   saveSettings() {
-   // Save settings to local storage
-   localStorage.setItem('selectedVoice', JSON.stringify(this.selectedVoice));
-   localStorage.setItem('rate', this.rate);
-   localStorage.setItem('pitch', this.pitch);
-
-   // Show success message
-   this.successMessage = true;
-
-   // Close the modal after a short delay
-   setTimeout(() => {
-    this.successMessage = false;
-    const modalElement = document.getElementById('speechModal');
-    const modalInstance = bootstrap.Modal.getInstance(modalElement);
-
-    if (modalInstance) {
-     modalInstance.hide();
-     // Dispose of the modal to remove the grey background
-     modalInstance.dispose();
-    }
-   }, 3000);
+    // Save settings to local storage
+    localStorage.setItem('selectedVoice', JSON.stringify(this.selectedVoiceName));
+    localStorage.setItem('rate', this.rate);
+    localStorage.setItem('pitch', this.pitch);
+    // Show success message
+    this.successMessage = true;
+    // Close the modal after a short delay
+    setTimeout(() => {
+        this.successMessage = false;
+        const offcanvasElement = document.getElementById('offcanvasRight'); // Change to the correct element ID
+        const offcanvasInstance = bootstrap.Offcanvas.getInstance(offcanvasElement);
+        if (offcanvasInstance) {
+            offcanvasInstance.hide(); // Close the offcanvas
+        }
+    }, 1000); // 1 second delay
   },
   closeModal() {
    const modalElement = document.getElementById('speechModal');
@@ -297,7 +290,14 @@ export default {
    }
   },
   loadVoices() {
-   this.voices = speechSynthesis.getVoices();
+    this.voices = window.speechSynthesis.getVoices();
+    // Set the selected voice if it exists in the voices array
+    const voice = this.voices.find(v => v.name === this.selectedVoiceName);
+    if (voice) {
+        this.selectedVoiceName = voice.name; // Set selectedVoiceName to a valid voice
+    } else if (this.voices.length > 0) {
+        this.selectedVoiceName = this.voices[0].name; // Fallback to the first available voice
+    }
   },
   increaseFontSize() {
    this.currentFontSize += 2; // Increase font size by 2px
@@ -342,6 +342,7 @@ export default {
   },
   changeVoice(voiceName) {
    this.selectedVoiceName = voiceName;
+   localStorage.setItem('selectedVoice', JSON.stringify(voiceName));
   },
   adjustRate(value) {
    this.rate = parseFloat(value);
