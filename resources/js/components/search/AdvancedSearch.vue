@@ -105,18 +105,15 @@
           </div>
           
         </div>
-         <button @click="shareOnWhatsApp(result)" type="button" class="btn btn-success w-100">
-              Share on WhatsApp
-            </button>
-            <button @click="submitBookmark" type="button" class="btn btn-success w-100">
-              Bookmark
-            </button>
-            
-            <i @click="submitBookmark" style="cursor:pointer" class="bi bi-bookmark mb-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse"></i>
-            
-            <button @click="downloadPdf" type="button" class="btn btn-success w-100">
-              Download PDF
-            </button>
+        <div class=" pt-3">
+          <button @click="shareOnWhatsApp(result)" type="button" class="container btn btn-success w-100">
+            <i @click="fastForwardSpeech"
+           style="cursor: pointer;"
+           aria-label="Fast forward audio"
+           class="bi bi-fast-forward-circle-fill ml-2 mr-2 h3 custom-icon-play"></i>Share on WhatsApp
+          </button>
+        </div>
+           
         <hr />
       </div>
     </div>
@@ -151,7 +148,20 @@ export default {
    dropdown.addEventListener('click', this.toggleDropdown);
   }
  },
- 
+ props:{
+   translation: {
+   type: String,
+   required: true,
+  },
+  information: {
+   type: Object,
+   required: true
+  },
+  targetTranslationRef: {
+   type: String,
+   default: 'targetTranslationElement',
+  },
+ },
 
  data() {
   return {
@@ -163,6 +173,10 @@ export default {
    filteredResults: [],
    expanded: false,
    showMoreLink: true,
+   information: {
+      translation: '', // Ensure translation is initialized
+      ayah_id: null,   // Ensure ayah_id is initialized
+    },
    filters: {
     translation: true, // Default filter for translation enabled
     tafseer: false, // Default filter for tafseer disabled
@@ -199,86 +213,6 @@ export default {
   information: Object,
  },
  methods: {
-   submitBookmark() {
-  const formData = {
-    // folder_id: this.selectedFolderId,
-    translation: this.information.translation,
-    user_id: this.userId,
-  };
-  axios.post('/bookmarks', formData)
-    .then(response => {
-      console.log(response.data.message);
-      localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
-      this.showAlert = true;
-      this.showErrorAlert = false;
-      this.hideAlertAfterDelay();
-      // Display a confirmation message with the bookmarked ayah and folder
-      // this.$refs.bookmarkConfirmation.textContent = 
-      //   `Successfully bookmarked ayah ${this.information.ayah_id} to folder "${this.selectedFolderId}"`;
-    })
-  },
-  downloadPdf() {
-   const targetTranslationElement = this.$parent.$refs[this.targetTranslationRef];
-
-   if (!targetTranslationElement) {
-    console.error("Invalid element provided as targetTranslationRef");
-    return;
-   }
-
-   // Select all the elements you want to hide
-   const unwantedElements = [
-    '.icon-container', // All icons (bookmark, screenshot, etc.)
-    '.mobile-only', // WhatsApp and Twitter share buttons
-    '.container.text-center', // Voice, Rate, and Pitch controls
-    '.href' // Decrease text size button
-   ];
-
-   // Function to hide elements
-   const hideElements = (selectorArray) => {
-    selectorArray.forEach(selector => {
-     const elements = document.querySelectorAll(selector);
-     elements.forEach(el => {
-      el.style.display = 'none';
-     });
-    });
-   };
-
-   // Function to show elements
-   const showElements = (selectorArray) => {
-    selectorArray.forEach(selector => {
-     const elements = document.querySelectorAll(selector);
-     elements.forEach(el => {
-      el.style.display = '';
-     });
-    });
-   };
-
-   // Hide unwanted elements
-   hideElements(unwantedElements);
-
-   setTimeout(() => {
-    html2canvas(targetTranslationElement)
-     .then((canvas) => {
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF({
-       orientation: 'portrait',
-       unit: 'mm',
-       format: 'a4',
-      });
-
-      pdf.addImage(imgData, 'PNG', 10, 10, 190, 0);
-      pdf.save('download.pdf');
-
-      // Restore the visibility of unwanted elements after capturing the screenshot
-      showElements(unwantedElements);
-     })
-     .catch((error) => {
-      console.error('Failed to capture HTML content:', error);
-      // Restore the visibility even if there's an error
-      showElements(unwantedElements);
-     });
-   }, 200);
-  },
   shareOnWhatsApp(result) {
     // Construct the message you want to share
     const message = `Ayah: ${result.ayah.surah_id}:${result.ayah.ayah_id}\n\n` + `${result.ayah.ayah_text}\n\n` + `Translation: ${result.translation}\n\n` + `Tafseer: ${result.originalTafseer}\n\n` + `Transliteration: ${result.transliteration}`;
@@ -663,6 +597,7 @@ export default {
 .custom-offcanvas {
  background-color: #10584f;
  color: white;
+ width: 40%;
 }
 
 .custom-offcanvas .result-item {

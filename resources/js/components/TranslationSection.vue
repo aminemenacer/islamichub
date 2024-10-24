@@ -7,9 +7,7 @@
   <div  @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
    <MainAyah :information="information" :fontSize="currentFontSize"/>
    <div  ref="targetTranslationElement" class="row text-left">
-    <h4 :style="{ fontSize: fontSize + 'px' }" class="text-left ayah-translation col-md-11" style="line-height: 1.6em" >
-    <span v-if="expanded" v-html="expanded ? renderedText : information.translation"></span>
-   
+    <h4 :style="{ fontSize: currentFontSize + 'px' }" class="text-left ayah-translation col-md-11" style="line-height: 1.6em" v-html="renderedText">
      {{ expanded ? information.translation : information.translation }}
     </h4>
     <div class="word-count">
