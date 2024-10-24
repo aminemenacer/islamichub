@@ -52,11 +52,7 @@
            class="bi bi-fast-forward-circle-fill ml-2 mr-2 h3 custom-icon-play"></i>
       </div>
 
-      <!-- Controls for TTS -->
-      <div class="controls">
-        <button @click="readTextAloud">Read Aloud</button>
-        <button @click="toggleSpeech">{{ isReading ? 'Pause' : 'Play' }}</button>
-      </div>
+     
     </div>
 
     </div>
@@ -230,6 +226,7 @@ export default {
  data() {
   return {
    renderedText: this.information.translation,
+   isPaused: false,
    isReading: false,
    resetDisabled: true,
    utterance: null,
@@ -483,8 +480,7 @@ export default {
     },
 
   clearHighlight() {
-    const text = this.expanded ? this.information.translation : this.information.translation;
-    this.$refs.targetTranslationElement.innerHTML = text;
+    this.renderedText = `<span style="font-size: ${this.currentFontSize}px;">${this.information.translation}</span>`;
   },
   //Pause reading
   pauseReading() {
