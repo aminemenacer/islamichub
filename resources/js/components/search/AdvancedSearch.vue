@@ -52,9 +52,9 @@
    <button type="button" class="btn" @click="isListening ? stopVoiceRecognition() : startVoiceRecognition()" style="background:linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB); ">
     <i class=" bi text-white pr-1" :class="isListening ? 'bi-stop-fill' : 'bi-mic-fill'" aria-hidden="true"></i><span style="color:white"><b>Voice Search</b></span>
    </button>
-   <!--
-    <button class="btn btn-info text-white" @click="searchWord"><i class="bi bi-search h4 text-white"></i></button>
-    -->
+   
+    <button class="btn btn-info text-white"  @click="selectSuggestion(suggestion)"><i class="bi bi-search h4 text-white"></i></button>
+    
   </div>
  </div>
  
@@ -65,10 +65,10 @@
  <!-- Offcanvas for Search Results -->
 <div class="offcanvas offcanvas-end custom-offcanvas" tabindex="-1" id="offcanvasResults">
   <div class="offcanvas-header">
-   <h5 class="offcanvas-title">Search Results</h5>
+   <h4 class="offcanvas-title"><b>Search Results</b></h4>
    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
   </div>
-    <div ref="targetTafseerElement" class="offcanvas-body text-left">
+    <div ref="targetTranslationElement" class="offcanvas-body text-left">
     <!-- Display Results -->
     
 
@@ -107,6 +107,18 @@
             <button @click="shareOnWhatsApp(result)" type="button" class="btn btn-success w-100">
               Share on WhatsApp
             </button>
+            <button @click="submitBookmark" type="button" class="btn btn-success w-100">
+              Bookmark
+            </button>
+            <!--
+            <i @click="submitBookmark" style="cursor:pointer" class="bi bi-bookmark mb-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse"></i>
+            -->
+            <button @click="downloadPdf" type="button" class="btn btn-success w-100">
+              Download PDF
+            </button>
+            <!--
+            <i class="bi bi-file-earmark-pdf text-right mr-2 h3" @click="downloadPdf" aria-expanded="false" data-bs-placement="top" title="Download PDF" :style="{ cursor: 'pointer' }"></i>
+            -->
           </div>
         </div>
         <hr />
@@ -147,6 +159,7 @@ export default {
 
  data() {
   return {
+   bookmarkSubmitted: false, // Set initial state
    data: [],
    loading: false,
    searchTerm: '',
@@ -155,10 +168,14 @@ export default {
    filteredResults: [],
    expanded: false,
    showMoreLink: true,
-   filters: {
-    translation: true, // Default filter for translation enabled
-    tafseer: false, // Default filter for tafseer disabled
-    transliteration: false // Default filter for transliteration disabled
+   // initialize empty arrays
+   data: [],
+   surat: [],
+   ayat: [],
+   tafseers: [],
+   information: {
+    translation: '',
+    transliteration: '', // Example translated text
    },
    isListening: false,
    recognition: null,
@@ -191,6 +208,87 @@ export default {
   information: Object,
  },
  methods: {
+   
+  submitBookmark() {
+  const formData = {
+    // folder_id: this.selectedFolderId,
+    translation: this.information.translation,
+    user_id: this.userId,
+  };
+  axios.post('/bookmarks', formData)
+    .then(response => {
+      console.log(response.data.message);
+      localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
+      this.showAlert = true;
+      this.showErrorAlert = false;
+      this.hideAlertAfterDelay();
+      // Display a confirmation message with the bookmarked ayah and folder
+      // this.$refs.bookmarkConfirmation.textContent = 
+      //   `Successfully bookmarked ayah ${this.information.ayah_id} to folder "${this.selectedFolderId}"`;
+    })
+  },
+  downloadPdf() {
+   const targetTranslationElement = this.$parent.$refs[this.targetTranslationRef];
+
+   if (!targetTranslationElement) {
+    console.error("Invalid element provided as targetTranslationRef");
+    return;
+   }
+
+   // Select all the elements you want to hide
+   const unwantedElements = [
+    '.icon-container', // All icons (bookmark, screenshot, etc.)
+    '.mobile-only', // WhatsApp and Twitter share buttons
+    '.container.text-center', // Voice, Rate, and Pitch controls
+    '.href' // Decrease text size button
+   ];
+
+   // Function to hide elements
+   const hideElements = (selectorArray) => {
+    selectorArray.forEach(selector => {
+     const elements = document.querySelectorAll(selector);
+     elements.forEach(el => {
+      el.style.display = 'none';
+     });
+    });
+   };
+
+   // Function to show elements
+   const showElements = (selectorArray) => {
+    selectorArray.forEach(selector => {
+     const elements = document.querySelectorAll(selector);
+     elements.forEach(el => {
+      el.style.display = '';
+     });
+    });
+   };
+
+   // Hide unwanted elements
+   hideElements(unwantedElements);
+
+   setTimeout(() => {
+    html2canvas(targetTranslationElement)
+     .then((canvas) => {
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF({
+       orientation: 'portrait',
+       unit: 'mm',
+       format: 'a4',
+      });
+
+      pdf.addImage(imgData, 'PNG', 10, 10, 190, 0);
+      pdf.save('download.pdf');
+
+      // Restore the visibility of unwanted elements after capturing the screenshot
+      showElements(unwantedElements);
+     })
+     .catch((error) => {
+      console.error('Failed to capture HTML content:', error);
+      // Restore the visibility even if there's an error
+      showElements(unwantedElements);
+     });
+   }, 200);
+  },
   shareOnWhatsApp(result) {
     // Construct the message you want to share
     const message = `Ayah: ${result.ayah.surah_id}:${result.ayah.ayah_id}\n\n` + `${result.ayah.ayah_text}\n\n` + `Translation: ${result.translation}\n\n` + `Tafseer: ${result.originalTafseer}\n\n` + `Transliteration: ${result.transliteration}`;

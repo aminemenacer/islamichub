@@ -6,10 +6,12 @@
   <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
    <MainAyah :information="information" />
    <div ref="targetTranslationElement" class="row text-left">
-    <h4 :style="{ fontSize: currentFontSize + 'px' }" class="text-left ayah-translation col-md-11" style="line-height: 1.6em">
+    <h4 :style="{ fontSize: currentFontSize + 'px' }" class="text-left ayah-translation col-md-11" style="line-height: 1.6em" v-html="renderedText">
      {{ expanded ? information.translation : information.translation }}
-
     </h4>
+    <div class="word-count">
+      <p>Total Words: {{ wordCount }}</p>
+    </div>
 
     <Translator translator="Ahmed Ali" />
     <!-- Speech icons mobile only-->
@@ -24,7 +26,7 @@
       
       <div class="col">
         <i @click="toggleSpeech"
-           :class="['bi', isReading && !isPaused ? 'bi-pause-circle-fill' : 'bi-play-circle-fill', 'ml-2', 'mr-2', 'h3', 'custom-icon-play']"
+           :class="['bi', isReading ? (isPaused ? 'bi-play-circle-fill' : 'bi-pause-circle-fill') : 'bi-play-circle-fill', 'ml-2', 'mr-2', 'h3', 'custom-icon-play']"
            style="cursor: pointer;"
            aria-label="Play or pause translation audio"></i>
       </div>
@@ -48,6 +50,12 @@
            style="cursor: pointer;"
            aria-label="Fast forward audio"
            class="bi bi-fast-forward-circle-fill ml-2 mr-2 h3 custom-icon-play"></i>
+      </div>
+
+      <!-- Controls for TTS -->
+      <div class="controls">
+        <button @click="readTextAloud">Read Aloud</button>
+        <button @click="toggleSpeech">{{ isReading ? 'Pause' : 'Play' }}</button>
       </div>
     </div>
 
@@ -205,6 +213,10 @@ export default {
   }
  },
  computed: {
+  wordCount() {
+    const text = this.expanded ? this.information.translation : this.information.translation;
+    return text ? text.trim().split(/\s+/).length : 0;  // Calculate the word count
+  },
   combinedText() {
    // Get the ayah_text from information
    const ayahText = typeof this.information.ayah_text === 'object' ?
@@ -217,7 +229,7 @@ export default {
  },
  data() {
   return {
-   speechInstance: null,
+   renderedText: this.information.translation,
    isReading: false,
    resetDisabled: true,
    utterance: null,
@@ -426,29 +438,53 @@ export default {
   },
   // Read the displayed text aloud
   readTextAloud() {
-    const text = this.expanded ? this.information.translation : this.information.translation;
+    const text = this.information.translation;
+    
+    // Cancel any ongoing speech first to ensure a clean start
+    window.speechSynthesis.cancel();
+    
+    this.renderedText = text; // Set initial rendered text
     this.utterance = new SpeechSynthesisUtterance(text);
+    
+    // Set voice and speech properties
+    this.utterance.rate = 1;
+    this.utterance.pitch = 1;
 
-    // Find selected voice if available
-    const selectedVoice = this.voices.find(voice => voice.name === this.selectedVoiceName);
-    if (selectedVoice) {
-      this.utterance.voice = selectedVoice;
-    }
+    // Handle word boundary event for highlighting
+    this.utterance.onboundary = (event) => {
+      if (event.name === 'word') {
+        const currentWord = text.slice(event.charIndex).split(' ')[0]; // Get the currently spoken word
+        this.highlightText(event.charIndex, currentWord); // Highlight the word
+      }
+    };
 
-    // Set speech rate and pitch
-    this.utterance.rate = this.rate;
-    this.utterance.pitch = this.pitch;
-
-    // Handle the end of speech event
+    // Handle end of speech event
     this.utterance.onend = () => {
-      this.isReading = false;  // Update state when speech ends
-      this.isPaused = false;   // Ensure pause is reset
+      this.isReading = false;
+      this.isPaused = false;
+      this.clearHighlight(); // Clear highlight after reading
     };
 
     // Start speaking
     this.isReading = true;
-    this.isPaused = false;
     window.speechSynthesis.speak(this.utterance);
+  },
+  highlightText(charIndex, currentWord) {
+      const text = this.information.translation;
+      const before = text.slice(0, charIndex);
+      const after = text.slice(charIndex + currentWord.length);
+
+      // Update the rendered text with highlighting
+      this.renderedText = `
+        <span>${before}</span>
+        <span style="background-color: yellow;">${currentWord}</span>
+        <span>${after}</span>
+      `;
+    },
+
+  clearHighlight() {
+    const text = this.expanded ? this.information.translation : this.information.translation;
+    this.$refs.targetTranslationElement.innerHTML = text;
   },
   //Pause reading
   pauseReading() {
@@ -503,30 +539,27 @@ export default {
 </script>
 
 <style scoped>
-.text-muted {
-  color: #6c757d;  /* Bootstrap muted text color */
-  pointer-events: none;  /* Disable pointer events if needed */
-  opacity: 0.5; /* Add opacity to make it look grayed out */
+.word-count {
+  margin-top: 10px;
+}
+.controls {
+  margin-top: 10px;
 }
 .ayah-container {
  margin-bottom: 20px;
 }
-
 .ayah-text {
  font-size: 18px;
  margin-bottom: 10px;
 }
-
 .ayah-audio {
  margin-bottom: 20px;
 }
-
 .custom-offcanvas {
  background-color: #10584f;
  color: white;
  width: 40%;
 }
-
 .custom-icon-play:hover {
  color: rgb(13, 182, 145);
  /* Default color */
