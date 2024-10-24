@@ -102,7 +102,11 @@
           <div>
             <h5 class="pt-2"><b>Transliteration: </b></h5>
             <span v-html="highlightSearch(expanded ? result.transliteration : result.transliteration)"></span>
-            
+          </div>
+          <div>
+            <button @click="shareOnWhatsApp(result)" type="button" class="btn btn-success w-100">
+              Share on WhatsApp
+            </button>
           </div>
         </div>
         <hr />
@@ -187,6 +191,14 @@ export default {
   information: Object,
  },
  methods: {
+  shareOnWhatsApp(result) {
+    // Construct the message you want to share
+    const message = `Ayah: ${result.ayah.surah_id}:${result.ayah.ayah_id}\n\n` + `${result.ayah.ayah_text}\n\n` + `Translation: ${result.translation}\n\n` + `Tafseer: ${result.originalTafseer}\n\n` + `Transliteration: ${result.transliteration}`;
+    // Encode the message to be used in a URL
+    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+    // Open WhatsApp with the pre-populated message
+    window.open(whatsappUrl, '_blank');
+  },
   totalSurahs() {
     const surahIds = this.filteredResults.map(result => result.ayah.surah_id);
     return new Set(surahIds).size; // Unique surahs

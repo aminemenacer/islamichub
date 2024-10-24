@@ -16,18 +16,41 @@
     <div style="cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: space-between;" class="container pb-2 text-center mobile-only">
      <div class="row">
       <div class="col">
-       <i @click="rewindSpeech" style="cursor: pointer;" aria-label="Rewind translation audio" class="bi bi-rewind-circle-fill ml-2 mr-2 h3 custom-icon-play"></i>
+        <i @click="rewindSpeech"
+           :class="['bi', 'bi-rewind-circle-fill', 'ml-2', 'mr-2', 'h3', 'custom-icon-play', isReading ? 'text-muted' : '']"
+           style="cursor: pointer;"
+           aria-label="Rewind translation audio"></i>
       </div>
+      
       <div class="col">
-       <i @click="toggleSpeech" style="cursor: pointer;" aria-label="Play or pause translation audio" :class="isReading ? 'bi-pause-circle-fill' : 'bi-play-circle-fill'" class="bi ml-2 mr-2 h3 custom-icon-play"></i>
+        <i @click="toggleSpeech"
+           :class="['bi', isReading && !isPaused ? 'bi-pause-circle-fill' : 'bi-play-circle-fill', 'ml-2', 'mr-2', 'h3', 'custom-icon-play']"
+           style="cursor: pointer;"
+           aria-label="Play or pause translation audio"></i>
       </div>
+      
       <div class="col">
-       <i @click="stopReading" style="cursor: pointer;" aria-label="Stop translation audio" class="bi bi-stop-circle-fill ml-2 mr-2 h3 custom-icon-play"></i>
+        <i @click="pauseReading"
+           :class="['bi', 'bi-pause-circle-fill', 'ml-2', 'mr-2', 'h3', 'custom-icon-play', !isReading || isPaused ? 'text-muted' : '']"
+           style="cursor: pointer;"
+           aria-label="Pause translation audio"></i>
       </div>
+      
       <div class="col">
-       <i style="cursor: pointer;" aria-label="Stop translation audio" class="bi bi-fast-forward-circle-fill ml-2 mr-2 h3 custom-icon-play"></i>
+        <i @click="stopReading"
+           :class="['bi', 'bi-stop-circle-fill', 'ml-2', 'mr-2', 'h3', 'custom-icon-play', !isReading ? 'text-muted' : '']"
+           style="cursor: pointer;"
+           aria-label="Stop translation audio"></i>
       </div>
-     </div>
+      
+      <div class="col">
+        <i @click="fastForwardSpeech"
+           style="cursor: pointer;"
+           aria-label="Fast forward audio"
+           class="bi bi-fast-forward-circle-fill ml-2 mr-2 h3 custom-icon-play"></i>
+      </div>
+    </div>
+
     </div>
     <!--
      <button type="button" class="btn btn-success" @click="downloadAsCSV">Download as CSV</button>
@@ -194,6 +217,7 @@ export default {
  },
  data() {
   return {
+   speechInstance: null,
    isReading: false,
    resetDisabled: true,
    utterance: null,
@@ -390,41 +414,71 @@ export default {
    saveAs(blob, "translation.docx")
   },
   toggleSpeech() {
-   if (this.isReading) {
-    this.stopReading();
-   } else {
-    this.readTextAloud();
-   }
+    if (this.isReading) {
+      if (this.isPaused) {
+        this.resumeReading();  // Resume speech if paused
+      } else {
+        this.pauseReading();   // Pause speech if currently reading
+      }
+    } else {
+      this.readTextAloud();    // Start reading if not currently reading
+    }
   },
   // Read the displayed text aloud
   readTextAloud() {
-   const text = this.expanded ? this.information.translation : this.information.translation;
-   this.utterance = new SpeechSynthesisUtterance(text);
+    const text = this.expanded ? this.information.translation : this.information.translation;
+    this.utterance = new SpeechSynthesisUtterance(text);
 
-   // Find selected voice if available
-   const selectedVoice = this.voices.find(voice => voice.name === this.selectedVoiceName);
-   if (selectedVoice) {
-    this.utterance.voice = selectedVoice;
-   }
-   // Set speech rate and pitch
-   this.utterance.rate = this.rate;
-   this.utterance.pitch = this.pitch;
-   // Handle the end of speech event
-   this.utterance.onend = () => {
-    this.isReading = false; // Update state when speech ends
-   };
-   // Start speaking
-   this.isReading = true;
-   window.speechSynthesis.speak(this.utterance);
+    // Find selected voice if available
+    const selectedVoice = this.voices.find(voice => voice.name === this.selectedVoiceName);
+    if (selectedVoice) {
+      this.utterance.voice = selectedVoice;
+    }
+
+    // Set speech rate and pitch
+    this.utterance.rate = this.rate;
+    this.utterance.pitch = this.pitch;
+
+    // Handle the end of speech event
+    this.utterance.onend = () => {
+      this.isReading = false;  // Update state when speech ends
+      this.isPaused = false;   // Ensure pause is reset
+    };
+
+    // Start speaking
+    this.isReading = true;
+    this.isPaused = false;
+    window.speechSynthesis.speak(this.utterance);
+  },
+  //Pause reading
+  pauseReading() {
+    if (this.isReading && !this.isPaused) {
+      window.speechSynthesis.pause(); // Pause the speech synthesis
+      this.isPaused = true;           // Set paused state
+      console.log("Speech paused.");
+    }
+  },
+  // Resume reading
+  resumeReading() {
+    if (this.isPaused) {
+      window.speechSynthesis.resume(); // Resume the paused speech
+      this.isPaused = false;           // Reset paused state
+      console.log("Speech resumed.");
+    }
   },
   // Stop reading
   stopReading() {
-   window.speechSynthesis.cancel();
-   this.isReading = false;
+    window.speechSynthesis.cancel(); // Stop the speech synthesis
+    this.isReading = false;          // Reset reading state
+    this.isPaused = false;           // Reset paused state
+    console.log("Speech stopped.");
   },
+  // Rewind the speech
   rewindSpeech() {
-   this.stopReading();
-   this.readTextAloud(); // Replay the current ayah
+    // Stop current speech and start again
+    this.stopReading();
+    this.readTextAloud();  // Restart the speech from the beginning
+    console.log("Speech rewinded.");
   },
   toggleFullScreen() {
    this.$emit('toggle-full-screen');
@@ -449,6 +503,11 @@ export default {
 </script>
 
 <style scoped>
+.text-muted {
+  color: #6c757d;  /* Bootstrap muted text color */
+  pointer-events: none;  /* Disable pointer events if needed */
+  opacity: 0.5; /* Add opacity to make it look grayed out */
+}
 .ayah-container {
  margin-bottom: 20px;
 }
