@@ -52,9 +52,9 @@
    <button type="button" class="btn" @click="isListening ? stopVoiceRecognition() : startVoiceRecognition()" style="background:linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB); ">
     <i class=" bi text-white pr-1" :class="isListening ? 'bi-stop-fill' : 'bi-mic-fill'" aria-hidden="true"></i><span style="color:white"><b>Voice Search</b></span>
    </button>
-   
-    <button class="btn btn-info text-white"  @click="selectSuggestion(suggestion)"><i class="bi bi-search h4 text-white"></i></button>
-    
+   <!--
+    <button class="btn btn-info text-white" @click="searchWord"><i class="bi bi-search h4 text-white"></i></button>
+    -->
   </div>
  </div>
  
@@ -65,10 +65,10 @@
  <!-- Offcanvas for Search Results -->
 <div class="offcanvas offcanvas-end custom-offcanvas" tabindex="-1" id="offcanvasResults">
   <div class="offcanvas-header">
-   <h4 class="offcanvas-title"><b>Search Results</b></h4>
+   <h5 class="offcanvas-title">Search Results</h5>
    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
   </div>
-    <div ref="targetTranslationElement" class="offcanvas-body text-left">
+    <div ref="targetTafseerElement" class="offcanvas-body text-left">
     <!-- Display Results -->
     
 
@@ -103,24 +103,20 @@
             <h5 class="pt-2"><b>Transliteration: </b></h5>
             <span v-html="highlightSearch(expanded ? result.transliteration : result.transliteration)"></span>
           </div>
-          <div>
-            <button @click="shareOnWhatsApp(result)" type="button" class="btn btn-success w-100">
+          
+        </div>
+         <button @click="shareOnWhatsApp(result)" type="button" class="btn btn-success w-100">
               Share on WhatsApp
             </button>
             <button @click="submitBookmark" type="button" class="btn btn-success w-100">
               Bookmark
             </button>
-            <!--
+            
             <i @click="submitBookmark" style="cursor:pointer" class="bi bi-bookmark mb-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse"></i>
-            -->
+            
             <button @click="downloadPdf" type="button" class="btn btn-success w-100">
               Download PDF
             </button>
-            <!--
-            <i class="bi bi-file-earmark-pdf text-right mr-2 h3" @click="downloadPdf" aria-expanded="false" data-bs-placement="top" title="Download PDF" :style="{ cursor: 'pointer' }"></i>
-            -->
-          </div>
-        </div>
         <hr />
       </div>
     </div>
@@ -159,7 +155,6 @@ export default {
 
  data() {
   return {
-   bookmarkSubmitted: false, // Set initial state
    data: [],
    loading: false,
    searchTerm: '',
@@ -168,14 +163,10 @@ export default {
    filteredResults: [],
    expanded: false,
    showMoreLink: true,
-   // initialize empty arrays
-   data: [],
-   surat: [],
-   ayat: [],
-   tafseers: [],
-   information: {
-    translation: '',
-    transliteration: '', // Example translated text
+   filters: {
+    translation: true, // Default filter for translation enabled
+    tafseer: false, // Default filter for tafseer disabled
+    transliteration: false // Default filter for transliteration disabled
    },
    isListening: false,
    recognition: null,
@@ -208,8 +199,7 @@ export default {
   information: Object,
  },
  methods: {
-   
-  submitBookmark() {
+   submitBookmark() {
   const formData = {
     // folder_id: this.selectedFolderId,
     translation: this.information.translation,
@@ -673,7 +663,6 @@ export default {
 .custom-offcanvas {
  background-color: #10584f;
  color: white;
- width: 40%;
 }
 
 .custom-offcanvas .result-item {

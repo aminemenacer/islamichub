@@ -1,41 +1,37 @@
 <template>
 <div class="w-100 my-element" :class="{'full-screen': isFullScreen}">
  <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
- <div>
+ <div >
   <AyahInfo :information="information" />
-  <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
-   <MainAyah :information="information" />
-   <div ref="targetTranslationElement" class="row text-left">
-    <h4 :style="{ fontSize: currentFontSize + 'px' }" class="text-left ayah-translation col-md-11" style="line-height: 1.6em" v-html="renderedText">
+
+  <div  @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
+   <MainAyah :information="information" :fontSize="currentFontSize"/>
+   <div  ref="targetTranslationElement" class="row text-left">
+    <h4 :style="{ fontSize: fontSize + 'px' }" class="text-left ayah-translation col-md-11" style="line-height: 1.6em" >
+    <span v-if="expanded" v-html="expanded ? renderedText : information.translation"></span>
+   
      {{ expanded ? information.translation : information.translation }}
     </h4>
     <div class="word-count">
-      <p>Total Words: {{ wordCount }}</p>
+      <p><b>Total Words:</b> {{ wordCount }}</p>
     </div>
 
     <Translator translator="Ahmed Ali" />
     <!-- Speech icons mobile only-->
     <div style="cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: space-between;" class="container pb-2 text-center mobile-only">
      <div class="row">
+    
       <div class="col">
-        <i @click="rewindSpeech"
-           :class="['bi', 'bi-rewind-circle-fill', 'ml-2', 'mr-2', 'h3', 'custom-icon-play', isReading ? 'text-muted' : '']"
+        <i @click="stopReading"
+           :class="['bi', isReading ? (isPaused ? 'bi-rewind-circle-fill' : 'bi-rewind-circle-fill') : 'bi-rewind-circle-fill', 'ml-2', 'mr-2', 'h3', 'custom-icon-play']"
            style="cursor: pointer;"
            aria-label="Rewind translation audio"></i>
-      </div>
-      
+      </div>  
       <div class="col">
         <i @click="toggleSpeech"
            :class="['bi', isReading ? (isPaused ? 'bi-play-circle-fill' : 'bi-pause-circle-fill') : 'bi-play-circle-fill', 'ml-2', 'mr-2', 'h3', 'custom-icon-play']"
            style="cursor: pointer;"
            aria-label="Play or pause translation audio"></i>
-      </div>
-      
-      <div class="col">
-        <i @click="pauseReading"
-           :class="['bi', 'bi-pause-circle-fill', 'ml-2', 'mr-2', 'h3', 'custom-icon-play', !isReading || isPaused ? 'text-muted' : '']"
-           style="cursor: pointer;"
-           aria-label="Pause translation audio"></i>
       </div>
       
       <div class="col">
@@ -51,6 +47,8 @@
            aria-label="Fast forward audio"
            class="bi bi-fast-forward-circle-fill ml-2 mr-2 h3 custom-icon-play"></i>
       </div>
+
+      
 
      
     </div>
@@ -209,6 +207,9 @@ export default {
   }
  },
  computed: {
+  renderedText() {
+      return this.information.translation; // or whichever text you want when expanded
+  },
   wordCount() {
     const text = this.expanded ? this.information.translation : this.information.translation;
     return text ? text.trim().split(/\s+/).length : 0;  // Calculate the word count
@@ -262,6 +263,7 @@ export default {
 
     // Load voices initially
     this.loadVoices();
+    selectedVoiceName: "",
 
     // Listen for voiceschanged event to reload voices
     window.speechSynthesis.onvoiceschanged = () => {
@@ -270,7 +272,6 @@ export default {
   },
 
  methods: {
-
   toggleExpand() {
    this.expanded = !this.expanded;
   },
@@ -324,12 +325,22 @@ export default {
   },
   loadVoices() {
     this.voices = window.speechSynthesis.getVoices();
-    // Set the selected voice if it exists in the voices array
-    const voice = this.voices.find(v => v.name === this.selectedVoiceName);
-    if (voice) {
-        this.selectedVoiceName = voice.name; // Set selectedVoiceName to a valid voice
-    } else if (this.voices.length > 0) {
-        this.selectedVoiceName = this.voices[0].name; // Fallback to the first available voice
+    if (this.voices.length === 0) {
+      // If voices are not yet loaded, listen for 'voiceschanged' event
+      window.speechSynthesis.onvoiceschanged = () => {
+        this.voices = window.speechSynthesis.getVoices();
+        this.setInitialSelectedVoice(); // Set the initial voice from localStorage
+      };
+    } else {
+      this.setInitialSelectedVoice();
+    }
+  },
+  setInitialSelectedVoice() {
+    const savedVoice = localStorage.getItem('selectedVoiceName');
+    if (savedVoice && this.voices.some(v => v.name === savedVoice)) {
+      this.selectedVoiceName = savedVoice;
+    } else {
+      this.selectedVoiceName = this.voices[0]?.name; // Set to first voice if no saved voice
     }
   },
   increaseFontSize() {
@@ -474,7 +485,7 @@ export default {
       // Update the rendered text with highlighting
       this.renderedText = `
         <span>${before}</span>
-        <span style="background-color: yellow;">${currentWord}</span>
+        <span style="background-color: #2ceed7">${currentWord}</span>
         <span>${after}</span>
       `;
     },

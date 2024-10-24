@@ -186,4 +186,5 @@ class SurahController extends Controller
             'suggestions' => $suggestions,
         ]);
     }
+
 }
