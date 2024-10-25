@@ -18,9 +18,14 @@
   </div>
 
   
-  <!-- surah info -->
+  <!-- surah info icon -->
   <div class="icon-container">
    <i style="cursor:pointer" class="bi bi-info-circle h4 mr-2 pl-2" data-bs-toggle="modal" data-bs-target="#translationInfo" aria-expanded="false" data-bs-placement="top" title="Surah info" :style="{ cursor: 'pointer' }"></i>
+  </div>
+
+  <!-- settings info icon -->
+  <div class="icon-container">
+    <i class="bi bi-gear h3" style="cursor:pointer" title="Settings" @click="showSettingsOffcanvas"></i>
   </div>
 
   <!-- Bug Report Icon -->
@@ -230,7 +235,6 @@ export default {
     this.showErrorAlert = false;
    }, 3000); // Hide alerts after 3 seconds
   },
-
   downloadTranslationPdf() {
    const targetTranslationElement = this.$parent.$refs[this.targetTranslationRef];
 

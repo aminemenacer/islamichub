@@ -206,7 +206,7 @@ export default {
  },
  computed: {
   renderedText() {
-      return this.information.translation; // or whichever text you want when expanded
+    return this.expanded ? this.information.translation : this.information.translation; // You can modify this logic if needed
   },
   wordCount() {
     const text = this.expanded ? this.information.translation : this.information.translation;
@@ -254,20 +254,26 @@ export default {
     const savedVoiceName = localStorage.getItem('selectedVoice');
     const savedRate = localStorage.getItem('rate');
     const savedPitch = localStorage.getItem('pitch');
+    const savedFontSize = localStorage.getItem('fontSize');
 
     if (savedVoiceName) this.selectedVoiceName = JSON.parse(savedVoiceName); // Use selectedVoiceName instead of selectedVoice
     if (savedRate) this.rate = parseFloat(savedRate);
     if (savedPitch) this.pitch = parseFloat(savedPitch);
+    if (savedFontSize) {
+      this.currentFontSize = parseInt(savedFontSize, 10); // Parse as integer
+    } else {
+      this.currentFontSize = 20; // Default font size if none is saved
+    }
 
     // Load voices initially
     this.loadVoices();
-    selectedVoiceName: "",
 
     // Listen for voiceschanged event to reload voices
     window.speechSynthesis.onvoiceschanged = () => {
-        this.loadVoices();
+      this.loadVoices();
     };
   },
+
 
  methods: {
   toggleExpand() {
@@ -294,6 +300,7 @@ export default {
      //   `Successfully bookmarked ayah ${this.information.ayah_id} to folder "${this.selectedFolderId}"`;
     })
   },
+  
   saveSettings() {
     // Save settings to local storage
     localStorage.setItem('selectedVoice', JSON.stringify(this.selectedVoiceName));
@@ -323,22 +330,12 @@ export default {
   },
   loadVoices() {
     this.voices = window.speechSynthesis.getVoices();
-    if (this.voices.length === 0) {
-      // If voices are not yet loaded, listen for 'voiceschanged' event
-      window.speechSynthesis.onvoiceschanged = () => {
-        this.voices = window.speechSynthesis.getVoices();
-        this.setInitialSelectedVoice(); // Set the initial voice from localStorage
-      };
-    } else {
-      this.setInitialSelectedVoice();
-    }
-  },
-  setInitialSelectedVoice() {
-    const savedVoice = localStorage.getItem('selectedVoiceName');
-    if (savedVoice && this.voices.some(v => v.name === savedVoice)) {
-      this.selectedVoiceName = savedVoice;
-    } else {
-      this.selectedVoiceName = this.voices[0]?.name; // Set to first voice if no saved voice
+    // Set the selected voice if it exists in the voices array
+    const voice = this.voices.find(v => v.name === this.selectedVoiceName);
+    if (voice) {
+        this.selectedVoiceName = voice.name; // Set selectedVoiceName to a valid voice
+    } else if (this.voices.length > 0) {
+        this.selectedVoiceName = this.voices[0].name; // Fallback to the first available voice
     }
   },
   increaseFontSize() {
@@ -351,11 +348,7 @@ export default {
     this.saveFontSize();
    }
   },
-  resetFontSize() {
-   this.currentFontSize = 20; // Reset to default font size
-   this.saveFontSize(); // Save the font size (e.g., to local storage or any other mechanism)
-   this.resetDisabled = true; // Disable the reset button after resetting the font size
-  },
+  
   saveFontSize() {
    // Save the current font size to localStorage
    localStorage.setItem('fontSize', this.currentFontSize);
@@ -444,17 +437,19 @@ export default {
   },
   // Read the displayed text aloud
   readTextAloud() {
-    const text = this.information.translation;
+    // const text = this.information.translation;
+   const text = this.expanded ? this.information.translation : this.information.translation;
+   this.utterance = new SpeechSynthesisUtterance(text);
+
+   // Find selected voice if available
+   const selectedVoice = this.voices.find(voice => voice.name === this.selectedVoiceName);
+   if (selectedVoice) {
+    this.utterance.voice = selectedVoice;
+   }
     
-    // Cancel any ongoing speech first to ensure a clean start
-    window.speechSynthesis.cancel();
-    
-    this.renderedText = text; // Set initial rendered text
-    this.utterance = new SpeechSynthesisUtterance(text);
-    
-    // Set voice and speech properties
-    this.utterance.rate = 1;
-    this.utterance.pitch = 1;
+   // Set speech rate and pitch
+   this.utterance.rate = this.rate;
+   this.utterance.pitch = this.pitch;
 
     // Handle word boundary event for highlighting
     this.utterance.onboundary = (event) => {
@@ -476,17 +471,17 @@ export default {
     window.speechSynthesis.speak(this.utterance);
   },
   highlightText(charIndex, currentWord) {
-      const text = this.information.translation;
-      const before = text.slice(0, charIndex);
-      const after = text.slice(charIndex + currentWord.length);
+    const text = this.information.translation;
+    const before = text.slice(0, charIndex);
+    const after = text.slice(charIndex + currentWord.length);
 
-      // Update the rendered text with highlighting
-      this.renderedText = `
-        <span>${before}</span>
-        <span style="background-color: #2ceed7">${currentWord}</span>
-        <span>${after}</span>
-      `;
-    },
+    // Update the rendered text with highlighting
+    this.renderedText = `
+      <span>${before}</span>
+      <span style="background-color: #2ceed7">${currentWord}</span>
+      <span>${after}</span>
+    `;
+  },
 
   clearHighlight() {
     this.renderedText = `<span style="font-size: ${this.currentFontSize}px;">${this.information.translation}</span>`;
@@ -540,6 +535,11 @@ export default {
    this.$emit('close-alert-text');
   }
  },
+ watch:{
+   currentFontSize(newSize) {
+    localStorage.setItem('fontSize', newSize);
+  }
+ }
 };
 </script>
 

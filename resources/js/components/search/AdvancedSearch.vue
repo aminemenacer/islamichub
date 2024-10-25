@@ -85,9 +85,11 @@
           <div class="text-left pb-2">
             <h4>{{ result.ayah.surah_id }} : {{ result.ayah.ayah_id }}</h4>
           </div>
+          <!--
           <div class="container pt-3 pb-3">
             <button type="button" class=" w-100 btn btn-light"><b>Go To Ayah</b></button>
           </div>
+          -->
           <h3 class="text-right">{{ result.ayah.ayah_text }}</h3>
           <div>
             <h5 ><b>Translation: </b></h5>
@@ -110,7 +112,7 @@
             <i @click="fastForwardSpeech"
            style="cursor: pointer;"
            aria-label="Fast forward audio"
-           class="bi bi-fast-forward-circle-fill ml-2 mr-2 h3 custom-icon-play"></i>Share on WhatsApp
+           class="bi bi-whatsapp ml-2 mr-2 custom-icon-play h5"></i>Share on WhatsApp
           </button>
         </div>
            
