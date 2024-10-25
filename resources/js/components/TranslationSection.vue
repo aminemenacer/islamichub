@@ -1,35 +1,41 @@
 <template>
 <div class="w-100 my-element" :class="{'full-screen': isFullScreen}">
  <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
- <div >
+ <div>
   <AyahInfo :information="information" />
-
-  <div  @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
-   <MainAyah :information="information" :fontSize="currentFontSize"/>
-   <div  ref="targetTranslationElement" class="row text-left">
+  <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
+   <MainAyah :information="information" />
+   <div ref="targetTranslationElement" class="row text-left">
     <h4 :style="{ fontSize: currentFontSize + 'px' }" class="text-left ayah-translation col-md-11" style="line-height: 1.6em" v-html="renderedText">
      {{ expanded ? information.translation : information.translation }}
     </h4>
     <div class="word-count">
-      <p><b>Total Words:</b> {{ wordCount }}</p>
+      <p>Total Words: {{ wordCount }}</p>
     </div>
 
     <Translator translator="Ahmed Ali" />
     <!-- Speech icons mobile only-->
     <div style="cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: space-between;" class="container pb-2 text-center mobile-only">
      <div class="row">
-    
       <div class="col">
-        <i @click="stopReading"
-           :class="['bi', isReading ? (isPaused ? 'bi-rewind-circle-fill' : 'bi-rewind-circle-fill') : 'bi-rewind-circle-fill', 'ml-2', 'mr-2', 'h3', 'custom-icon-play']"
+        <i @click="rewindSpeech"
+           :class="['bi', 'bi-rewind-circle-fill', 'ml-2', 'mr-2', 'h3', 'custom-icon-play', isReading ? 'text-muted' : '']"
            style="cursor: pointer;"
            aria-label="Rewind translation audio"></i>
-      </div>  
+      </div>
+      
       <div class="col">
         <i @click="toggleSpeech"
            :class="['bi', isReading ? (isPaused ? 'bi-play-circle-fill' : 'bi-pause-circle-fill') : 'bi-play-circle-fill', 'ml-2', 'mr-2', 'h3', 'custom-icon-play']"
            style="cursor: pointer;"
            aria-label="Play or pause translation audio"></i>
+      </div>
+      
+      <div class="col">
+        <i @click="pauseReading"
+           :class="['bi', 'bi-pause-circle-fill', 'ml-2', 'mr-2', 'h3', 'custom-icon-play', !isReading || isPaused ? 'text-muted' : '']"
+           style="cursor: pointer;"
+           aria-label="Pause translation audio"></i>
       </div>
       
       <div class="col">
@@ -45,8 +51,6 @@
            aria-label="Fast forward audio"
            class="bi bi-fast-forward-circle-fill ml-2 mr-2 h3 custom-icon-play"></i>
       </div>
-
-      
 
      
     </div>
@@ -205,9 +209,6 @@ export default {
   }
  },
  computed: {
-  renderedText() {
-    return this.expanded ? this.information.translation : this.information.translation; // You can modify this logic if needed
-  },
   wordCount() {
     const text = this.expanded ? this.information.translation : this.information.translation;
     return text ? text.trim().split(/\s+/).length : 0;  // Calculate the word count
@@ -260,22 +261,22 @@ export default {
     if (savedRate) this.rate = parseFloat(savedRate);
     if (savedPitch) this.pitch = parseFloat(savedPitch);
     if (savedFontSize) {
-      this.currentFontSize = parseInt(savedFontSize, 10); // Parse as integer
+      this.currentFontSize = parseInt(savedFontSize, 10);
     } else {
-      this.currentFontSize = 20; // Default font size if none is saved
+      this.currentFontSize = 20; // Default font size
     }
 
     // Load voices initially
     this.loadVoices();
-
-    // Listen for voiceschanged event to reload voices
+    // Ensure voices are fully loaded before attempting to play
     window.speechSynthesis.onvoiceschanged = () => {
       this.loadVoices();
+      this.voicesLoaded = true; // Set a flag to confirm voices are loaded
     };
   },
 
-
  methods: {
+
   toggleExpand() {
    this.expanded = !this.expanded;
   },
@@ -300,7 +301,6 @@ export default {
      //   `Successfully bookmarked ayah ${this.information.ayah_id} to folder "${this.selectedFolderId}"`;
     })
   },
-  
   saveSettings() {
     // Save settings to local storage
     localStorage.setItem('selectedVoice', JSON.stringify(this.selectedVoiceName));
@@ -348,7 +348,11 @@ export default {
     this.saveFontSize();
    }
   },
-  
+  resetFontSize() {
+   this.currentFontSize = 20; // Reset to default font size
+   this.saveFontSize(); // Save the font size (e.g., to local storage or any other mechanism)
+   this.resetDisabled = true; // Disable the reset button after resetting the font size
+  },
   saveFontSize() {
    // Save the current font size to localStorage
    localStorage.setItem('fontSize', this.currentFontSize);
@@ -437,19 +441,17 @@ export default {
   },
   // Read the displayed text aloud
   readTextAloud() {
-    // const text = this.information.translation;
-   const text = this.expanded ? this.information.translation : this.information.translation;
-   this.utterance = new SpeechSynthesisUtterance(text);
-
-   // Find selected voice if available
-   const selectedVoice = this.voices.find(voice => voice.name === this.selectedVoiceName);
-   if (selectedVoice) {
-    this.utterance.voice = selectedVoice;
-   }
+    const text = this.information.translation;
     
-   // Set speech rate and pitch
-   this.utterance.rate = this.rate;
-   this.utterance.pitch = this.pitch;
+    // Cancel any ongoing speech first to ensure a clean start
+    window.speechSynthesis.cancel();
+    
+    this.renderedText = text; // Set initial rendered text
+    this.utterance = new SpeechSynthesisUtterance(text);
+    
+    // Set voice and speech properties
+    this.utterance.rate = 1;
+    this.utterance.pitch = 1;
 
     // Handle word boundary event for highlighting
     this.utterance.onboundary = (event) => {
@@ -471,17 +473,17 @@ export default {
     window.speechSynthesis.speak(this.utterance);
   },
   highlightText(charIndex, currentWord) {
-    const text = this.information.translation;
-    const before = text.slice(0, charIndex);
-    const after = text.slice(charIndex + currentWord.length);
+      const text = this.information.translation;
+      const before = text.slice(0, charIndex);
+      const after = text.slice(charIndex + currentWord.length);
 
-    // Update the rendered text with highlighting
-    this.renderedText = `
-      <span>${before}</span>
-      <span style="background-color: #2ceed7">${currentWord}</span>
-      <span>${after}</span>
-    `;
-  },
+      // Update the rendered text with highlighting
+      this.renderedText = `
+        <span>${before}</span>
+        <span style="background-color: yellow;">${currentWord}</span>
+        <span>${after}</span>
+      `;
+    },
 
   clearHighlight() {
     this.renderedText = `<span style="font-size: ${this.currentFontSize}px;">${this.information.translation}</span>`;
@@ -535,11 +537,6 @@ export default {
    this.$emit('close-alert-text');
   }
  },
- watch:{
-   currentFontSize(newSize) {
-    localStorage.setItem('fontSize', newSize);
-  }
- }
 };
 </script>
 
