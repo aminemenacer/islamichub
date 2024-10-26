@@ -51,10 +51,7 @@
            aria-label="Fast forward audio"
            class="bi bi-fast-forward-circle-fill ml-2 mr-2 h3 custom-icon-play"></i>
       </div>
-
-     
-    </div>
-
+     </div>
     </div>
     <!--
      <button type="button" class="btn btn-success" @click="downloadAsCSV">Download as CSV</button>
