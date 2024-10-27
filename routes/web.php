@@ -216,7 +216,7 @@ Route::get('/ayahs/{ayahId}/translations', [SurahController::class, 'getTranslat
 Route::get('/search-translations', [SurahController::class, 'searchTranslations']);
 
 // audio
-Route::get('surah/{id}/ayat', [SurahController::class, 'getAudioAyat']);
+Route::get('/ayat', [SurahController::class, 'getAudioAyat']);
 
 
 // mailing list
