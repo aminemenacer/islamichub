@@ -6,7 +6,7 @@
   <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
    <MainAyah :information="information" />
    <div ref="targetTranslationElement" class="row text-left">
-    <h4 :style="{ fontSize: currentFontSize + 'px' }" class="text-left ayah-translation col-md-11" style="line-height: 1.6em" v-html="renderedText">
+    <h4  :style="{ fontSize: currentFontSize + 'px' }" class="text-left ayah-translation col-md-11" style="line-height: 1.6em" v-html="renderedText">
      {{ expanded ? information.translation : information.translation }}
     </h4>
     <div class="word-count">
@@ -222,7 +222,7 @@ export default {
  },
  data() {
   return {
-   renderedText: this.information.translation,
+   renderedText: '',
    isPaused: false,
    isReading: false,
    resetDisabled: true,
@@ -248,6 +248,7 @@ export default {
  },
 
   mounted() {
+    this.renderedText = this.information.translation;
     // Load saved settings from local storage on page load
     const savedVoiceName = localStorage.getItem('selectedVoice');
     const savedRate = localStorage.getItem('rate');
@@ -534,6 +535,11 @@ export default {
    this.$emit('close-alert-text');
   }
  },
+//  watch:{
+//   renderedText(newText) {
+//     console.log("renderedText updated:", newText);
+//   }
+//  }
 };
 </script>
 
