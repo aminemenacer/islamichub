@@ -11,7 +11,7 @@
             v-model="selectedSurahLocal"
             @change="handleChange"
         >
-            <option value="0" disabled>Select Surah</option>
+            <option value="" disabled selected>Select a Surah</option>
             <option
                 v-for="data in filteredSurah.length ? filteredSurah : surat"
                 :key="data.id"

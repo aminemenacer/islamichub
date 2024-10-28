@@ -22,11 +22,13 @@
         "sass-loader": "^12.6.0",
         "vue": "^3.4.27",
         "vue-loader": "^17.3.1",
+        "vue-sound": "^0.1.10",
         "vue-template-compiler": "^2.7.16",
         "webpack": "^5.91.0",
         "webpack-cli": "^5.1.4"
     },
     "dependencies": {
+        "@liripeng/vue-audio-player": "^2.0.4",
         "@popperjs/core": "^2.11.8",
         "@stripe/stripe-js": "^2.4.0",
         "@tinymce/tinymce-vue": "^6.0.1",
@@ -61,8 +63,10 @@
         "vue-router": "^4.2.5",
         "vue-star-rating": "^1.7.0",
         "vue-word-highlighter": "^1.2.3",
+        "vue3-audio-player": "^1.0.7",
         "vue3-clipboard": "^1.0.0",
         "vue3-touch-events": "^4.1.8",
+        "vue3-wave-audio-player": "^2.0.3",
         "xlsx": "^0.18.5"
     }
 }

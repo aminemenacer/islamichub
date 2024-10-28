@@ -19,7 +19,7 @@
                     @change="handleAyahChange"
                     style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"
                 >
-                    <option value="0" disabled>Select Ayah</option>
+                    <option>Select Ayah</option>
                     <option
                         v-for="(ayah, index) in ayat"
                         :key="index"
