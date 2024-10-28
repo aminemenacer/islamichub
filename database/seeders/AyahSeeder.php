@@ -2,41 +2,49 @@
 
 namespace Database\Seeders;
 
-use App\Models\Ayah;
 use Illuminate\Database\Seeder;
+use App\Models\Ayah;
 
 class AyahSeeder extends Seeder
 {
     public function run()
     {
         Ayah::truncate();
-  
+
         $csvFile = fopen(base_path("database/data/csv/ayat.csv"), "r");
   
         $firstline = true;
+        $audioCounter = 1; // Start the audio counter from 1 or any desired start point
 
         while (($data = fgetcsv($csvFile, 2000, ",")) !== FALSE) {
             if (!$firstline) {
-                // Check if the $data array has the expected number of elements
                 if (count($data) === 4) {
-                    // Convert ayah_text to UTF-8 encoding if needed
-                    $ayahText = isset($data[3]) ? mb_convert_encoding($data[3], 'UTF-8', 'auto') : ''; // Convert to UTF-8
+                    // Ensure ayah text is UTF-8 encoded
+                    $ayahText = isset($data[3]) ? mb_convert_encoding($data[3], 'UTF-8', 'auto') : ''; 
+
+                    // Update audio link with incremented counter
+                    $audioLink = preg_replace(
+                        '/\/ar\.alafasy\/\d+\.mp3$/', 
+                        "/ar.alafasy/$audioCounter.mp3", 
+                        $data[2]
+                    );
+
                     Ayah::create([
                         "surah_id" => $data[0],
                         "ayah_id" => $data[1],
-                        "audio_links" => $data[2],
+                        "audio_links" => $audioLink,
                         "ayah_text" => $ayahText,
                     ]);
+
+                    $audioCounter++; // Increment the counter for the next audio link
                 } else {
-                    // Log or handle the missing entry
                     echo "Missing value in CSV row: " . implode(",", $data) . PHP_EOL;
-                    // Add more debugging info if needed
                     var_dump($data);
                 }
             }
             $firstline = false;
         }
-   
+
         fclose($csvFile);
     }
 }
