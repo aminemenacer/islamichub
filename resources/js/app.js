@@ -67,8 +67,6 @@ import TinymceEditor from './components/tinymce/TinymceEditor.vue';
 
 import SurahList from "./components/search/SurahList.vue";
 import SearchForm from "./components/search/SearchForm.vue";
-import AudioPlayer from 'vue3-audio-player'
-import 'vue3-audio-player/dist/style.css'
 
 
 const app = createApp({});

@@ -241,7 +241,7 @@
             </div>                      
           </div>
 
-         <!-- mobile navigation  ---->
+         <!-- mobile navigation  -->
          <div class="dropdown mobile-only">
           <div :style="iconStyle" class="icon-container pb-2">
            <i @click="submitFormTafseer" class="bi bi-bookmark mb-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse"></i>
@@ -365,9 +365,9 @@
      <TranslationNote ref="translationNote" :information="modalInformation" />
      <TafseerNote ref="tafseerNote" :information="modalInformation" />
      <TransliterationNote ref="transliterationNote" :information="modalInformation" />
-
+     
     </div>
-
+      <audio v-if="information != null" :src="information.ayah.audio_links" class='w-100 custom-audio' loop controls autoplay/>
    </div>
  
   <!-- theme styles -->
@@ -1487,6 +1487,8 @@ methods: {
 </script>
 
 <style scoped src="./css/styles.css">
+
+
 .selected {
   background-color: #d1e7dd; /* Change this to your selected color */
 }

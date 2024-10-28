@@ -240,6 +240,51 @@
 
 }
 
+audio.custom-audio {
+  width: 100% !important;
+  background-color: #0fa59163 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  bottom: 0px;
+}
+
+/* Custom styling for WebKit audio controls, specific to .custom-audio class */
+.custom-audio::-webkit-media-controls-panel {
+  background-color: #0fa59163 !important;
+}
+
+.custom-audio::-webkit-media-controls-play-button,
+.custom-audio::-webkit-media-controls-mute-button,
+.custom-audio::-webkit-media-controls-seek-back-button,
+.custom-audio::-webkit-media-controls-seek-forward-button,
+.custom-audio::-webkit-media-controls-fullscreen-button,
+.custom-audio::-webkit-media-controls-rewind-button,
+.custom-audio::-webkit-media-controls-return-to-realtime-button,
+.custom-audio::-webkit-media-controls-toggle-closed-captions-button {
+  color: white !important;
+}
+
+.custom-audio::-webkit-media-controls-timeline-container {
+  background-color: #004d43 !important;
+}
+
+.custom-audio::-webkit-media-controls-current-time-display,
+.custom-audio::-webkit-media-controls-time-remaining-display {
+  color: rgb(0, 0, 0) !important;
+}
+
+/* .custom-audio::-webkit-media-controls-timeline {
+  background-color: #00574a !important;
+} */
+
+.custom-audio::-webkit-media-controls-volume-slider-container {
+  background-color: #ffffff !important;
+}
+
+.custom-audio::-webkit-media-controls-volume-slider {
+  background-color: #008c7a !important;
+}
+
 
 .custom-prev-ayah:hover{
   color: black;/* Default color */
@@ -258,7 +303,6 @@
   font-weight: bold;
 }
 .result-item {
-  padding: 10px;
   border-bottom: 1px solid #ccc;
 }
 

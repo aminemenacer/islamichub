@@ -6,12 +6,7 @@
     <div>
         <AyahInfo :information="information" />
         <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
-            <MainAyah :information="information" />
-            <i v-if="!showAudioPlayer" class="bi bi-play-circle-fill h3 custom-icon-play" @click="showAudioPlayer = true"></i>
-            <i  class="bi bi-x-circle-fill h3 custom-icon-play" @click="stopAndHideAudioPlayer" ></i>
-            <div class="w-100 container" v-if="showAudioPlayer">
-                <audio ref="audioPlayer" v-if="showAudioPlayer" :src="information.ayah.audio_links" class='audioPlayer ' autoplay controls loop />
-            </div>
+            <MainAyah :information="information" />            
             <div ref="targetTranslationElement" class="row text-left">
                 <h4 :style="{ fontSize: currentFontSize + 'px' }" class="text-left ayah-translation col-md-11" style="line-height: 1.6em" v-html="renderedText">
                     {{
@@ -173,8 +168,11 @@
                         </div>
                     </div>
                 </div>
+
+                
             </div>
         </div>
+            
         <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
     </div>
 </div>
@@ -188,7 +186,6 @@ import AlertModal from "./modals/AlertModal.vue";
 import ScreenReader from "./accesibility/ScreenReader.vue";
 import ScreenTranslationCapture from "./translation/features/screen_capture/ScreenTranslationCapture.vue";
 import Magnifier from "./search/Magnifier.vue";
-import Vue3WaveAudioPlayer from 'vue3-wave-audio-player'
 
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
@@ -205,7 +202,6 @@ export default {
         AlertModal,
         ScreenReader,
         Magnifier,
-        Vue3WaveAudioPlayer
     },
     props: {
         iconColor: {
@@ -273,7 +269,6 @@ export default {
     },
     data() {
         return {
-            showAudioPlayer: false,
             renderedText: "",
             isPaused: false,
             isReading: false,
@@ -620,13 +615,10 @@ audio {
     border-radius: 30px;
     margin: 0 auto;
     width: 100%;
-    border: 2px solid rgba(0, 191, 166);
+    border: 2px double rgba(0, 191, 166);
     background-color: white;
 }
 
-audio::-webkit-media-controls-panel {
-    
-}
 
 .word-count {
     margin-top: 10px;
