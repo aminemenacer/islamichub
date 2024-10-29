@@ -1,5 +1,5 @@
 <template>
-  <div class="btn">
+  <div class="btn" :style="styleObject">
     <div class="text-right ayah-translation" name="ayah_text" :style="styleObject"><b>{{ information.ayah.ayah_text }}</b></div>
   </div>
 </template>
@@ -12,6 +12,10 @@ export default {
       type: Object,
       required: true
     },
+    fontSize: {
+      type: Number,
+      required: true
+    },
     styleObject: Object
   },
   mounted() {
@@ -20,7 +24,8 @@ export default {
   computed: {
     styleObject() {
       return {
-        lineHeight: '1.6em'
+        lineHeight: '1.6em',
+        fontSize: this.fontSize + 'rem' // Use the fontSize prop
       };
     }
   }

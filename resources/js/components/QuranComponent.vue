@@ -52,11 +52,6 @@
          <h5 class="text-right" style="display: flex;"> Verse: {{ ayah.ayah_id }} </h5>
          <h5 class="text-right">{{ ayah.ayah_text }}</h5>
         </li>
-        <!-- <div class="ayah-audio">
-          <audio v-if="ayah.audio" :src="ayah.audio" :ref="'audio-' + ayah.id" controls>
-            Your browser does not support the audio tag.
-          </audio>
-        </div> -->
        </ul>
       </div>
      </div>
@@ -135,8 +130,7 @@
                 <!-- <div class="col"><VideoModal  @save-video-data="handleSave" /><i class="bi bi-play-circle h3" style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#videoModal"></i></div> -->
                 <!-- <div class="col"><i class="bi bi-paint-bucket h2" data-bs-toggle="offcanvas" style="cursor:pointer" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i></div> -->
                 <div class="col"><i style="cursor:pointer" class="bi bi-info-circle h4 mr-2 pl-2" data-bs-toggle="modal" data-bs-target="#translationInfo" aria-expanded="false" data-bs-placement="top" title="Surah info"></i></div>
-                <div class="col"><i title="Give feedback" style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-chat-left-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" ></i></div>
-                <div class="col"><i class="bi bi-gear h3" style="cursor:pointer" title="Settings" @click="showSettingsOffcanvas"></i></div>
+                <!-- <div class="col"><i title="Give feedback" style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-chat-left-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" ></i></div> -->
                 <div class="col"><i class="bi bi-arrows-fullscreen h4" style="cursor:pointer" @click="toggleFullScreen" title="Full screen"></i></div>
                 
               </div>
@@ -179,7 +173,6 @@
               @toggle-expand="toggleExpand" 
               @close-alert-text="closeAlertText" 
               @toggle-audio="toggleAudio" :isReading="isReading"
-              @play-audio="showAudioPlayer"
             />          
           </div>
 
@@ -231,7 +224,7 @@
                   <div class="col"><PdfDownloadTafsser style="cursor:pointer"  :targetTafseerRef="'targetTafseerElement'"/></div>
                   <div class="col"><i style="cursor:pointer" class="bi bi-info-circle h4 mr-2 pl-2" data-bs-toggle="modal" data-bs-target="#translationInfo" aria-expanded="false" data-bs-placement="top" title="Surah info"></i></div>
                   <div class="col"><i title="Give feedback" style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-chat-left-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" ></i></div>
-                  <div class="col"><i class="bi bi-gear h3" style="cursor:pointer" title="Settings" @click="showSettingsOffcanvasTafseer"></i></div>
+                  <!-- <div class="col"><i class="bi bi-gear h3" style="cursor:pointer" title="Settings" @click="showSettingsOffcanvasTafseer"></i></div> -->
                   <!-- <div class="col"><VideoModal  @save-video-data="handleSave" /><i class="bi bi-play-circle h3" style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#videoModal"></i></div> -->
                   <!-- <div class="col"><i class="bi bi-paint-bucket h2" style="cursor:pointer" data-bs-toggle="offcanvas" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i></div> -->
                   <div class="col"><i class="bi bi-arrows-fullscreen h4" style="cursor:pointer" @click="toggleFullScreen" title="Full screen"></i></div>
@@ -300,7 +293,6 @@
                   <div class="col"><PdfDownloadTransliteration style="cursor:pointer"  :targetTransliterationRef="'targetTransliterationElement'" /></div>
                   <div class="col"><i style="cursor:pointer" class="bi bi-info-circle h4 mr-2 pl-2" data-bs-toggle="modal" data-bs-target="#translationInfo" aria-expanded="false" data-bs-placement="top" title="Surah info"></i></div>
                   <div class="col"><i title="Give feedback" style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-chat-left-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" ></i></div>
- 
                   <!-- <div class="col"><VideoModal  @save-video-data="handleSave" /><i class="bi bi-play-circle h3" style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#videoModal"></i></div> -->
                   <!-- <div class="col"><i class="bi bi-paint-bucket h2" style="cursor:pointer" data-bs-toggle="offcanvas" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i></div> -->
                   <div class="col"><i class="bi bi-arrows-fullscreen h4" style="cursor:pointer" @click="toggleFullScreen" title="Full screen"></i></div>
@@ -367,9 +359,73 @@
      <TransliterationNote ref="transliterationNote" :information="modalInformation" />
      
     </div>
-      <audio v-if="showAudio && information != null" :src="information.ayah.audio_links" class='w-100 custom-audio' autoplay loop controls />
+      <audio v-if="information != null" :src="information.ayah.audio_links" class='w-100 custom-audio' loop controls />
    </div>
- 
+
+   <!-- Speech Off-canvas 
+    <div
+      id="settingsOffcanvas"
+      class="offcanvas offcanvas-end custom-offcanvas"
+      tabindex="-1"
+      aria-labelledby="settingsOffcanvasLabel">
+      <div class="offcanvas-header">
+        <h4 id="settingsOffcanvasLabel"><b>Speech settings</b></h4>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <div class="tab-content mt-3" id="myTabContent">
+          <div class="tab-pane fade show active" id="Speech Settings" role="tabpanel" aria-labelledby="tab1-tab">
+            <div class="row mb-3">
+              <label for="formGroupExampleInput" class="form-label">Voices:</label>
+              <select class="form-control" v-model="selectedVoiceName">
+                <option v-for="voice in voices" :key="voice.name" :value="voice.name">
+                  {{ voice.name }} ({{
+                    voice.lang
+                    }})
+                </option>
+              </select>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <label>
+                  Rate:
+                  <input class="rate" type="range" min="0.5" max="2" step="0.1" v-model="rate" @input="
+                                                        adjustRate(
+                                                            $event
+                                                                .target
+                                                                .value
+                                                        )
+                                                    " />
+                </label>
+              </div>
+              <div class="col">
+                <label>
+                  Pitch:
+                  <input class="pitch" type="range" min="0.5" max="2" step="0.1" v-model="pitch" @input="
+                                                        adjustPitch(
+                                                            $event
+                                                                .target
+                                                                .value
+                                                        )
+                                                    " />
+                </label>
+              </div>
+
+              
+            </div>
+
+            <div v-if="successMessage" class="alert alert-success" role="alert">Settings saved successfully!</div>
+
+            <div class="d-flex w-100 justify-content-end mt-3">
+              <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="offcanvas" aria-label="Close">Cancel</button>
+              <button type="button" class="btn btn-success" @click="saveSettings">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    -->
   <!-- theme styles -->
   <div class="offcanvas offcanvas-end custom-offcanvas " tabindex="-1" id="styleOffcanvas" aria-labelledby="styleOffcanvasLabel">
     <div class="offcanvas-header">
@@ -379,8 +435,6 @@
    <div class="offcanvas-body" style="color:white">
     <form>
       <div class="row">
-        
-
         <!-- Row: Select Default Style -->
         <!-- <div class="col-md-12 mb-3"> -->
           <!-- <label for="styleSelect" class="form-label">Select Custom Style Theme </label>
@@ -390,8 +444,6 @@
             </option>
           </select>
         </div>
-
-        
         <hr class="container"> -->
         <!-- Row: Background Color -->
         <div class="col-md-12 mb-3">
@@ -859,21 +911,17 @@ methods: {
     this.showAudio = true;
   },
   showSettingsOffcanvas() {
-    // Use Bootstrap Offcanvas show method to open the panel
-    let offcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasRight'));
-    offcanvas.show();
-  },
-  showSettingsOffcanvasTafseer() {
-    // Use Bootstrap Offcanvas show method to open the panel
-    const offcanvasElement = document.getElementById('offcanvasRight');
-    
-    if (offcanvasElement) {
-      const offcanvasTafseer = new bootstrap.Offcanvas(offcanvasElement);
-      offcanvasTafseer.show();
-    } else {
-      console.error('Offcanvas element not found');
-    }
-  },
+      // Select the offcanvas element by its ID
+      const settingsOffcanvasElement = document.getElementById("settingsOffcanvas");
+      // Initialize the Bootstrap Offcanvas component
+      const offcanvas = new bootstrap.Offcanvas(settingsOffcanvasElement, {
+        backdrop: true, // Adds a backdrop behind the off-canvas
+        keyboard: true, // Allows closing with the keyboard (Escape key)
+      });
+      // Show the offcanvas
+      offcanvas.show();
+    },
+  
   handleItemSelected(selectedItem) {
     alert(`Selected item: ${selectedItem}`);
   },

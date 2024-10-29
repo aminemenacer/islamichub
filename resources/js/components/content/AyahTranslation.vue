@@ -12,6 +12,24 @@
       <div class="btn">
         <h5 class="text-right " name="ayah_text" style="line-height: 1.6em">{{ information.ayah.ayah_text }}</h5>
       </div>
+      <div class="btn-group">
+      <div class="col">
+        <label>
+          Increase size:
+          <i class="bi bi-plus-circle-fill h3 custom-icon-increase" 
+             aria-placeholder="Increase text size" 
+             @click="increaseFontSize"></i>
+        </label>
+      </div>
+      <div class="col">
+        <label>
+          Decrease size:
+          <i class="bi bi-dash-circle-fill h3 custom-icon-decrease" 
+             aria-placeholder="Decrease text size" 
+             @click="decreaseFontSize"></i>
+        </label>
+      </div>
+    </div>
       <h1 class="text-left " ref="heading3" style="line-height: 1.6em">
         {{ expanded ? information.translation : truncatedText(information.translation) }}
         <template v-if="showMoreLink">
@@ -38,6 +56,17 @@ export default {
       required: true
     }
   },
+  mounted() {
+    this.$emit('ayah-text', this.information.ayah.ayah_text); // Emit ayah text if needed
+  },
+  computed: {
+    styleObject() {
+      return {
+        lineHeight: '1.6em',
+        fontSize: this.fontSize + 'rem' // Dynamic font size
+      };
+    }
+  },
   data() {
     return {
       isFullScreen: false,
@@ -48,10 +77,28 @@ export default {
       showErrorAlert: false,
       showAlertTextNote: false,
       touchStartX: 0,
-      touchEndX: 0
+      touchEndX: 0,
+      fontSize: this.getFontSize(),
     };
   },
   methods: {
+    increaseFontSize() {
+      this.fontSize += 0.2; // Increase font size
+      this.saveFontSize(); // Save updated font size to local storage
+    },
+    decreaseFontSize() {
+      if (this.fontSize > 1) { // Prevent decreasing below a certain size
+        this.fontSize -= 0.2; // Decrease font size
+        this.saveFontSize(); // Save updated font size to local storage
+      }
+    },
+    saveFontSize() {
+      localStorage.setItem('ayahFontSize', this.fontSize); // Store font size in local storage
+    },
+    getFontSize() {
+      const savedFontSize = localStorage.getItem('ayahFontSize');
+      return savedFontSize ? parseFloat(savedFontSize) : 1.6; // Default font size
+    },
     toggleFullScreen() {
       this.isFullScreen = !this.isFullScreen;
     },
