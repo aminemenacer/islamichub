@@ -8,11 +8,11 @@
         <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
             <MainAyah :information="information" />
             <div ref="targetTafseerElement" class="text-left">
-                <h4 :style="{ fontSize: currentFontSize + 'px' }" class="text-left ayah-translation" style="line-height: 1.6em">
+                <h4 class="text-left ayah-translation" style="line-height: 1.6em">
                     {{ expanded ? tafseer : tafseer }}
                 </h4>
                 <div class="word-count">
-                    <p>Total Words: {{ wordCount }}</p>
+									<h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" /><strong>Total Words: </strong>{{ wordCount }}</h6>
                 </div>
             </div>
 

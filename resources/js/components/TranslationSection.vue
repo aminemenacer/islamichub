@@ -2,132 +2,61 @@
 <div class="w-100 my-element" :class="{ 'full-screen': isFullScreen }">
   <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
   <div>
-    <AyahInfo :information="information" />
-    <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
-      <div class="row">
-        <div class="col-md-1 pt-2">
-          <div class="icon-container" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; width: 100%;">
-            <div class="row" style="width: 100%; justify-content: center;">
-              <div class="col text-center">
-                <i @click="playAudio" :class="[
-                                    'bi',
-                                    isReading
-                                        ? isPaused
-                                            ? 'bi-play-circle-fill'
-                                            : 'bi-pause-circle-fill'
-                                        : 'bi-play-circle-fill', 'h3',
-                                    'custom-icon-play'
-                                ]" 
-                                style="cursor: pointer;" 
-                                aria-label="Play audio"></i>
-              </div>
-              <!--
-              <div class="col text-center">
-                <i class="bi bi-plus-circle-fill h3 custom-icon-increase" 
-                  aria-placeholder="Increase text size" 
-                  @click="increaseFontSize"
-                  style="cursor: pointer;"></i>
-              </div>
-              <div class="col text-center">
-                <i class="bi bi-dash-circle-fill h3 custom-icon-decrease" 
-                  aria-placeholder="Decrease text size" 
-                  @click="decreaseFontSize"
-                  style="cursor: pointer;"></i>
-              </div>
-              -->
-            </div>
-          </div>
-        </div>
-
-
-        <div class="col-md-11">
-          <MainAyah :information="information" />
-        </div>
+  <AyahInfo :information="information" />
+  <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
+    <div class="row">
+      <div class="col-md-1 pt-2 d-flex align-items-center justify-content-center">
+         <!-- Play Button -->
+          <i 
+            @click="playAudio" 
+            :class="['bi', isReading ? (isPaused ? 'bi-play-circle-fill' : 'bi-pause-circle-fill') : 'bi-play-circle-fill', 'h3', 'custom-icon-play']"
+            style="cursor: pointer;" 
+            aria-label="Play audio"
+          />
       </div>
-      <div ref="targetTranslationElement" class="row text-left">
-        <div class="row" style="width: 100%; justify-content: center;">
-          <div class="col-11">
-            <h4  class="text-left ayah-translation col-md-11" style="line-height: 1.6em" v-html="renderedText">
-              {{
-                expanded
-                ? information.translation
-                : information.translation
-                }}
-            </h4>
-          </div>
-          <div class="col-1">
-            <div style="
-              cursor: pointer;
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-              justify-content: center; /* Center align icons */
-              height: 100%; /* Ensure the container has a height */
-              width: 100%; /* Ensure the container takes full width */" 
-              class="container pb-2 text-center mobile-only">
-
-              <div class="row" style="width: 100%; justify-content: center;">
-                <!-- Center the row -->
-                <div class="col text-center">
-                  <i @click="rewindAudio" :class="[
-                                        'bi',
-                                        'bi-rewind-circle-fill',
-                                        'h3',
-                                        'custom-icon-play',
-                                        !isReading ? 'text-muted' : '',
-                                    ]" :style="{
-                cursor: isPlaying ? 'pointer' : 'not-allowed',
-                color: isPlaying ? '#000' : '#555', // Pure black when active, dark grey when inactive
-                opacity: isPlaying ? 1 : 0.5, // Full opacity when active, half opacity when inactive
-                
-            }" aria-label="Rewind translation audio"></i>
-                </div>
-
-                <div class="col text-center">
-                  <i @click="toggleSpeech" :class="[
-                                        'bi',
-                                        isReading ? (isPaused ? 'bi-play-circle-fill' : 'bi-pause-circle-fill') : 'bi-play-circle-fill',
-                                        'h3',
-                                        'custom-icon-play',
-                                    ]" style="cursor: pointer; height: 60px; width: 60px; line-height: 60px;" aria-label="Play or pause translation audio"></i>
-                </div>
-
-                <div class="col text-center">
-                  <i @click="stopReading" :class="[
-                                        'bi',
-                                        'bi-stop-circle-fill',
-                                        'h3',
-                                        'custom-icon-play',
-                                        !isReading ? 'text-muted' : '',
-                                    ]" :style="{
-                cursor: isPlaying ? 'pointer' : 'not-allowed',
-                color: isPlaying ? '#000' : '#555', // Pure black when active, dark grey when inactive
-                opacity: isPlaying ? 1 : 0.5, // Full opacity when active, half opacity when inactive
-                
-            }" aria-label="Stop reading audio"></i>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <hr class="container">
-        </div>
+      <div class="col-md-11">
+        <MainAyah :information="information" />
       </div>
-
-      <div class="text-left word-count">
-        <p>
-          <img src="/images/art.png" class="pr-2" width="30px" alt="lamp" />
-          <b>Total Words:</b>
-          {{ wordCount }}
-        </p>
-      </div>
-
-      <Translator translator="Ahmed Ali" />
-      <!-- Speech icons mobile only-->
     </div>
 
-    <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
+    <div ref="targetTranslationElement" class="row text-left mt-2">
+      <div class="col-11">
+        <h4 class="ayah-translation" style="line-height: 1.6em" v-html="renderedText">
+          {{ expanded ? information.translation : information.translation }}
+        </h4>
+      </div>
+      <div class="col-1 d-flex align-items-center justify-content-center">
+        <i @click="rewindAudio" :class="['bi', 'bi-rewind-circle-fill', 'h3', 'custom-icon-play']"
+           :style="{ cursor: isPlaying ? 'pointer' : 'not-allowed', color: isPlaying ? '#000' : '#555', opacity: isPlaying ? 1 : 0.5 }"
+           aria-label="Rewind translation audio">
+        </i>
+        <i @click="toggleSpeech" :class="['bi', isReading ? (isPaused ? 'bi-play-circle-fill' : 'bi-pause-circle-fill') : 'bi-play-circle-fill', 'h3', 'custom-icon-play']"
+           style="cursor: pointer;" 
+           aria-label="Play or pause translation audio">
+        </i>
+        <i @click="stopReading" :class="['bi', 'bi-stop-circle-fill', 'h3', 'custom-icon-play']"
+           :style="{ cursor: isPlaying ? 'pointer' : 'not-allowed', color: isPlaying ? '#000' : '#555', opacity: isPlaying ? 1 : 0.5 }"
+           aria-label="Stop reading audio">
+        </i>
+      </div>
+    </div>
+
+    <div class="text-left word-count mt-2">
+      <h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" /><strong>Total Words: </strong>{{ wordCount }}</h6>
+    </div>
+
+    <Translator translator="Ahmed Ali" />
   </div>
+
+  <AlertModal 
+    :showAlertText="showAlertText" 
+    :showAlert="showAlert" 
+    :showErrorAlert="showErrorAlert" 
+    :showAlertTextNote="showAlertTextNote" 
+    @close-alert-text="closeAlertText" 
+  />
+</div>
+
 </div>
 </template>
 
@@ -210,7 +139,7 @@ export default {
     },
     props: {
       isReading: Boolean,
-      highlightText: Boolean,
+      isPaused: Boolean
     }
 
   },
@@ -290,9 +219,11 @@ export default {
 
   methods: {
     playAudio() {
-      this.$emit("play-audio");
+      this.$emit('toggle-audio'); // Show the audio player in the parent component
     },
-
+    pauseAudio() {
+      this.$emit('pause-audio'); // Trigger pause method in the parent
+    },
     toggleExpand() {
       this.expanded = !this.expanded;
     },

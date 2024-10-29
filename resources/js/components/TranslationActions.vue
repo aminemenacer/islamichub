@@ -7,10 +7,10 @@
     </div>
 
     <!-- Screenshot Icon 
-  <div class="icon-container">
-   <i class="bi bi-camera text-right mr-2 h3" @click="captureTranslation" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" :style="{ cursor: 'pointer' }"></i>
-  </div>
-  -->
+    <div class="icon-container">
+    <i class="bi bi-camera text-right mr-2 h3" @click="captureTranslation" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" :style="{ cursor: 'pointer' }"></i>
+    </div>
+    -->
 
     <!-- PDF Download Icon -->
     <div class="icon-container">
@@ -21,6 +21,7 @@
     <div class="icon-container">
       <i style="cursor:pointer" class="bi bi-info-circle h4 mr-2 pl-2" data-bs-toggle="modal" data-bs-target="#translationInfo" aria-expanded="false" data-bs-placement="top" title="Surah info" :style="{ cursor: 'pointer' }"></i>
     </div>
+
 
 
     <!-- Bug Report Icon -->

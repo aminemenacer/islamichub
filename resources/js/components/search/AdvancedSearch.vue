@@ -107,14 +107,26 @@
           </div>
           
         </div>
-        <div class=" pt-3">
-          <button @click="shareOnWhatsApp(result)" type="button" class="container btn btn-success w-100">
-            <i @click="fastForwardSpeech"
-           style="cursor: pointer;"
-           aria-label="Fast forward audio"
-           class="bi bi-whatsapp ml-2 mr-2 custom-icon-play h5"></i>Share on WhatsApp
-          </button>
+        <div class="pt-2 row">
+          <div class="col-md-6">
+            <button @click="shareOnWhatsApp(result)" type="button" class="container btn btn-success w-100">
+              <i @click="fastForwardSpeech"
+              style="cursor: pointer;"
+              aria-label="Fast forward audio"
+              class="bi bi-whatsapp ml-2 mr-2 custom-icon-play h5"></i><b>Share on WhatsApp</b>
+            </button>
+          </div>
+          <div class="col-md-6">
+            <button @click="shareOnTwitter(result)" type="button" class="container btn btn-dark w-100">
+              <i @click="fastForwardSpeech"
+              style="cursor: pointer;"
+              aria-label="Fast forward audio"
+              class="bi bi-twitter ml-2 mr-2 custom-icon-play h5"></i><b>Share on X</b>
+            </button>
+          </div>
+
         </div>
+        
            
         <hr />
       </div>
@@ -222,6 +234,20 @@ export default {
     const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
     // Open WhatsApp with the pre-populated message
     window.open(whatsappUrl, '_blank');
+  },
+  shareOnTwitter(result) {
+    // Construct the message you want to share
+    const message = `Ayah: ${result.ayah.surah_id}:${result.ayah.ayah_id}\n\n` + 
+                    `${result.ayah.ayah_text}\n\n` + 
+                    `Translation: ${result.translation}\n\n` + 
+                    `Tafseer: ${result.originalTafseer}\n\n` + 
+                    `Transliteration: ${result.transliteration}`;
+    
+    // Encode the message to be used in a URL
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(message)}`;
+  
+    // Open Twitter with the pre-populated message
+    window.open(twitterUrl, '_blank');
   },
   totalSurahs() {
     const surahIds = this.filteredResults.map(result => result.ayah.surah_id);

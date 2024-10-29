@@ -130,7 +130,7 @@
                 <!-- <div class="col"><VideoModal  @save-video-data="handleSave" /><i class="bi bi-play-circle h3" style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#videoModal"></i></div> -->
                 <!-- <div class="col"><i class="bi bi-paint-bucket h2" data-bs-toggle="offcanvas" style="cursor:pointer" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i></div> -->
                 <div class="col"><i style="cursor:pointer" class="bi bi-info-circle h4 mr-2 pl-2" data-bs-toggle="modal" data-bs-target="#translationInfo" aria-expanded="false" data-bs-placement="top" title="Surah info"></i></div>
-                <!-- <div class="col"><i title="Give feedback" style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-chat-left-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" ></i></div> -->
+                <div class="col"><i title="Give feedback" style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-chat-left-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" ></i></div>
                 <div class="col"><i class="bi bi-arrows-fullscreen h4" style="cursor:pointer" @click="toggleFullScreen" title="Full screen"></i></div>
                 
               </div>
@@ -172,7 +172,7 @@
               @handle-touch-end="handleTouchEnd" 
               @toggle-expand="toggleExpand" 
               @close-alert-text="closeAlertText" 
-              @toggle-audio="toggleAudio" :isReading="isReading"
+              @toggle-audio="handleToggleAudio"
             />          
           </div>
 
@@ -187,7 +187,7 @@
           <!-- toolbar mobile -->
         <div v-if="isOpen" class="collapse-content mobile-only" >
           <div class="card text-bg-light card-body">
-            <TranslationActions :targetTranslationRef="'targetTranslationElement'" :translation="translation" @open-modal="openModal" @submit-form="submitForm" />
+            <TranslationActions :targetTranslationRef="'targetTranslationElement'" :translation="translation" @open-modal="openModal" @submit-form="submitForm" @toggle-audio="handleToggleAudio" />
           </div>
         </div>
 
@@ -359,7 +359,7 @@
      <TransliterationNote ref="transliterationNote" :information="modalInformation" />
      
     </div>
-      <audio v-if="information != null" :src="information.ayah.audio_links" class='w-100 custom-audio' loop controls />
+      <audio v-if="showAudio && information != null" ref="audioPlayer" :src="information.ayah.audio_links" class='w-100 custom-audio' autoplay loop controls />
    </div>
 
    <!-- Speech Off-canvas 
@@ -907,8 +907,13 @@ computed: {
     }
 },
 methods: {
-  showAudioPlayer() {
-    this.showAudio = true;
+  handleToggleAudio() {
+    this.showAudio = true; // Display audio element
+  },
+  pauseAudio() {
+    if (this.$refs.audioPlayer) {
+      this.$refs.audioPlayer.pause();
+    }
   },
   showSettingsOffcanvas() {
       // Select the offcanvas element by its ID
