@@ -112,4 +112,9 @@ export default {
 .tab-content {
     margin-bottom: 1rem;
 }
+.card {
+ display: flex;
+ border: 1px solid #00BFA6;
+ border-radius: 10px;
+}
 </style>

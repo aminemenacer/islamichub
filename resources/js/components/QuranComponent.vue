@@ -146,7 +146,7 @@
           </div>                      
         </div>
   
-        <!-- mobile navigation  ---->
+        <!-- mobile navigation  -->
         <div class="dropdown mobile-only pb-2">
           <div :style="iconStyle" class="icon-container ">
             <i @click="submitForm" class="bi bi-bookmark mb-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse"></i>
@@ -154,7 +154,6 @@
             <i class="bi bi-arrow-left-circle h4" style="cursor:pointer" @click="goToPreviousAyah()" title="Previous verse"></i>
             <i class="bi bi-arrow-right-circle h4" style="cursor:pointer" @click="goToNextAyah()" title="Next verse"></i>
             <i class="bi bi-chevron-bar-right h4" style="cursor:pointer" @click="goToLastAyah()" title="End verse"></i>
-            <i class="bi bi-gear text-right mr-2 h3" @click="showSettingsOffcanvas" aria-expanded="false" data-bs-placement="top" title="Settings" :style="{ cursor: 'pointer' }"></i>
             <i class="bi bi-arrows-fullscreen h6" style="cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
 
             <!-- <i class="bi bi-paint-bucket h1" style="cursor:pointer" data-bs-toggle="offcanvas" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i> -->  
@@ -179,6 +178,8 @@
               @handle-touch-end="handleTouchEnd" 
               @toggle-expand="toggleExpand" 
               @close-alert-text="closeAlertText" 
+              @toggle-audio="toggleAudio" :isReading="isReading"
+              @play-audio="showAudioPlayer"
             />          
           </div>
 
@@ -250,7 +251,6 @@
            <i class="bi bi-arrow-right-circle h4" style="cursor:pointer" @click="goToNextAyah()" title="Next verse"></i>
            <i class="bi bi-chevron-bar-right h4" style="cursor:pointer"  @click="goToLastAyah()" title="End verse"></i>
            <!-- <i class="bi bi-paint-bucket h1" style="cursor:pointer" data-bs-toggle="offcanvas" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i> -->
-           <i class="bi bi-gear text-right mr-2 h3" @click="showSettingsOffcanvas" aria-expanded="false" data-bs-placement="top" title="Settings" :style="{ cursor: 'pointer' }"></i>
            <i class="bi bi-arrows-fullscreen h6" style="cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
           </div>
          </div>
@@ -367,7 +367,7 @@
      <TransliterationNote ref="transliterationNote" :information="modalInformation" />
      
     </div>
-      <audio v-if="information != null" :src="information.ayah.audio_links" class='w-100 custom-audio' loop controls autoplay/>
+      <audio v-if="showAudio && information != null" :src="information.ayah.audio_links" class='w-100 custom-audio' autoplay loop controls />
    </div>
  
   <!-- theme styles -->
@@ -617,6 +617,7 @@ props: ['information', 'selectedFolderId'], information: {
     },
  data() {
   return {
+    showAudio: false,
     userIsLoggedIn: true,
     newThemeName: "",
     savedThemes: [],
@@ -854,6 +855,9 @@ computed: {
     }
 },
 methods: {
+  showAudioPlayer() {
+    this.showAudio = true;
+  },
   showSettingsOffcanvas() {
     // Use Bootstrap Offcanvas show method to open the panel
     let offcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasRight'));

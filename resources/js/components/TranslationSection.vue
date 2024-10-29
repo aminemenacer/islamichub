@@ -6,171 +6,200 @@
     <div>
         <AyahInfo :information="information" />
         <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
-            <MainAyah :information="information" />            
-            <div ref="targetTranslationElement" class="row text-left">
-                <h4 :style="{ fontSize: currentFontSize + 'px' }" class="text-left ayah-translation col-md-11" style="line-height: 1.6em" v-html="renderedText">
-                    {{
-                            expanded
-                                ? information.translation
-                                : information.translation
-                        }}
-                </h4>
-                <div class="word-count">
-                    <p>Total Words: {{ wordCount }}</p>
+            <div class="row">
+                <div class="col-md-1 pt-2">
+                    <div class="col ">
+                        <i
+                          @click="playAudio"
+                          :class="[
+                            'bi',
+                            isReading
+                                ? isPaused
+                                    ? 'bi-play-fill'
+                                    : 'bi-pause-circle-fill'
+                                : 'bi-play-fill',
+                            'ml-2',
+                            'mr-2',
+                            'h3',
+                            '',
+                            'custom-icon-play',
+                        ]" style="cursor: pointer" aria-label="Play audio"></i>
+                    </div>
                 </div>
-                
-
-                <Translator translator="Ahmed Ali" />
-                <!-- Speech icons mobile only-->
-                <div style="
+                <div class="col-md-11">
+                    <MainAyah :information="information" />    
+                </div>
+            </div>        
+            <div ref="targetTranslationElement" class="row text-left">
+                <div class="row">
+                    <div class="col-11">
+                        <h4 :style="{ fontSize: currentFontSize + 'px' }" class="text-left ayah-translation col-md-11" style="line-height: 1.6em" v-html="renderedText">
+                            {{
+                                    expanded
+                                        ? information.translation
+                                        : information.translation
+                                }}
+                        </h4>
+                    </div>
+                    <div class="col-1">
+                        <div style="
                             cursor: pointer;
                             display: flex;
                             flex-direction: column;
                             align-items: center;
-                            justify-content: space-between;
-                        " class="container pb-2 text-center mobile-only">
-                    <div class="row">
-                        <div class="col">
-                            <i @click="rewindSpeech" :class="[
-                                        'bi',
-                                        'bi-rewind-circle-fill',
-                                        'ml-2',
-                                        'mr-2',
-                                        'h3',
-                                        'custom-icon-play',
-                                        isReading ? 'text-muted' : '',
-                                    ]" style="cursor: pointer" aria-label="Rewind translation audio"></i>
+                            justify-content: space-between;" 
+                            class="container pb-2 text-center mobile-only">
+                        <div class="row">
+                            <div class="col">
+                            <i
+                                @click="rewindAudio"
+                                :class="[
+                                    'bi',
+                                    'bi-rewind-fill',
+                                    'ml-2',
+                                    'mr-2',
+                                    'h3',
+                                    'custom-icon-play',
+                                    !isReading ? 'text-muted' : '',
+                                ]"
+                                :style="{
+                                    cursor: isPlaying ? 'pointer' : 'not-allowed',
+                                    color: isPlaying ? '#000' : '#555', // Pure black when active, dark grey when inactive
+                                    opacity: isPlaying ? 1 : 0.5 // Full opacity when active, half opacity when inactive
+                                }"
+                                aria-label="Rewind translation audio"
+                            ></i>
                         </div>
+
 
                         <div class="col">
                             <i @click="toggleSpeech" :class="[
-                                        'bi',
-                                        isReading
-                                            ? isPaused
-                                                ? 'bi-play-circle-fill'
-                                                : 'bi-pause-circle-fill'
-                                            : 'bi-play-circle-fill',
-                                        'ml-2',
-                                        'mr-2',
-                                        'h3',
-                                        'custom-icon-play',
-                                    ]" style="cursor: pointer" aria-label="Play or pause translation audio"></i>
-                        </div>
-
-                        <div class="col">
-                            <i @click="pauseReading" :class="[
-                                        'bi',
-                                        'bi-pause-circle-fill',
-                                        'ml-2',
-                                        'mr-2',
-                                        'h3',
-                                        'custom-icon-play',
-                                        !isReading || isPaused
-                                            ? 'text-muted'
-                                            : '',
-                                    ]" style="cursor: pointer" aria-label="Pause translation audio"></i>
+                                'bi',
+                                isReading
+                                    ? isPaused
+                                        ? 'bi-play-fill'
+                                        : 'bi-pause-fill'
+                                    : 'bi-play-fill',
+                                'ml-2',
+                                'mr-2',
+                                'h3',
+                                'custom-icon-play',
+                            ]" style="cursor: pointer" aria-label="Play or pause translation audio"></i>
                         </div>
 
                         <div class="col">
                             <i @click="stopReading" :class="[
-                                        'bi',
-                                        'bi-stop-circle-fill',
-                                        'ml-2',
-                                        'mr-2',
-                                        'h3',
-                                        'custom-icon-play',
-                                        !isReading ? 'text-muted' : '',
-                                    ]" style="cursor: pointer" aria-label="Stop translation audio"></i>
+                                    'bi',
+                                    'bi-stop-fill',
+                                    'ml-2',
+                                    'mr-2',
+                                    'h3',
+                                    'custom-icon-play',
+                                    !isReading ? 'text-muted' : '',
+                                ]" 
+                                :style="{
+                                    cursor: isPlaying ? 'pointer' : 'not-allowed',
+                                    color: isPlaying ? '#000' : '#555', // Pure black when active, dark grey when inactive
+                                    opacity: isPlaying ? 1 : 0.5 // Full opacity when active, half opacity when inactive
+                                }"></i>
                         </div>
-
-                        <div class="col">
-                            <i @click="fastForwardSpeech" style="cursor: pointer" aria-label="Fast forward audio" class="bi bi-fast-forward-circle-fill ml-2 mr-2 h3 custom-icon-play"></i>
-                        </div>
+                    
                     </div>
                 </div>
-                <!--
-                    <button type="button" class="btn btn-success" @click="downloadAsCSV">Download as CSV</button>
-                    <button type="button" class="btn btn-success" @click="downloadAsWord">Download as Word</button>
-                -->
+                    <!--
+                        <button type="button" class="btn btn-success" @click="downloadAsCSV">Download as CSV</button>
+                        <button type="button" class="btn btn-success" @click="downloadAsWord">Download as Word</button>
+                    -->
 
-                <!-- Speech Off-canvas -->
-                <div class="offcanvas offcanvas-end custom-offcanvas" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-                    <div class="offcanvas-header">
-                        <h2><b>Speech Settings</b></h2>
-                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                    </div>
-                    <div class="offcanvas-body">
-                        <!-- Tab content -->
-                        <div class="tab-content mt-3" id="myTabContent">
-                            <div class="tab-pane fade show active" id="Speech Settings" role="tabpanel" aria-labelledby="tab1-tab">
-                                <div class="row mb-3">
-                                    <label for="formGroupExampleInput" class="form-label">Voices:</label>
-                                    <select class="form-control" v-model="selectedVoiceName">
-                                        <option v-for="voice in voices" :key="voice.name" :value="voice.name">
-                                            {{ voice.name }} ({{
-                                                    voice.lang
-                                                }})
-                                        </option>
-                                    </select>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col">
-                                        <label>
-                                            Rate:
-                                            <input class="rate" type="range" min="0.5" max="2" step="0.1" v-model="rate" @input="
-                                                        adjustRate(
-                                                            $event.target.value
-                                                        )
-                                                    " />
-                                        </label>
-                                    </div>
-                                    <div class="col">
-                                        <label>
-                                            Pitch:
-                                            <input class="pitch" type="range" min="0.5" max="2" step="0.1" v-model="pitch" @input="
-                                                        adjustPitch(
-                                                            $event.target.value
-                                                        )
-                                                    " />
-                                        </label>
+                    <!-- Speech Off-canvas -->
+                    <div class="offcanvas offcanvas-end custom-offcanvas" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+                        <div class="offcanvas-header">
+                            <h2><b>Speech Settings</b></h2>
+                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <!-- Tab content -->
+                            <div class="tab-content mt-3" id="myTabContent">
+                                <div class="tab-pane fade show active" id="Speech Settings" role="tabpanel" aria-labelledby="tab1-tab">
+                                    <div class="row mb-3">
+                                        <label for="formGroupExampleInput" class="form-label">Voices:</label>
+                                        <select class="form-control" v-model="selectedVoiceName">
+                                            <option v-for="voice in voices" :key="voice.name" :value="voice.name">
+                                                {{ voice.name }} ({{
+                                                        voice.lang
+                                                    }})
+                                            </option>
+                                        </select>
                                     </div>
 
-                                    <div class="col">
-                                        <label>
-                                            Increase size:
-                                            <i class="bi bi-plus-circle-fill h3 custom-icon-increase" aria-placeholder="Increase text size" @click="increaseFontSize"></i>
-                                        </label>
-                                    </div>
-                                    <div class="col">
-                                        <label>
-                                            Decrease size:
-                                            <i class="bi bi-dash-circle-fill h3 custom-icon-decrease" aria-placeholder="Decrease text size" @click="decreaseFontSize"></i>
-                                        </label>
-                                    </div>
-                                </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <label>
+                                                Rate:
+                                                <input class="rate" type="range" min="0.5" max="2" step="0.1" v-model="rate" @input="
+                                                            adjustRate(
+                                                                $event.target.value
+                                                            )
+                                                        " />
+                                            </label>
+                                        </div>
+                                        <div class="col">
+                                            <label>
+                                                Pitch:
+                                                <input class="pitch" type="range" min="0.5" max="2" step="0.1" v-model="pitch" @input="
+                                                            adjustPitch(
+                                                                $event.target.value
+                                                            )
+                                                        " />
+                                            </label>
+                                        </div>
 
-                                <!-- Success message alert (hidden by default) -->
-                                <div v-if="successMessage" class="alert alert-success" role="alert">
-                                    Settings saved successfully!
-                                </div>
+                                        <div class="col">
+                                            <label>
+                                                Increase size:
+                                                <i class="bi bi-plus-circle-fill h3 custom-icon-increase" aria-placeholder="Increase text size" @click="increaseFontSize"></i>
+                                            </label>
+                                        </div>
+                                        <div class="col">
+                                            <label>
+                                                Decrease size:
+                                                <i class="bi bi-dash-circle-fill h3 custom-icon-decrease" aria-placeholder="Decrease text size" @click="decreaseFontSize"></i>
+                                            </label>
+                                        </div>
+                                    </div>
 
-                                <!-- Buttons to save or cancel changes -->
-                                <div class="d-flex w-100 justify-content-end mt-3">
-                                    <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="offcanvas" aria-label="Close">
-                                        Cancel
-                                    </button>
-                                    <button type="button" class="btn btn-success" @click="saveSettings">
-                                        Save changes
-                                    </button>
+                                    <!-- Success message alert (hidden by default) -->
+                                    <div v-if="successMessage" class="alert alert-success" role="alert">
+                                        Settings saved successfully!
+                                    </div>
+
+                                    <!-- Buttons to save or cancel changes -->
+                                    <div class="d-flex w-100 justify-content-end mt-3">
+                                        <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="offcanvas" aria-label="Close">
+                                            Cancel
+                                        </button>
+                                        <button type="button" class="btn btn-success" @click="saveSettings">
+                                            Save changes
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                
+                    
+                    </div>
+                </div>
             </div>
+                
+            <div class="text-left word-count">
+                <p><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" /><b>Total Words:</b> {{ wordCount }}</p>
+            </div>
+            
+
+                <Translator translator="Ahmed Ali" />
+                <!-- Speech icons mobile only-->
+                
         </div>
             
         <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
@@ -248,6 +277,9 @@ export default {
             type: Boolean,
             default: false,
         },
+        props: {
+            isReading: Boolean,
+        },
     },
     computed: {
         wordCount() {
@@ -322,6 +354,9 @@ export default {
     },
 
     methods: {
+        playAudio() {
+            this.$emit('play-audio');
+        },
         stopAndHideAudioPlayer() {
             // Access the audio element through the ref and pause it
             this.$refs.audioPlayer.stop();
@@ -544,7 +579,7 @@ export default {
             // Update the rendered text with highlighting
             this.renderedText = `
         <span>${before}</span>
-        <span style="background-color: yellow;">${currentWord}</span>
+        <span style="background-color: rgba(0, 191, 166);">${currentWord}</span>
         <span>${after}</span>
       `;
         },

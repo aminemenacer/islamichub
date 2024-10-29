@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h5 class="mr-2 container">
-      <b class="container"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" />{{ information.ayah.surah.name_en }} {{ information.ayah.surah_id }}: {{ information.ayah.ayah_id }}</b>
+      <b class="container"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" />{{ information.ayah.surah.name_en }} {{ information.ayah.surah_id }} : {{ information.ayah.ayah_id }}</b>
     </h5>
   </div>
 </template>
