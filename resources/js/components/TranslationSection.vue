@@ -9,7 +9,7 @@
          <!-- Play Button -->
           <i 
             @click="playAudio" 
-            :class="['bi', isReading ? (isPaused ? 'bi-play-circle-fill' : 'bi-pause-circle-fill') : 'bi-play-circle-fill', 'h3', 'custom-icon-play']"
+            :class="['bi', isReading ? (isPaused ? 'bi-play-circle-fill' : 'bi-pause-circle-fill') : 'bi-play-circle-fill', 'h4', 'custom-icon-play']"
             style="cursor: pointer;" 
             aria-label="Play audio"
           />
@@ -20,27 +20,38 @@
     </div>
 
     <div ref="targetTranslationElement" class="row text-left mt-2">
-      <div class="col-11">
+      <!-- Text Column -->
+      <div class="col-10">
         <h4 class="ayah-translation" style="line-height: 1.6em" v-html="renderedText">
           {{ expanded ? information.translation : information.translation }}
         </h4>
       </div>
-      <div class="col-1 d-flex align-items-center justify-content-center">
-        <i @click="rewindAudio" :class="['bi', 'bi-rewind-circle-fill', 'h3', 'custom-icon-play']"
-           :style="{ cursor: isPlaying ? 'pointer' : 'not-allowed', color: isPlaying ? '#000' : '#555', opacity: isPlaying ? 1 : 0.5 }"
-           aria-label="Rewind translation audio">
+
+      <!-- Icons Column (Stacked Vertically) -->
+      <div class="col-2 d-flex align-items-center justify-content-center flex-column">
+        <!-- Rewind Button -->
+        <i @click="rewindAudio" 
+          :class="['bi', 'bi-rewind-circle-fill', 'h3', 'custom-icon-play']"
+          :style="{ cursor: isPlaying ? 'pointer' : 'not-allowed', color: isPlaying ? '#000' : '#555', opacity: isPlaying ? 1 : 0.5 }"
+          aria-label="Rewind translation audio">
         </i>
-        <i @click="toggleSpeech" :class="['bi', isReading ? (isPaused ? 'bi-play-circle-fill' : 'bi-pause-circle-fill') : 'bi-play-circle-fill', 'h3', 'custom-icon-play']"
-           style="cursor: pointer;" 
-           aria-label="Play or pause translation audio">
+
+        <!-- Play/Pause Button -->
+        <i @click="toggleSpeech" 
+          :class="['bi', isReading ? (isPaused ? 'bi-play-circle-fill' : 'bi-pause-circle-fill') : 'bi-play-circle-fill', 'h3', 'custom-icon-play']"
+          style="cursor: pointer;" 
+          aria-label="Play or pause translation audio">
         </i>
-        <i @click="stopReading" :class="['bi', 'bi-stop-circle-fill', 'h3', 'custom-icon-play']"
-           :style="{ cursor: isPlaying ? 'pointer' : 'not-allowed', color: isPlaying ? '#000' : '#555', opacity: isPlaying ? 1 : 0.5 }"
-           aria-label="Stop reading audio">
+
+        <!-- Stop Button -->
+        <i @click="stopReading" 
+          :class="['bi', 'bi-stop-circle-fill', 'h3', 'custom-icon-play']"
+          :style="{ cursor: isPlaying ? 'pointer' : 'not-allowed', color: isPlaying ? '#000' : '#555', opacity: isPlaying ? 1 : 0.5 }"
+          aria-label="Stop reading audio">
         </i>
       </div>
     </div>
-
+      
     <div class="text-left word-count mt-2">
       <h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" /><strong>Total Words: </strong>{{ wordCount }}</h6>
     </div>
@@ -164,6 +175,7 @@ export default {
   },
   data() {
     return {
+
       fontSize: 1.6,
       renderedText: "",
       isPaused: false,
@@ -429,7 +441,7 @@ export default {
       // Update the rendered text with highlighting
       this.renderedText = `
         <span>${before}</span>
-        <span style="background-color: rgba(0, 191, 166);">${currentWord}</span>
+        <span style="background-color: rgba(0, 191, 166, 4.133);padding:4px;border-radius:5px">${currentWord}</span>
         <span>${after}</span>
       `;
     },
@@ -591,6 +603,7 @@ audio {
   /* Adjust this width as needed for your breakpoint */
   .mobile-only {
     display: flex;
+    flex-direction: column !important;
     /* Show only on mobile */
   }
 

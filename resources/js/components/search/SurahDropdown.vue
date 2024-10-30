@@ -1,17 +1,16 @@
 <template>
     <form
-        class="right-side-form "
-        style="
-            cursor: pointer;
-            border-radius: 5px;
-        "
+        class="right-side-form"
+        style="cursor: pointer; border-radius: 5px;"
     >
         <select
             class="form-control custom-dropdown card"
             v-model="selectedSurahLocal"
             @change="handleChange"
         >
-            <option value="" disabled selected>Select a Surah</option>
+            <!-- Default placeholder option -->
+            <option value="" disabled>Select a Surah</option>
+            <!-- Dynamic options for surahs -->
             <option
                 v-for="data in filteredSurah.length ? filteredSurah : surat"
                 :key="data.id"
@@ -27,13 +26,16 @@
 export default {
     name: "SurahDropdown",
     props: {
-        selectedSurah: Number,
+        selectedSurah: {
+            type: Number,
+            default: null, // Default to null
+        },
         filteredSurah: Array,
         surat: Array,
     },
     data() {
         return {
-            selectedSurahLocal: this.selectedSurah,
+            selectedSurahLocal: this.selectedSurah || "", // Empty to start with "Select a Surah"
         };
     },
     methods: {
@@ -44,16 +46,23 @@ export default {
     },
     watch: {
         selectedSurah(newVal) {
-            this.selectedSurahLocal = newVal;
+            // Sync changes from parent to child, defaulting to ""
+            this.selectedSurahLocal = newVal || "";
         },
+    },
+    mounted() {
+        // Ensure selectedSurahLocal is set to "" if the prop is initially null or undefined
+        if (!this.selectedSurah) {
+            this.selectedSurahLocal = "";
+        }
     },
 };
 </script>
 
 <style scoped>
 .card {
- display: flex;
- border: 1px solid #00BFA6;
- border-radius: 10px;
+    display: flex;
+    border: 1px solid #00BFA6;
+    border-radius: 10px;
 }
 </style>
