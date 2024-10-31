@@ -12,7 +12,7 @@
             <option value="" disabled>Select a Surah</option>
             <!-- Dynamic options for surahs -->
             <option
-                v-for="data in filteredSurah.length ? filteredSurah : surat"
+                v-for="data in (filteredSurah.length ? filteredSurah : surat)"
                 :key="data.id"
                 :value="data.id"
             >
@@ -28,14 +28,20 @@ export default {
     props: {
         selectedSurah: {
             type: Number,
-            default: null, // Default to null
+            default: null,
         },
-        filteredSurah: Array,
-        surat: Array,
+        filteredSurah: {
+            type: Array,
+            default: () => [],
+        },
+        surat: {
+            type: Array,
+            default: () => [],
+        },
     },
     data() {
         return {
-            selectedSurahLocal: this.selectedSurah || "", // Empty to start with "Select a Surah"
+            selectedSurahLocal: this.selectedSurah ?? "", // Empty to ensure placeholder is shown
         };
     },
     methods: {
@@ -46,15 +52,9 @@ export default {
     },
     watch: {
         selectedSurah(newVal) {
-            // Sync changes from parent to child, defaulting to ""
-            this.selectedSurahLocal = newVal || "";
+            // Update local selection to show placeholder if necessary
+            this.selectedSurahLocal = newVal ?? "";
         },
-    },
-    mounted() {
-        // Ensure selectedSurahLocal is set to "" if the prop is initially null or undefined
-        if (!this.selectedSurah) {
-            this.selectedSurahLocal = "";
-        }
     },
 };
 </script>

@@ -55,6 +55,9 @@
     <div class="text-left word-count mt-2">
       <h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" /><strong>Total Words: </strong>{{ wordCount }}</h6>
     </div>
+    <div class="text-left mt-2">
+      <h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" /><strong>Reciter's name: </strong>Mishary Rashid Alafasy</h6>
+    </div>
 
     <Translator translator="Ahmed Ali" />
   </div>
@@ -175,7 +178,6 @@ export default {
   },
   data() {
     return {
-
       fontSize: 1.6,
       renderedText: "",
       isPaused: false,

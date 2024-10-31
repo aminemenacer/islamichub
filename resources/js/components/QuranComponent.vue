@@ -19,6 +19,7 @@
    
    <div style="display:flex" class="row">
     <SurahDropdown class="col-md-12" :selectedSurah="selectedSurah" :filteredSurah="filteredSurah" :surat="surat" @update:selectedSurah="updateSelectedSurah" @change="getAyat" /> 
+    
     <AddBookmark />
     
    </div>
@@ -359,7 +360,7 @@
      <TransliterationNote ref="transliterationNote" :information="modalInformation" />
      
     </div>
-      <audio v-if="showAudio && information != null" ref="audioPlayer" :src="information.ayah.audio_links" class='w-100 custom-audio' autoplay loop controls />
+      <audio v-if="information != null"  :src="information.ayah.audio_links" class='w-100 custom-audio' loop controls />
    </div>
 
    <!-- Speech Off-canvas 

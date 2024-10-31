@@ -1,9 +1,80 @@
 <template>
 <div class="w-100 my-element" :class="{ 'full-screen': isFullScreen }">
-    <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">
-        Close
-    </button>
-    <div ref="targetTafseerElement">
+  <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
+  <div>
+  <AyahInfo :information="information" />
+  <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
+    <div class="row">
+      <div class="col-md-1 pt-2 d-flex align-items-center justify-content-center">
+         <!-- Play Button -->
+          <i 
+            @click="playAudio" 
+            :class="['bi', isReading ? (isPaused ? 'bi-play-circle-fill' : 'bi-pause-circle-fill') : 'bi-play-circle-fill', 'h4', 'custom-icon-play']"
+            style="cursor: pointer;" 
+            aria-label="Play audio"
+          />
+      </div>
+      <div class="col-md-11">
+        <MainAyah :information="information" />
+      </div>
+    </div>
+
+    <div ref="targetTranslationElement" class="row text-left mt-2">
+      <!-- Text Column -->
+      <div class="col-10">
+        <h4 class="ayah-translation" style="line-height: 1.6em" >
+          {{ expanded ? tafseer : tafseer }}
+        </h4>
+        <div class="word-count">
+            <h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" /><strong>Total Words: </strong>{{ wordCount }}</h6>
+        </div>
+        <div>
+            <h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" /><strong>Reciter's name: </strong>Mishary Rashid Alafasy</h6>
+        </div>
+      </div>
+      
+
+      <!-- Icons Column (Stacked Vertically) -->
+      <div class="col-2 d-flex align-items-center justify-content-center flex-column">
+        <!-- Rewind Button -->
+        <i @click="rewindAudio" 
+          :class="['bi', 'bi-rewind-circle-fill', 'h3', 'custom-icon-play']"
+          :style="{ cursor: isPlaying ? 'pointer' : 'not-allowed', color: isPlaying ? '#000' : '#555', opacity: isPlaying ? 1 : 0.5 }"
+          aria-label="Rewind tafseer audio">
+        </i>
+
+        <!-- Play/Pause Button -->
+        <i @click="toggleSpeech" 
+          :class="['bi', isReading ? (isPaused ? 'bi-play-circle-fill' : 'bi-pause-circle-fill') : 'bi-play-circle-fill', 'h3', 'custom-icon-play']"
+          style="cursor: pointer;" 
+          aria-label="Play or pause tafseer audio">
+        </i>
+
+        <!-- Stop Button -->
+        <i @click="stopReading" 
+          :class="['bi', 'bi-stop-circle-fill', 'h3', 'custom-icon-play']"
+          :style="{ cursor: isPlaying ? 'pointer' : 'not-allowed', color: isPlaying ? '#000' : '#555', opacity: isPlaying ? 1 : 0.5 }"
+          aria-label="Stop reading audio">
+        </i>
+      </div>
+    </div>
+
+    <Translator translator="Ahmed Ali" />
+  </div>
+
+  <AlertModal 
+    :showAlertText="showAlertText" 
+    :showAlert="showAlert" 
+    :showErrorAlert="showErrorAlert" 
+    :showAlertTextNote="showAlertTextNote" 
+    @close-alert-text="closeAlertText" 
+  />
+</div>
+
+</div>
+</template>
+<!--
+     <div ref="targetTafseerElement">
         <AyahInfo :information="information" />
         <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
             <MainAyah :information="information" />
@@ -19,7 +90,7 @@
             <h6 class="text-left">
                 <img src="/images/art.png" class="pr-2" width="30px" alt="lamp" /><strong>Tafseer: </strong>Ibn Kathir
             </h6>
-            <!-- Speech icons mobile only-->
+            -- Speech icons mobile only-
             <div style="cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: space-between;" class="container pb-2 text-center mobile-only">
                 <div class="row">
                     <div class="col">
@@ -43,7 +114,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Speech Off-canvas -->
+            -- Speech Off-canvas --
             <div class="offcanvas offcanvas-end custom-offcanvas" tabindex="-1" id="offcanvasRightTafseer" aria-labelledby="offcanvasRightLabel">
                 <div class="offcanvas-header">
                     <h2><b>Speech Settings</b></h2>
@@ -51,7 +122,7 @@
                 </div>
                 <div class="offcanvas-body">
 
-                    <!-- Tab content -->
+                    -- Tab content --
                     <div class="tab-content mt-3" id="myTabContent">
                         <div class="tab-pane fade show active" id="Speech Settings" role="tabpanel" aria-labelledby="tab1-tab">
                             <div class="row mb-3">
@@ -87,12 +158,12 @@
                                 </div>
                             </div>
 
-                            <!-- Success message alert (hidden by default) -->
+                            -- Success message alert (hidden by default) -
                             <div v-if="successMessage" class="alert alert-success" role="alert">
                                 Settings saved successfully!
                             </div>
 
-                            <!-- Buttons to save or cancel changes -->
+                            -- Buttons to save or cancel changes --
                             <div class="d-flex w-100 justify-content-end mt-3">
                                 <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="offcanvas" aria-label="Close">Cancel</button>
                                 <button type="button" class="btn btn-success" @click="saveSettings">Save changes</button>
@@ -106,9 +177,7 @@
             <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
         </div>
     </div>
-</div>
-</template>
-
+    -->
 <script>
 import AyahInfo from "./translation/AyahInfo.vue";
 import MainAyah from "./translation/MainAyah.vue";
@@ -129,9 +198,28 @@ export default {
         showErrorAlert: Boolean,
         showAlertTextNote: Boolean,
     },
+    computed: {
+        wordCount() {
+        const text = this.expanded ?
+            this.tafseer :
+            this.tafseer;
+        return text ? text.trim().split(/\s+/).length : 0; // Calculate the word count
+        },
+
+        combinedText() {
+        // Get the ayah_text from information
+        const ayahText =
+            typeof this.information.ayah_text === "object" ?
+            this.information.ayah_text.text :
+            this.information.ayah_text;
+
+        // Return the formatted string
+        return `Translation: ${this.ayah_text}`;
+        }
+    },
     data() {
         return {
-            renderedText: this.tafseer,
+            // renderedText: this.tafseer,
             isPaused: false,
             isReading: false,
             resetDisabled: true,
@@ -202,6 +290,12 @@ export default {
         };
     },
     methods: {
+        playAudio() {
+            this.$emit('toggle-audio'); // Show the audio player in the parent component
+        },
+        pauseAudio() {
+            this.$emit('pause-audio'); // Trigger pause method in the parent
+        },
         saveSettings() {
             // Save settings to local storage
             localStorage.setItem('selectedVoice', JSON.stringify(this.selectedVoiceName));
@@ -339,7 +433,7 @@ export default {
             // Update the rendered text with highlighting
             this.renderedText = `
                 <span>${before}</span>
-                <span style="background-color: yellow;">${currentWord}</span>
+                <span style="background-color: rgba(0, 191, 166, 4.133);padding:4px;border-radius:5px">${currentWord}</span>
                 <span>${after}</span>
             `;
         },
@@ -411,6 +505,68 @@ export default {
 </script>
 
 <style scoped>
+
+audio {
+  display: block;
+  border-radius: 30px;
+  margin: 0 auto;
+  width: 100%;
+  border: 2px double rgba(0, 191, 166);
+  background-color: white;
+}
+
+.word-count {
+  margin-top: 10px;
+}
+
+.controls {
+  margin-top: 10px;
+}
+
+.ayah-container {
+  margin-bottom: 20px;
+}
+
+.ayah-text {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.ayah-audio {
+  margin-bottom: 20px;
+}
+
+.custom-offcanvas {
+  background-color: #10584f;
+  color: white;
+  width: 40%;
+}
+
+.custom-icon-play:hover {
+  color: rgb(13, 182, 145);
+  /* Default color */
+  transition: color 0.3s ease;
+  /* Smooth transition */
+}
+
+.custom-icon-increase:hover {
+  color: rgb(13, 182, 145);
+  /* Default color */
+  transition: color 0.3s ease;
+  /* Smooth transition */
+}
+
+.custom-icon-decrease:hover {
+  color: rgb(13, 182, 145);
+  /* Default color */
+  transition: color 0.3s ease;
+  /* Smooth transition */
+}
+
+.text-muted {
+  color: lightgrey;
+}
+
 .full-screen {
     position: fixed;
     top: 0;

@@ -628,6 +628,22 @@ export default {
  width: 40%;
 }
 
+@media (max-width: 768px) {
+
+  /* Adjust this width as needed for your breakpoint */
+  .mobile-only {
+    display: flex;
+    flex-direction: column !important;
+    /* Show only on mobile */
+  }
+
+  .custom-offcanvas {
+    background-color: #10584f;
+    color: white;
+    width: 100%;
+  }
+}
+
 .custom-offcanvas .result-item {
  margin-bottom: 15px;
 }

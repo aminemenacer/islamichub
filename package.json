@@ -17,7 +17,7 @@
         "lodash": "^4.17.21",
         "postcss": "^8.1.14",
         "postcss-import": "^16.1.0",
-        "resolve-url-loader": "^5.0.0",
+        "resolve-url-loader": "^3.1.5",
         "sass": "^1.56.1",
         "sass-loader": "^12.6.0",
         "vue": "^3.4.27",
