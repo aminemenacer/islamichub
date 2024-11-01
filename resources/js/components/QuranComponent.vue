@@ -104,6 +104,7 @@
        
        <!-- Translation Section -->
        <div class="tab-pane active content" id="home" role="tabpanel" v-if="information != null">
+         
  
         <!-- desktop top features -->
         <div :style="iconStyle">
@@ -361,7 +362,7 @@
      <TransliterationNote ref="transliterationNote" :information="modalInformation" />
      
     </div>
-      <audio v-if="information != null" ref="audioPlayer" :src="information.ayah.audio_links" class='w-100 custom-audio' autoplay loop controls />
+      <audio v-if="information != null" ref="audioPlayer" :src="information.ayah.audio_links" class='w-100 custom-audio' loop controls />
    </div>
 
    <!-- Speech Off-canvas 

@@ -35,32 +35,26 @@
         <div>
             <h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" /><strong>Reciter's name: </strong>Mishary Rashid Alafasy</h6>
         </div>
-        
       </div>
       
-
       <!-- Icons Column (Stacked Vertically) -->
       <div class="col-2 d-flex align-items-center justify-content-center flex-column">
-        <!-- Rewind Button -->
-        <i @click="rewindAudio" 
-          :class="['bi', 'bi-rewind-circle-fill', 'h3', 'custom-icon-play']"
-          :style="{ cursor: isPlaying ? 'pointer' : 'not-allowed', color: isPlaying ? '#000' : '#555', opacity: isPlaying ? 1 : 0.5 }"
-          aria-label="Rewind tafseer audio">
-        </i>
+            <!-- Play/Pause Button -->
+            <i 
+                @click="toggleSpeech" 
+                :class="['bi', isReading ? (isPaused ? 'bi-play-circle-fill' : 'bi-pause-circle-fill') : 'bi-play-circle-fill', 'h3', 'custom-icon-play']"
+                style="cursor: pointer;" 
+                aria-label="Play or pause translation audio">
+            </i>
 
-        <!-- Play/Pause Button -->
-        <i @click="toggleSpeech" 
-          :class="['bi', isReading ? (isPaused ? 'bi-play-circle-fill' : 'bi-pause-circle-fill') : 'bi-play-circle-fill', 'h3', 'custom-icon-play']"
-          style="cursor: pointer;" 
-          aria-label="Play or pause tafseer audio">
-        </i>
-
-        <!-- Stop Button -->
-        <i @click="stopReading" 
-          :class="['bi', 'bi-stop-circle-fill', 'h3', 'custom-icon-play']"
-          :style="{ cursor: isPlaying ? 'pointer' : 'not-allowed', color: isPlaying ? '#000' : '#555', opacity: isPlaying ? 1 : 0.5 }"
-          aria-label="Stop reading audio">
-        </i>
+            <!-- Stop Button -->
+            <i 
+                @click="stopReading" 
+                :class="['bi', 'bi-stop-circle-fill', 'h3', 'custom-icon-play']"
+                style="cursor: pointer;" 
+                :disabled="!isAudioPlaying"
+                aria-label="Stop reading audio">
+            </i>
       </div>
     </div>
 

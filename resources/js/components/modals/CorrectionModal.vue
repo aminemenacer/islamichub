@@ -9,7 +9,7 @@
         <div class="modal-body">
           <form @submit.prevent="createCorrection" id="reportForm">
             <!-- Rating -->
-            <h5 class="text-left"><b>Your Rating:</b></h5>
+            <h6 class="text-left"><b>Your Rating:</b></h6>
             <div class="text-center">
               <div class="row star-rating">
                 <div class="col container-fluid text-left">
@@ -21,26 +21,26 @@
             </div>
             <!-- Notes -->
             <div class="mb-3 mt-3 text-left">
-              <h5><b>What could we improve on? Record or type your message</b></h5>
+              <h6><b>What could we improve on?</b></h6>
             </div>
 
             <!-- Audio Recording Mode -->
             <div>
-              <div class="container pt-3 text-center">
+              <div class="container text-center">
                 <div class="row">
                   <div class="col">
-                    <!-- Start Button -->
                     <button type="button" class="btn btn-success me-2" @click="startRecognition" :disabled="isListening">
                       <i class="bi bi-play-circle text-white"></i> Start Recording
                     </button>
-
-                    <!-- Stop Button -->
+                  </div>
+                  <div class="col">
                     <button type="button" class="btn btn-danger" @click="stopRecognition" :disabled="!isListening">
                       <i class="bi bi-stop-circle text-white"></i> Stop Recording
                     </button>
                   </div>
                 </div>
               </div>
+            
 
               <!-- Status -->
               <div class="mt-3">
