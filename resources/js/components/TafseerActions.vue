@@ -75,7 +75,7 @@ export default {
  },
  computed: {
   combinedText() {
-   return `Tafseer: ${this.information.tafseer}`;
+   return `Tafseer: ${this.tafseer}`;
   }
  },
  methods: {
@@ -96,7 +96,7 @@ export default {
     surah_name: this.information.ayah.surah.name_en,
     ayah_num: this.information.ayah_id,
     ayah_verse_ar: this.information.ayah.ayah_text,
-    ayah_verse_en: this.information.tafseer,
+    ayah_verse_en: this.tafseer,
     user_id: this.userId,
    };
 

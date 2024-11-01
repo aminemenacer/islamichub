@@ -50,7 +50,7 @@
 
    <!-- Voice input button -->
    <button type="button" class="btn" @click="isListening ? stopVoiceRecognition() : startVoiceRecognition()" style="background:linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB); ">
-    <i class=" bi text-white pr-1" :class="isListening ? 'bi-stop-fill' : 'bi-mic-fill'" aria-hidden="true"></i><span style="color:white"><b>Voice Search</b></span>
+    <span style="color:white"><b>Voice Search</b></span>
    </button>
    <!--
     <button class="btn btn-info text-white" @click="searchWord"><i class="bi bi-search h4 text-white"></i></button>

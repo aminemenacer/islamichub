@@ -1,77 +1,78 @@
 <template>
-<div class="w-100 my-element" :class="{ 'full-screen': isFullScreen }">
-  <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
-  <div>
-  <AyahInfo :information="information" />
-  <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
-    <div class="row">
-      <div class="col-md-1 pt-2 d-flex align-items-center justify-content-center">
-         <!-- Play Button -->
-          <i 
-            @click="playAudio" 
-            :class="['bi', isReading ? (isPaused ? 'bi-play-circle-fill' : 'bi-pause-circle-fill') : 'bi-play-circle-fill', 'h4', 'custom-icon-play']"
-            style="cursor: pointer;" 
-            aria-label="Play audio"
-          />
+  <div class="w-100 my-element" :class="{ 'full-screen': isFullScreen }">
+    <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
+    <div>
+      <AyahInfo :information="information" />
+      <div 
+        @touchstart="handleStart" 
+        @touchend="handleEnd"
+        @mousedown="handleStart" 
+        @mouseup="handleEnd" 
+        @mouseleave="cancelHold"
+        class="swipeable-div w-100"
+      >
+        <div class="row">
+          <div class="col-md-1 pt-2 d-flex align-items-center justify-content-center">
+            <!-- Play Button -->
+          </div>
+          <div class="col-md-12">
+            <MainAyah :information="information" />
+          </div>
+        </div>
+
+        <div ref="targetTranslationElement" class="row text-left mt-2">
+          <!-- Text Column -->
+          <div class="col-10">
+            <h4 class="ayah-translation" style="line-height: 1.6em" v-html="renderedText">
+              {{ expanded ? information.translation : information.translation }}
+            </h4>
+          </div>
+
+          <!-- Icons Column (Stacked Vertically) -->
+          <div class="col-2 d-flex align-items-center justify-content-center flex-column">
+            <!-- Rewind Button -->
+            <i @click="rewindAudio" 
+              :class="['bi', 'bi-rewind-circle-fill', 'h3', 'custom-icon-play']"
+              :style="{ cursor: isPlaying ? 'pointer' : 'not-allowed', color: isPlaying ? '#000' : '#555', opacity: isPlaying ? 1 : 0.5 }"
+              aria-label="Rewind translation audio">
+            </i>
+
+            <!-- Play/Pause Button -->
+            <i @click="toggleSpeech" 
+              :class="['bi', isReading ? (isPaused ? 'bi-play-circle-fill' : 'bi-pause-circle-fill') : 'bi-play-circle-fill', 'h3', 'custom-icon-play']"
+              style="cursor: pointer;" 
+              aria-label="Play or pause translation audio">
+            </i>
+
+            <!-- Stop Button -->
+            <i @click="stopReading" 
+              :class="['bi', 'bi-stop-circle-fill', 'h3', 'custom-icon-play']"
+              :style="{ cursor: isPlaying ? 'pointer' : 'not-allowed', color: isPlaying ? '#000' : '#555', opacity: isPlaying ? 1 : 0.5 }"
+              aria-label="Stop reading audio">
+            </i>
+          </div>
+        </div>
+        
+        <div class="text-left word-count mt-2">
+          <h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" /><strong>Total Word count: </strong>{{ wordCount }}</h6>
+        </div>
+        <div class="text-left mt-2">
+          <Translator translator="Ahmed Ali" />
+        </div>
+        <div class="text-left mt-2">
+          <h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" /><strong>Reciter's name: </strong>Mishary Rashid Alafasy</h6>
+        </div>
       </div>
-      <div class="col-md-11">
-        <MainAyah :information="information" />
-      </div>
+
+      <AlertModal 
+        :showAlertText="showAlertText" 
+        :showAlert="showAlert" 
+        :showErrorAlert="showErrorAlert" 
+        :showAlertTextNote="showAlertTextNote" 
+        @close-alert-text="closeAlertText" 
+      />
     </div>
-
-    <div ref="targetTranslationElement" class="row text-left mt-2">
-      <!-- Text Column -->
-      <div class="col-10">
-        <h4 class="ayah-translation" style="line-height: 1.6em" v-html="renderedText">
-          {{ expanded ? information.translation : information.translation }}
-        </h4>
-      </div>
-
-      <!-- Icons Column (Stacked Vertically) -->
-      <div class="col-2 d-flex align-items-center justify-content-center flex-column">
-        <!-- Rewind Button -->
-        <i @click="rewindAudio" 
-          :class="['bi', 'bi-rewind-circle-fill', 'h3', 'custom-icon-play']"
-          :style="{ cursor: isPlaying ? 'pointer' : 'not-allowed', color: isPlaying ? '#000' : '#555', opacity: isPlaying ? 1 : 0.5 }"
-          aria-label="Rewind translation audio">
-        </i>
-
-        <!-- Play/Pause Button -->
-        <i @click="toggleSpeech" 
-          :class="['bi', isReading ? (isPaused ? 'bi-play-circle-fill' : 'bi-pause-circle-fill') : 'bi-play-circle-fill', 'h3', 'custom-icon-play']"
-          style="cursor: pointer;" 
-          aria-label="Play or pause translation audio">
-        </i>
-
-        <!-- Stop Button -->
-        <i @click="stopReading" 
-          :class="['bi', 'bi-stop-circle-fill', 'h3', 'custom-icon-play']"
-          :style="{ cursor: isPlaying ? 'pointer' : 'not-allowed', color: isPlaying ? '#000' : '#555', opacity: isPlaying ? 1 : 0.5 }"
-          aria-label="Stop reading audio">
-        </i>
-      </div>
-    </div>
-      
-    <div class="text-left word-count mt-2">
-      <h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" /><strong>Total Words: </strong>{{ wordCount }}</h6>
-    </div>
-    <div class="text-left mt-2">
-      <h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" /><strong>Reciter's name: </strong>Mishary Rashid Alafasy</h6>
-    </div>
-
-    <Translator translator="Ahmed Ali" />
   </div>
-
-  <AlertModal 
-    :showAlertText="showAlertText" 
-    :showAlert="showAlert" 
-    :showErrorAlert="showErrorAlert" 
-    :showAlertTextNote="showAlertTextNote" 
-    @close-alert-text="closeAlertText" 
-  />
-</div>
-
-</div>
 </template>
 
 <script>
@@ -152,8 +153,7 @@ export default {
       default: false
     },
     props: {
-      isReading: Boolean,
-      isPaused: Boolean
+      isPlaying: Boolean,
     }
 
   },
@@ -178,6 +178,14 @@ export default {
   },
   data() {
     return {
+      holdTimeout: null,
+      holdDuration: 1000,
+      tapCount: 0,
+      lastTap: 0,
+      lastTapTime: 0,
+      doubleTapThreshold: 300,
+      isHolding: false,
+      tapTimeout: null,
       fontSize: 1.6,
       renderedText: "",
       isPaused: false,
@@ -232,11 +240,38 @@ export default {
   },
 
   methods: {
-    playAudio() {
-      this.$emit('toggle-audio'); // Show the audio player in the parent component
+    handleStart() {
+      // Start hold timer
+      this.holdTimeout = setTimeout(() => {
+        this.isHolding = true;
+        this.toggleSpeech();
+      }, this.holdDuration);
     },
-    pauseAudio() {
-      this.$emit('pause-audio'); // Trigger pause method in the parent
+    handleEnd() {
+      clearTimeout(this.holdTimeout);
+
+      if (this.isHolding) {
+        // If it was a hold, reset holding state
+        this.isHolding = false;
+      } else {
+        // Check for double-tap if it was not a hold
+        const currentTime = new Date().getTime();
+        if (currentTime - this.lastTapTime <= this.doubleTapThreshold) {
+          this.toggleExpand();
+          this.lastTapTime = 0; // Reset last tap time after double-tap
+        } else {
+          this.lastTapTime = currentTime; // Update last tap time for next tap
+        }
+      }
+    },
+    cancelHold() {
+      // Cancel hold if user leaves the area before holding duration
+      clearTimeout(this.holdTimeout);
+      this.isHolding = false;
+    },
+    
+    toggleAudio() {
+      this.$emit('toggle-audio');
     },
     toggleExpand() {
       this.expanded = !this.expanded;
@@ -306,7 +341,7 @@ export default {
         this.selectedVoiceName = this.voices[0].name; // Fallback to the first available voice
       }
     },
-    // increaseFontSize() {
+   // increaseFontSize() {
     //   this.fontSize += 0.2; // Increase font size
     //   this.saveFontSize();
     // },
@@ -517,6 +552,7 @@ audio {
   border: 2px double rgba(0, 191, 166);
   background-color: white;
 }
+
 
 .word-count {
   margin-top: 10px;

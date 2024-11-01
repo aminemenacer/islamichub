@@ -173,7 +173,8 @@
               @handle-touch-end="handleTouchEnd" 
               @toggle-expand="toggleExpand" 
               @close-alert-text="closeAlertText" 
-              @toggle-audio="handleToggleAudio"
+              @toggle-audio="toggleAudio" 
+              :isPlaying="isPlaying"
             />          
           </div>
 
@@ -188,7 +189,7 @@
           <!-- toolbar mobile -->
         <div v-if="isOpen" class="collapse-content mobile-only" >
           <div class="card text-bg-light card-body">
-            <TranslationActions :targetTranslationRef="'targetTranslationElement'" :translation="translation" @open-modal="openModal" @submit-form="submitForm" @toggle-audio="handleToggleAudio" />
+            <TranslationActions :targetTranslationRef="'targetTranslationElement'" :translation="translation" @open-modal="openModal" @submit-form="submitForm" @toggle-audio="toggleAudio" :isPlaying="isPlaying"/>
           </div>
         </div>
 
@@ -252,7 +253,7 @@
 
         <!-- Main content  -->
         <div class="pt-2" ref="targetTafseerElement">
-         <TafseerSection :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
+         <TafseerSection @toggle-audio="toggleAudio" :isPlaying="isPlaying" :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
         </div>
 
         <div class="container-fluid text-center mobile-only">
@@ -266,7 +267,7 @@
         <!-- toolbar mobile -->
         <div v-if="isOpen" class="collapse-content mobile-only" >
           <div class="card text-bg-light card-body">
-            <TafseerActions :targetTafseerRef="'targetTafseerElement'" :tafseer="tafseer" @open-modal="openModal" @submit-form="submitForm" />
+            <TafseerActions @toggle-audio="toggleAudio" :isPlaying="isPlaying" :targetTafseerRef="'targetTafseerElement'" :tafseer="tafseer" @open-modal="openModal" @submit-form="submitForm" />
           </div>
         </div>
 
@@ -318,7 +319,7 @@
           </div>
 
           <div ref="targetTransliterationElement">
-           <TransliterationSection :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
+           <TransliterationSection @toggle-audio="toggleAudio" :isPlaying="isPlaying" :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
           </div>
 
           <div class="container-fluid text-center mobile-only">
@@ -332,7 +333,7 @@
           <!-- toolbar mobile -->
           <div v-if="isOpen" class="collapse-content mobile-only" >
             <div class="card text-bg-light card-body">
-              <TransliterationActions :targetTransliterationRef="'targetTransliterationElement'" :transliteration="transliteration" @open-modal="openModal" @submit-form="submitForm" />
+              <TransliterationActions @toggle-audio="toggleAudio" :isPlaying="isPlaying" :targetTransliterationRef="'targetTransliterationElement'" :transliteration="transliteration" @open-modal="openModal" @submit-form="submitForm" />
             </div>
           </div>
           <!-- end toolbar mobile -->
@@ -360,7 +361,7 @@
      <TransliterationNote ref="transliterationNote" :information="modalInformation" />
      
     </div>
-      <audio v-if="information != null"  :src="information.ayah.audio_links" class='w-100 custom-audio' loop controls />
+      <audio v-if="information != null" ref="audioPlayer" :src="information.ayah.audio_links" class='w-100 custom-audio' autoplay loop controls />
    </div>
 
    <!-- Speech Off-canvas 
@@ -908,14 +909,9 @@ computed: {
     }
 },
 methods: {
-  handleToggleAudio() {
-    this.showAudio = true; // Display audio element
-  },
-  pauseAudio() {
-    if (this.$refs.audioPlayer) {
-      this.$refs.audioPlayer.pause();
-    }
-  },
+  // toggleAudio() {
+  //   this.isPlaying = !this.isPlaying;
+  // },
   showSettingsOffcanvas() {
       // Select the offcanvas element by its ID
       const settingsOffcanvasElement = document.getElementById("settingsOffcanvas");
@@ -987,7 +983,7 @@ methods: {
       surah_name: this.information.ayah.surah.name_en,
       ayah_num: this.information.ayah_id,
       ayah_verse_ar: this.information.ayah.ayah_text,
-      ayah_verse_en: this.information.tafseer,
+      ayah_verse_en: this.tafseer,
       user_id: this.userId,
     };
     axios.post('/bookmarks', formData1)

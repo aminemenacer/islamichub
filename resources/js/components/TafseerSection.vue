@@ -3,18 +3,19 @@
   <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
   <div>
   <AyahInfo :information="information" />
-  <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
+  <div @touchstart="handleStart" @touchend="handleEnd" @mousedown="handleStart" @mouseup="handleEnd" @mouseleave="cancelHold" class="swipeable-div w-100">
     <div class="row">
       <div class="col-md-1 pt-2 d-flex align-items-center justify-content-center">
-         <!-- Play Button -->
+         <!-- Play Button
           <i 
             @click="playAudio" 
             :class="['bi', isReading ? (isPaused ? 'bi-play-circle-fill' : 'bi-pause-circle-fill') : 'bi-play-circle-fill', 'h4', 'custom-icon-play']"
             style="cursor: pointer;" 
             aria-label="Play audio"
-          />
+          /> 
+        -->
       </div>
-      <div class="col-md-11">
+      <div class="col-md-12">
         <MainAyah :information="information" />
       </div>
     </div>
@@ -26,11 +27,15 @@
           {{ expanded ? tafseer : tafseer }}
         </h4>
         <div class="word-count">
-            <h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" /><strong>Total Words: </strong>{{ wordCount }}</h6>
+            <h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" /><strong>Total Word count: </strong>{{ wordCount }}</h6>
+        </div>
+        <div>
+            <h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" /><strong>Tafseer: </strong>Tafseer Ibn Kathir</h6>
         </div>
         <div>
             <h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" /><strong>Reciter's name: </strong>Mishary Rashid Alafasy</h6>
         </div>
+        
       </div>
       
 
@@ -220,6 +225,15 @@ export default {
     data() {
         return {
             // renderedText: this.tafseer,
+            holdDuration: 1000,
+            tapCount: 0,
+            lastTap: 0,
+            lastTapTime: 0,
+            doubleTapThreshold: 300,
+            isHolding: false,
+            tapTimeout: null,
+            holdTimeout: null,
+            holdDuration: 1000,
             isPaused: false,
             isReading: false,
             resetDisabled: true,
@@ -290,6 +304,35 @@ export default {
         };
     },
     methods: {
+        handleStart() {
+        // Start hold timer
+            this.holdTimeout = setTimeout(() => {
+            this.isHolding = true;
+            this.toggleSpeech();
+        }, this.holdDuration);
+        },
+        handleEnd() {
+        clearTimeout(this.holdTimeout);
+
+        if (this.isHolding) {
+            // If it was a hold, reset holding state
+            this.isHolding = false;
+        } else {
+            // Check for double-tap if it was not a hold
+            const currentTime = new Date().getTime();
+            if (currentTime - this.lastTapTime <= this.doubleTapThreshold) {
+                this.toggleExpand();
+            this.lastTapTime = 0; // Reset last tap time after double-tap
+            } else {
+            this.lastTapTime = currentTime; // Update last tap time for next tap
+            }
+        }
+        },
+        cancelHold() {
+        // Cancel hold if user leaves the area before holding duration
+        clearTimeout(this.holdTimeout);
+        this.isHolding = false;
+        },
         playAudio() {
             this.$emit('toggle-audio'); // Show the audio player in the parent component
         },
