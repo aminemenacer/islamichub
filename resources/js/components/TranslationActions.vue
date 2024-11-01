@@ -19,8 +19,17 @@
 
     <!-- surah info icon -->
     <div class="icon-container">
-      <i style="cursor:pointer" class="bi bi-info-circle h4 mr-2 pl-2" data-bs-toggle="modal" data-bs-target="#translationInfo" aria-expanded="false" data-bs-placement="top" title="Surah info" :style="{ cursor: 'pointer' }"></i>
+      <!-- Trigger icon for Surah info modal -->
+      <i class="bi bi-info-circle h4 mr-2 pl-2" 
+        data-bs-toggle="modal" 
+        :data-bs-target="'#' + sectionType + 'Info'"
+        aria-expanded="false" 
+        data-bs-placement="top" 
+        :title="sectionType + ' Info'"
+        :style="{ cursor: 'pointer' }">
+      </i>
     </div>
+
 
 
 

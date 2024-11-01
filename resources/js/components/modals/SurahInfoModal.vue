@@ -1,27 +1,15 @@
 <template>
-  <div class="modal fade" id="translationInfo" tabindex="-1" aria-labelledby="surahInfoModalLabel" aria-hidden="true" @click.self="closeModal">
+  <div class="modal fade" :id="sectionType + 'Info'" tabindex="-1" :aria-labelledby="sectionType + 'InfoLabel'" aria-hidden="true" @click.self="closeModal">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="surahInfoModalLabel"><strong>Information</strong></h1>
+          <h1 class="modal-title fs-5" :id="sectionType + 'InfoLabel'"><strong>{{ sectionType }} Information</strong></h1>
           <button type="button" class="btn-close" @click="closeModal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form class="container text-left">
-            <div class="mb-3 container" v-if="information.ayah && information.ayah.surah">
-              <h2 for="formGroupExampleInput" class="form-label">Surah Name (English):</h2>
-              <p class="mt-2 text-dark text-left">{{ information.ayah.surah.name_en }}</p>
-            </div>
-            <div class="mb-3 container" v-if="information.ayah && information.ayah.surah">
-              <h2 for="formGroupExampleInput" class="form-label text-left">Surah Information:</h2>
-              <p class="text-left">
-                {{ expanded ? information.ayah.surah.text : truncatedText(information.ayah.surah.text) }}
-                <template v-if="showMoreLink">
-                  <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
-                </template>
-              </p>
-            </div>
-          </form>
+          <p v-if="sectionType === 'Translation'">{{ translationContent }}</p>
+          <p v-if="sectionType === 'Tafseer'">{{ tafseerContent }}</p>
+          <p v-if="sectionType === 'Transliteration'">{{ transliterationContent }}</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" @click="closeModal">Close</button>
@@ -30,42 +18,37 @@
     </div>
   </div>
 </template>
+
 <script>
 export default {
-  name: 'SurahInfoModal',
   props: {
-    information: {
-      type: Object,
+    sectionType: {
+      type: String,
       required: true
     }
   },
-  data() {
-    return {
-      expanded: false,
-      showMoreLink: true
-    };
+  mounted() {
+    const modalElement = document.getElementById(this.sectionType + 'Info');
+    if (modalElement) {
+      this.modalInstance = new bootstrap.Modal(modalElement);
+    }
   },
   methods: {
-    toggleExpand() {
-      this.expanded = !this.expanded;
-    },
-    truncatedText(text) {
-      if (!text) return '';
-      if (text.length > 400) {
-        this.showMoreLink = true;
-        return text.slice(0, 400) + '...';
-      }
-      this.showMoreLink = false;
-      return text;
-    },
     closeModal() {
-      this.$emit('close');
+      if (this.modalInstance) {
+        this.modalInstance.hide();
+      }
     }
   }
 };
 </script>
+
 <style scoped>
-.modal.fade.show {
-  display: block;
+.modal-content {
+  background-color: #f8f9fa; /* Light grey background */
+}
+
+.modal-backdrop.show {
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black backdrop */
 }
 </style>

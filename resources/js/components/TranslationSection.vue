@@ -23,31 +23,27 @@
         <div ref="targetTranslationElement" class="row text-left mt-2">
           <!-- Text Column -->
           <div class="col-10">
-            <h4 class="ayah-translation" style="line-height: 1.6em" v-html="renderedText">
+            <h4 class="ayah-translation" style="line-height: 1.6em" >
               {{ expanded ? information.translation : information.translation }}
             </h4>
           </div>
 
           <!-- Icons Column (Stacked Vertically) -->
           <div class="col-2 d-flex align-items-center justify-content-center flex-column">
-            <!-- Rewind Button -->
-            <i @click="rewindAudio" 
-              :class="['bi', 'bi-rewind-circle-fill', 'h3', 'custom-icon-play']"
-              :style="{ cursor: isPlaying ? 'pointer' : 'not-allowed', color: isPlaying ? '#000' : '#555', opacity: isPlaying ? 1 : 0.5 }"
-              aria-label="Rewind translation audio">
-            </i>
-
             <!-- Play/Pause Button -->
-            <i @click="toggleSpeech" 
-              :class="['bi', isReading ? (isPaused ? 'bi-play-circle-fill' : 'bi-pause-circle-fill') : 'bi-play-circle-fill', 'h3', 'custom-icon-play']"
-              style="cursor: pointer;" 
-              aria-label="Play or pause translation audio">
-            </i>
+              <i 
+                @click="toggleSpeech" 
+                :class="['bi', isReading ? (isPaused ? 'bi-play-circle-fill' : 'bi-pause-circle-fill') : 'bi-play-circle-fill', 'h3', 'custom-icon-play']"
+                style="cursor: pointer;" 
+                aria-label="Play or pause translation audio">
+              </i>
 
-            <!-- Stop Button -->
-            <i @click="stopReading" 
+              <!-- Stop Button -->
+              <i 
+              @click="stopReading" 
               :class="['bi', 'bi-stop-circle-fill', 'h3', 'custom-icon-play']"
-              :style="{ cursor: isPlaying ? 'pointer' : 'not-allowed', color: isPlaying ? '#000' : '#555', opacity: isPlaying ? 1 : 0.5 }"
+              style="cursor: pointer;" 
+              :disabled="!isAudioPlaying"
               aria-label="Stop reading audio">
             </i>
           </div>
@@ -190,6 +186,7 @@ export default {
       renderedText: "",
       isPaused: false,
       isReading: false,
+      isAudioPlaying: false,
       resetDisabled: true,
       utterance: null,
       currentFontSize: 1.6,
@@ -505,9 +502,10 @@ export default {
     // Stop reading
     stopReading() {
       window.speechSynthesis.cancel(); // Stop the speech synthesis
-      this.isReading = false; // Reset reading state
-      this.isPaused = false; // Reset paused state
-      console.log("Speech stopped.");
+      this.clearHighlight();
+      this.isReading = false; // Stop reading
+      this.isPaused = false; // Reset pause state
+      this.isAudioPlaying = false;
     },
     // Rewind the speech
     rewindSpeech() {

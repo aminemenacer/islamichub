@@ -107,8 +107,8 @@
           </div>
           
         </div>
-        <div class="pt-2 row">
-          <div class="col-md-6">
+        <div class="pt-2 row" style="padding:5px">
+          <div class="col-md-6 pb-1">
             <button @click="shareOnWhatsApp(result)" type="button" class="container btn btn-success w-100">
               <i @click="fastForwardSpeech"
               style="cursor: pointer;"
@@ -124,7 +124,6 @@
               class="bi bi-twitter ml-2 mr-2 custom-icon-play h5"></i><b>Share on X</b>
             </button>
           </div>
-
         </div>
         
            

@@ -110,7 +110,7 @@ export default {
         }, 
         
         {
-          field: "ratinge",
+          field: "rating",
           header: "Rating",
           sortable: true,
         },
