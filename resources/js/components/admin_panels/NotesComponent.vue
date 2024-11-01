@@ -43,9 +43,9 @@
        <h5><strong>Note:</strong></h5>
        <div class="mt-2 text-dark text-left" v-text="stripHtmlTags(note.ayah_notes)"></div>
       </div>
-      <div>
+      <!-- <div>
        <b>This note is: <b style="color:rgba(0, 191, 166);">{{ parseInt(note.option) === 0 ? 'public' : 'private' }}</b></b>
-      </div>
+      </div> -->
       <hr />
       <div class="container-fluid text-center">
        <div class="row">
@@ -122,7 +122,7 @@
     </div>
     <div class="modal-body">
      <div class="container">
-      <div class="mb-3">
+      <!-- <div class="mb-3">
        <label for="formGroupExampleInput" class="form-label"><strong>Surah Name:</strong></label>
        <p class="mt-2 text-dark text-left">
         {{ form.surah_name }}
@@ -139,7 +139,7 @@
        <p class="mt-2 text-dark text-left">
         {{ form.ayah_verse_en }}
        </p>
-      </div>
+      </div> -->
       <div class="mb-3">
        <label for="formGroupExampleInput" class="form-label"><strong>Notes:</strong></label>
        <div class="mt-2 text-dark text-left" v-html="form.ayah_notes"></div>

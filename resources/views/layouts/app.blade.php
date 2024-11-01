@@ -79,13 +79,13 @@
                         </li>
                         @guest
                         @if (Route::has('login'))
-                        <li class="nav-item display-5  pl-3 mt-3">
-                            <h6><a class=" nav-link" href="{{ route('login') }}"><b>{{ __('Login') }}</b></a></h6>
+                        <li class="nav-item display-6  pl-3 mt-3">
+                            <h6><a class=" nav-link" href="{{ route('login') }}"><b style="color:black">{{ __('Login') }}</b></a></h6>
                         </li>
                         @endif
                         @if (Route::has('register'))
-                        <li class="nav-item display-5  mt-3">
-                            <h6><a class=" nav-link" href="{{ route('register') }}"><b>{{ __('Register') }}</b></a>
+                        <li class="nav-item display-6 pl-3 mt-3">
+                            <h6><a class=" nav-link" href="{{ route('register') }}"><b style="color:black">{{ __('Register') }}</b></a>
                             </h6>
                         </li>
                         @endif
@@ -137,6 +137,7 @@
     .nav-link:hover {
         color: #00BFA6;
     }
+
 
     .button-33 {
         background-color: #00BFA6;
