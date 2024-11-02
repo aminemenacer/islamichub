@@ -5,7 +5,7 @@
     
   <div style="display:flex" class="container align-items-center">
   </div>
-    <AdvancedSearch  @input-change="handleInputChange" />
+    <AdvancedSearch v-if="isVisible"  @input-change="handleInputChange" />
     <custom-surah-selection :customSurat="customSuratList" v-model="selectedSurah"></custom-surah-selection>
   </div> 
     
@@ -67,9 +67,26 @@
   <div class="card content" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;">
     <div class="content" >
      <div class="container-fluid content" v-if="information != null">
-
-      <NavTabs />
-
+    
+      <div class="row">
+        <div class="col-md-10">
+          <NavTabs />
+        </div>
+        <div class="col-md-2">
+          <div class="form-check form-switch">
+            <input
+              class="form-check-input pt-2"
+              type="checkbox"
+              role="switch"
+              id="flexSwitchCheckDefault"
+              v-model="isVisible"
+              @change="saveToggleState"
+            />
+          </div>
+        </div>
+      </div>
+      
+    
       <!-- Surah info Modal -->
       <div class="modal fade" id="translationInfo" tabindex="-1" aria-labelledby="surahInfoModalLabel" aria-hidden="true" @click.self="closeModal">
        <div class="modal-dialog modal-lg">
@@ -107,9 +124,8 @@
        <!-- Translation Section -->
        <div class="tab-pane active content" id="home" role="tabpanel" v-if="information != null">
          
- 
         <!-- desktop top features -->
-        <div :style="iconStyle">
+        <div v-if="isVisible" :style="iconStyle">
           <div class="col pb-2 ">
             <i  :class="isOpen ? 'bi bi-x-circle-fill' : 'bi bi-plus-circle-fill'" class="text-left hide-on-mobile h4" @click="toggleContent"></i>
           </div>
@@ -130,7 +146,7 @@
                 <!--
                 <div class="col"><ScreenTranslationCapture style="cursor:pointer"  :targetTranslationRef="'targetTranslationElement'" /></div>
                 -->
-                <div class="col"><PdfDownload style="cursor:pointer" :targetTranslationRef="'targetTranslationElement'" /></div>                
+                <div class="col" v-if="isVisible"><PdfDownload style="cursor:pointer" :targetTranslationRef="'targetTranslationElement'" /></div>                
                 <!-- <div class="col"><VideoModal  @save-video-data="handleSave" /><i class="bi bi-play-circle h3" style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#videoModal"></i></div> -->
                 <!-- <div class="col"><i class="bi bi-paint-bucket h2" data-bs-toggle="offcanvas" style="cursor:pointer" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i></div> -->
                 <div class="col"><i style="cursor:pointer" class="bi bi-info-circle h4 mr-2 pl-2" data-bs-toggle="modal" data-bs-target="#translationInfo" aria-expanded="false" data-bs-placement="top" title="Surah info"></i></div>
@@ -145,7 +161,7 @@
         </div>
   
         <!-- mobile navigation  -->
-        <div class="dropdown mobile-only pb-2">
+        <div  class="dropdown mobile-only pb-2">
           <div :style="iconStyle" class="icon-container ">
             <i @click="submitForm" class="bi bi-bookmark mb-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse"></i>
             <i class="bi bi-chevron-bar-left h4" style="cursor:pointer" @click="goToFirstAyah()" title="Last verse"></i>
@@ -155,11 +171,10 @@
             <i class="bi bi-arrows-fullscreen h6" style="cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
 
             <!-- <i class="bi bi-paint-bucket h1" style="cursor:pointer" data-bs-toggle="offcanvas" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i> -->  
-          
           </div>
         </div>
         <!-- dropdown mobile content -->
-        <div>
+        <div >
           <div class="pt-2" ref="targetTranslationElement" >
             <TranslationSection  
               :information="information" 
@@ -181,7 +196,7 @@
             />          
           </div>
 
-          <div class="container-fluid text-center mobile-only">
+          <div v-if="isVisible" class="container-fluid text-center mobile-only">
             <div class="row">
               <div class="col">
                 <i :class="isOpen ? 'bi bi-x-circle' : 'bi bi-plus-circle-fill'" class="text-center mobile-only h3 pt-3" @click="toggleContent"></i>
@@ -190,11 +205,11 @@
           </div>
 
           <!-- toolbar mobile -->
-        <div v-if="isOpen" class="collapse-content mobile-only" >
-          <div class="card text-bg-light card-body">
-            <TranslationActions :targetTranslationRef="'targetTranslationElement'" :translation="translation" @open-modal="openModal" @submit-form="submitForm" @toggle-audio="toggleAudio" :isPlaying="isPlaying"/>
+          <div v-if="isOpen" class="collapse-content mobile-only" >
+            <div class="card text-bg-light card-body">
+              <TranslationActions :targetTranslationRef="'targetTranslationElement'" :translation="translation" @open-modal="openModal" @submit-form="submitForm" @toggle-audio="toggleAudio" :isPlaying="isPlaying"/>
+            </div>
           </div>
-        </div>
 
           <TranslationAction @open-modal="openModal" />
           
@@ -207,7 +222,7 @@
         <div >
      
          <!-- desktop top features -->
-          <div :style="iconStyle">
+          <div v-if="isVisible" :style="iconStyle">
             <div class="col pb-2">
               <i  :class="isOpen ? 'bi bi-x-circle-fill' : 'bi bi-plus-circle-fill'" class=" text-left hide-on-mobile h4" @click="toggleContent"></i>
             </div>
@@ -259,7 +274,7 @@
          <TafseerSection @toggle-audio="toggleAudio" :isPlaying="isPlaying" :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
         </div>
 
-        <div class="container-fluid text-center mobile-only">
+        <div v-if="isVisible" class="container-fluid text-center mobile-only">
           <div class="row">
             <div class="col">
               <i :class="isOpen ? 'bi bi-x-circle' : 'bi bi-plus-circle-fill'" class="text-center mobile-only h3 pt-3" @click="toggleContent"></i>
@@ -285,7 +300,7 @@
           <div class=" pb-3">
 
             <!-- desktop top features -->
-          <div :style="iconStyle">
+          <div v-if="isVisble" :style="iconStyle">
             <div class="col pb-2 ">
               <i  :class="isOpen ? 'bi bi-x-circle-fill' : 'bi bi-plus-circle-fill'" class=" text-left hide-on-mobile h4" @click="toggleContent"></i>
             </div>
@@ -325,7 +340,7 @@
            <TransliterationSection @toggle-audio="toggleAudio" :isPlaying="isPlaying" :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
           </div>
 
-          <div class="container-fluid text-center mobile-only">
+          <div v-if="isVisible" class="container-fluid text-center mobile-only">
             <div class="row">
               <div class="col">
                 <i :class="isOpen ? 'bi bi-x-circle' : 'bi bi-plus-circle-fill'" class="text-center mobile-only h3 pt-3" @click="toggleContent"></i>
@@ -374,10 +389,10 @@
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
-        <h5 class="fw-bold pb-4">Navigate through verses effortlessly using intuitive gesture controls designed to enhance your reading experience:</h5>
-        <h5 class="fw-bold">Swipe Left:</h5><p class="lead"> Move to the previous verse.</p>
-        <h5 class="fw-bold">Swipe Right:</h5><p class="lead"> Proceed to the next verse.</p>
-        <h5 class="fw-bold">Hold Gesture:</h5><p class="lead"> Activate Text-to-Speech (TTS) playback for the current verse.</p>
+        <h5 class="pb-4">Navigate through verses effortlessly using intuitive gesture controls designed to enhance your reading experience:</h5>
+        <h5 class="fw-bold">* Swipe Left:</h5><p class="lead"> Move to the previous verse.</p>
+        <h5 class="fw-bold">* Swipe Right:</h5><p class="lead"> Proceed to the next verse.</p>
+        <h5 class="fw-bold">* Hold On:</h5><p class="lead"> Activate Text-to-Speech (TTS) playback for the current verse.</p>
         <hr>
         <p class="lead">Explore with ease and enjoy a seamless, hands-free experience.</p>
       </div>
@@ -691,6 +706,7 @@ props: ['information', 'selectedFolderId'], information: {
     },
  data() {
   return {
+    isVisible: false,
     showAudio: false,
     userIsLoggedIn: true,
     newThemeName: "",
