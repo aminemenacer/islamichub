@@ -170,8 +170,7 @@ export default {
   computed: {
     wordCount() {
       const text = this.expanded ?
-        this.information.translation :
-        this.information.translation;
+        this.information.translation : this.information.translation;
       return text ? text.trim().split(/\s+/).length : 0; // Calculate the word count
     },
 

@@ -55,7 +55,8 @@ export default {
   },
   computed: {
     wordCount() {
-      const text = this.expanded ? this.transliteration : this.transliteration;
+      const text = this.expanded ?
+        this.information.transliteration : this.information.transliteration;
       return text ? text.trim().split(/\s+/).length : 0; // Calculate the word count
     },
     combinedText() {
@@ -66,7 +67,7 @@ export default {
         this.information.ayah_text;
 
       // Return the formatted string
-      return `Translation: ${this.ayah_text}`;
+      return `Transliteration: ${this.ayah_text}`;
     }
   },
   methods: {
