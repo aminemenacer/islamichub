@@ -2,58 +2,68 @@
 <div class="w-100 my-element" :class="{'full-screen': isFullScreen}">
   <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
   <div ref="targetTransliterationElement">
-    <AyahInfo :information="information" />
-    <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
-      <div class="row">
-        <div class="col-md-2 pt-2 d-flex align-items-center justify-content-center">
-          <i 
-            @click="toggleSpeechAyah" 
-            class="bi-play-circle-fill h4 custom-icon-play-main"
-            style="cursor: pointer;" 
-            aria-label="Play or pause translation audio"
-          ></i>
+   <AyahInfo :information="information" />
+      <div 
+        @touchstart="handleStart" 
+        @touchend="handleEnd"
+        @mousedown="handleStart" 
+        @mouseup="handleEnd" 
+        @mouseleave="cancelHold"
+        class="swipeable-div w-100">      
+        <div class="row">
+          <div class="col-2 d-flex align-items-center justify-content-center flex-column">
+            <i 
+              @click="toggleSpeechAyah" 
+              class="bi-play-circle-fill h4 custom-icon-play-main"
+              style="cursor: pointer;" 
+              aria-label="Play or pause translation audio"
+            ></i>
+            
+          </div>
+          <div class="col-md-10">
+            <MainAyah :information="information" />
+          </div>
         </div>
-        <div class="col-md-10">
-          <MainAyah :information="information" />
+
+        <div ref="targetTransliterationElement" class="row text-left mt-2">
+          <!-- Text Column -->
+          <div class="col-10">
+            <h4 class="ayah-translation" style="line-height: 1.6em" :style="{ fontSize: fontSize + 'em', lineHeight: '1.6em' }">
+              {{ expanded ? information.transliteration : information.transliteration }}
+            </h4>
+          </div>
+
+          <!-- Icons Column (Stacked Vertically) -->
+          <div class="col-2 d-flex align-items-center justify-content-center flex-column">
+            <!-- Play/Pause Button -->
+              
+
+              <i 
+                @click="increaseFontSize" 
+                class="bi bi-plus-circle-fill h3 custom-icon-increase"
+                style="cursor: pointer;" 
+                aria-label="Increase font size">
+              </i>
+
+              <i 
+                @click="decreaseFontSize" 
+                class="bi bi-dash-circle-fill h3 custom-icon-decrease"
+                style="cursor: pointer;" 
+                aria-label="Decrease font size">
+              </i>
+          </div>
         </div>
-      </div>
-      
-      <div ref="targetTransliterationElement" class="row text-left mt-2">
-        <div class="col-10">
-          <h4 class="ayah-translation" style="line-height: 1.6em" :style="{ fontSize: fontSize + 'em', lineHeight: '1.6em' }">
-            {{ expanded ? information.transliteration : information.transliteration }}
-          </h4>
+
+
+        <div class="text-left word-count mt-2">
+          <h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" /><strong>Total Word count: </strong>{{ wordCount }}</h6>
         </div>
+        <h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" /><strong>Transliteration: </strong>Saheeh International</h6>
+        <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
       </div>
-
-      <!-- Icons Column (Stacked Vertically) -->
-      <div class="col-2 d-flex align-items-center justify-content-center flex-column">
-        <!-- Play/Pause Button -->
-        <i 
-          @click="increaseFontSize" 
-          class="bi bi-plus-circle-fill h3 custom-icon-increase"
-          style="cursor: pointer;" 
-          aria-label="Increase font size">
-        </i>
-
-        <i 
-          @click="decreaseFontSize" 
-          class="bi bi-dash-circle-fill h3 custom-icon-decrease"
-          style="cursor: pointer;" 
-          aria-label="Decrease font size">
-        </i>
+      <div class="text-left mt-3">
+        <h6 class="text-left"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" /><strong>Reciter's name: </strong>Mishary Rashid Alafasy</h6>
       </div>
-
-
-      <div class="text-left word-count mt-2">
-        <h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" /><strong>Total Word count: </strong>{{ wordCount }}</h6>
-      </div>
-      <h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" /><strong>Transliteration: </strong>Saheeh International</h6>
-      <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
-    </div>
-    <div class="text-left mt-3">
-      <h6 class="text-left"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" /><strong>Reciter's name: </strong>Mishary Rashid Alafasy</h6>
-    </div>
   </div>
 
 </div>
