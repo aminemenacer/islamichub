@@ -81,7 +81,7 @@
       <div class="row mb-3">
        <b style="margin-right: 10px;" class="pr-2 pb-2">Ayah notes:</b>
        <div style="display: flex; align-items: center;" class="pt-2">
-        <textarea v-model="form.ayah_notes"  class="form-control pb-2" rows="5"></textarea>
+        <textarea v-model="form.ayah_notes" class="form-control pb-2" rows="5" @input="sanitizeInput"></textarea>
        </div>
       </div>
 
@@ -213,15 +213,14 @@ export default {
    });
  },
  methods: {
-   sanitizeInput(input) {
-    // Create a temporary element to strip HTML tags
+  sanitizeInput() {
     let tempDiv = document.createElement("div");
-    tempDiv.innerHTML = input;
-    return tempDiv.textContent || tempDiv.innerText || "";
+    tempDiv.innerHTML = this.form.ayah_notes;
+    this.form.ayah_notes = tempDiv.textContent || tempDiv.innerText || "";
   },
-   stripHtmlTags(text) {
-      return text ? text.replace(/<\/?[^>]+(>|$)/g, "") : '';
-    },
+  stripHtmlTags(text) {
+    return text ? text.replace(/<\/?[^>]+(>|$)/g, "") : '';
+  },
   viewModal(note) {
    // Populate the form object with the note's data
    console.log("Note Data:", note);

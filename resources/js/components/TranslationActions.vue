@@ -242,63 +242,51 @@ export default {
       const targetTranslationElement = this.$parent.$refs[this.targetTranslationRef];
 
       if (!targetTranslationElement) {
-        console.error("Invalid element provided as targetTranslationRef");
+        console.error("Invalid element provided as first argument");
         return;
       }
 
-      // Select all the elements you want to hide
-      const unwantedElements = [
-        '.icon-container', // All icons (bookmark, screenshot, etc.)
-        '.mobile-only', // WhatsApp and Twitter share buttons
-        '.container.text-center', // Voice, Rate, and Pitch controls
-        '.href' // Decrease text size button
-      ];
+      // Select elements to hide before generating the PDF
+      const unwantedElements = document.querySelectorAll(
+        '.icon-container, .href, .mobile-only, .bar, .pitch, .rate, .container.text-center, ' +
+        '.custom-icon-play, .bi-rewind-circle-fill, .bi-plus-circle-fill, .bi-dash-circle-fill, ' +
+        '.bi-play-circle-fill, .bi-pause-circle-fill, .bi-stop-circle-fill, .custom-icon-decrease'
+      );
 
-      // Function to hide elements
-      const hideElements = (selectorArray) => {
-        selectorArray.forEach(selector => {
-          const elements = document.querySelectorAll(selector);
-          elements.forEach(el => {
-            el.style.display = 'none';
-          });
+      // Add the hidden class to hide elements
+      unwantedElements.forEach(el => {
+        el.classList.add('hidden-for-pdf');
+      });
+
+      html2canvas(targetTranslationElement, {
+        scrollX: -window.scrollX,
+        scrollY: -window.scrollY,
+        windowWidth: document.documentElement.offsetWidth,
+        windowHeight: document.documentElement.scrollHeight // Full page height
+      })
+      .then(canvas => {
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF({
+          orientation: 'portrait',
+          unit: 'mm',
+          format: 'a4',
         });
-      };
 
-      // Function to show elements
-      const showElements = (selectorArray) => {
-        selectorArray.forEach(selector => {
-          const elements = document.querySelectorAll(selector);
-          elements.forEach(el => {
-            el.style.display = '';
-          });
+        // Adjust image dimensions to fit A4, considering PDF margins
+        const pdfWidth = 190; // Adjust for margins on A4
+        const imgHeight = (canvas.height * pdfWidth) / canvas.width;
+
+        pdf.addImage(imgData, 'PNG', 10, 10, pdfWidth, imgHeight);
+        pdf.save('download.pdf');
+
+        // Remove the hidden class after saving the PDF
+        unwantedElements.forEach(el => {
+          el.classList.remove('hidden-for-pdf');
         });
-      };
-
-      // Hide unwanted elements
-      hideElements(unwantedElements);
-
-      setTimeout(() => {
-        html2canvas(targetTranslationElement)
-          .then((canvas) => {
-            const imgData = canvas.toDataURL('image/png');
-            const pdf = new jsPDF({
-              orientation: 'portrait',
-              unit: 'mm',
-              format: 'a4',
-            });
-
-            pdf.addImage(imgData, 'PNG', 10, 10, 190, 0);
-            pdf.save('download.pdf');
-
-            // Restore the visibility of unwanted elements after capturing the screenshot
-            showElements(unwantedElements);
-          })
-          .catch((error) => {
-            console.error('Failed to capture HTML content:', error);
-            // Restore the visibility even if there's an error
-            showElements(unwantedElements);
-          });
-      }, 200);
+      })
+      .catch(error => {
+        console.error('Failed to capture HTML content:', error);
+      });
     },
 
     openFolderSelectionModal() {

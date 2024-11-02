@@ -12,10 +12,10 @@
         class="swipeable-div w-100"
       >
         <div class="row">
-          <div class="col-md-1 pt-2 d-flex align-items-center justify-content-center">
-            <!-- Play Button -->
+          <div class="col-md-2 pt-2 d-flex align-items-center justify-content-center">
+    
           </div>
-          <div class="col-md-12">
+          <div class="col-md-10">
             <MainAyah :information="information" />
           </div>
         </div>
@@ -23,7 +23,7 @@
         <div ref="targetTranslationElement" class="row text-left mt-2">
           <!-- Text Column -->
           <div class="col-10">
-            <h4 class="ayah-translation" style="line-height: 1.6em" >
+            <h4 class="ayah-translation" style="line-height: 1.6em" :style="{ fontSize: fontSize + 'em', lineHeight: '1.6em' }">
               {{ expanded ? information.translation : information.translation }}
             </h4>
           </div>
@@ -40,12 +40,26 @@
 
               <!-- Stop Button -->
               <i 
-              @click="stopReading" 
-              :class="['bi', 'bi-stop-circle-fill', 'h3', 'custom-icon-play']"
-              style="cursor: pointer;" 
-              :disabled="!isAudioPlaying"
-              aria-label="Stop reading audio">
-            </i>
+                @click="stopReading" 
+                :class="['bi', 'bi-stop-circle-fill', 'h3', 'custom-icon-play']"
+                style="cursor: pointer;" 
+                :disabled="!isAudioPlaying"
+                aria-label="Stop reading audio">
+              </i>
+
+              <i 
+                @click="increaseFontSize" 
+                class="bi bi-plus-circle-fill h3 custom-icon-increase"
+                style="cursor: pointer;" 
+                aria-label="Increase font size">
+              </i>
+
+              <i 
+                @click="decreaseFontSize" 
+                class="bi bi-dash-circle-fill h3 custom-icon-decrease"
+                style="cursor: pointer;" 
+                aria-label="Decrease font size">
+              </i>
           </div>
         </div>
         
@@ -174,6 +188,7 @@ export default {
   },
   data() {
     return {
+      fontSize: parseFloat(localStorage.getItem('ayahFontSize')) || 1,
       holdTimeout: null,
       holdDuration: 1000,
       tapCount: 0,
@@ -182,14 +197,12 @@ export default {
       doubleTapThreshold: 300,
       isHolding: false,
       tapTimeout: null,
-      fontSize: 1.6,
       renderedText: "",
       isPaused: false,
       isReading: false,
       isAudioPlaying: false,
       resetDisabled: true,
       utterance: null,
-      currentFontSize: 1.6,
       selectedVoiceName: "",
       selectedVoice: null,
       successMessage: false,
@@ -223,7 +236,7 @@ export default {
     if (savedFontSize) {
       this.currentFontSize = parseInt(savedFontSize, 10);
     } else {
-      this.currentFontSize = 20; // Default font size
+      this.currentFontSize = 14; // Default font size
     }
 
     // Load voices initially
@@ -338,19 +351,19 @@ export default {
         this.selectedVoiceName = this.voices[0].name; // Fallback to the first available voice
       }
     },
-   // increaseFontSize() {
-    //   this.fontSize += 0.2; // Increase font size
-    //   this.saveFontSize();
-    // },
-    // decreaseFontSize() {
-    //   if (this.fontSize > 1) {
-    //     this.fontSize -= 0.2; // Decrease font size
-    //     this.saveFontSize();
-    //   }
-    // },
-    // saveFontSize() {
-    //   localStorage.setItem('ayahFontSize', this.fontSize); // Store font size in local storage
-    // },
+    increaseFontSize() {
+      this.fontSize += 0.2; // Increase font size
+      this.saveFontSize();
+    },
+    decreaseFontSize() {
+      if (this.fontSize > 1) {
+        this.fontSize -= 0.2; // Decrease font size
+        this.saveFontSize();
+      }
+    },
+    saveFontSize() {
+      localStorage.setItem('ayahFontSize', this.fontSize); // Store font size in local storage
+    },
 
     selectBestVoice() {
       const preferredVoices = [

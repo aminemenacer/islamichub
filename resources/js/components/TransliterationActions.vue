@@ -203,13 +203,11 @@ export default {
     return;
    }
 
-   // Select all the elements you want to hide
-   const unwantedElements = [
-    '.icon-container', // All icons (bookmark, screenshot, etc.)
-    '.mobile-only', // WhatsApp and Twitter share buttons
-    '.container.text-center', // Voice, Rate, and Pitch controls
-    '.href' // Decrease text size button
-   ];
+  const unwantedElements = document.querySelectorAll(
+    '.icon-container, .href, .mobile-only, .bar, .pitch, .rate, .container.text-center, ' +
+    '.custom-icon-play, .bi-rewind-circle-fill, .bi-plus-circle-fill, .bi-dash-circle-fill, ' +
+    '.bi-play-circle-fill, .bi-pause-circle-fill, .bi-stop-circle-fill, .custom-icon-decrease'
+  );
 
    // Function to hide elements
    const hideElements = (selectorArray) => {

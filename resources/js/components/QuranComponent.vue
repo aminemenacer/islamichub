@@ -45,6 +45,8 @@
        <i class="bi bi-arrow-left-circle h4 custom-prev-ayah" style="cursor:pointer" @click="goToPreviousAyah" title="Previous verse"></i>
        <i class="bi bi-arrow-right-circle h4 custom-next-ayah" style="cursor:pointer" @click="goToNextAyah" title="Next verse"></i>
        <i class="bi bi-chevron-bar-right h4 custom-last-verse" style="cursor:pointer" @click="goToLastAyah" title="Last verse"></i>
+       <i class="bi bi-info-circle h4 custom-last-verse" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i>
+
       </div>
 
       <div class="custom-scrollbar pb-5" style="overflow-y: auto; max-height: 600px; background: white;border-radius:10px;box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;">
@@ -364,6 +366,23 @@
     </div>
       <audio v-if="information != null" ref="audioPlayer" :src="information.ayah.audio_links" class='w-100 custom-audio' loop controls />
    </div>
+
+    <!-- gesture instructions -->
+    <div class="offcanvas offcanvas-end custom-offcanvas" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+      <div class="offcanvas-header">
+        <h4 class="offcanvas-title" id="offcanvasRightLabel"><b>Gesture Navigation Instructions</b></h4>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <h5 class="fw-bold pb-4">Navigate through verses effortlessly using intuitive gesture controls designed to enhance your reading experience:</h5>
+        <h5 class="fw-bold">Swipe Left:</h5><p class="lead"> Move to the previous verse.</p>
+        <h5 class="fw-bold">Swipe Right:</h5><p class="lead"> Proceed to the next verse.</p>
+        <h5 class="fw-bold">Hold Gesture:</h5><p class="lead"> Activate Text-to-Speech (TTS) playback for the current verse.</p>
+        <hr>
+        <p class="lead">Explore with ease and enjoy a seamless, hands-free experience.</p>
+      </div>
+    </div>
+
 
    <!-- Speech Off-canvas 
     <div
