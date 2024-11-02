@@ -64,6 +64,10 @@ export default {
    type: String,
    required: true
   },
+  isVisible: {
+    type: Boolean,
+    required: true
+  },
   targetTransliterationRef: {
    type: String,
    default: 'targetTransliterationElement'
@@ -249,6 +253,11 @@ export default {
      console.error('Failed to capture HTML content:', error);
      showElements(unwantedElements);
     });
+  },
+  watch:{
+    isVisible() {
+      this.$emit('toggle-change');
+    }
   }
  }
 };

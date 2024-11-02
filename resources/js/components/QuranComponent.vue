@@ -46,7 +46,6 @@
        <i class="bi bi-arrow-right-circle h4 custom-next-ayah" style="cursor:pointer" @click="goToNextAyah" title="Next verse"></i>
        <i class="bi bi-chevron-bar-right h4 custom-last-verse" style="cursor:pointer" @click="goToLastAyah" title="Last verse"></i>
        <i class="bi bi-info-circle h4 custom-last-verse" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i>
-
       </div>
 
       <div class="custom-scrollbar pb-5" style="overflow-y: auto; max-height: 600px; background: white;border-radius:10px;box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;">
@@ -69,21 +68,25 @@
      <div class="container-fluid content" v-if="information != null">
     
       <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-6">
           <NavTabs />
         </div>
-        <div class="col-md-2">
-          <div class="form-check form-switch">
+        <div class="col-md-6">
+          <div class="form-check form-switch d-flex justify-content-between align-items-center">
+            <b>Basic</b>
             <input
-              class="form-check-input pt-2"
+              class="form-check-input mx-2 custom-offcanvas"
+              style="color:white"
               type="checkbox"
               role="switch"
               id="flexSwitchCheckDefault"
               v-model="isVisible"
               @change="saveToggleState"
             />
+            <b>Advanced</b>
           </div>
         </div>
+        
       </div>
       
     
@@ -152,11 +155,9 @@
                 <div class="col"><i style="cursor:pointer" class="bi bi-info-circle h4 mr-2 pl-2" data-bs-toggle="modal" data-bs-target="#translationInfo" aria-expanded="false" data-bs-placement="top" title="Surah info"></i></div>
                 <div class="col"><i title="Give feedback" style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-chat-left-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" ></i></div>
                 <div class="col"><i class="bi bi-arrows-fullscreen h4" style="cursor:pointer" @click="toggleFullScreen" title="Full screen"></i></div>
-                
               </div>
             </div>
             <hr style="border: 2px solid #333;"> 
-                   
           </div>                      
         </div>
   
@@ -169,14 +170,17 @@
             <i class="bi bi-arrow-right-circle h4" style="cursor:pointer" @click="goToNextAyah()" title="Next verse"></i>
             <i class="bi bi-chevron-bar-right h4" style="cursor:pointer" @click="goToLastAyah()" title="End verse"></i>
             <i class="bi bi-arrows-fullscreen h6" style="cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
-
+            <i class="bi bi-info-circle h4 custom-last-verse" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i>
+            
             <!-- <i class="bi bi-paint-bucket h1" style="cursor:pointer" data-bs-toggle="offcanvas" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i> -->  
           </div>
         </div>
         <!-- dropdown mobile content -->
-        <div >
+        <div>
           <div class="pt-2" ref="targetTranslationElement" >
             <TranslationSection  
+              :isVisible="isVisible" 
+              @toggle-change="saveToggleState"
               :information="information" 
               :isFullScreen="isFullScreen" 
               :expanded="expanded" 
@@ -265,13 +269,14 @@
            <i class="bi bi-chevron-bar-right h4" style="cursor:pointer"  @click="goToLastAyah()" title="End verse"></i>
            <!-- <i class="bi bi-paint-bucket h1" style="cursor:pointer" data-bs-toggle="offcanvas" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i> -->
            <i class="bi bi-arrows-fullscreen h6" style="cursor:pointer" @click="toggleFullScreen" title="Full screen"></i>
+           <i class="bi bi-info-circle h4 custom-last-verse" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i>
           </div>
          </div>
         </div>
 
         <!-- Main content  -->
         <div class="pt-2" ref="targetTafseerElement">
-         <TafseerSection @toggle-audio="toggleAudio" :isPlaying="isPlaying" :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
+         <TafseerSection :isVisible="isVisible" @toggle-change="saveToggleState" @toggle-audio="toggleAudio" :isPlaying="isPlaying" :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
         </div>
 
         <div v-if="isVisible" class="container-fluid text-center mobile-only">
@@ -285,7 +290,7 @@
         <!-- toolbar mobile -->
         <div v-if="isOpen" class="collapse-content mobile-only" >
           <div class="card text-bg-light card-body">
-            <TafseerActions @toggle-audio="toggleAudio" :isPlaying="isPlaying" :targetTafseerRef="'targetTafseerElement'" :tafseer="tafseer" @open-modal="openModal" @submit-form="submitForm" />
+            <TafseerActions  @toggle-audio="toggleAudio" :isPlaying="isPlaying" :targetTafseerRef="'targetTafseerElement'" :tafseer="tafseer" @open-modal="openModal" @submit-form="submitForm" />
           </div>
         </div>
 
@@ -294,72 +299,71 @@
 
        <!-- Transliteration Section -->
        <div class="tab-pane content" id="messages" role="tabpanel" v-if="information != null">
-        <div class="">
-         <div>
-          <!-- Ayah Controls -->
-          <div class=" pb-3">
+        <div>
+        <!-- Ayah Controls -->
+        <div class=" pb-3">
 
-            <!-- desktop top features -->
-          <div v-if="isVisble" :style="iconStyle">
-            <div class="col pb-2 ">
-              <i  :class="isOpen ? 'bi bi-x-circle-fill' : 'bi bi-plus-circle-fill'" class=" text-left hide-on-mobile h4" @click="toggleContent"></i>
-            </div>
-            <div v-if="isOpen" class=" hide-on-mobile ">
-              <div class="text-center">
-                <div  class="row pt-2">
-                  <div class="col"><i style="cursor:pointer"  class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('transliterationNote')" ></i></div>
-                  <div class="col"><i @click="submitFormTransliteration" style="cursor:pointer" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" title="Bookmark verse"></i></div>
-                  <!-- <div class="col"><ScreenTransliterationCapture style="cursor:pointer"  :targetTransliterationRef="'targetTransliterationElement'" /></div> -->
-                  <div class="col"><PdfDownloadTransliteration style="cursor:pointer"  :targetTransliterationRef="'targetTransliterationElement'" /></div>
-                  <div class="col"><i style="cursor:pointer" class="bi bi-info-circle h4 mr-2 pl-2" data-bs-toggle="modal" data-bs-target="#translationInfo" aria-expanded="false" data-bs-placement="top" title="Surah info"></i></div>
-                  <div class="col"><i title="Give feedback" style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-chat-left-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" ></i></div>
-                  <!-- <div class="col"><VideoModal  @save-video-data="handleSave" /><i class="bi bi-play-circle h3" style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#videoModal"></i></div> -->
-                  <!-- <div class="col"><i class="bi bi-paint-bucket h2" style="cursor:pointer" data-bs-toggle="offcanvas" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i></div> -->
-                  <div class="col"><i class="bi bi-arrows-fullscreen h4" style="cursor:pointer" @click="toggleFullScreen" title="Full screen"></i></div>
-                </div>
-              </div>
-              <hr style="border: 2px solid #333;">                
-            </div>                      
+          <!-- desktop top features -->
+        <div v-if="isVisble" :style="iconStyle">
+          <div class="col pb-2 ">
+            <i  :class="isOpen ? 'bi bi-x-circle-fill' : 'bi bi-plus-circle-fill'" class=" text-left hide-on-mobile h4" @click="toggleContent"></i>
           </div>
+          <div v-if="isOpen" class=" hide-on-mobile ">
+            <div class="text-center">
+              <div  class="row pt-2">
+                <div class="col"><i style="cursor:pointer"  class="bi bi-file-earmark-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="openModal('transliterationNote')" ></i></div>
+                <div class="col"><i @click="submitFormTransliteration" style="cursor:pointer" class="bi bi-bookmark text-right mr-2 h4" aria-expanded="false" title="Bookmark verse"></i></div>
+                <!-- <div class="col"><ScreenTransliterationCapture style="cursor:pointer"  :targetTransliterationRef="'targetTransliterationElement'" /></div> -->
+                <div class="col"><PdfDownloadTransliteration style="cursor:pointer"  :targetTransliterationRef="'targetTransliterationElement'" /></div>
+                <div class="col"><i style="cursor:pointer" class="bi bi-info-circle h4 mr-2 pl-2" data-bs-toggle="modal" data-bs-target="#translationInfo" aria-expanded="false" data-bs-placement="top" title="Surah info"></i></div>
+                <div class="col"><i title="Give feedback" style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-chat-left-text text-right mr-2 h4" aria-expanded="false" data-bs-placement="top" ></i></div>
+                <!-- <div class="col"><VideoModal  @save-video-data="handleSave" /><i class="bi bi-play-circle h3" style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#videoModal"></i></div> -->
+                <!-- <div class="col"><i class="bi bi-paint-bucket h2" style="cursor:pointer" data-bs-toggle="offcanvas" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i></div> -->
+                <div class="col"><i class="bi bi-arrows-fullscreen h4" style="cursor:pointer" @click="toggleFullScreen" title="Full screen"></i></div>
+              </div>
+            </div>
+            <hr style="border: 2px solid #333;">                
+          </div>                      
+        </div>
 
-           <!-- mobile navigation -->
-           <div class="dropdown mobile-only">
+          <!-- mobile navigation -->
+          <div class="dropdown mobile-only">
             <div :style="iconStyle" class="icon-container">
-             <i @click="submitFormTransliteration" class="bi bi-bookmark mb-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse"></i>
-             <i class="bi bi-chevron-bar-left h4" style="cursor:pointer" @click="goToFirstAyah()" title="Last verse"></i>
-             <i class="bi bi-arrow-left-circle h4" style="cursor:pointer" @click="goToPreviousAyah()" title="Previous verse"></i>
-             <i class="bi bi-arrow-right-circle h4"  style="cursor:pointer" @click="goToNextAyah()" title="Next verse"></i>
-             <i class="bi bi-chevron-bar-right h4" style="cursor:pointer" @click="goToLastAyah()" title="End verse"></i>
-             <!-- <i class="bi bi-paint-bucket h1" style="cursor:pointer" data-bs-toggle="offcanvas" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i> -->
-             <i class="bi bi-arrows-fullscreen h6" style="cursor:pointer" @click="toggleFullScreen" title="Full screen"></i> 
-            </div>
-           </div>
-          </div>
-
-          <div ref="targetTransliterationElement">
-           <TransliterationSection @toggle-audio="toggleAudio" :isPlaying="isPlaying" :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
-          </div>
-
-          <div v-if="isVisible" class="container-fluid text-center mobile-only">
-            <div class="row">
-              <div class="col">
-                <i :class="isOpen ? 'bi bi-x-circle' : 'bi bi-plus-circle-fill'" class="text-center mobile-only h3 pt-3" @click="toggleContent"></i>
-              </div>
+              <i @click="submitFormTransliteration" class="bi bi-bookmark mb-2 h4" aria-expanded="false" data-bs-placement="top" title="Bookmark verse"></i>
+              <i class="bi bi-chevron-bar-left h4" style="cursor:pointer" @click="goToFirstAyah()" title="Last verse"></i>
+              <i class="bi bi-arrow-left-circle h4" style="cursor:pointer" @click="goToPreviousAyah()" title="Previous verse"></i>
+              <i class="bi bi-arrow-right-circle h4"  style="cursor:pointer" @click="goToNextAyah()" title="Next verse"></i>
+              <i class="bi bi-chevron-bar-right h4" style="cursor:pointer" @click="goToLastAyah()" title="End verse"></i>
+              <!-- <i class="bi bi-paint-bucket h1" style="cursor:pointer" data-bs-toggle="offcanvas" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i> -->
+              <i class="bi bi-arrows-fullscreen h6" style="cursor:pointer" @click="toggleFullScreen" title="Full screen"></i> 
+              <i class="bi bi-info-circle h4 custom-last-verse" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i>
             </div>
           </div>
+        </div>
 
-          <!-- toolbar mobile -->
-          <div v-if="isOpen" class="collapse-content mobile-only" >
-            <div class="card text-bg-light card-body">
-              <TransliterationActions @toggle-audio="toggleAudio" :isPlaying="isPlaying" :targetTransliterationRef="'targetTransliterationElement'" :transliteration="transliteration" @open-modal="openModal" @submit-form="submitForm" />
+        <div ref="targetTransliterationElement">
+          <TransliterationSection :isVisible="isVisible" @toggle-audio="toggleAudio" :isPlaying="isPlaying" :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
+        </div>
+
+        <div v-if="isVisible" class="container-fluid text-center mobile-only">
+          <div class="row">
+            <div class="col">
+              <i :class="isOpen ? 'bi bi-x-circle' : 'bi bi-plus-circle-fill'" class="text-center mobile-only h3 pt-3" @click="toggleContent"></i>
             </div>
           </div>
-          <!-- end toolbar mobile -->
+        </div>
 
-          
-          <SurahInfoModal :information="information" />
+        <!-- toolbar mobile -->
+        <div v-if="isOpen" class="collapse-content mobile-only" >
+          <div class="card text-bg-light card-body">
+            <TransliterationActions @toggle-audio="toggleAudio" :isPlaying="isPlaying" :targetTransliterationRef="'targetTransliterationElement'" :transliteration="transliteration" @open-modal="openModal" @submit-form="submitForm" />
+          </div>
+        </div>
+        <!-- end toolbar mobile -->
 
-         </div>
+        
+        <SurahInfoModal :information="information" />
+
         </div>
 
        </div>
@@ -368,9 +372,7 @@
       </div>
      </div>
 
-     <!-- <div>
-      <BookmarksAndNotes :information="information" :iconColor="iconColor" />
-     </div> -->
+     
      <CorrectionModal />
      
      <!-- Modals -->
@@ -385,10 +387,11 @@
     <!-- gesture instructions -->
     <div class="offcanvas offcanvas-end custom-offcanvas" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
       <div class="offcanvas-header">
-        <h4 class="offcanvas-title" id="offcanvasRightLabel"><b>Gesture Navigation Instructions</b></h4>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <h4 class="offcanvas-title text-white" id="offcanvasRightLabel"><b>Gesture Navigation Instructions</b></h4>
+        <button type="button" class="btn-close text-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
-      <div class="offcanvas-body">
+      <hr class="text-white">
+      <div class="offcanvas-body text-white">
         <h5 class="pb-4">Navigate through verses effortlessly using intuitive gesture controls designed to enhance your reading experience:</h5>
         <h5 class="fw-bold">* Swipe Left:</h5><p class="lead"> Move to the previous verse.</p>
         <h5 class="fw-bold">* Swipe Right:</h5><p class="lead"> Proceed to the next verse.</p>
@@ -945,9 +948,7 @@ computed: {
     }
 },
 methods: {
-  // toggleAudio() {
-  //   this.isPlaying = !this.isPlaying;
-  // },
+  
   toggleAudio(isReading) {
     const audioPlayer = this.$refs.audioPlayer;
     if (isReading) {

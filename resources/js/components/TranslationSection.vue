@@ -34,7 +34,7 @@
           </div>
 
           <!-- Icons Column (Stacked Vertically) -->
-          <div class="col-2 d-flex align-items-center justify-content-center flex-column">
+          <div v-if="isVisible" class="col-2 d-flex align-items-center justify-content-center flex-column">
             <!-- Play/Pause Button -->
               <i 
                 @click="toggleSpeech" 
@@ -123,6 +123,10 @@ export default {
     Magnifier
   },
   props: {
+    isVisible: {
+      type: Boolean,
+      required: true
+    },
     iconColor: {
       type: String,
       default: "rgba(0, 191, 166)"
@@ -558,6 +562,11 @@ export default {
       this.$emit("close-alert-text");
     }
   },
+  watch: {
+    isVisible() {
+      this.$emit('toggle-change');
+    }
+  }
   // created() {
   //   const savedFontSize = localStorage.getItem('ayahFontSize');
   //   this.fontSize = savedFontSize ? parseFloat(savedFontSize) : this.fontSize; // Set initial font size

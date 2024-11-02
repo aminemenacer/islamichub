@@ -27,7 +27,7 @@
       </div>
       
       <!-- Icons Column (Stacked Vertically) -->
-			<div class="col-2 d-flex align-items-center justify-content-center flex-column">
+			<div v-if="isVisible" class="col-2 d-flex align-items-center justify-content-center flex-column">
 					<!-- Play/Pause Button -->
 				<i 
 					@click="toggleSpeech" 
@@ -201,6 +201,10 @@ export default {
 		AlertModal,
 	},
 	props: {
+		isVisible: {
+      type: Boolean,
+      required: true
+    },
 		information: Object,
 		isFullScreen: Boolean,
 		showAlertText: Boolean,
@@ -265,6 +269,9 @@ export default {
 		};
 	},
 	watch: {
+		isVisible() {
+      this.$emit('toggle-change');
+    },
 		// Watch for changes to `information.ayah.id`
 		"information.ayah.id": {
 				immediate: true, // Run on initial component mount as well
@@ -276,10 +283,10 @@ export default {
 		},
 	},
 	computed: {
-			wordCount() {
-					const text = this.expanded ? this.tafseer : this.tafseer;
-					return text ? text.trim().split(/\s+/).length : 0; // Calculate the word count
-			},
+		wordCount() {
+				const text = this.expanded ? this.tafseer : this.tafseer;
+				return text ? text.trim().split(/\s+/).length : 0; // Calculate the word count
+		},
 	},
 	mounted() {
 		this.renderedText = this.tafseer;
