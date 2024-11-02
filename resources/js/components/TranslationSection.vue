@@ -12,8 +12,14 @@
         class="swipeable-div w-100"
       >
         <div class="row">
-          <div class="col-md-2 pt-2 d-flex align-items-center justify-content-center">
-    
+          <div class="col-2 d-flex align-items-center justify-content-center flex-column">
+            <i 
+              @click="toggleSpeechAyah" 
+              class="bi-play-circle-fill h4 custom-icon-play-main"
+              style="cursor: pointer;" 
+              aria-label="Play or pause translation audio"
+            ></i>
+            
           </div>
           <div class="col-md-10">
             <MainAyah :information="information" />
@@ -167,6 +173,7 @@ export default {
     }
 
   },
+  emits: ['toggle-audio'],
   computed: {
     wordCount() {
       const text = this.expanded ?
@@ -249,6 +256,11 @@ export default {
   },
 
   methods: {
+    toggleSpeechAyah() {
+      this.isReading = !this.isReading;
+      this.isPaused = !this.isPaused;
+      this.$emit('toggle-audio', this.isReading);
+    },
     handleStart() {
       // Start hold timer
       this.holdTimeout = setTimeout(() => {
@@ -506,6 +518,7 @@ export default {
     // Resume reading
     resumeReading() {
       if (this.isPaused) {
+        this.toggleSpeechAyah()
         window.speechSynthesis.resume(); // Resume the paused speech
         this.isPaused = false; // Reset paused state
         console.log("Speech resumed.");
@@ -513,6 +526,7 @@ export default {
     },
     // Stop reading
     stopReading() {
+      this.toggleSpeechAyah()
       window.speechSynthesis.cancel(); // Stop the speech synthesis
       this.clearHighlight();
       this.isReading = false; // Stop reading
@@ -545,10 +559,10 @@ export default {
       this.$emit("close-alert-text");
     }
   },
-  created() {
-    const savedFontSize = localStorage.getItem('ayahFontSize');
-    this.fontSize = savedFontSize ? parseFloat(savedFontSize) : this.fontSize; // Set initial font size
-  },
+  // created() {
+  //   const savedFontSize = localStorage.getItem('ayahFontSize');
+  //   this.fontSize = savedFontSize ? parseFloat(savedFontSize) : this.fontSize; // Set initial font size
+  // },
 };
 </script>
 
@@ -590,6 +604,8 @@ audio {
   color: white;
   width: 40%;
 }
+
+
 
 .custom-icon-play:hover {
   color: rgb(13, 182, 145);

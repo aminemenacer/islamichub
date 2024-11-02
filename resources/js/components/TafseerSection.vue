@@ -6,7 +6,12 @@
 		<div @touchstart="handleStart" @touchend="handleEnd" @mousedown="handleStart" @mouseup="handleEnd" @mouseleave="cancelHold" class="swipeable-div w-100">
 			<div class="row">
 				<div class="col-md-2 pt-2 d-flex align-items-center justify-content-center">
-	
+					<i 
+						@click="toggleSpeechAyah" 
+						class="bi-play-circle-fill h4 custom-icon-play-main"
+						style="cursor: pointer;" 
+						aria-label="Play or pause translation audio"
+					></i>
 				</div>
 				<div class="col-md-10">
 						<MainAyah :information="information" />
@@ -219,7 +224,7 @@ export default {
 					this.information.ayah_text;
 
 			// Return the formatted string
-			return `Translation: ${this.ayah_text}`;
+			return `Tafseer: ${this.ayah_text}`;
 		}
 	},
 	data() {
@@ -260,15 +265,15 @@ export default {
 		};
 	},
 	watch: {
-			// Watch for changes to `information.ayah.id`
-			"information.ayah.id": {
-					immediate: true, // Run on initial component mount as well
-					handler(newId, oldId) {
-							if (newId !== oldId) {
-									this.fetchTafseer(newId); // Refetch tafseer when ayah ID changes
-							}
-					},
-			},
+		// Watch for changes to `information.ayah.id`
+		"information.ayah.id": {
+				immediate: true, // Run on initial component mount as well
+				handler(newId, oldId) {
+						if (newId !== oldId) {
+								this.fetchTafseer(newId); // Refetch tafseer when ayah ID changes
+						}
+				},
+		},
 	},
 	computed: {
 			wordCount() {
@@ -277,275 +282,280 @@ export default {
 			},
 	},
 	mounted() {
-			this.renderedText = this.tafseer;
-			if (this.information?.ayah?.id) {
-				this.fetchTafseer(this.information.ayah.id);
-			}
-			// Load saved settings from local storage on page load
-			const savedVoiceName = localStorage.getItem('selectedVoice');
-			const savedRate = localStorage.getItem('rate');
-			const savedPitch = localStorage.getItem('pitch');
-			const savedFontSize = localStorage.getItem('fontSize');
+		this.renderedText = this.tafseer;
+		if (this.information?.ayah?.id) {
+			this.fetchTafseer(this.information.ayah.id);
+		}
+		// Load saved settings from local storage on page load
+		const savedVoiceName = localStorage.getItem('selectedVoice');
+		const savedRate = localStorage.getItem('rate');
+		const savedPitch = localStorage.getItem('pitch');
+		const savedFontSize = localStorage.getItem('fontSize');
 
-			if (savedVoiceName) this.selectedVoiceName = JSON.parse(savedVoiceName); // Use selectedVoiceName instead of selectedVoice
-			if (savedRate) this.rate = parseFloat(savedRate);
-			if (savedPitch) this.pitch = parseFloat(savedPitch);
-			if (savedFontSize) {
-					this.currentFontSize = parseInt(savedFontSize, 10);
-			} else {
-					this.currentFontSize = 14; // Default font size
-			}
+		if (savedVoiceName) this.selectedVoiceName = JSON.parse(savedVoiceName); // Use selectedVoiceName instead of selectedVoice
+		if (savedRate) this.rate = parseFloat(savedRate);
+		if (savedPitch) this.pitch = parseFloat(savedPitch);
+		if (savedFontSize) {
+			this.currentFontSize = parseInt(savedFontSize, 10);
+		} else {
+			this.currentFontSize = 14; // Default font size
+		}
 
-			// Load voices initially
+		// Load voices initially
+		this.loadVoices();
+		// Ensure voices are fully loaded before attempting to play
+		window.speechSynthesis.onvoiceschanged = () => {
 			this.loadVoices();
-			// Ensure voices are fully loaded before attempting to play
-			window.speechSynthesis.onvoiceschanged = () => {
-					this.loadVoices();
-					this.voicesLoaded = true; // Set a flag to confirm voices are loaded
-			};
+			this.voicesLoaded = true; // Set a flag to confirm voices are loaded
+		};
 	},
 	methods: {
-			handleStart() {
-			// Start hold timer
-					this.holdTimeout = setTimeout(() => {
-					this.isHolding = true;
-					this.toggleSpeech();
-			}, this.holdDuration);
-			},
-			handleEnd() {
-			clearTimeout(this.holdTimeout);
+		toggleSpeechAyah() {
+      this.isReading = !this.isReading;
+      this.isPaused = !this.isPaused;
+      this.$emit('toggle-audio', this.isReading);
+    },
+		handleStart() {
+		// Start hold timer
+			this.holdTimeout = setTimeout(() => {
+			this.isHolding = true;
+			this.toggleSpeech();
+		}, this.holdDuration);
+		},
+		handleEnd() {
+		clearTimeout(this.holdTimeout);
 
-			if (this.isHolding) {
-					// If it was a hold, reset holding state
-					this.isHolding = false;
+		if (this.isHolding) {
+				// If it was a hold, reset holding state
+			this.isHolding = false;
+		} else {
+			// Check for double-tap if it was not a hold
+			const currentTime = new Date().getTime();
+			if (currentTime - this.lastTapTime <= this.doubleTapThreshold) {
+					this.toggleExpand();
+			this.lastTapTime = 0; // Reset last tap time after double-tap
 			} else {
-					// Check for double-tap if it was not a hold
-					const currentTime = new Date().getTime();
-					if (currentTime - this.lastTapTime <= this.doubleTapThreshold) {
-							this.toggleExpand();
-					this.lastTapTime = 0; // Reset last tap time after double-tap
-					} else {
-					this.lastTapTime = currentTime; // Update last tap time for next tap
+			this.lastTapTime = currentTime; // Update last tap time for next tap
+			}
+		}
+		},
+		cancelHold() {
+		// Cancel hold if user leaves the area before holding duration
+		clearTimeout(this.holdTimeout);
+		this.isHolding = false;
+		},
+		playAudio() {
+			this.$emit('toggle-audio'); // Show the audio player in the parent component
+		},
+		pauseAudio() {
+			this.$emit('pause-audio'); // Trigger pause method in the parent
+		},
+		saveSettings() {
+			// Save settings to local storage
+			localStorage.setItem('selectedVoice', JSON.stringify(this.selectedVoiceName));
+			localStorage.setItem('rate', this.rate);
+			localStorage.setItem('pitch', this.pitch);
+			// Show success message
+			this.successMessage = true;
+			// Close the modal after a short delay
+			setTimeout(() => {
+					this.successMessage = false;
+					const offcanvasElement = document.getElementById('offcanvasRight'); // Change to the correct element ID
+					const offcanvasInstance = bootstrap.Offcanvas.getInstance(offcanvasElement);
+					if (offcanvasInstance) {
+							offcanvasInstance.hide(); // Close the offcanvas
+					}
+			}, 1000); // 1 second delay
+		},
+		closeModal() {
+			const modalElement = document.getElementById('speechModal');
+			const modalInstance = bootstrap.Modal.getInstance(modalElement);
+
+			if (modalInstance) {
+					modalInstance.hide();
+					// Dispose of the modal to remove the grey background
+					modalInstance.dispose();
+			}
+		},
+		loadVoices() {
+			this.voices = window.speechSynthesis.getVoices();
+			// Set the selected voice if it exists in the voices array
+			const voice = this.voices.find(v => v.name === this.selectedVoiceName);
+			if (voice) {
+					this.selectedVoiceName = voice.name; // Set selectedVoiceName to a valid voice
+			} else if (this.voices.length > 0) {
+					this.selectedVoiceName = this.voices[0].name; // Fallback to the first available voice
+			}
+		},
+		increaseFontSize() {
+			this.fontSize += 0.2; // Increase font size
+			this.saveFontSize();
+		},
+		decreaseFontSize() {
+			if (this.fontSize > 1) {
+					this.fontSize -= 0.2; // Decrease font size
+					this.saveFontSize();
+			}
+		},
+		saveFontSize() {
+			localStorage.setItem('ayahFontSize', this.fontSize); // Store font size in local storage
+		},
+		selectBestVoice() {
+			const preferredVoices = [
+				'Google UK English Female',
+				'Microsoft Zira Desktop - English (United States)',
+				'Samantha',
+				'Google US English',
+				'Microsoft David Desktop - English (United States)',
+			];
+
+			for (const preferredVoice of preferredVoices) {
+					const voice = this.voices.find(v => v.name === preferredVoice);
+					if (voice) {
+							this.selectedVoice = voice;
+							return;
 					}
 			}
-			},
-			cancelHold() {
-			// Cancel hold if user leaves the area before holding duration
-			clearTimeout(this.holdTimeout);
-			this.isHolding = false;
-			},
-			playAudio() {
-					this.$emit('toggle-audio'); // Show the audio player in the parent component
-			},
-			pauseAudio() {
-					this.$emit('pause-audio'); // Trigger pause method in the parent
-			},
-			saveSettings() {
-					// Save settings to local storage
-					localStorage.setItem('selectedVoice', JSON.stringify(this.selectedVoiceName));
-					localStorage.setItem('rate', this.rate);
-					localStorage.setItem('pitch', this.pitch);
-					// Show success message
-					this.successMessage = true;
-					// Close the modal after a short delay
-					setTimeout(() => {
-							this.successMessage = false;
-							const offcanvasElement = document.getElementById('offcanvasRight'); // Change to the correct element ID
-							const offcanvasInstance = bootstrap.Offcanvas.getInstance(offcanvasElement);
-							if (offcanvasInstance) {
-									offcanvasInstance.hide(); // Close the offcanvas
-							}
-					}, 1000); // 1 second delay
-			},
-			closeModal() {
-					const modalElement = document.getElementById('speechModal');
-					const modalInstance = bootstrap.Modal.getInstance(modalElement);
-
-					if (modalInstance) {
-							modalInstance.hide();
-							// Dispose of the modal to remove the grey background
-							modalInstance.dispose();
-					}
-			},
-			loadVoices() {
-					this.voices = window.speechSynthesis.getVoices();
-					// Set the selected voice if it exists in the voices array
-					const voice = this.voices.find(v => v.name === this.selectedVoiceName);
-					if (voice) {
-							this.selectedVoiceName = voice.name; // Set selectedVoiceName to a valid voice
-					} else if (this.voices.length > 0) {
-							this.selectedVoiceName = this.voices[0].name; // Fallback to the first available voice
-					}
-			},
-			increaseFontSize() {
-					this.fontSize += 0.2; // Increase font size
-					this.saveFontSize();
-			},
-			decreaseFontSize() {
-					if (this.fontSize > 1) {
-							this.fontSize -= 0.2; // Decrease font size
-							this.saveFontSize();
-					}
-			},
-			saveFontSize() {
-					localStorage.setItem('ayahFontSize', this.fontSize); // Store font size in local storage
-			},
-			selectBestVoice() {
-					const preferredVoices = [
-							'Google UK English Female',
-							'Microsoft Zira Desktop - English (United States)',
-							'Samantha',
-							'Google US English',
-							'Microsoft David Desktop - English (United States)',
-					];
-
-					for (const preferredVoice of preferredVoices) {
-							const voice = this.voices.find(v => v.name === preferredVoice);
-							if (voice) {
-									this.selectedVoice = voice;
-									return;
-							}
-					}
-					if (this.voices.length > 0) {
-							this.selectedVoiceName = this.voices[0].name;
-					}
-					// If no preferred voice is found, choose the first available voice
-					this.selectedVoice = this.voices[0];
-			},
-			changeVoice(voiceName) {
-					this.selectedVoiceName = voiceName;
-					localStorage.setItem('selectedVoice', JSON.stringify(voiceName));
-			},
-			adjustRate(value) {
-					this.rate = parseFloat(value);
-			},
-			adjustPitch(value) {
-					this.pitch = parseFloat(value);
-			},
-			toggleSpeech() {
-					if (this.isReading) {
-							if (this.isPaused) {
-									this.resumeReading(); // Resume speech if paused
-							} else {
-									this.pauseReading(); // Pause speech if currently reading
-							}
-					} else {
-							this.readTextAloud(); // Start reading if not currently reading
-					}
-			},
-			// Read the displayed text aloud
-			// Read the displayed text aloud
-			readTextAloud() {
-					const text = this.tafseer;
-
-					// Cancel any ongoing speech first to ensure a clean start
-					window.speechSynthesis.cancel();
-
-					this.renderedText = text; // Set initial rendered text
-					this.utterance = new SpeechSynthesisUtterance(text);
-
-					// Set voice and speech properties
-					this.utterance.rate = 1;
-					this.utterance.pitch = 1;
-
-					// Handle word boundary event for highlighting
-					this.utterance.onboundary = (event) => {
-							if (event.name === 'word') {
-									const currentWord = text.slice(event.charIndex).split(' ')[0]; // Get the currently spoken word
-									this.highlightText(event.charIndex, currentWord); // Highlight the word
-							}
-					};
-
-					// Handle end of speech event
-					this.utterance.onend = () => {
-							this.isReading = false;
-							this.isPaused = false;
-							this.clearHighlight(); // Clear highlight after reading
-					};
-
-					// Start speaking
-					this.isReading = true;
-					window.speechSynthesis.speak(this.utterance);
-			},
-			highlightText(charIndex, currentWord) {
-					const text = this.tafseer;
-					const before = text.slice(0, charIndex);
-					const after = text.slice(charIndex + currentWord.length);
-
-					// Update the rendered text with highlighting
-					this.renderedText = `
-							<span>${before}</span>
-							<span style="background-color: rgba(0, 191, 166, 4.133);padding:4px;border-radius:5px">${currentWord}</span>
-							<span>${after}</span>
-					`;
-			},
-
-			clearHighlight() {
-					this.renderedText = `<span style="font-size: ${this.currentFontSize}px;">${this.tafseer}</span>`;
-			},
-			//Pause reading
-			pauseReading() {
-					if (this.isReading && !this.isPaused) {
-							window.speechSynthesis.pause(); // Pause the speech synthesis
-							this.isPaused = true; // Set paused state
-							console.log("Speech paused.");
-					}
-			},
-			// Resume reading
-			resumeReading() {
+			if (this.voices.length > 0) {
+					this.selectedVoiceName = this.voices[0].name;
+			}
+			// If no preferred voice is found, choose the first available voice
+			this.selectedVoice = this.voices[0];
+		},
+		changeVoice(voiceName) {
+			this.selectedVoiceName = voiceName;
+			localStorage.setItem('selectedVoice', JSON.stringify(voiceName));
+		},
+		adjustRate(value) {
+			this.rate = parseFloat(value);
+		},
+		adjustPitch(value) {
+			this.pitch = parseFloat(value);
+		},
+		toggleSpeech() {
+			if (this.isReading) {
 					if (this.isPaused) {
-							window.speechSynthesis.resume(); // Resume the paused speech
-							this.isPaused = false; // Reset paused state
-							console.log("Speech resumed.");
+							this.resumeReading(); // Resume speech if paused
+					} else {
+							this.pauseReading(); // Pause speech if currently reading
 					}
-			},
-			// Stop reading
-			stopReading() {
-					window.speechSynthesis.cancel(); // Stop the speech synthesis
-					this.isReading = false; // Reset reading state
+			} else {
+					this.readTextAloud(); // Start reading if not currently reading
+			}
+		},
+		// Read the displayed text aloud
+		// Read the displayed text aloud
+		readTextAloud() {
+			const text = this.tafseer;
+
+			// Cancel any ongoing speech first to ensure a clean start
+			window.speechSynthesis.cancel();
+
+			this.renderedText = text; // Set initial rendered text
+			this.utterance = new SpeechSynthesisUtterance(text);
+
+			// Set voice and speech properties
+			this.utterance.rate = 1;
+			this.utterance.pitch = 1;
+
+			// Handle word boundary event for highlighting
+			this.utterance.onboundary = (event) => {
+					if (event.name === 'word') {
+							const currentWord = text.slice(event.charIndex).split(' ')[0]; // Get the currently spoken word
+							this.highlightText(event.charIndex, currentWord); // Highlight the word
+					}
+			};
+
+			// Handle end of speech event
+			this.utterance.onend = () => {
+					this.isReading = false;
+					this.isPaused = false;
+					this.clearHighlight(); // Clear highlight after reading
+			};
+
+			// Start speaking
+			this.isReading = true;
+			window.speechSynthesis.speak(this.utterance);
+		},
+		highlightText(charIndex, currentWord) {
+			const text = this.tafseer;
+			const before = text.slice(0, charIndex);
+			const after = text.slice(charIndex + currentWord.length);
+
+			// Update the rendered text with highlighting
+			this.renderedText = `
+					<span>${before}</span>
+					<span style="background-color: rgba(0, 191, 166, 4.133);padding:4px;border-radius:5px">${currentWord}</span>
+					<span>${after}</span>
+			`;
+		},
+
+		clearHighlight() {
+				this.renderedText = `<span style="font-size: ${this.currentFontSize}px;">${this.tafseer}</span>`;
+		},
+		//Pause reading
+		pauseReading() {
+			if (this.isReading && !this.isPaused) {
+					window.speechSynthesis.pause(); // Pause the speech synthesis
+					this.isPaused = true; // Set paused state
+					console.log("Speech paused.");
+			}
+		},
+		// Resume reading
+		resumeReading() {
+			if (this.isPaused) {
+					window.speechSynthesis.resume(); // Resume the paused speech
 					this.isPaused = false; // Reset paused state
-					console.log("Speech stopped.");
-			},
-			// Rewind the speech
-			rewindSpeech() {
-					// Stop current speech and start again
-					this.stopReading();
-					this.readTextAloud(); // Restart the speech from the beginning
-					console.log("Speech rewinded.");
-			},
-			async fetchTafseer(ayahId) {
-					try {
-							const tafseerResponse = await axios.get(
-									`/tafseer/${ayahId}/fetch`
-							);
-							this.tafseer = tafseerResponse.data; // Assign the fetched data to the local state
-					} catch (error) {
-							console.error("Error fetching tafseer:", error);
-					}
-			},
-			toggleFullScreen() {
-					this.$emit("toggle-full-screen");
-			},
-			handleTouchStart(event) {
-					this.$emit("handle-touch-start", event);
-			},
-			handleTouchMove(event) {
-					this.$emit("handle-touch-move", event);
-			},
-			handleTouchEnd(event) {
-					this.$emit("handle-touch-end", event);
-			},
-			toggleExpand() {
-					this.expanded = !this.expanded; // Toggle expanded state locally
-			},
-			closeAlertText() {
-					this.$emit("close-alert-text");
-			},
+					console.log("Speech resumed.");
+			}
+		},
+		// Stop reading
+		stopReading() {
+			window.speechSynthesis.cancel(); // Stop the speech synthesis
+			this.isReading = false; // Reset reading state
+			this.isPaused = false; // Reset paused state
+			console.log("Speech stopped.");
+		},
+		// Rewind the speech
+		rewindSpeech() {
+			// Stop current speech and start again
+			this.stopReading();
+			this.readTextAloud(); // Restart the speech from the beginning
+			console.log("Speech rewinded.");
+		},
+		async fetchTafseer(ayahId) {
+			try {
+				const tafseerResponse = await axios.get(
+						`/tafseer/${ayahId}/fetch`
+				);
+				this.tafseer = tafseerResponse.data; // Assign the fetched data to the local state
+		} catch (error) {
+				console.error("Error fetching tafseer:", error);
+			}
+		},
+		toggleFullScreen() {
+				this.$emit("toggle-full-screen");
+		},
+		handleTouchStart(event) {
+				this.$emit("handle-touch-start", event);
+		},
+		handleTouchMove(event) {
+				this.$emit("handle-touch-move", event);
+		},
+		handleTouchEnd(event) {
+				this.$emit("handle-touch-end", event);
+		},
+		toggleExpand() {
+				this.expanded = !this.expanded; // Toggle expanded state locally
+		},
+		closeAlertText() {
+				this.$emit("close-alert-text");
+		},
 	},
-	created() {
-			const savedFontSize = localStorage.getItem('ayahFontSize');
-			this.fontSize = savedFontSize ? parseFloat(savedFontSize) : this.fontSize; // Set initial font size
-	},
+	// created() {
+	// 		const savedFontSize = localStorage.getItem('ayahFontSize');
+	// 		this.fontSize = savedFontSize ? parseFloat(savedFontSize) : this.fontSize; // Set initial font size
+	// },
 };
 </script>
 

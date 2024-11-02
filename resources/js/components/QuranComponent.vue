@@ -176,7 +176,7 @@
               @handle-touch-end="handleTouchEnd" 
               @toggle-expand="toggleExpand" 
               @close-alert-text="closeAlertText" 
-              @toggle-audio="toggleAudio" 
+              @toggle-audio="toggleAudio"
               :isPlaying="isPlaying"
             />          
           </div>
@@ -932,6 +932,14 @@ methods: {
   // toggleAudio() {
   //   this.isPlaying = !this.isPlaying;
   // },
+  toggleAudio(isReading) {
+    const audioPlayer = this.$refs.audioPlayer;
+    if (isReading) {
+      audioPlayer.play();
+    } else {
+      audioPlayer.pause();
+    }
+  },
   showSettingsOffcanvas() {
       // Select the offcanvas element by its ID
       const settingsOffcanvasElement = document.getElementById("settingsOffcanvas");
