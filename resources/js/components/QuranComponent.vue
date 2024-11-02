@@ -301,12 +301,12 @@
        <div class="tab-pane content" id="messages" role="tabpanel" v-if="information != null">
         <div>
         <!-- Ayah Controls -->
-        <div class=" pb-3">
+        <div class="pb-3">
 
           <!-- desktop top features -->
-        <div v-if="isVisble" :style="iconStyle">
-          <div class="col pb-2 ">
-            <i  :class="isOpen ? 'bi bi-x-circle-fill' : 'bi bi-plus-circle-fill'" class=" text-left hide-on-mobile h4" @click="toggleContent"></i>
+        <div  :style="iconStyle">
+          <div v-if="isVisible" class="col pb-2 ">
+            <i :class="isOpen ? 'bi bi-x-circle-fill' : 'bi bi-plus-circle-fill'" class=" text-left hide-on-mobile h4" @click="toggleContent"></i>
           </div>
           <div v-if="isOpen" class=" hide-on-mobile ">
             <div class="text-center">
