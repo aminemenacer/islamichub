@@ -1,68 +1,108 @@
 <template>
-    <form
-        class="right-side-form"
-        style="cursor: pointer; border-radius: 5px;"
-    >
-        <select
-            class="form-control custom-dropdown card"
-            v-model="selectedSurahLocal"
-            @change="handleChange"
+  <div class="surah-dropdown">
+    <form class="right-side-form" @submit.prevent>
+      <select
+        class="form-control custom-dropdown card"
+        :value="selectedSurahLocal"
+        @change="handleChange"
+      >
+        <option value="" disabled>Select a Surah</option>
+        <option
+          v-for="surah in displayedSurahs"
+          :key="surah.id"
+          :value="surah.id"
         >
-            <!-- Default placeholder option -->
-            <option value="" disabled>Select a Surah</option>
-            <!-- Dynamic options for surahs -->
-            <option
-                v-for="data in (filteredSurah.length ? filteredSurah : surat)"
-                :key="data.id"
-                :value="data.id"
-            >
-                {{ data.id }} : {{ data.name_en }} - {{ data.name_ar }}
-            </option>
-        </select>
+          {{ surah.id }} : {{ surah.name_en }} - {{ surah.name_ar }}
+        </option>
+      </select>
     </form>
+  </div>
 </template>
 
 <script>
 export default {
-    name: "SurahDropdown",
-    props: {
-        selectedSurah: {
-            type: Number,
-            default: null,
-        },
-        filteredSurah: {
-            type: Array,
-            default: () => [],
-        },
-        surat: {
-            type: Array,
-            default: () => [],
-        },
+  name: 'SurahDropdown',
+  
+  props: {
+    selectedSurah: {
+      type: Number,
+      default: null
     },
-    data() {
-        return {
-            selectedSurahLocal: this.selectedSurah ?? "", // Empty to ensure placeholder is shown
-        };
+    filteredSurah: {
+      type: Array,
+      default: () => []
     },
-    methods: {
-        handleChange() {
-            this.$emit("update:selectedSurah", this.selectedSurahLocal);
-            this.$emit("change");
-        },
-    },
-    watch: {
-        selectedSurah(newVal) {
-            // Update local selection to show placeholder if necessary
-            this.selectedSurahLocal = newVal ?? "";
-        },
-    },
-};
+    surat: {
+      type: Array,
+      default: () => []
+    }
+  },
+
+  data() {
+    return {
+      selectedSurahLocal: this.selectedSurah ?? ''
+    }
+  },
+
+  computed: {
+    displayedSurahs() {
+      return this.filteredSurah.length ? this.filteredSurah : this.surat
+    }
+  },
+
+  methods: {
+    handleChange(event) {
+      const value = event.target.value
+      this.selectedSurahLocal = value
+      this.$emit('update:selectedSurah', value ? Number(value) : null)
+      this.$emit('change')
+    }
+  },
+
+  watch: {
+    selectedSurah: {
+      handler(newVal) {
+        this.selectedSurahLocal = newVal ?? ''
+      },
+      immediate: true
+    }
+  }
+}
 </script>
 
 <style scoped>
+.surah-dropdown {
+  width: 100%;
+}
+
+.right-side-form {
+  cursor: pointer;
+}
+
+.form-control {
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 1rem;
+  line-height: 1.5;
+  background-color: #fff;
+  background-clip: padding-box;
+  border-radius: 5px;
+  transition: border-color 0.15s ease-in-out;
+}
+
+.custom-dropdown {
+  appearance: auto;
+  outline: none;
+}
+
 .card {
-    display: flex;
-    border: 1px solid #00BFA6;
-    border-radius: 10px;
+  display: flex;
+  border: 1px solid #00BFA6;
+  border-radius: 10px;
+}
+
+.card:focus {
+  border-color: #00BFA6;
+  box-shadow: 0 0 0 0.2rem rgba(0, 191, 166, 0.25);
 }
 </style>

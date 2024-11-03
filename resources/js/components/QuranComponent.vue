@@ -5,7 +5,7 @@
     
   <div style="display:flex" class="container align-items-center">
   </div>
-    <AdvancedSearch v-if="isVisible"  @input-change="handleInputChange" />
+    <AdvancedSearch v-if="!isVisible"  @input-change="handleInputChange" />
     <custom-surah-selection :customSurat="customSuratList" v-model="selectedSurah"></custom-surah-selection>
   </div> 
     
@@ -19,7 +19,7 @@
    
    <div style="display:flex" class="row">
     <SurahDropdown class="col-md-12" :selectedSurah="selectedSurah" :filteredSurah="filteredSurah" :surat="surat" @update:selectedSurah="updateSelectedSurah" @change="getAyat" /> 
-    
+
     <AddBookmark />
     
    </div>
@@ -68,9 +68,8 @@
      <div class="container-fluid content" v-if="information != null">
     
       <div class="row">
-        <div class="col-md-6">
           <NavTabs />
-        </div>
+          <!--
         <div class="col-md-6">
           <div class="form-check form-switch d-flex justify-content-between align-items-center">
             <b>Basic</b>
@@ -86,6 +85,7 @@
             <b>Advanced</b>
           </div>
         </div>
+        -->
         
       </div>
       
@@ -128,7 +128,7 @@
        <div class="tab-pane active content" id="home" role="tabpanel" v-if="information != null">
          
         <!-- desktop top features -->
-        <div v-if="isVisible" :style="iconStyle">
+        <div v-if="!isVisible" :style="iconStyle">
           <div class="col pb-2 ">
             <i  :class="isOpen ? 'bi bi-x-circle-fill' : 'bi bi-plus-circle-fill'" class="text-left hide-on-mobile h4" @click="toggleContent"></i>
           </div>
@@ -175,7 +175,7 @@
         <div>
           <div class="pt-2" ref="targetTranslationElement" >
             <TranslationSection  
-              :isVisible="isVisible" 
+              :isVisible="!isVisible" 
               @toggle-change="saveToggleState"
               :information="information" 
               :isFullScreen="isFullScreen" 
@@ -191,12 +191,12 @@
               @handle-touch-end="handleTouchEnd" 
               @toggle-expand="toggleExpand" 
               @close-alert-text="closeAlertText" 
-              @toggle-audio="toggleAudio"
+              @toggle-audio="toggleAudioPlayback"
               :isPlaying="isPlaying"
             />          
           </div>
 
-          <div v-if="isVisible" class="container-fluid text-center mobile-only">
+          <div v-if="!isVisible" class="container-fluid text-center mobile-only">
             <div class="row">
               <div class="col">
                 <i :class="isOpen ? 'bi bi-x-circle' : 'bi bi-plus-circle-fill'" class="text-center mobile-only h3 pt-3" @click="toggleContent"></i>
@@ -207,7 +207,7 @@
           <!-- toolbar mobile -->
           <div v-if="isOpen" class="collapse-content mobile-only" >
             <div class="card text-bg-light card-body">
-              <TranslationActions :targetTranslationRef="'targetTranslationElement'" :translation="translation" @open-modal="openModal" @submit-form="submitForm" @toggle-audio="toggleAudio" :isPlaying="isPlaying"/>
+              <TranslationActions :targetTranslationRef="'targetTranslationElement'" :translation="translation" @open-modal="openModal" @submit-form="submitForm" @toggle-audio="toggleAudioPlayback" :isPlaying="isPlaying"/>
             </div>
           </div>
 
@@ -222,7 +222,7 @@
         <div >
      
          <!-- desktop top features -->
-          <div v-if="isVisible" :style="iconStyle">
+          <div v-if="!isVisible" :style="iconStyle">
             <div class="col pb-2">
               <i  :class="isOpen ? 'bi bi-x-circle-fill' : 'bi bi-plus-circle-fill'" class=" text-left hide-on-mobile h4" @click="toggleContent"></i>
             </div>
@@ -271,10 +271,10 @@
 
         <!-- Main content  -->
         <div class="pt-2" ref="targetTafseerElement">
-         <TafseerSection :isVisible="isVisible" @toggle-change="saveToggleState" @toggle-audio="toggleAudio" :isPlaying="isPlaying" :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
+         <TafseerSection :isVisible="!isVisible" @toggle-change="saveToggleState" @toggle-audio="toggleAudioPlayback" :isPlaying="isPlaying" :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
         </div>
 
-        <div v-if="isVisible" class="container-fluid text-center mobile-only">
+        <div v-if="!isVisible" class="container-fluid text-center mobile-only">
           <div class="row">
             <div class="col">
               <i :class="isOpen ? 'bi bi-x-circle' : 'bi bi-plus-circle-fill'" class="text-center mobile-only h3 pt-3" @click="toggleContent"></i>
@@ -285,7 +285,7 @@
         <!-- toolbar mobile -->
         <div v-if="isOpen" class="collapse-content mobile-only" >
           <div class="card text-bg-light card-body">
-            <TafseerActions  @toggle-audio="toggleAudio" :isPlaying="isPlaying" :targetTafseerRef="'targetTafseerElement'" :tafseer="tafseer" @open-modal="openModal" @submit-form="submitForm" />
+            <TafseerActions  @toggle-audio="toggleAudioPlayback" :isPlaying="isPlaying" :targetTafseerRef="'targetTafseerElement'" :tafseer="tafseer" @open-modal="openModal" @submit-form="submitForm" />
           </div>
         </div>
 
@@ -300,7 +300,7 @@
 
           <!-- desktop top features -->
         <div  :style="iconStyle">
-          <div v-if="isVisible" class="col pb-2 ">
+          <div v-if="!isVisible" class="col pb-2 ">
             <i :class="isOpen ? 'bi bi-x-circle-fill' : 'bi bi-plus-circle-fill'" class=" text-left hide-on-mobile h4" @click="toggleContent"></i>
           </div>
           <div v-if="isOpen" class=" hide-on-mobile ">
@@ -336,10 +336,10 @@
         </div>
 
         <div ref="targetTransliterationElement">
-          <TransliterationSection :isVisible="isVisible" @toggle-audio="toggleAudio" :isPlaying="isPlaying" :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
+          <TransliterationSection :isVisible="!isVisible" @toggle-audio="toggleAudioPlayback" :isPlaying="isPlaying" :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
         </div>
 
-        <div v-if="isVisible" class="container-fluid text-center mobile-only">
+        <div v-if="!isVisible" class="container-fluid text-center mobile-only">
           <div class="row">
             <div class="col">
               <i :class="isOpen ? 'bi bi-x-circle' : 'bi bi-plus-circle-fill'" class="text-center mobile-only h3 pt-3" @click="toggleContent"></i>
@@ -350,7 +350,7 @@
         <!-- toolbar mobile -->
         <div v-if="isOpen" class="collapse-content mobile-only" >
           <div class="card text-bg-light card-body">
-            <TransliterationActions @toggle-audio="toggleAudio" :isPlaying="isPlaying" @toggle-full-screen="toggleFullScreen" :expanded="expanded" :targetTransliterationRef="'targetTransliterationElement'" :transliteration="transliteration" @open-modal="openModal" @submit-form="submitForm" />
+            <TransliterationActions @toggle-audio="toggleAudioPlayback" :isPlaying="isPlaying" @toggle-full-screen="toggleFullScreen" :expanded="expanded" :targetTransliterationRef="'targetTransliterationElement'" :transliteration="transliteration" @open-modal="openModal" @submit-form="submitForm" />
           </div>
         </div>
         <!-- end toolbar mobile -->
@@ -703,7 +703,7 @@ props: ['information', 'selectedFolderId'], information: {
     },
  data() {
   return {
-    isVisible: false,
+    // isVisible: false,
     showAudio: false,
     userIsLoggedIn: true,
     newThemeName: "",
@@ -942,13 +942,11 @@ computed: {
     }
 },
 methods: {
-  
-  toggleAudio(isReading) {
+  toggleAudioPlayback() {
     const audioPlayer = this.$refs.audioPlayer;
-    if (isReading) {
+    if (audioPlayer) {
+      audioPlayer.currentTime = 0;
       audioPlayer.play();
-    } else {
-      audioPlayer.pause();
     }
   },
   showSettingsOffcanvas() {

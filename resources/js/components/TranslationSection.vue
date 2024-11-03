@@ -260,8 +260,6 @@ export default {
 
   methods: {
     toggleSpeechAyah() {
-      this.isReading = !this.isReading;
-      this.isPaused = !this.isPaused;
       this.$emit('toggle-audio', this.isReading);
     },
     handleStart() {
@@ -510,18 +508,29 @@ export default {
     clearHighlight() {
       this.renderedText = `<span style="font-size: ${this.currentFontSize}px;">${this.information.translation}</span>`;
     },
-    //Pause reading
+    // Pause reading
     pauseReading() {
+      const audioPlayer = this.$refs.audioPlayer;
+
       if (this.isReading && !this.isPaused) {
-        window.speechSynthesis.pause(); // Pause the speech synthesis
-        this.isPaused = true; // Set paused state
-        console.log("Speech paused.");
+          // Pause both audio and speech synthesis
+          if (audioPlayer && !audioPlayer.paused) {
+              audioPlayer.pause(); // Pause the audio player
+          }
+          window.speechSynthesis.pause(); // Pause the speech synthesis
+          this.isPaused = true; // Set paused state
+          console.log("Speech paused.");
       }
     },
     // Resume reading
     resumeReading() {
+      const audioPlayer = this.$refs.audioPlayer;
+
       if (this.isPaused) {
-        this.toggleSpeechAyah()
+        // Resume both audio and speech synthesis
+        if (audioPlayer && audioPlayer.paused) {
+            audioPlayer.play(); // Resume the audio player
+        }
         window.speechSynthesis.resume(); // Resume the paused speech
         this.isPaused = false; // Reset paused state
         console.log("Speech resumed.");
@@ -529,13 +538,20 @@ export default {
     },
     // Stop reading
     stopReading() {
-      this.toggleSpeechAyah()
+      // Stop the audio by pausing and resetting to the start
+      const audioPlayer = this.$refs.audioPlayer;
+      if (audioPlayer) {
+          audioPlayer.pause();
+          audioPlayer.currentTime = 0; // Reset to start position
+      }
+
       window.speechSynthesis.cancel(); // Stop the speech synthesis
-      this.clearHighlight();
-      this.isReading = false; // Stop reading
+      this.clearHighlight(); // Clear any highlighted text
+      this.isReading = false; // Stop reading state
       this.isPaused = false; // Reset pause state
-      this.isAudioPlaying = false;
+      this.isAudioPlaying = false; // Reset audio playing state
     },
+
     // Rewind the speech
     rewindSpeech() {
       // Stop current speech and start again
