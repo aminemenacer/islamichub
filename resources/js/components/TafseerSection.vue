@@ -64,10 +64,10 @@
     <div class="word-count">
 			<h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" /><strong>Total Word count: </strong>{{ wordCount }}</h6>
     </div>
-    <div>
+    <div class="word-count">
 			<h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" /><strong>Tafseer: </strong>Tafseer Ibn Kathir</h6>
     </div>
-    <div>
+    <div class="word-count">
 			<h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" /><strong>Reciter's name: </strong>Mishary Rashid Alafasy</h6>
     </div>
   </div>

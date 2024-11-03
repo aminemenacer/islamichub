@@ -57,10 +57,11 @@ export default {
     return;
   }
 
-  // Select all the elements you want to hide
-  const unwantedElements = document.querySelectorAll(
-    '.icon-container, .href, .mobile-only, .bar, .pitch, .rate, .container.text-center'
-  );
+  const unwantedElements = [
+    '.icon-container, .href, .mobile-only, .bar, .pitch, .rate, .container.text-center, ' +
+    '.custom-icon-play, .bi-rewind-circle-fill, .bi-plus-circle-fill, .bi-dash-circle-fill, ' +
+    '.bi-play-circle-fill, .bi-pause-circle-fill, .bi-stop-circle-fill, .custom-icon-decrease, .word-count'
+  ];
 
   // Hide the unwanted elements
   unwantedElements.forEach(el => el.style.display = 'none');

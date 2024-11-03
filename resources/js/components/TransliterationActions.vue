@@ -6,15 +6,15 @@
    <i class="bi bi-file-earmark-text h3" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="$emit('open-modal', 'transliterationNote')"></i>
   </div>
 
-  <!-- Screenshot Icon 
+  <!-- Screenshot Icon -->
   <div class="icon-container">
    <i class="bi bi-camera text-right mr-2 h3" @click="captureTransliteration" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" :style="{ cursor: 'pointer' }"></i>
   </div>
-  -->
+  
   <!-- PDF Download Icon -->
-  <div class="icon-container">
+  <!-- <div class="icon-container">
    <i class="bi bi-file-earmark-pdf text-right mr-2 h3" @click="downloadTransliterationPdf" aria-expanded="false" data-bs-placement="top" title="Download PDF" :style="{ cursor: 'pointer' }"></i>
-  </div>
+  </div> -->
   
   <!-- surah info -->
   <div class="icon-container">
@@ -28,9 +28,6 @@
       :style="{ cursor: 'pointer' }">
     </i>
   </div>
-
-
-  
 
   <!-- Bug Report Icon -->
   <div class="icon-container">
@@ -71,7 +68,11 @@ export default {
   targetTransliterationRef: {
    type: String,
    default: 'targetTransliterationElement'
-  }
+  },
+  isVisible: {
+    type: Boolean,
+    required: true,
+  },
  },
  data() {
   return {};
@@ -82,6 +83,12 @@ export default {
   }
  },
  methods: {
+  toggleFullScreen() {
+   this.isFullScreen = !this.isFullScreen;
+  },
+  toggleExpand() {
+    this.expanded = !this.expanded;
+  },
   submitFormTransliteration() {
    // Debug log to check current information
    console.log('Current information:', this.information);
@@ -145,13 +152,11 @@ export default {
     return;
    }
 
-   // Select all the elements you want to hide
-   const unwantedElements = [
-    '.icon-container', // All icons (bookmark, screenshot, etc.)
-    '.mobile-only', // WhatsApp and Twitter share buttons
-    '.container.text-center', // Voice, Rate, and Pitch controls
-    '.href' // Decrease text size button
-   ];
+    const unwantedElements = [
+      '.icon-container, .href, .mobile-only, .bar, .pitch, .rate, .container.text-center, ' +
+      '.custom-icon-play, .bi-rewind-circle-fill, .bi-plus-circle-fill, .bi-dash-circle-fill, ' +
+      '.bi-play-circle-fill, .bi-pause-circle-fill, .bi-stop-circle-fill, .custom-icon-decrease, .word-count'
+    ];
 
    // Function to hide elements
    const hideElements = (selectorArray) => {
@@ -207,11 +212,11 @@ export default {
     return;
    }
 
-  const unwantedElements = document.querySelectorAll(
-    '.icon-container, .href, .mobile-only, .bar, .pitch, .rate, .container.text-center, ' +
-    '.custom-icon-play, .bi-rewind-circle-fill, .bi-plus-circle-fill, .bi-dash-circle-fill, ' +
-    '.bi-play-circle-fill, .bi-pause-circle-fill, .bi-stop-circle-fill, .custom-icon-decrease'
-  );
+    const unwantedElements = [
+      '.icon-container, .href, .mobile-only, .bar, .pitch, .rate, .container.text-center, ' +
+      '.custom-icon-play, .bi-rewind-circle-fill, .bi-plus-circle-fill, .bi-dash-circle-fill, ' +
+      '.bi-play-circle-fill, .bi-pause-circle-fill, .bi-stop-circle-fill, .custom-icon-decrease, .word-count'
+    ];
 
    // Function to hide elements
    const hideElements = (selectorArray) => {
