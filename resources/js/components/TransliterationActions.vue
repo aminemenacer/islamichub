@@ -1,42 +1,36 @@
 <template>
 <div class="row">
- <div class="d-flex flex-wrap justify-content-between align-items-center">
-  <!-- Note Icon -->
-  <div class="icon-container">
-   <i class="bi bi-file-earmark-text h3" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="$emit('open-modal', 'transliterationNote')"></i>
-  </div>
+  <div class="d-flex flex-wrap justify-content-between align-items-center">
+    <!-- Note Icon -->
+    <div class="icon-container">
+      <i class="bi bi-file-earmark-text h3" aria-expanded="false" data-bs-placement="top" title="Write a note" @click="$emit('open-modal', 'transliterationNote')"></i>
+    </div>
 
-  <!-- Screenshot Icon -->
-  <div class="icon-container">
-   <i class="bi bi-camera text-right mr-2 h3" @click="captureTransliteration" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" :style="{ cursor: 'pointer' }"></i>
-  </div>
-  
-  <!-- PDF Download Icon -->
-  <!-- <div class="icon-container">
+    <!-- Screenshot Icon -->
+    <div class="icon-container">
+      <i class="bi bi-camera text-right mr-2 h3" @click="captureTransliteration" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" :style="{ cursor: 'pointer' }"></i>
+    </div>
+
+    <!-- PDF Download Icon -->
+    <!-- <div class="icon-container">
    <i class="bi bi-file-earmark-pdf text-right mr-2 h3" @click="downloadTransliterationPdf" aria-expanded="false" data-bs-placement="top" title="Download PDF" :style="{ cursor: 'pointer' }"></i>
   </div> -->
-  
-  <!-- surah info -->
-  <div class="icon-container">
-  <!-- Trigger icon for Surah info modal -->
-    <i class="bi bi-info-circle h4 mr-2 pl-2" 
-      data-bs-toggle="modal" 
-      :data-bs-target="'#' + sectionType + 'Info'"
-      aria-expanded="false" 
-      data-bs-placement="top" 
-      :title="sectionType + ' Info'"
-      :style="{ cursor: 'pointer' }">
-    </i>
+
+    <!-- surah info -->
+    <div class="icon-container">
+      <!-- Trigger icon for Surah info modal -->
+      <i class="bi bi-info-circle h4 mr-2 pl-2" data-bs-toggle="modal" :data-bs-target="'#' + sectionType + 'Info'" aria-expanded="false" data-bs-placement="top" :title="sectionType + ' Info'" :style="{ cursor: 'pointer' }">
+      </i>
+    </div>
+
+    <!-- Bug Report Icon -->
+    <div class="icon-container">
+      <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-chat-left-text h4" aria-expanded="false" data-bs-placement="top"></i>
+    </div>
   </div>
 
-  <!-- Bug Report Icon -->
-  <div class="icon-container">
-   <i title="Report a bug" data-bs-toggle="modal" data-bs-target="#exampleModal" class="bi bi-chat-left-text h4" aria-expanded="false" data-bs-placement="top"></i>
-  </div>
- </div>
-
- <!-- Folder Selection Modal -->
- <FolderSelectionModal ref="folderSelectionModal" />
+  <!-- Folder Selection Modal -->
+  <FolderSelectionModal ref="folderSelectionModal" />
 </div>
 </template>
 
@@ -49,221 +43,227 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
 export default {
- name: 'TransliterationActions',
- components: {
-  TransliterationNote,
-  WhatsAppShareTransliteration,
-  TwitterShareTransliteration,
-  ScreenTransliterationCapture
- },
- props: {
-  transliteration: {
-   type: String,
-   required: true
+  name: 'TransliterationActions',
+  components: {
+    TransliterationNote,
+    WhatsAppShareTransliteration,
+    TwitterShareTransliteration,
+    ScreenTransliterationCapture
   },
-  isVisible: {
-    type: Boolean,
-    required: true
+  props: {
+    transliteration: {
+      type: String,
+      required: true
+    },
+    isVisible: {
+      type: Boolean,
+      required: true
+    },
+    targetTransliterationRef: {
+      type: String,
+      default: 'targetTransliterationElement'
+    },
+    isVisible: {
+      type: Boolean,
+      required: true,
+    },
   },
-  targetTransliterationRef: {
-   type: String,
-   default: 'targetTransliterationElement'
+  data() {
+    return {};
   },
-  isVisible: {
-    type: Boolean,
-    required: true,
+  computed: {
+    combinedText() {
+      return `Transliteration: ${this.information.transliteration}`;
+    }
   },
- },
- data() {
-  return {};
- },
- computed: {
-  combinedText() {
-   return `Transliteration: ${this.information.transliteration}`;
-  }
- },
- methods: {
-  toggleFullScreen() {
-   this.isFullScreen = !this.isFullScreen;
-  },
-  toggleExpand() {
-    this.expanded = !this.expanded;
-  },
-  submitFormTransliteration() {
-   // Debug log to check current information
-   console.log('Current information:', this.information);
+  methods: {
+    toggleFullScreen() {
+      this.isFullScreen = !this.isFullScreen;
+    },
+    toggleExpand() {
+      this.expanded = !this.expanded;
+    },
+    submitFormTransliteration() {
+      // Debug log to check current information
+      console.log('Current information:', this.information);
 
-   // Check if ayah information is present
-   if (!this.information || !this.information.ayah) {
-    console.error("Ayah information is missing.");
-    this.showErrorAlert = true;
-    this.hideAlertAfterDelay();
-    return; // Exit if required data is missing
-   }
+      // Check if ayah information is present
+      if (!this.information || !this.information.ayah) {
+        console.error("Ayah information is missing.");
+        this.showErrorAlert = true;
+        this.hideAlertAfterDelay();
+        return; // Exit if required data is missing
+      }
 
-   // Prepare form data for submission
-   const formData2 = {
-    surah_name: this.information.ayah.surah.name_en,
-    ayah_num: this.information.ayah_id,
-    ayah_verse_ar: this.information.ayah.ayah_text,
-    ayah_verse_en: this.information.transliteration,
-    user_id: this.userId,
-   };
+      // Prepare form data for submission
+      const formData2 = {
+        surah_name: this.information.ayah.surah.name_en,
+        ayah_num: this.information.ayah_id,
+        ayah_verse_ar: this.information.ayah.ayah_text,
+        ayah_verse_en: this.information.transliteration,
+        user_id: this.userId,
+      };
 
-   // Check if all required fields are filled
-   if (!formData2.surah_name || !formData2.ayah_num || !formData2.ayah_verse_ar || !formData2.ayah_verse_en || !formData2.user_id) {
-    console.error("Form data is incomplete:", formData2);
-    this.showErrorAlert = true;
-    this.hideAlertAfterDelay();
-    return; // Exit if validation fails
-   }
+      // Check if all required fields are filled
+      if (!formData2.surah_name || !formData2.ayah_num || !formData2.ayah_verse_ar || !formData2.ayah_verse_en || !formData2.user_id) {
+        console.error("Form data is incomplete:", formData2);
+        this.showErrorAlert = true;
+        this.hideAlertAfterDelay();
+        return; // Exit if validation fails
+      }
 
-   // Submit the form using Axios
-   this.isSubmitting = true;
-   axios.post('/bookmarks', formData2)
-    .then(response => {
-     console.log(response.data.message);
-     // Mark bookmark as submitted in localStorage
-     localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
-     this.showAlert = true;
-     this.showErrorAlert = false;
-     this.hideAlertAfterDelay();
-    })
-    .catch(error => {
-     console.error("Error submitting bookmark:", error);
-     this.showErrorAlert = true;
-     this.hideAlertAfterDelay();
-    })
-    .finally(() => {
-     this.isSubmitting = false; // Re-enable submit button
-    });
-  },
-  hideAlertAfterDelay() {
-   setTimeout(() => {
-    this.showAlert = false;
-    this.showErrorAlert = false;
-   }, 3000); // Hide alerts after 3 seconds
-  },
-  captureTransliteration() {
-   const targetTransliterationElement = this.$parent.$refs[this.targetTransliterationRef];
+      // Submit the form using Axios
+      this.isSubmitting = true;
+      axios.post('/bookmarks', formData2)
+        .then(response => {
+          console.log(response.data.message);
+          // Mark bookmark as submitted in localStorage
+          localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
+          this.showAlert = true;
+          this.showErrorAlert = false;
+          this.hideAlertAfterDelay();
+        })
+        .catch(error => {
+          console.error("Error submitting bookmark:", error);
+          this.showErrorAlert = true;
+          this.hideAlertAfterDelay();
+        })
+        .finally(() => {
+          this.isSubmitting = false; // Re-enable submit button
+        });
+    },
+    hideAlertAfterDelay() {
+      setTimeout(() => {
+        this.showAlert = false;
+        this.showErrorAlert = false;
+      }, 3000); // Hide alerts after 3 seconds
+    },
+    captureTransliteration() {
+      const targetTransliterationElement = this.$parent.$refs[this.targetTransliterationRef];
 
-   if (!targetTransliterationElement) {
-    console.error("Invalid element provided as targetTransliterationRef");
-    return;
-   }
+      if (!targetTransliterationElement) {
+        console.error("Invalid element provided as targetTransliterationRef");
+        return;
+      }
 
-    const unwantedElements = [
-      '.icon-container, .href, .mobile-only, .bar, .pitch, .rate, .container.text-center, ' +
-      '.custom-icon-play, .bi-rewind-circle-fill, .bi-plus-circle-fill, .bi-dash-circle-fill, ' +
-      '.bi-play-circle-fill, .bi-pause-circle-fill, .bi-stop-circle-fill, .custom-icon-decrease, .word-count'
-    ];
+      // Store the original padding of the target element
+      const originalPadding = targetTransliterationElement.style.padding;
 
-   // Function to hide elements
-   const hideElements = (selectorArray) => {
-    selectorArray.forEach(selector => {
-     const elements = document.querySelectorAll(selector);
-     elements.forEach(el => {
-      el.style.display = 'none';
-     });
-    });
-   };
+      // Set the desired padding
+      targetTransliterationElement.style.padding = "10px"; // Adjust this value as needed
 
-   // Function to show elements
-   const showElements = (selectorArray) => {
-    selectorArray.forEach(selector => {
-     const elements = document.querySelectorAll(selector);
-     elements.forEach(el => {
-      el.style.display = '';
-     });
-    });
-   };
+      const unwantedElements = [
+        '.icon-container, .href, .mobile-only, .bar, .pitch, .rate, .container.text-center, ' +
+        '.custom-icon-play, .bi-rewind-circle-fill, .bi-plus-circle-fill, .bi-dash-circle-fill, ' +
+        '.bi-play-circle-fill, .bi-pause-circle-fill, .bi-stop-circle-fill, .custom-icon-decrease, .word-count'
+      ];
 
-   // Hide unwanted elements
-   hideElements(unwantedElements);
+      // Function to hide elements
+      const hideElements = (selectorArray) => {
+        selectorArray.forEach(selector => {
+          const elements = document.querySelectorAll(selector);
+          elements.forEach(el => {
+            el.style.display = 'none';
+          });
+        });
+      };
 
-   setTimeout(() => {
-    html2canvas(targetTransliterationElement)
-     .then((canvas) => {
-      const dataUrl = canvas.toDataURL("image/png");
+      // Function to show elements
+      const showElements = (selectorArray) => {
+        selectorArray.forEach(selector => {
+          const elements = document.querySelectorAll(selector);
+          elements.forEach(el => {
+            el.style.display = '';
+          });
+        });
+      };
 
-      // Automatically trigger download of the image
-      const link = document.createElement("a");
-      link.href = dataUrl;
-      link.download = "screenshot.png";
-      link.click();
-      showElements(unwantedElements);
-     })
-     .catch((error) => {
-      console.error("Failed to capture screenshot:", error);
-      showElements(unwantedElements);
-     });
-   }, 200);
-  },
-  showSettingsOffcanvas() {
-   // Use Bootstrap Offcanvas show method to open the panel
-   let offcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasRight'));
-   offcanvas.show();
-  },
-  downloadTransliterationPdf() {
-   const targetTransliterationElement = this.$parent.$refs[this.targetTransliterationRef];
+      // Hide unwanted elements
+      hideElements(unwantedElements);
 
-   if (!targetTransliterationElement) {
-    console.error("Invalid element provided as targetTransliterationRef");
-    return;
-   }
+      setTimeout(() => {
+        html2canvas(targetTransliterationElement)
+          .then((canvas) => {
+            const dataUrl = canvas.toDataURL("image/png");
 
-    const unwantedElements = [
-      '.icon-container, .href, .mobile-only, .bar, .pitch, .rate, .container.text-center, ' +
-      '.custom-icon-play, .bi-rewind-circle-fill, .bi-plus-circle-fill, .bi-dash-circle-fill, ' +
-      '.bi-play-circle-fill, .bi-pause-circle-fill, .bi-stop-circle-fill, .custom-icon-decrease, .word-count'
-    ];
+            // Automatically trigger download of the image
+            const link = document.createElement("a");
+            link.href = dataUrl;
+            link.download = "screenshot.png";
+            link.click();
+            showElements(unwantedElements);
+          })
+          .catch((error) => {
+            console.error("Failed to capture screenshot:", error);
+            showElements(unwantedElements);
+          });
+      }, 200);
+    },
+    showSettingsOffcanvas() {
+      // Use Bootstrap Offcanvas show method to open the panel
+      let offcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasRight'));
+      offcanvas.show();
+    },
+    downloadTransliterationPdf() {
+      const targetTransliterationElement = this.$parent.$refs[this.targetTransliterationRef];
 
-   // Function to hide elements
-   const hideElements = (selectorArray) => {
-    selectorArray.forEach(selector => {
-     const elements = document.querySelectorAll(selector);
-     elements.forEach(el => {
-      el.style.display = 'none';
-     });
-    });
-   };
+      if (!targetTransliterationElement) {
+        console.error("Invalid element provided as targetTransliterationRef");
+        return;
+      }
 
-   // Function to show elements
-   const showElements = (selectorArray) => {
-    selectorArray.forEach(selector => {
-     const elements = document.querySelectorAll(selector);
-     elements.forEach(el => {
-      el.style.display = '';
-     });
-    });
-   };
+      const unwantedElements = [
+        '.icon-container, .href, .mobile-only, .bar, .pitch, .rate, .container.text-center, ' +
+        '.custom-icon-play, .bi-rewind-circle-fill, .bi-plus-circle-fill, .bi-dash-circle-fill, ' +
+        '.bi-play-circle-fill, .bi-pause-circle-fill, .bi-stop-circle-fill, .custom-icon-decrease, .word-count'
+      ];
 
-   // Hide unwanted elements
-   hideElements(unwantedElements);
+      // Function to hide elements
+      const hideElements = (selectorArray) => {
+        selectorArray.forEach(selector => {
+          const elements = document.querySelectorAll(selector);
+          elements.forEach(el => {
+            el.style.display = 'none';
+          });
+        });
+      };
 
-   html2canvas(targetTransliterationElement)
-    .then((canvas) => {
-     const imgData = canvas.toDataURL('image/png');
-     const pdf = new jsPDF({
-      orientation: 'portrait',
-      unit: 'mm',
-      format: 'a4'
-     });
+      // Function to show elements
+      const showElements = (selectorArray) => {
+        selectorArray.forEach(selector => {
+          const elements = document.querySelectorAll(selector);
+          elements.forEach(el => {
+            el.style.display = '';
+          });
+        });
+      };
 
-     pdf.addImage(imgData, 'PNG', 10, 10, 190, 0);
-     pdf.save('download.pdf');
-     showElements(unwantedElements);
-    })
-    .catch((error) => {
-     console.error('Failed to capture HTML content:', error);
-     showElements(unwantedElements);
-    });
-  },
-  watch:{
-    isVisible() {
-      this.$emit('toggle-change');
+      // Hide unwanted elements
+      hideElements(unwantedElements);
+
+      html2canvas(targetTransliterationElement)
+        .then((canvas) => {
+          const imgData = canvas.toDataURL('image/png');
+          const pdf = new jsPDF({
+            orientation: 'portrait',
+            unit: 'mm',
+            format: 'a4'
+          });
+
+          pdf.addImage(imgData, 'PNG', 10, 10, 190, 0);
+          pdf.save('download.pdf');
+          showElements(unwantedElements);
+        })
+        .catch((error) => {
+          console.error('Failed to capture HTML content:', error);
+          showElements(unwantedElements);
+        });
+    },
+    watch: {
+      isVisible() {
+        this.$emit('toggle-change');
+      }
     }
   }
- }
 };
 </script>

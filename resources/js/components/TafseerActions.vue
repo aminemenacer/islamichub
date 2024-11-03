@@ -143,6 +143,13 @@ export default {
         return;
       }
 
+      // Store the original padding of the target element
+      const originalPadding = targetTafseerElement.style.padding;
+
+      // Set the desired padding
+      targetTafseerElement.style.padding = "10px"; // Adjust this value as needed
+
+
       const unwantedElements = [
         '.icon-container, .href, .mobile-only, .bar, .pitch, .rate, .container.text-center, ' +
         '.custom-icon-play, .bi-rewind-circle-fill, .bi-plus-circle-fill, .bi-dash-circle-fill, ' +

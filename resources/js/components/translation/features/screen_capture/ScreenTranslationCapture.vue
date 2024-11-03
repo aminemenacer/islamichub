@@ -54,10 +54,18 @@ export default {
       // Access the target translation element using the ref passed as a prop
       const targetTranslationElement = this.$parent.$refs[this.targetTranslationRef];
 
+      
+
       if (!targetTranslationElement) {
         console.error("Invalid element provided as targetTranslationRef");
         return;
       }
+
+      // Store the original padding of the target element
+      const originalPadding = targetTranslationElement.style.padding;
+
+      // Set the desired padding
+      targetTranslationElement.style.padding = "10px"; // Adjust this value as needed
 
       const unwantedElements = [
         '.icon-container, .href, .mobile-only, .bar, .pitch, .rate, .container.text-center, ' +

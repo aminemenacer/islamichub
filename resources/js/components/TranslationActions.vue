@@ -8,9 +8,8 @@
 
     <!-- Screenshot Icon -->
     <div class="icon-container">
-    <i class="bi bi-camera text-right mr-2 h3" @click="captureTranslation" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" :style="{ cursor: 'pointer' }"></i>
+      <i class="bi bi-camera text-right mr-2 h3" @click="captureTranslation" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" :style="{ cursor: 'pointer' }"></i>
     </div>
-    
 
     <!-- PDF Download Icon -->
     <!-- <div class="icon-container">
@@ -20,13 +19,7 @@
     <!-- surah info icon -->
     <div class="icon-container">
       <!-- Trigger icon for Surah info modal -->
-      <i class="bi bi-info-circle h4 mr-2 pl-2" 
-        data-bs-toggle="modal" 
-        :data-bs-target="'#' + sectionType + 'Info'"
-        aria-expanded="false" 
-        data-bs-placement="top" 
-        :title="sectionType + ' Info'"
-        :style="{ cursor: 'pointer' }">
+      <i class="bi bi-info-circle h4 mr-2 pl-2" data-bs-toggle="modal" :data-bs-target="'#' + sectionType + 'Info'" aria-expanded="false" data-bs-placement="top" :title="sectionType + ' Info'" :style="{ cursor: 'pointer' }">
       </i>
     </div>
 
@@ -119,78 +112,85 @@ export default {
         })
     },
     captureTranslation() {
-  // Log all refs in the parent component
-  console.log(this.$parent.$refs);
+      // Log all refs in the parent component
+      console.log(this.$parent.$refs);
 
-  // Retrieve the translation element using the provided ref name
-  const targetTranslationElement = this.$parent.$refs[this.targetTranslationRef];
+      // Retrieve the translation element using the provided ref name
+      const targetTranslationElement = this.$parent.$refs[this.targetTranslationRef];
 
-  if (!targetTranslationElement) {
-    console.error("Invalid element provided as targetTranslationRef");
-    return;
-  }
+      if (!targetTranslationElement) {
+        console.error("Invalid element provided as targetTranslationRef");
+        return;
+      }
 
-  // Select all the elements you want to hide
-  const unwantedElements = [
-    '.icon-container', 
-    '.href', 
-    '.mobile-only', 
-    '.bar', 
-    '.pitch', 
-    '.rate', 
-    '.container.text-center', 
-    '.custom-icon-play', 
-    '.bi-rewind-circle-fill', 
-    '.bi-plus-circle-fill', 
-    '.bi-dash-circle-fill', 
-    '.bi-play-circle-fill', 
-    '.bi-pause-circle-fill', 
-    '.bi-stop-circle-fill', 
-    '.custom-icon-decrease', 
-    '.word-count'
-  ];
+      // Store the original padding of the target element
+      const originalPadding = targetTranslationElement.style.padding;
 
-  // Function to hide elements
-  const hideElements = (selectorArray) => {
-    selectorArray.forEach(selector => {
-      const elements = document.querySelectorAll(selector);
-      elements.forEach(el => {
-        el.style.display = 'none';
-      });
-    });
-  };
+      // Set the desired padding
+      targetTranslationElement.style.padding = "10px"; // Adjust this value as needed
 
-  // Function to show elements
-  const showElements = (selectorArray) => {
-    selectorArray.forEach(selector => {
-      const elements = document.querySelectorAll(selector);
-      elements.forEach(el => {
-        el.style.display = '';
-      });
-    });
-  };
 
-  // Hide unwanted elements
-  hideElements(unwantedElements);
+      // Select all the elements you want to hide
+      const unwantedElements = [
+        '.icon-container',
+        '.href',
+        '.mobile-only',
+        '.bar',
+        '.pitch',
+        '.rate',
+        '.container.text-center',
+        '.custom-icon-play',
+        '.bi-rewind-circle-fill',
+        '.bi-plus-circle-fill',
+        '.bi-dash-circle-fill',
+        '.bi-play-circle-fill',
+        '.bi-pause-circle-fill',
+        '.bi-stop-circle-fill',
+        '.custom-icon-decrease',
+        '.word-count'
+      ];
 
-  setTimeout(() => {
-    html2canvas(targetTranslationElement)
-      .then((canvas) => {
-        const dataUrl = canvas.toDataURL("image/png");
+      // Function to hide elements
+      const hideElements = (selectorArray) => {
+        selectorArray.forEach(selector => {
+          const elements = document.querySelectorAll(selector);
+          elements.forEach(el => {
+            el.style.display = 'none';
+          });
+        });
+      };
 
-        // Automatically trigger download of the image
-        const link = document.createElement("a");
-        link.href = dataUrl;
-        link.download = "screenshot.png";
-        link.click();
-        showElements(unwantedElements);
-      })
-      .catch((error) => {
-        console.error("Failed to capture screenshot:", error);
-        showElements(unwantedElements);
-      });
-  }, 200);
-},
+      // Function to show elements
+      const showElements = (selectorArray) => {
+        selectorArray.forEach(selector => {
+          const elements = document.querySelectorAll(selector);
+          elements.forEach(el => {
+            el.style.display = '';
+          });
+        });
+      };
+
+      // Hide unwanted elements
+      hideElements(unwantedElements);
+
+      setTimeout(() => {
+        html2canvas(targetTranslationElement)
+          .then((canvas) => {
+            const dataUrl = canvas.toDataURL("image/png");
+
+            // Automatically trigger download of the image
+            const link = document.createElement("a");
+            link.href = dataUrl;
+            link.download = "screenshot.png";
+            link.click();
+            showElements(unwantedElements);
+          })
+          .catch((error) => {
+            console.error("Failed to capture screenshot:", error);
+            showElements(unwantedElements);
+          });
+      }, 200);
+    },
     showSettingsOffcanvas() {
       // Use Bootstrap Offcanvas show method to open the panel
       let offcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasRight'));
@@ -272,34 +272,34 @@ export default {
       });
 
       html2canvas(targetTranslationElement, {
-        scrollX: -window.scrollX,
-        scrollY: -window.scrollY,
-        windowWidth: document.documentElement.offsetWidth,
-        windowHeight: document.documentElement.scrollHeight // Full page height
-      })
-      .then(canvas => {
-        const imgData = canvas.toDataURL('image/png');
-        const pdf = new jsPDF({
-          orientation: 'portrait',
-          unit: 'mm',
-          format: 'a4',
+          scrollX: -window.scrollX,
+          scrollY: -window.scrollY,
+          windowWidth: document.documentElement.offsetWidth,
+          windowHeight: document.documentElement.scrollHeight // Full page height
+        })
+        .then(canvas => {
+          const imgData = canvas.toDataURL('image/png');
+          const pdf = new jsPDF({
+            orientation: 'portrait',
+            unit: 'mm',
+            format: 'a4',
+          });
+
+          // Adjust image dimensions to fit A4, considering PDF margins
+          const pdfWidth = 190; // Adjust for margins on A4
+          const imgHeight = (canvas.height * pdfWidth) / canvas.width;
+
+          pdf.addImage(imgData, 'PNG', 10, 10, pdfWidth, imgHeight);
+          pdf.save('download.pdf');
+
+          // Remove the hidden class after saving the PDF
+          unwantedElements.forEach(el => {
+            el.classList.remove('hidden-for-pdf');
+          });
+        })
+        .catch(error => {
+          console.error('Failed to capture HTML content:', error);
         });
-
-        // Adjust image dimensions to fit A4, considering PDF margins
-        const pdfWidth = 190; // Adjust for margins on A4
-        const imgHeight = (canvas.height * pdfWidth) / canvas.width;
-
-        pdf.addImage(imgData, 'PNG', 10, 10, pdfWidth, imgHeight);
-        pdf.save('download.pdf');
-
-        // Remove the hidden class after saving the PDF
-        unwantedElements.forEach(el => {
-          el.classList.remove('hidden-for-pdf');
-        });
-      })
-      .catch(error => {
-        console.error('Failed to capture HTML content:', error);
-      });
     },
 
     openFolderSelectionModal() {

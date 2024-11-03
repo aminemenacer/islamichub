@@ -50,6 +50,12 @@ export default {
       return;
     }
 
+    // Store the original padding of the target element
+    const originalPadding = targetTransliterationElement.style.padding;
+
+    // Set the desired padding
+    targetTransliterationElement.style.padding = "10px"; // Adjust this value as needed
+
     // Define the CSS selectors for the unwanted elements
     const unwantedSelectors = [
       '.icon-container', 
