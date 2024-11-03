@@ -119,61 +119,78 @@ export default {
         })
     },
     captureTranslation() {
-      const targetTranslationElement = this.$parent.$refs[this.targetTranslationRef];
+  // Log all refs in the parent component
+  console.log(this.$parent.$refs);
 
-      if (!targetTranslationElement) {
-        console.error("Invalid element provided as targetTranslationRef");
-        return;
-      }
+  // Retrieve the translation element using the provided ref name
+  const targetTranslationElement = this.$parent.$refs[this.targetTranslationRef];
 
-      // Select all the elements you want to hide
-      const unwantedElements = [
-        '.icon-container, .href, .mobile-only, .bar, .pitch, .rate, .container.text-center, ' +
-        '.custom-icon-play, .bi-rewind-circle-fill, .bi-plus-circle-fill, .bi-dash-circle-fill, ' +
-        '.bi-play-circle-fill, .bi-pause-circle-fill, .bi-stop-circle-fill, .custom-icon-decrease, .word-count'
-      ];
+  if (!targetTranslationElement) {
+    console.error("Invalid element provided as targetTranslationRef");
+    return;
+  }
 
-      // Function to hide elements
-      const hideElements = (selectorArray) => {
-        selectorArray.forEach(selector => {
-          const elements = document.querySelectorAll(selector);
-          elements.forEach(el => {
-            el.style.display = 'none';
-          });
-        });
-      };
+  // Select all the elements you want to hide
+  const unwantedElements = [
+    '.icon-container', 
+    '.href', 
+    '.mobile-only', 
+    '.bar', 
+    '.pitch', 
+    '.rate', 
+    '.container.text-center', 
+    '.custom-icon-play', 
+    '.bi-rewind-circle-fill', 
+    '.bi-plus-circle-fill', 
+    '.bi-dash-circle-fill', 
+    '.bi-play-circle-fill', 
+    '.bi-pause-circle-fill', 
+    '.bi-stop-circle-fill', 
+    '.custom-icon-decrease', 
+    '.word-count'
+  ];
 
-      // Function to show elements
-      const showElements = (selectorArray) => {
-        selectorArray.forEach(selector => {
-          const elements = document.querySelectorAll(selector);
-          elements.forEach(el => {
-            el.style.display = '';
-          });
-        });
-      };
+  // Function to hide elements
+  const hideElements = (selectorArray) => {
+    selectorArray.forEach(selector => {
+      const elements = document.querySelectorAll(selector);
+      elements.forEach(el => {
+        el.style.display = 'none';
+      });
+    });
+  };
 
-      // Hide unwanted elements
-      hideElements(unwantedElements);
+  // Function to show elements
+  const showElements = (selectorArray) => {
+    selectorArray.forEach(selector => {
+      const elements = document.querySelectorAll(selector);
+      elements.forEach(el => {
+        el.style.display = '';
+      });
+    });
+  };
 
-      setTimeout(() => {
-        html2canvas(targetTranslationElement)
-          .then((canvas) => {
-            const dataUrl = canvas.toDataURL("image/png");
+  // Hide unwanted elements
+  hideElements(unwantedElements);
 
-            // Automatically trigger download of the image
-            const link = document.createElement("a");
-            link.href = dataUrl;
-            link.download = "screenshot.png";
-            link.click();
-            showElements(unwantedElements);
-          })
-          .catch((error) => {
-            console.error("Failed to capture screenshot:", error);
-            showElements(unwantedElements);
-          });
-      }, 200);
-    },
+  setTimeout(() => {
+    html2canvas(targetTranslationElement)
+      .then((canvas) => {
+        const dataUrl = canvas.toDataURL("image/png");
+
+        // Automatically trigger download of the image
+        const link = document.createElement("a");
+        link.href = dataUrl;
+        link.download = "screenshot.png";
+        link.click();
+        showElements(unwantedElements);
+      })
+      .catch((error) => {
+        console.error("Failed to capture screenshot:", error);
+        showElements(unwantedElements);
+      });
+  }, 200);
+},
     showSettingsOffcanvas() {
       // Use Bootstrap Offcanvas show method to open the panel
       let offcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasRight'));

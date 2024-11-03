@@ -146,7 +146,7 @@
                   title="Bookmark verse"
                 ></i>
                 </div>
-                <div class="col"><ScreenTranslationCapture style="cursor:pointer"  :targetTranslationRef="'targetTranslationElement'" /></div>
+                <div class="col"><ScreenTranslationCapture style="cursor:pointer" :targetTranslationRef="'targetTranslationElement'" /></div>
                 <!-- <div class="col" v-if="isVisible"><PdfDownload style="cursor:pointer" :targetTranslationRef="'targetTranslationElement'" /></div>                 -->
                 <!-- <div class="col"><VideoModal  @save-video-data="handleSave" /><i class="bi bi-play-circle h3" style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#videoModal"></i></div> -->
                 <!-- <div class="col"><i class="bi bi-paint-bucket h2" data-bs-toggle="offcanvas" style="cursor:pointer" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i></div> -->

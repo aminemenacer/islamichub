@@ -43,42 +43,72 @@ export default {
  },
  methods: {
   captureTransliteration() {
-   const targetTransliterationElement = this.$parent.$refs[this.targetTransliterationRef];
+    const targetTransliterationElement = this.$parent.$refs[this.targetTransliterationRef];
 
-   if (!targetTransliterationElement) {
-    console.error("Invalid element provided as targetTransliterationRef");
-    return;
-   }
+    if (!targetTransliterationElement) {
+      console.error("Invalid element provided as targetTransliterationRef");
+      return;
+    }
 
-    // Select all the elements you want to hide
-    const unwantedElements = [
-      '.icon-container, .href, .mobile-only, .bar, .pitch, .rate, .container.text-center, ' +
-      '.custom-icon-play, .bi-rewind-circle-fill, .bi-plus-circle-fill, .bi-dash-circle-fill, ' +
-      '.bi-play-circle-fill, .bi-pause-circle-fill, .bi-stop-circle-fill, .custom-icon-decrease, .word-count'
+    // Define the CSS selectors for the unwanted elements
+    const unwantedSelectors = [
+      '.icon-container', 
+      '.href', 
+      '.mobile-only', 
+      '.bar', 
+      '.pitch', 
+      '.rate', 
+      '.container.text-center', 
+      '.custom-icon-play', 
+      '.bi-rewind-circle-fill', 
+      '.bi-plus-circle-fill', 
+      '.bi-dash-circle-fill', 
+      '.bi-play-circle-fill', 
+      '.bi-pause-circle-fill', 
+      '.bi-stop-circle-fill', 
+      '.custom-icon-decrease', 
+      '.word-count'
     ];
 
-   // Hide the unwanted elements
-   unwantedElements.forEach(el => el.style.display = 'none');
-
-   setTimeout(() => {
-    html2canvas(targetTransliterationElement, {
-     allowTaint: true, // Capture cross-origin content if necessary
-     useCORS: true, // Allow cross-origin images
-    }).then((canvas) => {
-     const dataUrl = canvas.toDataURL("image/png");
-
-     // Automatically trigger download of the image
-     const link = document.createElement("a");
-     link.href = dataUrl;
-     link.download = "screenshot.png";
-     link.click();
-
-     // Restore the visibility of unwanted elements
-     unwantedElements.forEach(el => el.style.display = '');
-    }).catch((error) => {
-     console.error("Failed to capture screenshot:", error);
+    // Hide the unwanted elements
+    unwantedSelectors.forEach(selector => {
+      const elements = document.querySelectorAll(selector);
+      if (elements.length === 0) {
+        console.warn(`No elements found for selector: ${selector}`);
+      }
+      elements.forEach(element => {
+        if (element) {
+          element.style.display = 'none';
+        }
+      });
     });
-   }, 200);
+
+    setTimeout(() => {
+      html2canvas(targetTransliterationElement, {
+        allowTaint: true, // Capture cross-origin content if necessary
+        useCORS: true, // Allow cross-origin images
+      }).then((canvas) => {
+        const dataUrl = canvas.toDataURL("image/png");
+
+        // Automatically trigger download of the image
+        const link = document.createElement("a");
+        link.href = dataUrl;
+        link.download = "screenshot.png";
+        link.click();
+
+        // Restore the visibility of unwanted elements
+        unwantedSelectors.forEach(selector => {
+          const elements = document.querySelectorAll(selector);
+          elements.forEach(element => {
+            if (element) {
+              element.style.display = '';
+            }
+          });
+        });
+      }).catch((error) => {
+        console.error("Failed to capture screenshot:", error);
+      });
+    }, 200);
   },
   downloadImage(format) {
    if (!this.previewImage) return;

@@ -43,42 +43,65 @@ export default {
  },
  methods: {
   captureTafseer() {
-   const targetTafseerElement = this.$parent.$refs[this.targetTafseerRef];
+      // Access the target translation element using the ref passed as a prop
+      const targetTafseerElement = this.$parent.$refs[this.targetTafseerRef];
 
-   if (!targetTafseerElement) {
-    console.error("Invalid element provided as targetTafseerRef");
-    return;
-   }
+      if (!targetTafseerElement) {
+        console.error("Invalid element provided as targetTafseerRef");
+        return;
+      }
 
-   const unwantedElements = [
-    '.icon-container, .href, .mobile-only, .bar, .pitch, .rate, .container.text-center, ' +
-    '.custom-icon-play, .bi-rewind-circle-fill, .bi-plus-circle-fill, .bi-dash-circle-fill, ' +
-    '.bi-play-circle-fill, .bi-pause-circle-fill, .bi-stop-circle-fill, .custom-icon-decrease, .word-count'
-   ];
+      const unwantedElements = [
+        '.icon-container, .href, .mobile-only, .bar, .pitch, .rate, .container.text-center, ' +
+        '.custom-icon-play, .bi-rewind-circle-fill, .bi-plus-circle-fill, .bi-dash-circle-fill, ' +
+        '.bi-play-circle-fill, .bi-pause-circle-fill, .bi-stop-circle-fill, .custom-icon-decrease, .word-count'
+      ];
 
-   // Hide the unwanted elements
-   unwantedElements.forEach(el => el.style.display = 'none');
+      // Function to hide elements
+      const hideElements = (selectorArray) => {
+        selectorArray.forEach(selector => {
+          const elements = document.querySelectorAll(selector);
+          elements.forEach(el => {
+            el.style.display = 'none';
+          });
+        });
+      };
 
-   setTimeout(() => {
-    html2canvas(targetTafseerElement, {
-     allowTaint: true, // Capture cross-origin content if necessary
-     useCORS: true, // Allow cross-origin images
-    }).then((canvas) => {
-     const dataUrl = canvas.toDataURL("image/png");
+      // Function to show elements
+      const showElements = (selectorArray) => {
+        selectorArray.forEach(selector => {
+          const elements = document.querySelectorAll(selector);
+          elements.forEach(el => {
+            el.style.display = '';
+          });
+        });
+      };
 
-     // Automatically trigger download of the image
-     const link = document.createElement("a");
-     link.href = dataUrl;
-     link.download = "screenshot.png";
-     link.click();
+      // Hide unwanted elements before capturing
+      hideElements(unwantedElements);
 
-     // Restore the visibility of unwanted elements
-     unwantedElements.forEach(el => el.style.display = '');
-    }).catch((error) => {
-     console.error("Failed to capture screenshot:", error);
-    });
-   }, 200);
-  },
+      setTimeout(() => {
+        html2canvas(targetTafseerElement, {
+          allowTaint: true,
+          useCORS: true,
+        }).then((canvas) => {
+          const dataUrl = canvas.toDataURL("image/png");
+
+          // Automatically trigger download of the image
+          const link = document.createElement("a");
+          link.href = dataUrl;
+          link.download = "screenshot.png";
+          link.click();
+
+          // Restore visibility of unwanted elements
+          showElements(unwantedElements);
+        }).catch((error) => {
+          console.error("Failed to capture screenshot:", error);
+          // Ensure to show elements if an error occurs
+          showElements(unwantedElements);
+        });
+      }, 200);
+    },
   downloadImage(format) {
    if (!this.previewImage) return;
 
