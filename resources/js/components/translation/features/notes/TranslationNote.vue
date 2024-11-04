@@ -42,12 +42,7 @@
            <i class="bi bi-play-circle"></i> Start Recording
           </button>
          </div>
-         <div class="col">
-          <!-- Pause Button -->
-          <button type="button" class="btn btn-warning me-2" @click="pauseRecognition" :disabled="!isListening">
-           <i class="bi bi-pause-circle"></i> Pause Recording
-          </button>
-         </div>
+        
          <div class="col">
           <!-- Stop Button -->
           <button type="button" class="btn btn-danger" @click="stopRecognition" :disabled="!isListening && !isPaused">
@@ -58,12 +53,11 @@
        </div>
 
        <!-- Status -->
-       <div class="mt-3">
-        <h3 v-if="isListening" class="text-success"><b class="pt-3">Listening...</b></h3>
-        <h3 v-if="isPaused" class="text-warning"><b class="pt-3">Paused...</b></h3>
-       </div>
+        <div class="mt-3">
+          <h3 v-if="isListening" class="text-success"><b class="pt-3">Listening...</b></h3>
+        </div>
 
-       <textarea v-model="form.ayah_notes" class="form-control pb-2" rows="5" placeholder="Your speech will appear here..." :readonly="isListening || isPaused"></textarea>
+       <textarea v-model="form.ayah_notes" class="form-control pb-2" rows="5" placeholder="Your speech will appear here..." :readonly="isListening"></textarea>
       </div>
 
       <!-- Rich Text Editor Mode -->
@@ -116,11 +110,9 @@ import {
 export default {
  data() {
   return {
-
    inputMode: 'basic',
    option: 0,
    isListening: false,
-   isPaused: false,
    recognition: null,
    form: {
     ayah_notes: "",
@@ -136,62 +128,41 @@ export default {
  },
  methods: {
   initRecognition() {
-   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    this.recognition = new webkitSpeechRecognition();
+    this.recognition.continuous = true;
+    this.recognition.interimResults = true;
+    this.recognition.lang = 'en-US';
 
-   if (!SpeechRecognition) {
-    alert('Your browser does not support Speech Recognition.');
-    return;
-   }
+    this.recognition.onresult = (event) => {
+      const transcript = Array.from(event.results)
+        .map(result => result[0].transcript)
+        .join('');
+      this.form.ayah_notes = transcript;
+    };
 
-   this.recognition = new SpeechRecognition();
-   this.recognition.lang = 'en-US';
-   this.recognition.interimResults = false;
-   this.recognition.maxAlternatives = 1;
+    this.recognition.onend = () => {
+      this.isListening = false;
+    };
 
-   this.recognition.onresult = (event) => {
-    const result = event.results[0][0].transcript;
-    this.form.ayah_notes += result + '\n';
-   };
-
-   this.recognition.onerror = (event) => {
-    console.error('Speech Recognition Error:', event.error);
-   };
-
-   this.recognition.onend = () => {
-    if (!this.isPaused) {
-     this.isListening = false;
-    }
-   };
+    this.recognition.onerror = (event) => {
+      console.error('Speech Recognition Error:', event.error);
+      this.isListening = false;
+    };
   },
+  // Start speech recognition
   startRecognition() {
-   if (!this.recognition) {
-    this.initRecognition();
-   }
-   if (this.isPaused) {
-    this.isPaused = false;
-    this.isListening = true;
-    this.recognition.start();
-   } else {
-    this.form.ayah_notes = ''; // Clear previous transcript only on fresh start
-    this.recognition.start();
-    this.isListening = true;
-   }
+    if (!this.isListening) {
+      this.form.ayah_notes = '';
+      this.isListening = true;
+      this.recognition.start();
+    }
   },
-
-  pauseRecognition() {
-   if (this.recognition && this.isListening) {
-    this.recognition.stop(); // Just stop recognition, don't clear the text
-    this.isListening = false;
-    this.isPaused = true;
-   }
-  },
-
+  // Stop speech recognition
   stopRecognition() {
-   if (this.recognition && (this.isListening || this.isPaused)) {
-    this.recognition.abort(); // Abort instead of stop to completely stop and reset recognition
-    this.isListening = false;
-    this.isPaused = false;
-   }
+    if (this.isListening) {
+      this.recognition.stop();
+      this.isListening = false;
+    }
   },
   createNote() {
    const formData = {
