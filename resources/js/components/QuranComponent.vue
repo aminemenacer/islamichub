@@ -167,7 +167,7 @@
             <i class="bi bi-arrow-left-circle h4" style="cursor:pointer" @click="goToPreviousAyah()" title="Previous verse"></i>
             <i class="bi bi-arrow-right-circle h4" style="cursor:pointer" @click="goToNextAyah()" title="Next verse"></i>
             <i class="bi bi-chevron-bar-right h4" style="cursor:pointer" @click="goToLastAyah()" title="End verse"></i>
-            <i class="bi bi-info-circle h4 custom-last-verse" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i>
+            <i class="bi bi-question-circle h4 custom-last-verse" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i>
             <!-- <i class="bi bi-paint-bucket h1" style="cursor:pointer" data-bs-toggle="offcanvas" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i> -->  
           </div>
         </div>
@@ -264,7 +264,7 @@
            <i class="bi bi-arrow-right-circle h4" style="cursor:pointer" @click="goToNextAyah()" title="Next verse"></i>
            <i class="bi bi-chevron-bar-right h4" style="cursor:pointer"  @click="goToLastAyah()" title="End verse"></i>
            <!-- <i class="bi bi-paint-bucket h1" style="cursor:pointer" data-bs-toggle="offcanvas" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i> -->
-           <i class="bi bi-info-circle h4 custom-last-verse" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i>
+           <i class="bi bi-question-circle h4 custom-last-verse" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i>
           </div>
          </div>
         </div>
@@ -330,7 +330,7 @@
               <i class="bi bi-arrow-right-circle h4"  style="cursor:pointer" @click="goToNextAyah()" title="Next verse"></i>
               <i class="bi bi-chevron-bar-right h4" style="cursor:pointer" @click="goToLastAyah()" title="End verse"></i>
               <!-- <i class="bi bi-paint-bucket h1" style="cursor:pointer" data-bs-toggle="offcanvas" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i> -->
-              <i class="bi bi-info-circle h4 custom-last-verse" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i>
+              <i class="bi bi-question-circle h4 custom-last-verse" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i>
             </div>
           </div>
         </div>
