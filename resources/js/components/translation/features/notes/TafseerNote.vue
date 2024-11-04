@@ -9,33 +9,28 @@
    <div class="modal-body">
     <form @submit.prevent="createNote">
      <div class="container text-center">
-      <div class="row align-items-center">
-        <!-- Basic Mode Column -->
-        <div class="col d-flex align-items-center">
-          <input
-            class="form-check-input me-2"
-            type="radio"
-            name="inputMode"
-            id="basicMode"
-            value="basic"
-            v-model="inputMode"
-          />
-          <label class="form-check-label" for="basicMode">Basic</label>
-        </div>
-
-        <!-- Audio Note Recording Column -->
-        <div class="col d-flex align-items-center">
-          <input
-            class="form-check-input me-2"
-            type="radio"
-            name="inputMode"
-            id="audioMode"
-            value="audio"
-            v-model="inputMode"
-          />
-          <label class="form-check-label" for="audioMode">Audio Note Recording</label>
-        </div>
+      
+      <div class="row">
+       <div class="col">
+        <input class="form-check-input" type="radio" name="inputMode" id="basicMode" value="basic" v-model="inputMode">
+        <label class="form-check-label" for="basicMode">
+         Basic
+        </label>
+       </div>
+       <div class="col">
+        <input class="form-check-input" type="radio" name="inputMode" id="audioMode" value="audio" v-model="inputMode">
+        <label class="form-check-label" for="audioMode">
+         Audio Note Recording
+        </label>
+       </div>
+       <div class="col">
+        <input class="form-check-input" type="radio" name="inputMode" id="editorMode" value="editor" v-model="inputMode">
+        <label class="form-check-label" for="editorMode">
+         Editor Keyboard
+        </label>
+       </div>
       </div>
+
      </div>
 
      <div class="mt-3">
