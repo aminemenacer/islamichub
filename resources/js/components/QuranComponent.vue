@@ -45,7 +45,7 @@
        <i class="bi bi-arrow-left-circle h4 custom-prev-ayah" style="cursor:pointer" @click="goToPreviousAyah" title="Previous verse"></i>
        <i class="bi bi-arrow-right-circle h4 custom-next-ayah" style="cursor:pointer" @click="goToNextAyah" title="Next verse"></i>
        <i class="bi bi-chevron-bar-right h4 custom-last-verse" style="cursor:pointer" @click="goToLastAyah" title="Last verse"></i>
-       <i class="bi bi-info-circle h4 custom-last-verse" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i>
+       <i class="bi bi-question-circle h4 custom-last-verse" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i>
       </div>
 
       <div class="custom-scrollbar pb-5" style="overflow-y: auto; max-height: 600px; background: white;border-radius:10px;box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;">

@@ -8,7 +8,7 @@
 			</div>
 		</div>
 		<div class="row justify-content-center">
-			<div class="col-md-10">
+			<div class="col-md-12">
 				<div class="row g-4 g-md-5">
 					<div class="col-lg-6">
 						<div class="d-flex">
@@ -17,8 +17,8 @@
 								<path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"></path></svg>
 							</div>
 							<div>
-								<h5 class="mb-2 mb-lg-4 fw-bold">What is Islamic Connect ?</h5>
-								<p>Islamic Connect is an online platform that provides easy access to the Quran, Hadith, and Islamic knowledge through AI-based search tools and multimedia content for English-speaking users.</p>
+								<h4 class="mb-2 mb-lg-4 fw-bold"><b>What is Islamic Connect ?</b></h4>
+								<p>Islamic Connect is an innovative digital platform dedicated to enhancing the accessibility and engagement of Islamic teachings and resources. It aims to provide a comprehensive suite of tools that cater to the diverse needs of the Muslim community, particularly in the realm of learning, spiritual growth, and community building.</p>
 							</div>
 						</div>
 					</div>
@@ -29,8 +29,8 @@
 								<path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"></path></svg>
 							</div>
 							<div>
-								<h5 class="mb-2 mb-lg-4 fw-bold">Who is Islamic Connect for ?</h5>
-								<p>It is designed for English-speaking Muslims, converts, non-Muslims curious about Islam, and Muslims with limited knowledge of Arabic and the Quran.</p>
+								<h4 class="mb-2 mb-lg-4 fw-bold"><b>Who is Islamic Connect for ?</b></h4>
+								<p>Islamic Connect is designed for a diverse audience seeking to deepen their understanding of Islamic teachings and foster a sense of community. It serves Muslims of all ages who are looking for knowledge, spiritual growth, or community engagement, providing resources for both beginners and those with a more advanced understanding of Islam.</p>
 							</div>
 						</div>
 					</div>
@@ -41,8 +41,8 @@
 								<path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"></path></svg>
 							</div>
 							<div>
-								<h5 class="mb-2 mb-lg-4 fw-bold">Is Islamic Connect free ?</h5>
-								<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, nihil. Praesentium nostrum fugiat id dolor.</p>
+								<h4 class="mb-2 mb-lg-4 fw-bold"><b>Is Islamic Connect free ?</b></h4>
+								<p>Yes, Islamic Connect is a free platform designed to provide accessible resources and tools for users seeking to deepen their understanding of Islam. The website aims to offer a range of features, including audio resources, educational materials, and community engagement opportunities, all without cost to the users.</p>
 							</div>
 						</div>
 					</div>
@@ -53,7 +53,7 @@
 								<path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"></path></svg>
 							</div>
 							<div>
-								<h5 class="mb-2 mb-lg-4 fw-bold">How can I donate to support Islamic Connect ?</h5>
+								<h4 class="mb-2 mb-lg-4 fw-bold"><b>How can I donate to support Islamic Connect ?</b></h4>
 								<p>You can donate through our donations page. Every contribution helps us expand our platform and make Islamic knowledge accessible to more people around the world.</p>
 							</div>
 						</div>
@@ -65,7 +65,7 @@
 								<path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"></path></svg>
 							</div>
 							<div>
-								<h5 class="mb-2 mb-lg-4 fw-bold">Can Islamic Connect be used by Islamic organizations and institutes ?</h5>
+								<h4 class="mb-2 mb-lg-4 fw-bold"><b>Can Islamic Connect be used by Islamic organizations and institutes ?</b></h4>
 								<p>Yes, we provide tools and resources that can be integrated into educational curricula or organizational needs for Islamic teaching.</p>
 							</div>
 						</div>
@@ -77,7 +77,7 @@
 								<path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"></path></svg>
 							</div>
 							<div>
-								<h5 class="mb-2 mb-lg-4 fw-bold">Does Islamic Connect offer content in languages other than English ?</h5>
+								<h4 class="mb-2 mb-lg-4 fw-bold"><b>Does Islamic Connect offer content in languages other than English ?</b></h4>
 								<p>Currently, we focus on providing content in English, but we are working on expanding our resources to other languages in the future.</p>
 							</div>
 						</div>

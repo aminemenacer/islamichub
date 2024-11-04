@@ -121,7 +121,7 @@
               <i @click="fastForwardSpeech"
               style="cursor: pointer;"
               aria-label="Fast forward audio"
-              class="bi bi-twitter ml-2 mr-2 custom-icon-play h5"></i><b>Share on X</b>
+              class="bi bi-twitter-x ml-2 mr-2 custom-icon-play h5"></i><b>Share on X</b>
             </button>
           </div>
         </div>
