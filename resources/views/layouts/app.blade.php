@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-QWLL07EBX9"></script>
@@ -35,13 +35,6 @@
         gtag('config', 'G-QWLL07EBX9');
     </script>
 </head>
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  </head>
 
 <body>
     <div id="app">
@@ -69,12 +62,12 @@
                         <li class="nav-item mt-3">
                             <h6><a class="nav-link display-5 ml-3 pl-3" href="/mission"><b>Our Mission</b></a></h6>
                         </li>
-                        {{-- <li class="nav-item mt-3">
+                        <!-- <li class="nav-item mt-3">
                             <h6><a class="nav-link display-5 ml-3 pl-3" href="/ai"><b>AI Tools</b></a></h6>
-                        </li> --}}
-                        {{-- <li class="nav-item mt-3">
+                        </li> 
+                        <li class="nav-item mt-3">
                             <h6><a class="nav-link display-5 ml-3 pl-3" href="/access"><b>Accessibility</b></a></h6>
-                        </li> --}}
+                        </li> -->
                         <li class="nav-item mt-3">
                             <h6><a class="nav-link display-5 ml-3 pl-3" href="/faq"><b>FAQ's</b></a></h6>
                         </li>
@@ -128,11 +121,13 @@
     </div>
 
     <!-- Bootstrap JS and Popper.js (for Bootstrap 5.x) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ mix('js/app.js') }}"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/js/bootstrap.min.js"></script>
+
 </body>
 
 </html>
-    <script src="{{ mix('js/app.js') }}"></script>
+   
 
 <!-- Custom Styles -->
 <style>

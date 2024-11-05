@@ -40,14 +40,14 @@
      <div class="row container-fluid" >
       <hr class="container" style="height: 4px; background: lightgrey;">
 
-      <div :style="iconStyle" class="icon-container pb-2" >
+      <div :selectedSurahId="selectedSurahId" @update-tafseer="updateTafseer" @update-information="updateInformation" :style="iconStyle" class="icon-container pb-2" >
        <i class="bi bi-chevron-bar-left h4 custom-first-verse" style="cursor:pointer" @click="goToFirstAyah" title="First verse"></i>
        <i class="bi bi-arrow-left-circle h4 custom-prev-ayah" style="cursor:pointer" @click="goToPreviousAyah" title="Previous verse"></i>
        <i class="bi bi-arrow-right-circle h4 custom-next-ayah" style="cursor:pointer" @click="goToNextAyah" title="Next verse"></i>
        <i class="bi bi-chevron-bar-right h4 custom-last-verse" style="cursor:pointer" @click="goToLastAyah" title="Last verse"></i>
        <i class="bi bi-question-circle h4 custom-last-verse" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i>
       </div>
-
+       
       <div class="custom-scrollbar pb-5" style="overflow-y: auto; max-height: 600px; background: white;border-radius:10px;box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;">
        <ul class="col-md-12 list-group container-fluid root" id="toggle" ref="ayahList" style="list-style-type: none; padding: 8px">
         <li v-for="(ayah, index) in ayat" :key="index" @click="selectAyah(index)" :class="{ selected: selectedIndexAyah === index, highlighted: verseNumber && parseInt(verseNumber) === ayah.ayah_id }" style="padding: 10px; border-radius:10px">
@@ -56,6 +56,7 @@
         </li>
        </ul>
       </div>
+      
      </div>
 
     </div>
@@ -633,6 +634,8 @@ import KeyboardNavigation from './accesibility/KeyboardNavigation.vue'
 import FolderSelectionModal from './folder_manager/FolderSelectionModal.vue';
 import ScreenReader from './accesibility/ScreenReader.vue';
 import VideoModal from './modals/VideoModal.vue';
+import AyahSelector from './search/AyahSelector.vue';
+
 
 
 export default {
@@ -640,6 +643,7 @@ export default {
  props: {},
  components: {
   CustomSurahSelection,
+  AyahSelector,
   SurahList,
   SurahDropdown,
   BookmarksAndNotes,
@@ -703,6 +707,7 @@ props: ['information', 'selectedFolderId'], information: {
     },
  data() {
   return {
+    selectedSurahId: 1,
     // isVisible: false,
     showAudio: false,
     userIsLoggedIn: true,
@@ -942,6 +947,12 @@ computed: {
     }
 },
 methods: {
+  updateInformation(info) {
+            this.information = info;
+        },
+        updateTafseer(tafseerData) {
+            this.tafseer = tafseerData;
+        },
   toggleAudioPlayback() {
     const audioPlayer = this.$refs.audioPlayer;
     if (audioPlayer) {

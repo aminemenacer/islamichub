@@ -1,13 +1,8 @@
 require("./bootstrap");
+import { createApp } from "vue";
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import $ from 'jquery';
-
-
-
-
-import { createApp } from "vue";
 import { Form } from "vform";
 import swal from "sweetalert2";
 import "sweetalert2/src/sweetalert2.scss";
@@ -31,6 +26,9 @@ import Panel from "primevue/panel";
 import Dialog from "primevue/dialog";
 import Image from "primevue/image";
 import Editor from 'primevue/editor';
+
+
+
 
 
 import UsersComponent from "./components/admin_panels/UsersComponent.vue";

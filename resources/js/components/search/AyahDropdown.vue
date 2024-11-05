@@ -1,36 +1,22 @@
 <template>
-    <div class="tab-content mb-1" id="nav-tabContent" v-if="!dropdownHidden">
-        <div
-            class="tab-pane fade show active"
-            id="nav-home"
-            role="tabpanel"
-            aria-labelledby="nav-home-tab"
+    <select
+        class="form-control mobile-only hide-on-full-screen hide-on-tablet right-side-form card"
+        v-model="selectedAyahId"
+        @change="handleAyahChange"
+        style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"
+    >
+        <option>Select Ayah</option>
+        <option
+            v-for="(ayah, index) in ayat"
+            :key="index"
+            :value="index"
         >
-            <form
-                style="
-                    cursor: pointer;
-                    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-                    border-radius: 5px;
-                "
-            >
-                <select
-                    class="form-control mobile-only hide-on-full-screen hide-on-tablet right-side-form card"
-                    v-model="selectedAyahId"
-                    @change="handleAyahChange"
-                    style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"
-                >
-                    <option>Select Ayah</option>
-                    <option
-                        v-for="(ayah, index) in ayat"
-                        :key="index"
-                        :value="index"
-                    >
-                        {{ ayah.ayah_text }} : {{ ayah.ayah_id }}
-                    </option>
-                </select>
-            </form>
-        </div>
-    </div>
+            {{ ayah.ayah_text }} : {{ ayah.ayah_id }}
+        </option>
+    </select>
+
+    <!-- Section to display the selected Ayah and additional information -->
+    
 </template>
 
 <script>
@@ -53,15 +39,19 @@ export default {
             ayat: [],
             tafseer: null,
             information: null,
+            highlightedAyahId: null,
+            highlightedAyah: null,
         };
     },
     methods: {
         async handleAyahChange() {
             const selectedAyahIndex = parseInt(this.selectedAyahId);
             const selectedAyah = this.ayat[selectedAyahIndex];
-            console.log(selectedAyah);
             if (selectedAyah) {
                 const ayahId = selectedAyah.id;
+                this.highlightedAyahId = ayahId;
+                this.highlightedAyah = selectedAyah;
+
                 try {
                     const tafseerResponse = await axios.get(
                         `/tafseer/${ayahId}/fetch`
@@ -90,6 +80,12 @@ export default {
                     params: { surah_id: this.selectedSurahId },
                 });
                 this.ayat = response.data;
+
+                // Automatically select and display the first Ayah if available
+                if (this.ayat.length > 0) {
+                    this.selectedAyahId = 0; // Select the first Ayah by default
+                    this.handleAyahChange(); // Trigger Ayah change to load its content
+                }
             } catch (error) {
                 console.error("Error fetching ayat:", error);
             }
@@ -108,13 +104,12 @@ export default {
 };
 </script>
 
-<style scoped>
-.tab-content {
-    margin-bottom: 1rem;
-}
-.card {
- display: flex;
- border: 1px solid #00BFA6;
- border-radius: 10px;
+<style>
+.highlighted-ayah {
+    background-color: #26c789; /* Light blue background to indicate highlight */
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 20px;
 }
 </style>
