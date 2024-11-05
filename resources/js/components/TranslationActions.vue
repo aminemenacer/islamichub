@@ -18,9 +18,7 @@
 
     <!-- surah info icon -->
     <div class="icon-container">
-      <!-- Trigger icon for Surah info modal -->
-      <i class="bi bi-info-circle h4 mr-2 pl-2" data-bs-toggle="modal" :data-bs-target="'#' + sectionType + 'Info'" aria-expanded="false" data-bs-placement="top" :title="sectionType + ' Info'" :style="{ cursor: 'pointer' }">
-      </i>
+      <i class="bi bi-info-circle h4 mr-2 pl-2" data-bs-toggle="modal" data-bs-target="#translationInfo" aria-expanded="false" data-bs-placement="top" title="Surah info" style="cursor: pointer;"></i>
     </div>
 
     <!-- Bug Report Icon -->
@@ -89,7 +87,16 @@ export default {
       return `Translation: ${this.information.translation}`;
     }
   },
+  mounted() {
+    const modalElement = document.getElementById('translationInfo');
+    if (modalElement) {
+      this.modalInstance = new bootstrap.Modal(modalElement, {
+        backdrop: 'static', // or true/false depending on your need
+      });
+    }
+  },
   methods: {
+    
     submitForm() {
       const formData = {
         // folder_id: this.selectedFolderId,
