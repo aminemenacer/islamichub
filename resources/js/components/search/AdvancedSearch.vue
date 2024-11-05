@@ -124,11 +124,46 @@
               class="bi bi-twitter-x ml-2 mr-2 custom-icon-play h5"></i><b>Share on X</b>
             </button>
           </div>
+          <div class="col-md-12 mt-2">
+            <button @click="openModal(result)" type="button" class="btn btn-light w-100">
+              <b>View Ayah Details</b>
+            </button>
+          </div>
         </div>
         
            
         <hr />
       </div>
+      <!-- Modal -->
+<div class="modal fade" id="ayahModal" tabindex="-1" aria-labelledby="ayahModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ayahModalLabel">Ayah Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+  <h3 class="text-right">{{ selectedAyah?.ayah_text }}</h3>  
+  <audio style="color:black" v-if="selectedAyah?.audio_links" ref="audioPlayer" :src="selectedAyah.audio_links" class='w-100 custom-audio' loop controls></audio>
+
+  <div>
+    <h5><b>Translation: </b></h5>
+    <span style="color:black" v-html="highlightSearch(selectedAyah?.translation || '')"></span>
+  </div>
+  <div>
+    <h5 class="pt-2"><b>Tafseer: </b></h5>
+    <span v-html="highlightSearch(selectedAyah?.originalTafseer || '')"></span>
+  </div>
+  <div>
+    <h5 class="pt-2"><b>Transliteration: </b></h5>
+    <span v-html="highlightSearch(selectedAyah?.transliteration || '')"></span>
+  </div>
+</div>
+
+    </div>
+  </div>
+</div>
+
     </div>
    <div v-else-if="!loading" class="text-center">
     <h5>No search results found.</h5>
@@ -137,9 +172,13 @@
     <h5>Loading...</h5>
    </div>
   </div>
+  
  </div>
 
+ 
+
 </div>
+
 </template>
 
 <script>
@@ -179,6 +218,7 @@ export default {
  data() {
   return {
    data: [],
+   selectedAyah: null,
    loading: false,
    searchTerm: '',
    suggestions: [],
@@ -226,6 +266,14 @@ export default {
   information: Object,
  },
  methods: {
+   highlightSearch(text) {
+      return text || ''; // Make sure to return a string
+    },
+    openModal(result) {
+      this.selectedAyah = result; // Set the selected Ayah data
+      const modal = new bootstrap.Modal(document.getElementById('ayahModal'));
+      modal.show(); // Show the modal
+    },
   shareOnWhatsApp(result) {
     // Construct the message you want to share
     const message = `Ayah: ${result.ayah.surah_id}:${result.ayah.ayah_id}\n\n` + `${result.ayah.ayah_text}\n\n` + `Translation: ${result.translation}\n\n` + `Tafseer: ${result.originalTafseer}\n\n` + `Transliteration: ${result.transliteration}`;
