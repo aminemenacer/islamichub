@@ -122,7 +122,6 @@
 
     <!-- Bootstrap JS and Popper.js (for Bootstrap 5.x) -->
     <script src="{{ mix('js/app.js') }}"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/js/bootstrap.min.js"></script>
 
 </body>
 

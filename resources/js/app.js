@@ -1,7 +1,10 @@
 require("./bootstrap");
 import { createApp } from "vue";
 import 'bootstrap';
+import * as bootstrap from 'bootstrap';
+window.bootstrap = bootstrap;
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 import $ from 'jquery';
 import { Form } from "vform";
 import swal from "sweetalert2";

@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // Import Bootstrap styles and JavaScript
-// import 'bootstrap';
+import 'bootstrap';
 
 // Import AdminLTE styles and JavaScript
 import 'admin-lte';

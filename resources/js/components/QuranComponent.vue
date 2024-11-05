@@ -1179,12 +1179,22 @@ methods: {
     this.applyStylesToCards(); // Ensure this method is defined and applied
 
     this.showSuccessMessage = true;
-    setTimeout(() => {
-      this.showSuccessMessage = false;
-      const modalElement = document.getElementById('styleModal');
-      const modalInstance = bootstrap.Modal.getInstance(modalElement);
-      modalInstance.hide();
-    }, 3000);
+
+setTimeout(() => {
+  this.showSuccessMessage = false;
+
+  // Find the modal element
+  const modalElement = document.getElementById('styleModal');
+  
+  // Check for an existing modal instance or create a new one if not already initialized
+  let modalInstance = bootstrap.Modal.getInstance(modalElement);
+  if (!modalInstance) {
+    modalInstance = new bootstrap.Modal(modalElement);
+  }
+
+  // Hide the modal
+  modalInstance.hide();
+}, 3000);
   },
   applyStylesToCards() {
     // Example of applying styles to card elements
