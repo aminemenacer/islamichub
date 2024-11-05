@@ -274,7 +274,7 @@ export default {
   },
   // Trigger suggestions based on input length
   onInput() {
-   if (this.searchTerm.length > 3) {
+   if (this.searchTerm.length > 4) {
     this.fetchSuggestions();
    } else {
     this.suggestions = [];
