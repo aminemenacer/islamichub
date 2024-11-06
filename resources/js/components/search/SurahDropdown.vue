@@ -1,23 +1,14 @@
 <template>
     <div class="surah-dropdown">
         <form class="right-side-form" @submit.prevent>
-            <select
-                class="form-control custom-dropdown card"
-                v-model="selectedSurahLocal"
-                @change="handleChange"
-            >
-                <!-- Placeholder Option -->
-                <option value="defaultOption" disabled>Select a Surah</option>
 
-                <!-- Dynamic Surah Options -->
-                <option
-                    v-for="surah in displayedSurahs"
+            <select class="form-control custom-dropdown card" aria-label="Default select example" v-model="selectedSurahLocal" @change="handleChange">
+                <option value="defaultOption" selected disabled>Please select a Surah:</option>
+                <option v-for="surah in displayedSurahs"
                     :key="surah.id"
-                    :value="surah.id"
-                >
-                    {{ surah.id }} : {{ surah.name_en }} - {{ surah.name_ar }}
-                </option>
+                    :value="surah.id">{{ surah.id }} : {{ surah.name_en }} - {{ surah.name_ar }}</option>
             </select>
+
         </form>
     </div>
 </template>
