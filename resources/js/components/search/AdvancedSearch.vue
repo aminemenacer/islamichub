@@ -124,42 +124,13 @@
               class="bi bi-twitter-x ml-2 mr-2 custom-icon-play h5"></i><b>Share on X</b>
             </button>
           </div>
-          <!-- <div class="col-md-12 mt-2">
-            <button @click="openModal(result)" type="button" class="btn btn-light w-100">
-              <b>View Ayah Details</b>
-            </button>
-          </div> -->
+          
         </div>
         
            
         <hr />
       </div>
-      <!-- Modal -->
-      <!-- <div class="modal fade" id="ayahModal" tabindex="-1" aria-labelledby="ayahModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl ">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title" style="color:black" id="ayahModalLabel"><b>Ayah Details</b></h4>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body" style="padding:20px">
-               <h3 class="text-right" style="color:black">{{ selectedAyah?.ayah_text || ''}}</h3> 
-              <div style="color:black">
-                <h4 class="pt-3"><b>Translation: </b></h4>
-                <span style="color:black" class="pt-2" v-html="highlightSearch(selectedAyah?.translation || '')"></span>
-              </div>
-              <div style="color:black">
-                <h4 class="pt-3"><b>Tafseer: </b></h4>
-                <span class="pt-2" v-html="highlightSearch(selectedAyah?.originalTafseer || '')"></span>
-              </div>
-              <div style="color:black">
-                <h4 class="pt-3"><b>Transliteration: </b></h4>
-                <span class="pt-2" v-html="highlightSearch(selectedAyah?.transliteration || '')"></span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> -->
+      
     </div>
    <div v-else-if="!loading" class="text-center">
     <h5>No search results found.</h5>

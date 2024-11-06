@@ -1,6 +1,6 @@
 <template>
 <div id="app">
-  <div class="pt-3 text-center">
+  <div class="pt-3 text-center" >
   <Title />
     
   <div style="display:flex" class="container align-items-center">
@@ -18,13 +18,11 @@
    <FilteredSurahList :filteredSurah="filteredSurah" @select-surah="selectSurahFromResults" />
    
    <div style="display:flex" class="row">
-    <SurahDropdown class="col-md-12" :selectedSurah="selectedSurah" :filteredSurah="filteredSurah" :surat="surat" @update:selectedSurah="updateSelectedSurah" @change="getAyat" /> 
-
+    <SurahDropdown class="col-md-12" :selectedSurah="selectedSurahId" :filteredSurah="filteredSurah" :surat="surat" @update:selectedSurah="updateSelectedSurah" @change="getAyat" /> 
     <AddBookmark />
     
    </div>
    <AyahDropdown class="desktop-hidden" :selectedSurahId="selectedSurahId" :dropdownHidden="dropdownHidden" @update-information="updateInformation" @update-tafseer="updateTafseer" v-if="ayah == null && !dropdownHidden" />
-   
    <!-- List of Ayat for Surah (desktop) -->
    <div class="tab-content hide-on-mobile-tablet" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" v-if="ayah == null">
@@ -40,7 +38,7 @@
      <div class="row container-fluid" >
       <hr class="container" style="height: 4px; background: lightgrey;">
 
-      <div :selectedSurahId="selectedSurahId" @update-tafseer="updateTafseer" @update-information="updateInformation" :style="iconStyle" class="icon-container pb-2" >
+      <div :selectedSurahId="selectedSurah" @update-tafseer="updateTafseer" @update-information="updateInformation" :style="iconStyle" class="icon-container pb-2" >
        <i class="bi bi-chevron-bar-left h4 custom-first-verse" style="cursor:pointer" @click="goToFirstAyah" title="First verse"></i>
        <i class="bi bi-arrow-left-circle h4 custom-prev-ayah" style="cursor:pointer" @click="goToPreviousAyah" title="Previous verse"></i>
        <i class="bi bi-arrow-right-circle h4 custom-next-ayah" style="cursor:pointer" @click="goToNextAyah" title="Next verse"></i>
@@ -49,12 +47,17 @@
       </div>
        
       <div class="custom-scrollbar pb-5" style="overflow-y: auto; max-height: 600px; background: white;border-radius:10px;box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;">
-       <ul class="col-md-12 list-group container-fluid root" id="toggle" ref="ayahList" style="list-style-type: none; padding: 8px">
-        <li v-for="(ayah, index) in ayat" :key="index" @click="selectAyah(index)" :class="{ selected: selectedIndexAyah === index, highlighted: verseNumber && parseInt(verseNumber) === ayah.ayah_id }" style="padding: 10px; border-radius:10px">
-         <h5 class="text-right" style="display: flex;"> Verse: {{ ayah.ayah_id }} </h5>
-         <h5 class="text-right">{{ ayah.ayah_text }}</h5>
-        </li>
-       </ul>
+        <ul class="col-md-12 list-group container-fluid root" id="toggle" ref="ayahList" style="list-style-type: none; padding: 8px">
+          <li
+            v-for="(ayah, index) in ayat"
+            :key="index"
+            @click="selectAyah(index)"
+            :class="{ selected: selectedIndexAyah === index, highlighted: index === 0 || (verseNumber && parseInt(verseNumber) === ayah.ayah_id) }"
+            style="padding: 10px; border-radius:10px">
+            <h5 class="text-right" style="display: flex;"> Verse: {{ ayah.ayah_id }} </h5>
+            <h5 class="text-right">{{ ayah.ayah_text }}</h5>
+          </li>
+        </ul>
       </div>
       
      </div>
@@ -69,28 +72,30 @@
      <div class="container-fluid content" v-if="information != null">
     
       <div class="row">
-          <NavTabs />
-          <!--
-        <div class="col-md-6">
-          <div class="form-check form-switch d-flex justify-content-between align-items-center">
-            <b>Basic</b>
-            <input
-              class="form-check-input mx-2 custom-offcanvas"
-              style="color:white"
-              type="checkbox"
-              role="switch"
-              id="flexSwitchCheckDefault"
-              v-model="isVisible"
-              @change="saveToggleState"
-            />
-            <b>Advanced</b>
+        <NavTabs />
+        <div class="container text-center">
+          <div class="row form-check form-switch d-flex justify-content-center align-items-center p-3 border rounded shadow-sm bg-light">
+            <div class="col">
+              <span class="fw-semibold text-muted pr-3">Advanced</span>
+            </div>
+            <div class="col">
+              <div class="form-check form-switch d-flex justify-content-center align-items-center p-3">
+                    <input
+                      class="form-check-input custom-switch pl-5 shadow-lg"
+                      type="checkbox"
+                      role="switch"
+                      id="flexSwitchCheckDefault"
+                      v-model="isVisible"
+                      @change="saveToggleState"
+                    />
+                  </div>
+            </div>
+            <div class="col">
+              <span class="fw-semibold text-muted pl-3">Basic</span>
+            </div>
           </div>
         </div>
-        -->
-        
       </div>
-      
-    
       <!-- Surah info Modal -->
       <div class="modal fade" id="translationInfo" tabindex="-1" aria-labelledby="surahInfoModalLabel" aria-hidden="true" @click.self="closeModal">
        <div class="modal-dialog modal-lg">
@@ -126,7 +131,11 @@
        <Welcome :information="information" />
        
        <!-- Translation Section -->
-       <div class="tab-pane active content" id="home" role="tabpanel" v-if="information != null">
+       <div @touchstart="handleStart" 
+        @touchend="handleEnd"
+        @mousedown="handleStart" 
+        @mouseup="handleEnd" 
+        @mouseleave="cancelHold" class="tab-pane active content" id="home" role="tabpanel" v-if="information != null">
          
         <!-- desktop top features -->
         <div v-if="!isVisible" :style="iconStyle">
@@ -688,6 +697,7 @@ export default {
  },
 
  mounted() {
+   this.fetchAyat();
   const themesFromStorage = localStorage.getItem('savedThemes');
   if (themesFromStorage) {
     this.savedThemes = JSON.parse(themesFromStorage);
@@ -708,7 +718,7 @@ props: ['information', 'selectedFolderId'], information: {
  data() {
   return {
     selectedSurahId: 1,
-    // isVisible: false,
+    isVisible: false,
     showAudio: false,
     userIsLoggedIn: true,
     newThemeName: "",
@@ -947,6 +957,11 @@ computed: {
     }
 },
 methods: {
+  fetchAyat() {
+      // Fetch ayat for the selected surah and set the first ayah as highlighted
+      // Example fetch request
+      this.ayat = [];
+    },
   updateInformation(info) {
             this.information = info;
         },
@@ -1588,6 +1603,12 @@ setTimeout(() => {
    this.selectedSurahId = newSurah;
    this.getAyat();
   },
+  selectedSurahId(newVal) {
+      if (newVal) {
+        this.fetchAyat();
+        this.selectedIndexAyah = 0; // Highlight the first verse
+      }
+    },
   'information.ayah.surah.name_ar': 'updateFileName',
   verseNumber(newVal, oldVal) {
    if (newVal !== oldVal && parseInt(newVal)) {
@@ -1600,6 +1621,34 @@ setTimeout(() => {
 
 <style scoped src="./css/styles.css">
 
+.custom-switch {
+  width: 50px;
+  height: 25px;
+  background-color: #6c757d;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.custom-switch:checked {
+  background-color: #0d6efd;
+}
+
+.custom-switch::before {
+  background-color: #f8f9fa;
+  width: 18px;
+  height: 18px;
+  transform: translateX(2px);
+}
+
+.selected {
+  background-color: #e0f7fa;
+}
+
+.highlighted {
+  background-color: rgba(0, 191, 166, 0.2);
+  color: rgb(5, 32, 29);
+  border: 1px solid rgba(0, 191, 166);
+}
 
 .selected {
   background-color: #d1e7dd; /* Change this to your selected color */
