@@ -42,7 +42,7 @@
 							</div>
 							<div>
 								<h4 class="mb-2 mb-lg-4 fw-bold"><b>Is Islamic Connect free ?</b></h4>
-								<p>Yes, Islamic Connect is a free platform designed to provide accessible resources and tools for users seeking to deepen their understanding of Islam. The website aims to offer a range of features, including audio resources, educational materials, and community engagement opportunities, all without cost to the users.</p>
+								<p>Yes, Islamic Connect is a free platform, providing a wide range of resources to help users explore and deepen their understanding of Islam. The core features, including audio resources, educational materials, and community engagement tools, are accessible at no cost. However, there is also a subscription plan available, offering additional premium features for those interested in enhanced services and functionalities, which helps support the platform’s growth and sustainability.</p>
 							</div>
 						</div>
 					</div>
