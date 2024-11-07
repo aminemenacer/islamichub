@@ -6,7 +6,7 @@
   <div style="display:flex" class="container align-items-center">
   </div>
     <AdvancedSearch v-if="!isVisible"  @input-change="handleInputChange" />
-    <custom-surah-selection :customSurat="customSuratList" v-model="selectedSurah"></custom-surah-selection>
+    <custom-surah-selection v-if="!isVisible" :customSurat="customSuratList" v-model="selectedSurah"></custom-surah-selection>
   </div> 
     
   <KeyboardNavigation :items="menuItems" @item-selected="handleItemSelected" />
@@ -72,6 +72,7 @@
     
       <div class="row">
         <NavTabs />
+        <!-- toogle between basic/advanced -->
         <div class="container text-center">
           <div class="row form-check form-switch d-flex justify-content-center align-items-center p-3 border rounded shadow-sm bg-light">
             <div class="col">
