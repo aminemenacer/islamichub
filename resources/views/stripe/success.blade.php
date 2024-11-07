@@ -26,7 +26,7 @@
     <script>
         // Redirect to the desired page after a 3-second delay
         setTimeout(function() {
-            window.location.href = "{{ url('/') }}"; // Change to your desired redirect URL
+            window.location.href = "{{ url('/pricing') }}"; // Change to your desired redirect URL
         }, 3000); // 3000ms = 3 seconds
     </script>
 </body>

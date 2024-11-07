@@ -10,7 +10,6 @@
   </div> 
     
   <KeyboardNavigation :items="menuItems" @item-selected="handleItemSelected" />
-  <Subscriptions />
 
  <!-- accordion headers -->
  <div class="row mt-2 container-fluid">
@@ -644,7 +643,6 @@ import FolderSelectionModal from './folder_manager/FolderSelectionModal.vue';
 import ScreenReader from './accesibility/ScreenReader.vue';
 import VideoModal from './modals/VideoModal.vue';
 import AyahSelector from './search/AyahSelector.vue';
-import Subscriptions from './stripe/Subscriptions.vue';
 
 
 
@@ -652,7 +650,6 @@ export default {
  name: 'QuranComponent',
  props: {},
  components: {
-  Subscriptions,
   CustomSurahSelection,
   AyahSelector,
   SurahList,

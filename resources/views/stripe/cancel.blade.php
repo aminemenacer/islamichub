@@ -11,7 +11,7 @@ export default {
   mounted() {
     // Auto-redirect back to the main page (or another route) after a short delay
     setTimeout(() => {
-      this.$router.push('/'); // Change '/' to the route where you want the user to be redirected
+      this.$router.push('/pricing'); // Change '/' to the route where you want the user to be redirected
     }, 3000); // 3000ms = 3 seconds
   },
 };
