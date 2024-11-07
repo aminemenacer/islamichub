@@ -45,6 +45,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 Route::get('api/userId', [UserController::class, 'getUserId']);
 
+
 // stripe
 Route::post('/create-checkout-session', [StripeController::class, 'checkout']);
 Route::get('/stripe-success', [StripeController::class, 'success'])->name('stripe.success');
@@ -253,7 +254,17 @@ Route::get('api/fetch-payments', [PaymentController::class, 'getPayments']);
 
 // donations
 Route::get('/donations', [DonationController::class, 'index']);
-Route::get('api/fetch-donations', [DonationController::class, 'getDonations']);
+Route::get('/fetch-donations', [DonationController::class, 'getDonations']);
+
+Route::post('/create-checkout-session', [SupportController::class, 'createCheckoutSession']);
+Route::get('/donation/success', function () {
+    return view('donation.success');  // View after successful donation
+})->name('donation.success');
+
+Route::get('/donation/cancel', function () {
+    return view('donation.cancel');  // View if donation is canceled
+})->name('donation.cancel');
+
 
 // quran
 Route::get('/quran', [QuranController::class, 'index']);

@@ -16,7 +16,7 @@
               fostering understanding and peace. Join us in making Islamic knowledge more accessible and impactful. 
               Every donation, big or small, is a step toward a more enlightened world.
             </p>
-            <button class="donate" role="button"><a style="text-decoration:none;color:white" href="https://www.launchgood.com/v4/campaign/enhancing_access_to_islam_through_innovative_technology_1?src=3335225">Donate Here</a></button>
+            <button class="container form-control" style="background:#00BFA6; color:white" type="submit" @click="donate">Donate</button>
           </div>
         </div>
         <div class="col-md-6 order-2 ">
@@ -28,14 +28,44 @@
 </template>
 
 <script>
+import { loadStripe } from "@stripe/stripe-js";
 export default {
-  mounted() {
-    // Dynamically load the GoFundMe embed script after the component is mounted
-    const script = document.createElement('script');
-    script.src = "https://www.gofundme.com/static/js/embed.js";
-    script.defer = true;
-    document.body.appendChild(script);
-  }
+ data() {
+   return {
+      stripe: null,
+      amount: 10
+   }
+ },
+ mounted() {
+    // Initialize Stripe with your publishable key
+    loadStripe('pk_test_51OhWyICJwy2NXBn1qd6CDCqfzR5BkiaL4OYkl9EUc3nYm2D3paDVZuAyRks7NJBWodYHbQJOcxsxDA9L4umn4Kok00YuLJBbfh').then((stripe) => {
+      this.stripe = stripe;
+    });
+  },
+  methods: {
+    async donate() {
+      try {
+        // Send a request to your backend to create a Stripe Checkout session
+        const response = await axios.post('/create-checkout-session', {
+          amount: this.amount,  // Set a default amount or dynamically get this value
+        });
+
+        const { id } = response.data;
+
+        // Redirect to Stripe Checkout page
+        const { error } = await this.stripe.redirectToCheckout({
+          sessionId: id,
+        });
+
+        if (error) {
+          console.error('Error redirecting to checkout:', error.message);
+        }
+      } catch (error) {
+        console.error('Error creating checkout session:', error.message);
+      }
+    },
+
+  },
 }
 </script>
 
