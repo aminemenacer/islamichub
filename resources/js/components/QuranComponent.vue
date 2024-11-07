@@ -51,7 +51,7 @@
             v-for="(ayah, index) in ayat"
             :key="index"
             @click="selectAyah(index)"
-            :class="{ selected: selectedIndexAyah === index, highlighted: index === 0 || (verseNumber && parseInt(verseNumber) === ayah.ayah_id) }"
+            :class="{ selected: selectedIndexAyah === index || (verseNumber && parseInt(verseNumber) === ayah.ayah_id) }"
             style="padding: 10px; border-radius:10px">
             <h5 class="text-right" style="display: flex;"> Verse: {{ ayah.ayah_id }} </h5>
             <h5 class="text-right">{{ ayah.ayah_text }}</h5>
@@ -1652,9 +1652,7 @@ setTimeout(() => {
 .selected {
   background-color: #d1e7dd; /* Change this to your selected color */
 }
-.highlighted {
-  border: 2px solid #0d6efd; /* Change this to your highlight color */
-}
+
 .custom-offcanvas {
  background-color: #10584f;
  color: white;
