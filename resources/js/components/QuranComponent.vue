@@ -17,6 +17,7 @@
    <FilteredSurahList :filteredSurah="filteredSurah" @select-surah="selectSurahFromResults" />
    
    <div style="display:flex" class="row">
+    <AyahOfTheDay class="container" v-if="!isVisible" :ayat="ayat"/>
     <SurahDropdown class="col-md-12" :selectedSurah="selectedSurahId" :filteredSurah="filteredSurah" :surat="surat" @update:selectedSurah="updateSelectedSurah" @change="getAyat" /> 
     <AddBookmark />
     
@@ -76,7 +77,7 @@
         <div class="container text-center">
           <div class="row form-check form-switch d-flex justify-content-center align-items-center p-3 border rounded shadow-sm bg-light">
             <div class="col">
-              <span class="fw-semibold text-muted pr-3">Advanced</span>
+              <span class="fw-semibold text-muted pr-3">Advanced version</span>
             </div>
             <div class="col">
               <div class="form-check form-switch d-flex justify-content-center align-items-center p-3">
@@ -91,7 +92,7 @@
                   </div>
             </div>
             <div class="col">
-              <span class="fw-semibold text-muted pl-3">Basic</span>
+              <span class="fw-semibold text-muted pl-3">Basic version</span>
             </div>
           </div>
         </div>
@@ -397,11 +398,11 @@
       <hr class="text-white">
       <div class="offcanvas-body text-white">
         <h5 class="pb-4">Navigate through verses effortlessly using intuitive gesture controls designed to enhance your reading experience:</h5>
-        <h5 class="fw-bold">* Swipe Left:</h5><p class="lead"> Move to the previous verse.</p>
-        <h5 class="fw-bold">* Swipe Right:</h5><p class="lead"> Proceed to the next verse.</p>
+        <!-- <h5 class="fw-bold">* Swipe Left:</h5><p class="lead"> Move to the previous verse.</p>
+        <h5 class="fw-bold">* Swipe Right:</h5><p class="lead"> Proceed to the next verse.</p> -->
         <h5 class="fw-bold">* Hold On:</h5><p class="lead"> Activate Text-to-Speech (TTS) playback for the current verse.</p>
-        <hr>
-        <p class="lead">Explore with ease and enjoy a seamless, hands-free experience.</p>
+        <!-- <hr>
+        <p class="lead">Explore with ease and enjoy a seamless, hands-free experience.</p> -->
       </div>
     </div>
 
@@ -644,6 +645,7 @@ import FolderSelectionModal from './folder_manager/FolderSelectionModal.vue';
 import ScreenReader from './accesibility/ScreenReader.vue';
 import VideoModal from './modals/VideoModal.vue';
 import AyahSelector from './search/AyahSelector.vue';
+import AyahOfTheDay from './translation/AyahOfTheDay.vue';
 
 
 
@@ -651,6 +653,7 @@ export default {
  name: 'QuranComponent',
  props: {},
  components: {
+  AyahOfTheDay,
   CustomSurahSelection,
   AyahSelector,
   SurahList,

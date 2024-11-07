@@ -138,7 +138,7 @@
      <form class="mt-3 mb-2">
       <select class="form-control" v-model="imam" @change="getChapters()">
        <option value="0">
-        <span>Select Imam</span>
+        <!-- <span>Select Imam</span> -->
        </option>
        <option v-for="data in imams" :key="data.id" :value="data.id">
         {{ data.imam_name }}
@@ -148,7 +148,7 @@
 
      <div class="custom-scrollbar">
       <h5 class="text-left lead  mb-2">
-       <h4 style="">Books:</h4>
+       <!-- <h4 style="">Books:</h4> -->
       </h5>
 
       <ul class="col-md-4 list-group container-fluid" v-for="(chapter, chapterId) in chapters" :key="chapterId" @click="getAhadiths(chapter.chapter_id)" :class="{ 'selected': selectedIndex === chapterId }">

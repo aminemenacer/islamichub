@@ -339,7 +339,7 @@ audio.custom-audio {
 
 .card {
  display: flex;
- border: 1px solid #00BFA6;
+ border: 2px solid #00BFA6;
 }
 
 .selected {
