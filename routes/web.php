@@ -33,6 +33,7 @@ use App\Http\Controllers\SupportController;
 use App\Http\Controllers\MissionController;
 use App\Http\Controllers\AiController;
 use App\Http\Controllers\AccessController;
+use App\Http\Controllers\StripeController;
 
 // Auth routes
 Auth::routes();
@@ -43,6 +44,11 @@ Route::middleware(['auth', 'admin'])->group(function () {
 });
 
 Route::get('api/userId', [UserController::class, 'getUserId']);
+
+// stripe
+Route::post('/create-checkout-session', [StripeController::class, 'checkout']);
+Route::get('/stripe-success', [StripeController::class, 'success'])->name('stripe.success');
+Route::get('/stripe-cancel', [StripeController::class, 'cancel'])->name('stripe.cancel');
 
 // comment
 Route::get('/notes/{note}/comments', [CommentsController::class, 'getComments']);

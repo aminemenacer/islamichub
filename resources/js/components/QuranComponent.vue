@@ -10,7 +10,7 @@
   </div> 
     
   <KeyboardNavigation :items="menuItems" @item-selected="handleItemSelected" />
-
+  <Subscriptions />
 
  <!-- accordion headers -->
  <div class="row mt-2 container-fluid">
@@ -47,7 +47,7 @@
       </div>
        
       <div class="custom-scrollbar pb-5" style="overflow-y: auto; max-height: 600px; background: white;border-radius:10px;box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;">
-        <ul class="col-md-12 list-group container-fluid root" id="toggle" ref="ayahList" style="list-style-type: none; padding: 8px">
+        <ul class="col-md-12 list-group container-fluid root" id="toggle" ref="ayahList" style="list-style-type: none;">
           <li
             v-for="(ayah, index) in ayat"
             :key="index"
@@ -644,6 +644,7 @@ import FolderSelectionModal from './folder_manager/FolderSelectionModal.vue';
 import ScreenReader from './accesibility/ScreenReader.vue';
 import VideoModal from './modals/VideoModal.vue';
 import AyahSelector from './search/AyahSelector.vue';
+import Subscriptions from './stripe/Subscriptions.vue';
 
 
 
@@ -651,6 +652,7 @@ export default {
  name: 'QuranComponent',
  props: {},
  components: {
+  Subscriptions,
   CustomSurahSelection,
   AyahSelector,
   SurahList,

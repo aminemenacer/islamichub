@@ -28,7 +28,7 @@
         <div ref="targetTranslationElement" class="row text-left mt-2">
           <!-- Text Column -->
           <div class="col-10">
-            <h4 class="ayah-translation" style="line-height: 1.6em" :style="{ fontSize: fontSize + 'em', lineHeight: '1.6em' }">
+            <h4 class="ayah-translation" style="line-height: 1.6em" :style="{ fontSize: fontSize + 'em', lineHeight: '1.6em' }" v-html="renderedText">
               {{ expanded ? information.translation : information.translation }}
 
             </h4>
