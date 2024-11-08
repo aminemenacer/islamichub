@@ -40,6 +40,16 @@
     <div class="text-left mt-3 word-count">
       <h6 class="text-left"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" /><strong>Reciter's name: </strong>Mishary Rashid Alafasy</h6>
     </div>
+    <div class="btn-group">
+      <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        Save as
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" style="cursor:pointer" @click="downloadAsCSVTransliteration">Download as CSV</a></li>
+        <li><a class="dropdown-item" style="cursor:pointer" @click="downloadAsWordTransliteration">Download as Word</a></li>
+        
+      </ul>
+    </div>
   </div>
 
 </div>
@@ -51,8 +61,22 @@ import MainAyah from './translation/MainAyah.vue';
 import Translator from './translation/Translator.vue';
 import AlertModal from './modals/AlertModal.vue';
 
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
+import {
+  saveAs
+} from "file-saver";
+import Papa from "papaparse";
+import {
+  Document,
+  Packer,
+  Paragraph,
+  TextRun
+} from "docx";
+
+
 export default {
-  name: 'TranslationSection',
+  name: 'TransliterationSection',
   components: {
     AyahInfo,
     MainAyah,
@@ -113,6 +137,111 @@ export default {
     }
   },
   methods: {
+    downloadAsCSVTransliteration() {
+      const data = [
+        {
+          "Transliteration": this.information.transliteration || "N/A",
+          "Author": "Saheeh International"
+        }
+      ];
+
+      const csv = Papa.unparse(data);
+      const filename = `transliteration_${new Date().toISOString().split("T")[0]}.csv`; // Adds date to filename
+      const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+      saveAs(blob, filename);
+    },
+    async downloadAsWordTransliteration() {
+      const doc = new Document({
+        sections: [
+          {
+            properties: {},
+            children: [
+              // Title Section
+              new Paragraph({
+                children: [
+                  new TextRun({
+                    text: "Quran Transliteration Document",
+                    bold: true,
+                    size: 48, // 24pt font size
+                    color: "1F4E79" // Dark blue
+                  })
+                ],
+                alignment: "CENTER",
+                spacing: { after: 400 } // Adds space below title
+              }),
+
+              // Subtitle Section (Optional)
+              new Paragraph({
+                children: [
+                  new TextRun({
+                    text: "Prepared by Islamic Connect",
+                    italics: true,
+                    size: 24, // 12pt font size
+                    color: "808080" // Gray color
+                  })
+                ],
+                alignment: "CENTER",
+                spacing: { after: 600 }
+              }),
+
+              // Translation Header
+              new Paragraph({
+                children: [
+                  new TextRun({
+                    text: "Transliteration:",
+                    bold: true,
+                    size: 32, // 16pt font size for header
+                    color: "2B5797" // Slightly lighter blue
+                  })
+                ],
+                spacing: { after: 200 } // Adds space after header
+              }),
+
+              // Translation Content
+              new Paragraph({
+                children: [
+                  new TextRun({
+                    text: this.information.transliteration,
+                    bold: false,
+                    size: 28, // 14pt font size for content
+                    color: "000000" // Black color for readability
+                  })
+                ],
+                spacing: { after: 400 } // Adds space after translation
+              }),
+
+              // Translator Header
+              new Paragraph({
+                children: [
+                  new TextRun({
+                    text: "Transliteration:",
+                    bold: true,
+                    size: 32,
+                    color: "2B5797"
+                  })
+                ],
+                spacing: { after: 200 }
+              }),
+
+              // Translator Content
+              new Paragraph({
+                children: [
+                  new TextRun({
+                    text: "Ahmed Ali",
+                    italics: true,
+                    size: 28,
+                    color: "000000"
+                  })
+                ]
+              }),
+            ]
+          }
+        ]
+      });
+      const blob = await Packer.toBlob(doc);
+      saveAs(blob, "Transliteration.docx");
+    },
+
     toggleSpeechAyah() {
       this.isReading = !this.isReading;
       this.isPaused = !this.isPaused;

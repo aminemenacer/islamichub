@@ -124,7 +124,11 @@
               class="bi bi-twitter-x ml-2 mr-2 custom-icon-play h5"></i><b>Share on X</b>
             </button>
           </div>
-          
+          <!-- <div class="col-md-12 mt-2">
+            <button @click="openModal(result)" type="button" class="btn btn-light w-100">
+              <b>View Ayah Details</b>
+            </button>
+          </div> -->
         </div>
         
            

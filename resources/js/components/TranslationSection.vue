@@ -9,8 +9,7 @@
         @mousedown="handleStart" 
         @mouseup="handleEnd" 
         @mouseleave="cancelHold"
-        class="swipeable-div w-100"
-       >
+        class="swipeable-div w-100">
         <div class="row">
           <div class="col-md-2 pt-2 d-flex align-items-center justify-content-center">
             <i 
@@ -78,6 +77,18 @@
         <div class="text-left word-count mt-2">
           <h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" /><strong>Reciter's name: </strong>Mishary Rashid Alafasy</h6>
         </div>
+         <!-- <button type="button" class="btn btn-success" @click="downloadAsCSV">Download as CSV</button>
+      <button type="button" class="btn btn-success" @click="downloadAsWord">Download as Word</button> -->
+<div class="btn-group">
+  <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+    Save as
+  </button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" style="cursor:pointer" @click="downloadAsCSV">Download as CSV</a></li>
+    <li><a class="dropdown-item" style="cursor:pointer" @click="downloadAsWord">Download as Word</a></li>
+    
+  </ul>
+</div>
       </div>
 
       <AlertModal 
@@ -175,7 +186,6 @@ export default {
     props: {
       isPlaying: Boolean,
     }
-
   },
   emits: ['toggle-audio'],
   computed: {
@@ -411,40 +421,105 @@ export default {
       this.pitch = parseFloat(value);
     },
     downloadAsCSV() {
-      const data = [{
-        Translation: this.information.translation,
-        Translator: "Ahmed Ali"
-      }];
+      const data = [
+        {
+          "Translation": this.information.translation || "N/A",
+          "Translator": "Ahmed Ali"
+        }
+      ];
+      
       const csv = Papa.unparse(data);
-      const blob = new Blob([csv], {
-        type: "text/csv;charset=utf-8;"
-      });
-      saveAs(blob, "translation.csv");
+      const filename = `translation_${new Date().toISOString().split("T")[0]}.csv`; // Adds date to filename
+      const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+      saveAs(blob, filename);
     },
     async downloadAsWord() {
       const doc = new Document({
-        sections: [{
-          children: [
-            new Paragraph({
-              children: [
-                new TextRun("Translation:"),
-                new TextRun({
-                  text: this.information.translation,
-                  bold: true
-                })
-              ]
-            }),
-            new Paragraph({
-              children: [
-                new TextRun("Translator:"),
-                new TextRun({
-                  text: "Ahmed Ali",
-                  italics: true
-                })
-              ]
-            })
-          ]
-        }]
+        sections: [
+          {
+            properties: {},
+            children: [
+              // Title Section
+              new Paragraph({
+                children: [
+                  new TextRun({
+                    text: "Quran Translation Document",
+                    bold: true,
+                    size: 48, // 24pt font size
+                    color: "1F4E79" // Dark blue
+                  })
+                ],
+                alignment: "CENTER",
+                spacing: { after: 400 } // Adds space below title
+              }),
+
+              // Subtitle Section (Optional)
+              new Paragraph({
+                children: [
+                  new TextRun({
+                    text: "Prepared by Islamic Connect",
+                    italics: true,
+                    size: 24, // 12pt font size
+                    color: "808080" // Gray color
+                  })
+                ],
+                alignment: "CENTER",
+                spacing: { after: 600 }
+              }),
+
+              // Translation Header
+              new Paragraph({
+                children: [
+                  new TextRun({
+                    text: "Translation:",
+                    bold: true,
+                    size: 32, // 16pt font size for header
+                    color: "2B5797" // Slightly lighter blue
+                  })
+                ],
+                spacing: { after: 200 } // Adds space after header
+              }),
+
+              // Translation Content
+              new Paragraph({
+                children: [
+                  new TextRun({
+                    text: this.information.translation,
+                    bold: false,
+                    size: 28, // 14pt font size for content
+                    color: "000000" // Black color for readability
+                  })
+                ],
+                spacing: { after: 400 } // Adds space after translation
+              }),
+
+              // Translator Header
+              new Paragraph({
+                children: [
+                  new TextRun({
+                    text: "Translator:",
+                    bold: true,
+                    size: 32,
+                    color: "2B5797"
+                  })
+                ],
+                spacing: { after: 200 }
+              }),
+
+              // Translator Content
+              new Paragraph({
+                children: [
+                  new TextRun({
+                    text: "Ahmed Ali",
+                    italics: true,
+                    size: 28,
+                    color: "000000"
+                  })
+                ]
+              }),
+            ]
+          }
+        ]
       });
       const blob = await Packer.toBlob(doc);
       saveAs(blob, "translation.docx");
