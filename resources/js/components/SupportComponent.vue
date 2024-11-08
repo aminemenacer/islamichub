@@ -1,26 +1,41 @@
 <template>
   <div>
     <div class="container pt-3">
-      <div class="row gx-4  align-items-center justify-content-between">
+      <div class="row gx-4 align-items-center justify-content-between">
         <div class="col-md-6 order-2 order-md-1 pb-3">
           <div class="mt-3 mt-md-0">
             <h2 class="display-5 fw-bold pb-3">Support Us</h2>
             <p class="lead">
               Support Islamic Connect: Build a Bridge to Islamic Knowledge. 
-              At Islamic Connect, we are committed to providing free, easy-to-access Islamic resources to people worldwide.
-              Your generous donations allow us to maintain and expand our platform, offering AI-powered tools, authentic Quranic content,
-              and educational materials to those seeking knowledge, including new Muslims and non-Muslims.
+              Your generous donations help us expand and provide free access to educational Islamic resources.
             </p>
             <p class="lead">
-              By donating, you are helping us spread the message of Islam to communities who need it most, 
-              fostering understanding and peace. Join us in making Islamic knowledge more accessible and impactful. 
-              Every donation, big or small, is a step toward a more enlightened world.
+              By donating, you're helping us spread the message of Islam. Join us in making Islamic knowledge more accessible.
             </p>
-            <button class="container form-control" style="background:#00BFA6; color:white" type="submit" @click="donate">Donate</button>
+
+            <!-- Stripe-themed Donation Amount Input -->
+            <div class="mb-3">
+              <label for="donationAmount" class="form-label">Enter Donation Amount</label>
+              <input 
+                type="number" 
+                id="donationAmount" 
+                v-model="amount" 
+                class="form-control stripe-input" 
+                placeholder="Enter amount"
+                min="1"
+                step="1"
+                required
+              />
+            </div>
+
+            <!-- Donate Button -->
+            <button class="container form-control" style="background:#00BFA6; color:white" @click="donate">
+              Donate
+            </button>
           </div>
         </div>
-        <div class="col-md-6 order-2 ">
-          <img src="/images/money1.png" width="100%">
+        <div class="col-md-6 order-2">
+          <img src="/images/money1.png" width="100%" />
         </div>
       </div>
     </div>
@@ -29,14 +44,16 @@
 
 <script>
 import { loadStripe } from "@stripe/stripe-js";
+import axios from "axios"; // Assuming axios is imported to handle the API call
+
 export default {
- data() {
-   return {
+  data() {
+    return {
       stripe: null,
-      amount: 10
-   }
- },
- mounted() {
+      amount: 0,  // Start with 0 so user has to input their own amount
+    };
+  },
+  mounted() {
     // Initialize Stripe with your publishable key
     loadStripe('pk_test_51OhWyICJwy2NXBn1qd6CDCqfzR5BkiaL4OYkl9EUc3nYm2D3paDVZuAyRks7NJBWodYHbQJOcxsxDA9L4umn4Kok00YuLJBbfh').then((stripe) => {
       this.stripe = stripe;
@@ -44,10 +61,15 @@ export default {
   },
   methods: {
     async donate() {
+      if (this.amount <= 0) {
+        alert("Please enter a valid donation amount.");
+        return;
+      }
+
       try {
-        // Send a request to your backend to create a Stripe Checkout session
+        // Send the dynamically selected donation amount to the backend
         const response = await axios.post('/create-checkout-session', {
-          amount: this.amount,  // Set a default amount or dynamically get this value
+          amount: this.amount,
         });
 
         const { id } = response.data;
@@ -64,12 +86,35 @@ export default {
         console.error('Error creating checkout session:', error.message);
       }
     },
-
   },
-}
+};
 </script>
 
 <style>
+/* Stripe-like theme for the input */
+.stripe-input {
+  background-color: #f7f7f8;
+  border: 1px solid #ccd0d5;
+  border-radius: 4px;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #333;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.stripe-input:focus {
+  border-color: #00bfa6;
+  outline: none;
+}
+
+.stripe-input::placeholder {
+  color: #ccc;
+}
+
+/* Additional button styles */
 .donate {
   background-color: #00BFA6;
   border-radius: 8px;
@@ -77,10 +122,9 @@ export default {
   color: #fff;
   cursor: pointer;
   font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size:bold;
+  font-size: bold;
   font-weight: 400;
   outline: none;
-  outline: 0;
   padding: 10px 25px;
   text-align: center;
   transform: translateY(0);
@@ -89,15 +133,4 @@ export default {
   -webkit-user-select: none;
   touch-action: manipulation;
 }
-
-.button-37:hover {
-  transform: translateY(-2px);
-}
-
-@media (min-width: 768px) {
-  .button-37 {
-    padding: 10px 30px;
-  }
-}
-
 </style>

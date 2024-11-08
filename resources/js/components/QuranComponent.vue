@@ -17,7 +17,8 @@
    <FilteredSurahList :filteredSurah="filteredSurah" @select-surah="selectSurahFromResults" />
    
    <div style="display:flex" class="row">
-    <AyahOfTheDay class="container" v-if="!isVisible" :ayat="ayat"/>
+    <!-- <AyahOfTheDay class="container" v-if="!isVisible" :ayat="ayat" /> -->
+
     <SurahDropdown class="col-md-12" :selectedSurah="selectedSurahId" :filteredSurah="filteredSurah" :surat="surat" @update:selectedSurah="updateSelectedSurah" @change="getAyat" /> 
     <AddBookmark />
     
@@ -77,7 +78,7 @@
         <div class="container text-center">
           <div class="row form-check form-switch d-flex justify-content-center align-items-center p-3 border rounded shadow-sm bg-light">
             <div class="col">
-              <span class="fw-semibold text-muted pr-3">Advanced version</span>
+              <span class="fw-semibold text-muted pr-3">Advanced features</span>
             </div>
             <div class="col">
               <div class="form-check form-switch d-flex justify-content-center align-items-center p-3">
@@ -92,7 +93,7 @@
                   </div>
             </div>
             <div class="col">
-              <span class="fw-semibold text-muted pl-3">Basic version</span>
+              <span class="fw-semibold text-muted pl-3">Basic features</span>
             </div>
           </div>
         </div>
@@ -645,7 +646,7 @@ import FolderSelectionModal from './folder_manager/FolderSelectionModal.vue';
 import ScreenReader from './accesibility/ScreenReader.vue';
 import VideoModal from './modals/VideoModal.vue';
 import AyahSelector from './search/AyahSelector.vue';
-import AyahOfTheDay from './translation/AyahOfTheDay.vue';
+// import AyahOfTheDay from './translation/AyahOfTheDay.vue';
 
 
 
@@ -653,7 +654,7 @@ export default {
  name: 'QuranComponent',
  props: {},
  components: {
-  AyahOfTheDay,
+  // AyahOfTheDay,
   CustomSurahSelection,
   AyahSelector,
   SurahList,
@@ -714,10 +715,7 @@ export default {
   }
   this.loadBackgroundColor();
 },
-props: ['information', 'selectedFolderId'], information: {
-      type: Object,
-      required: true
-    },
+
  data() {
   return {
     selectedSurahId: 1,

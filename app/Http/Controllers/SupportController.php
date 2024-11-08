@@ -18,7 +18,7 @@ class SupportController extends Controller
         Stripe::setApiKey(env('STRIPE_SECRET'));
 
         try {
-            // Set the price dynamically on Stripe Checkout
+            // Set the price dynamically based on the amount sent from the frontend
             $session = Session::create([
                 'payment_method_types' => ['card'],
                 'line_items' => [
