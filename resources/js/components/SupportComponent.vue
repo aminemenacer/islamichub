@@ -50,7 +50,7 @@ export default {
   data() {
     return {
       stripe: null,
-      amount: 0,  // Start with 0 so user has to input their own amount
+      amount: 'Enter amount',  // Start with 0 so user has to input their own amount
     };
   },
   mounted() {

@@ -20,6 +20,17 @@
   }
 }
 
+.custom-switch {
+  position: relative;
+  display: inline-block;
+  width: 70px;
+  height: 20px;
+  border-radius: 50px;
+  background-color: rgba(0, 191, 166); /* Green background by default */
+  transition: background-color 0.3s ease; /* Smooth transition for background */
+}
+
+
 .custom-prev-ayah:hover{
   color: black;/* Default color */
   transition: color 0.3s ease; /* Smooth transition */

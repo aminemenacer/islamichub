@@ -78,12 +78,13 @@
         <div class="container text-center">
           <div class="row form-check form-switch d-flex justify-content-center align-items-center p-3 border rounded shadow-sm bg-light">
             <div class="col">
-              <span class="fw-semibold text-muted pr-3">Advanced features</span>
+              <span class="fw-semibold text-muted ">Advanced</span>
             </div>
             <div class="col">
-              <div class="form-check form-switch d-flex justify-content-center align-items-center p-3">
+              <div class="form-check form-switch d-flex justify-content-center align-items-center">
                     <input
-                      class="form-check-input custom-switch pl-5 shadow-lg"
+                      class="form-check-input pr-5 custom-switch shadow-lg text-center"
+                      style="border-color: #00BFA6; color: #00BFA6;"
                       type="checkbox"
                       role="switch"
                       id="flexSwitchCheckDefault"
@@ -93,7 +94,7 @@
                   </div>
             </div>
             <div class="col">
-              <span class="fw-semibold text-muted pl-3">Basic features</span>
+              <span class="fw-semibold text-muted">Basic</span>
             </div>
           </div>
         </div>
