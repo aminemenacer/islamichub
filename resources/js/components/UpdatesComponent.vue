@@ -4,7 +4,7 @@
   <div class="row ml-4 mt-3 container-fluid">
     <h2 class="text-left mt-3 mb-2 container" style="line-height: 1.7em; tafseer; "><img src="/images/art.png" style="width: 40px;" class="mb-1 mr-2 display-4" /><b> Islamic Connect Beta Version 2 has arrived! </b></h2>
     <div class="col-md-6">
-      <h5 class="text-left text-dark" width="80%" style="line-height: 1.7em; tafseer"><b>November 13th, 2024</b></h5>
+      <h5 class="text-left text-dark" width="80%" style="line-height: 1.7em; tafseer"><b>November 14th, 2024</b></h5>
       <div>
         <p style="padding:5px; line-height: 1.7em; tafseer" class="text-left text-dark ">We are thrilled to introduce Islamic Connect V2, redesigned and reimagined to bring an enhanced, accessible Quranic experience to everyone. Here is whats new:</p>
         <div>

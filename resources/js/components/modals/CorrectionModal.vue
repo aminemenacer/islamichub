@@ -1,60 +1,57 @@
 <template>
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title" id="exampleModalLabel"><b>Rate your experience</b></h4>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" @click="closeModal"></button>
-        </div>
-        <div class="modal-body">
-          <form @submit.prevent="createCorrection" id="reportForm">
-            <!-- Rating -->
-            <h6 class="text-left"><b>Your Rating:</b></h6>
-            <div class="text-center">
-              <div class="row star-rating">
-                <div class="col container-fluid text-left">
-                  <span v-for="star in 5" :key="star" @click="setRating(star)" :class="{ 'active': star <= form.rating }">
-                    &#9733;
-                  </span>
-                </div>
-              </div>
-            </div>
-            <!-- Notes -->
-            <div class="mb-3 mt-3 text-left">
-              <h6><b>What could we improve on?</b></h6>
-            </div>
-
-            <!-- Audio Recording Mode -->
-            <div>
-              <div class="container text-center">
-                <div class="row">
-                  <div class="col">
-                    <button type="button" class="btn btn-success me-2" @click="startRecognition" :disabled="isListening">
-                      <i class="bi bi-play-circle text-white"></i> Start Recording
-                    </button>
-                  </div>
-                  <div class="col">
-                    <button type="button" class="btn btn-danger" @click="stopRecognition" :disabled="!isListening">
-                      <i class="bi bi-stop-circle text-white"></i> Stop Recording
-                    </button>
+  <div>
+    <!-- Modal Structure -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="exampleModalLabel"><b>Rate your experience</b></h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" @click="closeModal"></button>
+          </div>
+          <div class="modal-body">
+            <form @submit.prevent="createCorrection" id="reportForm">
+              <!-- Rating -->
+              <h6 class="text-left"><b>Your Rating:</b></h6>
+              <div class="text-center">
+                <div class="row star-rating">
+                  <div class="col container-fluid text-left">
+                    <span v-for="star in 5" :key="star" @click="setRating(star)" :class="{ 'active': star <= form.rating }">
+                      &#9733;
+                    </span>
                   </div>
                 </div>
               </div>
-            
-
-              <!-- Status -->
-              <div class="mt-3">
-                <h3 v-if="isListening" class="text-success"><b class="pt-3">Listening...</b></h3>
+              <!-- Notes -->
+              <div class="mb-3 mt-3 text-left">
+                <h6><b>What could we improve on?</b></h6>
               </div>
-
-              <!-- Transcript Text Area -->
-              <textarea v-model="form.added_notes" class="form-control pb-2" rows="5" placeholder="Your speech will appear here..." :readonly="isListening"></textarea>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" form="reportForm" class="btn btn-success">Submit</button>
+              <!-- Audio Recording Mode -->
+              <div>
+                <div class="container text-center">
+                  <div class="row">
+                    <div class="col">
+                      <button type="button" class="btn btn-success me-2" @click="startRecognition" :disabled="isListening">
+                        <i class="bi bi-play-circle text-white"></i> Start Recording
+                      </button>
+                    </div>
+                    <div class="col">
+                      <button type="button" class="btn btn-danger" @click="stopRecognition" :disabled="!isListening">
+                        <i class="bi bi-stop-circle text-white"></i> Stop Recording
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="mt-3">
+                  <h3 v-if="isListening" class="text-success"><b class="pt-3">Listening...</b></h3>
+                </div>
+                <textarea v-model="form.added_notes" class="form-control pb-2" rows="5" placeholder="Your speech will appear here..." :readonly="isListening"></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" form="reportForm" class="btn btn-success">Submit</button>
+          </div>
         </div>
       </div>
     </div>
@@ -67,7 +64,6 @@ import Swal from 'sweetalert2';
 
 export default {
   name: 'CorrectionModal',
-
   data() {
     return {
       isListening: false,
@@ -78,13 +74,10 @@ export default {
       },
     };
   },
-
   mounted() {
     this.initRecognition();
   },
-
   methods: {
-    // Initialize speech recognition
     initRecognition() {
       this.recognition = new webkitSpeechRecognition();
       this.recognition.continuous = true;
@@ -107,8 +100,6 @@ export default {
         this.isListening = false;
       };
     },
-
-    // Start speech recognition
     startRecognition() {
       if (!this.isListening) {
         this.form.added_notes = '';
@@ -116,21 +107,15 @@ export default {
         this.recognition.start();
       }
     },
-
-    // Stop speech recognition
     stopRecognition() {
       if (this.isListening) {
         this.recognition.stop();
         this.isListening = false;
       }
     },
-
-    // Set star rating
     setRating(star) {
       this.form.rating = star;
     },
-
-    // Create the correction form submission
     createCorrection() {
       Swal.fire({
         title: "Are you sure?",
@@ -143,27 +128,15 @@ export default {
         if (result.isConfirmed) {
           axios.post("/submit-correction", this.form)
             .then((res) => {
-              if (res.data.success) {
-                Swal.fire({
-                  position: "top-end",
-                  icon: "success",
-                  title: "Message submitted successfully",
-                  showConfirmButton: false,
-                  timer: 1500,
-                });
-                this.resetForm();  // Reset form fields after submission
-                this.closeModal();  // Close modal after submission
-              } else {
-                Swal.fire({
-                  position: "top-end",
-                  icon: "success",
-                  title: "Message submitted successfully",
-                  showConfirmButton: false,
-                  timer: 1500,
-                });
-                this.resetForm();  // Reset form fields after submission
-                this.closeModal();  // Close modal after submission
-              }
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Message submitted successfully",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+              this.resetForm();
+              this.closeModal();
             })
             .catch((err) => {
               console.error(err);
@@ -172,19 +145,20 @@ export default {
         }
       });
     },
-
-    // Reset form fields
     resetForm() {
       this.form.added_notes = '';
       this.form.rating = 0;
     },
-
-    // Close modal and reset form
     closeModal() {
-      this.resetForm();  // Reset form when modal closes
-
-      const modal = new bootstrap.Modal(document.getElementById('exampleModal'));
-      modal.hide();  // Hide modal programmatically
+      this.resetForm();
+      const modalElement = document.getElementById('exampleModal');
+      const modalInstance = bootstrap.Modal.getOrCreateInstance(modalElement);
+      modalInstance.hide();
+    },
+    showModal() {
+      const modalElement = document.getElementById('exampleModal');
+      const modalInstance = bootstrap.Modal.getOrCreateInstance(modalElement, { backdrop: true });
+      modalInstance.show();
     }
   }
 };

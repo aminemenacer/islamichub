@@ -29,7 +29,7 @@
             </div>
 
             <!-- Donate Button -->
-            <button class="container form-control" style="background:#00BFA6; color:white" @click="donate">
+            <button class="container form-control" style="background:#00BFA6; color:white" @click="donate" :disabled="!stripe">
               Donate
             </button>
           </div>
@@ -50,24 +50,30 @@ export default {
   data() {
     return {
       stripe: null,
-      amount: 'Enter amount',  // Start with 0 so user has to input their own amount
+      amount: 0,  // Default to 0
     };
   },
   mounted() {
-    // Initialize Stripe with your publishable key
-    loadStripe('pk_test_51OhWyICJwy2NXBn1qd6CDCqfzR5BkiaL4OYkl9EUc3nYm2D3paDVZuAyRks7NJBWodYHbQJOcxsxDA9L4umn4Kok00YuLJBbfh').then((stripe) => {
+    loadStripe('pk_live_51QIJkjIol4Q5wn4Og4nYBjG25zNBFSnvTIfivJvDdHt6u0CD364TMcQHvGmrh6TOBNPDi9xwRDz7Zoirdl6NSDoB00JEFToo7F').then((stripe) => {
       this.stripe = stripe;
+    }).catch(error => {
+      console.error("Error loading Stripe:", error);
     });
   },
   methods: {
     async donate() {
-      if (this.amount <= 0) {
+      if (this.amount <= 0 || isNaN(this.amount)) {
         alert("Please enter a valid donation amount.");
         return;
       }
 
+      if (!this.stripe) {
+        console.error("Stripe not loaded yet.");
+        alert("Stripe is not available. Please try again later.");
+        return;
+      }
+
       try {
-        // Send the dynamically selected donation amount to the backend
         const response = await axios.post('/create-checkout-session', {
           amount: this.amount,
         });
@@ -87,6 +93,7 @@ export default {
       }
     },
   },
+
 };
 </script>
 
