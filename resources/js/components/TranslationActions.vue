@@ -12,9 +12,9 @@
     </div>
 
     <!-- PDF Download Icon -->
-    <div class="icon-container">
+    <!-- <div class="icon-container">
       <i class="bi bi-file-earmark-pdf text-right mr-2 h3" @click="downloadTranslationPdf" aria-expanded="false" data-bs-placement="top" title="Download PDF" :style="{ cursor: 'pointer' }"></i>
-    </div>
+    </div> -->
 
     <!-- surah info icon -->
     <div class="icon-container">

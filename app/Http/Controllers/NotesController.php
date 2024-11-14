@@ -34,7 +34,7 @@ class NotesController extends Controller
     public function submitNote(Request $request) {
         $notes = $request->validate([
             'ayah_notes' => 'required|string',
-            'option' => 'required|string',
+            'option' => 'string',
         ]);
     
         // Save note or handle the request here...
@@ -59,7 +59,7 @@ class NotesController extends Controller
             'ayah_verse_en' => 'nullable|string',
             'ayah_info' => 'nullable|string',
             'ayah_notes' => 'required|string',
-            'option' => 'required|integer|in:0,1',  // 0 for public, 1 for private
+            // 'option' => 'required|integer|in:0,1',  // 0 for public, 1 for private
             'is_speech_to_text' => 'boolean',
         ]);
 
@@ -79,7 +79,7 @@ class NotesController extends Controller
             'ayah_verse_en' => 'nullable|string',
             'ayah_info' => 'nullable|string',
             'ayah_notes' => 'required|string',
-            'option' => 'required|integer|in:0,1',  // 0 for public, 1 for private
+            'visibility_option' => 'required|integer|in:0,1',  // 0 for public, 1 for private
             'is_speech_to_text' => 'boolean',
         ]);
 

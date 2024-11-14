@@ -1,14 +1,14 @@
 // PdfDownload.vue
 <template>
   <div>
-    <i 
+    <!-- <i 
       class="bi bi-file-earmark-pdf text-right mr-2 h3" 
       @click="downloadPdf" 
       aria-expanded="false" 
       data-bs-placement="top" 
       title="Download PDF" 
       :style="{ color: iconColor, cursor: 'pointer' }">
-    </i>
+    </i> -->
   </div>
 </template>
 

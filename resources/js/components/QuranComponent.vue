@@ -638,9 +638,9 @@ import TranslationActions from './TranslationActions.vue'
 import TafseerActions from './TafseerActions.vue'
 import TransliterationActions from './TransliterationActions.vue'
 import SpeechRecognition from './translation/features/speech_recognition/SpeechRecognition.vue';
-import PdfDownload from './pdf/PdfDownload.vue'
-import PdfDownloadTafsser from './pdf/PdfDownloadTafsser.vue'
-import PdfDownloadTransliteration from './pdf/PdfDownloadTransliteration.vue'
+// import PdfDownload from './pdf/PdfDownload.vue'
+// import PdfDownloadTafsser from './pdf/PdfDownloadTafsser.vue'
+// import PdfDownloadTransliteration from './pdf/PdfDownloadTransliteration.vue'
 import AdvancedSearch from './search/AdvancedSearch.vue'
 import KeyboardNavigation from './accesibility/KeyboardNavigation.vue'
 import FolderSelectionModal from './folder_manager/FolderSelectionModal.vue';
@@ -692,10 +692,10 @@ export default {
   TafseerActions,
   TransliterationActions,
   SpeechRecognition,
-  PdfDownload,
+  // PdfDownload,
   FolderSelectionModal,
-  PdfDownloadTransliteration,
-  PdfDownloadTafsser,
+  // PdfDownloadTransliteration,
+  // PdfDownloadTafsser,
   AdvancedSearch,
   KeyboardNavigation,
   ScreenReader

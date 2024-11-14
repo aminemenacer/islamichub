@@ -250,7 +250,7 @@ export default {
   },
   shareOnWhatsApp(result) {
     // Construct the message you want to share
-    const message = `Ayah: ${result.ayah.surah_id}:${result.ayah.ayah_id}\n\n` + `${result.ayah.ayah_text}\n\n` + `Translation: ${result.translation}\n\n` + `Tafseer: ${result.originalTafseer}\n\n` + `Transliteration: ${result.transliteration}`;
+    const message = `Ayah: ${result.ayah.surah_id}:${result.ayah.ayah_id}\n\n` + `${result.ayah.ayah_text}\n\n` + `Translation: ${result.translation}\n\n` + 'Visit our website : www.islamiconnect.com for more';
     // Encode the message to be used in a URL
     const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
     // Open WhatsApp with the pre-populated message
@@ -261,8 +261,10 @@ export default {
     const message = `Ayah: ${result.ayah.surah_id}:${result.ayah.ayah_id}\n\n` + 
                     `${result.ayah.ayah_text}\n\n` + 
                     `Translation: ${result.translation}\n\n` + 
-                    `Tafseer: ${result.originalTafseer}\n\n` + 
-                    `Transliteration: ${result.transliteration}`;
+                    'Visit our website : www.islamiconnect.com for more'
+                    // `Tafseer: ${result.originalTafseer}\n\n` + 
+                    // `Transliteration: ${result.transliteration}`;
+
     
     // Encode the message to be used in a URL
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(message)}`;

@@ -1,6 +1,6 @@
 <template>
 <div>
-    <i class="bi bi-file-earmark-pdf text-right mr-2 h3" @click="downloadPdfTafseer" aria-expanded="false" data-bs-placement="top" title="Download PDF"></i>
+    <!-- <i class="bi bi-file-earmark-pdf text-right mr-2 h3" @click="downloadPdfTafseer" aria-expanded="false" data-bs-placement="top" title="Download PDF"></i> -->
 </div>
 </template>
 

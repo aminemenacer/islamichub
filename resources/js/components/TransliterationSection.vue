@@ -41,14 +41,14 @@
       <h6 class="text-left"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" /><strong>Reciter's name: </strong>Mishary Rashid Alafasy</h6>
     </div>
     <div class="btn-group">
-      <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+      <!-- <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
         Save as
-      </button>
-      <ul class="dropdown-menu">
+      </button> -->
+      <!-- <ul class="dropdown-menu">
         <li><a class="dropdown-item" style="cursor:pointer" @click="downloadAsCSVTransliteration">Download as CSV</a></li>
         <li><a class="dropdown-item" style="cursor:pointer" @click="downloadAsWordTransliteration">Download as Word</a></li>
         
-      </ul>
+      </ul> -->
     </div>
   </div>
 
@@ -175,7 +175,7 @@ export default {
                 children: [
                   new TextRun({
                     text: "Prepared by Islamic Connect",
-                    italics: true,
+                    italics: false,
                     size: 24, // 12pt font size
                     color: "808080" // Gray color
                   })
@@ -190,6 +190,7 @@ export default {
                   new TextRun({
                     text: "Transliteration:",
                     bold: true,
+                    spacing:100,
                     size: 32, // 16pt font size for header
                     color: "2B5797" // Slightly lighter blue
                   })
@@ -203,6 +204,7 @@ export default {
                   new TextRun({
                     text: this.information.transliteration,
                     bold: false,
+                    spacing:100,
                     size: 28, // 14pt font size for content
                     color: "000000" // Black color for readability
                   })
@@ -216,6 +218,7 @@ export default {
                   new TextRun({
                     text: "Transliteration:",
                     bold: true,
+                    spacing:100,
                     size: 32,
                     color: "2B5797"
                   })
@@ -228,7 +231,7 @@ export default {
                 children: [
                   new TextRun({
                     text: "Ahmed Ali",
-                    italics: true,
+                    italics: false,
                     size: 28,
                     color: "000000"
                   })

@@ -71,14 +71,14 @@
 			<h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" /><strong>Reciter's name: </strong>Mishary Rashid Alafasy</h6>
     </div>
 		<div class="btn-group">
-  <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+  <!-- <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
     Save as
-  </button>
-  <ul class="dropdown-menu">
+  </button> -->
+  <!-- <ul class="dropdown-menu">
     <li><a class="dropdown-item" style="cursor:pointer" @click="downloadAsCSVTafseer">Download as CSV</a></li>
     <li><a class="dropdown-item" style="cursor:pointer" @click="downloadAsWordTafseer">Download as Word</a></li>
     
-  </ul>
+  </ul> -->
 </div>
   </div>
 

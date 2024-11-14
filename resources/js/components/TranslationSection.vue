@@ -77,18 +77,27 @@
         <div class="text-left word-count mt-2">
           <h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" /><strong>Reciter's name: </strong>Mishary Rashid Alafasy</h6>
         </div>
-         <!-- <button type="button" class="btn btn-success" @click="downloadAsCSV">Download as CSV</button>
-      <button type="button" class="btn btn-success" @click="downloadAsWord">Download as Word</button> -->
-<div class="btn-group">
-  <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-    Save as
-  </button>
-  <ul class="dropdown-menu">
-    <li><a class="dropdown-item" style="cursor:pointer" @click="downloadAsCSV">Download as CSV</a></li>
-    <li><a class="dropdown-item" style="cursor:pointer" @click="downloadAsWord">Download as Word</a></li>
-    
-  </ul>
-</div>
+        <!-- <button type="button" class="btn btn-success" @click="downloadAsCSV">Download as CSV</button>
+          <button type="button" class="btn btn-success" @click="downloadAsWord">Download as Word</button> -->
+        <!-- <div class="btn-group">
+          <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            Save as
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" style="cursor:pointer" @click="downloadAsCSV">Download as CSV</a></li>
+            <li><a class="dropdown-item" style="cursor:pointer" @click="downloadAsWord">Download as Word</a></li>
+            
+          </ul>
+        </div> -->
+        <!-- <CustomizationModal /> -->
+        <!-- <button type="button" class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSetting" aria-controls="offcanvasSetting">
+            Open Settings
+        </button> -->
+        <!-- <offcanvas-setting
+          :font-size="fontSize"
+          @save="applySettings"
+        /> -->
+
       </div>
 
       <AlertModal 
@@ -110,6 +119,7 @@ import AlertModal from "./modals/AlertModal.vue";
 import ScreenReader from "./accesibility/ScreenReader.vue";
 import ScreenTranslationCapture from "./translation/features/screen_capture/ScreenTranslationCapture.vue";
 import Magnifier from "./search/Magnifier.vue";
+import OffcanvasSetting from "./modals/OffcanvasSetting.vue";
 
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
@@ -127,6 +137,8 @@ import {
 export default {
   name: "TranslationSection",
   components: {
+    OffcanvasSetting,
+    // CustomizationModal,
     AyahInfo,
     MainAyah,
     Translator,
@@ -244,6 +256,8 @@ export default {
 
   mounted() {
     this.renderedText = this.information.translation;
+
+    
     // Load saved settings from local storage on page load
     const savedVoiceName = localStorage.getItem("selectedVoice");
     const savedRate = localStorage.getItem("rate");
@@ -270,6 +284,31 @@ export default {
   },
 
   methods: {
+    applySettings(fontSize, rate, pitch, selectedVoice) {
+      // Update font size, speech rate, pitch, and selected voice
+      this.fontSize = fontSize;
+      this.rate = rate;
+      this.pitch = pitch;
+      this.selectedVoice = selectedVoice;
+
+      // Optionally, save these settings to local storage
+      localStorage.setItem('fontSize', fontSize);
+      localStorage.setItem('rate', rate);
+      localStorage.setItem('pitch', pitch);
+      localStorage.setItem('selectedVoice', selectedVoice);
+
+      // Optionally, you can also apply the changes to speech synthesis if needed
+      if ('speechSynthesis' in window) {
+        const utterance = new SpeechSynthesisUtterance(this.information.translation);
+        utterance.rate = rate;
+        utterance.pitch = pitch;
+        utterance.voice = window.speechSynthesis.getVoices().find(voice => voice.name === selectedVoice);
+        window.speechSynthesis.speak(utterance);
+      }
+    },
+
+    // Additional methods if needed, such as toggling expanded state, etc.
+  
     toggleSpeechAyah() {
       this.$emit('toggle-audio', this.isReading);
     },
@@ -458,7 +497,7 @@ export default {
                 children: [
                   new TextRun({
                     text: "Prepared by Islamic Connect",
-                    italics: true,
+                    italics: false,
                     size: 24, // 12pt font size
                     color: "808080" // Gray color
                   })
@@ -505,7 +544,6 @@ export default {
                 ],
                 spacing: { after: 200 }
               }),
-
               // Translator Content
               new Paragraph({
                 children: [
@@ -659,10 +697,7 @@ export default {
       this.$emit('toggle-change');
     }
   }
-  // created() {
-  //   const savedFontSize = localStorage.getItem('ayahFontSize');
-  //   this.fontSize = savedFontSize ? parseFloat(savedFontSize) : this.fontSize; // Set initial font size
-  // },
+ 
 };
 </script>
 

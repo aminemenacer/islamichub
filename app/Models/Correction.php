@@ -13,11 +13,8 @@ class Correction extends Model
 
 
     protected $fillable = [
-        'mistake_type',
-        'name',
-        'email',
         'added_notes',
+        'rating',
         'created_at',
-        'hadith_num'
     ];
 }
