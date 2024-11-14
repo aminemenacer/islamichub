@@ -388,12 +388,12 @@
      <TransliterationNote ref="transliterationNote" :information="modalInformation" />
      
     </div>
-      <audio v-if="information != null" 
+      <!-- <audio v-if="information != null" 
        ref="audioPlayer" 
-       :src="information.ayah.audio_links" 
+       :src="fullAudioLink"  
        class="w-100 custom-audio" 
        loop controls 
-      />
+      /> -->
    </div>
 
     <!-- gesture instructions -->
@@ -935,6 +935,14 @@ computed: {
     // Check if ayah_text and translation have nested structure
     const translation = typeof this.information.translation === 'object' ? this.information.translation.text : this.information.translation;
     return `Translation: ${translation}`;
+  },
+  fullAudioLink() {
+    if (this.information && this.information.ayah.audio_links) {
+      return this.information.ayah.audio_links.startsWith('http')
+        ? this.information.ayah.audio_links
+        : `${window.location.origin}${this.information.ayah.audio_links}`;
+    }
+    return '';
   },
   containerStyle() {
     return {

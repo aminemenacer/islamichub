@@ -19,7 +19,6 @@ class AyahSeeder extends Seeder
 
         $csvFile = fopen($csvFilePath, "r");
         $isHeader = true;
-        $audioCounter = 1; // Start the audio counter from 1 or any desired start point
 
         while (($data = fgetcsv($csvFile, 2000, ",")) !== FALSE) {
             // Skip the header line
@@ -32,27 +31,26 @@ class AyahSeeder extends Seeder
                 // Ensure ayah text is UTF-8 encoded
                 $ayahText = isset($data[3]) ? mb_convert_encoding($data[3], 'UTF-8', 'auto') : '';
 
-                // Format audio link with the incremented counter, zero-padded if needed
-                $audioLink = preg_replace(
-                    '/\/ar\.alafasy\/\d+\.mp3$/',
-                    "/ar.alafasy/" . sprintf('%03d', $audioCounter) . ".mp3",
-                    $data[2]
-                );
+                // Directly use the audio link from the CSV file
+                $audioLink = $data[2];
 
-                Ayah::create([
-                    "surah_id" => $data[0],
-                    "ayah_id" => $data[1],
-                    "audio_links" => $audioLink,
-                    "ayah_text" => $ayahText,
-                ]);
-
-                $audioCounter++; // Increment the counter for the next audio link
+                // Check if the audio link is not empty and valid
+                if (!empty($audioLink)) {
+                    Ayah::create([
+                        "surah_id" => $data[0],
+                        "ayah_id" => $data[1],
+                        "audio_links" => $audioLink,
+                        "ayah_text" => $ayahText,
+                    ]);
+                } else {
+                    echo "Missing audio link for Ayah: " . $data[1] . PHP_EOL;
+                }
             } else {
-                echo "Missing value in CSV row: " . implode(",", $data) . PHP_EOL;
-                var_dump($data);
+                echo "Invalid row format: " . implode(",", $data) . PHP_EOL;
             }
         }
 
         fclose($csvFile);
     }
 }
+

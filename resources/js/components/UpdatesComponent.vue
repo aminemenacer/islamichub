@@ -4,12 +4,12 @@
   <div class="row ml-4 mt-3 container-fluid">
     <h2 class="text-left mt-3 mb-2 container" style="line-height: 1.7em; tafseer; "><img src="/images/art.png" style="width: 40px;" class="mb-1 mr-2 display-4" /><b> Islamic Connect Beta Version 2 has arrived! </b></h2>
     <div class="col-md-6">
-      <h5 class="text-left text-dark" width="80%" style="line-height: 1.7em; tafseer"><b>November 14th, 2024</b></h5>
+      <h5 class="text-left text-dark" width="80%" style="line-height: 1.7em; tafseer">November 14th, 2024</h5>
       <div>
         <p style="padding:5px; line-height: 1.7em; tafseer" class="text-left text-dark ">We are thrilled to introduce Islamic Connect V2, redesigned and reimagined to bring an enhanced, accessible Quranic experience to everyone. Here is whats new:</p>
         <div>
           <li style="padding:5px" class="text-left text-dark "><strong>Record audio and instantly convert it to text for note-taking </strong></li>
-          <li style="padding:5px" class="text-left text-dark "><strong>Play Quranic recitations with synchronized verse highlighting</strong></li>
+          <li style="padding:5px" class="text-left text-dark "><strong>Fully responsive design for an optimal experience on any device</strong></li>
           <li style="padding:5px" class="text-left text-dark "><strong>Listen to tafseer or translation audios for deeper understanding</strong></li>
           <li style="padding:5px" class="text-left text-dark "><strong>Screen Capture of verses to save or share</strong></li>
         </div>
@@ -20,7 +20,7 @@
       </div>
     </div>
     <div class="col-md-6">
-      <img src="images/icv2.png" style="width:80%" />
+      <img src="images/icv21.png" style="width:80%" />
     </div>
   </div>
 

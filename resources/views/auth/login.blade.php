@@ -43,7 +43,7 @@
                                             {{ __('Forgot Your Password?') }}
                                         </a>
                                     @endif --}}
-                                    <p class="mb-3 pb-lg-2" style="color: #000000;">Don't have an account? <a style="text-decoration: none" href="/register" style="color: #00BFA6;">Register here</a></p>
+                                    <p class="mb-3 pb-lg-2 pt-2" style="color: #000000;">Don't have an account? <a style="text-decoration: none" href="/register" style="color: #00BFA6;">Register here</a></p>
                                 </div>
                                 
                                     

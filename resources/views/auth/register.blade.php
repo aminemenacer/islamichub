@@ -86,7 +86,7 @@
                   <p class="mt-3 text-center">Already have an account ? Click <a href="/login">here</a> to login.</p>
                 </div>
 
-                <hr>
+                <!-- <hr> -->
                 <!-- <div class="text-center">
                   <b>or login with:</b>
 

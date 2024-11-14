@@ -138,7 +138,7 @@ export default {
         const sessionId = response.data.sessionId;
 
         // Load Stripe with your publishable key
-        const stripe = await loadStripe('pk_test_51QIJkjIol4Q5wn4OOOwjUCTuVO7k49YHuLHsnMGjcOAiKesa3CbihaIRvdsXmXrKCUOxbslT1kWyHhbxFEW4TVzf00Kpk3PNUf');
+        const stripe = await loadStripe('pk_live_51QIJkjIol4Q5wn4Og4nYBjG25zNBFSnvTIfivJvDdHt6u0CD364TMcQHvGmrh6TOBNPDi9xwRDz7Zoirdl6NSDoB00JEFToo7F');
         const {
           error
         } = await stripe.redirectToCheckout({

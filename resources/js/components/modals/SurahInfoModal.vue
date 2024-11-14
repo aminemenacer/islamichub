@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="surahInfoModalLabel"><strong>Information</strong></h1>
+          <h1 class="modal-title fs-5" id="surahInfoModalLabel"><strong>Surah Information</strong></h1>
           <button type="button" class="btn-close" @click="closeModal" aria-label="Close"></button>
         </div>
         <div class="modal-body">

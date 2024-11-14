@@ -12,12 +12,14 @@
         class="swipeable-div w-100">
         <div class="row">
           <div class="col-md-2 pt-2 d-flex align-items-center justify-content-center">
+            <!--
             <i 
               @click="toggleSpeechAyah" 
               class="bi-play-circle-fill h4 custom-icon-play-main"
               style="cursor: pointer;" 
               aria-label="Play or pause translation audio"
             ></i>
+            -->
           </div>
           <div class="col-md-10">
               <MainAyah :information="information" />

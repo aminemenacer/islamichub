@@ -6,7 +6,7 @@
           <div class="mt-3 mt-md-0">
             <h2 class="display-5 fw-bold pb-3">Support Us</h2>
             <p class="lead">
-              Support Islamic Connect: Build a Bridge to Islamic Knowledge. 
+              Support Islamic Connect: Build a Bridge to Islamic Knowledge.
               Your generous donations help us expand and provide free access to educational Islamic resources.
             </p>
             <p class="lead">
@@ -14,7 +14,7 @@
             </p>
 
             <!-- Stripe-themed Donation Amount Input -->
-            <div class="mb-3">
+            <!-- <div class="mb-3">
               <label for="donationAmount" class="form-label">Enter Donation Amount</label>
               <input 
                 type="number" 
@@ -26,12 +26,16 @@
                 step="1"
                 required
               />
-            </div>
+            </div> -->
 
             <!-- Donate Button -->
-            <button class="container form-control" style="background:#00BFA6; color:white" @click="donate" :disabled="!stripe">
+            <a 
+              :href="gofundmeUrl" 
+              target="_blank" 
+              class="container form-control" 
+              style="background:#00BFA6; color:white; text-align: center; text-decoration: none;">
               Donate
-            </button>
+            </a>
           </div>
         </div>
         <div class="col-md-6 order-2">
@@ -44,13 +48,14 @@
 
 <script>
 import { loadStripe } from "@stripe/stripe-js";
-import axios from "axios"; // Assuming axios is imported to handle the API call
+import axios from "axios";
 
 export default {
   data() {
     return {
+      gofundmeUrl: "https://www.gofundme.com/f/empowerment-through-quran-support-islamic-connects-mission",
       stripe: null,
-      amount: 0,  // Default to 0
+      amount: 0,
     };
   },
   mounted() {
@@ -74,15 +79,25 @@ export default {
       }
 
       try {
+        // Send amount to the backend and get session ID
         const response = await axios.post('/create-checkout-session', {
           amount: this.amount,
         });
 
-        const { id } = response.data;
+        // Check if the sessionId is available
+        const { sessionId } = response.data;
+        if (!sessionId) {
+          console.error("No session ID returned from the server.");
+          alert("Failed to initiate checkout session. Please try again.");
+          return;
+        }
 
-        // Redirect to Stripe Checkout page
+        // Debugging log to confirm sessionId is available
+        console.log("Received sessionId:", sessionId);
+
+        // Redirect to Stripe Checkout page with sessionId
         const { error } = await this.stripe.redirectToCheckout({
-          sessionId: id,
+          sessionId: sessionId,
         });
 
         if (error) {
@@ -90,10 +105,10 @@ export default {
         }
       } catch (error) {
         console.error('Error creating checkout session:', error.message);
+        alert("Failed to initiate checkout. Please check your network connection and try again.");
       }
     },
   },
-
 };
 </script>
 
@@ -105,11 +120,8 @@ export default {
   border-radius: 4px;
   padding: 12px;
   font-size: 16px;
-  font-weight: 400;
   color: #333;
   width: 100%;
-  box-sizing: border-box;
-  transition: border-color 0.2s ease-in-out;
 }
 
 .stripe-input:focus {
@@ -119,25 +131,5 @@ export default {
 
 .stripe-input::placeholder {
   color: #ccc;
-}
-
-/* Additional button styles */
-.donate {
-  background-color: #00BFA6;
-  border-radius: 8px;
-  box-sizing: border-box;
-  color: #fff;
-  cursor: pointer;
-  font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: bold;
-  font-weight: 400;
-  outline: none;
-  padding: 10px 25px;
-  text-align: center;
-  transform: translateY(0);
-  transition: transform 150ms, box-shadow 150ms;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
 }
 </style>
