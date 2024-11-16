@@ -38,7 +38,7 @@ export default {
         formData.append('audio', audioBlob);
 
         try {
-          const response = await axios.post('http://localhost:8000/api/upload', formData);
+          const response = await axios.post('https://localhost:8000/api/upload', formData);
           this.transcription = response.data.transcription;
           this.audioUrl = URL.createObjectURL(audioBlob);
         } catch (error) {

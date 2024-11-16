@@ -12,14 +12,14 @@
         class="swipeable-div w-100">
         <div class="row">
           <div class="col-md-2 pt-2 d-flex align-items-center justify-content-center">
-            <!--
+            
             <i 
               @click="toggleSpeechAyah" 
               class="bi-play-circle-fill h4 custom-icon-play-main"
               style="cursor: pointer;" 
               aria-label="Play or pause translation audio"
             ></i>
-            -->
+           
           </div>
           <div class="col-md-10">
               <MainAyah :information="information" />
@@ -71,17 +71,17 @@
         </div>
         
         <div class="text-left word-count mt-2">
-          <h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" /><strong>Total Word count: </strong>{{ wordCount }}</h6>
+          <h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" loading="lazy"/><strong>Total Word count: </strong>{{ wordCount }}</h6>
         </div>
         <div class="text-left word-count mt-2">
           <Translator translator="Ahmed Ali" />
         </div>
         <div class="text-left word-count mt-2">
-          <h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" /><strong>Reciter's name: </strong>Mishary Rashid Alafasy</h6>
+          <h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" loading="lazy"/><strong>Reciter's name: </strong>Mishary Rashid Alafasy</h6>
         </div>
         <!-- <button type="button" class="btn btn-success" @click="downloadAsCSV">Download as CSV</button>
           <button type="button" class="btn btn-success" @click="downloadAsWord">Download as Word</button> -->
-        <!-- <div class="btn-group">
+        <div class="btn-group">
           <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
             Save as
           </button>
@@ -90,16 +90,8 @@
             <li><a class="dropdown-item" style="cursor:pointer" @click="downloadAsWord">Download as Word</a></li>
             
           </ul>
-        </div> -->
-        <!-- <CustomizationModal /> -->
-        <!-- <button type="button" class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSetting" aria-controls="offcanvasSetting">
-            Open Settings
-        </button> -->
-        <!-- <offcanvas-setting
-          :font-size="fontSize"
-          @save="applySettings"
-        /> -->
-
+        </div>
+       
       </div>
 
       <AlertModal 
@@ -113,7 +105,7 @@
   </div>
 </template>
 
-<script>
+<script defer>
 import AyahInfo from "./translation/AyahInfo.vue";
 import MainAyah from "./translation/MainAyah.vue";
 import Translator from "./translation/Translator.vue";
@@ -475,95 +467,98 @@ export default {
       saveAs(blob, filename);
     },
     async downloadAsWord() {
-      const doc = new Document({
-        sections: [
-          {
-            properties: {},
+  const doc = new Document({
+    sections: [
+      {
+        properties: {},
+        children: [
+          // Title Section
+          new Paragraph({
             children: [
-              // Title Section
-              new Paragraph({
-                children: [
-                  new TextRun({
-                    text: "Quran Translation Document",
-                    bold: true,
-                    size: 48, // 24pt font size
-                    color: "1F4E79" // Dark blue
-                  })
-                ],
-                alignment: "CENTER",
-                spacing: { after: 400 } // Adds space below title
-              }),
+              new TextRun({
+                text: "Quran Translation Document",
+                bold: true,
+                size: 48, // Large size for the title
+                color: "1F4E79", // Dark blue color for professionalism
+                alignment: "CENTER", // Center alignment for the title
+                italics: true, // Slightly emphasize the title
+              })
+            ],
+            alignment: "CENTER", // Ensure the title is centered
+            spacing: { before: 600, after: 600 }, // Generous spacing before and after the title
+          }),
 
-              // Subtitle Section (Optional)
-              new Paragraph({
-                children: [
-                  new TextRun({
-                    text: "Prepared by Islamic Connect",
-                    italics: false,
-                    size: 24, // 12pt font size
-                    color: "808080" // Gray color
-                  })
-                ],
-                alignment: "CENTER",
-                spacing: { after: 600 }
-              }),
+          // Translation Header
+          new Paragraph({
+            children: [
+              new TextRun({
+                text: "Translation:",
+                bold: true,
+                size: 32, // Larger font size for headers
+                color: "2B5797", // Elegant blue color for consistency
+                underline: true // Underline for emphasis
+              })
+            ],
+            alignment: "LEFT", // Left-align for headers
+            spacing: { before: 300, after: 300 }, // Adjust space before and after the header
+          }),
 
-              // Translation Header
-              new Paragraph({
-                children: [
-                  new TextRun({
-                    text: "Translation:",
-                    bold: true,
-                    size: 32, // 16pt font size for header
-                    color: "2B5797" // Slightly lighter blue
-                  })
-                ],
-                spacing: { after: 200 } // Adds space after header
-              }),
+          // Translation Content
+          new Paragraph({
+            children: [
+              new TextRun({
+                text: this.information.translation,
+                bold: false,
+                size: 28, // Standard font size for content
+                color: "333333", // Dark grey for better readability
+                font: "Arial", // Consistent font
+                italics: false
+              })
+            ],
+            alignment: "LEFT", // Keep content left-aligned
+            spacing: { after: 600 }, // Adequate space after the content
+            indent: { left: 360 }, // Indentation for content, simulating padding
+          }),
 
-              // Translation Content
-              new Paragraph({
-                children: [
-                  new TextRun({
-                    text: this.information.translation,
-                    bold: false,
-                    size: 28, // 14pt font size for content
-                    color: "000000" // Black color for readability
-                  })
-                ],
-                spacing: { after: 400 } // Adds space after translation
-              }),
+          // Translator Header
+          new Paragraph({
+            children: [
+              new TextRun({
+                text: "Translator:",
+                bold: true,
+                size: 32,
+                color: "2B5797", // Consistent color for headers
+                underline: true
+              })
+            ],
+            alignment: "LEFT", // Left-align for the header
+            spacing: { before: 300, after: 300 }, // Add space before and after
+          }),
 
-              // Translator Header
-              new Paragraph({
-                children: [
-                  new TextRun({
-                    text: "Translator:",
-                    bold: true,
-                    size: 32,
-                    color: "2B5797"
-                  })
-                ],
-                spacing: { after: 200 }
-              }),
-              // Translator Content
-              new Paragraph({
-                children: [
-                  new TextRun({
-                    text: "Ahmed Ali",
-                    italics: true,
-                    size: 28,
-                    color: "000000"
-                  })
-                ]
-              }),
-            ]
-          }
+          // Translator Content
+          new Paragraph({
+            children: [
+              new TextRun({
+                text: "Ahmed Ali", // Translator name
+                bold: false,
+                size: 28,
+                color: "000000", // Standard black for content
+                italics: false,
+                font: "Arial"
+              })
+            ],
+            alignment: "LEFT", // Left-align for the content
+            spacing: { after: 600 }, // Space after content for balance
+            indent: { left: 360 }, // Same indentation as content for consistency
+          }),
         ]
-      });
-      const blob = await Packer.toBlob(doc);
-      saveAs(blob, "translation.docx");
-    },
+      }
+    ]
+  });
+
+  const blob = await Packer.toBlob(doc);
+  saveAs(blob, "translation.docx");
+},
     toggleSpeech() {
       if (this.isReading) {
         if (this.isPaused) {

@@ -6,7 +6,7 @@
   </div>
 </template>
 
-<script>
+<script defer>
 export default {
   mounted() {
     // Auto-redirect back to the main page (or another route) after a short delay

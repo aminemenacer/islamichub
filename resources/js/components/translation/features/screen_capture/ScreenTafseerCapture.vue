@@ -12,7 +12,7 @@
      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
     <div class="modal-body text-center" style="box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px; padding:15px">
-     <img v-if="previewImage" :src="previewImage" alt="Screenshot" class="img-fluid" />
+     <img v-if="previewImage" :src="previewImage" alt="Screenshot" class="img-fluid" loading="lazy"/>
      <div v-else>Loading...</div>
     </div>
     <div class="modal-footer">

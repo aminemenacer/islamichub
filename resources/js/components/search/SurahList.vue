@@ -4,7 +4,7 @@
     <ul class="col-md-12 mt-1 scrollable-list" style="list-style-type: none; overflow-y: auto; max-height: 400px; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
       <li v-for="item in filteredSurah" :key="item.id" @click="selectSurah(item.id)" style="cursor: pointer; padding: 5px; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius: 5px;" class="highlight-on-hover">
         <div style="display: flex; align-items: center;">
-          <img src="/images/art.png" style="width: 23px;" class="mb-1 mr-2" />
+          <img src="/images/art.png" style="width: 23px;" class="mb-1 mr-2" loading="lazy"/>
           <p style="font-size: 18px;" class="mt-2">{{ item.name_en }} - {{ item.name_ar }}</p>
         </div>
       </li>

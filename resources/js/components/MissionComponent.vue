@@ -15,7 +15,7 @@
     </div>
    </div>
     <div class="col-md-6 order-2 ">
-     <img src="/images/volunteer1.png" width="110%">
+     <img src="/images/volunteer1.png" width="110%" loading="lazy">
     </div>
   </div>
 

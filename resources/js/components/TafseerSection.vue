@@ -1,99 +1,108 @@
 <template>
-<div class="w-100 my-element" :class="{ 'full-screen': isFullScreen }">
-  <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
-  <div>
-		<AyahInfo :information="information" />
-		<div @touchstart="handleStart" @touchend="handleEnd" @mousedown="handleStart" @mouseup="handleEnd" @mouseleave="cancelHold" class="swipeable-div w-100">
-			<div class="row">
-				<div class="col-md-2 pt-2 d-flex align-items-center justify-content-center">
-					<!--
-					<i 
-						@click="toggleSpeechAyah" 
-						class="bi-play-circle-fill h4 custom-icon-play-main"
-						style="cursor: pointer;" 
-						aria-label="Play or pause translation audio"
-					></i>
-					-->
-				</div>
-				<div class="col-md-10">
-						<MainAyah :information="information" />
-				</div>
-			</div>
-
-    <div ref="targetTafseerElement" class="row text-left mt-2">
-      <!-- Text Column -->
-      <div class="col-10">
-        <h4 class="ayah-translation" style="line-height: 1.6em" :style="{ fontSize: fontSize + 'em', lineHeight: '1.6em' }">
-          {{ expanded ? tafseer : tafseer }}
-        </h4>
-      </div>
-      
-      <!-- Icons Column (Stacked Vertically) -->
-			<div v-if="isVisible" class="col-2 d-flex align-items-center justify-content-center flex-column">
-					<!-- Play/Pause Button -->
-				<i 
-					@click="toggleSpeech" 
-					:class="['bi', isReading ? (isPaused ? 'bi-play-circle-fill' : 'bi-pause-circle-fill') : 'bi-play-circle-fill', 'h3', 'custom-icon-play']"
-					style="cursor: pointer;" 
-					aria-label="Play or pause translation audio">
-				</i>
-
-				<!-- Stop Button -->
-				<i 
-					@click="stopReading" 
-					:class="['bi', 'bi-stop-circle-fill', 'h3', 'custom-icon-play']"
-					style="cursor: pointer;" 
-					:disabled="!isAudioPlaying"
-					aria-label="Stop reading audio">
-				</i>
-
-				<i 
-					@click="increaseFontSize" 
-					class="bi bi-plus-circle-fill h3 custom-icon-increase"
-					style="cursor: pointer;" 
-					aria-label="Increase font size">
-				</i>
-
-				<i 
-					@click="decreaseFontSize" 
-					class="bi bi-dash-circle-fill h3 custom-icon-decrease"
-					style="cursor: pointer;" 
-					aria-label="Decrease font size">
-				</i>
-			</div>
-    </div>
-
-    <div class="word-count">
-			<h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" /><strong>Total Word count: </strong>{{ wordCount }}</h6>
-    </div>
-    <div class="word-count">
-			<h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" /><strong>Tafseer: </strong>Tafseer Ibn Kathir</h6>
-    </div>
-    <div class="word-count">
-			<h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" /><strong>Reciter's name: </strong>Mishary Rashid Alafasy</h6>
-    </div>
-		<div class="btn-group">
-  <!-- <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-    Save as
-  </button> -->
-  <!-- <ul class="dropdown-menu">
-    <li><a class="dropdown-item" style="cursor:pointer" @click="downloadAsCSVTafseer">Download as CSV</a></li>
-    <li><a class="dropdown-item" style="cursor:pointer" @click="downloadAsWordTafseer">Download as Word</a></li>
+  <div class="w-100 my-element" :class="{ 'full-screen': isFullScreen }">
+    <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
     
-  </ul> -->
-</div>
+    <div>
+      <AyahInfo :information="information" />
+      <div 
+        @touchstart="handleStart" 
+        @touchend="handleEnd" 
+        @mousedown="handleStart" 
+        @mouseup="handleEnd" 
+        @mouseleave="cancelHold" 
+        class="swipeable-div w-100"
+      >
+        <div class="row">
+          <div class="col-md-2 pt-2 d-flex align-items-center justify-content-center">
+            <i 
+              @click="toggleSpeechAyah" 
+              class="bi-play-circle-fill h4 custom-icon-play-main"
+              style="cursor: pointer;" 
+              aria-label="Play or pause translation audio"
+            ></i>
+          </div>
+          <div class="col-md-10">
+            <MainAyah :information="information" />
+          </div>
+        </div>
+
+        <!-- Tafseer and Control Icons -->
+        <div ref="targetTafseerElement" class="row text-left mt-2">
+          <div class="col-10">
+            <h4 
+              class="ayah-translation" 
+              style="line-height: 1.6em" 
+              :style="{ fontSize: fontSize + 'em' }"
+            >
+              {{ expanded ? tafseer : tafseer }}
+            </h4>
+          </div>
+
+          <!-- Control Icons Column (Stacked Vertically) -->
+          <div v-if="isVisible" class="col-2 d-flex align-items-center justify-content-center flex-column">
+            <i 
+              @click="toggleSpeech" 
+              :class="['bi', isReading ? (isPaused ? 'bi-play-circle-fill' : 'bi-pause-circle-fill') : 'bi-play-circle-fill', 'h3', 'custom-icon-play']"
+              style="cursor: pointer;" 
+              aria-label="Play or pause translation audio"
+            ></i>
+
+            <i 
+              @click="stopReading" 
+              class="bi bi-stop-circle-fill h3 custom-icon-play"
+              :disabled="!isAudioPlaying"
+              style="cursor: pointer;"
+              aria-label="Stop reading audio"
+            ></i>
+
+            <i 
+              @click="increaseFontSize" 
+              class="bi bi-plus-circle-fill h3 custom-icon-increase"
+              style="cursor: pointer;" 
+              aria-label="Increase font size"
+            ></i>
+
+            <i 
+              @click="decreaseFontSize" 
+              class="bi bi-dash-circle-fill h3 custom-icon-decrease"
+              style="cursor: pointer;" 
+              aria-label="Decrease font size"
+            ></i>
+          </div>
+        </div>
+
+        <!-- Word Count and Additional Information -->
+        <div v-if="wordCount" class="word-count">
+          <h6 class="text-left mt-3">
+            <img src="/images/art.png" class="pr-2" width="30px" alt="lamp" loading="lazy"/>
+            <strong>Total Word count: </strong>{{ wordCount }}
+          </h6>
+          <h6 class="text-left mt-3">
+            <img src="/images/art.png" class="pr-2" width="30px" alt="lamp" loading="lazy"/>
+            <strong>Tafseer: </strong>Tafseer Ibn Kathir
+          </h6>
+          <h6 class="text-left mt-3">
+            <img src="/images/art.png" class="pr-2" width="30px" alt="lamp" loading="lazy"/>
+            <strong>Reciter's name: </strong>Mishary Rashid Alafasy
+          </h6>
+        </div>
+
+        <!-- Placeholder for Future Dropdown or Button -->
+        <div class="btn-group">
+          <!-- You can add dropdown or buttons here as needed -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Alert Modal -->
+    <AlertModal 
+      :showAlertText="showAlertText" 
+      :showAlert="showAlert" 
+      :showErrorAlert="showErrorAlert" 
+      :showAlertTextNote="showAlertTextNote" 
+      @close-alert-text="closeAlertText" 
+    />
   </div>
-
-  <AlertModal 
-    :showAlertText="showAlertText" 
-    :showAlert="showAlert" 
-    :showErrorAlert="showErrorAlert" 
-    :showAlertTextNote="showAlertTextNote" 
-    @close-alert-text="closeAlertText" 
-  />
-</div>
-
-</div>
 </template>
 <!--
      <div ref="targetTafseerElement">
@@ -200,7 +209,7 @@
         </div>
     </div>
     -->
-<script>
+<script defer>
 import AyahInfo from "./translation/AyahInfo.vue";
 import MainAyah from "./translation/MainAyah.vue";
 import AlertModal from "./modals/AlertModal.vue";

@@ -48,7 +48,7 @@
   <!--
     <aside id="tablet-sidebar" class="main-sidebar sidebar-light-primary elevation-4">
       <a href="/" class="brand-link">
-          <img src="/images/logo_main.png" width="220" height="45" alt="">
+          <img src="/images/logo_main.png" width="220" height="45" alt="" loading="lazy">
       </a>
       <div class="sidebar">
           <nav class="mt-2">
@@ -164,7 +164,7 @@
       </div>
     </div>
   </div>
-<script>
+<script defer>
     // JavaScript for toggling the sidebar
     $(document).ready(function () {
       $('.navbar-toggler').click(function () {

@@ -89,7 +89,7 @@
 </section>
 </template>
 
-<script>
+<script defer>
 export default {
 
 }

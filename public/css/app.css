@@ -1,5 +1,11 @@
 @import url(https://fonts.bunny.net/css?family=Nunito);
 
+/* @font-face {
+  font-family: 'CustomFont';
+  src: url('fonts/custom-font.woff2') format('woff2'),
+       url('fonts/custom-font.woff') format('woff');
+  font-display: swap;
+} */
 /*!
  *   AdminLTE v3.2.0
  *   Author: Colorlib

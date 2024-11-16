@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<script>
+<script defer>
 export default {
   name: "About",
   components:{}

@@ -36,7 +36,7 @@
           <a href="#" @click.prevent="toggleExpand">{{ expanded ? 'Show Less' : 'Show More' }}</a>
         </template>
       </h1>
-      <img src="/images/art.png" class="pr-2" width="30px" alt="lamp" /><h6 class="text-left mt-3"><strong>Translation: </strong>Ahmed Ali</h6>
+      <img src="/images/art.png" class="pr-2" width="30px" alt="lamp" loading="lazy"/><h6 class="text-left mt-3"><strong>Translation: </strong>Ahmed Ali</h6>
 
       <!-- Alerts -->
       <div v-if="showAlertText" class="alert alert-success alert-dismissible fade show mt-2" role="alert">Text copied successfully!</div>

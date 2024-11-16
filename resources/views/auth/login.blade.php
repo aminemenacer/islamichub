@@ -6,7 +6,7 @@
         <div class="container">
             <div class="row gx-lg-5 align-items-center">
                 <div class="col-lg-6 mb-lg-0 hide-on-mobile">
-                    <img src="{{ asset('images/mob-auth.png') }}" width="90%" alt="Auth Image">
+                    <img src="{{ asset('images/mob-auth.png') }}" width="90%" alt="Auth Image" loading="lazy">
                 </div>
                 <div class="col-lg-6 mb-lg-0">
                     <div class="card" style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; border-radius:10px">

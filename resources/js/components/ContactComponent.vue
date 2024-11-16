@@ -55,7 +55,7 @@
 </template>
 
 
-<script>
+<script defer>
 import axios from 'axios';
 export default {
 

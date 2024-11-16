@@ -6,7 +6,7 @@
     </template>
   </h5>
 </template>
-<script>
+<script defer>
 export default {
   name: 'AyahTafseer',
   props: {

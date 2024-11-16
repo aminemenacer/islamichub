@@ -58,7 +58,7 @@
   </div>
 </template>
 
-<script>
+<script defer>
 import axios from 'axios';
 import Swal from 'sweetalert2';
 

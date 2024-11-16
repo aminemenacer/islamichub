@@ -19,12 +19,26 @@
    <div style="display:flex" class="row">
     <!-- <AyahOfTheDay class="container" v-if="!isVisible" :ayat="ayat" /> -->
 
-    <SurahDropdown class="col-md-12" :selectedSurah="selectedSurahId" :filteredSurah="filteredSurah" :surat="surat" @update:selectedSurah="updateSelectedSurah" @change="getAyat" /> 
-    <AddBookmark />
+<SurahDropdown
+    class="col-md-12"
+    :selectedSurah="selectedSurahId"
+    :filteredSurah="filteredSurah"
+    :surat="surat"
+    @update:selectedSurah="updateSelectedSurah" 
+    @change="getAyat"
+  />
+      <AddBookmark />
     
    </div>
-   <AyahDropdown class="desktop-hidden" :selectedSurahId="selectedSurahId" :dropdownHidden="dropdownHidden" @update-information="updateInformation" @update-tafseer="updateTafseer" v-if="ayah == null && !dropdownHidden" />
-   <!-- List of Ayat for Surah (desktop) -->
+<AyahDropdown
+    class="desktop-hidden"
+    :selectedSurahId="selectedSurahId"
+    :dropdownHidden="dropdownHidden"
+    @update-information="updateInformation"
+    @update-tafseer="updateTafseer"
+    v-if="ayah == null && !dropdownHidden"
+  />
+     <!-- List of Ayat for Surah (desktop) -->
    <div class="tab-content hide-on-mobile-tablet" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" v-if="ayah == null">
 
@@ -388,12 +402,12 @@
      <TransliterationNote ref="transliterationNote" :information="modalInformation" />
      
     </div>
-      <!-- <audio v-if="information != null" 
+      <audio v-if="information != null" 
        ref="audioPlayer" 
        :src="fullAudioLink"  
        class="w-100 custom-audio" 
        loop controls 
-      /> -->
+      />
    </div>
 
     <!-- gesture instructions -->
@@ -607,7 +621,7 @@
 </div>
 </template>
 
-<script>
+<script defer>
 import html2canvas from 'html2canvas';
 import CustomSurahSelection from './surah_selection/CustomSurahSelection.vue';
 import SearchForm from './search/SearchForm.vue';
@@ -650,7 +664,6 @@ import AdvancedSearch from './search/AdvancedSearch.vue'
 import KeyboardNavigation from './accesibility/KeyboardNavigation.vue'
 import FolderSelectionModal from './folder_manager/FolderSelectionModal.vue';
 import ScreenReader from './accesibility/ScreenReader.vue';
-import VideoModal from './modals/VideoModal.vue';
 import AyahSelector from './search/AyahSelector.vue';
 // import AyahOfTheDay from './translation/AyahOfTheDay.vue';
 
@@ -684,7 +697,6 @@ export default {
   ScreenTafseerCapture,
   ScreenTransliterationCapture,
   SurahInfoModal,
-  VideoModal,
   TranslationNote,
   TafseerNote,
   TransliterationNote,
@@ -973,10 +985,29 @@ computed: {
 },
 methods: {
   fetchAyat() {
-      // Fetch ayat for the selected surah and set the first ayah as highlighted
-      // Example fetch request
-      this.ayat = [];
-    },
+    // Fetch ayat for the selected surah and set the first ayah as highlighted
+    // Example fetch request
+    this.ayat = [];
+  },
+  fetchAyat: async function() {
+    try {
+      this.isLoading = true;
+      const response = await axios.get("/get_ayat", {
+        params: { surah_id: this.selectedSurahId },
+      });
+      this.ayat = response.data;
+
+      // Automatically select and display the first Ayah if available
+      if (this.ayat.length > 0) {
+        this.selectedAyahId = this.ayat[0].id; // Select the first Ayah by default
+        this.handleAyahChange(); // Trigger Ayah change to load its content
+      }
+    } catch (error) {
+      console.error("Error fetching ayat:", error);
+    } finally {
+      this.isLoading = false;
+    }
+  },
   updateInformation(info) {
             this.information = info;
         },
@@ -1286,6 +1317,9 @@ setTimeout(() => {
    } else {
     console.error(`Modal reference '${modalRef}' not found or showModal is not a function.`);
    }
+  },
+  updateSelectedSurah(newSurahId) {
+    this.selectedSurahId = newSurahId; // Sync emitted value to local state
   },
   updateSelectedSurah(surah) {
    this.selectedSurah = surah;
@@ -1614,9 +1648,19 @@ setTimeout(() => {
   },
  },
  watch: {
+   
   selectedSurah(newSurah) {
    this.selectedSurahId = newSurah;
    this.getAyat();
+  },
+  selectedSurahId: {
+    handler(newValue) {
+      if (newValue) {
+        this.selectedAyahId = ""; // Reset selected Ayah when Surah changes
+        this.fetchAyat();  // Fetch Ayah for the new Surah
+      }
+    },
+    immediate: true,
   },
   selectedSurahId(newVal) {
       if (newVal) {

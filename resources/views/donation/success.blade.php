@@ -23,7 +23,7 @@
         <p>We appreciate your support!</p>
     </div>
 
-    <script>
+    <script defer>
         // Redirect to the desired page after a 3-second delay
         setTimeout(function() {
             window.location.href = "{{ url('/support') }}"; // Change to your desired redirect URL

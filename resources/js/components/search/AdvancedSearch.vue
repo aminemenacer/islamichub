@@ -161,6 +161,7 @@ import axios from 'axios';
 
 export default {
  mounted() {
+  const searchTerm = this.searchTerm.trim().toLowerCase();
   const dropdown = document.querySelector('.dropdown');
   if (this.information?.ayah?.id) {
       this.fetchTafseer(this.information.ayah.id);
@@ -235,6 +236,16 @@ export default {
   information: Object,
  },
  methods: {
+   filterResults() {
+    console.log(this.searchTerm); // Log the search term
+    // Example of filtering logic
+    this.filteredResults = this.allResults.filter(result => {
+      // Match on ayah_text, translation, or any field that might contain the search term
+      return result.ayah.ayah_text.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+             result.translation.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+             result.originalTafseer.toLowerCase().includes(this.searchTerm.toLowerCase());
+    });
+  },
   openModal(result) {
     this.selectedAyah = result; // Set the selected Ayah data
     const modalElement = document.getElementById('ayahModal');
@@ -400,6 +411,12 @@ export default {
    }
   },
 
+  async fetchResults() {
+    const response = await axios.get('/api/quran/ayat');
+    this.allResults = response.data;  // Ensure all results are loaded before filtering
+    this.filterResults();
+  },
+
   fetchResults(suggestion) {
    const params = {
     query: suggestion,
@@ -422,11 +439,10 @@ export default {
 
   // Highlight the search term in the text
   highlightSearch(text) {
-   const searchTerm = this.searchTerm.trim();
-   if (!searchTerm) return text;
-
-   const regex = new RegExp(`(${searchTerm})`, 'gi');
-   return text.replace(regex, '<strong style="background-color: #3EB489;">$1</strong>');
+    if (!text || !this.searchTerm) return text;
+    const searchTerm = this.searchTerm.trim().toLowerCase();
+    const regExp = new RegExp(`(${searchTerm})`, 'gi');
+    return text.replace(regExp, '<mark>$1</mark>');
   },
 
   // Download a PDF of the result
@@ -488,18 +504,14 @@ export default {
     offcanvas.show();
   },
 
-  // Debounced search to limit the number of fetch calls
-  debouncedSearch: _.debounce(function () {
-  clearTimeout(this.timer); // Clear previous timer
-  this.loading = true; // Show loading indicator
-        this.timer = setTimeout(this.fetchSuggestions, 4000);
-
-   this.fetchSuggestions();
-  }, )
+  debouncedSearch() {
+    clearTimeout(this.debounceTimeout);
+    this.debounceTimeout = setTimeout(() => {
+      this.filterResults();  // Filter results based on the current search term
+    }, 300);  // Adjust debounce time as needed
+  }
  },
  
-
-
 };
 </script>
 

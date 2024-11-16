@@ -11,7 +11,7 @@
       <div class="row gx-lg-5 align-items-center">
 
         <div class="col-lg-6  mb-lg-0 hide-on-mobile">
-          <img src="images/mob-auth.png" width="90%">
+          <img src="images/mob-auth.png" width="90%" loading="lazy">
         </div>
 
 

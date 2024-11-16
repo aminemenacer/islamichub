@@ -58,14 +58,14 @@
      </div>
     </div>
    </div>
-   <div class="col-lg-6 mt-5 d-none d-lg-block"><img src="/images/group.png" alt="" class="img-fluid"></div>
+   <div class="col-lg-6 mt-5 d-none d-lg-block"><img src="/images/group.png" alt="" class="img-fluid" loading="lazy"></div>
   </div>
  </div>
 
 </div>
 </template>
 
-<script>
+<script defer>
 export default {
  data() {
   return {

@@ -71,9 +71,9 @@ export default {
 }
 
 .badge.active {
-  background-color: rgba(0, 191, 166, 0.2);
-  color: rgb(5, 32, 29);
-  border: 1px solid rgba(0, 191, 166);
+  background-color: rgb(26, 61, 57);
+  color: white;
+  border: 1px solid rgb(26, 61, 57);
 }
 </style>
 

@@ -1,11 +1,11 @@
 <!-- resources/js/components/TinymceEditor.vue -->
 <template>
   <div>
-    <textarea ref="editor">{{ modelValue }}</textarea>
+    <!-- <textarea ref="editor">{{ modelValue }}</textarea> -->
   </div>
 </template>
 
-<script>
+<script defer>
 import tinymce from 'tinymce/tinymce';
 
 

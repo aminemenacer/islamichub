@@ -39,14 +39,14 @@
           </div>
         </div>
         <div class="col-md-6 order-2">
-          <img src="/images/money1.png" width="100%" />
+          <img src="/images/money1.png" width="100%" loading="lazy"/>
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<script>
+<script defer>
 import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
 
