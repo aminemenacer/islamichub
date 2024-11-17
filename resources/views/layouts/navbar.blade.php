@@ -66,7 +66,7 @@
              </li>
              @endguest
              <li class="nav-item mt-2 ">
-                 <button class="button-33"><a style="text-decoration: none;color:white"
+                 <button><a style="text-decoration: none;color:white"
                          href="https://www.gofundme.com/f/empowerment-through-quran-support-islamic-connects-mission">Support
                          Us</a></button>
              </li>

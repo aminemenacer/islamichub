@@ -402,12 +402,12 @@
      <TransliterationNote ref="transliterationNote" :information="modalInformation" />
      
     </div>
-      <audio v-if="information != null" 
+      <!-- <audio v-if="information != null" 
        ref="audioPlayer" 
        :src="fullAudioLink"  
        class="w-100 custom-audio" 
        loop controls 
-      />
+      /> -->
    </div>
 
     <!-- gesture instructions -->
@@ -1739,11 +1739,11 @@ setTimeout(() => {
   border-bottom: 1px solid #ccc;
 }
 
-.button-33 {
+/* .button-33 {
   background-color: rgba(0, 191, 166, 0.2);
   color: rgb(255, 255, 255);
   border: 1px solid rgba(0, 191, 166);
-}
+} */
 
 .top-toolbar-btn{
   background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);

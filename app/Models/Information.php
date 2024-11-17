@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Information extends Model
 {
@@ -18,14 +19,12 @@ class Information extends Model
         'information',
         'images',
         'audio',
-        'ayah_id'
+        'ayah_id',
     ];
 
-
-    public function ayah()
+    // Relationships
+    public function ayah(): BelongsTo
     {
-        return $this->BelongsTo(Ayah::class, 'ayah_id', 'id');
+        return $this->belongsTo(Ayah::class, 'ayah_id', 'id');
     }
-
-    
 }

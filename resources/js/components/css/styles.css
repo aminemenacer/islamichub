@@ -41,6 +41,8 @@
   border-bottom: 1px solid #ccc;
 }
 
+
+
 .button-33 {
   background-color: rgba(0, 191, 166, 0.9);
   color: rgb(255, 255, 255);
@@ -322,7 +324,7 @@ audio.custom-audio {
 .button-63 {
   background-color: #c2fbd7;
   border-radius: 10px;
-  background-image: linear-gradient(144deg, #AF40FF, #5B42F3 50%, #00DDEB);
+  background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
   color: white;
   cursor: pointer;
   display: inline-block;
@@ -336,12 +338,14 @@ audio.custom-audio {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-}
+ }
 
-.button-63:hover {
-  background-image: linear-gradient(144deg, #AF40FF, #5B42F3 50%, #00DDEB);
+ 
+ .button-63:hover {
+  background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
   transform: scale(1.05) rotate(-1deg);
-}
+ }
+
 
 .shadow-selector {
   margin: 20px;

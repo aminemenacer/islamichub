@@ -4,8 +4,8 @@
     <h1 id="welcome-heading" class="text-center">
       <strong>Welcome to Islamic Connect</strong>
     </h1>
-    <p class="text-center ayah-translation" style="line-height: 1.6em;">
-      Welcome to Islamic Connect, a platform built on the belief that knowledge leads to understanding and fosters acceptance.
+    <p class="text-center ayah-translation">
+      Welcome to Islamic Connect, a platform built on the belief that knowledge leads to understanding and fosters acceptance. Our goal is to provide a space where individuals from all walks of life can explore, learn, and grow together in their journey toward greater awareness of Islam.
     </p>
   </section>
 </template>
@@ -32,5 +32,6 @@ export default {
 .ayah-translation {
   margin: 20px 0;
   font-size: 1rem;
+  line-height: 1.6em;
 }
 </style>

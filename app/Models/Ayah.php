@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Ayah extends Model
 {
@@ -12,31 +14,31 @@ class Ayah extends Model
 
     protected $table = 'ayah';
 
-     protected $fillable = [
+    protected $fillable = [
         'surah_id',
         'ayah_id',
         'ayah_text',
-        'audio_links'
+        'audio_links',
     ];
 
     public function surah()
     {
-        return $this->BelongsTo(Surah::class,'surah_id','id');
+        return $this->belongsTo(Surah::class);
     }
 
+    // Relationships for translations, tafseer, and information
     public function translations()
     {
-        return $this->hasMany(Information::class); // Adjust based on your database schema
+        return $this->hasMany(Translation::class);
     }
 
-    public function translation()
+    public function tafseer()
     {
-        return $this->hasOne(Translation::class);
+        return $this->hasOne(Tafseer::class);
     }
 
-    public function ayah()
+    public function information()
     {
-        return $this->BelongsTo(Information::class,'ayah_id','id');
+        return $this->hasOne(Information::class);
     }
-
 }

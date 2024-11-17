@@ -12,15 +12,14 @@ class Tafseer extends Model
 
     protected $table = 'tafseer';
 
-     protected $fillable = [
+    protected $fillable = [
         'ayah_id',
         'tafseer',
     ];
 
-    
-    public function ayah()
+    // Relationships
+    public function ayah(): BelongsTo
     {
-        return $this->BelongsTo(Ayah::class,'ayah_id','id');
+        return $this->belongsTo(Ayah::class, 'ayah_id', 'id');
     }
-
 }

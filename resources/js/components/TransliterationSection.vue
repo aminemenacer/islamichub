@@ -12,7 +12,7 @@
         </div>
         <div ref="targetTransliterationElement" class="row text-left mt-2">
           <div class="col-10">
-            <h4 class="ayah-translation" :style="{ fontSize: fontSize + 'em' }">
+            <h4 class="ayah-translation" style="line-height: 1.6em" :style="{ fontSize: fontSize + 'em', lineHeight: '1.6em' }" >
               {{ expanded ? information.transliteration : information.transliteration }}
             </h4>
           </div>

@@ -10,67 +10,57 @@ use Illuminate\Http\Request;
 
 class SurahController extends Controller
 {
-
+    // Simplify retrieval of all surahs
     public function getSurat()
     {
-        $surat = Surah::get();
-        return response()->json($surat);
+        return response()->json(Surah::all());
     }
 
+    // Fetch ayahs for a given Surah
     public function getAudioAyat($id)
     {
-        // Fetch ayahs for the given surah ID
         $ayahs = Ayah::where('surah_id', $id)->get();
-        
 
-        // Check if any ayahs were found
         if ($ayahs->isEmpty()) {
             return response()->json(['message' => 'No ayahs found for this surah'], 404);
         }
 
-        // Return the ayahs in JSON format
         return response()->json($ayahs);
     }
 
+    // Get ayahs by Surah
     public function getAyahsBySurah($surahId)
     {
-        $surah = Surah::with('ayahs')->find($surahId); // Eager load the ayahs
+        $surah = Surah::with('ayahs')->find($surahId);
 
-        if (!$surah) {
-            return response()->json(['error' => 'Surah not found'], 404);
-        }
-
-        return response()->json($surah->ayahs); // Return the ayahs
+        return $surah ? response()->json($surah->ayahs) : response()->json(['error' => 'Surah not found'], 404);
     }
 
+    // Get translation and transliteration for a Surah
     public function getTranslationBySurah($surahId)
     {
-        // Fetch the Surah by ID
         $surah = Surah::with('ayahs')->find($surahId);
 
         if (!$surah) {
             return response()->json(['error' => 'Surah not found'], 404);
         }
 
-        // Assuming you want to get the translation and transliteration
         return response()->json([
-            'translation' => $surah->translation, // Adjust based on your actual field names
-            'transliteration' => $surah->transliteration,
+            'translation' => $surah->translation ?? null,
+            'transliteration' => $surah->transliteration ?? null,
             'ayahs' => $surah->ayahs,
         ]);
     }
 
+    // Get translations for a specific Ayah
     public function getTranslationsForAyah($ayahId)
     {
-        $ayah = Ayah::with('translations')->find($ayahId); // Ensure that 'translations' is a defined relationship in your Ayah model
+        $ayah = Ayah::with('translations')->find($ayahId);
 
-        if (!$ayah) {
-            return response()->json(['message' => 'Ayah not found'], 404);
-        }
-
-        return response()->json($ayah->translations);
+        return $ayah ? response()->json($ayah->translations) : response()->json(['message' => 'Ayah not found'], 404);
     }
 
+    // Get specific translation for an Ayah
     public function getTranslationByAyah($ayahId)
     {
         $ayah = Ayah::find($ayahId);
@@ -79,112 +69,72 @@ class SurahController extends Controller
             return response()->json(['message' => 'Ayah not found'], 404);
         }
 
-        // Assuming you have a Translation model linked to Ayah
-        $translation = $ayah->translations; // Adjust according to your actual relationship
-
-        return response()->json($translation);
+        return response()->json($ayah->translations);
     }
 
+    // Get Ayahs by Surah ID
     public function getAyat(Request $request)
     {
-        $ayat = Ayah::where('surah_id', $request->surah_id)->get();
-        return response()->json($ayat);
+        return response()->json(Ayah::where('surah_id', $request->surah_id)->get());
     }
 
+    // Get Information for a specific Ayah
     public function getInformations(Request $request)
     {
-
-        $information = Information::with('ayah.surah')->where('ayah_id', $request->id)->first();
-        return response()->json($information);
+        return response()->json(Information::with('ayah.surah')->where('ayah_id', $request->id)->first());
     }
 
+    // Get Tafseer for a specific ID
     public function getTafseers($id)
     {
-        $tafseer = Tafseer::whereId($id)->first();
-        return response()->json($tafseer->tafseer);
+        return response()->json(Tafseer::find($id)->tafseer ?? null);
     }
 
-
-
+    // Simplify search with filters
     public function searchTranslations(Request $request)
     {
         $query = $request->input('query');
         $filters = $request->input('filters', []);
 
-        // Initialize the results query
+        if (empty($query)) {
+            return response()->json(['results' => [], 'suggestions' => []]);
+        }
+
         $resultsQuery = Information::query();
 
-        // Ensure the query is not empty
-        if (empty($query)) {
-            return response()->json([
-                'results' => [],
-                'suggestions' => [],
-            ]);
+        // Apply filters dynamically
+        foreach (['translation', 'tafseer', 'transliteration'] as $filter) {
+            if (!empty($filters[$filter])) {
+                $resultsQuery->orWhere($filter, 'LIKE', '%' . $query . '%');
+            }
         }
 
-        // Build the query for the filtered search
-        $filterApplied = false;
-
-        // Use 'orWhere' for all filters but only if the filter is applied
-        if (!empty($filters['translation'])) {
-            $resultsQuery->where('translation', 'LIKE', '%' . $query . '%');
-            $filterApplied = true;
+        // Return empty if no filters matched
+        if (!$resultsQuery->count()) {
+            return response()->json(['results' => [], 'suggestions' => []]);
         }
 
-        if (!empty($filters['tafseer'])) {
-            $resultsQuery->orWhere('tafseer', 'LIKE', '%' . $query . '%');
-            $filterApplied = true;
-        }
-
-        if (!empty($filters['transliteration'])) {
-            $resultsQuery->orWhere('transliteration', 'LIKE', '%' . $query . '%');
-            $filterApplied = true;
-        }
-
-
-        // If no filter is applied, return empty results
-        if (!$filterApplied) {
-            return response()->json([
-                'results' => [],
-                'suggestions' => [],
-            ]);
-        }
-
-        // Eager load related ayah and surah
         $results = $resultsQuery->with(['ayah.surah'])->get();
+
+        // Add tafseer to each result
         foreach ($results as $translation) {
-            $translation->originalTafseer = Tafseer::whereId($translation->ayah->id)->first()->tafseer;
+            $translation->originalTafseer = Tafseer::where('id', $translation->ayah->id)->first()->tafseer ?? null;
         }
 
-        // Generate suggestions based on selected filters
+        // Generate unique suggestions
         $suggestions = collect();
-
-        // Check each result and generate suggestions based on the filters
         foreach ($results as $item) {
-            if (!empty($filters['translation']) && isset($item->translation)) {
-                preg_match_all('/\b\w*' . preg_quote($query, '/') . '\w*\b/i', $item->translation, $matches);
-                $suggestions = $suggestions->merge($matches[0]);
-            }
-
-            if (!empty($filters['tafseer']) && isset($item->tafseer)) {
-                preg_match_all('/\b\w*' . preg_quote($query, '/') . '\w*\b/i', $item->tafseer, $matches);
-                $suggestions = $suggestions->merge($matches[0]);
-            }
-
-            if (!empty($filters['transliteration']) && isset($item->transliteration)) {
-                preg_match_all('/\b\w*' . preg_quote($query, '/') . '\w*\b/i', $item->transliteration, $matches);
-                $suggestions = $suggestions->merge($matches[0]);
+            foreach (['translation', 'tafseer', 'transliteration'] as $field) {
+                if (!empty($filters[$field]) && isset($item->$field)) {
+                    preg_match_all('/\b\w*' . preg_quote($query, '/') . '\w*\b/i', $item->$field, $matches);
+                    $suggestions = $suggestions->merge($matches[0]);
+                }
             }
         }
 
-        // Ensure suggestions are unique and indexed correctly
-        $suggestions = $suggestions->unique()->values();
-
-        // Return both the results and suggestions as JSON
         return response()->json([
             'results' => $results,
-            'suggestions' => $suggestions,
+            'suggestions' => $suggestions->unique()->values(),
         ]);
     }
-
 }

@@ -39,11 +39,11 @@
     <a class="navbar-brand" href="{{ url('/') }}" aria-label="Home">
         <img 
             src="/images/logo_main.png" 
-            width="275" 
+            width="300"
+            height="200"
             alt="Islamic Connect Logo"
             loading="lazy"
             height="auto" 
-            sizes="(max-width: 600px) 100vw, 275px" 
             class="img-fluid"
         >
     </a>
@@ -136,7 +136,7 @@
         color: #00BFA6;
     }
 
-    .button-33 {
+    /* .button-33 {
         background-color: #00BFA6;
         border-radius: 10px;
         color: white;
@@ -149,5 +149,5 @@
 
     .button-33:hover {
         background-color: #008f79;
-    }
+    } */
 </style>

@@ -2,7 +2,7 @@
   <div class="scrollmenu">
     <a href="#" v-for="data in customSurat" :key="data.id" @click.prevent="selectSurah(data.id)">
       <div class="flex justify-content-center mr-1">
-        <span class="badge button-33" :class="{ active: surah === data.id }">{{ data.name }}</span>
+        <span class="badge button-23" :class="{ active: surah === data.id }">{{ data.name }}</span>
       </div>
     </a>
   </div>
@@ -47,21 +47,6 @@ export default {
 .scrollmenu {
   white-space: nowrap;
   overflow-x: auto;
-  scrollbar-width: thin;  /* Firefox */
-  scrollbar-color: transparent transparent;  /* Firefox */
-}
-
-.scrollmenu::-webkit-scrollbar {
-  width: 0px;
-}
-
-.scrollmenu.scrolling::-webkit-scrollbar {
-  width: 8px;
-}
-
-.scrollmenu::-webkit-scrollbar-thumb {
-  background-color: #888;
-  border-radius: 4px;
 }
 
 .scrollmenu a {
@@ -71,9 +56,15 @@ export default {
 }
 
 .badge.active {
-  background-color: rgb(26, 61, 57);
-  color: white;
-  border: 1px solid rgb(26, 61, 57);
+  background-color: rgba(0, 191, 166, 0.2);
+  color: rgb(5, 32, 29);
+  border: 1px solid rgba(0, 191, 166);
+}
+
+.badge{
+  background-color: rgba(0, 191, 166);
+  font-size: 1em;
+  border-radius:5px;
+  padding: 10px;
 }
 </style>
-

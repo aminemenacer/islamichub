@@ -1,111 +1,81 @@
 <template>
-  <div class="w-100 my-element" :class="{ 'full-screen': isFullScreen }">
-    <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
-    <div>
-      <AyahInfo :information="information" />
-      <div 
-        @touchstart="handleStart" 
-        @touchend="handleEnd"
-        @mousedown="handleStart" 
-        @mouseup="handleEnd" 
-        @mouseleave="cancelHold"
-        class="swipeable-div w-100">
-        <div class="row">
-          <div class="col-md-2 pt-2 d-flex align-items-center justify-content-center">
-            
-            <i 
+<div class="w-100 my-element" :class="{ 'full-screen': isFullScreen }">
+  <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
+  <div>
+    <AyahInfo :information="information" />
+    <div @touchstart="handleStart" @touchend="handleEnd" @mousedown="handleStart" @mouseup="handleEnd" @mouseleave="cancelHold" class="swipeable-div w-100">
+      <div class="row">
+        <div class="col-md-2 pt-2 d-flex align-items-center justify-content-center">
+
+          <!-- <i 
               @click="toggleSpeechAyah" 
               class="bi-play-circle-fill h4 custom-icon-play-main"
               style="cursor: pointer;" 
               aria-label="Play or pause translation audio"
             ></i>
-           
-          </div>
-          <div class="col-md-10">
-              <MainAyah :information="information" />
-          </div>
+            -->
         </div>
-
-        <div ref="targetTranslationElement" class="row text-left mt-2">
-          <!-- Text Column -->
-          <!-- v-html="renderedText" -->
-          <div class="col-10">
-            <h4 class="ayah-translation" style="line-height: 1.6em" :style="{ fontSize: fontSize + 'em', lineHeight: '1.6em' }" >
-              {{ expanded ? information.translation : information.translation }}
-            </h4>
-          </div>
-
-          <!-- Icons Column (Stacked Vertically) -->
-          <div v-if="isVisible" class="col-2 d-flex align-items-center justify-content-center flex-column">
-            <!-- Play/Pause Button -->
-              <i 
-                @click="toggleSpeech" 
-                :class="['bi', isReading ? (isPaused ? 'bi-play-circle-fill' : 'bi-pause-circle-fill') : 'bi-play-circle-fill', 'h3', 'custom-icon-play']"
-                style="cursor: pointer;" 
-                aria-label="Play or pause translation audio">
-              </i>
-
-              <!-- Stop Button -->
-              <i 
-                @click="stopReading" 
-                :class="['bi', 'bi-stop-circle-fill', 'h3', 'custom-icon-play']"
-                style="cursor: pointer;" 
-                :disabled="!isAudioPlaying"
-                aria-label="Stop reading audio">
-              </i>
-
-              <i 
-                @click="increaseFontSize" 
-                class="bi bi-plus-circle-fill h3 custom-icon-increase"
-                style="cursor: pointer;" 
-                aria-label="Increase font size">
-              </i>
-
-              <i 
-                @click="decreaseFontSize" 
-                class="bi bi-dash-circle-fill h3 custom-icon-decrease"
-                style="cursor: pointer;" 
-                aria-label="Decrease font size">
-              </i>
-          </div>
+        <div class="col-md-10">
+          <MainAyah :information="information" />
         </div>
-        
-        <div class="text-left word-count mt-2">
-          <h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" loading="lazy"/><strong>Total Word count: </strong>{{ wordCount }}</h6>
-        </div>
-        <div class="text-left word-count mt-2">
-          <Translator translator="Ahmed Ali" />
-        </div>
-        <div class="text-left word-count mt-2">
-          <h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" loading="lazy"/><strong>Reciter's name: </strong>Mishary Rashid Alafasy</h6>
-        </div>
-        <!-- <button type="button" class="btn btn-success" @click="downloadAsCSV">Download as CSV</button>
-          <button type="button" class="btn btn-success" @click="downloadAsWord">Download as Word</button> -->
-        <div class="btn-group">
-          <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            Save as
-          </button>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" style="cursor:pointer" @click="downloadAsCSV">Download as CSV</a></li>
-            <li><a class="dropdown-item" style="cursor:pointer" @click="downloadAsWord">Download as Word</a></li>
-            
-          </ul>
-        </div>
-       
       </div>
 
-      <AlertModal 
-        :showAlertText="showAlertText" 
-        :showAlert="showAlert" 
-        :showErrorAlert="showErrorAlert" 
-        :showAlertTextNote="showAlertTextNote" 
-        @close-alert-text="closeAlertText" 
-      />
+      <div ref="targetTranslationElement" class="row text-left mt-2">
+        <!-- Text Column -->
+        <!-- v-html="renderedText" -->
+        <div class="col-10">
+          <h4 class="ayah-translation" style="line-height: 1.6em" :style="{ fontSize: fontSize + 'em', lineHeight: '1.6em' }" v-html="renderedText">
+            {{ expanded ? information.translation : information.translation }}
+          </h4>
+
+        </div>
+
+        <!-- Icons Column (Stacked Vertically) -->
+        <div v-if="isVisible" class="col-2 d-flex align-items-center justify-content-center flex-column">
+          <!-- Play/Pause Button -->
+          <i @click="toggleSpeech" :class="['bi', isReading ? (isPaused ? 'bi-play-circle-fill' : 'bi-pause-circle-fill') : 'bi-play-circle-fill', 'h3', 'custom-icon-play']" style="cursor: pointer;" aria-label="Play or pause translation audio">
+          </i>
+
+          <!-- Stop Button -->
+          <i @click="stopReading" :class="['bi', 'bi-stop-circle-fill', 'h3', 'custom-icon-play']" style="cursor: pointer;" :disabled="!isAudioPlaying" aria-label="Stop reading audio">
+          </i>
+
+          <i @click="increaseFontSize" class="bi bi-plus-circle-fill h3 custom-icon-increase" style="cursor: pointer;" aria-label="Increase font size">
+          </i>
+
+          <i @click="decreaseFontSize" class="bi bi-dash-circle-fill h3 custom-icon-decrease" style="cursor: pointer;" aria-label="Decrease font size">
+          </i>
+        </div>
+      </div>
+
+      <div class="text-left word-count mt-2">
+        <h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" loading="lazy" /><strong>Total Word count: </strong>{{ wordCount }}</h6>
+      </div>
+      <div class="text-left word-count mt-2">
+        <Translator translator="Ahmed Ali" />
+      </div>
+      <div class="text-left word-count mt-2">
+        <h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" loading="lazy" /><strong>Reciter's name: </strong>Mishary Rashid Alafasy</h6>
+      </div>
+      <div class="btn-group">
+        <div class="dropdown-group">
+          <select v-model="selectedFormat" class="dropdown">
+            <option value="csv">Download as CSV</option>
+            <option value="docx">Download as Word</option>
+            <option value="pdf">Download as PDF</option>
+          </select>
+          <button class="btn btn-primary" @click="handleDownload">Download</button>
+        </div>
+      </div>
+
     </div>
+
+    <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
   </div>
+</div>
 </template>
 
-<script defer>
+<script>
 import AyahInfo from "./translation/AyahInfo.vue";
 import MainAyah from "./translation/MainAyah.vue";
 import Translator from "./translation/Translator.vue";
@@ -214,6 +184,7 @@ export default {
   },
   data() {
     return {
+      selectedFormat: "Select a format",
       fontSize: parseFloat(localStorage.getItem('ayahFontSize')) || 1,
       holdTimeout: null,
       holdDuration: 1000,
@@ -250,8 +221,7 @@ export default {
 
   mounted() {
     this.renderedText = this.information.translation;
-
-    
+    this.$emit("ayah-text", this.information.ayah.ayah_text);
     // Load saved settings from local storage on page load
     const savedVoiceName = localStorage.getItem("selectedVoice");
     const savedRate = localStorage.getItem("rate");
@@ -278,6 +248,138 @@ export default {
   },
 
   methods: {
+    handleDownload() {
+      switch (this.selectedFormat) {
+        case "Select a format":
+          // this.downloadAsCsv();
+          break;
+        case "csv":
+          this.downloadAsCsv();
+          break;
+        case "docx":
+          this.downloadAsWord();
+          break;
+        case "pdf":
+          this.downloadAsPdf();
+          break;
+      }
+    },
+    downloadAsPdf() {
+  const doc = new jsPDF();
+
+  // Add Arabic Font (Make sure you have the proper font added)
+  // doc.addFont("path_to_your_arabic_font/Amiri-Regular.ttf", "Amiri", "normal");
+  
+  doc.setFont("Amiri");
+
+  // Title
+  doc.setFontSize(24);
+  doc.setTextColor("#1F4E79");
+  doc.text("Quran Translation Document", 105, 20, { align: "center" });
+  doc.line(10, 25, 200, 25);
+
+  let yPosition = 35;
+
+  // Translation Header
+  doc.setFont("Helvetica", "bold");
+  doc.setFontSize(18);
+  doc.setTextColor("#2B5797");
+  doc.text("Translation:", 10, yPosition);
+  yPosition += 10;
+
+  // Translation Content (for English translation)
+  doc.setFont("Helvetica", "normal");
+  doc.setFontSize(14);
+  doc.setTextColor("#000000");
+
+  const translationContent = this.information.translation;
+  const textWidth = 190;
+
+  // Split translation text to fit within the page width
+  const splitTranslationContent = doc.splitTextToSize(translationContent, textWidth);
+
+  // Check if the content fits on the current page, if not, add a page break
+  if (yPosition + (splitTranslationContent.length * 8) > doc.internal.pageSize.height - 20) {
+    doc.addPage();
+    yPosition = 20; // Reset position after page break
+  }
+
+  // Print the English Translation content
+  doc.text(splitTranslationContent, 10, yPosition);
+  yPosition += splitTranslationContent.length * 8;
+
+  // Ayah Header (for Arabic text)
+  yPosition += 10;
+  doc.setFont("Helvetica", "bold");
+  doc.setFontSize(18);
+  doc.setTextColor("#2B5797");
+  doc.text("Ayah:", 10, yPosition);
+  yPosition += 10;
+
+  // Ayah Text (in Arabic)
+  doc.setFont("Amiri", "normal");  // Set the Arabic font
+  doc.setFontSize(18);
+  doc.setTextColor("#000000");
+
+  const translationText = this.information.ayah.ayah_text; // Arabic Ayah Text
+  const splitTranslationText = doc.splitTextToSize(translationText, textWidth);
+
+  // Right-align the Arabic text and print it
+  doc.text(splitTranslationText, 10, yPosition, { align: "right" }); // Right-align for Arabic text
+  yPosition += splitTranslationText.length * 8;
+
+  // Ensure the text is not cut off by checking the yPosition
+  if (yPosition > doc.internal.pageSize.height - 20) {
+    doc.addPage();
+    yPosition = 20;
+  }
+
+  // Translator Header
+  doc.setFont("Helvetica", "bold");
+  doc.setFontSize(18);
+  doc.setTextColor("#2B5797");
+  doc.text("Translator:", 10, yPosition);
+  yPosition += 10;
+
+  // Translator Name
+  doc.setFont("Helvetica", "normal");
+  doc.setFontSize(14);
+  doc.setTextColor("#000000");
+  doc.text("Ahmed Ali", 10, yPosition);
+
+  // Save the document
+  doc.save("translation.pdf");
+},
+    downloadAsCsv() {
+      // Helper function to escape special characters in CSV
+      const escapeCsvValue = (value) => {
+        if (typeof value === "string") {
+          // Escape quotes by doubling them and wrap in double quotes if necessary
+          return `"${value.replace(/"/g, '""')}"`;
+        }
+        return value;
+      };
+
+      // Prepare the CSV content
+      const csvContent = [
+        ["Title", "Content"],
+        ["Ayah", this.information.ayah.ayah_text],
+        ["Translation", this.information.translation],
+        ["Translator", "Ahmed Ali"],
+      ]
+        .map((row) => row.map(escapeCsvValue).join(",")) // Escape and join each row
+        .join("\n");
+
+      // Create a blob for the CSV content
+      const blob = new Blob([csvContent], {
+        type: "text/csv;charset=utf-8;",
+      });
+
+      // Download the file
+      saveAs(blob, "translation.csv");
+    },
+
+
     applySettings(fontSize, rate, pitch, selectedVoice) {
       // Update font size, speech rate, pitch, and selected voice
       this.fontSize = fontSize;
@@ -302,7 +404,7 @@ export default {
     },
 
     // Additional methods if needed, such as toggling expanded state, etc.
-  
+
     toggleSpeechAyah() {
       this.$emit('toggle-audio', this.isReading);
     },
@@ -335,7 +437,7 @@ export default {
       clearTimeout(this.holdTimeout);
       this.isHolding = false;
     },
-    
+
     toggleAudio() {
       this.$emit('toggle-audio');
     },
@@ -453,112 +555,126 @@ export default {
     adjustPitch(value) {
       this.pitch = parseFloat(value);
     },
-    downloadAsCSV() {
-      const data = [
-        {
-          "Translation": this.information.translation || "N/A",
-          "Translator": "Ahmed Ali"
-        }
-      ];
-      
-      const csv = Papa.unparse(data);
-      const filename = `translation_${new Date().toISOString().split("T")[0]}.csv`; // Adds date to filename
-      const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-      saveAs(blob, filename);
-    },
+
     async downloadAsWord() {
-  const doc = new Document({
-    sections: [
-      {
-        properties: {},
-        children: [
-          // Title Section
-          new Paragraph({
-            children: [
-              new TextRun({
-                text: "Quran Translation Document",
-                bold: true,
-                size: 48, // Large size for the title
-                color: "1F4E79", // Dark blue color for professionalism
-                alignment: "CENTER", // Center alignment for the title
-                italics: true, // Slightly emphasize the title
-              })
-            ],
-            alignment: "CENTER", // Ensure the title is centered
-            spacing: { before: 600, after: 600 }, // Generous spacing before and after the title
-          }),
+      const doc = new Document({
+        sections: [{
+          children: [
+            new Paragraph({
+              children: [
+                new TextRun({
+                  text: "Quran Translation Document",
+                  bold: true,
+                  size: 48,
+                  color: "1F4E79",
+                }),
+              ],
+              alignment: "CENTER",
+              spacing: {
+                before: 600,
+                after: 600
+              },
+            }),
+            new Paragraph({
+              children: [
+                new TextRun({
+                  text: "Ayah:",
+                  bold: true,
+                  size: 32,
+                  color: "2B5797",
+                  underline: true,
+                }),
+              ],
+              spacing: {
+                before: 300,
+                after: 300
+              },
+            }),
 
-          // Translation Header
-          new Paragraph({
-            children: [
-              new TextRun({
-                text: "Translation:",
-                bold: true,
-                size: 32, // Larger font size for headers
-                color: "2B5797", // Elegant blue color for consistency
-                underline: true // Underline for emphasis
-              })
-            ],
-            alignment: "LEFT", // Left-align for headers
-            spacing: { before: 300, after: 300 }, // Adjust space before and after the header
-          }),
+            new Paragraph({
+              children: [
+                new TextRun({
+                  text: this.information.ayah.ayah_text,
+                  size: 28,
+                  color: "333333",
+                }),
+              ],
+              spacing: {
+                after: 600
+              },
+              indent: {
+                left: 360
+              },
+            }),
 
-          // Translation Content
-          new Paragraph({
-            children: [
-              new TextRun({
-                text: this.information.translation,
-                bold: false,
-                size: 28, // Standard font size for content
-                color: "333333", // Dark grey for better readability
-                font: "Arial", // Consistent font
-                italics: false
-              })
-            ],
-            alignment: "LEFT", // Keep content left-aligned
-            spacing: { after: 600 }, // Adequate space after the content
-            indent: { left: 360 }, // Indentation for content, simulating padding
-          }),
 
-          // Translator Header
-          new Paragraph({
-            children: [
-              new TextRun({
-                text: "Translator:",
-                bold: true,
-                size: 32,
-                color: "2B5797", // Consistent color for headers
-                underline: true
-              })
-            ],
-            alignment: "LEFT", // Left-align for the header
-            spacing: { before: 300, after: 300 }, // Add space before and after
-          }),
+            new Paragraph({
+              children: [
+                new TextRun({
+                  text: "Translation:",
+                  bold: true,
+                  size: 32,
+                  color: "2B5797",
+                  underline: true,
+                }),
+              ],
+              spacing: {
+                before: 300,
+                after: 300
+              },
+            }),
+            new Paragraph({
+              children: [
+                new TextRun({
+                  text: this.information.translation,
+                  size: 28,
+                  color: "333333",
+                }),
+              ],
+              spacing: {
+                after: 600
+              },
+              indent: {
+                left: 360
+              },
+            }),
+            new Paragraph({
+              children: [
+                new TextRun({
+                  text: "Translator:",
+                  bold: true,
+                  size: 32,
+                  color: "2B5797",
+                  underline: true,
+                }),
+              ],
+              spacing: {
+                before: 300,
+                after: 300
+              },
+            }),
+            new Paragraph({
+              children: [
+                new TextRun({
+                  text: "Ahmed Ali",
+                  size: 28,
+                  color: "000000",
+                }),
+              ],
+              spacing: {
+                after: 600
+              },
+              indent: {
+                left: 360
+              },
+            }),
+          ],
+        }, ],
+      });
 
-          // Translator Content
-          new Paragraph({
-            children: [
-              new TextRun({
-                text: "Ahmed Ali", // Translator name
-                bold: false,
-                size: 28,
-                color: "000000", // Standard black for content
-                italics: false,
-                font: "Arial"
-              })
-            ],
-            alignment: "LEFT", // Left-align for the content
-            spacing: { after: 600 }, // Space after content for balance
-            indent: { left: 360 }, // Same indentation as content for consistency
-          }),
-        ]
-      }
-    ]
-  });
-
-  const blob = await Packer.toBlob(doc);
-  saveAs(blob, "translation.docx");
-},
+      const blob = await Packer.toBlob(doc);
+      saveAs(blob, "translation.docx");
+    },
     toggleSpeech() {
       if (this.isReading) {
         if (this.isPaused) {
@@ -624,13 +740,13 @@ export default {
       const audioPlayer = this.$refs.audioPlayer;
 
       if (this.isReading && !this.isPaused) {
-          // Pause both audio and speech synthesis
-          if (audioPlayer && !audioPlayer.paused) {
-              audioPlayer.pause(); // Pause the audio player
-          }
-          window.speechSynthesis.pause(); // Pause the speech synthesis
-          this.isPaused = true; // Set paused state
-          console.log("Speech paused.");
+        // Pause both audio and speech synthesis
+        if (audioPlayer && !audioPlayer.paused) {
+          audioPlayer.pause(); // Pause the audio player
+        }
+        window.speechSynthesis.pause(); // Pause the speech synthesis
+        this.isPaused = true; // Set paused state
+        console.log("Speech paused.");
       }
     },
     // Resume reading
@@ -640,7 +756,7 @@ export default {
       if (this.isPaused) {
         // Resume both audio and speech synthesis
         if (audioPlayer && audioPlayer.paused) {
-            audioPlayer.play(); // Resume the audio player
+          audioPlayer.play(); // Resume the audio player
         }
         window.speechSynthesis.resume(); // Resume the paused speech
         this.isPaused = false; // Reset paused state
@@ -652,8 +768,8 @@ export default {
       // Stop the audio by pausing and resetting to the start
       const audioPlayer = this.$refs.audioPlayer;
       if (audioPlayer) {
-          audioPlayer.pause();
-          audioPlayer.currentTime = 0; // Reset to start position
+        audioPlayer.pause();
+        audioPlayer.currentTime = 0; // Reset to start position
       }
 
       window.speechSynthesis.cancel(); // Stop the speech synthesis
@@ -694,11 +810,64 @@ export default {
       this.$emit('toggle-change');
     }
   }
- 
 };
 </script>
 
 <style scoped>
+.document-export-container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 24px;
+  color: #1f4e79;
+  margin-bottom: 10px;
+}
+
+.description {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.dropdown-group {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.dropdown {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 200px;
+}
+
+.btn {
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-primary {
+  background-color: #1f4e79;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: #163a5d;
+}
 
 audio {
   display: block;
@@ -708,7 +877,6 @@ audio {
   border: 2px double rgba(0, 191, 166);
   background-color: white;
 }
-
 
 .word-count {
   margin-top: 10px;
@@ -736,8 +904,6 @@ audio {
   color: white;
   width: 40%;
 }
-
-
 
 .custom-icon-play:hover {
   color: rgb(13, 182, 145);
