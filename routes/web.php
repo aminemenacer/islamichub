@@ -103,6 +103,8 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/api/update-note/{id}', [NotesController::class, 'updateNotes']);
     Route::delete('/api/delete-note/{id}', [NotesController::class, 'deleteNotes']);
     Route::post('/search', [NotesController::class, 'search'])->name('search');
+    Route::get('/search-translations', [SurahController::class, 'searchTranslations']);
+
 
 });
 

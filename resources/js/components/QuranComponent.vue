@@ -19,25 +19,25 @@
    <div style="display:flex" class="row">
     <!-- <AyahOfTheDay class="container" v-if="!isVisible" :ayat="ayat" /> -->
 
-<SurahDropdown
-    class="col-md-12"
-    :selectedSurah="selectedSurahId"
-    :filteredSurah="filteredSurah"
-    :surat="surat"
-    @update:selectedSurah="updateSelectedSurah" 
-    @change="getAyat"
-  />
-      <AddBookmark />
+    <SurahDropdown
+      class="col-md-12"
+      :selectedSurah="selectedSurahId"
+      :filteredSurah="filteredSurah"
+      :surat="surat"
+      @update:selectedSurah="updateSelectedSurah" 
+      @change="getAyat"
+    />
+    <AddBookmark />
     
    </div>
-<AyahDropdown
-    class="desktop-hidden"
-    :selectedSurahId="selectedSurahId"
-    :dropdownHidden="dropdownHidden"
-    @update-information="updateInformation"
-    @update-tafseer="updateTafseer"
-    v-if="ayah == null && !dropdownHidden"
-  />
+    <AyahDropdown
+      :selectedSurahId="selectedSurahId"
+      :dropdownHidden="dropdownHidden"
+      @update-information="updateInformation"
+      @update-tafseer="updateTafseer"
+      v-if="ayah == null && !dropdownHidden && !isMobile"
+      class="ayah-dropdown-hidden-on-desktop"
+    />
      <!-- List of Ayat for Surah (desktop) -->
    <div class="tab-content hide-on-mobile-tablet" id="nav-tabContent" v-if="ayah == null && !dropdownHidden">
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" v-if="ayah == null">
@@ -719,7 +719,7 @@ export default {
  },
 
  mounted() {
-   this.fetchAyat();
+  this.fetchAyat();
   const themesFromStorage = localStorage.getItem('savedThemes');
   if (themesFromStorage) {
     this.savedThemes = JSON.parse(themesFromStorage);
@@ -733,9 +733,10 @@ export default {
   }
   this.loadBackgroundColor();
 },
-
+  
  data() {
   return {
+    isMobile: false,
     selectedSurahId: 1,
     isVisible: false,
     showAudio: false,

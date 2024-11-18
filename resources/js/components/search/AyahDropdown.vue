@@ -1,22 +1,21 @@
 <template>
-    <select
-        class="form-control mobile-only hide-on-full-screen hide-on-tablet right-side-form card"
-        v-model="selectedAyahId"
-        @change="handleAyahChange"
-        style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"
-        :disabled="isLoading" 
+  <select
+    class="form-control right-side-form card desktop-hidden mobile-visible"
+    v-model="selectedAyahId"
+    @change="handleAyahChange"
+    style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"
+    :disabled="isLoading"
+    :class="dropdownClasses"
+  >
+    <option value="">Select Ayah</option>
+    <option
+      v-for="ayah in ayat"
+      :key="ayah.id"
+      :value="ayah.id"
     >
-        <option value="">Select Ayah</option>
-        <option
-            v-for="ayah in ayat"
-            :key="ayah.id"
-            :value="ayah.id"
-        >
-            {{ ayah.ayah_text }} : {{ ayah.ayah_id }}
-        </option>
-    </select>
-
-    <!-- Section to display the selected Ayah and additional information -->
+      {{ ayah.ayah_text }} : {{ ayah.ayah_id }}
+    </option>
+  </select>
 </template>
 
 <script>
@@ -45,6 +44,17 @@ export default {
             isLoading: false, // Track loading state
             cachedData: {}, // Cache for storing previously fetched tafseer and information
         };
+    },
+    computed: {
+        dropdownClasses() {
+        // Check if the device is desktop/tablet or mobile
+        const isMobile = window.innerWidth <= 767;
+        // Hide dropdown on desktop/tablet if no Surah is selected
+        return {
+            'desktop-hidden': !isMobile && !this.selectedSurahId, // Hide on desktop/tablet if no Surah selected
+            'mobile-visible': isMobile || this.selectedSurahId, // Always visible on mobile or if Surah selected
+        };
+        },
     },
     methods: {
         async handleAyahChange() {
@@ -130,6 +140,25 @@ export default {
 </script>
 
 <style scoped>
+.desktop-hidden {
+  display: none;
+}
+
+
+@media (min-width: 768px) {
+  /* Hide AyahDropdown on desktop/tablet if no Surah is selected */
+  .desktop-hidden {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  /* Always show AyahDropdown on mobile (screens smaller than 768px) */
+  .mobile-visible {
+    display: block;
+  }
+}
+
 .highlighted-ayah {
     background-color: #26c789; /* Light blue background to indicate highlight */
     padding: 10px;

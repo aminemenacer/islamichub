@@ -1,7 +1,7 @@
 <template>
   <div class="surah-dropdown">
-    <!-- Direct binding to selectedSurahLocal without v-model -->
     <select
+      style="border: 2px solid #00bfa6;"
       class="form-control custom-dropdown card"
       aria-label="Select a Surah"
       :value="selectedSurahLocal" 
@@ -86,6 +86,7 @@ export default {
   background-color: #fff;
   background-clip: padding-box;
   border-radius: 5px;
+  border: 3px solid #00bfa6;
   transition: border-color 0.15s ease-in-out;
 }
 
@@ -96,8 +97,8 @@ export default {
 
 .card {
   display: flex;
-  border: 1px solid #00bfa6;
-  border-radius: 10px;
+  border: 3px solid #00bfa6;
+  border-radius: 8px;
 }
 
 .card:focus {

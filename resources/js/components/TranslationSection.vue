@@ -57,6 +57,7 @@
       <div class="text-left word-count mt-2">
         <h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" loading="lazy" /><strong>Reciter's name: </strong>Mishary Rashid Alafasy</h6>
       </div>
+      
       <div class="btn-group">
         <div class="dropdown-group">
           <select v-model="selectedFormat" class="dropdown">
@@ -265,91 +266,90 @@ export default {
       }
     },
     downloadAsPdf() {
-  const doc = new jsPDF();
+      const doc = new jsPDF();
 
-  // Add Arabic Font (Make sure you have the proper font added)
-  // doc.addFont("path_to_your_arabic_font/Amiri-Regular.ttf", "Amiri", "normal");
-  
-  doc.setFont("Amiri");
+      // Add Arabic Font (Make sure you have the proper font added)
+      doc.setFont("times", "normal");
 
-  // Title
-  doc.setFontSize(24);
-  doc.setTextColor("#1F4E79");
-  doc.text("Quran Translation Document", 105, 20, { align: "center" });
-  doc.line(10, 25, 200, 25);
+      // Title
+      doc.setFontSize(24);
+      doc.setTextColor("#1F4E79");
+      doc.text("Quran Translation Document", 105, 20, { align: "center" });
+      doc.line(10, 25, 200, 25);
 
-  let yPosition = 35;
+      let yPosition = 35;
 
-  // Translation Header
-  doc.setFont("Helvetica", "bold");
-  doc.setFontSize(18);
-  doc.setTextColor("#2B5797");
-  doc.text("Translation:", 10, yPosition);
-  yPosition += 10;
+      // Translation Header
+      doc.setFont("Helvetica", "bold");
+      doc.setFontSize(18);
+      doc.setTextColor("#2B5797");
+      doc.text("Translation:", 10, yPosition);
+      yPosition += 10;
 
-  // Translation Content (for English translation)
-  doc.setFont("Helvetica", "normal");
-  doc.setFontSize(14);
-  doc.setTextColor("#000000");
+      // Translation Content (for English translation)
+      doc.setFont("Helvetica", "normal");
+      doc.setFontSize(14);
+      doc.setTextColor("#000000");
 
-  const translationContent = this.information.translation;
-  const textWidth = 190;
+      const translationContent = this.information.translation;
+      const textWidth = 190;
 
-  // Split translation text to fit within the page width
-  const splitTranslationContent = doc.splitTextToSize(translationContent, textWidth);
+      // Split translation text to fit within the page width
+      const splitTranslationContent = doc.splitTextToSize(translationContent, textWidth);
 
-  // Check if the content fits on the current page, if not, add a page break
-  if (yPosition + (splitTranslationContent.length * 8) > doc.internal.pageSize.height - 20) {
-    doc.addPage();
-    yPosition = 20; // Reset position after page break
-  }
+      // Check if the content fits on the current page, if not, add a page break
+      if (yPosition + (splitTranslationContent.length * 8) > doc.internal.pageSize.height - 20) {
+        doc.addPage();
+        yPosition = 20; // Reset position after page break
+      }
 
-  // Print the English Translation content
-  doc.text(splitTranslationContent, 10, yPosition);
-  yPosition += splitTranslationContent.length * 8;
+      // Print the English Translation content
+      doc.text(splitTranslationContent, 10, yPosition);
+      yPosition += splitTranslationContent.length * 8;
 
-  // Ayah Header (for Arabic text)
-  yPosition += 10;
-  doc.setFont("Helvetica", "bold");
-  doc.setFontSize(18);
-  doc.setTextColor("#2B5797");
-  doc.text("Ayah:", 10, yPosition);
-  yPosition += 10;
+      // Ayah Header (for Arabic text)
+      yPosition += 10;
+      doc.setFont("Helvetica", "bold");
+      doc.setFontSize(18);
+      doc.setTextColor("#2B5797");
+      doc.text("Ayah:", 10, yPosition);
+      yPosition += 10;
 
-  // Ayah Text (in Arabic)
-  doc.setFont("Amiri", "normal");  // Set the Arabic font
-  doc.setFontSize(18);
-  doc.setTextColor("#000000");
+      // Ayah Text (in Arabic)
+      doc.setFont("Amiri", "normal");  // Set the Arabic font
+      doc.setFontSize(18);
+      doc.setTextColor("#000000");
 
-  const translationText = this.information.ayah.ayah_text; // Arabic Ayah Text
-  const splitTranslationText = doc.splitTextToSize(translationText, textWidth);
+      const translationText = this.information.ayah.ayah_text; // Arabic Ayah Text
+      const splitTranslationText = doc.splitTextToSize(translationText, textWidth);
 
-  // Right-align the Arabic text and print it
-  doc.text(splitTranslationText, 10, yPosition, { align: "right" }); // Right-align for Arabic text
-  yPosition += splitTranslationText.length * 8;
+      // Right-align the Arabic text and print it
+      doc.text(splitTranslationText, 10, yPosition, { align: "right" }); // Right-align for Arabic text
+      yPosition += splitTranslationText.length * 8;
 
-  // Ensure the text is not cut off by checking the yPosition
-  if (yPosition > doc.internal.pageSize.height - 20) {
-    doc.addPage();
-    yPosition = 20;
-  }
+      // Ensure the text is not cut off by checking the yPosition
+      if (yPosition > doc.internal.pageSize.height - 20) {
+        doc.addPage();
+        yPosition = 20;
+      }
 
-  // Translator Header
-  doc.setFont("Helvetica", "bold");
-  doc.setFontSize(18);
-  doc.setTextColor("#2B5797");
-  doc.text("Translator:", 10, yPosition);
-  yPosition += 10;
+      // Translator Header
+      doc.setFont("Helvetica", "bold");
+      doc.setFontSize(18);
+      doc.setTextColor("#2B5797");
+      doc.text("Translator:", 10, yPosition);
+      yPosition += 10;
 
-  // Translator Name
-  doc.setFont("Helvetica", "normal");
-  doc.setFontSize(14);
-  doc.setTextColor("#000000");
-  doc.text("Ahmed Ali", 10, yPosition);
+      // Translator Name
+      doc.setFont("Helvetica", "normal");
+      doc.setFontSize(14);
+      doc.setTextColor("#000000");
+      doc.text("Ahmed Ali", 10, yPosition);
 
-  // Save the document
-  doc.save("translation.pdf");
-},
+      // Save the document
+      doc.save("translation.pdf");
+  },
+
     downloadAsCsv() {
       // Helper function to escape special characters in CSV
       const escapeCsvValue = (value) => {

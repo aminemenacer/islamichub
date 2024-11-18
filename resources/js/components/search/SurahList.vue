@@ -44,8 +44,7 @@ export default {
       // Placeholder logic to fetch Ayahs for a selected Surah
       // Replace with actual logic for fetching Ayahs
       this.ayahs = [
-        { id: 1, text: 'In the name of Allah, the Most Gracious, the Most Merciful.' },
-        { id: 2, text: 'Praise be to Allah, the Lord of all the worlds.' }
+        
         // Add more Ayahs as needed
       ];
     }
