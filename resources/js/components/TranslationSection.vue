@@ -66,7 +66,9 @@
         <ul class="dropdown-menu dropdown-menu-dark">
           <li><a class="dropdown-item active" href="#" @click.prevent="handleDownload('csv')">CSV file</a></li>
           <li><a class="dropdown-item" href="#" @click.prevent="handleDownload('docx')">Word document</a></li>
-      </ul>
+          <li><a class="dropdown-item" href="#" @click.prevent="handleDownload('pdf')">PDF format</a></li>
+
+        </ul>
       </div>
     </div>
 
@@ -84,6 +86,7 @@ import ScreenReader from "./accesibility/ScreenReader.vue";
 import ScreenTranslationCapture from "./translation/features/screen_capture/ScreenTranslationCapture.vue";
 import Magnifier from "./search/Magnifier.vue";
 import OffcanvasSetting from "./modals/OffcanvasSetting.vue";
+// import amiriFont from "../assets/fonts/Amiri-Regular-normal.js";
 
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
@@ -260,58 +263,49 @@ export default {
         case "docx":
           this.downloadAsWord();
           break;
-        // case "pdf":
-        //   this.downloadAsPdf();
-        //   break;
+        case "pdf":
+          this.downloadAsPdf();
+          break;
         default:
           alert("Unknown format selected.");
       }
     },
     downloadAsPdf() {
+      // Simple jsPDF code with basic Arabic support
       const doc = new jsPDF();
 
-      // Add Arabic Font (Make sure you have the proper font added)
-      doc.setFont("times", "normal");
+      // Set the font to "courier" (a basic font that may support Arabic characters)
+      doc.setFont("courier"); 
 
-      // Title
+      // Title in English (for context)
       doc.setFontSize(24);
       doc.setTextColor("#1F4E79");
-      doc.text("Quran Translation Document", 105, 20, {
-        align: "center"
-      });
+      doc.text("Quran Translation Document", 105, 20, { align: "center" });
       doc.line(10, 25, 200, 25);
 
       let yPosition = 35;
 
-      // Translation Header
+      // Translation Header in English
       doc.setFont("Helvetica", "bold");
       doc.setFontSize(18);
       doc.setTextColor("#2B5797");
       doc.text("Translation:", 10, yPosition);
       yPosition += 10;
 
-      // Translation Content (for English translation)
-      doc.setFont("Helvetica", "normal");
-      doc.setFontSize(14);
-      doc.setTextColor("#000000");
-
-      const translationContent = this.information.translation;
+      // Example English translation text (replace with actual translation content)
+      const translationContent = "In the name of Allah, the Most Gracious, the Most Merciful.";
       const textWidth = 190;
-
-      // Split translation text to fit within the page width
       const splitTranslationContent = doc.splitTextToSize(translationContent, textWidth);
 
-      // Check if the content fits on the current page, if not, add a page break
       if (yPosition + (splitTranslationContent.length * 8) > doc.internal.pageSize.height - 20) {
         doc.addPage();
-        yPosition = 20; // Reset position after page break
+        yPosition = 20;
       }
 
-      // Print the English Translation content
       doc.text(splitTranslationContent, 10, yPosition);
       yPosition += splitTranslationContent.length * 8;
 
-      // Ayah Header (for Arabic text)
+      // Arabic Ayah Text Header
       yPosition += 10;
       doc.setFont("Helvetica", "bold");
       doc.setFontSize(18);
@@ -319,21 +313,15 @@ export default {
       doc.text("Ayah:", 10, yPosition);
       yPosition += 10;
 
-      // Ayah Text (in Arabic)
-      doc.setFont("Amiri", "normal"); // Set the Arabic font
-      doc.setFontSize(18);
-      doc.setTextColor("#000000");
-
-      const translationText = this.information.ayah.ayah_text; // Arabic Ayah Text
+      // Arabic Ayah text (this is where you need the Arabic text)
+      const translationText = "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ";  // Arabic example
       const splitTranslationText = doc.splitTextToSize(translationText, textWidth);
 
-      // Right-align the Arabic text and print it
-      doc.text(splitTranslationText, 10, yPosition, {
-        align: "right"
-      }); // Right-align for Arabic text
+      // Right-align Arabic text
+      doc.text(splitTranslationText, 10, yPosition, { align: "right" }); // Right-align for Arabic text
       yPosition += splitTranslationText.length * 8;
 
-      // Ensure the text is not cut off by checking the yPosition
+      // Ensure the text is not cut off
       if (yPosition > doc.internal.pageSize.height - 20) {
         doc.addPage();
         yPosition = 20;

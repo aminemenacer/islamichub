@@ -90,51 +90,49 @@ class SurahController extends Controller
         return response()->json(Tafseer::find($id)->tafseer ?? null);
     }
 
-    // Simplify search with filters
     public function searchTranslations(Request $request)
     {
         $query = $request->input('query');
         $filters = $request->input('filters', []);
 
-        if (empty($query)) {
-            return response()->json(['results' => [], 'suggestions' => []]);
-        }
-
         $resultsQuery = Information::query();
 
-        // Apply filters dynamically
-        foreach (['translation', 'tafseer', 'transliteration'] as $filter) {
-            if (!empty($filters[$filter])) {
-                $resultsQuery->orWhere($filter, 'LIKE', '%' . $query . '%');
-            }
+        if (!empty($filters['translation'])) {
+            $resultsQuery->orWhere('translation', 'like', '%' . $query . '%');
+        }
+        if (!empty($filters['tafseer'])) {
+            $resultsQuery->orWhere('tafseer', 'like', '%' . $query . '%');
+        }
+        if (!empty($filters['transliteration'])) {
+            $resultsQuery->orWhere('transliteration', 'like', '%' . $query . '%');
         }
 
-        // Return empty if no filters matched
-        if (!$resultsQuery->count()) {
-            return response()->json(['results' => [], 'suggestions' => []]);
+        try {
+            $results = $resultsQuery->with(['ayah.surah'])->get();
+        } catch (\Exception $e) {
+            \Log::error("Error executing query: " . $e->getMessage());
+            return response()->json(['error' => 'Database query failed'], 500);
         }
 
-        $results = $resultsQuery->with(['ayah.surah'])->get();
+        $suggestions = $results->flatMap(function($item) use ($query) {
+            $words = [];
+            $fields = ['translation', 'tafseer', 'transliteration'];
 
-        // Add tafseer to each result
-        foreach ($results as $translation) {
-            $translation->originalTafseer = Tafseer::where('id', $translation->ayah->id)->first()->tafseer ?? null;
-        }
-
-        // Generate unique suggestions
-        $suggestions = collect();
-        foreach ($results as $item) {
-            foreach (['translation', 'tafseer', 'transliteration'] as $field) {
-                if (!empty($filters[$field]) && isset($item->$field)) {
+            foreach ($fields as $field) {
+                if (isset($item->$field)) {
                     preg_match_all('/\b\w*' . preg_quote($query, '/') . '\w*\b/i', $item->$field, $matches);
-                    $suggestions = $suggestions->merge($matches[0]);
+                    $words = array_merge($words, $matches[0]);
                 }
             }
-        }
+
+            return $words;
+        })->unique()->values();
 
         return response()->json([
             'results' => $results,
-            'suggestions' => $suggestions->unique()->values(),
+            'suggestions' => $suggestions,
         ]);
     }
+
+
 }

@@ -87,7 +87,7 @@
           </h6>
         </div>
 
-        <div v-if="isVisible" class="row">
+        <!-- <div v-if="isVisible" class="row">
           <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
               Export as
@@ -97,7 +97,7 @@
               <li><a class="dropdown-item" href="#" @click.prevent="handleDownload('docx')">Word document</a></li>
             </ul>
           </div>
-        </div>
+        </div> -->
         
       </div>
     </div>

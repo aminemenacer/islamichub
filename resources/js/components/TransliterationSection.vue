@@ -30,7 +30,7 @@
       <div class="text-left mt-3 word-count">
         <h6 class="text-left"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" loading="lazy"/><strong>Reciter's name: </strong>Mishary Rashid Alafasy</h6>
       </div>
-      <div v-if="isVisible" class="row">
+      <!-- <div v-if="isVisible" class="row">
         <div class="dropdown">
           <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             Export as
@@ -40,7 +40,7 @@
             <li><a class="dropdown-item" href="#" @click.prevent="handleDownload('docx')">Word document</a></li>
           </ul>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
