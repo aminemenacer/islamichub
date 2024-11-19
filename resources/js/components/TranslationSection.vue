@@ -24,7 +24,7 @@
         <!-- Text Column -->
         <!-- v-html="renderedText" -->
         <div class="col-10">
-          <h4 class="ayah-translation" style="line-height: 1.6em" :style="{ fontSize: fontSize + 'em', lineHeight: '1.6em' }" v-html="renderedText">
+          <h4 class="ayah-translation" style="line-height: 1.6em" :style="{ fontSize: fontSize + 'em', lineHeight: '1.6em' }" >
             {{ expanded ? information.translation : information.translation }}
           </h4>
 
@@ -57,18 +57,17 @@
       <div class="text-left word-count mt-2">
         <h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" loading="lazy" /><strong>Reciter's name: </strong>Mishary Rashid Alafasy</h6>
       </div>
-      
-      <div class="btn-group">
-        <div class="dropdown-group">
-          <select v-model="selectedFormat" class="dropdown">
-            <option value="csv">Download as CSV</option>
-            <option value="docx">Download as Word</option>
-            <option value="pdf">Download as PDF</option>
-          </select>
-          <button class="btn btn-primary" @click="handleDownload">Download</button>
-        </div>
+    </div>
+    <div v-if="isVisible" class="row">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Export as
+        </button>
+        <ul class="dropdown-menu dropdown-menu-dark">
+          <li><a class="dropdown-item active" href="#" @click.prevent="handleDownload('csv')">CSV file</a></li>
+          <li><a class="dropdown-item" href="#" @click.prevent="handleDownload('docx')">Word document</a></li>
+      </ul>
       </div>
-
     </div>
 
     <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
@@ -249,20 +248,23 @@ export default {
   },
 
   methods: {
-    handleDownload() {
-      switch (this.selectedFormat) {
-        case "Select a format":
-          // this.downloadAsCsv();
-          break;
+    handleDownload(format) {
+      if (!format) {
+        alert("Please select a valid format.");
+        return;
+      }
+      switch (format) {
         case "csv":
           this.downloadAsCsv();
           break;
         case "docx":
           this.downloadAsWord();
           break;
-        case "pdf":
-          this.downloadAsPdf();
-          break;
+        // case "pdf":
+        //   this.downloadAsPdf();
+        //   break;
+        default:
+          alert("Unknown format selected.");
       }
     },
     downloadAsPdf() {
@@ -274,7 +276,9 @@ export default {
       // Title
       doc.setFontSize(24);
       doc.setTextColor("#1F4E79");
-      doc.text("Quran Translation Document", 105, 20, { align: "center" });
+      doc.text("Quran Translation Document", 105, 20, {
+        align: "center"
+      });
       doc.line(10, 25, 200, 25);
 
       let yPosition = 35;
@@ -316,7 +320,7 @@ export default {
       yPosition += 10;
 
       // Ayah Text (in Arabic)
-      doc.setFont("Amiri", "normal");  // Set the Arabic font
+      doc.setFont("Amiri", "normal"); // Set the Arabic font
       doc.setFontSize(18);
       doc.setTextColor("#000000");
 
@@ -324,7 +328,9 @@ export default {
       const splitTranslationText = doc.splitTextToSize(translationText, textWidth);
 
       // Right-align the Arabic text and print it
-      doc.text(splitTranslationText, 10, yPosition, { align: "right" }); // Right-align for Arabic text
+      doc.text(splitTranslationText, 10, yPosition, {
+        align: "right"
+      }); // Right-align for Arabic text
       yPosition += splitTranslationText.length * 8;
 
       // Ensure the text is not cut off by checking the yPosition
@@ -348,7 +354,7 @@ export default {
 
       // Save the document
       doc.save("translation.pdf");
-  },
+    },
 
     downloadAsCsv() {
       // Helper function to escape special characters in CSV
@@ -362,23 +368,29 @@ export default {
 
       // Prepare the CSV content
       const csvContent = [
-        ["Title", "Content"],
-        ["Ayah", this.information.ayah.ayah_text],
-        ["Translation", this.information.translation],
-        ["Translator", "Ahmed Ali"],
-      ]
+          ["Title", "Content"],
+          ["Ayah", this.information.ayah.ayah_text],
+          ["Translation", this.information.translation],
+          ["Translator", "Ahmed Ali"],
+        ]
         .map((row) => row.map(escapeCsvValue).join(",")) // Escape and join each row
         .join("\n");
 
       // Create a blob for the CSV content
-      const blob = new Blob([csvContent], {
-        type: "text/csv;charset=utf-8;",
-      });
+        const blob = new Blob([csvContent], {
+          type: "text/csv;charset=utf-8;",
+        });
 
-      // Download the file
-      saveAs(blob, "translation.csv");
+        // Get the current date and format it as YYYY-MM-DD
+        const date = new Date();
+        const formattedDate = date.toISOString().split("T")[0]; // e.g., 2024-11-19
+
+        // Append the date to the filename
+        const filename = `translation_${formattedDate}.csv`;
+
+        // Download the file
+        saveAs(blob, filename);
     },
-
 
     applySettings(fontSize, rate, pitch, selectedVoice) {
       // Update font size, speech rate, pitch, and selected voice
@@ -607,7 +619,6 @@ export default {
               },
             }),
 
-
             new Paragraph({
               children: [
                 new TextRun({
@@ -673,7 +684,14 @@ export default {
       });
 
       const blob = await Packer.toBlob(doc);
-      saveAs(blob, "translation.docx");
+      const date = new Date();
+      const formattedDate = date.toISOString().split("T")[0]; // e.g., 2024-11-19
+
+      // Append the date to the filename
+      const filename = `translation_${formattedDate}.docx`;
+
+      // Save the file with the dynamic filename
+      saveAs(blob, filename);
     },
     toggleSpeech() {
       if (this.isReading) {
@@ -837,19 +855,15 @@ export default {
   margin-bottom: 20px;
 }
 
-.dropdown-group {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-}
 
-.dropdown {
+
+/* .dropdown {
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 5px;
   width: 200px;
-}
+} */
 
 .btn {
   font-size: 16px;

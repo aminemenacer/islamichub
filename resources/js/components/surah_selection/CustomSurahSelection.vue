@@ -47,6 +47,21 @@ export default {
 .scrollmenu {
   white-space: nowrap;
   overflow-x: auto;
+  scrollbar-width: thin;  /* Firefox */
+  scrollbar-color: transparent transparent;  /* Firefox */
+}
+
+.scrollmenu::-webkit-scrollbar {
+  width: 0px;
+}
+
+.scrollmenu.scrolling::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollmenu::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
 }
 
 .scrollmenu a {
@@ -64,7 +79,7 @@ export default {
 .badge{
   background-color: rgba(0, 191, 166);
   font-size: 1em;
-  border-radius:5px;
-  padding: 10px;
+  border-radius:8px;
+  padding: 8px;
 }
 </style>

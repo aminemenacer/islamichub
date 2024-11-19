@@ -736,7 +736,6 @@ export default {
   
  data() {
   return {
-    isMobile: false,
     selectedSurahId: 1,
     isVisible: false,
     showAudio: false,

@@ -30,6 +30,17 @@
       <div class="text-left mt-3 word-count">
         <h6 class="text-left"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" loading="lazy"/><strong>Reciter's name: </strong>Mishary Rashid Alafasy</h6>
       </div>
+      <div v-if="isVisible" class="row">
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Export as
+          </button>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <li><a class="dropdown-item active" href="#" @click.prevent="handleDownload('csv')">CSV file</a></li>
+            <li><a class="dropdown-item" href="#" @click.prevent="handleDownload('docx')">Word document</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -60,6 +71,7 @@ export default {
   },
   data() {
     return {
+      selectedFormat: "Select a format",
       fontSize: parseFloat(localStorage.getItem('ayahFontSize')) || 1,
       expanded: false,
       isPaused: false,
@@ -73,6 +85,25 @@ export default {
     }
   },
   methods: {
+    handleDownload(format) {
+      if (!format) {
+        alert("Please select a valid format.");
+        return;
+      }
+      switch (format) {
+        case "csv":
+          this.downloadAsCsv();
+          break;
+        case "docx":
+          this.downloadAsWord();
+          break;
+        // case "pdf":
+        //   this.downloadAsPdf();
+        //   break;
+        default:
+          alert("Unknown format selected.");
+      }
+    },
     increaseFontSize() {
       this.fontSize += 0.2;
       this.saveFontSize();
@@ -86,44 +117,168 @@ export default {
     saveFontSize() {
       localStorage.setItem('ayahFontSize', this.fontSize);
     },
-    downloadAsCSVTransliteration() {
-      const data = [
-        {
-          "Transliteration": this.information.transliteration || "N/A",
-          "Author": "Saheeh International"
+    downloadAsCsv() {
+      // Helper function to escape special characters in CSV
+      const escapeCsvValue = (value) => {
+        if (typeof value === "string") {
+          // Escape quotes by doubling them and wrap in double quotes if necessary
+          return `"${value.replace(/"/g, '""')}"`;
         }
-      ];
+        return value;
+      };
 
-      const csv = Papa.unparse(data);
-      const filename = `transliteration_${new Date().toISOString().split("T")[0]}.csv`;
-      saveAs(new Blob([csv], { type: "text/csv;charset=utf-8;" }), filename);
-    },
-    async downloadAsWordTransliteration() {
-      const doc = new Document({
-        sections: [
-          {
-            children: [
-              new Paragraph({
-                children: [new TextRun("Quran Transliteration Document").bold()],
-                alignment: "CENTER",
-              }),
-              new Paragraph({
-                children: [new TextRun("Prepared by Islamic Connect").italics()],
-                alignment: "CENTER",
-              }),
-              new Paragraph({
-                children: [new TextRun("Transliteration:").bold()],
-                spacing: { after: 200 },
-              }),
-              new Paragraph({
-                children: [new TextRun(this.information.transliteration)],
-              }),
-            ]
-          }
+      // Prepare the CSV content
+      const csvContent = [
+          ["Title", "Content"],
+          ["Ayah", this.information.ayah.ayah_text],
+          ["Translation", this.information.transliteration],
+          ["Transliteration", "Saheeh International"],
         ]
+        .map((row) => row.map(escapeCsvValue).join(",")) // Escape and join each row
+        .join("\n");
+
+      // Create a blob for the CSV content
+      const blob = new Blob([csvContent], {
+        type: "text/csv;charset=utf-8;",
       });
+
+      // Get the current date and format it as YYYY-MM-DD
+      const date = new Date();
+      const formattedDate = date.toISOString().split("T")[0]; // e.g., 2024-11-19
+
+      // Append the date to the filename
+      const filename = `transliteration_${formattedDate}.csv`;
+
+      // Download the file
+      saveAs(blob, filename);
+    },
+    async downloadAsWord() {
+      const doc = new Document({
+        sections: [{
+          children: [
+            new Paragraph({
+              children: [
+                new TextRun({
+                  text: "Quran Translation Document",
+                  bold: true,
+                  size: 48,
+                  color: "1F4E79",
+                }),
+              ],
+              alignment: "CENTER",
+              spacing: {
+                before: 600,
+                after: 600
+              },
+            }),
+            new Paragraph({
+              children: [
+                new TextRun({
+                  text: "Ayah:",
+                  bold: true,
+                  size: 32,
+                  color: "2B5797",
+                  underline: true,
+                }),
+              ],
+              spacing: {
+                before: 300,
+                after: 300
+              },
+            }),
+
+            new Paragraph({
+              children: [
+                new TextRun({
+                  text: this.information.ayah.ayah_text,
+                  size: 28,
+                  color: "333333",
+                }),
+              ],
+              spacing: {
+                after: 600
+              },
+              indent: {
+                left: 360
+              },
+            }),
+
+            new Paragraph({
+              children: [
+                new TextRun({
+                  text: "Translation:",
+                  bold: true,
+                  size: 32,
+                  color: "2B5797",
+                  underline: true,
+                }),
+              ],
+              spacing: {
+                before: 300,
+                after: 300
+              },
+            }),
+            new Paragraph({
+              children: [
+                new TextRun({
+                  text: this.information.transliteration,
+                  size: 28,
+                  color: "333333",
+                }),
+              ],
+              spacing: {
+                after: 600
+              },
+              indent: {
+                left: 360
+              },
+            }),
+            new Paragraph({
+              children: [
+                new TextRun({
+                  text: "Transliteration:",
+                  bold: true,
+                  size: 32,
+                  color: "2B5797",
+                  underline: true,
+                }),
+              ],
+              spacing: {
+                before: 300,
+                after: 300
+              },
+            }),
+            new Paragraph({
+              children: [
+                new TextRun({
+                  text: "Saheeh International",
+                  size: 28,
+                  color: "000000",
+                }),
+              ],
+              spacing: {
+                after: 600
+              },
+              indent: {
+                left: 360
+              },
+            }),
+          ],
+        }, ],
+      });
+
       const blob = await Packer.toBlob(doc);
-      saveAs(blob, "Transliteration.docx");
+
+      // Get the current date and format it as YYYY-MM-DD
+      const date = new Date();
+      const formattedDate = date.toISOString().split("T")[0]; // e.g., 2024-11-19
+
+      // Append the date to the filename
+      const filename = `transliteration_${formattedDate}.docx`;
+
+      // Save the file with the dynamic filename
+      saveAs(blob, filename);
+
     },
     toggleFullScreen() {
       this.$emit('toggle-full-screen');

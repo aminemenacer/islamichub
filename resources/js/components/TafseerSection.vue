@@ -87,10 +87,18 @@
           </h6>
         </div>
 
-        <!-- Placeholder for Future Dropdown or Button -->
-        <div class="btn-group">
-          <!-- You can add dropdown or buttons here as needed -->
+        <div v-if="isVisible" class="row">
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Export as
+            </button>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li><a class="dropdown-item active" href="#" @click.prevent="handleDownload('csv')">CSV file</a></li>
+              <li><a class="dropdown-item" href="#" @click.prevent="handleDownload('docx')">Word document</a></li>
+            </ul>
+          </div>
         </div>
+        
       </div>
     </div>
 
@@ -267,6 +275,7 @@ export default {
 	},
 	data() {
 		return {
+			selectedFormat: "Select a format",
 			// renderedText: this.tafseer,
 			fontSize: parseFloat(localStorage.getItem('ayahFontSize')) || 1,
 			holdDuration: 1000,
@@ -351,20 +360,60 @@ export default {
 		};
 	},
 	methods: {
-		downloadAsCSVTafseer() {
-			const data = [
-				{
-					"Tafseer": this.tafseer || "N/A",
-					"Source": "Tafseer Ibn Kathir"
-				}
-			];
+		handleDownload(format) {
+      if (!format) {
+        alert("Please select a valid format.");
+        return;
+      }
+      switch (format) {
+        case "csv":
+          this.downloadAsCsv();
+          break;
+        case "docx":
+          this.downloadAsWord();
+          break;
+        // case "pdf":
+        //   this.downloadAsPdf();
+        //   break;
+        default:
+          alert("Unknown format selected.");
+      }
+    },
+    downloadAsCsv() {
+      // Helper function to escape special characters in CSV
+      const escapeCsvValue = (value) => {
+        if (typeof value === "string") {
+          // Escape quotes by doubling them and wrap in double quotes if necessary
+          return `"${value.replace(/"/g, '""')}"`;
+        }
+        return value;
+      };
 
-			const csv = Papa.unparse(data);
-			const filename = `tafseer_${new Date().toISOString().split("T")[0]}.csv`; // Adds date to filename
-			const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-			saveAs(blob, filename);
-		},
-		async downloadAsWordTafseer() {
+      // Prepare the CSV content
+      const csvContent = [
+          ["Title", "Content"],
+          ["Ayah", this.information.ayah.ayah_text],
+          ["Translation", this.tafseer],
+          ["Translator", "Tafseer Ibn Kathir"],
+        ]
+        .map((row) => row.map(escapeCsvValue).join(",")) // Escape and join each row
+        .join("\n");
+
+      // Create a blob for the CSV content
+      const blob = new Blob([csvContent], {
+        type: "text/csv;charset=utf-8;",
+      });
+
+      const date = new Date();
+      const formattedDate = date.toISOString().split("T")[0]; // e.g., 2024-11-19
+
+      // Append the date to the filename
+      const filename = `tafseer_${formattedDate}.csv`;
+
+      // Save the file with the dynamic filename
+      saveAs(blob, filename);
+    },
+		async downloadAsWord() {
       const doc = new Document({
         sections: [
           {
@@ -453,7 +502,15 @@ export default {
         ]
       });
       const blob = await Packer.toBlob(doc);
-      saveAs(blob, "translation.docx");
+      
+      const date = new Date();
+      const formattedDate = date.toISOString().split("T")[0]; // e.g., 2024-11-19
+
+      // Append the date to the filename
+      const filename = `tafseer_${formattedDate}.docx`;
+
+      // Save the file with the dynamic filename
+      saveAs(blob, filename);
     },
 		toggleSpeechAyah() {
       this.isReading = !this.isReading;

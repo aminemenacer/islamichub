@@ -1,4 +1,5 @@
 <template>
+  <!-- Ayah Dropdown -->
   <select
     class="form-control right-side-form card desktop-hidden mobile-visible"
     v-model="selectedAyahId"
@@ -8,6 +9,7 @@
     :class="dropdownClasses"
   >
     <option value="">Select Ayah</option>
+    <!-- Iterate over ayat and display each in the dropdown -->
     <option
       v-for="ayah in ayat"
       :key="ayah.id"
@@ -47,23 +49,20 @@ export default {
     },
     computed: {
         dropdownClasses() {
-        // Check if the device is desktop/tablet or mobile
-        const isMobile = window.innerWidth <= 767;
-        // Hide dropdown on desktop/tablet if no Surah is selected
-        return {
-            'desktop-hidden': !isMobile && !this.selectedSurahId, // Hide on desktop/tablet if no Surah selected
-            'mobile-visible': isMobile || this.selectedSurahId, // Always visible on mobile or if Surah selected
-        };
+            const isMobile = window.innerWidth <= 767;
+            // Hide dropdown on desktop/tablet if no Surah is selected
+            return {
+                'desktop-hidden': !isMobile && !this.selectedSurahId,
+                'mobile-visible': isMobile || this.selectedSurahId, // Always visible on mobile or if Surah selected
+            };
         },
     },
     methods: {
         async handleAyahChange() {
             if (!this.selectedAyahId) {
-                // No Ayah selected, do not proceed
-                return;
+                return; // No Ayah selected, do not proceed
             }
 
-            // If data is already cached, use it directly
             if (this.cachedData[this.selectedAyahId]) {
                 const cached = this.cachedData[this.selectedAyahId];
                 this.tafseer = cached.tafseer;
@@ -75,7 +74,7 @@ export default {
 
             this.isLoading = true;
 
-            const selectedAyah = this.ayat.find(ayah => ayah.id === this.selectedAyahId); // Find the selected Ayah
+            const selectedAyah = this.ayat.find(ayah => ayah.id === this.selectedAyahId);
             if (selectedAyah) {
                 const ayahId = selectedAyah.id;
                 this.highlightedAyahId = ayahId;
@@ -143,7 +142,6 @@ export default {
 .desktop-hidden {
   display: none;
 }
-
 
 @media (min-width: 768px) {
   /* Hide AyahDropdown on desktop/tablet if no Surah is selected */
