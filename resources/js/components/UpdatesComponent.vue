@@ -2,6 +2,30 @@
 <div class="container">
 
   <div class="row ml-4 mt-3 container-fluid">
+    <h2 class="text-left mt-3 mb-2 container" style="line-height: 1.7em; tafseer; "><img src="/images/art.png" style="width: 40px;" class="mb-1 mr-2 display-4" /><b>Seamless mode switch: Basic or Advanced</b></h2>
+    <div class="col-md-6">
+      <h5 class="text-left text-dark" width="80%" style="line-height: 1.7em; tafseer">November 20th, 2024</h5>
+      <div>
+        <p style="padding:5px; line-height: 1.7em; tafseer" class="text-left text-dark ">Easily Personalize Your Experience by Switching Between Basic and Advanced Modes for Better Usability. Theis feature is useful for the following reasons:</p>
+        <div>
+          <li style="padding:5px" class="text-left text-dark "><strong>Provides an easy-to-use interface for beginners or users who prefer a minimal setup</strong></li>
+          <li style="padding:5px" class="text-left text-dark "><strong>Allows users to choose the level of complexity that suits their needs, improving comfort and ease of use</strong></li>
+          <li style="padding:5px" class="text-left text-dark "><strong>Helps users with accessibility needs concentrate on relevant tasks without unnecessary complexity</strong></li>
+          <li style="padding:5px" class="text-left text-dark "><strong>Simplifies the user experience by hiding advanced options, making the platform more intuitive for everyone</strong></li>
+          <li style="padding:5px" class="text-left text-dark "><strong>Ensures that all users, including those with disabilities, can navigate and interact with the platform more easily</strong></li>
+        </div>
+        <p style="padding:5px; line-height: 1.7em; tafseer" class="text-left text-dark "><b>#IslamicConnect #QuranApp #Accessibility #TechForGood #FaithAndTechnology #IslamicCommunity</b></p>
+
+      </div>
+    </div>
+    <div class="col-md-6">
+      <img src="images/bva.png" style="width:80%" />
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row ml-4 mt-3 container-fluid">
     <h2 class="text-left mt-3 mb-2 container" style="line-height: 1.7em; tafseer; "><img src="/images/art.png" style="width: 40px;" class="mb-1 mr-2 display-4" /><b> Islamic Connect Beta Version 2 has arrived! </b></h2>
     <div class="col-md-6">
       <h5 class="text-left text-dark" width="80%" style="line-height: 1.7em; tafseer">November 14th, 2024</h5>
@@ -14,7 +38,7 @@
           <li style="padding:5px" class="text-left text-dark "><strong>Screen Capture of verses to save or share</strong></li>
         </div>
         <p style="padding:5px; line-height: 1.7em; tafseer" class="text-left text-dark ">and much, much more!</p>
-        <p style="padding:5px; line-height: 1.7em; tafseer" class="text-left text-dark ">Visit us at www.islamicconnect.com and explore the new features We would love to hear your feedback to make the platform even better.</p>
+        <p style="padding:5px; line-height: 1.7em; tafseer" class="text-left text-dark ">Visit us at www.islamiconnect.com and explore the new features We would love to hear your feedback to make the platform even better.</p>
         <p style="padding:5px; line-height: 1.7em; tafseer" class="text-left text-dark "><b>#IslamicConnect #QuranApp #Accessibility #TechForGood #FaithAndTechnology #IslamicCommunity</b></p>
 
       </div>

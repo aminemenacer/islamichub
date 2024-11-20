@@ -35,7 +35,7 @@
       :dropdownHidden="dropdownHidden"
       @update-information="updateInformation"
       @update-tafseer="updateTafseer"
-      v-if="ayah == null && !dropdownHidden && !isMobile"
+      v-if="ayah == null && !dropdownHidden"
       class="ayah-dropdown-hidden-on-desktop"
     />
      <!-- List of Ayat for Surah (desktop) -->
@@ -213,7 +213,7 @@
               @highlightText="highlightText"
               @clearHighlight="clearHighlight"
               @toggle-change="saveToggleState"
-              @toggle-full-screen="toggleFullScreen"
+              @toggle-full-screen="toggleFullScreen"             
               @touchstart="handleTouchStart"
               @touchmove="handleTouchMove"
               @touchend="handleTouchEnd"
@@ -772,7 +772,10 @@ export default {
  },
 
  mounted() {
-  
+  const savedState = localStorage.getItem('toggleState');
+  if (savedState !== null) {
+    this.isVisible = JSON.parse(savedState);
+  }
   this.fetchAyat();
   const themesFromStorage = localStorage.getItem('savedThemes');
   if (themesFromStorage) {
@@ -951,12 +954,12 @@ export default {
    //full screen toggle
    isFullScreen: false,
    //swipe gestures
-   touchStartX: 0,
-   touchEndX: 0,
-   touchStartY: 0,
-   touchEndY: 0,
-   touchStartTime: 0,
-   threshold: 50,
+   touchStartX: 0, // Starting X coordinate
+   touchStartY: 0, // Starting Y coordinate (optional for vertical checks)
+   touchEndX: 0, // Ending X coordinate
+   touchEndY: 0, // Ending Y coordinate (optional for vertical checks)
+   tapThreshold: 10, // Max distance for a tap
+   swipeThreshold: 100, // Min distance for a swipe
    // auth login
    isLoggedIn: false,
    // main search
@@ -978,6 +981,7 @@ export default {
    showErrorAlert: false,
    showAlertTextNote: false,
    maxLength: 400,
+  
 
    // correction modal
    form: new Form({
@@ -1038,6 +1042,10 @@ computed: {
     }
 },
 methods: {
+  saveToggleState() {
+    // Save the toggle state to localStorage
+    localStorage.setItem('toggleState', JSON.stringify(this.isVisible));
+  },
   updateAyah(newAyah) {
     this.currentAyah = newAyah;
   },

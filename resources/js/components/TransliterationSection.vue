@@ -16,7 +16,7 @@
               {{ expanded ? information.transliteration : information.transliteration }}
             </h4>
           </div>
-          <div v-if="isVisible" class="col-2 d-flex align-items-center justify-content-center flex-column">
+          <div @touchstart.stop @touchend.stop v-if="isVisible" class="col-2 d-flex align-items-center justify-content-center flex-column">
             <i @click="increaseFontSize" class="bi bi-plus-circle-fill h3 custom-icon-increase" aria-label="Increase font size"></i>
             <i @click="decreaseFontSize" class="bi bi-dash-circle-fill h3 custom-icon-decrease" aria-label="Decrease font size"></i>
           </div>

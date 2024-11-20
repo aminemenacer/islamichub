@@ -35,7 +35,7 @@
           </div>
 
           <!-- Control Icons Column (Stacked Vertically) -->
-          <div v-if="isVisible" class="col-2 d-flex align-items-center justify-content-center flex-column">
+          <div @touchstart.stop @touchend.stop v-if="isVisible" class="col-2 d-flex align-items-center justify-content-center flex-column">
             <i 
               @click="toggleSpeech" 
               :class="['bi', isReading ? (isPaused ? 'bi-play-circle-fill' : 'bi-pause-circle-fill') : 'bi-play-circle-fill', 'h3', 'custom-icon-play']"

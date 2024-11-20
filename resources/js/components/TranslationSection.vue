@@ -32,18 +32,18 @@
         </div>
 
         <!-- Icons Column (Stacked Vertically) -->
-        <div v-if="isVisible" class="col-2 d-flex align-items-center justify-content-center flex-column">
+        <div @click="onTap()" v-if="isVisible" class="col-2 d-flex align-items-center justify-content-center flex-column">
           <!-- Play/Pause Button -->
-          <i @click="toggleSpeech" :class="['bi', isReading ? (isPaused ? 'bi-play-circle-fill' : 'bi-pause-circle-fill') : 'bi-play-circle-fill', 'h3', 'custom-icon-play']" style="cursor: pointer;" aria-label="Play or pause translation audio">
+          <i  data-swipe-exclude @click="toggleSpeech" :class="['bi', isReading ? (isPaused ? 'bi-play-circle-fill' : 'bi-pause-circle-fill') : 'bi-play-circle-fill', 'h3', 'custom-icon-play']" style="cursor: pointer;" aria-label="Play or pause translation audio">
           </i>
           <!-- Stop Button -->
-          <i @click="stopReading" :class="['bi', 'bi-stop-circle-fill', 'h3', 'custom-icon-play']" style="cursor: pointer;" :disabled="!isAudioPlaying" aria-label="Stop reading audio">
+          <i  data-swipe-exclude @click="stopReading" :class="['bi', 'bi-stop-circle-fill', 'h3', 'custom-icon-play']" style="cursor: pointer;" :disabled="!isAudioPlaying" aria-label="Stop reading audio">
           </i>
 
-          <i @click="increaseFontSize" class="bi bi-plus-circle-fill h3 custom-icon-increase" style="cursor: pointer;" aria-label="Increase font size">
+          <i  data-swipe-exclude @click="increaseFontSize" class="bi bi-plus-circle-fill h3 custom-icon-increase" style="cursor: pointer;" aria-label="Increase font size">
           </i>
 
-          <i @click="decreaseFontSize" class="bi bi-dash-circle-fill h3 custom-icon-decrease" style="cursor: pointer;" aria-label="Decrease font size">
+          <i  data-swipe-exclude @click="decreaseFontSize" class="bi bi-dash-circle-fill h3 custom-icon-decrease" style="cursor: pointer;" aria-label="Decrease font size">
           </i>
         </div>
       </div>
@@ -187,6 +187,10 @@ export default {
   },
   data() {
     return {
+        isSwipeEnabled: true, // Track swipe enabled state
+      swipeDisabled: false, // Flag to disable swipe behavior
+      touchStartX: 0,
+      touchStartY: 0,
       expanded: false,
       renderedText: '',
       selectedFormat: "Select a format",
@@ -254,7 +258,11 @@ export default {
   },
 
   methods: {
-    
+    onTap() {
+      this.swipeDisabled = true; // Disable swipe behavior
+      this.isSwipeEnabled = false; // Optionally, completely disable swipe actions if needed
+      console.log('Swipe Disabled');
+    },
     clearHighlight() {
       // Force an update by resetting the content
       this.renderedText = ''; // Clear first to ensure reactivity
@@ -306,7 +314,7 @@ export default {
       yPosition += 10;
 
       // Example English translation text (replace with actual translation content)
-      const translationContent = "In the name of Allah, the Most Gracious, the Most Merciful.";
+      const translationContent = this.information.translation;
       const textWidth = 190;
       const splitTranslationContent = doc.splitTextToSize(translationContent, textWidth);
 
@@ -327,7 +335,7 @@ export default {
       yPosition += 10;
 
       // Arabic Ayah text (this is where you need the Arabic text)
-      const translationText = "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ"; // Arabic example
+      const translationText = this.information.ayah.ayah_text; // Arabic example
       const splitTranslationText = doc.splitTextToSize(translationText, textWidth);
 
       // Right-align Arabic text
@@ -423,32 +431,63 @@ export default {
     toggleSpeechAyah() {
       this.$emit('toggle-audio', this.isReading);
     },
-    handleStart() {
-      // Start hold timer
-      this.holdTimeout = setTimeout(() => {
-        this.isHolding = true;
-        this.toggleSpeech();
-      }, this.holdDuration);
-    },
-    handleEnd() {
-      clearTimeout(this.holdTimeout);
+    handleStart(event) {
+      if (this.swipeDisabled) {
+        // Prevent further processing if swipe is disabled
+        return;
+      }
 
-      if (this.isHolding) {
-        // If it was a hold, reset holding state
-        this.isHolding = false;
-      } else {
-        // Check for double-tap if it was not a hold
-        const currentTime = new Date().getTime();
-        if (currentTime - this.lastTapTime <= this.doubleTapThreshold) {
-          this.toggleExpand();
-          this.lastTapTime = 0; // Reset last tap time after double-tap
+      if (this.isSwipeEnabled) {
+        const target = event.target;
+        if (target.closest('[data-swipe-exclude]')) {
+          this.swipeDisabled = true; // Flag to disable swipe handling
+          return;
+        }
+
+        this.swipeDisabled = false; // Allow swipe if not excluded
+        this.touchStartX = event.changedTouches ? event.changedTouches[0].clientX : event.clientX;
+
+        // Start hold timer
+        this.holdTimeout = setTimeout(() => {
+          this.isHolding = true;
+          this.toggleSpeech();
+        }, this.holdDuration);
+      }
+    },
+    handleEnd(event) {
+      if (this.swipeDisabled) {
+        // Prevent further processing if swipe is disabled
+        return;
+      }
+
+      if (this.isSwipeEnabled) {
+        const target = event.target;
+        if (target.hasAttribute('data-swipe-exclude')) {
+          return;
+        }
+
+        clearTimeout(this.holdTimeout);
+
+        if (this.isHolding) {
+          // If it was a hold, reset holding state
+          this.isHolding = false;
         } else {
-          this.lastTapTime = currentTime; // Update last tap time for next tap
+          // Check for double-tap if it was not a hold
+          const currentTime = new Date().getTime();
+          if (currentTime - this.lastTapTime <= this.doubleTapThreshold) {
+            this.toggleExpand();
+            this.lastTapTime = 0; // Reset last tap time after double-tap
+          } else {
+            this.lastTapTime = currentTime; // Update last tap time for next tap
+          }
         }
       }
     },
     cancelHold() {
-      // Cancel hold if user leaves the area before holding duration
+      if (this.swipeDisabled) {
+        // Prevent hold cancellation if swipe is disabled
+        return;
+      }
       clearTimeout(this.holdTimeout);
       this.isHolding = false;
     },
