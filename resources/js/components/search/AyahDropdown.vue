@@ -9,7 +9,7 @@
     :class="dropdownClasses"
   >
     <option value="">Select Ayah</option>
-    <!-- Iterate over ayat and display each in the dropdown -->
+    <!-- Iterate over Ayat and display each in the dropdown -->
     <option
       v-for="ayah in ayat"
       :key="ayah.id"
@@ -22,119 +22,120 @@
 
 <script>
 import axios from "axios";
-import debounce from 'lodash.debounce';  // Import lodash debounce to prevent frequent API calls
+import debounce from "lodash.debounce"; // Import lodash debounce to manage frequent calls
 
 export default {
-    props: {
-        selectedSurahId: {
-            type: Number,
-            required: true,
-        },
-        dropdownHidden: {
-            type: Boolean,
-            default: true,
-        },
+  props: {
+    // Surah ID passed from the parent component
+    selectedSurahId: {
+      type: Number,
+      required: true,
     },
-    data() {
-        return {
-            selectedAyahId: "", // Default value is an empty string to signify no selection
-            ayat: [],
-            tafseer: null,
-            information: null,
-            highlightedAyahId: null,
-            highlightedAyah: null,
-            isLoading: false, // Track loading state
-            cachedData: {}, // Cache for storing previously fetched tafseer and information
-        };
+    // Whether the dropdown should be hidden
+    dropdownHidden: {
+      type: Boolean,
+      default: true,
     },
-    computed: {
-        dropdownClasses() {
-            const isMobile = window.innerWidth <= 767;
-            // Hide dropdown on desktop/tablet if no Surah is selected
-            return {
-                'desktop-hidden': !isMobile && !this.selectedSurahId,
-                'mobile-visible': isMobile || this.selectedSurahId, // Always visible on mobile or if Surah selected
-            };
-        },
+  },
+  data() {
+    return {
+      selectedAyahId: "", // Selected Ayah ID (default is empty)
+      ayat: [], // Array of Ayat to display in the dropdown
+      tafseer: null, // Tafseer data for the selected Ayah
+      information: null, // Additional information for the selected Ayah
+      highlightedAyahId: null, // Highlighted Ayah ID
+      highlightedAyah: null, // Highlighted Ayah object
+      isLoading: false, // Tracks loading state for dropdown and data
+      cachedData: {}, // Cache for storing fetched data (tafseer, information)
+    };
+  },
+  computed: {
+    // Dynamically calculate dropdown visibility based on screen size and selected Surah
+    dropdownClasses() {
+      const isMobile = window.innerWidth <= 767; // Detect if device is mobile
+      return {
+        "desktop-hidden": !isMobile && !this.selectedSurahId,
+        "mobile-visible": isMobile || this.selectedSurahId,
+      };
     },
-    methods: {
-        async handleAyahChange() {
-            if (!this.selectedAyahId) {
-                return; // No Ayah selected, do not proceed
-            }
+  },
+  methods: {
+    // Handle Ayah change when a new Ayah is selected
+    async handleAyahChange() {
+      if (!this.selectedAyahId) return; // Skip if no Ayah is selected
 
-            if (this.cachedData[this.selectedAyahId]) {
-                const cached = this.cachedData[this.selectedAyahId];
-                this.tafseer = cached.tafseer;
-                this.information = cached.information;
-                this.highlightedAyahId = this.selectedAyahId;
-                this.highlightedAyah = this.ayat.find(ayah => ayah.id === this.selectedAyahId);
-                return;
-            }
+      // Check cache for the selected Ayah's data
+      if (this.cachedData[this.selectedAyahId]) {
+        const cached = this.cachedData[this.selectedAyahId];
+        this.tafseer = cached.tafseer;
+        this.information = cached.information;
+        this.highlightedAyahId = this.selectedAyahId;
+        this.highlightedAyah = this.ayat.find(ayah => ayah.id === this.selectedAyahId);
+        return;
+      }
 
-            this.isLoading = true;
+      // Fetch data if not cached
+      this.isLoading = true;
+      try {
+        const selectedAyah = this.ayat.find(ayah => ayah.id === this.selectedAyahId);
+        if (!selectedAyah) return;
 
-            const selectedAyah = this.ayat.find(ayah => ayah.id === this.selectedAyahId);
-            if (selectedAyah) {
-                const ayahId = selectedAyah.id;
-                this.highlightedAyahId = ayahId;
-                this.highlightedAyah = selectedAyah;
+        const ayahId = selectedAyah.id;
+        this.highlightedAyahId = ayahId;
+        this.highlightedAyah = selectedAyah;
 
-                try {
-                    // Fetch tafseer and information based on the selected Ayah ID
-                    const tafseerResponse = await axios.get(`/tafseer/${ayahId}/fetch`);
-                    const infoResponse = await axios.get("/get_informations", {
-                        params: { id: ayahId },
-                    });
+        // Fetch Tafseer and Information
+        const [tafseerResponse, infoResponse] = await Promise.all([
+          axios.get(`/tafseer/${ayahId}/fetch`),
+          axios.get("/get_informations", { params: { id: ayahId } }),
+        ]);
 
-                    this.tafseer = tafseerResponse.data;
-                    this.information = infoResponse.data;
+        this.tafseer = tafseerResponse.data;
+        this.information = infoResponse.data;
 
-                    // Cache the data for future use
-                    this.cachedData[ayahId] = { tafseer: this.tafseer, information: this.information };
+        // Cache the fetched data
+        this.cachedData[ayahId] = { tafseer: this.tafseer, information: this.information };
 
-                    // Emit the information and tafseer data to the parent component
-                    this.$emit("update-information", this.information);
-                    this.$emit("update-tafseer", this.tafseer);
-                } catch (error) {
-                    console.error("Error fetching information or tafseer:", error);
-                } finally {
-                    this.isLoading = false;
-                }
-            }
-        },
-
-        // Debounced version of fetchAyat to avoid frequent API calls
-        fetchAyat: debounce(async function() {
-            try {
-                this.isLoading = true;
-                const response = await axios.get("/get_ayat", {
-                    params: { surah_id: this.selectedSurahId },
-                });
-                this.ayat = response.data;
-
-                // Automatically select and display the first Ayah if available
-                if (this.ayat.length > 0) {
-                    this.selectedAyahId = this.ayat[0].id; // Select the first Ayah by default
-                    this.handleAyahChange(); // Trigger Ayah change to load its content
-                }
-            } catch (error) {
-                console.error("Error fetching ayat:", error);
-            } finally {
-                this.isLoading = false;
-            }
-        }, 300),  // Adjust debounce time as needed
+        // Emit data to the parent component
+        this.$emit("update-information", this.information);
+        this.$emit("update-tafseer", this.tafseer);
+      } catch (error) {
+        console.error("Error fetching information or tafseer:", error);
+      } finally {
+        this.isLoading = false; // Reset loading state
+      }
     },
-    watch: {
-        selectedSurahId: {
-            handler(newValue) {
-                if (newValue) {
-                    this.fetchAyat();  // Call debounced function to fetch Ayat
-                }
-            },
-            immediate: true,
-        },
+
+    // Fetch Ayat for the selected Surah (Debounced for performance)
+    fetchAyat: debounce(async function () {
+      this.isLoading = true;
+      try {
+        const response = await axios.get("/get_ayat", {
+          params: { surah_id: this.selectedSurahId },
+        });
+        this.ayat = response.data;
+
+        // Automatically select and highlight the first Ayah
+        if (this.ayat.length > 0) {
+          this.selectedAyahId = this.ayat[0].id; // Default selection
+          this.handleAyahChange(); // Trigger loading of first Ayah's data
+        }
+      } catch (error) {
+        console.error("Error fetching ayat:", error);
+      } finally {
+        this.isLoading = false;
+      }
+    }, 300), // Debounced with 300ms delay
+  },
+  watch: {
+    // Watch for changes in the selected Surah and fetch corresponding Ayat
+    selectedSurahId: {
+      handler(newSurahId) {
+        if (newSurahId) this.fetchAyat(); // Fetch Ayat when a Surah is selected
+      },
+      immediate: true, // Fetch Ayat immediately on mount
     },
+  },
 };
 </script>
 
@@ -144,24 +145,22 @@ export default {
 }
 
 @media (min-width: 768px) {
-  /* Hide AyahDropdown on desktop/tablet if no Surah is selected */
   .desktop-hidden {
-    display: none;
+    display: none; /* Hide on desktops if no Surah is selected */
   }
 }
 
 @media (max-width: 767px) {
-  /* Always show AyahDropdown on mobile (screens smaller than 768px) */
   .mobile-visible {
-    display: block;
+    display: block; /* Always show dropdown on mobile */
   }
 }
 
 .highlighted-ayah {
-    background-color: #26c789; /* Light blue background to indicate highlight */
-    padding: 10px;
-    border-radius: 5px;
-    font-weight: bold;
-    margin-top: 20px;
+  background-color: #26c789; /* Highlight color */
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  margin-top: 20px;
 }
 </style>

@@ -82,7 +82,7 @@
   </div>
 
   <div class="col-md-8 card-hide">
-  <div class="card content" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;">
+  <div  class="card content" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;">
     <div class="content" >
      <div class="container-fluid content" v-if="information != null">
     
@@ -148,16 +148,12 @@
        <Welcome :information="information" />
        
        <!-- Translation Section -->
-       <div @touchstart="handleStart" 
-        @touchend="handleEnd"
-        @mousedown="handleStart" 
-        @mouseup="handleEnd" 
-        @mouseleave="cancelHold" class="tab-pane active content" id="home" role="tabpanel" v-if="information != null">
-         
+       <div
+          class="tab-pane active content" id="home" role="tabpanel" v-if="information != null">
         <!-- desktop top features -->
         <div v-if="!isVisible" :style="iconStyle">
           <div class="col pb-2 ">
-            <i  :class="isOpen ? 'bi bi-x-circle-fill' : 'bi bi-plus-circle-fill'" class="text-left hide-on-mobile h4" @click="toggleContent"></i>
+            <i :class="isOpen ? 'bi bi-x-circle-fill' : 'bi bi-plus-circle-fill'" class="text-left hide-on-mobile h4" @click="toggleContent"></i>
           </div>
           <div v-if="isOpen" class=" hide-on-mobile ">
             <div class="text-center">
@@ -201,25 +197,32 @@
         <!-- dropdown mobile content -->
         <div>
           <div class="pt-2" ref="targetTranslationElement" >
-            <TranslationSection  
-              :isVisible="!isVisible" 
-              @toggle-change="saveToggleState"
-              :information="information" 
-              :isFullScreen="isFullScreen" 
-              :expanded="expanded" 
-              :showMoreLink="showMoreLink" 
-              :showAlertText="showAlertText" 
-              :showAlert="showAlert" 
-              :showErrorAlert="showErrorAlert" 
-              :showAlertTextNote="showAlertTextNote" 
-              @toggle-full-screen="toggleFullScreen" 
-              @handle-touch-start="handleTouchStart" 
-              @handle-touch-move="handleTouchMove" 
-              @handle-touch-end="handleTouchEnd" 
-              @toggle-expand="toggleExpand" 
-              @close-alert-text="closeAlertText" 
-              @toggle-audio="toggleAudioPlayback"
+            <TranslationSection
+              ref="translationSection"
+              :currentAyah="currentAyah"
+              :isVisible="!isVisible"
+              :information="information"
+              :isFullScreen="isFullScreen"
+              :expanded="expanded"
+              :showMoreLink="showMoreLink"
+              :showAlertText="showAlertText"
+              :showAlert="showAlert"
+              :showErrorAlert="showErrorAlert"
+              :showAlertTextNote="showAlertTextNote"
               :isPlaying="isPlaying"
+              @highlightText="highlightText"
+              @clearHighlight="clearHighlight"
+              @toggle-change="saveToggleState"
+              @toggle-full-screen="toggleFullScreen"
+              @touchstart="handleTouchStart"
+              @touchmove="handleTouchMove"
+              @touchend="handleTouchEnd"
+              @mousedown="handleTouchStart"
+              @mouseup="handleTouchEnd"
+              @mouseleave="cancelHold"
+              @toggle-expand="toggleExpand"
+              @close-alert-text="closeAlertText"
+              @toggle-audio="toggleAudioPlayback"
             />          
           </div>
 
@@ -234,7 +237,8 @@
           <!-- toolbar mobile -->
           <div v-if="isOpen" class="collapse-content mobile-only" >
             <div class="card text-bg-light card-body">
-              <TranslationActions :targetTranslationRef="'targetTranslationElement'" :translation="translation" @open-modal="openModal" @submit-form="submitForm" @toggle-audio="toggleAudioPlayback" :isPlaying="isPlaying"/>
+              <TranslationActions :targetTranslationRef="'targetTranslationElement'" :translation="translation" @open-modal="openModal" @submit-form="submitForm" @toggle-audio="toggleAudioPlayback" :isPlaying="isPlaying" @handle-touch-start="handleTouchStart"
+              />
             </div>
           </div>
 
@@ -298,8 +302,33 @@
 
         <!-- Main content  -->
         <div class="pt-2" ref="targetTafseerElement">
-         <TafseerSection :isVisible="!isVisible" @toggle-change="saveToggleState" @toggle-audio="toggleAudioPlayback" :isPlaying="isPlaying" :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
-        </div>
+        <TafseerSection
+          :currentAyah="currentAyah"
+          :isVisible="!isVisible"
+          :information="information"
+          :isFullScreen="isFullScreen"
+          :expanded="expanded"
+          :showMoreLink="showMoreLink"
+          :showAlertText="showAlertText"
+          :showAlert="showAlert"
+          :showErrorAlert="showErrorAlert"
+          :showAlertTextNote="showAlertTextNote"
+          :isPlaying="isPlaying"
+          @highlightText="highlightText"
+          @clearHighlight="clearHighlight"
+          @toggle-change="saveToggleState"
+          @toggle-full-screen="toggleFullScreen"
+          @touchstart="handleTouchStart"
+          @touchmove="handleTouchMove"
+          @touchend="handleTouchEnd"
+          @mousedown="handleTouchStart"
+          @mouseup="handleTouchEnd"
+          @mouseleave="cancelHold"
+          @toggle-expand="toggleExpand"
+          @close-alert-text="closeAlertText"
+          @toggle-audio="toggleAudioPlayback"
+        />
+      </div>
 
         <div v-if="!isVisible" class="container-fluid text-center mobile-only">
           <div class="row">
@@ -312,7 +341,7 @@
         <!-- toolbar mobile -->
         <div v-if="isOpen" class="collapse-content mobile-only" >
           <div class="card text-bg-light card-body">
-            <TafseerActions  @toggle-audio="toggleAudioPlayback" :isPlaying="isPlaying" :targetTafseerRef="'targetTafseerElement'" :tafseer="tafseer" @open-modal="openModal" @submit-form="submitForm" />
+            <TafseerActions  :targetTranslationRef="'targetTranslationElement'" :translation="translation" @open-modal="openModal" @submit-form="submitForm" @toggle-audio="toggleAudioPlayback" :isPlaying="isPlaying" @handle-touch-start="handleTouchStart"/>
           </div>
         </div>
 
@@ -363,7 +392,31 @@
         </div>
 
         <div ref="targetTransliterationElement">
-          <TransliterationSection :isVisible="!isVisible" @toggle-audio="toggleAudioPlayback" :isPlaying="isPlaying" :information="information" :isFullScreen="isFullScreen" :expanded="expanded" :showMoreLink="showMoreLink" :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @toggle-full-screen="toggleFullScreen" @handle-touch-start="handleTouchStart" @handle-touch-move="handleTouchMove" @handle-touch-end="handleTouchEnd" @toggle-expand="toggleExpand" @close-alert-text="closeAlertText" />
+          <TransliterationSection 
+            :currentAyah="currentAyah"
+            :isVisible="!isVisible"
+            :information="information"
+            :isFullScreen="isFullScreen"
+            :expanded="expanded"
+            :showMoreLink="showMoreLink"
+            :showAlertText="showAlertText"
+            :showAlert="showAlert"
+            :showErrorAlert="showErrorAlert"
+            :showAlertTextNote="showAlertTextNote"
+            :isPlaying="isPlaying"
+            @highlightText="highlightText"
+            @clearHighlight="clearHighlight"
+            @toggle-change="saveToggleState"
+            @toggle-full-screen="toggleFullScreen"
+            @touchstart="handleTouchStart"
+            @touchmove="handleTouchMove"
+            @touchend="handleTouchEnd"
+            @mousedown="handleTouchStart"
+            @mouseup="handleTouchEnd"
+            @mouseleave="cancelHold"
+            @toggle-expand="toggleExpand"
+            @close-alert-text="closeAlertText"
+            @toggle-audio="toggleAudioPlayback"/>
         </div>
 
         <div v-if="!isVisible" class="container-fluid text-center mobile-only">
@@ -377,7 +430,7 @@
         <!-- toolbar mobile -->
         <div v-if="isOpen" class="collapse-content mobile-only" >
           <div class="card text-bg-light card-body">
-            <TransliterationActions @toggle-audio="toggleAudioPlayback" :isPlaying="isPlaying" @toggle-full-screen="toggleFullScreen" :expanded="expanded" :targetTransliterationRef="'targetTransliterationElement'" :transliteration="transliteration" @open-modal="openModal" @submit-form="submitForm" />
+            <TransliterationActions   :targetTranslationRef="'targetTranslationElement'" :translation="translation" @open-modal="openModal" @submit-form="submitForm" @toggle-audio="toggleAudioPlayback" :isPlaying="isPlaying" @handle-touch-start="handleTouchStart"/>
           </div>
         </div>
         <!-- end toolbar mobile -->
@@ -719,6 +772,7 @@ export default {
  },
 
  mounted() {
+  
   this.fetchAyat();
   const themesFromStorage = localStorage.getItem('savedThemes');
   if (themesFromStorage) {
@@ -984,6 +1038,19 @@ computed: {
     }
 },
 methods: {
+  updateAyah(newAyah) {
+    this.currentAyah = newAyah;
+  },
+  highlightText(charIndex, currentWord) {
+    this.$refs.translationSection.highlightText(charIndex, currentWord);
+  },
+  clearHighlight() {
+    this.$nextTick(() => {
+      if (this.currentAyah && this.currentAyah.translation) {
+        this.renderedText = `<span>${this.currentAyah.translation}</span>`;
+      }
+    });
+  },
   fetchAyat() {
     // Fetch ayat for the selected surah and set the first ayah as highlighted
     // Example fetch request
@@ -1392,54 +1459,48 @@ setTimeout(() => {
    this.isFullScreen = !this.isFullScreen;
   },
   handleTouchStart(event) {
-   this.touchStartX = event.changedTouches[0].screenX;
-   this.touchStartY = event.changedTouches[0].screenY;
-   this.touchStartTime = Date.now();
+    const touch = event.changedTouches ? event.changedTouches[0] : event;
+    this.touchStartX = touch.screenX;
+    this.touchStartTime = Date.now();
   },
   handleTouchMove(event) {
-   this.touchEndX = event.changedTouches[0].screenX;
-   this.touchEndY = event.changedTouches[0].screenY;
+    const touch = event.changedTouches ? event.changedTouches[0] : event;
+    this.touchEndX = touch.screenX;
   },
   handleTouchEnd() {
-   const touchEndTime = Date.now();
-   const timeDiff = touchEndTime - this.touchStartTime;
-   const deltaX = this.touchEndX - this.touchStartX;
-   const deltaY = this.touchEndY - this.touchStartY;
+    const touchEndTime = Date.now();
+    const timeDiff = touchEndTime - this.touchStartTime;
+    const deltaX = this.touchEndX - this.touchStartX;
+    const minSwipeDistance = 50; // Minimum distance in pixels to detect swipe
+    const maxSwipeDuration = 500; // Maximum duration in ms for a swipe
 
-   const minSwipeDistance = 50; // Minimum distance in pixels to be considered a swipe
-   const maxTapDistance = 10; // Maximum distance in pixels to be considered a tap
-   const maxSwipeDuration = 500; // Maximum duration in ms to be considered a swipe
-   const maxTapDuration = 200; // Maximum duration in ms to be considered a tap
-
-   // Check if it's a tap
-   if (Math.abs(deltaX) < maxTapDistance && Math.abs(deltaY) < maxTapDistance && timeDiff < maxTapDuration) {
-    this.onTap();
-   }
-   // Check if it's a swipe
-   else if (
-    Math.abs(deltaX) > minSwipeDistance &&
-    timeDiff < maxSwipeDuration &&
-    Math.abs(deltaX) > Math.abs(deltaY) // Ensure it's a horizontal swipe
-   ) {
-    if (deltaX > 0) {
-     this.onSwipeRight();
-    } else {
-     this.onSwipeLeft();
+    // Swipe gesture detection
+    if (Math.abs(deltaX) > minSwipeDistance && timeDiff < maxSwipeDuration) {
+      if (deltaX > 0) {
+        this.onSwipeRight();
+      } else {
+        this.onSwipeLeft();
+      }
     }
-   }
+  },
+  cancelHold() {
+    this.touchStartTime = 0; // Reset hold detection
   },
   onSwipeLeft() {
-   this.goToPreviousAyah();
-   console.log('Swiped left');
+    this.goToPreviousAyah();
+    this.clearHighlight();
+    console.log("Swiped left");
   },
   onSwipeRight() {
-   this.goToNextAyah();
-   console.log('Swiped right');
+    this.goToNextAyah();
+    this.clearHighlight();
+    console.log("Swiped right");
   },
   goToFirstAyah() {
    this.selectAyah(0);
   },
   goToPreviousAyah() {
+    this.clearHighlight();
    if (this.selectedIndexAyah > 0) {
     this.selectAyah(this.selectedIndexAyah - 1);
    } else {
@@ -1447,6 +1508,7 @@ setTimeout(() => {
    }
   },
   goToNextAyah() {
+    this.clearHighlight();
    if (this.selectedIndexAyah < this.ayat.length - 1) {
     this.selectAyah(this.selectedIndexAyah + 1);
    } else {
@@ -1454,6 +1516,7 @@ setTimeout(() => {
    }
   },
   goToLastAyah() {
+    this.clearHighlight();
    this.selectAyah(this.ayat.length - 1);
   },
   

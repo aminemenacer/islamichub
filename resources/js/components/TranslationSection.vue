@@ -1,9 +1,9 @@
 <template>
-<div class="w-100 my-element" :class="{ 'full-screen': isFullScreen }">
+<div @touchstart="handleStart" @touchmove="handleTouchMove" @touchend="handleEnd" @mousedown="handleStart" @mouseup="handleEnd" @mouseleave="cancelHold" class="w-100 my-element" :class="{ 'full-screen': isFullScreen }">
   <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
   <div>
     <AyahInfo :information="information" />
-    <div @touchstart="handleStart" @touchend="handleEnd" @mousedown="handleStart" @mouseup="handleEnd" @mouseleave="cancelHold" class="swipeable-div w-100">
+    <div  class="swipeable-div w-100">
       <div class="row">
         <div class="col-md-2 pt-2 d-flex align-items-center justify-content-center">
 
@@ -22,12 +22,13 @@
 
       <div ref="targetTranslationElement" class="row text-left mt-2">
         <!-- Text Column -->
-        <!-- v-html="renderedText" -->
+        <!--  -->
         <div class="col-10">
-          <h4 class="ayah-translation" style="line-height: 1.6em" :style="{ fontSize: fontSize + 'em', lineHeight: '1.6em' }" >
-            {{ expanded ? information.translation : information.translation }}
-          </h4>
-
+          <h4
+            class="ayah-translation"
+            :style="{ fontSize: fontSize + 'em', lineHeight: '1.6em' }"
+            v-html="renderedText"
+          ></h4>
         </div>
 
         <!-- Icons Column (Stacked Vertically) -->
@@ -35,7 +36,6 @@
           <!-- Play/Pause Button -->
           <i @click="toggleSpeech" :class="['bi', isReading ? (isPaused ? 'bi-play-circle-fill' : 'bi-pause-circle-fill') : 'bi-play-circle-fill', 'h3', 'custom-icon-play']" style="cursor: pointer;" aria-label="Play or pause translation audio">
           </i>
-
           <!-- Stop Button -->
           <i @click="stopReading" :class="['bi', 'bi-stop-circle-fill', 'h3', 'custom-icon-play']" style="cursor: pointer;" :disabled="!isAudioPlaying" aria-label="Stop reading audio">
           </i>
@@ -58,7 +58,8 @@
         <h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" loading="lazy" /><strong>Reciter's name: </strong>Mishary Rashid Alafasy</h6>
       </div>
     </div>
-    <div v-if="isVisible" class="row">
+
+    <!-- <div v-if="isVisible" class="row">
       <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
           Export as
@@ -67,10 +68,9 @@
           <li><a class="dropdown-item active" href="#" @click.prevent="handleDownload('csv')">CSV file</a></li>
           <li><a class="dropdown-item" href="#" @click.prevent="handleDownload('docx')">Word document</a></li>
           <li><a class="dropdown-item" href="#" @click.prevent="handleDownload('pdf')">PDF format</a></li>
-
         </ul>
       </div>
-    </div>
+    </div> -->
 
     <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
   </div>
@@ -187,6 +187,8 @@ export default {
   },
   data() {
     return {
+      expanded: false,
+      renderedText: '',
       selectedFormat: "Select a format",
       fontSize: parseFloat(localStorage.getItem('ayahFontSize')) || 1,
       holdTimeout: null,
@@ -197,7 +199,6 @@ export default {
       doubleTapThreshold: 300,
       isHolding: false,
       tapTimeout: null,
-      renderedText: "",
       isPaused: false,
       isReading: false,
       isAudioPlaying: false,
@@ -224,6 +225,8 @@ export default {
 
   mounted() {
     this.renderedText = this.information.translation;
+    this.clearHighlight();
+    this.stopReading();
     this.$emit("ayah-text", this.information.ayah.ayah_text);
     // Load saved settings from local storage on page load
     const savedVoiceName = localStorage.getItem("selectedVoice");
@@ -251,6 +254,14 @@ export default {
   },
 
   methods: {
+    
+    clearHighlight() {
+      // Force an update by resetting the content
+      this.renderedText = ''; // Clear first to ensure reactivity
+      this.$nextTick(() => {
+        this.renderedText = `<span>${this.information.translation}</span>`;
+      });
+    },
     handleDownload(format) {
       if (!format) {
         alert("Please select a valid format.");
@@ -275,12 +286,14 @@ export default {
       const doc = new jsPDF();
 
       // Set the font to "courier" (a basic font that may support Arabic characters)
-      doc.setFont("courier"); 
+      doc.setFont("courier");
 
       // Title in English (for context)
       doc.setFontSize(24);
       doc.setTextColor("#1F4E79");
-      doc.text("Quran Translation Document", 105, 20, { align: "center" });
+      doc.text("Quran Translation Document", 105, 20, {
+        align: "center"
+      });
       doc.line(10, 25, 200, 25);
 
       let yPosition = 35;
@@ -314,11 +327,13 @@ export default {
       yPosition += 10;
 
       // Arabic Ayah text (this is where you need the Arabic text)
-      const translationText = "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ";  // Arabic example
+      const translationText = "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ"; // Arabic example
       const splitTranslationText = doc.splitTextToSize(translationText, textWidth);
 
       // Right-align Arabic text
-      doc.text(splitTranslationText, 10, yPosition, { align: "right" }); // Right-align for Arabic text
+      doc.text(splitTranslationText, 10, yPosition, {
+        align: "right"
+      }); // Right-align for Arabic text
       yPosition += splitTranslationText.length * 8;
 
       // Ensure the text is not cut off
@@ -365,19 +380,19 @@ export default {
         .join("\n");
 
       // Create a blob for the CSV content
-        const blob = new Blob([csvContent], {
-          type: "text/csv;charset=utf-8;",
-        });
+      const blob = new Blob([csvContent], {
+        type: "text/csv;charset=utf-8;",
+      });
 
-        // Get the current date and format it as YYYY-MM-DD
-        const date = new Date();
-        const formattedDate = date.toISOString().split("T")[0]; // e.g., 2024-11-19
+      // Get the current date and format it as YYYY-MM-DD
+      const date = new Date();
+      const formattedDate = date.toISOString().split("T")[0]; // e.g., 2024-11-19
 
-        // Append the date to the filename
-        const filename = `translation_${formattedDate}.csv`;
+      // Append the date to the filename
+      const filename = `translation_${formattedDate}.csv`;
 
-        // Download the file
-        saveAs(blob, filename);
+      // Download the file
+      saveAs(blob, filename);
     },
 
     applySettings(fontSize, rate, pitch, selectedVoice) {
@@ -812,6 +827,17 @@ export default {
     }
   },
   watch: {
+    currentAyah: {
+      immediate: true,
+      handler(newAyah) {
+        // Check if newAyah is defined and has a translation property
+        if (newAyah && newAyah.translation) {
+          this.renderedText = newAyah.translation;
+        } else {
+          this.renderedText = ''; // Handle the case where translation is undefined
+        }
+      },
+    },
     isVisible() {
       this.$emit('toggle-change');
     }
@@ -842,8 +868,6 @@ export default {
   color: #333;
   margin-bottom: 20px;
 }
-
-
 
 /* .dropdown {
   padding: 10px;

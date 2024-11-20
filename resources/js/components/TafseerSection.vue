@@ -1,17 +1,13 @@
 <template>
-  <div class="w-100 my-element" :class="{ 'full-screen': isFullScreen }">
+  <div class="w-100 my-element" :class="{ 'full-screen': isFullScreen }" @touchstart="handleStart" @touchmove="handleTouchMove" @touchend="handleEnd" @mousedown="handleStart" @mouseup="handleEnd" @mouseleave="cancelHold">
     <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
     
     <div>
       <AyahInfo :information="information" />
-      <div 
-        @touchstart="handleStart" 
-        @touchend="handleEnd" 
-        @mousedown="handleStart" 
-        @mouseup="handleEnd" 
-        @mouseleave="cancelHold" 
+      <div
+        
         class="swipeable-div w-100"
-      >
+       >
         <div class="row">
           <div class="col-md-2 pt-2 d-flex align-items-center justify-content-center">
             <!-- <i 
@@ -518,34 +514,37 @@ export default {
       this.$emit('toggle-audio', this.isReading);
     },
 		handleStart() {
-		// Start hold timer
-			this.holdTimeout = setTimeout(() => {
-			this.isHolding = true;
-			this.toggleSpeech();
-		}, this.holdDuration);
-		},
-		handleEnd() {
-		clearTimeout(this.holdTimeout);
+      // Start hold timer
+      this.holdTimeout = setTimeout(() => {
+        this.isHolding = true;
+        this.toggleSpeech();
+      }, this.holdDuration);
+    },
 
-		if (this.isHolding) {
-				// If it was a hold, reset holding state
-			this.isHolding = false;
-		} else {
-			// Check for double-tap if it was not a hold
-			const currentTime = new Date().getTime();
-			if (currentTime - this.lastTapTime <= this.doubleTapThreshold) {
-					this.toggleExpand();
-			this.lastTapTime = 0; // Reset last tap time after double-tap
-			} else {
-			this.lastTapTime = currentTime; // Update last tap time for next tap
-			}
-		}
-		},
-		cancelHold() {
-		// Cancel hold if user leaves the area before holding duration
-		clearTimeout(this.holdTimeout);
-		this.isHolding = false;
-		},
+    // Handle the swipe end event
+    handleEnd() {
+      clearTimeout(this.holdTimeout);
+
+      if (this.isHolding) {
+        // If it was a hold, reset holding state
+        this.isHolding = false;
+      } else {
+        // Check for double-tap if it was not a hold
+        const currentTime = new Date().getTime();
+        if (currentTime - this.lastTapTime <= this.doubleTapThreshold) {
+          this.toggleExpand();
+          this.lastTapTime = 0; // Reset last tap time after double-tap
+        } else {
+          this.lastTapTime = currentTime; // Update last tap time for next tap
+        }
+      }
+    },
+    cancelHold() {
+      // Cancel hold if user leaves the area before holding duration
+      clearTimeout(this.holdTimeout);
+      this.isHolding = false;
+    },
+
 		playAudio() {
 			this.$emit('toggle-audio'); // Show the audio player in the parent component
 		},
@@ -736,17 +735,17 @@ export default {
 			}
 		},
 		toggleFullScreen() {
-				this.$emit("toggle-full-screen");
-		},
-		handleTouchStart(event) {
-				this.$emit("handle-touch-start", event);
-		},
-		handleTouchMove(event) {
-				this.$emit("handle-touch-move", event);
-		},
-		handleTouchEnd(event) {
-				this.$emit("handle-touch-end", event);
-		},
+      this.$emit("toggle-full-screen");
+    },
+     handleTouchStart(event) {
+      this.$emit("handle-touch-start", event);
+    },
+    handleTouchMove(event) {
+      this.$emit("handle-touch-move", event);
+    },
+    handleTouchEnd(event) {
+      this.$emit("handle-touch-end", event);
+    },
 		toggleExpand() {
 				this.expanded = !this.expanded; // Toggle expanded state locally
 		},

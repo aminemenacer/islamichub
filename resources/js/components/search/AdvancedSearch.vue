@@ -235,7 +235,7 @@ export default {
   result: Object,
   information: Object,
  },
- methods: {
+  methods: {
    filterResults() {
     console.log(this.searchTerm); // Log the search term
     // Example of filtering logic
