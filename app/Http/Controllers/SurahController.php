@@ -93,46 +93,55 @@ class SurahController extends Controller
     public function searchTranslations(Request $request)
     {
         $query = $request->input('query');
-        $filters = $request->input('filters', []);
 
-        $resultsQuery = Information::query();
-
-        if (!empty($filters['translation'])) {
-            $resultsQuery->orWhere('translation', 'like', '%' . $query . '%');
-        }
-        if (!empty($filters['tafseer'])) {
-            $resultsQuery->orWhere('tafseer', 'like', '%' . $query . '%');
-        }
-        if (!empty($filters['transliteration'])) {
-            $resultsQuery->orWhere('transliteration', 'like', '%' . $query . '%');
+        if (!$query) {
+            return response()->json([
+                'results' => [],
+                'suggestions' => []
+            ]);
         }
 
         try {
-            $results = $resultsQuery->with(['ayah.surah'])->get();
+            // Perform a query to search for the input text across multiple fields
+            $results = Information::query()
+                ->where(function ($subQuery) use ($query) {
+                    $subQuery->where('translation', 'like', '%' . $query . '%')
+                            ->orWhere('tafseer', 'like', '%' . $query . '%')
+                            ->orWhere('transliteration', 'like', '%' . $query . '%');
+                })
+                ->with(['ayah.surah:id,name']) // Load only necessary fields for related data
+                ->select('id', 'ayah_id', 'translation', 'tafseer', 'transliteration') // Select specific fields
+                ->get();
+
+            // Generate unique word suggestions
+            $suggestions = $results->flatMap(function ($item) use ($query) {
+                $words = [];
+                foreach (['translation', 'tafseer', 'transliteration'] as $field) {
+                    if (isset($item->$field)) {
+                        preg_match_all('/\b\w*' . preg_quote($query, '/') . '\w*\b/i', $item->$field, $matches);
+                        $words = array_merge($words, $matches[0]);
+                    }
+                }
+                return $words;
+            })->unique()->values();
+
+            return response()->json([
+                'results' => $results,
+                'suggestions' => $suggestions,
+            ]);
         } catch (\Exception $e) {
-            \Log::error("Error executing query: " . $e->getMessage());
+            // Log detailed error information for debugging
+            \Log::error("Error executing search query: ", [
+                'query' => $query,
+                'error' => $e->getMessage()
+            ]);
+
             return response()->json(['error' => 'Database query failed'], 500);
         }
-
-        $suggestions = $results->flatMap(function($item) use ($query) {
-            $words = [];
-            $fields = ['translation', 'tafseer', 'transliteration'];
-
-            foreach ($fields as $field) {
-                if (isset($item->$field)) {
-                    preg_match_all('/\b\w*' . preg_quote($query, '/') . '\w*\b/i', $item->$field, $matches);
-                    $words = array_merge($words, $matches[0]);
-                }
-            }
-
-            return $words;
-        })->unique()->values();
-
-        return response()->json([
-            'results' => $results,
-            'suggestions' => $suggestions,
-        ]);
     }
+
+
+
 
 
 }

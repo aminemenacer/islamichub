@@ -25,11 +25,7 @@
         <!-- Tafseer and Control Icons -->
         <div ref="targetTafseerElement" class="row text-left mt-2">
           <div class="col-10">
-            <h4 
-              class="ayah-translation" 
-              style="line-height: 1.6em" 
-              :style="{ fontSize: fontSize + 'em' }"
-            >
+            <h4 class="ayah-translation" style="line-height: 1.6em" :style="{ fontSize: fontSize + 'em', lineHeight: '1.6em' }" >
               {{ expanded ? tafseer : tafseer }}
             </h4>
           </div>
