@@ -93,47 +93,33 @@ class SurahController extends Controller
     public function searchTranslations(Request $request)
     {
         $query = $request->input('query');
-        $filters = $request->input('filters', []);
-
+        
+        // Return empty if query is not provided
         if (empty($query)) {
             return response()->json(['results' => [], 'suggestions' => []]);
         }
 
-        $resultsQuery = Information::query();
+        // Query translations only
+        $resultsQuery = Information::query()
+            ->where('translation', 'LIKE', '%' . $query . '%');
 
-        // Apply filters dynamically
-        foreach (['translation', 'tafseer', 'transliteration'] as $filter) {
-            if (!empty($filters[$filter])) {
-                $resultsQuery->orWhere($filter, 'LIKE', '%' . $query . '%');
-            }
-        }
-
-        // Return empty if no filters matched
-        if (!$resultsQuery->count()) {
-            return response()->json(['results' => [], 'suggestions' => []]);
-        }
-
+        // Fetch results
         $results = $resultsQuery->with(['ayah.surah'])->get();
 
-        // Add tafseer to each result
-        foreach ($results as $translation) {
-            $translation->originalTafseer = Tafseer::where('id', $translation->ayah->id)->first()->tafseer ?? null;
-        }
-
-        // Generate unique suggestions
+        // Generate unique suggestions from the translation field
         $suggestions = collect();
         foreach ($results as $item) {
-            foreach (['translation', 'tafseer', 'transliteration'] as $field) {
-                if (!empty($filters[$field]) && isset($item->$field)) {
-                    preg_match_all('/\b\w*' . preg_quote($query, '/') . '\w*\b/i', $item->$field, $matches);
-                    $suggestions = $suggestions->merge($matches[0]);
-                }
+            if (!empty($item->translation)) {
+                // Match query words in the translation field
+                preg_match_all('/\b\w*' . preg_quote($query, '/') . '\w*\b/i', $item->translation, $matches);
+                $suggestions = $suggestions->merge($matches[0]);
             }
         }
 
         return response()->json([
             'results' => $results,
-            'suggestions' => $suggestions->unique()->values(),
+            'suggestions' => $suggestions->unique()->values(), // Return unique suggestions
         ]);
     }
+
 }

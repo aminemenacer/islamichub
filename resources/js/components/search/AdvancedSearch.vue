@@ -4,7 +4,7 @@
  <div>
 
   <div class="container input-group pb-3" style="position: relative; width: 100%;">
-   <input type="text" @keyup="debouncedSearch" v-model="searchTerm" placeholder="Explore the Quran..." class="form-control mr-3 pb-2 mobile-only" style="flex: 1;box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;"/>
+   <input type="text" @keyup="onInput" v-model="searchTerm" placeholder="Explore the words of the Quran..." class="form-control mr-3 pb-2 mobile-only" style="flex: 1;box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;"/>
 
    <!-- Suggestions Dropdown -->
    <ul v-if="suggestions.length" class="list-group suggestions" style="position: absolute; top: 100%; left: 0; width: 95%; z-index: 1000; max-height: 600px; overflow-y: auto;">
@@ -96,7 +96,7 @@
             <span v-html="highlightSearch(expanded ? result.translation : result.translation)"></span>
         
           </div>
-          <div>
+          <!-- <div>
             <h5 class="pt-2"><b>Tafseer: </b></h5>
             <span v-html="highlightSearch(expanded ? result.originalTafseer : result.originalTafseer)"></span>
             
@@ -104,7 +104,7 @@
           <div>
             <h5 class="pt-2"><b>Transliteration: </b></h5>
             <span v-html="highlightSearch(expanded ? result.transliteration : result.transliteration)"></span>
-          </div>
+          </div> -->
           
         </div>
         <div class="pt-2 row" style="padding:5px">
@@ -309,7 +309,7 @@ export default {
   },
   // Trigger suggestions based on input length
   onInput() {
-   if (this.searchTerm.length > 4) {
+   if (this.searchTerm.length > 2) {
     this.fetchSuggestions();
    } else {
     this.suggestions = [];
