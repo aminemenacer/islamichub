@@ -93,55 +93,47 @@ class SurahController extends Controller
     public function searchTranslations(Request $request)
     {
         $query = $request->input('query');
+        $filters = $request->input('filters', []);
 
-        if (!$query) {
-            return response()->json([
-                'results' => [],
-                'suggestions' => []
-            ]);
+        if (empty($query)) {
+            return response()->json(['results' => [], 'suggestions' => []]);
         }
 
-        try {
-            // Perform a query to search for the input text across multiple fields
-            $results = Information::query()
-                ->where(function ($subQuery) use ($query) {
-                    $subQuery->where('translation', 'like', '%' . $query . '%')
-                            ->orWhere('tafseer', 'like', '%' . $query . '%')
-                            ->orWhere('transliteration', 'like', '%' . $query . '%');
-                })
-                ->with(['ayah.surah:id,name']) // Load only necessary fields for related data
-                ->select('id', 'ayah_id', 'translation', 'tafseer', 'transliteration') // Select specific fields
-                ->get();
+        $resultsQuery = Information::query();
 
-            // Generate unique word suggestions
-            $suggestions = $results->flatMap(function ($item) use ($query) {
-                $words = [];
-                foreach (['translation', 'tafseer', 'transliteration'] as $field) {
-                    if (isset($item->$field)) {
-                        preg_match_all('/\b\w*' . preg_quote($query, '/') . '\w*\b/i', $item->$field, $matches);
-                        $words = array_merge($words, $matches[0]);
-                    }
+        // Apply filters dynamically
+        foreach (['translation', 'tafseer', 'transliteration'] as $filter) {
+            if (!empty($filters[$filter])) {
+                $resultsQuery->orWhere($filter, 'LIKE', '%' . $query . '%');
+            }
+        }
+
+        // Return empty if no filters matched
+        if (!$resultsQuery->count()) {
+            return response()->json(['results' => [], 'suggestions' => []]);
+        }
+
+        $results = $resultsQuery->with(['ayah.surah'])->get();
+
+        // Add tafseer to each result
+        foreach ($results as $translation) {
+            $translation->originalTafseer = Tafseer::where('id', $translation->ayah->id)->first()->tafseer ?? null;
+        }
+
+        // Generate unique suggestions
+        $suggestions = collect();
+        foreach ($results as $item) {
+            foreach (['translation', 'tafseer', 'transliteration'] as $field) {
+                if (!empty($filters[$field]) && isset($item->$field)) {
+                    preg_match_all('/\b\w*' . preg_quote($query, '/') . '\w*\b/i', $item->$field, $matches);
+                    $suggestions = $suggestions->merge($matches[0]);
                 }
-                return $words;
-            })->unique()->values();
-
-            return response()->json([
-                'results' => $results,
-                'suggestions' => $suggestions,
-            ]);
-        } catch (\Exception $e) {
-            // Log detailed error information for debugging
-            \Log::error("Error executing search query: ", [
-                'query' => $query,
-                'error' => $e->getMessage()
-            ]);
-
-            return response()->json(['error' => 'Database query failed'], 500);
+            }
         }
+
+        return response()->json([
+            'results' => $results,
+            'suggestions' => $suggestions->unique()->values(),
+        ]);
     }
-
-
-
-
-
 }
