@@ -6,7 +6,9 @@
     <div  class="swipeable-div w-100">
       <div class="row">
         <div class="col-md-2 pt-2 d-flex align-items-center justify-content-center">
-
+          <div v-if="successMessage" class="alert alert-success mt-3" role="alert">
+            {{ successMessage }}
+          </div>
           <!-- <i 
               @click="toggleSpeechAyah" 
               class="bi-play-circle-fill h4 custom-icon-play-main"
@@ -185,7 +187,8 @@ export default {
   },
   data() {
     return {
-        isSwipeEnabled: true, // Track swipe enabled state
+      successMessage: "",
+      isSwipeEnabled: true, // Track swipe enabled state
       swipeDisabled: false, // Flag to disable swipe behavior
       touchStartX: 0,
       touchStartY: 0,
@@ -256,6 +259,9 @@ export default {
   },
 
   methods: {
+    updateSuccessMessage(message) {
+      this.successMessage = message;
+    },
     onTap() {
       this.swipeDisabled = true; // Disable swipe behavior
       this.isSwipeEnabled = false; // Optionally, completely disable swipe actions if needed

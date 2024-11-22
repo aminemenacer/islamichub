@@ -23,6 +23,10 @@
         ></i>
       </div>
 
+      <div v-if="successMessage" class="alert alert-success mt-3" role="alert">
+        {{ successMessage }}
+      </div>
+
       <!-- Surah Info Icon -->
       <div class="icon-container">
         <i
@@ -82,6 +86,7 @@ export default {
       showAlert: false,
       showErrorAlert: false,
       isSubmitting: false,
+      successMessage: "",
     };
   },
   computed: {
@@ -124,22 +129,11 @@ export default {
 
       this.toggleElements(unwantedElements, 'none');  // Hide unwanted elements
 
+
+      this.$emit('update-success-message', 'Screenshot captured & downloaded successfully!');
       setTimeout(() => {
-        html2canvas(targetTranslationElement).then(canvas => {
-          const dataUrl = canvas.toDataURL("image/png");
-
-          // Automatically trigger download of the screenshot
-          const link = document.createElement("a");
-          link.href = dataUrl;
-          link.download = "screenshot.png";
-          link.click();
-
-          this.toggleElements(unwantedElements, '');  // Show elements back
-        }).catch(error => {
-          console.error("Failed to capture screenshot:", error);
-          this.toggleElements(unwantedElements, '');  // Show elements back on error
-        });
-      }, 200);
+        this.$emit('update-success-message', ''); // Clear the message after 3 seconds
+      }, 3000);
     },
     toggleElements(selectors, displayValue) {
       selectors.forEach(selector => {

@@ -206,6 +206,8 @@ export default {
       .catch(err => {
        console.error(err);
        Swal.fire("Error", "Login to your account to submit a note.", "error");
+       this.resetNoteForm();
+       this.closeModal();
       });
     }
    });

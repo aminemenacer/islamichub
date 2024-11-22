@@ -217,6 +217,7 @@
               @toggle-expand="toggleExpand"
               @close-alert-text="closeAlertText"
               @toggle-audio="toggleAudioPlayback"
+              @update-success-message="updateSuccessMessage"
             />          
           </div>
 
