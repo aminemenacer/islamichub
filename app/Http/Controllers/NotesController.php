@@ -52,41 +52,97 @@ class NotesController extends Controller
 
     public function store(Request $request)
     {
+        // Validate the input data
         $validatedData = $request->validate([
             'surah_name' => 'nullable|string',
             'ayah_num' => 'nullable|string',
             'ayah_verse_ar' => 'nullable|string',
             'ayah_verse_en' => 'nullable|string',
             'ayah_info' => 'nullable|string',
-            'ayah_notes' => 'required|string',
-            // 'option' => 'required|integer|in:0,1',  // 0 for public, 1 for private
+            // Make sure 'ayah_notes' can handle large text content (e.g., with HTML, images, audio, etc.)
+            'ayah_notes' => 'required|string', // Validate as string to allow HTML
             'is_speech_to_text' => 'boolean',
         ]);
 
-        $validatedData['user_id'] = auth()->id();  // Automatically set the user ID
+        // Set the user ID to the currently authenticated user
+        $validatedData['user_id'] = auth()->id();
 
-        $note = Note::create($validatedData);  // Create the note
+        // Handle file uploads (if applicable)
+        if ($request->hasFile('ayah_images')) {
+            // Handle image or video file upload here (example: upload to storage and save the file path)
+            $images = $request->file('ayah_images');
+            $imagePaths = [];
+
+            foreach ($images as $image) {
+                $imagePaths[] = $image->store('public/ayah_images'); // Adjust storage path as needed
+            }
+
+            // Add image URLs to ayah_notes
+            $validatedData['ayah_notes'] = $this->addMediaToNotes($validatedData['ayah_notes'], $imagePaths);
+        }
+
+        // Create the note and save it to the database
+        $note = Note::create($validatedData);
 
         return response()->json(['message' => 'Note created successfully', 'note' => $note], 201);
     }
 
+
     public function updateNotes(Request $request, $id)
     {
+        // Validate the input data
         $validatedData = $request->validate([
             'surah_name' => 'nullable|string',
             'ayah_num' => 'nullable|string',
             'ayah_verse_ar' => 'nullable|string',
             'ayah_verse_en' => 'nullable|string',
             'ayah_info' => 'nullable|string',
-            'ayah_notes' => 'required|string',
+            // Ensure 'ayah_notes' can handle large content such as HTML, base64 images, etc.
+            'ayah_notes' => 'required|string', // Validate as string to allow HTML
             'visibility_option' => 'required|integer|in:0,1',  // 0 for public, 1 for private
             'is_speech_to_text' => 'boolean',
         ]);
 
+        // Find the note by ID
         $note = Note::findOrFail($id);
+
+        // Handle file uploads (if applicable)
+        if ($request->hasFile('ayah_images')) {
+            // Handle image or video file upload here (example: upload to storage and save the file path)
+            $images = $request->file('ayah_images');
+            $imagePaths = [];
+
+            foreach ($images as $image) {
+                $imagePaths[] = $image->store('public/ayah_images'); // Adjust storage path as needed
+            }
+
+            // Add image URLs to ayah_notes
+            $validatedData['ayah_notes'] = $this->addMediaToNotes($validatedData['ayah_notes'], $imagePaths);
+        }
+
+        // Update the note
         $note->update($validatedData);
 
         return response()->json(['message' => 'Note updated successfully', 'note' => $note]);
+    }
+
+    // Helper function to add media links to the 'ayah_notes' field
+    private function addMediaToNotes($ayahNotes, $imagePaths)
+    {
+        foreach ($mediaPaths as $path) {
+            // Check if the file is an image or video
+            $ext = pathinfo($path, PATHINFO_EXTENSION);
+            
+            if (in_array(strtolower($ext), ['mp4', 'webm', 'ogg'])) {
+                // For video files
+                $ayahNotes .= '<video src="' . asset('storage/' . $path) . '" class="' . $class . '" controls></video>';
+            } else {
+                // For image files
+                $ayahNotes .= '<img src="' . asset('storage/' . $path) . '" class="' . $class . '" />';
+            }
+        }
+
+        return $ayahNotes;
     }
 
     public function deleteNotes($id)

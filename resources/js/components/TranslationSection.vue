@@ -16,7 +16,9 @@
               aria-label="Play or pause translation audio"
             ></i>
             -->
+            
         </div>
+        
         <div class="col-md-10">
           <MainAyah :information="information" />
         </div>
@@ -259,8 +261,13 @@ export default {
   },
 
   methods: {
-    updateSuccessMessage(message) {
+    showSuccess(message) {
       this.successMessage = message;
+
+      // Clear message after 5 seconds
+      setTimeout(() => {
+        this.successMessage = '';
+      }, 3000);
     },
     onTap() {
       this.swipeDisabled = true; // Disable swipe behavior

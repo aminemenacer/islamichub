@@ -61,7 +61,7 @@
       </div>
 
       <!-- Rich Text Editor Mode -->
-      <Editor v-if="inputMode === 'editor'" v-model="form.ayah_notes" editorStyle="height: 400px" name="ayah_notes" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah."></Editor>
+      <Editor v-if="inputMode === 'editor'"  v-model="form.ayah_notes" name="ayah_notes" :placeholder="editorPlaceholder" editorStyle="height: 400px"></Editor>
 
       <!-- Basic Mode -->
       <textarea v-if="inputMode === 'basic'" v-model="form.ayah_notes" class="form-control pb-2" rows="5" placeholder="Save your notes and personal reflections privately. Oftentimes your reflections can deeply resonate with your connection to the Quran, and your relationship with Allah."></textarea>
@@ -102,6 +102,13 @@
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import Editor from 'primevue/editor';
+import { onMounted, ref } from 'vue';
+import tinymce from 'tinymce/tinymce'; // import tinymce
+import 'tinymce/themes/silver/theme';
+import 'tinymce/icons/default/icons';
+import 'tinymce/plugins/lists';
+import 'tinymce/plugins/media'; // media plugin for handling images, videos, and audio
+import 'tinymce/plugins/link'; // to handle links
 
 import {
  Modal
@@ -110,6 +117,7 @@ import {
 export default {
  data() {
   return {
+   editorPlaceholder: "Write your personal reflections and notes here. Let your connection to the Quran grow.",
    inputMode: 'basic',
    option: 0,
    isListening: false,
@@ -126,6 +134,22 @@ export default {
  mounted() {
   this.initRecognition();
  },
+ onMounted() {
+    tinymce.init({
+      target: this.$refs.editor.$el,
+      height: 400,
+      plugins: ['lists', 'media', 'link'],
+      toolbar: 'undo redo | bold italic | bullist numlist | link | media', // added media and link to toolbar
+      setup: (editor) => {
+        editor.on('Change', () => {
+          this.form.ayah_notes = editor.getContent(); // sync content with form
+        });
+      },
+    });
+  },
+  beforeUnmount() {
+    tinymce.remove(this.$refs.editor.$el); // cleanup on unmount
+  },
  methods: {
   initRecognition() {
     this.recognition = new webkitSpeechRecognition();
@@ -233,6 +257,7 @@ export default {
 </script>
 
 <style scoped>
+
 .editor-container {
  border: 1px solid #ddd;
  border-radius: 5px;

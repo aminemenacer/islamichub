@@ -23,9 +23,7 @@
         ></i>
       </div>
 
-      <div v-if="successMessage" class="alert alert-success mt-3" role="alert">
-        {{ successMessage }}
-      </div>
+      
 
       <!-- Surah Info Icon -->
       <div class="icon-container">

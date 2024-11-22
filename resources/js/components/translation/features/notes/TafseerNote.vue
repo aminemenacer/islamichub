@@ -123,7 +123,8 @@ export default {
    form: {
     ayah_notes: "",
     surah_name: ""
-   }
+   },
+   loggedIn: false,
   };
  },
  components: {
@@ -171,6 +172,7 @@ export default {
     }
   },
   createNote() {
+    
    const formData = {
     surah_name: this.form.surah_name,
     ayah_num: this.form.ayah_num,

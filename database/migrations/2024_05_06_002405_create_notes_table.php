@@ -16,7 +16,7 @@ class CreateNotesTable extends Migration
             $table->text('ayah_info')->nullable();
             $table->text('ayah_verse_ar')->nullable();
             $table->text('ayah_verse_en')->nullable();
-            $table->text('ayah_notes')->nullable();
+            $table->longText('ayah_notes')->nullable();
             $table->string('visibility_option')->default('public');
             $table->boolean('is_speech_to_text')->default(false);
             $table->timestamps();

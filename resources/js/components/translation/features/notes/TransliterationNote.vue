@@ -114,7 +114,8 @@ export default {
    form: {
     ayah_notes: "",
     surah_name: ""
-   }
+   },
+   loggedIn: false,
   };
  },
  components: {
@@ -162,6 +163,7 @@ export default {
     }
   },
   createNote() {
+    if (!this.isLoggedIn) {
    const formData = {
     surah_name: this.form.surah_name,
     ayah_num: this.form.ayah_num,
@@ -202,6 +204,7 @@ export default {
       });
     }
    });
+    }
   },
   resetNoteForm() {
    this.form.ayah_notes = '';
