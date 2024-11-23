@@ -1,5 +1,11 @@
 <template>
   <div class="row">
+    <!-- Success Message Alert -->
+    <div v-if="showAlert" class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>Success!</strong> {{ successMessage }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" @click="showAlert = false"></button>
+    </div>
+
     <div class="d-flex flex-wrap justify-content-between align-items-center">
       <!-- Note Icon -->
       <div class="icon-container">
@@ -22,8 +28,6 @@
           title="Screenshot verse"
         ></i>
       </div>
-
-      
 
       <!-- Surah Info Icon -->
       <div class="icon-container">
@@ -53,6 +57,7 @@
   </div>
 </template>
 
+
 <script>
 import FolderSelectionModal from "./folder_manager/FolderSelectionModal.vue";
 import ScreenTranslationCapture from './translation/features/screen_capture/ScreenTranslationCapture.vue';
@@ -81,10 +86,10 @@ export default {
   },
   data() {
     return {
-      showAlert: false,
+      showAlert: false,  // Controls the visibility of the success message
       showErrorAlert: false,
       isSubmitting: false,
-      successMessage: "",
+      successMessage: "",  // Holds the success message text
     };
   },
   computed: {
@@ -127,7 +132,6 @@ export default {
 
       this.toggleElements(unwantedElements, 'none');  // Hide unwanted elements
 
-
       this.$emit('update-success-message', 'Screenshot captured & downloaded successfully!');
       setTimeout(() => {
         this.$emit('update-success-message', ''); // Clear the message after 3 seconds
@@ -159,12 +163,14 @@ export default {
         .then(response => {
           console.log(response.data.message);
           localStorage.setItem(`bookmarkSubmitted_${this.information.ayah_id}`, true);
-          this.showAlert = true;
+          this.successMessage = 'Bookmark saved successfully!';
+          this.showAlert = true; // Show success alert
           this.showErrorAlert = false;
           this.hideAlertAfterDelay();
         })
         .catch(error => {
           console.error("Error submitting bookmark:", error);
+          this.successMessage = '';  // Clear success message
           this.showErrorAlert = true;
           this.hideAlertAfterDelay();
         })
@@ -225,3 +231,4 @@ export default {
   },
 };
 </script>
+

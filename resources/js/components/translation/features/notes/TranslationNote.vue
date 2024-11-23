@@ -107,8 +107,8 @@ import tinymce from 'tinymce/tinymce'; // import tinymce
 import 'tinymce/themes/silver/theme';
 import 'tinymce/icons/default/icons';
 import 'tinymce/plugins/lists';
-import 'tinymce/plugins/media'; // media plugin for handling images, videos, and audio
-import 'tinymce/plugins/link'; // to handle links
+// import 'tinymce/plugins/media'; // media plugin for handling images, videos, and audio
+// import 'tinymce/plugins/link'; // to handle links
 
 import {
  Modal
@@ -139,7 +139,7 @@ export default {
       target: this.$refs.editor.$el,
       height: 400,
       plugins: ['lists', 'media', 'link'],
-      toolbar: 'undo redo | bold italic | bullist numlist | link | media', // added media and link to toolbar
+      toolbar: 'undo redo | bold italic | bullist numlist | link ', // added media and link to toolbar
       setup: (editor) => {
         editor.on('Change', () => {
           this.form.ayah_notes = editor.getContent(); // sync content with form

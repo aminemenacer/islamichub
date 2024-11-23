@@ -6,8 +6,9 @@
     <div  class="swipeable-div w-100">
       <div class="row">
         <div class="col-md-2 pt-2 d-flex align-items-center justify-content-center">
-          <div v-if="successMessage" class="alert alert-success mt-3" role="alert">
-            {{ successMessage }}
+          <div v-if="successMessage" class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success!</strong> {{ successMessage }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" @click="successMessage = ''"></button>
           </div>
           <!-- <i 
               @click="toggleSpeechAyah" 
@@ -115,6 +116,10 @@ export default {
     Magnifier
   },
   props: {
+    successMessage: {
+      type: String,
+      default: ''
+    },
     isVisible: {
       type: Boolean,
       required: true
@@ -262,6 +267,11 @@ export default {
   },
 
   methods: {
+    clearSuccessMessage() {
+      setTimeout(() => {
+        this.successMessage = '';
+      }, 3000);  // Clear after 3 seconds
+    },
     showSuccess(message) {
       this.successMessage = message;
 
@@ -897,6 +907,11 @@ export default {
           this.renderedText = ''; // Handle the case where translation is undefined
         }
       },
+    },
+    successMessage(newValue) {
+      if (newValue) {
+        this.clearSuccessMessage();
+      }
     },
     isVisible() {
       this.$emit('toggle-change');
