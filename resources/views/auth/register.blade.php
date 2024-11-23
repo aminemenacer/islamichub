@@ -87,18 +87,18 @@
                 </div>
 
                 <!-- <hr> -->
-                 <!-- <div class="text-center">
+                  <!-- <div class="text-center">
                   <b>or login with:</b>
 
                   <a href="{{ url('auth/facebook') }}" class="btn btn-link btn-floating" style="font-size: 22px;
                   color:#00BFA6;">
                   <i class="bi bi-facebook"></i>
                   </a> 
-
+                  
                   <a href="{{ url('auth/google') }}" class="btn btn-link btn-floating"
                     style="font-size: 22px; color:#00BFA6;">
                     <i class="bi bi-google"></i>
-                  </a> -->
+                  </a>  -->
                   <!--
                    <a href="{{ url('auth/linkedin') }}" class="btn btn-link btn-floating" style="font-size: 22px;
                   color:#00BFA6;">

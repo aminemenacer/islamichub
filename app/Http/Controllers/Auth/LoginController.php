@@ -98,8 +98,6 @@ class LoginController extends Controller
         try {
             $googleUser = Socialite::driver('google')->user();
 
-            
-
             // Check if the user already exists
             $user = User::where('email', $googleUser->getEmail())->first();
 

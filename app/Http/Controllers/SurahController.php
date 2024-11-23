@@ -92,34 +92,33 @@ class SurahController extends Controller
 
     public function searchTranslations(Request $request)
     {
-        $query = $request->input('query');
-        
-        // Return empty if query is not provided
-        if (empty($query)) {
+        $query = trim($request->input('query'));
+
+        // Return empty response if the query is not provided or too short
+        if (empty($query) || strlen($query) < 2) {
             return response()->json(['results' => [], 'suggestions' => []]);
         }
 
-        // Query translations only
-        $resultsQuery = Information::query()
-            ->where('translation', 'LIKE', '%' . $query . '%');
+        // Query translations that contain the search term
+        $results = Information::where('translation', 'LIKE', '%' . $query . '%')
+            ->with(['ayah.surah']) // Eager load related ayah and surah
+            ->get();
 
-        // Fetch results
-        $results = $resultsQuery->with(['ayah.surah'])->get();
-
-        // Generate unique suggestions from the translation field
-        $suggestions = collect();
-        foreach ($results as $item) {
-            if (!empty($item->translation)) {
-                // Match query words in the translation field
-                preg_match_all('/\b\w*' . preg_quote($query, '/') . '\w*\b/i', $item->translation, $matches);
-                $suggestions = $suggestions->merge($matches[0]);
-            }
-        }
+        // Generate unique suggestions by matching words that contain the query
+        $suggestions = $results
+            ->pluck('translation') // Extract translations
+            ->flatMap(function ($translation) use ($query) {
+                preg_match_all('/\b\w*' . preg_quote($query, '/') . '\w*\b/i', $translation, $matches);
+                return $matches[0]; // Extract matching words
+            })
+            ->unique() // Remove duplicates
+            ->values(); // Re-index the collection
 
         return response()->json([
             'results' => $results,
-            'suggestions' => $suggestions->unique()->values(), // Return unique suggestions
+            'suggestions' => $suggestions,
         ]);
     }
+
 
 }

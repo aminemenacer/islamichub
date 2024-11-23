@@ -4,7 +4,7 @@
  <div>
 
   <div class="container input-group pb-3" style="position: relative; width: 100%;">
-   <input type="text" @keyup="onInput" v-model="searchTerm" placeholder="Explore the words of the Quran..." class="form-control mr-3 pb-2 mobile-only" style="flex: 1;box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;"/>
+   <input type="text" @keyup="onInput" v-model="searchTerm" placeholder="Explore the words of the Quran..." class="form-control  pb-2 mobile-only" style="flex: 1;box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;"/>
 
    <!-- Suggestions Dropdown -->
    <ul v-if="suggestions.length" class="list-group suggestions" style="position: absolute; top: 100%; left: 0; width: 95%; z-index: 1000; max-height: 600px; overflow-y: auto;">
@@ -380,6 +380,7 @@ export default {
 
    this.recognition = new SpeechRecognition();
    this.recognition.lang = 'en-US';
+  //  this.recognition.lang = "ar-SA";
    this.recognition.continuous = false;
 
    this.recognition.onresult = (event) => {
@@ -445,27 +446,7 @@ export default {
     return text.replace(regExp, '<mark>$1</mark>');
   },
 
-  // Download a PDF of the result
-  downloadPDF(result) {
-   const element = document.getElementById(`result-${result.id}`);
-   element.style.color = 'black'; // Ensure visibility
-
-   html2canvas(element).then((canvas) => {
-    const imgData = canvas.toDataURL('image/png');
-    const pdf = new jsPDF({
-     orientation: 'portrait',
-     unit: 'mm',
-     format: 'a4',
-    });
-    const fileName = `Surah_${result.ayah.surah_id}_Ayah_${result.ayah.ayah_id}.pdf`;
-
-    pdf.addImage(imgData, 'PNG', 10, 10, 190, 0); // Adjust the dimensions as needed
-    pdf.save(fileName);
-    element.style.color = ''; // Reset to original or preferred color
-   }).catch((error) => {
-    console.error('Error capturing the element:', error);
-   });
-  },
+  
 
   searchWord() {
    this.loading = true;

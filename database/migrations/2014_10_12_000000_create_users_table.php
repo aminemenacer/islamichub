@@ -21,8 +21,8 @@ class CreateUsersTable extends Migration
             $table->string('password')->nullable();
             $table->string('subscribe')->nullable();
             $table->string('role')->default('user'); // Default role is 'user'
-            $table->string('google_id')->nullable();
-            $table->string('facebook_id')->nullable();
+            $table->string('google_id')->unique()->nullable();
+            $table->string('facebook_id')->unique()->nullable();
             $table->string('linkedin_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
