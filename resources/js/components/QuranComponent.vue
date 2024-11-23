@@ -1123,7 +1123,18 @@ methods: {
       }
     }
   },
+  isAuthenticated() {
+    // Replace with actual authentication check
+    const token = localStorage.getItem('authToken');
+    console.log('Auth token:', token); // Debugging
+    return !!token;
+  },
   submitForm() {
+    if (!this.isAuthenticated()) {
+      console.log('Redirecting to login page...');
+      window.location.href = '/login'; // Use the correct login URL
+      return;
+    }
     const formData = {
       // folder_id: this.selectedFolderId,
       surah_name: this.information.ayah.surah.name_en,
@@ -1145,6 +1156,11 @@ methods: {
       })
     },
   submitFormTafseer() {
+    if (!this.isAuthenticated()) {
+      console.log('Redirecting to login page...');
+      window.location.href = '/login'; // Use the correct login URL
+      return;
+    }
     const formData1 = {
       // folder_id: this.selectedFolderId,
       surah_name: this.information.ayah.surah.name_en,
@@ -1166,6 +1182,11 @@ methods: {
       })
     },
   submitFormTransliteration() {
+    if (!this.isAuthenticated()) {
+      console.log('Redirecting to login page...');
+      window.location.href = '/login'; // Use the correct login URL
+      return;
+    }
     const formData2 = {
       // folder_id: this.selectedFolderId,
       surah_name: this.information.ayah.surah.name_en,

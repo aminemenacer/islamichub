@@ -16,7 +16,6 @@
               aria-label="Play or pause translation audio"
             ></i>
             -->
-            
         </div>
         
         <div class="col-md-10">
@@ -189,6 +188,8 @@ export default {
   },
   data() {
     return {
+      isAuthenticated: false,
+      userId: null,
       successMessage: "",
       isSwipeEnabled: true, // Track swipe enabled state
       swipeDisabled: false, // Flag to disable swipe behavior
@@ -509,7 +510,16 @@ export default {
     toggleExpand() {
       this.expanded = !this.expanded;
     },
+    isAuthenticated() {
+      // Replace with your actual authentication logic, e.g., checking a token in local storage
+      return !!localStorage.getItem('authToken'); // Example: Adjust as needed
+    },
     submitForm() {
+      if (!this.isAuthenticated()) {
+        console.log('Redirecting to login page...');
+        window.location.href = '/login'; // Use the correct login URL
+        return;
+      }
       const formData = {
         // folder_id: this.selectedFolderId,
         surah_name: this.information.ayah.surah.name_en,
