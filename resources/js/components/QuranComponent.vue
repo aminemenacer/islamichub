@@ -438,12 +438,12 @@
      <TransliterationNote ref="transliterationNote" :information="modalInformation" />
      
     </div>
-      <!-- <audio v-if="information != null" 
+      <audio v-if="information != null" 
        ref="audioPlayer" 
        :src="fullAudioLink"  
        class="w-100 custom-audio" 
        loop controls 
-      /> -->
+      /> 
    </div>
 
     <!-- gesture instructions -->
@@ -1123,12 +1123,7 @@ methods: {
       }
     }
   },
-  isAuthenticated() {
-    // Replace with actual authentication check
-    const token = localStorage.getItem('authToken');
-    console.log('Auth token:', token); // Debugging
-    return !!token;
-  },
+  
   submitForm() {
     if (!this.isAuthenticated()) {
       console.log('Redirecting to login page...');

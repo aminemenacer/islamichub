@@ -24,10 +24,28 @@
 
         <!-- Tafseer and Control Icons -->
         <div ref="targetTafseerElement" class="row text-left mt-2">
-          <div class="col-10">
-            <h4 class="ayah-translation" style="line-height: 1.6em" :style="{ fontSize: fontSize + 'em', lineHeight: '1.6em' }" >
-              {{ expanded ? tafseer : tafseer }}
-            </h4>
+
+          <div class="summary-generator">
+
+            <div class="col-10">
+              <h4 class="ayah-translation" style="line-height: 1.6em" :style="{ fontSize: fontSize + 'em', lineHeight: '1.6em' }" >
+                {{ expanded ? tafseer : tafseer }}
+              </h4>
+            </div>
+
+            <button @click="getSummary" :disabled="loading">
+              {{ loading ? "Summarizing..." : "Generate Summary" }}
+            </button>
+
+            <div v-if="summary" class="summary">
+              <h2>Summary:</h2>
+              <p>{{ summary }}</p>
+            </div>
+
+            <div v-if="error" class="error">
+              <p>{{ error }}</p>
+            </div>
+
           </div>
 
           <!-- Control Icons Column (Stacked Vertically) -->
@@ -104,111 +122,7 @@
     />
   </div>
 </template>
-<!--
-     <div ref="targetTafseerElement">
-        <AyahInfo :information="information" />
-        <div @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" class="swipeable-div w-100">
-            <MainAyah :information="information" />
-            <div ref="targetTafseerElement" class="text-left">
-                <h4 class="text-left ayah-translation" style="line-height: 1.6em">
-                    {{ expanded ? tafseer : tafseer }}
-                </h4>
-                <div class="word-count">
-									<h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" /><strong>Total Words: </strong>{{ wordCount }}</h6>
-                </div>
-            </div>
 
-            <h6 class="text-left">
-                <img src="/images/art.png" class="pr-2" width="30px" alt="lamp" /><strong>Tafseer: </strong>Ibn Kathir
-            </h6>
-            -- Speech icons mobile only-
-            <div style="cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: space-between;" class="container pb-2 text-center mobile-only">
-                <div class="row">
-                    <div class="col">
-                        <i @click="rewindSpeech" :class="['bi', 'bi-rewind-circle-fill', 'ml-2', 'mr-2', 'h3', 'custom-icon-play', isReading ? 'text-muted' : '']" style="cursor: pointer;" aria-label="Rewind translation audio"></i>
-                    </div>
-
-                    <div class="col">
-                        <i @click="toggleSpeech" :class="['bi', isReading ? (isPaused ? 'bi-play-circle-fill' : 'bi-pause-circle-fill') : 'bi-play-circle-fill', 'ml-2', 'mr-2', 'h3', 'custom-icon-play']" style="cursor: pointer;" aria-label="Play or pause translation audio"></i>
-                    </div>
-
-                    <div class="col">
-                        <i @click="pauseReading" :class="['bi', 'bi-pause-circle-fill', 'ml-2', 'mr-2', 'h3', 'custom-icon-play', !isReading || isPaused ? 'text-muted' : '']" style="cursor: pointer;" aria-label="Pause translation audio"></i>
-                    </div>
-
-                    <div class="col">
-                        <i @click="stopReading" :class="['bi', 'bi-stop-circle-fill', 'ml-2', 'mr-2', 'h3', 'custom-icon-play', !isReading ? 'text-muted' : '']" style="cursor: pointer;" aria-label="Stop translation audio"></i>
-                    </div>
-
-                    <div class="col">
-                        <i @click="fastForwardSpeech" style="cursor: pointer;" aria-label="Fast forward audio" class="bi bi-fast-forward-circle-fill ml-2 mr-2 h3 custom-icon-play"></i>
-                    </div>
-                </div>
-            </div>
-            -- Speech Off-canvas --
-            <div class="offcanvas offcanvas-end custom-offcanvas" tabindex="-1" id="offcanvasRightTafseer" aria-labelledby="offcanvasRightLabel">
-                <div class="offcanvas-header">
-                    <h2><b>Speech Settings</b></h2>
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-                <div class="offcanvas-body">
-
-                    -- Tab content --
-                    <div class="tab-content mt-3" id="myTabContent">
-                        <div class="tab-pane fade show active" id="Speech Settings" role="tabpanel" aria-labelledby="tab1-tab">
-                            <div class="row mb-3">
-                                <label for="formGroupExampleInput" class="form-label">Voices:</label>
-                                <select class="form-control" v-model="selectedVoiceName">
-                                    <option v-for="voice in voices" :key="voice.name" :value="voice.name">
-                                        {{ voice.name }} ({{ voice.lang }})
-                                    </option>
-                                </select>
-                            </div>
-
-                            <div class="row">
-                                <div class="col">
-                                    <label>
-                                        Rate: <input class="rate" type="range" min="0.5" max="2" step="0.1" v-model="rate" @input="adjustRate($event.target.value)">
-                                    </label>
-                                </div>
-                                <div class="col">
-                                    <label>
-                                        Pitch: <input class="pitch" type="range" min="0.5" max="2" step="0.1" v-model="pitch" @input="adjustPitch($event.target.value)">
-                                    </label>
-                                </div>
-
-                                <div class="col">
-                                    <label>
-                                        Increase size: <i class="bi bi-plus-circle-fill h3 custom-icon-increase" aria-placeholder="Increase text size" @click="increaseFontSize"></i>
-                                    </label>
-                                </div>
-                                <div class="col">
-                                    <label>
-                                        Decrease size: <i class="bi bi-dash-circle-fill h3 custom-icon-decrease" aria-placeholder="Decrease text size" @click="decreaseFontSize"></i>
-                                    </label>
-                                </div>
-                            </div>
-
-                            -- Success message alert (hidden by default) -
-                            <div v-if="successMessage" class="alert alert-success" role="alert">
-                                Settings saved successfully!
-                            </div>
-
-                            -- Buttons to save or cancel changes --
-                            <div class="d-flex w-100 justify-content-end mt-3">
-                                <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="offcanvas" aria-label="Close">Cancel</button>
-                                <button type="button" class="btn btn-success" @click="saveSettings">Save changes</button>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-            <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
-        </div>
-    </div>
-    -->
 <script defer>
 import AyahInfo from "./translation/AyahInfo.vue";
 import MainAyah from "./translation/MainAyah.vue";
@@ -267,6 +181,11 @@ export default {
 	},
 	data() {
 		return {
+      summary: "", // Generated summary
+      error: "", // Error message
+      loading: false, // Loading state
+      API_TOKEN: "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", // Hugging Face API token
+      BASE_URL: "https://api-inference.huggingface.co/models/facebook/bart-large-cnn", // Hugging Face API URL
 			selectedFormat: "Select a format",
 			// renderedText: this.tafseer,
 			fontSize: parseFloat(localStorage.getItem('ayahFontSize')) || 1,
@@ -352,6 +271,36 @@ export default {
 		};
 	},
 	methods: {
+    async getSummary() {
+      this.error = ""; // Reset error message
+      this.summary = ""; // Reset summary
+      this.loading = true; // Set loading state
+      try {
+        const response = await axios.post(
+          this.BASE_URL,
+          { 
+            inputs: this.tafseer,
+            parameters: {
+              max_length: 150, // Maximum length of the summary
+              min_length: 50,  // Minimum length of the summary
+              do_sample: true, // Disable randomness for consistent output
+            }, 
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${this.API_TOKEN}`,
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        this.summary = response.data[0].summary_text; // Update summary with API response
+      } catch (err) {
+        console.error("Error generating summary:", err); // Log error for debugging
+        this.error = "Failed to generate summary. Please try again."; // User-friendly error message
+      } finally {
+        this.loading = false; // Reset loading state
+      }
+    },
 		handleDownload(format) {
       if (!format) {
         alert("Please select a valid format.");

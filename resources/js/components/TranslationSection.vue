@@ -26,12 +26,30 @@
 
       <div ref="targetTranslationElement" class="row text-left mt-2">
         <!-- Text Column -->
-        <!--  -->
-        <div class="col-10">
-          <h4 class="ayah-translation" style="line-height: 1.6em" :style="{ fontSize: fontSize + 'em', lineHeight: '1.6em' }" >
-            {{ expanded ? information.translation : information.translation }}
-          </h4>
+        <!--  -->        
+        <div class="summary-generator">
+
+          <div class="col-10">
+            <h4 class="ayah-translation" style="line-height: 1.6em" :style="{ fontSize: fontSize + 'em', lineHeight: '1.6em' }" >
+              {{ expanded ? information.translation : information.translation }}
+            </h4>
+          </div>
+
+          
+          <button @click="getSummary" :disabled="loading">
+            {{ loading ? "Summarizing..." : "Generate Summary" }}
+          </button>
+
+          <div v-if="summary" class="summary">
+            <h2>Summary:</h2>
+            <p>{{ summary }}</p>
+          </div>
+
+          <div v-if="error" class="error">
+            <p>{{ error }}</p>
+          </div>
         </div>
+        
 
         <!-- Icons Column (Stacked Vertically) -->
         <div @click="onTap()" v-if="isVisible" class="col-2 d-flex align-items-center justify-content-center flex-column">
@@ -88,7 +106,7 @@ import ScreenReader from "./accesibility/ScreenReader.vue";
 import ScreenTranslationCapture from "./translation/features/screen_capture/ScreenTranslationCapture.vue";
 import Magnifier from "./search/Magnifier.vue";
 import OffcanvasSetting from "./modals/OffcanvasSetting.vue";
-// import amiriFont from "../assets/fonts/Amiri-Regular-normal.js";
+import TransliterationSection from "./TransliterationSection.vue";
 
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
@@ -103,11 +121,14 @@ import {
   TextRun
 } from "docx";
 
+
+
 export default {
   name: "TranslationSection",
   components: {
     OffcanvasSetting,
     // CustomizationModal,
+    TransliterationSection,
     AyahInfo,
     MainAyah,
     Translator,
@@ -193,6 +214,11 @@ export default {
   },
   data() {
     return {
+      summary: "", // Generated summary
+      error: "", // Error message
+      loading: false, // Loading state
+      API_TOKEN: "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", // Hugging Face API token
+      BASE_URL: "https://api-inference.huggingface.co/models/facebook/bart-large-cnn", // Hugging Face API URL
       isAuthenticated: false,
       userId: null,
       successMessage: "",
@@ -267,6 +293,38 @@ export default {
   },
 
   methods: {
+    async getSummary() {
+      this.error = ""; // Reset error message
+      this.summary = ""; // Reset summary
+      this.loading = true; // Set loading state
+
+      try {
+        const response = await axios.post(
+          this.BASE_URL,
+          { 
+            inputs: this.information.translation,
+            parameters: {
+              max_length: 150, // Maximum length of the summary
+              min_length: 50,  // Minimum length of the summary
+              do_sample: true, // Disable randomness for consistent output
+            }, 
+          
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${this.API_TOKEN}`,
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        this.summary = response.data[0].summary_text; // Update summary with API response
+      } catch (err) {
+        console.error("Error generating summary:", err); // Log error for debugging
+        this.error = "Failed to generate summary. Please try again."; // User-friendly error message
+      } finally {
+        this.loading = false; // Reset loading state
+      }
+    },
     clearSuccessMessage() {
       setTimeout(() => {
         this.successMessage = '';
@@ -520,10 +578,7 @@ export default {
     toggleExpand() {
       this.expanded = !this.expanded;
     },
-    isAuthenticated() {
-      // Replace with your actual authentication logic, e.g., checking a token in local storage
-      return !!localStorage.getItem('authToken'); // Example: Adjust as needed
-    },
+    
     submitForm() {
       if (!this.isAuthenticated()) {
         console.log('Redirecting to login page...');
@@ -921,6 +976,32 @@ export default {
 </script>
 
 <style scoped>
+.summary-generator {
+  margin: 20px;
+  font-family: Arial, sans-serif;
+}
+textarea {
+  width: 100%;
+  margin-bottom: 10px;
+}
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+button:disabled {
+  background-color: #ccc;
+}
+.summary {
+  margin-top: 20px;
+}
+.error {
+  margin-top: 20px;
+  color: red;
+}
 .document-export-container {
   max-width: 600px;
   margin: 50px auto;

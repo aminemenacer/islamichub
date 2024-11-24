@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="col-md-6">
-      <img src="images/bva.png" style="width:80%" />
+      <img src="images/gvs.png" style="width:80%" />
     </div>
   </div>
 

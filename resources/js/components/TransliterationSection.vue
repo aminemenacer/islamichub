@@ -1,18 +1,21 @@
 <template>
-  <div class="w-100 my-element" :class="{'full-screen': isFullScreen}">
-    <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
-    <div ref="targetTransliterationElement">
-      <AyahInfo :information="information" />
-      <div @touchstart="handleStart" @touchend="handleEnd" @mousedown="handleStart" @mouseup="handleEnd" @mouseleave="cancelHold" class="swipeable-div w-100">
-        <div class="row">
-          <div class="col-md-2 pt-2 d-flex align-items-center justify-content-center"></div>
-          <div class="col-md-10">
-            <MainAyah :information="information" />
-          </div>
+<div class="w-100 my-element" :class="{'full-screen': isFullScreen}">
+  <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
+  <div ref="targetTransliterationElement">
+    <AyahInfo :information="information" />
+    <div @touchstart="handleStart" @touchend="handleEnd" @mousedown="handleStart" @mouseup="handleEnd" @mouseleave="cancelHold" class="swipeable-div w-100">
+      <div class="row">
+        <div class="col-md-2 pt-2 d-flex align-items-center justify-content-center"></div>
+        <div class="col-md-10">
+          <MainAyah :information="information" />
         </div>
-        <div ref="targetTransliterationElement" class="row text-left mt-2">
+      </div>
+      <div ref="targetTransliterationElement" class="row text-left mt-2">
+
+        <div class="summary-generator">
+
           <div class="col-10">
-            <h4 class="ayah-translation" style="line-height: 1.6em" :style="{ fontSize: fontSize + 'em', lineHeight: '1.6em' }" >
+            <h4 class="ayah-translation" style="line-height: 1.6em" :style="{ fontSize: fontSize + 'em', lineHeight: '1.6em' }">
               {{ expanded ? information.transliteration : information.transliteration }}
             </h4>
           </div>
@@ -20,17 +23,31 @@
             <i @click="increaseFontSize" class="bi bi-plus-circle-fill h3 custom-icon-increase" aria-label="Increase font size"></i>
             <i @click="decreaseFontSize" class="bi bi-dash-circle-fill h3 custom-icon-decrease" aria-label="Decrease font size"></i>
           </div>
+          <button @click="getSummary" :disabled="loading">
+            {{ loading ? "Summarizing..." : "Generate Summary" }}
+          </button>
+
+          <div v-if="summary" class="summary">
+            <h2>Summary:</h2>
+            <p>{{ summary }}</p>
+          </div>
+
+          <div v-if="error" class="error">
+            <p>{{ error }}</p>
+          </div>
         </div>
-        <div class="text-left word-count mt-2">
-          <h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" loading="lazy"/><strong>Total Word count: </strong>{{ wordCount }}</h6>
-        </div>
-        <h6 class="text-left mt-3 word-count"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" loading="lazy"/><strong>Transliteration: </strong>Saheeh International</h6>
-        <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
       </div>
-      <div class="text-left mt-3 word-count">
-        <h6 class="text-left"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" loading="lazy"/><strong>Reciter's name: </strong>Mishary Rashid Alafasy</h6>
+
+      <div class="text-left word-count mt-2">
+        <h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" loading="lazy" /><strong>Total Word count: </strong>{{ wordCount }}</h6>
       </div>
-      <!-- <div v-if="isVisible" class="row">
+      <h6 class="text-left mt-3 word-count"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" loading="lazy" /><strong>Transliteration: </strong>Saheeh International</h6>
+      <AlertModal :showAlertText="showAlertText" :showAlert="showAlert" :showErrorAlert="showErrorAlert" :showAlertTextNote="showAlertTextNote" @close-alert-text="closeAlertText" />
+    </div>
+    <div class="text-left mt-3 word-count">
+      <h6 class="text-left"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" loading="lazy" /><strong>Reciter's name: </strong>Mishary Rashid Alafasy</h6>
+    </div>
+    <!-- <div v-if="isVisible" class="row">
         <div class="dropdown">
           <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             Export as
@@ -41,17 +58,24 @@
           </ul>
         </div>
       </div> -->
-    </div>
   </div>
+</div>
 </template>
 
 <script>
 import AyahInfo from './translation/AyahInfo.vue';
 import MainAyah from './translation/MainAyah.vue';
 import AlertModal from './modals/AlertModal.vue';
-import { saveAs } from "file-saver";
+import {
+  saveAs
+} from "file-saver";
 import Papa from "papaparse";
-import { Document, Packer, Paragraph, TextRun } from "docx";
+import {
+  Document,
+  Packer,
+  Paragraph,
+  TextRun
+} from "docx";
 
 export default {
   name: 'TransliterationSection',
@@ -71,6 +95,11 @@ export default {
   },
   data() {
     return {
+      summary: "", // Generated summary
+      error: "", // Error message
+      loading: false, // Loading state
+      API_TOKEN: "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", // Hugging Face API token
+      BASE_URL: "https://api-inference.huggingface.co/models/facebook/bart-large-cnn", // Hugging Face API URL
       selectedFormat: "Select a format",
       fontSize: parseFloat(localStorage.getItem('ayahFontSize')) || 1,
       expanded: false,
@@ -85,6 +114,38 @@ export default {
     }
   },
   methods: {
+    async getSummary() {
+      this.error = ""; // Reset error message
+      this.summary = ""; // Reset summary
+      this.loading = true; // Set loading state
+
+      try {
+        const response = await axios.post(
+          this.BASE_URL,
+          { 
+            inputs: this.information.transliteration,
+            parameters: {
+              max_length: 150, // Maximum length of the summary
+              min_length: 50,  // Minimum length of the summary
+              do_sample: true, // Disable randomness for consistent output
+            }, 
+          
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${this.API_TOKEN}`,
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        this.summary = response.data[0].summary_text; // Update summary with API response
+      } catch (err) {
+        console.error("Error generating summary:", err); // Log error for debugging
+        this.error = "Failed to generate summary. Please try again."; // User-friendly error message
+      } finally {
+        this.loading = false; // Reset loading state
+      }
+    },
     handleDownload(format) {
       if (!format) {
         alert("Please select a valid format.");
@@ -97,9 +158,9 @@ export default {
         case "docx":
           this.downloadAsWord();
           break;
-        // case "pdf":
-        //   this.downloadAsPdf();
-        //   break;
+          // case "pdf":
+          //   this.downloadAsPdf();
+          //   break;
         default:
           alert("Unknown format selected.");
       }
@@ -303,7 +364,6 @@ export default {
   transition: transform 0.3s ease;
 }
 </style>
-
 
 <style scoped>
 /* General Settings */

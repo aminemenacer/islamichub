@@ -133,6 +133,22 @@ export default {
  mounted() {
   this.initRecognition();
  },
+ onMounted() {
+    tinymce.init({
+      target: this.$refs.editor.$el,
+      height: 400,
+      plugins: ['lists', 'link'],
+      toolbar: 'undo redo | bold italic | bullist numlist | link ', // added media and link to toolbar
+      setup: (editor) => {
+        editor.on('Change', () => {
+          this.form.ayah_notes = editor.getContent(); // sync content with form
+        });
+      },
+    });
+  },
+  beforeUnmount() {
+    tinymce.remove(this.$refs.editor.$el); // cleanup on unmount
+  },
  methods: {
   initRecognition() {
     this.recognition = new webkitSpeechRecognition();

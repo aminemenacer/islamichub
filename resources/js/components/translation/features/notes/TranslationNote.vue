@@ -117,6 +117,7 @@ import {
 export default {
  data() {
   return {
+   isAuthenticated: false,
    editorPlaceholder: "Write your personal reflections and notes here. Let your connection to the Quran grow.",
    inputMode: 'basic',
    option: 0,
@@ -133,12 +134,13 @@ export default {
  },
  mounted() {
   this.initRecognition();
+  this.isAuthenticated = !!localStorage.getItem('authToken');
  },
  onMounted() {
     tinymce.init({
       target: this.$refs.editor.$el,
       height: 400,
-      plugins: ['lists', 'media', 'link'],
+      plugins: ['lists', 'link'],
       toolbar: 'undo redo | bold italic | bullist numlist | link ', // added media and link to toolbar
       setup: (editor) => {
         editor.on('Change', () => {
@@ -151,6 +153,7 @@ export default {
     tinymce.remove(this.$refs.editor.$el); // cleanup on unmount
   },
  methods: {
+  
   initRecognition() {
     this.recognition = new webkitSpeechRecognition();
     this.recognition.continuous = true;
