@@ -102,10 +102,8 @@
                     </div>
                 </li>
                 @endguest
-                <li class="pl-4 pb-2">
-                    <button class="btn button btn-md mt-3" @click="getSummary" :disabled="loading" style="background:linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB); color:white">
-                        <span><strong>Try Premium</strong></span>
-                    </button>
+                <li class="pl-4 pb-2 pt-2"> 
+                    <button  class="button-36" role="button"><span><strong><a href="pricing" style="color:white; text-decoration:none">Try Premium</a></strong></span></button>
                 </li>
             </ul>
         </div>
@@ -126,14 +124,55 @@
 
 <!-- Custom Styles -->
 <style>
-    .nav-link {
-        color: black;
-        text-decoration: none;
-    }
 
-    .nav-link:hover {
-        color: #00BFA6;
-    }
+/* CSS */
+.button-36 {
+  background-image: linear-gradient(92.88deg, #455EB5 9.16%, #5643CC 43.89%, #673FD7 64.72%);
+  border-radius: 8px;
+  border-style: none;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  flex-shrink: 0;
+  font-family: "Inter UI","SF Pro Display",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+  font-size: 15px;
+  height: 2.8rem;
+  padding: 0 1.6rem;
+  padding-top:10px;
+  text-align: center;
+  text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
+  transition: all .5s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-36:hover {
+  box-shadow: rgba(80, 63, 205, 0.5) 0 1px 30px;
+  transition-duration: .1s;
+}
+
+@media (min-width: 768px) {
+  .button-36 {
+    padding: 0 2.6rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .button-64 {
+    font-size: 24px;
+    min-width: 196px;
+  }
+}
+
+.nav-link {
+    color: black;
+    text-decoration: none;
+}
+
+.nav-link:hover {
+    color: #00BFA6;
+}
 
     /* .button-33 {
         background-color: #00BFA6;

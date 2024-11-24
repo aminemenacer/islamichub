@@ -27,8 +27,8 @@
       <div ref="targetTranslationElement" class="row text-left mt-2">
         <!-- Text Column -->
         <!--  -->        
-        <div class="summary-generator">
-
+        <!-- <div class="summary-generator"> -->
+          <!-- 
           <p>
             <span 
               v-for="(word, index) in words" 
@@ -36,7 +36,7 @@
               :class="{ 'highlighted': index === currentWordIndex }">
               {{ word }}
             </span>
-          </p>
+          </p> -->
 
           <!-- TTS Controls
           <div>
@@ -51,7 +51,7 @@
             </h4>
           </div>
 
-          <div class="row">
+          <!-- <div class="row">
             <div class="col-md-6">
               <button @click="getSummary" :disabled="loading" style="background:linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB); ">
                 {{ loading ? "Summarizing..." : "Generate Summary" }}
@@ -71,8 +71,8 @@
 
           <div v-if="error" class="error">
             <p>{{ error }}</p>
-          </div>
-        </div>
+          </div> -->
+        <!-- </div> -->
         
 
         <!-- Icons Column (Stacked Vertically) -->

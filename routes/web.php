@@ -273,7 +273,7 @@ Route::get('/quran', [QuranController::class, 'index']);
 // contact
 Route::get('/contact', [ContactController::class, 'index']);
 // pricing
-// Route::get('/pricing', [PricingController::class, 'index'])->name('pricing');
+Route::get('/pricing', [PricingController::class, 'index'])->name('pricing');
 // charity
 Route::get('/charity', [CharityController::class, 'index'])->name('charity');
 // volunteer
