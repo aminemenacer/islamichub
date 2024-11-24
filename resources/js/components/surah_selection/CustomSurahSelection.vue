@@ -4,6 +4,7 @@
     @touchstart="handleTouchStart"
     @touchmove.prevent
     @touchend="handleTouchEnd"
+    style=""
   >
     <a
       href="#"
@@ -80,6 +81,7 @@ export default {
 </script>
 
 <style scoped>
+
 .scrollmenu {
   white-space: nowrap;
   overflow-x: auto;
@@ -114,6 +116,12 @@ export default {
 
 .badge {
   background-color: rgba(0, 191, 166);
+  font-size: 1em;
+  border-radius: 8px;
+  padding: 8px;
+}
+.badge:hover {
+  background: rgb(9, 94, 68);
   font-size: 1em;
   border-radius: 8px;
   padding: 8px;
