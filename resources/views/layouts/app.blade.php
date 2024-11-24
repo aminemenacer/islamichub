@@ -69,6 +69,7 @@
                 <li class="nav-item mt-3">
                     <h6><a class="nav-link text-dark ml-3 pl-3 pr-3" href="/support"><b>Donation</b></a></h6>
                 </li>
+                
                 @guest
                 @if (Route::has('login'))
                 <li class="nav-item display-6 pl-3 mt-3">
@@ -101,6 +102,11 @@
                     </div>
                 </li>
                 @endguest
+                <li class="pl-4 pb-2">
+                    <button class="btn button btn-md mt-3" @click="getSummary" :disabled="loading" style="background:linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB); color:white">
+                        <span><strong>Try Premium</strong></span>
+                    </button>
+                </li>
             </ul>
         </div>
     </div>

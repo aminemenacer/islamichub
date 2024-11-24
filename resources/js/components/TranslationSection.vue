@@ -29,20 +29,44 @@
         <!--  -->        
         <div class="summary-generator">
 
+          <p>
+            <span 
+              v-for="(word, index) in words" 
+              :key="index" 
+              :class="{ 'highlighted': index === currentWordIndex }">
+              {{ word }}
+            </span>
+          </p>
+
+          <!-- TTS Controls
+          <div>
+            <button class="btn btn-primary" @click="startTTS">Start</button>
+            <button class="btn btn-secondary" @click="pauseTTS">Pause</button>
+            <button class="btn btn-danger" @click="stopTTS">Stop</button>
+          </div> -->
+
           <div class="col-10">
             <h4 class="ayah-translation" style="line-height: 1.6em" :style="{ fontSize: fontSize + 'em', lineHeight: '1.6em' }" >
               {{ expanded ? information.translation : information.translation }}
             </h4>
           </div>
 
+          <div class="row">
+            <div class="col-md-6">
+              <button @click="getSummary" :disabled="loading" style="background:linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB); ">
+                {{ loading ? "Summarizing..." : "Generate Summary" }}
+              </button>
+            </div>
+            <div class="col-md-6">
+              <button @click="toggleSpeech" :disabled="loading" style="background:linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB); ">
+                {{ loading ? "Stop speech..." : "Start speech" }}
+              </button>
+            </div>
+          </div>
           
-          <button @click="getSummary" :disabled="loading">
-            {{ loading ? "Summarizing..." : "Generate Summary" }}
-          </button>
-
           <div v-if="summary" class="summary">
             <h2>Summary:</h2>
-            <p>{{ summary }}</p>
+            <p style="border: 2px grey solid; padding:15px; padding-right:15px;border-radius:10px; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">{{ summary }}</p>
           </div>
 
           <div v-if="error" class="error">
