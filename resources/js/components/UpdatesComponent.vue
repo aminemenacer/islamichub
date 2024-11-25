@@ -6,7 +6,7 @@
     <div class="col-md-6">
       <h5 class="text-left text-dark" width="80%" style="line-height: 1.7em; tafseer">November 25th, 2024</h5>
       <div>
-        <p style="padding:5px; line-height: 1.7em; tafseer" class="text-left text-dark ">QuranFinder uses AI-driven auto-complete to quickly find Quranic words, displaying relevant verses, translations, and share options for convenience. This is beneficial</p>
+        <p style="padding:5px; line-height: 1.7em; tafseer" class="text-left text-dark ">QuranFinder uses AI-driven auto-complete to quickly find Quranic words, displaying relevant verses, translations, and share options for convenience. This is beneficial for the following reasons:</p>
         <div>
           <li style="padding:5px" class="text-left text-dark "><strong>Explore specific words, their context, and translations with just a few taps. AI-driven auto-completion helps find relevant verses faster.</strong></li>
           <li style="padding:5px" class="text-left text-dark "><strong>Users can access all related verses and translations instantly in a side panel. This eliminates the need to load new pages or scroll through long lists.</strong></li>

@@ -586,7 +586,7 @@ export default {
  border: 1px solid #ccc;
  border-radius: 4px;
  margin-top: 5px;
- width: 100%;
+ width: 80%;
  max-height: 150px;
  /* Limit dropdown height */
  overflow-y: auto;
