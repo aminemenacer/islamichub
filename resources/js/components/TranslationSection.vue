@@ -38,16 +38,16 @@
           <i  data-swipe-exclude @click="stopReading" :class="['bi', 'bi-stop-circle-fill', 'h3', 'custom-icon-play']" style="cursor: pointer;" :disabled="!isAudioPlaying" aria-label="Stop reading audio">
           </i>
 
-          <!-- <i  data-swipe-exclude @click="increaseFontSize" class="bi bi-plus-circle-fill h3 custom-icon-increase" style="cursor: pointer;" aria-label="Increase font size">
+          <i  data-swipe-exclude @click="increaseFontSize" class="bi bi-plus-circle-fill h3 custom-icon-increase" style="cursor: pointer;" aria-label="Increase font size">
           </i>
 
           <i  data-swipe-exclude @click="decreaseFontSize" class="bi bi-dash-circle-fill h3 custom-icon-decrease" style="cursor: pointer;" aria-label="Decrease font size">
-          </i> -->
+          </i>
         </div>
       </div>
 
       <!-- text summary -->
-      <div v-if="isVisible">
+      <!-- <div v-if="isVisible">
         <div class="container row">
             <button @click="getSummary" :disabled="loading" class="button-36">
               <span v-if="loading" class="spinner"></span>
@@ -62,7 +62,7 @@
         <div v-if="error" class="error">
           <p>{{ error }}</p>
         </div> 
-      </div>
+      </div> -->
 
       
 
@@ -997,15 +997,6 @@ export default {
   resize: vertical; /* Allow user to resize vertically */
 }
 
-.spinner {
-  border: 3px solid #f3f3f3; /* Light gray */
-  border-top: 3px solid #3498db; /* Blue */
-  border-radius: 50%;
-  width: 16px;
-  height: 16px;
-  animation: spin 1s linear infinite;
-  margin-right: 8px; /* Space between spinner and text */
-}
 
 .button-36 {
   background-image: linear-gradient(92.88deg, #455EB5 9.16%, #5643CC 43.89%, #673FD7 64.72%);

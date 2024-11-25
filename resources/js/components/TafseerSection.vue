@@ -47,7 +47,7 @@
               style="cursor: pointer;"
               aria-label="Stop reading audio"
             ></i>
-            <!-- 
+            
             <i 
               @click="increaseFontSize" 
               class="bi bi-plus-circle-fill h3 custom-icon-increase"
@@ -61,12 +61,12 @@
               style="cursor: pointer;" 
               aria-label="Decrease font size"
             ></i> 
-            -->
+           
           </div>
         </div>
 
         <!-- text summary -->
-        <div v-if="isVisible">
+        <!-- <div v-if="isVisible">
           <div class="container row">
             <button @click="getSummary" :disabled="loading" class="button-36">
               <span v-if="loading" class="spinner"></span>
@@ -81,7 +81,7 @@
           <div v-if="error" class="error">
             <p>{{ error }}</p>
           </div> 
-        </div>
+        </div> -->
 
         <!-- Word Count and Additional Information -->
         <div v-if="wordCount" class="word-count">

@@ -2,11 +2,56 @@
 <div class="container">
 
   <div class="row ml-4 mt-3 container-fluid">
+    <h2 class="text-left mt-3 mb-2 container" style="line-height: 1.7em; tafseer; "><img src="/images/art.png" style="width: 40px;" class="mb-1 mr-2 display-4" /><b>QuranSearch: Instant Access to Relevant Verses with Auto-Complete</b></h2>
+    <div class="col-md-6">
+      <h5 class="text-left text-dark" width="80%" style="line-height: 1.7em; tafseer">November 25th, 2024</h5>
+      <div>
+        <p style="padding:5px; line-height: 1.7em; tafseer" class="text-left text-dark ">QuranFinder uses AI-driven auto-complete to quickly find Quranic words, displaying relevant verses, translations, and share options for convenience. This is beneficial</p>
+        <div>
+          <li style="padding:5px" class="text-left text-dark "><strong>Explore specific words, their context, and translations with just a few taps. AI-driven auto-completion helps find relevant verses faster.</strong></li>
+          <li style="padding:5px" class="text-left text-dark "><strong>Users can access all related verses and translations instantly in a side panel. This eliminates the need to load new pages or scroll through long lists.</strong></li>
+          <li style="padding:5px" class="text-left text-dark "><strong>The option to share Quranic verses via WhatsApp or X enhances the user experience, allowing for easy sharing of insights with others.</strong></li>
+          <li style="padding:5px" class="text-left text-dark "><strong>The side panel feature allows users to explore multiple verses and their meanings without disrupting their flow.</strong></li>
+        </div>
+        <p style="padding:5px; line-height: 1.7em; tafseer" class="text-left text-dark "><b>#QuranSearch #AIforAccessibility #QuranicStudy #VoiceSearch #IslamicTech #AccessibleQuran #QuranExploration #AIandAccessibility #TechForGood #QuranTranslation</b></p>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <img src="images/sic.png" style="width:80%" />
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row ml-4 mt-3 container-fluid">
+    <h2 class="text-left mt-3 mb-2 container" style="line-height: 1.7em; tafseer; "><img src="/images/art.png" style="width: 40px;" class="mb-1 mr-2 display-4" /><b>QuranFinder: Seamless Auto-Complete for Quranic Words</b></h2>
+    <div class="col-md-6">
+      <h5 class="text-left text-dark" width="80%" style="line-height: 1.7em; tafseer">November 25th, 2024</h5>
+      <div>
+        <p style="padding:5px; line-height: 1.7em; tafseer" class="text-left text-dark ">QuranFinder offers seamless auto-complete for Quranic words, instantly displaying relevant verses, translations, and share options for easy exploration. This feature is useful for the following reasons:</p>
+        <div>
+          <li style="padding:5px" class="text-left text-dark "><strong>The auto-complete feature allows users to easily find Quranic words without manually searching.</strong></li>
+          <li style="padding:5px" class="text-left text-dark "><strong>Powered by AI, it provides accurate, contextually relevant results, helping users quickly find verses related to their search.</strong></li>
+          <li style="padding:5px" class="text-left text-dark "><strong>Instantly displaying verses with translations and share options saves users time, making Quranic exploration faster and more convenient.</strong></li>
+          <li style="padding:5px" class="text-left text-dark "><strong>The seamless design ensures a smooth experience across devices, accommodating both novice and experienced users, especially those using assistive technologies.</strong></li>
+          <li style="padding:5px" class="text-left text-dark "><strong>The built-in share options enable users to effortlessly share meaningful verses via WhatsApp or X, promoting knowledge sharing and engagement.</strong></li>
+        </div>
+        <p style="padding:5px; line-height: 1.7em; tafseer" class="text-left text-dark "><b>#QuranSearch #AIInIslam #AccessibleTech #QuranApp #IslamicTech #QuranFinder #VoiceSearch #QuranTranslation #AIAccessibility #TechForGood</b></p>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <img src="images/acis.png" style="width:80%" />
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row ml-4 mt-3 container-fluid">
     <h2 class="text-left mt-3 mb-2 container" style="line-height: 1.7em; tafseer; "><img src="/images/art.png" style="width: 40px;" class="mb-1 mr-2 display-4" /><b>Seamless mode switch: Basic or Advanced</b></h2>
     <div class="col-md-6">
       <h5 class="text-left text-dark" width="80%" style="line-height: 1.7em; tafseer">November 20th, 2024</h5>
       <div>
-        <p style="padding:5px; line-height: 1.7em; tafseer" class="text-left text-dark ">Easily Personalize Your Experience by Switching Between Basic and Advanced Modes for Better Usability. Theis feature is useful for the following reasons:</p>
+        <p style="padding:5px; line-height: 1.7em; tafseer" class="text-left text-dark ">Easily Personalize Your Experience by Switching Between Basic and Advanced Modes for Better Usability. This feature is useful for the following reasons:</p>
         <div>
           <li style="padding:5px" class="text-left text-dark "><strong>Provides an easy-to-use interface for beginners or users who prefer a minimal setup</strong></li>
           <li style="padding:5px" class="text-left text-dark "><strong>Allows users to choose the level of complexity that suits their needs, improving comfort and ease of use</strong></li>
@@ -19,7 +64,7 @@
       </div>
     </div>
     <div class="col-md-6">
-      <img src="images/gvs.png" style="width:80%" />
+      <img src="images/bva.png" style="width:80%" />
     </div>
   </div>
 
