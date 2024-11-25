@@ -11,31 +11,33 @@
         </div>
       </div>
       <div ref="targetTransliterationElement" class="row text-left mt-2">
-
-        <div class="summary-generator">
-
-          <div class="col-10">
-            <h4 class="ayah-translation" style="line-height: 1.6em" :style="{ fontSize: fontSize + 'em', lineHeight: '1.6em' }">
-              {{ expanded ? information.transliteration : information.transliteration }}
-            </h4>
-          </div>
-          <div @touchstart.stop @touchend.stop v-if="isVisible" class="col-2 d-flex align-items-center justify-content-center flex-column">
-            <i @click="increaseFontSize" class="bi bi-plus-circle-fill h3 custom-icon-increase" aria-label="Increase font size"></i>
-            <i @click="decreaseFontSize" class="bi bi-dash-circle-fill h3 custom-icon-decrease" aria-label="Decrease font size"></i>
-          </div>
-          <button @click="getSummary" :disabled="loading">
-            {{ loading ? "Summarizing..." : "Generate Summary" }}
-          </button>
-
-          <div v-if="summary" class="summary">
-            <h2>Summary:</h2>
-            <p>{{ summary }}</p>
-          </div>
-
-          <div v-if="error" class="error">
-            <p>{{ error }}</p>
-          </div>
+        <div class="col-10">
+          <h4 class="ayah-translation" style="line-height: 1.6em" :style="{ fontSize: fontSize + 'em', lineHeight: '1.6em' }">
+            {{ expanded ? information.transliteration : information.transliteration }}
+          </h4>
         </div>
+        <!-- <div @touchstart.stop @touchend.stop v-if="isVisible" class="col-2 d-flex align-items-center justify-content-center flex-column">
+          <i @click="increaseFontSize" class="bi bi-plus-circle-fill h3 custom-icon-increase" aria-label="Increase font size"></i>
+          <i @click="decreaseFontSize" class="bi bi-dash-circle-fill h3 custom-icon-decrease" aria-label="Decrease font size"></i>
+        </div> -->
+      </div>
+
+      <!-- text summary -->
+      <div v-if="isVisible">
+        <div class="container row">
+            <button @click="getSummary" :disabled="loading" class="button-36">
+              <span v-if="loading" class="spinner"></span>
+              {{ loading ? "Summarizing..." : "Generate Summary" }}
+            </button>
+        </div>
+        
+        <div v-if="summary" class="summary">
+          <p class="summary-textarea">{{ summary }}</p>
+        </div>
+
+        <div v-if="error" class="error">
+          <p>{{ error }}</p>
+        </div> 
       </div>
 
       <div class="text-left word-count mt-2">
@@ -363,10 +365,29 @@ export default {
 .swipeable-div {
   transition: transform 0.3s ease;
 }
-</style>
+ 
+ .summary {
+  margin-top: 20px;
+  font-size: 1em;
+}
 
-<style scoped>
-/* General Settings */
+.summary-textarea {
+  display: block;
+  width: 100%;
+  min-height: 100px; /* Adjust height as needed */
+  padding: 10px;
+  font-family: inherit;
+  font-size: inherit;
+  color: #333;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  line-height: 1.5em;
+  white-space: pre-wrap; /* Preserve formatting */
+  overflow: auto; /* Allow scrolling if content overflows */
+  resize: vertical; /* Allow user to resize vertically */
+}
+
 :root {
   --primary-color: rgb(13, 182, 145);
 }

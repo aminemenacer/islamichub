@@ -6,10 +6,7 @@
     <div  class="swipeable-div w-100">
       <div class="row">
         <div class="col-md-2 pt-2 d-flex align-items-center justify-content-center">
-          <div v-if="successMessage" class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Success!</strong> {{ successMessage }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" @click="successMessage = ''"></button>
-          </div>
+          
           <!-- <i 
               @click="toggleSpeechAyah" 
               class="bi-play-circle-fill h4 custom-icon-play-main"
@@ -25,56 +22,13 @@
       </div>
 
       <div ref="targetTranslationElement" class="row text-left mt-2">
-        <!-- Text Column -->
-        <!--  -->        
-        <!-- <div class="summary-generator"> -->
-          <!-- 
-          <p>
-            <span 
-              v-for="(word, index) in words" 
-              :key="index" 
-              :class="{ 'highlighted': index === currentWordIndex }">
-              {{ word }}
-            </span>
-          </p> -->
-
-          <!-- TTS Controls
-          <div>
-            <button class="btn btn-primary" @click="startTTS">Start</button>
-            <button class="btn btn-secondary" @click="pauseTTS">Pause</button>
-            <button class="btn btn-danger" @click="stopTTS">Stop</button>
-          </div> -->
-
-          <div class="col-10">
-            <h4 class="ayah-translation" style="line-height: 1.6em" :style="{ fontSize: fontSize + 'em', lineHeight: '1.6em' }" >
-              {{ expanded ? information.translation : information.translation }}
-            </h4>
-          </div>
-
-          <!-- <div class="row">
-            <div class="col-md-6">
-              <button @click="getSummary" :disabled="loading" style="background:linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB); ">
-                {{ loading ? "Summarizing..." : "Generate Summary" }}
-              </button>
-            </div>
-            <div class="col-md-6">
-              <button @click="toggleSpeech" :disabled="loading" style="background:linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB); ">
-                {{ loading ? "Stop speech..." : "Start speech" }}
-              </button>
-            </div>
-          </div>
-          
-          <div v-if="summary" class="summary">
-            <h2>Summary:</h2>
-            <p style="border: 2px grey solid; padding:15px; padding-right:15px;border-radius:10px; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">{{ summary }}</p>
-          </div>
-
-          <div v-if="error" class="error">
-            <p>{{ error }}</p>
-          </div> -->
-        <!-- </div> -->
+       
+        <div class="col-10">
+          <h4 class="ayah-translation" style="line-height: 1.6em" :style="{ fontSize: fontSize + 'em', lineHeight: '1.6em' }" >
+            {{ expanded ? information.translation : information.translation }}
+          </h4>
+        </div>
         
-
         <!-- Icons Column (Stacked Vertically) -->
         <div @click="onTap()" v-if="isVisible" class="col-2 d-flex align-items-center justify-content-center flex-column">
           <!-- Play/Pause Button -->
@@ -84,13 +38,33 @@
           <i  data-swipe-exclude @click="stopReading" :class="['bi', 'bi-stop-circle-fill', 'h3', 'custom-icon-play']" style="cursor: pointer;" :disabled="!isAudioPlaying" aria-label="Stop reading audio">
           </i>
 
-          <i  data-swipe-exclude @click="increaseFontSize" class="bi bi-plus-circle-fill h3 custom-icon-increase" style="cursor: pointer;" aria-label="Increase font size">
+          <!-- <i  data-swipe-exclude @click="increaseFontSize" class="bi bi-plus-circle-fill h3 custom-icon-increase" style="cursor: pointer;" aria-label="Increase font size">
           </i>
 
           <i  data-swipe-exclude @click="decreaseFontSize" class="bi bi-dash-circle-fill h3 custom-icon-decrease" style="cursor: pointer;" aria-label="Decrease font size">
-          </i>
+          </i> -->
         </div>
       </div>
+
+      <!-- text summary -->
+      <div v-if="isVisible">
+        <div class="container row">
+            <button @click="getSummary" :disabled="loading" class="button-36">
+              <span v-if="loading" class="spinner"></span>
+              {{ loading ? "Summarizing..." : "Generate Summary" }}
+            </button>
+        </div>
+        
+        <div v-if="summary" class="summary">
+          <p class="summary-textarea">{{ summary }}</p>
+        </div>
+
+        <div v-if="error" class="error">
+          <p>{{ error }}</p>
+        </div> 
+      </div>
+
+      
 
       <div class="text-left word-count mt-2">
         <h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" loading="lazy" /><strong>Total Word count: </strong>{{ wordCount }}</h6>
@@ -318,6 +292,7 @@ export default {
 
   methods: {
     async getSummary() {
+      this.loading = true;
       this.error = ""; // Reset error message
       this.summary = ""; // Reset summary
       this.loading = true; // Set loading state
@@ -1000,14 +975,62 @@ export default {
 </script>
 
 <style scoped>
-.summary-generator {
-  margin: 20px;
-  font-family: Arial, sans-serif;
+.summary {
+  margin-top: 20px;
+  font-size: 1em;
 }
-textarea {
+
+.summary-textarea {
+  display: block;
   width: 100%;
-  margin-bottom: 10px;
+  min-height: 100px; /* Adjust height as needed */
+  padding: 10px;
+  font-family: inherit;
+  font-size: inherit;
+  color: #333;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  line-height: 1.5em;
+  white-space: pre-wrap; /* Preserve formatting */
+  overflow: auto; /* Allow scrolling if content overflows */
+  resize: vertical; /* Allow user to resize vertically */
 }
+
+.spinner {
+  border: 3px solid #f3f3f3; /* Light gray */
+  border-top: 3px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  animation: spin 1s linear infinite;
+  margin-right: 8px; /* Space between spinner and text */
+}
+
+.button-36 {
+  background-image: linear-gradient(92.88deg, #455EB5 9.16%, #5643CC 43.89%, #673FD7 64.72%);
+  border-radius: 8px;
+  border-style: none;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-family: "Inter UI","SF Pro Display",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+  font-size: 15px;
+  height: 2.4rem;
+  padding: 0 1.3rem;
+  text-align: center;
+  text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
+  transition: all .5s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-36:hover {
+  box-shadow: rgba(80, 63, 205, 0.5) 0 1px 30px;
+  transition-duration: .1s;
+}
+
 button {
   padding: 10px 20px;
   background-color: #007bff;

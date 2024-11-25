@@ -25,27 +25,10 @@
         <!-- Tafseer and Control Icons -->
         <div ref="targetTafseerElement" class="row text-left mt-2">
 
-          <div class="summary-generator">
-
-            <div class="col-10">
-              <h4 class="ayah-translation" style="line-height: 1.6em" :style="{ fontSize: fontSize + 'em', lineHeight: '1.6em' }" >
-                {{ expanded ? tafseer : tafseer }}
-              </h4>
-            </div>
-
-            <button @click="getSummary" :disabled="loading">
-              {{ loading ? "Summarizing..." : "Generate Summary" }}
-            </button>
-
-            <div v-if="summary" class="summary">
-              <h2>Summary:</h2>
-              <p>{{ summary }}</p>
-            </div>
-
-            <div v-if="error" class="error">
-              <p>{{ error }}</p>
-            </div>
-
+          <div class="col-10">
+            <h4 class="ayah-translation" style="line-height: 1.6em" :style="{ fontSize: fontSize + 'em', lineHeight: '1.6em' }" >
+              {{ expanded ? tafseer : tafseer }}
+            </h4>
           </div>
 
           <!-- Control Icons Column (Stacked Vertically) -->
@@ -64,7 +47,7 @@
               style="cursor: pointer;"
               aria-label="Stop reading audio"
             ></i>
-
+            <!-- 
             <i 
               @click="increaseFontSize" 
               class="bi bi-plus-circle-fill h3 custom-icon-increase"
@@ -77,8 +60,27 @@
               class="bi bi-dash-circle-fill h3 custom-icon-decrease"
               style="cursor: pointer;" 
               aria-label="Decrease font size"
-            ></i>
+            ></i> 
+            -->
           </div>
+        </div>
+
+        <!-- text summary -->
+        <div v-if="isVisible">
+          <div class="container row">
+            <button @click="getSummary" :disabled="loading" class="button-36">
+              <span v-if="loading" class="spinner"></span>
+              {{ loading ? "Summarizing..." : "Generate Summary" }}
+            </button>
+          </div>
+          
+          <div v-if="summary" class="summary">
+            <p class="summary-textarea">{{ summary }}</p>
+          </div>
+
+          <div v-if="error" class="error">
+            <p>{{ error }}</p>
+          </div> 
         </div>
 
         <!-- Word Count and Additional Information -->
@@ -706,6 +708,27 @@ export default {
 </script>
 
 <style scoped>
+.summary {
+  margin-top: 20px;
+  font-size: 1em;
+}
+
+.summary-textarea {
+  display: block;
+  width: 100%;
+  min-height: 100px; /* Adjust height as needed */
+  padding: 10px;
+  font-family: inherit;
+  font-size: inherit;
+  color: #333;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  line-height: 1.5em;
+  white-space: pre-wrap; /* Preserve formatting */
+  overflow: auto; /* Allow scrolling if content overflows */
+  resize: vertical; /* Allow user to resize vertically */
+}
 
 audio {
   display: block;

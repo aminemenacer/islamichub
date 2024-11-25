@@ -102,9 +102,9 @@
                     </div>
                 </li>
                 @endguest
-                <li class="pl-4 pb-2 pt-2"> 
+                <!-- <li class="pl-4 pb-2 pt-2"> 
                     <button  class="button-36" role="button"><span><strong><a href="pricing" style="color:white; text-decoration:none">Try Premium</a></strong></span></button>
-                </li>
+                </li> -->
             </ul>
         </div>
     </div>
