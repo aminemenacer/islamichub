@@ -255,11 +255,10 @@ Route::get('/payments', [PaymentController::class, 'index']);
 Route::get('api/fetch-payments', [PaymentController::class, 'getPayments']);
 
 // donations
-Route::get('/donations', [SupportController::class, 'index']);
-Route::get('/fetch-donations', [SupportController::class, 'getDonations']);
+Route::get('/donations', [DonationController::class, 'index']);
+Route::get('/fetch-donations', [DonationController::class, 'getDonations']);
 
 Route::post('/create-checkout-session', [SupportController::class, 'createCheckoutSession']);
-
 Route::get('/donation/success', function () {
     return view('donation.success');  // View after successful donation
 })->name('donation.success');

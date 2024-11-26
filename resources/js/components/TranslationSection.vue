@@ -5,7 +5,7 @@
     <AyahInfo :information="information" />
     <div  class="swipeable-div w-100">
       <div class="row">
-        <div class="col-md-2 pt-2 d-flex align-items-center justify-content-center">
+        <div class="col-md-1 pt-2 d-flex align-items-center justify-content-center">
           
           <!-- <i 
               @click="toggleSpeechAyah" 
@@ -16,7 +16,7 @@
             -->
         </div>
         
-        <div class="col-md-10">
+        <div class="col-md-11">
           <MainAyah :information="information" />
         </div>
       </div>
@@ -30,7 +30,7 @@
         </div>
         
         <!-- Icons Column (Stacked Vertically) -->
-        <div @click="onTap()" v-if="isVisible" class="col-2 d-flex align-items-center justify-content-center flex-column">
+        <div v-if="isVisible" class="col-2 d-flex align-items-center justify-content-center flex-column">
           <!-- Play/Pause Button -->
           <i  data-swipe-exclude @click="toggleSpeech" :class="['bi', isReading ? (isPaused ? 'bi-play-circle-fill' : 'bi-pause-circle-fill') : 'bi-play-circle-fill', 'h3', 'custom-icon-play']" style="cursor: pointer;" aria-label="Play or pause translation audio">
           </i>
@@ -47,7 +47,7 @@
       </div>
 
       <!-- text summary -->
-      <!-- <div v-if="isVisible">
+      <div v-if="isVisible">
         <div class="container row">
             <button @click="getSummary" :disabled="loading" class="button-36">
               <span v-if="loading" class="spinner"></span>
@@ -62,7 +62,7 @@
         <div v-if="error" class="error">
           <p>{{ error }}</p>
         </div> 
-      </div> -->
+      </div>
 
       
 
