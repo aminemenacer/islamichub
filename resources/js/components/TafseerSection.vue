@@ -1,5 +1,5 @@
 <template>
-  <div class="w-100 my-element" :class="{ 'full-screen': isFullScreen }" @touchstart="handleStart" @touchmove="handleTouchMove" @touchend="handleEnd" @mousedown="handleStart" @mouseup="handleEnd" @mouseleave="cancelHold">
+  <div class="w-100 my-element" :class="{ 'full-screen': isFullScreen }" >
     <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
     
     <div>

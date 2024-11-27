@@ -1,6 +1,6 @@
 <template>
 <div class="w-100 my-element" :class="{ 'full-screen': isFullScreen }">
-  <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
+  <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary ">Close</button>
   <div>
     <AyahInfo :information="information" />
     <div class="swipeable-div w-100">
@@ -38,8 +38,11 @@
           <i  @click="stopReading" :class="['bi', 'bi-stop-circle-fill', 'h3', 'custom-icon-play']" style="cursor: pointer;" :disabled="!isAudioPlaying" aria-label="Stop reading audio">
           </i>
 
-          <i class="bi bi-gear-fill text-right h3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-expanded="false" data-bs-placement="top" title="Settings" :style="{ cursor: 'pointer' }">
-          </i>
+          <i class="bi bi-plus-circle-fill h3 custom-icon-increase" aria-placeholder="Increase text size" @click="increaseFontSize"></i>
+          <i class="bi bi-dash-circle-fill h3 custom-icon-decrease" aria-placeholder="Decrease text size" @click="decreaseFontSize"></i>
+
+          <!-- <i class="bi bi-gear-fill text-right h3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-expanded="false" data-bs-placement="top" title="Settings" :style="{ cursor: 'pointer' }">
+          </i> -->
 
         </div>
       </div>
@@ -104,7 +107,7 @@
         </div>
       </div>
 
-      <!-- text summary -->
+      <!-- text summary 
       <div v-if="isVisible">
         <div class="container row">
           <button @click="getSummary" :disabled="loading" class="button-36">
@@ -131,7 +134,7 @@
       </div>
       <div class="text-left word-count mt-2">
         <h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" loading="lazy" /><strong>Reciter's name: </strong>Mishary Rashid Alafasy</h6>
-      </div>
+      </div>-->
     </div> 
 
     <!-- <div v-if="isVisible" class="row">
@@ -1091,18 +1094,6 @@ export default {
   transition-duration: .1s;
 }
 
-button {
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button:disabled {
-  background-color: #ccc;
-}
 
 .summary {
   margin-top: 20px;

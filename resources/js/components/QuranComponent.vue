@@ -435,12 +435,12 @@
      <TransliterationNote ref="transliterationNote" :information="modalInformation" />
      
     </div>
-      <audio v-if="information != null" 
+      <!-- <audio v-if="information != null" 
        ref="audioPlayer" 
        :src="fullAudioLink"  
        class="w-100 custom-audio" 
        loop controls 
-      /> 
+      />  -->
    </div>
 
     <!-- gesture instructions -->

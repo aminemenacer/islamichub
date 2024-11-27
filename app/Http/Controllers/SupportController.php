@@ -15,7 +15,7 @@ class SupportController extends Controller
 
     public function createCheckoutSession(Request $request)
     {
-        Stripe::setApiKey(env('STRIPE_SECRET'));
+        Stripe::setApiKey(config('services.stripe.secret'));
 
         try {
             // Set the price dynamically on Stripe Checkout

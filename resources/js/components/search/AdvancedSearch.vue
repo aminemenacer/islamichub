@@ -52,6 +52,8 @@
    <button type="button" class="btn button-36" @click="isListening ? stopVoiceRecognition() : startVoiceRecognition()">
     <span style="color:white"><b>Voice Search</b></span>
    </button>
+    <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
+
    <!--
     <button class="btn btn-info text-white" @click="searchWord"><i class="bi bi-search h4 text-white"></i></button>
     -->
@@ -61,8 +63,8 @@
  
  <!-- show a message when recording starts -->
   <div v-if="isListening" class="listening-container">
-    <span class="listening-icon">🎙️</span>
-    <span class="listening-text"><b>Listening</b><span class="dot-typing"></span></span>
+    <span class="listening-icon"><img src="images/vc.png" alt="voice search icon" width="40%"/></span>
+    <span class="listening-text " style="color:black"><b>Listening</b><span ></span></span>
   </div>
  <!-- Offcanvas for Search Results -->
 <div class="offcanvas offcanvas-end custom-offcanvas" tabindex="-1" id="offcanvasResults">
@@ -190,6 +192,7 @@ export default {
  data() {
   return {
    data: [],
+   errorMessage: '',
    selectedAyah: null,
    loading: false,
    searchTerm: '',
@@ -372,6 +375,7 @@ export default {
   // Start voice recognition
   startVoiceRecognition() {
    this.isListening = true;
+   this.errorMessage = '';
    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
    if (!SpeechRecognition) {
@@ -382,7 +386,7 @@ export default {
 
    this.recognition = new SpeechRecognition();
    this.recognition.lang = 'en-US';
-  //  this.recognition.lang = "ar-SA";
+   //  this.recognition.lang = "ar-SA";
    this.recognition.continuous = false;
 
    this.recognition.onresult = (event) => {
@@ -448,8 +452,6 @@ export default {
     return text.replace(regExp, '<mark>$1</mark>');
   },
 
-  
-
   searchWord() {
    this.loading = true;
 
@@ -499,6 +501,16 @@ export default {
 </script>
 
 <style scoped>
+.error-message {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
 .listening-container {
   top: 5px;
   display: flex;
@@ -506,13 +518,11 @@ export default {
   justify-content: center;
   font-size: 1.1em;
   font-weight: 300;
-  color: #333;
+  color: rgb(0, 0, 0);
   background-color: #f5f5f5;
-  padding: 12px 24px;
+  padding: 12px;
   border-radius: 6px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   max-width: 300px;
-  border: 2px solid lightgrey;
   margin: 0 auto;
   text-align: center;
 }
@@ -520,16 +530,18 @@ export default {
 .listening-icon {
   font-size: 1.3em;
   color: #000000;
-  margin-right: 10px;
 }
 
 .listening-text {
-  display: flex;
+  color: #000000;
+  font-size: 30px;
+  font-weight: bold;
+  display: flex;  
   align-items: center;
-  gap: 5px;
 }
 
 .dot-typing {
+  padding-left: 10px;
   display: inline-block;
   width: 6px;
   height: 6px;
@@ -544,6 +556,7 @@ export default {
   display: inline-block;
   width: 6px;
   height: 6px;
+  padding-left: 10px;
   background-color: #000000;
   border-radius: 50%;
   animation: blink 1.4s infinite ease-in-out both;

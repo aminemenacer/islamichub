@@ -2,6 +2,28 @@
 <div class="container">
 
   <div class="row ml-4 mt-3 container-fluid">
+    <h2 class="text-left mt-3 mb-2 container" style="line-height: 1.7em; tafseer; "><img src="/images/art.png" style="width: 40px;" class="mb-1 mr-2 display-4" /><b>Introducing Quranic Word Search with AI</b></h2>
+    <div class="col-md-6">
+      <h5 class="text-left text-dark" width="80%" style="line-height: 1.7em; tafseer">November 27th, 2024</h5>
+      <div>
+        <p style="padding:5px; line-height: 1.7em; tafseer" class="text-left text-dark ">Unlock the Quran with Your Voice: Accessible, Convenient, AI-Powered. This is beneficial for the following reasons:</p>
+        <div>
+          <li style="padding:5px" class="text-left text-dark "><strong>Empowering visually impaired and physically challenged users with a seamless way to explore the Quran through voice commands.</strong></li>
+          <li style="padding:5px" class="text-left text-dark "><strong>No more typing just speak, and the Quranic verse or word appears instantly.</strong></li>
+          <li style="padding:5px" class="text-left text-dark "><strong>Quickly find the verses you need for study, reflection, or prayer without interruptions.</strong></li>
+          <li style="padding:5px" class="text-left text-dark "><strong>No more scrolling, jump straight to the verse you are looking for in seconds.</strong></li>
+        </div>
+        <p style="padding:5px; line-height: 1.7em; tafseer" class="text-left text-dark "><b>#VoiceSearch #QuranAccessibility #IslamicInnovation #SpeechRecognition #AccessibleQuran #DigitalIslam #QuranTechnology #TechForGood #FaithAndTech</b></p>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <img src="images/vs_update.png" style="width:80%" />
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row ml-4 mt-3 container-fluid">
     <h2 class="text-left mt-3 mb-2 container" style="line-height: 1.7em; tafseer; "><img src="/images/art.png" style="width: 40px;" class="mb-1 mr-2 display-4" /><b>QuranSearch: Instant Access to Relevant Verses with Auto-Complete</b></h2>
     <div class="col-md-6">
       <h5 class="text-left text-dark" width="80%" style="line-height: 1.7em; tafseer">November 25th, 2024</h5>

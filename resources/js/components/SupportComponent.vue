@@ -55,9 +55,11 @@ export default {
   },
   mounted() {
     // Initialize Stripe with your publishable key
-    loadStripe('pk_test_51OhWyICJwy2NXBn1qd6CDCqfzR5BkiaL4OYkl9EUc3nYm2D3paDVZuAyRks7NJBWodYHbQJOcxsxDA9L4umn4Kok00YuLJBbfh').then((stripe) => {
-      this.stripe = stripe;
-    });
+    loadStripe("pk_live_51QIJkjIol4Q5wn4Og4nYBjG25zNBFSnvTIfivJvDdHt6u0CD364TMcQHvGmrh6TOBNPDi9xwRDz7Zoirdl6NSDoB00JEFToo7F").then(
+      (stripe) => {
+        this.stripe = stripe;
+      }
+    );
   },
   methods: {
     async donate() {
