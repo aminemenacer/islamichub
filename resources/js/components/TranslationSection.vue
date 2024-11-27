@@ -26,8 +26,27 @@
         <div class="col-10">
           <h4 class="ayah-translation" style="line-height: 1.6em" :style="{ fontSize: fontSize + 'em', lineHeight: '1.6em' }">
             {{ expanded ? information.translation : information.translation }}
-          </h4>
+          </h4> 
+          <!-- text summary -->
+          <div v-if="isVisible">
+            <div class="container row">
+              <button @click="getSummary" :disabled="loading" class="button-36">
+                <span v-if="loading" class="spinner"></span>
+                {{ loading ? "Summarizing..." : "Generate Summary" }}
+              </button>
+            </div>
+
+            <div v-if="summary" class="summary">
+              <button class="close-btn" @click="closeSummary">x</button>
+              <p class="summary-textarea">{{ summary }}</p>
+            </div>
+
+            <div v-if="error" class="error summary" >
+              <p>{{ error }}</p>
+            </div>
+          </div>
         </div>
+       
 
         <!-- Icons Column (Stacked Vertically) -->
         <div v-if="isVisible" class="col-2 d-flex align-items-center justify-content-center flex-column">
@@ -38,11 +57,11 @@
           <i  @click="stopReading" :class="['bi', 'bi-stop-circle-fill', 'h3', 'custom-icon-play']" style="cursor: pointer;" :disabled="!isAudioPlaying" aria-label="Stop reading audio">
           </i>
 
-          <i class="bi bi-plus-circle-fill h3 custom-icon-increase" aria-placeholder="Increase text size" @click="increaseFontSize"></i>
-          <i class="bi bi-dash-circle-fill h3 custom-icon-decrease" aria-placeholder="Decrease text size" @click="decreaseFontSize"></i>
+          <!-- <i class="bi bi-plus-circle-fill h3 custom-icon-increase" aria-placeholder="Increase text size" @click="increaseFontSize"></i>
+          <i class="bi bi-dash-circle-fill h3 custom-icon-decrease" aria-placeholder="Decrease text size" @click="decreaseFontSize"></i> -->
 
-          <!-- <i class="bi bi-gear-fill text-right h3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-expanded="false" data-bs-placement="top" title="Settings" :style="{ cursor: 'pointer' }">
-          </i> -->
+          <i class="bi bi-gear-fill text-right h3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-expanded="false" data-bs-placement="top" title="Settings" :style="{ cursor: 'pointer' }">
+          </i>
 
         </div>
       </div>
@@ -50,7 +69,7 @@
       <!-- Speech Off-canvas -->
       <div class="offcanvas offcanvas-end custom-offcanvas" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
         <div class="offcanvas-header">
-          <h2><b>Speech Settings</b></h2>
+          <h3><b>Speech Settings</b></h3>
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
@@ -60,7 +79,7 @@
             <div class="tab-pane fade show active" id="Speech Settings" role="tabpanel" aria-labelledby="tab1-tab">
               <div class="row mb-3">
                 <label for="formGroupExampleInput" class="form-label">Voices:</label>
-                <select id="voiceSelect" v-model="selectedVoiceName" class="form-control">
+                <select id="voiceSelect" class="form-control" v-model="selectedVoiceName" @change="changeVoice(selectedVoiceName)">
                   <option v-for="voice in voices" :key="voice.name" :value="voice.name">
                     {{ voice.name }} ({{ voice.lang }})
                   </option>
@@ -98,7 +117,7 @@
               <!-- Buttons to save or cancel changes -->
               <div class="d-flex w-100 justify-content-end mt-3">
                 <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="offcanvas" aria-label="Close">Cancel</button>
-                <button type="button" class="btn btn-light" @click="saveSettings">Save changes</button>
+                <button type="button" class="btn btn-success" @click="saveSettings">Save changes</button>
               </div>
             </div>
 
@@ -107,24 +126,7 @@
         </div>
       </div>
 
-      <!-- text summary 
-      <div v-if="isVisible">
-        <div class="container row">
-          <button @click="getSummary" :disabled="loading" class="button-36">
-            <span v-if="loading" class="spinner"></span>
-            {{ loading ? "Summarizing..." : "Generate Summary" }}
-          </button>
-        </div>
-
-        <div v-if="summary" class="summary">
-          <button class="close-btn" @click="closeSummary">x</button>
-          <p class="summary-textarea">{{ summary }}</p>
-        </div>
-
-        <div v-if="error" class="error summary" >
-          <p>{{ error }}</p>
-        </div>
-      </div>
+      
 
       <div class="text-left word-count mt-2">
         <h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" loading="lazy" /><strong>Total Word count: </strong>{{ wordCount }}</h6>
@@ -134,7 +136,7 @@
       </div>
       <div class="text-left word-count mt-2">
         <h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" loading="lazy" /><strong>Reciter's name: </strong>Mishary Rashid Alafasy</h6>
-      </div>-->
+      </div>
     </div> 
 
     <!-- <div v-if="isVisible" class="row">
@@ -306,7 +308,7 @@ export default {
       pitch: 1,
       surahUrl: "",
       voices: [],
-      selectedVoiceName: '',
+      selectedVoiceName: localStorage.getItem("selectedVoice") || "",
       words: [],
       currentWordIndex: 0,
       ayahAudio: null, // Store the audio URL
@@ -340,6 +342,9 @@ export default {
     } 
     // Load voices initially
     this.loadVoices();
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.onvoiceschanged = this.loadVoices;
+    }
     // Ensure voices are fully loaded before attempting to play
     window.speechSynthesis.onvoiceschanged = () => {
       this.loadVoices();
@@ -396,22 +401,12 @@ export default {
       }, 3000);
     },
     loadVoices() {
-      const synth = window.speechSynthesis;
-
-      // Function to populate voices
-      const populateVoices = () => {
-        this.voices = synth.getVoices();
-        if (this.voices.length > 0) {
-          this.selectedVoiceName = this.voices[0]?.name; // Default to the first voice
-        }
-      };
-
-      // If voices are already loaded, populate immediately
-      if (synth.getVoices().length > 0) {
-        populateVoices();
-      } else {
-        // Otherwise, wait for the voices to be loaded
-        synth.onvoiceschanged = populateVoices;
+      this.voices = window.speechSynthesis.getVoices();
+      if (this.selectedVoiceName) {
+        const voice = this.voices.find(v => v.name === this.selectedVoiceName);
+        if (!voice) this.selectedVoiceName = this.voices[0]?.name || '';
+      } else if (this.voices.length > 0) {
+        this.selectedVoiceName = this.voices[0].name; // Fallback to the first available voice
       }
     },
     clearHighlight() {
@@ -745,7 +740,7 @@ export default {
     },
     changeVoice(voiceName) {
       this.selectedVoiceName = voiceName;
-      localStorage.setItem("selectedVoice", JSON.stringify(voiceName));
+      localStorage.setItem("selectedVoice", voiceName);
     },
     adjustRate(value) {
       this.rate = parseFloat(value);
@@ -893,6 +888,14 @@ export default {
     // Read the displayed text aloud
     readTextAloud() {
       const text = this.information.translation;
+
+      if (!this.selectedVoiceName || !this.voices.length) {
+        alert("Please select a voice before speaking.");
+        return;
+      }
+
+      const utterance = new SpeechSynthesisUtterance(this.textToSpeak);
+      const voice = this.voices.find(v => v.name === this.selectedVoiceName);
 
       // Cancel any ongoing speech first to ensure a clean start
       window.speechSynthesis.cancel();

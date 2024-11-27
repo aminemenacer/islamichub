@@ -461,7 +461,7 @@
     </div>
 
 
-   <!-- Speech Off-canvas 
+   <!-- Speech Off-canvas -->
     <div
       id="settingsOffcanvas"
       class="offcanvas offcanvas-end custom-offcanvas"
@@ -524,7 +524,7 @@
         </div>
       </div>
     </div>
-    -->
+    
   <!-- theme styles -->
   <div class="offcanvas offcanvas-end custom-offcanvas " tabindex="-1" id="styleOffcanvas" aria-labelledby="styleOffcanvasLabel">
     <div class="offcanvas-header">
