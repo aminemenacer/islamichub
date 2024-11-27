@@ -30,10 +30,9 @@
 }
 
 .desktop-icon:hover {
-  color: rgb(8, 83, 67);
+  color: rgb(6, 65, 52);
   /* Default color */
   transition: color 0.3s ease;
-  /* Smooth transition */
   
 }
 
