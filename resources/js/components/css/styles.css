@@ -29,6 +29,14 @@
   }
 }
 
+.desktop-icon:hover {
+  color: rgb(8, 83, 67);
+  /* Default color */
+  transition: color 0.3s ease;
+  /* Smooth transition */
+  
+}
+
 .custom-switch {
   position: relative;
   display: inline-block;

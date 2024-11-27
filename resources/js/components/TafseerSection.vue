@@ -66,7 +66,7 @@
         </div>
 
         <!-- text summary -->
-        <!-- <div v-if="isVisible">
+        <div v-if="isVisible">
           <div class="container row">
             <button @click="getSummary" :disabled="loading" class="button-36">
               <span v-if="loading" class="spinner"></span>
@@ -75,13 +75,14 @@
           </div>
           
           <div v-if="summary" class="summary">
+            <button class="close-btn" @click="closeSummary">x</button>
             <p class="summary-textarea">{{ summary }}</p>
           </div>
 
           <div v-if="error" class="error">
             <p>{{ error }}</p>
           </div> 
-        </div> -->
+        </div>
 
         <!-- Word Count and Additional Information -->
         <div v-if="wordCount" class="word-count">
@@ -273,6 +274,9 @@ export default {
 		};
 	},
 	methods: {
+    closeSummary() {
+      this.summary = ""; // Clear the summary to hide the textarea
+    },
     async getSummary() {
       this.error = ""; // Reset error message
       this.summary = ""; // Reset summary
@@ -728,6 +732,15 @@ export default {
   white-space: pre-wrap; /* Preserve formatting */
   overflow: auto; /* Allow scrolling if content overflows */
   resize: vertical; /* Allow user to resize vertically */
+}
+
+.close-btn {
+  right: 5px;
+  background-color: transparent;
+  border: none;
+  font-size: 1.2em;
+  cursor: pointer;
+  color: #333;
 }
 
 audio {

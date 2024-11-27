@@ -23,7 +23,7 @@
       </div>
 
       <!-- text summary -->
-      <!-- <div v-if="isVisible">
+      <div v-if="isVisible">
         <div class="container row">
             <button @click="getSummary" :disabled="loading" class="button-36">
               <span v-if="loading" class="spinner"></span>
@@ -32,13 +32,14 @@
         </div>
         
         <div v-if="summary" class="summary">
+          <button class="close-btn" @click="closeSummary">x</button>
           <p class="summary-textarea">{{ summary }}</p>
         </div>
 
         <div v-if="error" class="error">
           <p>{{ error }}</p>
         </div> 
-      </div> -->
+      </div>
 
       <div class="text-left word-count mt-2">
         <h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" loading="lazy" /><strong>Total Word count: </strong>{{ wordCount }}</h6>
@@ -116,6 +117,9 @@ export default {
     }
   },
   methods: {
+    closeSummary() {
+      this.summary = ""; // Clear the summary to hide the textarea
+    },
     async getSummary() {
       this.error = ""; // Reset error message
       this.summary = ""; // Reset summary
@@ -386,6 +390,24 @@ export default {
   white-space: pre-wrap; /* Preserve formatting */
   overflow: auto; /* Allow scrolling if content overflows */
   resize: vertical; /* Allow user to resize vertically */
+}
+
+.close-btn {
+  right: 5px;
+  background-color: transparent;
+  border: none;
+  font-size: 1.2em;
+  cursor: pointer;
+  color: #333;
+}
+
+.close-btn {
+  right: 5px;
+  background-color: transparent;
+  border: none;
+  font-size: 1.2em;
+  cursor: pointer;
+  color: #333;
 }
 
 :root {

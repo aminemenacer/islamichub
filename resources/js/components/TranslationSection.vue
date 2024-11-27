@@ -1,12 +1,12 @@
 <template>
-<div @touchstart="handleStart" @touchmove="handleTouchMove" @touchend="handleEnd" @mousedown="handleStart" @mouseup="handleEnd" @mouseleave="cancelHold" class="w-100 my-element" :class="{ 'full-screen': isFullScreen }">
+<div class="w-100 my-element" :class="{ 'full-screen': isFullScreen }">
   <button v-if="isFullScreen" @click="toggleFullScreen" class="close-button mb-3 text-left btn btn-secondary">Close</button>
   <div>
     <AyahInfo :information="information" />
-    <div  class="swipeable-div w-100">
+    <div class="swipeable-div w-100">
       <div class="row">
         <div class="col-md-1 pt-2 d-flex align-items-center justify-content-center">
-          
+
           <!-- <i 
               @click="toggleSpeechAyah" 
               class="bi-play-circle-fill h4 custom-icon-play-main"
@@ -15,56 +15,113 @@
             ></i>
             -->
         </div>
-        
+
         <div class="col-md-11">
           <MainAyah :information="information" />
         </div>
       </div>
 
       <div ref="targetTranslationElement" class="row text-left mt-2">
-       
+
         <div class="col-10">
-          <h4 class="ayah-translation" style="line-height: 1.6em" :style="{ fontSize: fontSize + 'em', lineHeight: '1.6em' }" >
+          <h4 class="ayah-translation" style="line-height: 1.6em" :style="{ fontSize: fontSize + 'em', lineHeight: '1.6em' }">
             {{ expanded ? information.translation : information.translation }}
           </h4>
         </div>
-        
+
         <!-- Icons Column (Stacked Vertically) -->
         <div v-if="isVisible" class="col-2 d-flex align-items-center justify-content-center flex-column">
           <!-- Play/Pause Button -->
-          <i  data-swipe-exclude @click="toggleSpeech" :class="['bi', isReading ? (isPaused ? 'bi-play-circle-fill' : 'bi-pause-circle-fill') : 'bi-play-circle-fill', 'h3', 'custom-icon-play']" style="cursor: pointer;" aria-label="Play or pause translation audio">
+          <i  @click="toggleSpeech" :class="['bi', isReading ? (isPaused ? 'bi-play-circle-fill' : 'bi-pause-circle-fill') : 'bi-play-circle-fill', 'h3', 'custom-icon-play']" style="cursor: pointer;" aria-label="Play or pause translation audio">
           </i>
           <!-- Stop Button -->
-          <i  data-swipe-exclude @click="stopReading" :class="['bi', 'bi-stop-circle-fill', 'h3', 'custom-icon-play']" style="cursor: pointer;" :disabled="!isAudioPlaying" aria-label="Stop reading audio">
+          <i  @click="stopReading" :class="['bi', 'bi-stop-circle-fill', 'h3', 'custom-icon-play']" style="cursor: pointer;" :disabled="!isAudioPlaying" aria-label="Stop reading audio">
           </i>
 
-          <i  data-swipe-exclude @click="increaseFontSize" class="bi bi-plus-circle-fill h3 custom-icon-increase" style="cursor: pointer;" aria-label="Increase font size">
+          <i class="bi bi-gear-fill text-right h3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-expanded="false" data-bs-placement="top" title="Settings" :style="{ cursor: 'pointer' }">
           </i>
 
-          <i  data-swipe-exclude @click="decreaseFontSize" class="bi bi-dash-circle-fill h3 custom-icon-decrease" style="cursor: pointer;" aria-label="Decrease font size">
-          </i>
+        </div>
+      </div>
+
+      <!-- Speech Off-canvas -->
+      <div class="offcanvas offcanvas-end custom-offcanvas" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header">
+          <h2><b>Speech Settings</b></h2>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+
+          <!-- Tab content -->
+          <div class="tab-content mt-3" id="myTabContent">
+            <div class="tab-pane fade show active" id="Speech Settings" role="tabpanel" aria-labelledby="tab1-tab">
+              <div class="row mb-3">
+                <label for="formGroupExampleInput" class="form-label">Voices:</label>
+                <select id="voiceSelect" v-model="selectedVoiceName" class="form-control">
+                  <option v-for="voice in voices" :key="voice.name" :value="voice.name">
+                    {{ voice.name }} ({{ voice.lang }})
+                  </option>
+                </select>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <label>
+                    Rate: <input class="rate" type="range" min="0.5" max="2" step="0.1" v-model="rate" @input="adjustRate($event.target.value)">
+                  </label>
+                </div>
+                <div class="col">
+                  <label>
+                    Pitch: <input class="pitch" type="range" min="0.5" max="2" step="0.1" v-model="pitch" @input="adjustPitch($event.target.value)">
+                  </label>
+                </div>
+
+                <div class="col">
+                  <label>
+                    Increase size: <i class="bi bi-plus-circle-fill h3 custom-icon-increase" aria-placeholder="Increase text size" @click="increaseFontSize"></i>
+                  </label>
+                </div>
+                <div class="col">
+                  <label>
+                    Decrease size: <i class="bi bi-dash-circle-fill h3 custom-icon-decrease" aria-placeholder="Decrease text size" @click="decreaseFontSize"></i>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Success message alert (hidden by default) -->
+              <div v-if="successMessage" class="alert alert-success" role="alert">
+                Settings saved successfully!
+              </div>
+
+              <!-- Buttons to save or cancel changes -->
+              <div class="d-flex w-100 justify-content-end mt-3">
+                <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="offcanvas" aria-label="Close">Cancel</button>
+                <button type="button" class="btn btn-light" @click="saveSettings">Save changes</button>
+              </div>
+            </div>
+
+          </div>
+
         </div>
       </div>
 
       <!-- text summary -->
       <div v-if="isVisible">
         <div class="container row">
-            <button @click="getSummary" :disabled="loading" class="button-36">
-              <span v-if="loading" class="spinner"></span>
-              {{ loading ? "Summarizing..." : "Generate Summary" }}
-            </button>
+          <button @click="getSummary" :disabled="loading" class="button-36">
+            <span v-if="loading" class="spinner"></span>
+            {{ loading ? "Summarizing..." : "Generate Summary" }}
+          </button>
         </div>
-        
+
         <div v-if="summary" class="summary">
+          <button class="close-btn" @click="closeSummary">x</button>
           <p class="summary-textarea">{{ summary }}</p>
         </div>
 
-        <div v-if="error" class="error">
+        <div v-if="error" class="error summary" >
           <p>{{ error }}</p>
-        </div> 
+        </div>
       </div>
-
-      
 
       <div class="text-left word-count mt-2">
         <h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" loading="lazy" /><strong>Total Word count: </strong>{{ wordCount }}</h6>
@@ -75,7 +132,7 @@
       <div class="text-left word-count mt-2">
         <h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" loading="lazy" /><strong>Reciter's name: </strong>Mishary Rashid Alafasy</h6>
       </div>
-    </div>
+    </div> 
 
     <!-- <div v-if="isVisible" class="row">
       <div class="dropdown">
@@ -118,8 +175,6 @@ import {
   Paragraph,
   TextRun
 } from "docx";
-
-
 
 export default {
   name: "TranslationSection",
@@ -248,7 +303,7 @@ export default {
       pitch: 1,
       surahUrl: "",
       voices: [],
-      summary: "",
+      selectedVoiceName: '',
       words: [],
       currentWordIndex: 0,
       ayahAudio: null, // Store the audio URL
@@ -266,11 +321,12 @@ export default {
     this.stopReading();
     this.$emit("ayah-text", this.information.ayah.ayah_text);
     // Load saved settings from local storage on page load
-    const savedVoiceName = localStorage.getItem("selectedVoice");
-    const savedRate = localStorage.getItem("rate");
-    const savedPitch = localStorage.getItem("pitch");
+    const savedVoiceName = localStorage.getItem('selectedVoice');
+    const savedRate = localStorage.getItem('rate');
+    const savedPitch = localStorage.getItem('pitch');
     const savedFontSize = localStorage.getItem("fontSize");
-
+   
+    
     if (savedVoiceName) this.selectedVoiceName = JSON.parse(savedVoiceName); // Use selectedVoiceName instead of selectedVoice
     if (savedRate) this.rate = parseFloat(savedRate);
     if (savedPitch) this.pitch = parseFloat(savedPitch);
@@ -278,11 +334,9 @@ export default {
       this.currentFontSize = parseInt(savedFontSize, 10);
     } else {
       this.currentFontSize = 14; // Default font size
-    }
-
+    } 
     // Load voices initially
     this.loadVoices();
-
     // Ensure voices are fully loaded before attempting to play
     window.speechSynthesis.onvoiceschanged = () => {
       this.loadVoices();
@@ -299,17 +353,15 @@ export default {
 
       try {
         const response = await axios.post(
-          this.BASE_URL,
-          { 
+          this.BASE_URL, {
             inputs: this.information.translation,
             parameters: {
               max_length: 150, // Maximum length of the summary
-              min_length: 50,  // Minimum length of the summary
+              min_length: 50, // Minimum length of the summary
               do_sample: true, // Disable randomness for consistent output
-            }, 
-          
-          },
-          {
+            },
+
+          }, {
             headers: {
               Authorization: `Bearer ${this.API_TOKEN}`,
               "Content-Type": "application/json",
@@ -324,10 +376,13 @@ export default {
         this.loading = false; // Reset loading state
       }
     },
+    closeSummary() {
+      this.summary = ""; // Clear the summary to hide the textarea
+    },
     clearSuccessMessage() {
       setTimeout(() => {
         this.successMessage = '';
-      }, 3000);  // Clear after 3 seconds
+      }, 3000); // Clear after 3 seconds
     },
     showSuccess(message) {
       this.successMessage = message;
@@ -337,10 +392,24 @@ export default {
         this.successMessage = '';
       }, 3000);
     },
-    onTap() {
-      this.swipeDisabled = true; // Disable swipe behavior
-      this.isSwipeEnabled = false; // Optionally, completely disable swipe actions if needed
-      console.log('Swipe Disabled');
+    loadVoices() {
+      const synth = window.speechSynthesis;
+
+      // Function to populate voices
+      const populateVoices = () => {
+        this.voices = synth.getVoices();
+        if (this.voices.length > 0) {
+          this.selectedVoiceName = this.voices[0]?.name; // Default to the first voice
+        }
+      };
+
+      // If voices are already loaded, populate immediately
+      if (synth.getVoices().length > 0) {
+        populateVoices();
+      } else {
+        // Otherwise, wait for the voices to be loaded
+        synth.onvoiceschanged = populateVoices;
+      }
     },
     clearHighlight() {
       // Force an update by resetting the content
@@ -562,22 +631,14 @@ export default {
         }
       }
     },
-    cancelHold() {
-      if (this.swipeDisabled) {
-        // Prevent hold cancellation if swipe is disabled
-        return;
-      }
-      clearTimeout(this.holdTimeout);
-      this.isHolding = false;
-    },
-
+    
     toggleAudio() {
       this.$emit('toggle-audio');
     },
     toggleExpand() {
       this.expanded = !this.expanded;
     },
-    
+
     submitForm() {
       if (!this.isAuthenticated()) {
         console.log('Redirecting to login page...');
@@ -608,24 +669,19 @@ export default {
     },
     saveSettings() {
       // Save settings to local storage
-      localStorage.setItem(
-        "selectedVoice",
-        JSON.stringify(this.selectedVoiceName)
-      );
-      localStorage.setItem("rate", this.rate);
-      localStorage.setItem("pitch", this.pitch);
+      localStorage.setItem('selectedVoice', JSON.stringify(this.selectedVoiceName));
+      localStorage.setItem('rate', this.rate);
+      localStorage.setItem('pitch', this.pitch);
       // Show success message
       this.successMessage = true;
       // Close the modal after a short delay
       setTimeout(() => {
-        this.successMessage = false;
-        const offcanvasElement = document.getElementById("offcanvasRight"); // Change to the correct element ID
-        const offcanvasInstance = bootstrap.Offcanvas.getInstance(
-          offcanvasElement
-        );
-        if (offcanvasInstance) {
-          offcanvasInstance.hide(); // Close the offcanvas
-        }
+          this.successMessage = false;
+          const offcanvasElement = document.getElementById('offcanvasRight'); // Change to the correct element ID
+          const offcanvasInstance = bootstrap.Offcanvas.getInstance(offcanvasElement);
+          if (offcanvasInstance) {
+              offcanvasInstance.hide(); // Close the offcanvas
+          }
       }, 1000); // 1 second delay
     },
     closeModal() {
@@ -664,18 +720,18 @@ export default {
 
     selectBestVoice() {
       const preferredVoices = [
-        "Google UK English Female",
-        "Microsoft Zira Desktop - English (United States)",
-        "Samantha",
-        "Google US English",
-        "Microsoft David Desktop - English (United States)"
+        'Google UK English Female',
+        'Microsoft Zira Desktop - English (United States)',
+        'Samantha',
+        'Google US English',
+        'Microsoft David Desktop - English (United States)',
       ];
 
       for (const preferredVoice of preferredVoices) {
         const voice = this.voices.find(v => v.name === preferredVoice);
         if (voice) {
-          this.selectedVoice = voice;
-          return;
+        this.selectedVoice = voice;
+        return;
         }
       }
       if (this.voices.length > 0) {
@@ -983,7 +1039,8 @@ export default {
 .summary-textarea {
   display: block;
   width: 100%;
-  min-height: 100px; /* Adjust height as needed */
+  min-height: 100px;
+  /* Adjust height as needed */
   padding: 10px;
   font-family: inherit;
   font-size: inherit;
@@ -992,11 +1049,22 @@ export default {
   border: 1px solid #ccc;
   border-radius: 4px;
   line-height: 1.5em;
-  white-space: pre-wrap; /* Preserve formatting */
-  overflow: auto; /* Allow scrolling if content overflows */
-  resize: vertical; /* Allow user to resize vertically */
+  white-space: pre-wrap;
+  /* Preserve formatting */
+  overflow: auto;
+  /* Allow scrolling if content overflows */
+  resize: vertical;
+  /* Allow user to resize vertically */
 }
 
+.close-btn {
+  right: 5px;
+  background-color: transparent;
+  border: none;
+  font-size: 1.2em;
+  cursor: pointer;
+  color: #333;
+}
 
 .button-36 {
   background-image: linear-gradient(92.88deg, #455EB5 9.16%, #5643CC 43.89%, #673FD7 64.72%);
@@ -1005,7 +1073,7 @@ export default {
   box-sizing: border-box;
   color: #FFFFFF;
   cursor: pointer;
-  font-family: "Inter UI","SF Pro Display",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+  font-family: "Inter UI", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 15px;
   height: 2.4rem;
   padding: 0 1.3rem;
@@ -1019,6 +1087,7 @@ export default {
 
 .button-36:hover {
   box-shadow: rgba(80, 63, 205, 0.5) 0 1px 30px;
+  transition: color 0.3s ease;
   transition-duration: .1s;
 }
 
@@ -1030,16 +1099,20 @@ button {
   border-radius: 5px;
   cursor: pointer;
 }
+
 button:disabled {
   background-color: #ccc;
 }
+
 .summary {
   margin-top: 20px;
 }
+
 .error {
   margin-top: 20px;
   color: red;
 }
+
 .document-export-container {
   max-width: 600px;
   margin: 50px auto;
@@ -1086,6 +1159,7 @@ button:disabled {
 }
 
 .btn-primary:hover {
+  transition: color 0.3s ease;
   background-color: #163a5d;
 }
 

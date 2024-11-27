@@ -123,6 +123,7 @@ export default {
 .badge:hover {
   background: rgb(9, 94, 68);
   font-size: 1em;
+  color:white;
   border-radius: 8px;
   padding: 8px;
 }
