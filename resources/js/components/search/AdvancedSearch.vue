@@ -3,7 +3,7 @@
  <!-- Search Input Group -->
  <div>
 
-  <div class="container input-group " style="position: relative; width: 100%;">
+  <div class="container input-group pb-2" style="position: relative; width: 100%;">
    <input type="search" @keyup="onInput" v-model="searchTerm" placeholder="Explore the words of the Quran" class="form-control pb-2 mobile-only" style="flex: 1;box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;"/>
 
    <!-- Suggestions Dropdown -->
@@ -60,8 +60,10 @@
  
  
  <!-- show a message when recording starts -->
- <h3 v-if="isListening" class="pt-1"><b class="pt-1">Listening...</b></h3>
-
+  <div v-if="isListening" class="listening-container">
+    <span class="listening-icon">🎙️</span>
+    <span class="listening-text"><b>Listening</b><span class="dot-typing"></span></span>
+  </div>
  <!-- Offcanvas for Search Results -->
 <div class="offcanvas offcanvas-end custom-offcanvas" tabindex="-1" id="offcanvasResults">
   <div class="offcanvas-header">
@@ -497,6 +499,73 @@ export default {
 </script>
 
 <style scoped>
+.listening-container {
+  top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1em;
+  font-weight: 300;
+  color: #333;
+  background-color: #f5f5f5;
+  padding: 12px 24px;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  max-width: 300px;
+  border: 2px solid lightgrey;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.listening-icon {
+  font-size: 1.3em;
+  color: #000000;
+  margin-right: 10px;
+}
+
+.listening-text {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.dot-typing {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background-color: #119457;
+  border-radius: 50%;
+  animation: blink 1.4s infinite ease-in-out both;
+}
+
+.dot-typing:before,
+.dot-typing:after {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background-color: #000000;
+  border-radius: 50%;
+  animation: blink 1.4s infinite ease-in-out both;
+}
+
+.dot-typing:before {
+  animation-delay: 0.2s;
+}
+
+.dot-typing:after {
+  animation-delay: 0.4s;
+}
+
+/* Blinking dots animation */
+@keyframes blink {
+  0%, 80%, 100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+}
 
 /* CSS */
 .button-36 {
