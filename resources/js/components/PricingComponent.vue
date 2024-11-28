@@ -58,13 +58,12 @@
               </div>
               <div class="info">
                 <ul>
-                  <li><img src="images/check.png" width="20px" class="mr-2"/>Voice search with instant quranic results.</li>
-                  <li><img src="images/check.png" width="20px" class="mr-2"/>Speech to text audio recording for user feedback.</li>
-                  <li><img src="images/check.png" width="20px" class="mr-2"/>Toggle between basic and advanced mode.</li>
-                  <li><img src="images/check.png" width="20px" class="mr-2"/>Multiple translations and audio recitations (In progress).</li>
-                  <li><img src="images/check.png" width="20px" class="mr-2"/>Generate text summary (10 daily).</li>
-                  <li><img src="images/check.png" width="20px" class="mr-2"/>Unlimited bookmark and basic notes storage.</li>
-                  <li><img src="images/check.png" width="20px" class="mr-2"/>Basic Surah information.</li>
+                  <li><img src="images/check.png" width="20px" class="mr-2"/>Voice search with instant Quranic results.</li>
+                  <li><img src="images/check.png" width="20px" class="mr-2"/>Speech-to-text audio recording for user feedback.</li>
+                  <li><img src="images/check.png" width="20px" class="mr-2"/>Toggle between basic and advanced modes.</li>
+                  <li><img src="images/check.png" width="20px" class="mr-2"/>Multiple translations and audio recitations (in progress).</li>
+                  <li><img src="images/check.png" width="20px" class="mr-2"/>Unlimited bookmarks and basic notes storage.</li>
+                  <li><img src="images/check.png" width="20px" class="mr-2"/>Basic surah information.</li>
                 </ul>
                 <!-- <a href="#" class="plan-btn">Join Basic Plan</a> -->
               </div>
@@ -79,14 +78,14 @@
               </div>
               <div class="info">
                 <ul>
-                  <li><img src="images/check.png" width="20px" class="mr-2"/>Audio sync with Word line Highlighting </li>
-                  <li><img src="images/check.png" width="20px" class="mr-2"/>Search for blogs, articles, podcasts etc</li>
-                  <li><img src="images/check.png" width="20px" class="mr-2"/>Generate text summary (20 daily).</li>
-                  <li><img src="images/check.png" width="20px" class="mr-2"/>Advanced and customized Editor.</li>
-                  <li><img src="images/check.png" width="20px" class="mr-2"/>Speech to text for english translations and tafseer's.</li>
-                  <li><img src="images/check.png" width="20px" class="mr-2"/>Text to speech for note recordings (10 daily).</li>
-                  <li><img src="images/check.png" width="20px" class="mr-2"/>Download screen capture (10 daily).</li>
-                  <li><img src="images/check.png" width="20px" class="mr-2"/>Export Quranic verses via CSV, Word or PDF.</li>
+                  <li><img src="images/check.png" width="20px" class="mr-2"/>Audio Sync with Word-by-Word Highlighting.</li>
+                  <li><img src="images/check.png" width="20px" class="mr-2"/>Search Blogs, Articles, Podcasts, and More</li>
+                  <li><img src="images/check.png" width="20px" class="mr-2"/>Generate up to 20 text summaries daily.</li>
+                  <li><img src="images/check.png" width="20px" class="mr-2"/>Advanced and Customizable Editor</li>
+                  <li><img src="images/check.png" width="20px" class="mr-2"/>Speech-to-Text for English Translations and Tafsir</li>
+                  <li><img src="images/check.png" width="20px" class="mr-2"/>Text-to-Speech for Note Recordings (Up to 10 Daily).</li>
+                  <li><img src="images/check.png" width="20px" class="mr-2"/>Download Screen Captures (Up to 10 Daily).</li>
+                  <li><img src="images/check.png" width="20px" class="mr-2"/>Export Quranic Verses to CSV, Word, or PDF.</li>
                 </ul>
                 <a href="#" class="plan-btn">Join Value Plan</a>
               </div>
@@ -101,11 +100,11 @@
               </div>
               <div class="info">
                 <ul>
-                  <li><img src="images/check.png" width="20px" class="mr-2"/>Download blogs, articles for offline reading.</li>
-                  <li><img src="images/check.png" width="20px" class="mr-2"/>Generate unlimited text summary with PDF exports.</li>
-                  <li><img src="images/check.png" width="20px" class="mr-2"/>Customize speech to text for better audio experience.</li>
-                  <li><img src="images/check.png" width="20px" class="mr-2"/>Text to speech for note recordings (unlimited).</li>
-                  <li><img src="images/check.png" width="20px" class="mr-2"/>Download screen capture (unlimited).</li>
+                  <li><img src="images/check.png" width="20px" class="mr-2"/>Download blogs and articles for offline reading.</li>
+                  <li><img src="images/check.png" width="20px" class="mr-2"/>Generate unlimited text summaries with PDF export.</li>
+                  <li><img src="images/check.png" width="20px" class="mr-2"/>Speech-to-text settings for an enhanced audio experience.</li>
+                  <li><img src="images/check.png" width="20px" class="mr-2"/>Utilize text-to-speech for unlimited note recordings.</li>
+                  <li><img src="images/check.png" width="20px" class="mr-2"/>Capture and download unlimited screen recordings.</li>
                 </ul>
                 <a href="#" class="plan-btn">Join Premium Plan</a>
               </div>
