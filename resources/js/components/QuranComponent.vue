@@ -58,7 +58,7 @@
        <i class="bi bi-arrow-left-circle h4 custom-prev-ayah" style="cursor:pointer" @click="goToPreviousAyah" title="Previous verse"></i>
        <i class="bi bi-arrow-right-circle h4 custom-next-ayah" style="cursor:pointer" @click="goToNextAyah" title="Next verse"></i>
        <i class="bi bi-chevron-bar-right h4 custom-last-verse" style="cursor:pointer" @click="goToLastAyah" title="Last verse"></i>
-       <i class="bi bi-question-circle h4 custom-last-verse" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i>
+       <!-- <i class="bi bi-question-circle h4 custom-last-verse" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i> -->
       </div>
        
       <div class="custom-scrollbar pb-5" style="overflow-y: auto; max-height: 600px; background: white;border-radius:10px;box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;">
@@ -372,7 +372,7 @@
               <i class="bi bi-arrow-right-circle h4"  style="cursor:pointer" @click="goToNextAyah()" title="Next verse"></i>
               <i class="bi bi-chevron-bar-right h4" style="cursor:pointer" @click="goToLastAyah()" title="End verse"></i>
               <!-- <i class="bi bi-paint-bucket h1" style="cursor:pointer" data-bs-toggle="offcanvas" data-bs-target="#styleOffcanvas" aria-controls="styleOffcanvas"></i> -->
-              <i class="bi bi-question-circle h4 custom-last-verse" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i>
+              <!-- <i class="bi bi-question-circle h4 custom-last-verse" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i> -->
             </div>
           </div>
         </div>
@@ -444,7 +444,7 @@
    </div>
 
     <!-- gesture instructions -->
-    <div class="offcanvas offcanvas-end custom-offcanvas" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <!-- <div class="offcanvas offcanvas-end custom-offcanvas" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
       <div class="offcanvas-header">
         <h4 class="offcanvas-title text-white" id="offcanvasRightLabel"><b>Gesture Navigation Instructions</b></h4>
         <button type="button" class="btn-close text-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -452,17 +452,17 @@
       <hr class="text-white">
       <div class="offcanvas-body text-white">
         <h5 class="pb-4">Navigate through verses effortlessly using intuitive gesture controls designed to enhance your reading experience:</h5>
-        <!-- <h5 class="fw-bold">* Swipe Left:</h5><p class="lead"> Move to the previous verse.</p>
-        <h5 class="fw-bold">* Swipe Right:</h5><p class="lead"> Proceed to the next verse.</p> -->
+        <h5 class="fw-bold">* Swipe Left:</h5><p class="lead"> Move to the previous verse.</p>
+        <h5 class="fw-bold">* Swipe Right:</h5><p class="lead"> Proceed to the next verse.</p>
         <h5 class="fw-bold">* Hold On:</h5><p class="lead"> Activate Text-to-Speech (TTS) playback for the current verse.</p>
-        <!-- <hr>
-        <p class="lead">Explore with ease and enjoy a seamless, hands-free experience.</p> -->
+        <hr>
+        <p class="lead">Explore with ease and enjoy a seamless, hands-free experience.</p>
       </div>
-    </div>
+    </div> -->
 
 
    <!-- Speech Off-canvas -->
-    <div
+    <!-- <div
       id="settingsOffcanvas"
       class="offcanvas offcanvas-end custom-offcanvas"
       tabindex="-1"
@@ -523,7 +523,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     
   <!-- theme styles -->
   <div class="offcanvas offcanvas-end custom-offcanvas " tabindex="-1" id="styleOffcanvas" aria-labelledby="styleOffcanvasLabel">

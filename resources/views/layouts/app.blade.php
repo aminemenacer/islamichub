@@ -49,41 +49,41 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav justify-content-end pr-4 flex-grow-1">
                 <li class="nav-item mt-3">
-                    <h6><a class="nav-link text-dark ml-3 pl-3" href="/quran"><b>Home</b></a></h6>
+                    <h6><a class="nav-link  ml-3 pl-3" href="/quran"><b>Home</b></a></h6>
                 </li>
                 <li class="nav-item mt-3">
-                    <h6><a class="nav-link text-dark ml-3 pl-3" href="/contact"><b>Contact</b></a></h6>
+                    <h6><a class="nav-link  ml-3 pl-3" href="/contact"><b>Contact</b></a></h6>
                 </li>
                 <li class="nav-item mt-3">
-                    <h6><a class="nav-link text-dark ml-3 pl-3" href="/about"><b>About Us</b></a></h6>
+                    <h6><a class="nav-link  ml-3 pl-3" href="/about"><b>About Us</b></a></h6>
                 </li>
                 <li class="nav-item mt-3">
-                    <h6><a class="nav-link text-dark ml-3 pl-3" href="/mission"><b>Our Mission</b></a></h6>
+                    <h6><a class="nav-link  ml-3 pl-3" href="/mission"><b>Our Mission</b></a></h6>
                 </li>
                 <li class="nav-item mt-3">
-                    <h6><a class="nav-link text-dark ml-3 pl-3" href="/faq"><b>FAQ's</b></a></h6>
+                    <h6><a class="nav-link  ml-3 pl-3" href="/faq"><b>FAQ's</b></a></h6>
                 </li>
                 <li class="nav-item mt-3">
-                    <h6><a class="nav-link text-dark ml-3 pl-3" href="/updates"><b>Updates</b></a></h6>
+                    <h6><a class="nav-link  ml-3 pl-3" href="/updates"><b>Updates</b></a></h6>
                 </li>
                 <li class="nav-item mt-3">
-                    <h6><a class="nav-link text-dark ml-3 pl-3 pr-3" href="/support"><b>Donation</b></a></h6>
+                    <h6><a class="nav-link  ml-3 pl-3 pr-3" href="/support"><b>Donation</b></a></h6>
                 </li>
                 
                 @guest
                 @if (Route::has('login'))
                 <li class="nav-item display-6 pl-3 mt-3">
-                    <h6><a class="nav-link text-dark" href="{{ route('login') }}"><b>{{ __('Login') }}</b></a></h6>
+                    <h6><a class="nav-link " href="{{ route('login') }}"><b>{{ __('Login') }}</b></a></h6>
                 </li>
                 @endif
                 @if (Route::has('register'))
                 <li class="nav-item display-6 pl-3 mt-3">
-                    <h6><a class="nav-link text-dark" href="{{ route('register') }}"><b>{{ __('Register') }}</b></a></h6>
+                    <h6><a class="nav-link " href="{{ route('register') }}"><b>{{ __('Register') }}</b></a></h6>
                 </li>
                 @endif
                 @else
                 <li class="nav-item dropdown pl-3">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle text-dark" href="#" role="button"
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle " href="#" role="button"
                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         <i class="bi bi-person-circle pr-2" style="font-size: 1.8rem"></i>
                         {{ Auth::user()->name }}
@@ -147,6 +147,11 @@
   touch-action: manipulation;
 }
 
+.nav-link:hover{
+  color: rgb(53, 163, 139);
+  transition: color 0.3s ease;
+}
+
 .button-36:hover {
   box-shadow: rgba(80, 63, 205, 0.5) 0 1px 30px;
   transition-duration: .1s;
@@ -170,9 +175,6 @@
     text-decoration: none;
 }
 
-.nav-link:hover {
-    color: #00BFA6;
-}
 
     /* .button-33 {
         background-color: #00BFA6;

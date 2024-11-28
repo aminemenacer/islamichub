@@ -94,10 +94,10 @@
             <img src="/images/art.png" class="pr-2" width="30px" alt="lamp" loading="lazy"/>
             <strong>Tafseer: </strong>Tafseer Ibn Kathir
           </h6>
-          <h6 class="text-left mt-3">
+          <!-- <h6 class="text-left mt-3">
             <img src="/images/art.png" class="pr-2" width="30px" alt="lamp" loading="lazy"/>
             <strong>Reciter's name: </strong>Mishary Rashid Alafasy
-          </h6>
+          </h6> -->
         </div>
 
         <!-- <div v-if="isVisible" class="row">
