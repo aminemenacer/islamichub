@@ -59,6 +59,8 @@ export default {
     // Define the CSS selectors for the unwanted elements
     const unwantedSelectors = [
       '.icon-container', 
+      '.settings',
+      '.summary',
       '.href', 
       '.mobile-only', 
       '.bar', 

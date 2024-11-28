@@ -30,7 +30,7 @@
           <!-- text summary -->
           <div v-if="isVisible">
             <div class="container row">
-              <button @click="getSummary" :disabled="loading" class="button-36">
+              <button @click="getSummary" :disabled="loading" class="summary button-36">
                 <span v-if="loading" class="spinner"></span>
                 {{ loading ? "Summarizing..." : "Generate Summary" }}
               </button>
@@ -60,7 +60,7 @@
           <!-- <i class="bi bi-plus-circle-fill h3 custom-icon-increase" aria-placeholder="Increase text size" @click="increaseFontSize"></i>
           <i class="bi bi-dash-circle-fill h3 custom-icon-decrease" aria-placeholder="Decrease text size" @click="decreaseFontSize"></i> -->
 
-          <i class="bi bi-gear-fill text-right h3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-expanded="false" data-bs-placement="top" title="Settings" :style="{ cursor: 'pointer' }">
+          <i class="bi bi-gear-fill settings text-right h3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-expanded="false" data-bs-placement="top" title="Settings" :style="{ cursor: 'pointer' }">
           </i>
 
         </div>

@@ -1,44 +1,5 @@
 <template>
 <div id="app" class="container-fluid pt-3">
-  <!-- <section class="py-3">
-    <div class="container">
-      <div class="row justify-content-center text-center mb-2 mb-lg-4">
-        <div class="col-12 col-lg-8 col-xxl-7 text-center mx-auto">
-          <h2 class="display-5 fw-bold">Our Pricings</h2>
-          <p class="lead">We offer flexible pricing plans tailored to meet your goals. Whether you're just starting out or need advanced features, select the plan that works best for you and get started today.</p>
-        </div>
-      </div>
-      <div v-for="(plan, key) in plans" :key="key" style="border-radius:12%" class="card border-0 mb-3">
-        <div class="card-body bg-light text-center py-4">
-          <div class="row align-items-center">
-            <div class="col-md-3">
-              <h5 class="fw-bold mb-0">{{ plan.name }}</h5>
-              <div class="display-3 fw-bold mt-1">
-                {{ plan.price }}
-              </div>
-              <div>Monthly</div>
-            </div>
-            <div class="col-md-3">
-              <ul class="list-unstyled mt-4 mt-md-3">
-                <li v-for="feature in plan.features" :key="feature" class="mb-3">{{ feature }}</li>
-              </ul>
-            </div>
-            <div class="col-md-3">
-              <ul class="list-unstyled mt-3">
-                <li v-for="extra in plan.extras" :key="extra" class="mb-3">{{ extra }}</li>
-              </ul>
-            </div>
-            <div class="col-md-3">
-              <button class="btn btn-lg" style="background:rgba(0, 191, 166);color:white" @click="initiateCheckout(key)">
-                Get Started
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section> -->
-
   <section class="py-3">
     <div class="price-sec-wrap">
       <div class="container">
@@ -58,12 +19,13 @@
               </div>
               <div class="info">
                 <ul>
-                  <li><img src="images/check.png" width="20px" class="mr-2"/>Voice search with instant Quranic results.</li>
-                  <li><img src="images/check.png" width="20px" class="mr-2"/>Speech-to-text audio recording for user feedback.</li>
-                  <li><img src="images/check.png" width="20px" class="mr-2"/>Toggle between basic and advanced modes.</li>
-                  <li><img src="images/check.png" width="20px" class="mr-2"/>Multiple translations and audio recitations (in progress).</li>
-                  <li><img src="images/check.png" width="20px" class="mr-2"/>Unlimited bookmarks and basic notes storage.</li>
-                  <li><img src="images/check.png" width="20px" class="mr-2"/>Basic surah information.</li>
+                  <li><img src="images/check.png" width="20px" class="mr-2" />Translation, tafseer and transliteration for each verse.</li>
+                  <li><img src="images/check.png" width="20px" class="mr-2" />Voice search with instant Quranic results.</li>
+                  <li><img src="images/check.png" width="20px" class="mr-2" />Speech-to-text audio recording for user feedback.</li>
+                  <li><img src="images/check.png" width="20px" class="mr-2" />Toggle between basic and advanced modes.</li>
+                  <li><img src="images/check.png" width="20px" class="mr-2" />Multiple translations and audio recitations (in progress).</li>
+                  <li><img src="images/check.png" width="20px" class="mr-2" />Unlimited bookmarks and basic notes storage.</li>
+                  <li><img src="images/check.png" width="20px" class="mr-2" />Basic surah information.</li>
                 </ul>
                 <!-- <a href="#" class="plan-btn">Join Basic Plan</a> -->
               </div>
@@ -78,14 +40,14 @@
               </div>
               <div class="info">
                 <ul>
-                  <li><img src="images/check.png" width="20px" class="mr-2"/>Audio Sync with Word-by-Word Highlighting.</li>
-                  <li><img src="images/check.png" width="20px" class="mr-2"/>Search Blogs, Articles, Podcasts, and More</li>
-                  <li><img src="images/check.png" width="20px" class="mr-2"/>Generate up to 20 text summaries daily.</li>
-                  <li><img src="images/check.png" width="20px" class="mr-2"/>Advanced and Customizable Editor</li>
-                  <li><img src="images/check.png" width="20px" class="mr-2"/>Speech-to-Text for English Translations and Tafsir</li>
-                  <li><img src="images/check.png" width="20px" class="mr-2"/>Text-to-Speech for Note Recordings (Up to 10 Daily).</li>
-                  <li><img src="images/check.png" width="20px" class="mr-2"/>Download Screen Captures (Up to 10 Daily).</li>
-                  <li><img src="images/check.png" width="20px" class="mr-2"/>Export Quranic Verses to CSV, Word, or PDF.</li>
+                  <li><img src="images/check.png" width="20px" class="mr-2" />Audio Sync with Word-by-Word Highlighting.</li>
+                  <li><img src="images/check.png" width="20px" class="mr-2" />Search Blogs, Articles, Podcasts, and More</li>
+                  <li><img src="images/check.png" width="20px" class="mr-2" />Generate up to 20 text summaries daily.</li>
+                  <li><img src="images/check.png" width="20px" class="mr-2" />Advanced and Customizable Editor</li>
+                  <li><img src="images/check.png" width="20px" class="mr-2" />Speech-to-Text for English Translations and Tafsir</li>
+                  <li><img src="images/check.png" width="20px" class="mr-2" />Text-to-Speech for Note Recordings (Up to 10 Daily).</li>
+                  <li><img src="images/check.png" width="20px" class="mr-2" />Download Screen Captures (Up to 10 Daily).</li>
+                  <li><img src="images/check.png" width="20px" class="mr-2" />Export Quranic Verses to CSV, Word, or PDF.</li>
                 </ul>
                 <a href="#" class="plan-btn">Join Value Plan</a>
               </div>
@@ -100,11 +62,11 @@
               </div>
               <div class="info">
                 <ul>
-                  <li><img src="images/check.png" width="20px" class="mr-2"/>Download blogs and articles for offline reading.</li>
-                  <li><img src="images/check.png" width="20px" class="mr-2"/>Generate unlimited text summaries with PDF export.</li>
-                  <li><img src="images/check.png" width="20px" class="mr-2"/>Speech-to-text settings for an enhanced audio experience.</li>
-                  <li><img src="images/check.png" width="20px" class="mr-2"/>Utilize text-to-speech for unlimited note recordings.</li>
-                  <li><img src="images/check.png" width="20px" class="mr-2"/>Capture and download unlimited screen recordings.</li>
+                  <li><img src="images/check.png" width="20px" class="mr-2" />Download blogs and articles for offline reading.</li>
+                  <li><img src="images/check.png" width="20px" class="mr-2" />Generate unlimited text summaries with PDF export.</li>
+                  <li><img src="images/check.png" width="20px" class="mr-2" />Speech-to-text settings for an enhanced audio experience.</li>
+                  <li><img src="images/check.png" width="20px" class="mr-2" />Utilize text-to-speech for unlimited note recordings.</li>
+                  <li><img src="images/check.png" width="20px" class="mr-2" />Capture and download unlimited screen recordings.</li>
                 </ul>
                 <a href="#" class="plan-btn">Join Premium Plan</a>
               </div>
@@ -330,21 +292,4 @@ export default {
     margin-bottom: 20px;
   }
 }
-
-/* .card{
-  box-shadow: 24px 24px 80px rgba(0,0,0,0.1);
-  box-sizing: border-box;
-  border-radius: 12px;
-  margin: 20px;
-  display: flex;
-  flex-direction: column;
-  border: 2px double rgba(0, 191, 166);
-
-}
-
-.subscription-buttons button {
-  margin: 10px;
-  padding: 10px;
-  cursor: pointer;
-} */
 </style>

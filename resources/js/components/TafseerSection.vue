@@ -29,6 +29,24 @@
             <h4 class="ayah-translation" style="line-height: 1.6em" :style="{ fontSize: fontSize + 'em', lineHeight: '1.6em' }" >
               {{ expanded ? tafseer : tafseer }}
             </h4>
+            <!-- text summary -->
+            <div v-if="isVisible">
+              <div class="container row">
+                <button @click="getSummary" :disabled="loading" class="button-36 summary">
+                  <span v-if="loading" class="spinner"></span>
+                  {{ loading ? "Summarizing..." : "Generate Summary" }}
+                </button>
+              </div>
+              
+              <div v-if="summary" class="summary">
+                <button class="close-btn" @click="closeSummary">x</button>
+                <p class="summary-textarea">{{ summary }}</p>
+              </div>
+
+              <div v-if="error" class="error">
+                <p>{{ error }}</p>
+              </div> 
+            </div>
           </div>
 
           <!-- Control Icons Column (Stacked Vertically) -->
@@ -65,24 +83,7 @@
           </div>
         </div>
 
-        <!-- text summary -->
-        <div v-if="isVisible">
-          <div class="container row">
-            <button @click="getSummary" :disabled="loading" class="button-36">
-              <span v-if="loading" class="spinner"></span>
-              {{ loading ? "Summarizing..." : "Generate Summary" }}
-            </button>
-          </div>
-          
-          <div v-if="summary" class="summary">
-            <button class="close-btn" @click="closeSummary">x</button>
-            <p class="summary-textarea">{{ summary }}</p>
-          </div>
-
-          <div v-if="error" class="error">
-            <p>{{ error }}</p>
-          </div> 
-        </div>
+        
 
         <!-- Word Count and Additional Information -->
         <div v-if="wordCount" class="word-count">

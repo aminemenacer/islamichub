@@ -54,10 +54,10 @@
       <hr class="container" style="height: 4px; background: lightgrey;">
 
       <div :selectedSurahId="selectedSurah" @update-tafseer="updateTafseer" @update-information="updateInformation" :style="iconStyle" class="icon-container pb-2" >
-       <i class="bi bi-chevron-bar-left h4 custom-first-verse" style="cursor:pointer" @click="goToFirstAyah" title="First verse"></i>
-       <i class="bi bi-arrow-left-circle h4 custom-prev-ayah" style="cursor:pointer" @click="goToPreviousAyah" title="Previous verse"></i>
-       <i class="bi bi-arrow-right-circle h4 custom-next-ayah" style="cursor:pointer" @click="goToNextAyah" title="Next verse"></i>
-       <i class="bi bi-chevron-bar-right h4 custom-last-verse" style="cursor:pointer" @click="goToLastAyah" title="Last verse"></i>
+       <i class="bi bi-chevron-bar-left h4 custom-first-verse desktop-icon" style="cursor:pointer" @click="goToFirstAyah" title="First verse"></i>
+       <i class="bi bi-arrow-left-circle h4 custom-prev-ayah desktop-icon" style="cursor:pointer" @click="goToPreviousAyah" title="Previous verse"></i>
+       <i class="bi bi-arrow-right-circle h4 custom-next-ayah desktop-icon" style="cursor:pointer" @click="goToNextAyah" title="Next verse"></i>
+       <i class="bi bi-chevron-bar-right h4 custom-last-verse desktop-icon" style="cursor:pointer" @click="goToLastAyah" title="Last verse"></i>
        <!-- <i class="bi bi-question-circle h4 custom-last-verse" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i> -->
       </div>
        

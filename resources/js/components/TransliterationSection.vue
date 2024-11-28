@@ -15,6 +15,24 @@
           <h4 class="ayah-translation" style="line-height: 1.6em" :style="{ fontSize: fontSize + 'em', lineHeight: '1.6em' }">
             {{ expanded ? information.transliteration : information.transliteration }}
           </h4>
+          <!-- text summary -->
+          <div v-if="isVisible">
+            <div class="container row">
+                <button @click="getSummary" :disabled="loading" class="summary button-36">
+                  <span v-if="loading" class="spinner"></span>
+                  {{ loading ? "Summarizing..." : "Generate Summary" }}
+                </button>
+            </div>
+            
+            <div v-if="summary" class="summary">
+              <button class="close-btn" @click="closeSummary">x</button>
+              <p class="summary-textarea">{{ summary }}</p>
+            </div>
+
+            <div v-if="error" class="error">
+              <p>{{ error }}</p>
+            </div> 
+          </div>
         </div>
         <div @touchstart.stop @touchend.stop v-if="isVisible" class="col-2 d-flex align-items-center justify-content-center flex-column">
           <i @click="increaseFontSize" class="bi bi-plus-circle-fill h3 custom-icon-increase" aria-label="Increase font size"></i>
@@ -22,24 +40,7 @@
         </div>
       </div>
 
-      <!-- text summary -->
-      <div v-if="isVisible">
-        <div class="container row">
-            <button @click="getSummary" :disabled="loading" class="button-36">
-              <span v-if="loading" class="spinner"></span>
-              {{ loading ? "Summarizing..." : "Generate Summary" }}
-            </button>
-        </div>
-        
-        <div v-if="summary" class="summary">
-          <button class="close-btn" @click="closeSummary">x</button>
-          <p class="summary-textarea">{{ summary }}</p>
-        </div>
-
-        <div v-if="error" class="error">
-          <p>{{ error }}</p>
-        </div> 
-      </div>
+      
 
       <div class="text-left word-count mt-2">
         <h6 class="text-left mt-3"><img src="/images/art.png" class="pr-2" width="30px" alt="lamp" loading="lazy" /><strong>Total Word count: </strong>{{ wordCount }}</h6>

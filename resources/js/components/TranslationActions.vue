@@ -123,7 +123,7 @@ export default {
 
       // Elements to hide before screenshot
       const unwantedElements = [
-        '.icon-container', '.href', '.mobile-only', '.bar', '.pitch', '.rate',
+        '.icon-container', '.bi-gear-fill', '.button-36', '.href', '.mobile-only', '.bar', '.pitch', '.rate',
         '.container.text-center', '.custom-icon-play', '.bi-rewind-circle-fill', 
         '.bi-plus-circle-fill', '.bi-dash-circle-fill', '.bi-play-circle-fill',
         '.bi-pause-circle-fill', '.bi-stop-circle-fill', '.custom-icon-decrease',

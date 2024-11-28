@@ -4,10 +4,10 @@
     <i class="bi bi-camera text-right mr-2 h3" @click="captureTafseer" aria-expanded="false" data-bs-placement="top" title="Screenshot verse" :style="{ iconColor: iconColor, cursor: 'pointer' }"></i>
 
     <!-- Success Message (Bootstrap Alert) -->
-    <div v-if="showSuccessMessage" class="alert alert-success alert-dismissible fade show" role="alert">
+    <!-- <div v-if="showSuccessMessage" class="alert alert-success alert-dismissible fade show" role="alert">
       Screenshot captured successfully!
       <button type="button" class="btn-close" @click="closeSuccessMessage" aria-label="Close"></button>
-    </div>
+    </div> -->
 
     <!-- Modal -->
     <div class="modal fade" id="previewModal" tabindex="-1" aria-labelledby="previewModalLabel" aria-hidden="true">
@@ -65,7 +65,7 @@ export default {
       targetTafseerElement.style.padding = "10px"; // Adjust this value as needed
 
       const unwantedElements = [
-        '.icon-container, .href, .mobile-only, .bar, .pitch, .rate, .container.text-center, ' +
+        '.icon-container, .settings, .summary, .href, .mobile-only, .bar, .pitch, .rate, .container.text-center, ' +
         '.custom-icon-play, .bi-rewind-circle-fill, .bi-plus-circle-fill, .bi-dash-circle-fill, ' +
         '.bi-play-circle-fill, .bi-pause-circle-fill, .bi-stop-circle-fill, .custom-icon-decrease, .word-count'
       ];

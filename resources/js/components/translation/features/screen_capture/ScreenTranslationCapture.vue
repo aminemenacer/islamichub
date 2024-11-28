@@ -68,7 +68,7 @@ export default {
       targetTranslationElement.style.padding = "10px"; // Adjust this value as needed
 
       const unwantedElements = [
-        '.icon-container, .href, .mobile-only, .bar, .pitch, .rate, .container.text-center, ' +
+        '.icon-container, .settings, .summary, .href, .mobile-only, .bar, .pitch, .rate, .container.text-center, ' +
         '.custom-icon-play, .bi-rewind-circle-fill, .bi-plus-circle-fill, .bi-dash-circle-fill, ' +
         '.bi-play-circle-fill, .bi-pause-circle-fill, .bi-stop-circle-fill, .custom-icon-decrease, .word-count'
       ];
